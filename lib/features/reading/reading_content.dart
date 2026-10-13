@@ -17,6 +17,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import 'widgets/reading_active_sentence_view.dart';
+import '../story/lumo_story_library_screen.dart';
 
 class ReadingContent extends StatefulWidget {
   const ReadingContent({super.key, required this.appState, required this.onBack});
@@ -56,6 +57,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   bool _showNotHeardHint = false;
   bool _processing = false;
   bool _loadingStory = true;
+  bool _openingLibrary = false;
   Timer? _listenTimer;
   LumoCompanionTaskContext? _visibleReadingContext;
 
@@ -185,7 +187,31 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     await LumoVoice.instance.speakAndWait(message);
   }
 
+  Future<void> _openStoryLibrary() async {
+    if (_openingLibrary || ModalRoute.of(context)?.isCurrent != true) return;
+    final profileGeneration = widget.appState.profileGeneration;
+    setState(() => _openingLibrary = true);
+    try {
+      _listenTimer?.cancel();
+      // Cancellation discards late transcripts instead of grading them.
+      await _speech.cancel();
+      await LumoVoice.instance.stop();
+      if (!mounted || profileGeneration != widget.appState.profileGeneration) {
+        return;
+      }
+      await Navigator.of(context).push<void>(MaterialPageRoute(
+        builder: (_) => LumoStoryLibraryScreen(appState: widget.appState),
+      ));
+    } finally {
+      if (mounted) {
+        setState(() => _openingLibrary = false);
+        _publishReadingContext();
+      }
+    }
+  }
+
   Future<void> _toggleListening() async {
+    if (_openingLibrary || ModalRoute.of(context)?.isCurrent != true) return;
     if (_speech.listening) {
       await _speech.stopListening();
       return;
@@ -195,9 +221,11 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   }
 
   Future<void> _startListening() async {
-    if (_progress == null) return;
+    if (_progress == null || _openingLibrary ||
+        ModalRoute.of(context)?.isCurrent != true) return;
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted) return;
+    if (!mounted || _openingLibrary ||
+        ModalRoute.of(context)?.isCurrent != true) return;
     if (!widget.appState.state.settings.microphoneEnabled) {
       setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
       return;
@@ -206,6 +234,8 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
     _listenTimer?.cancel();
     await LumoVoice.instance.stop();
+    if (!mounted || _openingLibrary ||
+        ModalRoute.of(context)?.isCurrent != true) return;
 
     setState(() {
       _lastTranscript = '';
@@ -541,6 +571,18 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
                     children: [
                       _ReadingHeader(title: story.title, onBack: widget.onBack),
                       const SizedBox(height: 12),
+                      OutlinedButton.icon(
+                        key: const ValueKey('reading-stories'),
+                        style: OutlinedButton.styleFrom(
+                          minimumSize: const Size.fromHeight(56),
+                          foregroundColor: LumoVisualTokens.cyanBright,
+                          side: const BorderSide(color: LumoVisualTokens.cyan),
+                        ),
+                        onPressed: _openingLibrary ? null : _openStoryLibrary,
+                        icon: const Icon(Icons.auto_stories_rounded),
+                        label: const Text('Meine Geschichtenbibliothek'),
+                      ),
+                      const SizedBox(height: 12),
                       _StoryProgressBar(
                         current: progress.completedSentenceIds.length,
                         total: story.sentences.length,
@@ -571,7 +613,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
                         lastTranscript: _lastTranscript,
                         error: _speech.error,
                         showNotHeardHint: _showNotHeardHint,
-                        onTap: _finished ? null : _toggleListening,
+                        onTap: _finished || _openingLibrary ? null : _toggleListening,
                       ),
                       if (progress.problemWords.isNotEmpty) ...[
                         const SizedBox(height: 12),
@@ -974,6 +1016,7 @@ class _MicrophonePanel extends StatelessWidget {
               ),
               const SizedBox(width: 12),
               GestureDetector(
+                key: const ValueKey('reading-microphone'),
                 onTap: enabled ? onTap : null,
                 child: AnimatedContainer(
                   duration: const Duration(milliseconds: 200),

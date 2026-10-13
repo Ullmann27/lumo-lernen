@@ -29,6 +29,7 @@ import '../writing/writing_feature_flags.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
 import '../tutoring/guided_learning_hub.dart';
+import '../story/lumo_story_library_screen.dart';
 
 // Datenstruktur für Lehrpläne
 class LearningTopic {
@@ -686,6 +687,22 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildHero()),
           SliverToBoxAdapter(child: _buildTitleRow()),
           SliverToBoxAdapter(child: _buildGradePicker()),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+              child: OutlinedButton.icon(
+                key: const ValueKey('academy-stories'),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(56),
+                  foregroundColor: LumoVisualTokens.cyanBright,
+                  side: const BorderSide(color: LumoVisualTokens.cyan),
+                ),
+                onPressed: _openStories,
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: Text('Geschichten · $_selectedGrade. Klasse'),
+              ),
+            ),
+          ),
           SliverToBoxAdapter(child: _buildLearningAreas()),
           SliverToBoxAdapter(child: _buildContinueBanner()),
           SliverToBoxAdapter(child: _buildGuidedLearningEntries()),
@@ -1628,7 +1645,23 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     );
   }
 
+  void _openStories() {
+    if (ModalRoute.of(context)?.isCurrent != true) return;
+    Navigator.of(context).push<void>(MaterialPageRoute(
+      builder: (_) => LumoStoryLibraryScreen(
+        appState: widget.appState,
+        gradeLevel: _selectedGrade,
+      ),
+    ));
+  }
+
   void _openTopic(LearningTopic t, LearningSubject s) {
+    // Local story selection is independent of the enrolled profile grade.
+    // Opening the library does not award regular learning progress.
+    if (t.id == 'd3_geschichten') {
+      _openStories();
+      return;
+    }
     // Browsing a higher class must not secretly turn its tasks into regular
     // school progress or change the enrolled grade. New concepts need an
     // introduction and their own explicitly allowed discovery writer.

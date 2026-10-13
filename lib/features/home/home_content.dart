@@ -21,6 +21,7 @@ import '../quiz/quiz_show_content.dart';
 import '../reading/lumo_reading_buddy_screen.dart';
 import '../rewards/achievements_wall_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
+import '../story/lumo_story_library_screen.dart';
 
 /// The two main routes stay visible before progress and optional activities.
 /// Every progress value comes from the current profile or persisted wallet.
@@ -161,6 +162,22 @@ class HomeContent extends StatelessWidget {
                           child: actions[i],
                         ),
                     ],
+                  ),
+                  const SizedBox(height: 12),
+                  FilledButton.icon(
+                    key: const ValueKey('home-stories'),
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(56),
+                      backgroundColor: LumoVisualTokens.navigation,
+                      foregroundColor: LumoVisualTokens.cyanBright,
+                      side: const BorderSide(color: LumoVisualTokens.cyan),
+                    ),
+                    onPressed: () {
+                      if (ModalRoute.of(context)?.isCurrent != true) return;
+                      _open(context, LumoStoryLibraryScreen(appState: appState));
+                    },
+                    icon: const Icon(Icons.auto_stories_rounded),
+                    label: const Text('Geschichten lesen und erfinden'),
                   ),
                   const SizedBox(height: 12),
                   _HomeEntrance(
