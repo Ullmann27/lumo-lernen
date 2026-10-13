@@ -1,5 +1,5 @@
 name: Lumo app audit 2026-10-13
-# revision: full-fallback-content-ai-consent-overflow-stage
+# revision: shell-navigation-and-topic-content
 
 on:
   push:
@@ -49,6 +49,7 @@ jobs:
           set -euo pipefail
           flutter test --no-pub --reporter=expanded --timeout=90s \
             test/akademie_all_areas_navigation_test.dart \
+            test/app_shell_learning_area_transition_test.dart \
             test/learning_module_registry_smoke_test.dart \
             test/akademie_subject_navigation_test.dart \
             test/curriculum_integrity_test.dart \
