@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/settings_repository.dart';
 import 'package:lumo_lernen/core/lumo_story_library.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/home/home_content.dart';
@@ -241,8 +242,13 @@ void main() {
     final app = await profile(tester, 2, create: DelayedSettingsApp.new)
         as DelayedSettingsApp;
     await tester.runAsync(() async {
-      app.updateSettings(app.state.settings.copyWith(microphoneEnabled: true));
+      // The real settings loader restores persisted values asynchronously.
+      // Persist microphone permission first so the fixture cannot be reset
+      // to the default (disabled) before the pending-start race is exercised.
+      final enabled = app.state.settings.copyWith(microphoneEnabled: true);
+      await SettingsRepository.save(enabled);
       await app.ensureSettingsLoaded();
+      expect(app.state.settings.microphoneEnabled, true);
     });
     const speechChannel = MethodChannel('plugin.csdcorp.com/speech_to_text');
     final speechMethods = <String>[];
