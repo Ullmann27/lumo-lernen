@@ -179,6 +179,35 @@ void main() {
     expect(grade4, contains('Schriftliche Division'));
   });
 
+  test('every grade exposes a useful number of choices per learning area', () {
+    const minimums = <String, int>{
+      'Mathematik': 8,
+      'Deutsch': 5,
+      'Lesen': 4,
+      'Schreiben': 4,
+      'Rechtschreibung': 3,
+      'Englisch': 4,
+      'Sachunterricht': 6,
+      'Logik': 3,
+    };
+
+    for (var grade = 1; grade <= 4; grade++) {
+      for (final entry in minimums.entries) {
+        final units = Curriculum.unitsForGrade(
+          entry.key,
+          grade,
+          currentGradeOnly: true,
+        );
+        expect(
+          units.length,
+          greaterThanOrEqualTo(entry.value),
+          reason:
+              '${entry.key} Klasse $grade braucht genug echte Auswahl statt eines Mini-Menüs: $units',
+        );
+      }
+    }
+  });
+
   test('reading writing and spelling have their own grade menus', () {
     final reading1 =
         Curriculum.unitsForGrade('Lesen', 1, currentGradeOnly: true);
