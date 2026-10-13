@@ -33,6 +33,20 @@ void main() {
     expect(feedback.showDemo, isFalse);
   });
 
+  test('one straight stroke cannot pass as an H', () {
+    final template = LetterTemplates.all['H']!;
+    for (final line in <List<Offset>>[
+      const [Offset(20, 50), Offset(80, 50)],
+      const [Offset(50, 10), Offset(50, 90)],
+    ]) {
+      final feedback = WritingFeedbackEngine.generate(
+        template: template,
+        userStrokes: [stroke(line)],
+      );
+      expect(feedback.matched, isFalse, reason: 'A straight line is not H');
+    }
+  });
+
   test('wobbly finger C and S remain acceptable handwriting', () {
     final samples = <String, List<Offset>>{
       'C': const [
