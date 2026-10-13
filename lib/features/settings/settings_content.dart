@@ -166,7 +166,10 @@ class _SettingsContentState extends State<SettingsContent> {
             child: const Text('Abbrechen'),
           ),
           FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: LumoColors.orange),
+            style: FilledButton.styleFrom(
+              backgroundColor: LumoVisualTokens.cyan,
+              foregroundColor: LumoVisualTokens.night,
+            ),
             onPressed: () => Navigator.of(ctx).pop(true),
             child: const Text('Vorrat leeren'),
           ),
@@ -940,20 +943,25 @@ class _AiTutorStatsPanel extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.all(12),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(.72),
+            color: LumoVisualTokens.glassRow.withOpacity(.78),
             borderRadius: BorderRadius.circular(LumoRadius.md),
-            border: Border.all(color: LumoColors.orange.withOpacity(.18)),
+            border: Border.all(
+              color: LumoVisualTokens.cyan.withOpacity(.38),
+            ),
           ),
           child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Row(children: [
-              const Icon(Icons.psychology_alt_rounded, color: LumoColors.orange, size: 22,
-                  ),
+              const Icon(
+                Icons.psychology_alt_rounded,
+                color: LumoVisualTokens.cyanBright,
+                size: 22,
+              ),
               const SizedBox(width: 8),
               Expanded(
                 child: Text(
                   'KI-Aufgaben-Vorrat',
                   style: LumoTextStyles.caption.copyWith(
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                     fontWeight: FontWeight.w900,
                   ),
                 ),
@@ -993,8 +1001,9 @@ class _AiTutorStatsPanel extends StatelessWidget {
               const SizedBox(height: 4),
               Text(
                 'Nur Eltern sehen diesen Bereich. Der API-Key bleibt ausschließlich auf dem Proxy-Server.',
-                style: LumoTextStyles.caption.copyWith(color: LumoColors.ink500,
-                  ),
+                style: LumoTextStyles.caption.copyWith(
+                  color: LumoVisualTokens.muted,
+                ),
               ),
             ],
           ],
@@ -1016,13 +1025,22 @@ class _AiStatLine extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 4),
       child: Row(children: [
-        Expanded(child: Text(label, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink700),
+        Expanded(
+          child: Text(
+            label,
+            style: LumoTextStyles.caption.copyWith(
+              color: LumoVisualTokens.muted,
             ),
           ),
+        ),
         const SizedBox(width: 12),
-        Text(value, style: LumoTextStyles.caption.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w900,
-            ),
+        Text(
+          value,
+          style: LumoTextStyles.caption.copyWith(
+            color: LumoVisualTokens.white,
+            fontWeight: FontWeight.w900,
           ),
+        ),
       ],
       ),
     );
@@ -1071,15 +1089,22 @@ class _AiSafetyNotice extends StatelessWidget {
     final subline = enabled
         ? 'Lumo darf Antworten über den eigenen kindergesicherten Server holen. Es werden keine API-Schlüssel in der App gespeichert.'
         : 'Lumo nutzt nur die lokale Lernhilfe. Es werden keine Anfragen an externe Server gesendet.';
-    final iconColor = enabled ? LumoColors.orange : LumoColors.ink500;
+    final iconColor = enabled
+        ? LumoVisualTokens.cyanBright
+        : LumoVisualTokens.muted;
     final iconData = enabled ? Icons.shield_rounded : Icons.shield_outlined;
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
-        color: enabled ? LumoColors.orangeSurface : LumoColors.ink100.withOpacity(.45),
+        color: enabled
+            ? LumoVisualTokens.glassRow.withOpacity(.80)
+            : LumoVisualTokens.navigation.withOpacity(.78),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: enabled ? LumoColors.orange.withOpacity(.22) : LumoColors.ink300.withOpacity(.20),
+        border: Border.all(
+          color: enabled
+              ? LumoVisualTokens.cyan.withOpacity(.42)
+              : LumoVisualTokens.muted.withOpacity(.20),
         ),
       ),
       child: Row(
@@ -1094,7 +1119,7 @@ class _AiSafetyNotice extends StatelessWidget {
                 Text(
                   headline,
                   style: LumoTextStyles.caption.copyWith(
-                    color: LumoColors.ink900,
+                    color: LumoVisualTokens.white,
                     fontWeight: FontWeight.w900,
                     fontSize: 14,
                   ),
@@ -1103,7 +1128,7 @@ class _AiSafetyNotice extends StatelessWidget {
                 Text(
                   subline,
                   style: LumoTextStyles.caption.copyWith(
-                    color: LumoColors.ink600,
+                    color: LumoVisualTokens.muted,
                     fontWeight: FontWeight.w700,
                     height: 1.35,
                   ),
@@ -1423,15 +1448,16 @@ class _AppUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasUpdate = info?.available == true;
-    // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
-    final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
+    final accent =
+        hasUpdate ? const Color(0xFF22C55E) : LumoVisualTokens.cyan;
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 14),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Colors.white,
-            accent.withOpacity(0.06)],
+            LumoVisualTokens.glass,
+            LumoVisualTokens.navigation,
+          ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -1459,7 +1485,10 @@ class _AppUpdateCard extends StatelessWidget {
                   gradient: LinearGradient(
                     colors: hasUpdate
                         ? const [Color(0xFF34D399), Color(0xFF10B981)]
-                        : const [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+                        : const [
+                            LumoVisualTokens.cyan,
+                            LumoVisualTokens.cyanBright,
+                          ],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -1485,7 +1514,7 @@ class _AppUpdateCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
-                        color: LumoColors.ink900,
+                        color: LumoVisualTokens.white,
                       ),
                     ),
                     const SizedBox(height: 2),
@@ -1499,7 +1528,7 @@ class _AppUpdateCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: LumoColors.ink500,
+                        color: LumoVisualTokens.muted,
                         height: 1.3,
                       ),
                     ),
@@ -1906,9 +1935,12 @@ class _QuickQuestionChip extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.glassRow.withOpacity(.82),
           borderRadius: BorderRadius.circular(99),
-          border: Border.all(color: const Color(0xFF7DD3FC), width: 1),
+          border: Border.all(
+            color: LumoVisualTokens.cyan.withOpacity(.45),
+            width: 1,
+          ),
         ),
         child: Text(
           text,
@@ -1916,7 +1948,7 @@ class _QuickQuestionChip extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 11.5,
             fontWeight: FontWeight.w800,
-            color: Color(0xFF0C4A6E),
+            color: LumoVisualTokens.white,
           ),
         ),
       ),
@@ -1981,9 +2013,12 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
-          color: const Color(0xFFFAF5FF),
+          color: LumoVisualTokens.glassRow.withOpacity(.76),
           borderRadius: BorderRadius.circular(LumoRadius.lg),
-          border: Border.all(color: const Color(0xFFE9D5FF), width: 1.2),
+          border: Border.all(
+            color: LumoVisualTokens.cyan.withOpacity(.38),
+            width: 1.2,
+          ),
         ),
         child: Row(
           children: [
@@ -1999,7 +2034,7 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
                   fontFamily: 'Nunito',
                   fontSize: 12.5,
                   fontWeight: FontWeight.w700,
-                  color: Color(0xFF6D28D9),
+                  color: LumoVisualTokens.muted,
                   height: 1.4,
                 ),
               ),
