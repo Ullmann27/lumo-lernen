@@ -58,12 +58,12 @@ void main() {
   });
 
   test('repeated errors take priority and carry real evidence', () {
-    final weak = record('Deutsch', 'Silben', correct: 1, wrong: 4, misses: 3);
+    final weak = record('Deutsch', 'Namenwoerter', correct: 1, wrong: 4, misses: 3);
     final result = recommend(
         [weak, record('Mathematik', 'Plus bis 100', correct: 2, daysAgo: 4)]);
     expect(result.kind, LearningRecommendationKind.support);
     expect(result.subject, 'Deutsch');
-    expect(result.unit, 'Silben');
+    expect(result.unit, 'Namenwoerter');
     expect(result.isTutoring, isTrue);
     expect(result.suggestedDifficulty, 2);
     expect(result.reason, contains('4 von 5'));
@@ -88,7 +88,7 @@ void main() {
   test('stale topics are refreshed before untried ones', () {
     final result = recommend([
       record('Mathematik', 'Plus bis 100', correct: 8, streak: 5, daysAgo: 4),
-      record('Deutsch', 'Silben', correct: 1),
+      record('Deutsch', 'Namenwoerter', correct: 1),
     ]);
     expect(result.kind, LearningRecommendationKind.refresh);
     expect(result.unit, 'Plus bis 100');
@@ -108,7 +108,7 @@ void main() {
   test('a preferred subject keeps suggestions inside the selected subject', () {
     final result = recommend([
       record('Mathematik', 'Plus bis 100', wrong: 9, misses: 9),
-      record('Deutsch', 'Silben', correct: 2),
+      record('Deutsch', 'Namenwoerter', correct: 2),
     ], subject: 'Deutsch');
     expect(result.subject, 'Deutsch');
     expect(result.kind, LearningRecommendationKind.continueTopic);
@@ -132,7 +132,7 @@ void main() {
 
   test('tie breaking does not depend on map insertion order', () {
     final a = record('Mathematik', 'Plus bis 100', wrong: 3, misses: 3);
-    final b = record('Deutsch', 'Silben', wrong: 3, misses: 3);
+    final b = record('Deutsch', 'Namenwoerter', wrong: 3, misses: 3);
     expect(recommend([a, b]).subject, recommend([b, a]).subject);
     expect(recommend([a, b]).unit, recommend([b, a]).unit);
   });
