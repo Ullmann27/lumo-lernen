@@ -12,11 +12,11 @@ void main() {
       'all listed non-math/German tasks survive actual validation without relabelling',
       () {
     for (var grade = 1; grade <= 4; grade++) {
-      for (final subject in [
+      for (final subject in <String>[
         'Rechtschreibung',
         'Schreiben',
         'Lesen',
-        'Englisch'
+        'Englisch',
       ]) {
         for (final unit in Curriculum.unitsForGrade(
           subject,
@@ -27,8 +27,11 @@ void main() {
             final task = ExerciseFactory(seed: seed)
                 .next(grade: grade, subject: subject, unit: unit);
             final label = '$grade/$subject/$unit seed=$seed';
-            expect(guard.problems(task), isEmpty,
-                reason: '$label ${task.prompt} ${task.choices}');
+            expect(
+              guard.problems(task),
+              isEmpty,
+              reason: '$label ${task.prompt} ${task.choices}',
+            );
             final checked = adapter.qualityCheckedTask(task);
             expect(checked.subject, subject, reason: label);
             expect(checked.unit, unit, reason: label);
@@ -98,9 +101,16 @@ void main() {
       final task = ExerciseFactory(seed: seed)
           .next(grade: 1, subject: 'Englisch', unit: 'Schulsachen');
       observed.add(task.answer);
-      expect(['Buch', 'Stift', 'Tasche', 'Lineal'], contains(task.answer));
-      expect(task.choices.every(['Buch', 'Stift', 'Tasche', 'Lineal'].contains),
-          isTrue);
+      expect(
+        <String>['Buch', 'Stift', 'Tasche', 'Lineal'],
+        contains(task.answer),
+      );
+      expect(
+        task.choices.every(
+          <String>['Buch', 'Stift', 'Tasche', 'Lineal'].contains,
+        ),
+        isTrue,
+      );
     }
     expect(observed.length, greaterThan(1));
   });
@@ -151,37 +161,7 @@ void main() {
       );
       expect(
         WritingTargetParser.parse(letter.prompt),
-        matches(RegExp(r'^[A-Z]
-
-  test(
-      'capitalization has a meaningful choice contrast without generic fillers',
-      () {
-    final task = ExerciseFactory(seed: 11)
-        .next(grade: 1, subject: 'Rechtschreibung', unit: 'Gross und klein');
-    expect(task.answer, startsWith('Großer Anfang:'));
-    expect(task.choices.any((choice) => choice.startsWith('Alles klein:')),
-        isTrue);
-    expect(
-        task.choices.any((choice) => choice.startsWith('Alles groß:')), isTrue);
-    expect(task.choices.any(['ja', 'nein', 'vielleicht', 'anderes'].contains),
-        isFalse);
-  });
-
-  test('Dehnungen and Wortende teach their named spelling pattern', () {
-    final factory = ExerciseFactory(seed: 45);
-    for (var i = 0; i < 20; i++) {
-      final dehnung =
-          factory.next(grade: 3, subject: 'Rechtschreibung', unit: 'Dehnungen');
-      expect(dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
-          isTrue);
-      final ending =
-          factory.next(grade: 3, subject: 'Rechtschreibung', unit: 'Wortende');
-      expect(ending.prompt, startsWith('Verlängere das Wort:'));
-      expect(ending.answer.length, 1);
-    }
-  });
-}
-)),
+        matches(RegExp(r'^[A-Z]$')),
       );
 
       final sentence = factory.next(
@@ -209,23 +189,38 @@ void main() {
     final task = ExerciseFactory(seed: 11)
         .next(grade: 1, subject: 'Rechtschreibung', unit: 'Gross und klein');
     expect(task.answer, startsWith('Großer Anfang:'));
-    expect(task.choices.any((choice) => choice.startsWith('Alles klein:')),
-        isTrue);
     expect(
-        task.choices.any((choice) => choice.startsWith('Alles groß:')), isTrue);
-    expect(task.choices.any(['ja', 'nein', 'vielleicht', 'anderes'].contains),
-        isFalse);
+      task.choices.any((choice) => choice.startsWith('Alles klein:')),
+      isTrue,
+    );
+    expect(
+      task.choices.any((choice) => choice.startsWith('Alles groß:')),
+      isTrue,
+    );
+    expect(
+      task.choices.any(<String>['ja', 'nein', 'vielleicht', 'anderes'].contains),
+      isFalse,
+    );
   });
 
   test('Dehnungen and Wortende teach their named spelling pattern', () {
     final factory = ExerciseFactory(seed: 45);
     for (var i = 0; i < 20; i++) {
-      final dehnung =
-          factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Dehnungen');
-      expect(dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
-          isTrue);
-      final ending =
-          factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Wortende');
+      final dehnung = factory.next(
+        grade: 3,
+        subject: 'Rechtschreibung',
+        unit: 'Dehnungen',
+      );
+      expect(
+        dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
+        isTrue,
+      );
+
+      final ending = factory.next(
+        grade: 3,
+        subject: 'Rechtschreibung',
+        unit: 'Wortende',
+      );
       expect(ending.prompt, startsWith('Verlängere das Wort:'));
       expect(ending.answer.length, 1);
     }
