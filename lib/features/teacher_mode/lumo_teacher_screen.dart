@@ -168,8 +168,9 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
       return; // ChatGPT nicht noetig - LumoBrain hat schon geantwortet!
     }
 
-    // A short context prefix also supports the already deployed proxy, which
-    // predates structured extras; the new server additionally validates extras.
+    // Der sichtbare Kindtext bleibt kurz. Der detaillierte Lehrplan wird
+    // getrennt als begrenzte, serverseitig gefilterte Kontext-Daten gesendet.
+    final curriculum = TopicCurriculum.of(widget.topic.id);
     final messageForAi = '[Lernkontext: ${widget.subject.name}, '
         'Klasse ${widget.grade}, Thema ${widget.topic.title}.] $trimmed';
 
@@ -192,6 +193,12 @@ class _LumoTeacherScreenState extends State<LumoTeacherScreen>
           'subject': widget.subject.name,
           'topic': widget.topic.title,
           'topic_id': widget.topic.id,
+          if (curriculum != null) ...{
+            'curriculumScope': curriculum.detailedScope,
+            'curriculumExample': curriculum.exampleTask,
+            'curriculumLimits': curriculum.forbidden,
+            'curriculumLevel': curriculum.complexityHint,
+          },
         },
       );
 
