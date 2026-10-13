@@ -156,7 +156,11 @@ class LumoAiProxyClient {
             for (final entry in const {
               'taskPrompt': 360,
               'lastAnswer': 80,
-              'previousHelp': 200
+              'previousHelp': 200,
+              'curriculumScope': 360,
+              'curriculumExample': 240,
+              'curriculumLimits': 240,
+              'curriculumLevel': 160,
             }.entries)
               if (extras[entry.key] is String &&
                   LumoChildSafetyFilter.inspect(extras[entry.key] as String).allowed)
