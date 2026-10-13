@@ -706,7 +706,10 @@ class ExerciseFactory {
     if (unit == 'St oder Sp') return _stOrSp(grade, 'Deutsch');
     final seed = _serial + _random.nextInt(9999);
     final generated = GermanTaskTemplates.generate(grade: grade, unit: unit, seed: seed);
-    final outputUnit = unit == 'Namenswoerter' || unit == 'Hauptwoerter' ? unit : generated.unit;
+    // The UI topic is the contract. Alias-backed templates (for example
+    // "Anfangslaute" -> "Buchstaben-Lautierung") may reuse the same generator,
+    // but must not silently rename the selected topic in progress/history.
+    final outputUnit = unit == 'Alle' ? generated.unit : unit;
     return LumoTask(
       id: _id('deutsch-${generated.promptPattern}'),
       grade: grade,
