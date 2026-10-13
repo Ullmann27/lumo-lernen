@@ -234,31 +234,20 @@ jobs:
           cp "$APK_PATH" dist/Lumo-Lernen-latest.apk
           cp "$APK_PATH" "dist/Lumo-Lernen-debug-${GITHUB_RUN_NUMBER}.apk"
           sha256sum dist/*.apk > dist/SHA256SUMS.txt
-          echo "APK collected in dist and ready for artifact upload."
+          echo "APK collected locally in dist. Artifact upload is disabled to avoid GitHub storage quota failures."
 
-      - name: Upload current debug APK for direct handoff
-        uses: actions/upload-artifact@v4
-        with:
-          name: lumo-debug-apk-${{ github.run_id }}-${{ github.run_attempt }}
-          path: |
-            dist/Lumo-Lernen-latest.apk
-            dist/Lumo-Lernen-debug-${{ github.run_number }}.apk
-            dist/SHA256SUMS.txt
-          if-no-files-found: error
-          retention-days: 3
-          compression-level: 0
-
-      - name: Job-Zusammenfassung mit APK-Artefakt
+      - name: Job-Zusammenfassung mit Release-Link
         if: success()
         run: |
           echo "## ✅ Build #${GITHUB_RUN_NUMBER} abgeschlossen" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "Das exakt in diesem Lauf gebaute APK wurde als GitHub-Actions-Artefakt hochgeladen." >> "$GITHUB_STEP_SUMMARY"
+          echo "Der APK-Download ist **nicht** in diesem Workflow – er läuft parallel im Release-Workflow." >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "### 📥 Aktueller Build" >> "$GITHUB_STEP_SUMMARY"
+          echo "### 📥 Download-Links" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Artefakt: `lumo-debug-apk-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}`" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}" >> "$GITHUB_STEP_SUMMARY"
-          echo "- Enthalten: `Lumo-Lernen-latest.apk`, nummeriertes Debug-APK und `SHA256SUMS.txt`." >> "$GITHUB_STEP_SUMMARY"
+          echo "| Link | Beschreibung |" >> "$GITHUB_STEP_SUMMARY"
+          echo "|------|--------------|" >> "$GITHUB_STEP_SUMMARY"
+          echo "| [**Immer aktuell: Lumo-Lernen-latest.apk**](https://github.com/${GITHUB_REPOSITORY}/releases/latest) | Neuester Build – direkt auf dem Handy antippen |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| [Alle Releases](https://github.com/${GITHUB_REPOSITORY}/releases) | Alle Builds mit Changelog |" >> "$GITHUB_STEP_SUMMARY"
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "> **Hinweis:** In Android zuerst *Einstellungen → Apps → Spezieller Zugriff → Unbekannte Apps installieren* für den Browser freigeben." >> "$GITHUB_STEP_SUMMARY"
