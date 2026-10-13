@@ -255,12 +255,29 @@ class LearningDna {
       out.writeln(
           'Noch keine Antwortdaten. Keine Stärken oder Schwierigkeiten erfinden.');
     }
-    for (final entry in skillObservations.take(20)) {
-      out.writeln(
-          '${entry.subject} / ${entry.skillLabel}: ${entry.answerSummary}. ${entry.sampleNote}.');
+    const footer =
+        'Gib 3–5 praktische Sätze für Eltern und eine sinnvolle nächste Übung. '
+        'Kleine Stichproben ausdrücklich vorsichtig einordnen; keine Kompetenzdiagnose.\n';
+    var omitted = 0;
+    // The existing transport rejects messages over 1200 characters. Keep whole
+    // observations and all data-quality instructions; never truncate a claim.
+    for (final entry in skillObservations) {
+      final line = '${entry.subject} / ${entry.skillLabel}: '
+          '${entry.answerSummary}. '
+          '${entry.isSmallSample || entry.answerCount == 0 ? entry.sampleNote : "Übungsbeobachtung"}.\n';
+      final omissionReserve =
+          '\nWeitere ${skillObservations.length} Themen nicht einzeln aufgeführt.\n'
+              .length;
+      if (out.length + line.length + footer.length + omissionReserve <= 1200) {
+        out.write(line);
+      } else {
+        omitted++;
+      }
     }
-    out.writeln(
-        'Gib 3–5 praktische Sätze für Eltern und eine sinnvolle nächste Übung. Kleine Stichproben ausdrücklich vorsichtig einordnen; keine Kompetenzdiagnose.');
+    if (omitted > 0) {
+      out.writeln('Weitere $omitted Themen nicht einzeln aufgeführt.');
+    }
+    out.write(footer);
     return out.toString();
   }
 

@@ -255,11 +255,7 @@ class _Cell extends StatelessWidget {
   final DnaSkillEntry entry;
   final void Function(DnaSkillEntry)? onTap;
 
-  /// Score 0..1 + Confidence 0..1 -> Farbe + Saettigung.
-  ///   score < 0.45 -> rot
-  ///   0.45..0.70   -> gelb
-  ///   > 0.70       -> gruen
-  /// Niedrige Confidence (<0.3) -> grau-blass (zu wenig Daten).
+  /// Observed answer ratio grouped only after ten answers; otherwise neutral.
   Color _cellColor() {
     if (!entry.hasEnoughAnswersForGrouping) return const Color(0xFFF3F4F6);
     if (entry.score < 0.45) return const Color(0xFFFCA5A5);
@@ -294,17 +290,19 @@ class _Cell extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: _borderColor())),
+                    color: const Color(0xFF374151))),
             const SizedBox(height: 4),
             Text(entry.answerSummary,
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 11,
                     fontWeight: FontWeight.w800,
-                    color: _borderColor())),
+                    color: const Color(0xFF374151))),
             Text(entry.sampleNote,
                 style: TextStyle(
-                    fontFamily: 'Nunito', fontSize: 11, color: _borderColor())),
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    color: const Color(0xFF374151))),
           ],
         ),
       ),

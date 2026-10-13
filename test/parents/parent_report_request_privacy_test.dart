@@ -62,6 +62,17 @@ void main() {
                 reduceAnimations: true,
                 calmMode: true));
             await app.loadLearningProfile();
+            if (enabled) {
+              for (var topic = 0; topic < 8; topic++) {
+                for (var answer = 0; answer < 10; answer++) {
+                  await app.recordLearningAnswer(
+                      subject: 'Mathematik',
+                      unit: 'Thema $topic',
+                      correct: answer < 7,
+                      requireSaved: true);
+                }
+              }
+            }
           });
           await tester.pumpWidget(MaterialApp(
               home: RepaintBoundary(
@@ -118,19 +129,15 @@ void main() {
             expect(payload['context'], 'parent_advisor');
             expect(payload['childProfile'], {'grade': 2});
             expect(payload['history'], isEmpty);
-            if (dashboard) {
-              expect(payload['message'], contains('Gesamt: 0 Antworten'));
-              expect(
-                  payload['message'], contains('ohne abgegrenzten Zeitraum'));
-              expect(payload['message'],
-                  contains('Keine Aussagen über heute, diese Woche'));
-              expect(payload['message'],
-                  contains('Keine Stärken oder Schwierigkeiten erfinden'));
-            } else {
-              expect(payload['message'], contains('Wochenanalyse'));
-              expect(payload['message'], contains('Staerken'));
-              expect(payload['message'], contains('Foerderbedarf'));
-            }
+            expect(payload['message'],
+                contains('Gesamt: 80 Antworten, 56 richtig, 24 falsch'));
+            expect(payload['message'], contains('ohne abgegrenzten Zeitraum'));
+            expect(payload['message'],
+                contains('Keine Aussagen über heute, diese Woche'));
+            expect(payload['message'],
+                contains('Themen nicht einzeln aufgeführt'));
+            expect(
+                (payload['message'] as String).length, lessThanOrEqualTo(1200));
             expect(jsonEncode(payload), isNot(contains(_name)),
                 reason:
                     'The profile name belongs only in the local parent UI.');
@@ -143,10 +150,61 @@ void main() {
       });
     }
   }
+  for (final dashboard in [true, false]) {
+    testWidgets(
+        '${dashboard ? 'Insight' : 'Elternbericht'} discards a delayed AI reply after profile switch',
+        (tester) async {
+      final requests = <Map<String, dynamic>>[];
+      final gate = Completer<void>();
+      addTearDown(() {
+        if (!gate.isCompleted) gate.complete();
+      });
+      await HttpOverrides.runZoned(() async {
+        final app = LumoAppState();
+        addTearDown(app.dispose);
+        await tester.runAsync(() async {
+          app.updateSettings(AppSettings(
+              aiProxyEnabled: true,
+              aiProxyUrl: 'https://offline.invalid',
+              voiceEnabled: false,
+              reduceAnimations: true));
+          await app.school.setActiveStudent('delayed-dna-a');
+          await app.loadLearningProfile();
+        });
+        await tester.pumpWidget(MaterialApp(
+            home: dashboard
+                ? LumoInsightDashboard(appState: app)
+                : Scaffold(
+                    body: SingleChildScrollView(
+                        child: ParentReportCard(appState: app)))));
+        await _frames(tester);
+        await tester.ensureVisible(
+            find.text(dashboard ? 'KI fragen' : 'KI-Analyse anfordern'));
+        await tester
+            .tap(find.text(dashboard ? 'KI fragen' : 'KI-Analyse anfordern'));
+        await _frames(tester);
+        expect(requests, hasLength(1));
+        expect(find.text('Gemeinsam kurze Aufgaben üben.'), findsNothing);
+        await tester.runAsync(() async {
+          await app.school.setActiveStudent('delayed-dna-b');
+          await app.loadLearningProfile();
+          gate.complete();
+        });
+        await _frames(tester);
+        expect(find.text('Gemeinsam kurze Aufgaben üben.'), findsNothing,
+            reason:
+                'A reply for the previous child must never appear in the current report.');
+        expect(find.text(dashboard ? 'KI fragen' : 'KI-Analyse anfordern'),
+            findsOneWidget);
+        expect(tester.takeException(), isNull);
+      }, createHttpClient: (_) => _Client(requests, gate: gate));
+    });
+  }
 }
 
 class _Client implements HttpClient {
-  _Client(this.requests);
+  _Client(this.requests, {this.gate});
+  final Completer<void>? gate;
   final List<Map<String, dynamic>> requests;
   @override
   Future<HttpClientRequest> postUrl(Uri url) async {
@@ -155,7 +213,7 @@ class _Client implements HttpClient {
         url.path != '/chat') {
       throw StateError('Unexpected endpoint: $url');
     }
-    return _Request(requests);
+    return _Request(requests, gate: gate);
   }
 
   @override
@@ -167,7 +225,8 @@ class _Client implements HttpClient {
 }
 
 class _Request implements HttpClientRequest {
-  _Request(this.requests);
+  _Request(this.requests, {this.gate});
+  final Completer<void>? gate;
   final List<Map<String, dynamic>> requests;
   final _body = StringBuffer();
   @override
@@ -177,6 +236,7 @@ class _Request implements HttpClientRequest {
   @override
   Future<HttpClientResponse> close() async {
     requests.add(jsonDecode(_body.toString()) as Map<String, dynamic>);
+    if (gate != null) await gate!.future;
     return _Response();
   }
 

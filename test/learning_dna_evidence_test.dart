@@ -176,4 +176,26 @@ void main() {
     expect(prompt, isNot(contains('Was lief diese Woche gut')));
     expect(prompt, isNot(contains('PrivateTestName')));
   });
+  test(
+      'large profile prompt respects transport budget without losing evidence limits',
+      () {
+    final records = <String, SkillRecord>{
+      for (var i = 0; i < 40; i++)
+        '$i': SkillRecord(
+            skillId: '$i',
+            subject: 'Mathematik',
+            unit: 'Lernthema Nummer $i',
+            correct: 7,
+            wrong: 3),
+    };
+    final dna = engine.compute(state: LumoSessionState(), skills: records);
+    final prompt = dna.parentAnalysisPrompt(grade: 4);
+    expect(prompt.length, lessThanOrEqualTo(1200));
+    expect(prompt, contains('Gesamt: 400 Antworten, 280 richtig, 120 falsch'));
+    expect(prompt, contains('ohne abgegrenzten Zeitraum'));
+    expect(prompt, contains('Keine Aussagen über heute, diese Woche'));
+    expect(prompt, contains('70% · 7 von 10 Antworten richtig'));
+    expect(prompt, contains('Themen nicht einzeln aufgeführt'));
+    expect(prompt, endsWith('keine Kompetenzdiagnose.\n'));
+  });
 }

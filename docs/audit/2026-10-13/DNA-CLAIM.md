@@ -11,3 +11,5 @@ Frustration, Nutzungshäufigkeit, Lernstil, Sessions oder Verbesserung werden oh
 Abnahme: neue Profile1–4, Legacyzähler ohne SkillRecords, 1/2/10Antworten, null beantwortete Themen, passende Fächer/Themen, Gesamtquote, Profilwechsel mit gleichen Namen, Reload bestehender Daten, Prompt und fehlende Freigabe. Tatsächliche Widgetaufnahmen mit Appfonts; kein Android-/APK-Nachweis.
 
 Dieser Ablauf folgt dem ausdrücklichen autonomen Masterauftrag: keine zusätzliche Bestätigung für die begrenzte bestehende Datenreparatur. Architektur-/Formatwechsel, APK, Merge und kostenpflichtige Dienste bleiben gesperrt.
+
+Scope-Ergänzung13.10: ParentReportCard hat denselben nachgewiesenen Wochen-Prompt ohne Zeitdaten. Auch dort denselben datenbasierten/budgetierten Prompt und Profilwechsel-/Antwortguard verwenden; bestehenden dunklen Bericht und Elternfreigabe schützen. Kein Speicherformat geändert. Die abschließende Gesamt-APK wurde vom Nutzer explizit freigegeben; kein Build vor abgesicherter Integration.
