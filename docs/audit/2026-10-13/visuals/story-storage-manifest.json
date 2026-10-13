@@ -1,0 +1,32 @@
+{
+  "source_sha": "086eb42ab7b834050f1f345b52cb3e811d816748",
+  "run_id": 38384915173,
+  "artifact_id": 11804794941,
+  "kind": "Flutter widget runtime; not Android",
+  "images": [
+    {
+      "path": "086eb42-failed-write-retry.png",
+      "sha256": "5c36f1641014d5a3e66db6f8f83c749fd86bd179ab67a50e042c3607da520348",
+      "size": [
+        800,
+        600
+      ]
+    },
+    {
+      "path": "086eb42-pending-write.png",
+      "sha256": "9f6a161643d18f3d57f8c3c2eb2c568b30390f394c7a99bb8adf17fc8026d89e",
+      "size": [
+        800,
+        600
+      ]
+    },
+    {
+      "path": "086eb42-persisted-success.png",
+      "sha256": "4653f2ceba829de934a521c7914aa087dd9fbc8c68ba20a8a49024ea5d839cd6",
+      "size": [
+        800,
+        600
+      ]
+    }
+  ]
+}

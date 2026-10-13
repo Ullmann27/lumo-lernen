@@ -39,14 +39,14 @@ Die reproduzierbare Inventur `python tools/audit_lumo_inventory.py ../lumo-godot
 - `app-branches.json.gz`, `godot-branches.json.gz`: alle untersuchten Heads und vorhandene/abweichende Dateien.
 - `dart-import-and-test-index.json.gz`: jede Dart-Datei, mögliche Importkette und direkt referenzierende Tests. **Importkette ist keine Klickfreigabe**; die konkreten Navigationsbefunde stehen in der Bestandsmatrix.
 - `app-assets.json.gz`, `godot-assets.json.gz`: Pfade, Blob-IDs und wörtliche Referenzen. Dynamische Manifest-/Verzeichnisaufrufe können ohne Literal funktionieren. Fehlendes Literal allein beweist keine ungenutzte Grafik.
-- Angehängte HTML-/MVP-ZIPs sind historische Design-/Prototypquellen. Sie werden nicht über die vorhandene Produktionsarchitektur gelegt.
+- Alle19 angehängten Quelldateien wurden zusätzlich mit SHA256, ZIP-Dateilisten, Dartquellen bzw. HTML-Element-/Funktionsindex erfasst (`attachment-inventory.json`). HTML-/MVP-ZIPs sind historische Design-/Prototypquellen. Sie werden nicht über die vorhandene Produktionsarchitektur gelegt.
 
-Eine vollständige Funktionsfreigabe jedes Unterrichtsthemas, jedes Spiels und jeder visuellen Referenz ist durch die statische Vollinventur nicht belegt. Ungeprüfte Funktionen werden als solche geführt. Android-Ausführung ist im aktuellen Auftrag vor Freigabe der nächsten APK nicht neu möglich; vorhandene alte Runtime-Nachweise sind separat, nie als Nachweis für neue Commits zu übertragen.
+Eine vollständige Funktionsfreigabe jedes Unterrichtsthemas, jedes Spiels und jeder visuellen Referenz ist durch die statische Vollinventur nicht belegt. Ungeprüfte Funktionen werden als solche geführt. Am13.10.2026 hat Heinz die spätere Gesamt-APK ausdrücklich freigegeben, sobald Integration/Prüfung abgeschlossen sind; vorhandene alte Runtime-Nachweise sind separat, nie als Nachweis für neue Commits zu übertragen.
 
 ## Nachgewiesene offene Punkte
 
 1. **Geschichten speichern:** Reader `_showFinish` ruft `addStory` ohne `await` auf und meldet unmittelbar Erfolg. `save` ignoriert den bool-Erfolg von SharedPreferences. Doppelte Abschlussaufrufe sind nicht gesperrt. Vorhandener Auditzweig wartet zwar, behandelt aber fehlgeschlagenes Speichern/Wiederholung nicht vollständig.
-2. **Geschichten-Antworten:** `_onAnswer` vergibt Sterne/XP, protokolliert aber keine `SkillRecord`-Antwort. Zusammenfassung nutzt vierbuchstabiges Stammmatching; das ist keine belastbare fachliche Richtig/Falsch-Bewertung. Auditzweig würde dieses Matching als korrekte Leseleistung zählen; dieses Delta wird nicht ungeprüft übernommen.
+2. **Geschichten-Antworten und Bilder:** Die als Livebilder kommentierte Seitenillustration ist tatsächlich nur ein Buch-Emoji in einer Farbfläche; `imagePrompt` wird dort nicht gerendert. `_onAnswer` vergibt Sterne/XP, protokolliert aber keine `SkillRecord`-Antwort. Zusammenfassung nutzt vierbuchstabiges Stammmatching; das ist keine belastbare fachliche Richtig/Falsch-Bewertung. Auditzweig würde dieses Matching als korrekte Leseleistung zählen; dieses Delta wird nicht ungeprüft übernommen.
 3. **Geschichten-Einstiege:** Freie Bibliothek ist über Home → „Mehr mit Lumo entdecken“ → Magic Hub → Geschichten erreichbar. Direktes Home-/Deutsch-/Lernpfadangebot fehlt an der Basis. Der optionale Filter und die feste Setupklasse sind vorhanden, aber nicht durch die Akademieroute angeschlossen.
 4. **Lern-DNA:** Feste Stärken `0.78/0.82/0.74`, künstliche schwächenbasierte Scores und Confidence-Werte. `recentProgress` nennt kumulierte Antworten „Heute“ und Sterne „Streak“. Echte `SkillRecord`-Daten stehen über `learningSkills()` bereit.
 5. **Insight:** `state.solved` wird als `recentCorrect` übergeben, `recentHelpUsed: 0`, `totalSessions: 1`. KI-Prompt verlangt Wochenereignisse ohne zeitlich begrenzte Antwortdaten. Fehlerrepository ist namensgebunden; vor Darstellung profilgebundene Quelle benutzen.
@@ -69,12 +69,12 @@ Eine vollständige Funktionsfreigabe jedes Unterrichtsthemas, jedes Spiels und j
 | P2 | Lumo-Meister | PR282 nur konkrete 20-Fragen-/Joker-/Final-/Sternregel-Deltas | Komplette Runde, sichere Stufen, 5.000-Sterne-Regel, Deduplizierung, Neustart |
 | P3 | Premium-Heatmap/Fold | PR281-Design selektiv; vorhandenen dunklen Elternbericht schützen | echte Werte, Außen/Innen, große Schrift, Rotation, Screenshotvergleich |
 | P3 | Kart/weitere Spiele | Read-only Inventur zuerst, separate Godot-Szenenprüfung vor Pinentscheidung | Start/Rennen/Drift/Items/Finish/Host-ACK/Pause/Fold/Rückkehr/Offline |
-| P4 | Android-Gesamtabnahme | Erst nach ausdrücklicher APK-Freigabe | Update/Signatur/ARM64/API35+36/Offline-Stimme/PCK/Profile/Fold |
+| P4 | Android-Gesamtabnahme | Freigabe liegt seit13.10 vor; erst nach geprüfter Integration | Update/Signatur/ARM64/API35+36/Offline-Stimme/PCK/Profile/Fold |
 
-## Nächste Android-Gesamtabnahme (Plan, kein Build)
+## Nächste Android-Gesamtabnahme (Freigabe liegt vor, noch kein Build)
 
 - Android-Host wird über `scripts/prepare_android.py` und `scripts/build_unified_apk.sh` vorbereitet. Paket aus dem tatsächlich erzeugten Gradlehost und vorhandenen installierten Manifesten lesen; erwartete bisherige Produktlinie `dev.ullmann.lumo.lumo_lernen.coachpreview` anhand des tatsächlich gewählten Flavors verifizieren.
-- Vor Freigabe Buildnummer gegen alle bereits ausgelieferten Kandidaten und Reservierungen prüfen, Signaturzertifikat mit vorheriger APK vergleichen; keine neue Kennung/Signatur erzeugen.
+- Vor Build Buildnummer gegen alle bereits ausgelieferten Kandidaten und Reservierungen prüfen, Signaturzertifikat mit vorheriger APK vergleichen; keine neue Kennung/Signatur erzeugen.
 - Exakte App-SHA, Godot-Pin und Engine vor Build festschreiben. Eingebettetes PCK und native ONNX-Komponenten/Modelle/HASHs kontrollieren.
 - Bestehende Installation mit mehreren synthetischen Profilen, Sternen, Freigaben und gespeicherten Heften **aktualisieren**, nicht nur Neuinstallation testen. Keine realen Kinderdaten in Artefakte.
 - Flugmodus: Unterricht, Geschichte, Fingercoach, lokale Stimme und Kart; Onlinefunktionen nur nach bestehender Elternfreigabe; keine neue kostenpflichtige Aktivierung.
@@ -86,3 +86,9 @@ Eine vollständige Funktionsfreigabe jedes Unterrichtsthemas, jedes Spiels und j
 ## Offizielle Lehrplanquelle
 
 Am 13.10.2026 gelesen: [BMB – Volksschul-Lehrplan](https://www.bmb.gv.at/Themen/schule/schulpraxis/lp/lp_vs.html), mit Verweis auf den neuen RIS-Lehrplan; [RIS – geltende Fassung](https://ris.bka.gv.at/GeltendeFassung.wxe?Abfrage=Bundesnormen&Gesetzesnummer=10009275). Die schrittweise Einführung seit2023/24 ist belegt. Eine vollständige fachliche Zuordnung aller Lumo-Aufgaben zu Kompetenzen/Schulstufen bleibt Gegenstand der Unterrichtsabnahme; keine pauschale Lehrplankonformität behauptet.
+
+## Laufender Reparaturstand
+
+[Geschichten-PR288](https://github.com/Ullmann27/lumo-lernen/pull/288) ist auf`086eb42ab7b834050f1f345b52cb3e811d816748` technisch geprüft:1458PASS/117SKIP/24Infos, Actions38384915173. Verzögerte/fehlgeschlagene Speicherung, Wiederholung, Altbestand, Seitenwechsel und Rückkehr zur Bibliothek repariert. Ausführlicher Bericht:`GESCHICHTEN-PRUEFBERICHT.md`, Originalprotokoll und echte Widget-Captures beigefügt. Die Basismatrix bleibt als ursprünglicher Ist-Befund erhalten; das ist keine Aussage über noch offene Storyantwort-/Home-/Bildintegration.
+
+[DNA-PR290](https://github.com/Ullmann27/lumo-lernen/pull/290) bearbeitet den nächsten getrennten Block; Ergebnisse erst für den tatsächlich geprüften Head. Zusätzliche19 Uploads sind im Attachmentindex erfasst. [ASTRA-ANBINDUNG.md](ASTRA-ANBINDUNG.md) beschreibt den erneuten tatsächlichen Quellvergleich und die jetzt vorliegende APK-Freigabe.

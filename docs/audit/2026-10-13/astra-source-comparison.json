@@ -1,0 +1,100 @@
+[
+  {
+    "repo": "../lumo-lernen",
+    "head": "4b7a063d4a1484deb62c5cd8c4422788c5f50578",
+    "ancestor": false,
+    "production_test_deltas": [
+      {
+        "path": "lib/features/learning_modules/formen/formen_screen.dart",
+        "donor_blob": "509a0fb8f3af181c0328d634c094ac716a68e77f",
+        "protected_blob": "509a0fb8f3af181c0328d634c094ac716a68e77f",
+        "same": true
+      },
+      {
+        "path": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+        "donor_blob": "e3b0d410aff1daddabcdbac1825a12c195f98c40",
+        "protected_blob": "d7dc633a93e98b331e490603b70677d6ed74da56",
+        "same": false
+      },
+      {
+        "path": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+        "donor_blob": "2f4f4e80d131c7a999014692bd43f4fcdf7fe1a1",
+        "protected_blob": "14c67898a666fdf1067ff021f3fa2e4f9dfbbfb9",
+        "same": false
+      },
+      {
+        "path": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+        "donor_blob": "7f4031e7591b13e3c64be98f1e53a0a0dd599323",
+        "protected_blob": "7f4031e7591b13e3c64be98f1e53a0a0dd599323",
+        "same": true
+      },
+      {
+        "path": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+        "donor_blob": "7f8cbdd76269c689f0d141bf4eb5c4a8fd0cba14",
+        "protected_blob": "7f8cbdd76269c689f0d141bf4eb5c4a8fd0cba14",
+        "same": true
+      },
+      {
+        "path": "lib/widgets/design/lumo_design_system.dart",
+        "donor_blob": "462d250917f72f56580d17ceb497ecb359a5b129",
+        "protected_blob": "52f878eaf62d4781abbd44ac1d3c4301865d5104",
+        "same": false
+      },
+      {
+        "path": "lib/widgets/design/lumo_learning_module_frame.dart",
+        "donor_blob": "b2914612939ef46ace9a551f9305081aaa3854c3",
+        "protected_blob": "ce9f282544942ac56be9ec1e030d29f678e97d7f",
+        "same": false
+      },
+      {
+        "path": "test/design/learning_adventure_layout_test.dart",
+        "donor_blob": "c94a7e550c10d5ba329be7d3312b10253529b886",
+        "protected_blob": "c94a7e550c10d5ba329be7d3312b10253529b886",
+        "same": true
+      },
+      {
+        "path": "test/learning_modules/clock_and_number_quality_test.dart",
+        "donor_blob": "8fa2ff1c069b0b52e978f883009edd2ee3e880cf",
+        "protected_blob": "8fa2ff1c069b0b52e978f883009edd2ee3e880cf",
+        "same": true
+      },
+      {
+        "path": "test/learning_modules/math_module_progress_test.dart",
+        "donor_blob": "70769b88be95ed3ee4b073cc1e5f3ddfd1c3dda9",
+        "protected_blob": "70769b88be95ed3ee4b073cc1e5f3ddfd1c3dda9",
+        "same": true
+      }
+    ]
+  },
+  {
+    "repo": "../lumo-godot",
+    "head": "853175c634dcb62c325fbd9b272e2ebc791830ad",
+    "ancestor": true,
+    "production_test_deltas": [
+      {
+        "path": "scripts/characters/lumo/lumo_kart_animation_adapter.gd",
+        "donor_blob": "5c35ab8d8eab9d6aafa10039c30c6ee75e2db9c0",
+        "protected_blob": "5c35ab8d8eab9d6aafa10039c30c6ee75e2db9c0",
+        "same": true
+      },
+      {
+        "path": "scripts/tests/lumo_gesture_contact_regression.gd",
+        "donor_blob": "44ca71be8e9388c91bb45e4b9044cfa38fd57530",
+        "protected_blob": "44ca71be8e9388c91bb45e4b9044cfa38fd57530",
+        "same": true
+      },
+      {
+        "path": "scripts/tests/lumo_gesture_contact_regression.gd.uid",
+        "donor_blob": "d96075c04e990c10d35c3ed20302c17bddda9518",
+        "protected_blob": "d96075c04e990c10d35c3ed20302c17bddda9518",
+        "same": true
+      },
+      {
+        "path": "scripts/tests/lumo_rigged_animation_capture.gd",
+        "donor_blob": "6ac65a9f97718230932fdd3de375f21c4ef752ca",
+        "protected_blob": "6ac65a9f97718230932fdd3de375f21c4ef752ca",
+        "same": true
+      }
+    ]
+  }
+]
