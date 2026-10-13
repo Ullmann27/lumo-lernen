@@ -408,6 +408,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   ];
 
   late final AnimationController _heroCtrl;
+  final GlobalKey _topicSectionKey = GlobalKey();
   int _selectedGrade = 1;
   int _selectedSubjectIndex = 0;
 
@@ -449,9 +450,12 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               SliverPadding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 24),
                 sliver: SliverToBoxAdapter(
-                  child: _buildSubjectSection(
-                    _currentGrade.subjects[_selectedSubjectIndex],
-                    _selectedSubjectIndex,
+                  child: KeyedSubtree(
+                    key: _topicSectionKey,
+                    child: _buildSubjectSection(
+                      _currentGrade.subjects[_selectedSubjectIndex],
+                      _selectedSubjectIndex,
+                    ),
                   ),
                 ),
               ),
@@ -769,7 +773,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             onTap: () {
               final curriculumIndex = area.curriculumIndex;
               if (curriculumIndex != null) {
-                setState(() => _selectedSubjectIndex = curriculumIndex);
+                _selectSubject(curriculumIndex);
                 return;
               }
               final section = area.section!;
@@ -786,6 +790,26 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             },
           ),
         ),
+        if (area.curriculumIndex == _selectedSubjectIndex)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(22),
+                  border: Border.all(
+                    color: LumoVisualTokens.cyanBright,
+                    width: 3,
+                  ),
+                  boxShadow: [
+                    BoxShadow(
+                      color: LumoVisualTokens.cyan.withOpacity(.26),
+                      blurRadius: 16,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
         Positioned(
           top: 10,
           right: 10,
@@ -822,6 +846,22 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         ),
       ],
     );
+  }
+
+  void _selectSubject(int index) {
+    if (index < 0 || index >= _currentGrade.subjects.length) return;
+    setState(() => _selectedSubjectIndex = index);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      final target = _topicSectionKey.currentContext;
+      if (target == null) return;
+      Scrollable.ensureVisible(
+        target,
+        duration: const Duration(milliseconds: 420),
+        curve: Curves.easeOutCubic,
+        alignment: .08,
+      );
+    });
   }
 
   Widget _buildGradePicker() {
