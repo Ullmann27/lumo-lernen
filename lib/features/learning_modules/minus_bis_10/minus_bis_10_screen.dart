@@ -195,7 +195,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        backgroundColor: const Color(0xFFFFFBEB),
+        backgroundColor: const Color(0xFFEAFBFF),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
         title: const Text('🎉 Geschafft!',
             textAlign: TextAlign.center,
@@ -253,7 +253,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     return LearningModuleProgressScope(
         progress: _progress,
         child: Scaffold(
-          backgroundColor: const Color(0xFFFFFBEB),
+          backgroundColor: Colors.transparent,
           body: SafeArea(
             child: Column(children: [
               _buildTopBar(),
