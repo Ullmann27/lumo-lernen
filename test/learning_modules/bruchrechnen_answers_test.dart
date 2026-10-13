@@ -71,7 +71,11 @@ Future<void> _scrollAcademyTo(
 ) async {
   final verticalScrollable = find.descendant(
     of: find.byType(CustomScrollView),
-    matching: find.byType(Scrollable),
+    matching: find.byWidgetPredicate(
+      (widget) =>
+          widget is Scrollable &&
+          widget.axisDirection == AxisDirection.down,
+    ),
   );
   expect(verticalScrollable, findsOneWidget);
   await tester.scrollUntilVisible(
