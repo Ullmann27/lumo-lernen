@@ -21,6 +21,7 @@ import '../quiz/quiz_show_content.dart';
 import '../reading/lumo_reading_buddy_screen.dart';
 import '../rewards/achievements_wall_screen.dart';
 import '../story/lumo_quest_hub_screen.dart';
+import '../story/lumo_story_library_screen.dart';
 
 /// The two main routes stay visible before progress and optional activities.
 /// Every progress value comes from the current profile or persisted wallet.
@@ -326,8 +327,19 @@ class HomeContent extends StatelessWidget {
                       leading: const Icon(Icons.explore_rounded,
                           color: LumoVisualTokens.cyan),
                       children: [
-                        _extra('Lesen mit Lumo', 'Geschichten Satz für Satz',
-                            Icons.menu_book_rounded, _startReading),
+                        _extra(
+                          'Geschichten · Lesen & verstehen',
+                          'Lesegeschichten und Verständnisfragen',
+                          Icons.menu_book_rounded,
+                          () => _open(
+                            context,
+                            LumoStoryLibraryScreen(
+                              appState: appState,
+                              gradeLevel: appState.state.grade,
+                            ),
+                          ),
+                          key: const ValueKey('home-discover-stories'),
+                        ),
                         _extra(
                             'Wer wird Lumo-Meister?',
                             '20 Fragen · Joker · bis 5.000 Sterne',
