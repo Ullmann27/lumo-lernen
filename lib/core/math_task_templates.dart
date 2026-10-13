@@ -163,15 +163,15 @@ class MathTaskTemplates {
     return templatesForGrade(grade, unit: unit);
   }
 
-  static MathConcreteTask generate({required int grade, required String unit, required int seed,
+  static MathConcreteTask generate({
+    required int grade,
+    required String unit,
+    required int seed,
   }) {
-    // 75% aktuelle Klassenstufe (strict), 25% Wiederholung aus Vorjahren.
-    final useStrict = seed.abs() % 4 != 0;
-    final pool = useStrict
-        ? templatesForGradeStrict(grade, unit: unit)
-        : templatesForGrade(grade, unit: unit);
-    // Auswahl und Wiederholungsquote dürfen nicht denselben Modulo nutzen:
-    // Bei 16 Templates wären sonst ganze Familien nie erreichbar.
+    // Regulaerer Lernpfad: immer exakte Schulstufe.
+    // Ein explizit angefordertes altes Thema bleibt ueber den Fallback in
+    // templatesForGradeStrict moeglich, wird aber niemals zufaellig gemischt.
+    final pool = templatesForGradeStrict(grade, unit: unit);
     final template = pool[_positive(_mixSeed(seed + 101), pool.length)];
     return template.concretize(_mixSeed(seed + 809));
   }
