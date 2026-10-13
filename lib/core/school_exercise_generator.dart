@@ -286,6 +286,7 @@ class Curriculum {
       'Namenswoerter': 'Namenswörter',
       'Hauptwoerter': 'Hauptwörter',
       'Sätze verbinden': 'Sätze verbinden',
+      'Bruchrechnen einfach': 'Bruchrechnen',
       'Plus bis 1000000': 'Plus bis 1 Million',
       'Minus bis 1000000': 'Minus bis 1 Million',
     };
