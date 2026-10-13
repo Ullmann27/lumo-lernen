@@ -24,7 +24,7 @@
 
 ### Task 1: Geschichtenabschluss
 
-**Files:** `lib/core/lumo_story_library.dart`, `lib/features/story/lumo_story_reader_screen.dart`, `test/story_completion_storage_test.dart`.
+**Files:** `lib/core/lumo_story_library.dart`, `lib/features/story/lumo_story_reader_screen.dart`, `lib/features/story/lumo_story_setup_screen.dart`, `test/story_completion_storage_test.dart`, `test/story_completion_navigation_test.dart`.
 **Interfaces:** Bestehendes `Future<StoredStory> addStory(LumoStory)` bleibt erhalten; JSON-Format/Schlüssel bleiben erhalten.
 
 - [x] Tests mit kontrollierter SharedPreferences-Verzögerung vor Produktion schreiben.
@@ -33,6 +33,12 @@
 - [ ] `save` prüft bool-Ergebnis; bei gescheitertem `addStory` nur die neue Story aus Speicherliste entfernen.
 - [ ] GREEN plus unveränderte Profilklasse-/Lernpfad-/Filtertests und vollständige Suite.
 - [ ] Eigener Commit und Draft-PR gegen PR285-Branch.
+
+**Ruling:** Setup als dritte Produktionsdatei ergänzt: Der echte Navigationsregressionstest auf `ada82abc` bestätigt, dass erfolgreicher Abschluss sonst in Setup statt Bibliothek endet. Explizites Reader-Ergebnis entfernt ausschließlich die alte Setup-Route, ohne einen neu geöffneten Wortcoach zu schließen. Abbruch behält Setup. Kein Speicherformatwechsel.
+
+**Prüfkorrektur:** Flutter3.44.9 verwendet450ms Android-Rücknavigation; neue Tests warten500ms plus Disposalframe statt der falschen400ms. Keine Produktionsänderung allein für diese Timingkorrektur. Speichertest prüft echte kontrollierte Plattformdaten statt nur SharedPreferences-Cache; false und throw bleiben Pflichtfälle. Erfolgs-/Fehlerbilder werden unter `.ci-results/story-storage` erzeugt.
+
+**Ruling:** Derselbe echte Mehrseitentest bestätigt bei jedem Weiterlesen `PageController.page cannot be accessed before a PageView is built with it`. Der Reader rendert tatsächlich `_buildPage` per Seitenindex und besitzt keinen PageView. Ungenutzten PageController entfernen, den bestehenden Seitenrenderer und seine Inhalte erhalten. Der Test muss sämtliche Seiten ohne Flutter-Ausnahme lesen.
 
 ### Task 2: Geschichten-Einstiege und Antwortdaten
 

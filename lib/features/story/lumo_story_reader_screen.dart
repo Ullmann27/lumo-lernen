@@ -37,11 +37,10 @@ class LumoStoryReaderScreen extends StatefulWidget {
 }
 
 class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+    with WidgetsBindingObserver {
   int _pageIdx = 0;
   bool _exerciseDone = false;
   String? _selectedAnswer;
-  late final PageController _pageCtrl;
   // Zusammenfassungs-Phase nach der letzten Seite (Heinz' Wunsch:
   // "Am Schluss wird gefragt um was es geht und das Kind kann erklaeren,
   //  dann bewertet Lumo die Zusammenfassung").
@@ -58,14 +57,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   void initState() {
     super.initState();
     _savedStoryId = widget.storyId;
-    _pageCtrl = PageController();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
   }
 
   @override
   void dispose() {
-    _pageCtrl.dispose();
     _summaryCtrl.dispose();
     _speech.cancel();
     _speech.dispose();
@@ -100,9 +97,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _exerciseDone = false;
       _selectedAnswer = null;
     });
-    _pageCtrl.nextPage(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeOutCubic);
+    // Pages are rendered directly by _buildPage, not by a PageView.
+    // The page index above is the actual navigation state.
     _speak();
   }
 
@@ -221,6 +217,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     } catch (_) {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.fromLTRB(16, 0, 16, 88),
         content: Text(
             'Dein Heft konnte nicht gespeichert werden. Bitte versuche es noch einmal.'),
       ));
@@ -279,10 +277,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Dialog
-              Navigator.pop(context); // Reader
-              Navigator.push(
-                context,
+              final navigator = Navigator.of(context);
+              navigator.pop(); // Dialog
+              navigator.pop(true); // Reader: successfully saved completion
+              navigator.push(
                 MaterialPageRoute(
                   builder: (_) => LumoWritingCoachScreen(
                     appState: widget.appState,
@@ -297,7 +295,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pop(context, true);
             },
             child: const Text('Fertig'),
           ),
