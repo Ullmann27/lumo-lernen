@@ -131,6 +131,7 @@ void main() {
     final response = await const LumoAiProxyClient().ask(
       settings: AppSettings(
         aiProxyEnabled: true,
+        aiLearningMode: AiLearningMode.learningHelp,
         aiProxyUrl: 'http://127.0.0.1:${server.port}',
       ),
       state: LumoSessionState(grade: 3),
