@@ -52,7 +52,8 @@ class Curriculum {
       'Blitzlicht',
       'Plus bis 1000', 'Minus bis 1000', 'Division einstellig',
       'Geld bis 100 Euro', 'Massen Kilogramm und Gramm', 'Plus bis 10000',
-      'Minus bis 10000', 'Zahlenraum bis 1 Million', 'Zeit Minuten und Stunden',
+      'Minus bis 10000', 'Plus bis 1000000', 'Minus bis 1000000',
+      'Zahlenraum bis 1 Million', 'Zeit Minuten und Stunden',
       'Hohlmaße Liter und Milliliter', 'Brüche erweitern', 'Mittelwert',
       'Symmetrieachsen',
     ],
@@ -191,6 +192,8 @@ class Curriculum {
       'Woerter lesen': 'Wörter lesen',
       'Namenswoerter': 'Namenswörter',
       'Hauptwoerter': 'Hauptwörter',
+      'Plus bis 1000000': 'Plus bis 1 Million',
+      'Minus bis 1000000': 'Minus bis 1 Million',
     };
     return map[key] ?? key;
   }
@@ -223,14 +226,10 @@ class ExerciseFactory {
       cappedGrade,
       currentGradeOnly: true,
     );
-    final availableUnit = allUnits.contains(unit) ||
-        (chosenSubject == 'Mathematik' &&
-            MathTaskTemplates.supportsUnit(cappedGrade, unit)) ||
-        (chosenSubject == 'Deutsch' &&
-            GermanTaskTemplates.supportsUnit(cappedGrade, unit));
+    final currentUnitAvailable = currentUnits.contains(unit);
     final selectionPool =
         currentUnits.isNotEmpty ? currentUnits : allUnits;
-    var candidateUnits = unit == 'Alle' || !availableUnit
+    var candidateUnits = unit == 'Alle' || !currentUnitAvailable
         ? selectionPool.where((u) => !avoidUnits.contains(u)).toList()
         : <String>[unit];
     if (candidateUnits.isEmpty) {
