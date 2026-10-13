@@ -443,20 +443,23 @@ class ExerciseFactory {
   LumoTask _science(int grade, String unit) {
     final seed = _serial + _random.nextInt(9999);
     final capped = grade.clamp(1, 4).toInt();
-    // 75% strict (exakte Klassenstufe), 25% Wiederholung aus Vorjahren -
-    // gleiche Strategie wie Math/German seit 2026-06-03.
-    final useStrict = seed.abs() % 4 != 0;
     final strictPool = _scienceQuestions.where((question) {
-      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
+      final unitMatches = unit == 'Alle' ||
+          question.unit == unit ||
+          _scienceAliases[unit]?.contains(question.unit) == true;
       return question.grade == capped && unitMatches;
     }).toList(growable: false);
-    final loosePool = _scienceQuestions.where((question) {
-      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
-      return question.grade <= capped && unitMatches;
+    final explicitReviewPool = _scienceQuestions.where((question) {
+      final unitMatches = question.unit == unit ||
+          _scienceAliases[unit]?.contains(question.unit) == true;
+      return unit != 'Alle' && question.grade <= capped && unitMatches;
     }).toList(growable: false);
-    var source = useStrict && strictPool.isNotEmpty ? strictPool : loosePool;
+    var source =
+        strictPool.isNotEmpty ? strictPool : explicitReviewPool;
     if (source.isEmpty) {
-      source = _scienceQuestions.where((question) => question.grade <= capped).toList(growable: false);
+      source = _scienceQuestions
+          .where((question) => question.grade == capped)
+          .toList(growable: false);
     }
     final question = source[_positive(seed, source.length)];
     return LumoTask(
