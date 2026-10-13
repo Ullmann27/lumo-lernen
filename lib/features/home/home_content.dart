@@ -423,18 +423,60 @@ class HomeContent extends StatelessWidget {
       );
 
   Widget _extra(
-          String title, String subtitle, IconData icon, VoidCallback onTap,
-          {Key? key}) =>
-      ListTile(
-        key: key,
-        leading: Icon(icon, color: LumoVisualTokens.cyan),
-        title:
-            Text(title, style: const TextStyle(color: LumoVisualTokens.white)),
-        subtitle: Text(subtitle,
-            style: const TextStyle(color: LumoVisualTokens.muted)),
-        trailing: const Icon(Icons.chevron_right_rounded,
-            color: LumoVisualTokens.cyan),
-        onTap: onTap,
+    String title,
+    String subtitle,
+    IconData icon,
+    VoidCallback onTap, {
+    Key? key,
+  }) =>
+      Semantics(
+        button: true,
+        label: '$title. $subtitle',
+        child: Material(
+          key: key,
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(icon, color: LumoVisualTokens.cyan, size: 24),
+                  const SizedBox(width: 16),
+                  Expanded(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              const TextStyle(color: LumoVisualTokens.white),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          subtitle,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style:
+                              const TextStyle(color: LumoVisualTokens.muted),
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  const Icon(
+                    Icons.chevron_right_rounded,
+                    color: LumoVisualTokens.cyan,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
       );
 }
 
