@@ -582,6 +582,11 @@ class TopicCurriculum {
       vocabulary: ['Pflanze', 'Wurzel', 'Stamm', 'Blatt', 'Bluete', 'wachsen'],
       forbidden: 'KEIN Rechnen. NICHT Genetik.',
       complexityHint: 'Klasse 3 - Pflanzen-Grundwissen',
+      quickQuestions: [
+        'Welche Teile hat eine Pflanze?',
+        'Was braucht eine Pflanze zum Wachsen?',
+        'Nenne mir einen heimischen Baum und seine Merkmale.',
+      ],
     ),
 
     // ════════════════════════════════════════════════════════════════
