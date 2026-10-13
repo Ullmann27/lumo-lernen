@@ -55,6 +55,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _summaryEvaluated = false;
   int _summaryHits = 0;
   int _summaryStars = 0;
+  bool _finishing = false;
 
   @override
   void initState() {
@@ -231,11 +232,19 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     }
   }
 
-  void _showFinish() {
-    // Bei abgeschlossener Story: auto in Bibliothek speichern wenn neu
+  Future<void> _showFinish() async {
+    if (_finishing) return;
+    _finishing = true;
+
+    // Eine neue Geschichte muss wirklich persistent sein, bevor der Reader
+    // zur Bibliothek zurückkehren kann. Sonst kann deren setState vor dem
+    // asynchronen SharedPreferences-Write laufen und weiterhin "0 Hefte"
+    // anzeigen, obwohl das Kind die Geschichte abgeschlossen hat.
     if (widget.storyId == null) {
-      LumoStoryLibrary.instance.addStory(widget.story);
+      await LumoStoryLibrary.instance.addStory(widget.story);
+      if (!mounted) return;
     }
+
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
