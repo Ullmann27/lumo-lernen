@@ -279,10 +279,11 @@ class _TestPhotoEntryCardState extends State<TestPhotoEntryCard> {
           const Text(
             'Note (Österreich)',
             style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-                color: LumoVisualTokens.white)),
+              fontFamily: 'Nunito',
+              fontSize: 12,
+              fontWeight: FontWeight.w800,
+              color: LumoVisualTokens.white,
+            ),
           ),
           const SizedBox(height: 6),
           // Note-Auswahl 1-5
