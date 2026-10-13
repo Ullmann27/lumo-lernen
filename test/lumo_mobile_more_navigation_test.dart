@@ -32,6 +32,9 @@ void main() {
         expect(button.width, greaterThanOrEqualTo(48));
 
         await tester.tap(more);
+        // The first pump starts the modal route's entrance transition.
+        // Advancing 450ms in that same first pump leaves the sheet offscreen.
+        await tester.pump();
         await tester.pump(const Duration(milliseconds: 450));
         expect(find.text('Mehr mit Lumo'), findsOneWidget);
         expect(find.byKey(const ValueKey('lumo-nav-extra-scroll')),
@@ -53,6 +56,8 @@ void main() {
           lessThanOrEqualTo(640),
           reason: 'Parent destination must be tappable on the cover screen');
         await tester.tap(parents);
+        // Trigger route removal before advancing the reverse transition.
+        await tester.pump();
         await tester.pump(const Duration(milliseconds: 450));
         expect(selected, [LumoSection.settings]);
         expect(find.text('Mehr mit Lumo'), findsNothing);
