@@ -188,8 +188,16 @@ function chatContextMessages(context, extras) {
     }
     if (['home', 'learn', 'exercises', 'reading', 'games', 'tests', 'schoolwork', 'scanner', 'missions', 'progress', 'rewards', 'agent', 'profile', 'settings'].includes(extras.section)) safeExtras.section = extras.section;
     if (Number.isInteger(extras.attempt)) safeExtras.attempt = Math.max(0, Math.min(extras.attempt, 10));
-    for (const field of ['taskPrompt', 'lastAnswer', 'previousHelp']) {
-      const cap = field === 'taskPrompt' ? 360 : field === 'previousHelp' ? 200 : 80;
+    const boundedTextFields = {
+      taskPrompt: 360,
+      lastAnswer: 80,
+      previousHelp: 200,
+      curriculumScope: 360,
+      curriculumExample: 240,
+      curriculumLimits: 240,
+      curriculumLevel: 160,
+    };
+    for (const [field, cap] of Object.entries(boundedTextFields)) {
       const value = typeof extras[field] === 'string' ? extras[field].trim().slice(0, cap) : '';
       if (value && inspectChildSafety(value).allowed) safeExtras[field] = value;
     }
