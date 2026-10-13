@@ -57,4 +57,9 @@ jobs:
             test/home_lumo_meister_entry_test.dart \
             test/games/lumo_meister_portal_test.dart \
             test/quiz_show_meister_test.dart \
-            test/lumo_meister_reward_alignment_test.dart
+            test/lumo_meister_reward_alignment_test.dart \
+            test/ai_transport_regression_test.dart
+
+      - name: Audit AI proxy contract
+        working-directory: server/lumo-ai-proxy
+        run: npm test
