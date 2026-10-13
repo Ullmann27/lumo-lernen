@@ -1,7 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
@@ -40,6 +43,26 @@ LumoStory _story(String title) => LumoStory(
       ],
     );
 
+const _captureKey = ValueKey('story-storage-runtime');
+
+Future<void> _capture(WidgetTester tester, String name) async {
+  await tester.pump();
+  final boundary = tester.renderObject<RenderRepaintBoundary>(
+    find.byKey(_captureKey),
+  );
+  await tester.runAsync(() async {
+    final image = await boundary.toImage(pixelRatio: 1);
+    try {
+      final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+      final file = File('.ci-results/story-storage/$name.png');
+      await file.parent.create(recursive: true);
+      await file.writeAsBytes(bytes!.buffer.asUint8List());
+    } finally {
+      image.dispose();
+    }
+  });
+}
+
 void main() {
   testWidgets(
     'story completion waits for disk, rejects failed writes and retries once',
@@ -59,18 +82,21 @@ void main() {
 
       Future<void> open(String title) async {
         await tester.pumpWidget(
-          MaterialApp(
-            home: Builder(
-              builder: (context) => TextButton(
-                onPressed: () => Navigator.of(context).push(
-                  MaterialPageRoute<void>(
-                    builder: (_) => LumoStoryReaderScreen(
-                      story: _story(title),
-                      appState: state,
+          RepaintBoundary(
+            key: _captureKey,
+            child: MaterialApp(
+              home: Builder(
+                builder: (context) => TextButton(
+                  onPressed: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => LumoStoryReaderScreen(
+                        story: _story(title),
+                        appState: state,
+                      ),
                     ),
                   ),
+                  child: const Text('Öffnen'),
                 ),
-                child: const Text('Öffnen'),
               ),
             ),
           ),
@@ -92,6 +118,7 @@ void main() {
       await finish();
       expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
       expect(find.byType(AlertDialog), findsNothing);
+      await _capture(tester, 'pending-write');
       await finish(); // Repeat tap while the storage Future is still unresolved.
       expect(store.storyWrites, 2); // One seed plus one new story write.
       await tester.binding.handlePopRoute();
@@ -107,9 +134,10 @@ void main() {
         find.text('Heft in deine Bibliothek gespeichert!'),
         findsOneWidget,
       );
-      final preferences = await SharedPreferences.getInstance();
+      await _capture(tester, 'persisted-success');
+      final disk = await tester.runAsync(store.getAll);
       expect(
-        (jsonDecode(preferences.getString('lumo_story_library_v1')!) as List)
+        (jsonDecode(disk!['flutter.lumo_story_library_v1'] as String) as List)
             .length,
         2,
       );
@@ -119,7 +147,10 @@ void main() {
       );
       await tester.tap(find.text('Fertig'));
       await tester.pump();
-      await tester.pump(const Duration(milliseconds: 400));
+      // Flutter 3.44.9's Android predictive-back transition lasts 450ms.
+      // Keep the real navigation assertion after the animation/disposal frame.
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 16));
       expect(find.byType(LumoStoryReaderScreen), findsNothing);
 
       store.write = Completer<bool>();
@@ -132,6 +163,7 @@ void main() {
       await tester.pump();
       expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
       expect(find.textContaining('nicht gespeichert'), findsOneWidget);
+      await _capture(tester, 'failed-write-retry');
       expect(library.count, 2);
       expect(
         library.all.where((s) => s.id == oldStory.id).single.toJson(),
@@ -149,6 +181,33 @@ void main() {
         library.all.where((s) => s.story.title == 'Heft nach Speicherfehler'),
         hasLength(1),
       );
+      await tester.tap(find.text('Fertig'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 500));
+      await tester.pump(const Duration(milliseconds: 16));
+      store.write = Completer<bool>();
+      await open('Heft nach Ausnahme');
+      await finish();
+      store.write!.completeError(StateError('synthetic disk failure'));
+      await tester
+          .runAsync(() async => await Future<void>.delayed(Duration.zero));
+      await tester.pump();
+      expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
+      expect(library.count, 3);
+      final afterFailure = await tester.runAsync(store.getAll);
+      expect(
+          (jsonDecode(afterFailure!['flutter.lumo_story_library_v1'] as String)
+                  as List)
+              .length,
+          3);
+      store.write = null;
+      await finish();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(
+          find.text('Heft in deine Bibliothek gespeichert!'), findsOneWidget);
+      expect(library.count, 4);
+      expect(library.all.where((s) => s.story.title == 'Heft nach Ausnahme'),
+          hasLength(1));
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump(const Duration(seconds: 1));
