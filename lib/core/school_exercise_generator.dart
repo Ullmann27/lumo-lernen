@@ -88,7 +88,7 @@ class Curriculum {
     ],
     'Englisch': <String>['Farben', 'Zahlen', 'Tiere', 'Schulsachen', 'Begruessung', 'Familie', 'Körper', 'Spielzeug', 'Wetter', 'Essen', 'Tageszeit', 'Verben', 'Wochentage', 'Hobbys', 'Länder'],
     'Sachunterricht': <String>[
-      'Tiere', 'Pflanzen', 'Jahreszeiten', 'Körper', 'Verkehr', 'Wetter',
+      'Tiere', 'Pflanzen', 'Jahreszeiten', 'Tag und Nacht', 'Körper', 'Verkehr', 'Wetter',
       'Familie und Gemeinschaft', 'Zeit und Kalender', 'Berufe', 'Ernährung',
       'Wasserkreislauf', 'Bundesländer Österreichs', 'Geografie Österreich',
       'Geschichte', 'Kontinente und Ozeane', 'Ökosysteme', 'Stromkreise',
@@ -165,7 +165,7 @@ class Curriculum {
       ],
     },
     'Rechtschreibung': <int, List<String>>{
-      1: <String>['Haeufige Woerter', 'Wortende'],
+      1: <String>['Haeufige Woerter', 'Wortende', 'Gross und klein'],
       2: <String>[
         'Gross und klein',
         'Satzzeichen',
