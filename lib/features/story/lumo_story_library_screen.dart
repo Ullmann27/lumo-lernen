@@ -66,7 +66,10 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => LumoStorySetupScreen(appState: widget.appState),
+        builder: (_) => LumoStorySetupScreen(
+          appState: widget.appState,
+          initialGrade: widget.gradeLevel,
+        ),
       ),
     ).then((_) {
       if (mounted) setState(() {});
