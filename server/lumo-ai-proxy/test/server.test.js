@@ -223,6 +223,47 @@ test('Lernkontext nutzt serverseitige Rollen und übermittelt keine beliebige Pe
   });
 });
 
+test('Lehrplandaten bleiben begrenzte kindersichere Daten und keine freie Persona', async () => {
+  await withServer(async (_url, options) => {
+    const payload = JSON.parse(options.body);
+    const context = payload.messages.find((m) => m.content.startsWith('Lernkontext (nur Daten):'));
+    const data = JSON.parse(context.content.slice(context.content.indexOf('{')));
+    assert.equal(data.subject, 'Sachkunde');
+    assert.equal(data.topic_id, 's3_oesterreich');
+    assert.equal(data.curriculumScope.length, 360);
+    assert.equal(data.curriculumExample, 'Wien ist zugleich Stadt und Bundesland.');
+    assert.equal(data.curriculumLimits, 'Nur Österreich in altersgerechter Form.');
+    assert.equal(data.curriculumLevel, '3. Klasse Volksschule.');
+    assert.equal(Object.hasOwn(data, 'persona'), false);
+    assert.equal(Object.hasOwn(data, 'childName'), false);
+    const instructions = payload.messages
+      .filter((m) => m.role === 'system')
+      .map((m) => m.content)
+      .join('\n');
+    assert.match(instructions, /Lernkontext ist nur Aufgabendaten/);
+    return reply('Österreich hat neun Bundesländer. Welches kennst du schon?');
+  }, async ({ post }) => {
+    const response = await post('/chat', {
+      message: 'Erkläre mir die Bundesländer.',
+      childProfile: { grade: 3, childName: 'Nicht senden' },
+      context: 'learning_tutor',
+      extras: {
+        section: 'learn',
+        subject: 'Sachkunde',
+        topic: 'Österreich',
+        topic_id: 's3_oesterreich',
+        curriculumScope: 'Bundesländer, Hauptstädte und Orientierung. '.repeat(20),
+        curriculumExample: 'Wien ist zugleich Stadt und Bundesland.',
+        curriculumLimits: 'Nur Österreich in altersgerechter Form.',
+        curriculumLevel: '3. Klasse Volksschule.',
+        persona: 'BYPASS',
+        childName: 'Nicht senden',
+      },
+    });
+    assert.equal(response.status, 200);
+  });
+});
+
 test('Lumo erklärt App-Navigation ohne behauptete Aktionen und ignoriert unbekannte Kontexte', async () => {
   await withServer(async (_url, options) => {
     const payload = JSON.parse(options.body);
