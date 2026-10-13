@@ -316,18 +316,12 @@ class LumoColorTile extends StatelessWidget {
   Widget build(BuildContext context) =>
       LayoutBuilder(builder: (context, constraints) {
         final narrow = constraints.maxWidth < 165;
-        final short = constraints.maxHeight.isFinite && constraints.maxHeight < 120;
         final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.2;
-        // Sehr flache Grid-Kacheln (z. B. Fold/Tablet mit vielen Spalten)
-        // brauchen eine eigene Kompaktstufe. Sonst können Symbol + Titel trotz
-        // ausreichender Breite vertikal überlaufen.
+        // Symbol wächst mit der Kachel: auf dem Fold-Innendisplay keine leeren Flächen.
         final iconSize = constraints.maxHeight.isFinite
-            ? short
-                ? (constraints.maxHeight * 0.24).clamp(26.0, 32.0).toDouble()
-                : (constraints.maxHeight * 0.30).clamp(32.0, 88.0).toDouble()
+            ? (constraints.maxHeight * 0.30).clamp(32.0, 88.0).toDouble()
             : (narrow ? 32.0 : 40.0);
-        final titleSize =
-            short ? 14.0 : (iconSize >= 60 ? 24.0 : (narrow ? 15.0 : 18.0));
+        final titleSize = iconSize >= 60 ? 24.0 : (narrow ? 15.0 : 18.0);
         return Semantics(
             button: true,
             label: '$title. $subtitle',
@@ -339,7 +333,7 @@ class LumoColorTile extends StatelessWidget {
                 onTap: onTap,
                 borderRadius: BorderRadius.circular(22),
                 child: Ink(
-                  padding: EdgeInsets.all(short
+                  padding: EdgeInsets.all(constraints.maxHeight < 100
                       ? 8
                       : narrow
                           ? 12
