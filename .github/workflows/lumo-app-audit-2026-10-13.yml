@@ -1,5 +1,5 @@
 name: Lumo app audit 2026-10-13
-# revision: responsive-discovery-and-sachkunde-routes
+# revision: direct-stories-and-sachkunde-runtime
 
 on:
   push:
@@ -57,6 +57,7 @@ jobs:
             test/fallback_topic_curriculum_test.dart \
             test/story_learning_path_test.dart \
             test/story_persistence_race_test.dart \
+            test/home_story_entry_test.dart \
             test/home_lumo_meister_entry_test.dart \
             test/games/lumo_meister_portal_test.dart \
             test/quiz_show_meister_test.dart \
