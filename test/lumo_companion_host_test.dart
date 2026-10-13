@@ -47,7 +47,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(sections, [LumoSection.exercises]);
     expect(state.state.subject, 'Mathematik');
-    expect(state.state.unit, 'Plus bis 10');
+    expect(state.state.unit, 'Plus bis 20');
     expect(state.state.sessionKind, LumoSessionKind.quickPractice);
     expect(tester.takeException(), isNull);
     await unmount(tester, state);
