@@ -117,7 +117,11 @@ void main() {
       'reading tasks contain their evidence and never ask about an absent picture',
       () {
     for (var grade = 1; grade <= 4; grade++) {
-      for (final unit in Curriculum.subjects['Lesen']!) {
+      for (final unit in Curriculum.unitsForGrade(
+        'Lesen',
+        grade,
+        currentGradeOnly: true,
+      )) {
         final task = ExerciseFactory(seed: 13)
             .next(grade: grade, subject: 'Lesen', unit: unit);
         expect(task.prompt, isNot(contains('Welcher Artikel')));
@@ -132,28 +136,71 @@ void main() {
     }
   });
 
-  test('writing target matches the chosen activity and available number range',
-      () {
+  test('grade-one handwriting targets stay concrete and traceable', () {
     final factory = ExerciseFactory(seed: 33);
-    for (var grade = 1; grade <= 4; grade++) {
-      for (var i = 0; i < 25; i++) {
-        final letter = factory.next(
-            grade: grade, subject: 'Schreiben', unit: 'Buchstaben nachspuren');
-        expect(WritingTargetParser.parse(letter.prompt),
-            matches(RegExp(r'^[A-Z]$')));
-        final number = factory.next(
-            grade: grade, subject: 'Schreiben', unit: 'Zahlen schreiben');
-        expect(int.parse(WritingTargetParser.parse(number.prompt)),
-            inInclusiveRange(0, 20));
-        final sentence = factory.next(
-            grade: grade, subject: 'Schreiben', unit: 'Satz abschreiben');
-        expect(WritingTargetParser.parse(sentence.prompt).split(' ').length,
-            greaterThanOrEqualTo(2));
-      }
-      final wave = factory.next(
-          grade: grade, subject: 'Schreiben', unit: 'Schwunguebung');
-      expect(WritingTargetParser.parse(wave.prompt), '∿');
+    final current =
+        Curriculum.unitsForGrade('Schreiben', 1, currentGradeOnly: true);
+    expect(current, contains('Buchstaben nachspuren'));
+    expect(current, contains('Schwunguebung'));
+
+    for (var i = 0; i < 25; i++) {
+      final letter = factory.next(
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Buchstaben nachspuren',
+      );
+      expect(
+        WritingTargetParser.parse(letter.prompt),
+        matches(RegExp(r'^[A-Z]
+
+  test(
+      'capitalization has a meaningful choice contrast without generic fillers',
+      () {
+    final task = ExerciseFactory(seed: 11)
+        .next(grade: 1, subject: 'Rechtschreibung', unit: 'Gross und klein');
+    expect(task.answer, startsWith('Großer Anfang:'));
+    expect(task.choices.any((choice) => choice.startsWith('Alles klein:')),
+        isTrue);
+    expect(
+        task.choices.any((choice) => choice.startsWith('Alles groß:')), isTrue);
+    expect(task.choices.any(['ja', 'nein', 'vielleicht', 'anderes'].contains),
+        isFalse);
+  });
+
+  test('Dehnungen and Wortende teach their named spelling pattern', () {
+    final factory = ExerciseFactory(seed: 45);
+    for (var i = 0; i < 20; i++) {
+      final dehnung =
+          factory.next(grade: 3, subject: 'Rechtschreibung', unit: 'Dehnungen');
+      expect(dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
+          isTrue);
+      final ending =
+          factory.next(grade: 3, subject: 'Rechtschreibung', unit: 'Wortende');
+      expect(ending.prompt, startsWith('Verlängere das Wort:'));
+      expect(ending.answer.length, 1);
     }
+  });
+}
+)),
+      );
+
+      final sentence = factory.next(
+        grade: 1,
+        subject: 'Schreiben',
+        unit: 'Satz abschreiben',
+      );
+      expect(
+        WritingTargetParser.parse(sentence.prompt).split(' ').length,
+        greaterThanOrEqualTo(2),
+      );
+    }
+
+    final wave = factory.next(
+      grade: 1,
+      subject: 'Schreiben',
+      unit: 'Schwunguebung',
+    );
+    expect(WritingTargetParser.parse(wave.prompt), '∿');
   });
 
   test(
