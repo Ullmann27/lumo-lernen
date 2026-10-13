@@ -111,6 +111,55 @@ void main() {
     expect(jsonEncode(requestBody), isNot(contains('Privater Kindername')));
   });
 
+  test('bounded curriculum context is transported without arbitrary fields',
+      () async {
+    Map<String, dynamic>? requestBody;
+    final server = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
+    server.listen((request) async {
+      requestBody = jsonDecode(await utf8.decoder.bind(request).join())
+          as Map<String, dynamic>;
+      request.response.headers.contentType = ContentType.json;
+      request.response.write(jsonEncode({
+        'reply': 'Wir bleiben beim Thema Österreich.',
+        'source': 'openai_proxy',
+        'blocked': false
+      }));
+      await request.response.close();
+    });
+    addTearDown(() => server.close(force: true));
+
+    final response = await const LumoAiProxyClient().ask(
+      settings: AppSettings(
+        aiProxyEnabled: true,
+        aiProxyUrl: 'http://127.0.0.1:${server.port}',
+      ),
+      state: LumoSessionState(grade: 3),
+      message: 'Erkläre mir die Bundesländer.',
+      context: LumoAiContext.learningTutor,
+      extras: {
+        'section': 'learn',
+        'subject': 'Sachkunde',
+        'topic': 'Österreich',
+        'topic_id': 's3_oesterreich',
+        'curriculumScope': 'Bundesländer, Hauptstädte und Orientierung.' * 20,
+        'curriculumExample': 'Wien ist zugleich Stadt und Bundesland.',
+        'curriculumLimits': 'Nur Österreich in altersgerechter Form.',
+        'curriculumLevel': '3. Klasse Volksschule.',
+        'childName': 'Nicht senden',
+      },
+    );
+
+    expect(response.isCloudAnswer, isTrue);
+    final extras = requestBody!['extras'] as Map<String, dynamic>;
+    expect(extras['curriculumScope'].toString().length, 360);
+    expect(extras['curriculumExample'],
+        'Wien ist zugleich Stadt und Bundesland.');
+    expect(extras['curriculumLimits'],
+        'Nur Österreich in altersgerechter Form.');
+    expect(extras['curriculumLevel'], '3. Klasse Volksschule.');
+    expect(extras.containsKey('childName'), isFalse);
+  });
+
   test(
       'Rate limits are exposed once without automatic repeated calls or provider secrets',
       () async {
