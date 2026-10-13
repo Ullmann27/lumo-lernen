@@ -1,5 +1,5 @@
 name: Lumo app audit 2026-10-13
-# revision: shell-navigation-and-topic-content
+# revision: responsive-discovery-and-sachkunde-routes
 
 on:
   push:
@@ -52,6 +52,7 @@ jobs:
             test/app_shell_learning_area_transition_test.dart \
             test/learning_module_registry_smoke_test.dart \
             test/akademie_subject_navigation_test.dart \
+            test/sachkunde_grade2_routes_test.dart \
             test/curriculum_integrity_test.dart \
             test/fallback_topic_curriculum_test.dart \
             test/story_learning_path_test.dart \
