@@ -51,10 +51,13 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _summaryEvaluated = false;
   int _summaryHits = 0;
   int _summaryStars = 0;
+  bool _finishing = false;
+  String? _savedStoryId;
 
   @override
   void initState() {
     super.initState();
+    _savedStoryId = widget.storyId;
     _pageCtrl = PageController();
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
@@ -205,13 +208,31 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     }
   }
 
-  void _showFinish() {
-    // Bei abgeschlossener Story: auto in Bibliothek speichern wenn neu
-    if (widget.storyId == null) {
-      LumoStoryLibrary.instance.addStory(widget.story);
+  Future<void> _showFinish() async {
+    if (_finishing) return;
+    setState(() => _finishing = true);
+    try {
+      if (_savedStoryId == null) {
+        final saved = await LumoStoryLibrary.instance.addStory(widget.story);
+        _savedStoryId = saved.id;
+      }
+      if (!mounted) return;
+      await _showFinishDialog();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: Text(
+            'Dein Heft konnte nicht gespeichert werden. Bitte versuche es noch einmal.'),
+      ));
+    } finally {
+      if (mounted) setState(() => _finishing = false);
     }
-    showDialog(
+  }
+
+  Future<void> _showFinishDialog() {
+    return showDialog<void>(
       context: context,
+      barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: LumoTokens.colors.surface,
         title: Text('🎉 ${widget.story.title} — Geschafft!',
@@ -288,19 +309,22 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   @override
   Widget build(BuildContext context) {
     final page = widget.story.pages[_pageIdx];
-    return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
-        intensity: 0.6,
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildTopBar(),
-              Expanded(
-                child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
-              ),
-              _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
-            ],
+    return PopScope(
+      canPop: !_finishing,
+      child: Scaffold(
+        backgroundColor: LumoTokens.colors.creme,
+        body: LumoMagicBackground(
+          intensity: 0.6,
+          child: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                Expanded(
+                  child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
+                ),
+                _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
+              ],
+            ),
           ),
         ),
       ),
@@ -315,7 +339,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         children: [
           IconButton(
             icon: const Icon(Icons.close_rounded),
-            onPressed: () => Navigator.pop(context),
+            onPressed: _finishing ? null : () => Navigator.pop(context),
           ),
           Expanded(
             child: Column(
@@ -501,7 +525,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         width: double.infinity,
         height: 56,
         child: ElevatedButton.icon(
-          onPressed: canContinue ? _nextPage : null,
+          onPressed: canContinue && !_finishing ? _nextPage : null,
           icon: Icon(_pageIdx + 1 >= widget.story.pages.length
               ? Icons.celebration_rounded
               : Icons.arrow_forward_rounded),
@@ -688,7 +712,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         height: 56,
         child: _summaryEvaluated
             ? ElevatedButton.icon(
-                onPressed: _showFinish,
+                onPressed: _finishing ? null : _showFinish,
                 icon: const Icon(Icons.celebration_rounded),
                 label: const Text('Fertig!'),
                 style: ElevatedButton.styleFrom(

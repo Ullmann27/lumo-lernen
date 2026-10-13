@@ -141,8 +141,9 @@ class LumoStoryLibrary {
 
   Future<void> save() async {
     final p = await SharedPreferences.getInstance();
-    await p.setString(
+    final saved = await p.setString(
         _key, jsonEncode(_stories.map((s) => s.toJson()).toList()));
+    if (!saved) throw StateError('Geschichten konnten nicht gespeichert werden');
   }
 
   Future<StoredStory> addStory(LumoStory story) async {
@@ -156,7 +157,13 @@ class LumoStoryLibrary {
       isFavorite: false,
     );
     _stories.add(stored);
-    await save();
+    try {
+      await save();
+    } catch (_) {
+      // A retry must not retain the failed addition. Other stories stay intact.
+      _stories.remove(stored);
+      rethrow;
+    }
     return stored;
   }
 

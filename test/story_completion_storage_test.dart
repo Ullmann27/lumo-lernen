@@ -35,84 +35,123 @@ LumoStory _story(String title) => LumoStory(
       theme: 'Freundschaft',
       gradeLevel: 2,
       newWords: const ['Mut'],
-      pages: const [LumoStoryPage(pageNum: 1, text: 'Lumo findet Mut.', imagePrompt: 'fox')],
+      pages: const [
+        LumoStoryPage(pageNum: 1, text: 'Lumo findet Mut.', imagePrompt: 'fox'),
+      ],
     );
 
 void main() {
-  testWidgets('story completion waits for disk, rejects failed writes and retries once', (tester) async {
-    SharedPreferences.setMockInitialValues({});
-    final store = _ControlledStoryStore();
-    SharedPreferencesStorePlatform.instance = store;
-    final oldVoice = LumoVoice.instance.isEnabled;
-    LumoVoice.instance.isEnabled = false;
-    addTearDown(() => LumoVoice.instance.isEnabled = oldVoice);
-    final state = LumoAppState();
-    addTearDown(state.dispose);
-    final library = LumoStoryLibrary.instance;
-    await tester.runAsync(() => library.addStory(_story('Vorhandenes Heft')));
-    final oldStory = library.all.single;
-    final oldJson = oldStory.toJson();
+  testWidgets(
+    'story completion waits for disk, rejects failed writes and retries once',
+    (tester) async {
+      SharedPreferences.setMockInitialValues({});
+      final store = _ControlledStoryStore();
+      SharedPreferencesStorePlatform.instance = store;
+      final oldVoice = LumoVoice.instance.isEnabled;
+      LumoVoice.instance.isEnabled = false;
+      addTearDown(() => LumoVoice.instance.isEnabled = oldVoice);
+      final state = LumoAppState();
+      addTearDown(state.dispose);
+      final library = LumoStoryLibrary.instance;
+      await tester.runAsync(() => library.addStory(_story('Vorhandenes Heft')));
+      final oldStory = library.all.single;
+      final oldJson = oldStory.toJson();
 
-    Future<void> open(String title) async {
-      await tester.pumpWidget(MaterialApp(
-        home: Builder(builder: (context) => TextButton(
-          onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(
-            builder: (_) => LumoStoryReaderScreen(story: _story(title), appState: state),
-          )),
-          child: const Text('Öffnen'),
-        )),
-      ));
-      await tester.tap(find.text('Öffnen'));
+      Future<void> open(String title) async {
+        await tester.pumpWidget(
+          MaterialApp(
+            home: Builder(
+              builder: (context) => TextButton(
+                onPressed: () => Navigator.of(context).push(
+                  MaterialPageRoute<void>(
+                    builder: (_) => LumoStoryReaderScreen(
+                      story: _story(title),
+                      appState: state,
+                    ),
+                  ),
+                ),
+                child: const Text('Öffnen'),
+              ),
+            ),
+          ),
+        );
+        await tester.tap(find.text('Öffnen'));
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 400));
+      }
+
+      Future<void> finish() async {
+        await tester.runAsync(
+          () => tester.tap(find.text('Erzähl mir die Geschichte!')),
+        );
+        await tester.pump();
+      }
+
+      await open('Neues Heft');
+      store.write = Completer<bool>();
+      await finish();
+      expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
+      expect(find.byType(AlertDialog), findsNothing);
+      await finish(); // Repeat tap while the storage Future is still unresolved.
+      expect(store.storyWrites, 2); // One seed plus one new story write.
+      await tester.binding.handlePopRoute();
+      await tester.pump();
+      expect(find.byType(LumoStoryReaderScreen), findsOneWidget);
+      store.write!.complete(true);
+      await tester.runAsync(
+        () async => await Future<void>.delayed(Duration.zero),
+      );
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(
+        find.text('Heft in deine Bibliothek gespeichert!'),
+        findsOneWidget,
+      );
+      final preferences = await SharedPreferences.getInstance();
+      expect(
+        (jsonDecode(preferences.getString('lumo_story_library_v1')!) as List)
+            .length,
+        2,
+      );
+      expect(
+        library.all.where((s) => s.id == oldStory.id).single.toJson(),
+        oldJson,
+      );
+      await tester.tap(find.text('Fertig'));
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 400));
-    }
+      expect(find.byType(LumoStoryReaderScreen), findsNothing);
 
-    Future<void> finish() async {
-      await tester.runAsync(() => tester.tap(find.text('Erzähl mir die Geschichte!')));
+      store.write = Completer<bool>();
+      await open('Heft nach Speicherfehler');
+      await finish();
+      store.write!.complete(false);
+      await tester.runAsync(
+        () async => await Future<void>.delayed(Duration.zero),
+      );
       await tester.pump();
-    }
-
-    await open('Neues Heft');
-    store.write = Completer<bool>();
-    await finish();
-    expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
-    expect(find.byType(AlertDialog), findsNothing);
-    await finish(); // Repeat tap while the storage Future is still unresolved.
-    expect(store.storyWrites, 2); // One seed plus one new story write.
-    await tester.binding.handlePopRoute();
-    await tester.pump();
-    expect(find.byType(LumoStoryReaderScreen), findsOneWidget);
-    store.write!.complete(true);
-    await tester.runAsync(() async => await Future<void>.delayed(Duration.zero));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('Heft in deine Bibliothek gespeichert!'), findsOneWidget);
-    final preferences = await SharedPreferences.getInstance();
-    expect((jsonDecode(preferences.getString('lumo_story_library_v1')!) as List).length, 2);
-    expect(library.all.where((s) => s.id == oldStory.id).single.toJson(), oldJson);
-    await tester.tap(find.text('Fertig'));
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 400));
-    expect(find.byType(LumoStoryReaderScreen), findsNothing);
-
-    store.write = Completer<bool>();
-    await open('Heft nach Speicherfehler');
-    await finish();
-    store.write!.complete(false);
-    await tester.runAsync(() async => await Future<void>.delayed(Duration.zero));
-    await tester.pump();
-    expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
-    expect(find.textContaining('nicht gespeichert'), findsOneWidget);
-    expect(library.count, 2);
-    expect(library.all.where((s) => s.id == oldStory.id).single.toJson(), oldJson);
-    store.write = null;
-    await finish();
-    await tester.pump(const Duration(milliseconds: 300));
-    expect(find.text('Heft in deine Bibliothek gespeichert!'), findsOneWidget);
-    expect(library.count, 3);
-    expect(library.all.where((s) => s.story.title == 'Heft nach Speicherfehler'), hasLength(1));
-    expect(tester.takeException(), isNull);
-    await tester.pumpWidget(const SizedBox.shrink());
-    await tester.pump(const Duration(seconds: 1));
-  });
+      expect(find.text('Heft in deine Bibliothek gespeichert!'), findsNothing);
+      expect(find.textContaining('nicht gespeichert'), findsOneWidget);
+      expect(library.count, 2);
+      expect(
+        library.all.where((s) => s.id == oldStory.id).single.toJson(),
+        oldJson,
+      );
+      store.write = null;
+      await finish();
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(
+        find.text('Heft in deine Bibliothek gespeichert!'),
+        findsOneWidget,
+      );
+      expect(library.count, 3);
+      expect(
+        library.all.where((s) => s.story.title == 'Heft nach Speicherfehler'),
+        hasLength(1),
+      );
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(seconds: 1));
+    },
+  );
 }
