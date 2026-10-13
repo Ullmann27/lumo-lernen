@@ -15,6 +15,7 @@ import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/learning_dna.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 
 class LumoInsightHeatmap extends StatelessWidget {
   const LumoInsightHeatmap({
@@ -40,15 +41,18 @@ class LumoInsightHeatmap extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(16, 18, 16, 16),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFFBF0), Color(0xFFFFF6E5)],
+          colors: [LumoVisualTokens.glass, LumoVisualTokens.navigation],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoColors.orange.withOpacity(0.28), width: 1.4),
+        border: Border.all(
+          color: LumoVisualTokens.cyan.withOpacity(.38),
+          width: 1.4,
+        ),
         boxShadow: [
           BoxShadow(
-            color: LumoColors.orange.withOpacity(0.14),
+            color: LumoVisualTokens.cyan.withOpacity(.12),
             blurRadius: 18,
             offset: const Offset(0, 6),
             spreadRadius: -3,
@@ -79,9 +83,11 @@ class LumoInsightHeatmap extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 24),
       decoration: BoxDecoration(
-        color: const Color(0xFFFFFBF0),
+        color: LumoVisualTokens.glassRow.withOpacity(.76),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoColors.orange.withOpacity(0.20)),
+        border: Border.all(
+          color: LumoVisualTokens.cyan.withOpacity(.32),
+        ),
       ),
       child: Row(
         children: [
@@ -97,7 +103,7 @@ class LumoInsightHeatmap extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF7C2D12),
+                    color: LumoVisualTokens.white,
                   ),
                 ),
                 SizedBox(height: 4),
@@ -107,7 +113,7 @@ class LumoInsightHeatmap extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w600,
-                    color: Color(0xFF92400E),
+                    color: LumoVisualTokens.muted,
                     height: 1.35,
                   ),
                 ),
@@ -131,7 +137,10 @@ class _Header extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
-              colors: [Color(0xFFFF7A2F), Color(0xFFFFB96B)],
+              colors: [
+                LumoVisualTokens.cyan,
+                LumoVisualTokens.cyanBright,
+              ],
             ),
             borderRadius: BorderRadius.circular(LumoRadius.pill),
           ),
@@ -154,7 +163,7 @@ class _Header extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 20,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF7C2D12),
+              color: LumoVisualTokens.white,
             ),
           ),
         ),
@@ -192,9 +201,12 @@ class _SubjectRow extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 10, 12, 12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LumoVisualTokens.glassRow.withOpacity(.72),
         borderRadius: BorderRadius.circular(LumoRadius.md),
-        border: Border.all(color: const Color(0xFFFDE68A), width: 1.1),
+        border: Border.all(
+          color: LumoVisualTokens.cyan.withOpacity(.24),
+          width: 1.1,
+        ),
         boxShadow: [
           BoxShadow(
             color: Colors.black.withOpacity(0.04),
@@ -216,7 +228,7 @@ class _SubjectRow extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 16,
                   fontWeight: FontWeight.w900,
-                  color: Color(0xFF7C2D12),
+                  color: LumoVisualTokens.white,
                 ),
               ),
               const Spacer(),
@@ -226,7 +238,7 @@ class _SubjectRow extends StatelessWidget {
                   fontFamily: 'Nunito',
                   fontSize: 11,
                   fontWeight: FontWeight.w700,
-                  color: const Color(0xFF7C2D12).withOpacity(0.55),
+                  color: LumoVisualTokens.muted,
                 ),
               ),
             ],
@@ -359,7 +371,7 @@ class _Legend extends StatelessWidget {
             fontFamily: 'Nunito',
             fontSize: 11,
             fontWeight: FontWeight.w700,
-            color: Color(0xFF7C2D12),
+            color: LumoVisualTokens.muted,
           ),
         ),
       ],
