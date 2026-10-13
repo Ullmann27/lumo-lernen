@@ -1233,14 +1233,16 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
-      child: Container(
-        decoration: BoxDecoration(
-          color: LumoVisualTokens.glass.withOpacity(.72),
+      child: Material(
+        color: LumoVisualTokens.glass.withOpacity(.72),
+        borderRadius: BorderRadius.circular(20),
+        shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(
+          side: BorderSide(
             color: subject.color.withOpacity(.42),
           ),
         ),
+        clipBehavior: Clip.antiAlias,
         child: Theme(
           data: Theme.of(context).copyWith(
             dividerColor: Colors.transparent,
