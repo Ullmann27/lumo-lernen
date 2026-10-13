@@ -51,6 +51,7 @@ jobs:
             test/learning_module_registry_smoke_test.dart \
             test/akademie_subject_navigation_test.dart \
             test/curriculum_integrity_test.dart \
+            test/fallback_topic_curriculum_test.dart \
             test/story_learning_path_test.dart \
             test/story_persistence_race_test.dart \
             test/home_lumo_meister_entry_test.dart \
