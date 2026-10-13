@@ -641,7 +641,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           const Padding(
             padding: EdgeInsets.only(left: 2, bottom: 10),
             child: Text(
-              'Fächer',
+              '2. Fach wählen',
               style: TextStyle(
                 fontFamily: 'Nunito',
                 color: LumoVisualTokens.white,
@@ -762,7 +762,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           const Padding(
             padding: EdgeInsets.fromLTRB(2, 0, 0, 12),
             child: Text(
-              'Welche Klasse?',
+              '1. Klasse wählen',
               style: TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 18,
@@ -924,11 +924,289 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               ],
             ),
           ),
-          // Topics
-          ...s.topics.map((t) => _buildTopicCard(t, s)).toList(),
+          const SizedBox(height: 2),
+          const Row(
+            children: [
+              Icon(
+                Icons.looks_3_rounded,
+                color: LumoVisualTokens.cyanBright,
+                size: 18,
+              ),
+              SizedBox(width: 7),
+              Text(
+                'Themenbereich wählen',
+                style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 13,
+                  fontWeight: FontWeight.w900,
+                  color: LumoVisualTokens.cyanBright,
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 10),
+          ..._topicBuckets(s).asMap().entries.map(
+                (entry) => _buildTopicBucket(
+                  entry.value,
+                  s,
+                  initiallyExpanded: entry.key == 0,
+                ),
+              ),
         ],
       ),
     );
+  }
+
+  List<_TopicBucket> _topicBuckets(LearningSubject subject) {
+    final grouped = <String, List<LearningTopic>>{};
+    final order = <String>[];
+
+    void add(String title, LearningTopic topic) {
+      if (!grouped.containsKey(title)) {
+        grouped[title] = <LearningTopic>[];
+        order.add(title);
+      }
+      grouped[title]!.add(topic);
+    }
+
+    for (final topic in subject.topics) {
+      final raw = (topic.unitKey.isEmpty ? topic.title : topic.unitKey)
+          .toLowerCase();
+
+      final group = switch (subject.name) {
+        'Mathematik' => raw.contains('textauf') ||
+                raw.contains('sachauf')
+            ? 'Sachaufgaben'
+            : raw.contains('einmaleins') ||
+                    raw.contains('multiplik') ||
+                    raw.contains('division') ||
+                    raw.contains('geteilt')
+                ? 'Mal & Teilen'
+                : raw.contains('geld') ||
+                        raw.contains('länge') ||
+                        raw.contains('massen') ||
+                        raw.contains('zeit') ||
+                        raw.contains('uhr') ||
+                        raw.contains('liter') ||
+                        raw.contains('milliliter')
+                    ? 'Größen & Alltag'
+                    : raw.contains('geometr') ||
+                            raw.contains('form') ||
+                            raw.contains('symmetr') ||
+                            raw.contains('umfang') ||
+                            raw.contains('fläche') ||
+                            raw.contains('diagramm')
+                        ? 'Formen & Daten'
+                        : raw.contains('bruch') ||
+                                raw.contains('dezimal') ||
+                                raw.contains('mittelwert')
+                            ? 'Brüche & Dezimalzahlen'
+                            : 'Zahlen & Rechnen',
+        'Deutsch' => raw.contains('satz') ||
+                raw.contains('direkte rede') ||
+                raw.contains('komma') ||
+                raw.contains('zusammensetz')
+            ? 'Sätze & Sprache'
+            : raw.contains('wortart') ||
+                    raw.contains('namen') ||
+                    raw.contains('tunwo') ||
+                    raw.contains('wiewo') ||
+                    raw.contains('fall') ||
+                    raw.contains('verbform') ||
+                    raw.contains('zeitform') ||
+                    raw.contains('steiger')
+                ? 'Grammatik'
+                : raw.contains('groß') ||
+                        raw.contains('ie oder i') ||
+                        raw.contains('dass') ||
+                        raw.contains('st oder sp')
+                    ? 'Rechtschreibung'
+                    : 'Wörter & Wortschatz',
+        'Lesen' => raw.contains('schluss') ||
+                raw.contains('information')
+            ? 'Informationen & Schlüsse'
+            : raw.contains('kern') || raw.contains('textart')
+                ? 'Textaufbau verstehen'
+                : 'Lesen & Verstehen',
+        'Schreiben' => raw.contains('text plan') ||
+                raw.contains('geschichte') ||
+                raw.contains('beschreibung') ||
+                raw.contains('meinung') ||
+                raw.contains('informationstext')
+            ? 'Texte planen & verfassen'
+            : raw.contains('satz') || raw.contains('nachricht')
+                ? 'Sätze & Nachrichten'
+                : 'Schreib-Grundlagen',
+        'Rechtschreibung' => raw.contains('satz') ||
+                raw.contains('komma') ||
+                raw.contains('dass')
+            ? 'Sätze richtig schreiben'
+            : raw.contains('doppel') ||
+                    raw.contains('dehnung') ||
+                    raw.contains('ie oder i') ||
+                    raw.contains('st oder sp') ||
+                    raw.contains('wortstamm') ||
+                    raw.contains('wortende')
+                ? 'Rechtschreib-Regeln'
+                : 'Wortbilder & Großschreibung',
+        'Englisch' => raw.contains('famil') ||
+                raw.contains('begr') ||
+                raw.contains('zahlen') ||
+                raw.contains('farben') ||
+                raw.contains('körper')
+            ? 'Basics & Menschen'
+            : raw.contains('schule') ||
+                    raw.contains('essen') ||
+                    raw.contains('tages') ||
+                    raw.contains('wochen')
+                ? 'Schule & Alltag'
+                : 'Natur & Freizeit',
+        'Sachkunde' => raw.contains('österreich') ||
+                raw.contains('bundes') ||
+                raw.contains('kontinent') ||
+                raw.contains('geschichte') ||
+                raw.contains('geografie')
+            ? 'Österreich & Welt'
+            : raw.contains('strom') ||
+                    raw.contains('diagramm') ||
+                    raw.contains('wasser')
+                ? 'Forschen & Technik'
+                : raw.contains('famil') ||
+                        raw.contains('beruf') ||
+                        raw.contains('verkehr') ||
+                        raw.contains('zeit')
+                    ? 'Alltag & Gemeinschaft'
+                    : 'Natur & Körper',
+        'Logik' => raw.contains('regel') ||
+                raw.contains('mehrschritt') ||
+                raw.contains('zahlenrätsel') ||
+                raw.contains('aussagen')
+            ? 'Mehrschritt & Rätsel'
+            : raw.contains('schluss') ||
+                    raw.contains('wenn-dann') ||
+                    raw.contains('ausschluss')
+                ? 'Folgern & Ausschließen'
+                : 'Muster & Ordnen',
+        _ => 'Themen',
+      };
+
+      add(group, topic);
+    }
+
+    return <_TopicBucket>[
+      for (final title in order)
+        _TopicBucket(title: title, topics: grouped[title]!),
+    ];
+  }
+
+  Widget _buildTopicBucket(
+    _TopicBucket bucket,
+    LearningSubject subject, {
+    required bool initiallyExpanded,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Container(
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.glass.withOpacity(.72),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: subject.color.withOpacity(.42),
+          ),
+        ),
+        child: Theme(
+          data: Theme.of(context).copyWith(
+            dividerColor: Colors.transparent,
+            splashColor: subject.color.withOpacity(.08),
+          ),
+          child: ExpansionTile(
+            key: ValueKey(
+              '${_selectedGrade}_${subject.id}_${bucket.title}',
+            ),
+            initiallyExpanded: initiallyExpanded,
+            tilePadding:
+                const EdgeInsets.symmetric(horizontal: 14, vertical: 4),
+            childrenPadding: const EdgeInsets.fromLTRB(10, 0, 10, 4),
+            iconColor: LumoVisualTokens.cyanBright,
+            collapsedIconColor: LumoVisualTokens.muted,
+            leading: Container(
+              width: 38,
+              height: 38,
+              decoration: BoxDecoration(
+                color: subject.color.withOpacity(.22),
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Icon(
+                _bucketIcon(bucket.title),
+                color: LumoVisualTokens.white,
+                size: 20,
+              ),
+            ),
+            title: Text(
+              bucket.title,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 15,
+                fontWeight: FontWeight.w900,
+                color: LumoVisualTokens.white,
+              ),
+            ),
+            subtitle: Text(
+              '${bucket.topics.length} ${bucket.topics.length == 1 ? 'Thema' : 'Themen'}',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: LumoVisualTokens.muted,
+              ),
+            ),
+            children: [
+              for (final topic in bucket.topics)
+                _buildTopicCard(topic, subject),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  IconData _bucketIcon(String title) {
+    final lower = title.toLowerCase();
+    if (lower.contains('zahlen') || lower.contains('rechnen')) {
+      return Icons.pin_rounded;
+    }
+    if (lower.contains('mal') || lower.contains('teilen')) {
+      return Icons.grid_3x3_rounded;
+    }
+    if (lower.contains('größe') || lower.contains('alltag')) {
+      return Icons.straighten_rounded;
+    }
+    if (lower.contains('form') || lower.contains('daten')) {
+      return Icons.category_rounded;
+    }
+    if (lower.contains('bruch') || lower.contains('dezimal')) {
+      return Icons.pie_chart_rounded;
+    }
+    if (lower.contains('satz') || lower.contains('sprache')) {
+      return Icons.short_text_rounded;
+    }
+    if (lower.contains('grammatik') || lower.contains('regel')) {
+      return Icons.spellcheck_rounded;
+    }
+    if (lower.contains('lesen') || lower.contains('text')) {
+      return Icons.auto_stories_rounded;
+    }
+    if (lower.contains('schreiben')) return Icons.edit_rounded;
+    if (lower.contains('welt')) return Icons.public_rounded;
+    if (lower.contains('natur')) return Icons.eco_rounded;
+    if (lower.contains('technik')) return Icons.science_rounded;
+    if (lower.contains('logik') ||
+        lower.contains('folgern') ||
+        lower.contains('rätsel') ||
+        lower.contains('muster')) {
+      return Icons.psychology_alt_rounded;
+    }
+    return Icons.school_rounded;
   }
 
   Widget _buildTopicCard(LearningTopic t, LearningSubject s) {
@@ -1152,6 +1430,16 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       ),
     );
   }
+}
+
+class _TopicBucket {
+  const _TopicBucket({
+    required this.title,
+    required this.topics,
+  });
+
+  final String title;
+  final List<LearningTopic> topics;
 }
 
 class _LearningArea {
