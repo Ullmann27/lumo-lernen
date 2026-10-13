@@ -2,9 +2,7 @@ name: Build unified Lumo Android APK
 on:
   workflow_dispatch:
   push:
-    branches:
-      - 'copilot/5979796457-update-integrationsaudit'
-      - 'fix/grade-learning-structure-2026-10-12'
+    branches: ['copilot/5979796457-update-integrationsaudit']
     paths: ['.github/workflows/release-apk.yml']
 permissions:
   contents: read
