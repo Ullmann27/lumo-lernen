@@ -968,8 +968,8 @@ class LumoBrain {
   // ────────────────────────────────────────────────────────────────
   /// Lumo's KI-Vorschlag: was sollte das Kind als naechstes lernen?
   /// Wird in der Akademie oder im Greeting genutzt.
-  String suggestNextTopic() {
-    return _lernTipps[_rng.nextInt(_lernTipps.length)];
+  String suggestNextTopic({int? grade}) {
+    return _learningTipForGrade(grade);
   }
 }
 
