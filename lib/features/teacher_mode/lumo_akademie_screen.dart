@@ -21,6 +21,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
+import '../story/lumo_story_library_screen.dart';
 import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -208,6 +209,13 @@ class LumoCurriculum {
                   gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
                   shortDesc: 'MAMA, PAPA, OMA...',
                 ),
+                LearningTopic(
+                  id: 'd1_geschichten',
+                  title: 'Geschichten',
+                  icon: Icons.auto_stories_rounded,
+                  gradient: [Color(0xFF2F80ED), Color(0xFF56CCF2)],
+                  shortDesc: 'Lesen & verstehen',
+                ),
               ],
             ),
             LearningSubject(
@@ -312,6 +320,13 @@ class LumoCurriculum {
                   gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
                   shortDesc: 'Ein Hund - viele Hunde',
                 ),
+                LearningTopic(
+                  id: 'd2_geschichten',
+                  title: 'Geschichten',
+                  icon: Icons.auto_stories_rounded,
+                  gradient: [Color(0xFF2F80ED), Color(0xFF56CCF2)],
+                  shortDesc: 'Lesen & verstehen',
+                ),
               ],
             ),
             LearningSubject(
@@ -406,8 +421,8 @@ class LumoCurriculum {
                   id: 'd3_geschichten',
                   title: 'Geschichten',
                   icon: Icons.auto_stories_rounded,
-                  gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                  shortDesc: 'Lesen & Verstehen',
+                  gradient: [Color(0xFF2F80ED), Color(0xFF56CCF2)],
+                  shortDesc: 'Lesen & verstehen',
                 ),
               ],
             ),
@@ -491,6 +506,13 @@ class LumoCurriculum {
                   icon: Icons.edit_note_rounded,
                   gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
                   shortDesc: 'Erzählen & Beschreiben',
+                ),
+                LearningTopic(
+                  id: 'd4_geschichten',
+                  title: 'Geschichten',
+                  icon: Icons.auto_stories_rounded,
+                  gradient: [Color(0xFF2F80ED), Color(0xFF56CCF2)],
+                  shortDesc: 'Lesen & verstehen',
                 ),
               ],
             ),
@@ -649,6 +671,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   late final AnimationController _heroCtrl;
   int _selectedGrade = 1;
   int _selectedSubjectIndex = 0;
+  final GlobalKey _subjectSectionKey = GlobalKey();
 
   @override
   void initState() {
@@ -1117,6 +1140,17 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     final curriculumIndex = area.curriculumIndex;
     if (curriculumIndex != null) {
       setState(() => _selectedSubjectIndex = curriculumIndex);
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted) return;
+        final targetContext = _subjectSectionKey.currentContext;
+        if (targetContext == null) return;
+        Scrollable.ensureVisible(
+          targetContext,
+          duration: const Duration(milliseconds: 480),
+          curve: Curves.easeOutCubic,
+          alignment: 0.08,
+        );
+      });
       return;
     }
     final section = area.section!;
@@ -1396,6 +1430,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
 
   Widget _buildSubjectSection(LearningSubject s, int idx) {
     return Padding(
+      key: _subjectSectionKey,
       padding: const EdgeInsets.only(bottom: 24),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1639,6 +1674,19 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               requestedTopicTitle: t.title,
               preferredLessonId: t.id == 'm2_einmaleins'
                   ? 'equal_groups' : null)));
+      return;
+    }
+    // Geschichten sind ein regulaeres Deutsch-/Lesethema. Die bestehende
+    // Story-Bibliothek wird wiederverwendet statt einen zweiten Reader zu bauen.
+    if (t.id.endsWith('_geschichten')) {
+      Navigator.of(context).push<void>(
+        MaterialPageRoute(
+          builder: (_) => LumoStoryLibraryScreen(
+            appState: widget.appState,
+            gradeLevel: _selectedGrade,
+          ),
+        ),
+      );
       return;
     }
     // 0) Schreibcoach LIVE (Heinz' Premium-Feature)

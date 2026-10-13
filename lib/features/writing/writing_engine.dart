@@ -1796,6 +1796,124 @@ class LetterShapeAnalyzer {
   }
 }
 
+/// Zweite, kindgerechte Erkennungsebene fuer Fingerhandschrift.
+///
+/// Der ShapeAnalyzer bleibt fuer konkrete Schreibhinweise zustaendig. Diese
+/// Erkennung beantwortet eine andere Frage: Ist der gezeichnete Buchstabe
+/// trotz wackeliger Fingerlinie noch eindeutig als Zielzeichen erkennbar?
+/// Dazu wird die normalisierte Form gegen alle Buchstaben derselben Familie
+/// verglichen. Schoenschrift ist damit keine Voraussetzung fuer "richtig".
+class FingerWritingRecognizer {
+  FingerWritingRecognizer._();
+
+  static bool contradictsTarget({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+  }) {
+    // Ein einziger nahezu gerader Strich kann kein H sein. Die tolerante
+    // Fingererkennung darf verbundene H-Zuege akzeptieren, aber keine
+    // horizontalen/vertikalen Linien als kompletten Buchstaben bewerten.
+    if ((template.letter == 'H' || template.letter == 'h') &&
+        userStrokes.length == 1) {
+      final bounds = userStrokes.single.bounds;
+      if (bounds.width < bounds.height * 0.20 ||
+          bounds.height < bounds.width * 0.20) {
+        return true;
+      }
+    }
+    // Ein C darf mit dem Finger sehr rund und wackelig sein, bleibt aber
+    // offen. Ein geschlossener Ring ist ein O/0 und darf nicht als C
+    // durchgewunken werden.
+    if ((template.letter == 'C' || template.letter == 'c') &&
+        _hasClosedLoop(userStrokes)) {
+      return true;
+    }
+    return false;
+  }
+
+  static bool recognizesTarget({
+    required LetterTemplate template,
+    required List<WritingStroke> userStrokes,
+    required double structuralScore,
+  }) {
+    if (userStrokes.isEmpty || _inkLength(userStrokes) < 20) return false;
+
+    final targetDistance =
+        LetterShapeAnalyzer.shapeDistance(userStrokes, template);
+    final sensitive = _fingerSensitive.contains(template.letter);
+    final maxDistance = sensitive ? 0.21 : 0.18;
+    if (targetDistance > maxDistance) return false;
+
+    final family = _familyFor(template.letter);
+    var bestDistance = targetDistance;
+    var bestSymbol = template.letter;
+    for (final symbol in family) {
+      if (symbol == template.letter) continue;
+      final candidate = LetterTemplates.all[symbol];
+      if (candidate == null) continue;
+      final distance =
+          LetterShapeAnalyzer.shapeDistance(userStrokes, candidate);
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestSymbol = symbol;
+      }
+    }
+
+    // S/C/H (und die Kleinbuchstaben) sind mit dem Finger besonders
+    // empfindlich. Hier darf die Zielvorlage knapp hinter einer sehr
+    // aehnlichen Alternativform liegen, aber niemals deutlich schlechter.
+    final ambiguityMargin = sensitive ? 0.022 : 0.012;
+    final targetCompetitive = bestSymbol == template.letter ||
+        targetDistance <= bestDistance + ambiguityMargin;
+    if (!targetCompetitive) return false;
+
+    // Ein Kind darf mehrere Schul-Stiftstriche in einem Fingerzug verbinden.
+    // Deshalb ist die Struktur nur ein Plausibilitaetsfilter, kein
+    // Schoenschrift-Gate.
+    final minimumStructure = sensitive ? 0.25 : 0.40;
+    return structuralScore >= minimumStructure;
+  }
+
+  static const Set<String> _fingerSensitive = {
+    'S', 's', 'C', 'c', 'H', 'h',
+  };
+
+  static bool _hasClosedLoop(List<WritingStroke> strokes) {
+    for (final stroke in strokes) {
+      if (stroke.points.length < 5) continue;
+      final bounds = stroke.bounds;
+      if (bounds.width < 16 || bounds.height < 16) continue;
+      final gap = (stroke.points.first - stroke.points.last).distance;
+      final scale = (bounds.width + bounds.height) / 2;
+      if (gap <= scale * 0.22) return true;
+    }
+    return false;
+  }
+
+  static List<String> _familyFor(String symbol) {
+    if (RegExp(r'^[A-Z]$').hasMatch(symbol)) {
+      return LetterTemplates.uppercaseLetters;
+    }
+    if (RegExp(r'^[a-z]$').hasMatch(symbol)) {
+      return LetterTemplates.lowercaseLetters;
+    }
+    if (RegExp(r'^[0-9]$').hasMatch(symbol)) {
+      return LetterTemplates.numbers;
+    }
+    return <String>[symbol];
+  }
+
+  static double _inkLength(List<WritingStroke> strokes) {
+    var total = 0.0;
+    for (final stroke in strokes) {
+      for (var i = 1; i < stroke.points.length; i++) {
+        total += (stroke.points[i] - stroke.points[i - 1]).distance;
+      }
+    }
+    return total;
+  }
+}
+
 // ════════════════════════════════════════════════════════════════════════
 // FEEDBACK ENGINE
 // ════════════════════════════════════════════════════════════════════════
@@ -1836,7 +1954,12 @@ class WritingFeedbackEngine {
       template: template,
     );
 
-    if (result.matched && result.score >= 0.85) {
+    final shapeContradiction = FingerWritingRecognizer.contradictsTarget(
+      template: template,
+      userStrokes: userStrokes,
+    );
+
+    if (result.matched && result.score >= 0.85 && !shapeContradiction) {
       return WritingFeedback(
         type: FeedbackType.correct,
         message: _lobMessages[_rng.nextInt(_lobMessages.length)],
@@ -1844,10 +1967,21 @@ class WritingFeedbackEngine {
         matched: true,
       );
     }
-    if (result.matched && result.score >= 0.6) {
+
+    final recognizedByShape = !shapeContradiction &&
+        !result.matched &&
+        FingerWritingRecognizer.recognizesTarget(
+          template: template,
+          userStrokes: userStrokes,
+          structuralScore: result.score,
+        );
+
+    if (!shapeContradiction && (result.matched || recognizedByShape)) {
       return WritingFeedback(
         type: FeedbackType.almost,
-        message: 'Fast! Das sieht schon gut aus. Probier es nochmal!',
+        message: recognizedByShape
+            ? 'Ja, ich erkenne dein ${template.letter}! Mit dem Finger darf es ein bisschen wackeln.'
+            : 'Ja, das ist ein ${template.letter}! Es muss nicht perfekt aussehen.',
         showDemo: false,
         matched: true,
       );

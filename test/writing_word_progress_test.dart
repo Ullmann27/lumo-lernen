@@ -78,6 +78,9 @@ Future<LumoAppState> _app({
     walletRepository: wallet ?? RewardWalletRepository(),
     learningProfile: LearningProfileEngine(repository: profile),
   );
+  // Match the real app startup order: hydrate persisted parent settings first.
+  // Otherwise _primeVoice() replaces the test's explicit mute setting.
+  await app.ensureSettingsLoaded();
   app.updateSettings(const AppSettings(voiceEnabled: false));
   await app.hydrateFromWallet();
   await app.loadLearningProfile();

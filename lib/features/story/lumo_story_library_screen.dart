@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_story_library.dart';
+import '../../core/lumo_story_generator.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
@@ -14,8 +15,17 @@ import 'lumo_story_reader_screen.dart';
 import 'lumo_story_setup_screen.dart';
 
 class LumoStoryLibraryScreen extends StatefulWidget {
-  const LumoStoryLibraryScreen({super.key, required this.appState});
+  const LumoStoryLibraryScreen({
+    super.key,
+    required this.appState,
+    this.gradeLevel,
+  });
+
   final LumoAppState appState;
+
+  /// Wenn aus dem Lernpfad geoeffnet, nur Geschichten dieser Schulstufe.
+  /// Ohne Filter bleibt die Zauberwelt-Bibliothek unveraendert.
+  final int? gradeLevel;
 
   @override
   State<LumoStoryLibraryScreen> createState() =>
@@ -59,7 +69,28 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => LumoStorySetupScreen(appState: widget.appState),
+        builder: (_) => LumoStorySetupScreen(
+          appState: widget.appState,
+          initialGrade: widget.gradeLevel,
+        ),
+      ),
+    ).then((_) {
+      if (mounted) setState(() {});
+    });
+  }
+
+  void _startReadingNow() {
+    final grade =
+        (widget.gradeLevel ?? widget.appState.state.grade).clamp(1, 4).toInt();
+    final story =
+        LumoStoryGenerator.instance.generateRandom(gradeLevel: grade);
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => LumoStoryReaderScreen(
+          story: story,
+          appState: widget.appState,
+        ),
       ),
     ).then((_) {
       if (mounted) setState(() {});
@@ -74,6 +105,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
     }
     final lib = LumoStoryLibrary.instance;
     var stories = _showFavOnly ? lib.favorites : lib.all.toList();
+    if (widget.gradeLevel != null) {
+      stories = stories
+          .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
+          .toList();
+    }
     // Filter via Suche (Titel, Held, Ort, Thema)
     if (_searchQuery.isNotEmpty) {
       final q = _searchQuery.toLowerCase();
@@ -148,6 +184,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   Widget _buildTopBar(LumoStoryLibrary lib) {
+    final visibleCount = widget.gradeLevel == null
+        ? lib.count
+        : lib.all
+            .where((stored) => stored.story.gradeLevel == widget.gradeLevel)
+            .length;
     return Padding(
       padding: const EdgeInsets.all(LumoTokens.space12),
       child: Row(
@@ -160,9 +201,15 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Meine Geschichten',
+                Text(
+                    widget.gradeLevel == null
+                        ? 'Meine Geschichten'
+                        : 'Geschichten · Lesen & verstehen',
                     style: LumoTokens.typo.headlineLarge),
-                Text('${lib.count} Hefte erschaffen',
+                Text(
+                    widget.gradeLevel == null
+                        ? '$visibleCount Hefte erschaffen'
+                        : '${widget.gradeLevel}. Klasse · $visibleCount Hefte',
                     style: LumoTokens.typo.bodyMedium.copyWith(
                         color: LumoTokens.colors.textMuted)),
               ],
@@ -229,6 +276,7 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   Widget _buildEmpty() {
+    final learningPath = widget.gradeLevel != null;
     return Center(
       child: Padding(
         padding: const EdgeInsets.all(LumoTokens.space24),
@@ -237,26 +285,53 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
           children: [
             const Text('📚', style: TextStyle(fontSize: 80)),
             const SizedBox(height: 16),
-            Text('Noch keine Geschichten',
-                style: LumoTokens.typo.headlineMedium),
+            Text(
+                learningPath
+                    ? 'Bereit für deine Lesegeschichte?'
+                    : 'Noch keine Geschichten',
+                style: LumoTokens.typo.headlineMedium,
+                textAlign: TextAlign.center),
             const SizedBox(height: 8),
             Text(
-                'Erstelle dein erstes magisches Lese-Heft!',
+                learningPath
+                    ? 'Starte sofort eine Geschichte für die ${widget.gradeLevel}. Klasse und beantworte danach Verständnisfragen.'
+                    : 'Erstelle dein erstes magisches Lese-Heft!',
                 style: LumoTokens.typo.bodyLarge,
                 textAlign: TextAlign.center),
             const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: _createNew,
-              icon: const Icon(Icons.auto_stories_rounded),
-              label: const Text('Erste Geschichte!'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: LumoTokens.colors.lumoOrange,
-                foregroundColor: Colors.white,
-                textStyle: LumoTokens.typo.titleLarge,
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 24, vertical: 14),
+            if (learningPath) ...[
+              ElevatedButton.icon(
+                key: const ValueKey('story-start-reading-now'),
+                onPressed: _startReadingNow,
+                icon: const Icon(Icons.play_arrow_rounded),
+                label: const Text('Lesegeschichte starten'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoTokens.colors.lumoOrange,
+                  foregroundColor: Colors.white,
+                  textStyle: LumoTokens.typo.titleLarge,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                ),
               ),
-            ),
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                onPressed: _createNew,
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: const Text('Eigene Geschichte erstellen'),
+              ),
+            ] else
+              ElevatedButton.icon(
+                onPressed: _createNew,
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: const Text('Erste Geschichte!'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: LumoTokens.colors.lumoOrange,
+                  foregroundColor: Colors.white,
+                  textStyle: LumoTokens.typo.titleLarge,
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                ),
+              ),
           ],
         ),
       ),

@@ -2,6 +2,8 @@
 // LUMO STORY READER — Lese-Heft mit Live-Bildern + Lern-Stops
 // ════════════════════════════════════════════════════════════════════════
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -38,6 +40,8 @@ class LumoStoryReaderScreen extends StatefulWidget {
 
 class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+  static const _learningUnit = 'Geschichten verstehen';
+
   int _pageIdx = 0;
   bool _exerciseDone = false;
   String? _selectedAnswer;
@@ -175,6 +179,15 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     });
     widget.appState.addStars(stars);
     widget.appState.addXp(stars * 10);
+    unawaited(widget.appState.recordLearningAnswer(
+      subject: 'Lesen',
+      unit: _learningUnit,
+      correct: ratio >= 0.5,
+      prompt: 'Erzaehle die Geschichte in eigenen Worten.',
+      given: raw,
+      expected: widget.story.keyPoints.join(', '),
+      score: ratio,
+    ));
     final msg = stars >= 5
         ? 'Super! Du hast die Geschichte fast komplett erzaehlt! $stars Sterne fuer dich!'
         : stars >= 4
@@ -197,6 +210,19 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _selectedAnswer = answer;
       _exerciseDone = true;
     });
+    final arithmetic = ex.type == StoryExerciseType.mathPlus ||
+        ex.type == StoryExerciseType.mathMinus;
+    final learningSubject = arithmetic ? 'Mathematik' : 'Deutsch';
+    final learningUnit =
+        arithmetic ? 'Rechnen in Geschichten' : 'Wörter in Geschichten';
+    unawaited(widget.appState.recordLearningAnswer(
+      subject: learningSubject,
+      unit: learningUnit,
+      correct: correct,
+      prompt: ex.prompt,
+      given: answer,
+      expected: ex.correctAnswer,
+    ));
     if (correct) {
       widget.appState.addStars(1);
       widget.appState.addXp(5);

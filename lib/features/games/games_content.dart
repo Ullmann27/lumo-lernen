@@ -23,6 +23,7 @@ import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../lumo3d/lumo3d_launcher.dart';
+import '../quiz/quiz_show_content.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
@@ -231,9 +232,32 @@ class _GamesContentState extends State<GamesContent> {
     }
   }
 
+  Future<void> _launchLumoMeister() async {
+    HapticFeedback.mediumImpact();
+    await Navigator.of(context).push<void>(
+      MaterialPageRoute<void>(
+        builder: (_) => QuizShowContent(appState: widget.appState),
+      ),
+    );
+    if (mounted) await _load();
+  }
+
   Future<void> _launchLevel(GameLevelRuntime rt) async {
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
+
+    // Level 50 ist das echte Finale der Spielewelt und muss deshalb in die
+    // vollwertige 20-Fragen-Lumo-Meister-Show führen, nicht ins alte Trail-Quiz.
+    if (level.id == 50) {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => QuizShowContent(appState: widget.appState),
+        ),
+      );
+      if (mounted) await _load();
+      return;
+    }
+
     switch (level.miniType) {
       case GameMiniType.starsPath:
         await Navigator.of(context).push(
@@ -386,14 +410,9 @@ class _GamesContentState extends State<GamesContent> {
                 ),
               ),
               SliverToBoxAdapter(
-                child: LumoCreativeGameShelf(
-                  busy: _launchingGame,
-                  unlocked: (id) => _unlockOf(id).unlocked,
-                  onOpen: (id) => _openGame(id, () => _launch3D(switch (id) {
-                    GameId.build => 'build', GameId.puzzle => 'puzzle',
-                    GameId.treasure => 'treasure', GameId.rhythm => 'rhythm',
-                    _ => 'kart',
-                  })),
+                child: _LumoMeisterPortal(
+                  onTap: _launchLumoMeister,
+                  reduceMotion: _reduceMotion,
                 ),
               ),
               SliverToBoxAdapter(
@@ -413,6 +432,17 @@ class _GamesContentState extends State<GamesContent> {
                     onSettings: () => widget.onSection?.call(LumoSection.settings),
                   )],
                 )),
+              ),
+              SliverToBoxAdapter(
+                child: LumoCreativeGameShelf(
+                  busy: _launchingGame,
+                  unlocked: (id) => _unlockOf(id).unlocked,
+                  onOpen: (id) => _openGame(id, () => _launch3D(switch (id) {
+                    GameId.build => 'build', GameId.puzzle => 'puzzle',
+                    GameId.treasure => 'treasure', GameId.rhythm => 'rhythm',
+                    _ => 'kart',
+                  })),
+                ),
               ),
               const SliverToBoxAdapter(
                 child: Padding(
@@ -557,6 +587,110 @@ class _GamesContentState extends State<GamesContent> {
             : (subject) => _saveKartOptions(subject: subject),
       ),
     ]);
+  }
+}
+
+class _LumoMeisterPortal extends StatelessWidget {
+  const _LumoMeisterPortal({
+    required this.onTap,
+    required this.reduceMotion,
+  });
+
+  final VoidCallback onTap;
+  final bool reduceMotion;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
+      child: Semantics(
+        button: true,
+        label: 'Wer wird Lumo-Meister? öffnen',
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            key: const ValueKey('games-lumo-meister-portal'),
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(28),
+            child: Ink(
+              padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(28),
+                gradient: const LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [Color(0xFF30135F), Color(0xFF071D46)],
+                ),
+                border: Border.all(
+                  color: const Color(0xFFFFC94A),
+                  width: 1.8,
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x5537D2FD),
+                    blurRadius: 24,
+                    spreadRadius: 1,
+                  ),
+                ],
+              ),
+              child: Row(
+                children: [
+                  LumoCharacter(
+                    pose: LumoDesignFoxPose.trophyWink,
+                    size: 96,
+                    reduceMotion: reduceMotion,
+                    idleHops: !reduceMotion,
+                  ),
+                  const SizedBox(width: 12),
+                  const Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Wer wird Lumo-Meister?',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 22,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          '20 Fragen · 3 Joker · bis 5.000 Sterne',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 14,
+                            fontWeight: FontWeight.w800,
+                            color: Color(0xFFFFD873),
+                          ),
+                        ),
+                        SizedBox(height: 4),
+                        Text(
+                          'Frage 20 ist deine Meister-Finalfrage.',
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 13,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFFD7E9FF),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  SizedBox(width: 8),
+                  Icon(
+                    Icons.play_circle_fill_rounded,
+                    color: Color(0xFFFFC94A),
+                    size: 42,
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
 

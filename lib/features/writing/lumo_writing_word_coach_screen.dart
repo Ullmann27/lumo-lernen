@@ -186,7 +186,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
-      _speakPrompt();
+      unawaited(_primeVoice());
     });
   }
 
@@ -237,18 +237,50 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
 
   LetterTemplate? get _currentTemplate => LetterTemplates.all[_currentLetter];
 
-  void _speakPrompt() {
-    if (!widget.appState.state.settings.voiceEnabled) return;
-    try {
-      LumoVoice.instance.speak(_currentTask.spokenPrompt);
-    } catch (_) {}
+  Future<void> _primeVoice() async {
+    final wasLoaded = widget.appState.settingsLoaded;
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted) return;
+    if (!wasLoaded) setState(() {});
+    await _speakPrompt();
   }
 
-  void _speak(String msg) {
-    if (!widget.appState.state.settings.voiceEnabled) return;
+  Future<void> _speakPrompt() =>
+      _speak(_currentTask.spokenPrompt, style: VoiceStyle.explain);
+
+  Future<void> _onSpeakerTap() async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted) return;
+    final settings = widget.appState.state.settings;
+    if (!settings.voiceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Die Lumo-Stimme ist im Elternbereich ausgeschaltet.'),
+        ),
+      );
+      return;
+    }
+    if (!settings.localVoiceLicenseAccepted) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Für Wortansagen: Elternbereich → Ton und Stimme → „Neue Sätze offline vorlesen“ freigeben.',
+          ),
+        ),
+      );
+    }
+    await _speakPrompt();
+  }
+
+  Future<void> _speak(String msg,
+      {VoiceStyle style = VoiceStyle.warm}) async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !widget.appState.state.settings.voiceEnabled) return;
     try {
-      LumoVoice.instance.speak(msg);
-    } catch (_) {}
+      await LumoVoice.instance.speak(msg, style: style);
+    } catch (_) {
+      // Die Aufgabe bleibt auch ohne TTS vollständig bedienbar.
+    }
   }
 
   /// Heinz 2026-05-21: 'Schreiben funktioniert nicht, der Bildschirm
@@ -292,11 +324,8 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       }
       if (length < 24) {
         _setMood(LumoReactionMood.think);
-        if (widget.appState.state.settings.voiceEnabled) {
-          try {
-            LumoVoice.instance.speak('Mach den Strich ein bisschen länger!');
-          } catch (_) {}
-        }
+        unawaited(_speak('Mach den Strich ein bisschen länger!',
+            style: VoiceStyle.explain));
       }
     } else if (_currentPoints.isNotEmpty) {
       setState(() => _currentPoints = []);
@@ -482,7 +511,7 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
       _wrongSlot = -1;
     });
     _entryCtrl.forward(from: 0);
-    _speakPrompt();
+    unawaited(_speakPrompt());
   }
 
   void _retry() {
@@ -745,7 +774,8 @@ class _LumoWritingWordCoachScreenState extends State<LumoWritingWordCoachScreen>
               : 'Schreib das Wort: ${_currentTask.word}',
           accent: _gradient[1],
           leading: const LumoIdleFox(size: 44),
-          onSpeakerTap: voiceEnabled ? _speakPrompt : null,
+          onSpeakerTap:
+              voiceEnabled ? () => unawaited(_onSpeakerTap()) : null,
         ),
         if (voiceEnabled && !_showCurrentLetterHint) ...[
           const SizedBox(height: 6),

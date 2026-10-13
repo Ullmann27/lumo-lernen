@@ -1,12 +1,16 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
+import '../../core/lumo_sound.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
-import '../../domain/quiz/quiz_rewards.dart';
 import '../../domain/quiz/quiz_show.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 
 class QuizShowContent extends StatefulWidget {
   const QuizShowContent({super.key, required this.appState});
@@ -20,13 +24,12 @@ class QuizShowContent extends StatefulWidget {
 class _QuizShowContentState extends State<QuizShowContent> {
   static const _engine = QuizShowEngine();
   static const _bank = QuizQuestionBank();
-  final _rng = math.Random();
-
   late QuizShowState _state;
 
   @override
   void initState() {
     super.initState();
+    unawaited(LumoSound.instance.init());
     _startNewGame();
   }
 
@@ -38,39 +41,55 @@ class _QuizShowContentState extends State<QuizShowContent> {
     _state = _engine.start(questions: questions);
   }
 
-  QuizCoupon _drawCoupon(int level) {
-    final pool = QuizRewardCatalog.poolForLevel(level);
-    if (pool.isEmpty) {
-      return const QuizCoupon(
-        id: 'lumo_stern',
-        title: 'Lumo-Stern',
-        emoji: '⭐',
-        description: 'Du hast eine sichere Quiz-Stufe geschafft.',
-        milestoneLevel: 1,
-      );
-    }
-    return pool[_rng.nextInt(pool.length)];
-  }
-
   void _select(int index) {
-    setState(() => _state = _engine.selectAnswer(_state, index));
+    final next = _engine.selectAnswer(_state, index);
+    if (next.selectedOption != _state.selectedOption) {
+      unawaited(LumoSound.instance.play(SoundEffect.click));
+    }
+    setState(() => _state = next);
   }
 
   void _reveal() {
+    final before = _state;
+    final selected = before.selectedOption;
+    final correct = selected != null &&
+        selected == before.currentQuestion.correctIndex;
+
     setState(() {
-      _state = _engine.reveal(_state, drawCouponForMilestone: _drawCoupon);
+      final wasGameOver = _state.gameOver;
+      final next = _engine.reveal(_state);
+      _state = next;
+
+      // Die Engine liefert die Auszahlung nur beim ersten Spielende.
+      // Dadurch werden Sterne weder bei Meilensteinen doppelt gebucht noch
+      // beim erneuten Rendern des Ergebnisbildschirms nochmals vergeben.
+      if (!wasGameOver && next.gameOver && next.awardedStars > 0) {
+        widget.appState.addStars(next.awardedStars);
+      }
     });
+
+    if (!correct) {
+      unawaited(LumoSound.instance.play(SoundEffect.error));
+    } else if (_state.won || _state.securedStars > before.securedStars) {
+      unawaited(LumoSound.instance.play(SoundEffect.win));
+    }
   }
 
   void _next() {
+    unawaited(LumoSound.instance.play(SoundEffect.click));
     setState(() => _state = _engine.nextQuestion(_state));
   }
 
   void _joker(QuizJoker joker) {
-    setState(() => _state = _engine.useJoker(_state, joker));
+    final next = _engine.useJoker(_state, joker);
+    if (next.usedJokers.length > _state.usedJokers.length) {
+      unawaited(LumoSound.instance.play(SoundEffect.click));
+    }
+    setState(() => _state = next);
   }
 
   void _restart() {
+    unawaited(LumoSound.instance.play(SoundEffect.click));
     setState(_startNewGame);
   }
 
@@ -78,41 +97,59 @@ class _QuizShowContentState extends State<QuizShowContent> {
   Widget build(BuildContext context) {
     final q = _state.currentQuestion;
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF7ED),
+      backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
-        title: const Text('Wer wird Lumo-Champion?'),
-        backgroundColor: Colors.white,
-        foregroundColor: LumoColors.ink900,
+        title: const Text(
+          'Wer wird Lumo-Meister?',
+          style: TextStyle(
+            fontFamily: 'Nunito',
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
+          ),
+        ),
+        backgroundColor: LumoVisualTokens.navigation.withOpacity(.96),
+        foregroundColor: Colors.white,
         elevation: 0,
       ),
-      body: SafeArea(
-        child: LayoutBuilder(
-          builder: (context, constraints) {
-            final wide = constraints.maxWidth >= 720;
-            final card = _QuizCard(
-              state: _state,
-              question: q,
-              onSelect: _select,
-              onReveal: _reveal,
-              onNext: _next,
-              onRestart: _restart,
-              onJoker: _joker,
-            );
-            final prizes = _PrizeColumn(state: _state);
-            return SingleChildScrollView(
-              padding: const EdgeInsets.all(18),
-              child: wide
-                  ? Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(flex: 3, child: card),
-                        const SizedBox(width: 18),
-                        SizedBox(width: 280, child: prizes),
-                      ],
-                    )
-                  : Column(children: [card, const SizedBox(height: 16), prizes]),
-            );
-          },
+      body: LumoSceneBackground(
+        scene: LumoScene.tests,
+        dimmed: true,
+        showPlaceholderLabel: false,
+        child: SafeArea(
+          child: LayoutBuilder(
+            builder: (context, constraints) {
+              final wide = constraints.maxWidth >= 720;
+              final card = _QuizCard(
+                state: _state,
+                question: q,
+                onSelect: _select,
+                onReveal: _reveal,
+                onNext: _next,
+                onRestart: _restart,
+                onJoker: _joker,
+              );
+              final prizes = _PrizeColumn(state: _state);
+              return SingleChildScrollView(
+                padding: const EdgeInsets.all(18),
+                child: wide
+                    ? Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(flex: 3, child: card),
+                          const SizedBox(width: 18),
+                          SizedBox(width: 280, child: prizes),
+                        ],
+                      )
+                    : Column(
+                        children: [
+                          card,
+                          const SizedBox(height: 16),
+                          prizes,
+                        ],
+                      ),
+              );
+            },
+          ),
         ),
       ),
     );
@@ -144,28 +181,74 @@ class _QuizCard extends StatelessWidget {
     final answered = state.revealed;
     final isCorrect = selected == question.correctIndex;
 
+    final finale = state.displayQuestionNumber == state.questions.length;
+    final tension = state.displayQuestionNumber >= 15;
+
     return Container(
       padding: const EdgeInsets.all(20),
-      decoration: lumoCard(
-        gradient: const LinearGradient(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.white, Color(0xFFFFEAD5)],
+          colors: finale
+              ? const [Color(0xEE32135F), Color(0xEE071D46)]
+              : const [Color(0xEE071D46), Color(0xEE0B3159)],
         ),
+        borderRadius: BorderRadius.circular(28),
+        border: Border.all(
+          color: finale
+              ? const Color(0xFFFFC94A)
+              : LumoVisualTokens.cyanBright.withOpacity(.72),
+          width: finale ? 2.2 : 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: (finale
+                    ? const Color(0xFFFFC94A)
+                    : LumoVisualTokens.cyanBright)
+                .withOpacity(tension ? .30 : .16),
+            blurRadius: tension ? 32 : 22,
+            spreadRadius: tension ? 3 : 0,
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          _QuizHost(
+            questionNumber: state.displayQuestionNumber,
+            finale: finale,
+            won: state.won,
+          ),
+          const SizedBox(height: 10),
           Row(children: [
             _Pill('Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
             const Spacer(),
-            Text(question.subject, style: LumoTextStyles.caption),
+            Flexible(
+              child: Text(
+                question.subject,
+                textAlign: TextAlign.right,
+                style: LumoTextStyles.caption.copyWith(
+                  color: finale
+                      ? const Color(0xFFFFD873)
+                      : LumoVisualTokens.cyanBright,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
           ]),
           const SizedBox(height: 18),
           Text(
             question.prompt,
             textAlign: TextAlign.center,
-            style: LumoTextStyles.heading1.copyWith(fontSize: 28),
+            style: LumoTextStyles.heading1.copyWith(
+              fontSize: finale ? 30 : 28,
+              color: Colors.white,
+              fontWeight: FontWeight.w900,
+              shadows: const [
+                Shadow(color: Color(0xAA000000), blurRadius: 10),
+              ],
+            ),
           ),
           const SizedBox(height: 18),
           Wrap(
@@ -205,7 +288,7 @@ class _QuizCard extends StatelessWidget {
             FilledButton.icon(
               onPressed: onRestart,
               icon: const Icon(Icons.refresh_rounded),
-              label: Text(state.won ? 'Nochmal Champion werden' : 'Neue Quizrunde starten'),
+              label: Text(state.won ? 'Nochmal Lumo-Meister werden' : 'Neue Quizrunde starten'),
             )
           else if (!answered)
             FilledButton.icon(
@@ -221,8 +304,86 @@ class _QuizCard extends StatelessWidget {
             ),
           if (answered) ...[
             const SizedBox(height: 14),
-            _ResultPanel(correct: isCorrect, answer: question.correctAnswer, won: state.won),
+            _ResultPanel(
+              correct: isCorrect,
+              answer: question.correctAnswer,
+              won: state.won,
+              securedStars: state.securedStars,
+              awardedStars: state.awardedStars,
+            ),
           ],
+        ],
+      ),
+    );
+  }
+}
+
+
+class _QuizHost extends StatelessWidget {
+  const _QuizHost({
+    required this.questionNumber,
+    required this.finale,
+    required this.won,
+  });
+
+  final int questionNumber;
+  final bool finale;
+  final bool won;
+
+  @override
+  Widget build(BuildContext context) {
+    final message = won
+        ? 'Du bist Lumo-Meister!'
+        : finale
+            ? 'Das ist die Meisterfrage!'
+            : questionNumber >= 15
+                ? 'Jetzt wird es richtig spannend!'
+                : 'Bereit? Denk in Ruhe nach.';
+
+    return Semantics(
+      label: 'Lumo moderiert die Quizshow',
+      child: Row(
+        children: [
+          LumoCharacter(
+            pose: won || finale
+                ? LumoDesignFoxPose.trophyWink
+                : LumoDesignFoxPose.pointSide,
+            size: 92,
+            reduceMotion: MediaQuery.disableAnimationsOf(context),
+            idleHops: !finale,
+            ambientPoses: finale
+                ? const <LumoDesignFoxPose>[]
+                : const <LumoDesignFoxPose>[
+                    LumoDesignFoxPose.thumbWink,
+                    LumoDesignFoxPose.teacherStick,
+                  ],
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+              decoration: BoxDecoration(
+                color: finale
+                    ? const Color(0x33FFC94A)
+                    : const Color(0x3328D7FA),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(
+                  color: finale
+                      ? const Color(0xFFFFC94A)
+                      : LumoVisualTokens.cyanBright.withOpacity(.55),
+                ),
+              ),
+              child: Text(
+                message,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -238,10 +399,17 @@ class _Pill extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
       decoration: BoxDecoration(
-        color: LumoColors.orange.withOpacity(.12),
+        color: const Color(0x3328D7FA),
         borderRadius: BorderRadius.circular(LumoRadius.pill),
+        border: Border.all(color: LumoVisualTokens.cyanBright.withOpacity(.55)),
       ),
-      child: Text(text, style: LumoTextStyles.label.copyWith(color: LumoColors.orange)),
+      child: Text(
+        text,
+        style: LumoTextStyles.label.copyWith(
+          color: Colors.white,
+          fontWeight: FontWeight.w900,
+        ),
+      ),
     );
   }
 }
@@ -268,23 +436,29 @@ class _AnswerButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (hidden) {
-      return Opacity(opacity: .28, child: _shell('Antwort verborgen', LumoColors.ink300, Colors.white, null));
+      return Opacity(
+        opacity: .28,
+        child: _shell(
+          'Antwort verborgen',
+          Colors.white70,
+          const Color(0xCC102A50),
+          LumoVisualTokens.cyan.withOpacity(.25),
+        ),
+      );
     }
 
     final color = revealed && correct
-        ? Colors.green
+        ? Colors.white
         : revealed && selected
-            ? Colors.redAccent
-            : selected
-                ? LumoColors.orange
-                : LumoColors.ink700;
+            ? Colors.white
+            : Colors.white;
     final bg = revealed && correct
-        ? const Color(0xFFE8FCEB)
+        ? const Color(0xFF16794B)
         : revealed && selected
-            ? const Color(0xFFFFE8E8)
+            ? const Color(0xFF9F3042)
             : selected
-                ? const Color(0xFFFFEDD5)
-                : Colors.white;
+                ? const Color(0xFFE58A22)
+                : const Color(0xE6122C52);
 
     return GestureDetector(
       onTap: revealed ? null : onTap,
@@ -299,8 +473,18 @@ class _AnswerButton extends StatelessWidget {
       decoration: BoxDecoration(
         color: bg,
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: border?.withOpacity(.55) ?? const Color(0xFFFFD7AD)),
-        boxShadow: [BoxShadow(color: fg.withOpacity(.10), blurRadius: 14, offset: const Offset(0, 5))],
+        border: Border.all(
+          color: border?.withOpacity(.75) ??
+              LumoVisualTokens.cyanBright.withOpacity(.38),
+          width: 1.2,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: (border ?? LumoVisualTokens.cyanBright).withOpacity(.14),
+            blurRadius: 16,
+            offset: const Offset(0, 5),
+          ),
+        ],
       ),
       child: Text(
         text,
@@ -370,19 +554,32 @@ class _AudienceVotes extends StatelessWidget {
 }
 
 class _ResultPanel extends StatelessWidget {
-  const _ResultPanel({required this.correct, required this.answer, required this.won});
+  const _ResultPanel({
+    required this.correct,
+    required this.answer,
+    required this.won,
+    required this.securedStars,
+    required this.awardedStars,
+  });
+
   final bool correct;
   final String answer;
   final bool won;
+  final int securedStars;
+  final int awardedStars;
 
   @override
   Widget build(BuildContext context) {
     final color = correct ? Colors.green : Colors.redAccent;
     final text = won
-        ? '🏆 Lumo-Champion! Du hast alle Fragen geschafft.'
+        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 Sterne gewonnen! Family-Park-Stufe erreicht!'
         : correct
-            ? '✅ Richtig! Weiter geht’s.'
-            : '💡 Richtig wäre: $answer';
+            ? securedStars > 0
+                ? '✅ Richtig! Sichere Stufe: $securedStars Sterne.'
+                : '✅ Richtig! Weiter geht’s.'
+            : awardedStars > 0
+                ? '💡 Richtig wäre: $answer\n⭐ Du sicherst $awardedStars Sterne.'
+                : '💡 Richtig wäre: $answer\nBeim nächsten Versuch schaffst du die erste Stern-Stufe!';
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -390,7 +587,13 @@ class _ResultPanel extends StatelessWidget {
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: color.withOpacity(.25)),
       ),
-      child: Text(text, style: LumoTextStyles.body.copyWith(color: LumoColors.ink900, fontWeight: FontWeight.w800)),
+      child: Text(
+        text,
+        style: LumoTextStyles.body.copyWith(
+          color: LumoColors.ink900,
+          fontWeight: FontWeight.w800,
+        ),
+      ),
     );
   }
 }
@@ -403,27 +606,58 @@ class _PrizeColumn extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(16),
-      decoration: lumoCard(color: Colors.white),
+      decoration: BoxDecoration(
+        color: const Color(0xE8082144),
+        borderRadius: BorderRadius.circular(24),
+        border: Border.all(color: LumoVisualTokens.cyanBright.withOpacity(.45)),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withOpacity(.12),
+            blurRadius: 24,
+          ),
+        ],
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Sichere Stufen', style: LumoTextStyles.heading3),
+          Text(
+            'Deine Stern-Leiter',
+            style: LumoTextStyles.heading3.copyWith(color: Colors.white),
+          ),
+          const SizedBox(height: 6),
+          Text(
+            'Bei einer falschen Antwort bleiben die zuletzt gesicherten Sterne erhalten.',
+            style: LumoTextStyles.caption.copyWith(color: Colors.white70),
+          ),
           const SizedBox(height: 10),
-          _Milestone(label: 'Frage 5', emoji: '🍦', active: state.currentQuestionIndex >= 4),
-          _Milestone(label: 'Frage 10', emoji: '🎬', active: state.currentQuestionIndex >= 9),
-          _Milestone(label: 'Frage 15', emoji: '🧸', active: state.currentQuestionIndex >= 14),
-          if (state.earnedCoupons.isNotEmpty) ...[
-            const SizedBox(height: 16),
-            Text('Gewonnen', style: LumoTextStyles.heading3),
-            const SizedBox(height: 8),
-            for (final c in state.earnedCoupons)
-              Container(
-                margin: const EdgeInsets.only(bottom: 8),
-                padding: const EdgeInsets.all(12),
-                decoration: BoxDecoration(color: const Color(0xFFFFF7ED), borderRadius: BorderRadius.circular(LumoRadius.md)),
-                child: Text('${c.emoji} ${c.title}', style: LumoTextStyles.body),
-              ),
-          ],
+          _Milestone(
+            label: 'Frage 5  •  50 Sterne',
+            emoji: '⭐',
+            active: state.securedStars >= 50,
+          ),
+          _Milestone(
+            label: 'Frage 10  •  200 Sterne',
+            emoji: '🌟',
+            active: state.securedStars >= 200,
+          ),
+          _Milestone(
+            label: 'Frage 15  •  800 Sterne',
+            emoji: '🏅',
+            active: state.securedStars >= 800,
+          ),
+          _Milestone(
+            label: 'Frage 20  •  5.000 Sterne',
+            emoji: '🎢',
+            active: state.securedStars >= 5000,
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Finalziel: 5.000 Sterne – Family-Park-Stufe',
+            style: LumoTextStyles.body.copyWith(
+              fontWeight: FontWeight.w900,
+              color: const Color(0xFFFFD873),
+            ),
+          ),
         ],
       ),
     );
@@ -442,13 +676,28 @@ class _Milestone extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 8),
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: active ? const Color(0xFFFFEDD5) : const Color(0xFFF8FAFC),
+        color: active
+            ? const Color(0x6637D2FD)
+            : const Color(0x99122C52),
         borderRadius: BorderRadius.circular(LumoRadius.md),
+        border: Border.all(
+          color: active
+              ? LumoVisualTokens.cyanBright
+              : Colors.white.withOpacity(.10),
+        ),
       ),
       child: Row(children: [
         Text(emoji, style: const TextStyle(fontSize: 24)),
         const SizedBox(width: 10),
-        Text(label, style: LumoTextStyles.body.copyWith(fontWeight: FontWeight.w900)),
+        Expanded(
+          child: Text(
+            label,
+            style: LumoTextStyles.body.copyWith(
+              fontWeight: FontWeight.w900,
+              color: active ? Colors.white : Colors.white70,
+            ),
+          ),
+        ),
       ]),
     );
   }

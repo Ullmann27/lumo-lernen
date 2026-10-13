@@ -107,7 +107,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         vsync: this, duration: const Duration(milliseconds: 400));
     _pickNextLetter();
     _entryCtrl.forward();
-    WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(_speakPrompt());
+    });
   }
 
   @override
@@ -207,14 +210,49 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
       _taskIdx = 0;
       _pickNextLetter();
     });
-    WidgetsBinding.instance.addPostFrameCallback((_) => _speakPrompt());
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted) return;
+      unawaited(_speakPrompt());
+    });
   }
 
-  void _speakPrompt() {
-    if (!widget.appState.state.settings.voiceEnabled) return;
+  Future<void> _speak(String text,
+      {VoiceStyle style = VoiceStyle.warm}) async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted || !widget.appState.state.settings.voiceEnabled) return;
     try {
-      LumoVoice.instance.speak('Schreib ein $_currentLetter!');
-    } catch (_) {}
+      await LumoVoice.instance.speak(text, style: style);
+    } catch (_) {
+      // Text bleibt immer sichtbar; ein TTS-Fehler darf die Aufgabe
+      // niemals blockieren.
+    }
+  }
+
+  Future<void> _speakPrompt() =>
+      _speak('Schreib ein $_currentLetter!', style: VoiceStyle.explain);
+
+  Future<void> _onSpeakerTap() async {
+    await widget.appState.ensureSettingsLoaded();
+    if (!mounted) return;
+    final settings = widget.appState.state.settings;
+    if (!settings.voiceEnabled) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Die Lumo-Stimme ist im Elternbereich ausgeschaltet.'),
+        ),
+      );
+      return;
+    }
+    if (!settings.localVoiceLicenseAccepted && _currentLetter != 'A') {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Für neue Ansagen: Elternbereich → Ton und Stimme → „Neue Sätze offline vorlesen“ freigeben.',
+          ),
+        ),
+      );
+    }
+    await _speakPrompt();
   }
 
   void _onPanStart(Offset localPosition) {
@@ -281,10 +319,8 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
         _lastFeedback = feedback;
         _showDemo = feedback.showDemo;
       });
-      try {
-        LumoVoice.instance.speak(feedback.message);
-      } catch (_) {}
-      if (feedback.type == FeedbackType.correct) {
+      unawaited(_speak(feedback.message, style: VoiceStyle.explain));
+      if (feedback.matched) {
         _bounceCtrl.forward(from: 0);
         _correctCount++;
         // Lehrplan-Progression: nach jeder richtigen Antwort kommt
@@ -314,7 +350,7 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
       _pickNextLetter();
     });
     _entryCtrl.forward(from: 0);
-    _speakPrompt();
+    unawaited(_speakPrompt());
   }
 
   void _retry() {
@@ -330,9 +366,8 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
   void _replayDemo() {
     setState(() => _showDemo = true);
     _demoCtrl.forward(from: 0);
-    try {
-      LumoVoice.instance.speak(_currentTemplate.description);
-    } catch (_) {}
+    unawaited(
+        _speak(_currentTemplate.description, style: VoiceStyle.explain));
   }
 
   void _showFinish() {
@@ -417,7 +452,9 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
                   _buildPrompt(),
                   const SizedBox(height: 12),
                   _buildModePicker(),
-                  const SizedBox(height: 16),
+                  const SizedBox(height: 10),
+                  _buildRecognitionHint(),
+                  const SizedBox(height: 12),
                   _buildCanvas(),
                   const SizedBox(height: 12),
                   if (_lastFeedback != null) _buildFeedback(),
@@ -491,10 +528,10 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
     // Konsistente Hierarchie mit WordCoach: Label oben (klein),
     // Title unten (gross + Akzentfarbe). Speaker-Icon rechts.
     return LumoPromptCard(
-      label: 'Mit dem Finger - keine Eile!',
+      label: 'Fingerfreundlich · keine Schönschrift nötig',
       title: 'Schreibe den Buchstaben $_currentLetter.',
       accent: _gradient[1],
-      onSpeakerTap: _speakPrompt,
+      onSpeakerTap: () => unawaited(_onSpeakerTap()),
     );
   }
 
@@ -566,6 +603,51 @@ class _LumoWritingCoachScreenState extends State<LumoWritingCoachScreen>
             ),
           );
         }).toList(),
+      ),
+    );
+  }
+
+  Widget _buildRecognitionHint() {
+    return Container(
+      key: const ValueKey('writing-finger-friendly-badge'),
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 9),
+      decoration: BoxDecoration(
+        color: _gradient[0].withOpacity(0.08),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: _gradient[0].withOpacity(0.24)),
+      ),
+      child: Row(
+        children: [
+          Icon(Icons.auto_awesome_rounded, color: _gradient[1], size: 21),
+          const SizedBox(width: 9),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Erkennen statt Schönschrift',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 13,
+                    color: _gradient[1],
+                  ),
+                ),
+                const SizedBox(height: 1),
+                const Text(
+                  'Lumo prüft, ob der Buchstabe erkennbar ist. Wackelige Fingerlinien sind okay.',
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w700,
+                    fontSize: 11.5,
+                    color: Color(0xFF4B5563),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -1,21 +1,19 @@
-/// Fragenbank fuer den Quiz-Modus.
+/// Fragenbank fuer "Wer wird Lumo-Meister?".
 ///
-/// CODEX TODO:
-/// Implementiere generateGameQuestions() das 15 Fragen mit der richtigen
-/// Verteilung produziert:
-///   - 4 easy (Frage 1-4)
-///   - 5 medium (Frage 5-9)
-///   - 6 hard (Frage 10-15)
+/// Jede Runde hat exakt 20 Fragen. Die Schwierigkeit steigt innerhalb der
+/// Schulstufe an, ohne juengere Kinder mit Stoff aus hoeheren Klassen zu
+/// konfrontieren.
 ///
-/// Themen-Mix pro Spiel:
-///   - 5 Mathe + 5 Deutsch + 5 Sachunterricht (zufaellig durchmischt)
+/// Verteilung:
+///   - Fragen 1-19 steigen innerhalb der Schulstufe an.
+///   - Frage 20 ist immer eine eigene, altersgerechte Logik-Finalfrage.
+///   - Klasse 1: 14 easy + 5 passende medium-Challenges + Finale
+///   - Klasse 2: 6 easy + 13 medium + Finale
+///   - Klasse 3: 4 easy + 8 medium + 7 hard + Finale
+///   - Klasse 4: 2 easy + 6 medium + 11 hard + Finale
 ///
-/// Anti-Wiederholung: seenIds aus Repository nutzen.
-///
-/// Quellen:
-///   - lib/core/math_task_templates.dart (33 Templates, NICHT MODIFIZIEREN)
-///   - lib/core/german_task_templates.dart (40 Templates, NICHT MODIFIZIEREN)
-///   - lib/core/primary_school_word_data.dart (800+ Woerter, NICHT MODIFIZIEREN)
+/// Anti-Wiederholung: seenIds werden bevorzugt ausgeschlossen. Reicht ein
+/// frischer Teilpool nicht aus, wird nur dieser Teilpool sauber zurueckgesetzt.
 library;
 
 import 'dart:math' as math;
@@ -25,12 +23,6 @@ import 'quiz_show.dart';
 class QuizQuestionBank {
   const QuizQuestionBank();
 
-  /// CODEX TODO: Generiere 15 Fragen fuer ein Spiel.
-  ///
-  /// Parameter:
-  ///   - grade: Schulklasse (1-4) - beeinflusst Schwierigkeit der hard-Fragen
-  ///   - seenIds: bereits verwendete Frage-IDs zum Filtern
-  ///   - random: optionaler Seed fuer reproduzierbare Tests
   List<QuizQuestion> generateGameQuestions({
     required int grade,
     Set<String> seenIds = const <String>{},
@@ -38,21 +30,233 @@ class QuizQuestionBank {
   }) {
     final rng = random ?? math.Random();
     final allQuestions = _buildStaticPool(grade);
+    final safeGrade = grade.clamp(1, 4);
 
-    // Filtere bereits gesehene Fragen
-    final available = allQuestions.where((q) => !seenIds.contains(q.id)).toList();
-    // Wenn weniger als 15 verfuegbar: Reset
-    final pool = available.length >= 15 ? available : allQuestions;
+    List<QuizQuestion> pick(
+      int count,
+      bool Function(QuizQuestion q) predicate,
+    ) {
+      final all = allQuestions.where(predicate).toList();
+      final fresh = all.where((q) => !seenIds.contains(q.id)).toList()
+        ..shuffle(rng);
 
-    final easyPool = pool.where((q) => q.difficulty == QuizDifficulty.easy).toList()..shuffle(rng);
-    final mediumPool = pool.where((q) => q.difficulty == QuizDifficulty.medium).toList()..shuffle(rng);
-    final hardPool = pool.where((q) => q.difficulty == QuizDifficulty.hard).toList()..shuffle(rng);
+      if (fresh.length >= count) {
+        return fresh.take(count).toList();
+      }
 
-    return <QuizQuestion>[
-      ...easyPool.take(4),
-      ...mediumPool.take(5),
-      ...hardPool.take(6),
-    ];
+      // Frische Fragen niemals verwerfen: zuerst alle ungesehenen nutzen,
+      // danach nur den fehlenden Rest aus bereits gesehenen Fragen auffuellen.
+      final seen = all.where((q) => seenIds.contains(q.id)).toList()
+        ..shuffle(rng);
+      return <QuizQuestion>[
+        ...fresh,
+        ...seen.take(count - fresh.length),
+      ];
+    }
+
+    bool grade1Medium(QuizQuestion q) {
+      if (q.difficulty != QuizDifficulty.medium) return false;
+      const allowedIds = <String>{
+        'm_math_add_1',
+        'm_math_add_2',
+        'm_math_sub_1',
+        'm_math_sub_2',
+        'm_math_sub_3',
+        'm_math_time_2',
+        'm_de_opp_1',
+        'm_de_opp_2',
+        'm_de_opp_3',
+        'm_de_verb_1',
+        'm_de_verb_2',
+        'm_sk_plant_1',
+        'm_sk_plant_2',
+        'm_sk_season_1',
+        'm_sk_season_2',
+        'm_sk_anim_1',
+        'm_sk_anim_2',
+        'm_sk_traffic_1',
+      };
+      return allowedIds.contains(q.id);
+    }
+
+    final finalQuestion =
+        _finalQuestionForGrade(safeGrade, seenIds: seenIds, random: rng);
+
+    final List<QuizQuestion> questions;
+    switch (safeGrade) {
+      case 1:
+        questions = <QuizQuestion>[
+          ...pick(14, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(5, grade1Medium),
+          finalQuestion,
+        ];
+      case 2:
+        questions = <QuizQuestion>[
+          ...pick(6, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(13, (q) => q.difficulty == QuizDifficulty.medium),
+          finalQuestion,
+        ];
+      case 3:
+        questions = <QuizQuestion>[
+          ...pick(4, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(8, (q) => q.difficulty == QuizDifficulty.medium),
+          ...pick(7, (q) => q.difficulty == QuizDifficulty.hard),
+          finalQuestion,
+        ];
+      default:
+        questions = <QuizQuestion>[
+          ...pick(2, (q) => q.difficulty == QuizDifficulty.easy),
+          ...pick(6, (q) => q.difficulty == QuizDifficulty.medium),
+          ...pick(11, (q) => q.difficulty == QuizDifficulty.hard),
+          finalQuestion,
+        ];
+    }
+
+    assert(
+      questions.length == 20,
+      'Quizgenerator muss exakt 20 Fragen liefern, bekam ${questions.length}',
+    );
+    return questions;
+  }
+
+  QuizQuestion _finalQuestionForGrade(
+    int grade, {
+    required Set<String> seenIds,
+    required math.Random random,
+  }) {
+    final candidates = switch (grade) {
+      1 => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g1_order_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Lumo steht vor Mia. Mia steht vor Tom. Wer steht ganz vorne?',
+            options: ['Tom', 'Mia', 'Lumo', 'Alle gleich'],
+            correctIndex: 2,
+            hint: 'Stell dir die drei hintereinander in einer Reihe vor.',
+          ),
+          QuizQuestion(
+            id: 'final_g1_age_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Mia ist älter als Tom. Tom ist älter als Lea. Wer ist am jüngsten?',
+            options: ['Mia', 'Tom', 'Lea', 'Alle gleich alt'],
+            correctIndex: 2,
+            hint: 'Gehe Satz für Satz von älter zu jünger.',
+          ),
+          QuizQuestion(
+            id: 'final_g1_count_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Im Korb liegen 6 Äpfel. Zwei Kinder nehmen je einen Apfel. Wie viele bleiben?',
+            options: ['2', '3', '4', '5'],
+            correctIndex: 2,
+            hint: 'Von 6 werden zweimal je 1 Apfel weggenommen.',
+          ),
+        ],
+      2 => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g2_unknown_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Lumo denkt an eine Zahl. Plus 5 ergibt 17. Welche Zahl meint Lumo?',
+            options: ['10', '11', '12', '13'],
+            correctIndex: 2,
+            hint: 'Rechne rückwärts: 17 minus 5.',
+          ),
+          QuizQuestion(
+            id: 'final_g2_share_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                '12 Karten werden gleich auf 4 Kinder verteilt. Wie viele Karten bekommt jedes Kind?',
+            options: ['2', '3', '4', '6'],
+            correctIndex: 1,
+            hint: 'Verteile immer eine Karte an jedes der vier Kinder.',
+          ),
+          QuizQuestion(
+            id: 'final_g2_number_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.medium,
+            prompt:
+                'Welche Zahl ist größer als 20, kleiner als 30 und gerade?',
+            options: ['19', '23', '26', '31'],
+            correctIndex: 2,
+            hint: 'Prüfe zuerst den Zahlenbereich und dann, ob die Zahl gerade ist.',
+          ),
+        ],
+      3 => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g3_money_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Drei Hefte kosten je 4 Euro. Du bezahlst mit 20 Euro. Wie viel Geld bekommst du zurück?',
+            options: ['6 Euro', '8 Euro', '10 Euro', '12 Euro'],
+            correctIndex: 1,
+            hint: 'Berechne zuerst den Gesamtpreis der drei Hefte.',
+          ),
+          QuizQuestion(
+            id: 'final_g3_pattern_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt: 'Welche Zahl setzt die Reihe fort: 2, 4, 8, 16, ...?',
+            options: ['18', '24', '30', '32'],
+            correctIndex: 3,
+            hint: 'Jede Zahl ist doppelt so groß wie die vorherige.',
+          ),
+          QuizQuestion(
+            id: 'final_g3_steps_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Lumo liest morgens 8 Seiten und abends 7 Seiten. Wie viele Seiten liest er in 3 Tagen?',
+            options: ['30', '35', '45', '48'],
+            correctIndex: 2,
+            hint: 'Erst die Seiten pro Tag, dann mal 3 Tage.',
+          ),
+        ],
+      _ => const <QuizQuestion>[
+          QuizQuestion(
+            id: 'final_g4_perimeter_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Ein Rechteck ist 8 cm lang und 5 cm breit. Wie groß ist sein Umfang?',
+            options: ['13 cm', '26 cm', '40 cm', '64 cm'],
+            correctIndex: 1,
+            hint: 'Beim Umfang werden alle vier Seiten zusammengezählt.',
+          ),
+          QuizQuestion(
+            id: 'final_g4_pattern_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt: 'Welche Zahl setzt die Reihe fort: 3, 6, 12, 24, ...?',
+            options: ['30', '36', '42', '48'],
+            correctIndex: 3,
+            hint: 'Achte darauf, was mit jeder Zahl zur nächsten passiert.',
+          ),
+          QuizQuestion(
+            id: 'final_g4_route_1',
+            subject: 'Logik-Finale',
+            difficulty: QuizDifficulty.hard,
+            prompt:
+                'Ein Bus fährt dreimal 18 km und danach noch 6 km. Wie viele Kilometer sind es insgesamt?',
+            options: ['54 km', '58 km', '60 km', '66 km'],
+            correctIndex: 2,
+            hint: 'Berechne zuerst 3 mal 18 und addiere danach 6.',
+          ),
+        ],
+    };
+
+    final fresh =
+        candidates.where((question) => !seenIds.contains(question.id)).toList();
+    final source = fresh.isNotEmpty ? fresh : candidates;
+    return source[random.nextInt(source.length)];
   }
 
   /// Statischer Frage-Pool — kategorisiert nach Schwierigkeit + Fach.
