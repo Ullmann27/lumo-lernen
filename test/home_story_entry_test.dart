@@ -45,11 +45,12 @@ void main() {
     final stories =
         find.byKey(const ValueKey('home-discover-stories'));
     expect(stories, findsOneWidget);
-    await tester.scrollUntilVisible(
+    await tester.dragUntilVisible(
       stories,
-      240,
-      scrollable: find.byType(Scrollable).first,
+      find.byType(Scrollable).first,
+      const Offset(0, -260),
     );
+    await tester.pump();
     await tester.tap(stories);
     await tester.pump();
     await tester.runAsync(() async {
