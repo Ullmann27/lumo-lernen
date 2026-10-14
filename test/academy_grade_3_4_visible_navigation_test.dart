@@ -5,6 +5,7 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
+import 'package:lumo_lernen/features/learning_modules/wortarten/wortarten_screen.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -74,9 +75,16 @@ void main() {
       await tester.tap(focus);
       await tester.pump();
       expect(app.state.grade, entry.grade);
-      expect(app.state.section, LumoSection.exercises);
-      expect(app.state.subject, 'Deutsch');
-      expect(app.state.unit, entry.unit);
+      if (entry.grade == 3) {
+        // Class 3 has a dedicated, interactive Wortarten module. Opening it
+        // through Navigator leaves the enclosing app section unchanged.
+        expect(find.byType(WortartenScreen), findsOneWidget);
+      } else {
+        // Class 4 grammar intentionally launches the generator-backed unit.
+        expect(app.state.section, LumoSection.exercises);
+        expect(app.state.subject, 'Deutsch');
+        expect(app.state.unit, entry.unit);
+      }
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
       app.dispose();
