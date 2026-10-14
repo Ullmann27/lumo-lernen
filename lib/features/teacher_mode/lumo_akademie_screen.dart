@@ -804,6 +804,37 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildHero()),
           SliverToBoxAdapter(child: _buildTitleRow()),
           SliverToBoxAdapter(child: _buildGradePicker()),
+          if (_selectedGrade != widget.appState.state.grade)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: LumoGlassCard(
+                  padding: const EdgeInsets.all(12),
+                  radius: 16,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.info_outline_rounded,
+                          color: LumoVisualTokens.cyanBright),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Du schaust die Themen der $_selectedGrade. Klasse an. '
+                          'Dein Lernprofil bleibt in der '
+                          '${widget.appState.state.grade}. Klasse. '
+                          'Die Profilklasse kannst du im Elternbereich ändern.',
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
           SliverToBoxAdapter(
             child: Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
