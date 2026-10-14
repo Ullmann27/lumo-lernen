@@ -77,13 +77,13 @@ const _categories = <_TestCategory>[
     message: 'Deutsch-Test\nist bereit.\nLangsam lesen.',
   ),
   _TestCategory(
-    title: 'Sachkunde',
+    title: 'Sachunterricht',
     subject: 'Sachunterricht',
-    testTitle: 'Sachkunde-Test',
+    testTitle: 'Sachunterricht-Test',
     description: 'Tiere, Natur, Körper und Welt',
     icon: Icons.public_rounded,
     color: Color(0xFF14917F),
-    message: 'Sachkunde-Test\nist bereit.\nDu weißt schon viel!',
+    message: 'Sachunterricht-Test\nist bereit.\nDu weißt schon viel!',
   ),
   _TestCategory(
     title: 'Englisch',
