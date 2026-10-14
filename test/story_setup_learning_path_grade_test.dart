@@ -155,14 +155,10 @@ void main() {
     await tester.tap(find.text('2. Klasse'));
     await tester.pump(const Duration(milliseconds: 250));
 
-    expect(
-      tester.widget<Text>(find.text('2. Klasse')).style?.color,
-      Colors.white,
-    );
-    expect(
-      tester.widget<Text>(find.text('3. Klasse')).style?.color,
-      isNot(Colors.white),
-    );
+    // The hologlass theme uses the same readable text color for every grade.
+    // Selection must be communicated by accessible state, not text pigment.
+    _expectGradeSelection(tester, 2, selected: true);
+    _expectGradeSelection(tester, 3, selected: false);
     expect(appState.state.grade, 3);
     expect(tester.takeException(), isNull);
   });
@@ -171,4 +167,19 @@ void main() {
 Future<void> _pumpRoute(WidgetTester tester) async {
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 400));
+}
+
+void _expectGradeSelection(
+  WidgetTester tester,
+  int grade, {
+  required bool selected,
+}) {
+  final selectedGrade = find.ancestor(
+    of: find.text('$grade. Klasse'),
+    matching: find.byWidgetPredicate(
+      (widget) => widget is Semantics && widget.properties.selected != null,
+    ),
+  );
+  expect(selectedGrade, findsOneWidget);
+  expect(tester.widget<Semantics>(selectedGrade).properties.selected, selected);
 }
