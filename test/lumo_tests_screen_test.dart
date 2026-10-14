@@ -50,7 +50,7 @@ void main() {
       (tester) async {
     final sections = <LumoSection>[];
     final app = await pumpScreen(tester, sections: sections);
-    for (final title in ['Mathe', 'Deutsch', 'Sachkunde', 'Englisch']) {
+    for (final title in ['Mathe', 'Deutsch', 'Sachunterricht', 'Englisch']) {
       expect(find.text(title), findsOneWidget);
     }
     expect(find.text('Kreatives\nDenken'), findsOneWidget);
