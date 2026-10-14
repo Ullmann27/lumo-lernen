@@ -95,7 +95,11 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
-    await tester.tap(find.text('Erste Geschichte!'));
+    final create = find.text('Erste Geschichte!');
+    await tester.ensureVisible(create);
+    await tester.pump(const Duration(milliseconds: 250));
+    expect(create.hitTestable(), findsOneWidget);
+    await tester.tap(create);
     await _pumpRoute(tester);
 
     final setup = tester.widget<LumoStorySetupScreen>(

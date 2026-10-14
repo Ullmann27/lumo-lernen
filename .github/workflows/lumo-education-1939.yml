@@ -83,7 +83,7 @@ jobs:
       - name: Verify combined navigation and read-only story previews
         run: |
           set -o pipefail
-          flutter test --no-pub test/home_navigation_progress_test.dart test/lumo_mobile_more_navigation_test.dart test/story_entry_navigation_test.dart test/story_library_grade_filter_test.dart test/design/story_library_visual_test.dart --reporter expanded 2>&1 | tee proof/visual-navigation.log
+          flutter test --no-pub test/home_navigation_progress_test.dart test/lumo_mobile_more_navigation_test.dart test/story_entry_navigation_test.dart test/story_library_grade_filter_test.dart test/story_setup_learning_path_grade_test.dart test/design/story_library_visual_test.dart --reporter expanded 2>&1 | tee proof/visual-navigation.log
 
       - name: Verify recovered runtime assets
         run: |
