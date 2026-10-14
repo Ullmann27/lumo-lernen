@@ -315,6 +315,33 @@ class ExerciseFactory {
     return _variedTask(cappedGrade, chosenSubject, chosenUnit);
   }
 
+  // A cross-subject session must also avoid duplicates when two topic
+  // generators happen to produce the same visible problem. This complements
+  // the per-topic rotation; task IDs and choice order are NOT identities.
+  LumoTask _nextFreshForSession({
+    required int grade,
+    required String subject,
+    required Map<String, int> weakSkills,
+    required Set<String> avoidUnits,
+    required Set<String> seen,
+  }) {
+    LumoTask? oldestFallback;
+    for (var attempt = 0; attempt < 40; attempt++) {
+      final task = next(
+          grade: grade,
+          subject: subject,
+          weakSkills: weakSkills,
+          avoidUnits: avoidUnits);
+      oldestFallback ??= task;
+      final signature =
+          '${task.prompt.trim().toLowerCase()}|${task.answer.trim().toLowerCase()}';
+      if (seen.add(signature)) return task;
+    }
+    // Finite banks eventually exhaust. Prefer a real repetition over
+    // inventing a nonsense question or corrupting the expected session size.
+    return oldestFallback!;
+  }
+
   List<LumoTask> buildSession({
     required int grade,
     required int count,
@@ -323,8 +350,11 @@ class ExerciseFactory {
   }) {
     final tasks = <LumoTask>[];
     final usedUnits = <String>{};
+    final seen = <String>{};
     for (var i = 0; i < count; i++) {
-      final task = next(grade: grade, subject: subject, weakSkills: weakSkills, avoidUnits: usedUnits);
+      final task = _nextFreshForSession(
+          grade: grade, subject: subject, weakSkills: weakSkills,
+          avoidUnits: usedUnits, seen: seen);
       tasks.add(task);
       usedUnits.add(task.unit);
       if (usedUnits.length > 12) usedUnits.clear();
@@ -348,9 +378,12 @@ class ExerciseFactory {
     ];
     final tasks = <LumoTask>[];
     final avoid = <String>{};
+    final seen = <String>{};
     for (var i = 0; i < count; i++) {
       final subject = i < subjects.length ? subjects[i] : subjects[_random.nextInt(subjects.length)];
-      tasks.add(next(grade: grade, subject: subject, weakSkills: weakSkills, avoidUnits: avoid));
+      tasks.add(_nextFreshForSession(
+          grade: grade, subject: subject, weakSkills: weakSkills,
+          avoidUnits: avoid, seen: seen));
       avoid.add(tasks.last.unit);
       if (avoid.length > 10) avoid.clear();
     }
