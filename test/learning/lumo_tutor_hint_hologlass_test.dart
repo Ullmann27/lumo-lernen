@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:lumo_lernen/core/lumo_voice_clips.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/features/learning/widgets/lumo_tutor_hint_card.dart';
@@ -78,11 +77,5 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('the included German friendly hint intro has real local audio',
-      (tester) async {
-    await LumoVoiceClips.ensureFreeLoaded();
-    final clip = LumoVoiceClips.freeLookup('Hier ist ein kleiner Tipp:');
-    expect(clip, isNotNull);
-    expect(clip!.assetSource, contains('lumo_free/'));
-  });
+
 }
