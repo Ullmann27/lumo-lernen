@@ -9,7 +9,10 @@ on:
     paths:
       - .github/workflows/lumo-1944-mobile-learning-qa.yml
       - lib/features/sections/section_content.dart
-      - test/section_action_responsive_test.dart
+      - test/section_action_responsive_test.dart \
+            test/academy_grade_3_4_visible_navigation_test.dart
+      - lib/features/teacher_mode/lumo_akademie_screen.dart
+      - test/academy_grade_3_4_visible_navigation_test.dart
       - pubspec.yaml
 permissions:
   contents: read
