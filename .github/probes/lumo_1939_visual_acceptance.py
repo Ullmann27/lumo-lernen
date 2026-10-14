@@ -11,6 +11,7 @@ import traceback
 import lumo_education_android_probe as edu
 import lumo_free_voice_android_probe as voice
 import kart_complete_android_probe as race
+from lumo_1939_pause_navigation import tap_pause_setting
 
 existing = edu.existing
 
@@ -102,9 +103,9 @@ def main():
         existing.native_text(out, 'RUNDE', 'kart-real-race-hud')
         existing.base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
         existing.native_text(out, 'Eine kleine Pause', 'kart-pause')
-        existing.native_tap(out, 'Gas: GAS-Taste halten', 'kart-public-autogas')
+        tap_pause_setting(out, 'Gas: GAS-Taste halten', 'kart-public-autogas', scroll='down')
         existing.native_text(out, 'Gas: automatisch', 'kart-autogas-confirmed')
-        existing.native_tap(out, 'Weiterfahren', 'kart-resume')
+        tap_pause_setting(out, 'Weiterfahren', 'kart-resume', scroll='up')
         # Read-only evidence of natural movement; never write race state.
         paths = existing.base.adb('shell', 'find', '/data/user/0/' + existing.PACKAGE,
                                  '-maxdepth', '12', '-type', 'f', '-name', 'kart_sonnenhafen_session.cfg').splitlines()

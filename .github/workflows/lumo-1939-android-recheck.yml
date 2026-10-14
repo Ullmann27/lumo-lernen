@@ -1,7 +1,7 @@
 name: Lumo 1939 independent Android update and gameplay recheck
 on:
   push:
-    branches: [sol/lumo-hologlass-quality-1939-2026-10-14]
+    branches: [sol/lumo-1939-runtime-followup-2026-10-14]
     paths: [.github/workflows/lumo-1939-android-recheck.yml]
   workflow_dispatch:
 
@@ -25,6 +25,9 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
+      - name: Require the unchanged already-built product
+        run: git diff --exit-code "$LUMO_EXPECT_SOURCE" HEAD -- lib assets pubspec.yaml pubspec.lock config scripts/build_unified_apk.sh
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
