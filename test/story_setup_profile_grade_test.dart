@@ -22,12 +22,7 @@ void main() {
       await tester.pump();
 
       for (final candidate in [1, 2, 3, 4]) {
-        final label = tester.widget<Text>(find.text('$candidate. Klasse'));
-        if (candidate == grade) {
-          expect(label.style?.color, Colors.white);
-        } else {
-          expect(label.style?.color, isNot(Colors.white));
-        }
+        _expectGradeSelection(tester, candidate, selected: candidate == grade);
       }
       expect(appState.state.grade, grade);
       expect(tester.takeException(), isNull);
@@ -51,11 +46,27 @@ void main() {
     await tester.tap(find.text('2. Klasse'));
     await tester.pump(const Duration(milliseconds: 250));
 
-    expect(tester.widget<Text>(find.text('2. Klasse')).style?.color, Colors.white);
-    expect(tester.widget<Text>(find.text('3. Klasse')).style?.color,
-        isNot(Colors.white));
+    _expectGradeSelection(tester, 2, selected: true);
+    _expectGradeSelection(tester, 3, selected: false);
     expect(appState.state.grade, 3);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
+}
+
+void _expectGradeSelection(
+  WidgetTester tester,
+  int grade, {
+  required bool selected,
+}) {
+  // The hologlass palette deliberately uses identical high-contrast text
+  // colors for active and inactive grades; check the real accessibility state.
+  final selectedGrade = find.ancestor(
+    of: find.text('$grade. Klasse'),
+    matching: find.byWidgetPredicate(
+      (widget) => widget is Semantics && widget.properties.selected != null,
+    ),
+  );
+  expect(selectedGrade, findsOneWidget);
+  expect(tester.widget<Semantics>(selectedGrade).properties.selected, selected);
 }
