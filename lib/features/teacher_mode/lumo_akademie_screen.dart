@@ -1790,6 +1790,41 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                   ? 'equal_groups' : null)));
       return;
     }
+    // Each visible English/Sachunterricht curriculum tile must open a real
+    // locally generated task, rather than a generic teacher-chat with no
+    // guaranteed question/options. Browsing higher classes remains discovery
+    // only (guard above) and never silently changes the profile grade.
+    if (s.name == 'Englisch' || s.name == 'Sachunterricht') {
+      final subject = s.name;
+      final topicUnit = switch (t.id) {
+        's1_koerper' => 'Körper',
+        's3_oesterreich' => 'Bundesländer Österreichs',
+        's3_natur' => 'Pflanzen',
+        's4_europa' => 'Kontinente und Ozeane',
+        _ => t.title,
+      };
+      final units = Curriculum.unitsForGrade(
+          subject, widget.appState.state.grade);
+      if (!units.contains(topicUnit)) {
+        // Don't present an unrelated task under a misleading topic label.
+        Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => GuidedLearningHub(
+            appState: widget.appState,
+            discovery: true,
+            requestedTopicTitle: t.title,
+          ),
+        ));
+        return;
+      }
+      widget.appState.update(widget.appState.state.copyWith(
+        section: LumoSection.exercises,
+        subject: subject,
+        unit: topicUnit,
+        mood: LumoMood.point,
+        lumoMessage: 'Wir üben $topicUnit. Ich helfe dir Schritt für Schritt.',
+      ));
+      return;
+    }
     // 0) Schreibcoach LIVE (Heinz' Premium-Feature)
     if (t.id == 'd1_schreibcoach') {
       Navigator.of(context).push(
