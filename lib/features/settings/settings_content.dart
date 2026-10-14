@@ -59,6 +59,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   // Update-Check-Status (Codex hat AppUpdateService gebaut, jetzt verdrahtet)
   AppUpdateInfo? _updateInfo;
   bool _checkingUpdate = false;
+  double? _updateProgress;
   String? _updateError;
 
   // KI-Eltern-Berater: spricht mit Eltern, NICHT mit Kind.
@@ -282,6 +283,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     setState(() {
       _checkingUpdate = true;
       _updateError = null;
+      _updateProgress = null;
     });
     try {
       const service = AppUpdateService();
@@ -297,7 +299,13 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       // ueber MethodChannel den System-Installer aufrufen. Bei Berechtigungs-
       // fehler oeffnet sich automatisch der Einstellungs-Dialog.
       if (info.available && info.hasUsableDownload) {
-        final result = await service.downloadAndInstall(info);
+        final result = await service.downloadAndInstall(
+          info,
+          onProgress: (fraction) {
+            if (!mounted) return;
+            setState(() => _updateProgress = fraction);
+          },
+        );
         if (!mounted) return;
         if (result.success) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -335,8 +343,11 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       } else if (info.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Du hast die neueste Version (Build '
-                '${info.currentBuildNumber}).',
+            content: Text(AppUpdateService.isFamilyPreview
+              ? 'Für die Familien-App ist derzeit kein neuer freigegebener '
+                  'Build vorhanden (installiert: ${info.currentBuildNumber}).'
+              : 'Du hast die neueste Version (Build '
+                  '${info.currentBuildNumber}).',
             ),
           ),
         );
@@ -345,7 +356,12 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       if (!mounted) return;
       setState(() => _updateError = 'Update-Pruefung fehlgeschlagen: $e');
     } finally {
-      if (mounted) setState(() => _checkingUpdate = false);
+      if (mounted) {
+        setState(() {
+          _checkingUpdate = false;
+          _updateProgress = null;
+        });
+      }
     }
   }
 
@@ -400,6 +416,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         _AppUpdateCard(
           info: _updateInfo,
           checking: _checkingUpdate,
+          progress: _updateProgress,
           error: _updateError,
           onUpdate: _checkAndUpdate,
         ),
@@ -1497,12 +1514,14 @@ class _AppUpdateCard extends StatelessWidget {
   const _AppUpdateCard({
     required this.info,
     required this.checking,
+    required this.progress,
     required this.error,
     required this.onUpdate,
   });
 
   final AppUpdateInfo? info;
   final bool checking;
+  final double? progress;
   final String? error;
 
   /// Heinz 2026-05-21: Ein-Klick-Aktualisierung. Vorher musste man
@@ -1515,6 +1534,7 @@ class _AppUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasUpdate = info?.available == true;
+    const familyPreview = AppUpdateService.isFamilyPreview;
     // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
     final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
     return Container(
@@ -1572,7 +1592,9 @@ class _AppUpdateCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      hasUpdate ? 'Neue Version verfügbar' : 'App-Version',
+                      hasUpdate
+                          ? 'Neue Version verfügbar'
+                          : familyPreview ? 'Lumo Familien-Testversion' : 'App-Version',
                       style: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 15,
@@ -1586,7 +1608,9 @@ class _AppUpdateCard extends StatelessWidget {
                           ? 'Aktuell: Build ${AppUpdateService.currentBuildNumber} (${AppUpdateService.currentVersionName})'
                           : hasUpdate
                               ? 'Build ${info!.latestBuildNumber} ist neuer als deine Build ${info!.currentBuildNumber}.'
-                              : 'Du hast die neueste Version (Build ${info!.currentBuildNumber}).',
+                              : familyPreview
+                                  ? 'Kein neuer freigegebener Familien-Build. Installiert: ${info!.currentBuildNumber}.'
+                                  : 'Du hast die neueste Version (Build ${info!.currentBuildNumber}).',
                       style: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 12,
@@ -1657,7 +1681,7 @@ class _AppUpdateCard extends StatelessWidget {
                     ),
               label: Text(
                 checking
-                    ? 'Pruefe…'
+                    ? progress != null ? 'Lade Update…' : 'Prüfe…'
                     : hasUpdate
                         ? 'Jetzt aktualisieren'
                         : 'Auf Update prüfen',
@@ -1669,6 +1693,35 @@ class _AppUpdateCard extends StatelessWidget {
               ),
             ),
           ),
+          if (progress != null && checking) ...[
+            const SizedBox(height: 10),
+            LinearProgressIndicator(
+              value: progress,
+              minHeight: 5,
+              color: const Color(0xFF4EDCFF),
+              backgroundColor: const Color(0x66304E71),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              'APK wird geladen: ${(progress! * 100).clamp(0, 100).round()} %',
+              style: const TextStyle(
+                fontFamily: 'Nunito', fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: LumoVisualTokens.white,
+              ),
+            ),
+          ],
+          if (familyPreview)
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                'Dieser Kanal liefert nur freigegebene Testversionen für '
+                'die Familien-App. Kein automatischer Wechsel zur regulären App.',
+                style: TextStyle(color: LumoVisualTokens.muted,
+                    fontSize: 11.5),
+              ),
+            ),
           // Android accepts updates only with the same package and signer.
           const SizedBox(height: 10),
           const Text(
