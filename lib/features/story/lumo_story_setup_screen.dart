@@ -7,8 +7,9 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_story_generator.dart';
 import '../../theme/lumo_design_tokens.dart';
-import '../../widgets/premium/lumo_hero_card.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import 'lumo_story_library_screen.dart';
 import 'lumo_story_reader_screen.dart';
 
 class LumoStorySetupScreen extends StatefulWidget {
@@ -80,8 +81,10 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
+      backgroundColor: LumoVisualTokens.night,
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.all(LumoTokens.space16),
@@ -94,18 +97,66 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                   ),
                   Expanded(
                     child: Text('Lumo erfindet dir eine Geschichte!',
-                        style: LumoTokens.typo.headlineMedium),
+                        style: const TextStyle(color: LumoVisualTokens.white,
+                            fontSize: 22, fontWeight: FontWeight.w900)),
                   ),
                 ],
               ),
               const SizedBox(height: LumoTokens.space12),
-              LumoHeroCard(
-                title: 'Überraschung!',
-                subtitle: 'Lumo wählt für dich',
-                icon: Icons.casino_rounded,
-                gradient: LumoTokens.colors.heroLila,
-                glowColor: LumoTokens.colors.lumoLila,
-                onTap: _surprise,
+              LumoGlassCard(
+                key: const ValueKey('lumo-story-creation-hero'),
+                padding: const EdgeInsets.all(14),
+                child: Row(children: [
+                  const LumoFoxPose(
+                    pose: LumoDesignFoxPose.bookWelcome, size: 94),
+                  const SizedBox(width: 10),
+                  Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text('Dein nächstes Abenteuer',
+                          style: TextStyle(color: LumoVisualTokens.white,
+                              fontSize: 18, fontWeight: FontWeight.w900)),
+                      const SizedBox(height: 5),
+                      const Text('Wähle eine Idee oder lass Lumo entscheiden.',
+                          style: TextStyle(color: LumoVisualTokens.muted,
+                              fontSize: 12.5)),
+                      const SizedBox(height: 10),
+                      FilledButton.icon(
+                        key: const ValueKey('lumo-story-surprise'),
+                        onPressed: _surprise,
+                        icon: const Icon(Icons.casino_rounded),
+                        label: const Text('Überraschung!'),
+                        style: FilledButton.styleFrom(
+                          backgroundColor: LumoVisualTokens.cyanBright,
+                          foregroundColor: LumoVisualTokens.navigation),
+                      ),
+                    ],
+                  )),
+                ]),
+              ),
+              const SizedBox(height: 12),
+              LumoGlassCard(
+                padding: const EdgeInsets.all(10),
+                child: ListTile(
+                  key: const ValueKey('lumo-story-open-library'),
+                  leading: const Icon(Icons.auto_stories_rounded,
+                      color: LumoVisualTokens.cyanBright),
+                  title: const Text('Geschichten lesen',
+                      style: TextStyle(color: LumoVisualTokens.white,
+                          fontWeight: FontWeight.w900)),
+                  subtitle: const Text('Deine gespeicherten Abenteuer öffnen',
+                      style: TextStyle(color: LumoVisualTokens.muted)),
+                  trailing: const Icon(Icons.chevron_right_rounded,
+                      color: LumoVisualTokens.cyanBright),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => LumoStoryLibraryScreen(
+                        appState: widget.appState,
+                        gradeLevel: _gradeLevel,
+                      ),
+                    ),
+                  ),
+                ),
               ),
               const SizedBox(height: LumoTokens.space24),
               // Klassenstufe
@@ -151,8 +202,8 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                   icon: const Icon(Icons.auto_stories_rounded, size: 28),
                   label: const Text('Geschichte starten!'),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: LumoTokens.colors.lumoOrange,
-                    foregroundColor: Colors.white,
+                    backgroundColor: LumoVisualTokens.cyanBright,
+                    foregroundColor: LumoVisualTokens.navigation,
                     textStyle: LumoTokens.typo.headlineSmall,
                     shape: RoundedRectangleBorder(
                         borderRadius: LumoTokens.brLarge),
@@ -182,12 +233,12 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 duration: const Duration(milliseconds: 200),
                 padding: const EdgeInsets.symmetric(vertical: 14),
                 decoration: BoxDecoration(
-                  gradient: active ? LumoTokens.colors.heroOrange : null,
-                  color: active ? null : Colors.white,
+                  gradient: active ? const LinearGradient(colors: [LumoVisualTokens.lessonAnswer, LumoVisualTokens.glass]) : null,
+                   color: active ? null : LumoVisualTokens.navigation,
                   borderRadius: LumoTokens.brMedium,
                   border: Border.all(
                     color:
-                        active ? Colors.transparent : LumoTokens.colors.outline,
+                        active ? LumoVisualTokens.cyanBright : LumoVisualTokens.cyan,
                     width: 2,
                   ),
                 ),
@@ -213,7 +264,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                         style: LumoTokens.typo.titleMedium.copyWith(
                           color: active
                               ? Colors.white
-                              : LumoTokens.colors.textDark,
+                              : LumoVisualTokens.white,
                         ),
                         textAlign: TextAlign.center,
                       ),
@@ -238,7 +289,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
             duration: const Duration(milliseconds: 180),
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
             decoration: BoxDecoration(
-              color: sel ? accent : Colors.white,
+              color: sel ? accent : LumoVisualTokens.navigation,
               borderRadius: LumoTokens.brPill,
               border: Border.all(
                   color: sel ? accent : accent.withOpacity(0.3), width: 2),
@@ -254,7 +305,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
             ),
             child: Text(o,
                 style: LumoTokens.typo.titleMedium.copyWith(
-                    color: sel ? Colors.white : LumoTokens.colors.textDark)),
+                    color: LumoVisualTokens.white)),
           ),
         );
       }).toList(),
@@ -269,6 +320,6 @@ class _SectionLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(text,
         style: LumoTokens.typo.titleLarge
-            .copyWith(color: LumoTokens.colors.textDark));
+            .copyWith(color: LumoVisualTokens.white));
   }
 }
