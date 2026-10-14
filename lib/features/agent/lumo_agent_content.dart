@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
@@ -264,8 +267,11 @@ class _LumoAgentContentState extends State<LumoAgentContent>
   Widget build(BuildContext context) {
     final settings = widget.appState.state.settings;
     final proxyReady = settings.aiProxyEnabled && _verifiedCloudReply;
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(22),
+    return LumoSceneBackground(
+      scene: LumoScene.learning,
+      dimmed: true,
+      child: SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 820),
@@ -274,6 +280,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
             _AgentHeader(
                 proxyReady: proxyReady,
                 enabled: settings.aiProxyEnabled,
+                reduceMotion: settings.reduceAnimations || settings.calmMode,
                 onSettings: () => widget.onSection(LumoSection.settings)),
             const SizedBox(height: 16),
             _SafetyFrame(proxyReady: proxyReady),
@@ -339,7 +346,7 @@ class _LumoAgentContentState extends State<LumoAgentContent>
           ]),
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -347,10 +354,12 @@ class _AgentHeader extends StatelessWidget {
   const _AgentHeader(
       {required this.proxyReady,
       required this.enabled,
+      required this.reduceMotion,
       required this.onSettings});
 
   final bool proxyReady;
   final bool enabled;
+  final bool reduceMotion;
   final VoidCallback onSettings;
 
   @override
@@ -365,37 +374,63 @@ class _AgentHeader extends StatelessWidget {
         : enabled
             ? 'Die Online-Verbindung wird bei deiner Frage geprüft. Lokale Lernhilfen stehen dir auch ohne Verbindung zur Verfügung.'
             : 'Es wird keine Cloud verwendet. Lumo nutzt nur die lokale Lernhilfe.';
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(
-          gradient: const LinearGradient(
-              colors: [Color(0xFFFFF7ED), Color(0xFFEFF6FF)])),
-      child: Row(children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-              color: LumoColors.orangeSurface,
-              borderRadius: BorderRadius.circular(LumoRadius.lg)),
-          child:
-              const Center(child: Text('🦊', style: TextStyle(fontSize: 34))),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(title, style: LumoTextStyles.heading2),
-            const SizedBox(height: 5),
-            Text(subtitle,
-                style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
-          ]),
-        ),
-        const SizedBox(width: 10),
-        OutlinedButton.icon(
-            onPressed: onSettings,
-            icon: const Icon(Icons.lock_rounded),
-            label: const Text('Eltern')),
-      ]),
+    return LumoGlassCard(
+      key: const ValueKey('lumo-agent-hologlass-hero'),
+      child: LayoutBuilder(builder: (context, bounds) {
+        final compact = bounds.maxWidth < 460;
+        final fox = LumoCharacter(
+          pose: LumoDesignFoxPose.teacherStick,
+          size: compact ? 100 : 130,
+          idleHops: false,
+          intro: false,
+          reduceMotion: reduceMotion || MediaQuery.disableAnimationsOf(context),
+        );
+        final intro = Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('DEIN LERNBEGLEITER', style: TextStyle(
+                color: LumoVisualTokens.cyanBright, fontWeight: FontWeight.w900,
+                letterSpacing: 1.1, fontSize: 11)),
+            const SizedBox(height: 6),
+            Text(title, key: const ValueKey('lumo-agent-title'),
+                style: const TextStyle(color: LumoVisualTokens.white,
+                    fontSize: 22, fontWeight: FontWeight.w900, height: 1.13)),
+            const SizedBox(height: 8),
+            Text(subtitle, style: const TextStyle(
+                color: LumoVisualTokens.muted, height: 1.38, fontSize: 14)),
+          ],
+        );
+        final parents = OutlinedButton.icon(
+          key: const ValueKey('lumo-agent-parents'),
+          onPressed: onSettings,
+          icon: const Icon(Icons.lock_rounded, size: 18),
+          label: const Text('Eltern'),
+          style: OutlinedButton.styleFrom(
+              foregroundColor: LumoVisualTokens.white,
+              side: const BorderSide(color: LumoVisualTokens.cyanBright),
+              minimumSize: const Size(90, 48)),
+        );
+        if (compact) {
+          return Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  SizedBox(width: 100, height: 120, child: fox),
+                  const SizedBox(width: 8),
+                  Expanded(child: intro),
+                ]),
+                const SizedBox(height: 10),
+                Align(alignment: Alignment.centerRight, child: parents),
+              ]);
+        }
+        return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          SizedBox(width: 138, height: 154, child: fox),
+          const SizedBox(width: 14),
+          Expanded(child: intro),
+          const SizedBox(width: 12),
+          parents,
+        ]);
+      }),
     );
   }
 }
@@ -409,9 +444,7 @@ class _SafetyFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: lumoCard(
-          color:
-              proxyReady ? const Color(0xFFF0FDF4) : const Color(0xFFFFFBEB)),
+      decoration: lumoCard(color: LumoVisualTokens.navigation),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Icon(proxyReady ? Icons.verified_user_rounded : Icons.shield_rounded,
             color: proxyReady ? const Color(0xFF16A34A) : LumoColors.orange),
@@ -581,7 +614,7 @@ class _QuestionInput extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: lumoCard(),
+      decoration: lumoCard(color: LumoVisualTokens.glass),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
           Expanded(
@@ -663,8 +696,11 @@ class _QuickChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActionChip(
-      label: Text(label),
-      avatar: const Icon(Icons.auto_awesome_rounded, size: 18),
+      label: Text(label, style: const TextStyle(color: LumoVisualTokens.white)),
+      avatar: const Icon(Icons.auto_awesome_rounded, size: 18,
+          color: LumoVisualTokens.cyanBright),
+      backgroundColor: LumoVisualTokens.glassRow,
+      side: const BorderSide(color: LumoVisualTokens.cyan),
       onPressed: onTap,
     );
   }
