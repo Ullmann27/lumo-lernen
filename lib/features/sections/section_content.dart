@@ -341,7 +341,7 @@ class _ActionCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(22),
         child: Container(
         width: width,
-        height: 165 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.4),
+        height: 165.0 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.4),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
