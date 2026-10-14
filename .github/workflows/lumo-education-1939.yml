@@ -1,4 +1,5 @@
 name: Lumo 1939 complete protected integration APK build, no publication
+# Rebuild after 800x600 story-library real hit-test scroll correction.
 on:
   push:
     branches: [sol/lumo-hologlass-quality-1939-2026-10-14]

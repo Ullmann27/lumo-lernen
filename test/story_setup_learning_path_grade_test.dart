@@ -95,7 +95,15 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
 
-    await tester.tap(find.text('Erste Geschichte!'));
+    // The illustrated 1939 library is taller than the old empty-state view.
+    // At the default 800×600 test surface the real CTA is below the viewport;
+    // first scroll it into the hit-test area, rather than pretending the tap
+    // succeeded. Keep the navigation/grade assertions unchanged.
+    final firstStory = find.text('Erste Geschichte!');
+    await tester.ensureVisible(firstStory);
+    await tester.pump();
+    expect(tester.getCenter(firstStory).dy, inInclusiveRange(0.0, 600.0));
+    await tester.tap(firstStory);
     await _pumpRoute(tester);
 
     final setup = tester.widget<LumoStorySetupScreen>(
