@@ -152,9 +152,14 @@ void main() {
     await tester
         .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await _frames(tester);
-    await tester.ensureVisible(find.text('Mathe'));
-  await tester.pump();
-    await tester.tap(find.text('Mathe'));
+    final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
+    await tester.scrollUntilVisible(
+      mathArea, 180,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 35,
+    );
+    await tester.pump();
+    await tester.tap(mathArea);
     await _frames(tester);
     // Themen weit unterhalb der Falz werden im Lazy-Sliver später gebaut.
     // scrollUntilVisible findet auch noch nicht erzeugte Listenelemente.
