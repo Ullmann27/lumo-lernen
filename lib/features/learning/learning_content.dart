@@ -156,7 +156,16 @@ class _LearningContentState extends State<LearningContent> {
     LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LumoVoice.instance.speak(_welcomeForKind);
+      if (!mounted) return;
+      final settings = widget.appState.state.settings;
+      if (!settings.voiceEnabled || !settings.autoReadEnabled) return;
+      // Always audible with the bundled warm German recording, even when
+      // the optional license for synthesizing arbitrary text is not granted.
+      unawaited(LumoVoice.instance.speak(
+        'Hallo! Schön, dass du da bist. Ich bin Lumo. '
+        'Komm, wir entdecken zusammen etwas Neues!',
+        style: VoiceStyle.greeting,
+      ));
     });
     // Persistente Wiederholungsvermeidung nachladen, ohne den ersten Frame zu blockieren.
     _hydrateRecent();
