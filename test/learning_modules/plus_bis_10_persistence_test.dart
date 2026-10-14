@@ -74,7 +74,7 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   expect(find.text('Lesen'), findsOneWidget);
   expect(find.text('Schreiben'), findsOneWidget);
   expect(find.text('Englisch'), findsOneWidget);
-  expect(find.text('Sachkunde'), findsOneWidget);
+  expect(find.text('Sachunterricht'), findsOneWidget);
   await tester.ensureVisible(find.text('1. Klasse'));
   await tester.pump();
   await tester.tap(find.text('1. Klasse'));

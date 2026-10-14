@@ -6,6 +6,7 @@ import '../report/lumo_coach_card.dart';
 import '../teacher/student_assignments_card.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -42,9 +43,15 @@ class HomeContent extends StatelessWidget {
 
   void _startPractice(String subject, {String? unit}) {
     final lastUnit = appState.learningProfile.lastTopics[subject];
+    final currentGradeUnits = Curriculum.unitsForGrade(
+      subject, appState.state.grade, currentGradeOnly: true);
+    // A profile may retain a topic from the previous school year. Do not
+    // silently resume a first-grade task under a fourth-grade home tile.
+    final resumable = lastUnit != null &&
+        currentGradeUnits.contains(lastUnit) ? lastUnit : null;
     appState.update(appState.state.copyWith(
       subject: subject,
-      unit: unit ?? lastUnit ?? 'Alle',
+      unit: unit ?? resumable ?? 'Alle',
       mood: LumoMood.point,
       lumoMessage: 'Wir üben $subject. Ich helfe dir Schritt für Schritt.',
       sessionKind: LumoSessionKind.quickPractice,
@@ -312,6 +319,14 @@ class HomeContent extends StatelessWidget {
                         color: const Color(0xFF087A6A),
                         completed: _correctFor('Sachunterricht'),
                         onTap: () => _startPractice('Sachunterricht'),
+                      ),
+                      _SubjectCard(
+                        subject: 'Englisch',
+                        subtitle: 'Wörter und kleine Gespräche',
+                        icon: Icons.language_rounded,
+                        color: const Color(0xFF1766AE),
+                        completed: _correctFor('Englisch'),
+                        onTap: () => _startPractice('Englisch'),
                       ),
                       _SubjectCard(
                         subject: 'Logik',

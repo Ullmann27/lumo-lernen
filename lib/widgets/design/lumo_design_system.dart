@@ -1178,7 +1178,7 @@ class LumoFoldProgressPanel extends StatelessWidget {
                               value: _masteryFor(skills.values, 'Lesen'),
                             ),
                             _FoldSkillRing(
-                              label: 'Sachkunde',
+                              label: 'Sachunterricht',
                               value:
                                   _masteryFor(skills.values, 'Sachunterricht'),
                             ),

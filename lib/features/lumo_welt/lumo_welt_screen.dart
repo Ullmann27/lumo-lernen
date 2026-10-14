@@ -50,7 +50,7 @@ class LumoWeltScreen extends StatelessWidget {
         total: germanTotal,
       ),
       _IslandData(
-        subject: 'Sachkunde',
+        subject: 'Sachunterricht',
         emoji: '🌿',
         theme: _IslandTheme.emerald,
         total: scienceTotal,
