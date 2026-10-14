@@ -69,19 +69,27 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
   expect(find.text('Deine Ziele'), findsOneWidget);
   expect(find.text('0 von 3 Aufgaben geschafft'), findsOneWidget);
+  await tester.ensureVisible(find.text('1. Klasse'));
+  await tester.pump();
+  await tester.tap(find.text('1. Klasse'));
+  await tester.pump();
+  // These area cards live in a lazily built sliver below the header. Tests
+  // must navigate to them exactly as a child does, not assume they already
+  // exist at the top of a 480dp-high viewport.
+  final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
+  await tester.scrollUntilVisible(
+    mathArea, 180,
+    scrollable: find.byType(Scrollable).first,
+    maxScrolls: 35,
+  );
+  await tester.pump();
   expect(find.text('Mathe'), findsOneWidget);
   expect(find.text('Deutsch'), findsOneWidget);
   expect(find.text('Lesen'), findsOneWidget);
   expect(find.text('Schreiben'), findsOneWidget);
   expect(find.text('Englisch'), findsOneWidget);
   expect(find.text('Sachunterricht'), findsOneWidget);
-  await tester.ensureVisible(find.text('1. Klasse'));
-  await tester.pump();
-  await tester.tap(find.text('1. Klasse'));
-  await tester.pump();
-  await tester.ensureVisible(find.text('Mathe'));
-  await tester.pump();
-  await tester.tap(find.text('Mathe'));
+  await tester.tap(mathArea);
   await tester.pump();
   // Die Themenkarten werden in einem Lazy-Sliver erst beim Scrollen gebaut.
   // Wie ein Kind die Akademie wirklich benutzt: bis zum Thema scrollen.

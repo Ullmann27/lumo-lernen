@@ -101,6 +101,7 @@ class _FarbenScreenState extends State<FarbenScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, int object, int color})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -121,6 +122,12 @@ class _FarbenScreenState extends State<FarbenScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var kind = 0; kind < _FarbFrageTyp.values.length; kind++)
+        for (var object = 0; object < _objekte.length; object++)
+          for (var color = 0; color < _farben.length; color++)
+            (kind: kind, object: object, color: color),
+    ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -147,15 +154,20 @@ class _FarbenScreenState extends State<FarbenScreen>
   }
 
   void _generateTask() {
-    _typ = _FarbFrageTyp.values[_rng.nextInt(_FarbFrageTyp.values.length)];
-    _objekt = _objekte[_rng.nextInt(_objekte.length)];
-    final shuffled = List.of(_farben)..shuffle(_rng);
-    _correctFarbe = shuffled.first;
+    // Exact type/object/color triples are consumed once per session.
+    // Do not treat the emoji's fixed natural colour as the selected answer;
+    // the task asks for the actually rendered coloured background.
+    final plan = _round[_taskIdx];
+    _typ = _FarbFrageTyp.values[plan.kind];
+    _objekt = _objekte[plan.object];
+    _correctFarbe = _farben[plan.color];
+    final shuffled = List.of(_farben.where((f) => f != _correctFarbe))
+      ..shuffle(_rng);
     // Drei andere Farben plus die richtige. Vorher stand die richtige Farbe
     // schon an Index 0 und wurde zusaetzlich an _correctImageIdx gesetzt -
     // in 3 von 4 Faellen gab es sie doppelt, und einer der beiden richtigen
     // Kacheln wurde als falsch gewertet.
-    final others = shuffled.skip(1).take(3).toList();
+    final others = shuffled.take(3).toList();
     _correctImageIdx = _rng.nextInt(4);
     final withCorrect = [...others]..insert(_correctImageIdx, _correctFarbe);
     if (_typ == _FarbFrageTyp.objektZuFarbe) {
@@ -172,10 +184,10 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat ${_objekt.artikel} ${_objekt.name}?';
+        text = 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
-        text = 'Tippe ${_correctFarbe.name.toLowerCase()}!';
+        text = 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!';
         break;
     }
     try {
@@ -338,10 +350,10 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat ${_objekt.artikel} ${_objekt.name}?';
+        text = 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
-        text = 'Tippe ${_correctFarbe.name.toLowerCase()}!';
+        text = 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!';
         break;
     }
     return AnimatedBuilder(

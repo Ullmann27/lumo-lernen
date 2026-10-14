@@ -87,7 +87,7 @@ class _WetterScreenState extends State<WetterScreen>
       icon: '⛈',
       color: Color(0xFF7C3AED),
       imagePrompt: 'gewitter',
-      kleidung: 'drinnen bleiben',
+      kleidung: 'In einem Gebäude Schutz suchen',
     ),
     _Wetter(
       name: 'Nebel',
@@ -101,14 +101,22 @@ class _WetterScreenState extends State<WetterScreen>
   static const List<MapEntry<String, String>> _hinweise = [
     MapEntry('Es ist heiß und hell draußen', 'Sonne'),
     MapEntry('Tropfen fallen vom Himmel', 'Regen'),
-    MapEntry('Der Himmel ist grau', 'Wolken'),
-    MapEntry('Alles ist weiß und kalt', 'Schnee'),
+    MapEntry('Eine geschlossene Wolkendecke liegt am Himmel', 'Wolken'),
+    MapEntry('Schneeflocken bedecken den Boden', 'Schnee'),
     MapEntry('Es blitzt und donnert', 'Gewitter'),
-    MapEntry('Man sieht nicht weit', 'Nebel'),
+    MapEntry('Dichter Bodennebel verdeckt die Sicht', 'Nebel'),
     MapEntry('Ein Schneemann steht im Garten', 'Schnee'),
     MapEntry('Die Sonne scheint stark', 'Sonne'),
     MapEntry('Man braucht einen Regenschirm', 'Regen'),
     MapEntry('Es ist laut wegen dem Donner', 'Gewitter'),
+    MapEntry('Ein Regenguss macht die Straße nass', 'Regen'),
+    MapEntry('Schnee fällt in großen Flocken vom Himmel', 'Schnee'),
+    MapEntry('Blitze zucken am dunklen Himmel', 'Gewitter'),
+    MapEntry('Sonnenstrahlen werfen deutliche Schatten', 'Sonne'),
+    MapEntry('Ein Nebelschleier liegt über dem Feld', 'Nebel'),
+    MapEntry('Dicke Wolken verdecken die Sonne', 'Wolken'),
+    MapEntry('Die Wolkendecke zeigt keine blauen Lücken', 'Wolken'),
+    MapEntry('Regentropfen prasseln an die Fensterscheibe', 'Regen'),
   ];
 
   late final LearningModuleProgress _progress;
@@ -117,6 +125,7 @@ class _WetterScreenState extends State<WetterScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, int weather, int hint})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -134,6 +143,17 @@ class _WetterScreenState extends State<WetterScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var weather = 0; weather < _wetterArten.length; weather++) ...[
+        (kind: _WetterFrageTyp.bildErraten.index, weather: weather, hint: -1),
+        (kind: _WetterFrageTyp.kleidungWaehlen.index, weather: weather, hint: -1),
+      ],
+      for (var i = 0; i < _hinweise.length; i++)
+        (kind: _WetterFrageTyp.hinweisErraten.index,
+         weather: _wetterArten.indexWhere((w) => w.name == _hinweise[i].value),
+         hint: i),
+    ]..shuffle(_rng);
+    assert(_round.length == _totalTasks);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -159,25 +179,11 @@ class _WetterScreenState extends State<WetterScreen>
     super.dispose();
   }
 
-  // Heinz CLAUDE.md Punkt 5: Anti-Repeat. Bei 30 Aufgaben aus 6
-  // Wetterarten nie 2x dasselbe Wetter hintereinander.
-  _Wetter? _lastWetter;
-
   void _generateTask() {
-    _typ = _WetterFrageTyp.values[_rng.nextInt(3)];
-    if (_typ == _WetterFrageTyp.hinweisErraten) {
-      _aktuellerHinweis = _hinweise[_rng.nextInt(_hinweise.length)];
-      _correctWetter =
-          _wetterArten.firstWhere((w) => w.name == _aktuellerHinweis.value);
-    } else {
-      _Wetter pick;
-      int safety = 8;
-      do {
-        pick = _wetterArten[_rng.nextInt(_wetterArten.length)];
-      } while (pick == _lastWetter && --safety > 0);
-      _correctWetter = pick;
-    }
-    _lastWetter = _correctWetter;
+    final plan = _round[_taskIdx];
+    _typ = _WetterFrageTyp.values[plan.kind];
+    _correctWetter = _wetterArten[plan.weather];
+    if (plan.hint >= 0) _aktuellerHinweis = _hinweise[plan.hint];
     final shuffled = List.of(_wetterArten)..shuffle(_rng);
     _options = [
       _correctWetter,
@@ -205,7 +211,7 @@ class _WetterScreenState extends State<WetterScreen>
         text = 'Welches Wetter siehst du?';
         break;
       case _WetterFrageTyp.kleidungWaehlen:
-        text = 'Was zieht man bei ${_correctWetter.name} an?';
+        text = 'Was ist bei ${_correctWetter.name} sinnvoll?';
         break;
       case _WetterFrageTyp.hinweisErraten:
         text = 'Welches Wetter passt: ${_aktuellerHinweis.key}?';
@@ -370,7 +376,7 @@ class _WetterScreenState extends State<WetterScreen>
         text = 'Welches Wetter ist das?';
         break;
       case _WetterFrageTyp.kleidungWaehlen:
-        text = 'Was zieht man bei ${_correctWetter.name} an?';
+        text = 'Was ist bei ${_correctWetter.name} sinnvoll?';
         break;
       case _WetterFrageTyp.hinweisErraten:
         text = 'Welches Wetter passt?';

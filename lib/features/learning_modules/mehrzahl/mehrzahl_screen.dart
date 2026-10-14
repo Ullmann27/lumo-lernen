@@ -61,6 +61,18 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     _PluralWort('Tasche', 'Taschen', ['Tasches', 'Tasche\'s', 'Tascher']),
     _PluralWort('Frau', 'Frauen', ['Fraus', 'Frauer', 'Frauenes']),
     _PluralWort('Mann', 'Männer', ['Mannes', 'Mannen', 'Maenner']),
+    _PluralWort('Hand', 'Hände', ['Handen', 'Hands', 'Händer']),
+    _PluralWort('Hut', 'Hüte', ['Huten', 'Huts', 'Hüter']),
+    _PluralWort('Tür', 'Türen', ['Türs', 'Türe', 'Türer']),
+    _PluralWort('Schuh', 'Schuhe', ['Schuhs', 'Schuhen', 'Schuher']),
+    _PluralWort('Wolke', 'Wolken', ['Wolkes', 'Wolkers', 'Wolkenes']),
+    _PluralWort('Gabel', 'Gabeln', ['Gabels', 'Gabeler', 'Gabele']),
+    _PluralWort('Fluss', 'Flüsse', ['Flusses', 'Flusser', 'Flussen']),
+    _PluralWort('Pferd', 'Pferde', ['Pferden', 'Pferds', 'Pferder']),
+    _PluralWort('Sonne', 'Sonnen', ['Sonnes', 'Sonnens', 'Sonner']),
+    _PluralWort('Bär', 'Bären', ['Bärs', 'Bäre', 'Bärern']),
+    _PluralWort('Berg', 'Berge', ['Bergs', 'Berger', 'Bergers']),
+    _PluralWort('Lied', 'Lieder', ['Liedes', 'Lieds', 'Lieden']),
   ];
 
   late final LearningModuleProgress _progress;
@@ -69,6 +81,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<_PluralWort> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -82,6 +95,8 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
   @override
   void initState() {
     super.initState();
+    _round = List.of(_woerter)..shuffle(_rng);
+    assert(_round.length == _totalTasks);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Deutsch',
@@ -108,7 +123,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
   }
 
   void _generateTask() {
-    _korrektWort = _woerter[_rng.nextInt(_woerter.length)];
+    _korrektWort = _round[_taskIdx];
     _options = [_korrektWort.plural, ..._korrektWort.falscheVarianten]
       ..shuffle(_rng);
     _correctIdx = _options.indexOf(_korrektWort.plural);

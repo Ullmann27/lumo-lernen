@@ -7,6 +7,7 @@ import 'math_task_templates.dart';
 import 'primary_school_word_data.dart';
 import 'reading_comprehension_data.dart';
 import 'science_task_data.dart';
+import 'science_quality_extension.dart';
 import 'spelling_context_data.dart';
 
 class LumoTask {
@@ -242,12 +243,22 @@ class ExerciseFactory {
   // Local generator memory complements the existing persisted SessionVarietyGuard.
   // No progress, profile fields, answer attempts or rewards are written here.
   final Map<String, List<String>> _recentProblems = {};
+  // A finite science bank is drawn without replacement per grade and unit.
+  // Unlike a shuffled answer order, this state represents actual question IDs.
+  final Map<String, List<ScienceQuestion>> _scienceDrawPiles = {};
+  final Map<String, String> _lastScienceQuestion = {};
 
   LumoTask _variedTask(int grade, String subject, String unit) {
+    // Science has a finite, explicitly curated question bank. Sampling from
+    // it through the retry loop would consume unseen questions without ever
+    // displaying them. Its separate draw pile enforces no-replacement.
+    if (subject == 'Sachunterricht') {
+      return _build(grade: grade, subject: subject, unit: unit);
+    }
     final scope = '$grade|$subject|$unit';
     final recent = _recentProblems.remove(scope) ?? <String>[];
     final candidates = <String, LumoTask>{};
-    for (var attempt = 0; attempt < 24; attempt++) {
+    for (var attempt = 0; attempt < 60; attempt++) {
       final task = _build(grade: grade, subject: subject, unit: unit);
       final key = '${task.prompt}|${task.answer}';
       candidates[key] = task;
@@ -259,7 +270,7 @@ class ExerciseFactory {
         .reduce((a, b) => recent.indexOf(a) <= recent.indexOf(b) ? a : b);
     recent.remove(key);
     recent.add(key);
-    if (recent.length > 12) recent.removeAt(0);
+    if (recent.length > 24) recent.removeAt(0);
     _recentProblems[scope] = recent;
     if (_recentProblems.length > 32) {
       _recentProblems.remove(_recentProblems.keys.first);
@@ -305,6 +316,33 @@ class ExerciseFactory {
     return _variedTask(cappedGrade, chosenSubject, chosenUnit);
   }
 
+  // A cross-subject session must also avoid duplicates when two topic
+  // generators happen to produce the same visible problem. This complements
+  // the per-topic rotation; task IDs and choice order are NOT identities.
+  LumoTask _nextFreshForSession({
+    required int grade,
+    required String subject,
+    required Map<String, int> weakSkills,
+    required Set<String> avoidUnits,
+    required Set<String> seen,
+  }) {
+    LumoTask? oldestFallback;
+    for (var attempt = 0; attempt < 40; attempt++) {
+      final task = next(
+          grade: grade,
+          subject: subject,
+          weakSkills: weakSkills,
+          avoidUnits: avoidUnits);
+      oldestFallback ??= task;
+      final signature =
+          '${task.prompt.trim().toLowerCase()}|${task.answer.trim().toLowerCase()}';
+      if (seen.add(signature)) return task;
+    }
+    // Finite banks eventually exhaust. Prefer a real repetition over
+    // inventing a nonsense question or corrupting the expected session size.
+    return oldestFallback!;
+  }
+
   List<LumoTask> buildSession({
     required int grade,
     required int count,
@@ -313,8 +351,11 @@ class ExerciseFactory {
   }) {
     final tasks = <LumoTask>[];
     final usedUnits = <String>{};
+    final seen = <String>{};
     for (var i = 0; i < count; i++) {
-      final task = next(grade: grade, subject: subject, weakSkills: weakSkills, avoidUnits: usedUnits);
+      final task = _nextFreshForSession(
+          grade: grade, subject: subject, weakSkills: weakSkills,
+          avoidUnits: usedUnits, seen: seen);
       tasks.add(task);
       usedUnits.add(task.unit);
       if (usedUnits.length > 12) usedUnits.clear();
@@ -338,9 +379,12 @@ class ExerciseFactory {
     ];
     final tasks = <LumoTask>[];
     final avoid = <String>{};
+    final seen = <String>{};
     for (var i = 0; i < count; i++) {
       final subject = i < subjects.length ? subjects[i] : subjects[_random.nextInt(subjects.length)];
-      tasks.add(next(grade: grade, subject: subject, weakSkills: weakSkills, avoidUnits: avoid));
+      tasks.add(_nextFreshForSession(
+          grade: grade, subject: subject, weakSkills: weakSkills,
+          avoidUnits: avoid, seen: seen));
       avoid.add(tasks.last.unit);
       if (avoid.length > 10) avoid.clear();
     }
@@ -530,31 +574,72 @@ class ExerciseFactory {
   }
 
   LumoTask _science(int grade, String unit) {
-    final seed = _serial + _random.nextInt(9999);
     final capped = grade.clamp(1, 4).toInt();
-    // 75% strict (exakte Klassenstufe), 25% Wiederholung aus Vorjahren -
-    // gleiche Strategie wie Math/German seit 2026-06-03.
-    final useStrict = seed.abs() % 4 != 0;
-    final strictPool = _scienceQuestions.where((question) {
-      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
-      return question.grade == capped && unitMatches;
-    }).toList(growable: false);
-    final loosePool = _scienceQuestions.where((question) {
-      final unitMatches = unit == 'Alle' || question.unit == unit || _scienceAliases[unit]?.contains(question.unit) == true;
-      return question.grade <= capped && unitMatches;
-    }).toList(growable: false);
-    var source = useStrict && strictPool.isNotEmpty ? strictPool : loosePool;
-    if (source.isEmpty) {
-      source = _scienceQuestions.where((question) => question.grade <= capped).toList(growable: false);
+    bool matches(ScienceQuestion question) =>
+        unit == 'Alle' ||
+        question.unit == unit ||
+        _scienceAliases[unit]?.contains(question.unit) == true;
+
+    // New material is drawn from the child's actual grade. If a small unit
+    // contains fewer than six prompts, earlier-grade questions can be used as
+    // explicitly compatible consolidation, never as a substitute for a full
+    // third- or fourth-grade pool.
+    final current = _scienceQuestions
+        .where((question) => question.grade == capped && matches(question))
+        .toList();
+    final source = <ScienceQuestion>[...current];
+    if (current.length < 6 && capped > 1) {
+      source.addAll(_scienceQuestions.where(
+          (question) => question.grade < capped && matches(question)));
     }
-    final question = source[_positive(seed, source.length)];
+    if (source.isEmpty) {
+      // Legacy invalid units must not cause a crash. next() resolves most
+      // unknown units before reaching here. Keep the actual returned unit
+      // visible rather than disguising an unrelated exercise.
+      source.addAll(
+          _scienceQuestions.where((question) => question.grade == capped));
+    }
+
+    final unique = <String, ScienceQuestion>{
+      for (final question in source)
+        '${question.prompt.trim().toLowerCase()}|${question.answer.trim().toLowerCase()}':
+            question,
+    };
+    final scope = '$capped|$unit';
+    var pile = _scienceDrawPiles[scope];
+    if (pile == null || pile.isEmpty) {
+      pile = unique.values.toList()..shuffle(_random);
+      // A depleted pool can repeat in a new cycle, but not on the boundary.
+      final previous = _lastScienceQuestion[scope];
+      if (pile.length > 1 &&
+          '${pile.last.prompt}|${pile.last.answer}' == previous) {
+        final replacement = pile.indexWhere((item) =>
+            '${item.prompt}|${item.answer}' != previous);
+        if (replacement >= 0) {
+          final temp = pile.last;
+          pile[pile.length - 1] = pile[replacement];
+          pile[replacement] = temp;
+        }
+      }
+      _scienceDrawPiles[scope] = pile;
+      if (_scienceDrawPiles.length > 64) {
+        final oldest = _scienceDrawPiles.keys.first;
+        _scienceDrawPiles.remove(oldest);
+        _lastScienceQuestion.remove(oldest);
+      }
+    }
+    final question = pile.removeLast();
+    _lastScienceQuestion[scope] = '${question.prompt}|${question.answer}';
     return LumoTask(
       id: _id('sach-${question.unit}'),
       grade: grade,
       subject: 'Sachunterricht',
       unit: question.unit,
       prompt: question.prompt,
-      choices: _shuffledChoices(<String>[question.answer, ...question.choices.where((choice) => choice != question.answer)]),
+      choices: _shuffledChoices(<String>[
+        question.answer,
+        ...question.choices.where((choice) => choice != question.answer),
+      ]),
       answer: question.answer,
       explanation: question.explanation,
       visual: 'science',
@@ -1213,6 +1298,7 @@ const Map<String, List<String>> _scienceAliases = <String, List<String>>{
 
 const List<ScienceQuestion> _scienceQuestions = <ScienceQuestion>[
   ...scienceExtensionQuestions,
+  ...scienceQualityExtensionQuestions,
   ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Vogel?', answer: 'Spatz', choices: <String>['Spatz', 'Kuh', 'Fisch', 'Ameise'], explanation: 'Ein Spatz hat Federn und Flügel.'),
   ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Fisch?', answer: 'Forelle', choices: <String>['Forelle', 'Hund', 'Biene', 'Hase'], explanation: 'Fische leben im Wasser und haben Flossen.'),
   ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Insekt?', answer: 'Biene', choices: <String>['Biene', 'Katze', 'Frosch', 'Schaf'], explanation: 'Insekten haben sechs Beine.'),

@@ -10,6 +10,7 @@
 import '../../../widgets/design/lumo_learning_module_frame.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
+import 'season_question_deck.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -64,9 +65,8 @@ extension _JahreszeitName on _Jahreszeit {
 }
 
 class _Hinweis {
-  const _Hinweis(this.text, this.jz);
+  const _Hinweis(this.text);
   final String text;
-  final _Jahreszeit jz;
 }
 
 enum _JahreszeitFrageTyp { bildErraten, hinweisErraten }
@@ -81,30 +81,13 @@ class JahreszeitenScreen extends StatefulWidget {
 
 class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     with TickerProviderStateMixin {
-  static const int _totalTasks = 30;
+  static const int _totalTasks = SeasonQuestionDeck.questionCount;
   static const List<Color> _gradient = [
     Color(0xFF06B6D4),
     Color(0xFF0E7490),
   ];
 
-  static const List<_Hinweis> _hinweise = [
-    _Hinweis('Es schneit und ist kalt', _Jahreszeit.winter),
-    _Hinweis('Schneemann bauen', _Jahreszeit.winter),
-    _Hinweis('Weihnachten', _Jahreszeit.winter),
-    _Hinweis('Eis laufen', _Jahreszeit.winter),
-    _Hinweis('Blumen blühen', _Jahreszeit.fruehling),
-    _Hinweis('Ostern', _Jahreszeit.fruehling),
-    _Hinweis('Vögel singen wieder', _Jahreszeit.fruehling),
-    _Hinweis('Schmetterlinge', _Jahreszeit.fruehling),
-    _Hinweis('Schwimmen gehen', _Jahreszeit.sommer),
-    _Hinweis('Eis essen', _Jahreszeit.sommer),
-    _Hinweis('Sommerferien', _Jahreszeit.sommer),
-    _Hinweis('Es ist heiß', _Jahreszeit.sommer),
-    _Hinweis('Bunte Blätter fallen', _Jahreszeit.herbst),
-    _Hinweis('Drachen steigen lassen', _Jahreszeit.herbst),
-    _Hinweis('Kürbis und Halloween', _Jahreszeit.herbst),
-    _Hinweis('Wind und Regen', _Jahreszeit.herbst),
-  ];
+  late final List<SeasonQuestion> _deck;
 
   late final LearningModuleProgress _progress;
 
@@ -126,6 +109,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
   @override
   void initState() {
     super.initState();
+    _deck = SeasonQuestionDeck(random: _rng).build();
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -151,25 +135,15 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
     super.dispose();
   }
 
-  // Heinz CLAUDE.md Punkt 5: 'Wiederholungslogik verbessern'.
-  // Bei 30 Aufgaben aus 4 Jahreszeiten ist Repeat unvermeidbar - aber
-  // mindestens NIE 2x dieselbe Jahreszeit hintereinander.
-  _Jahreszeit? _lastJz;
-
   void _generateTask() {
-    _typ = _JahreszeitFrageTyp.values[_rng.nextInt(2)];
-    if (_typ == _JahreszeitFrageTyp.bildErraten) {
-      _Jahreszeit pick;
-      int safety = 6;
-      do {
-        pick = _Jahreszeit.values[_rng.nextInt(4)];
-      } while (pick == _lastJz && --safety > 0);
-      _correctJz = pick;
-      _lastJz = pick;
-    } else {
-      _aktuellerHinweis = _hinweise[_rng.nextInt(_hinweise.length)];
-      _correctJz = _aktuellerHinweis.jz;
-    }
+    // Every prompt is consumed once. Neither previous mistakes nor a random
+    // choice can recreate an already completed question in this round.
+    final question = _deck[_taskIdx];
+    _typ = question.isImage
+        ? _JahreszeitFrageTyp.bildErraten
+        : _JahreszeitFrageTyp.hinweisErraten;
+    _correctJz = _Jahreszeit.values[question.seasonIndex];
+    if (!question.isImage) _aktuellerHinweis = _Hinweis(question.hint!);
     _options = List.of(_Jahreszeit.values)..shuffle(_rng);
     _answered = false;
     _selectedIdx = null;

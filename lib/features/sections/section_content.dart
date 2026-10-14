@@ -73,7 +73,7 @@ class SectionContent extends StatelessWidget {
           emoji: '📘',
           accent: LumoColors.purple,
           cards: [
-            for (final unit in units.take(12))
+            for (final unit in units)
               _ActionData(
                 Curriculum.prettifyUnit(unit),
                 'Üben, verstehen und mit Lumo Schritt für Schritt lernen.',
@@ -187,7 +187,7 @@ class SectionContent extends StatelessWidget {
           emoji: '🔢',
           accent: LumoColors.math,
           cards: [
-            for (final unit in units.take(12))
+            for (final unit in units)
               _ActionData(
                 Curriculum.prettifyUnit(unit),
                 'Aufgaben mit Antworten und verständlichen Erklärungen.',

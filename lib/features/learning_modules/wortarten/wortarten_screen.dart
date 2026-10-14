@@ -36,7 +36,7 @@ extension _WortartName on _Wortart {
   String get explainer {
     switch (this) {
       case _Wortart.nomen:
-        return 'Etwas, das man anfassen kann';
+        return 'Namenwörter bezeichnen Menschen, Tiere, Dinge und Begriffe';
       case _Wortart.verb:
         return 'Eine Tätigkeit (was man tut)';
       case _Wortart.adjektiv:
@@ -105,6 +105,7 @@ class _WortartenScreenState extends State<WortartenScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, _WortItem item})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -120,6 +121,11 @@ class _WortartenScreenState extends State<WortartenScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var kind = 0; kind < _WortartenFrageTyp.values.length; kind++)
+        for (final word in _woerter)
+          (kind: kind, item: word),
+    ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Deutsch',
@@ -146,19 +152,16 @@ class _WortartenScreenState extends State<WortartenScreen>
   }
 
   void _generateTask() {
-    _typ = _WortartenFrageTyp
-        .values[_rng.nextInt(_WortartenFrageTyp.values.length)];
+    final plan = _round[_taskIdx];
+    _typ = _WortartenFrageTyp.values[plan.kind];
+    _korrektWort = plan.item;
     if (_typ == _WortartenFrageTyp.wortKategorisieren) {
-      _korrektWort = _woerter[_rng.nextInt(_woerter.length)];
       _wortartOptions = List.of(_Wortart.values)..shuffle(_rng);
     } else {
-      _gefragteArt = _Wortart.values[_rng.nextInt(_Wortart.values.length)];
-      final richtige = _woerter.where((w) => w.art == _gefragteArt).toList()
-        ..shuffle(_rng);
+      _gefragteArt = _korrektWort.art;
       final falsche = _woerter.where((w) => w.art != _gefragteArt).toList()
         ..shuffle(_rng);
-      _woerterOptions = [richtige.first, ...falsche.take(3)]..shuffle(_rng);
-      _korrektWort = richtige.first;
+      _woerterOptions = [_korrektWort, ...falsche.take(3)]..shuffle(_rng);
     }
     _answered = false;
     _selectedIdx = null;

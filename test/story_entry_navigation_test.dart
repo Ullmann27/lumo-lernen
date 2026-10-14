@@ -200,9 +200,24 @@ void main() {
         await frames(tester);
         final action = find.byKey(ValueKey('$entry-stories'));
         if (action.evaluate().isEmpty) {
-          await tester.scrollUntilVisible(action, 250,
-            scrollable: find.byType(Scrollable).first);
+          // Nested lazy slivers can omit offscreen actions from the element
+          // tree. Search the scrollable owning each surface, from inside out,
+          // rather than assuming Scrollable.first is always its parent.
+          final scrollables = find.byType(Scrollable).evaluate().toList();
+          for (final element in scrollables.reversed) {
+            if (action.evaluate().isNotEmpty) break;
+            final scrollable = find.byWidget(element.widget);
+            await tester.drag(scrollable, const Offset(0, 2000));
+            await tester.pump(const Duration(milliseconds: 30));
+            for (var n = 0; n < 35 && action.evaluate().isEmpty; n++) {
+              await tester.drag(scrollable, const Offset(0, -230));
+              await tester.pump(const Duration(milliseconds: 30));
+            }
+          }
         }
+        expect(action, findsOneWidget,
+            reason: '$entry stories action at width $width with large text '
+                'must remain reachable through scrolling');
         await tester.ensureVisible(action);
         await frames(tester);
         expect(action, findsOneWidget);
