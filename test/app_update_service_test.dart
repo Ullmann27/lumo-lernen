@@ -31,6 +31,90 @@ void main() {
         isNull);
   });
 
+  group('family preview updates', () {
+    Map<String, dynamic> release(int build, {
+      bool prerelease = true,
+      bool draft = false,
+      String? tag,
+      String apkName = 'Lumo-Lernen-Neu.apk',
+      String? apkUrl,
+    }) {
+      final name = tag ?? 'coachpreview-build-$build';
+      return {
+        'tag_name': name,
+        'name': 'Lumo Familie $build',
+        'draft': draft,
+        'prerelease': prerelease,
+        'target_commitish': 'test-$build',
+        'html_url':
+            'https://github.com/Ullmann27/lumo-lernen/releases/tag/$name',
+        'assets': [
+          {
+            'name': apkName,
+            'browser_download_url': apkUrl ??
+                'https://github.com/Ullmann27/lumo-lernen/releases/download/$name/$apkName',
+          },
+        ],
+      };
+    }
+
+    test('only family preview candidates are selected, regardless of order', () {
+      final found = AppUpdateService.familyPreviewFromReleases([
+        release(1944),
+        release(1945, prerelease: false),
+        release(1943, tag: 'build-1943'),
+        release(1948, apkName: 'Lumo-Lernen-latest.apk'),
+        release(1947, draft: true),
+        release(1946, apkUrl: 'https://evil.example/app.apk'),
+        release(1942),
+      ], installedBuild: 1941);
+      expect(found.available, isTrue);
+      expect(found.latestBuildNumber, 1944);
+      expect(found.currentBuildNumber, 1941);
+      expect(found.apkUrl.path,
+          '/Ullmann27/lumo-lernen/releases/download/coachpreview-build-1944/Lumo-Lernen-Neu.apk');
+      expect(found.releaseName, 'Lumo Familie 1944');
+    });
+
+    test('never offer downgrade and never mix original with family identity', () {
+      final found = AppUpdateService.familyPreviewFromReleases([
+        release(1941),
+        release(1940),
+        release(9999, apkName: 'Lumo-Lernen-latest.apk'),
+      ], installedBuild: 1941);
+      expect(found.available, isFalse);
+      expect(found.latestBuildNumber, 1941);
+      expect(found.apkUrl.path, contains('Lumo-Lernen-Neu.apk'));
+
+      final empty = AppUpdateService.familyPreviewFromReleases([
+        release(9999, tag: 'build-9999'),
+      ], installedBuild: 1941);
+      expect(empty.available, isFalse);
+      expect(empty.hasUsableDownload, isFalse);
+      expect(empty.releaseName, contains('Noch kein freigegebenes'));
+    });
+
+    test('rejects forged release URL or another release asset URL', () {
+      final mismatched = release(1942,
+        apkUrl: 'https://github.com/Ullmann27/lumo-lernen/releases/download/build-1942/Lumo-Lernen-Neu.apk');
+      mismatched['html_url'] =
+          'https://github.com/Ullmann27/lumo-lernen/releases/tag/build-1942';
+      final blocked = AppUpdateService.familyPreviewFromReleases([
+        mismatched,
+      ], installedBuild: 1941);
+      expect(blocked.available, isFalse);
+      expect(blocked.hasUsableDownload, isFalse);
+    });
+
+    test('separate preview release endpoint retains an HTTPS trusted API', () {
+      expect(AppUpdateService.familyReleasesApi.scheme, 'https');
+      expect(AppUpdateService.familyReleasesApi.host, 'api.github.com');
+      expect(AppUpdateService.familyReleasesApi.path,
+          '/repos/Ullmann27/lumo-lernen/releases');
+      expect(AppUpdateService.familyReleasesUrl.host, 'github.com');
+    });
+  });
+
   group('AppUpdateInfo', () {
     test('hasUsableDownload ist false wenn apkUrl leer', () {
       final info = AppUpdateInfo(

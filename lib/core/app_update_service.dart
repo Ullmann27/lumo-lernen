@@ -58,14 +58,81 @@ class AppUpdateService {
     'https://github.com/Ullmann27/lumo-lernen/releases/latest',
   );
 
+  /// The family preview package must never receive a normal-app release.
+  static const bool isFamilyPreview =
+      bool.fromEnvironment('LUMO_SIDE_BY_SIDE', defaultValue: false);
+  static final Uri familyReleasesApi = Uri.parse(
+    'https://api.github.com/repos/Ullmann27/lumo-lernen/releases?per_page=50',
+  );
+  static final Uri familyReleasesUrl = Uri.parse(
+    'https://github.com/Ullmann27/lumo-lernen/releases',
+  );
+
+  /// Published prereleases tagged coachpreview-build-N contain only the
+  /// explicitly matching Lumo-Lernen-Neu.apk. No main-app APK is offered.
+  @visibleForTesting
+  static AppUpdateInfo familyPreviewFromReleases(
+    List<dynamic> releases, {
+    int? installedBuild,
+  }) {
+    final installed = installedBuild ?? currentBuildNumber;
+    final service = const AppUpdateService();
+    AppUpdateInfo? newest;
+    for (final raw in releases) {
+      if (raw is! Map<String, dynamic>) continue;
+      if (raw['draft'] != false || raw['prerelease'] != true) continue;
+      final tag = raw['tag_name']?.toString() ?? '';
+      const prefix = 'coachpreview-build-';
+      if (!tag.startsWith(prefix)) continue;
+      final digits = tag.substring(prefix.length);
+      if (digits.isEmpty ||
+          digits.codeUnits.any((c) => c < 48 || c > 57)) continue;
+      final build = int.tryParse(digits);
+      if (build == null || build <= 0) continue;
+      final assets = (raw['assets'] as List<dynamic>? ?? const [])
+          .whereType<Map<String, dynamic>>().toList(growable: false);
+      final asset = preferredApkAsset(assets, sideBySide: true);
+      if (asset == null) continue;
+      final apkUrl =
+          service._trustedUri(asset['browser_download_url']?.toString());
+      final pageUrl = service._trustedUri(raw['html_url']?.toString());
+      if (apkUrl == null || pageUrl == null) continue;
+      if (apkUrl.path !=
+              '/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-Neu.apk' ||
+          pageUrl.path != '/Ullmann27/lumo-lernen/releases/tag/$tag') {
+        continue;
+      }
+      if (newest != null && newest.latestBuildNumber >= build) continue;
+      newest = AppUpdateInfo(
+        available: build > installed,
+        currentBuildNumber: installed,
+        latestBuildNumber: build,
+        releaseUrl: pageUrl,
+        apkUrl: apkUrl,
+        releaseName: raw['name']?.toString() ?? 'Lumo Familie $build',
+        commitSha: raw['target_commitish']?.toString() ?? '',
+      );
+    }
+    return newest ?? AppUpdateInfo(
+      available: false,
+      currentBuildNumber: installed,
+      latestBuildNumber: installed,
+      releaseUrl: familyReleasesUrl,
+      apkUrl: Uri(),
+      releaseName: 'Noch kein freigegebenes Familien-Update',
+      commitSha: '',
+    );
+  }
+
   Future<AppUpdateInfo> checkLatest() async {
     // Manuelles Redirect-Following: jedes Redirect-Ziel wird gegen die
     // Whitelist geprueft. Damit kann ein boeswillig manipulierter
     // 302-Location-Header NICHT auf eine fremde Domain umleiten.
     final client = HttpClient()..connectionTimeout = const Duration(seconds: 8);
     client.autoUncompress = true;
+    final sourceApi = isFamilyPreview ? familyReleasesApi : latestReleaseApi;
     try {
-      final request = await client.getUrl(latestReleaseApi);
+      final request = await client.getUrl(sourceApi);
       request.followRedirects = false;
       request.headers.set(
         HttpHeaders.acceptHeader,
@@ -85,7 +152,7 @@ class AppUpdateService {
         final location = response.headers.value(HttpHeaders.locationHeader);
         if (location == null) break;
         final redirectTarget = Uri.tryParse(
-          latestReleaseApi.resolve(location).toString(),
+          sourceApi.resolve(location).toString(),
         );
         if (redirectTarget == null || !isTrustedApiUrl(redirectTarget)) {
           return _fallbackInfo(
@@ -118,6 +185,12 @@ class AppUpdateService {
       }
 
       final decoded = jsonDecode(body);
+      if (isFamilyPreview) {
+        if (decoded is! List<dynamic>) {
+          return _fallbackInfo(error: 'Familien-Update-Katalog nicht lesbar.');
+        }
+        return familyPreviewFromReleases(decoded);
+      }
       if (decoded is! Map<String, dynamic>) {
         return _fallbackInfo(
           error: 'Update-Antwort konnte nicht gelesen werden.',
@@ -161,9 +234,11 @@ class AppUpdateService {
       available: false,
       currentBuildNumber: currentBuildNumber,
       latestBuildNumber: currentBuildNumber,
-      releaseUrl: fallbackReleaseUrl,
+      releaseUrl: isFamilyPreview ? familyReleasesUrl : fallbackReleaseUrl,
       apkUrl: Uri(),
-      releaseName: 'Lumo Lernen Debug Latest',
+      releaseName: isFamilyPreview
+          ? 'Noch kein freigegebenes Familien-Update'
+          : 'Lumo Lernen Debug Latest',
       commitSha: '',
       error: error,
     );
