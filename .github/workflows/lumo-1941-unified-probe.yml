@@ -1,0 +1,90 @@
+name: Lumo 1941 unified Android candidate (no release)
+# 1941 full tutor surface: animated helper, readable tips and AI replies, recorded offline voice.
+# Final QA: idle mascot tickers disabled; animate only while real speech is active.
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1941-tutor-voice-hologlass-2026-10-14
+    paths:
+      - .github/workflows/lumo-1941-unified-probe.yml
+permissions:
+  contents: read
+concurrency:
+  group: lumo-1941-verified-android-candidate
+  cancel-in-progress: true
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Capture exact source and build assumptions
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          git rev-parse HEAD | tee dist/BUILD-SOURCE.txt
+          cat config/godot-source.json | tee dist/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
+          test "$(grep '^version:' pubspec.yaml)" = 'version: 0.12.34+1941'
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Flutter analysis
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Focused regressions
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/design/lumo_agent_hologlass_layout_test.dart \
+            test/design/lumo_story_actual_reader_visual_test.dart \
+            test/story_setup_learning_path_grade_test.dart \
+            test/story_setup_profile_grade_test.dart \
+            test/learning/lumo_tutor_hint_hologlass_test.dart
+      - name: Complete Flutter test suite
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Backend and Android preparation tests
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep
+          rg --version
+          node --test server/lumo-ai-proxy/test/*.test.js
+          python3 -m unittest discover -s scripts/tests
+      - name: Match pinned Godot engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build unified signed Flutter and Godot APK
+        run: bash scripts/build_unified_apk.sh
+      - name: Verify APK and preserve exact source
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256-1941.txt
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+      - name: Upload unpublished candidate and verification
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1941-unified-arm64-candidate
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/APK-SHA256-1941.txt
+            dist/BUILD-SOURCE.txt
+            dist/GODOT-SOURCE.json
+            dist/APP-VERSION.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0

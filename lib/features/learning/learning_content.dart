@@ -23,6 +23,7 @@ import '../../core/task_hint_service.dart';
 import '../../core/recent_task_repository.dart';
 import '../../core/session_variety_guard.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_voice_clips.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -35,6 +36,7 @@ import 'renderers/shape_trace_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
 import 'widgets/rechentricks_mentor_card.dart';
 import 'widgets/lumo_learning_tree_card.dart';
+import 'widgets/lumo_tutor_hint_card.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -154,7 +156,16 @@ class _LearningContentState extends State<LearningContent> {
     LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LumoVoice.instance.speak(_welcomeForKind);
+      if (!mounted) return;
+      final settings = widget.appState.state.settings;
+      if (!settings.voiceEnabled || !settings.autoReadEnabled) return;
+      // Always audible with the bundled warm German recording, even when
+      // the optional license for synthesizing arbitrary text is not granted.
+      unawaited(LumoVoice.instance.speak(
+        'Hallo! Schön, dass du da bist. Ich bin Lumo. '
+        'Komm, wir entdecken zusammen etwas Neues!',
+        style: VoiceStyle.greeting,
+      ));
     });
     // Persistente Wiederholungsvermeidung nachladen, ohne den ersten Frame zu blockieren.
     _hydrateRecent();
@@ -435,11 +446,69 @@ class _LearningContentState extends State<LearningContent> {
         LumoLearningEventKind.hintAccepted,
         context: _publishedTaskContext);
     if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(LumoVoice.instance.speak(hint, style: VoiceStyle.explain));
+      unawaited(_speakTutorHint(hint));
     }
     if (_cloudHelpAllowed) {
       unawaited(_askAiTutor());
     }
+  }
+
+  /// Spoken lessons use the shipped warm German Lumo-Frei voice first.
+  /// Arbitrary task hints are only synthesized after the parent accepts
+  /// the local model license; never silently switch to a different voice.
+  Future<void> _speakTutorHint(String text,
+      {bool explainAvailability = false}) async {
+    final settings = widget.appState.state.settings;
+    if (!settings.voiceEnabled || !LumoVoice.instance.isEnabled) {
+      if (explainAvailability && mounted) {
+        _showTutorSpeechNotice(
+          'Lumos Stimme ist ausgeschaltet. Bitte im Elternbereich '
+          'unter Ton und Stimme aktivieren.',
+        );
+      }
+      return;
+    }
+
+    await LumoVoiceClips.ensureFreeLoaded();
+    if (!mounted) return;
+    final recorded = LumoVoiceClips.freeLookup(text) != null;
+    if (!recorded && !settings.localVoiceLicenseAccepted) {
+      // This complete German phrase is in the signed local catalog. The
+      // explanation stays readable instead of disappearing or using TTS.
+      unawaited(LumoVoice.instance.speak(
+        'Hier ist ein kleiner Tipp:', style: VoiceStyle.explain));
+      if (explainAvailability) {
+        _showTutorSpeechNotice(
+          'Lumo kann die Einleitung sprechen. Für ganze neue Erklärungen '
+          'bitte im Elternbereich unter Ton und Stimme '
+          '„Neue Sätze offline vorlesen“ freigeben.',
+        );
+      }
+      return;
+    }
+    if (!recorded && !await LumoVoice.instance.localSpeechAvailable()) {
+      if (mounted) {
+        _showTutorSpeechNotice(
+          'Die lokale Lumo-Sprachausgabe ist auf diesem Gerät '
+          'noch nicht verfügbar. Der Tipp bleibt lesbar.',
+        );
+      }
+      return;
+    }
+    if (!mounted) return;
+    unawaited(LumoVoice.instance.speak(
+      text, style: VoiceStyle.explain));
+  }
+
+  void _showTutorSpeechNotice(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 7),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   bool get _cloudHelpAllowed =>
@@ -1310,8 +1379,10 @@ class _LearningContentState extends State<LearningContent> {
                                   color: Colors.white, size: 24),
                               onPressed: () {
                                 _lumo.talk();
-                                unawaited(LumoVoice.instance
-                                    .speak('Aufgabe ${_task.prompt}'));
+                                unawaited(_speakTutorHint(
+                                  _task.prompt,
+                                  explainAvailability: true,
+                                ));
                               },
                             ),
                           ),
@@ -1333,7 +1404,12 @@ class _LearningContentState extends State<LearningContent> {
                       ],
                       if (_tutorHint != null) ...[
                         const SizedBox(height: 14),
-                        _TutorHintBanner(text: _tutorHint!),
+                        LumoTutorHintCard(
+                          text: _tutorHint!,
+                          reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
+                          onSpeak: () => unawaited(_speakTutorHint(
+                            _tutorHint!, explainAvailability: true)),
+                        ),
                       ],
                       if (_visualAid != null) ...[
                         const SizedBox(height: 14),
@@ -1415,173 +1491,6 @@ class _LearningContentState extends State<LearningContent> {
           ],
         );
       },
-    );
-  }
-}
-
-class _TutorHintBanner extends StatefulWidget {
-  const _TutorHintBanner({required this.text});
-
-  final String text;
-
-  @override
-  State<_TutorHintBanner> createState() => _TutorHintBannerState();
-}
-
-class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 480),
-  )..forward();
-
-  late final Animation<double> _fade = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.easeOutQuart,
-  );
-  late final Animation<Offset> _slide = Tween<Offset>(
-    begin: const Offset(0, .12),
-    end: Offset.zero,
-  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _fade,
-      child: SlideTransition(
-        position: _slide,
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LumoGradients.peachComfort,
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.32), width: 1.4,
-            ),
-            boxShadow: LumoShadow.help(const Color(0xFFFFB96B)),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            child: IntrinsicHeight(
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  // Akzent-Linie links als visueller Anker
-                  Container(
-                    width: 5,
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                        colors: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                      ),
-                    ),
-                  ),
-                  Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.fromLTRB(14, 14, 16, 14),
-                      child: Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          // Lumo-Avatar mit doppeltem Glow
-                          Container(
-                            width: 42,
-                            height: 42,
-                            alignment: Alignment.center,
-                            decoration: BoxDecoration(
-                              gradient: const RadialGradient(
-                                colors: [Color(0xFF184F8D), Color(0xFF0B2C58)],
-                                radius: .9,
-                              ),
-                              shape: BoxShape.circle,
-                              border: Border.all(
-                                color: LumoVisualTokens.cyan.withOpacity(.45),
-                                width: 1.5,
-                              ),
-                              boxShadow: [
-                                BoxShadow(
-                                  color: LumoVisualTokens.cyan.withOpacity(.28),
-                                  blurRadius: 12,
-                                  offset: const Offset(0, 4),
-                                ),
-                              ],
-                            ),
-                            child: const Text(
-                              '🦊',
-                              style: TextStyle(fontSize: 22),
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    const Text(
-                                      'Lumo erklärt',
-                                      style: TextStyle(
-                                        fontFamily: 'Nunito',
-                                        fontSize: 14,
-                                        fontWeight: FontWeight.w900,
-                                        color: LumoVisualTokens.white,
-                                        letterSpacing: .2,
-                                      ),
-                                    ),
-                                    const SizedBox(width: 6),
-                                    Container(
-                                      padding: const EdgeInsets.symmetric(
-                                        horizontal: 7,
-                                        vertical: 2,
-                                      ),
-                                      decoration: BoxDecoration(
-                                        color: LumoVisualTokens.cyan
-                                            .withOpacity(.18),
-                                        borderRadius: BorderRadius.circular(
-                                          LumoRadius.pill,
-                                        ),
-                                      ),
-                                      child: const Text(
-                                        'Tipp',
-                                        style: TextStyle(
-                                          fontFamily: 'Nunito',
-                                          fontSize: 9,
-                                          fontWeight: FontWeight.w900,
-                                          color: LumoVisualTokens.cyanBright,
-                                          letterSpacing: .6,
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                const SizedBox(height: 5),
-                                Text(
-                                  widget.text,
-                                  style: const TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontSize: 14,
-                                    fontWeight: FontWeight.w800,
-                                    color: LumoVisualTokens.white,
-                                    height: 1.32,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }
@@ -2733,14 +2642,9 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
 
   @override
   Widget build(BuildContext context) {
-    // Pro Fach eigene Farbe.
-    final color = switch (widget.subject.toLowerCase()) {
-      'mathematik' || 'mathe' => const Color(0xFFFF7A2F),
-      'deutsch' || 'rechtschreibung' => const Color(0xFF8B5CF6),
-      'lesen' => const Color(0xFFF472B6),
-      'sachunterricht' || 'natur' => const Color(0xFF10B981),
-      _ => const Color(0xFF60A5FA),
-    };
+    // Hologlass is shared across all subjects, unlike the old orange/pink
+    // per-subject buttons that clashed with the blue Lumo learning world.
+    const color = LumoVisualTokens.cyanBright;
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
@@ -2751,17 +2655,19 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
         duration: const Duration(milliseconds: 120),
         curve: Curves.easeOutCubic,
         child: Container(
+          key: const ValueKey('lumo-help-hologlass-button'),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [color, color.withOpacity(0.75)],
+            gradient: const LinearGradient(
+              colors: [Color(0xED0C4477), Color(0xF0082852)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
+            border: Border.all(color: color.withOpacity(.75), width: 1.5),
             boxShadow: [
               BoxShadow(
-                color: color.withOpacity(0.42),
+                color: color.withOpacity(0.25),
                 blurRadius: 14,
                 offset: const Offset(0, 6),
                 spreadRadius: -2,
@@ -2819,15 +2725,15 @@ class _AiHelpBubble extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xE31D2F69), Color(0xE30C214A)],
+          colors: [Color(0xF00D3B70), Color(0xF0082149)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF8B9CFF).withOpacity(.66), width: 1.4),
+        border: Border.all(color: const Color(0xFF4EDCFF).withOpacity(.66), width: 1.4),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF8B5CF6).withOpacity(0.18),
+            color: const Color(0xFF37CFF9).withOpacity(0.18),
             blurRadius: 14,
             offset: const Offset(0, 5),
             spreadRadius: -3,
@@ -2845,18 +2751,19 @@ class _AiHelpBubble extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
+                    colors: [Color(0xFF1B5F93), Color(0xFF0A315B)],
                   ),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF8B5CF6).withOpacity(0.4),
+                      color: const Color(0xFF37CFF9).withOpacity(0.4),
                       blurRadius: 8,
                       offset: const Offset(0, 3),
                     ),
                   ],
                 ),
-                child: const Text('🦊', style: TextStyle(fontSize: 20)),
+                child: const LumoFoxPose(
+                  pose: LumoDesignFoxPose.teacherStick, size: 33),
               ),
               const SizedBox(width: 10),
               const Expanded(
@@ -2866,14 +2773,14 @@ class _AiHelpBubble extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF6D28D9),
+                    color: Color(0xFF81E9FF),
                     letterSpacing: 0.3,
                   ),
                 ),
               ),
               IconButton(
                 onPressed: onSpeak,
-                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF7C3AED),
+                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF81E9FF),
                 ),
                 tooltip: 'Lumo vorlesen lassen',
               ),
@@ -2886,7 +2793,7 @@ class _AiHelpBubble extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 14.5,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF1F2937),
+              color: Color(0xFFF3FAFF),
               height: 1.45,
             ),
           ),
