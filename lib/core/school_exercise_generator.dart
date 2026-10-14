@@ -7,6 +7,7 @@ import 'math_task_templates.dart';
 import 'primary_school_word_data.dart';
 import 'reading_comprehension_data.dart';
 import 'science_task_data.dart';
+import 'science_quality_extension.dart';
 import 'spelling_context_data.dart';
 
 class LumoTask {
@@ -1297,6 +1298,7 @@ const Map<String, List<String>> _scienceAliases = <String, List<String>>{
 
 const List<ScienceQuestion> _scienceQuestions = <ScienceQuestion>[
   ...scienceExtensionQuestions,
+  ...scienceQualityExtensionQuestions,
   ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Vogel?', answer: 'Spatz', choices: <String>['Spatz', 'Kuh', 'Fisch', 'Ameise'], explanation: 'Ein Spatz hat Federn und Flügel.'),
   ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Fisch?', answer: 'Forelle', choices: <String>['Forelle', 'Hund', 'Biene', 'Hase'], explanation: 'Fische leben im Wasser und haben Flossen.'),
   ScienceQuestion(grade: 1, unit: 'Tiere', prompt: 'Welches Tier ist ein Insekt?', answer: 'Biene', choices: <String>['Biene', 'Katze', 'Frosch', 'Schaf'], explanation: 'Insekten haben sechs Beine.'),
