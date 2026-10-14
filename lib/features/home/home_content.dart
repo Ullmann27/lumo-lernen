@@ -9,6 +9,7 @@ import '../../app/app_theme.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_glass_optics.dart';
 import '../../widgets/fox/lumo_character.dart';
 import '../journal/lumo_journal_screen.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
@@ -151,7 +152,9 @@ class HomeContent extends StatelessWidget {
                     // Breite Zweierspalten (Fold innen) etwas flacher, ohne leere Mitte.
                     childAspectRatio: textScale > 1.2
                         ? 1.05
-                        : (columns == 2 && constraints.maxWidth > 600 ? 1.7 : 1.34),
+                        : (columns == 2 && constraints.maxWidth > 600
+                            ? 1.7
+                            : 1.34),
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
@@ -174,7 +177,8 @@ class HomeContent extends StatelessWidget {
                     ),
                     onPressed: () {
                       if (ModalRoute.of(context)?.isCurrent != true) return;
-                      _open(context, LumoStoryLibraryScreen(appState: appState));
+                      _open(
+                          context, LumoStoryLibraryScreen(appState: appState));
                     },
                     icon: const Icon(Icons.auto_stories_rounded),
                     label: const Text('Geschichten lesen und erfinden'),
@@ -909,66 +913,96 @@ class _HomeHero extends StatelessWidget {
                   offset: Offset(0, 8))
             ],
           ),
-          child: Stack(children: [
-            Positioned(
-                right: 0,
-                bottom: 2,
-                width: foxSize,
-                height: foxSize,
-                child: LumoCharacter(
-                    pose: LumoDesignFoxPose.bookWelcome,
-                    size: foxSize,
-                    reduceMotion: reduceMotion,
-                    idleHops: false,
-                    celebratePose: null,
-                    onTap: () => LumoCompanionRequests.instance
-                        .requestAppExplanation())),
-            Positioned(
-                left: 16,
-                top: 18,
-                bottom: 14,
-                width: width * .53,
-                child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('DEIN LERNABENTEUER',
-                          style: TextStyle(
-                              fontSize: 10,
-                              letterSpacing: 1.3,
-                              color: LumoVisualTokens.cyanBright,
-                              fontWeight: FontWeight.w800)),
-                      const SizedBox(height: 8),
-                      Text('Hallo, $name!',
-                          key: const ValueKey('home-greeting'),
-                          maxLines: 2,
-                          style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: width < 340 ? 21 : 25,
-                              height: 1.08,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white)),
-                      const SizedBox(height: 8),
-                      const Flexible(
-                          child: Text('Bereit für ein neues Abenteuer?',
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  height: 1.25,
-                                  color: LumoVisualTokens.muted))),
-                      const Spacer(),
-                      FilledButton.icon(
-                          key: const ValueKey('home-start-learning'),
-                          onPressed: onLearn,
-                          style: FilledButton.styleFrom(
-                              backgroundColor: LumoVisualTokens.cyanBright,
-                              foregroundColor: LumoVisualTokens.navigation,
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 13, vertical: 12),
-                              minimumSize: const Size(48, 48)),
-                          icon: const Icon(Icons.play_arrow_rounded, size: 21),
-                          label: const Text('Loslernen',
-                              style: TextStyle(fontWeight: FontWeight.w900))),
-                    ])),
-          ]),
+          child: ClipRRect(
+              borderRadius: BorderRadius.circular(28),
+              child: CustomPaint(
+                  foregroundPainter: const LumoGlassOptics(radius: 28),
+                  child: Stack(children: [
+                    const Positioned.fill(
+                        child: ExcludeSemantics(
+                            child: Image(
+                      image: AssetImage(
+                          'assets/lumo_design/bg/bg_glass_islands.png'),
+                      fit: BoxFit.cover,
+                      alignment: Alignment(0, -.45),
+                    ))),
+                    const Positioned.fill(
+                        child: DecoratedBox(
+                            decoration: BoxDecoration(
+                      gradient: LinearGradient(colors: [
+                        Color(0xF0061839),
+                        Color(0xC908244B),
+                        Color(0x150B315F)
+                      ], stops: [
+                        0,
+                        .48,
+                        1
+                      ]),
+                    ))),
+                    Positioned(
+                        right: 0,
+                        bottom: 2,
+                        width: foxSize,
+                        height: foxSize,
+                        child: LumoLightPlinth(
+                            child: LumoCharacter(
+                                pose: LumoDesignFoxPose.bookWelcome,
+                                size: foxSize,
+                                reduceMotion: reduceMotion,
+                                idleHops: false,
+                                celebratePose: null,
+                                onTap: () => LumoCompanionRequests.instance
+                                    .requestAppExplanation()))),
+                    Positioned(
+                        left: 16,
+                        top: 18,
+                        bottom: 14,
+                        width: width * .53,
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text('DEIN LERNABENTEUER',
+                                  style: TextStyle(
+                                      fontSize: 10,
+                                      letterSpacing: 1.3,
+                                      color: LumoVisualTokens.cyanBright,
+                                      fontWeight: FontWeight.w800)),
+                              const SizedBox(height: 8),
+                              Text('Hallo, $name!',
+                                  key: const ValueKey('home-greeting'),
+                                  maxLines: 2,
+                                  style: TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontSize: width < 340 ? 21 : 25,
+                                      height: 1.08,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.white)),
+                              const SizedBox(height: 8),
+                              const Flexible(
+                                  child: Text('Bereit für ein neues Abenteuer?',
+                                      style: TextStyle(
+                                          fontSize: 14,
+                                          height: 1.25,
+                                          color: LumoVisualTokens.muted))),
+                              const Spacer(),
+                              FilledButton.icon(
+                                  key: const ValueKey('home-start-learning'),
+                                  onPressed: onLearn,
+                                  style: FilledButton.styleFrom(
+                                      backgroundColor:
+                                          LumoVisualTokens.cyanBright,
+                                      foregroundColor:
+                                          LumoVisualTokens.navigation,
+                                      padding: const EdgeInsets.symmetric(
+                                          horizontal: 13, vertical: 12),
+                                      minimumSize: const Size(48, 48)),
+                                  icon: const Icon(Icons.play_arrow_rounded,
+                                      size: 21),
+                                  label: const Text('Loslernen',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.w900))),
+                            ])),
+                  ]))),
         );
       });
 }

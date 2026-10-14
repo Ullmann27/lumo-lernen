@@ -6,6 +6,7 @@ import '../../core/progress_repository.dart';
 import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import 'lumo_motion.dart';
+import 'lumo_glass_optics.dart';
 
 enum LumoDesignFoxPose {
   cardsWelcome('fox_cards_welcome', 'Lumo lädt dich zum Kartenspiel ein'),
@@ -256,7 +257,6 @@ class LumoGlassCard extends StatelessWidget {
     final lowerAlpha = (surfaceOpacity + .08).clamp(0.0, 1.0).toDouble();
     final deepAlpha = (surfaceOpacity + .17).clamp(0.0, 1.0).toDouble();
     return Container(
-      padding: padding,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -289,7 +289,10 @@ class LumoGlassCard extends StatelessWidget {
           ),
         ],
       ),
-      child: child,
+      child: CustomPaint(
+        foregroundPainter: LumoGlassOptics(radius: radius),
+        child: Padding(padding: padding, child: child),
+      ),
     );
   }
 }
