@@ -12,6 +12,7 @@ import lumo_education_android_probe as edu
 import lumo_free_voice_android_probe as voice
 import kart_complete_android_probe as race
 from lumo_1939_pause_navigation import tap_pause_setting
+from lumo_1939_flutter_navigation import tap_stable_control
 
 existing = edu.existing
 
@@ -36,7 +37,7 @@ def main():
                     runtime='Android emulator, installed x86_64 APK from unified build')
         result['screenshots'].append(item)
     def tap(label, tag):
-        edu.tap(out, label, tag)
+        tap_stable_control(out, label, tag)
     def wait(label, tag):
         return edu.wait_text(out, label, tag, timeout=50)
     try:

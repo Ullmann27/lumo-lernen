@@ -2,7 +2,7 @@ name: Lumo 1939 independent Android update and gameplay recheck
 on:
   push:
     branches: [sol/lumo-1939-runtime-followup-2026-10-14]
-    paths: [.github/workflows/lumo-1939-android-recheck.yml]
+    paths: [.github/workflows/lumo-1939-android-recheck.yml, .github/probes/lumo_1939_*.py]
   workflow_dispatch:
 
 permissions:
