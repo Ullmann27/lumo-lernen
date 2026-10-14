@@ -332,7 +332,7 @@ class ExerciseFactory {
       'Deutsch',
       'Lesen',
       'Rechtschreibung',
-      if (grade >= 3) 'Englisch',
+      'Englisch',
       'Sachunterricht',
       'Schreiben',
     ];
@@ -356,7 +356,7 @@ class ExerciseFactory {
         if (subject.value.contains(weakUnit.first.key)) return subject.key;
       }
     }
-    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht', 'Schreiben'];
+    final base = <String>['Mathematik', 'Deutsch', 'Lesen', 'Rechtschreibung', 'Sachunterricht', 'Schreiben', 'Englisch'];
     return base[_random.nextInt(base.length)];
   }
 
