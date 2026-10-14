@@ -92,7 +92,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.close_rounded),
+                    icon: const Icon(Icons.close_rounded, color: LumoVisualTokens.white),
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
