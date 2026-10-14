@@ -263,7 +263,7 @@ class LumoCurriculum {
                 ),
                 LearningTopic(
                   id: 'en1_3',
-                  title: 'Begruessung',
+                  title: 'Begrüßung',
                   icon: Icons.language_rounded,
                   gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
                   shortDesc: 'Einfache Wörter erkennen und sprechen',
@@ -591,7 +591,7 @@ class LumoCurriculum {
               topics: const [
                 LearningTopic(
                   id: 's4_europa',
-                  title: 'Europa',
+                  title: 'Kontinente und Ozeane',
                   icon: Icons.public_rounded,
                   gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
                   shortDesc: 'Länder & Hauptstädte',
@@ -1799,6 +1799,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       final subject = s.name;
       final topicUnit = switch (t.id) {
         's1_koerper' => 'Körper',
+        'en1_3' => 'Begruessung',
         's3_oesterreich' => 'Bundesländer Österreichs',
         's3_natur' => 'Pflanzen',
         's4_europa' => 'Kontinente und Ozeane',
@@ -1866,6 +1867,49 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       Navigator.of(
         context,
       ).push(MaterialPageRoute(builder: (_) => moduleBuilder));
+      return;
+    }
+    // A grade tile is an actionable lesson. Preserve dedicated live modules,
+    // then route all generator-backed Mathematics/German topics to actual
+    // local exercises instead of the old online-only teacher chat.
+    if (s.name == 'Mathematik' || s.name == 'Deutsch') {
+      final unit = switch (t.id) {
+        'm1_zahlen10' => 'Mengenvergleich',
+        'm1_formen' => 'Geometrie Formen',
+        'm2_zahlen100' => 'Plus bis 100',
+        'm2_einmaleins' => 'Einmaleins Vorbereitung',
+        'm2_uhr' => 'Uhrzeit',
+        'm2_geld' => 'Geld wechseln',
+        'm3_zahlen1000' => 'Plus bis 1000',
+        'm3_einmaleins_voll' => 'Einmaleins',
+        'm3_geometrie' => 'Umfang',
+        'm4_million' => 'Zahlenraum bis 1 Million',
+        'm4_bruch' => 'Bruchrechnen einfach',
+        'm4_textaufgaben' => 'Sachaufgaben drei Schritte',
+        'd2_saetze' => 'Erste Sätze',
+        'd2_artikel' => 'Artikel',
+        'd2_mehrzahl' => 'Einzahl und Mehrzahl',
+        'd3_wortarten' => 'Wortarten',
+        'd3_zeitformen' => 'Zeitformen',
+        'd4_grammatik' => 'Die 4 Fälle',
+        _ => t.title,
+      };
+      if (Curriculum.unitsForGrade(
+              s.name, widget.appState.state.grade).contains(unit)) {
+        widget.appState.update(widget.appState.state.copyWith(
+          section: LumoSection.exercises,
+          subject: s.name,
+          unit: unit,
+          mood: LumoMood.point,
+          lumoMessage: 'Wir üben ${Curriculum.prettifyUnit(unit)}.',
+        ));
+        return;
+      }
+    }
+    if (t.id == 'd4_aufsatz') {
+      Navigator.of(context).push<void>(MaterialPageRoute(
+        builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
+      ));
       return;
     }
     // 3) Fallback: ChatGPT-Lernchat
