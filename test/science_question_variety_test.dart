@@ -6,7 +6,14 @@ void main() {
     (grade: 1, unit: 'Jahreszeiten', count: 4),
     (grade: 2, unit: 'Tiere', count: 9),
     (grade: 3, unit: 'Bundesländer Österreichs', count: 8),
+    (grade: 3, unit: 'Wetter', count: 6),
+    (grade: 3, unit: 'Verkehr', count: 6),
+    (grade: 3, unit: 'Zeit und Kalender', count: 6),
+    (grade: 3, unit: 'Familie und Gemeinschaft', count: 6),
+    (grade: 3, unit: 'Berufe', count: 6),
+    (grade: 3, unit: 'Pflanzen', count: 6),
     (grade: 4, unit: 'Kontinente und Ozeane', count: 6),
+    (grade: 4, unit: 'Diagramme lesen', count: 6),
   ]) {
     test('Sachunterricht grade ${scenario.grade} / ${scenario.unit}: '
         'use distinct real questions until the bank is depleted', () {
