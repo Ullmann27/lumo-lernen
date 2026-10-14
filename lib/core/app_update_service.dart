@@ -82,7 +82,50 @@ class AppUpdateService {
       if (raw is! Map<String, dynamic>) continue;
       if (raw['draft'] != false || raw['prerelease'] != true) continue;
       final tag = raw['tag_name']?.toString() ?? '';
-      final match = RegExp(r'^coachpreview-build-(\d+)
+      const prefix = 'coachpreview-build-';
+      if (!tag.startsWith(prefix)) continue;
+      final digits = tag.substring(prefix.length);
+      if (digits.isEmpty ||
+          digits.codeUnits.any((c) => c < 48 || c > 57)) continue;
+      final build = int.tryParse(digits);
+      if (build == null || build <= 0) continue;
+      final assets = (raw['assets'] as List<dynamic>? ?? const [])
+          .whereType<Map<String, dynamic>>().toList(growable: false);
+      final asset = preferredApkAsset(assets, sideBySide: true);
+      if (asset == null) continue;
+      final apkUrl =
+          service._trustedUri(asset['browser_download_url']?.toString());
+      final pageUrl = service._trustedUri(raw['html_url']?.toString());
+      if (apkUrl == null || pageUrl == null) continue;
+      if (apkUrl.path !=
+              '/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-Neu.apk' ||
+          pageUrl.path != '/Ullmann27/lumo-lernen/releases/tag/$tag') {
+        continue;
+      }
+      if (newest != null && newest.latestBuildNumber >= build) continue;
+      newest = AppUpdateInfo(
+        available: build > installed,
+        currentBuildNumber: installed,
+        latestBuildNumber: build,
+        releaseUrl: pageUrl,
+        apkUrl: apkUrl,
+        releaseName: raw['name']?.toString() ?? 'Lumo Familie $build',
+        commitSha: raw['target_commitish']?.toString() ?? '',
+      );
+    }
+    return newest ??
+        AppUpdateInfo(
+          available: false,
+          currentBuildNumber: installed,
+          latestBuildNumber: installed,
+          releaseUrl: familyReleasesUrl,
+          apkUrl: Uri(),
+          releaseName: 'Noch kein freigegebenes Familien-Update',
+          commitSha: '',
+        );
+  }
+
+  Future<AppUpdateInfo> checkLatest() async {
     // Manuelles Redirect-Following: jedes Redirect-Ziel wird gegen die
     // Whitelist geprueft. Damit kann ein boeswillig manipulierter
     // 302-Location-Header NICHT auf eine fremde Domain umleiten.
