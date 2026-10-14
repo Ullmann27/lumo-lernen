@@ -75,10 +75,11 @@ def main():
         wait('Sichere Einstellungen', 'parents-loaded')
         shot('03-parents-phone')
         tap('Lernen', 'learning-phone')
-        wait('Mathematik', 'learning-phone-loaded')
+        # UI label observed in actual 1939 Android screenshot: 'Mathe', not 'Mathematik'.
+        wait('Mathe', 'learning-phone-loaded')
         shot('04-learning-phone')
         existing.base.display(2176, 1812, 225)
-        wait('Mathematik', 'learning-fold-loaded')
+        wait('Mathe', 'learning-fold-loaded')
         shot('05-learning-fold')
         tap('Start', 'home-fold')
         wait('LumoTest', 'home-fold-loaded')
