@@ -447,13 +447,13 @@ class _SafetyFrame extends StatelessWidget {
       decoration: lumoCard(color: LumoVisualTokens.navigation),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Icon(proxyReady ? Icons.verified_user_rounded : Icons.shield_rounded,
-            color: proxyReady ? const Color(0xFF16A34A) : LumoColors.orange),
+            color: LumoVisualTokens.cyanBright),
         const SizedBox(width: 10),
         Expanded(
           child: Text(
             'Sicherheitsrahmen: Lumo spricht nur über kindgerechte Themen wie Schule, Freunde, Cartoons, Lesen, Mathe, Deutsch, Englisch, Sachunterricht und Natur. Verbotene Themen werden freundlich umgelenkt.',
             style: LumoTextStyles.body.copyWith(
-                color: LumoColors.ink700, fontWeight: FontWeight.w800),
+                color: LumoVisualTokens.white, fontWeight: FontWeight.w800),
           ),
         ),
       ]),
@@ -509,8 +509,8 @@ class _AnswerBubble extends StatelessWidget {
       decoration: lumoCard(
         gradient: LinearGradient(
           colors: blocked
-              ? [const Color(0xFFFFF7ED), Colors.white]
-              : [Colors.white, const Color(0xFFF8FAFC)],
+              ? [LumoVisualTokens.navigation, LumoVisualTokens.glass]
+              : [LumoVisualTokens.glass, LumoVisualTokens.navigation],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -518,23 +518,23 @@ class _AnswerBubble extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Icon(blocked ? Icons.front_hand_rounded : Icons.chat_bubble_rounded,
-              color: blocked ? LumoColors.orange : LumoColors.blue),
+              color: blocked ? LumoVisualTokens.gold : LumoVisualTokens.cyanBright),
           const SizedBox(width: 8),
           Expanded(
               child: Text(loading ? 'Lumo denkt nach …' : 'Lumo antwortet',
-                  style: LumoTextStyles.heading3)),
+                  style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white))),
           if (loading)
             const SizedBox(
                 width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
-                    strokeWidth: 2, color: LumoColors.orange)),
+                    strokeWidth: 2, color: LumoVisualTokens.cyanBright)),
         ]),
         const SizedBox(height: 10),
         if (showAnswer) ...[
           Text(answer,
               style: LumoTextStyles.body.copyWith(
-                  color: LumoColors.ink700,
+                  color: LumoVisualTokens.white,
                   fontWeight: FontWeight.w800,
                   height: 1.35)),
           const SizedBox(height: 10),
@@ -545,7 +545,7 @@ class _AnswerBubble extends StatelessWidget {
             children: [
               Text(_friendlySource,
                   style: LumoTextStyles.caption
-                      .copyWith(color: LumoColors.ink400)),
+                      .copyWith(color: LumoVisualTokens.muted)),
               OutlinedButton.icon(
                 onPressed: loading ? null : onSpeak,
                 icon: const Icon(Icons.volume_up_rounded, size: 18),
@@ -564,7 +564,7 @@ class _AnswerBubble extends StatelessWidget {
                 ? 'Ich überlege gerade. Das dauert nicht lange.'
                 : 'Stell mir gerne eine Frage. Wir bleiben bei Schul-, Lern- und Kinderthemen.',
             style: LumoTextStyles.body.copyWith(
-                color: LumoColors.ink600,
+                color: LumoVisualTokens.muted,
                 fontWeight: FontWeight.w700,
                 height: 1.35),
           ),
@@ -616,28 +616,43 @@ class _QuestionInput extends StatelessWidget {
       padding: const EdgeInsets.all(14),
       decoration: lumoCard(color: LumoVisualTokens.glass),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          Expanded(
-            child: TextField(
-              controller: controller,
-              minLines: 1,
-              maxLines: 4,
-              textInputAction: TextInputAction.send,
-              onSubmitted: loading ? null : (value) => onAsk(value),
-              decoration: const InputDecoration(
-                labelText: 'Frag Lumo',
-                hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
-                border: OutlineInputBorder(),
-              ),
+        LayoutBuilder(builder: (context, bounds) {
+          final small = bounds.maxWidth < 360;
+          final field = TextField(
+            key: const ValueKey('lumo-agent-question-field'),
+            controller: controller,
+            minLines: 1,
+            maxLines: 4,
+            textInputAction: TextInputAction.send,
+            style: const TextStyle(color: LumoVisualTokens.white),
+            onSubmitted: loading ? null : (value) => onAsk(value),
+            decoration: const InputDecoration(
+              labelText: 'Frag Lumo',
+              hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
+              labelStyle: TextStyle(color: LumoVisualTokens.cyanBright),
+              hintStyle: TextStyle(color: LumoVisualTokens.muted),
+              filled: true,
+              fillColor: LumoVisualTokens.navigation,
+              border: OutlineInputBorder(),
             ),
-          ),
-          const SizedBox(width: 10),
-          FilledButton.icon(
+          );
+          final send = FilledButton.icon(
+            key: const ValueKey('lumo-agent-send'),
             onPressed: loading ? null : () => onAsk(controller.text),
             icon: const Icon(Icons.send_rounded),
             label: const Text('Senden'),
-          ),
-        ]),
+            style: FilledButton.styleFrom(
+              backgroundColor: LumoVisualTokens.cyanBright,
+              foregroundColor: LumoVisualTokens.navigation,
+              minimumSize: const Size(116, 48)),
+          );
+          return small
+              ? Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [field, const SizedBox(height: 10), send])
+              : Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                  Expanded(child: field), const SizedBox(width: 10), send,
+                ]);
+        }),
         const SizedBox(height: 10),
         Wrap(
             spacing: 8,
@@ -653,7 +668,7 @@ class _QuestionInput extends StatelessWidget {
               ),
               Text(statusText,
                   style: LumoTextStyles.caption.copyWith(
-                      color: listening ? LumoColors.orange : LumoColors.ink500,
+                      color: listening ? LumoVisualTokens.gold : LumoVisualTokens.muted,
                       fontWeight: FontWeight.w800)),
             ]),
         if (speechError != null) ...[
@@ -661,9 +676,9 @@ class _QuestionInput extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF7ED),
+              color: LumoVisualTokens.navigation,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: const Color(0xFFFFD9B3), width: 1.0),
+              border: Border.all(color: LumoVisualTokens.gold, width: 1.0),
             ),
             child: Row(
               children: [
@@ -673,7 +688,7 @@ class _QuestionInput extends StatelessWidget {
                   child: Text(
                     speechError!,
                     style: LumoTextStyles.caption.copyWith(
-                      color: const Color(0xFF92400E),
+                      color: LumoVisualTokens.white,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
