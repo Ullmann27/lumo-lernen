@@ -106,33 +106,39 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
               LumoGlassCard(
                 key: const ValueKey('lumo-story-creation-hero'),
                 padding: const EdgeInsets.all(14),
-                child: Row(children: [
-                  const LumoFoxPose(
-                    pose: LumoDesignFoxPose.bookWelcome, size: 94),
-                  const SizedBox(width: 10),
-                  Expanded(child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text('Dein nächstes Abenteuer',
-                          style: TextStyle(color: LumoVisualTokens.white,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Row(children: [
+                      const LumoFoxPose(
+                          pose: LumoDesignFoxPose.bookWelcome, size: 88),
+                      const SizedBox(width: 10),
+                      const Expanded(child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text('Dein nächstes Abenteuer',
+                            style: TextStyle(color: LumoVisualTokens.white,
                               fontSize: 18, fontWeight: FontWeight.w900)),
-                      const SizedBox(height: 5),
-                      const Text('Wähle eine Idee oder lass Lumo entscheiden.',
-                          style: TextStyle(color: LumoVisualTokens.muted,
+                          SizedBox(height: 5),
+                          Text('Wähle eine Idee oder lass Lumo entscheiden.',
+                            style: TextStyle(color: LumoVisualTokens.muted,
                               fontSize: 12.5)),
-                      const SizedBox(height: 10),
-                      FilledButton.icon(
-                        key: const ValueKey('lumo-story-surprise'),
-                        onPressed: _surprise,
-                        icon: const Icon(Icons.casino_rounded),
-                        label: const Text('Überraschung!'),
-                        style: FilledButton.styleFrom(
-                          backgroundColor: LumoVisualTokens.cyanBright,
-                          foregroundColor: LumoVisualTokens.navigation),
-                      ),
-                    ],
-                  )),
-                ]),
+                        ],
+                      )),
+                    ]),
+                    const SizedBox(height: 10),
+                    FilledButton.icon(
+                      key: const ValueKey('lumo-story-surprise'),
+                      onPressed: _surprise,
+                      icon: const Icon(Icons.casino_rounded),
+                      label: const Text('Überraschung!'),
+                      style: FilledButton.styleFrom(
+                        minimumSize: const Size(0, 48),
+                        backgroundColor: LumoVisualTokens.cyanBright,
+                        foregroundColor: LumoVisualTokens.navigation),
+                    ),
+                  ],
+                ),
               ),
               const SizedBox(height: 12),
               LumoGlassCard(
@@ -219,60 +225,47 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   }
 
   Widget _buildGradeSelector() {
-    return Row(
-      children:
-          (widget.initialGrade == null ? [1, 2, 3, 4] : [_gradeLevel]).map((g) {
-        final active = _gradeLevel == g;
-        final isPinned = widget.initialGrade != null;
-        return Expanded(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 4),
-            child: GestureDetector(
-              onTap: isPinned ? null : () => setState(() => _gradeLevel = g),
+    final pinned = widget.initialGrade != null;
+    final grades = pinned ? [_gradeLevel] : [1, 2, 3, 4];
+    return Wrap(
+      spacing: 8,
+      runSpacing: 8,
+      children: [
+        for (final g in grades)
+          Semantics(
+            button: !pinned,
+            selected: _gradeLevel == g,
+            child: InkWell(
+              onTap: pinned ? null : () => setState(() => _gradeLevel = g),
+              borderRadius: BorderRadius.circular(14),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
-                padding: const EdgeInsets.symmetric(vertical: 14),
+                duration: const Duration(milliseconds: 180),
+                constraints: const BoxConstraints(minHeight: 48),
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 14, vertical: 12),
                 decoration: BoxDecoration(
-                  gradient: active ? const LinearGradient(colors: [LumoVisualTokens.lessonAnswer, LumoVisualTokens.glass]) : null,
-                   color: active ? null : LumoVisualTokens.navigation,
-                  borderRadius: LumoTokens.brMedium,
-                  border: Border.all(
-                    color:
-                        active ? LumoVisualTokens.cyanBright : LumoVisualTokens.cyan,
-                    width: 2,
-                  ),
+                  color: _gradeLevel == g
+                      ? LumoVisualTokens.lessonAnswer
+                      : LumoVisualTokens.navigation,
+                  borderRadius: BorderRadius.circular(14),
+                  border: Border.all(color: _gradeLevel == g
+                      ? LumoVisualTokens.cyanBright
+                      : LumoVisualTokens.cyan.withValues(alpha: .5)),
                 ),
-                child: isPinned
-                    ? Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            '$g. Klasse',
-                            style: LumoTokens.typo.titleMedium
-                                .copyWith(color: Colors.white),
-                          ),
-                          const SizedBox(width: 8),
-                          const Icon(
-                            Icons.lock_outline_rounded,
-                            color: Colors.white,
-                            size: 18,
-                          ),
-                        ],
-                      )
-                    : Text(
-                        '$g. Klasse',
-                        style: LumoTokens.typo.titleMedium.copyWith(
-                          color: active
-                              ? Colors.white
-                              : LumoVisualTokens.white,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                child: Row(mainAxisSize: MainAxisSize.min, children: [
+                  Text('$g. Klasse', style: const TextStyle(
+                    color: LumoVisualTokens.white,
+                    fontWeight: FontWeight.w800)),
+                  if (pinned) ...[
+                    const SizedBox(width: 8),
+                    const Icon(Icons.lock_outline_rounded,
+                        size: 18, color: LumoVisualTokens.white),
+                  ],
+                ]),
               ),
             ),
           ),
-        );
-      }).toList(),
+      ],
     );
   }
 
