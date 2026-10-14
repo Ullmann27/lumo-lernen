@@ -49,7 +49,8 @@ jobs:
             test/design/lumo_agent_hologlass_layout_test.dart \
             test/design/lumo_story_actual_reader_visual_test.dart \
             test/story_setup_learning_path_grade_test.dart \
-            test/story_setup_profile_grade_test.dart
+            test/story_setup_profile_grade_test.dart \
+            test/learning/lumo_tutor_hint_hologlass_test.dart
       - name: Complete Flutter test suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
       - name: Backend and Android preparation tests
