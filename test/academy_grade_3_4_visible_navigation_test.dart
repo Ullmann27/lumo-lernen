@@ -73,7 +73,9 @@ void main() {
       );
       await tester.pump();
       await tester.tap(focus);
-      await tester.pump();
+      // Navigator pushes a dedicated Flutter route for the third-grade
+      // lesson; a zero-duration pump may run before that transition builds.
+      await tester.pump(const Duration(milliseconds: 650));
       expect(app.state.grade, entry.grade);
       if (entry.grade == 3) {
         // Class 3 has a dedicated, interactive Wortarten module. Opening it
