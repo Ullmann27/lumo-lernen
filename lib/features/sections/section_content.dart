@@ -180,11 +180,11 @@ class SectionContent extends StatelessWidget {
       case LumoSection.exercises:
         // No mock stars, recycled first-class topics or unavailable units.
         // The curated template pool keeps harder grades on their own level.
-        final grade = appState.state.grade.clamp(1, 4);
+        final mathGrade = appState.state.grade.clamp(1, 4);
         final units = Curriculum.unitsForGrade(
-            'Mathematik', grade, currentGradeOnly: true);
+            'Mathematik', mathGrade, currentGradeOnly: true);
         return _ActionPage(
-          title: 'Mathematik · $grade. Klasse',
+          title: 'Mathematik · $mathGrade. Klasse',
           subtitle: 'Echte Aufgaben aus dem Lernstoff deiner Schulstufe.',
           emoji: '🔢',
           accent: LumoColors.math,
