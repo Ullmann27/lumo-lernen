@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../../../widgets/fox/lumo_character.dart';
+import '../../../widgets/design/lumo_design_system.dart';
+
 /// Dark hologlass tutoring surface, using Lumo's original transparent fox art.
 ///
 /// Keeps the explanation legible on phone and Fold layouts. Entrance motion is
@@ -22,6 +25,13 @@ class LumoTutorHintCard extends StatefulWidget {
 
 class _LumoTutorHintCardState extends State<LumoTutorHintCard>
     with SingleTickerProviderStateMixin {
+  final LumoCharacterController _fox = LumoCharacterController();
+
+  void _speakWithLumoMotion() {
+    _fox.talk();
+    widget.onSpeak();
+  }
+
   late final AnimationController _controller = AnimationController(
     vsync: this,
     duration: const Duration(milliseconds: 420),
@@ -29,6 +39,7 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
 
   @override
   void dispose() {
+    _fox.dispose();
     _controller.dispose();
     super.dispose();
   }
@@ -60,17 +71,23 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Semantics(
-            image: true,
-            label: 'Lumo, dein Lernbegleiter',
-            child: SizedBox(
-              width: 74,
-              height: 100,
-              child: Image.asset(
-                'assets/lumo_design/fox/fox_teacher_stick.png',
-                key: const ValueKey('lumo-hint-transparent-fox'),
-                fit: BoxFit.contain,
-                excludeFromSemantics: true,
+          SizedBox(
+            width: 74,
+            height: 100,
+            child: Center(
+              child: LumoCharacter(
+                key: const ValueKey('lumo-hint-animated-fox'),
+                pose: LumoDesignFoxPose.teacherStick,
+                size: 74,
+                shadow: false,
+                idleHops: false,
+                reduceMotion: reduceMotion,
+                controller: _fox,
+                onTap: _speakWithLumoMotion,
+                ambientPoses: const [
+                  LumoDesignFoxPose.teacherStick,
+                  LumoDesignFoxPose.bookPoint,
+                ],
               ),
             ),
           ),
@@ -129,7 +146,7 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
                 const SizedBox(height: 10),
                 OutlinedButton.icon(
                   key: const ValueKey('lumo-hint-listen'),
-                  onPressed: widget.onSpeak,
+                  onPressed: _speakWithLumoMotion,
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(0, 43),
                     foregroundColor: const Color(0xFFE2FAFF),
