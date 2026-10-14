@@ -58,7 +58,7 @@ class AppUpdateService {
     'https://github.com/Ullmann27/lumo-lernen/releases/latest',
   );
 
-  /// The family preview is not part of the normal app's latest-release feed.
+  /// The family preview package must never receive a normal-app release.
   static const bool isFamilyPreview =
       bool.fromEnvironment('LUMO_SIDE_BY_SIDE', defaultValue: false);
   static final Uri familyReleasesApi = Uri.parse(
@@ -68,8 +68,8 @@ class AppUpdateService {
     'https://github.com/Ullmann27/lumo-lernen/releases',
   );
 
-  /// Select only approved-by-publication *prerelease* candidates with a
-  /// channel-specific tag and APK filename. No main-app APK may cross over.
+  /// Published prereleases tagged coachpreview-build-N contain only the
+  /// explicitly matching Lumo-Lernen-Neu.apk. No main-app APK is offered.
   @visibleForTesting
   static AppUpdateInfo familyPreviewFromReleases(
     List<dynamic> releases, {
@@ -113,16 +113,15 @@ class AppUpdateService {
         commitSha: raw['target_commitish']?.toString() ?? '',
       );
     }
-    return newest ??
-        AppUpdateInfo(
-          available: false,
-          currentBuildNumber: installed,
-          latestBuildNumber: installed,
-          releaseUrl: familyReleasesUrl,
-          apkUrl: Uri(),
-          releaseName: 'Noch kein freigegebenes Familien-Update',
-          commitSha: '',
-        );
+    return newest ?? AppUpdateInfo(
+      available: false,
+      currentBuildNumber: installed,
+      latestBuildNumber: installed,
+      releaseUrl: familyReleasesUrl,
+      apkUrl: Uri(),
+      releaseName: 'Noch kein freigegebenes Familien-Update',
+      commitSha: '',
+    );
   }
 
   Future<AppUpdateInfo> checkLatest() async {
@@ -188,9 +187,7 @@ class AppUpdateService {
       final decoded = jsonDecode(body);
       if (isFamilyPreview) {
         if (decoded is! List<dynamic>) {
-          return _fallbackInfo(
-            error: 'Familien-Update-Katalog konnte nicht gelesen werden.',
-          );
+          return _fallbackInfo(error: 'Familien-Update-Katalog nicht lesbar.');
         }
         return familyPreviewFromReleases(decoded);
       }
@@ -242,408 +239,6 @@ class AppUpdateService {
       releaseName: isFamilyPreview
           ? 'Noch kein freigegebenes Familien-Update'
           : 'Lumo Lernen Debug Latest',
-      commitSha: '',
-      error: error,
-    );
-  }
-
-  @visibleForTesting
-  static Map<String, dynamic>? preferredApkAsset(
-    List<Map<String, dynamic>> assets, {
-    bool sideBySide = const bool.fromEnvironment('LUMO_SIDE_BY_SIDE'),
-  }) {
-    const parallelName = 'Lumo-Lernen-Neu.apk';
-    final expected = sideBySide ? parallelName : 'Lumo-Lernen-latest.apk';
-    final direct = assets.where((asset) => asset['name'] == expected);
-    if (direct.isNotEmpty) return direct.first;
-    // Parallel installs have a distinct Android identity. Never offer them an
-    // incompatible original-package APK, or the original app a parallel APK.
-    if (sideBySide) return null;
-    final compatible = assets.where((asset) {
-      final name = asset['name']?.toString() ?? '';
-      return name.endsWith('.apk') && name != parallelName;
-    });
-    return compatible.isEmpty ? null : compatible.first;
-  }
-
-  /// Heinz Bug 2026-05-21: Update-Pruefung sagte 'neueste Version'
-  /// obwohl Build 156 schon draussen war. Ursache: das alte Regex
-  /// suchte 'debug-NUMBER.apk', aber die APKs heissen jetzt
-  /// 'Lumo-Lernen-156-abc1234.apk' und der Release-Tag heisst
-  /// 'build-156'. Beide Namensschemas werden jetzt erkannt;
-  /// primaer wird der Release-Tag genommen (robuster).
-  int _extractLatestBuildNumber(
-    String? tagName,
-    List<Map<String, dynamic>> assets,
-  ) {
-    // Primaer: aus Release-Tag (z.B. 'build-156').
-    if (tagName != null && tagName.isNotEmpty) {
-      final match = RegExp(r'(?:build|debug)-(\d+)').firstMatch(tagName);
-      if (match != null) {
-        final parsed = int.tryParse(match.group(1) ?? '');
-        if (parsed != null) return parsed;
-      }
-    }
-    // Fallback: aus Asset-Datei-Namen. Erkennt sowohl das alte
-    // 'debug-NUMBER.apk' als auch das neue
-    // 'Lumo-Lernen-NUMBER-sha.apk' Schema.
-    var latest = currentBuildNumber;
-    final pattern = RegExp(r'(?:debug|Lumo-Lernen)-(\d+)');
-    for (final asset in assets) {
-      final name = asset['name']?.toString() ?? '';
-      final match = pattern.firstMatch(name);
-      if (match == null) continue;
-      final parsed = int.tryParse(match.group(1) ?? '');
-      if (parsed != null && parsed > latest) latest = parsed;
-    }
-    return latest;
-  }
-
-  Uri? _trustedUri(String? raw) {
-    if (raw == null || raw.trim().isEmpty) return null;
-    final uri = Uri.tryParse(raw.trim());
-    if (uri == null || !isTrustedReleaseUrl(uri)) return null;
-    return uri;
-  }
-
-  static bool isTrustedReleaseUrl(Uri uri) =>
-      _secureUri(uri) &&
-      uri.host.toLowerCase() == 'github.com' &&
-      uri.path.startsWith('/Ullmann27/lumo-lernen/releases/');
-
-  static bool isTrustedApiUrl(Uri uri) =>
-      _secureUri(uri) &&
-      uri.host.toLowerCase() == 'api.github.com' &&
-      uri.path.startsWith('/repos/Ullmann27/lumo-lernen/releases/');
-
-  static bool isTrustedDownloadRedirect(Uri uri) =>
-      isTrustedReleaseUrl(uri) ||
-      (_secureUri(uri) &&
-          const {
-            'release-assets.githubusercontent.com',
-            'objects.githubusercontent.com',
-            'github-releases.githubusercontent.com',
-          }.contains(uri.host.toLowerCase()));
-
-  static bool _secureUri(Uri uri) =>
-      uri.scheme == 'https' &&
-      uri.userInfo.isEmpty &&
-      (!uri.hasPort || uri.port == 443);
-
-  Future<bool> openUpdate(AppUpdateInfo info) async {
-    final url = info.hasUsableDownload ? info.apkUrl : info.releaseUrl;
-    if (url.toString().isEmpty || _trustedUri(url.toString()) == null) {
-      return false;
-    }
-    return launchUrl(url, mode: LaunchMode.externalApplication);
-  }
-
-  /// 2026-06-06 Heinz: 'einfach Update-Button druecken, alles automatisch'.
-  /// Diese Methode laedt die APK direkt in den App-Cache und startet
-  /// dann den System-Installer ueber den AppInstallHelper (MethodChannel
-  /// zu Kotlin/PackageInstaller). Liefert Status + ggf. Fehlertext.
-  ///
-  /// Reihenfolge:
-  ///   1. Berechtigungs-Check ('REQUEST_INSTALL_PACKAGES')
-  ///   2. APK-URL whitelisten (gleiche Logik wie checkLatest)
-  ///   3. Download mit Progress-Callback in den App-Cache
-  ///   4. install() ruft Android-Installer auf
-  Future<AppUpdateDownloadResult> downloadAndInstall(
-    AppUpdateInfo info, {
-    ValueChanged<double>? onProgress,
-    AppInstallHelper installer = const AppInstallHelper(),
-  }) async {
-    if (!Platform.isAndroid) {
-      return const AppUpdateDownloadResult(
-        success: false,
-        error:
-            'Update wird nur auf Android unterstuetzt - oeffne den Link im Browser.',
-      );
-    }
-    if (!info.hasUsableDownload) {
-      return const AppUpdateDownloadResult(
-        success: false,
-        error: 'Keine gueltige APK-URL im Release.',
-      );
-    }
-    if (_trustedUri(info.apkUrl.toString()) == null) {
-      return const AppUpdateDownloadResult(
-        success: false,
-        error: 'Download-URL ist nicht aus dem offiziellen GitHub-Repo.',
-      );
-    }
-    final canInstall = await installer.canInstall();
-    if (!canInstall) {
-      await installer.requestInstallPermission();
-      return const AppUpdateDownloadResult(
-        success: false,
-        error:
-            'Bitte "Aus dieser Quelle installieren" fuer Lumo Lernen freigeben.',
-        needsPermission: true,
-      );
-    }
-    final tempPath = await _downloadApk(info.apkUrl, onProgress: onProgress);
-    if (tempPath == null) {
-      return const AppUpdateDownloadResult(
-        success: false,
-        error: 'Download der neuen Version fehlgeschlagen.',
-      );
-    }
-    final started = await installer.install(tempPath);
-    if (!started) {
-      return AppUpdateDownloadResult(
-        success: false,
-        error: 'Installer konnte nicht gestartet werden (Datei: $tempPath).',
-      );
-    }
-    return const AppUpdateDownloadResult(success: true);
-  }
-
-  /// Laedt die APK in den Anwendungs-Cache. Manuelles Redirect-Following
-  /// mit Whitelist (gleiche Logik wie checkLatest), plus ProgressCallback
-  /// alle ~5% damit die UI einen Fortschritts-Indikator zeigen kann.
-  Future<String?> _downloadApk(
-    Uri apkUrl, {
-    ValueChanged<double>? onProgress,
-  }) async {
-    final client = HttpClient()
-      ..connectionTimeout = const Duration(seconds: 12);
-    client.autoUncompress = true;
-    try {
-      Uri current = apkUrl;
-      HttpClientResponse response = await _openWithRedirects(client, current);
-
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        await response.drain<void>();
-        return null;
-      }
-
-      // Anwendungs-Cache erfragen (ohne path_provider Plugin direkt
-      // ueber Platform.environment - das ist nicht zuverlaessig auf
-      // Android. Stattdessen: Directory.systemTemp - reicht fuer die
-      // einmalige APK-Datei, wird vom System aufgeraeumt).
-      final tmpDir = Directory.systemTemp;
-      final apkFile = File(
-        '${tmpDir.path}/lumo-lernen-update-${DateTime.now().millisecondsSinceEpoch}.apk',
-      );
-      final sink = apkFile.openWrite();
-      final total = response.contentLength;
-      var received = 0;
-      var lastReported = -0.06;
-      await for (final chunk in response) {
-        sink.add(chunk);
-        received += chunk.length;
-        if (total > 0 && onProgress != null) {
-          final pct = received / total;
-          if (pct - lastReported >= 0.05) {
-            onProgress(pct.clamp(0.0, 1.0));
-            lastReported = pct;
-          }
-        }
-      }
-      await sink.flush();
-      await sink.close();
-      if (onProgress != null) onProgress(1.0);
-      return apkFile.path;
-    } catch (e) {
-      return null;
-    } finally {
-      client.close(force: true);
-    }
-  }
-
-  Future<HttpClientResponse> _openWithRedirects(
-    HttpClient client,
-    Uri start,
-  ) async {
-    Uri current = start;
-    var redirectCount = 0;
-    while (true) {
-      final request = await client.getUrl(current);
-      request.followRedirects = false;
-      request.headers.set(
-        HttpHeaders.userAgentHeader,
-        'Lumo-Lernen-App-Update-Checker',
-      );
-      final response = await request.close().timeout(
-            const Duration(seconds: 30),
-          );
-      if (!response.isRedirect || redirectCount >= 4) {
-        return response;
-      }
-      final location = response.headers.value(HttpHeaders.locationHeader);
-      if (location == null) return response;
-      await response.drain<void>();
-      final next = current.resolve(location);
-      if (!isTrustedDownloadRedirect(next)) {
-        throw const HttpException('Unsicheres Update-Redirect blockiert.');
-      }
-      current = next;
-      redirectCount++;
-    }
-  }
-}
-
-/// Ergebnis-Struktur fuer downloadAndInstall().
-class AppUpdateDownloadResult {
-  const AppUpdateDownloadResult({
-    required this.success,
-    this.error,
-    this.needsPermission = false,
-  });
-  final bool success;
-  final String? error;
-
-  /// True wenn der User erst die Berechtigung 'Apps installieren'
-  /// in den System-Einstellungen aktivieren muss.
-  final bool needsPermission;
-}
-).firstMatch(tag);
-      if (match == null) continue;
-      final build = int.tryParse(match.group(1)!);
-      if (build == null || build <= 0) continue;
-      final assets = (raw['assets'] as List<dynamic>? ?? const [])
-          .whereType<Map<String, dynamic>>().toList(growable: false);
-      final asset = preferredApkAsset(assets, sideBySide: true);
-      if (asset == null) continue;
-      final apkUrl =
-          service._trustedUri(asset['browser_download_url']?.toString());
-      final pageUrl = service._trustedUri(raw['html_url']?.toString());
-      if (apkUrl == null || pageUrl == null) continue;
-      if (apkUrl.path !=
-              '/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-Neu.apk' ||
-          pageUrl.path != '/Ullmann27/lumo-lernen/releases/tag/$tag') {
-        continue;
-      }
-      if (newest != null && newest.latestBuildNumber >= build) continue;
-      newest = AppUpdateInfo(
-        available: build > installed,
-        currentBuildNumber: installed,
-        latestBuildNumber: build,
-        releaseUrl: pageUrl,
-        apkUrl: apkUrl,
-        releaseName: raw['name']?.toString() ?? 'Lumo Familie $build',
-        commitSha: raw['target_commitish']?.toString() ?? '',
-      );
-    }
-    return newest ??
-        AppUpdateInfo(
-          available: false,
-          currentBuildNumber: installed,
-          latestBuildNumber: installed,
-          releaseUrl: familyReleasesUrl,
-          apkUrl: Uri(),
-          releaseName: 'Noch kein freigegebenes Familien-Update',
-          commitSha: '',
-        );
-  }
-
-  Future<AppUpdateInfo> checkLatest() async {
-    // Manuelles Redirect-Following: jedes Redirect-Ziel wird gegen die
-    // Whitelist geprueft. Damit kann ein boeswillig manipulierter
-    // 302-Location-Header NICHT auf eine fremde Domain umleiten.
-    final client = HttpClient()..connectionTimeout = const Duration(seconds: 8);
-    client.autoUncompress = true;
-    try {
-      final request = await client.getUrl(latestReleaseApi);
-      request.followRedirects = false;
-      request.headers.set(
-        HttpHeaders.acceptHeader,
-        'application/vnd.github+json',
-      );
-      request.headers.set(
-        HttpHeaders.userAgentHeader,
-        'Lumo-Lernen-App-Update-Checker',
-      );
-      HttpClientResponse response = await request.close().timeout(
-            const Duration(seconds: 12),
-          );
-
-      // Bis zu 3 Redirects manuell folgen, jedes Mal Whitelist pruefen.
-      var redirectCount = 0;
-      while (response.isRedirect && redirectCount < 3) {
-        final location = response.headers.value(HttpHeaders.locationHeader);
-        if (location == null) break;
-        final redirectTarget = Uri.tryParse(
-          latestReleaseApi.resolve(location).toString(),
-        );
-        if (redirectTarget == null || !isTrustedApiUrl(redirectTarget)) {
-          return _fallbackInfo(
-            error: 'Update-Pruefung blockiert: unsicheres Redirect-Ziel.',
-          );
-        }
-        await response.drain<void>();
-        final nextRequest = await client.getUrl(redirectTarget);
-        nextRequest.followRedirects = false;
-        nextRequest.headers.set(
-          HttpHeaders.acceptHeader,
-          'application/vnd.github+json',
-        );
-        nextRequest.headers.set(
-          HttpHeaders.userAgentHeader,
-          'Lumo-Lernen-App-Update-Checker',
-        );
-        response = await nextRequest.close().timeout(
-              const Duration(seconds: 12),
-            );
-        redirectCount++;
-      }
-
-      final body = await response.transform(utf8.decoder).join();
-
-      if (response.statusCode < 200 || response.statusCode >= 300) {
-        return _fallbackInfo(
-          error: 'Update-Pruefung nicht erreichbar (${response.statusCode}).',
-        );
-      }
-
-      final decoded = jsonDecode(body);
-      if (decoded is! Map<String, dynamic>) {
-        return _fallbackInfo(
-          error: 'Update-Antwort konnte nicht gelesen werden.',
-        );
-      }
-
-      final assets = (decoded['assets'] as List<dynamic>? ?? const <dynamic>[])
-          .whereType<Map<String, dynamic>>()
-          .toList(growable: false);
-      final apkAsset = preferredApkAsset(assets);
-
-      final releaseName =
-          decoded['name']?.toString() ?? 'Lumo Lernen Debug Latest';
-      final commitSha = decoded['target_commitish']?.toString() ?? '';
-      final releaseUrl =
-          _trustedUri(decoded['html_url']?.toString()) ?? fallbackReleaseUrl;
-      final apkUrl =
-          _trustedUri(apkAsset?['browser_download_url']?.toString()) ?? Uri();
-      final tagName = decoded['tag_name']?.toString();
-      final latestBuild = _extractLatestBuildNumber(tagName, assets);
-
-      return AppUpdateInfo(
-        available:
-            latestBuild > currentBuildNumber && apkUrl.toString().isNotEmpty,
-        currentBuildNumber: currentBuildNumber,
-        latestBuildNumber: latestBuild,
-        releaseUrl: releaseUrl,
-        apkUrl: apkUrl,
-        releaseName: releaseName,
-        commitSha: commitSha,
-      );
-    } catch (error) {
-      return _fallbackInfo(error: 'Update-Pruefung fehlgeschlagen: $error');
-    } finally {
-      client.close(force: true);
-    }
-  }
-
-  AppUpdateInfo _fallbackInfo({String? error}) {
-    return AppUpdateInfo(
-      available: false,
-      currentBuildNumber: currentBuildNumber,
-      latestBuildNumber: currentBuildNumber,
-      releaseUrl: fallbackReleaseUrl,
-      apkUrl: Uri(),
-      releaseName: 'Lumo Lernen Debug Latest',
       commitSha: '',
       error: error,
     );
