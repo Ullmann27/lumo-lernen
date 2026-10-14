@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/lumo_voice_clips.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
+import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/features/learning/widgets/lumo_tutor_hint_card.dart';
 
 void main() {
@@ -22,18 +24,18 @@ void main() {
         ),
       ),
     ));
-    await tester.pumpAndSettle();
+    // Lumo breathes/changes poses continuously unless reduced motion is on.
+    await tester.pump(const Duration(milliseconds: 650));
 
     expect(find.text('Lumo erklärt'), findsOneWidget);
     expect(find.text('Zähle die Münzen Schritt für Schritt.'),
         findsOneWidget);
-    expect(find.byKey(const ValueKey('lumo-hint-transparent-fox')),
+    expect(find.byKey(const ValueKey('lumo-hint-animated-fox')),
         findsOneWidget);
-    final image = tester.widget<Image>(
-        find.byKey(const ValueKey('lumo-hint-transparent-fox')));
-    final asset = image.image as AssetImage;
-    expect(asset.assetName,
-        'assets/lumo_design/fox/fox_teacher_stick.png');
+    final fox = tester.widget<LumoCharacter>(
+        find.byKey(const ValueKey('lumo-hint-animated-fox')));
+    expect(fox.pose, LumoDesignFoxPose.teacherStick);
+    expect(fox.ambientPoses, contains(LumoDesignFoxPose.bookPoint));
 
     final surface = tester.widget<Container>(
         find.byKey(const ValueKey('lumo-hologlass-tutor-card')));
