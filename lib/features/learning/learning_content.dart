@@ -2642,14 +2642,9 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
 
   @override
   Widget build(BuildContext context) {
-    // Pro Fach eigene Farbe.
-    final color = switch (widget.subject.toLowerCase()) {
-      'mathematik' || 'mathe' => const Color(0xFFFF7A2F),
-      'deutsch' || 'rechtschreibung' => const Color(0xFF8B5CF6),
-      'lesen' => const Color(0xFFF472B6),
-      'sachunterricht' || 'natur' => const Color(0xFF10B981),
-      _ => const Color(0xFF60A5FA),
-    };
+    // Hologlass is shared across all subjects, unlike the old orange/pink
+    // per-subject buttons that clashed with the blue Lumo learning world.
+    const color = LumoVisualTokens.cyanBright;
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
@@ -2660,17 +2655,19 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
         duration: const Duration(milliseconds: 120),
         curve: Curves.easeOutCubic,
         child: Container(
+          key: const ValueKey('lumo-help-hologlass-button'),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [color, color.withOpacity(0.75)],
+            gradient: const LinearGradient(
+              colors: [Color(0xED0C4477), Color(0xF0082852)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
+            border: Border.all(color: color.withOpacity(.75), width: 1.5),
             boxShadow: [
               BoxShadow(
-                color: color.withOpacity(0.42),
+                color: color.withOpacity(0.25),
                 blurRadius: 14,
                 offset: const Offset(0, 6),
                 spreadRadius: -2,
@@ -2728,15 +2725,15 @@ class _AiHelpBubble extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xE31D2F69), Color(0xE30C214A)],
+          colors: [Color(0xF00D3B70), Color(0xF0082149)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF8B9CFF).withOpacity(.66), width: 1.4),
+        border: Border.all(color: const Color(0xFF4EDCFF).withOpacity(.66), width: 1.4),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF8B5CF6).withOpacity(0.18),
+            color: const Color(0xFF37CFF9).withOpacity(0.18),
             blurRadius: 14,
             offset: const Offset(0, 5),
             spreadRadius: -3,
@@ -2754,18 +2751,19 @@ class _AiHelpBubble extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
+                    colors: [Color(0xFF1B5F93), Color(0xFF0A315B)],
                   ),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF8B5CF6).withOpacity(0.4),
+                      color: const Color(0xFF37CFF9).withOpacity(0.4),
                       blurRadius: 8,
                       offset: const Offset(0, 3),
                     ),
                   ],
                 ),
-                child: const Text('🦊', style: TextStyle(fontSize: 20)),
+                child: const LumoFoxPose(
+                  pose: LumoDesignFoxPose.teacherStick, size: 33),
               ),
               const SizedBox(width: 10),
               const Expanded(
@@ -2775,14 +2773,14 @@ class _AiHelpBubble extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF6D28D9),
+                    color: Color(0xFF81E9FF),
                     letterSpacing: 0.3,
                   ),
                 ),
               ),
               IconButton(
                 onPressed: onSpeak,
-                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF7C3AED),
+                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF81E9FF),
                 ),
                 tooltip: 'Lumo vorlesen lassen',
               ),
@@ -2795,7 +2793,7 @@ class _AiHelpBubble extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 14.5,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF1F2937),
+              color: Color(0xFFF3FAFF),
               height: 1.45,
             ),
           ),
