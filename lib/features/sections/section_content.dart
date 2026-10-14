@@ -10,8 +10,6 @@ import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../rewards/reward_shop_content.dart';
-import '../shared/widgets/lumo_subject_dashboard.dart';
-import '../shared/widgets/lumo_subject_tile.dart';
 import '../tutoring/tutoring_flow_card.dart';
 import '../tutoring/guided_learning_hub.dart';
 import '../tutoring/guided_lesson_screen.dart';
@@ -233,11 +231,20 @@ class _ActionPage extends StatelessWidget {
           children: [
             _Header(title: title, subtitle: subtitle, emoji: emoji, accent: accent),
             const SizedBox(height: 18),
-            Wrap(
-              spacing: 14,
-              runSpacing: 14,
-              children: cards.map((c) => _ActionCard(data: c, accent: accent)).toList(),
-            ),
+            LayoutBuilder(builder: (context, constraints) {
+              // Fit a narrow Fold cover and use the extra inner-screen width.
+              final width = constraints.maxWidth;
+              final columns = width >= 980 ? 4 : width >= 670 ? 3 : width >= 480 ? 2 : 1;
+              final cardWidth = (width - (columns - 1) * 14) / columns;
+              return Wrap(
+                spacing: 14,
+                runSpacing: 14,
+                children: [
+                  for (final card in cards)
+                    _ActionCard(data: card, accent: accent, width: cardWidth),
+                ],
+              );
+            }),
           ],
         ),
       );
@@ -320,17 +327,21 @@ class _ActionData {
 }
 
 class _ActionCard extends StatelessWidget {
-  const _ActionCard({required this.data, required this.accent});
+  const _ActionCard({required this.data, required this.accent, this.width = 230});
+  final double width;
   final _ActionData data;
   final Color accent;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: data.onTap,
-      child: Container(
-        width: 230,
-        height: 160,
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: data.onTap,
+        borderRadius: BorderRadius.circular(22),
+        child: Container(
+        width: width,
+        height: 165.0 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.4),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
@@ -374,6 +385,7 @@ class _ActionCard extends StatelessWidget {
           ],
             ),
         ],
+        ),
         ),
       ),
     );
@@ -432,13 +444,19 @@ class _MissionsPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 14),
-        Wrap(
-          spacing: 14,
-          runSpacing: 14,
-          children: _missionCards()
-              .map((card) => _ActionCard(data: card, accent: LumoColors.orange))
-              .toList(),
-        ),
+        LayoutBuilder(builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          final columns = width >= 980 ? 4 : width >= 670 ? 3 : width >= 480 ? 2 : 1;
+          final cardWidth = (width - (columns - 1) * 14) / columns;
+          return Wrap(
+            spacing: 14,
+            runSpacing: 14,
+            children: [
+              for (final card in _missionCards())
+                _ActionCard(data: card, accent: LumoColors.orange, width: cardWidth),
+            ],
+          );
+        }),
       ],
     );
   }
@@ -462,11 +480,16 @@ class _MissionsPage extends StatelessWidget {
     ));
   }
 
-  List<_ActionData> _missionCards() => [
-        _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!',
+  List<_ActionData> _missionCards() {
+    final grade = appState.state.grade.clamp(1, 4);
+    final available = Curriculum.unitsForGrade(
+      'Mathematik', grade, currentGradeOnly: true);
+    final mathUnit = available.isEmpty ? null : available.first;
+    return [
+        _ActionData('Kurzübung', 'Löse echte Aufgaben aus deinen Lernfächern.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Kurzübung\nstartet!',
       ),
     ),
-        _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: 'Plus bis 20', message: 'Mathe-Insel\nstartet jetzt.',
+        _ActionData('Mathe-Insel · $grade. Klasse', 'Rechne mit Aufgaben deiner Schulstufe.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: mathUnit, message: 'Mathe-Insel\nstartet jetzt.',
       ),
     ),
         _ActionData('Lesemut', 'Lumo hört beim Lesen aktiv zu.', 'Starten', Icons.record_voice_over_rounded, startReading,
@@ -480,6 +503,7 @@ class _MissionsPage extends StatelessWidget {
       ),
     ),
       ];
+  }
 }
 
 class _ReadingMissionCard extends StatelessWidget {

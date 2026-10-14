@@ -5,7 +5,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/features/agent/lumo_agent_content.dart';
-import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
 
 void main() {
