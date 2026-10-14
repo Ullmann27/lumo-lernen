@@ -173,7 +173,7 @@ class TopicCurriculum {
     // ════════════════════════════════════════════════════════════════
     's1_tiere': TopicContext(
       grade: 1,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Tiere',
       detailedScope:
           'Bauernhof-Tiere (Kuh, Schwein, Huhn, Pferd, Schaf, Ziege), '
@@ -192,7 +192,7 @@ class TopicCurriculum {
     ),
     's1_farben': TopicContext(
       grade: 1,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Farben',
       detailedScope:
           'Grundfarben: Rot, Blau, Gelb, Gruen, Orange, Lila, Schwarz, Weiss. '
@@ -210,7 +210,7 @@ class TopicCurriculum {
     ),
     's1_koerper': TopicContext(
       grade: 1,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Mein Körper',
       detailedScope:
           'Koerperteile: Kopf, Arme, Beine, Haende, Fuesse, Augen, Ohren, Nase, Mund. '
@@ -370,7 +370,7 @@ class TopicCurriculum {
     // ════════════════════════════════════════════════════════════════
     's2_jahreszeiten': TopicContext(
       grade: 2,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Jahreszeiten',
       detailedScope:
           'Fruehling, Sommer, Herbst, Winter. Was passiert in jeder Jahreszeit? '
@@ -388,7 +388,7 @@ class TopicCurriculum {
     ),
     's2_wetter': TopicContext(
       grade: 2,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Wetter',
       detailedScope:
           'Wetterphaenomene: Sonne, Regen, Schnee, Wind, Wolken, Gewitter, Nebel. '
@@ -406,7 +406,7 @@ class TopicCurriculum {
     ),
     's2_verkehr': TopicContext(
       grade: 2,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Verkehr',
       detailedScope:
           'Sicher zur Schule: Ampel (Rot=stehen, Gruen=gehen), Zebrastreifen, '
@@ -551,7 +551,7 @@ class TopicCurriculum {
     // ════════════════════════════════════════════════════════════════
     's3_oesterreich': TopicContext(
       grade: 3,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Österreich',
       detailedScope:
           'Die 9 Bundeslaender Oesterreichs: Wien, Niederoesterreich, Oberoesterreich, '
@@ -571,7 +571,7 @@ class TopicCurriculum {
     ),
     's3_natur': TopicContext(
       grade: 3,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Natur',
       detailedScope:
           'Pflanzen (Baum, Strauch, Blume), Pflanzenteile (Wurzel, Stamm, Blatt, Bluete). '
@@ -697,7 +697,7 @@ class TopicCurriculum {
     // ════════════════════════════════════════════════════════════════
     's4_europa': TopicContext(
       grade: 4,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Europa',
       detailedScope:
           'Europa ist ein Kontinent. Nachbarlaender Oesterreichs: Deutschland, Schweiz, Italien, Slowenien, '
@@ -717,7 +717,7 @@ class TopicCurriculum {
     ),
     's4_geschichte': TopicContext(
       grade: 4,
-      subject: 'Sachkunde',
+      subject: 'Sachunterricht',
       title: 'Geschichte',
       detailedScope:
           'Zeitreise durch Oesterreichs Geschichte: Roemer in Carnuntum, '
