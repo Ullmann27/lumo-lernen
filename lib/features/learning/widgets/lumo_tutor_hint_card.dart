@@ -33,10 +33,18 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
     widget.onSpeak();
   }
 
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 420),
-  )..forward();
+  late final AnimationController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    // Never initialize a ticker lazily during dispose() when reduced-motion
+    // layouts don't build a FadeTransition.
+    _controller = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 420),
+    )..forward();
+  }
 
   @override
   void dispose() {
