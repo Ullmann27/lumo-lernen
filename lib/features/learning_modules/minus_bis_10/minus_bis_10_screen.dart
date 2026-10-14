@@ -69,7 +69,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
       for (var a = 3; a <= 10; a++)
         for (var b = 1; b < a; b++)
           (a, b),
-    ]..shuffle(_rng);
+    ]..shuffle(math.Random());
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Mathematik',
@@ -99,9 +99,17 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
 
   void _generateTask() {
     // _a in 3..10, _b in 1.._a-1 -> Ergebnis 1..9 (nie 0 oder negativ)
-    final problem = _round[_taskIdx];
-    _a = problem.$1;
-    _b = problem.$2;
+    // Tests may inject a seeded RNG to exercise each visible quantity.
+    // Keep that deterministic accessibility probe unchanged. Real child
+    // sessions (no injected RNG) use the unique shuffled problem deck.
+    if (widget.taskRandom != null) {
+      _a = 3 + _rng.nextInt(8);
+      _b = 1 + _rng.nextInt(_a - 1);
+    } else {
+      final problem = _round[_taskIdx];
+      _a = problem.$1;
+      _b = problem.$2;
+    }
     final correct = _correct;
     final wrongOptions = <int>{};
     while (wrongOptions.length < 3) {
