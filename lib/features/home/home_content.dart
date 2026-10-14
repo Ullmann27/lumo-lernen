@@ -314,6 +314,14 @@ class HomeContent extends StatelessWidget {
                         onTap: () => _startPractice('Sachunterricht'),
                       ),
                       _SubjectCard(
+                        subject: 'Englisch',
+                        subtitle: 'Wörter und kleine Gespräche',
+                        icon: Icons.language_rounded,
+                        color: const Color(0xFF1766AE),
+                        completed: _correctFor('Englisch'),
+                        onTap: () => _startPractice('Englisch'),
+                      ),
+                      _SubjectCard(
                         subject: 'Logik',
                         subtitle: 'Muster und knifflige Rätsel',
                         icon: Icons.extension_rounded,
