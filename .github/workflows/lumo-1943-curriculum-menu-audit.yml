@@ -56,7 +56,11 @@ jobs:
             test/grade_1_to_4_subject_menu_integrity_test.dart \
             test/curriculum_availability_test.dart \
             test/home_navigation_progress_test.dart \
-            test/lumo_shell_layout_test.dart
+            test/lumo_shell_layout_test.dart \
+            test/lumo_mobile_more_navigation_test.dart \
+            test/learning_modules/plus_bis_10_persistence_test.dart \
+            test/curriculum_coverage_contract_test.dart \
+            test/story_entry_navigation_test.dart
       - name: Complete Flutter test suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
       - name: Audit generated learning content across classes and subjects
