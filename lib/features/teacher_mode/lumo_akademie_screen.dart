@@ -804,6 +804,9 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildHero()),
           SliverToBoxAdapter(child: _buildTitleRow()),
           SliverToBoxAdapter(child: _buildGradePicker()),
+          // Grade-specific lessons are visible immediately after the picker,
+          // not hidden underneath the unchanged general-purpose tiles.
+          SliverToBoxAdapter(child: _buildGradeFocus()),
           if (_selectedGrade != widget.appState.state.grade)
             SliverToBoxAdapter(
               child: Padding(
@@ -1264,8 +1267,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openLearningArea(_LearningArea area) {
-    if (area.subject == 'Deutsch') {
+    if (area.subject == 'Deutsch' && _selectedGrade <= 2) {
       _openDeutsch();
+      return;
+    }
+    // In 3./4. Klasse the old generic Deutsch hub hid grade-specific grammar.
+    if (area.subject == 'Deutsch') {
+      setState(() => _selectedSubjectIndex = 1);
       return;
     }
     if (area.practical) {
@@ -1476,6 +1484,107 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  /// Class-specific, immediately accessible curriculum. Each card is backed
+  /// by an actual topic in the selected grade, never by a decorative counter.
+  Widget _buildGradeFocus() {
+    final grade = _currentGrade;
+    final preview = grade.grade != widget.appState.state.grade;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 14),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.all(14),
+        radius: 20,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(children: [
+              Icon(Icons.school_rounded, color: grade.color, size: 24),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  '${grade.title} – ${preview ? 'Themenvorschau' : 'dein Lernstoff'}',
+                  key: const ValueKey('academy-grade-focus-title'),
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 6),
+            Text(
+              preview
+                  ? 'Das ist ein Einblick. Aktiviere die Schulstufe im Elternbereich, um dort regulär Aufgaben zu lösen.'
+                  : 'Wähle ein Thema deiner Klasse und beginne sofort mit echten Aufgaben.',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.muted,
+                fontWeight: FontWeight.w700,
+                fontSize: 13,
+              ),
+            ),
+            const SizedBox(height: 12),
+            LayoutBuilder(builder: (context, constraints) {
+              const gap = 10.0;
+              final columns = constraints.maxWidth >= 550 ? 2 : 1;
+              final tileWidth =
+                  (constraints.maxWidth - (columns - 1) * gap) / columns;
+              return Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (final subject in grade.subjects)
+                    SizedBox(
+                      width: tileWidth,
+                      child: OutlinedButton(
+                        key: ValueKey('academy-grade-focus-${subject.id}'),
+                        onPressed: () =>
+                            _openTopic(subject.topics.first, subject),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: LumoVisualTokens.white,
+                          backgroundColor: const Color(0xFF132E58),
+                          side: BorderSide(color: subject.color.withOpacity(.65)),
+                          minimumSize: const Size(0, 78),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              '${subject.name} · ${subject.topics.first.title}',
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 14,
+                                  color: LumoVisualTokens.white),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              subject.topics.first.shortDesc,
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 12,
+                                  color: LumoVisualTokens.muted),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            }),
+          ],
         ),
       ),
     );
