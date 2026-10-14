@@ -184,7 +184,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat das Feld hinter dem ${_objekt.name}?';
+        text = 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
         text = 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!';
@@ -350,7 +350,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat das Feld hinter dem ${_objekt.name}?';
+        text = 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
         text = 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!';
