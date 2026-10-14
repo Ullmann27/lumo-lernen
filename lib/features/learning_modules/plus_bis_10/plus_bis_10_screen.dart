@@ -56,6 +56,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<(int, int)> _round;
 
   /// Lumo freut sich bei richtigen Antworten und tröstet bei falschen.
   final _lumo = LumoCharacterController();
@@ -116,6 +117,11 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
       vsync: this,
       duration: const Duration(milliseconds: 350),
     );
+    _round = [
+      for (var a = 1; a <= 5; a++)
+        for (var b = 1; b <= 10 - a; b++)
+          (a, b),
+    ]..shuffle(_rng);
     _generateTask();
     _entryCtrl.forward();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -148,9 +154,9 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     _helpLevel = 0;
     _lastCorrect = null;
     // a + b mit a+b <= 10, a >= 1, b >= 1
-    _a = 1 + _rng.nextInt(5); // 1-5
-    _b = 1 + _rng.nextInt(10 - _a); // mind. 1, max. 10 - a
-    if (_b < 1) _b = 1;
+    final problem = _round[_taskIdx];
+    _a = problem.$1;
+    _b = problem.$2;
 
     // 4 Antworten: richtige + 3 plausibel falsche.
     // Heinz-Scan 2026-05-21: bisherige Loop hatte Edge-Case wo
@@ -613,6 +619,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                   Navigator.of(context).pop();
                   setState(() {
                     _taskIdx = 0;
+                    _round.shuffle(_rng);
                     _correctCount = 0;
                     _finishRewardBooked = false;
                     _lessonEventRecorded = false;
