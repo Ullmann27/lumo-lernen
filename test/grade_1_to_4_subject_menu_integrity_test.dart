@@ -27,6 +27,7 @@ void main() {
       () {
     const topicMappings = <String, String>{
       's1_koerper': 'Körper',
+      'en1_3': 'Begruessung',
       's3_oesterreich': 'Bundesländer Österreichs',
       's3_natur': 'Pflanzen',
       's4_europa': 'Kontinente und Ozeane',
@@ -54,6 +55,42 @@ void main() {
             expect(quality.problems(task), isEmpty,
                 reason: '$context seed $seed: ${task.prompt}');
           }
+        }
+      }
+    }
+  });
+
+  test('every upper-grade Math/German academy tile is backed by tasks',
+      () {
+    const resolved = <String, String>{
+      'm3_zahlen1000': 'Plus bis 1000',
+      'm3_einmaleins_voll': 'Einmaleins',
+      'm3_geometrie': 'Umfang',
+      'm4_million': 'Zahlenraum bis 1 Million',
+      'm4_bruch': 'Bruchrechnen einfach',
+      'm4_textaufgaben': 'Sachaufgaben drei Schritte',
+      'd3_wortarten': 'Wortarten',
+      'd3_zeitformen': 'Zeitformen',
+      'd4_grammatik': 'Die 4 Fälle',
+    };
+    for (final grade in [3, 4]) {
+      final academia = LumoCurriculum.grades
+          .singleWhere((g) => g.grade == grade);
+      for (final subject in academia.subjects.where(
+          (x) => x.name == 'Mathematik' || x.name == 'Deutsch')) {
+        for (final topic in subject.topics) {
+          if (topic.id == 'd3_geschichten' ||
+              topic.id == 'd4_aufsatz') continue;
+          final unit = resolved[topic.id] ?? topic.title;
+          expect(Curriculum.unitsForGrade(subject.name, grade),
+              contains(unit), reason: '${subject.name}/${topic.id}');
+          final task = ExerciseFactory(seed: 314).next(
+            grade: grade, subject: subject.name, unit: unit,
+          );
+          expect(task.subject, subject.name);
+          expect(task.unit, unit);
+          expect(task.prompt.trim().length, greaterThan(8));
+          expect(task.choices, contains(task.answer));
         }
       }
     }
