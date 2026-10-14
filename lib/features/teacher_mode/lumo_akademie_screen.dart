@@ -16,6 +16,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
