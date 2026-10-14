@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../core/lumo_voice.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 
@@ -75,19 +76,26 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
             width: 74,
             height: 100,
             child: Center(
-              child: LumoCharacter(
-                key: const ValueKey('lumo-hint-animated-fox'),
-                pose: LumoDesignFoxPose.teacherStick,
-                size: 74,
-                shadow: false,
-                idleHops: false,
-                reduceMotion: reduceMotion,
-                controller: _fox,
-                onTap: _speakWithLumoMotion,
-                ambientPoses: const [
-                  LumoDesignFoxPose.teacherStick,
-                  LumoDesignFoxPose.bookPoint,
-                ],
+              // Keep the mascot still when silent: no perpetual ticker while
+              // reading or in widget tests. During actual speech it breathes,
+              // gestures and alternates between Lumo's original poses.
+              child: ValueListenableBuilder<VoiceStatus>(
+                valueListenable: LumoVoice.instance.status,
+                builder: (context, status, _) => LumoCharacter(
+                  key: const ValueKey('lumo-hint-animated-fox'),
+                  pose: LumoDesignFoxPose.teacherStick,
+                  size: 74,
+                  shadow: false,
+                  idleHops: false,
+                  reduceMotion: reduceMotion ||
+                      status != VoiceStatus.speaking,
+                  controller: _fox,
+                  onTap: _speakWithLumoMotion,
+                  ambientPoses: const [
+                    LumoDesignFoxPose.teacherStick,
+                    LumoDesignFoxPose.bookPoint,
+                  ],
+                ),
               ),
             ),
           ),
