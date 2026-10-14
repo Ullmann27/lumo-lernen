@@ -110,6 +110,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, _SatzItem sentence})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -125,6 +126,11 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var kind = 0; kind < _ZeitformFrageTyp.values.length; kind++)
+        for (final sentence in _saetze)
+          (kind: kind, sentence: sentence),
+    ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Deutsch',
@@ -151,19 +157,17 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
   }
 
   void _generateTask() {
-    _typ =
-        _ZeitformFrageTyp.values[_rng.nextInt(_ZeitformFrageTyp.values.length)];
+    // The same sentence in the same type is never asked twice in one round.
+    final plan = _round[_taskIdx];
+    _typ = _ZeitformFrageTyp.values[plan.kind];
+    _korrektSatz = plan.sentence;
     if (_typ == _ZeitformFrageTyp.satzKategorisieren) {
-      _korrektSatz = _saetze[_rng.nextInt(_saetze.length)];
       _zeitOptions = List.of(_Zeitform.values)..shuffle(_rng);
     } else {
-      _gefragteZeit = _Zeitform.values[_rng.nextInt(_Zeitform.values.length)];
-      final passend = _saetze.where((s) => s.zeit == _gefragteZeit).toList()
-        ..shuffle(_rng);
+      _gefragteZeit = _korrektSatz.zeit;
       final andere = _saetze.where((s) => s.zeit != _gefragteZeit).toList()
         ..shuffle(_rng);
-      _korrektSatz = passend.first;
-      _satzOptions = [passend.first, ...andere.take(3)]..shuffle(_rng);
+      _satzOptions = [_korrektSatz, ...andere.take(3)]..shuffle(_rng);
     }
     _answered = false;
     _selectedIdx = null;
