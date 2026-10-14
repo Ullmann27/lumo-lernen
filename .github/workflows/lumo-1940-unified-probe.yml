@@ -14,6 +14,8 @@ jobs:
   verify-and-build:
     runs-on: ubuntu-latest
     timeout-minutes: 70
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
     steps:
       - uses: actions/checkout@v4
         with:
@@ -63,7 +65,7 @@ jobs:
       - name: Verify APK and preserve exact source
         run: |
           set -euo pipefail
-          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
           sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256-1940.txt
           test -s dist/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
