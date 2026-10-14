@@ -82,6 +82,7 @@ class _TiereScreenState extends State<TiereScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, int animal})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -95,6 +96,15 @@ class _TiereScreenState extends State<TiereScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var kind = 0; kind < _TierFrageTyp.values.length; kind++)
+        for (var animal = 0; animal < _tiere.length; animal++)
+          // Ducks and frogs have very similar calls, and "Watschel" is
+          // movement, not a penguin sound. Avoid misleading sound questions.
+          if (kind != _TierFrageTyp.lautRaten.index ||
+              !const <int>[6, 7, 10].contains(animal))
+            (kind: kind, animal: animal),
+    ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -121,11 +131,15 @@ class _TiereScreenState extends State<TiereScreen>
   }
 
   void _generateTask() {
-    _typ = _TierFrageTyp.values[_rng.nextInt(_TierFrageTyp.values.length)];
-    final shuffled = List.of(_tiere)..shuffle(_rng);
-    _correctTier = shuffled.first;
+    // Thirty distinct prompt/animal pairs are prepared at session start.
+    // Sampling with replacement previously repeated the same question.
+    final plan = _round[_taskIdx];
+    _typ = _TierFrageTyp.values[plan.kind];
+    _correctTier = _tiere[plan.animal];
+    final shuffled = List.of(_tiere.where((tier) => tier != _correctTier))
+      ..shuffle(_rng);
     // 3 falsche Antworten + 1 richtige
-    final wrong = shuffled.skip(1).take(3).toList();
+    final wrong = shuffled.take(3).toList();
     _answerOptions = [_correctTier, ...wrong]..shuffle(_rng);
     _answered = false;
     _selectedAnswer = null;
@@ -142,7 +156,7 @@ class _TiereScreenState extends State<TiereScreen>
         text = 'Welches Tier macht "${_correctTier.laut}"?';
         break;
       case _TierFrageTyp.lebensraum:
-        text = 'Wo lebt ein ${_correctTier.name}?';
+        text = 'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
         break;
     }
     try {
