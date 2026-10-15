@@ -25,6 +25,7 @@ import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
 import '../learning/cross_grade_practice_screen.dart';
 import '../learning/cross_grade_writing_screen.dart';
+import 'widgets/academy_subject_art.dart';
 import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -1792,7 +1793,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                               borderRadius: BorderRadius.circular(15)),
                         ),
                         child: Row(children: [
-                          _GradeSubjectArt(subject: subject),
+                          AcademySubjectArt(subjectName: subject.name, subjectId: subject.id, accent: subject.color),
                           const SizedBox(width: 12),
                           Expanded(child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2485,43 +2486,3 @@ class _AnimatedRing extends StatelessWidget {
 /// Glowing, illustrated learning icons in every grade's first visible subject
 /// cards. The existing Lumo illustrated book is used for German; platform
 /// color emoji provide large illustrated subject marks without new downloads.
-class _GradeSubjectArt extends StatelessWidget {
-  const _GradeSubjectArt({required this.subject});
-  final LearningSubject subject;
-
-  @override
-  Widget build(BuildContext context) {
-    final emoji = switch (subject.name) {
-      'Mathematik' => '🔢',
-      'Englisch' => '🇬🇧',
-      'Sachunterricht' => '🌍',
-      _ => '📚',
-    };
-    return Semantics(
-      label: 'Fachsymbol ${subject.name}',
-      child: Container(
-        key: ValueKey('academy-grade-icon-${subject.id}'),
-        width: 68,
-        height: 68,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [subject.color.withOpacity(.6), const Color(0xFF082653)],
-          ),
-          border: Border.all(color: subject.color.withOpacity(.9)),
-          boxShadow: [
-            BoxShadow(color: subject.color.withOpacity(.35),
-                blurRadius: 13, offset: const Offset(0, 5)),
-          ],
-        ),
-        alignment: Alignment.center,
-        child: ExcludeSemantics(child: subject.name == 'Deutsch'
-          ? Image.asset('assets/lumo_design/icons/book_open.png',
-              width: 57, height: 57, fit: BoxFit.contain)
-          : Text(emoji, style: const TextStyle(fontSize: 39))),
-      ),
-    );
-  }
-}
