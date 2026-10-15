@@ -29,8 +29,17 @@ class _QuizShowContentState extends State<QuizShowContent> {
   @override
   void initState() {
     super.initState();
-    unawaited(LumoSound.instance.init());
+    if (widget.appState.state.settings.soundEnabled) {
+      unawaited(LumoSound.instance.init());
+    }
     _startNewGame();
+  }
+
+  void _playEffect(SoundEffect effect) {
+    // Child's audio-off setting also controls quiz SFX. Never start the
+    // audioplayers plugin when sound is disabled (including test captures).
+    if (!widget.appState.state.settings.soundEnabled) return;
+    unawaited(LumoSound.instance.play(effect));
   }
 
   void _startNewGame() {
@@ -44,7 +53,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   void _select(int index) {
     final next = _engine.selectAnswer(_state, index);
     if (next.selectedOption != _state.selectedOption) {
-      unawaited(LumoSound.instance.play(SoundEffect.click));
+      _playEffect(SoundEffect.click);
     }
     setState(() => _state = next);
   }
@@ -69,27 +78,27 @@ class _QuizShowContentState extends State<QuizShowContent> {
     });
 
     if (!correct) {
-      unawaited(LumoSound.instance.play(SoundEffect.error));
+      _playEffect(SoundEffect.error);
     } else if (_state.won || _state.securedStars > before.securedStars) {
-      unawaited(LumoSound.instance.play(SoundEffect.win));
+      _playEffect(SoundEffect.win);
     }
   }
 
   void _next() {
-    unawaited(LumoSound.instance.play(SoundEffect.click));
+    _playEffect(SoundEffect.click);
     setState(() => _state = _engine.nextQuestion(_state));
   }
 
   void _joker(QuizJoker joker) {
     final next = _engine.useJoker(_state, joker);
     if (next.usedJokers.length > _state.usedJokers.length) {
-      unawaited(LumoSound.instance.play(SoundEffect.click));
+      _playEffect(SoundEffect.click);
     }
     setState(() => _state = next);
   }
 
   void _restart() {
-    unawaited(LumoSound.instance.play(SoundEffect.click));
+    _playEffect(SoundEffect.click);
     setState(_startNewGame);
   }
 
@@ -323,7 +332,11 @@ class _QuizStage extends StatelessWidget {
           : 'LUMO LIVE';
       return SizedBox(
         key: const ValueKey('lumo-meister-stage'),
-        height: compact ? 250 : 296,
+        // The stage must expand with accessibility font scaling: the
+        // three joker buttons and prize ladder otherwise overflow by 47px
+        // at 1.5x on Fold / phone widths. The outer page already scrolls.
+        height: (compact ? 250.0 : 296.0) *
+            math.max(1.0, MediaQuery.textScalerOf(context).scale(1)), 
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
