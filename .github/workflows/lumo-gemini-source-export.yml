@@ -1,0 +1,192 @@
+name: Export Lumo sources for Gemini review
+on:
+  push:
+    branches:
+      - chatgpt/gemini-source-export-2026-10-15
+
+permissions:
+  contents: read
+
+jobs:
+  source-export:
+    name: Export both pinned source repositories
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout Lumo Lernen exact code baseline
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-lernen
+          ref: cc576b6edc9b8b9df4f6ae5a23665d93b5279a04
+          path: source/lumo-lernen
+          persist-credentials: false
+          fetch-depth: 1
+          lfs: true
+      - name: Checkout matching Godot game source
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: d8d004141cdd606357aa1348691a39854e3af3c7
+          path: source/lumo-godot
+          persist-credentials: false
+          fetch-depth: 1
+          lfs: true
+      - name: Build verified full-source and compact-code ZIP archives
+        shell: bash
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          import re
+          import subprocess
+          import zipfile
+
+          workspace = Path(os.environ["GITHUB_WORKSPACE"])
+          roots = [
+              ("lumo-lernen", "cc576b6edc9b8b9df4f6ae5a23665d93b5279a04"),
+              ("lumo-godot", "d8d004141cdd606357aa1348691a39854e3af3c7"),
+          ]
+          out_dir = workspace / "output"
+          out_dir.mkdir(exist_ok=True)
+          full_path = out_dir / "Lumo_Gemini_Kompletter_Quellcode_2026-10-15.zip"
+          slim_path = out_dir / "Lumo_Gemini_Code_Review_2026-10-15.zip"
+          code_ext = {
+              ".dart", ".gd", ".gdshader", ".shader", ".glsl", ".tscn", ".tres",
+              ".gltf", ".cs", ".cpp", ".c", ".h", ".hpp", ".kt", ".java", ".kts",
+              ".gradle", ".py", ".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs",
+              ".sh", ".bash", ".ps1", ".bat", ".xml", ".html", ".css", ".scss",
+              ".json", ".yaml", ".yml", ".md", ".txt", ".arb", ".properties",
+              ".toml", ".ini", ".cfg", ".lock", ".plist", ".pbxproj", ".xcconfig",
+              ".svg", ".gitignore", ".gitattributes", ".gitmodules", ".sql",
+              ".swift", ".rb", ".proto",
+          }
+          restricted_ext = {
+              ".keystore", ".jks", ".p12", ".pfx", ".pem", ".key", ".kdbx",
+              ".mobileprovision", ".der", ".asc",
+          }
+          restricted_names = {
+              "google-services.json", "googleservice-info.plist",
+              "id_rsa", "id_ed25519", "credentials.json", "service-account.json",
+              "signing.properties", "key.properties",
+          }
+          restricted_parts = {".ssh", "secrets", "credentials"}
+          restricted_tokens = [
+              re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----"),
+              re.compile(rb"sk-proj-[A-Za-z0-9_-]{20,}"),
+              re.compile(rb"sk-live-[A-Za-z0-9_-]{20,}"),
+              re.compile(rb"AIza[0-9A-Za-z_-]{35}"),
+          ]
+
+          def exclude(path, data):
+              pure = Path(path)
+              basename = pure.name.lower()
+              if basename in restricted_names or basename.startswith(".env"):
+                  return "possible-credential-file"
+              if any(c.lower() in restricted_parts for c in pure.parts):
+                  return "possible-secret-directory"
+              if pure.suffix.lower() in restricted_ext:
+                  return "possible-private-key-or-signing-file"
+              if len(data) <= 8_000_000 and any(p.search(data) for p in restricted_tokens):
+                  return "possible-embedded-secret"
+              return None
+
+          manifest = {
+              "purpose": "Gemini code review of two exact pinned Lumo repositories",
+              "lumo_lernen_ref": roots[0][1],
+              "lumo_godot_ref": roots[1][1],
+              "godot_engine": "4.6.3",
+              "note": "PRs 304 and 305 are unmerged and not in baseline. No .git histories, secrets, signers, generated builds.",
+              "files": [], "excluded": [], "unavailable": [],
+          }
+          entries = []
+          for name, expected in roots:
+              base = workspace / "source" / name
+              actual = subprocess.check_output(
+                  ["git", "-C", str(base), "rev-parse", "HEAD"], text=True
+              ).strip()
+              if actual != expected:
+                  raise SystemExit(f"Wrong commit for {name}: {actual} != {expected}")
+              source_files = subprocess.check_output(
+                  ["git", "-C", str(base), "ls-files", "-z"]
+              ).decode("utf-8").split("\0")
+              for rel in filter(None, source_files):
+                  p = base / rel
+                  archive_name = f"{name}/{rel}"
+                  if not p.is_file():
+                      manifest["unavailable"].append(archive_name)
+                      continue
+                  # Do not preserve symlinks that point outside the repository.
+                  if p.is_symlink() and (base.resolve() not in p.resolve().parents):
+                      manifest["excluded"].append({"path": archive_name, "reason": "external-symlink"})
+                      continue
+                  data = p.read_bytes()
+                  reason = exclude(rel, data)
+                  if reason:
+                      manifest["excluded"].append({"path": archive_name, "reason": reason})
+                      continue
+                  digest = hashlib.sha256(data).hexdigest()
+                  manifest["files"].append({"path": archive_name, "bytes": len(data), "sha256": digest})
+                  entries.append((archive_name, data, rel))
+              print(f"Verified {name} baseline: {actual}", flush=True)
+
+          readme = (
+              "LUMO LERNEN + LUMO KART – GEMINI SOURCE HANDOFF\\n"
+              "Baseline Flutter commit: " + roots[0][1] + "\\n"
+              "Baseline Godot commit: " + roots[1][1] + "\\n"
+              "Godot engine: 4.6.3\\n"
+              "Read MANIFEST.json for file inventory and source digests.\\n"
+              "Sensitive credential/signing files and .git metadata are intentionally excluded.\\n"
+              "This full ZIP includes available checked-in images, audio, models and sources.\\n"
+              "The compact ZIP includes source/config/test/docs only, NOT all large media assets.\\n"
+              "Treat any unmerged parallel PRs as separate changes; don't silently overwrite them.\\n"
+              "Never claim an APK was built or tested if it was not.\\n"
+              "Please return changed repository trees plus a patch/changes report as ZIP.\\n"
+          )
+          notes = (
+              "Gemini task: Audit both Flutter/Android Lumo Lernen and Godot Lumo Kart.\\n"
+              "Find missing connections, runtime bugs, security issues, regression risk,\\n"
+              "unresponsive Fold layouts, poor visual identity, and any broken learning logic.\\n"
+              "Improve the actual source code with tests. Keep 20 increasingly difficult\\n"
+              "Lumo Meister questions, up to 5,000 virtual stars, and Lumo's original fox.\\n"
+              "Do not represent a Familypark outing as a guaranteed real prize.\\n"
+              "Return a ZIP of actual edited files with a full change list and baseline diff.\\n"
+          )
+          for destination, compact in ((full_path, False), (slim_path, True)):
+              count = 0
+              with zipfile.ZipFile(
+                  destination, "w", compression=zipfile.ZIP_DEFLATED,
+                  compresslevel=4, allowZip64=True
+              ) as zip_out:
+                  zip_out.writestr("README_GEMINI.txt", readme)
+                  zip_out.writestr("GEMINI_REVIEW_TASK.txt", notes)
+                  zip_out.writestr("MANIFEST.json", json.dumps(manifest, indent=2, ensure_ascii=False))
+                  for archive_name, data, rel in entries:
+                      if compact and (Path(rel).suffix.lower() not in code_ext
+                                      and Path(rel).name not in {"Makefile", "Dockerfile", ".gitignore"}):
+                          continue
+                      if compact and len(data) > 12_000_000:
+                          continue
+                      zip_out.writestr(archive_name, data)
+                      count += 1
+              print(f"{destination.name}: {count} files, {destination.stat().st_size} ZIP bytes", flush=True)
+          print(f"Skipped sensitive files: {len(manifest['excluded'])}; unavailable: {len(manifest['unavailable'])}", flush=True)
+          PY
+      - name: Upload full source ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-gemini-full-source-2026-10-15
+          path: output/Lumo_Gemini_Kompletter_Quellcode_2026-10-15.zip
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
+      - name: Upload compact review ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-gemini-code-review-2026-10-15
+          path: output/Lumo_Gemini_Code_Review_2026-10-15.zip
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
