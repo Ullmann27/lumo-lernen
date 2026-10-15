@@ -45,7 +45,7 @@ def main() -> int:
     creative = load_creative()
     base, live, package = creative.base, creative.live, creative.PACKAGE
     result = {'status': 'RUNNING',
-              'scope': 'Profil > Lernen > 1. Klasse > Mathe > Plus bis 10 > Antwort > '
+              'scope': 'Profil (1. Klasse) > Lernen > Mathe > Plus bis 10 > Antwort > '
                        'Rückmeldung > Belohnung > Speichern > App-Neustart > Wiederherstellen',
               'not_tested': ['physisches Gerät oder Fold-Scharnier', 'Bildrate', 'Sprachausgabe',
                              'falsche Antworten und Tipps auf Android (nur Flutter-Test)',
@@ -89,6 +89,43 @@ def main() -> int:
                      str(x), str(round(y1 - (y1 - y0) * .2)), '300')
             time.sleep(.6)
 
+    def tap_prefix(prefix: str, tag: str, scrolls: int = 12) -> None:
+        # Akademie-Kacheln tragen eine ganze Satz-Beschriftung („Mathe. Zahlen und
+        # Rechnen. 0 Prozent gemeistert …“). Exakter Text träfe sonst gleichlautende
+        # Anzeigen, z. B. „1. Klasse“ im Profil-Chip oben (Lauf 38690593489).
+        for attempt in range(scrolls):
+            nodes = live.live_nodes(out, f'{tag}-{attempt}')
+            hits = []
+            for node in nodes:
+                if node.get('package') != package or node.get('enabled') == 'false':
+                    continue
+                values = (node.get('text', ''), node.get('content-desc', ''))
+                if not any(v.startswith(prefix) for v in values):
+                    continue
+                bounds = list(map(int, re.findall(r'\d+', node.get('bounds', ''))))
+                if len(bounds) == 4 and bounds[2] > bounds[0] and bounds[3] > bounds[1]:
+                    hits.append(((bounds[2] - bounds[0]) * (bounds[3] - bounds[1]), *bounds))
+            if hits:
+                _, x0, y0, x1, y1 = min(hits)
+                x, y = str((x0 + x1) // 2), str((y0 + y1) // 2)
+                base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
+                time.sleep(2)
+                return
+            boxes = []
+            for node in nodes:
+                if node.get('scrollable') == 'true' and node.get('package') == package:
+                    bounds = list(map(int, re.findall(r'\d+', node.get('bounds', ''))))
+                    if len(bounds) == 4:
+                        boxes.append(((bounds[2] - bounds[0]) * (bounds[3] - bounds[1]), *bounds))
+            if boxes:
+                _, x0, y0, x1, y1 = max(boxes)
+                x = (x0 + x1) // 2
+                base.adb('shell', 'input', 'swipe', str(x), str(round(y1 - (y1 - y0) * .25)),
+                         str(x), str(round(y0 + (y1 - y0) * .25)), '400')
+            time.sleep(.8)
+        result['captures'].append(creative.capture(out, tag + '-missing'))
+        raise RuntimeError('Kein Bedienelement beginnt mit: ' + prefix)
+
     def progress(tag: str) -> dict:
         prefs = creative.prefs(out, tag)
         return {key: value for key, value in prefs.items()
@@ -107,8 +144,13 @@ def main() -> int:
 
     def tour() -> dict:
         done = {}
-        done['t1-deutsch'] = shot('t1-deutsch', 'Deutsch')
-        done['t2-englisch'] = shot('t2-englisch', 'Englisch')
+        for name, prefix in (('t1-deutsch', 'Deutsch. '), ('t2-englisch', 'Englisch. ')):
+            try:
+                tap_prefix(prefix, name, scrolls=6)
+                result['captures'].append(creative.capture(out, name))
+                done[name] = 'PASS'
+            except Exception as error:  # noqa: BLE001 - je Bild vermerkt
+                done[name] = f'FAIL: {str(error).splitlines()[0][:200]}'
         done['t3-spiele'] = shot('t3-spiele', 'Spielen')
         done['t4-tests'] = shot('t4-tests', 'Tests')
         done['t5-belohnungen'] = shot('t5-belohnungen', 'Mehr', 'Belohnungen')
@@ -140,9 +182,9 @@ def main() -> int:
         creative.flutter_tap(out, LEARN_TILE, '02-learn')
         daily_before, _ = wait_for(DAILY, '02-daily-before')
         result['captures'].append(creative.capture(out, '02-learning-menu'))
-        creative.flutter_tap(out, '1. Klasse', '03-grade-1')
-        creative.flutter_tap(out, 'Mathe', '04-math')
-        creative.flutter_tap(out, 'Plus bis 10', '05-topic')
+        # Das Profil ist 1. Klasse; die Akademie öffnet mit der Profilklasse.
+        tap_prefix('Mathe. ', '04-math')
+        tap_prefix('Plus bis 10', '05-topic')
         wait_for('Aufgabe 1 / 30', '06-task')
         prompt, _ = wait_for(PROMPT, '06-prompt')
         answer = int(prompt.group(1)) + int(prompt.group(2))
