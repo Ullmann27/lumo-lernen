@@ -74,7 +74,10 @@ void main() {
       await tester.pump();
       await tester.tap(focus);
       // Navigator pushes a dedicated Flutter route for the third-grade
-      // lesson; a zero-duration pump may run before that transition builds.
+      // lesson. Its first frame is built offstage (the HeroController
+      // measures it), so one frame must run before the transition, otherwise
+      // the new screen exists only offstage and find.byType skips it.
+      await tester.pump();
       await tester.pump(const Duration(milliseconds: 650));
       expect(app.state.grade, entry.grade);
       if (entry.grade == 3) {
