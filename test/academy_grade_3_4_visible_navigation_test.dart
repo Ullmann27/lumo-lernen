@@ -33,6 +33,8 @@ void main() {
     expect(find.text('Mathematik · Zahlen bis 1000'), findsOneWidget);
     expect(find.text('Deutsch · Wortarten'), findsOneWidget);
     expect(find.text('Sachunterricht · Österreich'), findsOneWidget);
+    expect(find.byKey(const ValueKey('academy-grade-icon-mathe3')), findsOneWidget);
+    expect(find.byKey(const ValueKey('academy-grade-icon-deutsch3')), findsOneWidget);
 
     await tester.ensureVisible(find.byKey(const ValueKey('grade-pill-4')));
     await tester.tap(find.byKey(const ValueKey('grade-pill-4')));
