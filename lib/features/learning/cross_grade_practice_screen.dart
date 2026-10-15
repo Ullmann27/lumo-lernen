@@ -36,6 +36,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   String? _selected;
   int _answered = 0;
   int _correct = 0;
+  bool _progressLoaded = false;
+  bool _saving = false;
+  String? _loadError;
+  String? _saveError;
 
   String get _scope {
     // This lightweight local scope never changes the official profile grade.
@@ -60,32 +64,95 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   Future<void> _loadProgress() async {
-    final prefs = await SharedPreferences.getInstance();
-    if (!mounted) return;
-    setState(() {
-      _answered = prefs.getInt('$_scope:answered') ?? 0;
-      _correct = prefs.getInt('$_scope:correct') ?? 0;
-    });
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Do not treat malformed history as a fresh profile. Keep both keys
+      // untouched so the family can recover the existing local data.
+      final answered = prefs.getInt('$_scope:answered') ?? 0;
+      final correct = prefs.getInt('$_scope:correct') ?? 0;
+      if (answered < 0 || correct < 0 || correct > answered) {
+        throw const FormatException('Invalid existing practice counters');
+      }
+      if (!mounted) return;
+      setState(() {
+        _answered = answered;
+        _correct = correct;
+        _progressLoaded = true;
+        _loadError = null;
+      });
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _progressLoaded = false;
+        _loadError =
+            'Der gespeicherte Lernstand konnte nicht sicher geladen werden. '
+            'Deine bisherigen Daten bleiben unverändert.';
+      });
+    }
   }
 
   Future<void> _answer(String choice) async {
-    if (_selected != null) return;
+    if (!_progressLoaded || _loadError != null ||
+        _selected != null || _saving) {
+      return;
+    }
     final correct = choice == _task.answer;
     setState(() {
       _selected = choice;
       _answered++;
       if (correct) _correct++;
+      _saveError = null;
+      _saving = true;
     });
-    // Only the independent cross-grade practice namespace is written;
-    // no stars, XP, profile.grade, solved subjects or wallet are modified.
-    final prefs = await SharedPreferences.getInstance();
-    await Future.wait([
-      prefs.setInt('$_scope:answered', _answered),
-      prefs.setInt('$_scope:correct', _correct),
-    ]);
+    await _persistAcceptedAnswer();
+  }
+
+  /// Persist the already accepted answer. Retry calls this exact method
+  /// without changing the counters, so an interrupted partial write cannot
+  /// award a second attempt or alter the registered school profile.
+  Future<void> _persistAcceptedAnswer() async {
+    if (!mounted || !_progressLoaded || _selected == null) return;
+    final answered = _answered;
+    final correct = _correct;
+    bool saved = false;
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      // Short-circuit on a rejected write rather than silently declaring
+      // success; retry overwrites only the same target values.
+      final answeredSaved = await prefs.setInt('$_scope:answered', answered);
+      if (answeredSaved) {
+        saved = await prefs.setInt('$_scope:correct', correct);
+      }
+    } catch (_) {
+      saved = false;
+    }
+    if (!mounted) return;
+    setState(() {
+      _saving = false;
+      _saveError = saved
+          ? null
+          : 'Speichern nicht möglich. Bitte erneut versuchen. '
+              'Die Antwort bleibt erhalten.';
+    });
+  }
+
+  Future<void> _retrySave() async {
+    if (_saving || _saveError == null || _selected == null ||
+        !_progressLoaded) {
+      return;
+    }
+    setState(() {
+      _saving = true;
+      _saveError = null;
+    });
+    await _persistAcceptedAnswer();
   }
 
   void _next() {
+    if (!_progressLoaded || _saving || _saveError != null ||
+        _selected == null) {
+      return;
+    }
     setState(() {
       _task = _factory.next(
         grade: widget.lessonGrade,
@@ -153,6 +220,25 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ],
               ),
             ),
+            if (_loadError != null) ...[
+              Text(
+                _loadError!,
+                key: const ValueKey('cross-grade-load-error'),
+                style: const TextStyle(
+                  color: Color(0xFFFFD58D),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+              const SizedBox(height: 12),
+            ] else if (!_progressLoaded) ...[
+              const Text(
+                'Lernfortschritt wird geladen …',
+                key: ValueKey('cross-grade-loading'),
+                style: TextStyle(color: Color(0xFFE2F1F8)),
+              ),
+              const SizedBox(height: 12),
+            ],
             const SizedBox(height: 22),
             Text(
               _task.prompt,
@@ -168,7 +254,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             for (var i = 0; i < choices.length; i++) ...[
               OutlinedButton(
                 key: ValueKey('cross-grade-choice-$i'),
-                onPressed: selected == null ? () => _answer(choices[i]) : null,
+                onPressed: _progressLoaded && _loadError == null &&
+                        !_saving && selected == null
+                    ? () => _answer(choices[i])
+                    : null,
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(54),
                   alignment: Alignment.centerLeft,
@@ -207,6 +296,31 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 style: const TextStyle(
                     color: Colors.white, fontSize: 15, height: 1.4),
               ),
+              if (_saveError != null) ...[
+                const SizedBox(height: 12),
+                Text(
+                  _saveError!,
+                  key: const ValueKey('cross-grade-save-error'),
+                  style: const TextStyle(
+                    color: Color(0xFFFFD58D),
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+                TextButton.icon(
+                  key: const ValueKey('cross-grade-save-retry'),
+                  onPressed: _saving ? null : _retrySave,
+                  icon: const Icon(Icons.refresh_rounded),
+                  label: const Text('Erneut speichern'),
+                ),
+              ],
+              if (_saving) ...[
+                const SizedBox(height: 12),
+                const Text(
+                  'Antwort wird gespeichert …',
+                  key: ValueKey('cross-grade-saving'),
+                  style: TextStyle(color: Color(0xFFE2F1F8)),
+                ),
+              ],
               const SizedBox(height: 18),
               FilledButton.icon(
                 key: const ValueKey('cross-grade-next'),
@@ -215,7 +329,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   foregroundColor: const Color(0xFF07223C),
                   minimumSize: const Size.fromHeight(54),
                 ),
-                onPressed: _next,
+                onPressed: !_saving && _saveError == null &&
+                        _progressLoaded
+                    ? _next
+                    : null,
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('Nächste Aufgabe',
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
