@@ -117,7 +117,11 @@ void main() {
           ),
           home: RepaintBoundary(
             key: const ValueKey('quiz-visual-capture'),
-            child: QuizShowContent(appState: app),
+            // Same actual question and answer placement in every viewport.
+            child: QuizShowContent(
+              appState: app,
+              previewQuestionSeed: 20261015,
+            ),
           ),
         ));
         await _frames(tester);
