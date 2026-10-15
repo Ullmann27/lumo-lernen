@@ -65,7 +65,9 @@ void main() {
           findsOneWidget);
       expect(find.byKey(const ValueKey('cross-grade-choice-0')),
           findsOneWidget);
-      expect(find.textContaining('Dein Lernprofil bleibt in der 2. Klasse'),
+      // The outgoing Akademie route also contains profile-info text.
+      // Identify the actual active cross-grade screen by its stable key.
+      expect(find.byKey(const ValueKey('cross-grade-profile-info')),
           findsOneWidget);
       await tester.tap(find.byKey(const ValueKey('cross-grade-choice-0')));
       await tester.pump(const Duration(milliseconds: 160));
