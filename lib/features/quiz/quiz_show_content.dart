@@ -13,9 +13,17 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 
 class QuizShowContent extends StatefulWidget {
-  const QuizShowContent({super.key, required this.appState});
+  const QuizShowContent({
+    super.key,
+    required this.appState,
+    this.previewQuestionSeed,
+  });
 
   final LumoAppState appState;
+
+  /// Stable questions for QA screenshots. Null uses the normal randomized game.
+  @visibleForTesting
+  final int? previewQuestionSeed;
 
   @override
   State<QuizShowContent> createState() => _QuizShowContentState();
@@ -45,7 +53,8 @@ class _QuizShowContentState extends State<QuizShowContent> {
   void _startNewGame() {
     final questions = _bank.generateGameQuestions(
       grade: widget.appState.state.grade,
-      random: math.Random(DateTime.now().millisecondsSinceEpoch),
+      random: math.Random(
+        widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
     );
     _state = _engine.start(questions: questions);
   }
@@ -320,10 +329,13 @@ class _QuizStage extends StatelessWidget {
   Widget build(BuildContext context) => LayoutBuilder(
     builder: (context, c) {
       final compact = c.maxWidth < 400;
-      final leftWidth = compact ? 62.0 : 78.0;
-      final rightWidth = compact ? 90.0 : 122.0;
-      final gap = compact ? 6.0 : 12.0;
-      final foxSize = math.min(compact ? 146.0 : 208.0,
+      final tablet = c.maxWidth >= 700;
+      final leftWidth = tablet ? 100.0 : (compact ? 62.0 : 78.0);
+      final rightWidth = tablet ? 158.0 : (compact ? 90.0 : 122.0);
+      final gap = tablet ? 18.0 : (compact ? 6.0 : 12.0);
+      // On the unfolded Fold and tablet, the mascot is the visual hero,
+      // not a miniature floating inside an oversized empty stage.
+      final foxSize = math.min(tablet ? 320.0 : (compact ? 146.0 : 208.0),
           math.max(40.0, c.maxWidth - leftWidth - rightWidth - gap * 2 - 4));
       final finale = state.displayQuestionNumber == state.questions.length;
       final caption = state.won ? 'LUMO-MEISTER!'
@@ -335,8 +347,8 @@ class _QuizStage extends StatelessWidget {
         // The stage must expand with accessibility font scaling: the
         // three joker buttons and prize ladder otherwise overflow by 47px
         // at 1.5x on Fold / phone widths. The outer page already scrolls.
-        height: (compact ? 250.0 : 296.0) *
-            math.max(1.0, MediaQuery.textScalerOf(context).scale(1)), 
+        height: (compact ? 250.0 : (tablet ? 420.0 : 296.0)) *
+            math.max(1.0, MediaQuery.textScalerOf(context).scale(1)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
