@@ -114,12 +114,12 @@ class LumoCardsGameController extends ChangeNotifier {
       selectedColor: topCard.color,
       phase: GamePhase.playing,
       lastActionMessage: vsBot
-          ? '$_player1Name faengt an. Lege eine passende Karte!'
-          : '$_player1Name faengt an. Lege eine passende Karte oder ziehe eine.',
+          ? '$_player1Name fängt an. Lege eine passende Karte!'
+          : '$_player1Name fängt an. Lege eine passende Karte oder ziehe eine.',
     );
     _speak(vsBot
-        ? 'Willkommen bei Lumo Cards! Du faengst an.'
-        : 'Willkommen bei Lumo Cards! $_player1Name faengt an.');
+        ? 'Willkommen bei Lumo Cards! Du fängst an.'
+        : 'Willkommen bei Lumo Cards! $_player1Name fängt an.');
   }
 
   /// Karte spielen (wenn moeglich).
