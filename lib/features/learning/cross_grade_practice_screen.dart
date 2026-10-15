@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/school_exercise_generator.dart';
-import '../../theme/lumo_visual_tokens.dart';
+import 'widgets/cross_grade_visual_scene.dart';
 
 /// Direct, offline, interactive lessons in a voluntarily selected school grade.
 ///
@@ -101,26 +101,13 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
     final accent = const Color(0xFF62E5F4);
     final choices = _task.choices;
     final selected = _selected;
-    return Scaffold(
-      backgroundColor: LumoVisualTokens.night,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF10294D),
-        foregroundColor: Colors.white,
-        title: Text('${widget.lessonGrade}. Klasse · ${widget.subject}'),
-      ),
+    return CrossGradeVisualScene(
+      title: '${widget.lessonGrade}. Klasse · ${widget.subject}',
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 20),
           children: [
-            Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  colors: [Color(0xFF193E6B), Color(0xFF102A4F)],
-                ),
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: accent.withOpacity(.55), width: 1.5),
-              ),
+            CrossGradeLumoHeader(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -154,7 +141,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               ),
             ),
             const SizedBox(height: 22),
-            Text(
+            CrossGradeGlassPanel(child: Text(
               _task.prompt,
               key: const ValueKey('cross-grade-question'),
               style: const TextStyle(
@@ -163,7 +150,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 fontSize: 21,
                 fontWeight: FontWeight.w800,
               ),
-            ),
+            )),
             const SizedBox(height: 16),
             for (var i = 0; i < choices.length; i++) ...[
               OutlinedButton(
@@ -173,8 +160,20 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   minimumSize: const Size.fromHeight(54),
                   alignment: Alignment.centerLeft,
                   foregroundColor: Colors.white,
-                  backgroundColor: const Color(0xFF16345B),
-                  side: BorderSide(color: accent.withOpacity(.65)),
+                  disabledForegroundColor: Colors.white,
+                  backgroundColor: selected != null &&
+                          choices[i] == _task.answer
+                      ? const Color(0xFF185848)
+                      : selected == choices[i]
+                          ? const Color(0xFF593643)
+                          : const Color(0xFF123B65),
+                  side: BorderSide(
+                    color: selected != null &&
+                            choices[i] == _task.answer
+                        ? const Color(0xFF72F0B0)
+                        : accent.withOpacity(.75),
+                    width: 1.5,
+                  ),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(15),
                   ),
@@ -201,12 +200,12 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              Text(
+              CrossGradeGlassPanel(child: Text(
                 _task.explanation,
                 key: const ValueKey('cross-grade-explanation'),
                 style: const TextStyle(
                     color: Colors.white, fontSize: 15, height: 1.4),
-              ),
+              )),
               const SizedBox(height: 18),
               FilledButton.icon(
                 key: const ValueKey('cross-grade-next'),
