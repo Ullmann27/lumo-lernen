@@ -39,7 +39,7 @@ jobs:
           python3 - <<'PY'
           import json
           config=json.load(open("config/godot-source.json"))
-          assert config["revision"]=="0aa6adedc39242be9646c56c6d9d8fa159d55977", "Unexpected Godot pin"
+          assert config["revision"]=="ad6bd8856a9d7d07b965dec46eeadf41d4ed676c", "Unexpected Godot pin"
           assert config["engine"]=="4.6.3", "Unexpected Godot engine"
           PY
       - uses: actions/setup-java@v4
