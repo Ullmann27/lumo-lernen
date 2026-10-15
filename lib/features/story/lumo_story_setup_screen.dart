@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_story_generator.dart';
+import '../../core/reading_story_memory_repository.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -26,9 +27,12 @@ class LumoStorySetupScreen extends StatefulWidget {
 }
 
 class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
+  final _storyMemory = ReadingStoryMemoryRepository();
   String? _hero;
   String? _location;
   String? _theme;
+  String _companion = 'Lumo';
+  String _magicItem = 'Sternenkompass';
   late int _gradeLevel;
 
   @override
@@ -42,12 +46,34 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   bool get _canStart => _hero != null && _location != null && _theme != null;
 
   Future<void> _startStory() async {
+    // Re-use the established child/grade-isolated memory store.
+    final childId = widget.appState.state.childName.trim().toLowerCase();
+    final signature = [_hero!, _location!, _theme!, _companion, _magicItem]
+        .map((part) => part.trim().toLowerCase())
+        .join('|');
+    final recent = await _storyMemory.loadRecent(
+      childId: childId, grade: _gradeLevel);
+    if (!mounted) return;
+    final variants = recent.where((key) => key.startsWith('$signature|v'));
+    final lastVariant = variants.isEmpty
+        ? -1
+        : int.tryParse(variants.last.split('|v').last) ?? -1;
+    final variationSeed = (lastVariant + 1) % 6;
     final story = LumoStoryGenerator.instance.generate(
       hero: _hero!,
       location: _location!,
       theme: _theme!,
       gradeLevel: _gradeLevel,
+      companion: _companion,
+      magicItem: _magicItem,
+      variationSeed: variationSeed,
     );
+    await _storyMemory.remember(
+      childId: childId,
+      grade: _gradeLevel,
+      signature: '$signature|v$variationSeed',
+    );
+    if (!mounted) return;
     await _openReader(story);
   }
 
@@ -197,6 +223,24 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 LumoStoryGenerator.instance.themeOptions,
                 _theme,
                 (v) => setState(() => _theme = v),
+                LumoTokens.colors.gold,
+              ),
+              const SizedBox(height: LumoTokens.space20),
+              _SectionLabel('4. Wer begleitet dich?'),
+              const SizedBox(height: 8),
+              _buildChips(
+                const ['Lumo', 'Sternenroboter', 'Eule', 'Delfin'],
+                _companion,
+                (v) => setState(() => _companion = v),
+                LumoTokens.colors.lumoOrange,
+              ),
+              const SizedBox(height: LumoTokens.space20),
+              _SectionLabel('5. Welchen Zaubergegenstand?'),
+              const SizedBox(height: 8),
+              _buildChips(
+                const ['Sternenkompass', 'Zauberbuch', 'Leuchtkristall', 'Mondschlüssel'],
+                _magicItem,
+                (v) => setState(() => _magicItem = v),
                 LumoTokens.colors.gold,
               ),
               const SizedBox(height: LumoTokens.space32),
