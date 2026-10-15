@@ -60,10 +60,15 @@ jobs:
             test/home_subject_islands_premium_test.dart
       - name: Full Flutter regression suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
-      - name: Code-level Android probe regression
+      - name: Code-level Android probe regression with verified image dependencies
         run: |
           set -euo pipefail
-          python3 -m unittest discover -s tools/android_qa/tests -p 'test_*.py'
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .ci-python
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
+          .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
       - name: Build unified real Android APK
