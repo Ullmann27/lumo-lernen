@@ -24,6 +24,7 @@ import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
 import '../learning/cross_grade_practice_screen.dart';
+import '../learning/cross_grade_writing_screen.dart';
 import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -2154,6 +2155,18 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     // Opening the library does not award regular learning progress.
     if (t.id == 'd3_geschichten') {
       _openStories();
+      return;
+    }
+    // Creative writing cannot be represented by unrelated multiple-choice
+    // tasks. The voluntary fourth-grade route stores its own draft.
+    if (t.id == 'd4_aufsatz' &&
+        _selectedGrade != widget.appState.state.grade) {
+      Navigator.of(context).push<void>(MaterialPageRoute(
+        builder: (_) => CrossGradeWritingScreen(
+          profileName: widget.appState.state.childName,
+          enrolledGrade: widget.appState.state.grade,
+        ),
+      ));
       return;
     }
     // Viewing any non-enrolled grade is real practice, not a teaser or
