@@ -278,21 +278,27 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
         ImageChops.multiply(navy_neutral, navy_dark), navy_blue))
     # The German model can miss short UI phrases that the Latin/English model
     # reads correctly. Keep both reads, with independent observed word bounds.
-    variants = [('contrast',contrast,'deu+eng'),('raw',image,'deu+eng'),
-                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng'),
-                ('navy-latin',navy_text,'eng')]
-    for variant, pixels, language in variants:
+    # On the 2176 px Fold inner surface the gold action's navy letters are about
+    # 50 px tall; doubled they exceed what --psm 11 segments, and every variant
+    # missed „Weiter“ (run 38690593489, kart API 35). The same mask is read once
+    # more at its captured size; its bounds are divided by that scale only.
+    variants = [('contrast',contrast,'deu+eng',2),('raw',image,'deu+eng',2),
+                ('white-text',white_text,'deu+eng',2),('white-latin',white_text,'eng',2),
+                ('navy-latin',navy_text,'eng',2),('navy-latin-1x',navy_text,'eng',1)]
+    for variant, pixels, language, scale in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
             raise TimeoutError('Current native screenshot OCR deadline exceeded')
         expanded = out / 'ocr-work.png'
-        pixels.resize((image.width*2,image.height*2)).save(expanded)
+        pixels.resize((image.width*scale,image.height*scale)).save(expanded)
         prefix = out / (tag+'-ocr-'+variant)
         base.command('tesseract',str(expanded),str(prefix),'--psm','11',
                      '-l',language,'tsv',timeout=min(45, remaining))
         groups: dict[tuple,list[dict]] = {}
         with prefix.with_suffix('.tsv').open() as stream:
-            for word in csv.DictReader(stream,delimiter='\t'):
+            # Tesseract-TSV ist nie gequotet; ein erkanntes „"“ verschmolz sonst
+            # viele Zeilen zu einem Feld mit falschen Koordinaten.
+            for word in csv.DictReader(stream,delimiter='\t',quoting=csv.QUOTE_NONE):
                 if not word.get('text','').strip() or float(word['conf']) < 15:
                     continue
                 key=tuple(word[k] for k in ('page_num','block_num','par_num','line_num'))
@@ -309,10 +315,10 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
                     if normalized(' '.join(word['text'] for word in span)) == wanted:
                         spans.append(span)
             for span in spans:
-                x0=min(int(word['left']) for word in span)/2
-                y0=min(int(word['top']) for word in span)/2
-                x1=max(int(word['left'])+int(word['width']) for word in span)/2
-                y1=max(int(word['top'])+int(word['height']) for word in span)/2
+                x0=min(int(word['left']) for word in span)/scale
+                y0=min(int(word['top']) for word in span)/scale
+                x1=max(int(word['left'])+int(word['width']) for word in span)/scale
+                y1=max(int(word['top'])+int(word['height']) for word in span)/scale
                 result.append({'text':' '.join(word['text'] for word in span),
                                'bounds':[x0,y0,x1,y1],'variant':variant})
         if wanted and any(wanted == normalized(line['text']) if exact

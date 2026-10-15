@@ -118,7 +118,7 @@ def ocr_region(source, box, frame, label, *, contrast='dark', psm=6,
                             check=True, timeout=30).stdout.decode()
     frame['tsv'] += f'\n# {label} OCR, origin {left},{top}, scale 4, padding 20\n'+output
     words, groups = [], {}
-    for row in csv.DictReader(io.StringIO(output), delimiter='\t'):
+    for row in csv.DictReader(io.StringIO(output), delimiter='\t', quoting=csv.QUOTE_NONE):
         text = row.get('text', '').strip()
         if not text or float(row.get('conf', '-1')) < min_confidence:
             continue
@@ -284,7 +284,7 @@ def read_frame(path):
                          capture_output=True, text=True, check=True, timeout=45).stdout
     grouped = {}
     words = []
-    for row in csv.DictReader(io.StringIO(raw), delimiter='\t'):
+    for row in csv.DictReader(io.StringIO(raw), delimiter='\t', quoting=csv.QUOTE_NONE):
         text = row.get('text', '').strip()
         if not text or float(row.get('conf', '-1')) < 5:
             continue
@@ -315,7 +315,7 @@ def read_frame(path):
             central = subprocess.run(['tesseract', 'stdin', 'stdout', '--psm', '6', 'tsv'],
                                      input=buffer.getvalue(), capture_output=True, timeout=30).stdout.decode()
         groups = {}
-        for row in csv.DictReader(io.StringIO(central), delimiter='\t'):
+        for row in csv.DictReader(io.StringIO(central), delimiter='\t', quoting=csv.QUOTE_NONE):
             text = row.get('text', '').strip()
             if not text or float(row.get('conf', '-1')) < 5:
                 continue

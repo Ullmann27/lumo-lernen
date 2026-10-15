@@ -329,10 +329,53 @@ class NativeSurfaceReadinessTests(unittest.TestCase):
                     {'text': 'Weiter', 'bounds': [80, 30, 100, 40], 'variant': 'tile'}]) as tiles:
             result = probe.image_lines(self.out, 'fallback-exact', 'weiter',
                                        source_path=self.full, exact=True)
-        self.assertEqual(reader.call_count, 5)
+        self.assertEqual(reader.call_count, 6)
         tiles.assert_called_once()
         self.assertEqual(tiles.call_args.args[0], self.full)
         self.assertTrue(any(line['text'] == 'Weiter' for line in result))
+
+    def test_unscaled_navy_read_keeps_captured_pixel_bounds(self):
+        # Fold-Innendisplay (Lauf 38690593489): nur die 1×-Lesung erkennt das
+        # dunkle „Weiter“ auf Gold. Ihre Wortgrenzen sind Bildpixel, nicht halbiert.
+        probe = self.load_probe()
+        header = 'page_num\tblock_num\tpar_num\tline_num\tleft\ttop\twidth\theight\tconf\ttext\n'
+        calls = []
+
+        def command(*args, **kwargs):
+            calls.append(args)
+            text = 'Weiter' if str(args[2]).endswith('navy-latin-1x') else 'x'
+            Path(args[2]).with_suffix('.tsv').write_text(
+                header + '1\t1\t1\t1\t160\t60\t40\t20\t95\t' + text + '\n')
+
+        with patch.object(probe.base, 'command', command), \
+                patch.object(probe, 'read_tiled_word') as tiles:
+            result = probe.image_lines(self.out, 'navy-1x', 'weiter',
+                                       source_path=self.full, exact=True)
+        self.assertEqual(len(calls), 6)
+        tiles.assert_not_called()
+        observed = [line for line in result if line['text'] == 'Weiter']
+        self.assertEqual(observed[0]['variant'], 'navy-latin-1x')
+        self.assertEqual(observed[0]['bounds'], [160.0, 60.0, 200.0, 80.0])
+
+    def test_quoted_glyph_does_not_merge_tsv_rows(self):
+        # Ein erkanntes Anführungszeichen darf nicht mehrere Zeilen zu einem Feld
+        # verschmelzen (Koordinaten stammten sonst vom falschen Wort).
+        probe = self.load_probe()
+        header = 'page_num\tblock_num\tpar_num\tline_num\tleft\ttop\twidth\theight\tconf\ttext\n'
+
+        def command(*args, **kwargs):
+            rows = ('1\t1\t1\t1\t10\t10\t20\t20\t95\t(\u201c*\n'
+                    '1\t1\t2\t1\t10\t40\t20\t20\t95\t\"we\n'
+                    '1\t1\t3\t1\t160\t60\t40\t20\t95\tWeiter\n')
+            Path(args[2]).with_suffix('.tsv').write_text(header + rows)
+
+        with patch.object(probe.base, 'command', command), \
+                patch.object(probe, 'read_tiled_word') as tiles:
+            result = probe.image_lines(self.out, 'quoted', 'weiter',
+                                       source_path=self.full, exact=True)
+        tiles.assert_not_called()
+        observed = [line for line in result if line['text'] == 'Weiter']
+        self.assertEqual(observed[0]['bounds'], [80.0, 30.0, 100.0, 40.0])
 
     def test_navy_read_keeps_original_frame_and_requires_observed_exact_word(self):
         probe = self.load_probe()

@@ -162,7 +162,8 @@ class NativeOCRTileGuards(unittest.TestCase):
         with patch.object(probe.base, 'command', command), \
                 patch.object(probe, 'read_tiled_word', return_value=[]) as fallback:
             probe.image_lines(self.out, 'miss', 'item', self.source)
-            self.assertEqual(len(calls), 5)
+            # Sechs Ganzbild-Lesungen (seit 1× navy-latin für das Fold-Innendisplay).
+            self.assertEqual(len(calls), 6)
             fallback.assert_called_once()
         calls.clear()
 

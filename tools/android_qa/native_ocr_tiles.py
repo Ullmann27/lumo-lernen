@@ -129,7 +129,7 @@ def read_tiled_word(source: Path, out: Path, tag: str, wanted: str, normalize,
                                             '--psm', '11', '-l', 'eng', 'tsv',
                                             timeout=min(15, remaining))
                 with prefix.with_suffix('.tsv').open() as stream:
-                    matches = observed_matches(csv.DictReader(stream, delimiter='\t'), box, 3,
+                    matches = observed_matches(csv.DictReader(stream, delimiter='\t', quoting=csv.QUOTE_NONE), box, 3,
                                                image.size, wanted, normalize, variant)
                 attempt.update(status='READ', elapsed_seconds=round(clock() - tile_started, 6),
                                matches=matches)

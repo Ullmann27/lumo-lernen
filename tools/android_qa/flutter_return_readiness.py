@@ -166,7 +166,7 @@ def observe_flutter_return(base, creative, out, package, index, *, timeout):
             command('tesseract', str(crop), str(prefix), '--psm', '11', '-l', 'deu+eng', 'tsv')
             tsv = prefix.with_suffix('.tsv')
             matches = []
-            for word in csv.DictReader(tsv.read_text().splitlines(), delimiter='\t'):
+            for word in csv.DictReader(tsv.read_text().splitlines(), delimiter='\t', quoting=csv.QUOTE_NONE):
                 if normalized(word.get('text', '')) == caption and float(word['conf']) >= 15:
                     x, y, width, height = (int(word[key]) for key in ('left', 'top', 'width', 'height'))
                     if 0 <= x < x+width <= (bounds[2]-bounds[0])*2 and 0 <= y < y+height <= (bounds[3]-bounds[1])*2:
