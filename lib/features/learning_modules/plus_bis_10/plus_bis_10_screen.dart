@@ -1420,35 +1420,43 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
             duration: _reduceMotion
                 ? Duration.zero
                 : const Duration(milliseconds: 200),
-            child: GestureDetector(
+            // Vorleser (TalkBack) nennt die Karte als Schaltfläche „Antwort 7“
+            // statt nur „7“; dieselbe Beschriftung nutzt die Android-Prüfung.
+            child: Semantics(
+              button: true,
+              label: 'Antwort $ans',
+              excludeSemantics: true,
               onTap: () => _handleAnswer(ans),
-              child: AnimatedContainer(
-                duration: _reduceMotion
-                    ? Duration.zero
-                    : const Duration(milliseconds: 200),
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: colors,
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
+              child: GestureDetector(
+                onTap: () => _handleAnswer(ans),
+                child: AnimatedContainer(
+                  duration: _reduceMotion
+                      ? Duration.zero
+                      : const Duration(milliseconds: 200),
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: colors,
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                    ),
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(color: borderColor, width: 1.6),
+                    boxShadow: [
+                      BoxShadow(
+                          color: borderColor.withOpacity(0.35),
+                          blurRadius: 12,
+                          offset: const Offset(0, 4))
+                    ],
                   ),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(color: borderColor, width: 1.6),
-                  boxShadow: [
-                    BoxShadow(
-                        color: borderColor.withOpacity(0.35),
-                        blurRadius: 12,
-                        offset: const Offset(0, 4))
-                  ],
+                  alignment: Alignment.center,
+                  child: Text('$ans',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 32,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      )),
                 ),
-                alignment: Alignment.center,
-                child: Text('$ans',
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 32,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white,
-                    )),
               ),
             ),
           );
