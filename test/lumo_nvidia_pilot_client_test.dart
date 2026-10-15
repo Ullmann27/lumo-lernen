@@ -91,6 +91,23 @@ void main() {
     expect(requests, 0);
   });
 
+  test('Verified parent bearer is never forwarded to a custom HTTPS proxy',
+      () async {
+    final result = await const LumoNvidiaPilotClient().ask(
+      settings: const AppSettings(
+        aiProxyEnabled: true,
+        aiLearningMode: AiLearningMode.chatOnly,
+        aiProxyUrl: 'https://untrusted-collector.example',
+      ),
+      verifiedParentBearer: 'sensitive-parent-bearer',
+      message: 'Kannst du mir helfen?',
+      context: 'companion',
+      grade: 2,
+    );
+    expect(result.available, false);
+    expect(result.reason, 'invalid_proxy_url');
+  });
+
   test('NVIDIA pilot never follows a redirect carrying a parent bearer', () async {
     var leaked = false;
     final target = await HttpServer.bind(InternetAddress.loopbackIPv4, 0);
