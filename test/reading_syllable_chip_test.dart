@@ -14,8 +14,10 @@ void main() {
 
     expect(find.byType(RichText), findsOneWidget);
     expect(find.text('Garten'), findsNothing);
-    expect(find.textContaining('Gar'), findsOneWidget);
-  }, skip: true);
+    // Die Silben stehen als TextSpans in einem RichText; der Finder muss
+    // RichText durchsuchen (vorher übersprungen, weil er das nicht tat).
+    expect(find.textContaining('Gar', findRichText: true), findsOneWidget);
+  });
 
   testWidgets('keeps active chip tappable size visually highlighted', (tester) async {
     await tester.pumpWidget(
