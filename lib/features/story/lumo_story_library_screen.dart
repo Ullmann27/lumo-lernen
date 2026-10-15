@@ -248,6 +248,9 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                     widget.gradeLevel == null
                         ? 'Meine Geschichten'
                         : 'Geschichten · Lesen & verstehen',
+                    maxLines: 1,
+                    softWrap: false,
+                    overflow: TextOverflow.ellipsis,
                     style: LumoTokens.typo.headlineLarge
                         .copyWith(color: Colors.white)),
                 Text(
