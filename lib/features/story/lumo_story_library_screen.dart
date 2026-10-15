@@ -244,15 +244,27 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                    widget.gradeLevel == null
-                        ? 'Meine Geschichten'
-                        : 'Geschichten · Lesen & verstehen',
-                    maxLines: 1,
-                    softWrap: false,
-                    overflow: TextOverflow.ellipsis,
-                    style: LumoTokens.typo.headlineLarge
-                        .copyWith(color: Colors.white)),
+                // Der Titel bleibt neben Zurück- und Favoritenknopf
+                // einzeilig, auch auf dem schmalen Fold-Außendisplay.
+                Tooltip(
+                  message: widget.gradeLevel == null
+                      ? 'Meine Geschichten'
+                      : 'Geschichten · Lesen & verstehen',
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      widget.gradeLevel == null
+                          ? 'Meine Geschichten'
+                          : 'Geschichten · Lesen & verstehen',
+                      maxLines: 1,
+                      softWrap: false,
+                      overflow: TextOverflow.visible,
+                      style: LumoTokens.typo.headlineLarge
+                          .copyWith(color: Colors.white),
+                    ),
+                  ),
+                ),
                 Text(
                     widget.gradeLevel == null
                         ? '$visibleCount Hefte erschaffen'
