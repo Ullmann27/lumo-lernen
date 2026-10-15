@@ -58,7 +58,10 @@ void main() {
       music, 360, scrollable: find.byType(Scrollable).first);
     await tester.pump();
     await tester.tap(music);
+    // MaterialPageRoute builds through its first transition frame. Check the
+    // real destination after navigation, not during the initial push frame.
     await tester.pump();
+    await tester.pump(const Duration(milliseconds: 400));
     expect(find.byType(CurriculumActivitiesScreen), findsOneWidget);
     expect(find.text('Musik'), findsWidgets);
     expect(tester.takeException(), isNull);
