@@ -740,7 +740,7 @@ jobs:
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
-          python3 -m py_compile .github/probes/creative_android_probe.py
+          python3 -m py_compile .github/probes/creative_android_probe.py .github/probes/lumo_learning_journey_probe.py
           cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
       - name: Enable accelerated disposable emulator
         run: |
@@ -790,6 +790,7 @@ jobs:
           script: |
             .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.game }}
             if [ '${{ matrix.game }}' = kart ]; then .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 2400; fi
+            if [ '${{ matrix.game }}' = build ]; then .probe-venv/bin/python .github/probes/lumo_learning_journey_probe.py --out native-proof/learning-journey; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
