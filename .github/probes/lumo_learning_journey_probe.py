@@ -94,6 +94,41 @@ def main() -> int:
         return {key: value for key, value in prefs.items()
                 if key == WALLET_KEY or 'lumo_progress' in key}
 
+    def shot(name: str, *taps: str) -> str:
+        # Bildschirmfoto-Rundgang für den Prüfbericht. Ein Fehler hier lässt die
+        # bereits bestandene Lernreise unberührt und wird einzeln vermerkt.
+        try:
+            for index, label in enumerate(taps):
+                creative.flutter_tap(out, label, f'{name}-tap-{index}', scroll_attempts=6)
+            result['captures'].append(creative.capture(out, name))
+            return 'PASS'
+        except Exception as error:  # noqa: BLE001 - je Bild vermerkt, nicht verschluckt
+            return f'FAIL: {str(error).splitlines()[0][:200]}'
+
+    def tour() -> dict:
+        done = {}
+        done['t1-deutsch'] = shot('t1-deutsch', 'Deutsch')
+        done['t2-englisch'] = shot('t2-englisch', 'Englisch')
+        done['t3-spiele'] = shot('t3-spiele', 'Spielen')
+        done['t4-tests'] = shot('t4-tests', 'Tests')
+        done['t5-belohnungen'] = shot('t5-belohnungen', 'Mehr', 'Belohnungen')
+        done['t6-lumo-agent'] = shot('t6-lumo-agent', 'Mehr', 'Lumo')
+        done['t7-elternbereich'] = shot('t7-elternbereich', 'Mehr', 'Elternbereich')
+        done['t8-start'] = shot('t8-start', 'Start')
+        # Maße eines Galaxy Z Fold (Außen- und Innendisplay) im Emulator nachgestellt;
+        # das ersetzt kein echtes Gerät mit Scharnier.
+        for label, size in (('fold-cover', (904, 2316, 420)), ('fold-inner', (1812, 2176, 420))):
+            try:
+                base.display(*size)
+                done[f't9-{label}-start'] = shot(f't9-{label}-start')
+                done[f't9-{label}-lernen'] = shot(f't9-{label}-lernen', LEARN_TILE)
+                # „Zurück“ könnte auf der obersten Ebene die App schließen; „Start“ nicht.
+                creative.flutter_tap(out, 'Start', f't9-{label}-home', scroll_attempts=4)
+            except Exception as error:  # noqa: BLE001
+                done[f't9-{label}'] = f'FAIL: {str(error).splitlines()[0][:200]}'
+        base.display(1080, 2340, 440)
+        return done
+
     try:
         initial = creative.prefs(out, '00-initial')
         profile = initial.get('flutter.lumo_active_profile') or ''
@@ -150,6 +185,7 @@ def main() -> int:
                            'after_restart': daily_restored.group(0)}
         result['restart_restore'] = 'PASS'
         result['status'] = 'PASS'
+        result['tour'] = tour()
         return 0
     except Exception:
         result['status'] = 'FAIL'
