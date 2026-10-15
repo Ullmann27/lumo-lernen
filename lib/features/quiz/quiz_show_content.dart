@@ -215,7 +215,7 @@ class _QuizCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _QuizHost(
+          LumoMeisterHost(
             questionNumber: state.displayQuestionNumber,
             finale: finale,
             won: state.won,
@@ -319,8 +319,12 @@ class _QuizCard extends StatelessWidget {
 }
 
 
-class _QuizHost extends StatelessWidget {
-  const _QuizHost({
+/// Lumo bleibt in jeder Quiz-Phase in einem eigenen, fest begrenzten
+/// Figurenbereich. Breite Posen und Animationen können dadurch weder die
+/// Joker-/Textspalte übermalen noch bei einem Layoutwechsel herausrutschen.
+class LumoMeisterHost extends StatelessWidget {
+  const LumoMeisterHost({
+    super.key,
     required this.questionNumber,
     required this.finale,
     required this.won,
@@ -341,50 +345,77 @@ class _QuizHost extends StatelessWidget {
                 : 'Bereit? Denk in Ruhe nach.';
 
     return Semantics(
+      key: const ValueKey('lumo-meister-host'),
       label: 'Lumo moderiert die Quizshow',
-      child: Row(
-        children: [
-          LumoCharacter(
-            pose: won || finale
-                ? LumoDesignFoxPose.trophyWink
-                : LumoDesignFoxPose.pointSide,
-            size: 92,
-            reduceMotion: MediaQuery.disableAnimationsOf(context),
-            idleHops: !finale,
-            ambientPoses: finale
-                ? const <LumoDesignFoxPose>[]
-                : const <LumoDesignFoxPose>[
-                    LumoDesignFoxPose.thumbWink,
-                    LumoDesignFoxPose.teacherStick,
-                  ],
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-              decoration: BoxDecoration(
-                color: finale
-                    ? const Color(0x33FFC94A)
-                    : const Color(0x3328D7FA),
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(
-                  color: finale
-                      ? const Color(0xFFFFC94A)
-                      : LumoVisualTokens.cyanBright.withOpacity(.55),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Auch die breiteste Hand-/Jubelpose bleibt innerhalb des eigenen Slots.
+          // Auf schmalen Displays erhält die Ansage weiterhin genügend Platz.
+          final slotWidth = math.min(
+            100.0,
+            math.max(52.0, constraints.maxWidth * .30),
+          );
+          final foxSize = math.min(84.0, slotWidth - 8.0);
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(
+                key: const ValueKey('lumo-meister-fox-slot'),
+                width: slotWidth,
+                height: 106,
+                child: ClipRect(
+                  child: Center(
+                    child: LumoCharacter(
+                      key: const ValueKey('lumo-meister-fox'),
+                      pose: won || finale
+                          ? LumoDesignFoxPose.trophyWink
+                          : LumoDesignFoxPose.pointSide,
+                      size: foxSize,
+                      reduceMotion: MediaQuery.disableAnimationsOf(context),
+                      // Quiz-Feedback darf die Figur nicht aus ihrem Slot
+                      // springen lassen oder kurzfristig eine andere Pose
+                      // außerhalb der reservierten Fläche anzeigen.
+                      intro: false,
+                      idleHops: false,
+                      ambientPoses: const <LumoDesignFoxPose>[],
+                    ),
+                  ),
                 ),
               ),
-              child: Text(
-                message,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w900,
+              const SizedBox(width: 8),
+              Expanded(
+                child: Container(
+                  key: const ValueKey('lumo-meister-host-caption'),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 12,
+                    vertical: 10,
+                  ),
+                  decoration: BoxDecoration(
+                    color: finale
+                        ? const Color(0x33FFC94A)
+                        : const Color(0x3328D7FA),
+                    borderRadius: BorderRadius.circular(18),
+                    border: Border.all(
+                      color: finale
+                          ? const Color(0xFFFFC94A)
+                          : LumoVisualTokens.cyanBright.withOpacity(.55),
+                    ),
+                  ),
+                  child: Text(
+                    message,
+                    softWrap: true,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: Colors.white,
+                      fontSize: 15,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-        ],
+            ],
+          );
+        },
       ),
     );
   }
