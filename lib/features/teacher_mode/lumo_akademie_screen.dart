@@ -17,6 +17,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
+import '../../core/curriculum/academy_topic_units.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
@@ -2159,40 +2160,12 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     // implicit discovery redirect. Progress stays separate from the child's
     // official school grade and its XP/wallet records.
     if (_selectedGrade != widget.appState.state.grade) {
-      final available = Curriculum.unitsForGrade(s.name, _selectedGrade);
-      final preferred = switch (t.id) {
-        'm1_zahlen10' => 'Mengenvergleich',
-        'm1_formen' => 'Geometrie Formen',
-        'm2_zahlen100' => 'Plus bis 100',
-        'm2_einmaleins' => 'Einmaleins Vorbereitung',
-        'm2_uhr' => 'Uhrzeit',
-        'm2_geld' => 'Geld wechseln',
-        'm3_zahlen1000' => 'Plus bis 1000',
-        'm3_einmaleins_voll' => 'Einmaleins',
-        'm3_geometrie' => 'Umfang',
-        'm4_million' => 'Zahlenraum bis 1 Million',
-        'm4_bruch' => 'Bruchrechnen einfach',
-        'm4_textaufgaben' => 'Sachaufgaben drei Schritte',
-        'd2_saetze' => 'Erste Sätze',
-        'd2_artikel' => 'Artikel',
-        'd2_mehrzahl' => 'Einzahl und Mehrzahl',
-        'd3_wortarten' => 'Wortarten',
-        'd3_zeitformen' => 'Zeitformen',
-        'd4_grammatik' => 'Die 4 Fälle',
-        's1_koerper' => 'Körper',
-        's3_oesterreich' => 'Bundesländer Österreichs',
-        's3_natur' => 'Pflanzen',
-        's4_europa' => 'Kontinente und Ozeane',
-        'en1_3' => 'Begruessung',
-        _ => t.title,
-      };
-      final currentUnits = Curriculum.unitsForGrade(
-        s.name, _selectedGrade, currentGradeOnly: true,
+      final unit = AcademyTopicUnits.exerciseUnit(
+        topicId: t.id,
+        title: t.title,
+        subject: s.name,
+        grade: _selectedGrade,
       );
-      final unit = available.contains(preferred)
-          ? preferred
-          : (currentUnits.isNotEmpty ? currentUnits.first :
-              (available.isNotEmpty ? available.first : null));
       if (unit == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(
@@ -2213,10 +2186,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       ));
       return;
     }
-    // Each visible English/Sachunterricht curriculum tile must open a real
-    // locally generated task, rather than a generic teacher-chat with no
-    // guaranteed question/options. Browsing higher classes remains discovery
-    // only (guard above) and never silently changes the profile grade.
+    // Same-grade science and English retain their registered specialist modules
+    // and otherwise start an exact, locally generated curriculum unit.
     if (s.name == 'Englisch' || s.name == 'Sachunterricht') {
       // Eigene Fachmodule (Tiere, Jahreszeiten, Wetter, Verkehr) haben
       // Vorrang vor dem Aufgabengenerator; vorher waren sie von keiner Kachel
@@ -2229,24 +2200,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         return;
       }
       final subject = s.name;
-      final topicUnit = switch (t.id) {
-        's1_koerper' => 'Körper',
-        'en1_3' => 'Begruessung',
-        's3_oesterreich' => 'Bundesländer Österreichs',
-        's3_natur' => 'Pflanzen',
-        's4_europa' => 'Kontinente und Ozeane',
-        _ => t.title,
-      };
-      final units = Curriculum.unitsForGrade(
-          subject, widget.appState.state.grade);
-      if (!units.contains(topicUnit)) {
-        // Don't present an unrelated task under a misleading topic label.
-        Navigator.of(context).push<void>(MaterialPageRoute(
-          builder: (_) => GuidedLearningHub(
-            appState: widget.appState,
-            discovery: true,
-            requestedTopicTitle: t.title,
-          ),
+      final topicUnit = AcademyTopicUnits.exerciseUnit(
+        topicId: t.id,
+        title: t.title,
+        subject: subject,
+        grade: _selectedGrade,
+      );
+      if (topicUnit == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Für ${t.title} gibt es noch keine passende Übung.'),
         ));
         return;
       }
@@ -2305,29 +2267,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     // then route all generator-backed Mathematics/German topics to actual
     // local exercises instead of the old online-only teacher chat.
     if (s.name == 'Mathematik' || s.name == 'Deutsch') {
-      final unit = switch (t.id) {
-        'm1_zahlen10' => 'Mengenvergleich',
-        'm1_formen' => 'Geometrie Formen',
-        'm2_zahlen100' => 'Plus bis 100',
-        'm2_einmaleins' => 'Einmaleins Vorbereitung',
-        'm2_uhr' => 'Uhrzeit',
-        'm2_geld' => 'Geld wechseln',
-        'm3_zahlen1000' => 'Plus bis 1000',
-        'm3_einmaleins_voll' => 'Einmaleins',
-        'm3_geometrie' => 'Umfang',
-        'm4_million' => 'Zahlenraum bis 1 Million',
-        'm4_bruch' => 'Bruchrechnen einfach',
-        'm4_textaufgaben' => 'Sachaufgaben drei Schritte',
-        'd2_saetze' => 'Erste Sätze',
-        'd2_artikel' => 'Artikel',
-        'd2_mehrzahl' => 'Einzahl und Mehrzahl',
-        'd3_wortarten' => 'Wortarten',
-        'd3_zeitformen' => 'Zeitformen',
-        'd4_grammatik' => 'Die 4 Fälle',
-        _ => t.title,
-      };
-      if (Curriculum.unitsForGrade(
-              s.name, widget.appState.state.grade).contains(unit)) {
+      final unit = AcademyTopicUnits.exerciseUnit(
+        topicId: t.id,
+        title: t.title,
+        subject: s.name,
+        grade: _selectedGrade,
+      );
+      if (unit != null) {
         widget.appState.update(widget.appState.state.copyWith(
           section: LumoSection.exercises,
           subject: s.name,
