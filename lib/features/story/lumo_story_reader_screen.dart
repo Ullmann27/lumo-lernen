@@ -12,7 +12,8 @@ import '../../core/lumo_story_generator.dart';
 import '../../core/lumo_story_library.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -37,11 +38,10 @@ class LumoStoryReaderScreen extends StatefulWidget {
 }
 
 class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+    with WidgetsBindingObserver {
   int _pageIdx = 0;
   bool _exerciseDone = false;
   String? _selectedAnswer;
-  late final PageController _pageCtrl;
   // Zusammenfassungs-Phase nach der letzten Seite (Heinz' Wunsch:
   // "Am Schluss wird gefragt um was es geht und das Kind kann erklaeren,
   //  dann bewertet Lumo die Zusammenfassung").
@@ -51,18 +51,19 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   bool _summaryEvaluated = false;
   int _summaryHits = 0;
   int _summaryStars = 0;
+  bool _finishing = false;
+  String? _savedStoryId;
 
   @override
   void initState() {
     super.initState();
-    _pageCtrl = PageController();
+    _savedStoryId = widget.storyId;
     WidgetsBinding.instance.addObserver(this);
     WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
   }
 
   @override
   void dispose() {
-    _pageCtrl.dispose();
     _summaryCtrl.dispose();
     _speech.cancel();
     _speech.dispose();
@@ -97,9 +98,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _exerciseDone = false;
       _selectedAnswer = null;
     });
-    _pageCtrl.nextPage(
-        duration: const Duration(milliseconds: 400),
-        curve: Curves.easeOutCubic);
+    // Pages are rendered directly by _buildPage, not by a PageView.
+    // The page index above is the actual navigation state.
     _speak();
   }
 
@@ -205,13 +205,33 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     }
   }
 
-  void _showFinish() {
-    // Bei abgeschlossener Story: auto in Bibliothek speichern wenn neu
-    if (widget.storyId == null) {
-      LumoStoryLibrary.instance.addStory(widget.story);
+  Future<void> _showFinish() async {
+    if (_finishing) return;
+    setState(() => _finishing = true);
+    try {
+      if (_savedStoryId == null) {
+        final saved = await LumoStoryLibrary.instance.addStory(widget.story);
+        _savedStoryId = saved.id;
+      }
+      if (!mounted) return;
+      await _showFinishDialog();
+    } catch (_) {
+      if (!mounted) return;
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        behavior: SnackBarBehavior.floating,
+        margin: EdgeInsets.fromLTRB(16, 0, 16, 88),
+        content: Text(
+            'Dein Heft konnte nicht gespeichert werden. Bitte versuche es noch einmal.'),
+      ));
+    } finally {
+      if (mounted) setState(() => _finishing = false);
     }
-    showDialog(
+  }
+
+  Future<void> _showFinishDialog() {
+    return showDialog<void>(
       context: context,
+      barrierDismissible: false,
       builder: (_) => AlertDialog(
         backgroundColor: LumoTokens.colors.surface,
         title: Text('🎉 ${widget.story.title} — Geschafft!',
@@ -258,10 +278,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         actions: [
           TextButton(
             onPressed: () {
-              Navigator.pop(context); // Dialog
-              Navigator.pop(context); // Reader
-              Navigator.push(
-                context,
+              final navigator = Navigator.of(context);
+              navigator.pop(); // Dialog
+              navigator.pop(true); // Reader: successfully saved completion
+              navigator.push(
                 MaterialPageRoute(
                   builder: (_) => LumoWritingCoachScreen(
                     appState: widget.appState,
@@ -276,7 +296,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           TextButton(
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context);
+              Navigator.pop(context, true);
             },
             child: const Text('Fertig'),
           ),
@@ -288,19 +308,23 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   @override
   Widget build(BuildContext context) {
     final page = widget.story.pages[_pageIdx];
-    return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
-        intensity: 0.6,
-        child: SafeArea(
-          child: Column(
-            children: [
-              _buildTopBar(),
-              Expanded(
-                child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
-              ),
-              _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
-            ],
+    return PopScope(
+      canPop: !_finishing,
+      child: Scaffold(
+        backgroundColor: LumoVisualTokens.night,
+        body: LumoSceneBackground(
+          scene: LumoScene.library,
+          dimmed: true,
+          child: SafeArea(
+            child: Column(
+              children: [
+                _buildTopBar(),
+                Expanded(
+                  child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
+                ),
+                _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
+              ],
+            ),
           ),
         ),
       ),
@@ -314,14 +338,14 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       child: Row(
         children: [
           IconButton(
-            icon: const Icon(Icons.close_rounded),
-            onPressed: () => Navigator.pop(context),
+            icon: const Icon(Icons.close_rounded, color: LumoVisualTokens.white),
+            onPressed: _finishing ? null : () => Navigator.pop(context),
           ),
           Expanded(
             child: Column(
               children: [
                 Text(widget.story.title,
-                    style: LumoTokens.typo.titleLarge,
+                    style: LumoTokens.typo.titleLarge.copyWith(color: LumoVisualTokens.white),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis),
                 const SizedBox(height: 4),
@@ -330,9 +354,9 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   child: LinearProgressIndicator(
                     value: (_pageIdx + 1) / widget.story.pages.length,
                     minHeight: 6,
-                    backgroundColor: LumoTokens.colors.outline,
+                    backgroundColor: LumoVisualTokens.glassRow,
                     valueColor:
-                        AlwaysStoppedAnimation(LumoTokens.colors.lumoOrange),
+                        AlwaysStoppedAnimation(LumoVisualTokens.cyanBright),
                   ),
                 ),
               ],
@@ -340,7 +364,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           ),
           IconButton(
             icon: Icon(Icons.volume_up_rounded,
-                color: LumoTokens.colors.lumoOrange),
+                color: LumoVisualTokens.cyanBright),
             onPressed: _speak,
           ),
         ],
@@ -348,71 +372,107 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     );
   }
 
+  /// The child's words come first; illustration is secondary to reading.
   Widget _buildPage(LumoStoryPage page) {
     return SingleChildScrollView(
-      padding: const EdgeInsets.all(LumoTokens.space16),
-      child: Column(
-        children: [
-          // Bild
-          AspectRatio(
-            aspectRatio: 1,
-            child: LumoPremiumCard(
-              padding: EdgeInsets.zero,
-              child: ClipRRect(
-                borderRadius: LumoTokens.brLarge,
-                child: Container(
-                  decoration:
-                      BoxDecoration(gradient: LumoTokens.colors.bgMagic),
-                  alignment: Alignment.center,
-                  child: const Text('📖', style: TextStyle(fontSize: 80)),
+      key: const ValueKey('lumo-story-reader-scroll'),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 740),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              LumoGlassCard(
+                key: const ValueKey('lumo-story-visible-page-text'),
+                padding: const EdgeInsets.all(18),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(children: [
+                      const Icon(Icons.auto_stories_rounded,
+                          color: LumoVisualTokens.cyanBright, size: 21),
+                      const SizedBox(width: 9),
+                      Expanded(child: Text(
+                        'Seite ${page.pageNum} von ${widget.story.pages.length}',
+                        style: const TextStyle(
+                          color: LumoVisualTokens.cyanBright,
+                          fontSize: 13,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      )),
+                    ]),
+                    const SizedBox(height: 12),
+                    Text(page.text,
+                      key: const ValueKey('lumo-story-actual-page-text'),
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.white,
+                        fontSize: 19,
+                        fontWeight: FontWeight.w700,
+                        height: 1.55,
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ),
-          const SizedBox(height: LumoTokens.space16),
-          // Seitenzahl
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(
-              color: LumoTokens.colors.lumoOrange.withOpacity(0.15),
-              borderRadius: LumoTokens.brPill,
-            ),
-            child: Text('Seite ${page.pageNum} / ${widget.story.pages.length}',
-                style: LumoTokens.typo.labelMedium
-                    .copyWith(color: LumoTokens.colors.lumoOrangeDeep)),
-          ),
-          const SizedBox(height: LumoTokens.space12),
-          // Lese-Text
-          LumoPremiumCard(
-            child: Text(
-              page.text,
-              style: LumoTokens.typo.bodyLarge.copyWith(
-                fontSize: 18,
-                height: 1.6,
+              const SizedBox(height: 12),
+              LumoGlassCard(
+                key: const ValueKey('lumo-story-original-fox-art'),
+                padding: const EdgeInsets.all(10),
+                child: Row(children: [
+                  const LumoFoxPose(
+                    pose: LumoDesignFoxPose.bookPoint,
+                    size: 94,
+                  ),
+                  const SizedBox(width: 8),
+                  const Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Lumo liest mit dir',
+                        style: TextStyle(
+                          color: LumoVisualTokens.white,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 16,
+                        ),
+                      ),
+                      SizedBox(height: 5),
+                      Text('Entdecke Seite für Seite dein Abenteuer.',
+                        style: TextStyle(
+                          color: LumoVisualTokens.muted,
+                          fontSize: 12.5,
+                          height: 1.35,
+                        ),
+                      ),
+                    ],
+                  )),
+                ]),
               ),
-              textAlign: TextAlign.center,
-            ),
+              if (page.exercise != null) ...[
+                const SizedBox(height: 16),
+                _buildExerciseCard(page.exercise!),
+              ],
+              if (page.newWord != null) ...[
+                const SizedBox(height: 12),
+                LumoGlassCard(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 15, vertical: 12),
+                  child: Row(children: [
+                    const Icon(Icons.lightbulb_rounded,
+                      color: LumoVisualTokens.gold),
+                    const SizedBox(width: 8),
+                    Expanded(child: Text('Neues Wort: ${page.newWord!}',
+                      style: const TextStyle(
+                        color: LumoVisualTokens.white,
+                        fontWeight: FontWeight.w800,
+                      ),
+                    )),
+                  ]),
+                ),
+              ],
+            ],
           ),
-          // Lern-Stop nach jeder 2. Seite
-          if (page.exercise != null) ...[
-            const SizedBox(height: LumoTokens.space16),
-            _buildExerciseCard(page.exercise!),
-          ],
-          // Neues Wort hervorgehoben
-          if (page.newWord != null) ...[
-            const SizedBox(height: LumoTokens.space12),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              decoration: BoxDecoration(
-                gradient: LumoTokens.colors.heroLila,
-                borderRadius: LumoTokens.brPill,
-              ),
-              child: Text('Neues Wort: ${page.newWord!}',
-                  style:
-                      LumoTokens.typo.labelLarge.copyWith(color: Colors.white)),
-            ),
-          ],
-        ],
+        ),
       ),
     );
   }
@@ -501,7 +561,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         width: double.infinity,
         height: 56,
         child: ElevatedButton.icon(
-          onPressed: canContinue ? _nextPage : null,
+          onPressed: canContinue && !_finishing ? _nextPage : null,
           icon: Icon(_pageIdx + 1 >= widget.story.pages.length
               ? Icons.celebration_rounded
               : Icons.arrow_forward_rounded),
@@ -509,8 +569,8 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               ? 'Erzähl mir die Geschichte!'
               : 'Weiterlesen'),
           style: ElevatedButton.styleFrom(
-            backgroundColor: LumoTokens.colors.lumoOrange,
-            foregroundColor: Colors.white,
+            backgroundColor: LumoVisualTokens.cyanBright,
+            foregroundColor: LumoVisualTokens.navigation,
             textStyle: LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
             shape: RoundedRectangleBorder(borderRadius: LumoTokens.brLarge),
           ),
@@ -688,7 +748,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         height: 56,
         child: _summaryEvaluated
             ? ElevatedButton.icon(
-                onPressed: _showFinish,
+                onPressed: _finishing ? null : _showFinish,
                 icon: const Icon(Icons.celebration_rounded),
                 label: const Text('Fertig!'),
                 style: ElevatedButton.styleFrom(

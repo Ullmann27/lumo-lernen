@@ -1,3 +1,5 @@
+import 'shape_question_data.dart';
+
 /// Deterministische Mathe-Templates für Volksschule 1-4.
 ///
 /// Der Generator wählt nur noch ein Template und konkretisiert es über Seed.
@@ -264,11 +266,8 @@ class MathTaskTemplate {
         return _choice('Wie schreibt man die Zahl $a als Wort?', answer, _numberWordChoices(a), 'Zahlwörter liest man wie normale Wörter.', 'word_number',
         );
       case MathTemplateKind.shapeRecognition:
-        final shapes = <String, String>{'Welche Form hat 3 Ecken?': 'Dreieck', 'Welche Form ist ganz rund?': 'Kreis', 'Welche Form hat 4 gleich lange Seiten?': 'Quadrat', 'Welche Form hat keine Ecke?': 'Kreis', 'Welche Form sieht aus wie ein Ei?': 'Oval', 'Welche Form hat 4 Ecken und zwei längere Seiten?': 'Rechteck',
-        };
-        final entry = shapes.entries.elementAt(_positive(seed, shapes.length));
-        return _choice(entry.key, entry.value, <String>['Dreieck', 'Kreis', 'Quadrat', 'Rechteck', 'Oval'], 'Schau auf Ecken, Seiten und Rundungen.', 'shape',
-        );
+        final entry = shapeQuestions[_positive(seed, shapeQuestions.length)];
+        return _choice(entry.$1, entry.$2, entry.$3, entry.$4, 'shape');
       case MathTemplateKind.moneyCompare:
         final left = a;
         final right = b;
@@ -276,8 +275,58 @@ class MathTaskTemplate {
         return _choice('Was kostet mehr: $left € oder $right €?', answer, <String>['$left €', '$right €', 'gleich viel'], 'Mehr Euro bedeutet höherer Preis.', 'money',
         );
       case MathTemplateKind.dayHours:
-        return _choice('Wie viele Stunden hat ein Tag?', '24', <String>['12', '24', '30'], 'Ein Tag hat 24 Stunden: Tag und Nacht zusammen.', 'clock',
-        );
+        const facts = <(String, String, List<String>, String)>[
+          (
+            'Wie viele Stunden hat ein ganzer Tag?',
+            '24',
+            ['12', '24', '30'],
+            'Ein ganzer Tag hat 24 Stunden: der helle und der dunkle Teil zusammen.'
+          ),
+          (
+            'Wie viele Tage hat eine Woche?',
+            '7',
+            ['5', '7', '10'],
+            'Zähle Montag bis Sonntag. Es sind sieben Tage.'
+          ),
+          (
+            'Welche Tageszeit kommt nach dem Morgen und vor dem Nachmittag?',
+            'Mittag',
+            ['Abend', 'Nacht', 'Mittag'],
+            'Die Reihenfolge ist Morgen, Mittag, Nachmittag und Abend.'
+          ),
+          (
+            'Welche Tageszeit folgt auf den Nachmittag?',
+            'Abend',
+            ['Morgen', 'Mittag', 'Abend'],
+            'Nach dem Nachmittag kommt der Abend.'
+          ),
+          (
+            'Was dauert normalerweise länger: Zähneputzen oder eine Nacht schlafen?',
+            'eine Nacht schlafen',
+            ['Zähneputzen', 'eine Nacht schlafen', 'beides gleich lang'],
+            'Zähneputzen dauert wenige Minuten. Eine Nacht schlafen dauert viele Stunden.'
+          ),
+          (
+            'Was dauert normalerweise kürzer: einmal klatschen oder die ganze Jause essen?',
+            'einmal klatschen',
+            ['die ganze Jause essen', 'einmal klatschen', 'beides gleich lang'],
+            'Ein einzelner Klatscher dauert nur einen kurzen Moment.'
+          ),
+          (
+            'Was bedeutet morgen?',
+            'der Tag nach heute',
+            ['der Tag vor heute', 'der Tag nach heute', 'der heutige Tag'],
+            'Gehe von heute einen Tag weiter. Dann ist morgen.'
+          ),
+          (
+            'Was bedeutet gestern?',
+            'der Tag vor heute',
+            ['der Tag vor heute', 'der Tag nach morgen', 'der heutige Tag'],
+            'Gehe von heute einen Tag zurück. Dann ist gestern.'
+          ),
+        ];
+        final fact = facts[_positive(_mixSeed(seed), facts.length)];
+        return _choice(fact.$1, fact.$2, fact.$3, fact.$4, 'clock');
       case MathTemplateKind.symmetry:
         if (unit == 'Symmetrieachsen') {
           const examples = <(String, int)>[

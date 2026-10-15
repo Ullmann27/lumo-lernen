@@ -7,11 +7,10 @@
 // 10 Aufgaben, gemischte Typen, Pollinations.ai liefert die Bilder.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
-import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -102,6 +101,7 @@ class _FarbenScreenState extends State<FarbenScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, int object, int color})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -122,6 +122,12 @@ class _FarbenScreenState extends State<FarbenScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var kind = 0; kind < _FarbFrageTyp.values.length; kind++)
+        for (var object = 0; object < _objekte.length; object++)
+          for (var color = 0; color < _farben.length; color++)
+            (kind: kind, object: object, color: color),
+    ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -148,15 +154,20 @@ class _FarbenScreenState extends State<FarbenScreen>
   }
 
   void _generateTask() {
-    _typ = _FarbFrageTyp.values[_rng.nextInt(_FarbFrageTyp.values.length)];
-    _objekt = _objekte[_rng.nextInt(_objekte.length)];
-    final shuffled = List.of(_farben)..shuffle(_rng);
-    _correctFarbe = shuffled.first;
+    // Exact type/object/color triples are consumed once per session.
+    // Do not treat the emoji's fixed natural colour as the selected answer;
+    // the task asks for the actually rendered coloured background.
+    final plan = _round[_taskIdx];
+    _typ = _FarbFrageTyp.values[plan.kind];
+    _objekt = _objekte[plan.object];
+    _correctFarbe = _farben[plan.color];
+    final shuffled = List.of(_farben.where((f) => f != _correctFarbe))
+      ..shuffle(_rng);
     // Drei andere Farben plus die richtige. Vorher stand die richtige Farbe
     // schon an Index 0 und wurde zusaetzlich an _correctImageIdx gesetzt -
     // in 3 von 4 Faellen gab es sie doppelt, und einer der beiden richtigen
     // Kacheln wurde als falsch gewertet.
-    final others = shuffled.skip(1).take(3).toList();
+    final others = shuffled.take(3).toList();
     _correctImageIdx = _rng.nextInt(4);
     final withCorrect = [...others]..insert(_correctImageIdx, _correctFarbe);
     if (_typ == _FarbFrageTyp.objektZuFarbe) {
@@ -173,10 +184,10 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat ${_objekt.artikel} ${_objekt.name}?';
+        text = 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
-        text = 'Tippe ${_correctFarbe.name.toLowerCase()}!';
+        text = 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!';
         break;
     }
     try {
@@ -192,6 +203,8 @@ class _FarbenScreenState extends State<FarbenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      cosmosSubjectId: 's1_farben',
+      cosmosIsMath: false,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -199,13 +212,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
-      CosmosWorld.instance.grantReward(
-        subjectId: 's1_farben',
-        isMath: false,
-        isPerfect: false,
-      );
-      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctFarbe.name}!');
       } catch (_) {}
@@ -303,91 +310,39 @@ class _FarbenScreenState extends State<FarbenScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 20),
-                      if (_typ == _FarbFrageTyp.farbeZuObjekt) ...[
-                        _buildSingleImage(_correctFarbe),
-                        const SizedBox(height: 20),
-                        _buildColorOptions(),
-                      ] else ...[
-                        _buildImageGrid(),
-                      ],
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Farben lernen',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Welt-Abenteuer',
+        moduleTitle: 'Farben lernen',
+        icon: Icons.palette_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: Column(children: [
+            _buildTaskHeader(),
+            const SizedBox(height: 20),
+            if (_typ == _FarbFrageTyp.farbeZuObjekt) ...[
+              _buildSingleImage(_correctFarbe),
+              const SizedBox(height: 20),
+              _buildColorOptions(),
+            ] else ...[
+              _buildImageGrid(),
             ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -395,24 +350,27 @@ class _FarbenScreenState extends State<FarbenScreen>
     String text;
     switch (_typ) {
       case _FarbFrageTyp.farbeZuObjekt:
-        text = 'Welche Farbe hat ${_objekt.artikel} ${_objekt.name}?';
+        text = 'Welche Hintergrundfarbe siehst du beim Bild „${_objekt.name}“?';
         break;
       case _FarbFrageTyp.objektZuFarbe:
-        text = 'Tippe ${_correctFarbe.name.toLowerCase()}!';
+        text = 'Tippe das Feld mit der Farbe ${_correctFarbe.name}!';
         break;
     }
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text(text,
             textAlign: TextAlign.center,
@@ -420,7 +378,7 @@ class _FarbenScreenState extends State<FarbenScreen>
                 fontFamily: 'Nunito',
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
@@ -463,7 +421,7 @@ class _FarbenScreenState extends State<FarbenScreen>
 
   Widget _buildColorOptions() {
     final options = _colorOptions;
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -473,23 +431,23 @@ class _FarbenScreenState extends State<FarbenScreen>
       children: options.map((f) {
         final isSelected = _selectedIdx == options.indexOf(f);
         final isCorrect = f == _correctFarbe;
-        Color borderColor = _gradient[0].withOpacity(0.3);
+        Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
         if (_answered && isSelected) {
           borderColor =
               isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
         } else if (_answered && isCorrect) {
           borderColor = const Color(0xFFFCD34D);
         }
-        return GestureDetector(
+        return LumoLessonAnswerTap(
+          correct: _answered && isSelected ? isCorrect : null,
           onTap:
               _answered ? null : () => _onAnswer(options.indexOf(f), isCorrect),
           child: AnimatedContainer(
-            duration: const Duration(milliseconds: 200),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(color: borderColor, width: 3),
-            ),
+            duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+                ? Duration.zero
+                : const Duration(milliseconds: 200),
+            decoration: LumoLessonStyle.answer(
+                background: LumoVisualTokens.lessonAnswer, border: borderColor),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -503,12 +461,15 @@ class _FarbenScreenState extends State<FarbenScreen>
                   ),
                 ),
                 const SizedBox(width: 10),
-                Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: Text(f.name,
-                    style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 18,
-                        fontWeight: FontWeight.w900,
-                        color: _gradient[1])))),
+                Flexible(
+                    child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(f.name,
+                            style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 18,
+                                fontWeight: FontWeight.w900,
+                                color: LumoVisualTokens.white)))),
               ],
             ),
           ),

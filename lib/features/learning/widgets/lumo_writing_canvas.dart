@@ -1,10 +1,10 @@
 import 'dart:math' as math;
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../domain/writing/writing_domain.dart';
 import '../../../domain/writing/writing_path_geometry.dart';
+import '../../writing/widgets/lumo_ink_surface.dart';
 
 class LumoWritingCanvas extends StatefulWidget {
   const LumoWritingCanvas({
@@ -88,6 +88,11 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
     _emitEvaluation();
   }
 
+  void _cancelStroke() {
+    if (_activeStroke == null) return;
+    setState(() => _activeStroke = null);
+  }
+
   void _undo() {
     if (_strokes.isEmpty) return;
     setState(() => _strokes.removeLast());
@@ -167,38 +172,14 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl - 2),
-            // Heinz 2026-05-22: 'Schreibflaeche bewegt sich beim Schreiben,
-            // touchflaeche nicht benutzbar'. Ursache: GestureDetector mit
-            // onPan* konkurriert in der Gesture-Arena mit jedem moeglichen
-            // Scroll-Vorfahren. Loesung: Listener (Raw-Pointer-Events)
-            // statt GestureDetector. Listener feuert sofort auf jeden
-            // Touch, keine Arena-Konkurrenz.
-            //
-            // 2026-06-04 Heinz: 'Bildschirm geht beim Schreiben mit'.
-            // Listener allein reichte NICHT - das Scrollable im Eltern-
-            // Widget bekam die Pan-Events trotzdem und scrollte. Fix:
-            // zusaetzlich RawGestureDetector mit EagerGestureRecognizer
-            // drumherum - der gewinnt die Gesture-Arena sofort und
-            // blockt damit den Scrollable-Parent.
-            child: RawGestureDetector(
-              behavior: HitTestBehavior.opaque,
-              gestures: <Type, GestureRecognizerFactory>{
-                EagerGestureRecognizer:
-                    GestureRecognizerFactoryWithHandlers<EagerGestureRecognizer>(
-                  () => EagerGestureRecognizer(),
-                  (EagerGestureRecognizer instance) {},
-                ),
-              },
-              child: Listener(
-              behavior: HitTestBehavior.opaque,
-              onPointerDown: (event) {
-                _startStroke(event.localPosition, size);
-              },
-              onPointerMove: (event) {
-                _appendPoint(event.localPosition, size);
-              },
-              onPointerUp: (_) => _finishStroke(),
-              onPointerCancel: (_) => _finishStroke(),
+            // Owns vertical and horizontal ink gestures without competing
+            // with any scrolling ancestor. Only the active finger is sampled.
+            child: LumoInkSurface(
+              key: const ValueKey('lumo-learning-ink-surface'),
+              onStart: (position) => _startStroke(position, size),
+              onUpdate: (position) => _appendPoint(position, size),
+              onEnd: _finishStroke,
+              onCancel: _cancelStroke,
               child: CustomPaint(
                 painter: _WritingCanvasPainter(
                   template: widget.template,
@@ -209,8 +190,7 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
                 ),
                 child: const SizedBox.expand(),
               ),
-              ), // close inner Listener
-            ), // close RawGestureDetector
+            ),
           ),
         );
       }),

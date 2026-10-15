@@ -34,8 +34,28 @@ class LumoPhrases {
   /// Bei Schwierigkeit / wiederholter Fehler.
   static String comfort() => _pick(_comfortPhrases);
 
-  static String _pick(List<String> list) =>
-      list[_rng.nextInt(list.length)];
+  // Shuffle-Bags statt unabhaengiger Zufallsziehungen: Jedes Feedback einer
+  // Kategorie erscheint einmal, bevor eine Formulierung erneut vorkommt.
+  // Auch am Rundenuebergang wird dieselbe Antwort nicht sofort wiederholt.
+  static final Map<List<String>, List<int>> _remaining = {};
+  static final Map<List<String>, String> _lastSpoken = {};
+
+  static String _pick(List<String> list) {
+    final bag = _remaining.putIfAbsent(list, () => <int>[]);
+    if (bag.isEmpty) {
+      bag.addAll(List<int>.generate(list.length, (i) => i)..shuffle(_rng));
+      final last = _lastSpoken[list];
+      if (last != null && list.length > 1 && list[bag.last] == last) {
+        final other = bag.indexWhere((index) => list[index] != last);
+        final old = bag.last;
+        bag[bag.length - 1] = bag[other];
+        bag[other] = old;
+      }
+    }
+    final sentence = list[bag.removeLast()];
+    _lastSpoken[list] = sentence;
+    return sentence;
+  }
 
   // ── Lobsprueche (correct) ──
   static const _correctPhrases = [

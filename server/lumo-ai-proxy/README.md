@@ -36,3 +36,76 @@ node --test test/*.test.js
 ```
 
 Die Tests prüfen Modellmigration und Parameter, fehlende Schlüssel, tatsächliche Erreichbarkeit, Fehlerdiagnose, Eingabegrenzen einschließlich unvollständiger TCP-Uploads, Kinderschutz einschließlich deutscher Komposita, Rechnungen, Aufgabenfilter und parallele Aufgabenanfragen. Sie ersetzen keinen echten Render-Aufruf und keinen pädagogischen Unterrichtstest.
+
+## Sulafat-Stimme (Build nach 1925)
+
+Die originale Stimme aus „Stimme testen“ ist **Gemini TTS / Sulafat** und bleibt
+als Offline-Aufnahme erhalten. Für individuelle Unterrichtstexte bietet der
+gleiche Proxy `POST /speech`: JSON `{"text":"...","style":"explain"}`; Antwort
+`{"voice":"Sulafat","format":"audio/wav","audioBase64":"..."}`.
+Weder der Android-TTS-Provider noch eine andere Sprecherstimme wird verwendet.
+
+**Render-Konfiguration, nur nach Zustimmung zum richtigen Workspace:**
+
+- `GEMINI_API_KEY`: Gemini API-Key ausschließlich als serverseitiges Secret.
+- `LUMO_TTS_ENABLED=1`: notwendige Provider-Freigabe, aber allein keine Aktivierung.
+  Ohne überprüfbare Elternautorisierung bleibt die Synthese weiterhin gesperrt.
+- `GEMINI_TTS_MODEL=gemini-2.5-pro-preview-tts`: Referenzmodell der unveränderten Original-Stimmprobe. Ein Modellwechsel benötigt einen erneuten akustischen Vergleich und darf nicht stillschweigend erfolgen.
+- `LUMO_TTS_PER_PARENT_DAY` (Standard 200), `LUMO_TTS_TOTAL_DAY` (Standard 1600)
+  begrenzen Anfragen je verifiziertem Elternkonto und insgesamt pro Serverprozess.
+  Der alte Variablenname `LUMO_TTS_PER_IP_DAY` wird nur als Konfigurationsfallback
+  für das Elternlimit gelesen; untrusted `X-Forwarded-For` autorisiert niemanden.
+  Die Zähler sind noch nicht persistent oder zwischen mehreren Instanzen geteilt.
+
+### Verpflichtende Elternautorisierung vor Synthese
+
+`createLumoServer` besitzt die Integrationsschnittstelle
+`authorizeSpeech(bearerToken)`. Ein verifizierter bestehender Identitätsdienst muss
+eine undurchsichtige `principalId`, `parentVerified: true` und die eigenständige
+Freigabe `speechConsent: true` liefern. Token-Gültigkeit, Ablauf und Widerruf sind
+Aufgabe dieses tatsächlichen Verifizierers. Ein boolesches `true`, ein Premium-Abo
+oder ein bloß mitgesendetes `x-lumo-parent-token` genügen ausdrücklich nicht.
+
+Ohne Verifizierer lautet die Konfigurationsdiagnose `configured: false`, selbst
+bei vorhandenem Gemini-Schlüssel und eingeschaltetem Provider-Flag. Synthese
+erhält dann HTTP 503 `sulafat_authorization_not_configured`. Fehlende/ungültige
+Bearer-Autorisierung ergibt HTTP 401, fehlende Sprachfreigabe HTTP 403.
+Unberechtigte Anfragen werden vor Lesen des Unterrichtstexts und vor einem
+Provider-Aufruf beendet. Die Identitätsprüfung hat ein Zeitlimit von fünf Sekunden;
+Fehler und Tokens erscheinen weder im Diagnosebody noch im Sprachlog.
+
+Der Defaultstart `node src/server.js` installiert absichtlich keinen fingierten
+Verifizierer. Ein reales Eltern-Identitätssystem, die sichere Ausstellung
+kurzlebiger Tokens und deren Flutter-Anbindung sind weiterhin offene
+Integrationsbedingungen. Kein gemeinsames Servergeheimnis in die APK einbauen.
+Die Testadapter in `test/sulafatTts.test.js` sind ausschließlich lokale Fakes und
+dürfen nicht als produktive Authentifizierung verwendet werden.
+
+Dies härtet den Sprachpfad, ist aber keine vollständige Sicherheitsfreigabe
+des gesamten Proxys. Insbesondere die bestehenden Chat-/Aufgabenendpunkte,
+dauerhafte Kostenlimits, Einwilligungsnachweis und Betriebslogs brauchen eine
+gesonderte öffentliche Releaseprüfung. Der aktuelle produktive Render-Dienst
+wurde durch diese Quelländerung nicht neu bereitgestellt.
+
+`GET /speech/status` prüft ausschließlich die Konfiguration und verursacht keinen
+Provider-Aufruf. `configured: true` bedeutet nicht, dass eine Hörprobe bestanden
+wurde; `providerVerified` bleibt bewusst false. Die App diagnostiziert alte Server
+ohne diesen Endpunkt getrennt von der Chat-KI. Ausgaben verwenden das feste Profil
+`lumo-sulafat-reference-v1`; komprimierte oder falsch deklarierte Audiodaten werden
+abgelehnt, statt als PCM abgespielt. Client-Abbruch beendet auch den Provider-Request.
+
+**Eltern-Freigabe:** Im Elternbereich den neuen Schalter „Online-Lumo-Stimme
+(Sulafat)“ aktivieren. Nur dann wird der jeweils vorzulesende Text über den
+Lumo-Server an Gemini geschickt. Ohne diese Freigabe bleiben neue dynamische
+Sätze stumm, statt mit Android zu sprechen. Die App sollte im Fehlerfall auf
+die fehlende Online-Stimme hinweisen. Das Cloud-Angebot braucht Internet,
+kann Kosten verursachen und darf nicht ohne Datenschutz-/Einwilligungsprüfung
+für Kinder freigegeben werden. Keine Kindertexte im Provider-Diagnoselog.
+
+Für die 3D-Lernspiele ist der Austausch der **52 Legacy-WAVs** aus
+`Ullmann27/lumo-godot` PR #48 vorbereitet, aber ohne tatsächliche Synthese
+und Hörprüfung noch nicht abgeschlossen. Der aktuelle Runtime-Guard blockiert
+die alten Stimmen. Eine technische Test-APK mit dieser Sperre ist kein fertiges
+app-weites Sprachrelease: Dafür muss `sulafat_manifest.json` vollständig sein
+und jede neue Datei, das Referenzmodell und das Profil verifizieren.
+Niemals nur die Flutter-Stimmprobe als vollständige app-weite Hörprüfung ausgeben.

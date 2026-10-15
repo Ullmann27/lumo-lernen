@@ -1,0 +1,7 @@
+{
+  "source_script_sha256": "4d1eed335b59c9b164299170fed565c53daec0362c2eb03abf61e170b634781f",
+  "capture_script_sha256": "cdfeecd9c5358dd11b838af94bdb266e5d0011e89b8d164733aa085d28fef251",
+  "change": "Draw every 30 simulation steps instead of 3; all 600 actual 1/60 physics steps, actual gas touch, steering, capture steps and assertions unchanged. No APK/product change. This is screenshot production, not timing/FPS evidence.",
+  "godot_before": "ec96515a2e359d21e9591120fc81dfd15116e81e",
+  "godot_after": "d8d004141cdd606357aa1348691a39854e3af3c7"
+}

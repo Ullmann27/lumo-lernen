@@ -77,34 +77,41 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
         fullscreenDialog: true,
       ),
     );
-    if (result == true) {
-      _nextLetter();
+    if (result == true && mounted) {
+      _nextLetter(completed: true);
     }
   }
 
-  void _nextLetter() {
+  void _nextLetter({bool completed = false}) {
     HapticFeedback.mediumImpact();
+    final finished =
+        _currentLetterIdx + 1 >= widget.topic.writingChars.length;
     setState(() {
-      _correctCount++;
-      if (_currentLetterIdx + 1 >= widget.topic.writingChars.length) {
-        _showFinish();
-        return;
-      }
-      _currentLetterIdx++;
+      // Only a completed writing attempt counts. Skipping is never a win.
+      if (completed) _correctCount++;
+      if (!finished) _currentLetterIdx++;
     });
-    _demoCtrl.reset();
-    _demoCtrl.forward();
-    try {
-      LumoVoice.instance.speak('Super! Jetzt das $_letter!');
-    } catch (_) {}
+    if (finished) {
+      _showFinish();
+      return;
+    }
+    _demoCtrl
+      ..reset()
+      ..forward();
+    if (widget.appState.state.settings.voiceEnabled) {
+      LumoVoice.instance.speak('Als Nächstes schreiben wir das $_letter.');
+    }
   }
 
   void _showFinish() {
     final stars = (_correctCount / widget.topic.writingChars.length * 5)
         .round()
-        .clamp(1, 5);
-    widget.appState.addStars(stars);
-    widget.appState.addXp(_correctCount * 10);
+        .clamp(0, 5);
+    // Skipped letters must not grant stars or XP.
+    if (_correctCount > 0) {
+      widget.appState.addStars(stars);
+      widget.appState.addXp(_correctCount * 10);
+    }
 
     showDialog<void>(
       context: context,
@@ -113,13 +120,15 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
         backgroundColor: const Color(0xFFFEF3C7),
         shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(24)),
-        title: const Text('🎉 Alle Buchstaben!',
+        title: Text(_correctCount > 0
+            ? '🎉 Buchstaben geübt!'
+            : 'Übung beendet',
             textAlign: TextAlign.center,
             style: TextStyle(
                 fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text(
-              'Du hast ${widget.topic.writingChars.length} Buchstaben geschrieben!',
+              'Du hast $_correctCount von ${widget.topic.writingChars.length} Buchstaben geschrieben!',
               style: const TextStyle(fontFamily: 'Nunito', fontSize: 15),
               textAlign: TextAlign.center),
           const SizedBox(height: 12),
@@ -259,13 +268,13 @@ class _LetterWritingScreenState extends State<LetterWritingScreen>
               offset: const Offset(0, 3))
         ],
       ),
-      child: const Row(
+      child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(Icons.school_rounded, color: Colors.white, size: 18),
-          SizedBox(width: 8),
-          Text('Was wir heute lernen:',
-              style: TextStyle(
+          const Icon(Icons.school_rounded, color: Colors.white, size: 18),
+          const SizedBox(width: 8),
+          Text('Heute schreiben wir: $_letter',
+              style: const TextStyle(
                   fontFamily: 'Nunito',
                   color: Colors.white,
                   fontSize: 14,
@@ -519,14 +528,14 @@ class _LetterPracticeFullScreenState
         Expanded(
           child: Column(
             children: [
-              Text('Schreibe Übung',
+              Text('Schreibübung',
                   style: TextStyle(
                       fontFamily: 'Nunito',
                       color: Colors.white.withOpacity(0.85),
                       fontSize: 11,
                       fontWeight: FontWeight.w800,
                       letterSpacing: 1.4)),
-              Text('Buchstabe "${widget.letter}"',
+              Text('Schreibe den Buchstaben ${widget.letter}',
                   style: const TextStyle(
                       fontFamily: 'Nunito',
                       color: Colors.white,

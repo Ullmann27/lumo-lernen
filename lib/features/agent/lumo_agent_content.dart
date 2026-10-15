@@ -1,13 +1,17 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
 import '../../core/lumo_ai_proxy_client.dart';
-import '../../core/lumo_companion_engine.dart';
+import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_context_engine.dart';
+import '../../core/lumo_conversation_controller.dart';
 
 class LumoAgentContent extends StatefulWidget {
   const LumoAgentContent(
@@ -20,12 +24,13 @@ class LumoAgentContent extends StatefulWidget {
   State<LumoAgentContent> createState() => _LumoAgentContentState();
 }
 
-class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBindingObserver {
+class _LumoAgentContentState extends State<LumoAgentContent>
+    with WidgetsBindingObserver {
   final TextEditingController _controller = TextEditingController();
   final LumoAiProxyClient _proxy = const LumoAiProxyClient();
-  final LumoCompanionEngine _localEngine = const LumoCompanionEngine();
-  final List<LumoAiChatTurn> _history = <LumoAiChatTurn>[];
-  final stt.SpeechToText _speech = stt.SpeechToText();
+  late final LumoContextEngine _contextEngine;
+  late final LumoConversationController _conversation;
+  final LumoSpeechListener _speech = LumoSpeechListener();
 
   bool _loading = false;
   bool _speechReady = false;
@@ -40,11 +45,16 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   bool _blocked = false;
   bool _verifiedCloudReply = false;
   bool _foreground = true;
+  int _questionGeneration = 0;
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addObserver(this);
+    _contextEngine = LumoContextEngine(widget.appState);
+    _conversation = LumoConversationController(_contextEngine);
+    _contextEngine.addListener(_situationChanged);
+    _speech.addListener(_speechChanged);
     // Render-Warmup: Wenn KI freigegeben ist, Server bereits beim
     // Öffnen anstoßen. Dann ist der erste Chat warm und Heinz
     // sieht keinen 30s-Cold-Start.
@@ -57,7 +67,12 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
-    unawaited(_speech.cancel());
+    _questionGeneration++;
+    _contextEngine.removeListener(_situationChanged);
+    _conversation.dispose();
+    _contextEngine.dispose();
+    _speech.removeListener(_speechChanged);
+    _speech.dispose();
     unawaited(LumoVoice.instance.stop());
     _controller.dispose();
     super.dispose();
@@ -67,9 +82,31 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   void didChangeAppLifecycleState(AppLifecycleState state) {
     _foreground = state == AppLifecycleState.resumed;
     if (!_foreground) {
+      _questionGeneration++;
+      _conversation.pause();
       unawaited(_speech.cancel());
       unawaited(LumoVoice.instance.stop());
-      if (mounted) setState(() => _speechListening = false);
+      if (mounted)
+        setState(() {
+          _speechListening = false;
+          _loading = false;
+        });
+    } else {
+      _conversation.resume();
+    }
+  }
+
+  void _situationChanged() {
+    _questionGeneration++;
+    unawaited(_speech.cancel());
+    _controller.clear();
+    if (mounted) {
+      setState(() {
+        _loading = false;
+        _speechListening = false;
+        _answer = 'Die Situation hat sich geändert. Frag mich zur aktuellen Aufgabe.';
+        _verifiedCloudReply = false;
+      });
     }
   }
 
@@ -77,39 +114,19 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
     if (_speechReady || _speechInitStarted) return;
     _speechInitStarted = true;
     try {
-      final available = await _speech.initialize(
-        debugLogging: false,
-        onStatus: (status) {
-          if (!mounted) return;
-          final normalized = status.toLowerCase();
-          if (normalized == 'listening') {
-            setState(() => _speechListening = true);
-          }
-          if (normalized == 'done' || normalized == 'notlistening') {
-            setState(() => _speechListening = false);
-          }
-        },
-        onError: (error) {
-          if (!mounted) return;
-          setState(() {
-            _speechListening = false;
-            _speechError = 'Spracherkennung: ${error.errorMsg}';
-          });
-        },
-      );
+      final available = await _speech.initialize();
 
       if (!available) {
         if (!mounted) return;
         setState(() {
           _speechReady = false;
-          _speechError =
-              'Mikrofon klappt auf diesem Gerät nicht. Du kannst Lumo aber tippen.';
+          _speechError = _speech.error ??
+              'Die lokale Spracherkennung ist nicht verfügbar. Du kannst Lumo tippen.';
         });
         return;
       }
 
-      final locales = await _speech.locales();
-      final bestLocale = _bestGermanLocaleId(locales);
+      final bestLocale = _speech.bestLocaleId;
       if (!mounted) return;
       setState(() {
         _speechReady = true;
@@ -127,44 +144,13 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
     }
   }
 
-  String? _bestGermanLocaleId(List<dynamic> locales) {
-    if (locales.isEmpty) return null;
-    final ranked = List<dynamic>.from(locales);
-    ranked
-        .sort((a, b) => _speechLocaleScore(b).compareTo(_speechLocaleScore(a)));
-    final best = ranked.first;
-    final id = _localeId(best);
-    return id.isEmpty ? null : id;
-  }
-
-  int _speechLocaleScore(dynamic locale) {
-    final id = _localeId(locale).toLowerCase().replaceAll('_', '-');
-    final name = _localeName(locale).toLowerCase();
-    var score = 0;
-    if (id == 'de-at') score += 140;
-    if (id == 'de-de') score += 130;
-    if (id.startsWith('de-at')) score += 120;
-    if (id.startsWith('de-de')) score += 115;
-    if (id.startsWith('de')) score += 90;
-    if (name.contains('österreich') || name.contains('austria')) score += 30;
-    if (name.contains('deutsch') || name.contains('german')) score += 20;
-    return score;
-  }
-
-  String _localeId(dynamic locale) {
-    try {
-      return (locale.localeId ?? '').toString();
-    } catch (_) {
-      return '';
-    }
-  }
-
-  String _localeName(dynamic locale) {
-    try {
-      return (locale.name ?? '').toString();
-    } catch (_) {
-      return '';
-    }
+  void _speechChanged() {
+    if (!mounted || !_foreground) return;
+    _conversation.listening(_speech.listening);
+    setState(() {
+      _speechListening = _speech.listening;
+      _speechError = _speech.error;
+    });
   }
 
   Future<void> _startVoiceQuestion() async {
@@ -189,23 +175,17 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
     });
 
     try {
-      await _speech.listen(
-        localeId: _speechLocale,
-        listenFor: const Duration(seconds: 35),
-        pauseFor: const Duration(seconds: 4),
-        partialResults: true,
-        cancelOnError: true,
-        listenMode: stt.ListenMode.confirmation,
-        onResult: (result) {
+      await _speech.startListening(
+        onResult: (recognized) {
           if (!mounted || !_foreground) return;
-          final words = result.recognizedWords.trim();
+          final words = recognized.trim();
           setState(() {
             _liveSpeech = words;
             if (words.isNotEmpty) _controller.text = words;
           });
-          if (result.finalResult && words.isNotEmpty) {
-            unawaited(_finishVoiceQuestion(words));
-          }
+        },
+        onFinalResult: (words) {
+          if (mounted && _foreground) unawaited(_finishVoiceQuestion(words));
         },
       );
     } catch (e) {
@@ -219,7 +199,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
 
   Future<void> _finishVoiceQuestion(String words) async {
     try {
-      await _speech.stop();
+      await _speech.stopListening();
     } catch (_) {}
     if (!mounted || !_foreground) return;
     setState(() => _speechListening = false);
@@ -228,7 +208,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
 
   Future<void> _stopVoiceQuestion() async {
     try {
-      await _speech.stop();
+      await _speech.stopListening();
     } catch (_) {}
     if (!mounted) return;
     final words = _liveSpeech.trim().isNotEmpty
@@ -242,73 +222,32 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
 
   Future<void> _ask([String? raw]) async {
     final question = (raw ?? _controller.text).trim();
-    if (question.isEmpty || _loading) return;
+    if (question.isEmpty || _loading || !_foreground) return;
+    final generation = ++_questionGeneration;
     FocusManager.instance.primaryFocus?.unfocus();
 
-    final settings = widget.appState.state.settings;
     setState(() {
       _loading = true;
       _blocked = false;
       _answer = 'Ich denke kurz nach ...';
     });
 
-    if (_proxy.isConfigured(settings)) {
-      final response = await _proxy.ask(
-        settings: settings,
-        state: widget.appState.state,
-        message: question,
-        history: List<LumoAiChatTurn>.unmodifiable(_history),
-        context: LumoAiContext.companion,
-        extras: {
-          'section': widget.appState.state.section.name,
-          'subject': widget.appState.state.subject,
-          'unit': widget.appState.state.unit,
-        },
-      );
-      if (!mounted) return;
-      _remember(question, response.reply);
-      setState(() {
-        _answer = response.reply;
-        _source = response.source;
-        _verifiedCloudReply = response.isCloudAnswer;
-        _blocked = response.blocked;
-        _loading = false;
-        _liveSpeech = '';
-      });
-      _applyReply(response.reply, blocked: response.blocked);
+    final response = await _conversation.ask(question);
+    if (!mounted || !_foreground || generation != _questionGeneration) return;
+    if (response.source == 'cancelled') {
+      setState(() => _loading = false);
       return;
     }
-
-    final local =
-        _localEngine.answer(input: question, state: widget.appState.state);
-    if (!mounted) return;
-    _remember(question, local.text);
+    _controller.clear();
     setState(() {
-      _answer =
-          '${local.text}\n\nHinweis für Eltern: Die erweiterte Lumo-KI ist im Elternbereich ausgeschaltet.';
-      _source = 'local_companion';
-      _verifiedCloudReply = false;
-      _blocked = false;
+      _answer = response.reply;
+      _source = response.source;
+      _verifiedCloudReply = response.isCloudAnswer;
+      _blocked = response.blocked;
       _loading = false;
       _liveSpeech = '';
     });
-    widget.appState.update(widget.appState.state.copyWith(
-      lumoMessage: local.text,
-      mood: local.mood,
-    ));
-    if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(
-          LumoVoice.instance.speak(local.text, style: VoiceStyle.explain));
-    }
-  }
-
-  void _remember(String question, String reply) {
-    _history.add(LumoAiChatTurn(role: 'user', content: question));
-    _history.add(LumoAiChatTurn(role: 'assistant', content: reply));
-    while (_history.length > 8) {
-      _history.removeAt(0);
-    }
-    _controller.clear();
+    _applyReply(response.reply, blocked: response.blocked);
   }
 
   void _applyReply(String reply, {required bool blocked}) {
@@ -317,7 +256,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
       mood: blocked ? LumoMood.comfort : LumoMood.greet,
     ));
     if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(LumoVoice.instance.speak(reply,
+      unawaited(_conversation.speak(reply,
           style: blocked ? VoiceStyle.comfort : VoiceStyle.explain));
     }
   }
@@ -328,8 +267,11 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
   Widget build(BuildContext context) {
     final settings = widget.appState.state.settings;
     final proxyReady = settings.aiProxyEnabled && _verifiedCloudReply;
-    return SingleChildScrollView(
-      padding: const EdgeInsets.all(22),
+    return LumoSceneBackground(
+      scene: LumoScene.learning,
+      dimmed: true,
+      child: SingleChildScrollView(
+      padding: const EdgeInsets.all(16),
       child: Center(
         child: ConstrainedBox(
           constraints: const BoxConstraints(maxWidth: 820),
@@ -338,6 +280,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
             _AgentHeader(
                 proxyReady: proxyReady,
                 enabled: settings.aiProxyEnabled,
+                reduceMotion: settings.reduceAnimations || settings.calmMode,
                 onSettings: () => widget.onSection(LumoSection.settings)),
             const SizedBox(height: 16),
             _SafetyFrame(proxyReady: proxyReady),
@@ -403,7 +346,7 @@ class _LumoAgentContentState extends State<LumoAgentContent> with WidgetsBinding
           ]),
         ),
       ),
-    );
+    ));
   }
 }
 
@@ -411,10 +354,12 @@ class _AgentHeader extends StatelessWidget {
   const _AgentHeader(
       {required this.proxyReady,
       required this.enabled,
+      required this.reduceMotion,
       required this.onSettings});
 
   final bool proxyReady;
   final bool enabled;
+  final bool reduceMotion;
   final VoidCallback onSettings;
 
   @override
@@ -429,37 +374,63 @@ class _AgentHeader extends StatelessWidget {
         : enabled
             ? 'Die Online-Verbindung wird bei deiner Frage geprüft. Lokale Lernhilfen stehen dir auch ohne Verbindung zur Verfügung.'
             : 'Es wird keine Cloud verwendet. Lumo nutzt nur die lokale Lernhilfe.';
-    return Container(
-      padding: const EdgeInsets.all(18),
-      decoration: lumoCard(
-          gradient: const LinearGradient(
-              colors: [Color(0xFFFFF7ED), Color(0xFFEFF6FF)])),
-      child: Row(children: [
-        Container(
-          width: 64,
-          height: 64,
-          decoration: BoxDecoration(
-              color: LumoColors.orangeSurface,
-              borderRadius: BorderRadius.circular(LumoRadius.lg)),
-          child:
-              const Center(child: Text('🦊', style: TextStyle(fontSize: 34))),
-        ),
-        const SizedBox(width: 14),
-        Expanded(
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Text(title, style: LumoTextStyles.heading2),
-            const SizedBox(height: 5),
-            Text(subtitle,
-                style: LumoTextStyles.body.copyWith(color: LumoColors.ink700)),
-          ]),
-        ),
-        const SizedBox(width: 10),
-        OutlinedButton.icon(
-            onPressed: onSettings,
-            icon: const Icon(Icons.lock_rounded),
-            label: const Text('Eltern')),
-      ]),
+    return LumoGlassCard(
+      key: const ValueKey('lumo-agent-hologlass-hero'),
+      child: LayoutBuilder(builder: (context, bounds) {
+        final compact = bounds.maxWidth < 460;
+        final fox = LumoCharacter(
+          pose: LumoDesignFoxPose.teacherStick,
+          size: compact ? 100 : 130,
+          idleHops: false,
+          intro: false,
+          reduceMotion: reduceMotion || MediaQuery.disableAnimationsOf(context),
+        );
+        final intro = Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Text('DEIN LERNBEGLEITER', style: TextStyle(
+                color: LumoVisualTokens.cyanBright, fontWeight: FontWeight.w900,
+                letterSpacing: 1.1, fontSize: 11)),
+            const SizedBox(height: 6),
+            Text(title, key: const ValueKey('lumo-agent-title'),
+                style: const TextStyle(color: LumoVisualTokens.white,
+                    fontSize: 22, fontWeight: FontWeight.w900, height: 1.13)),
+            const SizedBox(height: 8),
+            Text(subtitle, style: const TextStyle(
+                color: LumoVisualTokens.muted, height: 1.38, fontSize: 14)),
+          ],
+        );
+        final parents = OutlinedButton.icon(
+          key: const ValueKey('lumo-agent-parents'),
+          onPressed: onSettings,
+          icon: const Icon(Icons.lock_rounded, size: 18),
+          label: const Text('Eltern'),
+          style: OutlinedButton.styleFrom(
+              foregroundColor: LumoVisualTokens.white,
+              side: const BorderSide(color: LumoVisualTokens.cyanBright),
+              minimumSize: const Size(90, 48)),
+        );
+        if (compact) {
+          return Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+                  SizedBox(width: 100, height: 120, child: fox),
+                  const SizedBox(width: 8),
+                  Expanded(child: intro),
+                ]),
+                const SizedBox(height: 10),
+                Align(alignment: Alignment.centerRight, child: parents),
+              ]);
+        }
+        return Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
+          SizedBox(width: 138, height: 154, child: fox),
+          const SizedBox(width: 14),
+          Expanded(child: intro),
+          const SizedBox(width: 12),
+          parents,
+        ]);
+      }),
     );
   }
 }
@@ -473,18 +444,16 @@ class _SafetyFrame extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: lumoCard(
-          color:
-              proxyReady ? const Color(0xFFF0FDF4) : const Color(0xFFFFFBEB)),
+      decoration: lumoCard(color: LumoVisualTokens.navigation),
       child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Icon(proxyReady ? Icons.verified_user_rounded : Icons.shield_rounded,
-            color: proxyReady ? const Color(0xFF16A34A) : LumoColors.orange),
+            color: LumoVisualTokens.cyanBright),
         const SizedBox(width: 10),
         Expanded(
           child: Text(
             'Sicherheitsrahmen: Lumo spricht nur über kindgerechte Themen wie Schule, Freunde, Cartoons, Lesen, Mathe, Deutsch, Englisch, Sachunterricht und Natur. Verbotene Themen werden freundlich umgelenkt.',
             style: LumoTextStyles.body.copyWith(
-                color: LumoColors.ink700, fontWeight: FontWeight.w800),
+                color: LumoVisualTokens.white, fontWeight: FontWeight.w800),
           ),
         ),
       ]),
@@ -540,8 +509,8 @@ class _AnswerBubble extends StatelessWidget {
       decoration: lumoCard(
         gradient: LinearGradient(
           colors: blocked
-              ? [const Color(0xFFFFF7ED), Colors.white]
-              : [Colors.white, const Color(0xFFF8FAFC)],
+              ? [LumoVisualTokens.navigation, LumoVisualTokens.glass]
+              : [LumoVisualTokens.glass, LumoVisualTokens.navigation],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -549,23 +518,23 @@ class _AnswerBubble extends StatelessWidget {
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(children: [
           Icon(blocked ? Icons.front_hand_rounded : Icons.chat_bubble_rounded,
-              color: blocked ? LumoColors.orange : LumoColors.blue),
+              color: blocked ? LumoVisualTokens.gold : LumoVisualTokens.cyanBright),
           const SizedBox(width: 8),
           Expanded(
               child: Text(loading ? 'Lumo denkt nach …' : 'Lumo antwortet',
-                  style: LumoTextStyles.heading3)),
+                  style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white))),
           if (loading)
             const SizedBox(
                 width: 18,
                 height: 18,
                 child: CircularProgressIndicator(
-                    strokeWidth: 2, color: LumoColors.orange)),
+                    strokeWidth: 2, color: LumoVisualTokens.cyanBright)),
         ]),
         const SizedBox(height: 10),
         if (showAnswer) ...[
           Text(answer,
               style: LumoTextStyles.body.copyWith(
-                  color: LumoColors.ink700,
+                  color: LumoVisualTokens.white,
                   fontWeight: FontWeight.w800,
                   height: 1.35)),
           const SizedBox(height: 10),
@@ -576,7 +545,7 @@ class _AnswerBubble extends StatelessWidget {
             children: [
               Text(_friendlySource,
                   style: LumoTextStyles.caption
-                      .copyWith(color: LumoColors.ink400)),
+                      .copyWith(color: LumoVisualTokens.muted)),
               OutlinedButton.icon(
                 onPressed: loading ? null : onSpeak,
                 icon: const Icon(Icons.volume_up_rounded, size: 18),
@@ -595,7 +564,7 @@ class _AnswerBubble extends StatelessWidget {
                 ? 'Ich überlege gerade. Das dauert nicht lange.'
                 : 'Stell mir gerne eine Frage. Wir bleiben bei Schul-, Lern- und Kinderthemen.',
             style: LumoTextStyles.body.copyWith(
-                color: LumoColors.ink600,
+                color: LumoVisualTokens.muted,
                 fontWeight: FontWeight.w700,
                 height: 1.35),
           ),
@@ -645,30 +614,45 @@ class _QuestionInput extends StatelessWidget {
 
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: lumoCard(),
+      decoration: lumoCard(color: LumoVisualTokens.glass),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
-          Expanded(
-            child: TextField(
-              controller: controller,
-              minLines: 1,
-              maxLines: 4,
-              textInputAction: TextInputAction.send,
-              onSubmitted: loading ? null : (value) => onAsk(value),
-              decoration: const InputDecoration(
-                labelText: 'Frag Lumo',
-                hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
-                border: OutlineInputBorder(),
-              ),
+        LayoutBuilder(builder: (context, bounds) {
+          final small = bounds.maxWidth < 360;
+          final field = TextField(
+            key: const ValueKey('lumo-agent-question-field'),
+            controller: controller,
+            minLines: 1,
+            maxLines: 4,
+            textInputAction: TextInputAction.send,
+            style: const TextStyle(color: LumoVisualTokens.white),
+            onSubmitted: loading ? null : (value) => onAsk(value),
+            decoration: const InputDecoration(
+              labelText: 'Frag Lumo',
+              hintText: 'Zum Beispiel: Erklär mir 12 minus 5.',
+              labelStyle: TextStyle(color: LumoVisualTokens.cyanBright),
+              hintStyle: TextStyle(color: LumoVisualTokens.muted),
+              filled: true,
+              fillColor: LumoVisualTokens.navigation,
+              border: OutlineInputBorder(),
             ),
-          ),
-          const SizedBox(width: 10),
-          FilledButton.icon(
+          );
+          final send = FilledButton.icon(
+            key: const ValueKey('lumo-agent-send'),
             onPressed: loading ? null : () => onAsk(controller.text),
             icon: const Icon(Icons.send_rounded),
             label: const Text('Senden'),
-          ),
-        ]),
+            style: FilledButton.styleFrom(
+              backgroundColor: LumoVisualTokens.cyanBright,
+              foregroundColor: LumoVisualTokens.navigation,
+              minimumSize: const Size(116, 48)),
+          );
+          return small
+              ? Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [field, const SizedBox(height: 10), send])
+              : Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+                  Expanded(child: field), const SizedBox(width: 10), send,
+                ]);
+        }),
         const SizedBox(height: 10),
         Wrap(
             spacing: 8,
@@ -684,7 +668,7 @@ class _QuestionInput extends StatelessWidget {
               ),
               Text(statusText,
                   style: LumoTextStyles.caption.copyWith(
-                      color: listening ? LumoColors.orange : LumoColors.ink500,
+                      color: listening ? LumoVisualTokens.gold : LumoVisualTokens.muted,
                       fontWeight: FontWeight.w800)),
             ]),
         if (speechError != null) ...[
@@ -692,9 +676,9 @@ class _QuestionInput extends StatelessWidget {
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
             decoration: BoxDecoration(
-              color: const Color(0xFFFFF7ED),
+              color: LumoVisualTokens.navigation,
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: const Color(0xFFFFD9B3), width: 1.0),
+              border: Border.all(color: LumoVisualTokens.gold, width: 1.0),
             ),
             child: Row(
               children: [
@@ -704,7 +688,7 @@ class _QuestionInput extends StatelessWidget {
                   child: Text(
                     speechError!,
                     style: LumoTextStyles.caption.copyWith(
-                      color: const Color(0xFF92400E),
+                      color: LumoVisualTokens.white,
                       fontWeight: FontWeight.w700,
                     ),
                   ),
@@ -727,8 +711,11 @@ class _QuickChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ActionChip(
-      label: Text(label),
-      avatar: const Icon(Icons.auto_awesome_rounded, size: 18),
+      label: Text(label, style: const TextStyle(color: LumoVisualTokens.white)),
+      avatar: const Icon(Icons.auto_awesome_rounded, size: 18,
+          color: LumoVisualTokens.cyanBright),
+      backgroundColor: LumoVisualTokens.glassRow,
+      side: const BorderSide(color: LumoVisualTokens.cyan),
       onPressed: onTap,
     );
   }

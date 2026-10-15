@@ -43,7 +43,6 @@ void main() {
     }
   });
 
-
   test('English is a first-class adaptive subject', () {
     final task = ExerciseFactory(seed: 7)
         .next(grade: 4, subject: 'Englisch', unit: 'Wetter');
@@ -57,7 +56,9 @@ void main() {
     expect(instance.options, isNotEmpty);
   });
 
-  test('Austrian primary subject framework exposes foreign language in grades 3 and 4', () {
+  test(
+      'Austrian primary subject framework exposes foreign language in grades 3 and 4',
+      () {
     expect(
       Curriculum.officialSubjectsForGrade(2),
       contains('Lebende Fremdsprache (verbindliche Übung)'),
@@ -81,16 +82,28 @@ void main() {
   });
 
   test('first-grade English school supplies stay within school supplies', () {
+    const schoolWords = [
+      'Buch',
+      'Stift',
+      'Tasche',
+      'Lineal',
+      'Kugelschreiber',
+      'Radiergummi',
+      'Schultasche',
+      'Schreibtisch',
+      'Sessel',
+      'Federpennal',
+      'Papier'
+    ];
     final observed = <String>{};
-    for (var seed = 0; seed < 40; seed++) {
+    for (var seed = 0; seed < 400; seed++) {
       final task = ExerciseFactory(seed: seed)
           .next(grade: 1, subject: 'Englisch', unit: 'Schulsachen');
       observed.add(task.answer);
-      expect(['Buch', 'Stift', 'Tasche', 'Lineal'], contains(task.answer));
-      expect(task.choices.every(['Buch', 'Stift', 'Tasche', 'Lineal'].contains),
-          isTrue);
+      expect(schoolWords, contains(task.answer));
+      expect(task.choices.every(schoolWords.contains), isTrue);
     }
-    expect(observed.length, greaterThan(1));
+    expect(observed.length, greaterThanOrEqualTo(10));
   });
 
   test('unknown English units honestly report the topic actually generated',
@@ -160,10 +173,15 @@ void main() {
 
   test('Dehnungen and Wortende teach their named spelling pattern', () {
     final factory = ExerciseFactory(seed: 45);
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 400; i++) {
       final dehnung =
           factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Dehnungen');
-      expect(dehnung.answer.contains('h') || dehnung.answer.contains('ie'),
+      expect(
+          dehnung.answer.contains('h') ||
+              dehnung.answer.contains('ie') ||
+              dehnung.answer.contains('aa') ||
+              dehnung.answer.contains('ee') ||
+              dehnung.answer.contains('oo'),
           isTrue);
       final ending =
           factory.next(grade: 2, subject: 'Rechtschreibung', unit: 'Wortende');

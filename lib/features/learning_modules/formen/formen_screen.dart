@@ -7,7 +7,8 @@
 // 12 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -133,7 +134,7 @@ class _FormenScreenState extends State<FormenScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance
             .speak('Richtig! Das ist ein ${_correctShape.displayName}!');
@@ -231,87 +232,39 @@ class _FormenScreenState extends State<FormenScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 24),
-                      _buildShapeVisualization(),
-                      const SizedBox(height: 32),
-                      _buildAnswerGrid(),
-                    ]),
-                  ),
-                ),
-              ),
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Mathe-Abenteuer',
+        moduleTitle: 'Formen erkennen',
+        guidance: 'Schau auf Ecken und Seiten.',
+        mistakeGuidance: 'Vergleiche Ecken und Seiten.',
+        icon: Icons.category_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        hasMistake: _answered && _selectedAnswer != _correctShape,
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: LumoLessonTaskLayout(
+            task: Column(children: [
+              _buildTaskHeader(),
+              const SizedBox(height: 12),
+              _buildShapeVisualization(),
             ]),
+            answers: _buildAnswerGrid(),
           ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
+        ),
       ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Formen erkennen',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ),
-        const SizedBox(width: 8),
-      ]),
     );
   }
 
@@ -319,15 +272,18 @@ class _FormenScreenState extends State<FormenScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 18),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text('Welche Form ist das?',
             textAlign: TextAlign.center,
@@ -335,41 +291,52 @@ class _FormenScreenState extends State<FormenScreen>
                 fontFamily: 'Nunito',
                 fontSize: 22,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
 
   Widget _buildShapeVisualization() {
-    return Container(
-      width: 200,
-      height: 200,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.15),
-              blurRadius: 12,
-              offset: const Offset(0, 4))
-        ],
-      ),
-      child: CustomPaint(
-        painter: _ShapePainter(shape: _correctShape, color: _gradient[0]),
-      ),
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      final compact = LumoLessonStyle.viewportHeight(context) < 540;
+      final side = constraints.maxWidth >= 500
+          ? compact
+              ? 120.0
+              : 168.0
+          : 144.0;
+      return Container(
+        width: side,
+        height: side,
+        padding: const EdgeInsets.all(20),
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
+          borderRadius: BorderRadius.circular(24),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
+          boxShadow: [
+            BoxShadow(
+                color: _gradient[0].withOpacity(0.15),
+                blurRadius: 12,
+                offset: const Offset(0, 4))
+          ],
+        ),
+        child: CustomPaint(
+          painter: _ShapePainter(shape: _correctShape, color: _gradient[0]),
+        ),
+      );
+    });
   }
 
   Widget _buildAnswerGrid() {
-    return GridView.count(
-      crossAxisCount: 2,
+    final landscape = LumoLessonStyle.shortLandscape(context);
+    return LumoLessonAnswerGrid(
+      crossAxisCount: landscape ? 1 : 2,
+      minimumHeight: landscape ? 48 : 68,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
+      mainAxisSpacing: landscape ? 8 : 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 2.4,
+      childAspectRatio: landscape ? 6 : 2.4,
       children: _answers.map((s) => _buildAnswerButton(s)).toList(),
     );
   }
@@ -377,9 +344,9 @@ class _FormenScreenState extends State<FormenScreen>
   Widget _buildAnswerButton(_Shape s) {
     final isSelected = _selectedAnswer == s;
     final isCorrect = s == _correctShape;
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered && isSelected) {
       if (isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -392,27 +359,31 @@ class _FormenScreenState extends State<FormenScreen>
       }
     } else if (_answered && isCorrect) {
       bgColor = const Color(0xFFFEF3C7);
+      textColor = const Color(0xFF713F12);
       borderColor = const Color(0xFFFCD34D);
     }
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final scale = isSelected && isCorrect
+        final scale = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.08
             : 1.0;
         return Transform.scale(scale: scale, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(s),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-          ),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text(s.displayName,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 22,

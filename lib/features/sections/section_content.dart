@@ -1,15 +1,19 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_companion_engine.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../rewards/reward_shop_content.dart';
-import '../shared/widgets/lumo_subject_dashboard.dart';
-import '../shared/widgets/lumo_subject_tile.dart';
 import '../tutoring/tutoring_flow_card.dart';
+import '../tutoring/guided_learning_hub.dart';
+import '../tutoring/guided_lesson_screen.dart';
+import '../../domain/tutoring/guided_lesson_catalog.dart';
 
 typedef _StartSession = void Function({
   required String subject,
@@ -24,7 +28,7 @@ class SectionContent extends StatelessWidget {
 
   final LumoAppState appState;
   final LumoSection section;
-  final ValueChanged<LumoSection> onSection;
+  final FutureOr<void> Function(LumoSection) onSection;
 
   void _startSession({
     required String subject,
@@ -58,100 +62,30 @@ class SectionContent extends StatelessWidget {
   Widget build(BuildContext context) {
     switch (section) {
       case LumoSection.learn:
-        return LumoSubjectDashboard(
-          appState: appState,
-          subject: 'Deutsch',
-          subjectAccent: 'mit Lumo',
-          subtitle: 'Lerne spielerisch mit deinem Fuchs-Freund!',
-          greeting: 'Weiter so, du bist spitze!',
-          lumoMessage: 'Super! Heute\nüben wir neue Wörter\nund Sätze!',
-          ctaLabel: 'Deutsch Aufgabe starten',
-          onCtaPressed: () => _startSession(
-            subject: 'Deutsch',
-            unit: 'Alle Themen',
-            message: 'Deutsch startet.\nLies ruhig und\nantworte dann.',
-            sessionKind: LumoSessionKind.quickPractice,
-          ),
-          headerAccent: LumoColors.purple,
-          dailyMissionTitle: 'Tägliche Mission',
-          dailyMissionSubtitle: '3 Deutsch-Aufgaben abschließen',
-          dailyMissionDone: 2,
-          dailyMissionTotal: 3,
-          dailyMissionRewardStars: 10,
-          dailyMissionRewardXp: 50,
-          topicTiles: [
-            LumoSubjectTile(
-              title: 'Wörter lesen',
-              subtitle: 'Lies Wörter und sammle Sterne!',
-              iconEmoji: '📖',
-              illustrationEmoji: '📚',
-              accent: LumoColors.purple,
-              level: 3,
-              starsCollected: 12,
-              starsTotal: 20,
-              onTap: () => _startSession(subject: 'Deutsch', unit: 'Wörter lesen', message: 'Wir lesen\nWörter mit Lumo.', sessionKind: LumoSessionKind.quickPractice,
+        // The legacy Deutsch menu contained hard-coded first-grade lessons
+        // and fictional stars. Show only real generator-backed grade topics.
+        final grade = appState.state.grade.clamp(1, 4);
+        final units = Curriculum.unitsForGrade(
+            'Deutsch', grade, currentGradeOnly: true);
+        return _ActionPage(
+          title: 'Deutsch · $grade. Klasse',
+          subtitle: 'Wähle ein Thema mit echten Aufgaben für deine Schulstufe.',
+          emoji: '📘',
+          accent: LumoColors.purple,
+          cards: [
+            for (final unit in units)
+              _ActionData(
+                Curriculum.prettifyUnit(unit),
+                'Üben, verstehen und mit Lumo Schritt für Schritt lernen.',
+                'Aufgabe starten',
+                Icons.menu_book_rounded,
+                () => _startSession(
+                  subject: 'Deutsch',
+                  unit: unit,
+                  message: 'Wir lernen ${Curriculum.prettifyUnit(unit)}.',
+                  sessionKind: LumoSessionKind.quickPractice,
+                ),
               ),
-            ),
-            LumoSubjectTile(
-              title: 'Buchstaben finden',
-              subtitle: 'Finde die richtigen Buchstaben!',
-              iconEmoji: '🔤',
-              illustrationEmoji: '🔎',
-              accent: LumoColors.teal,
-              level: 2,
-              starsCollected: 8,
-              starsTotal: 20,
-              onTap: () => _startSession(subject: 'Deutsch', unit: 'Buchstaben finden', message: 'Buchstaben\nfinden wir jetzt.', sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Reime erkennen',
-              subtitle: 'Klingen die Wörter gleich? Finde Reime!',
-              iconEmoji: '🎵',
-              illustrationEmoji: '🐱',
-              accent: LumoColors.practice,
-              level: 2,
-              starsCollected: 6,
-              starsTotal: 20,
-              onTap: () => _startSession(subject: 'Deutsch', unit: 'Reime erkennen', message: 'Wir suchen\nReime.', sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Satz bilden',
-              subtitle: 'Setze Wörter in die richtige Reihenfolge!',
-              iconEmoji: '💬',
-              illustrationEmoji: '🧩',
-              accent: LumoColors.blue,
-              level: 3,
-              starsCollected: 14,
-              starsTotal: 20,
-              onTap: () => _startSession(subject: 'Deutsch', unit: 'Satz bilden', message: 'Wir bauen\neinen Satz.', sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Schreiben üben',
-              subtitle: 'Buchstaben und Wörter sauber schreiben.',
-              iconEmoji: '✏️',
-              illustrationEmoji: 'A',
-              accent: LumoColors.orange,
-              level: 2,
-              starsCollected: 9,
-              starsTotal: 20,
-              onTap: () => _startSession(subject: 'Deutsch', unit: 'Schreiben üben', message: 'Wir schreiben\nmit ruhiger Hand.', sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Silben klatschen',
-              subtitle: 'Klatsche Wörter in Silben mit.',
-              iconEmoji: '👏',
-              illustrationEmoji: '🔴🔵',
-              accent: LumoColors.gold,
-              level: 2,
-              starsCollected: 7,
-              starsTotal: 20,
-              onTap: () => _startSession(subject: 'Deutsch', unit: 'Silben klatschen', message: 'Wir klatschen\nSilben.', sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
           ],
         );
       case LumoSection.schoolwork:
@@ -163,9 +97,7 @@ class SectionContent extends StatelessWidget {
           cards: [
             _ActionData(
               'Gemischter Lerncheck',
-              appState.state.grade >= 3
-                  ? '30 Aufgaben aus Mathe, Deutsch, Sachunterricht und Englisch.'
-                  : '30 Aufgaben aus Mathe, Deutsch und Sachunterricht.',
+              '30 Aufgaben aus Mathe, Deutsch, Sachunterricht und Englisch.',
               'Starten',
               Icons.assignment_rounded,
               () => _startSession(
@@ -207,8 +139,7 @@ class SectionContent extends StatelessWidget {
                 sessionKind: LumoSessionKind.test,
               ),
             ),
-            if (appState.state.grade >= 3)
-              _ActionData(
+            _ActionData(
                 'Englisch-Lerncheck',
                 'Hören/Lesen, Wortschatz und einfache Alltagssituationen.',
                 'Starten',
@@ -245,124 +176,30 @@ class SectionContent extends StatelessWidget {
       case LumoSection.settings:
         return _SettingsPage(appState: appState);
       case LumoSection.exercises:
-        return LumoSubjectDashboard(
-          appState: appState,
-          subject: 'Mathe',
-          subjectAccent: 'mit Lumo',
-          subtitle: 'Rechnen macht Spaß!',
-          greeting: 'Weiter so, du bist spitze!',
-          lumoMessage: 'Ich helfe dir,\nSchritt für Schritt!\nDu schaffst das!',
-          ctaLabel: 'Mathe Aufgabe starten',
-          onCtaPressed: () => _startSession(
-            subject: 'Mathematik',
-            unit: 'Alle',
-            message: 'Mathe startet.\nRuhig zählen,\ndann antworten.',
-            sessionKind: LumoSessionKind.quickPractice,
-          ),
-          headerAccent: LumoColors.math,
-          dailyMissionTitle: 'Tägliche Mission',
-          dailyMissionSubtitle: '3 Mathe-Aufgaben lösen',
-          dailyMissionDone: 1,
-          dailyMissionTotal: 3,
-          dailyMissionRewardStars: 10,
-          dailyMissionRewardXp: 50,
-          topicTiles: [
-            LumoSubjectTile(
-              title: 'Mengen zählen',
-              subtitle: 'Zähle Punkte, Sterne und Würfel!',
-              iconEmoji: '🔢',
-              illustrationEmoji: '🍎',
-              accent: LumoColors.math,
-              level: 3,
-              starsCollected: 14,
-              starsTotal: 20,
-              onTap: () => _startSession(
-                subject: 'Mathematik',
-                unit: 'Mengen zählen',
-                message: 'Wir zählen\nzusammen!',
-                sessionKind: LumoSessionKind.quickPractice,
+        // No mock stars, recycled first-class topics or unavailable units.
+        // The curated template pool keeps harder grades on their own level.
+        final mathGrade = appState.state.grade.clamp(1, 4);
+        final units = Curriculum.unitsForGrade(
+            'Mathematik', mathGrade, currentGradeOnly: true);
+        return _ActionPage(
+          title: 'Mathematik · $mathGrade. Klasse',
+          subtitle: 'Echte Aufgaben aus dem Lernstoff deiner Schulstufe.',
+          emoji: '🔢',
+          accent: LumoColors.math,
+          cards: [
+            for (final unit in units)
+              _ActionData(
+                Curriculum.prettifyUnit(unit),
+                'Aufgaben mit Antworten und verständlichen Erklärungen.',
+                'Aufgabe starten',
+                Icons.calculate_rounded,
+                () => _startSession(
+                  subject: 'Mathematik',
+                  unit: unit,
+                  message: 'Wir üben ${Curriculum.prettifyUnit(unit)}.',
+                  sessionKind: LumoSessionKind.quickPractice,
+                ),
               ),
-            ),
-            LumoSubjectTile(
-              title: 'Plus rechnen',
-              subtitle: 'Lege Mengen zusammen und rechne!',
-              iconEmoji: '➕',
-              illustrationEmoji: '🟢',
-              accent: LumoColors.teal,
-              level: 3,
-              starsCollected: 12,
-              starsTotal: 20,
-              onTap: () => _startSession(
-                subject: 'Mathematik',
-                unit: 'Plus bis 20',
-                message: 'Wir rechnen\nplus!',
-                sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Minus rechnen',
-              subtitle: 'Nimm weg und sieh, was bleibt!',
-              iconEmoji: '➖',
-              illustrationEmoji: '🟠',
-              accent: LumoColors.practice,
-              level: 2,
-              starsCollected: 8,
-              starsTotal: 20,
-              onTap: () => _startSession(
-                subject: 'Mathematik',
-                unit: 'Minus bis 20',
-                message: 'Wir rechnen\nminus!',
-                sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Rechenhaus',
-              subtitle: 'Finde Zahlen, die zusammen passen.',
-              iconEmoji: '🏠',
-              illustrationEmoji: '🔢',
-              accent: LumoColors.purple,
-              level: 2,
-              starsCollected: 6,
-              starsTotal: 20,
-              onTap: () => _startSession(
-                subject: 'Mathematik',
-                unit: 'Rechenhaus',
-                message: 'Wir bauen\nein Rechenhaus.',
-                sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Zahlenstrahl',
-              subtitle: 'Zeige Zahlen am Strahl mit Lumo.',
-              iconEmoji: '📏',
-              illustrationEmoji: '🎯',
-              accent: LumoColors.blue,
-              level: 2,
-              starsCollected: 7,
-              starsTotal: 20,
-              onTap: () => _startSession(
-                subject: 'Mathematik',
-                unit: 'Zahlenstrahl',
-                message: 'Wir lesen\nden Zahlenstrahl.',
-                sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
-            LumoSubjectTile(
-              title: 'Zwanzigerfeld',
-              subtitle: 'Zähle und ordne im Zwanzigerfeld.',
-              iconEmoji: '🔲',
-              illustrationEmoji: '⬜',
-              accent: LumoColors.gold,
-              level: 1,
-              starsCollected: 4,
-              starsTotal: 20,
-              onTap: () => _startSession(
-                subject: 'Mathematik',
-                unit: 'Zwanzigerfeld',
-                message: 'Wir nutzen\ndas Zwanzigerfeld.',
-                sessionKind: LumoSessionKind.quickPractice,
-              ),
-            ),
           ],
         );
       default:
@@ -394,11 +231,20 @@ class _ActionPage extends StatelessWidget {
           children: [
             _Header(title: title, subtitle: subtitle, emoji: emoji, accent: accent),
             const SizedBox(height: 18),
-            Wrap(
-              spacing: 14,
-              runSpacing: 14,
-              children: cards.map((c) => _ActionCard(data: c, accent: accent)).toList(),
-            ),
+            LayoutBuilder(builder: (context, constraints) {
+              // Fit a narrow Fold cover and use the extra inner-screen width.
+              final width = constraints.maxWidth;
+              final columns = width >= 980 ? 4 : width >= 670 ? 3 : width >= 480 ? 2 : 1;
+              final cardWidth = (width - (columns - 1) * 14) / columns;
+              return Wrap(
+                spacing: 14,
+                runSpacing: 14,
+                children: [
+                  for (final card in cards)
+                    _ActionCard(data: card, accent: accent, width: cardWidth),
+                ],
+              );
+            }),
           ],
         ),
       );
@@ -481,17 +327,21 @@ class _ActionData {
 }
 
 class _ActionCard extends StatelessWidget {
-  const _ActionCard({required this.data, required this.accent});
+  const _ActionCard({required this.data, required this.accent, this.width = 230});
+  final double width;
   final _ActionData data;
   final Color accent;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: data.onTap,
-      child: Container(
-        width: 230,
-        height: 160,
+    return Material(
+      type: MaterialType.transparency,
+      child: InkWell(
+        onTap: data.onTap,
+        borderRadius: BorderRadius.circular(22),
+        child: Container(
+        width: width,
+        height: 165.0 * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.4),
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           gradient: const LinearGradient(
@@ -536,6 +386,7 @@ class _ActionCard extends StatelessWidget {
             ),
         ],
         ),
+        ),
       ),
     );
   }
@@ -549,7 +400,7 @@ class _MissionsPage extends StatelessWidget {
     required this.startReading,
   });
   final LumoAppState appState;
-  final ValueChanged<LumoSection> onSection;
+  final FutureOr<void> Function(LumoSection) onSection;
   final _StartSession startSession;
   final VoidCallback startReading;
 
@@ -560,11 +411,15 @@ class _MissionsPage extends StatelessWidget {
       children: [
         TutoringFlowCard(
           appState: appState,
-          onStartTutoring: () => startSession(
-            subject: 'Alle',
-            message: 'Lumo-Nachhilfe\nstartet jetzt.\nWir machen das\nzusammen.',
-            sessionKind: LumoSessionKind.tutoring,
+          onStartTutoring: (recommendation) => startSession(
+            subject: recommendation.subject,
+            unit: recommendation.unit,
+            message: recommendation.message,
+            sessionKind: recommendation.isTutoring
+                ? LumoSessionKind.tutoring
+                : LumoSessionKind.quickPractice,
           ),
+          onStartGuidedLearning: (lesson) => _openGuided(context, lesson),
         ),
         const SizedBox(height: 22),
         _ReadingMissionCard(onTap: startReading),
@@ -589,22 +444,52 @@ class _MissionsPage extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 14),
-        Wrap(
-          spacing: 14,
-          runSpacing: 14,
-          children: _missionCards()
-              .map((card) => _ActionCard(data: card, accent: LumoColors.orange))
-              .toList(),
-        ),
+        LayoutBuilder(builder: (context, constraints) {
+          final width = constraints.maxWidth;
+          final columns = width >= 980 ? 4 : width >= 670 ? 3 : width >= 480 ? 2 : 1;
+          final cardWidth = (width - (columns - 1) * 14) / columns;
+          return Wrap(
+            spacing: 14,
+            runSpacing: 14,
+            children: [
+              for (final card in _missionCards())
+                _ActionCard(data: card, accent: LumoColors.orange, width: cardWidth),
+            ],
+          );
+        }),
       ],
     );
   }
 
-  List<_ActionData> _missionCards() => [
-        _ActionData('3 Aufgaben lösen', 'Schließe drei einfache Aufgaben ab.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Mission:\n3 Aufgaben\nlösen!',
+  Future<void> _openGuided(BuildContext context, GuidedLesson? lesson) async {
+    // Capture navigation before the Missions page is unmounted. Set the actual
+    // learning section first so the existing CompanionHost owns the real task.
+    final navigator = Navigator.of(context);
+    final generation = appState.profileGeneration;
+    await onSection(LumoSection.learn);
+    if (!navigator.mounted ||
+        generation != appState.profileGeneration ||
+        appState.state.section != LumoSection.learn) {
+      return;
+    }
+    await navigator.push<void>(MaterialPageRoute(
+      builder: (_) => lesson == null
+          ? GuidedLearningHub(appState: appState, discovery: false)
+          : GuidedLessonScreen(
+              appState: appState, lesson: lesson, discovery: false),
+    ));
+  }
+
+  List<_ActionData> _missionCards() {
+    final grade = appState.state.grade.clamp(1, 4);
+    final available = Curriculum.unitsForGrade(
+      'Mathematik', grade, currentGradeOnly: true);
+    final mathUnit = available.isEmpty ? null : available.first;
+    return [
+        _ActionData('Kurzübung', 'Löse echte Aufgaben aus deinen Lernfächern.', 'Mission starten', Icons.check_circle_rounded, () => startSession(subject: 'Alle', message: 'Kurzübung\nstartet!',
       ),
     ),
-        _ActionData('Mathe-Insel', 'Zahlen und Plus/Minus üben.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: 'Plus bis 20', message: 'Mathe-Insel\nstartet jetzt.',
+        _ActionData('Mathe-Insel · $grade. Klasse', 'Rechne mit Aufgaben deiner Schulstufe.', 'Starten', Icons.calculate_rounded, () => startSession(subject: 'Mathematik', unit: mathUnit, message: 'Mathe-Insel\nstartet jetzt.',
       ),
     ),
         _ActionData('Lesemut', 'Lumo hört beim Lesen aktiv zu.', 'Starten', Icons.record_voice_over_rounded, startReading,
@@ -618,6 +503,7 @@ class _MissionsPage extends StatelessWidget {
       ),
     ),
       ];
+  }
 }
 
 class _ReadingMissionCard extends StatelessWidget {
@@ -648,8 +534,14 @@ class _ReadingMissionCard extends StatelessWidget {
               borderRadius: BorderRadius.circular(LumoRadius.lg),
               border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45)),
               ),
-            child: const Center(child: Text('📖', style: TextStyle(fontSize: 34)),
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: Image.asset(
+                'assets/lumo_design/icons/book_open.png',
+                fit: BoxFit.contain,
+                semanticLabel: 'Lesen mit Lumo',
               ),
+            ),
           ),
           const SizedBox(width: 14),
           Expanded(

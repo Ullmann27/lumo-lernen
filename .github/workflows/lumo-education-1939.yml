@@ -1,0 +1,282 @@
+name: Lumo 1939 complete protected integration APK build, no publication
+# Rebuild after 800x600 story-library real hit-test scroll correction.
+on:
+  push:
+    branches: [sol/lumo-hologlass-quality-1939-2026-10-14]
+    paths: [.github/workflows/lumo-education-1939.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-education-1939-protected-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify-build:
+    if: github.ref == 'refs/heads/sol/lumo-hologlass-quality-1939-2026-10-14'
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      LUMO_BUILD_SOURCE: ${{ github.sha }}
+      LUMO_GODOT_SOURCE: 'd8d004141cdd606357aa1348691a39854e3af3c7'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: ${{ github.sha }}
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Freeze exact 1939 protected source
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          test "$(git rev-parse HEAD)" = "$LUMO_BUILD_SOURCE"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.32+1939'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = "$LUMO_GODOT_SOURCE"
+          test -f docs/development/1939/README.md
+          git rev-parse HEAD | tee proof/source-sha.txt
+
+      - name: Resolve locked dependencies
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+
+      - name: Analyze exact source
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos 2>&1 | tee proof/flutter-analyze.log
+
+      - name: Run 1939 integration gates
+        run: |
+          set -o pipefail
+          flutter test --no-pub \
+            test/curriculum_depth_test.dart \
+            test/tutoring/guided_advanced_quantity_test.dart \
+            test/tutoring/guided_lesson_catalog_test.dart \
+            test/tutoring/guided_lesson_runtime_test.dart \
+            test/design/lumo_1936_unified_integration_test.dart \
+            test/design/lumo_learning_tree_fold_visual_test.dart \
+            test/profile_screen_test.dart \
+            --reporter=expanded 2>&1 | tee proof/1939-integration-gates.log
+
+      - name: Verify combined navigation and read-only story previews
+        run: |
+          set -o pipefail
+          flutter test --no-pub test/home_navigation_progress_test.dart test/lumo_mobile_more_navigation_test.dart test/story_entry_navigation_test.dart test/story_library_grade_filter_test.dart test/design/story_library_visual_test.dart --reporter expanded 2>&1 | tee proof/visual-navigation.log
+
+      - name: Verify recovered runtime assets
+        run: |
+          set -euo pipefail
+          for f in \
+            assets/lumo_design/characters/fox_kart_front.webp \
+            assets/lumo_design/kart_items/turbo_pad.webp \
+            assets/lumo_design/deco/finish_gate.webp \
+            assets/lumo_design/rewards/reward_trophy.webp \
+            assets/lumo_design/garage/steering_wheel.webp \
+            assets/lumo_design/track/ramp.webp \
+            assets/lumo_design/buildings/observatory.webp \
+            assets/lumo_design/nature/rainbow_waterfall.webp
+          do
+            test -s "$f"
+          done
+          git diff --check
+
+      - name: Run complete Flutter test suite
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=45s --concurrency=2 2>&1 | tee proof/flutter-test.log
+
+      - name: Verify Godot runtime source has passing Stage2
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const runs=(await github.rest.actions.listWorkflowRunsForRepo({
+              owner:'Ullmann27',repo:'lumo-godot',
+              head_sha:process.env.LUMO_GODOT_SOURCE,per_page:30
+            })).data.workflow_runs;
+            const passed=runs.find(r =>
+              r.path==='.github/workflows/kart-stage2-regression.yml' &&
+              r.status==='completed' &&
+              r.conclusion==='success' &&
+              r.head_sha===process.env.LUMO_GODOT_SOURCE);
+            if (!passed) throw new Error('Pinned Godot source must pass complete Stage2 before APK build');
+            require('fs').writeFileSync(
+              'proof/GODOT-CI.json',
+              JSON.stringify({source:process.env.LUMO_GODOT_SOURCE,run_id:passed.id,url:passed.html_url},null,2)
+            );
+
+      - name: Install native toolchain and Godot
+        run: |
+          set -euo pipefail
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+          bash scripts/install_godot_for_build.sh
+
+      - name: Capture exact Flutter runtime on phone and opened Fold
+        env:
+          LUMO_TOUR_DIR: proof/screenshots/flutter
+          LUMO_TOUR_CAPTURE_SCALE: '1.5'
+          LUMO_LIBRARY_CAPTURE: proof/screenshots/flutter
+        run: |
+          set -euo pipefail
+          flutter test --no-pub test/design/app_tour_capture_test.dart --name 'Tour (phone|fold) (home|learn|games)$'
+          flutter test --no-pub test/design/story_library_visual_test.dart
+          printf 'flutter=%s\ngodot=%s\nruntime=Flutter widget renderer; simulated sizes, not physical Fold\n' "$LUMO_BUILD_SOURCE" "$LUMO_GODOT_SOURCE" > proof/screenshots/PROVENANCE.txt
+
+      - name: Build unified Flutter + Godot APK
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/android-build.log
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+
+      - name: Verify actual 1939 package and provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          for folder, abi in [('dist', 'arm64-v8a'), ('dist/x86_64', 'x86_64')]:
+              data = json.loads(Path(folder, 'BUILD-PROVENANCE.json').read_text())
+              assert data['flutter_source_commit'] == os.environ['LUMO_BUILD_SOURCE']
+              assert data['tracked_source_clean'] is True
+              assert data['versionCode'] == 1939
+              assert data['versionName'] == '0.12.32'
+              assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert data['abis'] == [abi]
+              assert data['godot']['revision'] == os.environ['LUMO_GODOT_SOURCE']
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1939-arm64-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1939-emulator-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1939-build-evidence-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 30
+
+# synchronized final 1939 build + screenshots
+
+  android-visual-acceptance:
+    needs: verify-build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_GODOT: d8d004141cdd606357aa1348691a39854e3af3c7
+      LUMO_EXPECT_VERSION: '1939'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1939-emulator-${{ github.run_id }}
+          path: candidate
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38238926882
+          artifact-ids: 11742977153
+          merge-multiple: true
+          path: baseline
+      - name: Install independent Android readers and software renderer
+        run: |
+          set -euo pipefail
+          mkdir -p android-proof
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install uiautomator2==3.7.0 Pillow==12.3.0
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified Mesa display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Prepare existing Android image
+        run: python3 tools/android_qa/prepare_system_image.py --api 35 --out android-proof/system-image --timeout 600
+      - name: Real APK update, Fold navigation and running Kart
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_1939_visual_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1939-actual-android-${{ github.run_id }}
+          path: android-proof
+          if-no-files-found: error
+          retention-days: 30

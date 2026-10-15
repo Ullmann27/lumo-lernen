@@ -6,7 +6,8 @@
 // 8 Aufgaben pro Session: volle Stunden, halbe Stunden, Viertel.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -18,8 +19,9 @@ import '../lumo_phrases.dart';
 import '../learning_module_progress.dart';
 
 class UhrLernenScreen extends StatefulWidget {
-  const UhrLernenScreen({super.key, required this.appState});
+  const UhrLernenScreen({super.key, required this.appState, this.taskRandom});
   final LumoAppState appState;
+  final math.Random? taskRandom;
 
   @override
   State<UhrLernenScreen> createState() => _UhrLernenScreenState();
@@ -37,14 +39,14 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   late final LearningModuleProgress _progress;
-  final _rng = math.Random();
+  late final _rng = widget.taskRandom ?? math.Random();
 
   int _taskIdx = 0;
   int _correctCount = 0;
   bool _answered = false;
   String? _selectedAnswer;
 
-  // Aktuelle Uhrzeit: 0-11 Stunde, Minute: 0|15|30|45
+  // Zifferblatt: Stunden 1–12, Minuten 0|15|30|45.
   late int _hour;
   late int _minute;
   late List<String> _answers;
@@ -52,10 +54,11 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   String get _correctText => _formatTime(_hour, _minute);
 
   String _formatTime(int h, int m) {
+    final nextHour = h % 12 + 1;
     if (m == 0) return '$h Uhr';
-    if (m == 30) return 'halb ${h + 1}';
+    if (m == 30) return 'halb $nextHour';
     if (m == 15) return 'Viertel nach $h';
-    if (m == 45) return 'Viertel vor ${h + 1}';
+    if (m == 45) return 'Viertel vor $nextHour';
     return '$h:${m.toString().padLeft(2, '0')}';
   }
 
@@ -100,14 +103,16 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
         : difficulty == 1
             ? [0, 30]
             : [0, 15, 30, 45];
-    _hour = 1 + _rng.nextInt(11); // 1..11
+    _hour = 1 + _rng.nextInt(12); // 1..12, einschließlich des Übergangs 12 → 1
     _minute = minuteOptions[_rng.nextInt(minuteOptions.length)];
 
     final correctTxt = _correctText;
     final wrongOptions = <String>{};
     final possibles = <List<int>>[];
-    for (int hh = 1; hh <= 11; hh++) {
-      for (final mm in [0, 15, 30, 45]) {
+    for (int hh = 1; hh <= 12; hh++) {
+      // Ablenkantworten üben dieselbe Stufe. Sonst verrät bereits die
+      // einzige Antwort mit „Uhr“ die Lösung der leichten Aufgaben.
+      for (final mm in minuteOptions) {
         if (hh == _hour && mm == _minute) continue;
         possibles.add([hh, mm]);
       }
@@ -145,7 +150,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -250,141 +255,102 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      const Text('Wie spät ist es?',
-                          style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 22,
-                              fontWeight: FontWeight.w900,
-                              color: Color(0xFF6D28D9))),
-                      const SizedBox(height: 16),
-                      _buildClockFace(),
-                      const SizedBox(height: 24),
-                      _buildAnswerGrid(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4))
-        ],
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Uhrzeit ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Die Uhr',
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Mathe-Abenteuer',
+        moduleTitle: 'Die Uhr',
+        guidance: 'Kurz: Stunden. Lang: Minuten.',
+        mistakeGuidance: 'Vergleiche die beiden Zeiger.',
+        icon: Icons.schedule_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Uhrzeit',
+        hasMistake: _answered && _selectedAnswer != _correctText,
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: LumoLessonTaskLayout(
+            spacing: 8,
+            task: Column(children: [
+              const Text('Wie spät ist es?',
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                       fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
+                      fontSize: 22,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white)),
+              const SizedBox(height: 8),
+              _buildClockFace(),
+            ]),
+            answers: _buildAnswerGrid(),
           ),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
   Widget _buildClockFace() {
-    return AnimatedBuilder(
-      animation: _shakeCtrl,
-      builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 6) * 5;
-        return Transform.translate(offset: Offset(shake, 0), child: child);
-      },
-      child: Container(
-        width: 260,
-        height: 260,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: const RadialGradient(
-            colors: [Colors.white, Color(0xFFF3F4F6)],
-            stops: [0.7, 1.0],
+    return LayoutBuilder(builder: (context, constraints) {
+      final shortWide = constraints.maxWidth >= 500 &&
+          LumoLessonStyle.viewportHeight(context) < 540;
+      final diameter = shortWide
+          ? 160.0
+          : constraints.maxWidth >= 500
+              ? 224.0
+              : 176.0;
+      return AnimatedBuilder(
+        animation: _shakeCtrl,
+        builder: (_, child) {
+          final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? 0.0
+              : math.sin(_shakeCtrl.value * math.pi * 6) * 5;
+          return Transform.translate(offset: Offset(shake, 0), child: child);
+        },
+        child: Container(
+          width: diameter,
+          height: diameter,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            gradient: const RadialGradient(
+              colors: [Colors.white, Color(0xFFF3F4F6)],
+              stops: [0.7, 1.0],
+            ),
+            border: Border.all(color: _gradient[1], width: 6),
+            boxShadow: [
+              BoxShadow(
+                  color: _gradient[0].withOpacity(0.25),
+                  blurRadius: 16,
+                  offset: const Offset(0, 6))
+            ],
           ),
-          border: Border.all(color: _gradient[1], width: 6),
-          boxShadow: [
-            BoxShadow(
-                color: _gradient[0].withOpacity(0.25),
-                blurRadius: 16,
-                offset: const Offset(0, 6))
-          ],
+          child: CustomPaint(
+            painter: _ClockPainter(
+                hour: _hour, minute: _minute, color: _gradient[1]),
+          ),
         ),
-        child: CustomPaint(
-          painter:
-              _ClockPainter(hour: _hour, minute: _minute, color: _gradient[1]),
-        ),
-      ),
-    );
+      );
+    });
   }
 
   Widget _buildAnswerGrid() {
-    return GridView.count(
-      crossAxisCount: 2,
+    final landscape = LumoLessonStyle.shortLandscape(context);
+    return LumoLessonAnswerGrid(
+      crossAxisCount: landscape ? 1 : 2,
+      minimumHeight: landscape ? 56 : 68,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
+      mainAxisSpacing: landscape ? 8 : 12,
       crossAxisSpacing: 12,
-      childAspectRatio: 2.5,
+      childAspectRatio: landscape ? 6 : 2.5,
       children: _answers.map((a) => _buildAnswerButton(a)).toList(),
     );
   }
@@ -392,9 +358,9 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
   Widget _buildAnswerButton(String value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correctText;
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered) {
       if (isSelected && isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -406,32 +372,29 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
         borderColor = const Color(0xFFEF4444);
       } else if (!isSelected && isCorrect) {
         bgColor = const Color(0xFFFEF3C7);
+        textColor = const Color(0xFF713F12);
         borderColor = const Color(0xFFFCD34D);
       }
     }
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final s = isSelected && isCorrect
+        final s = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
             : 1.0;
         return Transform.scale(scale: s, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(value),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-            boxShadow: [
-              BoxShadow(
-                  color: borderColor.withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3))
-            ],
-          ),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8),
@@ -464,16 +427,16 @@ class _ClockPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final center = Offset(size.width / 2, size.height / 2);
-    final radius = size.width / 2 - 14;
+    final radius = size.width * .44;
 
     // Stundenmarkierungen (1-12)
     final markPaint = Paint()
       ..color = color.withOpacity(0.6)
-      ..strokeWidth = 3
+      ..strokeWidth = (size.width * .012).clamp(2.0, 3.0)
       ..strokeCap = StrokeCap.round;
     final textStyle = TextStyle(
       fontFamily: 'Nunito',
-      fontSize: 18,
+      fontSize: (size.width * .085).clamp(14.0, 18.0),
       fontWeight: FontWeight.w900,
       color: color,
     );
@@ -484,7 +447,7 @@ class _ClockPainter extends CustomPainter {
           center + Offset(math.cos(angle) * radius, math.sin(angle) * radius);
       final markInner = center +
           Offset(
-              math.cos(angle) * (radius - 10), math.sin(angle) * (radius - 10));
+              math.cos(angle) * radius * .90, math.sin(angle) * radius * .90);
       canvas.drawLine(markInner, markOuter, markPaint);
       // Zahl
       final tp = TextPainter(
@@ -492,37 +455,39 @@ class _ClockPainter extends CustomPainter {
         textDirection: TextDirection.ltr,
       )..layout();
       final textPos = center +
-          Offset(math.cos(angle) * (radius - 28) - tp.width / 2,
-              math.sin(angle) * (radius - 28) - tp.height / 2);
+          Offset(math.cos(angle) * radius * .78 - tp.width / 2,
+              math.sin(angle) * radius * .78 - tp.height / 2);
       tp.paint(canvas, textPos);
+      tp.dispose();
     }
 
     // Stundenzeiger (kürzer, dicker)
     final hourAngle =
         ((hour % 12) + minute / 60) / 12 * 2 * math.pi - math.pi / 2;
     final hourEnd = center +
-        Offset(math.cos(hourAngle) * radius * 0.5,
-            math.sin(hourAngle) * radius * 0.5);
+        Offset(math.cos(hourAngle) * radius * .42,
+            math.sin(hourAngle) * radius * .42);
     final hourPaint = Paint()
       ..color = color
-      ..strokeWidth = 8
+      ..strokeWidth = (size.width * .03).clamp(4.5, 8.0)
       ..strokeCap = StrokeCap.round;
     canvas.drawLine(center, hourEnd, hourPaint);
 
     // Minutenzeiger (länger, dünner)
     final minuteAngle = (minute / 60) * 2 * math.pi - math.pi / 2;
     final minuteEnd = center +
-        Offset(math.cos(minuteAngle) * radius * 0.75,
-            math.sin(minuteAngle) * radius * 0.75);
+        Offset(math.cos(minuteAngle) * radius * .65,
+            math.sin(minuteAngle) * radius * .65);
     final minutePaint = Paint()
-      ..color = color.withOpacity(0.85)
-      ..strokeWidth = 5
+      ..color = const Color(0xFF00758A)
+      ..strokeWidth = (size.width * .018).clamp(2.8, 5.0)
       ..strokeCap = StrokeCap.round;
     canvas.drawLine(center, minuteEnd, minutePaint);
 
     // Mittelpunkt
-    canvas.drawCircle(center, 8, Paint()..color = color);
-    canvas.drawCircle(center, 4, Paint()..color = Colors.white);
+    final hub = (size.width * .03).clamp(5.0, 8.0);
+    canvas.drawCircle(center, hub, Paint()..color = color);
+    canvas.drawCircle(center, hub / 2, Paint()..color = Colors.white);
   }
 
   @override

@@ -6,6 +6,7 @@ import '../app/app_state.dart';
 import 'app_settings.dart';
 import 'lumo_ai_learning_access.dart';
 import 'lumo_ai_learning_policy_bridge.dart';
+import 'lumo_sulafat_client.dart';
 
 class LumoAiProxyClient {
   const LumoAiProxyClient();
@@ -15,7 +16,8 @@ class LumoAiProxyClient {
   static const Duration _batchTimeout = Duration(seconds: 30);
 
   bool isConfigured(AppSettings settings) {
-    return settings.aiProxyEnabled && _validatedBaseUri(settings.aiProxyUrl) != null;
+    return settings.aiProxyEnabled &&
+        _validatedBaseUri(settings.aiProxyUrl) != null;
   }
 
   Future<LumoAiProxyResponse> ask({
@@ -25,6 +27,7 @@ class LumoAiProxyClient {
     List<LumoAiChatTurn> history = const <LumoAiChatTurn>[],
     LumoAiContext context = LumoAiContext.companion,
     Map<String, Object?>? extras,
+    LumoSpeechCancellation? cancellation,
   }) async {
     final text = message.trim();
     if (text.isEmpty) {
@@ -36,7 +39,8 @@ class LumoAiProxyClient {
     }
     if (text.length > 1200) {
       return const LumoAiProxyResponse(
-        reply: 'Deine Frage ist sehr lang. Stell mir bitte eine kürzere Frage, dann gehen wir sie gemeinsam durch.',
+        reply:
+            'Deine Frage ist sehr lang. Stell mir bitte eine kürzere Frage, dann gehen wir sie gemeinsam durch.',
         blocked: false,
         source: 'local_input_too_long',
         reason: 'message_too_long',
@@ -46,7 +50,8 @@ class LumoAiProxyClient {
     final localSafety = LumoChildSafetyFilter.inspect(text);
     if (!localSafety.allowed) {
       return LumoAiProxyResponse(
-        reply: '${localSafety.redirect} Möchtest du lieber Mathe, Deutsch, Lesen oder Natur üben?',
+        reply:
+            '${localSafety.redirect} Möchtest du lieber Mathe, Deutsch, Lesen oder Natur üben?',
         blocked: true,
         ruleId: localSafety.ruleId,
         source: 'local_flutter_policy',
@@ -65,24 +70,41 @@ class LumoAiProxyClient {
     };
     if (!settings.lumoAiLearningAccess.allows(area) || baseUri == null) {
       return const LumoAiProxyResponse(
-        reply: 'Die Lumo-KI ist im Elternbereich noch nicht freigegeben. Ich kann dir lokal bei Mathe, Deutsch und Lesen helfen.',
+        reply:
+            'Die Lumo-KI ist im Elternbereich noch nicht freigegeben. Ich kann dir lokal bei Mathe, Deutsch und Lesen helfen.',
         blocked: false,
         source: 'local_not_enabled',
       );
     }
 
-    final firstAttempt = await _runChatAttempt(baseUri, text, history, state, _timeout, context: context, extras: extras);
+    if (cancellation?.cancelled == true) return _cancelledReply;
+    final firstAttempt = await _runChatAttempt(
+        baseUri, text, history, state, _timeout,
+        context: context, extras: extras, cancellation: cancellation);
     if (firstAttempt != null) return firstAttempt;
+    if (cancellation?.cancelled == true) return _cancelledReply;
 
-    final secondAttempt = await _runChatAttempt(baseUri, text, history, state, _coldStartTimeout, isRetry: true, context: context, extras: extras);
+    final secondAttempt = await _runChatAttempt(
+        baseUri, text, history, state, _coldStartTimeout,
+        isRetry: true,
+        context: context,
+        extras: extras,
+        cancellation: cancellation);
     if (secondAttempt != null) return secondAttempt;
 
     return const LumoAiProxyResponse(
-      reply: 'Der Lumo-KI-Server antwortet auch nach längerem Warten nicht. Lumo hilft dir lokal weiter.',
+      reply:
+          'Der Lumo-KI-Server antwortet auch nach längerem Warten nicht. Lumo hilft dir lokal weiter.',
       blocked: false,
       source: 'proxy_unreachable',
     );
   }
+
+  static const _cancelledReply = LumoAiProxyResponse(
+    reply: '',
+    blocked: false,
+    source: 'cancelled',
+  );
 
   Future<LumoAiProxyResponse?> _runChatAttempt(
     Uri baseUri,
@@ -93,9 +115,11 @@ class LumoAiProxyClient {
     bool isRetry = false,
     LumoAiContext context = LumoAiContext.companion,
     Map<String, Object?>? extras,
+    LumoSpeechCancellation? cancellation,
   }) async {
     final endpoint = _chatEndpoint(baseUri);
     final client = HttpClient()..connectionTimeout = timeout;
+    cancellation?.attach(() => client.close(force: true));
     try {
       final request = await client.postUrl(endpoint).timeout(timeout);
       request.headers.contentType = ContentType.json;
@@ -105,21 +129,56 @@ class LumoAiProxyClient {
         'childProfile': <String, dynamic>{
           'grade': state.grade,
         },
-        'history': history.skip(history.length > 8 ? history.length - 8 : 0)
-            .map((turn) => turn.toJson()).toList(growable: false),
+        'history': history
+            .skip(history.length > 8 ? history.length - 8 : 0)
+            .map((turn) => turn.toJson())
+            .toList(growable: false),
         // Bereichs-Kontext: der Proxy kennt jetzt aus welchem Modul
         // die Anfrage kommt und kann ein angepasstes System-Prompt waehlen.
         'context': context.key,
-        if (extras != null && extras.isNotEmpty) 'extras': <String, Object?>{
-          for (final key in const ['section', 'subject', 'unit', 'topic', 'topic_id', 'mode', 'visual'])
-            if (extras[key] is String) key: (extras[key] as String).substring(0, (extras[key] as String).length.clamp(0, 120)),
-          if (extras['attempt'] is int) 'attempt': (extras['attempt'] as int).clamp(0, 10),
-        },
+        if (extras != null && extras.isNotEmpty)
+          'extras': <String, Object?>{
+            for (final key in const [
+              'section',
+              'subject',
+              'unit',
+              'topic',
+              'topic_id',
+              'mode',
+              'visual'
+            ])
+              if (extras[key] is String &&
+                  LumoChildSafetyFilter.inspect(extras[key] as String).allowed)
+                key: (extras[key] as String)
+                    .substring(0, (extras[key] as String).length.clamp(0, 120)),
+            if (extras['attempt'] is int)
+              'attempt': (extras['attempt'] as int).clamp(0, 10),
+            for (final entry in const {
+              'taskPrompt': 360,
+              'lastAnswer': 80,
+              'previousHelp': 200
+            }.entries)
+              if (extras[entry.key] is String &&
+                  LumoChildSafetyFilter.inspect(extras[entry.key] as String).allowed)
+                entry.key: (extras[entry.key] as String).substring(0,
+                    (extras[entry.key] as String).length.clamp(0, entry.value)),
+            if (const ['answering', 'completed', 'review']
+                .contains(extras['taskStatus']))
+              'taskStatus': extras['taskStatus'],
+            if (const ['learning', 'writing', 'reading', 'playing']
+                .contains(extras['activity']))
+              'activity': extras['activity'],
+            if (extras['lastCorrect'] is bool)
+              'lastCorrect': extras['lastCorrect'],
+            if (extras['helpLevel'] is int)
+              'helpLevel': (extras['helpLevel'] as int).clamp(0, 3),
+          },
       };
       request.write(jsonEncode(payload));
 
       final response = await request.close().timeout(timeout);
-      final raw = await response.transform(utf8.decoder).join().timeout(timeout);
+      final raw =
+          await response.transform(utf8.decoder).join().timeout(timeout);
       if (response.statusCode < 200 || response.statusCode >= 300) {
         final reason = _safeErrorReason(_tryDecodeHealthJson(raw));
         return LumoAiProxyResponse(
@@ -134,7 +193,8 @@ class LumoAiProxyClient {
       final decoded = jsonDecode(raw);
       if (decoded is! Map) {
         return const LumoAiProxyResponse(
-          reply: 'Die Serverantwort war nicht lesbar. Wir bleiben bei der lokalen Lernhilfe.',
+          reply:
+              'Die Serverantwort war nicht lesbar. Wir bleiben bei der lokalen Lernhilfe.',
           blocked: false,
           source: 'proxy_bad_json',
         );
@@ -142,7 +202,8 @@ class LumoAiProxyClient {
       final reply = (decoded['reply'] as String?)?.trim();
       if (reply == null || reply.isEmpty) {
         return const LumoAiProxyResponse(
-          reply: 'Ich habe keine gute Antwort bekommen. Lass uns eine Lernaufgabe probieren.',
+          reply:
+              'Ich habe keine gute Antwort bekommen. Lass uns eine Lernaufgabe probieren.',
           blocked: false,
           source: 'proxy_empty_reply',
         );
@@ -150,7 +211,8 @@ class LumoAiProxyClient {
       final outputSafety = LumoChildSafetyFilter.inspect(reply);
       if (!outputSafety.allowed) {
         return LumoAiProxyResponse(
-          reply: '${outputSafety.redirect} Soll ich dir eine leichte Schulfrage stellen?',
+          reply:
+              '${outputSafety.redirect} Soll ich dir eine leichte Schulfrage stellen?',
           blocked: true,
           ruleId: outputSafety.ruleId,
           source: 'local_output_policy',
@@ -160,7 +222,8 @@ class LumoAiProxyClient {
         reply: reply,
         blocked: decoded['blocked'] as bool? ?? false,
         ruleId: decoded['ruleId'] as String?,
-        source: decoded['source'] as String? ?? (isRetry ? 'proxy_retry' : 'proxy'),
+        source:
+            decoded['source'] as String? ?? (isRetry ? 'proxy_retry' : 'proxy'),
       );
     } on TimeoutException {
       return null;
@@ -168,11 +231,13 @@ class LumoAiProxyClient {
       return null;
     } catch (_) {
       return const LumoAiProxyResponse(
-        reply: 'Verbindung zum KI-Server nicht möglich. Lumo hilft dir lokal weiter.',
+        reply:
+            'Verbindung zum KI-Server nicht möglich. Lumo hilft dir lokal weiter.',
         blocked: false,
         source: 'proxy_error',
       );
     } finally {
+      cancellation?.detach();
       client.close(force: true);
     }
   }
@@ -181,7 +246,8 @@ class LumoAiProxyClient {
     final clean = AppSettings.sanitizeProxyUrl(raw);
     final uri = Uri.tryParse(clean);
     if (uri == null || !uri.hasScheme || uri.host.isEmpty) return null;
-    if (uri.scheme != 'https' && uri.scheme != 'http') return null;
+    final local = uri.host == '127.0.0.1' || uri.host == 'localhost';
+    if (uri.scheme != 'https' && !(local && uri.scheme == 'http')) return null;
     return uri;
   }
 
@@ -216,7 +282,8 @@ class LumoAiProxyClient {
       return LumoAiHealthStatus(
         reachable: false,
         openAiConfigured: false,
-        message: 'Die URL sieht nicht richtig aus. Bitte korrekte https-Adresse eintragen.',
+        message:
+            'Die URL sieht nicht richtig aus. Bitte korrekte https-Adresse eintragen.',
         checkedUrl: rawUrl.trim().isEmpty ? '(leer)' : rawUrl.trim(),
       );
     }
@@ -224,13 +291,15 @@ class LumoAiProxyClient {
     final firstAttempt = await _runHealthAttempt(baseUri, _timeout);
     if (firstAttempt != null) return firstAttempt;
 
-    final secondAttempt = await _runHealthAttempt(baseUri, _coldStartTimeout, isRetry: true);
+    final secondAttempt =
+        await _runHealthAttempt(baseUri, _coldStartTimeout, isRetry: true);
     if (secondAttempt != null) return secondAttempt;
 
     return LumoAiHealthStatus(
       reachable: false,
       openAiConfigured: false,
-      message: 'Server antwortet auch nach längerem Warten nicht. Bitte Render-Service prüfen. Lumo bleibt lokal aktiv.',
+      message:
+          'Server antwortet auch nach längerem Warten nicht. Bitte Render-Service prüfen. Lumo bleibt lokal aktiv.',
       checkedUrl: baseUri.toString(),
     );
   }
@@ -270,7 +339,8 @@ class LumoAiProxyClient {
           return LumoAiHealthStatus(
             reachable: false,
             openAiConfigured: false,
-            message: 'Server-Service antwortet, aber /health und Root-Health sind nicht lesbar. Bitte Render-Deploy prüfen. URL: $baseUri',
+            message:
+                'Server-Service antwortet, aber /health und Root-Health sind nicht lesbar. Bitte Render-Deploy prüfen. URL: $baseUri',
             statusCode: primary.statusCode,
             endpoint: healthUri.toString(),
             checkedUrl: baseUri.toString(),
@@ -280,7 +350,8 @@ class LumoAiProxyClient {
           return LumoAiHealthStatus(
             reachable: false,
             openAiConfigured: false,
-            message: 'Server hat einen Fehler (Code ${primary.statusCode}). Bitte später erneut prüfen. Lumo bleibt lokal aktiv.',
+            message:
+                'Server hat einen Fehler (Code ${primary.statusCode}). Bitte später erneut prüfen. Lumo bleibt lokal aktiv.',
             statusCode: primary.statusCode,
             endpoint: healthUri.toString(),
             checkedUrl: baseUri.toString(),
@@ -289,7 +360,8 @@ class LumoAiProxyClient {
         return LumoAiHealthStatus(
           reachable: false,
           openAiConfigured: false,
-          message: 'Server gerade nicht erreichbar (Code ${primary.statusCode}). Lumo bleibt lokal aktiv.',
+          message:
+              'Server gerade nicht erreichbar (Code ${primary.statusCode}). Lumo bleibt lokal aktiv.',
           statusCode: primary.statusCode,
           endpoint: healthUri.toString(),
           checkedUrl: baseUri.toString(),
@@ -326,8 +398,10 @@ class LumoAiProxyClient {
     () async {
       try {
         final endpoint = _rootEndpoint(baseUri);
-        final request = await client.getUrl(endpoint).timeout(const Duration(seconds: 4));
-        final response = await request.close().timeout(const Duration(seconds: 4));
+        final request =
+            await client.getUrl(endpoint).timeout(const Duration(seconds: 4));
+        final response =
+            await request.close().timeout(const Duration(seconds: 4));
         await response.drain<void>();
       } catch (_) {
         // Wakeup ist best-effort.
@@ -367,19 +441,25 @@ class LumoAiProxyClient {
       request.headers.contentType = ContentType.json;
       request.headers.set(HttpHeaders.acceptHeader, 'application/json');
       final payload = <String, dynamic>{
-        'message': 'Aufgabe: 3 + 4 = ? Gib einen kleinen Denkschritt und eine Rückfrage, ohne die Lösung zu verraten.',
+        'message':
+            'Aufgabe: 3 + 4 = ? Gib einen kleinen Denkschritt und eine Rückfrage, ohne die Lösung zu verraten.',
         'childProfile': <String, dynamic>{
           'grade': 1,
         },
         'history': const <Map<String, String>>[],
         'context': LumoAiContext.learningTutor.key,
         'extras': <String, Object?>{
-          'subject': 'Mathematik', 'unit': 'Plus bis 10', 'attempt': 0,
+          'subject': 'Mathematik',
+          'unit': 'Plus bis 10',
+          'attempt': 0,
         },
       };
       request.write(jsonEncode(payload));
       final response = await request.close().timeout(_coldStartTimeout);
-      final raw = await response.transform(utf8.decoder).join().timeout(_coldStartTimeout);
+      final raw = await response
+          .transform(utf8.decoder)
+          .join()
+          .timeout(_coldStartTimeout);
       final code = response.statusCode;
       String source = 'unknown';
       String replySnippet = '';
@@ -394,13 +474,20 @@ class LumoAiProxyClient {
           final reply = decoded['reply']?.toString() ?? '';
           replySnippet = reason != null
               ? aiErrorDescription(reason)
-              : reply.length > 150 ? '${reply.substring(0, 150)}...' : reply;
+              : reply.length > 150
+                  ? '${reply.substring(0, 150)}...'
+                  : reply;
         }
       } catch (_) {
         replySnippet = 'Der Server hat keine lesbare KI-Antwort geliefert.';
       }
       return LumoAiSmokeTestResult(
-        success: code >= 200 && code < 300 && source == 'openai_proxy' && !blocked && reason == null && replySnippet.isNotEmpty,
+        success: code >= 200 &&
+            code < 300 &&
+            source == 'openai_proxy' &&
+            !blocked &&
+            reason == null &&
+            replySnippet.isNotEmpty,
         statusCode: code,
         source: source,
         replySnippet: replySnippet,
@@ -420,7 +507,8 @@ class LumoAiProxyClient {
         success: false,
         statusCode: 0,
         source: 'error',
-        replySnippet: 'Die Verbindung zum KI-Server konnte nicht hergestellt werden.',
+        replySnippet:
+            'Die Verbindung zum KI-Server konnte nicht hergestellt werden.',
         endpoint: endpoint.toString(),
       );
     } finally {
@@ -428,7 +516,8 @@ class LumoAiProxyClient {
     }
   }
 
-  Future<_HealthHttpResult> _getHealthStatus(HttpClient client, Uri endpoint, Duration timeout) async {
+  Future<_HealthHttpResult> _getHealthStatus(
+      HttpClient client, Uri endpoint, Duration timeout) async {
     final request = await client.getUrl(endpoint).timeout(timeout);
     request.headers.set(HttpHeaders.acceptHeader, 'application/json');
     final response = await request.close().timeout(timeout);
@@ -445,7 +534,9 @@ class LumoAiProxyClient {
   }) {
     final decoded = _tryDecodeHealthJson(raw);
     if (decoded == null) return null;
-    final ok = _truthy(decoded['ok']) || _truthy(decoded['healthy']) || _truthy(decoded['ready']);
+    final ok = _truthy(decoded['ok']) ||
+        _truthy(decoded['healthy']) ||
+        _truthy(decoded['ready']);
     final openAi = _truthy(decoded['openAiConfigured']) ||
         _truthy(decoded['openAIConfigured']) ||
         _truthy(decoded['openaiConfigured']) ||
@@ -453,7 +544,8 @@ class LumoAiProxyClient {
         _truthy(decoded['openai']) ||
         _truthy(decoded['configured']);
     final upstreamStatus = decoded['upstreamStatus']?.toString();
-    final available = openAi && (decoded['openAiAvailable'] == true || upstreamStatus == 'ready');
+    final available = openAi &&
+        (decoded['openAiAvailable'] == true || upstreamStatus == 'ready');
     final service = decoded['service']?.toString().toLowerCase() ?? '';
     final isLumoProxy = service.contains('lumo') && service.contains('proxy');
     final prefix = fallbackPrefix == null ? '' : '$fallbackPrefix ';
@@ -493,7 +585,8 @@ class LumoAiProxyClient {
       return LumoAiHealthStatus(
         reachable: true,
         openAiConfigured: false,
-        message: '${prefix}Server erreichbar, aber OpenAI-Schlüssel fehlt am Server.',
+        message:
+            '${prefix}Server erreichbar, aber OpenAI-Schlüssel fehlt am Server.',
         statusCode: statusCode,
         endpoint: endpoint,
         service: service.isEmpty ? null : service,
@@ -547,7 +640,8 @@ class LumoAiProxyClient {
     int count = 10,
     String? childName,
   }) async {
-    if (!settings.lumoAiLearningAccess.allows(LumoAiLearningArea.taskHelp)) return const <LumoAiTaskDraft>[];
+    if (!settings.lumoAiLearningAccess.allows(LumoAiLearningArea.taskHelp))
+      return const <LumoAiTaskDraft>[];
     final baseUri = _validatedBaseUri(settings.aiProxyUrl);
     if (baseUri == null) return const <LumoAiTaskDraft>[];
 
@@ -600,7 +694,8 @@ class LumoAiProxyClient {
       if (response.statusCode < 200 || response.statusCode >= 300) {
         return const <LumoAiTaskDraft>[];
       }
-      final raw = await response.transform(utf8.decoder).join().timeout(timeout);
+      final raw =
+          await response.transform(utf8.decoder).join().timeout(timeout);
       final decoded = jsonDecode(raw);
       if (decoded is! Map) return const <LumoAiTaskDraft>[];
       final list = decoded['tasks'];
@@ -629,29 +724,47 @@ class LumoAiProxyClient {
 }
 
 const _publicAiErrors = <String>{
-  'openai_key_missing', 'openai_authentication_failed', 'openai_quota_exceeded',
-  'openai_rate_limited', 'openai_model_unavailable', 'openai_configuration_error',
-  'openai_upstream_error', 'upstream_unavailable', 'message_too_long',
-  'invalid_json', 'body_too_large', 'no_valid_tasks',
+  'openai_key_missing',
+  'openai_authentication_failed',
+  'openai_quota_exceeded',
+  'openai_rate_limited',
+  'openai_model_unavailable',
+  'openai_configuration_error',
+  'openai_upstream_error',
+  'upstream_unavailable',
+  'message_too_long',
+  'invalid_json',
+  'body_too_large',
+  'no_valid_tasks',
 };
 
 String? _safeErrorReason(Map? decoded) {
-  final reason = decoded?['reason']?.toString() ?? decoded?['error']?.toString();
+  final reason =
+      decoded?['reason']?.toString() ?? decoded?['error']?.toString();
   return _publicAiErrors.contains(reason) ? reason : null;
 }
 
 /// Allowlisted parent diagnostics; never show raw provider errors or credentials.
 String aiErrorDescription(String? reason) => switch (reason) {
-  'openai_rate_limited' => 'OpenAI begrenzt gerade die Anfragen. Bitte kurz warten; bei wiederholtem Fehler die Projektlimits im OpenAI-Konto prüfen.',
-  'openai_quota_exceeded' => 'Das OpenAI-Kontingent ist aufgebraucht. Bitte Guthaben und Abrechnung im OpenAI-Projekt prüfen.',
-  'openai_authentication_failed' => 'Der hinterlegte OpenAI-Schlüssel wird abgelehnt. Bitte den Schlüssel am Server erneuern.',
-  'openai_key_missing' => 'Am Server fehlt der OpenAI-Schlüssel.',
-  'openai_model_unavailable' => 'Das konfigurierte KI-Modell ist für dieses OpenAI-Projekt nicht verfügbar.',
-  'openai_configuration_error' => 'OpenAI lehnt einen Modellparameter ab. Bitte die Serverkonfiguration prüfen.',
-  'message_too_long' || 'body_too_large' => 'Die Anfrage ist zu lang. Bitte kürzen und erneut versuchen.',
-  'no_valid_tasks' => 'Die KI hat keine fachlich geprüften Aufgaben geliefert. Lokale Aufgaben bleiben verfügbar.',
-  _ => 'Die KI-Verbindung ist derzeit nicht bestätigt. Bitte später erneut testen.',
-};
+      'openai_rate_limited' =>
+        'OpenAI begrenzt gerade die Anfragen. Bitte kurz warten; bei wiederholtem Fehler die Projektlimits im OpenAI-Konto prüfen.',
+      'openai_quota_exceeded' =>
+        'Das OpenAI-Kontingent ist aufgebraucht. Bitte Guthaben und Abrechnung im OpenAI-Projekt prüfen.',
+      'openai_authentication_failed' =>
+        'Der hinterlegte OpenAI-Schlüssel wird abgelehnt. Bitte den Schlüssel am Server erneuern.',
+      'openai_key_missing' => 'Am Server fehlt der OpenAI-Schlüssel.',
+      'openai_model_unavailable' =>
+        'Das konfigurierte KI-Modell ist für dieses OpenAI-Projekt nicht verfügbar.',
+      'openai_configuration_error' =>
+        'OpenAI lehnt einen Modellparameter ab. Bitte die Serverkonfiguration prüfen.',
+      'message_too_long' ||
+      'body_too_large' =>
+        'Die Anfrage ist zu lang. Bitte kürzen und erneut versuchen.',
+      'no_valid_tasks' =>
+        'Die KI hat keine fachlich geprüften Aufgaben geliefert. Lokale Aufgaben bleiben verfügbar.',
+      _ =>
+        'Die KI-Verbindung ist derzeit nicht bestätigt. Bitte später erneut testen.',
+    };
 
 class _HealthHttpResult {
   const _HealthHttpResult({required this.statusCode, required this.rawBody});
@@ -725,7 +838,8 @@ class LumoAiProxyResponse {
   final String? ruleId;
   final String? reason;
 
-  bool get isCloudAnswer => source == 'openai_proxy' && reason == null && !blocked;
+  bool get isCloudAnswer =>
+      source == 'openai_proxy' && reason == null && !blocked;
 }
 
 class LumoAiChatTurn {
@@ -756,14 +870,93 @@ class LumoChildSafetyFilter {
   const LumoChildSafetyFilter._();
 
   static const Map<String, List<String>> _blockedTerms = <String, List<String>>{
-    'sexual_content': <String>['sex', 'porno', 'pornografie', 'nackt', 'nacktheit', 'nacktbilder', 'onlyfans', 'vergewaltigung', 'erektion', 'masturbation'],
-    'violence_war_weapons': <String>['krieg', 'gewalt', 'waffe', 'messer', 'pistole', 'gewehr', 'bombe', 'töten', 'toeten', 'mord', 'blut', 'folter', 'anschlag', 'erschießen', 'erschiessen', 'pruegeln', 'prügeln'],
-    'self_harm': <String>['ich will sterben', 'mich umbringen', 'suizid', 'selbstmord', 'ritzen', 'mir weh tun', 'mich verletzen'],
-    'politics_extremism': <String>['partei', 'wahlkampf', 'hitler', 'nazi', 'terror', 'terrorist', 'extremismus', 'propaganda', 'rassismus'],
-    'hate_speech': <String>['ich hasse alle', 'auslaender raus', 'ausländer raus', 'sind dumm', 'minderwertig'],
-    'drugs_alcohol': <String>['drogen', 'kiffen', 'kokain', 'heroin', 'cannabis', 'alkohol trinken', 'betrunken', 'zigarette', 'vape', 'e-zigarette'],
-    'private_data': <String>['adresse', 'telefonnummer', 'handynummer', 'passwort', 'bankkarte', 'kreditkarte', 'pin code'],
-    'stranger_danger': <String>['will mich treffen', 'wir treffen uns heimlich', 'sag es deinen eltern nicht', 'sag es niemandem', 'unser geheimnis', 'ich darf nicht reden'],
+    'sexual_content': <String>[
+      'sex',
+      'porno',
+      'pornografie',
+      'nackt',
+      'nacktheit',
+      'nacktbilder',
+      'onlyfans',
+      'vergewaltigung',
+      'erektion',
+      'masturbation'
+    ],
+    'violence_war_weapons': <String>[
+      'krieg',
+      'gewalt',
+      'waffe',
+      'messer',
+      'pistole',
+      'gewehr',
+      'bombe',
+      'töten',
+      'toeten',
+      'mord',
+      'blut',
+      'folter',
+      'anschlag',
+      'erschießen',
+      'erschiessen',
+      'pruegeln',
+      'prügeln'
+    ],
+    'self_harm': <String>[
+      'ich will sterben',
+      'mich umbringen',
+      'suizid',
+      'selbstmord',
+      'ritzen',
+      'mir weh tun',
+      'mich verletzen'
+    ],
+    'politics_extremism': <String>[
+      'partei',
+      'wahlkampf',
+      'hitler',
+      'nazi',
+      'terror',
+      'terrorist',
+      'extremismus',
+      'propaganda',
+      'rassismus'
+    ],
+    'hate_speech': <String>[
+      'ich hasse alle',
+      'auslaender raus',
+      'ausländer raus',
+      'sind dumm',
+      'minderwertig'
+    ],
+    'drugs_alcohol': <String>[
+      'drogen',
+      'kiffen',
+      'kokain',
+      'heroin',
+      'cannabis',
+      'alkohol trinken',
+      'betrunken',
+      'zigarette',
+      'vape',
+      'e-zigarette'
+    ],
+    'private_data': <String>[
+      'adresse',
+      'telefonnummer',
+      'handynummer',
+      'passwort',
+      'bankkarte',
+      'kreditkarte',
+      'pin code'
+    ],
+    'stranger_danger': <String>[
+      'will mich treffen',
+      'wir treffen uns heimlich',
+      'sag es deinen eltern nicht',
+      'sag es niemandem',
+      'unser geheimnis',
+      'ich darf nicht reden'
+    ],
   };
 
   static LumoSafetyDecision inspect(String value) {
@@ -771,12 +964,14 @@ class LumoChildSafetyFilter {
     final rules = _blockedTerms.entries.toList()
       ..sort((a, b) => _urgentRule(b.key).compareTo(_urgentRule(a.key)));
     for (final entry in rules) {
-      final compound = entry.key == 'violence_war_weapons' && RegExp(
-        r'(^|[^a-z])(?:[a-z]*krieg(?:e|en|er|s[a-z]*)?|[a-z]*waffen[a-z]*|[a-z]*waffe|[a-z]*(?:pistole|gewehr)[a-z]*|bomben[a-z]*|messer(?:stich|angriff|attacke)[a-z]*)(?=$|[^a-z])',
-      ).hasMatch(text);
-      if (compound || entry.value.any((term) => RegExp(
-        '(^|[^a-z])${RegExp.escape(_normalize(term))}(?:e|en|er|n|s)?(?=\$|[^a-z])',
-      ).hasMatch(text))) {
+      final compound = entry.key == 'violence_war_weapons' &&
+          RegExp(
+            r'(^|[^a-z])(?:[a-z]*krieg(?:e|en|er|s[a-z]*)?|[a-z]*waffen[a-z]*|[a-z]*waffe|[a-z]*(?:pistole|gewehr)[a-z]*|bomben[a-z]*|messer(?:stich|angriff|attacke)[a-z]*)(?=$|[^a-z])',
+          ).hasMatch(text);
+      if (compound ||
+          entry.value.any((term) => RegExp(
+                '(^|[^a-z])${RegExp.escape(_normalize(term))}(?:e|en|er|n|s)?(?=\$|[^a-z])',
+              ).hasMatch(text))) {
         return LumoSafetyDecision(
           allowed: false,
           ruleId: entry.key,
@@ -787,30 +982,60 @@ class LumoChildSafetyFilter {
     return const LumoSafetyDecision(allowed: true, ruleId: null, redirect: '');
   }
 
-  static int _urgentRule(String key) => key == 'self_harm' || key == 'stranger_danger' ? 1 : 0;
+  static int _urgentRule(String key) =>
+      key == 'self_harm' || key == 'stranger_danger' ? 1 : 0;
 
-  static String _normalize(String text) => text.toLowerCase()
-      .replaceAll('ä', 'ae').replaceAll('ö', 'oe').replaceAll('ü', 'ue').replaceAll('ß', 'ss');
+  static String _normalize(String text) => text
+      .toLowerCase()
+      .replaceAll('ä', 'ae')
+      .replaceAll('ö', 'oe')
+      .replaceAll('ü', 'ue')
+      .replaceAll('ß', 'ss');
 
-  static String _normalizeReceiveVerbs(String source) => source.replaceAllMapped(
-    RegExp(r'\b(?:ab|hin|mit|auf|raus|rein|weg|zurecht)?krieg(?:e|en|st|t|te|ten|test|tet)\b', caseSensitive: false),
-    (match) {
-      final word = match[0]!;
-      if (!RegExp(r'^kriege(?:n)?$', caseSensitive: false).hasMatch(word)) return 'bekommen';
-      final before = source.substring(0, match.start);
-      final after = source.substring(match.end);
-      final tokens = RegExp(r'[A-Za-zÄÖÜäöüß0-9]+').allMatches(before).map((m) => m[0]!).toList();
-      var i = tokens.length - 1;
-      while (i >= 0 && RegExp(r'^(?:den|der|diesen|jenen|solchen|[a-zäöüß]+(?:en|em|er|es|e))$').hasMatch(tokens[i])) { i--; }
-      final nounPrefix = RegExp(r'^(?:in|von|vor|nach|bei|aus|zu|mit|gegen|über|ueber|durch|für|fuer|ohne|trotz|während|waehrend|wegen|seit|zwischen|zwei|drei|vier|fünf|fuenf|\d+)$', caseSensitive: false).hasMatch(i >= 0 ? tokens[i] : '');
-      final nounPredicate = RegExp(r'^\s+(?:sind|waren|beginnen|begannen|enden|endeten|dauern|dauerten|verursachen|fordern)\b', caseSensitive: false).hasMatch(after);
-      final explicitVerb = RegExp(r'\b(?:ich|wir|du|sie|ihr|er|es)\s*$', caseSensitive: false).hasMatch(before)
-          || RegExp(r'^\s+(?:ich|wir|du|sie|ihr|er|es)\b', caseSensitive: false).hasMatch(after)
-          || (word.toLowerCase() == 'kriegen' && RegExp(r'(?:^|[.!?]\s*)$').hasMatch(before) && RegExp(r'^\s+[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]*\b').hasMatch(after));
-      if (nounPrefix || nounPredicate || (word[0] == word[0].toUpperCase() && !explicitVerb)) return word;
-      return 'bekommen';
-    },
-  );
+  static String _normalizeReceiveVerbs(String source) =>
+      source.replaceAllMapped(
+        RegExp(
+            r'\b(?:ab|hin|mit|auf|raus|rein|weg|zurecht)?krieg(?:e|en|st|t|te|ten|test|tet)\b',
+            caseSensitive: false),
+        (match) {
+          final word = match[0]!;
+          if (!RegExp(r'^kriege(?:n)?$', caseSensitive: false).hasMatch(word))
+            return 'bekommen';
+          final before = source.substring(0, match.start);
+          final after = source.substring(match.end);
+          final tokens = RegExp(r'[A-Za-zÄÖÜäöüß0-9]+')
+              .allMatches(before)
+              .map((m) => m[0]!)
+              .toList();
+          var i = tokens.length - 1;
+          while (i >= 0 &&
+              RegExp(r'^(?:den|der|diesen|jenen|solchen|[a-zäöüß]+(?:en|em|er|es|e))$')
+                  .hasMatch(tokens[i])) {
+            i--;
+          }
+          final nounPrefix = RegExp(
+                  r'^(?:in|von|vor|nach|bei|aus|zu|mit|gegen|über|ueber|durch|für|fuer|ohne|trotz|während|waehrend|wegen|seit|zwischen|zwei|drei|vier|fünf|fuenf|\d+)$',
+                  caseSensitive: false)
+              .hasMatch(i >= 0 ? tokens[i] : '');
+          final nounPredicate = RegExp(
+                  r'^\s+(?:sind|waren|beginnen|begannen|enden|endeten|dauern|dauerten|verursachen|fordern)\b',
+                  caseSensitive: false)
+              .hasMatch(after);
+          final explicitVerb = RegExp(r'\b(?:ich|wir|du|sie|ihr|er|es)\s*$',
+                      caseSensitive: false)
+                  .hasMatch(before) ||
+              RegExp(r'^\s+(?:ich|wir|du|sie|ihr|er|es)\b',
+                      caseSensitive: false)
+                  .hasMatch(after) ||
+              (word.toLowerCase() == 'kriegen' &&
+                  RegExp(r'(?:^|[.!?]\s*)$').hasMatch(before) &&
+                  RegExp(r'^\s+[A-ZÄÖÜ][A-Za-zÄÖÜäöüß]*\b').hasMatch(after));
+          if (nounPrefix ||
+              nounPredicate ||
+              (word[0] == word[0].toUpperCase() && !explicitVerb)) return word;
+          return 'bekommen';
+        },
+      );
 
   static String _redirectFor(String ruleId) {
     switch (ruleId) {
@@ -866,7 +1091,8 @@ class LumoAiTaskDraft {
       choices.add(v);
     }
     if (choices.length < 2) return null;
-    if (!choices.any((c) => c.toLowerCase() == answer.toLowerCase())) return null;
+    if (!choices.any((c) => c.toLowerCase() == answer.toLowerCase()))
+      return null;
     return LumoAiTaskDraft(
       prompt: prompt,
       answer: answer,
@@ -888,7 +1114,10 @@ class LumoAiTaskDraft {
     return LumoAiTaskDraft(
       prompt: json['prompt'] as String? ?? '',
       answer: json['answer'] as String? ?? '',
-      choices: (json['choices'] as List?)?.map((e) => e.toString()).toList(growable: false) ?? const <String>[],
+      choices: (json['choices'] as List?)
+              ?.map((e) => e.toString())
+              .toList(growable: false) ??
+          const <String>[],
       explanation: json['explanation'] as String? ?? '',
       visual: json['visual'] as String? ?? 'auto',
     );

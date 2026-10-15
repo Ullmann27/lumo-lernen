@@ -1,0 +1,1 @@
+One fresh whole-diff reviewer found two issues: narrow landscape Dice threshold and forced two-column kart pane. Root repaired both; Dice7cases with enlargedtext/actualhint passed and finalKart96genuineinputchecks passed. No additional actionable findings. No duplicated review.

@@ -60,8 +60,11 @@ String _pizzaFraction(WidgetTester tester) {
 }
 
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
+  // Profile setup creates cached storage Futures in runAsync. Let that event
+  // loop complete its awaits between the unchanged fake UI/feedback frames.
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(microseconds: 16667));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
 }
 
@@ -149,11 +152,22 @@ void main() {
     await tester
         .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await _frames(tester);
-    await tester.ensureVisible(find.text('Mathe'));
-  await tester.pump();
-    await tester.tap(find.text('Mathe'));
+    final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
+    await tester.scrollUntilVisible(
+      mathArea, 180,
+      scrollable: find.byType(Scrollable).first,
+      maxScrolls: 35,
+    );
+    await tester.pump();
+    await tester.tap(mathArea);
     await _frames(tester);
-    await tester.ensureVisible(find.text('Bruchrechnen'));
+    // Themen weit unterhalb der Falz werden im Lazy-Sliver später gebaut.
+    // scrollUntilVisible findet auch noch nicht erzeugte Listenelemente.
+    await tester.scrollUntilVisible(
+      find.text('Bruchrechnen'),
+      220,
+      scrollable: find.byType(Scrollable).first,
+    );
   await tester.pump();
     await tester.tap(find.text('Bruchrechnen'));
     await _frames(tester);

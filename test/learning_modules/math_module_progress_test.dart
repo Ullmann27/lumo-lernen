@@ -33,8 +33,11 @@ final _modules = <(String, _Screen, int)>[
 ];
 
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
+  // _open creates cached storage Futures in runAsync. Let that event loop
+  // complete its awaits between the unchanged fake UI/feedback frames.
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(microseconds: 16667));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
 }
 
@@ -99,8 +102,9 @@ String _correct(WidgetTester tester, String unit) {
     final hour = (painter as dynamic).hour as int;
     final minute = (painter as dynamic).minute as int;
     if (minute == 0) return '$hour Uhr';
-    if (minute == 30) return 'halb ${hour + 1}';
-    return minute == 15 ? 'Viertel nach $hour' : 'Viertel vor ${hour + 1}';
+    final nextHour = hour == 12 ? 1 : hour + 1;
+    if (minute == 30) return 'halb $nextHour';
+    return minute == 15 ? 'Viertel nach $hour' : 'Viertel vor $nextHour';
   }
   if (unit == 'Geld') {
     final question = labels.singleWhere((value) =>

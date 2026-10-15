@@ -136,39 +136,55 @@ base.ui_nodes = read_live_nodes
 
 
 def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
-    # The disposable emulator can show a Pixel Launcher ANR over Lumo's welcome
-    # screen. Dismiss only that exact observed system dialog. A Lumo ANR must
-    # remain a failure, and no application data is cleared.
-    if not any(n.get('package') == 'android' and
-               n.get('text') == "Pixel Launcher isn't responding" for n in nodes):
+    """Recover only an observed Android emulator system-process ANR dialog.
+
+    A real Lumo app ANR must remain a failure. Never clear app data, never
+    tap an unobserved coordinate, and stop after at most two recoveries.
+    """
+    launcher = "Pixel Launcher isn't responding"
+    system_ui = "System UI isn't responding"
+    dialogs = [name for name in (launcher, system_ui)
+               if any(n.get('package') == 'android' and
+                      n.get('text') == name for n in nodes)]
+    if not dialogs:
         return False
+    if len(dialogs) != 1:
+        raise RuntimeError('Ambiguous Android emulator system dialog')
+    dialog = dialogs[0]
+    action = 'Close app' if dialog == launcher else 'Wait'
     records_path = out / 'launcher-recovery.json'
     records = json.loads(records_path.read_text()) if records_path.exists() else []
     if len(records) >= 2:
-        raise RuntimeError('Disposable Pixel Launcher repeatedly stopped responding')
-    buttons = [n for n in nodes if n.get('package') == 'android' and
-               n.get('text') == 'Close app' and n.get('enabled') == 'true']
+        raise RuntimeError('Disposable Android emulator repeatedly stopped responding')
+    buttons = [n for n in nodes if n.get('package') == 'android'
+               and n.get('text') == action and n.get('enabled') == 'true'
+               and n.get('clickable') == 'true']
     if len(buttons) != 1:
-        raise RuntimeError('Observed Pixel Launcher dialog lacks one enabled Close app control')
+        raise RuntimeError('Observed Android system dialog lacks one enabled ' + action + ' control')
     bounds = list(map(int, re.findall(r'\d+', buttons[0].get('bounds', ''))))
     if len(bounds) != 4 or bounds[2] <= bounds[0] or bounds[3] <= bounds[1]:
-        raise RuntimeError('Pixel Launcher dialog control has invalid observed bounds')
-    evidence = capture(out, tag+'-pixel-launcher-dialog')
-    records.append({'dialog':"Pixel Launcher isn't responding", 'action':'Close app',
-                    'observed_bounds':bounds, 'capture':evidence['file']})
-    records_path.write_text(json.dumps(records, indent=2)+'\n')
-    x0,y0,x1,y1 = bounds
-    base.adb('shell','input','tap',str((x0+x1)//2),str((y0+y1)//2))
-    time.sleep(2)
+        raise RuntimeError('Android system dialog control has invalid observed bounds')
+    evidence = capture(out, tag + '-emulator-system-dialog')
+    records.append({'dialog': dialog, 'action': action,
+                    'observed_bounds': bounds, 'capture': evidence['file']})
+    records_path.write_text(json.dumps(records, indent=2) + '\n')
+    x0, y0, x1, y1 = bounds
+    base.adb('shell', 'input', 'tap', str((x0 + x1) // 2), str((y0 + y1) // 2))
+    time.sleep(2 if dialog == launcher else 4)
     return True
 
 
-def flutter_tap(out: Path, label: str, tag: str) -> None:
+def flutter_tap(out: Path, label: str, tag: str, *,
+                scroll_attempts: int = 12, direction_order=(-1, 1)) -> None:
     # Search both ends of the actual responsive scroll view. Named controls are
     # tapped only when their enabled live accessibility bounds have been read.
+    if type(scroll_attempts) is not int or not 1 <= scroll_attempts <= 64:
+        raise ValueError('Live control search requires a bounded scroll budget')
+    if direction_order not in ((-1, 1), (1, -1)):
+        raise ValueError('Live control search requires known scroll directions')
     settle_waits = 0
-    for direction in (-1, 1):
-        for attempt in range(12):
+    for direction in direction_order:
+        for attempt in range(scroll_attempts):
             nodes = live.live_nodes(out, f'{tag}-{direction}-{attempt}')
             if recover_launcher_dialog(out, nodes, tag):
                 continue
@@ -250,10 +266,21 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     neutral = ImageChops.subtract(lightest, darkest).point(
         lambda value: 255 if value <= 45 else 0)
     white_text = ImageChops.invert(ImageChops.multiply(bright, neutral))
+    # The original gold action uses dark navy lettering. White-letter masks
+    # cannot read it. Filter that colour across the ENTIRE current screenshot,
+    # never an assumed button region, glyph shape or fabricated caption.
+    navy_neutral = ImageChops.difference(red, green).point(
+        lambda value: 255 if value <= 12 else 0)
+    navy_dark = red.point(lambda value: 255 if 18 <= value <= 85 else 0)
+    navy_blue = ImageChops.subtract(blue, red).point(
+        lambda value: 255 if 20 <= value <= 75 else 0)
+    navy_text = ImageChops.invert(ImageChops.multiply(
+        ImageChops.multiply(navy_neutral, navy_dark), navy_blue))
     # The German model can miss short UI phrases that the Latin/English model
     # reads correctly. Keep both reads, with independent observed word bounds.
     variants = [('contrast',contrast,'deu+eng'),('raw',image,'deu+eng'),
-                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng')]
+                ('white-text',white_text,'deu+eng'),('white-latin',white_text,'eng'),
+                ('navy-latin',navy_text,'eng')]
     for variant, pixels, language in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -404,6 +431,32 @@ def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool
     raise RuntimeError('Current native screenshot lacks '+label)
 
 
+def flutter_return_capture(out: Path, tag: str) -> dict:
+    """Do not label a compositor's last Godot buffer as a Flutter return."""
+    foreground = ''
+    for _ in range(15):
+        try:
+            foreground = base.foreground()
+        except RuntimeError:
+            foreground = ''
+        if PACKAGE in foreground and 'LumoGameActivity' not in foreground:
+            break
+        time.sleep(1)
+    else:
+        raise RuntimeError('Flutter activity did not resume after the native game')
+    # A resumed component alone does not prove a new frame was rendered.
+    # Observe an exact current Flutter navigation caption, not the native
+    # pause action "Zur Spieleauswahl" or a saved accessibility snapshot.
+    native_text(out, 'Spielen', tag+'-flutter-visible', exact=True)
+    shot = capture(out, tag)
+    (out/(tag+'-flutter-return.json')).write_text(json.dumps({
+        'status': 'PASS', 'foreground': foreground,
+        'exact_visible_caption': 'Spielen', 'capture': shot,
+        'scope': 'Observed current Flutter frame after private game exit',
+    }, indent=2, ensure_ascii=False)+'\n')
+    return shot
+
+
 def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') -> None:
     flutter_tap(out, launch_label or title+' spielen', tag+'-launch')
     for _ in range(60):
@@ -425,11 +478,14 @@ def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') 
     native_text(out, header, tag+'-header')
 
 
-def leave(out: Path, tag: str, already_menu: bool = False) -> None:
+def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '') -> None:
     if not already_menu:
         base.adb('shell','input','keyevent','KEYCODE_BACK')
         time.sleep(1)
-    native_text(out,'Zur Spielewelt',tag+'-pause',tap=True)
+    if return_label:
+        native_text(out,return_label,tag+'-pause',tap=True,exact=True)
+    else:
+        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True)
     for _ in range(15):
         if not base.adb('shell','pidof',PACKAGE+':lumo_game',check=False):
             break
@@ -749,7 +805,25 @@ def main() -> int:
             result['treasure'] = {'status':'PASS','inventory_visible':True,'save_and_relaunch':True}
 
         if 'kart' in selected:
-            enter(out,'Lumo Kart','LUMO / KART','14_kart',launch_label='Losfahren')
+            # The real production wordmark is two independently rendered
+            # lines, not the obsolete single-line "LUMO / KART" caption.
+            # Observe the actual mode card, then retain untouched screenshots.
+            enter(out,'Lumo Kart','Einzelrennen','14_kart',launch_label='Losfahren')
+            native_text(out,'Weiter','kart-phone-menu-ready')
+            capture(out,'14_kart_phone_menu')
+            if os.environ.get('LUMO_FOLD_PROBE') == '1':
+                base.display(1812,2176,420)
+                device_rotation(out, 'kart-menu-fold-landscape', 1)
+                for label in ('Einzelrennen','Zeitfahren','Sternen-Cup','Freies Training','Weiter'):
+                    native_text(out,label,'kart-fold-menu-'+normalized(label))
+                menu_fold = capture(out,'14_kart_fold_menu')
+                if menu_fold['width'] != 2176 or menu_fold['height'] != 1812:
+                    raise RuntimeError('Actual Kart menu did not use the Fold inner surface')
+                base.display(1080,1920,300)
+                native_text(out,'Weiter','kart-menu-phone-restored')
+                result['fold_menu'] = {'status':'PASS','surface':[2176,1812],
+                                       'observed_mode_cards_and_continue':True,
+                                       'scope':'Android emulator; not a physical Samsung device'}
             for step in range(4):
                 native_text(out,'Weiter',f'kart-setup-{step+1}',tap=True)
             native_text(out,'Rennen starten','kart-start-race',tap=True)
@@ -802,12 +876,13 @@ def main() -> int:
                 time.sleep(1)
             else:
                 raise RuntimeError('Kart private process remained after return')
-            base.foreground()
-            capture(out,'16_kart_returned_to_app')
+            returned = flutter_return_capture(out,'16_kart_returned_to_app')
             result['kart']={'status':'PASS','actual_setup_steps':5,
                             'phone_surface':[1920,1080], 'compact_surface':[640,320],
                             'five_action_labels_on_phone':True,
-                            'compact_hud_and_capture':True,'pause_return':True}
+                            'compact_hud_and_capture':True,'pause_return':True,
+                            'flutter_return_frame_confirmed':True,
+                            'flutter_return_capture':returned}
         if wallet(out,'after-unfinished-games') != first_wallet:
             raise RuntimeError('An unfinished creative game incorrectly awarded a reward')
 

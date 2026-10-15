@@ -8,15 +8,14 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 import '../../../core/lumo_voice.dart';
 import '../learning_module_progress.dart';
 import '../lumo_phrases.dart';
@@ -88,7 +87,7 @@ class _WetterScreenState extends State<WetterScreen>
       icon: '⛈',
       color: Color(0xFF7C3AED),
       imagePrompt: 'gewitter',
-      kleidung: 'drinnen bleiben',
+      kleidung: 'In einem Gebäude Schutz suchen',
     ),
     _Wetter(
       name: 'Nebel',
@@ -102,14 +101,22 @@ class _WetterScreenState extends State<WetterScreen>
   static const List<MapEntry<String, String>> _hinweise = [
     MapEntry('Es ist heiß und hell draußen', 'Sonne'),
     MapEntry('Tropfen fallen vom Himmel', 'Regen'),
-    MapEntry('Der Himmel ist grau', 'Wolken'),
-    MapEntry('Alles ist weiß und kalt', 'Schnee'),
+    MapEntry('Eine geschlossene Wolkendecke liegt am Himmel', 'Wolken'),
+    MapEntry('Schneeflocken bedecken den Boden', 'Schnee'),
     MapEntry('Es blitzt und donnert', 'Gewitter'),
-    MapEntry('Man sieht nicht weit', 'Nebel'),
+    MapEntry('Dichter Bodennebel verdeckt die Sicht', 'Nebel'),
     MapEntry('Ein Schneemann steht im Garten', 'Schnee'),
     MapEntry('Die Sonne scheint stark', 'Sonne'),
     MapEntry('Man braucht einen Regenschirm', 'Regen'),
     MapEntry('Es ist laut wegen dem Donner', 'Gewitter'),
+    MapEntry('Ein Regenguss macht die Straße nass', 'Regen'),
+    MapEntry('Schnee fällt in großen Flocken vom Himmel', 'Schnee'),
+    MapEntry('Blitze zucken am dunklen Himmel', 'Gewitter'),
+    MapEntry('Sonnenstrahlen werfen deutliche Schatten', 'Sonne'),
+    MapEntry('Ein Nebelschleier liegt über dem Feld', 'Nebel'),
+    MapEntry('Dicke Wolken verdecken die Sonne', 'Wolken'),
+    MapEntry('Die Wolkendecke zeigt keine blauen Lücken', 'Wolken'),
+    MapEntry('Regentropfen prasseln an die Fensterscheibe', 'Regen'),
   ];
 
   late final LearningModuleProgress _progress;
@@ -118,6 +125,7 @@ class _WetterScreenState extends State<WetterScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, int weather, int hint})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -135,6 +143,17 @@ class _WetterScreenState extends State<WetterScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var weather = 0; weather < _wetterArten.length; weather++) ...[
+        (kind: _WetterFrageTyp.bildErraten.index, weather: weather, hint: -1),
+        (kind: _WetterFrageTyp.kleidungWaehlen.index, weather: weather, hint: -1),
+      ],
+      for (var i = 0; i < _hinweise.length; i++)
+        (kind: _WetterFrageTyp.hinweisErraten.index,
+         weather: _wetterArten.indexWhere((w) => w.name == _hinweise[i].value),
+         hint: i),
+    ]..shuffle(_rng);
+    assert(_round.length == _totalTasks);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -160,25 +179,11 @@ class _WetterScreenState extends State<WetterScreen>
     super.dispose();
   }
 
-  // Heinz CLAUDE.md Punkt 5: Anti-Repeat. Bei 30 Aufgaben aus 6
-  // Wetterarten nie 2x dasselbe Wetter hintereinander.
-  _Wetter? _lastWetter;
-
   void _generateTask() {
-    _typ = _WetterFrageTyp.values[_rng.nextInt(3)];
-    if (_typ == _WetterFrageTyp.hinweisErraten) {
-      _aktuellerHinweis = _hinweise[_rng.nextInt(_hinweise.length)];
-      _correctWetter =
-          _wetterArten.firstWhere((w) => w.name == _aktuellerHinweis.value);
-    } else {
-      _Wetter pick;
-      int safety = 8;
-      do {
-        pick = _wetterArten[_rng.nextInt(_wetterArten.length)];
-      } while (pick == _lastWetter && --safety > 0);
-      _correctWetter = pick;
-    }
-    _lastWetter = _correctWetter;
+    final plan = _round[_taskIdx];
+    _typ = _WetterFrageTyp.values[plan.kind];
+    _correctWetter = _wetterArten[plan.weather];
+    if (plan.hint >= 0) _aktuellerHinweis = _hinweise[plan.hint];
     final shuffled = List.of(_wetterArten)..shuffle(_rng);
     _options = [
       _correctWetter,
@@ -206,7 +211,7 @@ class _WetterScreenState extends State<WetterScreen>
         text = 'Welches Wetter siehst du?';
         break;
       case _WetterFrageTyp.kleidungWaehlen:
-        text = 'Was zieht man bei ${_correctWetter.name} an?';
+        text = 'Was ist bei ${_correctWetter.name} sinnvoll?';
         break;
       case _WetterFrageTyp.hinweisErraten:
         text = 'Welches Wetter passt: ${_aktuellerHinweis.key}?';
@@ -225,6 +230,8 @@ class _WetterScreenState extends State<WetterScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      cosmosSubjectId: 's1_wetter',
+      cosmosIsMath: false,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -232,13 +239,7 @@ class _WetterScreenState extends State<WetterScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
-      CosmosWorld.instance.grantReward(
-        subjectId: 's1_wetter',
-        isMath: false,
-        isPerfect: false,
-      );
-      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak('Richtig! Das ist ${_correctWetter.name}!');
       } catch (_) {}
@@ -336,85 +337,35 @@ class _WetterScreenState extends State<WetterScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 20),
-                      _buildVisualization(),
-                      const SizedBox(height: 24),
-                      _buildOptions(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Welt-Abenteuer',
+        moduleTitle: 'Wetter lernen',
+        icon: Icons.cloud_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
           child: Column(children: [
-            Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 1.2)),
-            const Text('Wetter lernen',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900)),
+            _buildTaskHeader(),
+            const SizedBox(height: 20),
+            _buildVisualization(),
+            const SizedBox(height: 12),
+            _buildOptions(),
           ]),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -425,7 +376,7 @@ class _WetterScreenState extends State<WetterScreen>
         text = 'Welches Wetter ist das?';
         break;
       case _WetterFrageTyp.kleidungWaehlen:
-        text = 'Was zieht man bei ${_correctWetter.name} an?';
+        text = 'Was ist bei ${_correctWetter.name} sinnvoll?';
         break;
       case _WetterFrageTyp.hinweisErraten:
         text = 'Welches Wetter passt?';
@@ -434,15 +385,18 @@ class _WetterScreenState extends State<WetterScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text(text,
             textAlign: TextAlign.center,
@@ -450,7 +404,7 @@ class _WetterScreenState extends State<WetterScreen>
                 fontFamily: 'Nunito',
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
@@ -480,9 +434,10 @@ class _WetterScreenState extends State<WetterScreen>
         return Container(
           padding: const EdgeInsets.all(24),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
             borderRadius: BorderRadius.circular(24),
-            border: Border.all(color: _gradient[0].withOpacity(0.4), width: 3),
+            border: Border.all(
+                color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 3),
           ),
           child: Text('"${_aktuellerHinweis.key}"',
               textAlign: TextAlign.center,
@@ -490,7 +445,7 @@ class _WetterScreenState extends State<WetterScreen>
                   fontFamily: 'Nunito',
                   fontSize: 20,
                   fontWeight: FontWeight.w900,
-                  color: _gradient[1])),
+                  color: LumoVisualTokens.white)),
         );
     }
   }
@@ -505,9 +460,9 @@ class _WetterScreenState extends State<WetterScreen>
           final opt = options[idx];
           final isCorrect = opt == richtigeKleidung;
           final isSelected = _selectedIdx == idx;
-          Color bgColor = Colors.white;
-          Color borderColor = _gradient[0].withOpacity(0.3);
-          Color textColor = _gradient[1];
+          Color bgColor = LumoVisualTokens.lessonAnswer;
+          Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
+          Color textColor = LumoVisualTokens.white;
           if (_answered && isSelected) {
             bgColor =
                 isCorrect ? const Color(0xFFD1FAE5) : const Color(0xFFFEE2E2);
@@ -517,21 +472,23 @@ class _WetterScreenState extends State<WetterScreen>
                 isCorrect ? const Color(0xFF10B981) : const Color(0xFFEF4444);
           } else if (_answered && isCorrect) {
             bgColor = const Color(0xFFFEF3C7);
+            textColor = const Color(0xFF713F12);
             borderColor = const Color(0xFFFCD34D);
           }
           return Padding(
             padding: const EdgeInsets.only(bottom: 12),
-            child: GestureDetector(
+            child: LumoLessonAnswerTap(
+              correct: _answered && isSelected ? isCorrect : null,
               onTap: _answered ? null : () => _onAnswer(idx, isCorrect),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration:
+                    LumoLessonStyle.reducedMotion(context, widget.appState)
+                        ? Duration.zero
+                        : const Duration(milliseconds: 200),
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 18),
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: borderColor, width: 3),
-                ),
+                decoration: LumoLessonStyle.answer(
+                    background: bgColor, border: borderColor),
                 child: Text(opt,
                     textAlign: TextAlign.center,
                     style: TextStyle(
@@ -545,7 +502,7 @@ class _WetterScreenState extends State<WetterScreen>
         }),
       );
     }
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -557,9 +514,9 @@ class _WetterScreenState extends State<WetterScreen>
         final w = entry.value;
         final isCorrect = w == _correctWetter;
         final isSelected = _selectedIdx == idx;
-        Color bgColor = Colors.white;
-        Color borderColor = w.color.withOpacity(0.5);
-        Color textColor = _gradient[1];
+        Color bgColor = LumoVisualTokens.lessonAnswer;
+        Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
+        Color textColor = LumoVisualTokens.white;
         if (_answered && isSelected) {
           if (isCorrect) {
             bgColor = const Color(0xFFD1FAE5);
@@ -572,37 +529,43 @@ class _WetterScreenState extends State<WetterScreen>
           }
         } else if (_answered && isCorrect) {
           bgColor = const Color(0xFFFEF3C7);
+          textColor = const Color(0xFF713F12);
           borderColor = const Color(0xFFFCD34D);
         }
         return AnimatedBuilder(
           animation: _bounceCtrl,
           builder: (_, child) {
-            final scale = isSelected && isCorrect
+            final scale = isSelected &&
+                    isCorrect &&
+                    !LumoLessonStyle.reducedMotion(context, widget.appState)
                 ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.08
                 : 1.0;
             return Transform.scale(scale: scale, child: child);
           },
-          child: GestureDetector(
+          child: LumoLessonAnswerTap(
+            correct: _answered && isSelected ? isCorrect : null,
             onTap: _answered ? null : () => _onAnswer(idx, isCorrect),
             child: AnimatedContainer(
-              duration: const Duration(milliseconds: 200),
-              decoration: BoxDecoration(
-                color: bgColor,
-                borderRadius: BorderRadius.circular(20),
-                border: Border.all(color: borderColor, width: 3),
-              ),
+              duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 200),
+              decoration: LumoLessonStyle.answer(
+                  background: bgColor, border: borderColor),
               child: Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(w.icon, style: const TextStyle(fontSize: 28)),
                     const SizedBox(width: 8),
-                    Flexible(child: FittedBox(fit: BoxFit.scaleDown, child: Text(w.name,
-                        style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 16,
-                            fontWeight: FontWeight.w900,
-                            color: textColor)))),
+                    Flexible(
+                        child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text(w.name,
+                                style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w900,
+                                    color: textColor)))),
                   ],
                 ),
               ),

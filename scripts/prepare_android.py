@@ -65,9 +65,13 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False):
     queries = doc.find('queries')
     if queries is None:
         queries = ET.SubElement(doc, 'queries')
-    if not any(e.get(attr('name')) == 'android.intent.action.TTS_SERVICE' for e in queries.findall('intent/action')):
+    for intent in list(queries.findall('intent')):
+        if any(e.get(attr('name')) == 'android.intent.action.TTS_SERVICE'
+               for e in intent.findall('action')):
+            queries.remove(intent)
+    if not any(e.get(attr('name')) == 'android.speech.RecognitionService' for e in queries.findall('intent/action')):
         intent = ET.SubElement(queries, 'intent')
-        ET.SubElement(intent, 'action', {attr('name'): 'android.intent.action.TTS_SERVICE'})
+        ET.SubElement(intent, 'action', {attr('name'): 'android.speech.RecognitionService'})
     if not any(e.get(attr('name')) == 'dev.ullmann.lumo3d' for e in queries.findall('package')):
         ET.SubElement(queries, 'package', {attr('name'): 'dev.ullmann.lumo3d'})
     if not any(e.get(attr('name')) == 'io.flutter.embedding.android.EnableImpeller' for e in application.findall('meta-data')):
@@ -122,6 +126,20 @@ def prepare(root: Path, keystore_directory: Path, side_by_side: bool = False):
     target.parent.mkdir(parents=True, exist_ok=True)
     template = (root / 'tools/auto_install/MainActivity.kt').read_text()
     target.write_text(re.sub(r'^package [^\n]+', f'package {namespace}', template, count=1))
+    for filename, language in (
+        ('LumoOfflineSpeechEngine.java', 'java'),
+        ('LumoOfflineSpeechBridge.kt', 'kotlin'),
+    ):
+        source = root / 'tools/auto_install' / filename
+        if source.is_file():
+            destination = main / language / Path(*namespace.split('.')) / filename
+            destination.parent.mkdir(parents=True, exist_ok=True)
+            content = source.read_text(encoding='utf-8')
+            replacement = f'package {namespace}' + (';' if language == 'java' else '')
+            destination.write_text(
+                re.sub(r'^package [^\n]+', replacement, content, count=1),
+                encoding='utf-8',
+            )
 
     # Lumo uses Latin OCR only. The plugin also references optional compileOnly
     # language APIs; suppress only those missing classes during release R8.

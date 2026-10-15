@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/photo_lesson/lumo_photo_lesson_screen.dart';
 import 'package:lumo_lernen/widgets/scan_screen.dart';
@@ -53,8 +54,22 @@ void main() {
       await tester.pump();
       expect(find.byType(ScanScreen), findsNothing);
       expect(find.text(entry.key), findsOneWidget);
-      expect(find.textContaining(entry.value[1]), findsNWidgets(5),
-          reason: 'Photo lesson must keep recognized subject ${entry.key} and topic.');
+      if (entry.key == 'Sachunterricht') {
+        // Animal care questions do not all start with the obsolete fixed
+        // phrase "Welches Tier". Require five actual supported animal-topic
+        // prompts; unrelated subjects or topics still fail this contract.
+        final factory = ExerciseFactory(seed: 1937);
+        final animalPrompts = <String>{
+          for (var i = 0; i < 200; i++)
+            factory.next(grade: 1, subject: 'Sachunterricht', unit: 'Tiere').prompt,
+        };
+        expect(find.byWidgetPredicate((w) => w is Text && animalPrompts.contains(w.data)),
+            findsNWidgets(5), reason: 'All five OCR practice tasks must really be Sachunterricht/Tiere.');
+      } else {
+        expect(find.textContaining(entry.value[1]), findsNWidgets(5),
+            reason: 'Photo lesson must keep recognized subject ${entry.key} and topic.');
+      }
+      expect(find.text('Antwort zeigen'), findsNWidgets(5));
       expect(find.text('5 Übungen zum Trainieren'), findsOneWidget);
       await tester.tap(find.text('Antwort zeigen').first);
       await tester.pump();

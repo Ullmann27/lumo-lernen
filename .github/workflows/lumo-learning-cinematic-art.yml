@@ -1,0 +1,76 @@
+name: Render 3D LUMO learning islands
+on:
+  push:
+    branches: [chatgpt/learning-tree-cinematic-qa-2026-10-09]
+    paths:
+      - scripts/render_learning_island.py
+      - .github/workflows/lumo-learning-cinematic-art.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: learning-tree-3d-art
+  cancel-in-progress: false
+jobs:
+  render-and-check-in:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - name: Checkout exact development branch
+        uses: actions/checkout@v4
+        with:
+          ref: chatgpt/learning-tree-cinematic-qa-2026-10-09
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Prepare renderer
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install 3D rendering dependencies
+        run: |
+          set -euo pipefail
+          python -m pip install --disable-pip-version-check "vtk==9.6.2" "numpy>=1.26,<3" "Pillow>=10,<12"
+      - name: Actually render four 3D growth scenes and wallpaper
+        run: |
+          set -euo pipefail
+          xvfb-run -a -s "-screen 0 1280x1024x24" \
+            python scripts/render_learning_island.py \
+              --output assets/lumo_design/learning_world
+      - name: Verify render dimensions, alpha and valid non-placeholder images
+        run: |
+          python - <<'PY'
+          from PIL import Image
+          from pathlib import Path
+          p=Path('assets/lumo_design/learning_world')
+          for stage in range(4):
+              f=p/f'learning_tree_stage_{stage}.png'
+              with Image.open(f) as im:
+                  assert im.size == (960,960), (f,im.size)
+                  assert im.mode == 'RGBA' and im.getchannel('A').getextrema()==(0,255),f
+                  assert f.stat().st_size>55000,(f,f.stat().st_size)
+          wall=p/'learning_world_night.jpg'
+          with Image.open(wall) as im:
+              assert im.size==(1080,1920),im.size
+              assert wall.stat().st_size>55000,wall
+          print('Verified 4 distinct real 3D stage renders and 1 wallpaper')
+          PY
+      - name: Keep exact rendered PNG/JPEG assets in git
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/lumo_design/learning_world/
+          if ! git diff --cached --quiet; then
+            git commit -m "assets(lernen): commit reproducible 3D tree growth stages and world backdrop"
+            git push origin HEAD:chatgpt/learning-tree-cinematic-qa-2026-10-09
+          else
+            echo "Artwork unchanged; skip redundant commit."
+          fi
+      - name: Publish source-accurate 3D visual artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-cinematic-learning-world-3d
+          path: assets/lumo_design/learning_world/
+          if-no-files-found: error
+          retention-days: 60

@@ -48,8 +48,11 @@ final _akademieCaption = find.byWidgetPredicate(
     (widget) => widget is Semantics && widget.properties.label == 'LUMO AKADEMIE');
 
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
+  // _open creates cached storage Futures in runAsync. Let that event loop
+  // complete its awaits between the unchanged fake UI/feedback frames.
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(microseconds: 16667));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
   }
 }
 
@@ -66,21 +69,35 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
   expect(find.text('Deine Ziele'), findsOneWidget);
   expect(find.text('0 von 3 Aufgaben geschafft'), findsOneWidget);
+  await tester.ensureVisible(find.text('1. Klasse'));
+  await tester.pump();
+  await tester.tap(find.text('1. Klasse'));
+  await tester.pump();
+  // These area cards live in a lazily built sliver below the header. Tests
+  // must navigate to them exactly as a child does, not assume they already
+  // exist at the top of a 480dp-high viewport.
+  final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
+  await tester.scrollUntilVisible(
+    mathArea, 180,
+    scrollable: find.byType(Scrollable).first,
+    maxScrolls: 35,
+  );
+  await tester.pump();
   expect(find.text('Mathe'), findsOneWidget);
   expect(find.text('Deutsch'), findsOneWidget);
   expect(find.text('Lesen'), findsOneWidget);
   expect(find.text('Schreiben'), findsOneWidget);
   expect(find.text('Englisch'), findsOneWidget);
-  expect(find.text('Sachkunde'), findsOneWidget);
-  await tester.ensureVisible(find.text('1. Klasse'));
+  expect(find.text('Sachunterricht'), findsOneWidget);
+  await tester.tap(mathArea);
   await tester.pump();
-  await tester.tap(find.text('1. Klasse'));
-  await tester.pump();
-  await tester.ensureVisible(find.text('Mathe'));
-  await tester.pump();
-  await tester.tap(find.text('Mathe'));
-  await tester.pump();
-  await tester.ensureVisible(find.text('Plus bis 10'));
+  // Die Themenkarten werden in einem Lazy-Sliver erst beim Scrollen gebaut.
+  // Wie ein Kind die Akademie wirklich benutzt: bis zum Thema scrollen.
+  await tester.scrollUntilVisible(
+    find.text('Plus bis 10'),
+    220,
+    scrollable: find.byType(Scrollable).first,
+  );
   await tester.pump();
   await tester.tap(find.text('Plus bis 10'));
   await _frames(tester);
@@ -183,6 +200,10 @@ void main() {
     expect(app.learningDailyDone(), 0);
     await _tap(tester, wrong);
     expect(_prompt(tester), prompt);
+    expect(find.byKey(const ValueKey('plus10-actual-companion-hint')), findsNothing);
+    await tester.ensureVisible(find.text('Tipp'));
+    await tester.tap(find.text('Tipp'));
+    await _frames(tester, 10);
     expect(find.textContaining('Zähle alle Äpfel zusammen:'), findsOneWidget);
     await _tap(tester, correct);
     expect(find.text('Aufgabe 2 / 30'), findsOneWidget);

@@ -1,0 +1,57 @@
+name: Lumo 1939 verified visual test delivery - existing APK only
+on:
+  push:
+    branches: [sol/lumo-1939-runtime-followup-2026-10-14]
+    paths: [.github/workflows/lumo-1939-verified-delivery.yml]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  package-verified-test:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Require frozen product and successful source-matched Android recheck
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          git diff --exit-code dcc70f583f7362141811365b41dc45bf110b4e1e HEAD -- lib assets pubspec.yaml pubspec.lock config scripts/build_unified_apk.sh
+          mkdir -p delivery-input
+          gh api repos/Ullmann27/lumo-lernen/actions/runs/38514350116 > delivery-input/android-run.json
+          jq -e '.status == "completed" and .conclusion == "success" and .head_sha == "51fa60a23f6bb4c842b0a61c3991e179c13bed00"' delivery-input/android-run.json
+          gh api repos/Ullmann27/lumo-lernen/actions/runs/38493854824/jobs > delivery-input/build-jobs.json
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38493854824
+          artifact-ids: 11863523402
+          merge-multiple: true
+          path: delivery-input/arm64
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38493854824
+          artifact-ids: 11863463420
+          merge-multiple: true
+          path: delivery-input/build
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38514350116
+          name: lumo-1939-android-recheck-38514350116
+          path: delivery-input/android
+      - name: Verify immutable APK and actual screenshot digests; assemble honest test bundle
+        run: python3 tools/package_1939_visual_delivery.py --root delivery-input --out Lumo-1939-Testpaket
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Lumo-Lernen-0.12.32-1939-ARM64-Testpaket
+          path: Lumo-1939-Testpaket
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30

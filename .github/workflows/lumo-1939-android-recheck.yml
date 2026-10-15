@@ -1,0 +1,102 @@
+name: Lumo 1939 independent Android update and gameplay recheck
+on:
+  push:
+    branches: [sol/lumo-1939-runtime-followup-2026-10-14]
+    paths: [.github/workflows/lumo-1939-android-recheck.yml, .github/probes/lumo_1939_*.py]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-1939-android-recheck-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  android-recheck:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 40
+    env:
+      LUMO_EXPECT_SOURCE: 'dcc70f583f7362141811365b41dc45bf110b4e1e'
+      LUMO_EXPECT_GODOT: d8d004141cdd606357aa1348691a39854e3af3c7
+      LUMO_EXPECT_VERSION: '1939'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Require the unchanged already-built product
+        run: git diff --exit-code "$LUMO_EXPECT_SOURCE" HEAD -- lib assets pubspec.yaml pubspec.lock config scripts/build_unified_apk.sh
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1939-emulator-38493854824
+          github-token: ${{ github.token }}
+          run-id: 38493854824
+          path: candidate
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38238926882
+          artifact-ids: 11742977153
+          merge-multiple: true
+          path: baseline
+      - name: Install independent Android readers and software renderer
+        run: |
+          set -euo pipefail
+          mkdir -p android-proof
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install uiautomator2==3.7.0 Pillow==12.3.0
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified Mesa display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Prepare existing Android image
+        run: python3 tools/android_qa/prepare_system_image.py --api 35 --out android-proof/system-image --timeout 600
+      - name: Real APK update, Fold navigation and running Kart
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_1939_visual_acceptance.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1939-android-recheck-${{ github.run_id }}
+          path: android-proof
+          if-no-files-found: error
+          retention-days: 30

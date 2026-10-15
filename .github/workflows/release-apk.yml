@@ -1,11 +1,23 @@
 name: Build unified Lumo Android APK
 on:
   workflow_dispatch:
+    inputs:
+      reuse_validated_flutter_tests:
+        description: '1928 packaging recovery only: reuse exact validated app tests if the source diff is strictly safe'
+        type: boolean
+        required: false
+        default: false
+      runtime_only_build_run:
+        description: '1928 QA only: recheck an exact verified existing APK without rebuilding'
+        type: string
+        required: false
+        default: ''
   pull_request:
     branches: ['claude/lumo-gesamt']
   push:
-    branches: ['copilot/5979796457-update-integrationsaudit']
-    paths: ['.github/workflows/release-apk.yml']
+    # One isolated, already validated Godot->Flutter recovery candidate.
+    branches: ['copilot/5979796457-update-integrationsaudit', 'chatgpt/lumo-aaa-kart-integration-2026-10-10', 'chatgpt/lumo-onboarding-voice-1924-2026-10-10']
+    paths: ['.github/workflows/release-apk.yml', 'config/godot-source.json', 'pubspec.yaml', 'lib/features/onboarding/**', 'lib/core/lumo_voice.dart', 'test/onboarding_visual_capture_test.dart', 'test/lumo_voice_clips_test.dart']
 permissions:
   contents: write
 concurrency:
@@ -13,10 +25,66 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify:
+    if: github.event.inputs.runtime_only_build_run == ''
     runs-on: ubuntu-latest
     timeout-minutes: 40
+    permissions:
+      contents: write
+      actions: read
+    env:
+      LUMO_SPLIT_PER_ABI: ${{ github.ref_name == 'computer/lumo-kart-android-1928-2026-10-11' && '1' || '0' }}
+    outputs:
+      apk-sha: ${{ steps.apk-identity.outputs.sha }}
     steps:
       - uses: actions/checkout@v4
+      - name: Verify unchanged application inputs before reusing prior Flutter tests
+        id: validated-source
+        if: github.event.inputs.reuse_validated_flutter_tests == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const expected = '60d66343061eef3c8f7caad3537f74d43cbf435a';
+            const runId = 38094050301;
+            if (context.ref !== 'refs/heads/computer/lumo-kart-android-1928-2026-10-11') {
+              throw new Error('Validated test reuse is limited to the isolated 1928 recovery branch');
+            }
+            const params = {owner: context.repo.owner, repo: context.repo.repo, run_id: runId};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            if (run.head_sha !== expected || run.status !== 'completed' || run.conclusion !== 'failure') {
+              throw new Error('Prior source/run identity is not the reviewed packaging failure');
+            }
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100})).data.jobs;
+            const job = jobs.find(j => j.name === 'verify');
+            if (!job || !job.steps.some(s => s.name === 'Full Flutter regression tests' && s.conclusion === 'success') ||
+                !job.steps.some(s => s.name === 'Build and verify the single application' && s.conclusion === 'failure')) {
+              throw new Error('The original successful full suite and original build failure must both remain proven');
+            }
+            const comparison = (await github.rest.repos.compareCommitsWithBasehead({
+              owner: context.repo.owner, repo: context.repo.repo, basehead: `${expected}...${context.sha}`
+            })).data;
+            const allowed = new Set([
+              '.github/workflows/release-apk.yml', 'scripts/prepare_embedded_games.py',
+              'scripts/tests/test_embedded_android.py', 'docs/LUMO_KART_ANDROID_1928.md',
+              '.github/probes/creative_android_probe.py',
+              'scripts/build_unified_apk.sh', 'scripts/verify_unified_apk.py',
+              'tools/android_qa/tests/test_native_surface_readiness.py',
+              'tools/android_qa/tests/test_native_ocr_tiles.py'
+            ]);
+            if (!['ahead', 'identical'].includes(comparison.status) || !comparison.files ||
+                comparison.files.length >= 300 || comparison.files.some(f => !allowed.has(f.filename) || f.status === 'renamed')) {
+              throw new Error('Application/test inputs changed: run the full suite instead of reusing it');
+            }
+            fs.mkdirSync('dist', {recursive: true});
+            fs.writeFileSync('dist/VALIDATED-FLUTTER-TESTS.json', JSON.stringify({
+              tested_source: expected, candidate_source: context.sha, prior_run: runId,
+              prior_run_url: run.html_url, original_job: job,
+              changed_files: comparison.files.map(f => f.filename),
+              application_inputs_unchanged: true,
+              new_android_preparation_and_runtime_tests_still_required: true
+            }, null, 2));
+            core.setOutput('reused', 'true');
+            await core.summary.addRaw(`Full Flutter suite reused from verified source ${expected}; application inputs unchanged. Original build failure preserved; packaging and Android runtime rerun.`).write();
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -28,6 +96,11 @@ jobs:
           cache: true
       - name: Get locked dependencies
         run: flutter pub get --enforce-lockfile
+      - name: Install required source scan tool
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep
+          rg --version
       - name: Backend and Android preparation tests
         run: |
           set -euo pipefail
@@ -47,6 +120,7 @@ jobs:
           set -euo pipefail
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/flutter-analyze.log"
       - name: Full Flutter regression tests
+        if: steps.validated-source.outputs.reused != 'true'
         run: |
           set -euo pipefail
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee "$RUNNER_TEMP/lumo-probe-test-logs/flutter-tests.log"
@@ -61,8 +135,14 @@ jobs:
       - name: Build and verify the single application
         run: bash scripts/build_unified_apk.sh
       - name: Record build proof
+        id: apk-identity
         run: |
-          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"
+          if [ "$LUMO_SPLIT_PER_ABI" = 1 ]; then
+            python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a >> "$GITHUB_STEP_SUMMARY"
+          else
+            python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "sha=$(sha256sum dist/Lumo-Lernen-Neu.apk | cut -d' ' -f1)" >> "$GITHUB_OUTPUT"
       - name: Record compact test outcomes
         if: success()
         run: |
@@ -87,6 +167,7 @@ jobs:
             dist/APK-VERIFICATION.json
             dist/BUILD-PROVENANCE.json
             dist/TEST-RESULTS.txt
+            dist/VALIDATED-FLUTTER-TESTS.json
           if-no-files-found: error
           retention-days: 14
           compression-level: 0
@@ -101,6 +182,16 @@ jobs:
             echo "Run: https://github.com/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
             echo "Download the artifact from the run's Artifacts section; no release was published."
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload separately verified emulator APK from the same build
+        if: success() && env.LUMO_SPLIT_PER_ABI == '1'
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-emulator-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
 
       - name: Publish Heinz test APK prerelease
         if: success() && github.event_name == 'pull_request' && github.head_ref == 'chatgpt/lumo-test-apk-2026-10-05'
@@ -126,5 +217,215 @@ jobs:
               dist/TEST-RESULTS.txt \
               --prerelease \
               --title "Lumo Test APK – Hologlass + Fold + Kart" \
-              --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
-          fi
+            --notes "Testversion aus ${GITHUB_SHA}. Enthält neues Hologlass-Onboarding, Fold-Host-Fix und aktuellen Lumo-Kart-Stand. Kein Produktionsrelease."
+
+  android-kart-smoke:
+    name: Android16 Kart update, entry and Fold surface evidence
+    needs: verify
+    if: always() && github.ref_name == 'computer/lumo-kart-android-1928-2026-10-11' && (needs.verify.result == 'success' || (needs.verify.result == 'skipped' && github.event.inputs.runtime_only_build_run != ''))
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    permissions:
+      contents: read
+      actions: read
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_VERSION: '1928'
+      LUMO_EXPECT_GODOT: 6063f56fd4ff13afef61509f52d1d4fdab012654
+      LUMO_EXPECT_ANDROID_API: '36'
+      LUMO_BASE_DIGEST: 8d88637daaea63944213f86de90508c6f78e5deeb4d696af1f197e3a16957370
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify exact existing build before runtime-only QA
+        id: apk-source
+        if: github.event.inputs.runtime_only_build_run != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const requested = context.payload.inputs.runtime_only_build_run;
+            if (!/^\d+$/.test(requested)) throw new Error('An exact numeric build run is required');
+            const params = {owner: context.repo.owner, repo: context.repo.repo, run_id: Number(requested)};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            if (run.head_branch !== 'computer/lumo-kart-android-1928-2026-10-11' ||
+                !/^[0-9a-f]{40}$/.test(run.head_sha) || run.path !== '.github/workflows/release-apk.yml') {
+              throw new Error('The existing APK must be the reviewed update-compatible 1928 build');
+            }
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100})).data.jobs;
+            if (!jobs.some(j => j.name === 'verify' && j.status === 'completed' && j.conclusion === 'success')) {
+              throw new Error('The exact existing build and APK verification did not succeed');
+            }
+            const comparison = (await github.rest.repos.compareCommitsWithBasehead({
+              owner: context.repo.owner, repo: context.repo.repo, basehead: `${run.head_sha}...${context.sha}`
+            })).data;
+            const allowed = new Set([
+              '.github/workflows/release-apk.yml', '.github/probes/creative_android_probe.py',
+              'docs/LUMO_KART_ANDROID_1928.md',
+              'tools/android_qa/tests/test_native_surface_readiness.py',
+              'tools/android_qa/tests/test_native_ocr_tiles.py'
+            ]);
+            if (!['ahead','identical'].includes(comparison.status) || !comparison.files ||
+                comparison.files.length >= 300 || comparison.files.some(f => !allowed.has(f.filename) || f.status === 'renamed')) {
+              throw new Error('APK/application inputs changed; a new build is required');
+            }
+            const fs = require('fs');
+            fs.mkdirSync('native-proof', {recursive:true});
+            fs.writeFileSync('native-proof/EXISTING-APK-SOURCE.json', JSON.stringify({
+              build_run: run.id, build_run_url: run.html_url, build_source: run.head_sha,
+              qa_source: context.sha, application_inputs_unchanged: true,
+              changed_files: comparison.files.map(f => f.filename)
+            }, null, 2));
+            fs.appendFileSync(process.env.GITHUB_ENV, `LUMO_EXPECT_SOURCE=${run.head_sha}\n`);
+            core.setOutput('run', String(run.id));
+            core.setOutput('attempt', String(run.run_attempt));
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-emulator-apk-${{ steps.apk-source.outputs.run || github.run_id }}-${{ steps.apk-source.outputs.attempt || github.run_attempt }}
+          run-id: ${{ steps.apk-source.outputs.run || github.run_id }}
+          github-token: ${{ github.token }}
+          path: candidate/
+      - name: Pin last test APK and prepare independent runtime readers
+        run: |
+          set -euo pipefail
+          mkdir -p baseline native-proof
+          curl -fL --max-time 180 'https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.20-1927-context-voice-technical-test/Lumo-Lernen-Neu.apk' -o baseline/Lumo-Lernen-Neu.apk
+          echo "$LUMO_BASE_DIGEST  baseline/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          proof = json.loads(Path('candidate/BUILD-PROVENANCE.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['LUMO_EXPECT_SOURCE']
+          assert proof['godot']['revision'] == os.environ['LUMO_EXPECT_GODOT']
+          assert proof['versionCode'] == int(os.environ['LUMO_EXPECT_VERSION'])
+          assert proof['abis'] == ['x86_64'] and proof['tracked_source_clean'] is True
+          assert proof['sha256'] == hashlib.file_digest(Path('candidate/Lumo-Lernen-Neu.apk').open('rb'), 'sha256').hexdigest()
+          PY
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/creative_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_native_surface_readiness.py'
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_native_ocr_tiles.py'
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Enable KVM and prepare Android16 image
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo chmod a+rw /dev/kvm
+          python3 tools/android_qa/prepare_system_image.py --api 36 --out native-proof/system-image --timeout 600
+      - name: Prepare actual software-rendered display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 2500x2200x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Update without uninstall and exercise actual Kart/Fold controls
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope kart
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1928-android16-kart-proof-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14
+
+  android-voice-smoke:
+    name: Android16 voice controls and update evidence
+    needs: verify
+    if: github.ref_name == 'computer/lumo-context-sulafat-2026-10-10'
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    permissions:
+      contents: read
+      actions: read
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_APK_SHA: ${{ needs.verify.outputs.apk-sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: ${{ github.run_id }}
+          name: lumo-probe-apk-${{ github.run_id }}-${{ github.run_attempt }}
+          path: candidate/
+      - name: Fetch digest-pinned 1926 baseline and isolated UI readers
+        run: |
+          set -euo pipefail
+          mkdir -p baseline voice-proof
+          curl -fL --max-time 120 'https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.19-1926-sulafat-test/Lumo-Lernen-Neu.apk' -o baseline/Lumo-Lernen-Neu.apk
+          echo '9dfd5f58a8879b3fa95b505ad92bc9cb20ee433298c92797404d3f588c38b1f4  baseline/Lumo-Lernen-Neu.apk' | sha256sum -c -
+          echo "$LUMO_EXPECT_APK_SHA  candidate/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/lumo_speech_android_probe.py
+      - name: Enable KVM for a disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo chmod a+rw /dev/kvm
+      - name: Prepare declared Android16 image
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out voice-proof/system-image --timeout 600
+      - name: Update exact APK and use actual parent voice controls
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_speech_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out voice-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1927-android16-voice-proof-${{ github.run_id }}
+          path: voice-proof/
+          if-no-files-found: error
+          retention-days: 14

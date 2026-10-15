@@ -8,7 +8,8 @@
 // 10 Aufgaben pro Session.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -101,10 +102,10 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       ],
     ),
     _VerkehrFrage(
-      frage: 'Im Auto sitzt du wo?',
-      richtig: 'Auf dem Kindersitz mit Gurt',
+      frage: 'Wie fährst du als Kind sicher im Auto mit?',
+      richtig: 'Passend gesichert und angeschnallt',
       falsch: ['Vorne ohne Gurt', 'Am Lenkrad', 'Im Kofferraum'],
-      kontext: 'Bis 14 Jahre Kindersitz, immer angeschnallt!',
+      kontext: 'Im Auto brauchst du immer den Gurt und, wenn erforderlich, einen passenden Kindersitz.',
     ),
     _VerkehrFrage(
       frage: 'Wann ist es im Verkehr besonders gefährlich?',
@@ -113,15 +114,33 @@ class _VerkehrScreenState extends State<VerkehrScreen>
       kontext: 'In der Dunkelheit Reflektoren tragen!',
     ),
     _VerkehrFrage(
-      frage: 'Was bedeutet ein gelbes Achtung-Schild?',
-      richtig: 'Vorsicht und schauen',
+      frage: 'Was bedeutet ein dreieckiges Warnschild mit rotem Rand?',
+      richtig: 'Achtung, mögliche Gefahr',
       falsch: ['Schnell weglaufen', 'Klatschen', 'Schreien'],
     ),
     _VerkehrFrage(
-      frage: 'Wo darfst du mit dem Roller fahren?',
-      richtig: 'Am Gehweg oder Radweg',
-      falsch: ['Auf der Autobahn', 'In Geschäften', 'Auf Schienen'],
+      frage: 'Was machst du vor dem Losfahren mit einem Tretroller?',
+      richtig: 'Bremsen und den Weg kontrollieren',
+      falsch: ['Mit geschlossenen Augen fahren', 'Sofort auf die Fahrbahn rasen', 'Andere wegschubsen'],
     ),
+    _VerkehrFrage(frage: 'Warum gehst du nicht zwischen parkenden Autos auf die Straße?', richtig: 'Dort können andere dich schlecht sehen', falsch: ['Autos haben keine Fenster', 'Dort ist es immer wärmer', 'Der Gehsteig verschwindet'], kontext: 'Suche eine übersichtliche Stelle zum Überqueren.'),
+    _VerkehrFrage(frage: 'Der Schranken am Bahnübergang ist geschlossen. Was tust du?', richtig: 'Hinter dem Schranken warten', falsch: ['Darunter durchlaufen', 'Über die Schienen klettern', 'Dem Zug entgegenlaufen'], kontext: 'Warte, bis der Bahnübergang wieder sicher freigegeben ist.'),
+    _VerkehrFrage(frage: 'Was hilft dir, bei Dunkelheit besser gesehen zu werden?', richtig: 'Reflektierende Kleidung tragen', falsch: ['Alle Reflektoren entfernen', 'Nur dunkle Kleidung anziehen', 'Die Augen schließen']),
+    _VerkehrFrage(frage: 'Ein Bus ist noch in Bewegung. Wann steigst du aus?', richtig: 'Erst nach dem vollständigen Anhalten', falsch: ['Während der Fahrt', 'Durch ein Fenster', 'Noch vor dem Öffnen der Tür']),
+    _VerkehrFrage(frage: 'Warum solltest du nicht direkt vor einem großen Lastwagen stehen?', richtig: 'Die Fahrerin oder der Fahrer sieht dich womöglich nicht', falsch: ['Lastwagen schweben', 'Dort ist die Luft immer zu heiß', 'Alle Lastwagen stehen für immer'], kontext: 'Halte Abstand zum toten Winkel.'),
+    _VerkehrFrage(frage: 'Ein Ball rollt auf die Fahrbahn. Was ist sicher?', richtig: 'Anhalten und Erwachsene um Hilfe bitten', falsch: ['Sofort hinterherrennen', 'Ohne Schauen überqueren', 'Zwischen die Autos springen']),
+    _VerkehrFrage(frage: 'Was solltest du tun, bevor du eine Straße überquerst?', richtig: 'Verkehr beobachten und sicheren Weg wählen', falsch: ['Musik lauter drehen', 'Nur auf das Handy schauen', 'Einfach losrennen']),
+    _VerkehrFrage(frage: 'Warum sollten Fahrradbremsen vor der Fahrt geprüft werden?', richtig: 'Damit du sicher anhalten kannst', falsch: ['Damit Reifen größer werden', 'Damit die Klingel heller klingt', 'Damit du nicht lenken musst']),
+    _VerkehrFrage(frage: 'Was tust du, wenn ein Verkehrsschild dir unbekannt ist?', richtig: 'Vorsichtig bleiben und die Bedeutung klären', falsch: ['Es absichtlich ignorieren', 'Schneller laufen', 'Einfach das Schild umdrehen']),
+    _VerkehrFrage(frage: 'Wie verhältst du dich, wenn die Sicht durch starken Regen schlecht ist?', richtig: 'Langsam und besonders aufmerksam bewegen', falsch: ['Blind über die Straße laufen', 'Kopfhörer lauter drehen', 'Andere schubsen']),
+    _VerkehrFrage(frage: 'Was bedeutet das rote Licht einer Fußgängerampel?', richtig: 'Warten und nicht losgehen', falsch: ['Schneller loslaufen', 'Die Straße ist ein Spielplatz', 'Nicht mehr auf Autos achten']),
+    _VerkehrFrage(frage: 'Was tust du, wenn ein Auto am Zebrastreifen anhält?', richtig: 'Weiter aufmerksam schauen, dann sicher gehen', falsch: ['Nicht mehr in beide Richtungen schauen', 'Rückwärts blind laufen', 'Vor dem Auto spielen']),
+    _VerkehrFrage(frage: 'Was solltest du auf einem Fahrrad niemals während der Fahrt tun?', richtig: 'Die Augen zumachen', falsch: ['Auf den Weg achten', 'Beide Hände zum Bremsen bereit halten', 'Hindernisse rechtzeitig erkennen']),
+    _VerkehrFrage(frage: 'Was ist an einer Straßenkreuzung besonders wichtig?', richtig: 'Auf Fahrzeuge aus mehreren Richtungen achten', falsch: ['Nur den Himmel betrachten', 'Ohne Blick geradeaus laufen', 'Die Ohren verschließen']),
+    _VerkehrFrage(frage: 'Was hilft dir, wenn du den Weg nach Hause nicht kennst?', richtig: 'Eine vertrauenswürdige erwachsene Person fragen', falsch: ['Auf unbekannte Fahrzeuge aufspringen', 'Ohne Plan auf die Straße laufen', 'Verkehrszeichen abdecken']),
+    _VerkehrFrage(frage: 'Wie verhältst du dich neben einer Baustelle an der Straße?', richtig: 'Absperrungen beachten und Abstand halten', falsch: ['Unter Baugeräten spielen', 'Absperrbänder zerreißen', 'Auf die Fahrbahn springen']),
+    _VerkehrFrage(frage: 'Wozu dient eine Fahrradklingel?', richtig: 'Andere rechtzeitig auf dich aufmerksam machen', falsch: ['Die Bremsen ersetzen', 'Die Straße absperren', 'Den Reifen aufpumpen']),
+    _VerkehrFrage(frage: 'Warum ist es gefährlich, beim Gehen auf die Straße am Handy zu spielen?', richtig: 'Man übersieht leicht den Verkehr', falsch: ['Autos können nur stillstehen', 'Handys verändern die Ampel', 'Zebrastreifen werden unsichtbar']),
   ];
 
   late final LearningModuleProgress _progress;
@@ -208,7 +227,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak('Richtig! ${_aktuelle.kontext ?? ""}');
       } catch (_) {}
@@ -306,87 +325,37 @@ class _VerkehrScreenState extends State<VerkehrScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildFrageHeader(),
-                      if (_answered && _aktuelle.kontext != null) ...[
-                        const SizedBox(height: 12),
-                        _buildKontextBox(),
-                      ],
-                      const SizedBox(height: 20),
-                      _buildOptions(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Welt-Abenteuer',
+        moduleTitle: 'Verkehr & Sicherheit',
+        icon: Icons.traffic_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
           child: Column(children: [
-            Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 11,
-                    fontWeight: FontWeight.w800,
-                    letterSpacing: 1.2)),
-            const Text('Verkehr & Sicherheit',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900)),
+            _buildFrageHeader(),
+            if (_answered && _aktuelle.kontext != null) ...[
+              const SizedBox(height: 12),
+              _buildKontextBox(),
+            ],
+            const SizedBox(height: 20),
+            _buildOptions(),
           ]),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -394,15 +363,18 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 18),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: _gradient[0].withOpacity(0.4), width: 3),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 3),
           boxShadow: [
             BoxShadow(
                 color: _gradient[0].withOpacity(0.2),
@@ -419,7 +391,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
                     fontFamily: 'Nunito',
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: _gradient[1])),
+                    color: LumoVisualTokens.white)),
           ),
         ]),
       ),
@@ -456,9 +428,9 @@ class _VerkehrScreenState extends State<VerkehrScreen>
         final opt = _options[idx];
         final isCorrect = idx == _correctIdx;
         final isSelected = _selectedIdx == idx;
-        Color bgColor = Colors.white;
-        Color borderColor = _gradient[0].withOpacity(0.3);
-        Color textColor = _gradient[1];
+        Color bgColor = LumoVisualTokens.lessonAnswer;
+        Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
+        Color textColor = LumoVisualTokens.white;
         if (_answered && isSelected) {
           if (isCorrect) {
             bgColor = const Color(0xFFD1FAE5);
@@ -471,6 +443,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
           }
         } else if (_answered && isCorrect) {
           bgColor = const Color(0xFFFEF3C7);
+          textColor = const Color(0xFF713F12);
           borderColor = const Color(0xFFFCD34D);
         }
         return Padding(
@@ -478,22 +451,25 @@ class _VerkehrScreenState extends State<VerkehrScreen>
           child: AnimatedBuilder(
             animation: _bounceCtrl,
             builder: (_, child) {
-              final scale = isSelected && isCorrect
+              final scale = isSelected &&
+                      isCorrect &&
+                      !LumoLessonStyle.reducedMotion(context, widget.appState)
                   ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.06
                   : 1.0;
               return Transform.scale(scale: scale, child: child);
             },
-            child: GestureDetector(
+            child: LumoLessonAnswerTap(
+              correct: _answered && isSelected ? isCorrect : null,
               onTap: _answered ? null : () => _onAnswer(idx),
               child: AnimatedContainer(
-                duration: const Duration(milliseconds: 200),
+                duration:
+                    LumoLessonStyle.reducedMotion(context, widget.appState)
+                        ? Duration.zero
+                        : const Duration(milliseconds: 200),
                 padding:
                     const EdgeInsets.symmetric(vertical: 16, horizontal: 20),
-                decoration: BoxDecoration(
-                  color: bgColor,
-                  borderRadius: BorderRadius.circular(18),
-                  border: Border.all(color: borderColor, width: 3),
-                ),
+                decoration: LumoLessonStyle.answer(
+                    background: bgColor, border: borderColor),
                 child: Text(opt,
                     textAlign: TextAlign.center,
                     style: TextStyle(

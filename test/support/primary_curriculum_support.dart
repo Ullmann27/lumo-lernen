@@ -17,7 +17,7 @@ class CurriculumSupportEntry {
   final String note;
 }
 
-/// Transparente Abdeckung des gesetzlichen Fächerrahmens.
+/// Test contract for curriculum coverage; not a runtime feature.
 ///
 /// "schoolManaged" ist absichtlich kein grünes Häkchen für App-Inhalte:
 /// Religionsunterricht hängt von der jeweiligen Kirche/Religionsgesellschaft

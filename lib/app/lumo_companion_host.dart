@@ -23,6 +23,9 @@ class LumoCompanionHost extends StatelessWidget {
     this.onExplainTask,
     this.onSuggestTask,
     this.onAskLumo,
+    this.offerOnly = false,
+    this.taskUnit,
+    this.guide,
   });
 
   final LumoAppState appState;
@@ -35,6 +38,9 @@ class LumoCompanionHost extends StatelessWidget {
   final VoidCallback? onExplainTask;
   final VoidCallback? onSuggestTask;
   final VoidCallback? onAskLumo;
+  final bool offerOnly;
+  final String? taskUnit;
+  final LumoCompanionGuide? guide;
 
   @override
   Widget build(BuildContext context) {
@@ -50,21 +56,35 @@ class LumoCompanionHost extends StatelessWidget {
                     const ['aktives lesen', 'vorlesen']
                         .contains(state.unit.trim().toLowerCase())));
         final currentSection = reading ? 'reading' : requestedSection;
-        final taskContext = currentSection == 'exercises'
-            ? LumoCompanionRequests.instance.taskContext.value
+        final published = LumoCompanionRequests.instance.taskContext.value;
+        final taskContext = published?.belongsTo(
+                        section: currentSection,
+                        generation: appState.profileGeneration) ==
+                    true &&
+                (taskUnit == null || published?.unit == taskUnit)
+            ? published
             : null;
         final assessment = currentSection == 'tests' ||
             currentSection == 'schoolwork' ||
             (currentSection == 'exercises' &&
                 (state.sessionKind == LumoSessionKind.test ||
-                    state.sessionKind == LumoSessionKind.schoolwork));
-        final hasTask = currentSection == 'exercises' || onExplainTask != null;
+                    state.sessionKind == LumoSessionKind.schoolwork)) ||
+            taskContext?.isExam == true;
+        final hasTask = taskContext != null ||
+            currentSection == 'exercises' ||
+            onExplainTask != null;
         final recommendation = const ProgressRecommendationService().recommend(
           grade: state.grade,
           skills: appState.learningSkills(),
           preferredSubject: subject,
         );
         return LumoFreeCompanion(
+          guide: guide,
+          offerOnly: offerOnly,
+          proactive: offerOnly
+              ? taskContext != null && taskContext.lastCorrect == false
+              : !const ['learning_module', 'guided_lesson', 'discovery']
+                  .contains(taskContext?.activity),
           compact: compact,
           floating: floating,
           reducedMotion: state.settings.reduceAnimations ||
@@ -83,14 +103,22 @@ class LumoCompanionHost extends StatelessWidget {
           scene: LumoCompanionScene(
             section: currentSection,
             childName: state.childName,
-            recommendedSubject: subject ?? recommendation.subject,
-            recommendedUnit: unit ?? recommendation.unit,
+            recommendedSubject:
+                subject ?? taskContext?.subject ?? recommendation.subject,
+            recommendedUnit: unit ?? taskContext?.unit ?? recommendation.unit,
             solvedTasks: state.solved.values.fold(0, (a, b) => a + b),
-            consecutiveWrong: state.practiceErrors,
+            consecutiveWrong: taskContext == null
+                ? state.practiceErrors
+                : taskContext.lastCorrect == false
+                    ? taskContext.attempts
+                    : 0,
             taskInProgress:
                 (hasTask && (taskContext?.answering ?? true)) || reading,
             schoolwork: assessment,
             hasTask: hasTask,
+            taskId: taskContext?.taskId ?? '',
+            profileGeneration: appState.profileGeneration,
+            helpLevel: taskContext?.helpLevel ?? 0,
           ),
           onAction: (action) {
             switch (action) {

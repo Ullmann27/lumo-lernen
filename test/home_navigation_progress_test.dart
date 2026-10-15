@@ -210,7 +210,18 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 250));
     final kartEntry = find.byKey(const ValueKey('home-discover-kart'));
-    await tester.ensureVisible(kartEntry);
+    // The expanded discovery list exceeds the viewport. Scroll the actual
+    // target into the center before tapping: tapping a tile outside the
+    // screen would silently miss and obscure a genuine navigation regression.
+    // Immediate ensureVisible must not await a 250ms animation inside
+    // testWidgets without a concurrent frame pump: that leaves the Future
+    // pending and the test eventually times out after ten minutes.
+    await Scrollable.ensureVisible(
+      tester.element(kartEntry),
+      alignment: 0.5,
+    );
+    await tester.pump();
+    expect(tester.getCenter(kartEntry).dy, inInclusiveRange(0, 1599));
     await tester.tap(kartEntry);
     expect(sections, [LumoSection.games]);
     expect(tester.takeException(), isNull);

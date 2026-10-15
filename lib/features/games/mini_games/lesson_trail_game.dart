@@ -2,10 +2,9 @@ import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tts/flutter_tts.dart';
-
 import '../../../app/app_state.dart';
 import '../../../core/game_progress_repository.dart';
+import '../../../core/lumo_voice.dart';
 import '../../../domain/games/game_lesson_tasks.dart';
 import '../../../domain/games/game_level_model.dart';
 import '../../../theme/lumo_visual_tokens.dart';
@@ -26,7 +25,6 @@ class LessonTrailGame extends StatefulWidget {
 
 class _LessonTrailGameState extends State<LessonTrailGame> {
   final _clock = LumoGameTurnClock();
-  final _tts = FlutterTts();
   final _words = <int>[];
   int _index = 0, _mistakes = 0;
   String? _selected;
@@ -43,19 +41,22 @@ class _LessonTrailGameState extends State<LessonTrailGame> {
   }
 
   void _pauseVoice() { if (_clock.value) unawaited(_stopVoice()); }
-  Future<void> _stopVoice() async { try { await _tts.stop(); } catch (_) {} }
+  Future<void> _stopVoice() => LumoVoice.instance.stop();
 
   Future<void> _speak() async {
-    if (_clock.value || _finished) return;
-    try {
-      await _tts.setLanguage('de-DE');
-      await _tts.setSpeechRate(.38);
-      if (mounted && !_clock.value) await _tts.speak(_task.speech.isEmpty ? _task.cue : _task.speech);
-    } catch (_) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Die Sprachausgabe ist gerade nicht verfügbar. Lies das Wort gemeinsam mit einem Erwachsenen.')));
-      }
+    if (_clock.value || _finished ||
+        !widget.appState.state.settings.voiceEnabled) return;
+    await LumoVoice.instance.speak(
+      _task.speech.isEmpty ? _task.cue : _task.speech,
+      style: VoiceStyle.explain,
+    );
+    if (mounted && LumoVoice.instance.status.value == VoiceStatus.error) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text(
+          'Die Sulafat-Stimme ist derzeit nicht erreichbar. '
+          'Im Elternbereich kannst du die Online-Lumo-Stimme freigeben.',
+        )),
+      );
     }
   }
 

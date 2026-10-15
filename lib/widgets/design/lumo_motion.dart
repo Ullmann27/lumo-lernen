@@ -53,6 +53,7 @@ class LumoPressable extends StatefulWidget {
 
 class _LumoPressableState extends State<LumoPressable>
     with SingleTickerProviderStateMixin {
+  bool _hovered = false;
   late final AnimationController _press = AnimationController(
     vsync: this,
     duration: LumoMotion.press,
@@ -77,43 +78,72 @@ class _LumoPressableState extends State<LumoPressable>
   }
 
   @override
+  void didUpdateWidget(covariant LumoPressable oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!widget.enabled) {
+      _hovered = false;
+      _press.reset();
+    }
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Listener(
-      onPointerDown: _down,
-      onPointerUp: _up,
-      onPointerCancel: _up,
-      behavior: HitTestBehavior.translucent,
-      child: AnimatedBuilder(
-        animation: _press,
-        child: widget.child,
-        builder: (context, child) {
-          final t =
-              _press.isAnimating && _press.status == AnimationStatus.reverse
-                  ? LumoMotion.spring.transform(_press.value)
-                  : Curves.easeOut.transform(_press.value);
-          // Gleiche Baumstruktur in Ruhe und beim Drücken: sonst würde das
-          // Kind neu aufgebaut und der laufende Tap ginge verloren.
-          return Transform.scale(
-            scale: 1 - (1 - widget.pressedScale) * t,
-            child: DecoratedBox(
-              position: DecorationPosition.foreground,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(widget.radius),
-                border: Border.all(
-                    color: widget.glowColor.withValues(alpha: .75 * t),
-                    width: 1.6),
-                boxShadow: [
-                  BoxShadow(
-                    color: widget.glowColor.withValues(alpha: .32 * t),
-                    blurRadius: 18,
-                    spreadRadius: -2,
-                  ),
-                ],
+    return MouseRegion(
+      onEnter: (_) {
+        if (widget.enabled) setState(() => _hovered = true);
+      },
+      onExit: (_) => setState(() => _hovered = false),
+      child: Listener(
+        onPointerDown: _down,
+        onPointerUp: _up,
+        onPointerCancel: _up,
+        behavior: HitTestBehavior.translucent,
+        child: AnimatedBuilder(
+          animation: _press,
+          child: widget.child,
+          builder: (context, child) {
+            final reduced = LumoMotion.reduced(context);
+            final t = reduced
+                ? 0.0
+                : _press.isAnimating && _press.status == AnimationStatus.reverse
+                    ? LumoMotion.spring.transform(_press.value)
+                    : Curves.easeOut.transform(_press.value);
+            // Gleiche Baumstruktur in Ruhe und beim Drücken: sonst würde das
+            // Kind neu aufgebaut und der laufende Tap ginge verloren.
+            return Transform.scale(
+              scale: 1 - (1 - widget.pressedScale) * t,
+              child: DecoratedBox(
+                position: DecorationPosition.foreground,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(widget.radius),
+                  border: Border.all(
+                      color: widget.glowColor.withValues(
+                          alpha: .75 *
+                              (t > 0
+                                  ? t
+                                  : _hovered
+                                      ? .45
+                                      : 0)),
+                      width: 1.6),
+                  boxShadow: [
+                    BoxShadow(
+                      color: widget.glowColor.withValues(
+                          alpha: .32 *
+                              (t > 0
+                                  ? t
+                                  : _hovered
+                                      ? .45
+                                      : 0)),
+                      blurRadius: 18,
+                      spreadRadius: -2,
+                    ),
+                  ],
+                ),
+                child: child,
               ),
-              child: child,
-            ),
-          );
-        },
+            );
+          },
+        ),
       ),
     );
   }

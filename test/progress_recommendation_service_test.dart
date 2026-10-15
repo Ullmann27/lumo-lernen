@@ -71,6 +71,44 @@ void main() {
     expect(weak.difficulty, 3);
   });
 
+  test('the actual guided tables record maps to an available generator key',
+      () {
+    final guided =
+        record('Mathematik', 'Kleines 1×1', correct: 1, wrong: 4, misses: 3);
+    final before = guided.toJson();
+    final result = recommend([guided]);
+    expect(result.kind, LearningRecommendationKind.support);
+    expect(result.subject, 'Mathematik');
+    expect(result.unit, 'Einmaleins');
+    expect(result.evidenceAttempts, 5);
+    expect(result.reason, contains('4 von 5'));
+    for (var seed = 0; seed < 20; seed++) {
+      final task = ExerciseFactory(seed: seed).next(
+          grade: result.grade, subject: result.subject, unit: result.unit);
+      expect(task.subject, 'Mathematik');
+      expect(task.unit, 'Einmaleins');
+    }
+    expect(guided.toJson(), before);
+    expect(guided.skillId, 'mathematik::kleines 1×1');
+    expect(guided.unit, 'Kleines 1×1');
+  });
+
+  test('a known tables alias never unlocks a future-grade or foreign subject',
+      () {
+    expect(
+        recommend([
+          record('Mathematik', 'Kleines 1×1', wrong: 5, misses: 5),
+        ], grade: 1)
+            .evidenceAttempts,
+        0);
+    final german = recommend([
+      record('Deutsch', 'Kleines 1×1', wrong: 5, misses: 5),
+    ], subject: 'Deutsch');
+    expect(german.subject, 'Deutsch');
+    expect(german.evidenceAttempts, 0);
+    expect(german.unit, isNot('Einmaleins'));
+  });
+
   test('one error does not label a child as needing remediation', () {
     final result =
         recommend([record('Mathematik', 'Plus bis 20', wrong: 1, misses: 1)]);

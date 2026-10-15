@@ -10,6 +10,7 @@ import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
 import 'shape_trace_task_renderer.dart';
 import 'writing_task_renderer.dart';
+import 'reading_passage_card.dart';
 
 class AdaptiveTaskAnswer {
   const AdaptiveTaskAnswer({
@@ -48,6 +49,7 @@ class AdaptiveTaskRenderer extends StatefulWidget {
 class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
   Object? _picked;
   final Set<String> _wrongAnswers = <String>{};
+  bool _showGentleHint = false;
 
   bool get _solved => _picked != null && '$_picked' == '${widget.task.correctAnswer}';
 
@@ -84,7 +86,10 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       LearningSubject.englisch => const Color(0xFFFFB84D),
       LearningSubject.logik => const Color(0xFFC6A8FF),
     };
-    return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+    // Fold innen: zwei richtige Arbeitsflächen, Handy: vertikal.
+    final questionCard = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
       // 2026-06-06 FIX: Border mit unterschiedlichen Farben + borderRadius
       // crasht Flutter silent (Widget unsichtbar). Loesung: Outer Container
       // mit border-Side links als separate child, dann inner Card mit
@@ -128,7 +133,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                 padding: const EdgeInsets.fromLTRB(17, 18, 18, 18),
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xEA0B2B58), Color(0xEE071B3D), Color(0xE60A315F)],
+                    colors: [Color(0xF00F3F7A), Color(0xF4092150), Color(0xED0C356A)],
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
                   ),
@@ -164,13 +169,24 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                     ),
                   ),
                   const SizedBox(height: 12),
-                  Text(
+                  if (task.subject == LearningSubject.deutsch &&
+                      const ['Sätze lesen', 'Lesesinn', 'Reihenfolge'].contains(task.parameters['unit']) &&
+                      task.prompt.contains('\n'))
+                    ReadingPassageCard(prompt: task.prompt)
+                  else Text(
                     task.prompt,
                     // Kurze Rechnungen groß, lange Geschichten gut lesbar
                     // ohne dass die Antworten aus dem Bild rutschen.
+                    textAlign: task.subject == LearningSubject.mathematik &&
+                            task.prompt.length < 24
+                        ? TextAlign.center
+                        : TextAlign.start,
                     style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: _promptSize(task.prompt),
+                      fontSize: task.subject == LearningSubject.mathematik &&
+                              task.prompt.length < 24
+                          ? math.min(41, _promptSize(task.prompt) * 1.2)
+                          : _promptSize(task.prompt),
                       fontWeight: FontWeight.w900,
                       color: LumoVisualTokens.white,
                       shadows: const [
@@ -197,7 +213,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
             ),
         ),
       ),
-      const SizedBox(height: 18),
+      ],
+    );
+    final answerPanel = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
       Text(
         _wrongAnswers.length >= 2 && !_solved
             ? 'Versuch es nochmal mit Lumos Hilfe:'
@@ -214,8 +234,63 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
         solved: _solved,
         onPick: _pick,
       ),
-    ],
+        if (widget.allowRetry && !_solved && !_showGentleHint)
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Padding(
+              padding: const EdgeInsets.only(top: 12),
+              child: OutlinedButton.icon(
+                key: const ValueKey('lesson-hint-button'),
+                icon: const Icon(Icons.lightbulb_rounded),
+                label: const Text('Tipp von Lumo', style: TextStyle(
+                  fontFamily: 'Nunito', fontSize: 14,
+                  fontWeight: FontWeight.w900,
+                )),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: const Color(0xFFFFD36A),
+                  side: const BorderSide(color: Color(0xB3FFDA7B)),
+                  padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 13),
+                ),
+                onPressed: () => setState(() => _showGentleHint = true),
+              ),
+            ),
+          ),
+        if (widget.allowRetry && _showGentleHint && !_solved)
+          Padding(
+            padding: const EdgeInsets.only(top: 12),
+            child: _LocalHelpBanner(task: task, wrongCount: 0),
+          ),
+      ],
     );
+    return LayoutBuilder(builder: (context, constraints) {
+      // Wide comparison visuals (for example measurements and fractions)
+      // need the complete Fold width. Splitting those into two ~300dp
+      // columns causes clipping even though simple visuals are safe there.
+      final simpleVisual = switch (task.visualPayload.type) {
+        VisualType.none ||
+        VisualType.dots ||
+        VisualType.tenOnes ||
+        VisualType.numberLine ||
+        VisualType.syllables ||
+        VisualType.shape ||
+        VisualType.quantityCompare => true,
+        _ => false,
+      };
+      final wide = constraints.maxWidth >= (simpleVisual ? 610 : 1260) &&
+          MediaQuery.textScalerOf(context).scale(1) <= 1.25;
+      if (wide) {
+        return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          Expanded(child: questionCard),
+          const SizedBox(width: 16),
+          Expanded(child: answerPanel),
+        ]);
+      }
+      return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        questionCard,
+        const SizedBox(height: 17),
+        answerPanel,
+      ]);
+    });
   }
 
   void _pick(AnswerOption option) {
@@ -235,7 +310,8 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
 
     widget.onAnswered?.call(
         AdaptiveTaskAnswer(task: widget.task, answer: answer, correct: correct,
-        hintUsed: widget.allowRetry && _wrongAnswers.length >= 2,
+        hintUsed: _showGentleHint ||
+            (widget.allowRetry && _wrongAnswers.length >= 2),
       ),
       );
     }
@@ -332,7 +408,9 @@ class _LocalHelpBanner extends StatelessWidget {
                 ],
               ),
               child: Text(
-                wrongCount == 2
+                wrongCount == 0
+                    ? '💡 Ein Tipp von Lumo'
+                    : wrongCount == 2
                     ? '💡 Lumo hilft Schritt für Schritt'
                     : '💡 Noch ein Tipp von Lumo',
                 style: const TextStyle(
@@ -566,9 +644,18 @@ class _OptionGrid extends StatelessWidget {
       // damit Aufgabe und alle Antworten gemeinsam ins Bild passen.
       final shortAnswers = task.options.every((o) => o.label.length <= 14) &&
           MediaQuery.textScalerOf(context).scale(1) <= 1.3;
-      final itemWidth = compact
-          ? (shortAnswers ? (constraints.maxWidth - 12) / 2 : constraints.maxWidth)
-          : (constraints.maxWidth - 24) / 3;
+      // Vier kurze Antwortkacheln bleiben auch auf Tablets ein
+      // ausgewogenes 2×2-Raster statt einer unruhigen 3+1-Anordnung.
+      // Längere Antworttexte und andere Auswahlanzahlen behalten ihre
+      // bisherigen responsiven Regeln.
+      final balancedFour = shortAnswers && task.options.length == 4;
+      final itemWidth = balancedFour
+          ? (constraints.maxWidth - 12) / 2
+          : compact
+              ? (shortAnswers
+                  ? (constraints.maxWidth - 12) / 2
+                  : constraints.maxWidth)
+              : (constraints.maxWidth - 24) / 3;
       return Wrap(
         spacing: 12,
         runSpacing: 12,
@@ -671,7 +758,7 @@ class _AnswerButtonState extends State<_AnswerButton>
       border = const Color(0xFF315D86);
       textColor = const Color(0xFF7895B5);
     } else {
-      bg = const Color(0xFF123D79);
+      bg = const Color(0xFF1552A3);
       border = LumoVisualTokens.cyan.withOpacity(.75);
       textColor = Colors.white;
     }
@@ -693,7 +780,8 @@ class _AnswerButtonState extends State<_AnswerButton>
             : Colors.black;
     final card = AnimatedContainer(
         duration: const Duration(milliseconds: 180),
-        padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 18),
+        constraints: const BoxConstraints(minHeight: 80),
+        padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 18),
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topLeft,
@@ -739,7 +827,7 @@ class _AnswerButtonState extends State<_AnswerButton>
             child: Text(
               widget.label,
               textAlign: TextAlign.center,
-              maxLines: 1,
+              maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
                 fontFamily: 'Nunito',
@@ -1208,12 +1296,14 @@ class _ShapeVisual extends StatelessWidget {
       'Kreis': _ShapeKind.circle,
       'Quadrat': _ShapeKind.square,
       'Rechteck': _ShapeKind.rectangle,
+      'Oval': _ShapeKind.oval,
     };
     const colors = <String, Color>{
       'Dreieck': Color(0xFFFFB800),
       'Kreis': Color(0xFF60A5FA),
       'Quadrat': Color(0xFFF472B6),
       'Rechteck': Color(0xFF34D399),
+      'Oval': Color(0xFFA78BFA),
     };
     return SchoolbookTaskCard(
       title: 'Formenhilfe',
@@ -1223,11 +1313,12 @@ class _ShapeVisual extends StatelessWidget {
         spacing: 12,
         runSpacing: 12,
         alignment: WrapAlignment.center,
-        children: shapes.entries.map((entry) {
+        children: shapes.entries.where((entry) => task.options.any((option) => option.label == entry.key)).map((entry) {
           final selected = '$picked' == entry.key;
           final correct = solved && '${task.correctAnswer}' == entry.key;
           final shapeColor = colors[entry.key] ?? LumoColors.orange;
           return Container(
+            key: ValueKey('shape-help-${entry.key}'),
             width: 110,
             padding: const EdgeInsets.fromLTRB(10, 14, 10, 12),
             decoration: BoxDecoration(
@@ -1293,7 +1384,7 @@ class _ShapeVisual extends StatelessWidget {
   }
 }
 
-enum _ShapeKind { triangle, circle, square, rectangle }
+enum _ShapeKind { triangle, circle, square, rectangle, oval }
 
 class _ShapePainter extends CustomPainter {
   _ShapePainter({required this.kind, required this.color});
@@ -1330,21 +1421,20 @@ class _ShapePainter extends CustomPainter {
         canvas.drawCircle(Offset(w / 2, h / 2), w * 0.40, paint);
         canvas.drawCircle(Offset(w / 2, h / 2), w * 0.40, stroke);
         break;
+      case _ShapeKind.oval:
+        final rect = Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50);
+        canvas.drawOval(rect, paint);
+        canvas.drawOval(rect, stroke);
+        break;
       case _ShapeKind.square:
-        final rect = RRect.fromRectAndRadius(
-          Rect.fromLTWH(w * 0.14, h * 0.14, w * 0.72, h * 0.72),
-          const Radius.circular(6),
-        );
-        canvas.drawRRect(rect, paint);
-        canvas.drawRRect(rect, stroke);
+        final rect = Rect.fromLTWH(w * 0.14, h * 0.14, w * 0.72, h * 0.72);
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect, stroke);
         break;
       case _ShapeKind.rectangle:
-        final rect = RRect.fromRectAndRadius(
-          Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50),
-          const Radius.circular(6),
-        );
-        canvas.drawRRect(rect, paint);
-        canvas.drawRRect(rect, stroke);
+        final rect = Rect.fromLTWH(w * 0.08, h * 0.25, w * 0.84, h * 0.50);
+        canvas.drawRect(rect, paint);
+        canvas.drawRect(rect, stroke);
         break;
     }
   }

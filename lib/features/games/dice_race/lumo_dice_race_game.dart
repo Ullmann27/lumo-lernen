@@ -29,6 +29,7 @@ import '../../../app/app_state.dart';
 import '../../../app/app_theme.dart';
 import '../../../core/lumo_voice.dart';
 import '../shared/lumo_game_pause_scope.dart';
+import '../shared/lumo_board_game_stage.dart';
 
 class LumoDiceRaceScreen extends StatefulWidget {
   const LumoDiceRaceScreen({super.key, required this.appState, this.seed});
@@ -118,7 +119,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         _lumoPos = 0;
         extra = 'Du hast Lumo zurück zum Start geschickt! 🦊';
       }
-      _hint = extra ?? 'Du wuerfelst $roll und gehst $roll Felder vor.';
+      _hint = extra ?? 'Du würfelst $roll und gehst $roll Felder vor.';
       setState(() {});
       if (_kindPos >= _goal) {
         _onWin(_Player.kind);
@@ -136,7 +137,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         _kindPos = 0;
         extra = 'Oh nein - Lumo schlaegt dich zurueck zum Start!';
       }
-      _hint = extra ?? 'Lumo wuerfelt $roll.';
+      _hint = extra ?? 'Lumo würfelt $roll.';
       setState(() {});
       if (_lumoPos >= _goal) {
         _onWin(_Player.lumo);
@@ -152,12 +153,17 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
   void _lumoRoll() {
     if (!mounted || _turn != _Player.lumo) return;
     HapticFeedback.lightImpact();
-    setState(() => _hint = 'Lumo wuerfelt 🦊...');
+    setState(() => _hint = 'Lumo würfelt…');
     _animateRoll();
   }
 
   void _animateRoll() {
-    _diceCtrl.forward(from: 0);
+    final settings = widget.appState.state.settings;
+    if (!settings.reduceAnimations &&
+        !settings.calmMode &&
+        !MediaQuery.disableAnimationsOf(context)) {
+      _diceCtrl.forward(from: 0);
+    }
     _clock.schedule(const Duration(milliseconds: 700), () {
       if (!mounted) return;
       final roll = 1 + _rng.nextInt(6);
@@ -242,18 +248,34 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         clock: _clock,
         onRestart: _resetGame,
         child: Scaffold(
-          backgroundColor: const Color(0xFFF0FDF4),
-          body: SafeArea(
+          body: LumoBoardGameStage(
+              child: SafeArea(
             child: Column(
               children: [
                 _buildTopBar(),
-                _buildStatusBar(),
-                const SizedBox(height: 8),
-                Expanded(child: _buildTrack()),
-                _buildDicePanel(),
+                Expanded(child: LayoutBuilder(builder: (context, bounds) {
+                  if (bounds.maxWidth > bounds.maxHeight &&
+                      (bounds.maxWidth >= 700 || bounds.maxHeight < 480)) {
+                    return Row(children: [
+                      Expanded(flex: 3, child: _buildTrack()),
+                      SizedBox(
+                          width: (bounds.maxWidth * .35).clamp(260.0, 360.0),
+                          child: SingleChildScrollView(
+                              child: Column(children: [
+                            _buildDicePanel(),
+                            _buildStatusBar(),
+                          ]))),
+                    ]);
+                  }
+                  return Column(children: [
+                    _buildStatusBar(),
+                    Expanded(child: _buildTrack()),
+                    _buildDicePanel(),
+                  ]);
+                })),
               ],
             ),
-          ),
+          )),
         ));
   }
 
@@ -262,7 +284,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       padding: const EdgeInsets.all(12),
       decoration: const BoxDecoration(
         gradient:
-            LinearGradient(colors: [Color(0xFF34D399), Color(0xFF059669)]),
+            LinearGradient(colors: [Color(0xFF235D78), Color(0xFF132744)]),
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
       ),
       child: Row(children: [
@@ -273,7 +295,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         ),
         const Expanded(
           child: Center(
-            child: Text('Würfel-Wettlauf 🎲',
+            child: Text('Würfel-Wettlauf',
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 18,
@@ -300,7 +322,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
               _statusPill('Du', _kindPos, const Color(0xFFFB923C),
                   isActive: _turn == _Player.kind),
               const SizedBox(width: 12),
-              _statusPill('Lumo 🦊', _lumoPos, const Color(0xFF8B5CF6),
+              _statusPill('Lumo', _lumoPos, const Color(0xFFB56324),
                   isActive: _turn == _Player.lumo),
             ],
           ),
@@ -326,17 +348,31 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         duration: const Duration(milliseconds: 200),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: isActive ? color : Colors.white,
+          gradient: LinearGradient(
+              colors: isActive
+                  ? [color, Color.lerp(color, const Color(0xFF142A43), .3)!]
+                  : const [Color(0xFAFFFFFF), Color(0xE8EDF3FA)]),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(color: color, width: 2.4),
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-          Text(label,
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 14,
-                  fontWeight: FontWeight.w900,
-                  color: isActive ? Colors.white : color)),
+          Row(children: [
+            Image.asset(
+                label == 'Lumo'
+                    ? 'assets/lumo_design/ui/avatar_fox.webp'
+                    : 'assets/lumo_design/board_games/pawn_child.png',
+                width: 30,
+                height: 30,
+                excludeFromSemantics: true),
+            const SizedBox(width: 6),
+            Flexible(
+                child: Text(label,
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 14,
+                        fontWeight: FontWeight.w900,
+                        color: isActive ? Colors.white : color))),
+          ]),
           const SizedBox(height: 4),
           Text('$pos / $_goal',
               style: TextStyle(
@@ -401,77 +437,52 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
     final isLumoHere = _lumoPos == pos;
     final isGoal = pos == _goal;
     final isStart = pos == 1;
-    // Bonus-Felder alle 5 Schritte: machen das Brett bunt und feiern
-    // kleine Fortschritte.
-    final isBonus = !isGoal && !isStart && pos % 5 == 0;
-    // Sanfte Pastell-Toene fuer normale Felder im Wechsel.
-    final stripeA = pos.isEven;
-    final List<Color> baseColors = isGoal
-        ? const [Color(0xFFFCD34D), Color(0xFFEAB308)]
-        : isStart
-            ? const [Color(0xFFA7F3D0), Color(0xFF34D399)]
-            : isBonus
-                ? const [Color(0xFFFCE7F3), Color(0xFFFBCFE8)]
-                : stripeA
-                    ? const [Color(0xFFFFFFFF), Color(0xFFF3F4F6)]
-                    : const [Color(0xFFF9FAFB), Color(0xFFE5E7EB)];
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: baseColors,
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(
-            color: isGoal
-                ? const Color(0xFFB45309)
-                : isBonus
-                    ? const Color(0xFFEC4899)
-                    : const Color(0xFFD1D5DB),
-            width: isGoal ? 2.4 : 1.4),
-        boxShadow: isGoal || isBonus
-            ? [
-                BoxShadow(
-                  color: (isGoal
-                          ? const Color(0xFFEAB308)
-                          : const Color(0xFFEC4899))
-                      .withOpacity(.35),
-                  blurRadius: 10,
-                  offset: const Offset(0, 4),
-                ),
-              ]
-            : null,
-      ),
-      alignment: Alignment.center,
+    return Semantics(
+      label:
+          'Feld $pos${isKindHere ? ", deine Figur" : ""}${isLumoHere ? ", Lumo" : ""}',
       child: Stack(alignment: Alignment.center, children: [
-        // Position-Zahl klein oben links
+        Positioned.fill(
+            child: ExcludeSemantics(
+                child: Image.asset('assets/lumo_design/board_games/tile.png',
+                    fit: BoxFit.fill))),
         Positioned(
-          top: 3,
-          left: 5,
-          child: Text('$pos',
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 9,
-                  fontWeight: FontWeight.w800,
-                  color: isGoal
-                      ? const Color(0xFFB45309)
-                      : const Color(0xFF6B7280))),
-        ),
-        // Feld-Symbol (Stern / Bonus / Start)
-        if (isGoal)
-          const Text('🏆', style: TextStyle(fontSize: 22))
-        else if (isBonus)
-          const Text('⭐', style: TextStyle(fontSize: 16))
-        else if (isStart)
-          const Text('🚩', style: TextStyle(fontSize: 16)),
-        // Spielfiguren ueberlagern alles
-        if (isKindHere && isLumoHere)
-          const Text('🦊🧒', style: TextStyle(fontSize: 16, height: 1.0))
-        else if (isKindHere)
-          const Text('🧒', style: TextStyle(fontSize: 22, height: 1.0))
-        else if (isLumoHere)
-          const Text('🦊', style: TextStyle(fontSize: 22, height: 1.0)),
+            top: 6,
+            left: 8,
+            child: Text('$pos',
+                textScaler: TextScaler.noScaling,
+                style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 11,
+                    fontWeight: FontWeight.w900,
+                    color: Color(0xFF132F45)))),
+        if (isGoal && !isKindHere && !isLumoHere)
+          FractionallySizedBox(
+              widthFactor: .6,
+              heightFactor: .6,
+              child: Image.asset('assets/lumo_design/ui/trophy.webp'))
+        else if (isStart && !isKindHere && !isLumoHere)
+          FractionallySizedBox(
+              widthFactor: .5,
+              heightFactor: .5,
+              child:
+                  Image.asset('assets/lumo_design/icons/flag_checkered.webp')),
+        if (isKindHere || isLumoHere)
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            if (isKindHere)
+              Flexible(
+                  child: Image.asset(
+                      'assets/lumo_design/board_games/pawn_child.png')),
+            if (isLumoHere)
+              Flexible(
+                  child: Stack(alignment: Alignment.center, children: [
+                Image.asset('assets/lumo_design/board_games/pawn_lumo.png'),
+                FractionallySizedBox(
+                    widthFactor: .43,
+                    heightFactor: .43,
+                    child:
+                        Image.asset('assets/lumo_design/ui/avatar_fox.webp')),
+              ])),
+          ]),
       ]),
     );
   }
@@ -489,30 +500,16 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
               final shake = math.sin(_diceCtrl.value * math.pi * 6) * 6;
               return Transform.translate(
                 offset: Offset(shake, 0),
-                child: Container(
-                  width: 72,
-                  height: 72,
-                  alignment: Alignment.center,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(14),
-                    border:
-                        Border.all(color: const Color(0xFF1F2937), width: 2.4),
-                    boxShadow: [
-                      BoxShadow(
-                          color: Colors.black.withOpacity(0.18),
-                          blurRadius: 8,
-                          offset: const Offset(0, 4)),
-                    ],
-                  ),
-                  child: Text(
-                    _lastRoll == null
-                        ? '?'
-                        : ['⚀', '⚁', '⚂', '⚃', '⚄', '⚅'][_lastRoll! - 1],
-                    style:
-                        const TextStyle(fontSize: 42, color: Color(0xFF1F2937)),
-                  ),
-                ),
+                child: SizedBox(
+                    width: 86,
+                    height: 86,
+                    child: _lastRoll == null
+                        ? Image.asset(
+                            'assets/lumo_design/board_games/die_1.png',
+                            semanticLabel: 'Würfel bereit')
+                        : Image.asset(
+                            'assets/lumo_design/board_games/die_$_lastRoll.png',
+                            semanticLabel: 'Gewürfelt: $_lastRoll')),
               );
             },
           ),
@@ -525,10 +522,10 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
               label: Text(canRoll
                   ? 'Würfeln!'
                   : (_busy
-                      ? (_turn == _Player.lumo ? 'Lumo... 🦊' : 'Moment...')
+                      ? (_turn == _Player.lumo ? 'Lumo würfelt…' : 'Moment...')
                       : 'Warten')),
               style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF059669),
+                backgroundColor: const Color(0xFF235D78),
                 foregroundColor: Colors.white,
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 textStyle: const TextStyle(

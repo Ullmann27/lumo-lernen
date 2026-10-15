@@ -1,8 +1,14 @@
 import 'dart:async';
+import 'dart:io';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
+import 'lumo_voice.dart';
 
 class LumoSpeechListener extends ChangeNotifier {
+  LumoSpeechListener({bool? isAndroid})
+      : _isAndroid = isAndroid ?? Platform.isAndroid;
+  final bool _isAndroid;
   final stt.SpeechToText _speech = stt.SpeechToText();
 
   bool _available = false;
@@ -15,6 +21,7 @@ class LumoSpeechListener extends ChangeNotifier {
   String? _bestLocaleId;
   ValueChanged<String>? _activeFinalCallback;
   VoidCallback? _activeNoMatchCallback;
+  int _generation = 0;
 
   bool get available => _available;
   bool get initialized => _initialized;
@@ -27,6 +34,17 @@ class LumoSpeechListener extends ChangeNotifier {
     if (_disposed) return false;
     if (_initialized) return _available;
     try {
+      if (_isAndroid) {
+        final local = await const MethodChannel('lumo_lernen/diagnostics')
+            .invokeMethod<bool>('onDeviceSpeechAvailable');
+        if (local != true) {
+          _error = 'Lokale Spracherkennung ist auf diesem Gerät nicht bereit. '
+              'Du kannst deine Frage tippen. Es wird keine Cloud-Aufnahme gestartet.';
+          _initialized = true;
+          notifyListeners();
+          return false;
+        }
+      }
       _available = await _speech.initialize(
         debugLogging: false,
         onStatus: (status) {
@@ -97,8 +115,10 @@ class LumoSpeechListener extends ChangeNotifier {
     ValueChanged<String>? onFinalResult,
     VoidCallback? onNoMatch,
   }) async {
+    final generation = ++_generation;
+    await LumoVoice.instance.stop();
     final ok = await initialize();
-    if (!ok || _disposed) return;
+    if (!ok || _disposed || generation != _generation) return;
     _lastWords = '';
     _error = null;
     _finalDelivered = false;
@@ -109,13 +129,16 @@ class LumoSpeechListener extends ChangeNotifier {
 
     await _speech.listen(
       localeId: _bestLocaleId ?? 'de_AT',
-      listenMode: stt.ListenMode.dictation,
-      listenFor: const Duration(seconds: 32),
-      pauseFor: const Duration(seconds: 3),
-      partialResults: true,
-      cancelOnError: false,
+      listenOptions: stt.SpeechListenOptions(
+        onDevice: true,
+        listenMode: stt.ListenMode.dictation,
+        listenFor: const Duration(seconds: 32),
+        pauseFor: const Duration(seconds: 3),
+        partialResults: true,
+        cancelOnError: true,
+      ),
       onResult: (result) {
-        if (_disposed) return;
+        if (_disposed || generation != _generation) return;
         _lastWords = result.recognizedWords;
         onResult?.call(_lastWords);
         if (result.finalResult) {
@@ -156,6 +179,9 @@ class LumoSpeechListener extends ChangeNotifier {
   }
 
   Future<void> cancel() async {
+    _generation++;
+    _finalDelivered = true;
+    _lastWords = '';
     _activeFinalCallback = null;
     _activeNoMatchCallback = null;
     try {
@@ -173,6 +199,7 @@ class LumoSpeechListener extends ChangeNotifier {
   @override
   void dispose() {
     _disposed = true;
+    _generation++;
     _activeFinalCallback = null;
     _activeNoMatchCallback = null;
     unawaited(_speech.cancel().catchError((_) {}));

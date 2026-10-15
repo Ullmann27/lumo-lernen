@@ -30,29 +30,93 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
   LumoMirrorMood _mood = LumoMirrorMood.happy;
   int _streakDays = 0;
   int _correctToday = 0;
+  LearningProfileLease? _owner;
+  int? _loadingGeneration;
+  int _loadSerial = 0;
+  String _childName = 'Freund';
 
   @override
   void initState() {
     super.initState();
+    widget.appState.addListener(_profileChanged);
     _loadCompanion();
   }
 
+  @override
+  void didUpdateWidget(covariant LumoMagicHubScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.appState != widget.appState) {
+      oldWidget.appState.removeListener(_profileChanged);
+      widget.appState.addListener(_profileChanged);
+      _loadSerial++;
+      _loadingGeneration = null;
+      _owner = null;
+      _profileChanged();
+    }
+  }
+
+  void _profileChanged() {
+    if (!mounted) return;
+    final owner = _owner;
+    if (owner != null && widget.appState.isCurrentLearningLease(owner)) {
+      _applyCompanion(owner);
+      return;
+    }
+    setState(() {
+      _owner = null;
+      _greeting = 'Hallo! Ich lade deinen Lernstand.';
+      _mood = LumoMirrorMood.happy;
+      _streakDays = _correctToday = 0;
+    });
+    _loadCompanion();
+  }
+
+  void _applyCompanion(LearningProfileLease owner) {
+    if (owner.profile.hasUnsavedChanges) return;
+    final state = LumoCompanionState.fromProfile(
+        profile: owner.profile, childName: _childName);
+    setState(() {
+      _greeting = state.smartGreeting();
+      _mood = state.smartMood();
+      _streakDays = state.streakDays;
+      _correctToday = state.correctToday;
+    });
+  }
+
   Future<void> _loadCompanion() async {
-    final state = LumoCompanionState.instance;
-    // Set child name from app state if not yet set
-    if (state.childName == 'Freund' &&
-        widget.appState.state.childName.isNotEmpty) {
-      await state.setChildName(widget.appState.state.childName);
+    final app = widget.appState;
+    final generation = app.profileGeneration;
+    if (_loadingGeneration == generation) return;
+    _loadingGeneration = generation;
+    final serial = ++_loadSerial;
+    try {
+      final owner = await app.captureLearningProfile();
+      final local = app.school.cachedActiveStudentId == null;
+      final name = local
+          ? app.state.childName
+          : await app.school.studentName(owner.studentId) ?? 'Freund';
+      await app.prepareLearningLease(owner);
+      if (!mounted ||
+          serial != _loadSerial ||
+          !app.isCurrentLearningLease(owner)) return;
+      _owner = owner;
+      _childName = name;
+      _applyCompanion(owner);
+    } catch (_) {
+      if (mounted && serial == _loadSerial) {
+        setState(() =>
+            _greeting = 'Dein Lernstand konnte noch nicht geladen werden.');
+      }
+    } finally {
+      if (serial == _loadSerial) _loadingGeneration = null;
     }
-    await state.load();
-    if (mounted) {
-      setState(() {
-        _greeting = state.smartGreeting();
-        _mood = state.smartMood();
-        _streakDays = state.streakDays;
-        _correctToday = state.correctToday;
-      });
-    }
+  }
+
+  @override
+  void dispose() {
+    _loadSerial++;
+    widget.appState.removeListener(_profileChanged);
+    super.dispose();
   }
 
   @override
@@ -63,11 +127,8 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
       body: LumoMagicBackground(
         child: SafeArea(
           child: ListView(
-            padding: const EdgeInsets.fromLTRB(
-                LumoTokens.space16,
-                LumoTokens.space8,
-                LumoTokens.space16,
-                LumoTokens.space32),
+            padding: const EdgeInsets.fromLTRB(LumoTokens.space16,
+                LumoTokens.space8, LumoTokens.space16, LumoTokens.space32),
             children: [
               Row(
                 children: [
@@ -95,8 +156,8 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(_greeting,
-                      style: LumoTokens.typo.headlineSmall.copyWith(
-                          color: LumoTokens.colors.textDark),
+                      style: LumoTokens.typo.headlineSmall
+                          .copyWith(color: LumoTokens.colors.textDark),
                       textAlign: TextAlign.center),
                 ),
               ),
@@ -105,8 +166,8 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 const SizedBox(height: LumoTokens.space12),
                 Center(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 8),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
                       gradient: LumoTokens.colors.heroGold,
                       borderRadius: LumoTokens.brPill,
@@ -125,8 +186,8 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                             color: Colors.white, size: 22),
                         const SizedBox(width: 6),
                         Text('$_streakDays Tage Streak!',
-                            style: LumoTokens.typo.titleMedium.copyWith(
-                                color: Colors.white)),
+                            style: LumoTokens.typo.titleMedium
+                                .copyWith(color: Colors.white)),
                       ],
                     ),
                   ),
@@ -145,8 +206,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) =>
-                        LumoStoryLibraryScreen(appState: appState),
+                    builder: (_) => LumoStoryLibraryScreen(appState: appState),
                   ),
                 ),
               ),
@@ -165,7 +225,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const LumoCosmosScreen(),
+                    builder: (_) => LumoCosmosScreen(appState: widget.appState),
                   ),
                 ),
               ),
@@ -352,14 +412,22 @@ class _LumoMirrorShowcaseState extends State<_LumoMirrorShowcase> {
 
   String _moodLabel(LumoMirrorMood m) {
     switch (m) {
-      case LumoMirrorMood.idle: return 'Ruhig';
-      case LumoMirrorMood.happy: return 'Glücklich';
-      case LumoMirrorMood.think: return 'Denkt';
-      case LumoMirrorMood.cheer: return 'Jubel!';
-      case LumoMirrorMood.sad: return 'Traurig';
-      case LumoMirrorMood.curious: return 'Neugierig';
-      case LumoMirrorMood.proud: return 'Stolz';
-      case LumoMirrorMood.sleepy: return 'Müde';
+      case LumoMirrorMood.idle:
+        return 'Ruhig';
+      case LumoMirrorMood.happy:
+        return 'Glücklich';
+      case LumoMirrorMood.think:
+        return 'Denkt';
+      case LumoMirrorMood.cheer:
+        return 'Jubel!';
+      case LumoMirrorMood.sad:
+        return 'Traurig';
+      case LumoMirrorMood.curious:
+        return 'Neugierig';
+      case LumoMirrorMood.proud:
+        return 'Stolz';
+      case LumoMirrorMood.sleepy:
+        return 'Müde';
     }
   }
 }

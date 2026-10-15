@@ -1,0 +1,970 @@
+{
+  "sourceCommit": "91388c3b463f4dae4590cdf76251d531259d8a0a",
+  "baselineCommit": "bef1403ed5d0243f8c6daca2717e998081cab15e",
+  "runtime": "Flutter 3.44.9 / Linux widget test renderer",
+  "physicalAndroidTest": false,
+  "fpsMeasured": false,
+  "capturePixelRatio": 1,
+  "fold": {
+    "physicalViewport": [
+      2176,
+      1812
+    ],
+    "density": 2.25,
+    "logicalViewport": [
+      967.1111111111111,
+      805.3333333333334
+    ],
+    "note": "PNG is captured at logical pixel ratio 1, not 2176px wide"
+  },
+  "limitations": [
+    "Random tasks differ between baseline and current frames",
+    "Legacy emoji font fallback may be unavailable on this Linux host",
+    "Captures use reduced animation and no synthetic speech",
+    "No physical Samsung, APK install, audible voice or performance proof"
+  ],
+  "frames": [
+    {
+      "file": "before/formen-fold-2176x1812-density-225.png",
+      "sha256": "6b516fb45d35adde828576171078a995945302438205310d00b07dfe52013f4a",
+      "sizeBytes": 278554,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "before/formen-landscape-640x360.png",
+      "sha256": "e08345abee5ea81cdbe44f4a95c7cd1b50d37569171c21b3d1eb7aed45baa530",
+      "sizeBytes": 131434,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "before/formen-phone-360x800.png",
+      "sha256": "c61d9192a5477cae185ad5507025a64253d85db683e24a42e7bdfcdaac3a08bc",
+      "sizeBytes": 161265,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "before/formen-wide-1280x720.png",
+      "sha256": "993bd1493f77a54c4cc45399a8e3bce28268f40575ea6eee70ccd230286f71a4",
+      "sizeBytes": 331066,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "before/minus-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "f7518f582bb442a61db815832be7202e895db1aa2b7ea9ea636742ac69ea5ae1",
+      "sizeBytes": 224421,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "before/minus-bis-10-landscape-640x360.png",
+      "sha256": "25a6822bd29d22f5ca3b1f2a7e6bf6daa6710a1bdee84b80088cb7ab824fd866",
+      "sizeBytes": 115638,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "before/minus-bis-10-phone-360x800.png",
+      "sha256": "2a25a983936316228ef6c659ca6eb89e5b04daca12929d43fa38247f22f5bd4e",
+      "sizeBytes": 157919,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "before/minus-bis-10-wide-1280x720.png",
+      "sha256": "2c563abe9e9e6fd527e2126f59b119cfe7bb6335a0fec549f69f6f2960c99ceb",
+      "sizeBytes": 247438,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "before/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "sha256": "ab6c887c381c1729342fa26160df23c7188230273a56fd07c8af4667e84ca1d7",
+      "sizeBytes": 641011,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "before/plus-bis-10-reference-landscape-640x360.png",
+      "sha256": "d0483bc91346c017a561bf2d588afd0c140713da4b6105d278e68d7a03531f8a",
+      "sizeBytes": 308763,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "before/plus-bis-10-reference-phone-360x800.png",
+      "sha256": "a049161533e929f2fdf0b4ad30c64ebaf5c9744ce1731b20ba6bea1c6da35142",
+      "sizeBytes": 343721,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "before/plus-bis-10-reference-wide-1280x720.png",
+      "sha256": "e50bc0dcfd3409dd809252256ff0919f60c4ca0b24fadda9b398c8b4db03b670",
+      "sizeBytes": 700494,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "before/uhr-fold-2176x1812-density-225.png",
+      "sha256": "d93e217bdd0bee309eb5662a026e9d55eac2b21d8d2e3d6015fcb965bcb4b6b3",
+      "sizeBytes": 317278,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "before/uhr-landscape-640x360.png",
+      "sha256": "b073c8fb0b0d5410c17148deb89a44ed49b8ac8e28be38349d6b1dd8e4868d96",
+      "sizeBytes": 156123,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "before/uhr-phone-360x800.png",
+      "sha256": "02608d2261566ceca9ffb90ec61c06502e7f8be6cec30debbf59d29751ca829d",
+      "sizeBytes": 187897,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "before/uhr-wide-1280x720.png",
+      "sha256": "a19085561510e5891d06567b28003d251997225b9760c18e2d066828970ee487",
+      "sizeBytes": 364152,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "before/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "a3d04de4f0b77b9f726208cf99ef5b87d814d1a23b2031f64d422f38ab6d3ba4",
+      "sizeBytes": 217118,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "before/zahlen-bis-10-landscape-640x360.png",
+      "sha256": "082c33d094f39111a2eeaa6b38a23d5b43945ce3ffef1bc0ec0aaf31bd340e3b",
+      "sizeBytes": 135371,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "before/zahlen-bis-10-phone-360x800.png",
+      "sha256": "3b0ca6e673c296ddf3ec9acb9a969b5b613658fb251ced2c995c189c58eceed5",
+      "sizeBytes": 170461,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "before/zahlen-bis-10-wide-1280x720.png",
+      "sha256": "16b311035992bf7e8548d506adbe01fa08c3f5c415fc516b4e37f7fad62754f8",
+      "sizeBytes": 297897,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/artikel-fold-2176x1812-density-225.png",
+      "sha256": "4457595679759b243f887820cc96f0036e9e41c492e58b6bd3fa20f8592e4db3",
+      "sizeBytes": 724323,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/artikel-landscape-640x360.png",
+      "sha256": "df3eeac61954b73f2ff829b0d7916c0ef0e7df4561b2912623d3b89c40c1e8f7",
+      "sizeBytes": 254880,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/artikel-phone-360x800.png",
+      "sha256": "888b2721fc43fe3a9f4d80b85f5454c4bbe83298e45fef6aeacf5c5830367834",
+      "sizeBytes": 321078,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/artikel-wide-1280x720.png",
+      "sha256": "733ec7770bd7df8009a30e8e8dadbd7de0ed3e1987c793fb5b433dfa465608ac",
+      "sizeBytes": 785810,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/brueche-fold-2176x1812-density-225.png",
+      "sha256": "73f0031a1359c0461474e6a6cef9da6203ed04d0c5d76dbafc7c7284aee8f14d",
+      "sizeBytes": 736989,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/brueche-landscape-640x360.png",
+      "sha256": "1af8357ac8f79eb7b027c7523998e84ad17f3e7d58c63b77998e5cddb0a83619",
+      "sizeBytes": 263729,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/brueche-phone-360x800.png",
+      "sha256": "f80001145b1d13d78ded32b56b0a8da13532106085d2ab3bedfd98d66f72152e",
+      "sizeBytes": 339118,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/brueche-wide-1280x720.png",
+      "sha256": "f2e3e35fc85475db432a5446bfe0b50b4e59756502e89fed1033c4b23cc459f2",
+      "sizeBytes": 803866,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/einmaleins-fold-2176x1812-density-225.png",
+      "sha256": "5a2b56b170923595b3d41a0cf8cd35020bcbac0ca491182477327512ff598080",
+      "sizeBytes": 745254,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/einmaleins-landscape-640x360.png",
+      "sha256": "3116ca3c4ebc0e6bd21a93da940257345e24f1a43b85bc2596822c5b0cbbe06a",
+      "sizeBytes": 258030,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/einmaleins-phone-360x800.png",
+      "sha256": "1c5baaaf2414e23e15ce322bc44dce2f66efdc764e254ed116b5f8eef2526f04",
+      "sizeBytes": 307214,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/einmaleins-wide-1280x720.png",
+      "sha256": "3dd3a1e86774b5398250ca06e210dfc2dd28a0a920002bafeab2e32cdc684b73",
+      "sizeBytes": 799353,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/farben-fold-2176x1812-density-225.png",
+      "sha256": "7007706c48686cd327a5c76167e8bf89b081999bc7944398304a3d90341fcf11",
+      "sizeBytes": 722944,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/farben-landscape-640x360.png",
+      "sha256": "91398f8a14685a288099e38c78758c22c15dd5565eb388779ff47c3f16a9b802",
+      "sizeBytes": 259029,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/farben-phone-360x800.png",
+      "sha256": "39d1d13ac1084d60d5297b6ddd45ce4070090a8ed6c22007b79a1c0dbceba8f0",
+      "sizeBytes": 310444,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/farben-wide-1280x720.png",
+      "sha256": "f8dce4526471232d3f59b845754966591e6823f034de240f034451cadd0e5432",
+      "sizeBytes": 791971,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/formen-fold-2176x1812-density-225.png",
+      "sha256": "5c93feb021cda4283aa08707a41dd7810ebee690d41b111da1a5917489187717",
+      "sizeBytes": 731103,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/formen-landscape-640x360.png",
+      "sha256": "ea862ccbfd29e5ddbe835e3fd3f617c929b85f1235ed8d5cf577532397f47d3a",
+      "sizeBytes": 259858,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/formen-phone-360x800.png",
+      "sha256": "06481a4f04df06263958139a81fab13cfc3db8d0b38cfaa1b84b21679440bc0c",
+      "sizeBytes": 331108,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/formen-wide-1280x720.png",
+      "sha256": "56854dbf205330b85db54047780743e0a3a7af4dbd81cbd9ca56e7b732e11e63",
+      "sizeBytes": 794056,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/geld-fold-2176x1812-density-225.png",
+      "sha256": "760b6472d6d34119cca61d66330215dc9db98a6ba7a9c268768a966b65cf6cd5",
+      "sizeBytes": 759654,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/geld-landscape-640x360.png",
+      "sha256": "22a62069cfe4a59d4219ef252b3951458c37ddf54d29868c2ea1122da263e564",
+      "sizeBytes": 258614,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/geld-phone-360x800.png",
+      "sha256": "4aba96d55434da3c27b91da11a1d13cb00f86df79846e35f8fd78a2cd288a004",
+      "sizeBytes": 345117,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/geld-wide-1280x720.png",
+      "sha256": "14d83067cc3cac87c17f0ccc612a4ea988ab11b573a1aaafc9b9fadb1d7ab9bb",
+      "sizeBytes": 864178,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/grosses-einmaleins-fold-2176x1812-density-225.png",
+      "sha256": "2091b67e22f54ed7ebd3a2a1b435c4ecf6f38d035bf9813fbb826f5e5148ce95",
+      "sizeBytes": 745405,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/grosses-einmaleins-landscape-640x360.png",
+      "sha256": "b1836f87e1d942940536ea765465048ef363b3ec98006c24ba0b8c34af35ea14",
+      "sizeBytes": 257568,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/grosses-einmaleins-phone-360x800.png",
+      "sha256": "76f038624a4817f46c319a5354eabf72f7c565b5d8d00bc719b3f1ad22954857",
+      "sizeBytes": 325470,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/grosses-einmaleins-wide-1280x720.png",
+      "sha256": "c5a33001ccee794171f654226e6f09f6ffb9df9da96f4a2c05b4a6b93f398e66",
+      "sizeBytes": 829005,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/jahreszeiten-fold-2176x1812-density-225.png",
+      "sha256": "afd5f4ae9a586ba81e03dfa74b6110645e21754004ca8323779c3bc25279f972",
+      "sizeBytes": 753477,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/jahreszeiten-landscape-640x360.png",
+      "sha256": "bbedafc995f332c52fa473004cf00267cc0848ee739a882c7e91cd5929113209",
+      "sizeBytes": 259407,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/jahreszeiten-phone-360x800.png",
+      "sha256": "21759519adc20a04d5651f3e3c4d70df69efbddd38c0bcd6bc22b87384dcd125",
+      "sizeBytes": 337887,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/jahreszeiten-wide-1280x720.png",
+      "sha256": "4882d730b1f087cfaf871d7e9dd0d13b07cd45efbf9d16f32eaa1b4b1a5c3cd8",
+      "sizeBytes": 807658,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/mehrzahl-fold-2176x1812-density-225.png",
+      "sha256": "b2ffe6b6c080b413bbbc17ea670aabf0079bbadf614ac45f39ce70fd22fcf495",
+      "sizeBytes": 738563,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/mehrzahl-landscape-640x360.png",
+      "sha256": "d78c051a4c816cfeefd7ef062d415e20f61f6132367900bfe78465edac8ced3c",
+      "sizeBytes": 259537,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/mehrzahl-phone-360x800.png",
+      "sha256": "faebeeaf704a5cf47416f1f52b146a2648b91b1895caf8118a093ac74ce99909",
+      "sizeBytes": 330589,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/mehrzahl-wide-1280x720.png",
+      "sha256": "94ab53362dcb90b4afaebefbd3d1ed0b4e2e7ad71c39970da348978fcbda5994",
+      "sizeBytes": 797188,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/minus-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "9ade39bb7200664927e65af4b4f7e232c404ca659b77ef85b97bd369e26f549d",
+      "sizeBytes": 750731,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/minus-bis-10-landscape-640x360.png",
+      "sha256": "178bbd0dd42ffef5df48657d7b1977bfdb8bac3eba0422e837d838909ad9a119",
+      "sizeBytes": 257139,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/minus-bis-10-phone-360x800.png",
+      "sha256": "7d67b90646cff05faa77f2716959279c2aee55a08dcdbeac4be9b6513dd1ff22",
+      "sizeBytes": 331095,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/minus-bis-10-wide-1280x720.png",
+      "sha256": "eeb03c018e712f4718e6a00ba32525353a9349cb850306bc585376150520c7e7",
+      "sizeBytes": 805202,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/plus-bis-10-reference-fold-2176x1812-density-225.png",
+      "sha256": "8b824df0e3072d0b3e86403d0419252ef3cb3648cfb3d704c827d5d5dcb79f59",
+      "sizeBytes": 771229,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/plus-bis-10-reference-landscape-640x360.png",
+      "sha256": "d0483bc91346c017a561bf2d588afd0c140713da4b6105d278e68d7a03531f8a",
+      "sizeBytes": 308763,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/plus-bis-10-reference-phone-360x800.png",
+      "sha256": "100b5f356fb1d3ce0859b21cb777ef2dcf1de3881cba0ea199405d56131b90fd",
+      "sizeBytes": 342977,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/plus-bis-10-reference-wide-1280x720.png",
+      "sha256": "3a05cde9b6e712f141a80afaa193749153b5ebefe92ae4e03f26c7d8b1e2d44d",
+      "sizeBytes": 780040,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/tiere-fold-2176x1812-density-225.png",
+      "sha256": "33c2830de64e533ba09d8d6e1ed434945d1991530ac35e2d5fe5d6afab3650be",
+      "sizeBytes": 719301,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/tiere-landscape-640x360.png",
+      "sha256": "bc784bca70e8a85a630336a1b2e897e0861d7daa6673e7bc44ec7302bb6341e2",
+      "sizeBytes": 258892,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/tiere-phone-360x800.png",
+      "sha256": "789cc142bd62fb8cb8964e7504d3a820c1a67e9af76cb19bd82e17d9403b6698",
+      "sizeBytes": 325376,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/tiere-wide-1280x720.png",
+      "sha256": "7a98a148470eaa7cb78aaea2bf705c457cf3c9167511f8e5b396626e33e6ac54",
+      "sizeBytes": 795135,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/uhr-fold-2176x1812-density-225.png",
+      "sha256": "2f7a828aabf545ef3c8e7ee1374b0e90754c7d96caf748609940a7bb2c170161",
+      "sizeBytes": 732084,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/uhr-landscape-640x360.png",
+      "sha256": "8f3ea5198e2517c61c6ffe396b8d72d393780da735f04f0faa532c5a821a7db5",
+      "sizeBytes": 262838,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/uhr-phone-360x800.png",
+      "sha256": "5ca715e74d5311a31f923a5419c18888a0aeb2d44e2f794e68dcff9cb7ab8167",
+      "sizeBytes": 341518,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/uhr-wide-1280x720.png",
+      "sha256": "56d122e2779303fe7f586258c4e5a7fc139586594b92ab59e7b91a9279368682",
+      "sizeBytes": 802833,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/verkehr-fold-2176x1812-density-225.png",
+      "sha256": "a6c3b97b101e85e02611389efec6efb8ad1cea491a4518af35854d399a749181",
+      "sizeBytes": 762331,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/verkehr-landscape-640x360.png",
+      "sha256": "d1a286af7f5e95a44b01f5b25d36c8ceacf0765ed635f209da4985d9f96d3c72",
+      "sizeBytes": 255408,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/verkehr-phone-360x800.png",
+      "sha256": "e81db2ac474e70c958febc4c79c73915534c5af84caba77745b736ec2062a964",
+      "sizeBytes": 337846,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/verkehr-wide-1280x720.png",
+      "sha256": "1eb0e8e18d63de20698818c2e07aff33dda674a5a76ddd456d3bf6e4f770252f",
+      "sizeBytes": 785908,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/wetter-fold-2176x1812-density-225.png",
+      "sha256": "e90450db8acc3c1c2cdecd39ca9056130bbac56029d8d251f4282b54dd43aae9",
+      "sizeBytes": 757418,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/wetter-landscape-640x360.png",
+      "sha256": "7d7fd4c7aa784beb769906f09a172ac92ecb0954e18f8950c5dfc8e49fce26eb",
+      "sizeBytes": 259081,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/wetter-phone-360x800.png",
+      "sha256": "12340cf756475d319fe70905cb2c4637a359872b8f100838883040e85421472b",
+      "sizeBytes": 333877,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/wetter-wide-1280x720.png",
+      "sha256": "b2f415e8ad484dfc9ba4dfbbdb4e378282a37b87f396032ff5928930dbd0b376",
+      "sizeBytes": 792885,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/wort-diktat-fold-2176x1812-density-225.png",
+      "sha256": "78f6fc96d511b6cd7e2ff3353ebf114523f12ea343746e610e93aaf808b84455",
+      "sizeBytes": 646049,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/wort-diktat-landscape-640x360.png",
+      "sha256": "866f9997bef3c81773cfdaa7748125bcebf3e0fdad2d576f1c853142f2b88472",
+      "sizeBytes": 268344,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/wort-diktat-phone-360x800.png",
+      "sha256": "0665468370b8c07adff788f5b08c604386eb39b907c525e4e9c13321594d9cc3",
+      "sizeBytes": 241829,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/wort-diktat-wide-1280x720.png",
+      "sha256": "7b0aa981f78a78ebe06ce7f5e9b5f43bd3d00adfcc3b24b1df5ea7c8b21472c7",
+      "sizeBytes": 723602,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/wortarten-fold-2176x1812-density-225.png",
+      "sha256": "d10113593eb3f5e8a96b477a7d8e59c8eef9fe1be537a29c07c6c645b4b53e57",
+      "sizeBytes": 783159,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/wortarten-landscape-640x360.png",
+      "sha256": "939cc042b6a88874ae421a0b7a15c4f5d4ed4399232c1a671191a35304fe7a22",
+      "sizeBytes": 259783,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/wortarten-phone-360x800.png",
+      "sha256": "bc5d022fb61797af5985cff1e9f43bc34536d292debce82262615c52c30a9929",
+      "sizeBytes": 331125,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/wortarten-wide-1280x720.png",
+      "sha256": "3617046a6843d545c39a5522611d619f06dc8f07268fc0b2b9ef92ce1f4ed1d7",
+      "sizeBytes": 800630,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-10-fold-2176x1812-density-225.png",
+      "sha256": "b698b08ae330a08f2536026de59adbff4f7e6110510a78de018a1f67ebae1dd7",
+      "sizeBytes": 787262,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-10-landscape-640x360.png",
+      "sha256": "08498a2eec3026703e36868a6580e8cbf0b93cc3e0d67c46507cc8b0b8ce0848",
+      "sizeBytes": 260276,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-10-phone-360x800.png",
+      "sha256": "2488ad99563c6ba899070910d640bb7647af315c07e8440d3dee4d7e6f1956c0",
+      "sizeBytes": 337238,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-10-wide-1280x720.png",
+      "sha256": "84c403a8dc4653aec223b52ab5593e4c354b801a6877fddd941eb1115752016b",
+      "sizeBytes": 817330,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-100-fold-2176x1812-density-225.png",
+      "sha256": "3d4e700d3a333c00774c6a442f1db90f728fac9f91bf7c97a6ac520ac0154c6f",
+      "sizeBytes": 730968,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-100-landscape-640x360.png",
+      "sha256": "4ff6e155d6f750b593833facbc93ad15c7d04c4ddb18014ee8e2e6cc54d0e2ac",
+      "sizeBytes": 258237,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-100-phone-360x800.png",
+      "sha256": "2f54f96dfe21b75c99e64f9634e59bf3a5c215a4b390ed9c0d443307dbea8647",
+      "sizeBytes": 319818,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/zahlen-bis-100-wide-1280x720.png",
+      "sha256": "003bea8a5b97505de0e6dd6884ccd4daf63e1932021db945c038c1cf99eea137",
+      "sizeBytes": 836496,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    },
+    {
+      "file": "after/zeitformen-fold-2176x1812-density-225.png",
+      "sha256": "43705ed686d4e485bdc3e2e6272aa90d4040912c70b69d0a239314091d2a12bd",
+      "sizeBytes": 790611,
+      "pngPixels": [
+        968,
+        806
+      ]
+    },
+    {
+      "file": "after/zeitformen-landscape-640x360.png",
+      "sha256": "e2c98cf7e1c592c64191438a2de485dd66d27724e4ee39c912999202700bacdd",
+      "sizeBytes": 261262,
+      "pngPixels": [
+        640,
+        360
+      ]
+    },
+    {
+      "file": "after/zeitformen-phone-360x800.png",
+      "sha256": "cb2d3bc1c33eb003394c734dd2d121f170930568323c0935c4803e8acaf52b1f",
+      "sizeBytes": 338701,
+      "pngPixels": [
+        360,
+        800
+      ]
+    },
+    {
+      "file": "after/zeitformen-wide-1280x720.png",
+      "sha256": "ec392e80e5482b5b73f303772941a1cdc5f58c3d2c4b80caefd4914dcb4baaaf",
+      "sizeBytes": 802249,
+      "pngPixels": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "comparisons": [
+    {
+      "file": "comparisons/Lumo-plus-bis-10-reference-phone-360x800-Vergleich.png",
+      "sha256": "87857283920632b7114dd8da8515c391ee7b72089b36934bb521632427f6ef9d"
+    },
+    {
+      "file": "comparisons/Lumo-plus-bis-10-reference-fold-2176x1812-density-225-Vergleich.png",
+      "sha256": "a52d054bf440986aba14f50ce401dad1c137cd3c17184e927d39e6611e25f402"
+    },
+    {
+      "file": "comparisons/Lumo-minus-bis-10-phone-360x800-Vergleich.png",
+      "sha256": "ce137a75e1f38e70e442781263db6a3a931862c16c3b4eb698d35e2cc02ba1f1"
+    },
+    {
+      "file": "comparisons/Lumo-minus-bis-10-fold-2176x1812-density-225-Vergleich.png",
+      "sha256": "a9ba8bd30f2559920182bcdbef2b8d7c83650a8a1b06c4a98829dde8b8e35ac8"
+    },
+    {
+      "file": "comparisons/Lumo-formen-phone-360x800-Vergleich.png",
+      "sha256": "94e3926514dc5f26aa284bf1439ad3d26ac54843079239bff85788dcf853c1ab"
+    },
+    {
+      "file": "comparisons/Lumo-formen-fold-2176x1812-density-225-Vergleich.png",
+      "sha256": "eeb846a4d9385abf3d5d0f75f88152295262bedfc1af3040ab27bd9c28608574"
+    },
+    {
+      "file": "comparisons/Lumo-uhr-phone-360x800-Vergleich.png",
+      "sha256": "a570601fcbfba0eb9a37cd3d4bddcee3b9f93b5d7a75901cee11b9fcbc99787c"
+    },
+    {
+      "file": "comparisons/Lumo-uhr-fold-2176x1812-density-225-Vergleich.png",
+      "sha256": "9366a3ded232b7300c83e4852230cd884eb770f73de6180f3e001f052fdf20c0"
+    },
+    {
+      "file": "comparisons/Lumo-zahlen-bis-10-phone-360x800-Vergleich.png",
+      "sha256": "c56e15eb7d0e98eb9ce42baf8de2fd0b69bb9234dc175d4512df8774e50e5aee"
+    },
+    {
+      "file": "comparisons/Lumo-zahlen-bis-10-fold-2176x1812-density-225-Vergleich.png",
+      "sha256": "840abb19a0a57afded9f06efbd7a17881d0f2c2a3d921078d3b0bc92afaf559a"
+    }
+  ]
+}

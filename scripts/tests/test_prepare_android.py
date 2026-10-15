@@ -1,5 +1,6 @@
 import importlib.util
 from pathlib import Path
+import shutil
 import tempfile
 import unittest
 import xml.etree.ElementTree as ET
@@ -8,6 +9,49 @@ spec = importlib.util.spec_from_file_location('prepare_android', Path(__file__).
 module = importlib.util.module_from_spec(spec); spec.loader.exec_module(module)
 
 class AndroidHostTest(unittest.TestCase):
+    def test_actual_local_voice_templates_preserve_host_namespace_and_user_files(self):
+        """Real new source templates; fixtures do not prove Android compilation."""
+        source = Path(__file__).resolve().parents[2] / 'tools/auto_install'
+        namespaces = ('dev.ullmann.lumo.lumo_lernen', 'example.retained.host')
+        for namespace in namespaces:
+            with self.subTest(namespace=namespace), tempfile.TemporaryDirectory() as tmp:
+                root = Path(tmp)
+                main = root / 'android/app/src/main'
+                main.mkdir(parents=True)
+                (main / 'AndroidManifest.xml').write_text(
+                    '<manifest xmlns:android="http://schemas.android.com/apk/res/android">'
+                    '<application><activity android:name=".MainActivity"/>'
+                    '</application></manifest>')
+                (root / 'android/app/build.gradle.kts').write_text(
+                    f'android {{ namespace = "{namespace}"\n'
+                    f' defaultConfig {{ applicationId = "{namespace}" }} }}')
+                templates = root / 'tools/auto_install'
+                templates.mkdir(parents=True)
+                for name in ('MainActivity.kt', 'LumoOfflineSpeechBridge.kt',
+                             'LumoOfflineSpeechEngine.java', 'lumo_file_paths.xml'):
+                    shutil.copyfile(source / name, templates / name)
+                (root / 'tools/lumo-debug.keystore').write_bytes(b'test-fixture')
+                untouched = main / 'assets/fictional-retained-progress.json'
+                untouched.parent.mkdir(parents=True)
+                untouched.write_bytes(b'{"fixture":"not real child data","xp":17}')
+                for _ in range(2):
+                    module.prepare(root, root / 'keystore', side_by_side=True)
+                    for name, language in (
+                        ('LumoOfflineSpeechEngine.java', 'java'),
+                        ('LumoOfflineSpeechBridge.kt', 'kotlin'),
+                        ('MainActivity.kt', 'kotlin'),
+                    ):
+                        target = main / language / Path(*namespace.split('.')) / name
+                        actual = target.read_text()
+                        original = (source / name).read_text()
+                        terminator = ';' if language == 'java' else ''
+                        self.assertEqual(actual.splitlines()[0],
+                                         f'package {namespace}{terminator}')
+                        self.assertEqual(actual.partition('\n')[2],
+                                         original.partition('\n')[2])
+                    self.assertEqual(untouched.read_bytes(),
+                                     b'{"fixture":"not real child data","xp":17}')
+
     def test_namespace_permissions_signing_and_idempotence(self):
         with tempfile.TemporaryDirectory() as tmp:
             root=Path(tmp); main=root/'android/app/src/main'; main.mkdir(parents=True)

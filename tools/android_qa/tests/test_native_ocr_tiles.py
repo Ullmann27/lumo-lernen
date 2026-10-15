@@ -140,7 +140,7 @@ class NativeOCRTileGuards(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, 'changed during OCR'):
             read_tiled_word(self.source, self.out, 'mutated', 'item', normalize, mutating_command)
 
-    def test_fallback_runs_only_after_all_four_whole_frame_variants_miss_requested_word(self):
+    def test_fallback_runs_only_after_all_five_whole_frame_variants_miss_requested_word(self):
         path = Path(__file__).resolve().parents[3] / '.github/probes/creative_android_probe.py'
         spec = importlib.util.spec_from_file_location('creative_ocr_guard', path)
         probe = importlib.util.module_from_spec(spec)
@@ -162,7 +162,7 @@ class NativeOCRTileGuards(unittest.TestCase):
         with patch.object(probe.base, 'command', command), \
                 patch.object(probe, 'read_tiled_word', return_value=[]) as fallback:
             probe.image_lines(self.out, 'miss', 'item', self.source)
-            self.assertEqual(len(calls), 4)
+            self.assertEqual(len(calls), 5)
             fallback.assert_called_once()
         calls.clear()
 

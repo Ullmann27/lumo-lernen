@@ -1,0 +1,1762 @@
+{
+ "quelle": "Heinz, 4. Oktober 2026: zehn transparente Bildtafeln (RGBA, 1448x1086)",
+ "format": "WebP, Qualitaet 90, Alpha verlustfrei",
+ "tafeln": [
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t01_gameplay_items.png",
+   "bytes": 2252233,
+   "sha256": "47c9f74bfcc3262fc502bc73e487be1b1d44bf2b16750e7e6056c83df0f78da2"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t02_belohnungen.png",
+   "bytes": 2108487,
+   "sha256": "dbc48e021a86dd29f6513aa0ea70e5d5d0a8553cbf8b9ab72f3b4ac6df692f41"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t03_mix.png",
+   "bytes": 2641196,
+   "sha256": "c44160cb6d21ce1b227add06fc28813e46921537fc38c7de32058ccb66216bb1"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t04_ui_symbole.png",
+   "bytes": 2093755,
+   "sha256": "c4dc5a55bbab356fdc6388a12619f81201008a279d44deafc076365f8d7b14b4"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t05_gebaeude.png",
+   "bytes": 2795162,
+   "sha256": "9c815f9ec7795f5d277220d0e3da13e89f18641ba5fea488e62aca0d9b9a0424"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t06_strecken_deko.png",
+   "bytes": 2137982,
+   "sha256": "a7429a315df1a2950a7b7cf38ffd659cf302f8458a3e9ddc57817697f982be2f"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t07_natur.png",
+   "bytes": 2496664,
+   "sha256": "b8737450bd2391bf38df3fd52869e6384f96c65d1732e76b9c5c5944807fb43f"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t08_streckenteile.png",
+   "bytes": 2084037,
+   "sha256": "98d285b7f3a74a3846102cd111f41fdbe54aaa30b6fb0675b57cb13eb3b739e5"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t09_figuren_karts.png",
+   "bytes": 2260998,
+   "sha256": "1a207b95e0e72dde9a99a00385fadf2da7ce3c272ddcf20a39e34e2626be5362"
+  },
+  {
+   "datei": "docs/design_targets/2026-10-04/tafeln/t10_garage_teile.png",
+   "bytes": 2199829,
+   "sha256": "20c4ac1b34712ef22fc7996b74248507fdd22c920d7ae9fcddd4b065a3121dab"
+  }
+ ],
+ "bilder": [
+  {
+   "datei": "assets/lumo_design/kart_items/turbo_pad.webp",
+   "motiv": "Turbo-Pad mit Pfeilen",
+   "tafel": "t01_gameplay_items",
+   "nr": 1,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 29592,
+   "sha256": "dd45afabfeaed13efbaad48c7d1b3afe89fbcdbf52a9c186cb26b0cab2e3fc4d"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/speed_ring.webp",
+   "motiv": "Tempo-Ring mit Sternen",
+   "tafel": "t01_gameplay_items",
+   "nr": 2,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 61998,
+   "sha256": "3454bd0d1cc054977d0835ef3e832f348f3306646b6ab0f7c6e6cba13e32e86c"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/item_box.webp",
+   "motiv": "Item-Box mit Fragezeichen",
+   "tafel": "t01_gameplay_items",
+   "nr": 3,
+   "pixel": [
+    367,
+    367
+   ],
+   "bytes": 44050,
+   "sha256": "1853366ef6e62ade81e902998ffb34e798a0a8cd5c5f870e758ff3412e8f391a"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/star_token.webp",
+   "motiv": "Stern-Token (Münze)",
+   "tafel": "t01_gameplay_items",
+   "nr": 4,
+   "pixel": [
+    374,
+    374
+   ],
+   "bytes": 31196,
+   "sha256": "d03800354cd15c1eb5a8310dca5753ced3d3452506f7819e6dd2dac35f1dfec6"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/book_token.webp",
+   "motiv": "Buch-Token (nur Sammelobjekt)",
+   "tafel": "t01_gameplay_items",
+   "nr": 5,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 44534,
+   "sha256": "a193368a7294c88bc6ee1d0af18ccef743401c0fdce31a4a5d99e2303c1fca87"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/shield_powerup.webp",
+   "motiv": "Schild-Power-up",
+   "tafel": "t01_gameplay_items",
+   "nr": 6,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 44436,
+   "sha256": "b9082d104c04a180fc46bcc3f97c59f8d236b43f8b53a49d23daef81d6515899"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/turbo_battery.webp",
+   "motiv": "Turbo-Batterie",
+   "tafel": "t01_gameplay_items",
+   "nr": 7,
+   "pixel": [
+    353,
+    353
+   ],
+   "bytes": 42492,
+   "sha256": "6493d2a6f8e487ac55c886cbe70ef6967fed21ea48ea0cf6590776cddfb836b5"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/repair_pad.webp",
+   "motiv": "Reparatur-Pad",
+   "tafel": "t01_gameplay_items",
+   "nr": 8,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 36696,
+   "sha256": "e03b2705d48945e2ac7b3bfe9d1380803da86f2b81875522b426586c69a93208"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/star_orb.webp",
+   "motiv": "Sternenkugel mit Ring",
+   "tafel": "t01_gameplay_items",
+   "nr": 9,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 43200,
+   "sha256": "408366ebb8ba77fbbc2f9e8f9c6b9f6680a26882ae250cfe56c2aa3ccaa475e2"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/star_portal.webp",
+   "motiv": "Portal mit Stern",
+   "tafel": "t01_gameplay_items",
+   "nr": 10,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 46508,
+   "sha256": "94da6a1f20d9180c55688a2e21f4db82a4358256701284be6964e55ce591ee4e"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/checkpoint_flag.webp",
+   "motiv": "Zielflagge auf Sockel",
+   "tafel": "t01_gameplay_items",
+   "nr": 11,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 50428,
+   "sha256": "ebf84add63f606ffe1c629c7aeae758f81ad462485ef8c0578a9cdf669ab31c1"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/crystal_purple.webp",
+   "motiv": "violetter Kristall",
+   "tafel": "t01_gameplay_items",
+   "nr": 12,
+   "pixel": [
+    375,
+    375
+   ],
+   "bytes": 33138,
+   "sha256": "23ff55ce22c4d5c97bee2e8e1de0ad40094db64c1e2bdfe8ae7593c14ae1bec0"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/crystal_pedestal.webp",
+   "motiv": "Kristall auf Sockel",
+   "tafel": "t01_gameplay_items",
+   "nr": 13,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 49576,
+   "sha256": "84c594160fedaf257f38b2f03e4deba22fd208a5380e8e7daa31f5f5072501b3"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/reward_trophy.webp",
+   "motiv": "Goldpokal mit Lorbeer",
+   "tafel": "t02_belohnungen",
+   "nr": 1,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 53162,
+   "sha256": "a1511f0c3e6213d7c65410f88d577bc24d74932dd905d2ff6932e635e36994ff"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/medal_star.webp",
+   "motiv": "Sternmedaille mit Band",
+   "tafel": "t02_belohnungen",
+   "nr": 2,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 34350,
+   "sha256": "5d309afad49e16a152e9dfeef00ccdc1c635145e9f9d597c7d74926bd0890c80"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/crown.webp",
+   "motiv": "Krone",
+   "tafel": "t02_belohnungen",
+   "nr": 3,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 42388,
+   "sha256": "95ba0ea9433ab751744e47b2d6c68fb187b20844da8099b3d6e42f453b07e94c"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/treasure_chest.webp",
+   "motiv": "Schatztruhe",
+   "tafel": "t02_belohnungen",
+   "nr": 4,
+   "pixel": [
+    383,
+    383
+   ],
+   "bytes": 43884,
+   "sha256": "69273688ad38b031181ec1bf5fc2329a25881a699b875b07f5ba2fd2ca769371"
+  },
+  {
+   "datei": "assets/lumo_design/icons/gift_box.webp",
+   "motiv": "Geschenk",
+   "tafel": "t02_belohnungen",
+   "nr": 5,
+   "pixel": [
+    359,
+    359
+   ],
+   "bytes": 37256,
+   "sha256": "460d46097093adbdf568c78391fcdba49dcd5119aecd1c8e442959ac794c7398"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/star_glow.webp",
+   "motiv": "leuchtender Stern",
+   "tafel": "t02_belohnungen",
+   "nr": 6,
+   "pixel": [
+    338,
+    338
+   ],
+   "bytes": 35270,
+   "sha256": "90b0b94402baa33333658c6b403eb45bb5aaf8d37dc1ad9d47e36b1f0d640ab1"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/coin_star.webp",
+   "motiv": "Sternmünze",
+   "tafel": "t02_belohnungen",
+   "nr": 7,
+   "pixel": [
+    290,
+    290
+   ],
+   "bytes": 26950,
+   "sha256": "be78873cc71ae30950cfacd9263f53576f8b16000d44c8d2adf4a386c56d6373"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/crystal_blue.webp",
+   "motiv": "blauer Kristall",
+   "tafel": "t02_belohnungen",
+   "nr": 8,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 34388,
+   "sha256": "942df1e4e33c9c3c3d05ce83c6a804ddde69f500937f56b09c77c972c82e1c22"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/rosette_star.webp",
+   "motiv": "blaue Rosette mit Stern",
+   "tafel": "t02_belohnungen",
+   "nr": 9,
+   "pixel": [
+    349,
+    349
+   ],
+   "bytes": 38190,
+   "sha256": "abe13baf12f5a8ca9f09ceb10d1c2eb39828a9eef091df301b54f3f4ed89cb8c"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/shield_star.webp",
+   "motiv": "Sternschild",
+   "tafel": "t02_belohnungen",
+   "nr": 10,
+   "pixel": [
+    323,
+    323
+   ],
+   "bytes": 27028,
+   "sha256": "51af154600947d294d02e17a483060c28d622629c1843a92304cbc8fc536b989"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/laurel_star.webp",
+   "motiv": "Lorbeerkranz mit Stern",
+   "tafel": "t02_belohnungen",
+   "nr": 11,
+   "pixel": [
+    371,
+    371
+   ],
+   "bytes": 46778,
+   "sha256": "cd641c07dd51a29aef125251bef33d81f35230a31d32ae1119d81074b3795958"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/star_burst.webp",
+   "motiv": "Sternexplosion",
+   "tafel": "t02_belohnungen",
+   "nr": 12,
+   "pixel": [
+    338,
+    338
+   ],
+   "bytes": 41308,
+   "sha256": "4e1b4c784c7b9a8f79d304665cad84dd1234d9ee16df48e7cd20fa81148fd870"
+  },
+  {
+   "datei": "assets/lumo_design/icons/ticket_star.webp",
+   "motiv": "Sternticket",
+   "tafel": "t02_belohnungen",
+   "nr": 13,
+   "pixel": [
+    338,
+    338
+   ],
+   "bytes": 35316,
+   "sha256": "3b39b718419c7bc618ed7e807baac4e2bd10b770ced45e6d94b0c18599b83a12"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/stars_swirl.webp",
+   "motiv": "fliegende Sterne",
+   "tafel": "t02_belohnungen",
+   "nr": 14,
+   "pixel": [
+    336,
+    336
+   ],
+   "bytes": 39122,
+   "sha256": "bb643e5cc5ccf0868b39cbd7017b9c410bc241b91f6c520dce2b193022694811"
+  },
+  {
+   "datei": "assets/lumo_design/characters/fox_garage_wrench.webp",
+   "motiv": "Lumo mit Schraubenschlüssel, Daumen hoch (Garage k01)",
+   "tafel": "t03_mix",
+   "nr": 1,
+   "pixel": [
+    354,
+    436
+   ],
+   "bytes": 59882,
+   "sha256": "d700149890d8d0cdeac21efc6d3bc943192b4c87f862eb632f4989ee5718353f"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/reward_kart.webp",
+   "motiv": "Lumos Kart schräg von vorne (Garage-Drehteller k01)",
+   "tafel": "t03_mix",
+   "nr": 2,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 31294,
+   "sha256": "4f8cb2e57eaa15f2f26f5e422473d984133ab37be348822f987b870f9cec1388"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/trophy_alt.webp",
+   "motiv": "Goldpokal (Variante)",
+   "tafel": "t03_mix",
+   "nr": 3,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 44666,
+   "sha256": "975010535db18ab4fd4812efc584fe0f62d5cdfde1519e8552b6111ffe7f8981"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/star_alt.webp",
+   "motiv": "Stern (Variante)",
+   "tafel": "t03_mix",
+   "nr": 4,
+   "pixel": [
+    265,
+    265
+   ],
+   "bytes": 21826,
+   "sha256": "6875943c6df12450e87b4d9c1b0b461ddca8fa35e9926588933406c9272a6e08"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/book_token_alt.webp",
+   "motiv": "Buch (Variante)",
+   "tafel": "t03_mix",
+   "nr": 5,
+   "pixel": [
+    310,
+    310
+   ],
+   "bytes": 30042,
+   "sha256": "0cfbcd8344b518602dd54953b16eebb972e4490640faf411008857d37e2ba244"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/item_box_alt.webp",
+   "motiv": "Item-Box (Variante)",
+   "tafel": "t03_mix",
+   "nr": 6,
+   "pixel": [
+    261,
+    261
+   ],
+   "bytes": 24752,
+   "sha256": "2e29886469e9ec41ebeb6fd720ce36b7895278bc85c0a24f67d476dad0e7cca5"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/speed_ring_alt.webp",
+   "motiv": "Tempo-Ring (Variante)",
+   "tafel": "t03_mix",
+   "nr": 7,
+   "pixel": [
+    312,
+    312
+   ],
+   "bytes": 39896,
+   "sha256": "9cf2c62db1a1ac9f5ad3bf8911c2b9df0f87c61634000964cac579bfbf8e0c9a"
+  },
+  {
+   "datei": "assets/lumo_design/kart_items/turbo_pad_alt.webp",
+   "motiv": "Turbo-Pad (Variante)",
+   "tafel": "t03_mix",
+   "nr": 8,
+   "pixel": [
+    378,
+    378
+   ],
+   "bytes": 26022,
+   "sha256": "8fbb7becf54f18d273eb0a6d83dd2b6e33c2228499391843c65881bb2ea35438"
+  },
+  {
+   "datei": "assets/lumo_design/track/straight_alt.webp",
+   "motiv": "Gerade (Variante)",
+   "tafel": "t03_mix",
+   "nr": 9,
+   "pixel": [
+    304,
+    242
+   ],
+   "bytes": 24546,
+   "sha256": "e1d2b0a37d63aea5e50a0966debd36af4f8cb72fffdbc8d53cb0644472fdc00a"
+  },
+  {
+   "datei": "assets/lumo_design/track/curve_alt.webp",
+   "motiv": "Kurve (Variante)",
+   "tafel": "t03_mix",
+   "nr": 10,
+   "pixel": [
+    384,
+    277
+   ],
+   "bytes": 42092,
+   "sha256": "d7f96cc632384891a020fc89de8e625e02bf0ee58e43b7ea051b3bf5f0a84d2d"
+  },
+  {
+   "datei": "assets/lumo_design/deco/finish_gate.webp",
+   "motiv": "Zieltor mit Stern auf Fahrbahn",
+   "tafel": "t03_mix",
+   "nr": 11,
+   "pixel": [
+    384,
+    189
+   ],
+   "bytes": 36202,
+   "sha256": "2d6a2c2ab80f8c0291314173462f600666f9ba0d10a87da97e268fea8b4bb431"
+  },
+  {
+   "datei": "assets/lumo_design/rewards/reward_island.webp",
+   "motiv": "Himmelsinsel mit Burg und Wasserfall",
+   "tafel": "t03_mix",
+   "nr": 12,
+   "pixel": [
+    334,
+    334
+   ],
+   "bytes": 52528,
+   "sha256": "b5ab1c891559610bb6844644293c165ba9a944cea28361b599267bc99ae220ed"
+  },
+  {
+   "datei": "assets/lumo_design/nature/waterfall_cliff_alt.webp",
+   "motiv": "Wasserfall-Felsen (Variante)",
+   "tafel": "t03_mix",
+   "nr": 13,
+   "pixel": [
+    310,
+    322
+   ],
+   "bytes": 49006,
+   "sha256": "8c572720455ad743675ef2d2b17521fb7dee3db11b9ed2518d87c43d5d64d09c"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/library_gate_alt.webp",
+   "motiv": "Bibliothekstor (Variante)",
+   "tafel": "t03_mix",
+   "nr": 14,
+   "pixel": [
+    384,
+    240
+   ],
+   "bytes": 40944,
+   "sha256": "82971c57fd5407488f41292594bb9116f7e8480779960b45488282c1c3add49e"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/town_hall.webp",
+   "motiv": "Stadthaus breit",
+   "tafel": "t03_mix",
+   "nr": 15,
+   "pixel": [
+    384,
+    203
+   ],
+   "bytes": 43808,
+   "sha256": "69041208463ee9f75ba5dd4af198c22425d0664f651b427baad68e8ed4d73b1c"
+  },
+  {
+   "datei": "assets/lumo_design/nature/islands_small.webp",
+   "motiv": "kleine schwebende Inseln",
+   "tafel": "t03_mix",
+   "nr": 16,
+   "pixel": [
+    241,
+    237
+   ],
+   "bytes": 26924,
+   "sha256": "4c8a4945628f81c5fb3151ad8f1566701c639bbffecaedc5c248d8b22e3351df"
+  },
+  {
+   "datei": "assets/lumo_design/nature/crystal_rock.webp",
+   "motiv": "Fels mit Kristallen",
+   "tafel": "t03_mix",
+   "nr": 17,
+   "pixel": [
+    271,
+    213
+   ],
+   "bytes": 25360,
+   "sha256": "524a36cdc4ca7e677ec01632139167e39a2d1ab2ae51bd30e8b3652d0603d15e"
+  },
+  {
+   "datei": "assets/lumo_design/ui/home.webp",
+   "motiv": "Haus (Start)",
+   "tafel": "t04_ui_symbole",
+   "nr": 1,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 27416,
+   "sha256": "ade0ed7a613e2ed8bdbb99b0820611d6de09a3a09cbba7d6670c6092967bd33c"
+  },
+  {
+   "datei": "assets/lumo_design/ui/book.webp",
+   "motiv": "Buch (Lernen)",
+   "tafel": "t04_ui_symbole",
+   "nr": 2,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 24322,
+   "sha256": "21ff6f85538cf74e533238b051de35e318d9eccdca5a2ccea36670b5f15cc41d"
+  },
+  {
+   "datei": "assets/lumo_design/ui/gamepad.webp",
+   "motiv": "Controller (Spielen)",
+   "tafel": "t04_ui_symbole",
+   "nr": 3,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 22734,
+   "sha256": "713bd1238b6505375878ac503a504adbd6fb2c53db9e12aa74ca7db5357d129b"
+  },
+  {
+   "datei": "assets/lumo_design/ui/trophy.webp",
+   "motiv": "Pokal (Tests/Erfolge)",
+   "tafel": "t04_ui_symbole",
+   "nr": 4,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 31656,
+   "sha256": "5ea77a8d5b03041607c9ecba4f9b24490a592aac69e11f2728f4f44d4eb0f710"
+  },
+  {
+   "datei": "assets/lumo_design/ui/avatar_fox.webp",
+   "motiv": "Lumo-Avatar rund (Profil)",
+   "tafel": "t04_ui_symbole",
+   "nr": 5,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 27370,
+   "sha256": "d88f75b892b0e9dd3848e28ee1c46517c3feba6adf62c1f63e63f6ac58a725d2"
+  },
+  {
+   "datei": "assets/lumo_design/ui/settings.webp",
+   "motiv": "Zahnrad (Einstellungen)",
+   "tafel": "t04_ui_symbole",
+   "nr": 6,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 25722,
+   "sha256": "1af93d8b6fc4e9aa7e8f8b37534715fd59ff0bd6d2c34079cdfbd2458999b3a4"
+  },
+  {
+   "datei": "assets/lumo_design/ui/star.webp",
+   "motiv": "Stern (Sterne-Anzeige)",
+   "tafel": "t04_ui_symbole",
+   "nr": 7,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 22882,
+   "sha256": "4bd601e547d924313a505f46d09b3eb497db17e045adcdbad5b9944597967bd4"
+  },
+  {
+   "datei": "assets/lumo_design/ui/shield.webp",
+   "motiv": "Schild (Elternbereich/Sicherheit)",
+   "tafel": "t04_ui_symbole",
+   "nr": 8,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 22754,
+   "sha256": "4c9474a47f04f579d99459db029d5dbf8a215a7d9c1c1d44d220f81b03fb5f52"
+  },
+  {
+   "datei": "assets/lumo_design/ui/heart.webp",
+   "motiv": "Herz",
+   "tafel": "t04_ui_symbole",
+   "nr": 9,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 19906,
+   "sha256": "d56555dbb0acd6433ecc63c642b201a4f7fb25af06ab7323a4246e837e595b0f"
+  },
+  {
+   "datei": "assets/lumo_design/ui/lock.webp",
+   "motiv": "Schloss (gesperrt)",
+   "tafel": "t04_ui_symbole",
+   "nr": 10,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 25266,
+   "sha256": "5c4fa7354c943d3aff8db980da8a35ada562248e0ccf809ff760990f879fb515"
+  },
+  {
+   "datei": "assets/lumo_design/icons/wrench.webp",
+   "motiv": "Schraubenschlüssel (Garage)",
+   "tafel": "t04_ui_symbole",
+   "nr": 11,
+   "pixel": [
+    347,
+    347
+   ],
+   "bytes": 33322,
+   "sha256": "e37a061bcc790ed04d2dcd5dbed81870f50f8641f394b3ebf46a8ac424238b1b"
+  },
+  {
+   "datei": "assets/lumo_design/ui/check.webp",
+   "motiv": "Haken mit Flügeln (erledigt)",
+   "tafel": "t04_ui_symbole",
+   "nr": 12,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 21290,
+   "sha256": "2b50250606473f5389cf8e6c8ffa6eae240656e2d745dceef699b6c9fa5e46af"
+  },
+  {
+   "datei": "assets/lumo_design/icons/lightning.webp",
+   "motiv": "Blitz (Boost)",
+   "tafel": "t04_ui_symbole",
+   "nr": 13,
+   "pixel": [
+    283,
+    283
+   ],
+   "bytes": 19450,
+   "sha256": "354564f1a2ff3ed843e517be682deab771a7e2fa8bb71a7b801ec2550fa69d64"
+  },
+  {
+   "datei": "assets/lumo_design/ui/diamond.webp",
+   "motiv": "Diamant",
+   "tafel": "t04_ui_symbole",
+   "nr": 14,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 24730,
+   "sha256": "98e0c694ba9e4540714ca34f4dc22359b257ebba3a8023470288818329edf6bd"
+  },
+  {
+   "datei": "assets/lumo_design/ui/play.webp",
+   "motiv": "Play-Knopf",
+   "tafel": "t04_ui_symbole",
+   "nr": 15,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 23884,
+   "sha256": "96de6a271ab0b4f2190e897d0d11b76940fdeb6bac28b3ae09d3e1baad2c4d3c"
+  },
+  {
+   "datei": "assets/lumo_design/ui/back.webp",
+   "motiv": "Zurück-Pfeil",
+   "tafel": "t04_ui_symbole",
+   "nr": 16,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 18228,
+   "sha256": "ad6ec9b3408dce146dedc82a3d4db123b92e257aa6f59cf3d33bd7e966cecbe1"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/library_gate.webp",
+   "motiv": "Bibliothekstor mit Buch",
+   "tafel": "t05_gebaeude",
+   "nr": 1,
+   "pixel": [
+    384,
+    304
+   ],
+   "bytes": 54530,
+   "sha256": "a443eeaf0c810b858a1dacc0ec9b101ebb005b86e7124cc24b9b352320ad3e45"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/library_tunnel.webp",
+   "motiv": "Bibliothek-Tunnel",
+   "tafel": "t05_gebaeude",
+   "nr": 2,
+   "pixel": [
+    359,
+    353
+   ],
+   "bytes": 54906,
+   "sha256": "a97320d40c9816abb78ed8fa83985181ba605e565ef0d24a3c00b11254f8cb28"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/town_house.webp",
+   "motiv": "Stadthaus mit Café",
+   "tafel": "t05_gebaeude",
+   "nr": 3,
+   "pixel": [
+    338,
+    384
+   ],
+   "bytes": 57082,
+   "sha256": "35f5fa3de1c958a6c7182a0d1a7241b9ddfe3cb72d207215621976ef07cc382d"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/crystal_city.webp",
+   "motiv": "Lichterstadt-Türme",
+   "tafel": "t05_gebaeude",
+   "nr": 4,
+   "pixel": [
+    384,
+    361
+   ],
+   "bytes": 66342,
+   "sha256": "7e9372a9cbddc45858537c7ccdf22bdd8427e2183dd240da2156d8ee7bf709f2"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/observatory.webp",
+   "motiv": "Sternwarte",
+   "tafel": "t05_gebaeude",
+   "nr": 5,
+   "pixel": [
+    384,
+    310
+   ],
+   "bytes": 50852,
+   "sha256": "658ce58b6e7412d1fdfaa11ffaa933e83ec64f56959b35570a32f585bfeb6e16"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/crystal_cave.webp",
+   "motiv": "Kristallhöhle",
+   "tafel": "t05_gebaeude",
+   "nr": 6,
+   "pixel": [
+    369,
+    307
+   ],
+   "bytes": 53734,
+   "sha256": "be916850d9edc0d805cf8b7cc33f29f929712f0b18eb6d8291be8b46d2368c36"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/temple_ruins.webp",
+   "motiv": "Tempelruine",
+   "tafel": "t05_gebaeude",
+   "nr": 7,
+   "pixel": [
+    384,
+    283
+   ],
+   "bytes": 55072,
+   "sha256": "7ad1ae56123796c3fcfec89a5c438947fc30d0c6d9d42459899260e316a008ec"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/star_portal.webp",
+   "motiv": "Sternenportal",
+   "tafel": "t05_gebaeude",
+   "nr": 8,
+   "pixel": [
+    362,
+    294
+   ],
+   "bytes": 50504,
+   "sha256": "8c7173f7bf087abd536fb55b200d0713b7156d278db053b71376b0cf7a8106dd"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/glass_tunnel.webp",
+   "motiv": "Glas-Tunnel",
+   "tafel": "t05_gebaeude",
+   "nr": 9,
+   "pixel": [
+    384,
+    185
+   ],
+   "bytes": 35340,
+   "sha256": "4bab027cbac4d3cab336b726f48752e936b5d0bd1683ed1c6c36f41c71dfc6bd"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/terrace.webp",
+   "motiv": "Aussichtsterrasse",
+   "tafel": "t05_gebaeude",
+   "nr": 10,
+   "pixel": [
+    384,
+    283
+   ],
+   "bytes": 48916,
+   "sha256": "4d37d71b1326ae5651a6e6e5383c3ae8c49c3e89073b2bbec5c119b00cd6ba37"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/book_arch.webp",
+   "motiv": "Bücher-Torbogen",
+   "tafel": "t05_gebaeude",
+   "nr": 11,
+   "pixel": [
+    359,
+    293
+   ],
+   "bytes": 50316,
+   "sha256": "40f22e6e6921b580525ab3b3511020d62eeb9ae525cda93835deae61868ee054"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/corner_house.webp",
+   "motiv": "Eckhaus mit Balkon",
+   "tafel": "t05_gebaeude",
+   "nr": 12,
+   "pixel": [
+    304,
+    333
+   ],
+   "bytes": 49656,
+   "sha256": "9f0ed9a28b2d389412ca444df4a2308da31a68488e066cb65cbfc44a22c96d24"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/clock_tower.webp",
+   "motiv": "Uhrturm",
+   "tafel": "t05_gebaeude",
+   "nr": 13,
+   "pixel": [
+    384,
+    205
+   ],
+   "bytes": 34064,
+   "sha256": "4385a65dc9676582f10ffe9c2a3ca401ec5fa62a60fc3c96c4689f5ed79ebaea"
+  },
+  {
+   "datei": "assets/lumo_design/buildings/star_bridge.webp",
+   "motiv": "Steinbrücke mit Stern",
+   "tafel": "t05_gebaeude",
+   "nr": 14,
+   "pixel": [
+    384,
+    121
+   ],
+   "bytes": 24958,
+   "sha256": "44e353ab471d8ab63f01f5bf8745d8a229bf70ea118a695aa2ee8ab529e2b2db"
+  },
+  {
+   "datei": "assets/lumo_design/deco/start_arch.webp",
+   "motiv": "Start-/Zielbogen kariert",
+   "tafel": "t06_strecken_deko",
+   "nr": 1,
+   "pixel": [
+    384,
+    241
+   ],
+   "bytes": 36466,
+   "sha256": "1faea5b46eec977082d4bb3f71afc8c758906cc3d7e3759b2e00edb4ae2a170b"
+  },
+  {
+   "datei": "assets/lumo_design/deco/checkpoint_arch.webp",
+   "motiv": "Checkpoint-Bogen",
+   "tafel": "t06_strecken_deko",
+   "nr": 2,
+   "pixel": [
+    384,
+    318
+   ],
+   "bytes": 40002,
+   "sha256": "39fdac867cff18ff36784ba12ef6233e5e176a6c7b1c215e99ef360ce0295de5"
+  },
+  {
+   "datei": "assets/lumo_design/deco/start_light.webp",
+   "motiv": "Start-Ampel",
+   "tafel": "t06_strecken_deko",
+   "nr": 3,
+   "pixel": [
+    384,
+    291
+   ],
+   "bytes": 47978,
+   "sha256": "3129557d5d376ebbf1c2cf3ee2aa9aac666052ec32eed42dfa9596c34cb3a865"
+  },
+  {
+   "datei": "assets/lumo_design/deco/arrow_sign.webp",
+   "motiv": "Pfeil-Schild",
+   "tafel": "t06_strecken_deko",
+   "nr": 4,
+   "pixel": [
+    384,
+    273
+   ],
+   "bytes": 38984,
+   "sha256": "477e070392088a2f218b56a6f1fe65415698937461c79eccfb63232d39326089"
+  },
+  {
+   "datei": "assets/lumo_design/deco/guardrail.webp",
+   "motiv": "Leitplanke",
+   "tafel": "t06_strecken_deko",
+   "nr": 5,
+   "pixel": [
+    384,
+    133
+   ],
+   "bytes": 22132,
+   "sha256": "d05d7fea6dd59dc401de2391da455aaedb10f65b3c2bcc1c7f273e9ceedc6371"
+  },
+  {
+   "datei": "assets/lumo_design/deco/lamp_banner.webp",
+   "motiv": "Laterne mit Banner",
+   "tafel": "t06_strecken_deko",
+   "nr": 6,
+   "pixel": [
+    201,
+    384
+   ],
+   "bytes": 29730,
+   "sha256": "f0877ffafaa914a2aadbb53db2797478c70d32285e2d62e7b3f921647c095fc1"
+  },
+  {
+   "datei": "assets/lumo_design/deco/banner.webp",
+   "motiv": "Sternbanner",
+   "tafel": "t06_strecken_deko",
+   "nr": 7,
+   "pixel": [
+    124,
+    229
+   ],
+   "bytes": 10026,
+   "sha256": "04a895e2b084c4ba61735be4023f995f678d56026a5b6816b8e46b1ab99d6d5e"
+  },
+  {
+   "datei": "assets/lumo_design/deco/grandstand.webp",
+   "motiv": "Zuschauertribüne",
+   "tafel": "t06_strecken_deko",
+   "nr": 8,
+   "pixel": [
+    384,
+    189
+   ],
+   "bytes": 40358,
+   "sha256": "6d98c3cda23171579f28e673a8114c6f874b811187e0ac52291633f917f81492"
+  },
+  {
+   "datei": "assets/lumo_design/deco/tunnel_rock.webp",
+   "motiv": "Felstunnel",
+   "tafel": "t06_strecken_deko",
+   "nr": 9,
+   "pixel": [
+    384,
+    221
+   ],
+   "bytes": 34438,
+   "sha256": "887f876e62bb83af606c734156d790e2998fc2ec8f07ca5839c8c88c782ced8e"
+  },
+  {
+   "datei": "assets/lumo_design/deco/balloon.webp",
+   "motiv": "Heißluftballon",
+   "tafel": "t06_strecken_deko",
+   "nr": 10,
+   "pixel": [
+    192,
+    384
+   ],
+   "bytes": 29750,
+   "sha256": "556f4f0fcb7c99e3bf72f852859f7a135762d9925182a3195ca0cbf02fedff2e"
+  },
+  {
+   "datei": "assets/lumo_design/deco/wood_sign.webp",
+   "motiv": "Holzschild",
+   "tafel": "t06_strecken_deko",
+   "nr": 11,
+   "pixel": [
+    350,
+    267
+   ],
+   "bytes": 31310,
+   "sha256": "9003a9c0bc900e7b0d7a45e1dba42f8bee7ed3963f549a465bb4d1f2094bd78c"
+  },
+  {
+   "datei": "assets/lumo_design/icons/flag_checkered.webp",
+   "motiv": "Zielflagge",
+   "tafel": "t06_strecken_deko",
+   "nr": 12,
+   "pixel": [
+    256,
+    256
+   ],
+   "bytes": 19026,
+   "sha256": "cddaecddbe3cbeb0a2e7e7e5055497beb66b300a1f645667cf3279f076f22ae0"
+  },
+  {
+   "datei": "assets/lumo_design/deco/signpost.webp",
+   "motiv": "Wegweiser",
+   "tafel": "t06_strecken_deko",
+   "nr": 13,
+   "pixel": [
+    197,
+    245
+   ],
+   "bytes": 20376,
+   "sha256": "8a7346ca102307266d4c97e5bc8b080ace397d36c29800af1b83380eaeb80ac0"
+  },
+  {
+   "datei": "assets/lumo_design/deco/fence.webp",
+   "motiv": "Zaun",
+   "tafel": "t06_strecken_deko",
+   "nr": 14,
+   "pixel": [
+    384,
+    143
+   ],
+   "bytes": 24308,
+   "sha256": "1c1a29905bcfc776430af403060be87d04fb9391042b0f9b2b6428cfff43ea71"
+  },
+  {
+   "datei": "assets/lumo_design/nature/island_castle.webp",
+   "motiv": "Himmelsinsel mit Burg",
+   "tafel": "t07_natur",
+   "nr": 1,
+   "pixel": [
+    384,
+    344
+   ],
+   "bytes": 62512,
+   "sha256": "59d3f90279a46b74c6f1acb28313a31f3f4bf5d0c7357f540c9e7fafeab4117e"
+  },
+  {
+   "datei": "assets/lumo_design/nature/waterfall.webp",
+   "motiv": "Wasserfall",
+   "tafel": "t07_natur",
+   "nr": 2,
+   "pixel": [
+    384,
+    349
+   ],
+   "bytes": 64188,
+   "sha256": "a4d1c5c98f19b4e0ac71d08ca9d4ab31dd013c19b5eedd8d19dd418d99890733"
+  },
+  {
+   "datei": "assets/lumo_design/nature/rocks.webp",
+   "motiv": "Felsgruppe",
+   "tafel": "t07_natur",
+   "nr": 3,
+   "pixel": [
+    327,
+    289
+   ],
+   "bytes": 39512,
+   "sha256": "cf254a7bb94ae1302b4335a0c0830991f6e3e7d0dd177f7ffb61ceb553819f43"
+  },
+  {
+   "datei": "assets/lumo_design/nature/tree.webp",
+   "motiv": "Baum",
+   "tafel": "t07_natur",
+   "nr": 4,
+   "pixel": [
+    320,
+    384
+   ],
+   "bytes": 48908,
+   "sha256": "bb0e82976ba1669a5a5a6d6c257c863d4040e9bb544a8c56006f6dab5a16eaa8"
+  },
+  {
+   "datei": "assets/lumo_design/nature/bush_flowers.webp",
+   "motiv": "Busch mit Blumen",
+   "tafel": "t07_natur",
+   "nr": 5,
+   "pixel": [
+    321,
+    238
+   ],
+   "bytes": 30962,
+   "sha256": "0a992f6beb3526fb7fffe09faa27860ca52bca011d09cd7bf9c4cd0bfca6f0e7"
+  },
+  {
+   "datei": "assets/lumo_design/nature/rainbow_waterfall.webp",
+   "motiv": "Regenbogen-Wasserfall",
+   "tafel": "t07_natur",
+   "nr": 6,
+   "pixel": [
+    384,
+    254
+   ],
+   "bytes": 46248,
+   "sha256": "1614cfcbbe12367331351d3d7aafb21cc9707658714db55551f36543bbb62737"
+  },
+  {
+   "datei": "assets/lumo_design/nature/rope_bridge.webp",
+   "motiv": "Hängebrücke",
+   "tafel": "t07_natur",
+   "nr": 7,
+   "pixel": [
+    384,
+    245
+   ],
+   "bytes": 40122,
+   "sha256": "a477a450a2e60e5dfa2672d8bf05288655f446d2c23b80072958d908a9e6580b"
+  },
+  {
+   "datei": "assets/lumo_design/nature/island_grass.webp",
+   "motiv": "Grasinsel",
+   "tafel": "t07_natur",
+   "nr": 8,
+   "pixel": [
+    323,
+    261
+   ],
+   "bytes": 39712,
+   "sha256": "f679c8efc875c23f2b148efdb24fc33e11979bb4b9eeee074de590969349b19c"
+  },
+  {
+   "datei": "assets/lumo_design/nature/cloud.webp",
+   "motiv": "Wolke",
+   "tafel": "t07_natur",
+   "nr": 9,
+   "pixel": [
+    384,
+    182
+   ],
+   "bytes": 23952,
+   "sha256": "469c4f950635d6fc9fcb40f882de61392c6c5cd21b706e27a5123abf1e014675"
+  },
+  {
+   "datei": "assets/lumo_design/nature/hill_path.webp",
+   "motiv": "Hügel mit Weg",
+   "tafel": "t07_natur",
+   "nr": 10,
+   "pixel": [
+    384,
+    250
+   ],
+   "bytes": 43844,
+   "sha256": "2b7c6affc52499f47d81caca4607640ea96559393d97f519d76c552cf0909917"
+  },
+  {
+   "datei": "assets/lumo_design/nature/crystals.webp",
+   "motiv": "Kristalle",
+   "tafel": "t07_natur",
+   "nr": 11,
+   "pixel": [
+    344,
+    274
+   ],
+   "bytes": 34430,
+   "sha256": "24cbc3f06f3528a75c0db2c8655c417bcb720a566df2e98efb38392677f10959"
+  },
+  {
+   "datei": "assets/lumo_design/nature/planter.webp",
+   "motiv": "Blumenkasten",
+   "tafel": "t07_natur",
+   "nr": 12,
+   "pixel": [
+    301,
+    220
+   ],
+   "bytes": 30206,
+   "sha256": "cf8c1e613440d384c3d4249befc532ea2a34c3be9cbb60b1e45cf7e1437147d2"
+  },
+  {
+   "datei": "assets/lumo_design/nature/ruins.webp",
+   "motiv": "Ruinen",
+   "tafel": "t07_natur",
+   "nr": 13,
+   "pixel": [
+    384,
+    179
+   ],
+   "bytes": 33280,
+   "sha256": "951e4f2b0a104649d709362fc2ab298d9671361694ac8e5fddf2ad476f27fdac"
+  },
+  {
+   "datei": "assets/lumo_design/nature/platform.webp",
+   "motiv": "Plattform mit Laternen",
+   "tafel": "t07_natur",
+   "nr": 14,
+   "pixel": [
+    384,
+    163
+   ],
+   "bytes": 35164,
+   "sha256": "7328030d1c5eab2f7b33a0d46aa2d581b43d853638a29f3d6747e0284ab6b6b6"
+  },
+  {
+   "datei": "assets/lumo_design/track/straight.webp",
+   "motiv": "Gerade",
+   "tafel": "t08_streckenteile",
+   "nr": 1,
+   "pixel": [
+    352,
+    280
+   ],
+   "bytes": 29086,
+   "sha256": "12c398dcb6b02086452fe6781dc8009de6dc9bb049bdfac7c0af2d35ae665ba3"
+  },
+  {
+   "datei": "assets/lumo_design/track/curve_left.webp",
+   "motiv": "Kurve links",
+   "tafel": "t08_streckenteile",
+   "nr": 2,
+   "pixel": [
+    340,
+    296
+   ],
+   "bytes": 33224,
+   "sha256": "13ba27f369ce8963041d1ae5b87b85b3a4453672c26e3469003d23a0c60bb984"
+  },
+  {
+   "datei": "assets/lumo_design/track/curve_right.webp",
+   "motiv": "Kurve rechts",
+   "tafel": "t08_streckenteile",
+   "nr": 3,
+   "pixel": [
+    331,
+    307
+   ],
+   "bytes": 32708,
+   "sha256": "538b698fb705e382af5f60d0f93f85de78f8e0b1367462a01274015606a2b0ba"
+  },
+  {
+   "datei": "assets/lumo_design/track/curve_wide.webp",
+   "motiv": "Breite Kurve",
+   "tafel": "t08_streckenteile",
+   "nr": 4,
+   "pixel": [
+    384,
+    263
+   ],
+   "bytes": 34882,
+   "sha256": "4d2799e63b9e3cfc69a6b6e37566d2f047812247f5a0abe2dc2942fc662f8478"
+  },
+  {
+   "datei": "assets/lumo_design/track/s_curve.webp",
+   "motiv": "S-Kurve",
+   "tafel": "t08_streckenteile",
+   "nr": 5,
+   "pixel": [
+    384,
+    337
+   ],
+   "bytes": 43180,
+   "sha256": "3db30933f38ec96a54ce9de0e0733b2b90fd85b991097f3e9aa2f994445ae292"
+  },
+  {
+   "datei": "assets/lumo_design/track/ramp.webp",
+   "motiv": "Rampe",
+   "tafel": "t08_streckenteile",
+   "nr": 6,
+   "pixel": [
+    375,
+    311
+   ],
+   "bytes": 38738,
+   "sha256": "6c5e75a696535180f583c49799f61c39ef987194859a2c20716374f3b64db0d2"
+  },
+  {
+   "datei": "assets/lumo_design/track/crossing.webp",
+   "motiv": "Kreuzung",
+   "tafel": "t08_streckenteile",
+   "nr": 7,
+   "pixel": [
+    384,
+    279
+   ],
+   "bytes": 32654,
+   "sha256": "d438a4ea9ededa5712fbfb0ef8f0c263184a4aba6ab39852be00ee0e3c189722"
+  },
+  {
+   "datei": "assets/lumo_design/track/t_junction.webp",
+   "motiv": "T-Kreuzung",
+   "tafel": "t08_streckenteile",
+   "nr": 8,
+   "pixel": [
+    381,
+    291
+   ],
+   "bytes": 34686,
+   "sha256": "17cd6446a71005bb2dbf5f46bb4d44a7f8933911b6cca5686be4c257bf155cd5"
+  },
+  {
+   "datei": "assets/lumo_design/track/bridge.webp",
+   "motiv": "Brücke",
+   "tafel": "t08_streckenteile",
+   "nr": 9,
+   "pixel": [
+    384,
+    221
+   ],
+   "bytes": 37340,
+   "sha256": "68bd92bf97737d1f44ae1f8b908b2cdc0d53aae5dfa4ca4cd6b14acc58b09d3c"
+  },
+  {
+   "datei": "assets/lumo_design/track/tunnel.webp",
+   "motiv": "Tunnel",
+   "tafel": "t08_streckenteile",
+   "nr": 10,
+   "pixel": [
+    384,
+    261
+   ],
+   "bytes": 42674,
+   "sha256": "61aa6b8133e854ccaaa7789a7d8ed3211799ce8dc97a1a4e613961227d3d637c"
+  },
+  {
+   "datei": "assets/lumo_design/track/elevated.webp",
+   "motiv": "Hochstrecke",
+   "tafel": "t08_streckenteile",
+   "nr": 11,
+   "pixel": [
+    298,
+    278
+   ],
+   "bytes": 27686,
+   "sha256": "21451ae2b66dde3d3ef8b9020b23eb574b74c9fa7c2b354f8a7db4968fe9a0f4"
+  },
+  {
+   "datei": "assets/lumo_design/track/roundabout.webp",
+   "motiv": "Kreisel",
+   "tafel": "t08_streckenteile",
+   "nr": 12,
+   "pixel": [
+    384,
+    250
+   ],
+   "bytes": 33826,
+   "sha256": "f528c52cc0e7ae7f7362239afa514b2a349394dfee42b2f6e5656710b463af04"
+  },
+  {
+   "datei": "assets/lumo_design/track/dirt_path.webp",
+   "motiv": "Abkürzung (Erdweg)",
+   "tafel": "t08_streckenteile",
+   "nr": 13,
+   "pixel": [
+    365,
+    266
+   ],
+   "bytes": 41112,
+   "sha256": "12496d32166c4c6754186d4d607af3d6b20d430405d24386d698de2371e78cc0"
+  },
+  {
+   "datei": "assets/lumo_design/track/finish_line.webp",
+   "motiv": "Ziellinie",
+   "tafel": "t08_streckenteile",
+   "nr": 14,
+   "pixel": [
+    384,
+    222
+   ],
+   "bytes": 33066,
+   "sha256": "5972dcd1a8a7e87472dffc340502e5dff23c152d3e01f4fabd1e9ed558041d99"
+  },
+  {
+   "datei": "assets/lumo_design/characters/fox_wave.webp",
+   "motiv": "Lumo winkt (Rennanzug)",
+   "tafel": "t09_figuren_karts",
+   "nr": 1,
+   "pixel": [
+    408,
+    486
+   ],
+   "bytes": 65558,
+   "sha256": "e133b415c2af9766050211fac236f50276ac5dfbb7143041dea43a0904fb5997"
+  },
+  {
+   "datei": "assets/lumo_design/characters/fox_wrench.webp",
+   "motiv": "Lumo mit Schraubenschlüssel",
+   "tafel": "t09_figuren_karts",
+   "nr": 2,
+   "pixel": [
+    339,
+    508
+   ],
+   "bytes": 53076,
+   "sha256": "775e3d55f841520bb6167b801170e77e0798d49ecea46d7870a354bf52013272"
+  },
+  {
+   "datei": "assets/lumo_design/characters/fox_kart_front.webp",
+   "motiv": "Lumo im Kart von vorne",
+   "tafel": "t09_figuren_karts",
+   "nr": 3,
+   "pixel": [
+    512,
+    439
+   ],
+   "bytes": 59644,
+   "sha256": "44a89bbcc687468d550a652ec6f7c5b2670ff596b7cda223870b9b344e535149"
+  },
+  {
+   "datei": "assets/lumo_design/characters/fox_trophy_jump.webp",
+   "motiv": "Lumo springt mit Pokal",
+   "tafel": "t09_figuren_karts",
+   "nr": 4,
+   "pixel": [
+    383,
+    486
+   ],
+   "bytes": 69480,
+   "sha256": "c13ee1885f06ed9eec62769243fb3e270c673b0691b043b6c8dc05b4d6c41ddd"
+  },
+  {
+   "datei": "assets/lumo_design/characters/kart_side.webp",
+   "motiv": "Lumos Kart seitlich",
+   "tafel": "t09_figuren_karts",
+   "nr": 5,
+   "pixel": [
+    512,
+    238
+   ],
+   "bytes": 45614,
+   "sha256": "14ec1022cff193c553b2c6ba2a43266512b0a4188677982905076e1406c0b9c8"
+  },
+  {
+   "datei": "assets/lumo_design/characters/kart_rear.webp",
+   "motiv": "Lumos Kart von hinten",
+   "tafel": "t09_figuren_karts",
+   "nr": 6,
+   "pixel": [
+    512,
+    293
+   ],
+   "bytes": 43922,
+   "sha256": "d2faae7b6cd079f139b522a8a2428024f6ec66367e89aa98a273b8cb54f64b6d"
+  },
+  {
+   "datei": "assets/lumo_design/characters/fox_point.webp",
+   "motiv": "Lumo zeigt nach vorne",
+   "tafel": "t09_figuren_karts",
+   "nr": 7,
+   "pixel": [
+    353,
+    446
+   ],
+   "bytes": 44122,
+   "sha256": "3bf519dfa962c2de1baf4e01f9abb88942d7384ca5a180e031a50e90edabf707"
+  },
+  {
+   "datei": "assets/lumo_design/characters/bunny_kart.webp",
+   "motiv": "Häsin im pinken Kart",
+   "tafel": "t09_figuren_karts",
+   "nr": 8,
+   "pixel": [
+    474,
+    396
+   ],
+   "bytes": 57856,
+   "sha256": "aff9b02ad0d88313fae5d4729a35c035294bbe3e1269b13a7e6ba621fb93424d"
+  },
+  {
+   "datei": "assets/lumo_design/characters/turtle_kart.webp",
+   "motiv": "Schildkröte im grünen Kart",
+   "tafel": "t09_figuren_karts",
+   "nr": 9,
+   "pixel": [
+    480,
+    360
+   ],
+   "bytes": 51208,
+   "sha256": "f1631915dbca10df687be2a439876ae5f71569a9d84854c54588fa562d547cb4"
+  },
+  {
+   "datei": "assets/lumo_design/characters/cat_kart.webp",
+   "motiv": "Katze im violetten Kart",
+   "tafel": "t09_figuren_karts",
+   "nr": 10,
+   "pixel": [
+    495,
+    366
+   ],
+   "bytes": 53264,
+   "sha256": "f0f16ea39489bfec0a136a830d2da68a49680ba0a9723c3290ac9c4898352358"
+  },
+  {
+   "datei": "assets/lumo_design/garage/tire_slick.webp",
+   "motiv": "Reifen glatt",
+   "tafel": "t10_garage_teile",
+   "nr": 1,
+   "pixel": [
+    306,
+    306
+   ],
+   "bytes": 26762,
+   "sha256": "8d1c209891b3c9abefd5d3d298d5c09848e36bfeb3ce20824a34bfc79025a5e1"
+  },
+  {
+   "datei": "assets/lumo_design/garage/tire_tread.webp",
+   "motiv": "Reifen mit Profil",
+   "tafel": "t10_garage_teile",
+   "nr": 2,
+   "pixel": [
+    324,
+    324
+   ],
+   "bytes": 29778,
+   "sha256": "c9bbeb6e75eec5340f526b2fdbd2ee0059aedd80890110728be1a459de8574ff"
+  },
+  {
+   "datei": "assets/lumo_design/garage/rim.webp",
+   "motiv": "Felge",
+   "tafel": "t10_garage_teile",
+   "nr": 3,
+   "pixel": [
+    329,
+    329
+   ],
+   "bytes": 41556,
+   "sha256": "1b266bf6599ee319302d4f26cd24f5a3b32e0f57c44b6a2f5804b27be8ac798d"
+  },
+  {
+   "datei": "assets/lumo_design/garage/spoiler.webp",
+   "motiv": "Spoiler",
+   "tafel": "t10_garage_teile",
+   "nr": 4,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 27842,
+   "sha256": "62f3cef59e3ca613727a59bc2f6b1cc39bafdc1f81cdb89ce12559d14fa3d893"
+  },
+  {
+   "datei": "assets/lumo_design/garage/front_bumper.webp",
+   "motiv": "Frontschürze",
+   "tafel": "t10_garage_teile",
+   "nr": 5,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 25996,
+   "sha256": "413234147a61fe1e61135d021c8f05a91706c26e0ce2b9cb69c001649d3f8c72"
+  },
+  {
+   "datei": "assets/lumo_design/garage/side_skirt.webp",
+   "motiv": "Seitenschweller",
+   "tafel": "t10_garage_teile",
+   "nr": 6,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 19814,
+   "sha256": "b8b929e424eaa6b396bb4d55a56bd84e7cd8acbcd00f65b93cc2b659bf718b91"
+  },
+  {
+   "datei": "assets/lumo_design/garage/exhaust_boost.webp",
+   "motiv": "Auspuff mit Boost-Flamme",
+   "tafel": "t10_garage_teile",
+   "nr": 7,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 27572,
+   "sha256": "d1361a921104902950a231256c4f9880b5ce4b348773aab2d9a9328acb170370"
+  },
+  {
+   "datei": "assets/lumo_design/garage/underglow.webp",
+   "motiv": "Unterbodenlicht",
+   "tafel": "t10_garage_teile",
+   "nr": 8,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 22144,
+   "sha256": "f07773c815c251f1bd665c23d7332d79343d1d0015d97310df08e0511bd88104"
+  },
+  {
+   "datei": "assets/lumo_design/garage/steering_wheel.webp",
+   "motiv": "Lenkrad",
+   "tafel": "t10_garage_teile",
+   "nr": 9,
+   "pixel": [
+    358,
+    358
+   ],
+   "bytes": 44092,
+   "sha256": "9e22203e0f62f3da47ae0360ef68288fd770bda8e9f4f1cc8b9db5d7cea1a0ac"
+  },
+  {
+   "datei": "assets/lumo_design/garage/seat.webp",
+   "motiv": "Sitz",
+   "tafel": "t10_garage_teile",
+   "nr": 10,
+   "pixel": [
+    367,
+    367
+   ],
+   "bytes": 36638,
+   "sha256": "ef14e7560223821e709dc91c8f74ba678a33157c87d0d87dcb006ad24ac0579b"
+  },
+  {
+   "datei": "assets/lumo_design/garage/helmet.webp",
+   "motiv": "Helm",
+   "tafel": "t10_garage_teile",
+   "nr": 11,
+   "pixel": [
+    311,
+    311
+   ],
+   "bytes": 36876,
+   "sha256": "3b3ccc3e106b0f1ed200c3c6bf4c16b7773ade64cb9b8260a43dae8fe0dded70"
+  },
+  {
+   "datei": "assets/lumo_design/garage/wrench.webp",
+   "motiv": "Schraubenschlüssel",
+   "tafel": "t10_garage_teile",
+   "nr": 12,
+   "pixel": [
+    345,
+    345
+   ],
+   "bytes": 26616,
+   "sha256": "d22b7a8cec0f6ba5a0eb634ee1269a8310121615b8c57109b9ad8b9c1393c54a"
+  },
+  {
+   "datei": "assets/lumo_design/garage/spray_can.webp",
+   "motiv": "Farbdose",
+   "tafel": "t10_garage_teile",
+   "nr": 13,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 23446,
+   "sha256": "dafd16ffb4b6f8e56fb850cf5c82883bae9d0f2d93ba853ae0267d86e1a5ed55"
+  },
+  {
+   "datei": "assets/lumo_design/garage/tire_stack.webp",
+   "motiv": "Reifenstapel",
+   "tafel": "t10_garage_teile",
+   "nr": 14,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 34444,
+   "sha256": "87cf8675b955b98eac6dcf14a494b1198b1150e35a5ed97c3b7bc8a5bbdb9417"
+  },
+  {
+   "datei": "assets/lumo_design/garage/toolbox.webp",
+   "motiv": "Werkzeugwagen",
+   "tafel": "t10_garage_teile",
+   "nr": 15,
+   "pixel": [
+    384,
+    384
+   ],
+   "bytes": 36508,
+   "sha256": "c90965bb8cb4276fe0114a49903c90a40b74d65889be2bef7bb7110af2a05f9e"
+  },
+  {
+   "datei": "assets/lumo_design/garage/nitro_bottle.webp",
+   "motiv": "Nitro-Flasche",
+   "tafel": "t10_garage_teile",
+   "nr": 16,
+   "pixel": [
+    333,
+    333
+   ],
+   "bytes": 32144,
+   "sha256": "c519c89070b73b1581b2ab488c4119fc1895757e0f5e49ced9385280778a1181"
+  }
+ ]
+}

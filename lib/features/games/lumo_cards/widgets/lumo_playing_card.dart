@@ -55,12 +55,7 @@ class LumoPlayingCard extends StatefulWidget {
     if (faceDown) return 'Verdeckt';
     final visibleColor = card.isWild
         ? 'Vier Farben'
-        : switch (card.color) {
-            LumoCardColor.orange => 'Rot',
-            LumoCardColor.purple => 'Gelb',
-            LumoCardColor.blue => 'Blau',
-            LumoCardColor.green => 'Grün',
-          };
+        : card.color.displayName;
     final visibleType = switch (card.type) {
       LumoCardType.number => 'Zahl ${card.number}',
       LumoCardType.lumoJump => 'Lumo-Sprung',

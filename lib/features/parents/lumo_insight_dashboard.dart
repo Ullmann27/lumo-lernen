@@ -5,7 +5,7 @@
 // ihren Kimaro-AI fuer 95€/Jahr als Premium-Feature - reine Text-Reports.
 // Lumo Insight gibt Eltern stattdessen eine SOFORT lesbare visuelle Karte:
 //
-//   - Hero-Stats (Heute geuebt, Streak, Sterne, Schwaechen-Zahl)
+//   - Hero-Stats (gespeicherte Antworten, protokollierter Streak, Übungsgruppen)
 //   - Lumo's Auswertung als kindgerechte 2-Saetze-Zusammenfassung
 //   - Empfehlung der DnaEngine als grosse Action-Karte
 //   - HEATMAP: pro Fach pro Kompetenz Farb-Cell (rot/gelb/gruen/grau)
@@ -18,7 +18,6 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../core/error_breakdown_repository.dart';
 import '../../domain/learning/learning_dna.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../../core/lumo_ai_proxy_client.dart';
@@ -38,12 +37,12 @@ class LumoInsightDashboard extends StatefulWidget {
 }
 
 class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
-  final _errorRepo = const ErrorBreakdownRepository();
   final _dnaEngine = const LearningDnaEngine();
   final _aiProxy = const LumoAiProxyClient();
   LearningDna? _dna;
   bool _loading = true;
   bool _showFullDna = false;
+  int _dataRevision = 0;
 
   // 2026-06-04: KI-Wochenanalyse direkt im Insight-Dashboard.
   // Bisher war diese Funktion nur in parent_report_card.dart versteckt.
@@ -57,26 +56,40 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   @override
   void initState() {
     super.initState();
+    widget.appState.addListener(_build);
     _build();
   }
 
-  Future<void> _build() async {
+  @override
+  void didUpdateWidget(covariant LumoInsightDashboard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.appState != widget.appState) {
+      oldWidget.appState.removeListener(_build);
+      widget.appState.addListener(_build);
+      _build();
+    }
+  }
+
+  @override
+  void dispose() {
+    widget.appState.removeListener(_build);
+    super.dispose();
+  }
+
+  void _build() {
     final state = widget.appState.state;
-    final childKey = (state.childName.isEmpty ? 'kind' : state.childName).toLowerCase();
-    final errors = await _errorRepo.load(childKey);
     final dna = _dnaEngine.compute(
       state: state,
-      errorBreakdown: errors,
-      // recentCorrect / Incorrect kommen aus solved/practiceErrors:
-      recentCorrect: state.solved.values.fold<int>(0, (a, b) => a + b),
-      recentIncorrect: state.practiceErrors,
-      recentHelpUsed: 0,
-      totalSessions: 1,
+      skills: widget.appState.learningSkills(),
     );
     if (!mounted) return;
     setState(() {
+      _dataRevision++;
       _dna = dna;
       _loading = false;
+      _aiInsight = null;
+      _aiError = null;
+      _aiLoading = false;
     });
   }
 
@@ -102,46 +115,48 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       body: LumoMagicBackground(
         intensity: 1.0,
         starCount: 22,
-        child: _loading
-          ? const Center(child: CircularProgressIndicator(color: LumoColors.orange))
-          : SingleChildScrollView(
-              padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  _hero(),
-                  const SizedBox(height: 16),
-                  _statsRow(),
-                  const SizedBox(height: 16),
-                  _lumoSays(),
-                  const SizedBox(height: 16),
-                  if (_dna!.nextRecommendation != null) ...[
-                    _nextRecCard(),
-                    const SizedBox(height: 16),
-                  ],
-                  LumoInsightHeatmap(entries: _allEntries()),
-                  const SizedBox(height: 16),
-                  if (_dna!.errorBreakdown.isNotEmpty) ...[
-                    _errorTop3(),
-                    const SizedBox(height: 16),
-                  ],
-                  // 2026-06-04 KI-Wochenanalyse: ChatGPT-Berater fuer Eltern.
-                  _aiAnalysisSection(),
-                  const SizedBox(height: 16),
-                  _toggleFullDna(),
-                  if (_showFullDna) ...[
-                    const SizedBox(height: 12),
-                    LearningDnaParentCard(dna: _dna!),
-                  ],
-                ],
-              ),
-            ),
+        child: SafeArea(
+            child: _loading
+                ? const Center(
+                    child: CircularProgressIndicator(color: LumoColors.orange))
+                : SingleChildScrollView(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        _hero(),
+                        const SizedBox(height: 16),
+                        _statsRow(),
+                        const SizedBox(height: 16),
+                        _lumoSays(),
+                        const SizedBox(height: 16),
+                        if (_dna!.nextRecommendation != null) ...[
+                          _nextRecCard(),
+                          const SizedBox(height: 16),
+                        ],
+                        LumoInsightHeatmap(entries: _allEntries()),
+                        const SizedBox(height: 16),
+                        if (_dna!.errorBreakdown.isNotEmpty) ...[
+                          _errorTop3(),
+                          const SizedBox(height: 16),
+                        ],
+                        // 2026-06-04 KI-Wochenanalyse: ChatGPT-Berater fuer Eltern.
+                        _aiAnalysisSection(),
+                        const SizedBox(height: 16),
+                        _toggleFullDna(),
+                        if (_showFullDna) ...[
+                          const SizedBox(height: 12),
+                          LearningDnaParentCard(dna: _dna!),
+                        ],
+                      ],
+                    ),
+                  )),
       ), // close LumoMagicBackground
     );
   }
 
   List<DnaSkillEntry> _allEntries() {
-    return <DnaSkillEntry>[..._dna!.strengths, ..._dna!.weaknesses];
+    return _dna!.skillObservations;
   }
 
   Widget _hero() {
@@ -173,7 +188,9 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  name.isEmpty ? 'Hallo Eltern!' : 'Hallo, $name lernt fleissig!',
+                  name.isEmpty
+                      ? 'Hallo Eltern!'
+                      : 'Hallo, $name lernt fleissig!',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 18,
@@ -201,20 +218,27 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
   }
 
   Widget _statsRow() {
-    final state = widget.appState.state;
-    final solved = state.solved.values.fold<int>(0, (a, b) => a + b);
+    final answered = _dna!.totalCorrect + _dna!.totalIncorrect;
     final streak = widget.appState.learningStreakDays();
     final strengths = _dna!.strengths.length;
     final weaknesses = _dna!.weaknesses.length;
     return Row(
       children: [
-        Expanded(child: _statCard('Geuebt', '$solved', '📝', const Color(0xFF60A5FA))),
+        Expanded(
+            child: _statCard(
+                'Gesamt', '$answered', '📝', const Color(0xFF60A5FA))),
         const SizedBox(width: 8),
-        Expanded(child: _statCard('Streak', '$streak T.', '🔥', const Color(0xFFFF7A2F))),
+        Expanded(
+            child: _statCard(
+                'Streak', '$streak T.', '🔥', const Color(0xFFFF7A2F))),
         const SizedBox(width: 8),
-        Expanded(child: _statCard('Staerken', '$strengths', '💪', const Color(0xFF34D399))),
+        Expanded(
+            child: _statCard(
+                'Staerken', '$strengths', '💪', const Color(0xFF34D399))),
         const SizedBox(width: 8),
-        Expanded(child: _statCard('Übung', '$weaknesses', '🎯', const Color(0xFFF472B6))),
+        Expanded(
+            child: _statCard(
+                'Übung', '$weaknesses', '🎯', const Color(0xFFF472B6))),
       ],
     );
   }
@@ -238,20 +262,22 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         children: [
           Text(emoji, style: const TextStyle(fontSize: 22)),
           const SizedBox(height: 2),
-          Text(value, style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 18,
-            fontWeight: FontWeight.w900,
-            color: color,
-            height: 1.0,
-          )),
+          Text(value,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 18,
+                fontWeight: FontWeight.w900,
+                color: color,
+                height: 1.0,
+              )),
           const SizedBox(height: 2),
-          Text(label, style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 11,
-            fontWeight: FontWeight.w700,
-            color: color.withOpacity(0.85),
-          )),
+          Text(label,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 11,
+                fontWeight: FontWeight.w700,
+                color: color.withOpacity(0.85),
+              )),
         ],
       ),
     );
@@ -439,29 +465,17 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
       _aiLoading = true;
       _aiError = null;
     });
-    final state = widget.appState.state;
-    final strengths = _dna!.strengths.take(3).map((e) => '${e.subject}/${e.skillLabel}').join(', ');
-    final weaknesses = _dna!.weaknesses.take(3).map((e) => '${e.subject}/${e.skillLabel}').join(', ');
-    final errors = _dna!.errorBreakdown.entries
-        .take(3)
-        .map((e) => '${e.key}(${e.value}x)')
-        .join(', ');
-    final payload = StringBuffer()
-      ..writeln('Wochenanalyse fuer ${state.childName.isEmpty ? "das Kind" : state.childName} (Klasse ${state.grade}) bitte:')
-      ..writeln('Staerken: ${strengths.isEmpty ? "noch wenig Daten" : strengths}')
-      ..writeln('Foerderbedarf: ${weaknesses.isEmpty ? "noch wenig Daten" : weaknesses}')
-      ..writeln('Haeufigste Fehlertypen: ${errors.isEmpty ? "keine" : errors}')
-      ..writeln('Gib mir 3-5 Saetze als Elternteil: Was lief diese Woche gut, '
-          'woran sollten wir zuhause arbeiten, ein konkreter Foerder-Tipp fuer '
-          'die kommende Woche. Keine Floskeln, praktisch.');
+    final revision = _dataRevision;
+    final state = widget.appState.state.copyWith();
+    final payload = _dna!.parentAnalysisPrompt(grade: state.grade);
     try {
       final response = await _aiProxy.ask(
         settings: state.settings,
         state: state,
-        message: payload.toString(),
+        message: payload,
         context: LumoAiContext.parentAdvisor,
       );
-      if (!mounted) return;
+      if (!mounted || revision != _dataRevision) return;
       setState(() {
         _aiLoading = false;
         if (response.source.startsWith('local_') || response.blocked) {
@@ -472,7 +486,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
         }
       });
     } catch (_) {
-      if (!mounted) return;
+      if (!mounted || revision != _dataRevision) return;
       setState(() {
         _aiLoading = false;
         _aiError = 'KI-Berater gerade nicht erreichbar. Spaeter erneut.';
@@ -501,7 +515,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
               const SizedBox(width: 8),
               const Expanded(
                 child: Text(
-                  'Lumo-KI Wochenanalyse',
+                  'Lumo-KI Lernanalyse',
                   style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 15,
@@ -514,19 +528,26 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
                 const SizedBox(
                   width: 18,
                   height: 18,
-                  child: CircularProgressIndicator(strokeWidth: 2.4, color: Color(0xFF7C3AED)),
+                  child: CircularProgressIndicator(
+                      strokeWidth: 2.4, color: Color(0xFF7C3AED)),
                 )
               else
                 FilledButton.icon(
                   onPressed: _requestAiAnalysis,
                   icon: const Icon(Icons.auto_awesome_rounded, size: 16),
                   label: Text(
-                    _aiInsight == null && _aiError == null ? 'KI fragen' : 'Erneut',
-                    style: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800, fontSize: 12),
+                    _aiInsight == null && _aiError == null
+                        ? 'KI fragen'
+                        : 'Erneut',
+                    style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w800,
+                        fontSize: 12),
                   ),
                   style: FilledButton.styleFrom(
                     backgroundColor: const Color(0xFF7C3AED),
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     minimumSize: Size.zero,
                     tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                   ),
@@ -557,7 +578,7 @@ class _LumoInsightDashboardState extends State<LumoInsightDashboard> {
             )
           else
             const Text(
-              'Drueck auf "KI fragen" - Lumo gibt euch eine kurze Foerder-Einschaetzung mit konkretem Wochen-Tipp.',
+              'Die KI nutzt gespeicherte Gesamtwerte. Ohne Zeitdaten gibt es keine Aussage über diese Woche; kleine Stichproben bleiben vorsichtig eingeordnet.',
               style: TextStyle(
                 fontFamily: 'Nunito',
                 fontSize: 12,

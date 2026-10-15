@@ -1,0 +1,268 @@
+name: Lumo 1932 integrated test APK and real Android acceptance, no publication
+on:
+  push:
+    branches: [sol/lumo-active-companion-2026-10-11]
+    paths: [.github/workflows/lumo-education-1932.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-education-1932-${{ github.ref }}
+  cancel-in-progress: false
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    outputs:
+      source: ${{ steps.provenance.outputs.source }}
+      emulator-sha: ${{ steps.provenance.outputs.emulator-sha }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Exact test-only source and protected model
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          git rev-parse HEAD | tee proof/source-sha.txt
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.25+1932'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = '853175c634dcb62c325fbd9b272e2ebc791830ad'
+          git diff --exit-code HEAD --
+          printf '%s\n' 'Test artifacts only: no store release, payment, public publication or speech API call.' > proof/scope.txt
+          printf '%s\n' 'Reviewed candidate: pending-answer help blocked; lesson pacing survives layout changes; actual lesson touches restart the quiet period; invisible-helper ticker initialized safely.' > proof/review-repairs.txt
+      - name: Exact dependencies and current analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analyze.log
+      - name: Existing non-Flutter regression guards and content audit
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          python3 -m unittest discover -s scripts/tests -v 2>&1 | tee proof/python-tests.log
+          node --test server/lumo-ai-proxy/test/*.test.js 2>&1 | tee proof/backend-tests.log
+          dart scripts/audit_content.dart 2>&1 | tee proof/content-audit.log
+          printf '%s\n' 'The complete Flutter suite runs once in the exact-head change-review workflow; its successful evidence is required before final delivery.' > proof/flutter-suite-scope.txt
+      - name: Existing matching engine and native toolchain
+        run: |
+          set -euo pipefail
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+          bash scripts/install_godot_for_build.sh
+      - name: Build the preserved Flutter, native voice and Godot integration once
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/android-build.log
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+      - name: Verify actual version, package, signature, sources and architectures
+        id: provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          for folder, abi in [('dist', 'arm64-v8a'), ('dist/x86_64', 'x86_64')]:
+              data = json.loads(Path(folder, 'BUILD-PROVENANCE.json').read_text())
+              assert data['flutter_source_commit'] == os.environ['GITHUB_SHA']
+              assert data['tracked_source_clean'] is True
+              assert data['versionCode'] == 1932 and data['versionName'] == '0.12.25'
+              assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert data['abis'] == [abi]
+              assert data['signingCertificateSha256'] == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+              assert data['offlineVoice']['preset'] == 'F2'
+              assert data['offlineVoice']['clipCount'] == 155
+              assert data['godot']['revision'] == '853175c634dcb62c325fbd9b272e2ebc791830ad'
+          emulator = json.loads(Path('dist/x86_64/BUILD-PROVENANCE.json').read_text())
+          with open(os.environ['GITHUB_OUTPUT'], 'a') as output:
+              output.write('source=' + os.environ['GITHUB_SHA'] + '\n')
+              output.write('emulator-sha=' + emulator['sha256'] + '\n')
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1932-arm64-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1932-emulator-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1932-build-evidence-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 30
+
+  package-download:
+    needs: [verify-build, android-learning]
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1932-arm64-${{ github.run_id }}
+          path: arm64/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1932-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+      - name: Require real successful complete Flutter CI of this exact head
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p complete-ci
+          for attempt in $(seq 1 40); do
+            gh api "repos/${{ github.repository }}/actions/workflows/lumo-change-review.yml/runs?head_sha=${{ github.sha }}&per_page=10" > complete-ci/candidates.json
+            if python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          runs = json.loads(Path('complete-ci/candidates.json').read_text())['workflow_runs']
+          good = [run for run in runs if run['head_sha'] == os.environ['GITHUB_SHA']
+                  and run['status'] == 'completed' and run['conclusion'] == 'success']
+          if not good:
+              raise SystemExit(1)
+          latest = max(good, key=lambda run: run['id'])
+          Path('complete-ci/selected-run.json').write_text(json.dumps(latest, indent=2) + '\n')
+          PY
+            then break; fi
+            if test "$attempt" = 40; then exit 1; fi
+            sleep 15
+          done
+          RUN_ID="$(python3 -c 'import json; print(json.load(open("complete-ci/selected-run.json"))["id"])')"
+          RUN_ATTEMPT="$(python3 -c 'import json; print(json.load(open("complete-ci/selected-run.json"))["run_attempt"])')"
+          gh run download "$RUN_ID" --repo "${{ github.repository }}" --name "lumo-change-review-$RUN_ID-$RUN_ATTEMPT" --dir complete-ci/evidence
+      - name: Package one complete APK ZIP with truthful installation and evidence
+        run: |
+          set -euo pipefail
+          python3 tools/package_android_test_delivery.py --arm64 arm64 --android-proof android-proof \
+            --ci-proof complete-ci/evidence --ci-run complete-ci/selected-run.json --output delivery --version-code 1932 --version-name 0.12.25
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1932-chat-download-${{ github.run_id }}
+          path: delivery/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+  android-learning:
+    needs: verify-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      LUMO_EXPECT_SOURCE: ${{ needs.verify-build.outputs.source }}
+      LUMO_EXPECT_APK_SHA: ${{ needs.verify-build.outputs.emulator-sha }}
+      LUMO_EXPECT_VERSION: '1932'
+      LUMO_EXPECT_ANDROID_API: '36'
+      LUMO_EXPECT_GODOT: '853175c634dcb62c325fbd9b272e2ebc791830ad'
+      LUMO_BASE_VERSION: '1931'
+      LUMO_BASE_SOURCE: '0dc3b1f30d7d885cc0c9914d1f557fad8655d762'
+      LUMO_BASE_SHA: 'c79a62631f84d33f87a3eac390d9bd619b206437efb95544b783afce054f442b'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-education-1932-emulator-${{ github.run_id }}
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38154543561
+          name: lumo-education-1931-emulator-38154543561
+          path: baseline/
+      - name: Actual accessibility, screenshot and independent native control reader
+        run: |
+          set -euo pipefail
+          mkdir -p android-proof
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > android-proof/dependencies.txt
+          python3 -m py_compile .github/probes/lumo_education_android_probe.py .github/probes/lumo_free_voice_android_probe.py
+      - name: Disposable emulator acceleration
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Verified software renderer
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > android-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > android-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' android-proof/mesa-renderer.txt
+      - name: Existing Android 16 image
+        timeout-minutes: 11
+        run: python3 tools/android_qa/prepare_system_image.py --api 36 --out android-proof/system-image --timeout 600
+      - name: Actual in-place update, local voice, complete courses and preserved Kart
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 36
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_education_android_probe.py --baseline baseline/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out android-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1932-android16-evidence-${{ github.run_id }}
+          path: android-proof/
+          if-no-files-found: error
+          retention-days: 30

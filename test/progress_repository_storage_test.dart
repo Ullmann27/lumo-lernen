@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
@@ -6,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/learning_profile_engine.dart';
+import 'package:lumo_lernen/core/legacy_learning_data.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_progress.dart';
@@ -39,6 +41,29 @@ Map<String, Object> _existingProgress() => {
       'lumo_progress_last': jsonEncode({'Mathematik': 'Plus bis 10'}),
     };
 
+Future<void> _tapAndWaitForStorage(
+    WidgetTester tester, LearningModuleProgress progress, Finder button) async {
+  // The app and cached storage Futures are created in runAsync. Dispatch the
+  // real tap in that same zone; pumpAndSettle only drives the fake UI clock.
+  await tester.runAsync(() async {
+    final settled = Completer<void>();
+    void onProgress() {
+      if (!progress.saving && !settled.isCompleted) settled.complete();
+    }
+
+    progress.addListener(onProgress);
+    try {
+      await tester.tap(button);
+      await settled.future.timeout(const Duration(seconds: 5));
+      // Let the button's awaited completion follow the progress notification.
+      await Future<void>.delayed(Duration.zero);
+    } finally {
+      progress.removeListener(onProgress);
+    }
+  });
+  await tester.pumpAndSettle();
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
@@ -50,7 +75,8 @@ void main() {
       SharedPreferencesStorePlatform.instance = store;
       final engine = LearningProfileEngine();
       await engine.load();
-      store.rejectedKey = 'flutter.lumo_progress_$key';
+      store.rejectedKey =
+          'flutter.${LearningDataNamespace.keyFor('lumo_progress_$key', await engine.studentId)}';
       await expectLater(
           engine.recordAnswer(
               subject: 'Mathematik', unit: 'Plus bis 10', isCorrect: true),
@@ -70,10 +96,11 @@ void main() {
     test('a rejected $key normalization preserves existing valid disk data',
         () async {
       final seed = _existingProgress();
-      final store = _FalseStore(seed)
-        ..rejectedKey = 'flutter.lumo_progress_$key';
+      final store = _FalseStore(seed);
       SharedPreferencesStorePlatform.instance = store;
       final repo = ProgressRepository();
+      store.rejectedKey =
+          'flutter.${LearningDataNamespace.keyFor('lumo_progress_$key', await repo.studentId)}';
       final Future<Object> pending = switch (key) {
         'skills' => repo.loadSkills(),
         'daily' => repo.loadDaily(),
@@ -96,14 +123,18 @@ void main() {
       (tester) async {
     final store = _FalseStore({});
     SharedPreferencesStorePlatform.instance = store;
-    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    late LumoAppState app;
+    late String studentId;
     await tester.runAsync(() async {
+      app = LumoAppState(walletRepository: RewardWalletRepository());
       await app.hydrateFromWallet();
       await app.loadLearningProfile();
+      studentId = await LegacyLearningDataRepository().localStudentId();
     });
     final progress = LearningModuleProgress(
         appState: app, subject: 'Deutsch', unit: 'Artikel');
-    store.rejectedKey = 'flutter.lumo_progress_daily';
+    store.rejectedKey =
+        'flutter.${LearningDataNamespace.keyFor('lumo_progress_daily', studentId)}';
     var completed = 0;
     await tester.pumpWidget(MaterialApp(
       home: LearningModuleProgressScope(
@@ -120,8 +151,8 @@ void main() {
         ),
       ),
     ));
-    await tester.tap(find.text('Richtige Antwort'));
-    await tester.pumpAndSettle();
+    await _tapAndWaitForStorage(
+        tester, progress, find.text('Richtige Antwort'));
     expect(find.text('Erneut versuchen'), findsOneWidget);
     expect(progress.hasPending, isTrue);
     expect(completed, 0);
@@ -130,8 +161,8 @@ void main() {
     await tester.pump();
     expect(completed, 0);
     store.rejectedKey = null;
-    await tester.tap(find.text('Erneut versuchen'));
-    await tester.pumpAndSettle();
+    await _tapAndWaitForStorage(
+        tester, progress, find.text('Erneut versuchen'));
     expect(completed, 1);
     expect(progress.hasPending, isFalse);
     await tester.runAsync(() async {

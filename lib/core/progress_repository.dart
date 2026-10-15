@@ -1,34 +1,81 @@
 import 'dart:convert';
 
-import 'package:shared_preferences/shared_preferences.dart';
+import 'discovery_progress.dart';
+import 'legacy_learning_data.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
 class ProgressRepository {
+  ProgressRepository({String? studentId})
+      : _namespace = LearningDataNamespace(studentId: studentId);
+
+  final LearningDataNamespace _namespace;
+  Future<String> get studentId => _namespace.studentId;
+
   static const _skillsKey = 'lumo_progress_skills';
   static const _dailyKey = 'lumo_progress_daily';
   static const _lastKey = 'lumo_progress_last';
+  static const _discoveryKey = 'lumo_progress_discovery_v1';
+  static const _skillFields = {
+    'skillId',
+    'subject',
+    'unit',
+    'correct',
+    'wrong',
+    'hintCount',
+    'currentStreak',
+    'currentMisses',
+    'difficulty',
+    'lastSeen',
+  };
+
+  /// Read errors are not permission to reset a child's history. Never pass the
+  /// stored bytes into an exception/log or overwrite a bad/newer format.
+  static Map<String, dynamic> _readObject(String raw) {
+    Object? decoded;
+    try {
+      decoded = jsonDecode(raw);
+    } on FormatException {
+      throw const FormatException(
+          'Saved learning data could not be read safely');
+    }
+    if (decoded is! Map<String, dynamic>) {
+      throw const FormatException('Unsupported saved learning data format');
+    }
+    return decoded;
+  }
+
+  /// A new per-child field in this repository, never a second database.
+  /// Bad/newer bytes are not normalized, overwritten or deleted on read.
+  Future<DiscoveryProgress> loadDiscovery() async {
+    final raw = await _namespace.read(_discoveryKey);
+    if (raw == null) return DiscoveryProgress();
+    return DiscoveryProgress.fromJson(jsonDecode(raw));
+  }
+
+  Future<void> saveDiscovery(DiscoveryProgress value) =>
+      _namespace.write(_discoveryKey, jsonEncode(value.toJson()));
 
   Future<Map<String, SkillRecord>> loadSkills() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_skillsKey);
+    final raw = await _namespace.read(_skillsKey);
     if (raw == null || raw.trim().isEmpty) return <String, SkillRecord>{};
     final out = <String, SkillRecord>{};
-    try {
-      final decoded = jsonDecode(raw);
-      if (decoded is! Map) {
-        await prefs.remove(_skillsKey);
-        return <String, SkillRecord>{};
+    for (final value in _readObject(raw).values) {
+      if (value is! Map<String, dynamic> ||
+          value.keys.any((key) => !_skillFields.contains(key))) {
+        throw const FormatException('Unsupported saved skill record');
       }
-      decoded.forEach((key, value) {
-        if (value is! Map) return;
-        final record =
-            SkillRecord.fromJson(Map<String, dynamic>.from(value)).normalized();
-        out[record.skillId] = record;
-      });
-    } catch (_) {
-      await prefs.remove(_skillsKey);
-      return <String, SkillRecord>{};
+      late SkillRecord record;
+      try {
+        record = SkillRecord.fromJson(value).normalized();
+      } catch (_) {
+        throw const FormatException(
+            'Saved skill record could not be read safely');
+      }
+      if (out.containsKey(record.skillId)) {
+        throw const FormatException('Conflicting saved skill records');
+      }
+      out[record.skillId] = record;
     }
     // A failed normalization write is not corrupt input. Preserve the
     // existing saved profile and report storage failure so Retry can work.
@@ -37,99 +84,79 @@ class ProgressRepository {
   }
 
   Future<void> saveSkills(Map<String, SkillRecord> skills) async {
-    final prefs = await SharedPreferences.getInstance();
     final data = <String, Map<String, dynamic>>{};
     for (final entry in skills.entries) {
       final record = entry.value.normalized();
       data[record.skillId] = record.toJson();
     }
-    if (!await prefs.setString(_skillsKey, jsonEncode(data))) {
-      throw StateError('Learning skills were not saved');
-    }
+    await _namespace.write(_skillsKey, jsonEncode(data));
   }
 
   Future<Map<String, int>> loadDaily() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_dailyKey);
+    final raw = await _namespace.read(_dailyKey);
     if (raw == null || raw.trim().isEmpty) return <String, int>{};
     final out = <String, int>{};
-    try {
-      final decoded = jsonDecode(raw);
-      if (decoded is! Map) {
-        await prefs.remove(_dailyKey);
-        return <String, int>{};
+    for (final entry in _readObject(raw).entries) {
+      if (!RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(entry.key)) {
+        throw const FormatException('Unsupported saved daily progress key');
       }
-      decoded.forEach((key, value) {
-        final textKey = key.toString();
-        if (!RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(textKey)) return;
-        final count = value is num
-            ? value.toInt()
-            : int.tryParse(value?.toString() ?? '') ?? 0;
-        out[textKey] = count.clamp(0, 500).toInt();
-      });
-    } catch (_) {
-      await prefs.remove(_dailyKey);
-      return <String, int>{};
+      final value = entry.value;
+      final count = value is num && value.isFinite
+          ? value.toInt()
+          : value is String
+              ? int.tryParse(value)
+              : null;
+      if (count == null) {
+        throw const FormatException('Unsupported saved daily progress count');
+      }
+      out[entry.key] = count.clamp(0, 500).toInt();
     }
     await saveDaily(out);
     return out;
   }
 
   Future<void> saveDaily(Map<String, int> daily) async {
-    final prefs = await SharedPreferences.getInstance();
     final clean = <String, int>{};
     daily.forEach((key, value) {
       if (RegExp(r'^\d{4}-\d{2}-\d{2}$').hasMatch(key)) {
         clean[key] = value.clamp(0, 500).toInt();
       }
     });
-    if (!await prefs.setString(_dailyKey, jsonEncode(clean))) {
-      throw StateError('Daily learning progress was not saved');
-    }
+    await _namespace.write(_dailyKey, jsonEncode(clean));
   }
 
   Future<Map<String, String>> loadLastTopics() async {
-    final prefs = await SharedPreferences.getInstance();
-    final raw = prefs.getString(_lastKey);
+    final raw = await _namespace.read(_lastKey);
     if (raw == null || raw.trim().isEmpty) return <String, String>{};
     final out = <String, String>{};
-    try {
-      final decoded = jsonDecode(raw);
-      if (decoded is! Map) {
-        await prefs.remove(_lastKey);
-        return <String, String>{};
+    for (final entry in _readObject(raw).entries) {
+      final value = entry.value;
+      if (value is! String ||
+          entry.key.trim().isEmpty ||
+          value.trim().isEmpty) {
+        throw const FormatException('Unsupported saved last-topic record');
       }
-      decoded.forEach((key, value) {
-        final k = key.toString().trim();
-        final v = value?.toString().trim() ?? '';
-        if (k.isNotEmpty && v.isNotEmpty) out[k] = v;
-      });
-    } catch (_) {
-      await prefs.remove(_lastKey);
-      return <String, String>{};
+      out[entry.key.trim()] = value.trim();
     }
     await saveLastTopics(out);
     return out;
   }
 
   Future<void> saveLastTopics(Map<String, String> last) async {
-    final prefs = await SharedPreferences.getInstance();
     final clean = <String, String>{};
     last.forEach((key, value) {
       final k = key.trim();
       final v = value.trim();
       if (k.isNotEmpty && v.isNotEmpty) clean[k] = v;
     });
-    if (!await prefs.setString(_lastKey, jsonEncode(clean))) {
-      throw StateError('Last learning topics were not saved');
-    }
+    await _namespace.write(_lastKey, jsonEncode(clean));
   }
 
   Future<void> resetAll() async {
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_skillsKey);
-    await prefs.remove(_dailyKey);
-    await prefs.remove(_lastKey);
+    await _namespace.write(_skillsKey, '{}');
+    await _namespace.write(_dailyKey, '{}');
+    await _namespace.write(_lastKey, '{}');
+    await saveDiscovery(DiscoveryProgress());
   }
 }
 

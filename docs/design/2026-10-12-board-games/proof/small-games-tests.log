@@ -1,0 +1,55 @@
+Resolving dependencies...
+Downloading packages...
+  clock 1.1.2 (1.1.3 available)
+  code_assets 1.2.1 (2.1.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  flutter_lints 4.0.0 (6.0.0 available)
+  google_mlkit_commons 0.8.1 (0.13.0 available)
+  google_mlkit_text_recognition 0.13.1 (0.17.1 available)
+  hooks 2.0.2 (2.2.0 available)
+  image_picker 1.2.3 (1.2.4 available)
+  image_picker_ios 0.8.13+9 (0.8.13+10 available)
+  image_picker_platform_interface 2.11.1 (2.11.2 available)
+  jni_flutter 1.0.3 (1.0.4+1 available)
+  lints 4.0.0 (6.1.0 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.0 (1.19.0 available)
+  objective_c 9.5.0 (9.6.2 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences 2.5.5 (2.5.6 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  test_api 0.7.11 (0.7.15 available)
+  vector_math 2.2.0 (2.4.3 available)
+Got dependencies!
+21 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.
+00:00 +0: loading /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart
+00:00 +0: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: (setUpAll)
+00:00 +0: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: Actual dice game fits Size(360.0, 640.0) with enlarged text
+00:01 +1: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: Actual dice game fits Size(392.0, 850.0) with enlarged text
+00:01 +2: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: Actual dice game fits Size(967.0, 805.0) with enlarged text
+00:02 +3: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: Actual dice game fits Size(926.0, 362.0) with enlarged text
+00:02 +4: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: Actual dice game fits Size(1280.0, 800.0) with enlarged text
+00:03 +5: /workspace/lumo-games-1934/test/games/dice_race_runtime_test.dart: (tearDownAll)
+00:03 +5: loading /workspace/lumo-games-1934/test/games/small_games_layout_test.dart
+00:04 +5: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: (setUpAll)
+00:04 +5: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: boxes on Size(360.0, 640.0) with large text remains playable
+00:05 +6: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: letters on Size(360.0, 640.0) with large text remains playable
+00:05 +7: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: house on Size(360.0, 640.0) with large text remains playable
+00:05 +8: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: stars on Size(360.0, 640.0) with large text remains playable
+00:05 +9: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: boxes on Size(967.0, 805.0) with large text remains playable
+00:06 +10: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: letters on Size(967.0, 805.0) with large text remains playable
+00:07 +11: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: house on Size(967.0, 805.0) with large text remains playable
+00:07 +12: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: stars on Size(967.0, 805.0) with large text remains playable
+00:07 +13: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: boxes on Size(926.0, 362.0) with large text remains playable
+00:08 +14: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: letters on Size(926.0, 362.0) with large text remains playable
+00:08 +15: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: house on Size(926.0, 362.0) with large text remains playable
+00:08 +16: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: stars on Size(926.0, 362.0) with large text remains playable
+00:08 +17: /workspace/lumo-games-1934/test/games/small_games_layout_test.dart: (tearDownAll)
+00:08 +17: loading /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart
+00:09 +17: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Sternepfad all five tasks, answer feedback, saved completion
+00:10 +18: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Rechenhaus all five tasks, answer feedback, saved completion
+00:10 +19: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Color boxes complete all five targets and save level 2
+00:11 +20: /workspace/lumo-games-1934/test/games/mini_games_flow_test.dart: Letter gaps complete six different words and save level 25
+00:11 +21: All tests passed!

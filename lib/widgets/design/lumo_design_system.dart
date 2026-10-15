@@ -6,6 +6,7 @@ import '../../core/progress_repository.dart';
 import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import 'lumo_motion.dart';
+import 'lumo_glass_optics.dart';
 
 enum LumoDesignFoxPose {
   cardsWelcome('fox_cards_welcome', 'Lumo lädt dich zum Kartenspiel ein'),
@@ -238,6 +239,7 @@ class LumoGlassCard extends StatelessWidget {
     this.radius = 24,
     this.color,
     this.borderColor,
+    this.surfaceOpacity = .68,
   });
 
   final Widget child;
@@ -245,32 +247,54 @@ class LumoGlassCard extends StatelessWidget {
   final double radius;
   final Color? color;
   final Color? borderColor;
+  final double surfaceOpacity;
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: padding,
-        decoration: BoxDecoration(
-          color: (color ?? LumoVisualTokens.glass).withOpacity(.68),
-          borderRadius: BorderRadius.circular(radius),
-          border: Border.all(
-            color: borderColor ?? LumoVisualTokens.cyan.withOpacity(.52),
-            width: 1.2,
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.12),
-              blurRadius: 22,
-              spreadRadius: -4,
-            ),
-            const BoxShadow(
-              color: Color(0x33000000),
-              blurRadius: 18,
-              offset: Offset(0, 9),
-            ),
+  Widget build(BuildContext context) {
+    final base = color ?? LumoVisualTokens.glass;
+    final highlightAlpha = (surfaceOpacity + .20).clamp(0.0, 1.0).toDouble();
+    final upperAlpha = (surfaceOpacity + .14).clamp(0.0, 1.0).toDouble();
+    final lowerAlpha = (surfaceOpacity + .08).clamp(0.0, 1.0).toDouble();
+    final deepAlpha = (surfaceOpacity + .17).clamp(0.0, 1.0).toDouble();
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          stops: const [0.0, .12, .48, 1.0],
+          colors: [
+            Color.lerp(base, LumoVisualTokens.cyanBright, .19)!
+                .withValues(alpha: highlightAlpha),
+            base.withValues(alpha: upperAlpha),
+            base.withValues(alpha: lowerAlpha),
+            LumoVisualTokens.navigation.withValues(alpha: deepAlpha),
           ],
         ),
-        child: child,
-      );
+        borderRadius: BorderRadius.circular(radius),
+        border: Border.all(
+          color: borderColor ??
+              LumoVisualTokens.cyanBright.withValues(alpha: .60),
+          width: 1.25,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: LumoVisualTokens.cyan.withValues(alpha: .16),
+            blurRadius: 22,
+            spreadRadius: -5,
+          ),
+          const BoxShadow(
+            color: Color(0x44000000),
+            blurRadius: 19,
+            offset: Offset(0, 9),
+          ),
+        ],
+      ),
+      child: CustomPaint(
+        foregroundPainter: LumoGlassOptics(radius: radius),
+        child: Padding(padding: padding, child: child),
+      ),
+    );
+  }
 }
 
 /// One calm glass treatment across learning, games, tests and rewards.
@@ -325,8 +349,8 @@ class LumoColorTile extends StatelessWidget {
                         stops: const [0.0, 0.18, 1.0],
                         colors: [
                           // Leichter Glanz an der oberen Kante für Tiefe.
-                          Color.lerp(const Color(0xF0215A8F), color, .22)!,
-                          Color.lerp(const Color(0xEE123A68), color, .16)!,
+                          Color.lerp(const Color(0xF0215A8F), color, .68)!,
+                          Color.lerp(const Color(0xEE123A68), color, .42)!,
                           const Color(0xF0081D3D)
                         ]),
                     border: Border.all(
@@ -848,6 +872,7 @@ class LumoFoxPose extends StatelessWidget {
       );
 }
 
+/// Five permanent portrait destinations plus the full scrollable Fold menu.
 class LumoBottomNavigation extends StatelessWidget {
   const LumoBottomNavigation({
     super.key,
@@ -861,96 +886,240 @@ class LumoBottomNavigation extends StatelessWidget {
   static const _items = <_LumoNavigationItem>[
     _LumoNavigationItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _LumoNavigationItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
-    _LumoNavigationItem(
-        LumoSection.games, Icons.sports_esports_rounded, 'Spielen'),
+    _LumoNavigationItem(LumoSection.games, Icons.sports_esports_rounded, 'Spielen'),
     _LumoNavigationItem(LumoSection.tests, Icons.emoji_events_rounded, 'Tests'),
-    _LumoNavigationItem(
-        LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
+    _LumoNavigationItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
   ];
 
-  @override
-  Widget build(BuildContext context) => Container(
-        // Wie im Zielbild: Leiste über die ganze Breite, oben abgerundet.
-        padding: const EdgeInsets.fromLTRB(4, 6, 4, 4),
-        decoration: BoxDecoration(
-          color: LumoVisualTokens.navigation.withOpacity(.96),
-          borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
-          border: Border(
-            top: BorderSide(color: LumoVisualTokens.cyan.withOpacity(.35)),
-          ),
-          boxShadow: [
-            BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.12),
-              blurRadius: 16,
-              offset: const Offset(0, -3),
+  // Match the Fold sidebar's additional destinations, including rewards.
+  static const _moreItems = <_LumoNavigationItem>[
+    _LumoNavigationItem(LumoSection.rewards, Icons.star_rounded, 'Belohnungen'),
+    _LumoNavigationItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
+    _LumoNavigationItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
+    _LumoNavigationItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
+    _LumoNavigationItem(LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
+    _LumoNavigationItem(LumoSection.missions, Icons.flag_rounded, 'Missionen'),
+    _LumoNavigationItem(LumoSection.progress, Icons.bar_chart_rounded, 'Fortschritt'),
+    _LumoNavigationItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo'),
+    _LumoNavigationItem(LumoSection.settings, Icons.settings_rounded, 'Elternbereich'),
+  ];
+
+  void _showMore(BuildContext context) {
+    HapticFeedback.selectionClick();
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      backgroundColor: LumoVisualTokens.navigation,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
+      builder: (sheetContext) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: .78,
+        minChildSize: .4,
+        maxChildSize: .95,
+        builder: (context, controller) => Column(
+          children: [
+            const SizedBox(height: 10),
+            Container(
+              key: const ValueKey('lumo-nav-more-handle'),
+              width: 44,
+              height: 5,
+              decoration: BoxDecoration(
+                color: LumoVisualTokens.cyan.withOpacity(.7),
+                borderRadius: BorderRadius.circular(3),
+              ),
             ),
-          ],
-        ),
-        child: Row(
-          children: _items.map((item) {
-            final selected = active == item.section;
-            final color =
-                selected ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted;
-            return Expanded(
-              child: Semantics(
-                button: true,
-                selected: selected,
-                label: item.label,
-                child: InkWell(
-                  key: ValueKey('lumo-nav-${item.label.toLowerCase()}'),
-                  borderRadius: BorderRadius.circular(16),
-                  onTap: () {
-                    HapticFeedback.selectionClick();
-                    onSelect(item.section);
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 7),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 14, 12, 10),
+              child: Row(
+                children: [
+                  const Expanded(
                     child: Column(
-                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AnimatedScale(
-                          scale: selected ? 1.12 : 1,
-                          duration: const Duration(milliseconds: 180),
-                          child: Icon(item.icon,
-                              size: 25,
-                              color: color,
-                              shadows: selected
-                                  ? const [
-                                      Shadow(
-                                          color: LumoVisualTokens.cyan,
-                                          blurRadius: 12)
-                                    ]
-                                  : null),
-                        ),
-                        const SizedBox(height: 2),
-                        Text(
-                          item.label,
-                          maxLines: 1,
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontWeight:
-                                selected ? FontWeight.w900 : FontWeight.w700,
-                            fontSize: 11,
-                            color: color,
-                            shadows: selected
-                                ? const [
-                                    Shadow(
-                                      color: LumoVisualTokens.cyan,
-                                      blurRadius: 8,
-                                    )
-                                  ]
-                                : null,
-                          ),
-                        ),
+                        Text('Mehr mit Lumo',
+                          style: TextStyle(fontFamily: 'Nunito',
+                            fontSize: 21, fontWeight: FontWeight.w900,
+                            color: LumoVisualTokens.white)),
+                        Text('Alle Bereiche – nach unten scrollen',
+                          style: TextStyle(fontFamily: 'Nunito', fontSize: 12,
+                            color: LumoVisualTokens.muted)),
                       ],
                     ),
                   ),
+                  IconButton(
+                    key: const ValueKey('lumo-nav-more-close'),
+                    tooltip: 'Menü schließen',
+                    icon: const Icon(Icons.close_rounded,
+                      color: LumoVisualTokens.cyanBright),
+                    onPressed: () => Navigator.of(sheetContext).pop(),
+                  ),
+                ],
+              ),
+            ),
+            Divider(color: LumoVisualTokens.cyan.withOpacity(.25), height: 1),
+            Expanded(
+              child: ListView.builder(
+                key: const ValueKey('lumo-nav-extra-scroll'),
+                controller: controller,
+                physics: const BouncingScrollPhysics(),
+                padding: const EdgeInsets.fromLTRB(12, 8, 12, 24),
+                itemCount: _moreItems.length,
+                itemBuilder: (context, index) {
+                  final item = _moreItems[index];
+                  final selected = item.section == active;
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3),
+                    child: Material(
+                      color: selected
+                        ? LumoVisualTokens.cyan.withOpacity(.16)
+                        : LumoVisualTokens.glass.withOpacity(.5),
+                      borderRadius: BorderRadius.circular(18),
+                      child: ListTile(
+                        key: ValueKey('lumo-nav-extra-' + item.section.name),
+                        minTileHeight: 56,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(18),
+                          side: BorderSide(color: selected
+                            ? LumoVisualTokens.cyan.withOpacity(.8)
+                            : LumoVisualTokens.cyan.withOpacity(.16)),
+                        ),
+                        leading: Icon(item.icon, size: 25,
+                          color: LumoVisualTokens.cyanBright),
+                        title: Text(item.label,
+                          style: const TextStyle(fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w800, fontSize: 15,
+                            color: LumoVisualTokens.white)),
+                        trailing: Icon(selected ? Icons.check_circle_rounded
+                          : Icons.chevron_right_rounded,
+                          color: LumoVisualTokens.cyanBright),
+                        selected: selected,
+                        onTap: () {
+                          Navigator.of(sheetContext).pop();
+                          onSelect(item.section);
+                        },
+                      ),
+                    ),
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  bool get _moreSelected =>
+      _moreItems.any((item) => item.section == active);
+
+  @override
+  Widget build(BuildContext context) => Container(
+    padding: const EdgeInsets.fromLTRB(4, 5, 4, 4),
+    decoration: BoxDecoration(
+      color: LumoVisualTokens.navigation.withOpacity(.98),
+      borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
+      border: Border(top: BorderSide(
+        color: LumoVisualTokens.cyan.withOpacity(.42))),
+      boxShadow: [BoxShadow(
+        color: LumoVisualTokens.cyan.withOpacity(.16),
+        blurRadius: 20, offset: const Offset(0, -3))],
+    ),
+    child: Row(
+      children: [
+        Expanded(child: LayoutBuilder(
+          builder: (context, constraints) {
+            // Full five tabs fit at normal phone width. Extra-narrow covers
+            // can swipe the primary rail; the More control never scrolls away.
+            final tabWidth = constraints.maxWidth >= 280
+              ? constraints.maxWidth / _items.length : 56.0;
+            return SingleChildScrollView(
+              key: const ValueKey('lumo-nav-primary-scroll'),
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              child: Row(children: [
+                for (final item in _items)
+                  SizedBox(width: tabWidth, child: _buildTab(item)),
+              ]),
+            );
+          },
+        )),
+        Container(width: 1, height: 40,
+          color: LumoVisualTokens.cyan.withOpacity(.30)),
+        SizedBox(
+          width: 67,
+          child: Semantics(
+            button: true,
+            selected: _moreSelected,
+            label: 'Mehr',
+            child: InkWell(
+              key: const ValueKey('lumo-nav-more'),
+              borderRadius: BorderRadius.circular(15),
+              onTap: () => _showMore(context),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 7),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(Icons.keyboard_arrow_up_rounded, size: 25,
+                      color: _moreSelected
+                        ? LumoVisualTokens.cyanBright : LumoVisualTokens.cyan),
+                    const SizedBox(height: 2),
+                    Text('Mehr', style: TextStyle(
+                      fontFamily: 'Nunito', fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                      color: _moreSelected
+                        ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted)),
+                  ],
                 ),
               ),
-            );
-          }).toList(),
+            ),
+          ),
         ),
-      );
+      ],
+    ),
+  );
+
+  Widget _buildTab(_LumoNavigationItem item) {
+    final selected = active == item.section;
+    final color = selected
+        ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted;
+    return Semantics(
+      button: true, selected: selected, label: item.label,
+      child: InkWell(
+        key: ValueKey('lumo-nav-' + item.label.toLowerCase()),
+        borderRadius: BorderRadius.circular(16),
+        onTap: () {
+          HapticFeedback.selectionClick();
+          onSelect(item.section);
+        },
+        child: Padding(
+          padding: const EdgeInsets.symmetric(vertical: 7),
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            AnimatedScale(
+              scale: selected ? 1.12 : 1,
+              duration: const Duration(milliseconds: 180),
+              child: Icon(item.icon, size: 25, color: color,
+                shadows: selected ? const [
+                  Shadow(color: LumoVisualTokens.cyan, blurRadius: 12),
+                ] : null)),
+            const SizedBox(height: 2),
+            Text(item.label, maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: selected ? FontWeight.w900 : FontWeight.w700,
+                fontSize: 11, color: color,
+                shadows: selected ? const [
+                  Shadow(color: LumoVisualTokens.cyan, blurRadius: 8),
+                ] : null)),
+          ]),
+        ),
+      ),
+    );
+  }
 }
 
 class LumoFoldProgressPanel extends StatelessWidget {
@@ -1009,7 +1178,7 @@ class LumoFoldProgressPanel extends StatelessWidget {
                               value: _masteryFor(skills.values, 'Lesen'),
                             ),
                             _FoldSkillRing(
-                              label: 'Sachkunde',
+                              label: 'Sachunterricht',
                               value:
                                   _masteryFor(skills.values, 'Sachunterricht'),
                             ),

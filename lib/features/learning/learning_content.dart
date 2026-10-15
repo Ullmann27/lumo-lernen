@@ -23,6 +23,7 @@ import '../../core/task_hint_service.dart';
 import '../../core/recent_task_repository.dart';
 import '../../core/session_variety_guard.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/lumo_voice_clips.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
@@ -34,6 +35,9 @@ import 'renderers/adaptive_task_renderer.dart';
 import 'renderers/shape_trace_task_renderer.dart';
 import 'renderers/writing_task_renderer.dart';
 import 'widgets/rechentricks_mentor_card.dart';
+import 'widgets/lumo_learning_tree_card.dart';
+import 'widgets/lumo_tutor_hint_card.dart';
+import '../lumo_welt/lumo_welt_screen.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
@@ -105,6 +109,8 @@ class _LearningContentState extends State<LearningContent> {
   int _testFirstTryCorrect = 0;
   bool _questionHadWrong = false;
   int _attemptCount = 0;
+  int _totalTaskAttempts = 0;
+  String? _lastGivenAnswer;
   String? _tutorHint;
   int _requestedHelpLevel = 0;
   // Bildhilfe-Karte als 4. Hilfsstufe nach 5+ Fehlversuchen.
@@ -150,7 +156,16 @@ class _LearningContentState extends State<LearningContent> {
     LumoCompanionRequests.instance.helpRequested.addListener(_requestTaskHelp);
     _loadNextTask(resetCounter: false);
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      LumoVoice.instance.speak(_welcomeForKind);
+      if (!mounted) return;
+      final settings = widget.appState.state.settings;
+      if (!settings.voiceEnabled || !settings.autoReadEnabled) return;
+      // Always audible with the bundled warm German recording, even when
+      // the optional license for synthesizing arbitrary text is not granted.
+      unawaited(LumoVoice.instance.speak(
+        'Hallo! Schön, dass du da bist. Ich bin Lumo. '
+        'Komm, wir entdecken zusammen etwas Neues!',
+        style: VoiceStyle.greeting,
+      ));
     });
     // Persistente Wiederholungsvermeidung nachladen, ohne den ersten Frame zu blockieren.
     _hydrateRecent();
@@ -184,7 +199,11 @@ class _LearningContentState extends State<LearningContent> {
     );
     final units = await _recentRepo.loadUnits(childId: childId, subject: subject,
     );
-    if (!mounted || childId != _childId || subject != widget.appState.state.subject) return;
+    if (!mounted ||
+        childId != _childId ||
+        subject != widget.appState.state.subject) {
+      return;
+    }
     setState(() {
       final currentKeys = List<String>.from(_recentTaskKeys);
       final currentUnits = List<String>.from(_recentUnits);
@@ -372,6 +391,8 @@ class _LearningContentState extends State<LearningContent> {
     _aiHelpLoading = false;
     _rechentricks = null;
     _attemptCount = 0;
+    _totalTaskAttempts = 0;
+    _lastGivenAnswer = null;
     _questionHadWrong = false;
     if (resetCounter) {
       _sessionFinished = false;
@@ -389,11 +410,23 @@ class _LearningContentState extends State<LearningContent> {
       prompt: _task.prompt,
       isExam: !_allowHelp,
       answering: !_answered && !_sessionFinished,
+      taskId: _taskInstance.taskInstanceId,
+      attempts: _totalTaskAttempts,
+      helpLevel: _requestedHelpLevel,
+      lastAnswer: _lastGivenAnswer,
+      lastCorrect: _lastCorrect,
+      previousHelp: _tutorHint,
+      localHelp: _allowHelp
+          ? _taskHints.explain(_task,
+              level: (_requestedHelpLevel + 1).clamp(1, 3))
+          : null,
+      activity: _task.visual.contains('writ') ? 'writing' : 'learning',
+      profileGeneration: widget.appState.profileGeneration,
     );
     _publishedTaskContext = context;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && identical(_publishedTaskContext, context)) {
-        LumoCompanionRequests.instance.taskContext.value = context;
+        LumoCompanionRequests.instance.publishTask(context);
       }
     });
   }
@@ -404,12 +437,78 @@ class _LearningContentState extends State<LearningContent> {
     final hint = _taskHints.explain(_task, level: _requestedHelpLevel);
     _lumo.think();
     setState(() => _tutorHint = hint);
+    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.helpRequested);
+    _publishTaskContext();
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.hintRequested,
+        context: _publishedTaskContext);
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.hintAccepted,
+        context: _publishedTaskContext);
     if (widget.appState.state.settings.voiceEnabled) {
-      unawaited(LumoVoice.instance.speak(hint, style: VoiceStyle.explain));
+      unawaited(_speakTutorHint(hint));
     }
     if (_cloudHelpAllowed) {
       unawaited(_askAiTutor());
     }
+  }
+
+  /// Spoken lessons use the shipped warm German Lumo-Frei voice first.
+  /// Arbitrary task hints are only synthesized after the parent accepts
+  /// the local model license; never silently switch to a different voice.
+  Future<void> _speakTutorHint(String text,
+      {bool explainAvailability = false}) async {
+    final settings = widget.appState.state.settings;
+    if (!settings.voiceEnabled || !LumoVoice.instance.isEnabled) {
+      if (explainAvailability && mounted) {
+        _showTutorSpeechNotice(
+          'Lumos Stimme ist ausgeschaltet. Bitte im Elternbereich '
+          'unter Ton und Stimme aktivieren.',
+        );
+      }
+      return;
+    }
+
+    await LumoVoiceClips.ensureFreeLoaded();
+    if (!mounted) return;
+    final recorded = LumoVoiceClips.freeLookup(text) != null;
+    if (!recorded && !settings.localVoiceLicenseAccepted) {
+      // This complete German phrase is in the signed local catalog. The
+      // explanation stays readable instead of disappearing or using TTS.
+      unawaited(LumoVoice.instance.speak(
+        'Hier ist ein kleiner Tipp:', style: VoiceStyle.explain));
+      if (explainAvailability) {
+        _showTutorSpeechNotice(
+          'Lumo kann die Einleitung sprechen. Für ganze neue Erklärungen '
+          'bitte im Elternbereich unter Ton und Stimme '
+          '„Neue Sätze offline vorlesen“ freigeben.',
+        );
+      }
+      return;
+    }
+    if (!recorded && !await LumoVoice.instance.localSpeechAvailable()) {
+      if (mounted) {
+        _showTutorSpeechNotice(
+          'Die lokale Lumo-Sprachausgabe ist auf diesem Gerät '
+          'noch nicht verfügbar. Der Tipp bleibt lesbar.',
+        );
+      }
+      return;
+    }
+    if (!mounted) return;
+    unawaited(LumoVoice.instance.speak(
+      text, style: VoiceStyle.explain));
+  }
+
+  void _showTutorSpeechNotice(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(message),
+        duration: const Duration(seconds: 7),
+        behavior: SnackBarBehavior.floating,
+      ),
+    );
   }
 
   bool get _cloudHelpAllowed =>
@@ -802,6 +901,19 @@ class _LearningContentState extends State<LearningContent> {
     required Object answerGiven,
     double? handwritingScore,
   }) {
+    _totalTaskAttempts++;
+    _lastGivenAnswer = '$answerGiven';
+    _publishTaskContext();
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.answerChecked);
+    if (_totalTaskAttempts > 1) {
+      LumoCompanionRequests.instance.recordLearningEvent(
+          LumoLearningEventKind.taskRepeated,
+          context: _publishedTaskContext);
+    }
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.answerSubmitted,
+        context: _publishedTaskContext);
     final before = _skillStates[_taskInstance.skillId.value] ??
         SkillState(
           childId: _childId,
@@ -927,6 +1039,11 @@ class _LearningContentState extends State<LearningContent> {
       _rechentricks = nextRechentricks;
     });
     _publishTaskContext();
+    LumoCompanionRequests.instance.recordLearningEvent(
+        correct
+            ? LumoLearningEventKind.answerCorrect
+            : LumoLearningEventKind.answerIncorrect,
+        context: _publishedTaskContext);
 
     if (correct) {
       widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
@@ -977,9 +1094,17 @@ class _LearningContentState extends State<LearningContent> {
       }
       return const <ErrorType>[ErrorType.quantityError];
     }
-    if (_task.unit.toLowerCase().contains('silben')) return const <ErrorType>[ErrorType.syllableCountWrong];
-    if (_task.unit.toLowerCase().contains('laut') || _task.unit.toLowerCase().contains('st oder sp')) return const <ErrorType>[ErrorType.soundMisread];
-    if (_task.unit.toLowerCase().contains('schreiben') || _task.unit.toLowerCase().contains('mehrzahl')) return const <ErrorType>[ErrorType.wordImageMismatch];
+    if (_task.unit.toLowerCase().contains('silben')) {
+      return const <ErrorType>[ErrorType.syllableCountWrong];
+    }
+    if (_task.unit.toLowerCase().contains('laut') ||
+        _task.unit.toLowerCase().contains('st oder sp')) {
+      return const <ErrorType>[ErrorType.soundMisread];
+    }
+    if (_task.unit.toLowerCase().contains('schreiben') ||
+        _task.unit.toLowerCase().contains('mehrzahl')) {
+      return const <ErrorType>[ErrorType.wordImageMismatch];
+    }
     return const <ErrorType>[ErrorType.conceptConfusion];
   }
 
@@ -1001,6 +1126,9 @@ class _LearningContentState extends State<LearningContent> {
       }
       setState(() => _sessionFinished = true);
       _publishTaskContext();
+      LumoCompanionRequests.instance.recordLearningEvent(
+          LumoLearningEventKind.lessonCompleted,
+          context: _publishedTaskContext);
       return;
     }
     setState(() {
@@ -1032,45 +1160,128 @@ class _LearningContentState extends State<LearningContent> {
   Widget build(BuildContext context) {
     final st = widget.appState.state;
     if (_sessionFinished) {
-      return Center(child: SingleChildScrollView(
-        padding: const EdgeInsets.all(20),
-        child: LumoGlassCard(
-          padding: const EdgeInsets.fromLTRB(20, 16, 20, 20),
-          radius: 26,
+      // Diese Anzeige verwendet ausschließlich echte Konto-/Lernwerte.
+      // Keine erfundenen "+25 XP" oder vorgetäuschten Freischaltungen.
+      Widget stat(IconData icon, String label, String value, Color accent) {
+        return Container(
+          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 12),
+          decoration: BoxDecoration(
+            gradient: const LinearGradient(
+              colors: [Color(0xEE154886), Color(0xEE081D43)]),
+            borderRadius: BorderRadius.circular(19),
+            border: Border.all(color: accent.withValues(alpha: .65)),
+            boxShadow: [BoxShadow(color: accent.withValues(alpha: .16),
+                blurRadius: 15)],
+          ),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
+            Icon(icon, color: accent, size: 27),
+            const SizedBox(height: 6),
+            Text(value, style: const TextStyle(fontFamily: 'Nunito',
+              color: Colors.white, fontWeight: FontWeight.w900, fontSize: 21)),
+            Text(label, textAlign: TextAlign.center, style: const TextStyle(
+              fontFamily: 'Nunito', color: LumoVisualTokens.muted,
+              fontWeight: FontWeight.w800, fontSize: 11)),
+          ]),
+        );
+      }
+      final header = LumoGlassCard(
+        padding: const EdgeInsets.fromLTRB(14, 16, 14, 17),
+        radius: 25,
+        child: Column(children: [
+          Row(children: [
             LumoCharacter(
               pose: LumoDesignFoxPose.cheer,
-              size: 150,
+              size: 112,
               reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
               onTap: () {},
             ),
-            const SizedBox(height: 8),
-            const Text('Einheit beendet', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 26, fontWeight: FontWeight.w900, color: LumoVisualTokens.white)),
-            const SizedBox(height: 8),
-            Text('Du hast $_totalQuestions Aufgaben bearbeitet. Zeit für eine kurze Pause!',
-                textAlign: TextAlign.center,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 16, fontWeight: FontWeight.w700, color: LumoVisualTokens.white)),
-            const SizedBox(height: 18),
-            FilledButton.icon(
-              style: FilledButton.styleFrom(
-                backgroundColor: LumoVisualTokens.cyan,
-                foregroundColor: LumoVisualTokens.night,
-                minimumSize: const Size(48, 48),
-              ),
-              onPressed: () => setState(() {
-                _sessionTaskKeys.clear();
-                _loadNextTask(resetCounter: true);
-              }),
-              icon: const Icon(Icons.refresh_rounded),
-              label: const Text('Neue Einheit starten'),
-            ),
-            const SizedBox(height: 10),
-            const Text('Du kannst im Menü auch ein anderes Thema auswählen.', textAlign: TextAlign.center,
-                style: TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w700, color: LumoVisualTokens.muted)),
+            const SizedBox(width: 6),
+            const Expanded(child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Einheit beendet', style: TextStyle(
+                  fontFamily: 'Nunito', color: LumoVisualTokens.cyanBright,
+                  fontWeight: FontWeight.w900, fontSize: 13)),
+                SizedBox(height: 4),
+                Text('Lektion abgeschlossen!', style: TextStyle(
+                  fontFamily: 'Nunito', color: Colors.white,
+                  fontWeight: FontWeight.w900, fontSize: 24)),
+                SizedBox(height: 4),
+                Text('Super gemacht – weiter so!', style: TextStyle(
+                  fontFamily: 'Nunito', color: LumoVisualTokens.muted,
+                  fontWeight: FontWeight.w700, fontSize: 12)),
+              ],
+            )),
           ]),
+          const SizedBox(height: 10),
+          Text('Du hast $_totalQuestions Aufgaben bearbeitet.',
+            textAlign: TextAlign.center, style: const TextStyle(
+              fontFamily: 'Nunito', color: Colors.white,
+              fontWeight: FontWeight.w800, fontSize: 14)),
+          const SizedBox(height: 15),
+          Row(children: [
+            Expanded(child: stat(Icons.star_rounded, 'Sterne gesamt',
+                st.stars.toString(), LumoVisualTokens.gold)),
+            const SizedBox(width: 8),
+            Expanded(child: stat(Icons.bolt_rounded, 'XP gesamt',
+                st.xp.toString(), LumoVisualTokens.cyanBright)),
+            const SizedBox(width: 8),
+            Expanded(child: stat(Icons.local_fire_department_rounded,
+                'Lerntage in Folge',
+                widget.appState.learningStreakDays().toString(),
+                const Color(0xFFFFB36D))),
+          ]),
+          const SizedBox(height: 18),
+          SizedBox(width: double.infinity, child: FilledButton.icon(
+            style: FilledButton.styleFrom(
+              backgroundColor: LumoVisualTokens.cyanBright,
+              foregroundColor: LumoVisualTokens.night,
+              minimumSize: const Size(48, 56),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(17)),
+            ),
+            onPressed: () => setState(() {
+              _sessionTaskKeys.clear();
+              _loadNextTask(resetCounter: true);
+            }),
+            icon: const Icon(Icons.play_arrow_rounded),
+            label: const Text('Neue Einheit starten', style: TextStyle(
+                fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+          )),
+          const SizedBox(height: 7),
+          const Text('Du kannst im Menü auch ein anderes Thema auswählen.',
+            textAlign: TextAlign.center, style: TextStyle(
+              fontFamily: 'Nunito', color: LumoVisualTokens.muted,
+              fontWeight: FontWeight.w700, fontSize: 11)),
+        ]),
+      );
+      final tree = LumoLearningTreeCard(
+        skills: widget.appState.learningSkills(),
+        compact: true,
+        onOpenWorld: () => Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => LumoWeltScreen(appState: widget.appState),
+          ),
         ),
-      ));
+      );
+      return LayoutBuilder(builder: (context, constraints) {
+        final wide = constraints.maxWidth >= 760;
+        return Center(child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16),
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 950),
+            child: wide
+                ? Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                    Expanded(child: header),
+                    const SizedBox(width: 15),
+                    Expanded(child: tree),
+                  ])
+                : Column(children: [
+                    header, const SizedBox(height: 13), tree,
+                  ]),
+          ),
+        ));
+      });
     }
     final title = _experienceTitle;
     final experienceSubtitle = _experienceSubtitle;
@@ -1081,136 +1292,169 @@ class _LearningContentState extends State<LearningContent> {
     final chip = st.subject == 'Alle'
         ? 'Klasse ${st.grade} • adaptiv'
         : '${st.subject} • $unitDisplay';
-    final progressTitle = st.subject == 'Mathematik'
-        ? 'Mathe-Abenteuer • $unitDisplay'
-        : chip;
+    final progressTitle =
+        st.subject == 'Mathematik' ? 'Mathe-Abenteuer • $unitDisplay' : chip;
 
-    return LayoutBuilder(builder: (context, constraints) {
-      final compact = constraints.maxWidth < 560;
-      // Stack mit Confetti-Overlay: bei richtigen Antworten regnet es
-      // physikalisch korrektes Konfetti (Newton-Schwerkraft + Luftwiderstand)
-      // ueber den gesamten Inhalt.
-      return Stack(
-        children: [
-          SingleChildScrollView(
-            // Unten Platz für Lumos Fuchs-Knopf, damit er keine Antwort verdeckt.
-            padding: EdgeInsets.fromLTRB(compact ? 14 : 26, compact ? 10 : 26, compact ? 14 : 26, 80),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 840),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(children: [
-                Expanded(
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text(
-                      title,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(fontFamily: 'Nunito', fontSize: 28, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1.05,
-                        shadows: [Shadow(color: Color(0x88000000), blurRadius: 8)],
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final compact = constraints.maxWidth < 560;
+        // Stack mit Confetti-Overlay: bei richtigen Antworten regnet es
+        // physikalisch korrektes Konfetti (Newton-Schwerkraft + Luftwiderstand)
+        // ueber den gesamten Inhalt.
+        return Stack(
+          children: [
+            SingleChildScrollView(
+              // Unten Platz für Lumos Fuchs-Knopf, damit er keine Antwort verdeckt.
+              padding: EdgeInsets.fromLTRB(
+                  compact ? 14 : 26, compact ? 10 : 26, compact ? 14 : 26, 80),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 840),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  title,
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 28,
+                                    fontWeight: FontWeight.w900,
+                                    color: LumoVisualTokens.white,
+                                    height: 1.05,
+                                    shadows: [
+                                      Shadow(
+                                          color: Color(0x88000000),
+                                          blurRadius: 8)
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  experienceSubtitle,
+                                  style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 13,
+                                    fontWeight: FontWeight.w900,
+                                    color: LumoVisualTokens.cyanBright,
+                                    height: 1.3,
+                                    shadows: [
+                                      Shadow(
+                                          color: Color(0xCC000000),
+                                          blurRadius: 8)
+                                    ],
+                                  ),
+                                ),
+                                const SizedBox(height: 3),
+                                Text(
+                                  _welcomeForKind,
+                                  style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w700,
+                                    color: LumoVisualTokens.muted,
+                                    height: 1.25,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          // Vorlesen: runder Glasknopf wie in den Zielbildern.
+                          Material(
+                            color: const Color(0xFF1E6FD9),
+                            shape: const CircleBorder(
+                                side: BorderSide(
+                                    color: LumoVisualTokens.cyanBright)),
+                            child: IconButton(
+                              tooltip: 'Aufgabe vorlesen',
+                              icon: const Icon(Icons.volume_up_rounded,
+                                  color: Colors.white, size: 24),
+                              onPressed: () {
+                                _lumo.talk();
+                                unawaited(_speakTutorHint(
+                                  _task.prompt,
+                                  explainAvailability: true,
+                                ));
+                              },
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                    const SizedBox(height: 4),
-                    Text(
-                      experienceSubtitle,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w900,
-                        color: LumoVisualTokens.cyanBright,
-                        height: 1.3,
-                        shadows: [Shadow(color: Color(0xCC000000), blurRadius: 8)],
+                      const SizedBox(height: 12),
+                      _LessonProgressRow(
+                        currentStep: _questionNum,
+                        totalSteps: _totalQuestions,
+                        subject: progressTitle,
+                        lumo: _lumo,
+                        reduceMotion: st.settings.reduceAnimations ||
+                            st.settings.calmMode ||
+                            MediaQuery.disableAnimationsOf(context),
                       ),
-                    ),
-                    const SizedBox(height: 3),
-                    Text(
-                      _welcomeForKind,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 11,
-                        fontWeight: FontWeight.w700,
-                        color: LumoVisualTokens.muted,
-                        height: 1.25,
-                      ),
-                    ),
-                  ],
-                  ),
-                ),
-                const SizedBox(width: 8),
-                // Vorlesen: runder Glasknopf wie in den Zielbildern.
-                Material(
-                  color: const Color(0xFF1E6FD9),
-                  shape: const CircleBorder(side: BorderSide(color: LumoVisualTokens.cyanBright)),
-                  child: IconButton(
-                    tooltip: 'Aufgabe vorlesen',
-                    icon: const Icon(Icons.volume_up_rounded, color: Colors.white, size: 24),
-                    onPressed: () {
-                      _lumo.talk();
-                      unawaited(LumoVoice.instance.speak('Aufgabe ${_task.prompt}'));
-                    },
-                  ),
-                ),
-              ],
-              ),
-              const SizedBox(height: 12),
-              _LessonProgressRow(
-                currentStep: _questionNum,
-                totalSteps: _totalQuestions,
-                subject: progressTitle,
-                lumo: _lumo,
-                reduceMotion: st.settings.reduceAnimations || st.settings.calmMode ||
-                    MediaQuery.disableAnimationsOf(context),
-              ),
-              if (_rechentricks != null) ...[
-                const SizedBox(height: 14),
-                RechentricksMentorCard(explanation: _rechentricks!),
-              ],
-              if (_tutorHint != null) ...[
-                const SizedBox(height: 14),
-                _TutorHintBanner(text: _tutorHint!),
-              ],
-              if (_visualAid != null) ...[
-                const SizedBox(height: 14),
-                _VisualAidCard(aid: _visualAid!),
-              ],
-              // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
-              // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
-              if (_allowHelp && !_answered) ...[
-                const SizedBox(height: 12),
-                _AiHelpButton(
-                  loading: _aiHelpLoading,
-                  onTap: _requestTaskHelp,
-                  subject: _task.subject,
-                ),
-              ],
-              if (_aiHelpReply != null) ...[
-                const SizedBox(height: 12),
-                _AiHelpBubble(
-                  text: _aiHelpReply!,
-                  onSpeak: () {
-                    _lumo.talk();
-                    unawaited(
-                      LumoVoice.instance.speak(
-                        _aiHelpReply!,
-                        style: VoiceStyle.explain,
-                      ),
-                    );
-                  },
-                ),
-              ],
-              const SizedBox(height: 12),
-              AnimatedSwitcher(
-                duration: const Duration(milliseconds: 280),
-                switchInCurve: Curves.easeOutCubic,
-                switchOutCurve: Curves.easeInCubic,
-                transitionBuilder: (child, animation) {
-                  final slide = Tween<Offset>(
-                    begin: const Offset(0.05, 0.04),
-                    end: Offset.zero,
-                  ).animate(animation);
-                  return FadeTransition(
-                    opacity: animation,
-                    child: SlideTransition(position: slide, child: child,
+                      if (_rechentricks != null) ...[
+                        const SizedBox(height: 14),
+                        RechentricksMentorCard(explanation: _rechentricks!),
+                      ],
+                      if (_tutorHint != null) ...[
+                        const SizedBox(height: 14),
+                        LumoTutorHintCard(
+                          text: _tutorHint!,
+                          reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
+                          onSpeak: () => unawaited(_speakTutorHint(
+                            _tutorHint!, explainAvailability: true)),
+                        ),
+                      ],
+                      if (_visualAid != null) ...[
+                        const SizedBox(height: 14),
+                        _VisualAidCard(aid: _visualAid!),
+                      ],
+                      // KI-Hilfe-Button: nur sichtbar wenn aiProxyEnabled.
+                      // Heinz wollte KI in alle Bereiche integrieren - wenn aktiviert.
+                      if (_allowHelp && !_answered) ...[
+                        const SizedBox(height: 12),
+                        _AiHelpButton(
+                          loading: _aiHelpLoading,
+                          onTap: _requestTaskHelp,
+                          subject: _task.subject,
+                        ),
+                      ],
+                      if (_aiHelpReply != null) ...[
+                        const SizedBox(height: 12),
+                        _AiHelpBubble(
+                          text: _aiHelpReply!,
+                          onSpeak: () {
+                            _lumo.talk();
+                            unawaited(
+                              LumoVoice.instance.speak(
+                                _aiHelpReply!,
+                                style: VoiceStyle.explain,
+                              ),
+                            );
+                          },
+                        ),
+                      ],
+                      const SizedBox(height: 12),
+                      AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 280),
+                        switchInCurve: Curves.easeOutCubic,
+                        switchOutCurve: Curves.easeInCubic,
+                        transitionBuilder: (child, animation) {
+                          final slide = Tween<Offset>(
+                            begin: const Offset(0.05, 0.04),
+                            end: Offset.zero,
+                          ).animate(animation);
+                          return FadeTransition(
+                            opacity: animation,
+                            child: SlideTransition(
+                              position: slide,
+                              child: child,
                             ),
                   );
                 },
@@ -1218,169 +1462,35 @@ class _LearningContentState extends State<LearningContent> {
                   key: ValueKey(_taskInstance.taskInstanceId),
                   task: _taskInstance,
                           allowRetry: _allowHelp,
-                  onAnswered: _answerAdaptive,
-                  onWritingSubmitted: _answerWriting,
-                  onShapeTraced: _answerShapeTrace,
-                ),
-              ),
-              if (_answered && _lastCorrect != null) ...[
-                const SizedBox(height: 22),
-                _ExplanationCard(
-                  correct: _lastCorrect!,
-                  explanation: _task.explanation,
-                  correctAnswer: '${_taskInstance.correctAnswer}',
-                  rewardDelta: _lastRewardDelta,
-                  skillState: _lastSkillState,
-                  feedback: _lastFeedback,
-                  onNext: _nextQuestion,
-                ),
-              ],
-            ],
-                  ),
-          ),
-        ),
-      ),
-          // Konfetti-Layer: feuert bei jeder richtigen Antwort.
-          Positioned.fill(
-            child: LumoConfettiBurst(trigger: _confettiTrigger),
-          ),
-        ],
-      );
-    },
-    );
-  }
-}
-
-class _TutorHintBanner extends StatefulWidget {
-  const _TutorHintBanner({required this.text});
-
-  final String text;
-
-  @override
-  State<_TutorHintBanner> createState() => _TutorHintBannerState();
-}
-
-class _TutorHintBannerState extends State<_TutorHintBanner> with SingleTickerProviderStateMixin {
-  late final AnimationController _controller = AnimationController(
-    vsync: this,
-    duration: const Duration(milliseconds: 480),
-  )..forward();
-
-  late final Animation<double> _fade = CurvedAnimation(
-    parent: _controller,
-    curve: Curves.easeOutQuart,
-  );
-  late final Animation<Offset> _slide = Tween<Offset>(
-    begin: const Offset(0, .12),
-    end: Offset.zero,
-  ).animate(CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic));
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return FadeTransition(
-      opacity: _fade,
-      child: SlideTransition(
-        position: _slide,
-        child: Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            gradient: LumoGradients.peachComfort,
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            border: Border.all(color: const Color(0xFFF59E0B).withOpacity(.32), width: 1.4,
-            ),
-            boxShadow: LumoShadow.help(const Color(0xFFFFB96B)),
-          ),
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(LumoRadius.lg),
-            child: IntrinsicHeight(
-              child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-              // Akzent-Linie links als visueller Anker
-              Container(
-                width: 5,
-                decoration: const BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
-                  ),
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(14, 14, 16, 14),
-                  child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    // Lumo-Avatar mit doppeltem Glow
-                    Container(
-                      width: 42,
-                      height: 42,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        gradient: const RadialGradient(
-                          colors: [Color(0xFF184F8D), Color(0xFF0B2C58)],
-                          radius: .9,
+                          onAnswered: _answerAdaptive,
+                          onWritingSubmitted: _answerWriting,
+                          onShapeTraced: _answerShapeTrace,
                         ),
-                        shape: BoxShape.circle,
-                        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.45), width: 1.5,
-                            ),
-                        boxShadow: [
-                          BoxShadow(color: LumoVisualTokens.cyan.withOpacity(.28), blurRadius: 12, offset: const Offset(0, 4),
-                              ),
-                        ],
                       ),
-                      child: const Text('🦊', style: TextStyle(fontSize: 22),
-                          ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                        Row(children: [
-                          const Text(
-                            'Lumo erklärt',
-                            style: TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, letterSpacing: .2,
-                                    ),
-                          ),
-                          const SizedBox(width: 6),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2,
-                                    ),
-                            decoration: BoxDecoration(
-                              color: LumoVisualTokens.cyan.withOpacity(.18),
-                              borderRadius: BorderRadius.circular(LumoRadius.pill,
-                                      ),
-                            ),
-                            child: const Text(
-                              'Tipp',
-                              style: TextStyle(fontFamily: 'Nunito', fontSize: 9, fontWeight: FontWeight.w900, color: LumoVisualTokens.cyanBright, letterSpacing: .6,
-                                      ),
-                            ),
-                          ),
-                        ],
-                              ),
-                        const SizedBox(height: 5),
-                        Text(
-                          widget.text,
-                          style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.32,
-                                ),
+                      if (_answered && _lastCorrect != null) ...[
+                        const SizedBox(height: 22),
+                        _ExplanationCard(
+                          correct: _lastCorrect!,
+                          explanation: _task.explanation,
+                          correctAnswer: '${_taskInstance.correctAnswer}',
+                          rewardDelta: _lastRewardDelta,
+                          skillState: _lastSkillState,
+                          feedback: _lastFeedback,
+                          onNext: _nextQuestion,
                         ),
                       ],
-                          ),
-                    ),
-                  ],
-                    ),
+                    ],
+                  ),
                 ),
               ),
-            ],
-              ),
             ),
-          ),
-        ),
-      ),
+            // Konfetti-Layer: feuert bei jeder richtigen Antwort.
+            Positioned.fill(
+              child: LumoConfettiBurst(trigger: _confettiTrigger),
+            ),
+          ],
+        );
+      },
     );
   }
 }
@@ -1443,60 +1553,69 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
       ),
       child: ClipRRect(
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        child: Stack(children: [
-          // Dekorativer Hintergrund-Glow oben rechts
-          Positioned(
-            top: -40,
-            right: -40,
-            child: IgnorePointer(
-              ignoring: true,
-              child: Container(
-                width: 160,
-                height: 160,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  gradient: RadialGradient(
-                    colors: [
-                      const Color(0xFFA5B4FC).withOpacity(.45),
-                      const Color(0xFFA5B4FC).withOpacity(0),
-                    ],
+        child: Stack(
+          children: [
+            // Dekorativer Hintergrund-Glow oben rechts
+            Positioned(
+              top: -40,
+              right: -40,
+              child: IgnorePointer(
+                ignoring: true,
+                child: Container(
+                  width: 160,
+                  height: 160,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: RadialGradient(
+                      colors: [
+                        const Color(0xFFA5B4FC).withOpacity(.45),
+                        const Color(0xFFA5B4FC).withOpacity(0),
+                      ],
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
-          // Akzent-Linie links
-          Positioned(
-            left: 0, top: 0, bottom: 0,
-            child: Container(
-              width: 5,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+            // Akzent-Linie links
+            Positioned(
+              left: 0,
+              top: 0,
+              bottom: 0,
+              child: Container(
+                width: 5,
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6)],
+                  ),
                 ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(20, 18, 18, 20),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              // HEADER mit großem Avatar
-              FadeTransition(
-                opacity: _headerFade,
-                child: Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                  Container(
-                    width: 48,
-                    height: 48,
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      gradient: const RadialGradient(
-                        colors: [Color(0xFF163E72), Color(0xFF081F49)],
-                        radius: .9,
-                      ),
-                      shape: BoxShape.circle,
-                      border: Border.all(color: const Color(0xFF6366F1).withOpacity(.40), width: 1.6,
+            Padding(
+              padding: const EdgeInsets.fromLTRB(20, 18, 18, 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // HEADER mit großem Avatar
+                  FadeTransition(
+                    opacity: _headerFade,
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Container(
+                          width: 48,
+                          height: 48,
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            gradient: const RadialGradient(
+                              colors: [Color(0xFF163E72), Color(0xFF081F49)],
+                              radius: .9,
+                            ),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                              color: const Color(0xFF6366F1).withOpacity(.40),
+                              width: 1.6,
                             ),
                       boxShadow: [
                         BoxShadow(color: const Color(0xFF6366F1).withOpacity(.32), blurRadius: 14, offset: const Offset(0, 5),
@@ -1505,22 +1624,33 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                     ),
                     child: const Text('🎨', style: TextStyle(fontSize: 26),
                           ),
-                  ),
-                  const SizedBox(width: 14),
-                  Expanded(
-                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                      Row(children: [
-                        const Text(
-                          'Lumo zeigt es dir',
-                          style: TextStyle(fontFamily: 'Nunito', fontSize: 11, fontWeight: FontWeight.w900, color: LumoVisualTokens.cyanBright, letterSpacing: .8,
-                                    ),
                         ),
-                        const SizedBox(width: 6),
-                        Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2,
+                        const SizedBox(width: 14),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Text(
+                                    'Lumo zeigt es dir',
+                                    style: TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontSize: 11,
+                                      fontWeight: FontWeight.w900,
+                                      color: LumoVisualTokens.cyanBright,
+                                      letterSpacing: .8,
                                     ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFF6366F1,
+                                  ),
+                                  const SizedBox(width: 6),
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 7,
+                                      vertical: 2,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      color: const Color(
+                                        0xFF6366F1,
                                       ).withOpacity(.20),
                             borderRadius: BorderRadius.circular(LumoRadius.pill,
                                       ),
@@ -1541,56 +1671,68 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                       ),
                     ],
                           ),
-                  ),
-                ],
+                        ),
+                      ],
                     ),
-              ),
-              const SizedBox(height: 14),
-              // ERKLAERUNG
-              FadeTransition(
-                opacity: _bodyFade,
-                child: Container(
-                  width: double.infinity,
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: const Color(0xCC0A2A55),
-                    borderRadius: BorderRadius.circular(LumoRadius.md),
-                    border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38), width: 1.0,
-                        ),
                   ),
-                  child: Text(
-                    widget.aid.explanation,
-                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 14, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.4,
+                  const SizedBox(height: 14),
+                  // ERKLAERUNG
+                  FadeTransition(
+                    opacity: _bodyFade,
+                    child: Container(
+                      width: double.infinity,
+                      padding: const EdgeInsets.all(12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xCC0A2A55),
+                        borderRadius: BorderRadius.circular(LumoRadius.md),
+                        border: Border.all(
+                          color: LumoVisualTokens.cyan.withOpacity(.38),
+                          width: 1.0,
                         ),
+                      ),
+                      child: Text(
+                        widget.aid.explanation,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 14,
+                          fontWeight: FontWeight.w800,
+                          color: LumoVisualTokens.white,
+                          height: 1.4,
+                        ),
+                      ),
+                    ),
                   ),
-                ),
-              ),
-              if (steps.isNotEmpty) ...[
-                const SizedBox(height: 16),
-                ...steps.asMap().entries.map((entry) {
-                  final index = entry.key;
-                  final step = entry.value;
-                  final isLast = index == steps.length - 1;
-                  return ScaleTransition(
-                    scale: _stepFade(index),
-                    alignment: Alignment.centerLeft,
-                    child: FadeTransition(
-                      opacity: _stepFade(index),
-                      child: Padding(
-                        padding: EdgeInsets.only(bottom: isLast ? 0 : 12),
-                        child: IntrinsicHeight(
-                          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-                            // Step-Nummer + Verbindungslinie
-                            Column(children: [
-                              Container(
-                                width: 32,
-                                height: 32,
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                    begin: Alignment.topLeft,
-                                    end: Alignment.bottomRight,
-                                    colors: [Color(0xFF6366F1), Color(0xFF8B5CF6),
+                  if (steps.isNotEmpty) ...[
+                    const SizedBox(height: 16),
+                    ...steps.asMap().entries.map((entry) {
+                      final index = entry.key;
+                      final step = entry.value;
+                      final isLast = index == steps.length - 1;
+                      return ScaleTransition(
+                        scale: _stepFade(index),
+                        alignment: Alignment.centerLeft,
+                        child: FadeTransition(
+                          opacity: _stepFade(index),
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: isLast ? 0 : 12),
+                            child: IntrinsicHeight(
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                children: [
+                                  // Step-Nummer + Verbindungslinie
+                                  Column(
+                                    children: [
+                                      Container(
+                                        width: 32,
+                                        height: 32,
+                                        alignment: Alignment.center,
+                                        decoration: BoxDecoration(
+                                          gradient: const LinearGradient(
+                                            begin: Alignment.topLeft,
+                                            end: Alignment.bottomRight,
+                                            colors: [
+                                              Color(0xFF6366F1),
+                                              Color(0xFF8B5CF6),
                                             ],
                                   ),
                                   shape: BoxShape.circle,
@@ -1614,15 +1756,19 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                                             ),
                                     color: const Color(0xFF6366F1,
                                             ).withOpacity(.30),
+                                          ),
+                                        ),
+                                    ],
                                   ),
-                                ),
-                            ],
-                                  ),
-                            const SizedBox(width: 12),
-                            // Step-Inhalt als kleine Karte
-                            Expanded(
-                              child: Container(
-                                padding: const EdgeInsets.fromLTRB(14, 10, 14, 12,
+                                  const SizedBox(width: 12),
+                                  // Step-Inhalt als kleine Karte
+                                  Expanded(
+                                    child: Container(
+                                      padding: const EdgeInsets.fromLTRB(
+                                        14,
+                                        10,
+                                        14,
+                                        12,
                                       ),
                                 decoration: BoxDecoration(
                                   color: const Color(0xD10B2D5B),
@@ -1646,28 +1792,33 @@ class _VisualAidCardState extends State<_VisualAidCard> with SingleTickerProvide
                                         step.visual,
                                         style: const TextStyle(fontSize: 28, height: 1.2, letterSpacing: 2,
                                                 ),
+                                              ),
+                                            ),
+                                          ),
+                                          const SizedBox(height: 4),
+                                          Text(
+                                            step.caption,
+                                            style: const TextStyle(
+                                              fontFamily: 'Nunito',
+                                              fontSize: 13,
+                                              fontWeight: FontWeight.w800,
+                                              color: LumoVisualTokens.white,
+                                              height: 1.3,
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    step.caption,
-                                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w800, color: LumoVisualTokens.white, height: 1.3,
-                                            ),
-                                  ),
                                 ],
-                                      ),
                               ),
                             ),
-                          ],
-                              ),
+                          ),
                         ),
-                      ),
-                    ),
-                  );
-                }),
-              ],
-            ],
+                      );
+                    }),
+                  ],
+                ],
               ),
           ),
         ],
@@ -1788,19 +1939,27 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
               'Station ${widget.currentStep}',
               style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: Colors.white, letterSpacing: .3,
                   ),
-            ),
-          ),
-          const SizedBox(width: 8),
-          Text('von $total', style: const TextStyle(fontFamily: 'Nunito', fontSize: 12, fontWeight: FontWeight.w800, color: LumoVisualTokens.muted,
                 ),
               ),
-          const Spacer(),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
-            decoration: BoxDecoration(
-              color: const Color(0xCC0B2D5B),
-              borderRadius: BorderRadius.circular(LumoRadius.pill),
-              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38), width: 1.2,
+              const SizedBox(width: 8),
+              Text(
+                'von $total',
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w800,
+                  color: LumoVisualTokens.muted,
+                ),
+              ),
+              const Spacer(),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 4),
+                decoration: BoxDecoration(
+                  color: const Color(0xCC0B2D5B),
+                  borderRadius: BorderRadius.circular(LumoRadius.pill),
+                  border: Border.all(
+                    color: LumoVisualTokens.cyan.withOpacity(.38),
+                    width: 1.2,
                   ),
             ),
             child: Text(
@@ -1843,45 +2002,48 @@ class _LumoJourneyMapState extends State<_LumoJourneyMap> with TickerProviderSta
                 child: AnimatedBuilder(
                   animation: Listenable.merge([_hopController, _idleController,
                       ]),
-                  builder: (context, _) => CustomPaint(
-                    painter: _JourneyPainter(
-                      total: total,
-                      currentStep: widget.currentStep,
-                      hopProgress: _hopController.value,
-                      idlePulse: _idleController.value,
-                      stationOffset: _stationOffset,
-                      stationScale: _stationScale,
-                      stationEmoji: _stationEmoji,
-                      lastWasCorrect: widget.lastWasCorrect,
+                      builder: (context, _) => CustomPaint(
+                        painter: _JourneyPainter(
+                          total: total,
+                          currentStep: widget.currentStep,
+                          hopProgress: _hopController.value,
+                          idlePulse: _idleController.value,
+                          stationOffset: _stationOffset,
+                          stationScale: _stationScale,
+                          stationEmoji: _stationEmoji,
+                          lastWasCorrect: widget.lastWasCorrect,
+                        ),
+                        size: Size(w, h),
+                      ),
                     ),
-                    size: Size(w, h),
+                  ),
+                );
+              },
+            ),
+          ),
+          const SizedBox(height: 8),
+          // Progress-Balken als zusaetzliche Lese-Hilfe
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(LumoRadius.pill),
+                child: TweenAnimationBuilder<double>(
+                  duration: const Duration(milliseconds: 480),
+                  curve: Curves.easeOutCubic,
+                  tween: Tween<double>(begin: 0.0, end: progress),
+                  builder: (context, animatedProgress, _) =>
+                      LinearProgressIndicator(
+                    value: animatedProgress,
+                    minHeight: 6,
+                    color: LumoColors.orange,
+                    backgroundColor: LumoColors.orange.withOpacity(.14),
                   ),
                 ),
               ),
-            );
-          },
-            ),
-        ),
-        const SizedBox(height: 8),
-        // Progress-Balken als zusaetzliche Lese-Hilfe
-        Stack(clipBehavior: Clip.none, children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(LumoRadius.pill),
-            child: TweenAnimationBuilder<double>(
-              duration: const Duration(milliseconds: 480),
-              curve: Curves.easeOutCubic,
-              tween: Tween<double>(begin: 0.0, end: progress),
-              builder: (context, animatedProgress, _) => LinearProgressIndicator(
-                value: animatedProgress,
-                minHeight: 6,
-                color: LumoColors.orange,
-                backgroundColor: LumoColors.orange.withOpacity(.14),
-              ),
-            ),
+            ],
           ),
         ],
-          ),
-      ],
       ),
     );
   }
@@ -2156,99 +2318,126 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(LumoRadius.xl),
-            child: Stack(children: [
-              // Dekorativer Glow oben rechts
-              Positioned(
-                top: -50,
-                right: -40,
-                child: IgnorePointer(
-                  ignoring: true,
-                  child: Container(
-                    width: 180,
-                    height: 180,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: RadialGradient(
-                        colors: [
-                          (correct ? const Color(0xFF34D399) : const Color(0xFFFB923C)).withOpacity(.32),
-                          Colors.transparent,
-                        ],
+            child: Stack(
+              children: [
+                // Dekorativer Glow oben rechts
+                Positioned(
+                  top: -50,
+                  right: -40,
+                  child: IgnorePointer(
+                    ignoring: true,
+                    child: Container(
+                      width: 180,
+                      height: 180,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          colors: [
+                            (correct
+                                    ? const Color(0xFF34D399)
+                                    : const Color(0xFFFB923C))
+                                .withOpacity(.32),
+                            Colors.transparent,
+                          ],
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              // Konfetti-Sterne dezent bei Erfolg
-              if (correct) ...const [
-                Positioned(top: 14, right: 70, child: Text('✨', style: TextStyle(fontSize: 14)),
+                // Konfetti-Sterne dezent bei Erfolg
+                if (correct) ...const [
+                  Positioned(
+                    top: 14,
+                    right: 70,
+                    child: Text('✨', style: TextStyle(fontSize: 14)),
                   ),
                 Positioned(top: 38, right: 24, child: Text('⭐', style: TextStyle(fontSize: 16)),
                   ),
                 Positioned(top: 62, right: 56, child: Text('✨', style: TextStyle(fontSize: 12)),
                   ),
-              ],
-              Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                  Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
-                    Container(
-                      width: 46,
-                      height: 46,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        gradient: RadialGradient(
-                          colors: [
-                            Colors.white,
-                            (correct ? const Color(0xFFD1FAE5) : const Color(0xFFFEF3C7)),
-                          ],
-                          radius: .9,
-                        ),
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: (correct ? const Color(0xFF34D399) : const Color(0xFFF59E0B)).withOpacity(.32),
-                            blurRadius: 14,
-                            offset: const Offset(0, 5),
+                ],
+                Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Container(
+                            width: 46,
+                            height: 46,
+                            alignment: Alignment.center,
+                            decoration: BoxDecoration(
+                              gradient: RadialGradient(
+                                colors: [
+                                  Colors.white,
+                                  (correct
+                                      ? const Color(0xFFD1FAE5)
+                                      : const Color(0xFFFEF3C7)),
+                                ],
+                                radius: .9,
+                              ),
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                  color: (correct
+                                          ? const Color(0xFF34D399)
+                                          : const Color(0xFFF59E0B))
+                                      .withOpacity(.32),
+                                  blurRadius: 14,
+                                  offset: const Offset(0, 5),
+                                ),
+                              ],
+                            ),
+                            child: Text(
+                              correct ? '🎉' : '💪',
+                              style: const TextStyle(fontSize: 24),
+                            ),
+                          ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              fb?.title ??
+                                  (correct
+                                      ? 'Super gemacht!'
+                                      : 'Nicht aufgeben!'),
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 19,
+                                fontWeight: FontWeight.w900,
+                                color: correct
+                                    ? const Color(0xFF14532D)
+                                    : const Color(0xFF78350F),
+                                height: 1.15,
+                              ),
+                            ),
                           ),
                         ],
                       ),
-                      child: Text(
-                        correct ? '🎉' : '💪',
-                        style: const TextStyle(fontSize: 24),
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Text(
-                        fb?.title ?? (correct ? 'Super gemacht!' : 'Nicht aufgeben!'),
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 19,
-                          fontWeight: FontWeight.w900,
-                          color: correct ? const Color(0xFF14532D) : const Color(0xFF78350F),
-                          height: 1.15,
+                      const SizedBox(height: 12),
+                      Text(
+                        fb?.cardMessage ?? widget.explanation,
+                        style: LumoTextStyles.body.copyWith(
+                          color: correct
+                              ? const Color(0xFF166534)
+                              : const Color(0xFF92400E),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 14,
+                          height: 1.4,
                         ),
                       ),
-                    ),
-                  ],
+                      const SizedBox(height: 10),
+                      _LearningTipBox(
+                        text: fb?.learningTip ?? widget.explanation,
+                        correct: correct,
                       ),
-                  const SizedBox(height: 12),
-                  Text(
-                    fb?.cardMessage ?? widget.explanation,
-                    style: LumoTextStyles.body.copyWith(
-                      color: correct ? const Color(0xFF166534) : const Color(0xFF92400E),
-                      fontWeight: FontWeight.w800,
-                      fontSize: 14,
-                      height: 1.4,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  _LearningTipBox(text: fb?.learningTip ?? widget.explanation, correct: correct,
-                      ),
-                  if (!correct) ...[
-                    const SizedBox(height: 10),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8,
+                      if (!correct) ...[
+                        const SizedBox(height: 10),
+                        Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 12,
+                            vertical: 8,
                           ),
                       decoration: BoxDecoration(
                         color: const Color(0xCC0B2D5B),
@@ -2260,30 +2449,39 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                         const Text('✓', style: TextStyle(fontSize: 16, color: Color(0xFF15803D), fontWeight: FontWeight.w900,
                                 ),
                               ),
-                        const SizedBox(width: 8),
-                        Expanded(
-                          child: Text(
-                            'Richtige Antwort: ${widget.correctAnswer}',
-                            style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 14,
-                              fontWeight: FontWeight.w900,
-                              color: Color(0xFFFFD39A),
-                            ),
+                              const SizedBox(width: 8),
+                              Expanded(
+                                child: Text(
+                                  'Richtige Antwort: ${widget.correctAnswer}',
+                                  style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w900,
+                                    color: Color(0xFFFFD39A),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
-                          ),
-                    ),
-                  ],
-                  if (reward != null) ...[
-                    const SizedBox(height: 14),
-                    Wrap(spacing: 8, runSpacing: 8, children: [
-                      _InfoPill(text: '${reward.stars >= 0 ? '+' : ''}${reward.stars} Sterne'),
-                      _InfoPill(text: '+${reward.xp} XP'),
-                      if (fb != null) _InfoPill(text: fb.rewardLabel),
-                      if (fb?.badgeLabel != null) _InfoPill(text: fb!.badgeLabel!),
-                      if (skill != null) _InfoPill(text: 'Können ${(skill.masteryScore * 100).round()}%',
+                      if (reward != null) ...[
+                        const SizedBox(height: 14),
+                        Wrap(
+                          spacing: 8,
+                          runSpacing: 8,
+                          children: [
+                            _InfoPill(
+                                text:
+                                    '${reward.stars >= 0 ? '+' : ''}${reward.stars} Sterne'),
+                            _InfoPill(text: '+${reward.xp} XP'),
+                            if (fb != null) _InfoPill(text: fb.rewardLabel),
+                            if (fb?.badgeLabel != null)
+                              _InfoPill(text: fb!.badgeLabel!),
+                            if (skill != null)
+                              _InfoPill(
+                                text:
+                                    'Können ${(skill.masteryScore * 100).round()}%',
                               ),
                     ],
                         ),
@@ -2314,10 +2512,10 @@ class _ExplanationCardState extends State<_ExplanationCard> with SingleTickerPro
                                 ),
                         ],
                             ),
+                          ),
+                        ),
                       ),
-                    ),
-                  ),
-                ],
+                    ],
                   ),
               ),
             ],
@@ -2355,9 +2553,9 @@ class _LearningTipBox extends StatelessWidget {
             text,
             style: const TextStyle(fontFamily: 'Nunito', fontSize: 13, fontWeight: FontWeight.w900, color: LumoVisualTokens.white, height: 1.28,
               ),
+            ),
           ),
-        ),
-      ],
+        ],
       ),
     );
   }
@@ -2399,22 +2597,24 @@ class _InfoPill extends StatelessWidget {
           ),
         ],
       ),
-      child: Row(mainAxisSize: MainAxisSize.min, children: [
-        if (em.isNotEmpty) ...[
-          Text(em, style: const TextStyle(fontSize: 13)),
-          const SizedBox(width: 5),
-        ],
-        Text(
-          text,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 12,
-            fontWeight: FontWeight.w900,
-            color: LumoColors.ink700,
-            letterSpacing: .1,
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (em.isNotEmpty) ...[
+            Text(em, style: const TextStyle(fontSize: 13)),
+            const SizedBox(width: 5),
+          ],
+          Text(
+            text,
+            style: const TextStyle(
+              fontFamily: 'Nunito',
+              fontSize: 12,
+              fontWeight: FontWeight.w900,
+              color: LumoColors.ink700,
+              letterSpacing: .1,
+            ),
           ),
-        ),
-      ],
+        ],
       ),
     );
   }
@@ -2442,14 +2642,9 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
 
   @override
   Widget build(BuildContext context) {
-    // Pro Fach eigene Farbe.
-    final color = switch (widget.subject.toLowerCase()) {
-      'mathematik' || 'mathe' => const Color(0xFFFF7A2F),
-      'deutsch' || 'rechtschreibung' => const Color(0xFF8B5CF6),
-      'lesen' => const Color(0xFFF472B6),
-      'sachunterricht' || 'natur' => const Color(0xFF10B981),
-      _ => const Color(0xFF60A5FA),
-    };
+    // Hologlass is shared across all subjects, unlike the old orange/pink
+    // per-subject buttons that clashed with the blue Lumo learning world.
+    const color = LumoVisualTokens.cyanBright;
     return GestureDetector(
       onTapDown: (_) => setState(() => _pressed = true),
       onTapUp: (_) => setState(() => _pressed = false),
@@ -2460,17 +2655,19 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
         duration: const Duration(milliseconds: 120),
         curve: Curves.easeOutCubic,
         child: Container(
+          key: const ValueKey('lumo-help-hologlass-button'),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: [color, color.withOpacity(0.75)],
+            gradient: const LinearGradient(
+              colors: [Color(0xED0C4477), Color(0xF0082852)],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
+            border: Border.all(color: color.withOpacity(.75), width: 1.5),
             boxShadow: [
               BoxShadow(
-                color: color.withOpacity(0.42),
+                color: color.withOpacity(0.25),
                 blurRadius: 14,
                 offset: const Offset(0, 6),
                 spreadRadius: -2,
@@ -2490,7 +2687,12 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
                   ),
                 )
               else
-                const Text('✨', style: TextStyle(fontSize: 20)),
+                const Icon(
+                  Icons.auto_awesome_rounded,
+                  key: ValueKey('lumo-help-sparkle'),
+                  size: 20,
+                  color: Colors.white,
+                ),
               const SizedBox(width: 8),
               Text(
                 widget.loading ? 'Lumo denkt nach…' : 'Lumo, hilf mir',
@@ -2523,15 +2725,15 @@ class _AiHelpBubble extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xE31D2F69), Color(0xE30C214A)],
+          colors: [Color(0xF00D3B70), Color(0xF0082149)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF8B9CFF).withOpacity(.66), width: 1.4),
+        border: Border.all(color: const Color(0xFF4EDCFF).withOpacity(.66), width: 1.4),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFF8B5CF6).withOpacity(0.18),
+            color: const Color(0xFF37CFF9).withOpacity(0.18),
             blurRadius: 14,
             offset: const Offset(0, 5),
             spreadRadius: -3,
@@ -2549,18 +2751,19 @@ class _AiHelpBubble extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   gradient: const LinearGradient(
-                    colors: [Color(0xFFA78BFA), Color(0xFF8B5CF6)],
+                    colors: [Color(0xFF1B5F93), Color(0xFF0A315B)],
                   ),
                   borderRadius: BorderRadius.circular(10),
                   boxShadow: [
                     BoxShadow(
-                      color: const Color(0xFF8B5CF6).withOpacity(0.4),
+                      color: const Color(0xFF37CFF9).withOpacity(0.4),
                       blurRadius: 8,
                       offset: const Offset(0, 3),
                     ),
                   ],
                 ),
-                child: const Text('🦊', style: TextStyle(fontSize: 20)),
+                child: const LumoFoxPose(
+                  pose: LumoDesignFoxPose.teacherStick, size: 33),
               ),
               const SizedBox(width: 10),
               const Expanded(
@@ -2570,14 +2773,14 @@ class _AiHelpBubble extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w900,
-                    color: Color(0xFF6D28D9),
+                    color: Color(0xFF81E9FF),
                     letterSpacing: 0.3,
                   ),
                 ),
               ),
               IconButton(
                 onPressed: onSpeak,
-                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF7C3AED),
+                icon: const Icon(Icons.volume_up_rounded, size: 22, color: Color(0xFF81E9FF),
                 ),
                 tooltip: 'Lumo vorlesen lassen',
               ),
@@ -2590,7 +2793,7 @@ class _AiHelpBubble extends StatelessWidget {
               fontFamily: 'Nunito',
               fontSize: 14.5,
               fontWeight: FontWeight.w700,
-              color: Color(0xFF1F2937),
+              color: Color(0xFFF3FAFF),
               height: 1.45,
             ),
           ),
@@ -2709,15 +2912,29 @@ class _LessonProgressRow extends StatelessWidget {
                     ),
                   ],
                 ),
-                child: const Text(
-                  'Du schaffst das! ✨',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 9.5,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.auto_awesome_rounded,
+                      key: ValueKey('lesson-encouragement-sparkle'),
+                      size: 10,
+                      color: Colors.white,
+                    ),
+                    SizedBox(width: 3),
+                    Flexible(
+                      child: Text(
+                        'Du schaffst das!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 9.5,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),

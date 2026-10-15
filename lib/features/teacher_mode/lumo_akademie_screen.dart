@@ -16,16 +16,21 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
+import '../../core/school_exercise_generator.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
+import '../learning/widgets/lumo_learning_tree_card.dart';
+import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
 import '../writing/lumo_writing_word_coach_screen.dart';
 import '../writing/writing_feature_flags.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
+import '../tutoring/guided_learning_hub.dart';
+import '../story/lumo_story_library_screen.dart';
 
 // Datenstruktur für Lehrpläne
 class LearningTopic {
@@ -209,7 +214,7 @@ class LumoCurriculum {
             ),
             LearningSubject(
               id: 'sachk1',
-              name: 'Sachkunde',
+              name: 'Sachunterricht',
               color: LumoColors.teal,
               icon: Icons.eco_rounded,
               topics: const [
@@ -221,11 +226,11 @@ class LumoCurriculum {
                   shortDesc: 'Bauernhof, Wald, Zoo',
                 ),
                 LearningTopic(
-                  id: 's1_farben',
-                  title: 'Farben',
-                  icon: Icons.palette_rounded,
+                  id: 's1_pflanzen',
+                  title: 'Pflanzen',
+                  icon: Icons.park_rounded,
                   gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
-                  shortDesc: 'Rot, Blau, Grün...',
+                  shortDesc: 'Wurzeln, Blätter, Blüten',
                 ),
                 LearningTopic(
                   id: 's1_koerper',
@@ -233,6 +238,35 @@ class LumoCurriculum {
                   icon: Icons.accessibility_new_rounded,
                   gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
                   shortDesc: 'Augen, Hände, Füße',
+                ),
+              ],
+            ),
+            LearningSubject(
+              id: 'englisch1',
+              name: 'Englisch',
+              color: LumoColors.blue,
+              icon: Icons.language_rounded,
+              topics: const [
+                LearningTopic(
+                  id: 'en1_1',
+                  title: 'Farben',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Wörter erkennen und sprechen',
+                ),
+                LearningTopic(
+                  id: 'en1_2',
+                  title: 'Tiere',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Wörter erkennen und sprechen',
+                ),
+                LearningTopic(
+                  id: 'en1_3',
+                  title: 'Begrüßung',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Wörter erkennen und sprechen',
                 ),
               ],
             ),
@@ -313,7 +347,7 @@ class LumoCurriculum {
             ),
             LearningSubject(
               id: 'sachk2',
-              name: 'Sachkunde',
+              name: 'Sachunterricht',
               color: LumoColors.teal,
               icon: Icons.eco_rounded,
               topics: const [
@@ -337,6 +371,35 @@ class LumoCurriculum {
                   icon: Icons.directions_walk_rounded,
                   gradient: [Color(0xFFFF625D), Color(0xFFFF9A5C)],
                   shortDesc: 'Sicher auf der Straße',
+                ),
+              ],
+            ),
+            LearningSubject(
+              id: 'englisch2',
+              name: 'Englisch',
+              color: LumoColors.blue,
+              icon: Icons.language_rounded,
+              topics: const [
+                LearningTopic(
+                  id: 'en2_1',
+                  title: 'Zahlen',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Wörter erkennen und sprechen',
+                ),
+                LearningTopic(
+                  id: 'en2_2',
+                  title: 'Körper',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Wörter erkennen und sprechen',
+                ),
+                LearningTopic(
+                  id: 'en2_3',
+                  title: 'Spielzeug',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Wörter erkennen und sprechen',
                 ),
               ],
             ),
@@ -377,6 +440,41 @@ class LumoCurriculum {
                   gradient: [Color(0xFF10A894), Color(0xFF34D399)],
                   shortDesc: 'Umfang, Fläche',
                 ),
+                LearningTopic(
+                  id: 'm3_schrift_add',
+                  title: 'Schriftliche Addition',
+                  icon: Icons.add_rounded,
+                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
+                  shortDesc: 'Zahlen stellenrichtig addieren',
+                ),
+                LearningTopic(
+                  id: 'm3_schrift_sub',
+                  title: 'Schriftliche Subtraktion',
+                  icon: Icons.remove_rounded,
+                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
+                  shortDesc: 'Schrittweise schriftlich rechnen',
+                ),
+                LearningTopic(
+                  id: 'm3_division',
+                  title: 'Division einstellig',
+                  icon: Icons.calculate_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Teilen und Rest verstehen',
+                ),
+                LearningTopic(
+                  id: 'm3_sachaufgaben',
+                  title: 'Sachaufgaben zwei Schritte',
+                  icon: Icons.notes_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Text verstehen und rechnen',
+                ),
+                LearningTopic(
+                  id: 'm3_gewicht',
+                  title: 'Massen Kilogramm und Gramm',
+                  icon: Icons.scale_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Gewicht schätzen und umrechnen',
+                ),
               ],
             ),
             LearningSubject(
@@ -406,11 +504,39 @@ class LumoCurriculum {
                   gradient: [Color(0xFFFF7A2F), Color(0xFFFFB800)],
                   shortDesc: 'Lesen & Verstehen',
                 ),
+                LearningTopic(
+                  id: 'd3_grossschreibung',
+                  title: 'Großschreibung',
+                  icon: Icons.text_fields_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Namenwörter richtig schreiben',
+                ),
+                LearningTopic(
+                  id: 'd3_faelle',
+                  title: 'Wer-Fall und Wen-Fall',
+                  icon: Icons.question_answer_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Satzfragen unterscheiden',
+                ),
+                LearningTopic(
+                  id: 'd3_verbformen',
+                  title: 'Verbformen',
+                  icon: Icons.edit_note_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Verben passend verändern',
+                ),
+                LearningTopic(
+                  id: 'd3_ie',
+                  title: 'ie oder i',
+                  icon: Icons.spellcheck_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Lange und kurze Laute',
+                ),
               ],
             ),
             LearningSubject(
               id: 'sachk3',
-              name: 'Sachkunde',
+              name: 'Sachunterricht',
               color: LumoColors.teal,
               icon: Icons.eco_rounded,
               topics: const [
@@ -427,6 +553,91 @@ class LumoCurriculum {
                   icon: Icons.park_rounded,
                   gradient: [Color(0xFF059669), Color(0xFF34D399)],
                   shortDesc: 'Pflanzen & Tiere',
+                ),
+                LearningTopic(
+                  id: 's3_wetter',
+                  title: 'Wetter',
+                  icon: Icons.cloud_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Wetter verstehen und messen',
+                ),
+                LearningTopic(
+                  id: 's3_verkehr',
+                  title: 'Verkehr',
+                  icon: Icons.traffic_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Sicher im Straßenverkehr',
+                ),
+                LearningTopic(
+                  id: 's3_wasser',
+                  title: 'Wasserkreislauf',
+                  icon: Icons.water_drop_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Verdunstung und Niederschlag',
+                ),
+                LearningTopic(
+                  id: 's3_ernaehrung',
+                  title: 'Ernährung',
+                  icon: Icons.restaurant_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Lebensmittel und Gesundheit',
+                ),
+                LearningTopic(
+                  id: 's3_zeit',
+                  title: 'Zeit und Kalender',
+                  icon: Icons.event_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Wochen, Monate und Stunden',
+                ),
+                LearningTopic(
+                  id: 's3_berufe',
+                  title: 'Berufe',
+                  icon: Icons.handyman_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Arbeiten und Berufe verstehen',
+                ),
+              ],
+            ),
+            LearningSubject(
+              id: 'englisch3',
+              name: 'Englisch',
+              color: LumoColors.blue,
+              icon: Icons.language_rounded,
+              topics: const [
+                LearningTopic(
+                  id: 'en3_1',
+                  title: 'Wetter',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Wortschatz verstehen und anwenden',
+                ),
+                LearningTopic(
+                  id: 'en3_2',
+                  title: 'Essen',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Wortschatz verstehen und anwenden',
+                ),
+                LearningTopic(
+                  id: 'en3_3',
+                  title: 'Schulsachen',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Wortschatz verstehen und anwenden',
+                ),
+                LearningTopic(
+                  id: 'en3_4',
+                  title: 'Tageszeit',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Morgen, Mittag, Abend und Nacht',
+                ),
+                LearningTopic(
+                  id: 'en3_5',
+                  title: 'Alltagssätze',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Einfache Gespräche führen',
                 ),
               ],
             ),
@@ -467,6 +678,41 @@ class LumoCurriculum {
                   gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
                   shortDesc: 'Sachrechnen',
                 ),
+                LearningTopic(
+                  id: 'm4_multiplikation',
+                  title: 'Schriftliche Multiplikation',
+                  icon: Icons.close_rounded,
+                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
+                  shortDesc: 'Größere Zahlen multiplizieren',
+                ),
+                LearningTopic(
+                  id: 'm4_division',
+                  title: 'Schriftliche Division',
+                  icon: Icons.calculate_rounded,
+                  gradient: [Color(0xFFFF8700), Color(0xFFFFB800)],
+                  shortDesc: 'Mehrstellige Zahlen teilen',
+                ),
+                LearningTopic(
+                  id: 'm4_dezimal',
+                  title: 'Dezimalzahlen',
+                  icon: Icons.pin_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Zehntel und Hundertstel',
+                ),
+                LearningTopic(
+                  id: 'm4_bruch_erweitern',
+                  title: 'Brüche erweitern',
+                  icon: Icons.pie_chart_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Gleichwertige Brüche erkennen',
+                ),
+                LearningTopic(
+                  id: 'm4_diagramme',
+                  title: 'Diagramme lesen',
+                  icon: Icons.bar_chart_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Daten verstehen und vergleichen',
+                ),
               ],
             ),
             LearningSubject(
@@ -489,17 +735,45 @@ class LumoCurriculum {
                   gradient: [Color(0xFFEC4899), Color(0xFFF9A8D4)],
                   shortDesc: 'Erzählen & Beschreiben',
                 ),
+                LearningTopic(
+                  id: 'd4_satzglieder',
+                  title: 'Satzglieder',
+                  icon: Icons.segment_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Wer, was, wem, wen?',
+                ),
+                LearningTopic(
+                  id: 'd4_direkte',
+                  title: 'Direkte Rede',
+                  icon: Icons.format_quote_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Anführungszeichen anwenden',
+                ),
+                LearningTopic(
+                  id: 'd4_dassdas',
+                  title: 'dass oder das',
+                  icon: Icons.spellcheck_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Sätze richtig verbinden',
+                ),
+                LearningTopic(
+                  id: 'd4_zusammensetzung',
+                  title: 'Zusammensetzungen',
+                  icon: Icons.layers_rounded,
+                  gradient: [Color(0xFF8B5CF6), Color(0xFFA78BFA)],
+                  shortDesc: 'Neue Wörter bilden',
+                ),
               ],
             ),
             LearningSubject(
               id: 'sachk4',
-              name: 'Sachkunde',
+              name: 'Sachunterricht',
               color: LumoColors.teal,
               icon: Icons.eco_rounded,
               topics: const [
                 LearningTopic(
                   id: 's4_europa',
-                  title: 'Europa',
+                  title: 'Kontinente und Ozeane',
                   icon: Icons.public_rounded,
                   gradient: [Color(0xFF3B82F6), Color(0xFF60A5FA)],
                   shortDesc: 'Länder & Hauptstädte',
@@ -510,6 +784,77 @@ class LumoCurriculum {
                   icon: Icons.castle_rounded,
                   gradient: [Color(0xFF7C2D12), Color(0xFFB45309)],
                   shortDesc: 'Vom Mittelalter bis heute',
+                ),
+                LearningTopic(
+                  id: 's4_oekosystem',
+                  title: 'Ökosysteme',
+                  icon: Icons.eco_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Lebewesen und Lebensräume',
+                ),
+                LearningTopic(
+                  id: 's4_strom',
+                  title: 'Stromkreise',
+                  icon: Icons.bolt_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Elektrizität sicher verstehen',
+                ),
+                LearningTopic(
+                  id: 's4_diagramme',
+                  title: 'Diagramme lesen',
+                  icon: Icons.bar_chart_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Daten vergleichen und deuten',
+                ),
+                LearningTopic(
+                  id: 's4_geografie',
+                  title: 'Geografie Österreich',
+                  icon: Icons.map_rounded,
+                  gradient: [Color(0xFF10A894), Color(0xFF34D399)],
+                  shortDesc: 'Flüsse, Berge und Bundesländer',
+                ),
+              ],
+            ),
+            LearningSubject(
+              id: 'englisch4',
+              name: 'Englisch',
+              color: LumoColors.blue,
+              icon: Icons.language_rounded,
+              topics: const [
+                LearningTopic(
+                  id: 'en4_1',
+                  title: 'Verben',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Wortschatz verstehen und anwenden',
+                ),
+                LearningTopic(
+                  id: 'en4_2',
+                  title: 'Wochentage',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Wortschatz verstehen und anwenden',
+                ),
+                LearningTopic(
+                  id: 'en4_3',
+                  title: 'Hobbys',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Wortschatz verstehen und anwenden',
+                ),
+                LearningTopic(
+                  id: 'en4_4',
+                  title: 'Länder',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Länder und ihre Namen',
+                ),
+                LearningTopic(
+                  id: 'en4_5',
+                  title: 'Alltagssätze',
+                  icon: Icons.language_rounded,
+                  gradient: [Color(0xFF2678BE), Color(0xFF52DDF9)],
+                  shortDesc: 'Sätze im Alltag anwenden',
                 ),
               ],
             ),
@@ -585,10 +930,10 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       icon: Icons.public_rounded,
       color: Color(0xFF2B5FD8),
       art: _SubjectArtKind.hi,
-      section: LumoSection.exercises,
+      curriculumIndex: 3,
     ),
     _LearningArea(
-      title: 'Sachkunde',
+      title: 'Sachunterricht',
       subject: 'Sachunterricht',
       subtitle: 'Tiere, Natur und Welt',
       icon: Icons.eco_rounded,
@@ -683,14 +1028,86 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
           SliverToBoxAdapter(child: _buildHero()),
           SliverToBoxAdapter(child: _buildTitleRow()),
           SliverToBoxAdapter(child: _buildGradePicker()),
+          // Grade-specific lessons are visible immediately after the picker,
+          // not hidden underneath the unchanged general-purpose tiles.
+          SliverToBoxAdapter(child: _buildGradeFocus()),
+          if (_selectedGrade != widget.appState.state.grade)
+            SliverToBoxAdapter(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                child: LumoGlassCard(
+                  padding: const EdgeInsets.all(12),
+                  radius: 16,
+                  child: Row(
+                    children: [
+                      const Icon(Icons.info_outline_rounded,
+                          color: LumoVisualTokens.cyanBright),
+                      const SizedBox(width: 8),
+                      Expanded(
+                        child: Text(
+                          'Du schaust die Themen der $_selectedGrade. Klasse an. '
+                          'Dein Lernprofil bleibt in der '
+                          '${widget.appState.state.grade}. Klasse. '
+                          'Die Profilklasse kannst du im Elternbereich ändern.',
+                          style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: LumoVisualTokens.white,
+                            fontWeight: FontWeight.w700,
+                            fontSize: 12,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+              child: OutlinedButton.icon(
+                key: const ValueKey('academy-stories'),
+                style: OutlinedButton.styleFrom(
+                  minimumSize: const Size.fromHeight(56),
+                  foregroundColor: LumoVisualTokens.cyanBright,
+                  side: const BorderSide(color: LumoVisualTokens.cyan),
+                ),
+                onPressed: _openStories,
+                icon: const Icon(Icons.auto_stories_rounded),
+                label: Text('Geschichten · $_selectedGrade. Klasse'),
+              ),
+            ),
+          ),
           SliverToBoxAdapter(child: _buildLearningAreas()),
           SliverToBoxAdapter(child: _buildContinueBanner()),
+          SliverToBoxAdapter(child: _buildGuidedLearningEntries()),
           SliverPadding(
             padding: const EdgeInsets.fromLTRB(16, 4, 16, 24),
             sliver: SliverToBoxAdapter(
               child: _buildSubjectSection(
                 _currentGrade.subjects[_selectedSubjectIndex],
                 _selectedSubjectIndex,
+              ),
+            ),
+          ),
+          // Die Fach-/Themen-Navigation muss vor dem großen Bildbaustein bleiben:
+          // Andernfalls sind Lazy-Sliver-Themen auf schmalen Geräten nicht auffindbar.
+          // Darunter wächst der Kompetenzbaum
+          // aus echten lokalen Lernwerten, nicht aus Deko-/Sterne-Zählern.
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 2, 16, 15),
+              child: AnimatedBuilder(
+                animation: widget.appState,
+                builder: (context, _) => LumoLearningTreeCard(
+                  skills: widget.appState.learningSkills(),
+                  compact: true,
+                  onOpenWorld: () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => LumoWeltScreen(appState: widget.appState),
+                    ),
+                  ),
+                ),
               ),
             ),
           ),
@@ -1025,6 +1442,44 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     );
   }
 
+  Widget _buildGuidedLearningEntries() => Padding(
+    padding: const EdgeInsets.fromLTRB(16, 0, 16, 18),
+    child: LumoGlassCard(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const Text('Mit Lumo verstehen und entdecken',
+              style: TextStyle(fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white, fontSize: 20,
+                  fontWeight: FontWeight.w900)),
+          const SizedBox(height: 12),
+          FilledButton.icon(
+            key: const ValueKey('akademie-guided-learning'),
+            onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(builder: (_) => GuidedLearningHub(
+                    appState: widget.appState, discovery: false))),
+            style: FilledButton.styleFrom(minimumSize: const Size(64, 56)),
+            icon: const Icon(Icons.school_rounded),
+            label: const Text('Lumo erklärt es mir',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          ),
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            key: const ValueKey('akademie-voluntary-discovery'),
+            onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(builder: (_) => GuidedLearningHub(
+                    appState: widget.appState, discovery: true))),
+            style: OutlinedButton.styleFrom(minimumSize: const Size(64, 56)),
+            icon: const Icon(Icons.explore_rounded),
+            label: const Text('Mit Lumo Neues entdecken',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          ),
+        ],
+      ),
+    ),
+  );
+
   /// Deutsch öffnet den Bereich aus Bild 04; zurück zeigt die Akademie
   /// die Deutsch-Themen der gewählten Klasse („Wörter“).
   Future<void> _openDeutsch() async {
@@ -1036,8 +1491,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openLearningArea(_LearningArea area) {
-    if (area.subject == 'Deutsch') {
+    if (area.subject == 'Deutsch' && _selectedGrade <= 2) {
       _openDeutsch();
+      return;
+    }
+    // In 3./4. Klasse the old generic Deutsch hub hid grade-specific grammar.
+    if (area.subject == 'Deutsch') {
+      setState(() => _selectedSubjectIndex = 1);
       return;
     }
     if (area.practical) {
@@ -1248,6 +1708,107 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               },
             ),
           ),
+        ),
+      ),
+    );
+  }
+
+  /// Class-specific, immediately accessible curriculum. Each card is backed
+  /// by an actual topic in the selected grade, never by a decorative counter.
+  Widget _buildGradeFocus() {
+    final grade = _currentGrade;
+    final preview = grade.grade != widget.appState.state.grade;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 0, 16, 14),
+      child: LumoGlassCard(
+        padding: const EdgeInsets.all(14),
+        radius: 20,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(children: [
+              Icon(Icons.school_rounded, color: grade.color, size: 24),
+              const SizedBox(width: 10),
+              Expanded(
+                child: Text(
+                  '${grade.title} – ${preview ? 'Themenvorschau' : 'dein Lernstoff'}',
+                  key: const ValueKey('academy-grade-focus-title'),
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+            ]),
+            const SizedBox(height: 6),
+            Text(
+              preview
+                  ? 'Das ist ein Einblick. Aktiviere die Schulstufe im Elternbereich, um dort regulär Aufgaben zu lösen.'
+                  : 'Wähle ein Thema deiner Klasse und beginne sofort mit echten Aufgaben.',
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.muted,
+                fontWeight: FontWeight.w700,
+                fontSize: 13,
+              ),
+            ),
+            const SizedBox(height: 12),
+            LayoutBuilder(builder: (context, constraints) {
+              const gap = 10.0;
+              final columns = constraints.maxWidth >= 550 ? 2 : 1;
+              final tileWidth =
+                  (constraints.maxWidth - (columns - 1) * gap) / columns;
+              return Wrap(
+                spacing: gap,
+                runSpacing: gap,
+                children: [
+                  for (final subject in grade.subjects)
+                    SizedBox(
+                      width: tileWidth,
+                      child: OutlinedButton(
+                        key: ValueKey('academy-grade-focus-${subject.id}'),
+                        onPressed: () =>
+                            _openTopic(subject.topics.first, subject),
+                        style: OutlinedButton.styleFrom(
+                          foregroundColor: LumoVisualTokens.white,
+                          backgroundColor: const Color(0xFF132E58),
+                          side: BorderSide(color: subject.color.withOpacity(.65)),
+                          minimumSize: const Size(0, 78),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 10),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(15)),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              '${subject.name} · ${subject.topics.first.title}',
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w900,
+                                  fontSize: 14,
+                                  color: LumoVisualTokens.white),
+                            ),
+                            const SizedBox(height: 4),
+                            Text(
+                              subject.topics.first.shortDesc,
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 12,
+                                  color: LumoVisualTokens.muted),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                ],
+              );
+            }),
+          ],
         ),
       ),
     );
@@ -1565,7 +2126,71 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     );
   }
 
+  void _openStories() {
+    if (ModalRoute.of(context)?.isCurrent != true) return;
+    Navigator.of(context).push<void>(MaterialPageRoute(
+      builder: (_) => LumoStoryLibraryScreen(
+        appState: widget.appState,
+        gradeLevel: _selectedGrade,
+      ),
+    ));
+  }
+
   void _openTopic(LearningTopic t, LearningSubject s) {
+    // Local story selection is independent of the enrolled profile grade.
+    // Opening the library does not award regular learning progress.
+    if (t.id == 'd3_geschichten') {
+      _openStories();
+      return;
+    }
+    // Browsing a higher class must not secretly turn its tasks into regular
+    // school progress or change the enrolled grade. New concepts need an
+    // introduction and their own explicitly allowed discovery writer.
+    if (_selectedGrade > widget.appState.state.grade) {
+      Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => GuidedLearningHub(
+              appState: widget.appState, discovery: true,
+              requestedTopicTitle: t.title,
+              preferredLessonId: t.id == 'm2_einmaleins'
+                  ? 'equal_groups' : null)));
+      return;
+    }
+    // Each visible English/Sachunterricht curriculum tile must open a real
+    // locally generated task, rather than a generic teacher-chat with no
+    // guaranteed question/options. Browsing higher classes remains discovery
+    // only (guard above) and never silently changes the profile grade.
+    if (s.name == 'Englisch' || s.name == 'Sachunterricht') {
+      final subject = s.name;
+      final topicUnit = switch (t.id) {
+        's1_koerper' => 'Körper',
+        'en1_3' => 'Begruessung',
+        's3_oesterreich' => 'Bundesländer Österreichs',
+        's3_natur' => 'Pflanzen',
+        's4_europa' => 'Kontinente und Ozeane',
+        _ => t.title,
+      };
+      final units = Curriculum.unitsForGrade(
+          subject, widget.appState.state.grade);
+      if (!units.contains(topicUnit)) {
+        // Don't present an unrelated task under a misleading topic label.
+        Navigator.of(context).push<void>(MaterialPageRoute(
+          builder: (_) => GuidedLearningHub(
+            appState: widget.appState,
+            discovery: true,
+            requestedTopicTitle: t.title,
+          ),
+        ));
+        return;
+      }
+      widget.appState.update(widget.appState.state.copyWith(
+        section: LumoSection.exercises,
+        subject: subject,
+        unit: topicUnit,
+        mood: LumoMood.point,
+        lumoMessage: 'Wir üben $topicUnit. Ich helfe dir Schritt für Schritt.',
+      ));
+      return;
+    }
     // 0) Schreibcoach LIVE (Heinz' Premium-Feature)
     if (t.id == 'd1_schreibcoach') {
       Navigator.of(context).push(
@@ -1606,6 +2231,49 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       Navigator.of(
         context,
       ).push(MaterialPageRoute(builder: (_) => moduleBuilder));
+      return;
+    }
+    // A grade tile is an actionable lesson. Preserve dedicated live modules,
+    // then route all generator-backed Mathematics/German topics to actual
+    // local exercises instead of the old online-only teacher chat.
+    if (s.name == 'Mathematik' || s.name == 'Deutsch') {
+      final unit = switch (t.id) {
+        'm1_zahlen10' => 'Mengenvergleich',
+        'm1_formen' => 'Geometrie Formen',
+        'm2_zahlen100' => 'Plus bis 100',
+        'm2_einmaleins' => 'Einmaleins Vorbereitung',
+        'm2_uhr' => 'Uhrzeit',
+        'm2_geld' => 'Geld wechseln',
+        'm3_zahlen1000' => 'Plus bis 1000',
+        'm3_einmaleins_voll' => 'Einmaleins',
+        'm3_geometrie' => 'Umfang',
+        'm4_million' => 'Zahlenraum bis 1 Million',
+        'm4_bruch' => 'Bruchrechnen einfach',
+        'm4_textaufgaben' => 'Sachaufgaben drei Schritte',
+        'd2_saetze' => 'Erste Sätze',
+        'd2_artikel' => 'Artikel',
+        'd2_mehrzahl' => 'Einzahl und Mehrzahl',
+        'd3_wortarten' => 'Wortarten',
+        'd3_zeitformen' => 'Zeitformen',
+        'd4_grammatik' => 'Die 4 Fälle',
+        _ => t.title,
+      };
+      if (Curriculum.unitsForGrade(
+              s.name, widget.appState.state.grade).contains(unit)) {
+        widget.appState.update(widget.appState.state.copyWith(
+          section: LumoSection.exercises,
+          subject: s.name,
+          unit: unit,
+          mood: LumoMood.point,
+          lumoMessage: 'Wir üben ${Curriculum.prettifyUnit(unit)}.',
+        ));
+        return;
+      }
+    }
+    if (t.id == 'd4_aufsatz') {
+      Navigator.of(context).push<void>(MaterialPageRoute(
+        builder: (_) => LumoWritingCoachScreen(appState: widget.appState),
+      ));
       return;
     }
     // 3) Fallback: ChatGPT-Lernchat

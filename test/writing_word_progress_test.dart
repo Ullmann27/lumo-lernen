@@ -86,11 +86,10 @@ Future<LumoAppState> _app({
 
 Future<void> _frames(WidgetTester tester, [int count = 15]) async {
   for (var i = 0; i < count; i++) {
-    // SharedPreferences was hydrated in the real async zone. Let its platform
-    // futures resolve as well as pumping the feedback clock in fake time.
-    if (i % 5 == 0) {
-      await tester.runAsync(() => Future<void>.delayed(Duration.zero));
-    }
+    // SharedPreferences was hydrated in the real async zone. Give its queued
+    // profile/log writes a turn each frame before _stored opens another reader
+    // in runAsync; otherwise that reader can wait on unpumped fake-zone work.
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
     await tester.pump(const Duration(milliseconds: 20));
   }
 }
@@ -122,13 +121,8 @@ Future<void> _open(
   await _frames(tester, 25);
 }
 
-Finder _canvas() => find
-    .ancestor(
-      of: find.byWidgetPredicate(
-          (widget) => widget is GestureDetector && widget.onPanStart != null),
-      matching: find.byType(ClipRRect),
-    )
-    .first;
+Finder _canvas() =>
+    find.byKey(const ValueKey('lumo-word-ink-surface'));
 
 Future<void> _draw(
   WidgetTester tester,
@@ -253,7 +247,7 @@ void main() {
     expect(find.text('Schreib das Wort: Mama'), findsOneWidget);
     expect(find.text('Stimme aus · Du kannst das Wort abschreiben.'),
         findsOneWidget);
-    expect(find.text('Schreib Buchstabe 1 von 4.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 1 von 4 nach Gehör.'), findsOneWidget);
     expect(find.byTooltip('Nochmal hören'), findsNothing);
     expect(calls.where((call) => call.method == 'speak'), isEmpty);
 
@@ -262,9 +256,11 @@ void main() {
     await _open(tester, app, [WritingWordBank.byId('w1_mama')!]);
     expect(find.textContaining('Mama'), findsNothing);
     expect(find.text('Hör gut zu!'), findsOneWidget);
-    expect(find.text('Schreib Buchstabe 1 von 4.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 1 von 4 nach Gehör.'), findsOneWidget);
     expect(find.byTooltip('Nochmal hören'), findsOneWidget);
-    expect(calls.where((call) => call.method == 'speak'), hasLength(1));
+    // There is no Android voice fallback. Dynamic Sulafat requires
+    // explicit parental cloud consent and a configured speech server.
+    expect(calls.where((call) => call.method == 'speak'), isEmpty);
     await tester.pumpWidget(const SizedBox.shrink());
     app.dispose();
     expect(tester.takeException(), isNull);
@@ -277,7 +273,7 @@ void main() {
     await _open(tester, app!, [WritingWordBank.byId('w1_mama')!]);
     for (var index = 0; index < 4; index++) {
       expect(
-          find.text('Schreib Buchstabe ${index + 1} von 4.'), findsOneWidget);
+          find.text('Schreibe Buchstabe ${index + 1} von 4 nach Gehör.'), findsOneWidget);
       await _letter(tester, 'MAMA'[index]);
       await _submit(tester, doubleTap: true);
       if (index < 3) {
@@ -342,7 +338,7 @@ void main() {
     await _submit(tester);
     expect(find.text('Deine Belohnung wartet noch aufs Speichern.'),
         findsOneWidget);
-    expect(find.text('Schreib Buchstabe 1 von 2.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 1 von 2 nach Gehör.'), findsOneWidget);
     final context = tester.element(find.byType(LumoWritingWordCoachScreen));
     expect(await Navigator.of(context).maybePop(), isTrue);
     await tester.tap(find.byIcon(Icons.arrow_back_ios_new_rounded),
@@ -351,12 +347,12 @@ void main() {
         warnIfMissed: false);
     await _frames(tester, 45);
     expect(find.byType(LumoWritingWordCoachScreen), findsOneWidget);
-    expect(find.text('Schreib Buchstabe 1 von 2.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 1 von 2 nach Gehör.'), findsOneWidget);
     await _stored(tester, correct: 0, stars: 0, xp: 0);
     wallet.reject = false;
     await tester.tap(find.text('Erneut versuchen'));
     await _frames(tester, 60);
-    expect(find.text('Schreib Buchstabe 2 von 2.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 2 von 2 nach Gehör.'), findsOneWidget);
     expect(wallet.attempts, 2);
     await _stored(tester, correct: 0, stars: 0, xp: 4);
     await tester.pumpWidget(const SizedBox.shrink());
@@ -421,11 +417,11 @@ void main() {
     await _submit(tester);
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
     await _frames(tester, 150);
-    expect(find.text('Schreib Buchstabe 1 von 2.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 1 von 2 nach Gehör.'), findsOneWidget);
     await _stored(tester, correct: 0, stars: 0, xp: 4);
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.resumed);
     await _frames(tester, 60);
-    expect(find.text('Schreib Buchstabe 2 von 2.'), findsOneWidget);
+    expect(find.text('Schreibe Buchstabe 2 von 2 nach Gehör.'), findsOneWidget);
     await tester.pumpWidget(const SizedBox.shrink());
     app.dispose();
     expect(tester.takeException(), isNull);

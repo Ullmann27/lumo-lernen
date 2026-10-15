@@ -12,11 +12,10 @@
 // 10 Aufgaben pro Session, 4 Multiple-Choice (Bilder oder Texte).
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
-import '../../../core/lumo_companion_state.dart';
-import '../../../core/lumo_cosmos.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -83,6 +82,7 @@ class _TiereScreenState extends State<TiereScreen>
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   final _rng = math.Random();
+  late final List<({int kind, int animal})> _round;
 
   int _taskIdx = 0;
   int _correctCount = 0;
@@ -96,6 +96,15 @@ class _TiereScreenState extends State<TiereScreen>
   @override
   void initState() {
     super.initState();
+    _round = [
+      for (var kind = 0; kind < _TierFrageTyp.values.length; kind++)
+        for (var animal = 0; animal < _tiere.length; animal++)
+          // Ducks and frogs have very similar calls, and "Watschel" is
+          // movement, not a penguin sound. Avoid misleading sound questions.
+          if (kind != _TierFrageTyp.lautRaten.index ||
+              !const <int>[6, 7, 10].contains(animal))
+            (kind: kind, animal: animal),
+    ]..shuffle(_rng);
     _progress = LearningModuleProgress(
       appState: widget.appState,
       subject: 'Sachunterricht',
@@ -122,11 +131,15 @@ class _TiereScreenState extends State<TiereScreen>
   }
 
   void _generateTask() {
-    _typ = _TierFrageTyp.values[_rng.nextInt(_TierFrageTyp.values.length)];
-    final shuffled = List.of(_tiere)..shuffle(_rng);
-    _correctTier = shuffled.first;
+    // Thirty distinct prompt/animal pairs are prepared at session start.
+    // Sampling with replacement previously repeated the same question.
+    final plan = _round[_taskIdx];
+    _typ = _TierFrageTyp.values[plan.kind];
+    _correctTier = _tiere[plan.animal];
+    final shuffled = List.of(_tiere.where((tier) => tier != _correctTier))
+      ..shuffle(_rng);
     // 3 falsche Antworten + 1 richtige
-    final wrong = shuffled.skip(1).take(3).toList();
+    final wrong = shuffled.take(3).toList();
     _answerOptions = [_correctTier, ...wrong]..shuffle(_rng);
     _answered = false;
     _selectedAnswer = null;
@@ -143,7 +156,7 @@ class _TiereScreenState extends State<TiereScreen>
         text = 'Welches Tier macht "${_correctTier.laut}"?';
         break;
       case _TierFrageTyp.lebensraum:
-        text = 'Wo lebt ein ${_correctTier.name}?';
+        text = 'Wo kann man das Tier ${_correctTier.name} bei uns häufig sehen?';
         break;
     }
     try {
@@ -163,6 +176,8 @@ class _TiereScreenState extends State<TiereScreen>
         : _correctTier.name;
     final isCorrect = answer == correctAnswer;
     final saved = await _progress.saveAnswer(
+      cosmosSubjectId: 's1_tiere',
+      cosmosIsMath: false,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,
@@ -170,13 +185,7 @@ class _TiereScreenState extends State<TiereScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
-      CosmosWorld.instance.grantReward(
-        subjectId: 's1_tiere',
-        isMath: false,
-        isPerfect: false,
-      );
-      LumoCompanionState.instance.recordCorrect(topic: 'sachk');
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak('Richtig! Das ist ein ${_correctTier.name}!');
       } catch (_) {}
@@ -274,87 +283,35 @@ class _TiereScreenState extends State<TiereScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 20),
-                      _buildMainImage(),
-                      const SizedBox(height: 20),
-                      _buildAnswerOptions(),
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Tiere lernen',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Welt-Abenteuer',
+        moduleTitle: 'Tiere lernen',
+        icon: Icons.pets_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: Column(children: [
+            _buildTaskHeader(),
+            const SizedBox(height: 20),
+            _buildMainImage(),
+            const SizedBox(height: 20),
+            _buildAnswerOptions(),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -374,15 +331,18 @@ class _TiereScreenState extends State<TiereScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(20),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
         ),
         child: Text(text,
             textAlign: TextAlign.center,
@@ -390,7 +350,7 @@ class _TiereScreenState extends State<TiereScreen>
                 fontFamily: 'Nunito',
                 fontSize: 18,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
@@ -459,7 +419,7 @@ class _TiereScreenState extends State<TiereScreen>
     final options = _typ == _TierFrageTyp.lebensraum
         ? _buildLebensraumOptions()
         : _answerOptions.map((t) => t.name).toList();
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -481,9 +441,9 @@ class _TiereScreenState extends State<TiereScreen>
         : _correctTier.name;
     final isSelected = _selectedAnswer == text;
     final isCorrect = text == correctAnswer;
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered && isSelected) {
       if (isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -496,25 +456,28 @@ class _TiereScreenState extends State<TiereScreen>
       }
     } else if (_answered && isCorrect) {
       bgColor = const Color(0xFFFEF3C7);
+      textColor = const Color(0xFF713F12);
       borderColor = const Color(0xFFFCD34D);
     }
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final scale = isSelected && isCorrect
+        final scale = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.08
             : 1.0;
         return Transform.scale(scale: scale, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(text),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-          ),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text(text,
                 style: TextStyle(

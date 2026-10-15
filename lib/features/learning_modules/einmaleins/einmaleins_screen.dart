@@ -6,7 +6,8 @@
 // 12 Aufgaben pro Session, Multiple-Choice, progressive Schwierigkeit.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -149,7 +150,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     if (!saved || !mounted) return;
     if (isCorrect) {
       _bounceCtrl.forward(from: 0);
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -264,97 +265,40 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(children: [
-              _buildTopBar(),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.all(20),
-                  child: AnimatedBuilder(
-                    animation: _entryCtrl,
-                    builder: (_, child) {
-                      return Opacity(opacity: _entryCtrl.value, child: child);
-                    },
-                    child: Column(children: [
-                      _buildTaskHeader(),
-                      const SizedBox(height: 24),
-                      _buildVisualization(),
-                      const SizedBox(height: 32),
-                      _buildAnswerGrid(),
-                      if (_showHint) ...[
-                        const SizedBox(height: 20),
-                        _buildHintCard(),
-                      ],
-                    ]),
-                  ),
-                ),
-              ),
-            ]),
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding: const EdgeInsets.all(12),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(24)),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.3),
-              blurRadius: 12,
-              offset: const Offset(0, 4))
-        ],
-      ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).maybePop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Aufgabe ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              Text(widget.fullRange ? 'Großes 1×1' : 'Einmaleins 2/5/10',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Mathe-Abenteuer',
+        moduleTitle: widget.fullRange ? 'Großes 1×1' : 'Einmaleins 2/5/10',
+        icon: Icons.grid_view_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Aufgabe',
+        hasMistake: _answered && _selectedAnswer != _correct,
+        canLeave: () => !_progress.hasPending,
+        child: AnimatedBuilder(
+          animation: _entryCtrl,
+          builder: (_, child) {
+            return Opacity(
+                opacity: LumoLessonStyle.reducedMotion(context, widget.appState)
+                    ? 1
+                    : _entryCtrl.value,
+                child: child);
+          },
+          child: Column(children: [
+            _buildTaskHeader(),
+            const SizedBox(height: 12),
+            _buildVisualization(),
+            const SizedBox(height: 16),
+            _buildAnswerGrid(),
+            if (_showHint) ...[
+              const SizedBox(height: 20),
+              _buildHintCard(),
             ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
           ]),
         ),
-        const SizedBox(width: 8),
-      ]),
+      ),
     );
   }
 
@@ -362,15 +306,18 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
     return AnimatedBuilder(
       animation: _shakeCtrl,
       builder: (_, child) {
-        final shake = math.sin(_shakeCtrl.value * math.pi * 8) * 6;
+        final shake = LumoLessonStyle.reducedMotion(context, widget.appState)
+            ? 0.0
+            : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 18),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
           borderRadius: BorderRadius.circular(24),
-          border: Border.all(color: _gradient[0].withOpacity(0.3), width: 2),
+          border: Border.all(
+              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
           boxShadow: [
             BoxShadow(
                 color: _gradient[0].withOpacity(0.15),
@@ -383,7 +330,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
                 fontFamily: 'Nunito',
                 fontSize: 52,
                 fontWeight: FontWeight.w900,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       ),
     );
   }
@@ -395,7 +342,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       return Container(
         padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
-          color: _gradient[0].withOpacity(0.1),
+          color: LumoVisualTokens.cyan.withValues(alpha: .55),
           borderRadius: BorderRadius.circular(12),
         ),
         child: Text(
@@ -406,15 +353,15 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
                 fontFamily: 'Nunito',
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
-                color: _gradient[1])),
+                color: LumoVisualTokens.white)),
       );
     }
     return Container(
       padding: const EdgeInsets.all(12),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
         borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: _gradient[0].withOpacity(0.3)),
+        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .55)),
       ),
       child: Column(
         children: List.generate(_a, (row) {
@@ -441,7 +388,7 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   }
 
   Widget _buildAnswerGrid() {
-    return GridView.count(
+    return LumoLessonAnswerGrid(
       crossAxisCount: 2,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -455,9 +402,9 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
   Widget _buildAnswerButton(int value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correct;
-    Color bgColor = Colors.white;
-    Color textColor = _gradient[1];
-    Color borderColor = _gradient[0].withOpacity(0.3);
+    Color bgColor = LumoVisualTokens.lessonAnswer;
+    Color textColor = LumoVisualTokens.white;
+    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
     if (_answered && isSelected) {
       if (isCorrect) {
         bgColor = const Color(0xFFD1FAE5);
@@ -470,31 +417,28 @@ class _EinmaleinsScreenState extends State<EinmaleinsScreen>
       }
     } else if (_answered && isCorrect && _wrongAttempts >= 1) {
       bgColor = const Color(0xFFFEF3C7);
+      textColor = const Color(0xFF713F12);
       borderColor = const Color(0xFFFCD34D);
     }
     return AnimatedBuilder(
       animation: _bounceCtrl,
       builder: (_, child) {
-        final s = isSelected && isCorrect
+        final s = isSelected &&
+                isCorrect &&
+                !LumoLessonStyle.reducedMotion(context, widget.appState)
             ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
             : 1.0;
         return Transform.scale(scale: s, child: child);
       },
-      child: GestureDetector(
+      child: LumoLessonAnswerTap(
+        correct: _answered && isSelected ? isCorrect : null,
         onTap: _answered ? null : () => _onAnswer(value),
         child: AnimatedContainer(
-          duration: const Duration(milliseconds: 200),
-          decoration: BoxDecoration(
-            color: bgColor,
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: borderColor, width: 3),
-            boxShadow: [
-              BoxShadow(
-                  color: borderColor.withOpacity(0.2),
-                  blurRadius: 8,
-                  offset: const Offset(0, 3))
-            ],
-          ),
+          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
+              ? Duration.zero
+              : const Duration(milliseconds: 200),
+          decoration:
+              LumoLessonStyle.answer(background: bgColor, border: borderColor),
           child: Center(
             child: Text('$value',
                 style: TextStyle(

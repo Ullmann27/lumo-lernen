@@ -1,7 +1,7 @@
 name: Lumo race continuity APK and full Android race verification
 on:
   push:
-    branches: [codex/lumo-action-apk-2026-10-09, codex/lumo-apk-1910-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, claude/continue-previous-chat-KtY7p, codex/lumo-claude-game-entry-2026-10-09, codex/lumo-host-finish-numeric-2026-10-09]
+    branches: [codex/lumo-kart-menu-1921-2026-10-10, codex/lumo-next-2026-10-10, codex/lumo-action-apk-2026-10-09, codex/lumo-apk-1910-2026-10-09, codex/lumo-runtime-apk-2026-10-08, codex/lumo-integrated-runtime-2026-10-08, chatgpt/lumo-apk-1914-qa-2026-10-09, chatgpt/learning-tree-cinematic-qa-2026-10-09, chatgpt/lumo-character-apk-1919-2026-10-09, claude/continue-previous-chat-KtY7p, codex/lumo-claude-game-entry-2026-10-09, codex/lumo-host-finish-numeric-2026-10-09]
     paths: [lib/**, test/**, scripts/**, tools/**, config/**, assets/**, pubspec.yaml, .github/workflows/lumo-runtime-apk.yml, .github/probes/**]
   workflow_dispatch:
 permissions:
@@ -19,6 +19,7 @@ jobs:
     timeout-minutes: 65
     outputs:
       build-number: ${{ steps.version.outputs.build-number }}
+      version-name: ${{ steps.version.outputs.version-name }}
     env:
       LUMO_NATIVE_DIRECTORY: /tmp/lumo-native-visual
     steps:
@@ -33,6 +34,7 @@ jobs:
           printf 'LUMO_BUILD_NUMBER=%s\nLUMO_VERSION_NAME=%s\n' \
             "$lumo_build_number" "$lumo_version_name" >> "$GITHUB_ENV"
           printf 'build-number=%s\n' "$lumo_build_number" >> "$GITHUB_OUTPUT"
+          printf 'version-name=%s\n' "$lumo_version_name" >> "$GITHUB_OUTPUT"
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
@@ -67,6 +69,33 @@ jobs:
           git rev-parse HEAD > proof/source-sha.txt
           flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
           flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/analysis.log
+      - name: Install declared Python QA guard dependencies
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/lumo-qa-guard-venv"
+          qa_python="$RUNNER_TEMP/lumo-qa-guard-venv/bin/python"
+          "$qa_python" -m pip install --disable-pip-version-check --only-binary=:all: Pillow==12.3.0
+          "$qa_python" -m pip freeze > proof/python-qa-dependencies.txt
+          printf 'LUMO_QA_PYTHON=%s\n' "$qa_python" >> "$GITHUB_ENV"
+          "$qa_python" - <<'PYCODE'
+          import json, shutil
+          from pathlib import Path
+          import PIL
+          assert PIL.__version__ == '12.3.0'
+          assert shutil.which('tesseract') is not None, 'Declared screenshot OCR dependency is missing'
+          Path('proof/python-qa-capabilities.json').write_text(json.dumps({
+              'pillow': PIL.__version__,
+              'tesseract': shutil.which('tesseract'),
+              'optional_ocr_skip_reason': 'Actual screenshot OCR requires tesseract and Pillow',
+              'optional_ocr_skip_guards': 'Existing eight screenshot cases remain unchanged; actual skips are recorded by unittest -v.',
+          }, indent=2) + '\n')
+          PYCODE
+      - name: Current profile isolation and exact historical attribution regressions
+        env:
+          LUMO_PROFILE_CAPTURES: ${{ github.workspace }}/proof/profile-identity/captures
+        run: |
+          set -euo pipefail
+          "$LUMO_QA_PYTHON" scripts/ci/run_profile_checks.py --out proof/profile-identity
       - name: Reproduce the late-storage launch regression on the preserved base
         run: |
           set -euo pipefail
@@ -139,27 +168,6 @@ jobs:
             echo 'App render files:'
             find proof/app-renders -maxdepth 1 -type f -name '*.png' -printf '%f\n' | sort
           } > proof/TEST-RESULTS.txt
-      - name: Install declared Python QA guard dependencies
-        run: |
-          set -euo pipefail
-          python3 -m venv "$RUNNER_TEMP/lumo-qa-guard-venv"
-          qa_python="$RUNNER_TEMP/lumo-qa-guard-venv/bin/python"
-          "$qa_python" -m pip install --disable-pip-version-check --only-binary=:all: Pillow==12.3.0
-          "$qa_python" -m pip freeze > proof/python-qa-dependencies.txt
-          printf 'LUMO_QA_PYTHON=%s\n' "$qa_python" >> "$GITHUB_ENV"
-          "$qa_python" - <<'PYCODE'
-          import json, shutil
-          from pathlib import Path
-          import PIL
-          assert PIL.__version__ == '12.3.0'
-          assert shutil.which('tesseract') is not None, 'Declared screenshot OCR dependency is missing'
-          Path('proof/python-qa-capabilities.json').write_text(json.dumps({
-              'pillow': PIL.__version__,
-              'tesseract': shutil.which('tesseract'),
-              'optional_ocr_skip_reason': 'Actual screenshot OCR requires tesseract and Pillow',
-              'optional_ocr_skip_guards': 'Existing eight screenshot cases remain unchanged; actual skips are recorded by unittest -v.',
-          }, indent=2) + '\n')
-          PYCODE
       - name: Backend, learning content and integration guards
         run: |
           set -euo pipefail
@@ -316,6 +324,173 @@ jobs:
             python3 tools/run_godot_probe.py --log exports/fold-controls/kart_time_format_regression.log \
             --timeout 240 --required '[KartTimeFormat] PASS:' -- \
             godot --headless --audio-driver Dummy --script res://scripts/tests/kart_time_format_regression.gd
+      - name: Verify and capture the Lumo character from the exact APK pin
+        working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          python3 tools/run_godot_probe.py --log exports/fold-controls/character-pose.log \
+            --timeout 180 --required '[CharacterPose] checks=2325 failures=0' -- \
+            godot --headless --audio-driver Dummy \
+            --script res://scripts/tests/kart_character_pose_regression.gd
+          rg -F '[CharacterPose] PASS:' exports/fold-controls/character-pose.log
+          python3 tools/run_godot_probe.py --log exports/fold-controls/face-depth.log \
+            --timeout 180 --required '[FaceDepth] checks=23 failures=0' -- \
+            godot --headless --audio-driver Dummy \
+            --script res://scripts/tests/kart_face_depth_regression.gd
+          rg -F '[FaceDepth] PASS:' exports/fold-controls/face-depth.log
+          python3 tools/run_godot_probe.py --log exports/fold-controls/fox-eyes.log \
+            --timeout 180 --required '[LumoEyeProportions] PASS:' -- \
+            godot --headless --audio-driver Dummy \
+            --script res://scripts/tests/kart_fox_eye_proportions_regression.gd
+          python3 tools/run_godot_probe.py --log exports/fold-controls/face-studio.log \
+            --timeout 180 --required '[LumoFaceStudio] PASS:' -- \
+            godot --headless --audio-driver Dummy \
+            --script res://scripts/tests/kart_stage_visual_regression.gd
+          python3 tools/run_godot_probe.py --log exports/fold-controls/lumo-face-capture.log \
+            --timeout 240 --required '[LumoFaceCapture] PASS:' -- \
+            xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
+            --rendering-method gl_compatibility --script res://scripts/tests/kart_garage_face_capture.gd
+          python3 tools/run_godot_probe.py --log exports/fold-controls/lumo-driver-4views.log \
+            --timeout 240 --required '[DriverPortrait] PASS:' -- \
+            xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
+            --rendering-method gl_compatibility --script res://scripts/tests/kart_driver_portrait.gd \
+            -- res://exports/face-showroom/lumo-driver-4views.png
+          python3 tools/run_godot_probe.py --log exports/fold-controls/start-hero.log \
+            --timeout 300 --required '[StartHero] checks=69 failures=0' -- \
+            xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
+            --rendering-method gl_compatibility --script res://scripts/tests/kart_start_hero_regression.gd
+          rg -F '[StartHero] PASS:' exports/fold-controls/start-hero.log
+          python3 tools/run_godot_probe.py --log exports/fold-controls/aquarium-headless.log \
+            --timeout 240 --required '[KartAquarium] PASS:' -- \
+            godot --headless --audio-driver Dummy \
+            --script res://scripts/tests/kart_aquarium_clearance_regression.gd
+          python3 tools/run_godot_probe.py --log exports/fold-controls/aquarium-rendered.log \
+            --timeout 240 --required '[KartAquarium] PASS:' -- \
+            xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
+            --rendering-method gl_compatibility --script res://scripts/tests/kart_aquarium_clearance_regression.gd
+          python3 tools/run_godot_probe.py --log exports/fold-controls/aquarium-capture.log \
+            --timeout 300 --required '[KartAquariumCapture] PASS: six actual chase-camera views, LOW/HIGH' -- \
+            xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
+            --rendering-method gl_compatibility --script res://scripts/tests/kart_aquarium_capture.gd
+          "$LUMO_QA_PYTHON" - <<'PYCODE'
+          import hashlib, json, os, re, shutil, subprocess
+          from pathlib import Path
+          from PIL import Image
+          workspace = Path(os.environ['GITHUB_WORKSPACE'])
+          pin = json.loads((workspace / 'config/godot-source.json').read_text())
+          native_source = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
+          assert re.fullmatch(r'[0-9a-f]{40}', native_source)
+          assert native_source == pin['revision']
+          subprocess.run(['git', 'diff', '--quiet', 'HEAD', '--'], check=True)
+          source_paths = (
+              'scripts/games/kart_vehicle.gd', 'scripts/games/kart_garage_menu.gd',
+              'scripts/games/kart_stage.gd',
+              'scripts/games/kart_character_finish.gd',
+              'scripts/games/kart_island.gd', 'scenes/games/kart_island.tscn',
+              'scripts/games/kart_harbor_aquarium.gd',
+              'assets/shaders/kart_aquarium.gdshader',
+              'scripts/tests/kart_aquarium_clearance_regression.gd',
+              'scripts/tests/kart_aquarium_capture.gd',
+              'scripts/tests/kart_character_pose_regression.gd',
+              'scripts/tests/kart_face_depth_regression.gd',
+              'scripts/tests/kart_start_hero_regression.gd',
+              'scripts/tests/kart_fox_eye_proportions_regression.gd',
+              'scripts/tests/kart_stage_visual_regression.gd',
+              'scripts/tests/kart_garage_face_capture.gd',
+              'scripts/tests/kart_driver_portrait.gd',
+              'scripts/tests/kart_reference_capture.gd',
+              'scripts/tests/kart_visual_quality_capture.gd',
+          )
+          capture_sizes = {
+              'face-showroom/lumo-driver-4views.png': (1280, 1280),
+              'face-showroom/lumo-face-1280x720.png': (1280, 720),
+              'face-showroom/lumo-face-800x480.png': (800, 480),
+              'face-showroom/lumo-face-412x915.png': (412, 915),
+              'reference-design/lumo_front.png': (900, 900),
+              'reference-design/lumo_side.png': (900, 900),
+              'reference-design/lumo_rear.png': (900, 900),
+              'reference-design/lumo_three_quarter.png': (900, 900),
+              'video-quality/menu-0.png': (1280, 720),
+              'video-quality/sonnenhafen-025.png': (1280, 720),
+              'start-review/start-1280x720.png': (1280, 720),
+              'start-review/start-800x480.png': (800, 480),
+              'start-review/start-412x915.png': (412, 915),
+              'start-review/start-saved-320x568.png': (320, 568),
+              'aquarium-proof/01-low-entry.png': (1280, 720),
+              'aquarium-proof/02-low-middle.png': (1280, 720),
+              'aquarium-proof/03-low-exit.png': (1280, 720),
+              'aquarium-proof/04-high-entry.png': (1280, 720),
+              'aquarium-proof/05-high-middle.png': (1280, 720),
+              'aquarium-proof/06-high-exit.png': (1280, 720),
+          }
+          output = Path('exports/character-review')
+          output.mkdir(parents=True, exist_ok=True)
+          captures = []
+          for name, size in capture_sizes.items():
+              path = Path('exports') / name
+              assert path.is_file() and not path.is_symlink(), name
+              with Image.open(path) as image:
+                  assert image.format == 'PNG' and image.size == size, name
+                  image.load()
+              raw = path.read_bytes()
+              shutil.copyfile(path, output / path.name)
+              captures.append({'file': path.name, 'source_path': str(path),
+                               'width': size[0], 'height': size[1], 'bytes': len(raw),
+                               'sha256': hashlib.sha256(raw).hexdigest()})
+          measured_checks = {}
+          for name, tag, expected in (
+              ('character-pose', 'CharacterPose', 2325),
+              ('face-depth', 'FaceDepth', 23),
+              ('start-hero', 'StartHero', 69),
+          ):
+              results = re.findall(rf'^\[{re.escape(tag)}\] checks=(\d+) failures=(\d+)$',
+                  (Path('exports/fold-controls') / (name + '.log')).read_text(), re.MULTILINE)
+              assert results == [(str(expected), '0')], name
+              measured_checks[name] = int(results[0][0])
+          aquarium_runs = {}
+          aquarium_pass = '[KartAquarium] PASS: schools, reefs, clearance, water UVs, budgets and preserved race geometry'
+          for mode in ('headless', 'rendered'):
+              log = (Path('exports/fold-controls') / ('aquarium-' + mode + '.log')).read_text()
+              rows = re.findall(r'^\[KartAquarium\] (LOW|HIGH): (\d+) batched props, (\d+) fish$', log, re.MULTILINE)
+              assert rows == [('LOW', '292', '12'), ('HIGH', '324', '40')], mode
+              assert log.splitlines().count(aquarium_pass) == 1, mode
+              aquarium_runs[mode] = {quality: {'batched_props': int(props), 'fish': int(fish)}
+                                      for quality, props, fish in rows}
+          gpu_marker = '[KartAquarium] GPU instance clearance verified for the complete school motion envelope'
+          assert (Path('exports/fold-controls') / 'aquarium-rendered.log').read_text().splitlines().count(gpu_marker) == 1
+          driven_rows = re.findall(r'^\[KartAquariumCapture\] ([0-9]{2}-(?:low|high)-(?:entry|middle|exit)): '
+                                   r'1280x720, ([0-9]+\.[0-9]+) metres driven$',
+                                   (Path('exports/fold-controls') / 'aquarium-capture.log').read_text(), re.MULTILINE)
+          aquarium_names = ('01-low-entry', '02-low-middle', '03-low-exit',
+                            '04-high-entry', '05-high-middle', '06-high-exit')
+          assert tuple(name for name, _ in driven_rows) == aquarium_names
+          assert all(float(distance) >= 6.0 for _, distance in driven_rows)
+          aquarium = {'runs': aquarium_runs, 'gpu_instance_clearance_verified': True,
+                      'capture_driven_metres': {name: float(distance) for name, distance in driven_rows}}
+          log_names = ('character-pose', 'face-depth', 'start-hero',
+                       'fox-eyes', 'face-studio', 'lumo-face-capture', 'lumo-driver-4views',
+                       'kart_reference_capture', 'visual',
+                       'aquarium-headless', 'aquarium-rendered', 'aquarium-capture')
+          report = {
+              'status': 'PASS',
+              'flutter_source_commit': (workspace / 'proof/source-sha.txt').read_text().strip(),
+              'godot_source_commit': native_source,
+              'measured_checks': measured_checks, 'aquarium': aquarium,
+              'engine': subprocess.check_output(['godot', '--version'], text=True).strip(),
+              'capture_scope': 'Actual Godot X11/gl_compatibility software renders; fixed inspection poses and menu/race fixtures',
+              'physical_device_performance': 'NOT EXECUTED',
+              'source_sha256': {name: hashlib.sha256(Path(name).read_bytes()).hexdigest()
+                                for name in source_paths},
+              'log_sha256': {name + '.log': hashlib.sha256(
+                  (Path('exports/fold-controls') / (name + '.log')).read_bytes()).hexdigest()
+                  for name in log_names},
+              'captures': captures,
+          }
+          (output / 'CHARACTER-EVIDENCE.json').write_text(json.dumps(report, indent=2) + '\n')
+          print(f'[LumoCharacterEvidence] PASS: {len(captures)} source-bound PNGs from {native_source}')
+          PYCODE
       - name: Capture the final native fleet and harbor from the exact APK pin
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         env:
@@ -449,6 +624,7 @@ jobs:
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/steering-grip/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/countdown-pause/
             ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/modal-touch/
+            ${{ env.LUMO_NATIVE_DIRECTORY }}/exports/character-review/
       - name: Build and verify the unified APK from exact clean source
         run: |
           set -euo pipefail
@@ -494,6 +670,10 @@ jobs:
           cp -a "$LUMO_BUILD_CHECKOUT/dist/." dist/
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk > build-proof/verification.json
           cp proof/TEST-RESULTS.txt dist/TEST-RESULTS.txt
+          cp proof/profile-identity/PROFILE-IDENTITY-EVIDENCE.json dist/PROFILE-IDENTITY-EVIDENCE.json
+          cp -a proof/profile-identity/captures dist/profile-captures
+          cp proof/profile-identity/PROFILE-CAPTURE-EVIDENCE.json dist/profile-captures/PROFILE-CAPTURE-EVIDENCE.json
+          cp -a "$LUMO_NATIVE_DIRECTORY/exports/character-review" dist/character-review
       - uses: actions/upload-artifact@v4
         if: success()
         with:
@@ -620,3 +800,129 @@ jobs:
             !native-proof/*-ocr-input.png
           if-no-files-found: error
           retention-days: 14
+  verified-test-apk:
+    name: Package verified Android test APK
+    needs: [verify-and-build, android]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-visual-apk-${{ github.run_id }}
+          path: candidate/
+      - name: Bind the downloadable APK to all completed native and Android checks
+        env:
+          LUMO_ACTIONS_TOKEN: ${{ github.token }}
+          LUMO_EXPECT_SOURCE: ${{ github.sha }}
+          LUMO_BUILD_NUMBER: ${{ needs.verify-and-build.outputs.build-number }}
+          LUMO_VERSION_NAME: ${{ needs.verify-and-build.outputs.version-name }}
+        run: |
+          set -euo pipefail
+          (cd candidate && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PYCODE'
+          import hashlib, json, os, urllib.request
+          from pathlib import Path
+          candidate = Path('candidate')
+          apk = candidate / 'Lumo-Lernen-Neu.apk'
+          actual_sha = hashlib.sha256(apk.read_bytes()).hexdigest()
+          source = os.environ['LUMO_EXPECT_SOURCE']
+          version_name = os.environ['LUMO_VERSION_NAME']
+          version_code = int(os.environ['LUMO_BUILD_NUMBER'])
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          provenance = json.loads((candidate / 'BUILD-PROVENANCE.json').read_text())
+          verification = json.loads((candidate / 'APK-VERIFICATION.json').read_text())
+          for report in (provenance, verification):
+              assert report['sha256'] == actual_sha and report['bytes'] == apk.stat().st_size
+              assert report['versionName'] == version_name and report['versionCode'] == version_code
+              assert report['godot']['revision'] == pin['revision']
+          assert provenance['flutter_source_commit'] == source
+          assert provenance['tracked_source_clean'] is True
+          profile_path = candidate / 'PROFILE-IDENTITY-EVIDENCE.json'
+          profile = json.loads(profile_path.read_text())
+          assert profile['schema'] == 'lumo.profile-checks.v2'
+          assert profile['status'] == 'PASS' and profile['flutter_source_commit'] == source
+          current_profile = profile['current']
+          assert current_profile['source_commit'] == source and current_profile['status'] == 'PASS'
+          assert current_profile['exit_code'] == 0 and current_profile['skipped'] == 0
+          for name, expected in current_profile['input_sha256'].items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == expected, name
+          profile_capture_path = candidate / 'profile-captures/PROFILE-CAPTURE-EVIDENCE.json'
+          assert hashlib.sha256(profile_capture_path.read_bytes()).hexdigest() == profile['widget_capture_evidence_sha256']
+          profile_captures = json.loads(profile_capture_path.read_text())
+          assert profile_captures['status'] == 'PASS' and profile_captures['flutter_source_commit'] == source
+          assert profile_captures['test_path'] == 'test/design/legacy_learning_assignment_test.dart'
+          assert profile_captures['test_sha256'] == current_profile['input_sha256'][profile_captures['test_path']]
+          expected_profile_captures = {'legacy_parent_phone.png', 'legacy_parent_fold_confirm.png',
+                                       'legacy_parent_fold_assigned.png', 'legacy_parent_large_text.png'}
+          assert len(profile_captures['captures']) == 4
+          assert {frame['file'] for frame in profile_captures['captures']} == expected_profile_captures
+          for frame in profile_captures['captures']:
+              image = candidate / 'profile-captures' / frame['file']
+              assert image.stat().st_size == frame['bytes']
+              assert hashlib.sha256(image.read_bytes()).hexdigest() == frame['sha256']
+          historical_profile = profile['historical']
+          assert historical_profile['original_commit'] == 'ab21b2295ca5307bae5e07c0c8a01c3017ee91a3'
+          assert historical_profile['repaired_commit'] == 'd07b2b48593b939a2a0446fcb83a25a2b2a59db6'
+          assert historical_profile['red']['status'] == 'EXPECTED_RED'
+          assert historical_profile['red']['exit_code'] == 1
+          assert historical_profile['green']['status'] == 'PASS'
+          assert historical_profile['green']['exit_code'] == 0
+          assert historical_profile['red']['visible_tests'] == historical_profile['green']['visible_tests'] == 3
+          for phase in ('red', 'green'):
+              expected_commit = historical_profile['original_commit' if phase == 'red' else 'repaired_commit']
+              assert historical_profile[phase]['source_commit'] == expected_commit
+              assert historical_profile[phase]['input_sha256']['test/app_state_student_identity_test.dart'] == \
+                  historical_profile['unchanged_test_sha256']
+          character = json.loads((candidate / 'character-review/CHARACTER-EVIDENCE.json').read_text())
+          assert character['status'] == 'PASS'
+          assert character['flutter_source_commit'] == source
+          assert character['godot_source_commit'] == pin['revision']
+          assert character['measured_checks'] == {'character-pose': 2325, 'face-depth': 23, 'start-hero': 69}
+          assert character['aquarium']['gpu_instance_clearance_verified'] is True
+          assert len(character['captures']) == 20
+          for frame in character['captures']:
+              image = candidate / 'character-review' / frame['file']
+              assert hashlib.sha256(image.read_bytes()).hexdigest() == frame['sha256']
+          repository = os.environ['GITHUB_REPOSITORY']
+          run_id = os.environ['GITHUB_RUN_ID']
+          request = urllib.request.Request(
+              f"{os.environ['GITHUB_API_URL']}/repos/{repository}/actions/runs/{run_id}/jobs?filter=latest&per_page=100",
+              headers={'Authorization': 'Bearer ' + os.environ['LUMO_ACTIONS_TOKEN'],
+                       'Accept': 'application/vnd.github+json',
+                       'X-GitHub-Api-Version': '2022-11-28'},
+          )
+          with urllib.request.urlopen(request, timeout=30) as response:
+              jobs = json.load(response)['jobs']
+          required = {'verify-and-build', 'android (build, 35)', 'android (puzzle, 35)',
+                      'android (rhythm, 35)', 'android (treasure, 35)',
+                      'android (kart, 35)', 'android (kart, 36)'}
+          checked = [job for job in jobs if job['name'] in required]
+          assert len(checked) == len(required) and {job['name'] for job in checked} == required
+          assert all(job['status'] == 'completed' and job['conclusion'] == 'success'
+                     and job['head_sha'] == source for job in checked)
+          filename = f'LUMO-Lernen-{version_name}-{version_code}.apk'
+          apk.rename(candidate / filename)
+          (candidate / 'SHA256SUMS.txt').write_text(f'{actual_sha}  {filename}\n')
+          (candidate / 'QA-RESULTS.json').write_text(json.dumps({
+              'status': 'PASS', 'apk_file': filename, 'apk_sha256': actual_sha,
+              'flutter_source_commit': source, 'godot_source_commit': pin['revision'],
+              'profile_identity_evidence_sha256': hashlib.sha256(profile_path.read_bytes()).hexdigest(),
+              'profile_widget_capture_evidence_sha256': hashlib.sha256(profile_capture_path.read_bytes()).hexdigest(),
+              'workflow_run': f"{os.environ['GITHUB_SERVER_URL']}/{repository}/actions/runs/{run_id}",
+              'verified_jobs': [{'name': job['name'], 'job_id': job['id'],
+                                 'url': job['html_url'], 'conclusion': job['conclusion']}
+                                for job in checked],
+              'physical_device_performance': 'NOT EXECUTED',
+          }, indent=2) + '\n')
+          print(f'PASS: exact APK {filename}, {len(character["captures"])} character frames and all seven required jobs')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-Lernen-${{ needs.verify-and-build.outputs.version-name }}-${{ needs.verify-and-build.outputs.build-number }}-Android-APK
+          path: candidate/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0

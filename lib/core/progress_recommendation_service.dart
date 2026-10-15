@@ -66,7 +66,7 @@ class ProgressRecommendationService {
         skills.values.map((record) => record.normalized()).where((record) {
       return record.attempts > 0 &&
           (scope == null || record.subject == scope) &&
-          (catalog[record.subject]?.contains(record.unit) ?? false);
+          (catalog[record.subject]?.contains(_activityUnit(record)) ?? false);
     }).toList()
           ..sort(_mostRecentFirst);
 
@@ -146,7 +146,7 @@ class ProgressRecommendationService {
     final options = catalog[subject]!;
     final completedUnits = records
         .where((record) => record.subject == subject)
-        .map((record) => record.unit)
+        .map(_activityUnit)
         .toSet();
     final untried = options.where((unit) => !completedUnits.contains(unit));
     if (untried.isEmpty && records.isNotEmpty) {
@@ -198,7 +198,7 @@ class ProgressRecommendationService {
         kind: kind,
         grade: grade,
         subject: record.subject,
-        unit: record.unit,
+        unit: _activityUnit(record),
         title: title,
         message: message,
         reason: reason,
@@ -219,8 +219,16 @@ class ProgressRecommendationService {
 
   static String _label(String unit) => Curriculum.prettifyUnit(unit);
 
-  // Exact template keys avoid legacy aliases silently routing to an unrelated
-  // generator fallback. Lower-grade topics remain available for reinforcement.
+  // Read-only mapping for the actual guided course's stored topic. Do not
+  // rename historical records, merge counters or guess across subjects.
+  static String _activityUnit(SkillRecord record) =>
+      record.subject == 'Mathematik' && record.unit == 'Kleines 1×1'
+          ? 'Einmaleins'
+          : record.unit;
+
+  // Exact runnable template keys (plus the explicit course mapping above)
+  // avoid an unrelated generator fallback. Higher-stage topics still require
+  // discovery permission; lower-grade topics remain available for revision.
   Map<String, List<String>> _catalog(int grade) {
     const starters = <int, String>{
       1: 'Plus bis 10',

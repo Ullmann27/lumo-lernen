@@ -1,0 +1,94 @@
+name: LUMO 1918 reproducible Android test APK
+on:
+  push:
+    branches: [chatgpt/lumo-1918-apk-artifact-2026-10-09]
+    paths: [.github/workflows/lumo-1918-apk-artifact.yml]
+  workflow_dispatch:
+concurrency:
+  group: lumo-1918-quick-artifact-build
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  build-test-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 12
+      - name: Prove the signed APK contains the visually tested learning UI and only a version bump
+        run: |
+          set -euo pipefail
+          git merge-base --is-ancestor "bea22025d10fc083261ad6c260a14fd71a19cba0" HEAD
+          test "$(git diff --name-only bea22025d10fc083261ad6c260a14fd71a19cba0..HEAD)" = "$(printf '%s\n' '.github/workflows/lumo-1918-apk-artifact.yml' 'pubspec.yaml')"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = "0.12.11+1918"
+          mkdir -p proof
+          git rev-parse HEAD | tee proof/build-source-sha.txt
+          printf '%s\n' "bea22025d10fc083261ad6c260a14fd71a19cba0" > proof/verified-code-sha.txt
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          cache: true
+      - name: Prepare Android NDK before compilation
+        run: bash scripts/install_ndk_for_build.sh proof/ndk-preflight
+      - name: Fetch Flutter dependencies exactly
+        run: flutter pub get --enforce-lockfile
+      - name: Static analysis of exact build branch
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Re-test fixed lazy topic navigation and actual 3D snapshots
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --timeout=65s --reporter=expanded \
+            test/learning_modules/plus_bis_10_persistence_test.dart \
+            test/learning_modules/bruchrechnen_answers_test.dart \
+            test/design/lumo_learning_tree_fold_visual_test.dart \
+            2>&1 | tee proof/learning-build-tests.txt
+      - name: Backend and embedded content unit tests
+        run: |
+          set -euo pipefail
+          node --test server/lumo-ai-proxy/test/*.test.js | tee proof/backend-tests.txt
+          dart scripts/audit_content.dart | tee proof/learning-content-audit.txt
+      - name: Install the exact Godot engine required by source pin
+        run: bash scripts/install_godot_for_build.sh
+      - name: Compile the same integrated Flutter and Godot app as installable APK
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/apk-build.log
+          test -s dist/Lumo-Lernen-Neu.apk
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk | tee proof/apk-verify.txt
+      - name: Upload real APK with provenance, not just a screenshot
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-Lernen-0.12.11-1918-Android-APK
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            proof/build-source-sha.txt
+            proof/verified-code-sha.txt
+            proof/learning-build-tests.txt
+            proof/apk-verify.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Keep diagnostics if any step fails
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-1918-apk-build-diagnostics
+          path: proof/
+          if-no-files-found: warn
+          retention-days: 14

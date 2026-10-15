@@ -60,25 +60,30 @@ class LetterTemplate {
     required this.description,
   });
   final String letter;
+
   /// Beschreibung der erwarteten Stroke-Eigenschaften
-  final List<ExpectedStroke> expectedStrokes;
+  final List<ExpectedWritingStroke> expectedStrokes;
+
   /// Min/Max Anzahl Strokes (Toleranz!)
   final int minStrokes;
   final int maxStrokes;
+
   /// Demo-Strokes in einem 100x100-Koordinatensystem
   final List<List<Offset>> demoStrokes;
+
   /// Beschreibung wie der Buchstabe gezeichnet wird
   final String description;
 }
 
-class ExpectedStroke {
-  const ExpectedStroke({required this.type, this.position});
-  final StrokeType type;
+class ExpectedWritingStroke {
+  const ExpectedWritingStroke({required this.type, this.position});
+  final WritingStrokeType type;
+
   /// 'left', 'right', 'middle', 'top', 'bottom' - optional
   final String? position;
 }
 
-enum StrokeType { vertical, horizontal, diagonal, curve, circle, any }
+enum WritingStrokeType { vertical, horizontal, diagonal, curve, circle, any }
 
 /// Lexikon der 10 MVP-Buchstaben.
 class LetterTemplates {
@@ -88,9 +93,9 @@ class LetterTemplates {
     'A': LetterTemplate(
       letter: 'A',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.horizontal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.horizontal),
       ],
       minStrokes: 2,
       maxStrokes: 3,
@@ -104,10 +109,13 @@ class LetterTemplates {
     'E': LetterTemplate(
       letter: 'E',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'middle'),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'middle'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'bottom'),
       ],
       minStrokes: 3,
       maxStrokes: 4,
@@ -122,7 +130,7 @@ class LetterTemplates {
     'I': LetterTemplate(
       letter: 'I',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
       minStrokes: 1,
       maxStrokes: 3,
@@ -134,14 +142,20 @@ class LetterTemplates {
     'O': LetterTemplate(
       letter: 'O',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
       ],
       minStrokes: 1,
       maxStrokes: 2,
       demoStrokes: [
         [
-          Offset(50, 10), Offset(75, 20), Offset(85, 50), Offset(75, 80),
-          Offset(50, 90), Offset(25, 80), Offset(15, 50), Offset(25, 20),
+          Offset(50, 10),
+          Offset(75, 20),
+          Offset(85, 50),
+          Offset(75, 80),
+          Offset(50, 90),
+          Offset(25, 80),
+          Offset(15, 50),
+          Offset(25, 20),
           Offset(50, 10),
         ],
       ],
@@ -150,14 +164,19 @@ class LetterTemplates {
     'U': LetterTemplate(
       letter: 'U',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
       minStrokes: 1,
       maxStrokes: 3,
       demoStrokes: [
         [
-          Offset(20, 15), Offset(20, 60), Offset(25, 80), Offset(50, 90),
-          Offset(75, 80), Offset(80, 60), Offset(80, 15),
+          Offset(20, 15),
+          Offset(20, 60),
+          Offset(25, 80),
+          Offset(50, 90),
+          Offset(75, 80),
+          Offset(80, 60),
+          Offset(80, 15),
         ],
       ],
       description: 'U wie Uhr - runter, herum und wieder rauf!',
@@ -165,17 +184,22 @@ class LetterTemplates {
     'M': LetterTemplate(
       letter: 'M',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical, position: 'left'),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.vertical, position: 'right'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'left'),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'right'),
       ],
       minStrokes: 1,
       maxStrokes: 4,
       demoStrokes: [
         [
-          Offset(15, 90), Offset(15, 10), Offset(50, 60),
-          Offset(85, 10), Offset(85, 90),
+          Offset(15, 90),
+          Offset(15, 10),
+          Offset(50, 60),
+          Offset(85, 10),
+          Offset(85, 90),
         ],
       ],
       description: 'M wie Mama - rauf, runter zur Mitte, rauf, runter!',
@@ -183,8 +207,9 @@ class LetterTemplates {
     'L': LetterTemplate(
       letter: 'L',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'bottom'),
       ],
       minStrokes: 1,
       maxStrokes: 2,
@@ -196,15 +221,22 @@ class LetterTemplates {
     'S': LetterTemplate(
       letter: 'S',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
       minStrokes: 1,
       maxStrokes: 2,
       demoStrokes: [
         [
-          Offset(80, 20), Offset(60, 12), Offset(35, 15), Offset(25, 30),
-          Offset(35, 45), Offset(60, 50), Offset(75, 65), Offset(70, 80),
-          Offset(50, 88), Offset(25, 80),
+          Offset(80, 20),
+          Offset(60, 12),
+          Offset(35, 15),
+          Offset(25, 30),
+          Offset(35, 45),
+          Offset(60, 50),
+          Offset(75, 65),
+          Offset(70, 80),
+          Offset(50, 88),
+          Offset(25, 80),
         ],
       ],
       description: 'S wie Sonne - eine geschwungene Schlange!',
@@ -212,15 +244,20 @@ class LetterTemplates {
     'N': LetterTemplate(
       letter: 'N',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical, position: 'left'),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.vertical, position: 'right'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'left'),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'right'),
       ],
       minStrokes: 1,
       maxStrokes: 3,
       demoStrokes: [
         [
-          Offset(20, 90), Offset(20, 10), Offset(80, 90), Offset(80, 10),
+          Offset(20, 90),
+          Offset(20, 10),
+          Offset(80, 90),
+          Offset(80, 10),
         ],
       ],
       description: 'N wie Nase - rauf, schraeg runter, wieder rauf!',
@@ -228,9 +265,12 @@ class LetterTemplates {
     'H': LetterTemplate(
       letter: 'H',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical, position: 'left'),
-        ExpectedStroke(type: StrokeType.vertical, position: 'right'),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'middle'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'left'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'right'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'middle'),
       ],
       minStrokes: 3,
       maxStrokes: 4,
@@ -244,10 +284,12 @@ class LetterTemplates {
     'B': LetterTemplate(
       letter: 'B',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical, position: 'left'),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'left'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 2, maxStrokes: 4,
+      minStrokes: 2,
+      maxStrokes: 4,
       demoStrokes: [
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 10), Offset(65, 25), Offset(65, 45), Offset(20, 50)],
@@ -257,20 +299,30 @@ class LetterTemplates {
     ),
     'C': LetterTemplate(
       letter: 'C',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.curve)],
-      minStrokes: 1, maxStrokes: 2,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.curve)],
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(75, 25), Offset(45, 12), Offset(20, 40), Offset(20, 70), Offset(45, 88), Offset(75, 78)],
+        [
+          Offset(75, 25),
+          Offset(45, 12),
+          Offset(20, 40),
+          Offset(20, 70),
+          Offset(45, 88),
+          Offset(75, 78)
+        ],
       ],
       description: 'C wie Computer - eine Kurve wie ein offener Mond!',
     ),
     'D': LetterTemplate(
       letter: 'D',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical, position: 'left'),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'left'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 10), Offset(70, 30), Offset(75, 60), Offset(20, 90)],
@@ -280,11 +332,14 @@ class LetterTemplates {
     'F': LetterTemplate(
       letter: 'F',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'middle'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'middle'),
       ],
-      minStrokes: 3, maxStrokes: 4,
+      minStrokes: 3,
+      maxStrokes: 4,
       demoStrokes: [
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 10), Offset(75, 10)],
@@ -294,20 +349,31 @@ class LetterTemplates {
     ),
     'G': LetterTemplate(
       letter: 'G',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.curve)],
-      minStrokes: 1, maxStrokes: 3,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.curve)],
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
-        [Offset(75, 25), Offset(45, 12), Offset(20, 40), Offset(20, 70), Offset(45, 88), Offset(75, 78), Offset(75, 55), Offset(55, 55)],
+        [
+          Offset(75, 25),
+          Offset(45, 12),
+          Offset(20, 40),
+          Offset(20, 70),
+          Offset(45, 88),
+          Offset(75, 78),
+          Offset(75, 55),
+          Offset(55, 55)
+        ],
       ],
       description: 'G wie Garten - Kurve wie ein C mit einem Haken!',
     ),
     'J': LetterTemplate(
       letter: 'J',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(60, 10), Offset(60, 75), Offset(40, 90), Offset(20, 82)],
       ],
@@ -316,11 +382,12 @@ class LetterTemplates {
     'K': LetterTemplate(
       letter: 'K',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 2, maxStrokes: 4,
+      minStrokes: 2,
+      maxStrokes: 4,
       demoStrokes: [
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 50), Offset(75, 10)],
@@ -331,10 +398,11 @@ class LetterTemplates {
     'P': LetterTemplate(
       letter: 'P',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 10), Offset(70, 25), Offset(70, 45), Offset(20, 55)],
@@ -344,12 +412,21 @@ class LetterTemplates {
     'Q': LetterTemplate(
       letter: 'Q',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
-        [Offset(50, 10), Offset(82, 30), Offset(82, 70), Offset(50, 90), Offset(18, 70), Offset(18, 30), Offset(50, 10)],
+        [
+          Offset(50, 10),
+          Offset(82, 30),
+          Offset(82, 70),
+          Offset(50, 90),
+          Offset(18, 70),
+          Offset(18, 30),
+          Offset(50, 10)
+        ],
         [Offset(65, 70), Offset(90, 95)],
       ],
       description: 'Q wie Quark - ein Kreis mit einem Schwaenzchen!',
@@ -357,11 +434,12 @@ class LetterTemplates {
     'R': LetterTemplate(
       letter: 'R',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 2, maxStrokes: 4,
+      minStrokes: 2,
+      maxStrokes: 4,
       demoStrokes: [
         [Offset(20, 10), Offset(20, 90)],
         [Offset(20, 10), Offset(70, 25), Offset(70, 45), Offset(20, 55)],
@@ -372,10 +450,12 @@ class LetterTemplates {
     'T': LetterTemplate(
       letter: 'T',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(15, 15), Offset(85, 15)],
         [Offset(50, 15), Offset(50, 90)],
@@ -385,10 +465,11 @@ class LetterTemplates {
     'V': LetterTemplate(
       letter: 'V',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(15, 10), Offset(50, 90), Offset(85, 10)],
       ],
@@ -397,24 +478,32 @@ class LetterTemplates {
     'W': LetterTemplate(
       letter: 'W',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 1, maxStrokes: 4,
+      minStrokes: 1,
+      maxStrokes: 4,
       demoStrokes: [
-        [Offset(10, 10), Offset(30, 90), Offset(50, 40), Offset(70, 90), Offset(90, 10)],
+        [
+          Offset(10, 10),
+          Offset(30, 90),
+          Offset(50, 40),
+          Offset(70, 90),
+          Offset(90, 10)
+        ],
       ],
       description: 'W wie Wasser - zwei V nebeneinander!',
     ),
     'X': LetterTemplate(
       letter: 'X',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(15, 10), Offset(85, 90)],
         [Offset(85, 10), Offset(15, 90)],
@@ -424,11 +513,12 @@ class LetterTemplates {
     'Y': LetterTemplate(
       letter: 'Y',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 2, maxStrokes: 4,
+      minStrokes: 2,
+      maxStrokes: 4,
       demoStrokes: [
         [Offset(15, 10), Offset(50, 50)],
         [Offset(85, 10), Offset(50, 50)],
@@ -439,11 +529,14 @@ class LetterTemplates {
     'Z': LetterTemplate(
       letter: 'Z',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'bottom'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 4,
+      minStrokes: 1,
+      maxStrokes: 4,
       demoStrokes: [
         [Offset(15, 10), Offset(85, 10), Offset(15, 90), Offset(85, 90)],
       ],
@@ -455,21 +548,30 @@ class LetterTemplates {
     // ────────────────────────────────────────────────────────────────
     '0': LetterTemplate(
       letter: '0',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.circle)],
-      minStrokes: 1, maxStrokes: 2,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.circle)],
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(50, 10), Offset(20, 30), Offset(20, 70), Offset(50, 90),
-         Offset(80, 70), Offset(80, 30), Offset(50, 10)],
+        [
+          Offset(50, 10),
+          Offset(20, 30),
+          Offset(20, 70),
+          Offset(50, 90),
+          Offset(80, 70),
+          Offset(80, 30),
+          Offset(50, 10)
+        ],
       ],
       description: 'Null - ein Oval, oben anfangen!',
     ),
     '1': LetterTemplate(
       letter: '1',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(30, 25), Offset(50, 10), Offset(50, 90)],
       ],
@@ -478,38 +580,55 @@ class LetterTemplates {
     '2': LetterTemplate(
       letter: '2',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve, position: 'top'),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
-        [Offset(25, 30), Offset(50, 10), Offset(75, 30), Offset(20, 90),
-         Offset(80, 90)],
+        [
+          Offset(25, 30),
+          Offset(50, 10),
+          Offset(75, 30),
+          Offset(20, 90),
+          Offset(80, 90)
+        ],
       ],
       description: 'Zwei - oben einen Bogen, dann schraeg runter, unten quer!',
     ),
     '3': LetterTemplate(
       letter: '3',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve, position: 'top'),
-        ExpectedStroke(type: StrokeType.curve, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve, position: 'top'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.curve, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(25, 25), Offset(50, 10), Offset(75, 30), Offset(50, 50),
-         Offset(75, 70), Offset(50, 90), Offset(25, 75)],
+        [
+          Offset(25, 25),
+          Offset(50, 10),
+          Offset(75, 30),
+          Offset(50, 50),
+          Offset(75, 70),
+          Offset(50, 90),
+          Offset(25, 75)
+        ],
       ],
       description: 'Drei - zwei Boegen rechts!',
     ),
     '4': LetterTemplate(
       letter: '4',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.horizontal),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.horizontal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(25, 10), Offset(25, 60), Offset(80, 60)],
         [Offset(60, 10), Offset(60, 90)],
@@ -519,37 +638,59 @@ class LetterTemplates {
     '5': LetterTemplate(
       letter: '5',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve, position: 'bottom'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.curve, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
-        [Offset(75, 10), Offset(25, 10), Offset(25, 50), Offset(60, 45),
-         Offset(80, 65), Offset(60, 90), Offset(25, 85)],
+        [
+          Offset(75, 10),
+          Offset(25, 10),
+          Offset(25, 50),
+          Offset(60, 45),
+          Offset(80, 65),
+          Offset(60, 90),
+          Offset(25, 85)
+        ],
       ],
       description: 'Fuenf - oben quer, runter, dann ein Bogen!',
     ),
     '6': LetterTemplate(
       letter: '6',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve),
-        ExpectedStroke(type: StrokeType.circle, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.circle, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(70, 15), Offset(40, 30), Offset(25, 60), Offset(30, 85),
-         Offset(60, 90), Offset(75, 70), Offset(60, 55), Offset(30, 60)],
+        [
+          Offset(70, 15),
+          Offset(40, 30),
+          Offset(25, 60),
+          Offset(30, 85),
+          Offset(60, 90),
+          Offset(75, 70),
+          Offset(60, 55),
+          Offset(30, 60)
+        ],
       ],
       description: 'Sechs - schraeg runter, dann ein Kreis unten!',
     ),
     '7': LetterTemplate(
       letter: '7',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(20, 15), Offset(80, 15), Offset(35, 90)],
       ],
@@ -558,28 +699,50 @@ class LetterTemplates {
     '8': LetterTemplate(
       letter: '8',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle, position: 'top'),
-        ExpectedStroke(type: StrokeType.circle, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.circle, position: 'top'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.circle, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(50, 10), Offset(30, 25), Offset(30, 45), Offset(50, 50),
-         Offset(70, 60), Offset(70, 80), Offset(50, 90), Offset(30, 80),
-         Offset(30, 60), Offset(50, 50), Offset(70, 45), Offset(70, 25),
-         Offset(50, 10)],
+        [
+          Offset(50, 10),
+          Offset(30, 25),
+          Offset(30, 45),
+          Offset(50, 50),
+          Offset(70, 60),
+          Offset(70, 80),
+          Offset(50, 90),
+          Offset(30, 80),
+          Offset(30, 60),
+          Offset(50, 50),
+          Offset(70, 45),
+          Offset(70, 25),
+          Offset(50, 10)
+        ],
       ],
       description: 'Acht - zwei Kreise uebereinander!',
     ),
     '9': LetterTemplate(
       letter: '9',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle, position: 'top'),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.circle, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(50, 10), Offset(30, 20), Offset(25, 40), Offset(40, 55),
-         Offset(70, 50), Offset(75, 30), Offset(70, 15), Offset(50, 10)],
+        [
+          Offset(50, 10),
+          Offset(30, 20),
+          Offset(25, 40),
+          Offset(40, 55),
+          Offset(70, 50),
+          Offset(75, 30),
+          Offset(70, 15),
+          Offset(50, 10)
+        ],
         [Offset(70, 50), Offset(60, 90)],
       ],
       description: 'Neun - ein Kreis oben, dann schraeg runter!',
@@ -594,11 +757,11 @@ class LetterTemplates {
     'Ä': LetterTemplate(
       letter: 'Ä',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.horizontal),
-        ExpectedStroke(type: StrokeType.any),
-        ExpectedStroke(type: StrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.horizontal),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
       ],
       minStrokes: 4,
       maxStrokes: 5,
@@ -614,16 +777,22 @@ class LetterTemplates {
     'Ö': LetterTemplate(
       letter: 'Ö',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
-        ExpectedStroke(type: StrokeType.any),
-        ExpectedStroke(type: StrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
       ],
       minStrokes: 3,
       maxStrokes: 4,
       demoStrokes: [
         [
-          Offset(50, 22), Offset(73, 30), Offset(82, 56), Offset(73, 82),
-          Offset(50, 90), Offset(27, 82), Offset(18, 56), Offset(27, 30),
+          Offset(50, 22),
+          Offset(73, 30),
+          Offset(82, 56),
+          Offset(73, 82),
+          Offset(50, 90),
+          Offset(27, 82),
+          Offset(18, 56),
+          Offset(27, 30),
           Offset(50, 22),
         ],
         [Offset(38, 4), Offset(38, 8)],
@@ -634,16 +803,21 @@ class LetterTemplates {
     'Ü': LetterTemplate(
       letter: 'Ü',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve),
-        ExpectedStroke(type: StrokeType.any),
-        ExpectedStroke(type: StrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
       ],
       minStrokes: 3,
       maxStrokes: 5,
       demoStrokes: [
         [
-          Offset(20, 24), Offset(20, 62), Offset(25, 80), Offset(50, 90),
-          Offset(75, 80), Offset(80, 62), Offset(80, 24),
+          Offset(20, 24),
+          Offset(20, 62),
+          Offset(25, 80),
+          Offset(50, 90),
+          Offset(75, 80),
+          Offset(80, 62),
+          Offset(80, 24),
         ],
         [Offset(38, 4), Offset(38, 8)],
         [Offset(62, 4), Offset(62, 8)],
@@ -653,30 +827,48 @@ class LetterTemplates {
     'ß': LetterTemplate(
       letter: 'ß',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
       minStrokes: 1,
       maxStrokes: 2,
       demoStrokes: [
         [
-          Offset(30, 92), Offset(30, 30), Offset(36, 15), Offset(50, 10),
-          Offset(64, 15), Offset(68, 28), Offset(58, 40), Offset(48, 45),
-          Offset(64, 52), Offset(72, 66), Offset(66, 82), Offset(50, 90),
+          Offset(30, 92),
+          Offset(30, 30),
+          Offset(36, 15),
+          Offset(50, 10),
+          Offset(64, 15),
+          Offset(68, 28),
+          Offset(58, 40),
+          Offset(48, 45),
+          Offset(64, 52),
+          Offset(72, 66),
+          Offset(66, 82),
+          Offset(50, 90),
           Offset(42, 88),
         ],
       ],
-      description: 'ß wie Straße - langer Strich runter, oben ein Bogen, dann ein Bauch!',
+      description:
+          'ß wie Straße - langer Strich runter, oben ein Bogen, dann ein Bauch!',
     ),
     'a': LetterTemplate(
       letter: 'a',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
-        [Offset(70, 50), Offset(50, 40), Offset(35, 55), Offset(35, 75),
-         Offset(50, 90), Offset(70, 80), Offset(70, 40)],
+        [
+          Offset(70, 50),
+          Offset(50, 40),
+          Offset(35, 55),
+          Offset(35, 75),
+          Offset(50, 90),
+          Offset(70, 80),
+          Offset(70, 40)
+        ],
         [Offset(70, 40), Offset(70, 90)],
       ],
       description: 'a wie Apfel - ein kleiner Kreis, dann Strich runter!',
@@ -684,57 +876,91 @@ class LetterTemplates {
     'b': LetterTemplate(
       letter: 'b',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.circle, position: 'bottom'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.circle, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(30, 10), Offset(30, 90), Offset(60, 80), Offset(70, 65),
-         Offset(60, 50), Offset(30, 50)],
+        [
+          Offset(30, 10),
+          Offset(30, 90),
+          Offset(60, 80),
+          Offset(70, 65),
+          Offset(60, 50),
+          Offset(30, 50)
+        ],
       ],
       description: 'b - langer Strich runter, dann ein Bauch unten rechts!',
     ),
     'c': LetterTemplate(
       letter: 'c',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.curve)],
-      minStrokes: 1, maxStrokes: 1,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.curve)],
+      minStrokes: 1,
+      maxStrokes: 1,
       demoStrokes: [
-        [Offset(75, 50), Offset(60, 40), Offset(40, 45), Offset(30, 65),
-         Offset(40, 85), Offset(60, 90), Offset(75, 80)],
+        [
+          Offset(75, 50),
+          Offset(60, 40),
+          Offset(40, 45),
+          Offset(30, 65),
+          Offset(40, 85),
+          Offset(60, 90),
+          Offset(75, 80)
+        ],
       ],
       description: 'c wie Clown - ein offener Bogen!',
     ),
     'd': LetterTemplate(
       letter: 'd',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(70, 50), Offset(50, 45), Offset(35, 60), Offset(40, 80),
-         Offset(60, 90), Offset(70, 80), Offset(70, 10)],
+        [
+          Offset(70, 50),
+          Offset(50, 45),
+          Offset(35, 60),
+          Offset(40, 80),
+          Offset(60, 90),
+          Offset(70, 80),
+          Offset(70, 10)
+        ],
         [Offset(70, 10), Offset(70, 90)],
       ],
       description: 'd - ein Kreis, dann langer Strich rauf!',
     ),
     'e': LetterTemplate(
       letter: 'e',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.curve)],
-      minStrokes: 1, maxStrokes: 1,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.curve)],
+      minStrokes: 1,
+      maxStrokes: 1,
       demoStrokes: [
-        [Offset(30, 65), Offset(70, 65), Offset(70, 55), Offset(60, 45),
-         Offset(40, 50), Offset(30, 65), Offset(40, 85), Offset(70, 85)],
+        [
+          Offset(30, 65),
+          Offset(70, 65),
+          Offset(70, 55),
+          Offset(60, 45),
+          Offset(40, 50),
+          Offset(30, 65),
+          Offset(40, 85),
+          Offset(70, 85)
+        ],
       ],
       description: 'e wie Esel - ein Strich, dann Bogen!',
     ),
     'f': LetterTemplate(
       letter: 'f',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.horizontal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.horizontal),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(60, 90), Offset(60, 25), Offset(70, 15), Offset(80, 20)],
         [Offset(40, 55), Offset(75, 55)],
@@ -744,13 +970,21 @@ class LetterTemplates {
     'g': LetterTemplate(
       letter: 'g',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(70, 60), Offset(50, 50), Offset(35, 60), Offset(40, 75),
-         Offset(60, 80), Offset(70, 70), Offset(70, 50)],
+        [
+          Offset(70, 60),
+          Offset(50, 50),
+          Offset(35, 60),
+          Offset(40, 75),
+          Offset(60, 80),
+          Offset(70, 70),
+          Offset(70, 50)
+        ],
         [Offset(70, 50), Offset(70, 90), Offset(50, 95)],
       ],
       description: 'g - Kreis, dann Strich runter mit Schlinge unten!',
@@ -758,10 +992,12 @@ class LetterTemplates {
     'h': LetterTemplate(
       letter: 'h',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical, position: 'left'),
-        ExpectedStroke(type: StrokeType.curve, position: 'right'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'left'),
+        ExpectedWritingStroke(type: WritingStrokeType.curve, position: 'right'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(30, 10), Offset(30, 90)],
         [Offset(30, 60), Offset(50, 50), Offset(65, 60), Offset(65, 90)],
@@ -771,10 +1007,11 @@ class LetterTemplates {
     'i': LetterTemplate(
       letter: 'i',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
       ],
-      minStrokes: 2, maxStrokes: 2,
+      minStrokes: 2,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(50, 45), Offset(50, 90)],
         [Offset(50, 25), Offset(50, 30)],
@@ -784,10 +1021,11 @@ class LetterTemplates {
     'j': LetterTemplate(
       letter: 'j',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.any),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.any),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(55, 45), Offset(55, 85), Offset(40, 95), Offset(30, 90)],
         [Offset(55, 25), Offset(55, 30)],
@@ -797,10 +1035,11 @@ class LetterTemplates {
     'k': LetterTemplate(
       letter: 'k',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 2, maxStrokes: 3,
+      minStrokes: 2,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(30, 10), Offset(30, 90)],
         [Offset(70, 45), Offset(30, 65), Offset(70, 90)],
@@ -809,8 +1048,11 @@ class LetterTemplates {
     ),
     'l': LetterTemplate(
       letter: 'l',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.vertical)],
-      minStrokes: 1, maxStrokes: 1,
+      expectedStrokes: [
+        ExpectedWritingStroke(type: WritingStrokeType.vertical)
+      ],
+      minStrokes: 1,
+      maxStrokes: 1,
       demoStrokes: [
         [Offset(50, 10), Offset(50, 90)],
       ],
@@ -819,65 +1061,106 @@ class LetterTemplates {
     'm': LetterTemplate(
       letter: 'm',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
-        [Offset(20, 90), Offset(20, 45), Offset(35, 45), Offset(45, 55),
-         Offset(45, 90)],
-        [Offset(45, 55), Offset(55, 45), Offset(70, 45), Offset(80, 55),
-         Offset(80, 90)],
+        [
+          Offset(20, 90),
+          Offset(20, 45),
+          Offset(35, 45),
+          Offset(45, 55),
+          Offset(45, 90)
+        ],
+        [
+          Offset(45, 55),
+          Offset(55, 45),
+          Offset(70, 45),
+          Offset(80, 55),
+          Offset(80, 90)
+        ],
       ],
       description: 'm wie Maus - drei Striche mit kleinen Hubbeln!',
     ),
     'n': LetterTemplate(
       letter: 'n',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.curve),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(25, 90), Offset(25, 45), Offset(45, 45), Offset(65, 55),
-         Offset(70, 90)],
+        [
+          Offset(25, 90),
+          Offset(25, 45),
+          Offset(45, 45),
+          Offset(65, 55),
+          Offset(70, 90)
+        ],
       ],
       description: 'n - zwei Striche mit Hubbel oben!',
     ),
     'o': LetterTemplate(
       letter: 'o',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.circle)],
-      minStrokes: 1, maxStrokes: 1,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.circle)],
+      minStrokes: 1,
+      maxStrokes: 1,
       demoStrokes: [
-        [Offset(50, 45), Offset(30, 55), Offset(30, 80), Offset(50, 90),
-         Offset(70, 80), Offset(70, 55), Offset(50, 45)],
+        [
+          Offset(50, 45),
+          Offset(30, 55),
+          Offset(30, 80),
+          Offset(50, 90),
+          Offset(70, 80),
+          Offset(70, 55),
+          Offset(50, 45)
+        ],
       ],
       description: 'o wie Oma - ein kleiner Kreis!',
     ),
     'p': LetterTemplate(
       letter: 'p',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.circle, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.circle, position: 'top'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(30, 95), Offset(30, 45), Offset(55, 45), Offset(70, 55),
-         Offset(70, 70), Offset(55, 80), Offset(30, 80)],
+        [
+          Offset(30, 95),
+          Offset(30, 45),
+          Offset(55, 45),
+          Offset(70, 55),
+          Offset(70, 70),
+          Offset(55, 80),
+          Offset(30, 80)
+        ],
       ],
       description: 'p - Strich runter mit Schlinge unten, Bauch oben!',
     ),
     'q': LetterTemplate(
       letter: 'q',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.circle),
-        ExpectedStroke(type: StrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.circle),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(70, 50), Offset(50, 45), Offset(35, 55), Offset(35, 75),
-         Offset(50, 85), Offset(70, 80), Offset(70, 45)],
+        [
+          Offset(70, 50),
+          Offset(50, 45),
+          Offset(35, 55),
+          Offset(35, 75),
+          Offset(50, 85),
+          Offset(70, 80),
+          Offset(70, 45)
+        ],
         [Offset(70, 45), Offset(70, 95), Offset(80, 100)],
       ],
       description: 'q - Kreis, dann Strich runter mit Schwung rechts!',
@@ -885,10 +1168,11 @@ class LetterTemplates {
     'r': LetterTemplate(
       letter: 'r',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.curve, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.curve, position: 'top'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(30, 90), Offset(30, 45), Offset(50, 45), Offset(65, 55)],
       ],
@@ -896,21 +1180,30 @@ class LetterTemplates {
     ),
     's': LetterTemplate(
       letter: 's',
-      expectedStrokes: [ExpectedStroke(type: StrokeType.curve)],
-      minStrokes: 1, maxStrokes: 1,
+      expectedStrokes: [ExpectedWritingStroke(type: WritingStrokeType.curve)],
+      minStrokes: 1,
+      maxStrokes: 1,
       demoStrokes: [
-        [Offset(70, 50), Offset(50, 45), Offset(35, 55), Offset(50, 65),
-         Offset(65, 75), Offset(50, 90), Offset(30, 85)],
+        [
+          Offset(70, 50),
+          Offset(50, 45),
+          Offset(35, 55),
+          Offset(50, 65),
+          Offset(65, 75),
+          Offset(50, 90),
+          Offset(30, 85)
+        ],
       ],
       description: 's wie Sonne - ein geschwungener Bogen, S-Form!',
     ),
     't': LetterTemplate(
       letter: 't',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.vertical),
-        ExpectedStroke(type: StrokeType.horizontal),
+        ExpectedWritingStroke(type: WritingStrokeType.vertical),
+        ExpectedWritingStroke(type: WritingStrokeType.horizontal),
       ],
-      minStrokes: 2, maxStrokes: 2,
+      minStrokes: 2,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(50, 20), Offset(50, 90)],
         [Offset(35, 45), Offset(70, 45)],
@@ -920,13 +1213,21 @@ class LetterTemplates {
     'u': LetterTemplate(
       letter: 'u',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.curve, position: 'bottom'),
-        ExpectedStroke(type: StrokeType.vertical, position: 'right'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.curve, position: 'bottom'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.vertical, position: 'right'),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
-        [Offset(30, 45), Offset(30, 80), Offset(50, 90), Offset(70, 80),
-         Offset(70, 45)],
+        [
+          Offset(30, 45),
+          Offset(30, 80),
+          Offset(50, 90),
+          Offset(70, 80),
+          Offset(70, 45)
+        ],
         [Offset(70, 45), Offset(70, 90)],
       ],
       description: 'u wie Uhu - ein Bogen unten, dann gerade hoch!',
@@ -934,10 +1235,11 @@ class LetterTemplates {
     'v': LetterTemplate(
       letter: 'v',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(25, 45), Offset(50, 90), Offset(75, 45)],
       ],
@@ -946,25 +1248,32 @@ class LetterTemplates {
     'w': LetterTemplate(
       letter: 'w',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 1, maxStrokes: 4,
+      minStrokes: 1,
+      maxStrokes: 4,
       demoStrokes: [
-        [Offset(15, 45), Offset(35, 90), Offset(50, 65), Offset(65, 90),
-         Offset(85, 45)],
+        [
+          Offset(15, 45),
+          Offset(35, 90),
+          Offset(50, 65),
+          Offset(65, 90),
+          Offset(85, 45)
+        ],
       ],
       description: 'w wie Wal - vier schraege Striche, zwei v!',
     ),
     'x': LetterTemplate(
       letter: 'x',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 2, maxStrokes: 2,
+      minStrokes: 2,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(25, 45), Offset(75, 90)],
         [Offset(75, 45), Offset(25, 90)],
@@ -974,10 +1283,11 @@ class LetterTemplates {
     'y': LetterTemplate(
       letter: 'y',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
       ],
-      minStrokes: 1, maxStrokes: 2,
+      minStrokes: 1,
+      maxStrokes: 2,
       demoStrokes: [
         [Offset(25, 45), Offset(50, 75)],
         [Offset(75, 45), Offset(35, 100)],
@@ -987,11 +1297,14 @@ class LetterTemplates {
     'z': LetterTemplate(
       letter: 'z',
       expectedStrokes: [
-        ExpectedStroke(type: StrokeType.horizontal, position: 'top'),
-        ExpectedStroke(type: StrokeType.diagonal),
-        ExpectedStroke(type: StrokeType.horizontal, position: 'bottom'),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'top'),
+        ExpectedWritingStroke(type: WritingStrokeType.diagonal),
+        ExpectedWritingStroke(
+            type: WritingStrokeType.horizontal, position: 'bottom'),
       ],
-      minStrokes: 1, maxStrokes: 3,
+      minStrokes: 1,
+      maxStrokes: 3,
       demoStrokes: [
         [Offset(25, 45), Offset(75, 45), Offset(25, 90), Offset(75, 90)],
       ],
@@ -1002,52 +1315,112 @@ class LetterTemplates {
   static List<String> get availableLetters => all.keys.toList();
 
   /// Heinz' Erweiterung: getrennte Buchstaben-Pools pro Modus.
-  static List<String> get uppercaseLetters =>
-      all.keys.where((k) => k.length == 1 &&
-          k.codeUnitAt(0) >= 65 && k.codeUnitAt(0) <= 90).toList();
-  static List<String> get lowercaseLetters =>
-      all.keys.where((k) => k.length == 1 &&
-          k.codeUnitAt(0) >= 97 && k.codeUnitAt(0) <= 122).toList();
-  static List<String> get numbers =>
-      all.keys.where((k) => k.length == 1 &&
-          k.codeUnitAt(0) >= 48 && k.codeUnitAt(0) <= 57).toList();
+  static List<String> get uppercaseLetters => all.keys
+      .where((k) =>
+          k.length == 1 && k.codeUnitAt(0) >= 65 && k.codeUnitAt(0) <= 90)
+      .toList();
+  static List<String> get lowercaseLetters => all.keys
+      .where((k) =>
+          k.length == 1 && k.codeUnitAt(0) >= 97 && k.codeUnitAt(0) <= 122)
+      .toList();
+  static List<String> get numbers => all.keys
+      .where((k) =>
+          k.length == 1 && k.codeUnitAt(0) >= 48 && k.codeUnitAt(0) <= 57)
+      .toList();
 
   /// Lehrplan-Reihenfolge: leichteste Buchstaben zuerst (basierend
   /// auf oesterreichischem Volksschullehrplan Klasse 1).
   /// O,I,A,E,M,L,N,S,T,R sind die ersten 10 Buchstaben im Lehrplan.
   static List<String> get curriculumOrderUppercase => const [
-    'O', 'I', 'A', 'E', 'M', 'L', 'N', 'S', 'T', 'R',
-    'U', 'P', 'H', 'K', 'D', 'B', 'F', 'G', 'W', 'Z',
-    'V', 'J', 'C', 'Y', 'Q', 'X',
-  ];
+        'O',
+        'I',
+        'A',
+        'E',
+        'M',
+        'L',
+        'N',
+        'S',
+        'T',
+        'R',
+        'U',
+        'P',
+        'H',
+        'K',
+        'D',
+        'B',
+        'F',
+        'G',
+        'W',
+        'Z',
+        'V',
+        'J',
+        'C',
+        'Y',
+        'Q',
+        'X',
+      ];
   static List<String> get curriculumOrderLowercase => const [
-    'o', 'i', 'a', 'e', 'm', 'l', 'n', 's', 't', 'r',
-    'u', 'p', 'h', 'k', 'd', 'b', 'f', 'g', 'w', 'z',
-    'v', 'j', 'c', 'y', 'q', 'x',
-  ];
+        'o',
+        'i',
+        'a',
+        'e',
+        'm',
+        'l',
+        'n',
+        's',
+        't',
+        'r',
+        'u',
+        'p',
+        'h',
+        'k',
+        'd',
+        'b',
+        'f',
+        'g',
+        'w',
+        'z',
+        'v',
+        'j',
+        'c',
+        'y',
+        'q',
+        'x',
+      ];
+
   /// Zahlen-Reihenfolge: kleine zuerst.
   static List<String> get curriculumOrderNumbers => const [
-    '1', '2', '3', '4', '5', '0', '6', '7', '8', '9',
-  ];
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '0',
+        '6',
+        '7',
+        '8',
+        '9',
+      ];
 }
 
 // ════════════════════════════════════════════════════════════════════════
 // SHAPE ANALYZER
 // ════════════════════════════════════════════════════════════════════════
 
-class AnalysisResult {
-  const AnalysisResult({
+class WritingAnalysisResult {
+  const WritingAnalysisResult({
     required this.score,
     required this.matched,
     required this.issue,
   });
   final double score; // 0.0 - 1.0
   final bool matched;
+
   /// Welcher Stroke-Typ fehlt? null wenn alles passt.
-  final StrokeIssue? issue;
+  final WritingAnalysisIssue? issue;
 }
 
-enum StrokeIssue {
+enum WritingAnalysisIssue {
   zuWenigStrokes,
   zuVieleStrokes,
   vertikalFehlt,
@@ -1061,30 +1434,33 @@ class LetterShapeAnalyzer {
   LetterShapeAnalyzer._();
 
   /// Analysiert die User-Strokes gegen die Template-Anforderungen.
-  static AnalysisResult analyze({
+  static WritingAnalysisResult analyze({
     required List<WritingStroke> userStrokes,
     required LetterTemplate template,
   }) {
     if (userStrokes.isEmpty) {
-      return const AnalysisResult(
+      return const WritingAnalysisResult(
         score: 0,
         matched: false,
-        issue: StrokeIssue.zuWenigStrokes,
+        issue: WritingAnalysisIssue.zuWenigStrokes,
       );
     }
 
     // Stroke-Anzahl pruefen (mit Toleranz)
     final n = userStrokes.length;
     if (n < template.minStrokes) {
-      return AnalysisResult(
+      return WritingAnalysisResult(
         score: 0.3,
         matched: false,
-        issue: StrokeIssue.zuWenigStrokes,
+        issue: WritingAnalysisIssue.zuWenigStrokes,
       );
     }
     // Deutlich mehr Striche als nötig: ein anderer Buchstabe (E statt C).
     if (n > template.maxStrokes + 1) {
-      return const AnalysisResult(score: 0.4, matched: false, issue: StrokeIssue.zuVieleStrokes);
+      return const WritingAnalysisResult(
+          score: 0.4,
+          matched: false,
+          issue: WritingAnalysisIssue.zuVieleStrokes);
     }
 
     // Stroke-Typen analysieren
@@ -1125,25 +1501,29 @@ class LetterShapeAnalyzer {
     }
 
     // Erforderliche Stroke-Typen aus Template zaehlen
-    int reqVertical = 0, reqHorizontal = 0, reqDiagonal = 0, reqCurve = 0, reqCircle = 0;
+    int reqVertical = 0,
+        reqHorizontal = 0,
+        reqDiagonal = 0,
+        reqCurve = 0,
+        reqCircle = 0;
     for (final e in template.expectedStrokes) {
       switch (e.type) {
-        case StrokeType.vertical:
+        case WritingStrokeType.vertical:
           reqVertical++;
           break;
-        case StrokeType.horizontal:
+        case WritingStrokeType.horizontal:
           reqHorizontal++;
           break;
-        case StrokeType.diagonal:
+        case WritingStrokeType.diagonal:
           reqDiagonal++;
           break;
-        case StrokeType.curve:
+        case WritingStrokeType.curve:
           reqCurve++;
           break;
-        case StrokeType.circle:
+        case WritingStrokeType.circle:
           reqCircle++;
           break;
-        case StrokeType.any:
+        case WritingStrokeType.any:
           break;
       }
     }
@@ -1203,24 +1583,25 @@ class LetterShapeAnalyzer {
 
     final normalized = checks > 0 ? score / checks : 0.0;
     // Die Teilstriche stimmen, und das Ganze sieht auch wie die Vorlage aus.
-    final matched = normalized >= 0.6 && shapeDistance(userStrokes, template) < _shapeLimit;
+    final matched =
+        normalized >= 0.6 && shapeDistance(userStrokes, template) < _shapeLimit;
 
-    StrokeIssue? issue;
+    WritingAnalysisIssue? issue;
     if (!matched) {
       if (reqVertical > 0 && verticalCount + diagonalCount < reqVertical) {
-        issue = StrokeIssue.vertikalFehlt;
+        issue = WritingAnalysisIssue.vertikalFehlt;
       } else if (reqHorizontal > 0 && horizontalCount < reqHorizontal) {
-        issue = StrokeIssue.horizontalFehlt;
+        issue = WritingAnalysisIssue.horizontalFehlt;
       } else if (reqCircle > 0 && circleCount == 0) {
-        issue = StrokeIssue.rundungFehlt;
+        issue = WritingAnalysisIssue.rundungFehlt;
       } else if (reqDiagonal > 0 && diagonalCount == 0) {
-        issue = StrokeIssue.diagonaleFehlt;
+        issue = WritingAnalysisIssue.diagonaleFehlt;
       } else {
-        issue = StrokeIssue.unklar;
+        issue = WritingAnalysisIssue.unklar;
       }
     }
 
-    return AnalysisResult(
+    return WritingAnalysisResult(
       score: normalized,
       matched: matched,
       issue: issue,
@@ -1230,7 +1611,8 @@ class LetterShapeAnalyzer {
   /// Formabstand zwischen den Strichen des Kindes und der Vorzeige-Schrift:
   /// beide als Punktwolke (Reihenfolge und Richtung egal), auf gleiche Größe
   /// gebracht. 0 = gleiche Form, ab etwa 0,2 ein anderer Buchstabe.
-  static double shapeDistance(List<WritingStroke> userStrokes, LetterTemplate template) {
+  static double shapeDistance(
+      List<WritingStroke> userStrokes, LetterTemplate template) {
     final user = _cloud([for (final s in userStrokes) s.points]);
     final demo = _cloud(template.demoStrokes);
     if (user.isEmpty || demo.isEmpty) return 1;
@@ -1241,7 +1623,10 @@ class LetterShapeAnalyzer {
   static const double _shapeLimit = 0.12;
 
   static List<Offset> _cloud(List<List<Offset>> strokes) {
-    final lines = [for (final s in strokes) if (s.isNotEmpty) s];
+    final lines = [
+      for (final s in strokes)
+        if (s.isNotEmpty) s
+    ];
     var total = 0.0;
     for (final s in lines) {
       for (var i = 1; i < s.length; i++) {
@@ -1318,9 +1703,13 @@ class LetterShapeAnalyzer {
     for (var i = 0; i < pts.length; i++) {
       for (var k = 0; k + 1 < pts.length; k++) {
         // Weg zwischen dem Punkt und dem Teilstück, über beide Richtungen.
-        final gap = k >= i ? travelled[k] - travelled[i] : travelled[i] - travelled[k + 1];
+        final gap = k >= i
+            ? travelled[k] - travelled[i]
+            : travelled[i] - travelled[k + 1];
         if (gap < size * 1.2) continue;
-        if (_segmentDistance(pts[i], pts[k], pts[k + 1]) < size * 0.15) return true;
+        if (_segmentDistance(pts[i], pts[k], pts[k + 1]) < size * 0.15) {
+          return true;
+        }
       }
     }
     return false;
@@ -1330,7 +1719,8 @@ class LetterShapeAnalyzer {
     final ab = b - a;
     final len2 = ab.dx * ab.dx + ab.dy * ab.dy;
     if (len2 == 0) return (p - a).distance;
-    final t = (((p.dx - a.dx) * ab.dx + (p.dy - a.dy) * ab.dy) / len2).clamp(0.0, 1.0);
+    final t = (((p.dx - a.dx) * ab.dx + (p.dy - a.dy) * ab.dy) / len2)
+        .clamp(0.0, 1.0);
     return (p - Offset(a.dx + ab.dx * t, a.dy + ab.dy * t)).distance;
   }
 
@@ -1400,7 +1790,9 @@ class LetterShapeAnalyzer {
     final closeness = (start - end).distance;
     // Kreis: Start nah am Ende, und Breite ~ Hoehe
     final aspect = b.width / b.height;
-    return closeness < (b.width + b.height) * 0.2 && aspect > 0.5 && aspect < 2.0;
+    return closeness < (b.width + b.height) * 0.2 &&
+        aspect > 0.5 &&
+        aspect < 2.0;
   }
 }
 
@@ -1463,24 +1855,24 @@ class WritingFeedbackEngine {
     // Nicht matched - spezifischer Hinweis
     String msg;
     switch (result.issue) {
-      case StrokeIssue.zuWenigStrokes:
+      case WritingAnalysisIssue.zuWenigStrokes:
         msg = 'Da fehlt noch etwas. Schreib das ${template.letter} ganz - '
             '${template.description}';
         break;
-      case StrokeIssue.vertikalFehlt:
+      case WritingAnalysisIssue.vertikalFehlt:
         msg = 'Da fehlt ein gerader Strich von oben nach unten. '
             '${template.description}';
         break;
-      case StrokeIssue.horizontalFehlt:
+      case WritingAnalysisIssue.horizontalFehlt:
         msg = 'Da fehlt ein Querstrich. ${template.description}';
         break;
-      case StrokeIssue.rundungFehlt:
+      case WritingAnalysisIssue.rundungFehlt:
         msg = 'Versuch es runder zu zeichnen! ${template.description}';
         break;
-      case StrokeIssue.diagonaleFehlt:
+      case WritingAnalysisIssue.diagonaleFehlt:
         msg = 'Da fehlt ein schraeger Strich. ${template.description}';
         break;
-      case StrokeIssue.zuVieleStrokes:
+      case WritingAnalysisIssue.zuVieleStrokes:
         msg = 'Das sind zu viele Striche. ${template.description}';
         break;
       default:

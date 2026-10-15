@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "referenceBatch": "0a69ed73c9f546eb87ec8cd947be5f07",
+  "status": "reference_prepared_models_pending",
+  "opponents": [
+    {
+      "id": "lion",
+      "name": "Löwe",
+      "color": "#F4AE52",
+      "games": ["kart", "lumo_cards", "connect_four"],
+      "reference": "50835.jpeg",
+      "geometryInput": "reference/inputs/lion-front.jpg",
+      "materialInput": "reference/inputs/lion-material.jpg",
+      "godotModel": "res://assets/characters/rivals/lion/driver.glb",
+      "flutterPortrait": "assets/rivals/portraits/lion.png",
+      "runtimeReady": false
+    },
+    {
+      "id": "owl",
+      "name": "Eule",
+      "color": "#C7A585",
+      "games": ["kart", "lumo_cards", "connect_four"],
+      "reference": "50839.jpeg",
+      "geometryInput": "reference/inputs/owl-front.jpg",
+      "materialInput": "reference/inputs/owl-material.jpg",
+      "godotModel": "res://assets/characters/rivals/owl/driver.glb",
+      "flutterPortrait": "assets/rivals/portraits/owl.png",
+      "runtimeReady": false
+    },
+    {
+      "id": "rabbit",
+      "name": "Nova",
+      "color": "#C0ABFF",
+      "games": ["kart", "lumo_cards", "connect_four"],
+      "reference": "50838.jpeg",
+      "geometryInput": "reference/inputs/rabbit-front.jpg",
+      "materialInput": "reference/inputs/rabbit-material.jpg",
+      "godotModel": "res://assets/characters/rivals/rabbit/driver.glb",
+      "flutterPortrait": "assets/rivals/portraits/rabbit.png",
+      "runtimeReady": false
+    },
+    {
+      "id": "squirrel",
+      "name": "Eichhörnchen",
+      "color": "#F39154",
+      "games": ["kart", "lumo_cards", "connect_four"],
+      "reference": "50837.jpeg",
+      "geometryInput": "reference/inputs/squirrel-material.jpg",
+      "materialInput": "reference/inputs/squirrel-material.jpg",
+      "godotModel": "res://assets/characters/rivals/squirrel/driver.glb",
+      "flutterPortrait": "assets/rivals/portraits/squirrel.png",
+      "runtimeReady": false
+    },
+    {
+      "id": "turtle",
+      "name": "Schildkröte",
+      "color": "#95C661",
+      "games": ["kart", "lumo_cards", "connect_four"],
+      "reference": "50836.jpeg",
+      "geometryInput": "reference/inputs/turtle-material.jpg",
+      "materialInput": "reference/inputs/turtle-material.jpg",
+      "godotModel": "res://assets/characters/rivals/turtle/driver.glb",
+      "flutterPortrait": "assets/rivals/portraits/turtle.png",
+      "runtimeReady": false
+    }
+  ]
+}

@@ -14,6 +14,32 @@ Future<void> _settle(WidgetTester tester) async {
   }
 }
 
+Future<void> _saveWhilePumping(
+    WidgetTester tester, Future<void> Function() save) async {
+  // The real device-link tap creates the child's profile in FakeAsync.
+  // Its storage Futures and runAsync's cached Futures both need to advance.
+  var completed = false;
+  Object? failure;
+  StackTrace? failureStack;
+  final pending = save().then<void>((_) {
+    completed = true;
+  }, onError: (Object error, StackTrace stack) {
+    failure = error;
+    failureStack = stack;
+    completed = true;
+  });
+  for (var turn = 0; turn < 100 && !completed; turn++) {
+    await tester.pump();
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
+  expect(completed, isTrue,
+      reason: 'The actual learning save must finish before checking its result');
+  await pending;
+  if (failure != null) {
+    Error.throwWithStackTrace(failure!, failureStack!);
+  }
+}
+
 Future<void> _enterText(WidgetTester tester, String text) async {
   await tester.enterText(find.byKey(const ValueKey('teacher-text-input')), text);
   await tester.pump();
@@ -58,7 +84,7 @@ void main() {
     expect(find.text('Zuordnung lösen'), findsOneWidget);
 
     // Das Kind übt: viele Fehler mit Zehnerübergang, sicher ohne
-    await tester.runAsync(() async {
+    await _saveWhilePumping(tester, () async {
       for (var i = 0; i < 12; i++) {
         await app.recordLearningAnswer(
             subject: 'Mathematik',
@@ -98,7 +124,7 @@ void main() {
     expect(find.textContaining('0 von 10 Aufgaben'), findsOneWidget);
 
     // Das Kind erledigt die zugewiesenen Aufgaben
-    await tester.runAsync(() async {
+    await _saveWhilePumping(tester, () async {
       for (var i = 0; i < 10; i++) {
         await app.recordLearningAnswer(
             subject: 'Mathematik',
@@ -154,7 +180,7 @@ void main() {
     expect(started, 'Mathematik/Plus bis 10');
 
     // Nach drei Aufgaben ist sie erledigt und verschwindet.
-    await tester.runAsync(() async {
+    await _saveWhilePumping(tester, () async {
       for (var i = 0; i < 3; i++) {
         await app.recordLearningAnswer(
             subject: 'Mathematik', unit: 'Plus bis 10', correct: true,

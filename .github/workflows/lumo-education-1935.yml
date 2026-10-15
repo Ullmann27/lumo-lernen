@@ -1,0 +1,137 @@
+name: Lumo 1935 exact validated source APK build, no publication
+on:
+  push:
+    branches: [sol/lumo-1935-fold-return-2026-10-12]
+    paths: [.github/workflows/lumo-education-1935.yml]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-education-1935-${{ github.ref }}
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+
+jobs:
+  verify-build:
+    if: github.ref == 'refs/heads/sol/lumo-1935-fold-return-2026-10-12'
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+      LUMO_BUILD_SOURCE: 'c53add9811d465f9d5ef0a534511eb4fac9f944a'
+      LUMO_GODOT_SOURCE: '82b53fc02b9f2ad7e025433499c4c23f256fe734'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+          ref: 'c53add9811d465f9d5ef0a534511eb4fac9f944a'
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+
+      - name: Freeze exact 1935 product source
+        run: |
+          set -euo pipefail
+          mkdir -p proof
+          git rev-parse HEAD | tee proof/source-sha.txt
+          test "$(git rev-parse HEAD)" = "$LUMO_BUILD_SOURCE"
+          test "$(sed -n 's/^version: //p' pubspec.yaml)" = '0.12.28+1935'
+          test "$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" = "$LUMO_GODOT_SOURCE"
+          git diff --exit-code HEAD --
+          printf '%s\n' '1935 fixes short Fold / large-text game pause return visibility. Test artifact only; no public release.' > proof/scope.txt
+
+      - name: Resolve locked dependencies
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile 2>&1 | tee proof/dependencies.log
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+
+      - name: Analyze exact source
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee proof/flutter-analyze.log
+
+      - name: Run complete Flutter test suite
+        run: |
+          set -o pipefail
+          flutter test 2>&1 | tee proof/flutter-test.log
+
+      - name: Require dedicated Fold large-text regression
+        run: |
+          set -o pipefail
+          flutter test test/games/lumo_game_pause_scope_fold_test.dart 2>&1 | tee proof/fold-pause-regression.log
+
+      - name: Install native toolchain and Godot
+        run: |
+          set -euo pipefail
+          bash scripts/install_ndk_for_build.sh proof/ndk-preflight 2>&1 | tee proof/ndk-preflight.log
+          bash scripts/install_godot_for_build.sh
+
+      - name: Build unified Flutter + Godot APK
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh 2>&1 | tee proof/android-build.log
+          (cd dist && sha256sum -c SHA256SUMS.txt)
+          (cd dist/x86_64 && sha256sum -c SHA256SUMS.txt)
+
+      - name: Verify actual 1935 package and provenance
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          for folder, abi in [('dist', 'arm64-v8a'), ('dist/x86_64', 'x86_64')]:
+              data = json.loads(Path(folder, 'BUILD-PROVENANCE.json').read_text())
+              assert data['flutter_source_commit'] == os.environ['LUMO_BUILD_SOURCE']
+              assert data['tracked_source_clean'] is True
+              assert data['versionCode'] == 1935
+              assert data['versionName'] == '0.12.28'
+              assert data['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert data['abis'] == [abi]
+              assert data['godot']['revision'] == os.environ['LUMO_GODOT_SOURCE']
+          PY
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1935-arm64-${{ github.run_id }}
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/SHA256SUMS.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-education-1935-emulator-${{ github.run_id }}
+          path: dist/x86_64/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
+
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-education-1935-build-evidence-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: error
+          retention-days: 30

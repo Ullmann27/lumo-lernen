@@ -1,33 +1,24 @@
-# Stand und Weiterarbeit · 9. Oktober 2026 (Claude, Version 0.12.7+1914)
+# Fortsetzung · 10. Oktober 2026 · Quellkandidat 0.12.13+1920
 
-**Zuerst lesen:**
-1. [docs/LUMO_VISUAL_EXECUTION_2026-10-09.md](docs/LUMO_VISUAL_EXECUTION_2026-10-09.md) – Bestandsaufnahme der PRs, Integrationsmatrix, Prüfungen, APK-Stand.
-2. [docs/LERNAPP_PRUEFBERICHT_2026-10-09.md](docs/LERNAPP_PRUEFBERICHT_2026-10-09.md) – Lernapp: was geprüft, behoben und offen ist, Markt/Evidenz und die Idee fürs Alleinstellungsmerkmal.
-3. Godot-Repo `docs/wip/2026-10-09-lumo-gesicht/README.md` – Lumo-Gesicht und Anzug als Patch (Zwischenstand, **nicht** im Spiel).
-4. [docs/CHATGPT_UEBERGABE_2026-10-09.md](docs/CHATGPT_UEBERGABE_2026-10-09.md) – fertige Startnachricht für ChatGPT mit Regeln, Stand, Reihenfolge und Abnahmekriterien.
+Zuerst [die Fortsetzungsnotiz für Build 1920](docs/CONTINUATION_2026-10-10_BUILD_1920.md)
+lesen. App-Branch `codex/lumo-next-2026-10-10` setzt auf dem geprüften
+1919-Quellstand `d07b2b4` auf. Godot-Pin `6b401531` behebt die unterbrochene
+helle Wange; sechs echte GL-Aufnahmen, 68 Oberflächenprüfungen sowie Vehicle
+und Stage 2 sind grün. Profilisolierung und ausdrückliche Elternzuordnung
+älterer Lerndaten sind in Arbeit. **Die vollständige neue App-/APK-Abnahme
+steht noch aus.** Ältere APK-Nachweise darunter bleiben historisch.
 
-**Stände:** App und Godot auf `claude/continue-previous-chat-KtY7p`. Die App pinnt Godot `de91cc9` (Claude-Strang + Codex-1909/1910-Strang +
-Spielstart-Branding); das Godot-Repo liegt inzwischen bei `4a4bf98` (nur Doku). Eingearbeitet: App-PR #227 und #228, der Codex-Strang (#223/#225/#226)
-und Godot-PR #37, #32/#35/#36. #229 bleibt Alternative zu #228. Kein Merge nach `main`, kein Release.
+---
 
-**APK:** 1913 ist gebaut (Run 37937263563; Build, Flutter-Suite und 26 strenge Spielproben grün, Android 16 komplettes Rennen grün, Android 15
-Rennen komplett durchgelaufen, nur das Abholen der Aufnahme scheiterte an „device offline“). 1914 enthält die Reparaturen aus dem Lernapp-Bericht und
-die Absicherung dieses Abholens. **APK 1909 bleibt der unveränderte, geprüfte Rückfallstand.** „Technisch fertig“ und „visuell abgenommen“ sind getrennt:
-visuell ist **nichts abgenommen** (VISUAL_GAP).
+# Integration Claude · 9. Oktober 2026 (AAA-Produktionsauftrag)
 
-**Wo weiterarbeiten (Reihenfolge):**
-1. **Lumo und COMET** nach den Referenzblättern (`docs/design_targets/2026-10-08-kart-fahrzeuge/`): Patch einbauen, Referenzmaße ausmessen, acht Ansichten,
-   Materialien, dann das COMET-Premiumkart. Nichts als „identisch zur Vorlage“ melden.
-2. **Knobel-Test Messqualität** (Bericht Abschnitt 3): Ablenker so bauen, dass keine Ratestrategie über Zufall liegt (F1), mehr Rätsel je Bereich (F2),
-   Sprachausgabe, Eltern-Ansicht, Mehrprofil.
-3. **Vier nicht geprüfte Lernapp-Themen** (Bericht Abschnitt 6): Lerninhalt/Lehrplan je Klasse, Aufgaben-Fuzzing, Grafik per echter Renderings, Fehlersuche.
-4. **Alleinstellungsmerkmal „Lumo macht einen Fehler“** (Bericht Abschnitt 5, MVP in 1–2 Tagen) – erst nach Heinz' Freigabe.
-5. **Spielstart** Phase D/E (Menü, Vorschau, Kamerafahrt) und **Welten** (Identität, Tiefenschichten, Streckenlängen Zauberwald 377 m, Holo-City 443 m,
-   Himmelsinseln 473 m).
-6. **Android:** Lauf auf API 35 und 36 mit dem abgesicherten Aufnahme-Abholen, Fold/Responsive-Matrix, Gerät und Bildrate (bisher nicht gemessen).
-
-**Offene Entscheidungen für Heinz:** Spracherkennung `onDevice` (Datenschutz), PIN-freier Elternbereich beibehalten?, „Werkstatt-Mathe“ (widerspricht
-DESIGN_ZIEL_KART), Name „Knobel-Test“ statt „IQ-Test“.
+Arbeitsbericht mit Integrationsmatrix, SHAs, Prüfungen, Bildvergleichen und offenen Abweichungen:
+[docs/LUMO_VISUAL_EXECUTION_2026-10-09.md](docs/LUMO_VISUAL_EXECUTION_2026-10-09.md).
+Branch `claude/continue-previous-chat-KtY7p` vereint App-PR #227 (Spielstart-Overlay), #228 (Zeitrundung
+in der Host-Prüfung, erweitert um ganzzahlige org.json-Zeiten) und den Codex-1909/1910-Strang
+(#223/#225/#226: Android-Bildleser, Bildschirmfoto-Wiederholung, Profilbudget-Prüfung). Version
+`0.12.7+1913` liegt über allen Reservierungen (1909 gebaut, 1910–1912 vergeben). APK 1909 bleibt der
+unveränderte, geprüfte Rückfallstand. **VISUAL_GAP – NOT ACCEPTED**; Main und Releases unverändert.
 
 ---
 

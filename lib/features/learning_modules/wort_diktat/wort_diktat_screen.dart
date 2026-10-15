@@ -14,7 +14,8 @@
 // Bis zu 20 Woerter pro Session, vom einfachen zum schwierigeren.
 // ════════════════════════════════════════════════════════════════════════
 
-import '../../../widgets/design/lumo_design_system.dart';
+import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
@@ -179,7 +180,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     if (!saved || !mounted) return;
     HapticFeedback.lightImpact();
     if (wasCorrect) {
-      _correctCount++;
+      setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
       } catch (_) {}
@@ -278,81 +279,29 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
   @override
   Widget build(BuildContext context) {
     return LearningModuleProgressScope(
-        progress: _progress,
-        child: LumoModuleBackdrop(
-          child: Scaffold(
-          backgroundColor: Colors.transparent,
-          body: Column(
-            children: [
-              _buildTopBar(),
-              if (!_showReveal) ...[
-                _buildHearWordBox(),
-                Expanded(child: _buildWritingArea()),
-                _buildBottomActions(),
-              ] else
-                Expanded(child: _buildRevealView()),
-            ],
-          ),
-        )));
-  }
-
-  Widget _buildTopBar() {
-    return Container(
-      padding:
-          EdgeInsets.fromLTRB(8, MediaQuery.of(context).padding.top + 4, 16, 8),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: _gradient),
-        boxShadow: [
-          BoxShadow(
-              color: _gradient[0].withOpacity(0.3),
-              blurRadius: 8,
-              offset: const Offset(0, 2))
-        ],
+      progress: _progress,
+      child: LumoLearningModuleFrame(
+        appState: widget.appState,
+        title: 'Wörter-Abenteuer',
+        moduleTitle: 'Wort-Diktat',
+        icon: Icons.edit_note_rounded,
+        taskIndex: _taskIdx,
+        totalTasks: _totalTasks,
+        correctAnswers: _correctCount,
+        progressLabel: 'Wort',
+        scrollable: false,
+        canLeave: () => !_progress.hasPending,
+        child: Column(
+          children: [
+            if (!_showReveal) ...[
+              _buildHearWordBox(),
+              Expanded(child: _buildWritingArea()),
+              _buildBottomActions(),
+            ] else
+              Expanded(child: _buildRevealView()),
+          ],
+        ),
       ),
-      child: Row(children: [
-        IconButton(
-          icon:
-              const Icon(Icons.arrow_back_ios_new_rounded, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        Expanded(
-          child: Column(
-            children: [
-              Text('Wort ${_taskIdx + 1} / $_totalTasks',
-                  style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 11,
-                      fontWeight: FontWeight.w800,
-                      letterSpacing: 1.2)),
-              const Text('Wort-Diktat',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      color: Colors.white,
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900)),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-          decoration: BoxDecoration(
-            color: Colors.white.withOpacity(0.25),
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Row(children: [
-            const Icon(Icons.star_rounded, color: Color(0xFFFCD34D), size: 18),
-            const SizedBox(width: 4),
-            Text('$_correctCount',
-                style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: Colors.white,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900)),
-          ]),
-        ),
-        const SizedBox(width: 8),
-      ]),
     );
   }
 
@@ -401,19 +350,19 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                           fontFamily: 'Nunito',
                           fontSize: 14,
                           fontWeight: FontWeight.w800,
-                          color: _gradient[1])),
+                          color: LumoVisualTokens.white)),
                   const SizedBox(height: 2),
                   const Text('Tippe für nochmal',
                       style: TextStyle(
                           fontFamily: 'Nunito',
                           fontSize: 12,
                           fontWeight: FontWeight.w600,
-                          color: Color(0xFF6B7280))),
+                          color: LumoVisualTokens.muted)),
                 ],
               ),
             ),
             const Icon(Icons.touch_app_rounded,
-                color: Color(0xFF6B7280), size: 24),
+                color: LumoVisualTokens.muted, size: 24),
           ]),
         ),
       ),
@@ -527,7 +476,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                   fontFamily: 'Nunito',
                   fontSize: 16,
                   fontWeight: FontWeight.w800,
-                  color: Colors.grey.shade700)),
+                  color: LumoVisualTokens.white)),
           const SizedBox(height: 12),
           // Großes Wort als Vergleich
           Container(
@@ -545,6 +494,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
               ],
             ),
             child: Text(_currentWord,
+                key: const ValueKey('diktat-revealed-word'),
                 style: TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 60,
@@ -584,7 +534,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
                   fontFamily: 'Nunito',
                   fontSize: 16,
                   fontWeight: FontWeight.w800,
-                  color: Color(0xFF374151))),
+                  color: LumoVisualTokens.white)),
           const SizedBox(height: 14),
           // Selbst-Bewertung
           Row(children: [

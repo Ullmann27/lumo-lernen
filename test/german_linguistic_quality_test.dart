@@ -168,7 +168,7 @@ void main() {
   });
 
   test('capitalization exercises have exactly one uncapitalized noun', () {
-    for (var seed = 0; seed < 6; seed++) {
+    for (var seed = 0; seed < 256; seed++) {
       final task = template('g3_capitalization').concretize(seed);
       final sentence = RegExp('„(.+)“').firstMatch(task.prompt)!.group(1)!;
       final errors = RegExp(r'[A-Za-zÄÖÜäöüß]+')
@@ -186,7 +186,20 @@ void main() {
                 'suppe',
                 'hund',
                 'katze',
-                'baum'
+                'baum',
+                'blume',
+                'apfel',
+                'kind',
+                'stein',
+                'mond',
+                'schwester',
+                'bücherei',
+                'korb',
+                'schnee',
+                'bleistift',
+                'glas',
+                'tür',
+                'geschichte'
               }.contains(word))
           .toList();
       expect(errors, <String>[task.answer.toLowerCase()]);
@@ -194,8 +207,7 @@ void main() {
     }
   });
 
-  test(
-      'adverb questions offer one time/place adverb and no adverbial adjectives',
+  test('adverb questions offer one genuine adverb and no adverbial adjectives',
       () {
     const adverbs = <String>{
       'heute',
@@ -203,10 +215,24 @@ void main() {
       'morgen',
       'dort',
       'oft',
-      'hier'
+      'hier',
+      'bald',
+      'drinnen',
+      'gern',
+      'jetzt',
+      'gestern',
+      'bereits',
+      'oben',
+      'unten',
+      'manchmal',
+      'immer',
+      'nie',
+      'überall',
+      'unterwegs',
+      'vorhin'
     };
     final answers = <String>{};
-    for (var seed = 0; seed < 6; seed++) {
+    for (var seed = 0; seed < 256; seed++) {
       final task = template('g4_adverbs').concretize(seed);
       final candidates = task.choices
           .where((word) => adverbs.contains(word.toLowerCase()))
@@ -230,7 +256,7 @@ void main() {
           isNot(contains('Sieh')));
     }
     final cases = <String>{
-      for (var seed = 0; seed < 8; seed++)
+      for (var seed = 0; seed < 256; seed++)
         template('g4_four_cases').concretize(seed).answer
     };
     expect(cases, <String>{

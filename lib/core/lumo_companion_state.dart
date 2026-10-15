@@ -1,41 +1,56 @@
-// ════════════════════════════════════════════════════════════════════════
-// LUMO COMPANION STATE — Persistente Persoenlichkeit fuer Mirror
-// ════════════════════════════════════════════════════════════════════════
-// Premium-Wert: Lumo erinnert sich an das Kind, hat Beziehung, wird zum
-// echten Freund. Speichert Likes, Streak, letzte Interaktion.
-// ════════════════════════════════════════════════════════════════════════
-
-import 'dart:convert';
 import 'dart:math' as math;
 
-import 'package:shared_preferences/shared_preferences.dart';
-
 import '../widgets/lumo_mirror.dart';
+import 'learning_profile_engine.dart';
 
-/// Lumo-Companion-Mood basierend auf Tageszeit + Aktivitaet.
+/// Read-only companion summary of the existing, captured learning profile.
+/// Unowned legacy lumo_companion_v1 bytes are deliberately never read/written.
+/// Accepted answers remain solely in LearningProfileEngine.
 class LumoCompanionState {
-  LumoCompanionState._();
-  static final LumoCompanionState instance = LumoCompanionState._();
-
-  static const _key = 'lumo_companion_v1';
+  LumoCompanionState.fromProfile({
+    required LearningProfileEngine profile,
+    required String childName,
+  }) {
+    _childName = childName.trim().isEmpty ? 'Freund' : childName.trim();
+    _correctToday = profile.dailyDone();
+    _streakDays = profile.currentStreakDays();
+    final today = DateTime.now().toIso8601String().substring(0, 10);
+    for (final skill in profile.skills.values) {
+      _totalCorrect += skill.correct;
+      _totalWrong += skill.wrong;
+      if (skill.lastSeen.toIso8601String().startsWith(today)) {
+        _recentMisses = math.max(_recentMisses, skill.currentMisses);
+      }
+      if (skill.correct > _favoriteCorrect) {
+        _favoriteCorrect = skill.correct;
+        _favoriteTopic = skill.unit;
+      }
+    }
+    _totalInteractions = _totalCorrect + _totalWrong;
+    DateTime? previous;
+    var run = 0;
+    final days = profile.daily.entries.where((e) => e.value > 0).toList()
+      ..sort((a, b) => a.key.compareTo(b.key));
+    for (final day in days) {
+      final date = DateTime.tryParse('${day.key}T00:00:00Z');
+      if (date == null) continue;
+      run = previous != null && date.difference(previous).inDays == 1
+          ? run + 1
+          : 1;
+      _bestStreak = math.max(_bestStreak, run);
+      _bestDay = math.max(_bestDay, day.value);
+      previous = date;
+    }
+  }
 
   String _childName = 'Freund';
-  int _correctToday = 0;
-  int _wrongToday = 0;
-  int _streakDays = 0;
-  String? _lastDate;
-  String? _favoriteTopic; // 'math', 'tiere', etc
-  int _totalInteractions = 0;
-  // Lifetime-Stats (Premium-Erinnerungen):
-  int _bestStreak = 0;
-  int _totalCorrect = 0;
-  int _totalWrong = 0;
-  int _bestDay = 0; // hoechste correct an einem Tag jemals
-  bool _loaded = false;
+  int _correctToday = 0, _recentMisses = 0, _streakDays = 0;
+  int _totalCorrect = 0, _totalWrong = 0, _totalInteractions = 0;
+  int _bestStreak = 0, _bestDay = 0, _favoriteCorrect = 0;
+  String? _favoriteTopic;
 
   String get childName => _childName;
   int get correctToday => _correctToday;
-  int get wrongToday => _wrongToday;
   int get streakDays => _streakDays;
   int get totalInteractions => _totalInteractions;
   int get bestStreak => _bestStreak;
@@ -43,97 +58,6 @@ class LumoCompanionState {
   int get totalWrong => _totalWrong;
   int get bestDay => _bestDay;
   String? get favoriteTopic => _favoriteTopic;
-
-  Future<void> load() async {
-    if (_loaded) return;
-    final p = await SharedPreferences.getInstance();
-    final raw = p.getString(_key);
-    if (raw != null) {
-      try {
-        final j = jsonDecode(raw) as Map<String, dynamic>;
-        _childName = j['name'] as String? ?? 'Freund';
-        _correctToday = j['ct'] as int? ?? 0;
-        _wrongToday = j['wt'] as int? ?? 0;
-        _streakDays = j['sd'] as int? ?? 0;
-        _lastDate = j['ld'] as String?;
-        _favoriteTopic = j['ft'] as String?;
-        _totalInteractions = j['ti'] as int? ?? 0;
-        _bestStreak = j['bs'] as int? ?? 0;
-        _totalCorrect = j['tc'] as int? ?? 0;
-        _totalWrong = j['tw'] as int? ?? 0;
-        _bestDay = j['bd'] as int? ?? 0;
-      } catch (_) {}
-    }
-    // Tageswechsel-Check
-    final today = _today();
-    if (_lastDate != today) {
-      // Best-Day-Check bevor wir _correctToday zuruecksetzen.
-      if (_correctToday > _bestDay) _bestDay = _correctToday;
-      _correctToday = 0;
-      _wrongToday = 0;
-      final yesterday = _todayMinus(1);
-      if (_lastDate == yesterday) {
-        _streakDays++;
-        if (_streakDays > _bestStreak) _bestStreak = _streakDays;
-      } else if (_lastDate != null) {
-        _streakDays = 0;
-      }
-      _lastDate = today;
-      await save();
-    }
-    _loaded = true;
-  }
-
-  String _today() {
-    final d = DateTime.now();
-    return '${d.year}-${d.month.toString().padLeft(2, "0")}-${d.day.toString().padLeft(2, "0")}';
-  }
-  String _todayMinus(int days) {
-    final d = DateTime.now().subtract(Duration(days: days));
-    return '${d.year}-${d.month.toString().padLeft(2, "0")}-${d.day.toString().padLeft(2, "0")}';
-  }
-
-  Future<void> save() async {
-    final p = await SharedPreferences.getInstance();
-    await p.setString(_key, jsonEncode({
-      'name': _childName,
-      'ct': _correctToday,
-      'wt': _wrongToday,
-      'sd': _streakDays,
-      'ld': _lastDate,
-      'ft': _favoriteTopic,
-      'ti': _totalInteractions,
-      'bs': _bestStreak,
-      'tc': _totalCorrect,
-      'tw': _totalWrong,
-      'bd': _bestDay,
-    }));
-  }
-
-  Future<void> setChildName(String name) async {
-    _childName = name;
-    await save();
-  }
-
-  /// Wird von Modulen aufgerufen wenn Kind richtig antwortet.
-  Future<void> recordCorrect({String? topic}) async {
-    await load();
-    _correctToday++;
-    _totalCorrect++;
-    _totalInteractions++;
-    if (topic != null) _favoriteTopic = topic;
-    // Best-Day live aktualisieren - Eltern sehen heute schon den neuen Rekord.
-    if (_correctToday > _bestDay) _bestDay = _correctToday;
-    await save();
-  }
-
-  Future<void> recordWrong() async {
-    await load();
-    _wrongToday++;
-    _totalWrong++;
-    _totalInteractions++;
-    await save();
-  }
 
   /// Smart-Mood: berechnet automatisch passenden Mood basierend auf
   /// aktueller Situation. Reicher als vorher: jetzt 8 Zustaende.
@@ -149,8 +73,8 @@ class LumoCompanionState {
     if (_correctToday >= 5) return LumoMirrorMood.proud;
     if (_streakDays >= 7) return LumoMirrorMood.proud;
     if (_correctToday >= 1) return LumoMirrorMood.happy;
-    if (_wrongToday >= 5) return LumoMirrorMood.sad;
-    if (_wrongToday >= 3) return LumoMirrorMood.think;
+    if (_recentMisses >= 5) return LumoMirrorMood.sad;
+    if (_recentMisses >= 3) return LumoMirrorMood.think;
     // Abends nachdenklich / morgens neugierig
     if (h >= 18) return LumoMirrorMood.curious;
     if (h < 9) return LumoMirrorMood.curious;
@@ -203,8 +127,7 @@ class LumoCompanionState {
       greetings.add('Erinnerung: deine Bestmarke ist $_bestStreak Tage!');
     }
     if (_bestDay >= 30 && _correctToday < _bestDay) {
-      greetings.add(
-          'Heute Lust auf deinen Rekord ($_bestDay an einem Tag)?');
+      greetings.add('Heute Lust auf deinen Rekord ($_bestDay an einem Tag)?');
     }
     if (_totalCorrect >= 500) {
       greetings.add('Du hast schon $_totalCorrect Aufgaben gemeistert!');

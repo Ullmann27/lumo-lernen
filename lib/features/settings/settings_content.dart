@@ -5,10 +5,10 @@ import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/design/lumo_night_scope.dart';
+import '../../widgets/lumo_speech_controls.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/app_settings.dart';
 import '../../core/app_update_service.dart';
-import '../../core/error_breakdown_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_error_log.dart';
 import '../../core/lumo_voice.dart';
@@ -18,8 +18,12 @@ import '../../domain/learning/learning_dna_engine.dart';
 import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import '../teacher/teacher_dashboard_screen.dart';
+import 'legacy_learning_data_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
+import 'lumo_voice_diagnostics_card.dart';
+import 'local_voice_license_dialog.dart';
+import 'discovery_settings_card.dart';
 
 /// All settings, sheets and dialogs share the same night surface.
 /// The State must live below the scope so showDialog captures this Theme.
@@ -55,6 +59,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   // Update-Check-Status (Codex hat AppUpdateService gebaut, jetzt verdrahtet)
   AppUpdateInfo? _updateInfo;
   bool _checkingUpdate = false;
+  double? _updateProgress;
   String? _updateError;
 
   // KI-Eltern-Berater: spricht mit Eltern, NICHT mit Kind.
@@ -69,6 +74,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   /// gespeichert/Enter gedrueckt hat.
   String _currentUrlInField = '';
   int _aiStatsRevision = 0;
+  int _legacyDataRevision = 0;
   static const LumoAiProxyClient _proxyClient = LumoAiProxyClient();
   static const AiTaskCache _aiTaskCache = AiTaskCache();
 
@@ -103,6 +109,10 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       enabled: next.voiceEnabled,
       rate: next.voiceRate,
       pitch: next.voicePitch,
+      cloudVoiceEnabled: next.cloudVoiceEnabled,
+      voiceServerUrl: next.aiProxyUrl,
+      localVoiceLicenseAccepted: next.localVoiceLicenseAccepted,
+      identity: LumoVoiceIdentity.freeOffline,
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
@@ -112,6 +122,13 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     const defaults = AppSettings();
     await SettingsRepository.save(defaults);
     await _save(defaults);
+  }
+
+  Future<void> _setLocalVoiceLicense(bool enabled) async {
+    if (enabled && !_settings.localVoiceLicenseAccepted) {
+      if (!await LocalVoiceLicenseDialog.show(context) || !mounted) return;
+    }
+    await _save(_settings.copyWith(localVoiceLicenseAccepted: enabled));
   }
 
   Future<void> _runHealthCheck() async {
@@ -246,7 +263,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     if (confirmed != true) return;
     if (!mounted) return;
     await widget.appState.resetAllProfile();
-    if (!mounted || !context.mounted) return;
+    if (!context.mounted) return;
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Text('Profil zurueckgesetzt. App startet beim naechsten Oeffnen neu.',
@@ -266,6 +283,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     setState(() {
       _checkingUpdate = true;
       _updateError = null;
+      _updateProgress = null;
     });
     try {
       const service = AppUpdateService();
@@ -281,7 +299,13 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       // ueber MethodChannel den System-Installer aufrufen. Bei Berechtigungs-
       // fehler oeffnet sich automatisch der Einstellungs-Dialog.
       if (info.available && info.hasUsableDownload) {
-        final result = await service.downloadAndInstall(info);
+        final result = await service.downloadAndInstall(
+          info,
+          onProgress: (fraction) {
+            if (!mounted) return;
+            setState(() => _updateProgress = fraction);
+          },
+        );
         if (!mounted) return;
         if (result.success) {
           ScaffoldMessenger.of(context).showSnackBar(
@@ -319,8 +343,11 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       } else if (info.error == null) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Du hast die neueste Version (Build '
-                '${info.currentBuildNumber}).',
+            content: Text(AppUpdateService.isFamilyPreview
+              ? 'Für die Familien-App ist derzeit kein neuer freigegebener '
+                  'Build vorhanden (installiert: ${info.currentBuildNumber}).'
+              : 'Du hast die neueste Version (Build '
+                  '${info.currentBuildNumber}).',
             ),
           ),
         );
@@ -329,7 +356,12 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       if (!mounted) return;
       setState(() => _updateError = 'Update-Pruefung fehlgeschlagen: $e');
     } finally {
-      if (mounted) setState(() => _checkingUpdate = false);
+      if (mounted) {
+        setState(() {
+          _checkingUpdate = false;
+          _updateProgress = null;
+        });
+      }
     }
   }
 
@@ -384,17 +416,25 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         _AppUpdateCard(
           info: _updateInfo,
           checking: _checkingUpdate,
+          progress: _updateProgress,
           error: _updateError,
           onUpdate: _checkAndUpdate,
         ),
         const SizedBox(height: 18),
         _TeacherAreaCard(
-          onOpen: () => Navigator.of(context).push<void>(
-            MaterialPageRoute<void>(
-              builder: (_) =>
-                  TeacherDashboardScreen(appState: widget.appState),
-            ),
-          ),
+          onOpen: () async {
+            await Navigator.of(context).push<void>(
+              MaterialPageRoute<void>(
+                builder: (_) =>
+                    TeacherDashboardScreen(appState: widget.appState),
+              ),
+            );
+            if (mounted) setState(() => _legacyDataRevision++);
+          },
+        ),
+        LegacyLearningDataCard(
+          appState: widget.appState,
+          refreshRevision: _legacyDataRevision,
         ),
         const SizedBox(height: 18),
         _ProfileResetCard(
@@ -466,6 +506,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ],
             ),
         const SizedBox(height: 14),
+        AnimatedBuilder(
+          animation: widget.appState,
+          builder: (context, _) => DiscoverySettingsCard(
+            key: ValueKey('discovery-settings-${widget.appState.profileGeneration}'),
+            appState: widget.appState,
+          ),
+        ),
+        const SizedBox(height: 14),
         _SettingsCard(title: 'Ton und Stimme', children: [
           _SwitchRow(title: 'Lumo-Stimme', subtitle: 'Lumo darf Antworten laut sprechen.', value: _settings.voiceEnabled, onChanged: (v) => _save(_settings.copyWith(voiceEnabled: v)),
                 ),
@@ -474,19 +522,39 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           const SizedBox(height: 10),
           _SliderRow(title: 'Sprechtempo', value: _settings.voiceRate, min: 0.25, max: 0.55, onChanged: (v) => _save(_settings.copyWith(voiceRate: v)),
                 ),
-          _SliderRow(title: 'Stimmhöhe', value: _settings.voicePitch, min: 0.85, max: 1.18, onChanged: (v) => _save(_settings.copyWith(voicePitch: v)),
-                ),
+          const SizedBox(height: 6),
+          const Text('Lumo Frei: eine helle deutsche Charakterstimme. Die Stimme ist KI-erzeugt. Begrüßung, Lob und Lernaufgaben verwenden dieselbe lokale Stimme; das Sprechtempo gilt auch für die Stimmprobe.',
+              style: TextStyle(fontSize: 12)),
+          const SizedBox(height: 10),
+          _SwitchRow(
+            title: 'Neue Sätze offline vorlesen',
+            subtitle: 'Neue Erklärungen direkt auf diesem Gerät vertonen. Kostenloser Sprachdienst ohne Internet, Mikrofon oder Übertragung an einen Sprachserver. Für das lokale Modell gelten die angezeigten Nutzungsbedingungen. Ohne Freigabe bleiben die mitgelieferten Lernaufnahmen verfügbar.',
+            value: _settings.localVoiceLicenseAccepted,
+            onChanged: _setLocalVoiceLicense,
+          ),
           const SizedBox(height: 10),
           Wrap(spacing: 10, runSpacing: 10, children: [
             FilledButton.icon(onPressed: _settings.voiceEnabled ? () => LumoVoice.instance.test() : null, icon: const Icon(Icons.volume_up_rounded), label: const Text('Stimme testen'),
                     ),
-            OutlinedButton.icon(onPressed: () => LumoVoice.instance.stop(), icon: const Icon(Icons.stop_rounded), label: const Text('Stopp'),
-                    ),
+            OutlinedButton.icon(
+              onPressed: _settings.voiceEnabled && _settings.localVoiceLicenseAccepted
+                  ? () => LumoVoice.instance.speak(
+                        'Sieben plus fünf sind zwölf. Ich teile die fünf in drei und zwei. Sieben plus drei sind zehn. Zehn plus zwei sind zwölf.',
+                        style: VoiceStyle.explain,
+                        freshLocalAudio: true,
+                      )
+                  : null,
+              icon: const Icon(Icons.auto_stories_rounded),
+              label: const Text('Neue Rechenhilfe anhören'),
+            ),
+            const LumoSpeechControls(showStopWhenIdle: true),
           ],
                 ),
           const SizedBox(height: 8),
-          Text('Aktuelle Stimme: ${LumoVoice.instance.selectedVoiceName ?? 'Systemstandard'} (${LumoVoice.instance.selectedLocale ?? 'de'})', style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted),
-                ),
+          Text('Aktuelle Stimme: Lumo Frei, lokal. Kein automatischer Wechsel zu Google Gemini oder zur Android-Systemstimme. Die bisherigen Sulafat-Originalaufnahmen bleiben unverändert erhalten.',
+              style: LumoTextStyles.caption.copyWith(color: LumoVisualTokens.muted)),
+          const SizedBox(height: 12),
+          LumoVoiceDiagnosticsCard(serverUrl: _settings.aiProxyUrl),
         ],
             ),
         const SizedBox(height: 14),
@@ -1446,12 +1514,14 @@ class _AppUpdateCard extends StatelessWidget {
   const _AppUpdateCard({
     required this.info,
     required this.checking,
+    required this.progress,
     required this.error,
     required this.onUpdate,
   });
 
   final AppUpdateInfo? info;
   final bool checking;
+  final double? progress;
   final String? error;
 
   /// Heinz 2026-05-21: Ein-Klick-Aktualisierung. Vorher musste man
@@ -1464,6 +1534,7 @@ class _AppUpdateCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hasUpdate = info?.available == true;
+    const familyPreview = AppUpdateService.isFamilyPreview;
     // Wenn Update verfuegbar: gruener Akzent. Sonst: orange wie der Rest.
     final accent = hasUpdate ? const Color(0xFF22C55E) : LumoColors.orange;
     return Container(
@@ -1521,7 +1592,9 @@ class _AppUpdateCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      hasUpdate ? 'Neue Version verfügbar' : 'App-Version',
+                      hasUpdate
+                          ? 'Neue Version verfügbar'
+                          : familyPreview ? 'Lumo Familien-Testversion' : 'App-Version',
                       style: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 15,
@@ -1535,7 +1608,9 @@ class _AppUpdateCard extends StatelessWidget {
                           ? 'Aktuell: Build ${AppUpdateService.currentBuildNumber} (${AppUpdateService.currentVersionName})'
                           : hasUpdate
                               ? 'Build ${info!.latestBuildNumber} ist neuer als deine Build ${info!.currentBuildNumber}.'
-                              : 'Du hast die neueste Version (Build ${info!.currentBuildNumber}).',
+                              : familyPreview
+                                  ? 'Kein neuer freigegebener Familien-Build. Installiert: ${info!.currentBuildNumber}.'
+                                  : 'Du hast die neueste Version (Build ${info!.currentBuildNumber}).',
                       style: const TextStyle(
                         fontFamily: 'Nunito',
                         fontSize: 12,
@@ -1606,7 +1681,7 @@ class _AppUpdateCard extends StatelessWidget {
                     ),
               label: Text(
                 checking
-                    ? 'Pruefe…'
+                    ? progress != null ? 'Lade Update…' : 'Prüfe…'
                     : hasUpdate
                         ? 'Jetzt aktualisieren'
                         : 'Auf Update prüfen',
@@ -1618,6 +1693,35 @@ class _AppUpdateCard extends StatelessWidget {
               ),
             ),
           ),
+          if (progress != null && checking) ...[
+            const SizedBox(height: 10),
+            LinearProgressIndicator(
+              value: progress,
+              minHeight: 5,
+              color: const Color(0xFF4EDCFF),
+              backgroundColor: const Color(0x66304E71),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            const SizedBox(height: 5),
+            Text(
+              'APK wird geladen: ${(progress! * 100).clamp(0, 100).round()} %',
+              style: const TextStyle(
+                fontFamily: 'Nunito', fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: LumoVisualTokens.white,
+              ),
+            ),
+          ],
+          if (familyPreview)
+            const Padding(
+              padding: EdgeInsets.only(top: 10),
+              child: Text(
+                'Dieser Kanal liefert nur freigegebene Testversionen für '
+                'die Familien-App. Kein automatischer Wechsel zur regulären App.',
+                style: TextStyle(color: LumoVisualTokens.muted,
+                    fontSize: 11.5),
+              ),
+            ),
           // Android accepts updates only with the same package and signer.
           const SizedBox(height: 10),
           const Text(
@@ -2025,58 +2129,20 @@ class _QuickQuestionChip extends StatelessWidget {
 
 /// Phase 1 - Eltern-Slot fuer die Lern-DNA-Karte.
 /// Laedt persistierte Fehler-Breakdown (aus Phase 2) und berechnet DNA.
-class _DnaSettingsSlot extends StatefulWidget {
+class _DnaSettingsSlot extends StatelessWidget {
   const _DnaSettingsSlot({required this.appState});
-
   final LumoAppState appState;
 
   @override
-  State<_DnaSettingsSlot> createState() => _DnaSettingsSlotState();
-}
-
-class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
-  static const _errorRepo = ErrorBreakdownRepository();
-  Map<String, int> _errorBreakdown = const <String, int>{};
-  bool _loaded = false;
-
-  String get _childId {
-    final st = widget.appState.state;
-    final safeName = st.childName.trim().isEmpty
-        ? 'kind'
-        : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_',
-          );
-    return 'local_${safeName}_${st.grade}';
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _load();
-  }
-
-  Future<void> _load() async {
-    final breakdown = await _errorRepo.load(_childId);
-    if (!mounted) return;
-    setState(() {
-      _errorBreakdown = breakdown;
-      _loaded = true;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    final state = widget.appState.state;
+  Widget build(BuildContext context) => AnimatedBuilder(
+    animation: appState,
+    builder: (context, _) {
+    final state = appState.state;
     final dna = const LearningDnaEngine().compute(
       state: state,
-      errorBreakdown: _errorBreakdown,
-      recentCorrect: state.solved.values.fold<int>(0, (sum, v) => sum + v),
-      recentIncorrect: state.weakSkills.values.fold<int>(0, (sum, v) => sum + v,
-      ),
+      skills: appState.learningSkills(),
     );
-    if (dna.strengths.isEmpty &&
-        dna.weaknesses.isEmpty &&
-        dna.totalCorrect == 0 &&
-        _errorBreakdown.isEmpty) {
+    if (dna.totalCorrect + dna.totalIncorrect == 0) {
       return Container(
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -2090,9 +2156,9 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
             const SizedBox(width: 10),
             Expanded(
               child: Text(
-                _loaded
-                    ? 'Lumo Lern-DNA: noch keine Daten. Nach einigen Aufgaben '
-                        'siehst du hier Staerken, Schwaechen und die naechste Empfehlung.'
+                appState.learningProfileLoaded
+                    ? 'Lumo Lern-DNA: noch keine Antwortdaten. Nach weiteren Übungen '
+                        'siehst du hier beobachtete Trefferquoten und die nächste Empfehlung.'
                     : 'Lumo Lern-DNA wird geladen...',
                 style: const TextStyle(
                   fontFamily: 'Nunito',
@@ -2108,7 +2174,8 @@ class _DnaSettingsSlotState extends State<_DnaSettingsSlot> {
       );
     }
     return LearningDnaParentCard(dna: dna);
-  }
+    },
+  );
 }
 
 /// Fehlerprotokoll-Karte: zeigt die letzten Crashes inkl. Stacktrace.

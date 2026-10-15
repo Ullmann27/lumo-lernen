@@ -18,6 +18,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/progress_repository.dart';
+import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 
 class LumoWeltScreen extends StatelessWidget {
@@ -49,7 +50,7 @@ class LumoWeltScreen extends StatelessWidget {
         total: germanTotal,
       ),
       _IslandData(
-        subject: 'Sachkunde',
+        subject: 'Sachunterricht',
         emoji: '🌿',
         theme: _IslandTheme.emerald,
         total: scienceTotal,
@@ -75,7 +76,27 @@ class LumoWeltScreen extends StatelessWidget {
       body: LumoMagicBackground(
         intensity: 1.0,
         starCount: 22,
-        child: SafeArea(
+        child: Stack(fit: StackFit.expand, children: [
+          Positioned.fill(child: Opacity(
+            opacity: .62,
+            child: Image.asset(
+              'assets/lumo_design/learning_world/learning_world_night.jpg',
+              fit: BoxFit.cover,
+              filterQuality: FilterQuality.medium,
+              errorBuilder: (context, error, stackTrace) =>
+                  const SizedBox.shrink(),
+            ),
+          )),
+          const Positioned.fill(child: DecoratedBox(
+            decoration: BoxDecoration(gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0x9B04112B), Color(0x8C061C45), Color(0xC4081534),
+              ],
+            )),
+          )),
+          SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 26),
             child: Column(
@@ -83,15 +104,41 @@ class LumoWeltScreen extends StatelessWidget {
               children: [
                 _Hero(totalItems: mathTotal + germanTotal + scienceTotal),
                 const SizedBox(height: 14),
-                for (final island in islands) ...[
-                  _IslandCard(data: island),
-                  const SizedBox(height: 14),
-                ],
+                // Nur die Baumkarte ist kompetenzbasiert. Die bestehenden
+                // Dekorationsinseln bleiben weiterhin reine Sammelbelohnungen.
+                LumoLearningTreeCard(
+                  skills: skills,
+                  compact: false,
+                ),
+                const SizedBox(height: 14),
+                LayoutBuilder(builder: (context, c) {
+                  // Aufgeklapptes Fold: drei Inseln nebeneinander statt
+                  // gestreckte Handy-Karten untereinander.
+                  if (c.maxWidth >= 760) {
+                    return Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        for (final island in islands) ...[
+                          Expanded(child: _IslandCard(data: island)),
+                          if (island != islands.last)
+                            const SizedBox(width: 12),
+                        ],
+                      ],
+                    );
+                  }
+                  return Column(children: [
+                    for (final island in islands) ...[
+                      _IslandCard(data: island),
+                      const SizedBox(height: 14),
+                    ],
+                  ]);
+                }),
                 const _FooterTip(),
               ],
             ),
           ),
-        ),
+          ),
+        ]),
       ),
     );
   }

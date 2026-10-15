@@ -1,323 +1,525 @@
-import 'package:flutter/material.dart';
-import '../../app/app_design.dart';
-import '../../app/app_state.dart';
-import '../../app/app_theme.dart';
-import '../../core/lumo_voice.dart';
-import '../../domain/learning/lumo_learning_domain.dart';
-import '../../domain/tutoring/tutoring_session_planner.dart';
+import 'dart:async';
 
-/// Sichtbare Nachhilfe-Einheit fuer die App. Liest die Schwaechen aus
-/// dem AppState (weakSkills-Map und learningSkills-Engine), uebergibt
-/// sie an den TutoringSessionPlanner und visualisiert die fuenf
-/// Nachhilfe-Schritte als kindgerechten Mini-Lernkurs.
-///
-/// Wird als Top-Block der Missionen-Seite eingebunden (siehe
-/// section_content.dart -> _MissionsPage).
-class TutoringFlowCard extends StatelessWidget {
+import 'package:flutter/material.dart';
+
+import '../../app/app_state.dart';
+import '../../core/progress_recommendation_service.dart';
+import '../../domain/tutoring/guided_lesson_catalog.dart';
+import '../../theme/lumo_visual_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/fox/lumo_character.dart';
+
+/// A real, optional next step using the current child's existing local records.
+/// The card does not infer attempts from errors, diagnose a child, manufacture
+/// mastery, grant discovery access, or promise unimplemented games and rewards.
+class TutoringFlowCard extends StatefulWidget {
   const TutoringFlowCard({
     super.key,
     required this.appState,
     required this.onStartTutoring,
+    required this.onStartGuidedLearning,
   });
 
   final LumoAppState appState;
-
-  /// Wird aufgerufen, wenn das Kind die Nachhilfe-Einheit startet.
-  /// Der Empfaenger setzt sessionKind=tutoring und navigiert zu
-  /// LumoSection.exercises.
-  final VoidCallback onStartTutoring;
+  final ValueChanged<LearningActivityRecommendation> onStartTutoring;
+  final FutureOr<void> Function(GuidedLesson?) onStartGuidedLearning;
 
   @override
-  Widget build(BuildContext context) {
-    final plan = _buildPlan();
-    final focusLabels = plan.focusSkills.map(_labelForSkill).toList();
-
-    return LumoCard(
-      accent: LumoColors.purple,
-      padding: const EdgeInsets.all(20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Container(
-                width: 44,
-                height: 44,
-                decoration: BoxDecoration(
-                  gradient: LumoGradients.comfort,
-                  borderRadius: BorderRadius.circular(14),
-                ),
-                child: const Icon(Icons.psychology_rounded,
-                    color: Colors.white, size: 24),
-              ),
-              const SizedBox(width: 12),
-              const Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Lumo-Nachhilfe',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 19,
-                        fontWeight: FontWeight.w900,
-                        color: LumoColors.ink900,
-                      ),
-                    ),
-                    SizedBox(height: 2),
-                    Text(
-                      'Lumo hat geschaut, wo du Hilfe brauchst.',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w700,
-                        color: LumoColors.ink500,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              const LumoBadge(
-                label: '8 Schritte',
-                color: LumoColors.purple,
-                icon: Icons.timeline_rounded,
-                compact: true,
-              ),
-            ],
-          ),
-          const SizedBox(height: 18),
-          // Fokus-Bereiche
-          if (focusLabels.isNotEmpty) ...[
-            const Text(
-              'Wir konzentrieren uns auf:',
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 13,
-                fontWeight: FontWeight.w800,
-                color: LumoColors.ink700,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: focusLabels
-                  .map((label) => LumoBadge(
-                        label: label,
-                        color: LumoColors.purple,
-                        icon: Icons.star_rounded,
-                      ))
-                  .toList(),
-            ),
-            const SizedBox(height: 18),
-          ],
-          // Schrittplan
-          _StepRow(
-            number: '1',
-            icon: Icons.lightbulb_rounded,
-            title: 'Lumo erklärt',
-            subtitle: 'Eine kleine Mini-Erklärung in einfachen Worten.',
-          ),
-          _StepRow(
-            number: '2',
-            icon: Icons.visibility_rounded,
-            title: 'Beispiel anschauen',
-            subtitle: 'Ich zeige dir, wie es geht.',
-          ),
-          _StepRow(
-            number: '3',
-            icon: Icons.handshake_rounded,
-            title: 'Gemeinsam lösen',
-            subtitle: 'Wir machen eine Aufgabe zusammen.',
-          ),
-          _StepRow(
-            number: '4',
-            icon: Icons.videogame_asset_rounded,
-            title: 'Lumo-Spiel',
-            subtitle: 'Spielerisch festigen.',
-          ),
-          _StepRow(
-            number: '5',
-            icon: Icons.celebration_rounded,
-            title: 'Geschafft',
-            subtitle: 'Zusammenfassung und Belohnung.',
-            isLast: true,
-          ),
-          const SizedBox(height: 18),
-          Center(
-            child: LumoPrimaryButton(
-              label: 'Nachhilfe starten',
-              icon: Icons.play_arrow_rounded,
-              color: LumoColors.purple,
-              onPressed: () {
-                LumoVoice.instance.speak(
-                  'Lass uns gemeinsam üben. Ich helfe dir Schritt für Schritt.',
-                );
-                onStartTutoring();
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  /// Baut einen Tutoring-Plan basierend auf den verfuegbaren Skill-Daten.
-  /// Wenn keine echten Skills vorliegen, nutzt der Planner einen
-  /// sinnvollen Fallback (math.addition).
-  TutoringSessionPlan _buildPlan() {
-    const planner = TutoringSessionPlanner();
-    final skillStates = _deriveSkillStates();
-    final st = appState.state;
-    final childId = 'local_${st.childName.toLowerCase()}_${st.grade}';
-    return planner.plan(
-      childId: childId,
-      skillStates: skillStates,
-    );
-  }
-
-  /// Leitet aus AppState.weakSkills (Map<String,int>) eine Liste von
-  /// SkillStates ab. Hoeherer Wert = haeufiger falsch -> niedrigerer
-  /// masteryScore und hoeherer repetitionNeed.
-  List<SkillState> _deriveSkillStates() {
-    final st = appState.state;
-    final childId = 'local_${st.childName.toLowerCase()}_${st.grade}';
-    final entries = st.weakSkills.entries.toList();
-    if (entries.isEmpty) return const <SkillState>[];
-
-    final result = <SkillState>[];
-    for (final e in entries) {
-      final mastery = (1.0 - (e.value / 6).clamp(0.0, 1.0)).clamp(0.05, 0.6);
-      final repetition = (e.value / 4).clamp(0.3, 1.0);
-      result.add(SkillState(
-        childId: childId,
-        skillId: SkillId(_normalizeSkillId(e.key)),
-        masteryScore: mastery,
-        repetitionNeed: repetition,
-        attempts: e.value * 2,
-        wrong: e.value,
-        currentDifficulty: 1,
-      ));
-    }
-    return result;
-  }
-
-  String _normalizeSkillId(String raw) {
-    final lower = raw.toLowerCase();
-    if (lower.contains('plus')) return 'math.addition';
-    if (lower.contains('minus')) return 'math.subtraction';
-    if (lower.contains('mal')) return 'math.multiplication';
-    if (lower.contains('teil')) return 'math.division';
-    if (lower.contains('lesen')) return 'german.reading';
-    if (lower.contains('schreib')) return 'german.writing';
-    if (lower.contains('rechtschreib')) return 'german.spelling';
-    if (lower.contains('silb')) return 'german.syllables';
-    if (lower.contains('engli')) return 'english.basics';
-    return 'math.addition';
-  }
-
-  String _labelForSkill(SkillId id) {
-    switch (id.value) {
-      case 'math.addition': return 'Plus rechnen';
-      case 'math.subtraction': return 'Minus rechnen';
-      case 'math.multiplication': return 'Malrechnen';
-      case 'math.division': return 'Teilen';
-      case 'german.reading': return 'Lesen';
-      case 'german.writing': return 'Schreiben';
-      case 'german.spelling': return 'Rechtschreibung';
-      case 'german.syllables': return 'Silben';
-      case 'english.basics': return 'Englisch';
-      default: return id.value;
-    }
-  }
+  State<TutoringFlowCard> createState() => _TutoringFlowCardState();
 }
 
-class _StepRow extends StatelessWidget {
-  const _StepRow({
-    required this.number,
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    this.isLast = false,
-  });
+class _TutoringFlowCardState extends State<TutoringFlowCard> {
+  final _lumo = LumoCharacterController();
+  LearningProfileLease? _owner;
+  LearningActivityRecommendation? _recommendation;
+  late int _generation;
+  int _request = 0;
+  bool _loading = true;
+  bool _refreshQueued = false;
+  bool _reasonOpen = false;
+  bool _retrying = false;
+  bool _openingGuided = false;
+  String? _error;
+  String? _saveError;
+  String? _activityError;
 
-  final String number;
-  final IconData icon;
-  final String title;
-  final String subtitle;
-  final bool isLast;
+  static const _body = TextStyle(
+      fontFamily: 'Nunito',
+      fontSize: 18,
+      height: 1.4,
+      fontWeight: FontWeight.w700,
+      color: LumoVisualTokens.white);
+
+  bool get _current =>
+      !_loading &&
+      _error == null &&
+      _owner != null &&
+      widget.appState.isCurrentLearningLease(_owner!) &&
+      _recommendation?.grade == widget.appState.state.grade.clamp(1, 4);
+
+  GuidedLesson? get _lesson {
+    final recommendation = _recommendation;
+    if (!_current || recommendation == null) return null;
+    return GuidedLessonCatalog.schoolIntroduction(
+        subject: recommendation.subject,
+        unit: recommendation.unit,
+        grade: recommendation.grade);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _generation = widget.appState.profileGeneration;
+    widget.appState.addListener(_changed);
+    unawaited(_load());
+  }
+
+  @override
+  void didUpdateWidget(covariant TutoringFlowCard oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.appState == widget.appState) return;
+    oldWidget.appState.removeListener(_changed);
+    widget.appState.addListener(_changed);
+    _generation = widget.appState.profileGeneration;
+    _clear();
+    unawaited(_load());
+  }
+
+  void _clear() {
+    _request++;
+    _owner = null;
+    _recommendation = null;
+    _loading = true;
+    _reasonOpen = false;
+    _retrying = false;
+    _openingGuided = false;
+    _error = null;
+    _saveError = null;
+    _activityError = null;
+  }
+
+  void _changed() {
+    if (_generation != widget.appState.profileGeneration) {
+      _generation = widget.appState.profileGeneration;
+      // Disable old callbacks synchronously, before a new profile can paint.
+      _clear();
+      unawaited(_load());
+    } else if (_owner != null &&
+        widget.appState.isCurrentLearningLease(_owner!)) {
+      _recommend();
+    }
+    _queueRefresh();
+  }
+
+  void _queueRefresh() {
+    if (_refreshQueued || !mounted) return;
+    _refreshQueued = true;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      _refreshQueued = false;
+      if (mounted) setState(() {});
+    });
+  }
+
+  void _recommend() {
+    final owner = _owner;
+    if (owner == null || !widget.appState.isCurrentLearningLease(owner)) return;
+    final next = const ProgressRecommendationService().recommend(
+        grade: widget.appState.state.grade, skills: owner.profile.skills);
+    if (_recommendation?.unit != next.unit ||
+        _recommendation?.subject != next.subject) {
+      _reasonOpen = false;
+    }
+    _recommendation = next;
+  }
+
+  Future<void> _load() async {
+    final request = ++_request;
+    final app = widget.appState;
+    try {
+      final owner = await app.captureLearningProfile();
+      await app.prepareLearningLease(owner);
+      if (!mounted ||
+          request != _request ||
+          app != widget.appState ||
+          !app.isCurrentLearningLease(owner)) {
+        return;
+      }
+      _owner = owner;
+      _recommend();
+      setState(() {
+        _loading = false;
+        _error = null;
+      });
+    } catch (_) {
+      if (!mounted || request != _request || app != widget.appState) return;
+      setState(() {
+        _loading = false;
+        _error = 'Deine Lerndaten konnten nicht sicher geladen werden. '
+            'Wir ändern oder löschen sie nicht.';
+      });
+    }
+  }
+
+  bool _matches(
+          LearningProfileLease owner, LearningActivityRecommendation shown) =>
+      _current &&
+      !_retrying &&
+      !_openingGuided &&
+      identical(owner, _owner) &&
+      identical(shown, _recommendation);
+
+  void _practice(
+      LearningProfileLease owner, LearningActivityRecommendation shown) {
+    if (_matches(owner, shown)) widget.onStartTutoring(shown);
+  }
+
+  Future<void> _guided(LearningProfileLease owner,
+      LearningActivityRecommendation shown, GuidedLesson? lesson) async {
+    if (!_matches(owner, shown)) return;
+    setState(() {
+      _openingGuided = true;
+      _activityError = null;
+    });
+    try {
+      // Keep the real section transition. A second pointer event must not
+      // start another fade or push a second course route.
+      await widget.onStartGuidedLearning(lesson);
+    } catch (_) {
+      if (mounted && identical(_owner, owner)) {
+        _activityError = 'Der Bildkurs konnte nicht geöffnet werden. '
+            'Deine Lerndaten bleiben erhalten. Bitte versuche es erneut.';
+      }
+    } finally {
+      if (mounted && identical(_owner, owner)) {
+        setState(() => _openingGuided = false);
+      }
+    }
+  }
+
+  Future<void> _retrySave(
+      LearningProfileLease owner, LearningActivityRecommendation shown) async {
+    if (!_matches(owner, shown)) return;
+    setState(() {
+      _retrying = true;
+      _saveError = null;
+    });
+    try {
+      // Retry the accepted write, never record another answer or reward.
+      await widget.appState.flushLearningProgress(lease: owner);
+    } catch (_) {
+      if (mounted && identical(_owner, owner)) {
+        _saveError = 'Noch nicht gespeichert. Dein Lernstand bleibt erhalten. '
+            'Du kannst es erneut versuchen.';
+      }
+    } finally {
+      if (mounted && identical(_owner, owner)) {
+        setState(() => _retrying = false);
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _request++;
+    widget.appState.removeListener(_changed);
+    _lumo.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.only(bottom: isLast ? 0 : 10),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: LumoColors.purple.withOpacity(0.12),
-              borderRadius: BorderRadius.circular(12),
-            ),
-            child: Stack(
-              alignment: Alignment.center,
-              children: [
-                Icon(icon, color: LumoColors.purple, size: 18),
-                Positioned(
-                  top: 0,
-                  right: 0,
-                  child: Container(
-                    width: 14,
-                    height: 14,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(
-                      color: LumoColors.purple,
-                      shape: BoxShape.circle,
-                    ),
-                    child: Text(
-                      number,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 9,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 14,
-                    fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 12,
-                    fontWeight: FontWeight.w600,
-                    color: LumoColors.ink500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+    final recommendation = _recommendation;
+    final lesson = _lesson;
+    final settings = widget.appState.state.settings;
+    final quiet = settings.reduceAnimations ||
+        settings.calmMode ||
+        MediaQuery.disableAnimationsOf(context);
+    final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.35;
+    return LumoGlassCard(
+      key: const ValueKey('tutoring-real-learning-path'),
+      surfaceOpacity: .9,
+      child: Material(
+        color: Colors.transparent,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            if (largeText)
+              _header()
+            else
+              Row(
+                children: [
+                  LumoCharacter(
+                      pose: LumoDesignFoxPose.bookPoint,
+                      size: 100,
+                      intro: false,
+                      idleHops: false,
+                      reduceMotion: quiet,
+                      controller: _lumo),
+                  const SizedBox(width: 14),
+                  Expanded(child: _header()),
+                ],
+              ),
+            const SizedBox(height: 18),
+            if (_loading)
+              const Text('Dein Lernweg wird geladen…', style: _body)
+            else if (_error != null) ...[
+              Text(_error!,
+                  key: const ValueKey('tutoring-read-error'), style: _body),
+              const SizedBox(height: 12),
+              FilledButton.icon(
+                key: const ValueKey('tutoring-read-retry'),
+                style: _goldButton(),
+                onPressed: () {
+                  setState(_clear);
+                  unawaited(_load());
+                },
+                icon: const Icon(Icons.refresh_rounded),
+                label: const Text('Erneut laden'),
+              ),
+            ] else if (recommendation != null && _current)
+              LayoutBuilder(builder: (context, constraints) {
+                final suggestion = _suggestion(recommendation);
+                final activities = _activities(lesson);
+                final evidence = _evidence(recommendation);
+                if (constraints.maxWidth >= 680 && !largeText) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                          flex: 3,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              suggestion,
+                              const SizedBox(height: 14),
+                              evidence,
+                            ],
+                          )),
+                      const SizedBox(width: 24),
+                      Expanded(flex: 2, child: activities),
+                    ],
+                  );
+                }
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    suggestion,
+                    const SizedBox(height: 14),
+                    activities,
+                    const SizedBox(height: 18),
+                    evidence,
+                  ],
+                );
+              }),
+          ],
+        ),
       ),
     );
   }
+
+  Widget _header() => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Lumos Lernweg',
+              style: _body.copyWith(fontSize: 26, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 6),
+          const Text('Kleine Schritte. Du wählst das Tempo.', style: _body),
+        ],
+      );
+
+  Widget _suggestion(LearningActivityRecommendation recommendation) => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(recommendation.title,
+              style: _body.copyWith(fontSize: 22, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 10),
+          Container(
+            padding: const EdgeInsets.all(14),
+            decoration: BoxDecoration(
+              color: const Color(0xFF123B65),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(
+                  color: LumoVisualTokens.cyan.withValues(alpha: .5)),
+            ),
+            child: Text(
+                '${recommendation.subject} · '
+                '${recommendation.unit}',
+                key: const ValueKey('tutoring-recommended-topic'),
+                style: _body.copyWith(fontWeight: FontWeight.w900)),
+          ),
+          const SizedBox(height: 12),
+          Text(recommendation.message, style: _body),
+        ],
+      );
+
+  Widget _evidence(LearningActivityRecommendation recommendation) {
+    final owner = _owner!;
+    final pending = owner.profile.hasUnsavedChanges;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(
+          pending
+              ? 'Ein Lernstand ist noch nicht sicher gespeichert. '
+                  'Dieser Vorschlag ist vorläufig.'
+              : recommendation.evidenceAttempts == 0
+                  ? 'Für diesen Vorschlag gibt es noch keine passenden '
+                      'gespeicherten Antworten.'
+                  : 'Grundlage: ${recommendation.evidenceAttempts} '
+                      'gespeicherte Antworten zu diesem Thema.',
+          key: const ValueKey('tutoring-real-evidence'),
+          style: _body.copyWith(fontSize: 16, color: LumoVisualTokens.muted),
+        ),
+        if (pending) ...[
+          const SizedBox(height: 10),
+          OutlinedButton.icon(
+            key: const ValueKey('tutoring-save-retry'),
+            onPressed: _retrying || _openingGuided
+                ? null
+                : () => unawaited(_retrySave(owner, recommendation)),
+            style: _outlineButton(),
+            icon: const Icon(Icons.save_rounded),
+            label: Text(
+                _retrying ? 'Wird gespeichert…' : 'Speichern erneut versuchen'),
+          ),
+          if (_saveError != null) ...[
+            const SizedBox(height: 10),
+            Text(_saveError!, style: _body),
+          ],
+        ],
+        const SizedBox(height: 8),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: TextButton.icon(
+            key: const ValueKey('tutoring-reason-toggle'),
+            style: TextButton.styleFrom(
+                foregroundColor: LumoVisualTokens.cyanBright,
+                minimumSize: const Size(64, 56),
+                textStyle: _body.copyWith(fontSize: 17)),
+            onPressed: () {
+              if (!_matches(owner, recommendation)) return;
+              setState(() => _reasonOpen = !_reasonOpen);
+              if (_reasonOpen) _lumo.think();
+            },
+            icon: Icon(_reasonOpen
+                ? Icons.expand_less_rounded
+                : Icons.info_outline_rounded),
+            label: Text(
+                _reasonOpen ? 'Begründung einklappen' : 'Warum dieses Thema?'),
+          ),
+        ),
+        if (_reasonOpen) ...[
+          const SizedBox(height: 6),
+          Text(
+              pending
+                  ? 'Noch nicht alle erfassten Lernereignisse sind sicher '
+                      'gespeichert. Dieser Vorschlag ist keine feste '
+                      'Bewertung deiner Fähigkeiten.'
+                  : recommendation.reason,
+              key: const ValueKey('tutoring-real-reason'),
+              style: _body),
+          const SizedBox(height: 8),
+          const Text(
+              'Das ist ein Vorschlag, keine Bewertung von dir. '
+              'Du darfst ein anderes Thema wählen.',
+              style: _body),
+        ],
+      ],
+    );
+  }
+
+  Widget _activities(GuidedLesson? lesson) {
+    final owner = _owner!;
+    final recommendation = _recommendation!;
+    final enabled = _current && !_retrying && !_openingGuided;
+    final available = GuidedLessonCatalog.all
+        .where((course) => course.grade <= widget.appState.state.grade)
+        .length;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (lesson != null) ...[
+          Text('Bildkurs: ${lesson.title}',
+              style: _body.copyWith(fontSize: 20, fontWeight: FontWeight.w900)),
+          const SizedBox(height: 8),
+          Text('${lesson.steps.length} Kursschritte, in deinem Tempo.',
+              style: _body.copyWith(fontSize: 16)),
+          const SizedBox(height: 14),
+          FilledButton.icon(
+            key: const ValueKey('tutoring-guided-start'),
+            onPressed: enabled
+                ? () => unawaited(_guided(owner, recommendation, lesson))
+                : null,
+            style: _goldButton(),
+            icon: const Icon(Icons.school_rounded),
+            label: Text(
+                _openingGuided ? 'Kurs wird geöffnet…' : 'Mit Lumo verstehen'),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            key: const ValueKey('tutoring-practice-start'),
+            onPressed: enabled ? () => _practice(owner, recommendation) : null,
+            style: _outlineButton(),
+            icon: const Icon(Icons.edit_rounded),
+            label: const Text('Zum Thema üben'),
+          ),
+        ] else ...[
+          FilledButton.icon(
+            key: const ValueKey('tutoring-practice-start'),
+            onPressed: enabled ? () => _practice(owner, recommendation) : null,
+            style: _goldButton(),
+            icon: const Icon(Icons.play_arrow_rounded),
+            label: const Text('Empfohlenes Thema üben'),
+          ),
+          const SizedBox(height: 18),
+          const Text('Geführte Themen entdecken', style: _body),
+          const SizedBox(height: 8),
+          Text(
+              available == 1
+                  ? 'Eine geführte Einführung ist für deinen '
+                      'Schulstoff verfügbar.'
+                  : '$available geführte Einführungen sind für '
+                      'deinen Schulstoff verfügbar.',
+              style: _body.copyWith(fontSize: 16)),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            key: const ValueKey('tutoring-guided-start'),
+            onPressed: enabled
+                ? () => unawaited(_guided(owner, recommendation, lesson))
+                : null,
+            style: _outlineButton(),
+            icon: const Icon(Icons.auto_stories_rounded),
+            label: Text(_openingGuided
+                ? 'Kurse werden geöffnet…'
+                : 'Bildkurse anschauen'),
+          ),
+        ],
+        const SizedBox(height: 10),
+        const Text('Keine Pflicht. Du kannst jederzeit etwas anderes lernen.',
+            style: _body),
+        if (_activityError != null) ...[
+          const SizedBox(height: 10),
+          Text(_activityError!,
+              key: const ValueKey('tutoring-navigation-error'), style: _body),
+        ],
+      ],
+    );
+  }
+
+  ButtonStyle _goldButton() => FilledButton.styleFrom(
+        minimumSize: const Size(64, 56),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        backgroundColor: LumoVisualTokens.gold,
+        foregroundColor: const Color(0xFF172844),
+        textStyle: _body.copyWith(fontSize: 18, fontWeight: FontWeight.w900),
+      );
+
+  ButtonStyle _outlineButton() => OutlinedButton.styleFrom(
+        minimumSize: const Size(64, 56),
+        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+        foregroundColor: LumoVisualTokens.white,
+        backgroundColor: const Color(0xFF123454),
+        side: BorderSide(color: LumoVisualTokens.cyan.withValues(alpha: .75)),
+        textStyle: _body.copyWith(fontSize: 18, fontWeight: FontWeight.w900),
+      );
 }

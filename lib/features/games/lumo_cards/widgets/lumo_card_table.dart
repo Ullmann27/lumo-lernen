@@ -16,8 +16,13 @@ import 'package:flutter/material.dart';
 import '../../../../widgets/design/lumo_design_system.dart';
 
 class LumoCardTable extends StatefulWidget {
-  const LumoCardTable({super.key, required this.child});
+  const LumoCardTable({
+    super.key,
+    required this.child,
+    this.reduceMotion = false,
+  });
   final Widget child;
+  final bool reduceMotion;
 
   @override
   State<LumoCardTable> createState() => _LumoCardTableState();
@@ -34,7 +39,28 @@ class _LumoCardTableState extends State<LumoCardTable>
     _dustCtrl = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 20),
-    )..repeat();
+    );
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _syncMotion();
+  }
+
+  @override
+  void didUpdateWidget(covariant LumoCardTable oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    _syncMotion();
+  }
+
+  void _syncMotion() {
+    if (widget.reduceMotion || MediaQuery.disableAnimationsOf(context)) {
+      _dustCtrl.stop();
+      _dustCtrl.value = 0;
+    } else if (!_dustCtrl.isAnimating) {
+      _dustCtrl.repeat();
+    }
   }
 
   @override
@@ -52,7 +78,6 @@ class _LumoCardTableState extends State<LumoCardTable>
       dimmed: true,
       child: Stack(
         children: [
-
           // ── Layer 2: Vignette an den Raendern ──
           // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
           Positioned.fill(

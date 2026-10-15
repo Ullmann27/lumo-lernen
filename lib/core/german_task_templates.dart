@@ -1,5 +1,7 @@
 import 'primary_school_word_data.dart';
 
+part 'german_curriculum_extensions.dart';
+
 /// Deterministische Deutsch-Templates für Volksschule 1-4.
 class GermanTaskTemplates {
   const GermanTaskTemplates._();
@@ -208,9 +210,11 @@ class GermanTaskTemplates {
     final normalized = _normalizeUnit(unit);
     if (normalized == 'Alle') return true;
     final capped = grade.clamp(1, 4);
-    return templates.any((template) => template.grade <= capped &&
+    return templates.any((template) =>
+        template.grade <= capped &&
         (_normalizeUnit(template.unit) == normalized ||
-            (_legacyUnitAliases[normalized]?.contains(template.unit) ?? false)));
+            (_legacyUnitAliases[normalized]?.contains(template.unit) ??
+                false)));
   }
 
   static List<GermanTaskTemplate> templatesForGrade(int grade, {String? unit}) {
@@ -451,7 +455,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.synonyms:
         final item = _synonyms[_positive(seed, _synonyms.length)];
         return _choice(
-            'Welches Wort bedeutet dasselbe wie ${item.left}?',
+            'Welches Wort hat eine ähnliche Bedeutung wie „${item.left}“?',
             item.right,
             <String>[item.right, ...item.distractors],
             'Synonyme haben eine ähnliche Bedeutung.',
@@ -536,7 +540,7 @@ class GermanTaskTemplate {
       case GermanTemplateKind.directSpeech:
         final item = _directSpeech[_positive(seed, _directSpeech.length)];
         return _choice(
-            'Wo steht die wörtliche Rede in Anführungszeichen und der Begleitsatz außerhalb?',
+            'Welcher Satz setzt die Anführungszeichen und die Satzzeichen bei der direkten Rede richtig?',
             item.answer,
             <String>[item.answer, ...item.distractors],
             'Direkte Rede steht in Anführungszeichen und wird mit Begleitsatz verbunden.',
@@ -606,10 +610,10 @@ class GermanTaskTemplate {
       case GermanTemplateKind.adverbs:
         final item = _adverbItems[_positive(seed, _adverbItems.length)];
         return _choice(
-          'Welches Wort sagt hier, wann, wie oft oder wo etwas passiert? „${item.sentence}“',
+          'Welches Wort sagt hier, wann, wie, wie oft oder wo etwas passiert? „${item.sentence}“',
           item.answer,
           <String>[item.answer, ...item.distractors],
-          'Diese Umstandswörter (Adverbien) nennen eine Zeit oder einen Ort: heute, morgen, draußen, dort.',
+          'Umstandswörter nennen zum Beispiel eine Zeit, einen Ort oder eine Art und Weise: heute, draußen, gern.',
           'adverb',
         );
       case GermanTemplateKind.plusquamperfect:
@@ -882,6 +886,7 @@ const List<_FamilyItem> _families = <_FamilyItem>[
     'essen, Teller, Suppe',
     'gehen, Weg, Schuh'
   ]),
+  ..._familiesExtension,
 ];
 
 const List<_PluralItem> _plurals = <_PluralItem>[
@@ -901,6 +906,7 @@ const List<_PluralItem> _plurals = <_PluralItem>[
       'der Baum', 'die Bäume', <String>['die Baume', 'die Baums', 'der Bäume']),
   _PluralItem('die Schule', 'die Schulen',
       <String>['die Schules', 'der Schulen', 'die Schule']),
+  ..._pluralsExtension,
 ];
 
 const List<_DiminutiveItem> _diminutives = <_DiminutiveItem>[
@@ -910,6 +916,7 @@ const List<_DiminutiveItem> _diminutives = <_DiminutiveItem>[
   _DiminutiveItem(
       'Katze', 'Kätzchen', <String>['Katzen', 'Katzlein', 'Katzung']),
   _DiminutiveItem('Hund', 'Hündchen', <String>['Hunde', 'Hundchen', 'Hundung']),
+  ..._diminutivesExtension,
 ];
 
 const List<_PairItem> _opposites = <_PairItem>[
@@ -919,6 +926,7 @@ const List<_PairItem> _opposites = <_PairItem>[
   _PairItem('laut', 'leise', <String>['hell', 'lang', 'rot']),
   _PairItem('schnell', 'langsam', <String>['hoch', 'frisch', 'voll']),
   _PairItem('voll', 'leer', <String>['spitz', 'rund', 'süß']),
+  ..._oppositesExtension,
 ];
 
 const List<_CategoryItem> _categories = <_CategoryItem>[
@@ -934,6 +942,7 @@ const List<_CategoryItem> _categories = <_CategoryItem>[
       <String>['Blumen', 'Körperteile', 'Berufe']),
   _CategoryItem(<String>['Semmel', 'Topfen', 'Marille'], 'Lebensmittel',
       <String>['Werkzeuge', 'Verkehrszeichen', 'Formen']),
+  ..._categoriesExtension,
 ];
 
 const List<_PairItem> _synonyms = <_PairItem>[
@@ -943,6 +952,7 @@ const List<_PairItem> _synonyms = <_PairItem>[
   _PairItem('beginnen', 'anfangen', <String>['enden', 'verlieren', 'fallen']),
   _PairItem('klug', 'gescheit', <String>['müde', 'nass', 'leer']),
   _PairItem('fröhlich', 'lustig', <String>['wütend', 'hart', 'gerade']),
+  ..._synonymsExtension,
 ];
 
 const List<_PairItem> _pastTenses = <_PairItem>[
@@ -953,6 +963,7 @@ const List<_PairItem> _pastTenses = <_PairItem>[
   _PairItem('essen', 'aß', <String>['esste', 'isst', 'geesst']),
   _PairItem(
       'schreiben', 'schrieb', <String>['schreibte', 'schreibt', 'geschreibt']),
+  ..._pastTensesExtension,
 ];
 
 const List<_ComparisonItem> _comparisons = <_ComparisonItem>[
@@ -972,6 +983,7 @@ const List<_ComparisonItem> _comparisons = <_ComparisonItem>[
     'mehr, am vielsten',
     'viele, am meisten'
   ]),
+  ..._comparisonsExtension,
 ];
 
 const List<_VerbFormItem> _verbForms = <_VerbFormItem>[
@@ -985,6 +997,7 @@ const List<_VerbFormItem> _verbForms = <_VerbFormItem>[
       <String>['rechne', 'rechnen', 'rechnest']),
   _VerbFormItem('Ihr _____ (singen) ein Lied.', 'singt',
       <String>['singe', 'singen', 'singst']),
+  ..._verbFormsExtension,
 ];
 
 const List<_SentencePartItem> _sentenceParts = <_SentencePartItem>[
@@ -996,6 +1009,7 @@ const List<_SentencePartItem> _sentenceParts = <_SentencePartItem>[
       <String>['Opa', 'fährt', 'mit dem Zug']),
   _SentencePartItem('Im Winter rodeln die Kinder am Hügel.', 'Wann?',
       'Im Winter', <String>['die Kinder', 'am Hügel', 'rodeln']),
+  ..._sentencePartsExtension,
 ];
 
 const List<_DirectSpeechItem> _directSpeech = <_DirectSpeechItem>[
@@ -1014,6 +1028,7 @@ const List<_DirectSpeechItem> _directSpeech = <_DirectSpeechItem>[
     '„Mama fragt: Kommst du mit?“',
     'Mama fragt: Kommst du mit?'
   ]),
+  ..._directSpeechExtension,
 ];
 
 const List<_CommaItem> _commas = <_CommaItem>[
@@ -1033,6 +1048,7 @@ const List<_CommaItem> _commas = <_CommaItem>[
     'Im Federpennal sind Bleistift, Schere Kleber und Lineal.',
     'Im Federpennal sind Bleistift Schere, Kleber, und Lineal.'
   ]),
+  ..._commasExtension,
 ];
 
 const List<_CompoundItem> _compounds = <_CompoundItem>[
@@ -1062,6 +1078,7 @@ const List<_CompoundItem> _compounds = <_CompoundItem>[
     'ein Schild im Garten',
     'ein Spielplan'
   ]),
+  ..._compoundsExtension,
 ];
 
 List<String> _nouns(int seed, int grade,
@@ -1145,6 +1162,7 @@ const List<_CaseItem> _caseNomAkkItems = <_CaseItem>[
       <String>['Wen-Fall', 'Wem-Fall']),
   _CaseItem('Mama bäckt einen Kuchen.', 'einen Kuchen', 'Wen-Fall',
       <String>['Wer-Fall', 'Wem-Fall']),
+  ..._caseNomAkkItemsExtension,
 ];
 
 const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
@@ -1160,6 +1178,7 @@ const List<_SentenceMcItem> _capitalizationItems = <_SentenceMcItem>[
       'Der hund jagt eine Katze.', 'Hund', <String>['jagt', 'eine', 'Der']),
   _SentenceMcItem('Ich male einen schönen baum.', 'Baum',
       <String>['male', 'einen', 'schönen']),
+  ..._capitalizationItemsExtension,
 ];
 
 const List<_SimpleMcItem> _ieOrIItems = <_SimpleMcItem>[
@@ -1175,6 +1194,7 @@ const List<_SimpleMcItem> _ieOrIItems = <_SimpleMcItem>[
   _SimpleMcItem('Knie', <String>['Kni', 'Knih', 'Kniee']),
   _SimpleMcItem('Sieg', <String>['Sig', 'Siegk', 'Siegge']),
   _SimpleMcItem('hier', <String>['hir', 'hihr', 'hiher']),
+  ..._ieOrIItemsExtension,
 ];
 
 const List<_CaseItem> _fourCasesItems = <_CaseItem>[
@@ -1194,6 +1214,7 @@ const List<_CaseItem> _fourCasesItems = <_CaseItem>[
       <String>['Wer-Fall (1.)', 'Wen-Fall (4.)']),
   _CaseItem('Die Lehrerin lobt den Schüler.', 'den Schüler', 'Wen-Fall (4.)',
       <String>['Wer-Fall (1.)', 'Wem-Fall (3.)']),
+  ..._fourCasesItemsExtension,
 ];
 
 const List<_SentenceMcItem> _dassDasItems = <_SentenceMcItem>[
@@ -1205,6 +1226,7 @@ const List<_SentenceMcItem> _dassDasItems = <_SentenceMcItem>[
   _SentenceMcItem('Er sagt, ___ er müde ist.', 'dass', <String>['das', 'daß']),
   _SentenceMcItem(
       'Ich sehe, ___ Lumo dort schläft.', 'dass', <String>['das', 'daß']),
+  ..._dassDasItemsExtension,
 ];
 
 const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
@@ -1219,6 +1241,7 @@ const List<_SentenceMcItem> _adverbItems = <_SentenceMcItem>[
   _SentenceMcItem(
       'Wir gehen oft schwimmen.', 'oft', <String>['Wir', 'gehen', 'schwimmen']),
   _SentenceMcItem('Anna bleibt hier.', 'hier', <String>['Anna', 'bleibt']),
+  ..._adverbItemsExtension,
 ];
 
 const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
@@ -1234,4 +1257,5 @@ const List<_VerbFormMcItem> _plusquamItems = <_VerbFormMcItem>[
       <String>['spielt', 'spielte', 'wird spielen']),
   _VerbFormMcItem(
       'singen', 'hatte gesungen', <String>['singt', 'sang', 'wird singen']),
+  ..._plusquamItemsExtension,
 ];
