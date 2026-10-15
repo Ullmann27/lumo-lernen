@@ -23,9 +23,13 @@ import traceback
 PROMPT = re.compile(r'(\d+) \+ (\d+) = \?')
 DAILY = re.compile(r'(\d+) von (\d+) Aufgaben geschafft')
 WALLET_KEY = 'flutter.lumo_reward_wallet_v1'
-# Die Startseiten-Kachel „Lernen“ trägt diesen Untertitel. Das Wort „Lernen“ allein steht
-# auf breiten Bildschirmen auch als nicht antippbare Überschrift in der Seitenleiste.
-LEARN_TILE = 'Mathe, Deutsch und mehr'
+# Exact Android accessibility XML from run 38705170622 contains
+# 'Lernen. Mathe, Deutsch und mehr\\nLernen' as ONE semantic node: the old
+# subtitle-only string is never a separate node and the probe timed out.
+# The persistent, clickable navigation tab has an exact 'Lernen' label and
+# a smaller hitbox than the homepage tile; creative.flutter_tap chooses it.
+# It also works at the Fold widths used in the later exploratory tour.
+LEARN_TILE = 'Lernen'
 
 
 def load_creative():

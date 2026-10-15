@@ -819,9 +819,12 @@ def main() -> int:
         base.adb('logcat', '-c')
         base.launch(out, 'full-race-start')
         open_kart('01-garage')
+        # Screenshots/recognized labels in Android run 38705170622 show
+        # "1 Modus" on the live Godot menu, not obsolete "Dein Abenteuer".
+        # Preserve strict actual viewport and touch checks with this label.
         if os.environ.get('LUMO_FOLD_PROBE') == '1':
-            result['menu_resize'] = fold_cycle('01-garage-resize', ('Einzelrennen', 'Dein Abenteuer', 'Weiter'))
-            result['menu_resize']['preserved_garage_step'] = 'Dein Abenteuer (Schritt 1 Modus von 5)'
+            result['menu_resize'] = fold_cycle('01-garage-resize', ('Einzelrennen', '1 Modus', 'Weiter'))
+            result['menu_resize']['preserved_garage_step'] = '1 Modus (Schritt 1 von 5; aktuelle Menübeschriftung)'
         for step in range(4):
             tap_native('Weiter', f'garage-next-{step + 1}')
         tap_native('Rennen starten', 'garage-start')

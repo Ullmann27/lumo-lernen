@@ -15,6 +15,7 @@ import '../../widgets/fox/lumo_character.dart';
 import '../journal/lumo_journal_screen.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
 import '../learning/lumo_rechentricks_poster_screen.dart';
+import '../learning/curriculum_activities_screen.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
@@ -293,50 +294,117 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  _ResponsiveCards(
-                    columns: wide ? 2 : 1,
-                    children: [
-                      _SubjectCard(
-                        subject: 'Mathematik',
-                        subtitle: 'Zahlen, Rechnen und Formen',
-                        icon: Icons.calculate_rounded,
-                        color: const Color(0xFF93540C),
-                        completed: _correctFor('Mathematik'),
-                        onTap: () => _startPractice('Mathematik'),
-                      ),
-                      _SubjectCard(
-                        subject: 'Deutsch',
-                        subtitle: 'Buchstaben, Wörter und Sätze',
-                        icon: Icons.menu_book_rounded,
-                        color: const Color(0xFF6D43AC),
-                        completed: _correctFor('Deutsch'),
-                        onTap: () => _startPractice('Deutsch'),
-                      ),
-                      _SubjectCard(
-                        subject: 'Sachunterricht',
-                        subtitle: 'Deine Welt entdecken',
-                        icon: Icons.public_rounded,
-                        color: const Color(0xFF087A6A),
-                        completed: _correctFor('Sachunterricht'),
-                        onTap: () => _startPractice('Sachunterricht'),
-                      ),
-                      _SubjectCard(
-                        subject: 'Englisch',
-                        subtitle: 'Wörter und kleine Gespräche',
-                        icon: Icons.language_rounded,
-                        color: const Color(0xFF1766AE),
-                        completed: _correctFor('Englisch'),
-                        onTap: () => _startPractice('Englisch'),
-                      ),
-                      _SubjectCard(
-                        subject: 'Logik',
-                        subtitle: 'Muster und knifflige Rätsel',
-                        icon: Icons.extension_rounded,
-                        color: const Color(0xFF326EAC),
-                        completed: _correctFor('Logik'),
-                        onTap: () => _startPractice('Logik'),
-                      ),
-                    ],
+                  LayoutBuilder(
+                    builder: (context, bounds) {
+                      final scale = MediaQuery.textScalerOf(context).scale(1);
+                      final columns = bounds.maxWidth >= 700 && scale <= 1.3 ? 3 : 2;
+                      const gap = 10.0;
+                      final width = (bounds.maxWidth - (columns - 1) * gap) / columns;
+                      final grade = appState.state.grade;
+                      final cards = <Widget>[
+                        _SubjectCard(
+                          subject: 'Mathematik',
+                          subtitle: 'Zahlen, Rechnen und Formen',
+                          icon: Icons.calculate_rounded,
+                          color: const Color(0xFFFFC04A),
+                          completed: _correctFor('Mathematik'),
+                          onTap: () => _startPractice('Mathematik'),
+                        ),
+                        _SubjectCard(
+                          subject: 'Deutsch',
+                          subtitle: 'Buchstaben und Wörter',
+                          icon: Icons.menu_book_rounded,
+                          color: const Color(0xFFD6A0FF),
+                          completed: _correctFor('Deutsch'),
+                          onTap: () => _startPractice('Deutsch'),
+                        ),
+                        _SubjectCard(
+                          subject: 'Lesen',
+                          subtitle: 'Geschichten verstehen',
+                          icon: Icons.auto_stories_rounded,
+                          color: const Color(0xFF86E8A1),
+                          completed: _correctFor('Lesen'),
+                          onTap: _startReading,
+                        ),
+                        _SubjectCard(
+                          subject: 'Schreiben',
+                          subtitle: 'Buchstaben gestalten',
+                          icon: Icons.edit_rounded,
+                          color: const Color(0xFFFF91BB),
+                          completed: _correctFor('Schreiben'),
+                          onTap: () => _startPractice('Schreiben'),
+                        ),
+                        _SubjectCard(
+                          subject: 'Englisch',
+                          subtitle: 'Hello! Let us learn',
+                          icon: Icons.translate_rounded,
+                          color: const Color(0xFF83D5FF),
+                          completed: _correctFor('Englisch'),
+                          onTap: () => _startPractice('Englisch'),
+                        ),
+                        _SubjectCard(
+                          subject: 'Sachunterricht',
+                          subtitle: 'Die Welt erforschen',
+                          icon: Icons.public_rounded,
+                          color: const Color(0xFF70E3D4),
+                          completed: _correctFor('Sachunterricht'),
+                          onTap: () => _startPractice('Sachunterricht'),
+                        ),
+                        _SubjectCard(
+                          subject: 'Musik',
+                          subtitle: 'Hören und musizieren',
+                          icon: Icons.music_note_rounded,
+                          color: const Color(0xFFB9A6FF),
+                          completed: _correctFor('Musik'),
+                          onTap: () => _open(context,
+                            CurriculumActivitiesScreen(grade: grade, subject: 'Musik')),
+                        ),
+                        _SubjectCard(
+                          subject: 'Kunst und Gestaltung',
+                          subtitle: 'Kreativ gestalten',
+                          icon: Icons.palette_rounded,
+                          color: const Color(0xFFFF9E9E),
+                          completed: _correctFor('Kunst und Gestaltung'),
+                          onTap: () => _open(context,
+                            CurriculumActivitiesScreen(
+                              grade: grade, subject: 'Kunst und Gestaltung')),
+                        ),
+                        _SubjectCard(
+                          subject: 'Technik und Design',
+                          subtitle: 'Erfinden und bauen',
+                          icon: Icons.handyman_rounded,
+                          color: const Color(0xFF80DCE7),
+                          completed: _correctFor('Technik und Design'),
+                          onTap: () => _open(context,
+                            CurriculumActivitiesScreen(
+                              grade: grade, subject: 'Technik und Design')),
+                        ),
+                      ];
+                      return Wrap(
+                        spacing: gap, runSpacing: gap,
+                        children: [
+                          for (final card in cards)
+                            SizedBox(
+                              width: width,
+                              height: 198.0 * scale.clamp(1.0, 1.3).toDouble(),
+                              child: card,
+                            ),
+                        ],
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    key: const ValueKey('home-logic-shortcut'),
+                    onPressed: () => _startPractice('Logik'),
+                    icon: const Icon(Icons.psychology_alt_rounded),
+                    label: const Text('Logik · Rätsel und Denksport'),
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: LumoVisualTokens.cyanBright,
+                      side: BorderSide(
+                        color: LumoVisualTokens.cyanBright.withOpacity(.5)),
+                      minimumSize: const Size.fromHeight(48),
+                    ),
                   ),
                   const SizedBox(height: 10),
                   Card(
@@ -853,14 +921,12 @@ class _RecommendationCard extends StatelessWidget {
       );
 }
 
+/// Neun navigierbare Lerninseln aus originalen freigestellten Lumo-Assets.
 class _SubjectCard extends StatelessWidget {
-  const _SubjectCard(
-      {required this.subject,
-      required this.subtitle,
-      required this.icon,
-      required this.color,
-      required this.completed,
-      required this.onTap});
+  const _SubjectCard({
+    required this.subject, required this.subtitle, required this.icon,
+    required this.color, required this.completed, required this.onTap,
+  });
   final String subject;
   final String subtitle;
   final IconData icon;
@@ -868,67 +934,129 @@ class _SubjectCard extends StatelessWidget {
   final int completed;
   final VoidCallback onTap;
 
-  @override
-  Widget build(BuildContext context) => LumoGlassCard(
-        padding: EdgeInsets.zero,
-        color: LumoVisualTokens.glassRow,
-        child: Material(
-          color: Colors.transparent,
-          child: ListTile(
-            contentPadding:
-                const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-            leading: Icon(icon, color: color, size: 30),
-            title: Text(
-              subject,
-              style: LumoTextStyles.heading3
-                  .copyWith(color: LumoVisualTokens.white),
-            ),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(top: 4),
-              child: Text(
-                '$subtitle\n$completed ${completed == 1 ? 'Aufgabe' : 'Aufgaben'} geschafft',
-                style: const TextStyle(color: LumoVisualTokens.muted),
-              ),
-            ),
-            trailing: const Icon(Icons.chevron_right_rounded,
-                size: 20, color: LumoVisualTokens.cyan),
-            onTap: onTap,
-          ),
-        ),
-      );
-}
-
-class _ResponsiveCards extends StatelessWidget {
-  const _ResponsiveCards({required this.columns, required this.children});
-  final int columns;
-  final List<Widget> children;
+  String get shortName => switch (subject) {
+    'Mathematik' => 'Mathe',
+    'Sachunterricht' => 'Sachkunde',
+    'Kunst und Gestaltung' => 'Kunst',
+    'Technik und Design' => 'Technik',
+    _ => subject,
+  };
+  String? get artwork => switch (subject) {
+    'Deutsch' => 'assets/lumo_design/icons/book_open.png',
+    'Lesen' => 'assets/lumo_design/buildings/book_arch.webp',
+    'Technik und Design' => 'assets/lumo_design/icons/wrench.webp',
+    _ => null,
+  };
 
   @override
   Widget build(BuildContext context) {
-    if (columns == 1) {
-      return Column(children: [
-        for (final child in children)
-          Padding(padding: const EdgeInsets.only(bottom: 10), child: child),
-      ]);
-    }
-    return Column(children: [
-      for (var index = 0; index < children.length; index += 2)
-        Padding(
-          padding: const EdgeInsets.only(bottom: 10),
-          child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
-            Expanded(child: children[index]),
-            const SizedBox(width: 10),
-            Expanded(
-                child: index + 1 < children.length
-                    ? children[index + 1]
-                    : const SizedBox.shrink()),
-          ]),
+    final earned = completed >= 10 ? 3 : completed >= 5 ? 2 :
+        completed > 0 ? 1 : 0;
+    return Semantics(
+      button: true, label: subject + ': ' + subtitle,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          key: ValueKey('home-island-' + shortName.toLowerCase()),
+          borderRadius: BorderRadius.circular(22),
+          onTap: onTap,
+          child: Ink(
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter, end: Alignment.bottomCenter,
+                colors: [Color(0xE9123D79), Color(0xE7081C42)],
+              ),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: color.withOpacity(.66), width: 1.7),
+              boxShadow: [BoxShadow(
+                color: color.withOpacity(.15),
+                blurRadius: 16, offset: const Offset(0, 6))],
+            ),
+            child: Stack(
+              alignment: Alignment.center,
+              children: [
+                Positioned(
+                  top: 29, left: 0, right: 0, height: 117,
+                  child: ExcludeSemantics(
+                    child: Image.asset(
+                      'assets/lumo_design/nature/island_grass.webp',
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 4, left: 0, right: 0, height: 91,
+                  child: Center(
+                    child: ExcludeSemantics(
+                      child: artwork != null
+                        ? Image.asset(artwork!, width: 76, height: 76,
+                            fit: BoxFit.contain)
+                        : Icon(icon, color: color, size: 62),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 45, left: 5, right: 5,
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 5, vertical: 6),
+                    decoration: BoxDecoration(
+                      color: const Color(0xEF09244E),
+                      border: Border.all(color: color.withOpacity(.72)),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        shortName, maxLines: 1,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito', color: Colors.white,
+                          fontWeight: FontWeight.w900, fontSize: 16),
+                      ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  bottom: 21, left: 0, right: 0,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (var i = 0; i < 3; i++)
+                        Icon(
+                          i < earned ? Icons.star_rounded
+                              : Icons.star_outline_rounded,
+                          size: 19,
+                          color: i < earned
+                              ? const Color(0xFFFFD35C)
+                              : Colors.white54,
+                        ),
+                    ],
+                  ),
+                ),
+                Positioned(
+                  bottom: 5, left: 3, right: 3,
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      completed.toString() + ' ' +
+                          (completed == 1 ? 'Aufgabe' : 'Aufgaben') +
+                          ' geschafft',
+                      maxLines: 1,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito', color: Colors.white70,
+                        fontSize: 10, fontWeight: FontWeight.w700),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         ),
-    ]);
+      ),
+    );
   }
 }
 
-/// Bild 01: Lumo winkt im Kart, links „Hallo!“, rechts der Spruch.
 class _HomeHero extends StatelessWidget {
   const _HomeHero(
       {required this.name,

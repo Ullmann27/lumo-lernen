@@ -1775,34 +1775,38 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                           foregroundColor: LumoVisualTokens.white,
                           backgroundColor: const Color(0xFF132E58),
                           side: BorderSide(color: subject.color.withOpacity(.65)),
-                          minimumSize: const Size(0, 78),
+                          minimumSize: const Size(0, 100),
                           padding: const EdgeInsets.symmetric(
                               horizontal: 12, vertical: 10),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(15)),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Text(
-                              '${subject.name} · ${subject.topics.first.title}',
-                              style: const TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 14,
-                                  color: LumoVisualTokens.white),
-                            ),
-                            const SizedBox(height: 4),
-                            Text(
-                              subject.topics.first.shortDesc,
-                              style: const TextStyle(
-                                  fontFamily: 'Nunito',
-                                  fontSize: 12,
-                                  color: LumoVisualTokens.muted),
-                            ),
-                          ],
-                        ),
+                        child: Row(children: [
+                          _GradeSubjectArt(subject: subject),
+                          const SizedBox(width: 12),
+                          Expanded(child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Text(
+                                '${subject.name} · ${subject.topics.first.title}',
+                                style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontWeight: FontWeight.w900,
+                                    fontSize: 14,
+                                    color: LumoVisualTokens.white),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                subject.topics.first.shortDesc,
+                                style: const TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: 12,
+                                    color: LumoVisualTokens.muted),
+                              ),
+                            ],
+                          )),
+                        ]),
                       ),
                     ),
                 ],
@@ -2462,4 +2466,49 @@ class _AnimatedRing extends StatelessWidget {
           ],
         ),
       );
+}
+
+
+/// Glowing, illustrated learning icons in every grade's first visible subject
+/// cards. The existing Lumo illustrated book is used for German; platform
+/// color emoji provide large illustrated subject marks without new downloads.
+class _GradeSubjectArt extends StatelessWidget {
+  const _GradeSubjectArt({required this.subject});
+  final LearningSubject subject;
+
+  @override
+  Widget build(BuildContext context) {
+    final emoji = switch (subject.name) {
+      'Mathematik' => '🔢',
+      'Englisch' => '🇬🇧',
+      'Sachunterricht' => '🌍',
+      _ => '📚',
+    };
+    return Semantics(
+      label: 'Fachsymbol ${subject.name}',
+      child: Container(
+        key: ValueKey('academy-grade-icon-${subject.id}'),
+        width: 68,
+        height: 68,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(18),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [subject.color.withOpacity(.6), const Color(0xFF082653)],
+          ),
+          border: Border.all(color: subject.color.withOpacity(.9)),
+          boxShadow: [
+            BoxShadow(color: subject.color.withOpacity(.35),
+                blurRadius: 13, offset: const Offset(0, 5)),
+          ],
+        ),
+        alignment: Alignment.center,
+        child: ExcludeSemantics(child: subject.name == 'Deutsch'
+          ? Image.asset('assets/lumo_design/icons/book_open.png',
+              width: 57, height: 57, fit: BoxFit.contain)
+          : Text(emoji, style: const TextStyle(fontSize: 39))),
+      ),
+    );
+  }
 }

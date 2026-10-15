@@ -1,0 +1,106 @@
+name: Lumo Lernen Kart unified integration APK
+on:
+  push:
+    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15]
+  pull_request:
+    paths:
+      - 'lib/features/quiz/**'
+      - 'lib/features/home/**'
+      - '.github/probes/kart_complete_android_probe.py'
+      - '.github/probes/lumo_learning_journey_probe.py'
+      - 'config/godot-source.json'
+      - 'lib/app/app_state.dart'
+      - 'lib/features/settings/**'
+      - 'lib/features/teacher_mode/**'
+      - 'test/parents/parent_school_grade_progression_test.dart'
+      - '.github/workflows/lumo-unified-integration-2026.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-unified-integrated-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-and-build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Save source identity and validate exact Godot integration pin
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          git rev-parse HEAD | tee dist/BUILD-SOURCE.txt
+          cat config/godot-source.json | tee dist/GODOT-SOURCE.json
+          python3 - <<'PY'
+          import json
+          config=json.load(open("config/godot-source.json"))
+          assert config["revision"]=="ad6bd8856a9d7d07b965dec46eeadf41d4ed676c", "Unexpected Godot pin"
+          assert config["engine"]=="4.6.3", "Unexpected Godot engine"
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve immutable Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Flutter static analysis
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Real widget tests for premium quiz and 3D learning islands
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/quiz_premium_stage_layout_test.dart \
+            test/quiz_premium_stage_visual_capture_test.dart \
+            test/home_navigation_progress_test.dart \
+            test/home_subject_islands_premium_test.dart \
+            test/academy_grade_3_4_visible_navigation_test.dart \
+            test/parents/parent_school_grade_progression_test.dart
+      - name: Full Flutter regression suite
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Code-level Android probe regression with verified image dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .ci-python
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
+          .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+      - name: Install Godot 4.6.3 for the exact pinned Kart source
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build unified real Android APK
+        run: bash scripts/build_unified_apk.sh
+      - name: Verify APK archive and collect reproducible source hashes
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
+      - name: Upload exact candidate (no release or synthetic screenshots)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/APK-SHA256.txt
+            dist/BUILD-SOURCE.txt
+            dist/GODOT-SOURCE.json
+            dist/APP-VERSION.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
