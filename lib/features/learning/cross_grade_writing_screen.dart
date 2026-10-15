@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../theme/lumo_visual_tokens.dart';
+import 'widgets/cross_grade_visual_scene.dart';
 
 /// A grade-4 creative-writing exercise, independent of enrolled-grade XP.
 /// Children can draft and save their own text without an AI dependency.
@@ -105,17 +105,18 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
   @override
   Widget build(BuildContext context) {
     final exercise = _prompts[_promptIndex];
-    return Scaffold(
-      backgroundColor: LumoVisualTokens.night,
-      appBar: AppBar(
-        backgroundColor: const Color(0xFF10294D),
-        foregroundColor: Colors.white,
-        title: const Text('4. Klasse · Aufsätze'),
-      ),
+    return CrossGradeVisualScene(
+      title: '4. Klasse · Aufsätze',
       body: SafeArea(
-        child: ListView(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
-          children: [
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+            CrossGradeLumoHeader(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
             Text(
               exercise.title,
               key: const ValueKey('cross-grade-writing-topic'),
@@ -136,7 +137,10 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
                   fontSize: 15,
                 )),
             const SizedBox(height: 12),
-            TextField(
+                ],
+              ),
+            ),
+            CrossGradeGlassPanel(child: TextField(
               key: const ValueKey('cross-grade-writing-input'),
               controller: _controller,
               onChanged: (_) {
@@ -154,7 +158,7 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
                 border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(18)),
               ),
-            ),
+            )),
             const Text(
               'Prüfe: Sind Anfang, Hauptteil und Schluss erkennbar? '
               'Sind deine Sätze verständlich? Hast du die Schreibweise kontrolliert?',
@@ -188,7 +192,8 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
               'Dein Schulprofil bleibt in der ${widget.enrolledGrade}. Klasse.',
               style: const TextStyle(color: Colors.white70),
             ),
-          ],
+            ],
+          ),
         ),
       ),
     );
