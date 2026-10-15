@@ -13,7 +13,10 @@ void main() {
 
   testWidgets('Lumo host stays inside its own slot on phone and Fold widths',
       (tester) async {
+    addTearDown(() => tester.binding.setSurfaceSize(null));
     for (final width in <double>[220, 320, 420, 720, 1024]) {
+      // Ohne reale Test-Viewport-Breite würde 1024 px auf 800 px geklemmt.
+      await tester.binding.setSurfaceSize(Size(width + 40, 1400));
       for (final stage in <int>[1, 15, 20, 21]) {
         await tester.pumpWidget(
           MaterialApp(
