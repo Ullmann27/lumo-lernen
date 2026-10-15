@@ -46,11 +46,20 @@ class LumoNvidiaPilotClient {
         available: false, reason: 'local_not_authorized',
       );
     }
-    final base = Uri.tryParse(AppSettings.sanitizeProxyUrl(settings.aiProxyUrl));
+    // A verified parent's bearer must NEVER be sent to a user-configurable
+    // arbitrary HTTPS proxy. Restrict the pilot to the trusted Lumo proxy;
+    // loopback is allowed only for local automated tests.
+    final base = Uri.tryParse(settings.aiProxyUrl.trim());
+    final official = Uri.parse(AppSettings.defaultAiProxyUrl);
+    final trustedProduction = base != null &&
+        base.scheme == 'https' && base.host == official.host &&
+        (base.port == 443 || !base.hasPort);
+    final localTest = base != null &&
+        (base.host == 'localhost' || base.host == '127.0.0.1') &&
+        (base.scheme == 'http' || base.scheme == 'https');
     if (base == null || base.host.isEmpty || base.userInfo.isNotEmpty ||
-        (base.scheme != 'https' &&
-            !(base.scheme == 'http' &&
-                (base.host == 'localhost' || base.host == '127.0.0.1')))) {
+        base.hasQuery || base.hasFragment ||
+        (!trustedProduction && !localTest)) {
       return const LumoNvidiaPilotResult(
         reply: 'Der sichere KI-Server ist nicht erreichbar.',
         available: false, reason: 'invalid_proxy_url',
