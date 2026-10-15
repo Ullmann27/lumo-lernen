@@ -1492,6 +1492,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openLearningArea(_LearningArea area) {
+    // Cross-grade Fachkarten must show the selected grade's subject topics,
+    // not the official-grade Deutsch hub or a generic profile-bound session.
+    if (_selectedGrade != widget.appState.state.grade &&
+        area.curriculumIndex != null) {
+      setState(() => _selectedSubjectIndex = area.curriculumIndex!);
+      return;
+    }
     if (area.subject == 'Deutsch' && _selectedGrade <= 2) {
       _openDeutsch();
       return;
