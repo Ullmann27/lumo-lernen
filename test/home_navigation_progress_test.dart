@@ -205,7 +205,14 @@ void main() {
     await tester.binding.setSurfaceSize(const Size(840, 1600));
     await tester.pumpWidget(home(state, sections.add));
     final discover = find.text('Mehr mit Lumo entdecken');
-    await tester.ensureVisible(discover);
+    // Nine learning islands now precede discovery. The outer scroll view
+    // lazily builds offscreen content; ensureVisible cannot find a widget
+    // that has not been built yet. Scroll until it really exists instead.
+    await tester.scrollUntilVisible(
+      discover, 280,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pump();
     await tester.tap(discover);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 250));

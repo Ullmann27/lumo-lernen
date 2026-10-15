@@ -13,9 +13,17 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 
 class QuizShowContent extends StatefulWidget {
-  const QuizShowContent({super.key, required this.appState});
+  const QuizShowContent({
+    super.key,
+    required this.appState,
+    this.previewQuestionSeed,
+  });
 
   final LumoAppState appState;
+
+  /// Stable questions for QA screenshots. Null uses the normal randomized game.
+  @visibleForTesting
+  final int? previewQuestionSeed;
 
   @override
   State<QuizShowContent> createState() => _QuizShowContentState();
@@ -29,14 +37,24 @@ class _QuizShowContentState extends State<QuizShowContent> {
   @override
   void initState() {
     super.initState();
-    unawaited(LumoSound.instance.init());
+    if (widget.appState.state.settings.soundEnabled) {
+      unawaited(LumoSound.instance.init());
+    }
     _startNewGame();
+  }
+
+  void _playEffect(SoundEffect effect) {
+    // Child's audio-off setting also controls quiz SFX. Never start the
+    // audioplayers plugin when sound is disabled (including test captures).
+    if (!widget.appState.state.settings.soundEnabled) return;
+    unawaited(LumoSound.instance.play(effect));
   }
 
   void _startNewGame() {
     final questions = _bank.generateGameQuestions(
       grade: widget.appState.state.grade,
-      random: math.Random(DateTime.now().millisecondsSinceEpoch),
+      random: math.Random(
+        widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
     );
     _state = _engine.start(questions: questions);
   }
@@ -44,7 +62,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   void _select(int index) {
     final next = _engine.selectAnswer(_state, index);
     if (next.selectedOption != _state.selectedOption) {
-      unawaited(LumoSound.instance.play(SoundEffect.click));
+      _playEffect(SoundEffect.click);
     }
     setState(() => _state = next);
   }
@@ -69,27 +87,27 @@ class _QuizShowContentState extends State<QuizShowContent> {
     });
 
     if (!correct) {
-      unawaited(LumoSound.instance.play(SoundEffect.error));
+      _playEffect(SoundEffect.error);
     } else if (_state.won || _state.securedStars > before.securedStars) {
-      unawaited(LumoSound.instance.play(SoundEffect.win));
+      _playEffect(SoundEffect.win);
     }
   }
 
   void _next() {
-    unawaited(LumoSound.instance.play(SoundEffect.click));
+    _playEffect(SoundEffect.click);
     setState(() => _state = _engine.nextQuestion(_state));
   }
 
   void _joker(QuizJoker joker) {
     final next = _engine.useJoker(_state, joker);
     if (next.usedJokers.length > _state.usedJokers.length) {
-      unawaited(LumoSound.instance.play(SoundEffect.click));
+      _playEffect(SoundEffect.click);
     }
     setState(() => _state = next);
   }
 
   void _restart() {
-    unawaited(LumoSound.instance.play(SoundEffect.click));
+    _playEffect(SoundEffect.click);
     setState(_startNewGame);
   }
 
@@ -118,35 +136,19 @@ class _QuizShowContentState extends State<QuizShowContent> {
         child: SafeArea(
           child: LayoutBuilder(
             builder: (context, constraints) {
-              final wide = constraints.maxWidth >= 720;
               final card = _QuizCard(
-                state: _state,
-                question: q,
-                onSelect: _select,
-                onReveal: _reveal,
-                onNext: _next,
-                onRestart: _restart,
-                onJoker: _joker,
+                state: _state, question: q,
+                onSelect: _select, onReveal: _reveal, onNext: _next,
+                onRestart: _restart, onJoker: _joker,
               );
-              final prizes = _PrizeColumn(state: _state);
               return SingleChildScrollView(
-                padding: const EdgeInsets.all(18),
-                child: wide
-                    ? Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(flex: 3, child: card),
-                          const SizedBox(width: 18),
-                          SizedBox(width: 280, child: prizes),
-                        ],
-                      )
-                    : Column(
-                        children: [
-                          card,
-                          const SizedBox(height: 16),
-                          prizes,
-                        ],
-                      ),
+                padding: EdgeInsets.all(constraints.maxWidth < 400 ? 10 : 18),
+                child: Center(
+                  child: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 880),
+                    child: card,
+                  ),
+                ),
               );
             },
           ),
@@ -215,11 +217,7 @@ class _QuizCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _QuizHost(
-            questionNumber: state.displayQuestionNumber,
-            finale: finale,
-            won: state.won,
-          ),
+          _QuizStage(state: state, onJoker: onJoker),
           const SizedBox(height: 10),
           Row(children: [
             _Pill('Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
@@ -251,16 +249,6 @@ class _QuizCard extends StatelessWidget {
             ),
           ),
           const SizedBox(height: 18),
-          Wrap(
-            spacing: 10,
-            runSpacing: 10,
-            alignment: WrapAlignment.center,
-            children: [
-              _JokerButton(label: '50:50', used: state.usedJokers.contains(QuizJoker.fiftyFifty), onTap: () => onJoker(QuizJoker.fiftyFifty)),
-              _JokerButton(label: 'Publikum', used: state.usedJokers.contains(QuizJoker.audience), onTap: () => onJoker(QuizJoker.audience)),
-              _JokerButton(label: 'Lumo anrufen', used: state.usedJokers.contains(QuizJoker.callLumo), onTap: () => onJoker(QuizJoker.callLumo)),
-            ],
-          ),
           if (state.lumoHint != null) ...[
             const SizedBox(height: 14),
             _HintBubble(text: state.lumoHint!),
@@ -270,19 +258,30 @@ class _QuizCard extends StatelessWidget {
             _AudienceVotes(votes: state.audienceVotes!),
           ],
           const SizedBox(height: 18),
-          for (var i = 0; i < question.options.length; i++)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 10),
-              child: _AnswerButton(
-                label: question.options[i],
-                index: i,
-                hidden: state.fiftyFiftyHiddenOptions.contains(i),
-                selected: selected == i,
-                revealed: answered,
-                correct: question.correctIndex == i,
-                onTap: () => onSelect(i),
-              ),
-            ),
+          LayoutBuilder(
+            builder: (context, bounds) {
+              const gap = 10.0;
+              final two = bounds.maxWidth >= 260 &&
+                  MediaQuery.textScalerOf(context).scale(1) <= 1.3;
+              final width = two ? (bounds.maxWidth - gap) / 2 : bounds.maxWidth;
+              return Wrap(
+                spacing: gap, runSpacing: 10,
+                children: [
+                  for (var i = 0; i < question.options.length; i++)
+                    SizedBox(
+                      width: width,
+                      child: _AnswerButton(
+                        label: question.options[i], index: i,
+                        hidden: state.fiftyFiftyHiddenOptions.contains(i),
+                        selected: selected == i, revealed: answered,
+                        correct: question.correctIndex == i,
+                        onTap: () => onSelect(i),
+                      ),
+                    ),
+                ],
+              );
+            },
+          ),
           const SizedBox(height: 8),
           if (state.gameOver)
             FilledButton.icon(
@@ -319,71 +318,206 @@ class _QuizCard extends StatelessWidget {
 }
 
 
-class _QuizHost extends StatelessWidget {
-  const _QuizHost({
-    required this.questionNumber,
-    required this.finale,
-    required this.won,
-  });
-
-  final int questionNumber;
-  final bool finale;
-  final bool won;
+/// Three functional jokers, a permanently mounted Lumo stage and the
+/// real 50/200/800/5000-star milestones. Each area owns its hitbox.
+class _QuizStage extends StatelessWidget {
+  const _QuizStage({required this.state, required this.onJoker});
+  final QuizShowState state;
+  final ValueChanged<QuizJoker> onJoker;
 
   @override
-  Widget build(BuildContext context) {
-    final message = won
-        ? 'Du bist Lumo-Meister!'
-        : finale
-            ? 'Das ist die Meisterfrage!'
-            : questionNumber >= 15
-                ? 'Jetzt wird es richtig spannend!'
-                : 'Bereit? Denk in Ruhe nach.';
-
-    return Semantics(
-      label: 'Lumo moderiert die Quizshow',
-      child: Row(
-        children: [
-          LumoCharacter(
-            pose: won || finale
-                ? LumoDesignFoxPose.trophyWink
-                : LumoDesignFoxPose.pointSide,
-            size: 92,
-            reduceMotion: MediaQuery.disableAnimationsOf(context),
-            idleHops: !finale,
-            ambientPoses: finale
-                ? const <LumoDesignFoxPose>[]
-                : const <LumoDesignFoxPose>[
-                    LumoDesignFoxPose.thumbWink,
-                    LumoDesignFoxPose.teacherStick,
-                  ],
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
-              decoration: BoxDecoration(
-                color: finale
-                    ? const Color(0x33FFC94A)
-                    : const Color(0x3328D7FA),
-                borderRadius: BorderRadius.circular(18),
-                border: Border.all(
-                  color: finale
-                      ? const Color(0xFFFFC94A)
-                      : LumoVisualTokens.cyanBright.withOpacity(.55),
-                ),
+  Widget build(BuildContext context) => LayoutBuilder(
+    builder: (context, c) {
+      final compact = c.maxWidth < 400;
+      final tablet = c.maxWidth >= 700;
+      final leftWidth = tablet ? 100.0 : (compact ? 62.0 : 78.0);
+      final rightWidth = tablet ? 158.0 : (compact ? 90.0 : 122.0);
+      final gap = tablet ? 18.0 : (compact ? 6.0 : 12.0);
+      // On the unfolded Fold and tablet, the mascot is the visual hero,
+      // not a miniature floating inside an oversized empty stage.
+      final foxSize = math.min(tablet ? 320.0 : (compact ? 146.0 : 208.0),
+          math.max(40.0, c.maxWidth - leftWidth - rightWidth - gap * 2 - 4));
+      final finale = state.displayQuestionNumber == state.questions.length;
+      final caption = state.won ? 'LUMO-MEISTER!'
+          : finale ? 'MEISTERFRAGE!'
+          : state.displayQuestionNumber >= 15 ? 'DU SCHAFFST DAS!'
+          : 'LUMO LIVE';
+      return SizedBox(
+        key: const ValueKey('lumo-meister-stage'),
+        // The stage must expand with accessibility font scaling: the
+        // three joker buttons and prize ladder otherwise overflow by 47px
+        // at 1.5x on Fold / phone widths. The outer page already scrolls.
+        height: (compact ? 250.0 : (tablet ? 420.0 : 296.0)) *
+            math.max(1.0, MediaQuery.textScalerOf(context).scale(1)),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            SizedBox(
+              key: const ValueKey('lumo-meister-joker-rail'),
+              width: leftWidth,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  _JokerButton(
+                    label: '50:50', icon: Icons.filter_2_rounded,
+                    used: state.usedJokers.contains(QuizJoker.fiftyFifty),
+                    onTap: () => onJoker(QuizJoker.fiftyFifty),
+                  ),
+                  const SizedBox(height: 7),
+                  _JokerButton(
+                    label: 'Publikum', icon: Icons.groups_rounded,
+                    used: state.usedJokers.contains(QuizJoker.audience),
+                    onTap: () => onJoker(QuizJoker.audience),
+                  ),
+                  const SizedBox(height: 7),
+                  _JokerButton(
+                    label: 'Lumo-Tipp', icon: Icons.lightbulb_rounded,
+                    used: state.usedJokers.contains(QuizJoker.callLumo),
+                    onTap: () => onJoker(QuizJoker.callLumo),
+                  ),
+                ],
               ),
-              child: Text(
-                message,
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w900,
+            ),
+            SizedBox(width: gap),
+            Expanded(
+              child: ClipRect(
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    const IgnorePointer(
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(colors: [
+                            Color(0x7755DFFF),
+                            Color(0x443959A8),
+                            Colors.transparent,
+                          ]),
+                        ),
+                      ),
+                    ),
+                    Center(
+                      child: IgnorePointer(
+                        child: SizedBox(
+                          key: const ValueKey('lumo-meister-fox-slot'),
+                          width: foxSize, height: foxSize,
+                          child: LumoCharacter(
+                            key: const ValueKey('lumo-meister-fox'),
+                            pose: state.won || finale
+                                ? LumoDesignFoxPose.trophyWink
+                                : state.revealed &&
+                                  state.selectedOption ==
+                                      state.currentQuestion.correctIndex
+                                    ? LumoDesignFoxPose.thumbWink
+                                    : LumoDesignFoxPose.pointSide,
+                            size: foxSize,
+                            reduceMotion: MediaQuery.disableAnimationsOf(context),
+                            intro: false, idleHops: false,
+                            ambientPoses: const <LumoDesignFoxPose>[],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 3, left: 0, right: 0,
+                      child: IgnorePointer(
+                        child: DecoratedBox(
+                          decoration: BoxDecoration(
+                            gradient: const LinearGradient(colors: [
+                              Color(0xFF052251), Color(0xFF126AAF),
+                            ]),
+                            border: Border.all(color: const Color(0xFFFFD873)),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 3, vertical: 7),
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(
+                                caption, maxLines: 1,
+                                style: const TextStyle(
+                                  color: Colors.white, fontSize: 13,
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
             ),
+            SizedBox(width: gap),
+            SizedBox(
+              key: const ValueKey('lumo-meister-prize-rail'),
+              width: rightWidth,
+              child: _QuizPrizeRail(state: state),
+            ),
+          ],
+        ),
+      );
+    },
+  );
+}
+
+class _QuizPrizeRail extends StatelessWidget {
+  const _QuizPrizeRail({required this.state});
+  final QuizShowState state;
+  @override
+  Widget build(BuildContext context) {
+    const milestones = <(int, int)>[(20, 5000), (15, 800), (10, 200), (5, 50)];
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          begin: Alignment.topCenter, end: Alignment.bottomCenter,
+          colors: [Color(0xFF15356D), Color(0xFF071735)],
+        ),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFFFC94A), width: 1.5),
+      ),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          const FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text('★ 5.000', style: TextStyle(
+              color: Color(0xFFFFD873), fontSize: 18,
+              fontWeight: FontWeight.w900)),
           ),
+          const Text('APP-STERNE', maxLines: 1,
+            style: TextStyle(color: Colors.white70, fontSize: 8)),
+          const Divider(color: Color(0x77FFD873), height: 12),
+          for (final step in milestones)
+            Container(
+              width: double.infinity,
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(9),
+                color: state.displayQuestionNumber == step.$1
+                    ? const Color(0xFFFFC94A)
+                    : state.securedStars >= step.$2
+                        ? const Color(0xFF146B55) : Colors.transparent,
+              ),
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  step.$1.toString() + ' · ★ ' + step.$2.toString(),
+                  maxLines: 1,
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900,
+                    color: state.displayQuestionNumber == step.$1
+                      ? const Color(0xFF1D2140) : Colors.white),
+                ),
+              ),
+            ),
+          const Text('Ausflug nur\nEltern-Wunsch',
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Color(0xFFFFE0A5), fontSize: 9,
+              fontWeight: FontWeight.w700)),
         ],
       ),
     );
@@ -496,15 +630,47 @@ class _AnswerButton extends StatelessWidget {
 }
 
 class _JokerButton extends StatelessWidget {
-  const _JokerButton({required this.label, required this.used, required this.onTap});
+  const _JokerButton({
+    required this.label, required this.icon,
+    required this.used, required this.onTap,
+  });
   final String label;
+  final IconData icon;
   final bool used;
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) {
-    return OutlinedButton(onPressed: used ? null : onTap, child: Text(used ? '$label ✓' : label));
-  }
+  Widget build(BuildContext context) => SizedBox(
+    width: double.infinity,
+    child: OutlinedButton(
+      onPressed: used ? null : onTap,
+      style: OutlinedButton.styleFrom(
+        minimumSize: const Size(48, 68),
+        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
+        backgroundColor: used
+            ? const Color(0xFF26344E) : const Color(0xFF113C84),
+        foregroundColor: Colors.white,
+        disabledForegroundColor: Colors.white60,
+        side: BorderSide(
+          color: used ? Colors.white24 : LumoVisualTokens.cyanBright,
+          width: 1.5),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(14)),
+      ),
+      child: Column(mainAxisSize: MainAxisSize.min, children: [
+        Icon(icon, color: used
+            ? Colors.white38 : const Color(0xFFFFD873)),
+        const SizedBox(height: 4),
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(used ? label + ' ✓' : label,
+            maxLines: 1, style: const TextStyle(
+              fontSize: 11, fontFamily: 'Nunito',
+              fontWeight: FontWeight.w900)),
+        ),
+      ]),
+    ),
+  );
 }
 
 class _HintBubble extends StatelessWidget {
