@@ -361,7 +361,7 @@ jobs:
             --rendering-method gl_compatibility --script res://scripts/tests/kart_driver_portrait.gd \
             -- res://exports/face-showroom/lumo-driver-4views.png
           python3 tools/run_godot_probe.py --log exports/fold-controls/start-hero.log \
-            --timeout 300 --required '[StartHero] checks=69 failures=0' -- \
+            --timeout 300 --required '[StartHero] checks=225 failures=0' -- \
             xvfb-run -a -s '-screen 0 2400x2400x24' godot --audio-driver Dummy \
             --rendering-method gl_compatibility --script res://scripts/tests/kart_start_hero_regression.gd
           rg -F '[StartHero] PASS:' exports/fold-controls/start-hero.log
@@ -446,7 +446,7 @@ jobs:
           for name, tag, expected in (
               ('character-pose', 'CharacterPose', 2325),
               ('face-depth', 'FaceDepth', 23),
-              ('start-hero', 'StartHero', 69),
+              ('start-hero', 'StartHero', 225),
           ):
               results = re.findall(rf'^\[{re.escape(tag)}\] checks=(\d+) failures=(\d+)$',
                   (Path('exports/fold-controls') / (name + '.log')).read_text(), re.MULTILINE)
