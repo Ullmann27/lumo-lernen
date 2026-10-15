@@ -2160,6 +2160,16 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     // guaranteed question/options. Browsing higher classes remains discovery
     // only (guard above) and never silently changes the profile grade.
     if (s.name == 'Englisch' || s.name == 'Sachunterricht') {
+      // Eigene Fachmodule (Tiere, Jahreszeiten, Wetter, Verkehr) haben
+      // Vorrang vor dem Aufgabengenerator; vorher waren sie von keiner Kachel
+      // aus erreichbar, obwohl die Kachel „🎮 Übung“ anzeigt.
+      final dedicated =
+          LearningModuleRegistry.builderFor(t.id, widget.appState);
+      if (dedicated != null) {
+        Navigator.of(context)
+            .push(MaterialPageRoute(builder: (_) => dedicated));
+        return;
+      }
       final subject = s.name;
       final topicUnit = switch (t.id) {
         's1_koerper' => 'Körper',
