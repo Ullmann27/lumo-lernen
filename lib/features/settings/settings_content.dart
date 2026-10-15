@@ -53,6 +53,8 @@ class _SettingsContentState extends State<_SettingsContentBody> {
 
   late AppSettings _settings = widget.appState.state.settings;
   bool _saving = false;
+  bool _changingSchoolGrade = false;
+  String? _schoolGradeError;
   bool _checkingHealth = false;
   bool _runningSmokeTest = false;
   LumoAiHealthStatus? _lastHealth;
@@ -97,6 +99,29 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         : st.childName.trim().toLowerCase().replaceAll(RegExp(r'[^a-z0-9]+'), '_',
           );
     return 'local_${safeName}_${st.grade}';
+  }
+
+  Future<void> _changeSchoolGrade(int newGrade) async {
+    if (_changingSchoolGrade || newGrade == widget.appState.state.grade) return;
+    setState(() {
+      _changingSchoolGrade = true;
+      _schoolGradeError = null;
+    });
+    try {
+      await widget.appState.changeEnrolledGrade(newGrade);
+      if (!mounted) return;
+      ScaffoldMessenger.maybeOf(context)?.showSnackBar(SnackBar(
+        content: Text('$newGrade. Klasse aktiviert. Deine bisherigen Erfolge bleiben erhalten.'),
+      ));
+    } catch (_) {
+      if (!mounted) return;
+      setState(() {
+        _schoolGradeError =
+            'Die neue Klasse konnte nicht gespeichert werden. Bitte erneut versuchen.';
+      });
+    } finally {
+      if (mounted) setState(() => _changingSchoolGrade = false);
+    }
   }
 
   Future<void> _save(AppSettings next) async {
@@ -419,6 +444,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           progress: _updateProgress,
           error: _updateError,
           onUpdate: _checkAndUpdate,
+        ),
+        const SizedBox(height: 18),
+        _ParentSchoolGradeCard(
+          grade: state.grade,
+          childName: state.childName,
+          saving: _changingSchoolGrade,
+          error: _schoolGradeError,
+          onSelect: _changeSchoolGrade,
         ),
         const SizedBox(height: 18),
         _TeacherAreaCard(
@@ -2345,4 +2378,96 @@ class _ErrorEntryTile extends StatelessWidget {
       ),
     );
   }
+}
+
+
+/// Only visible in the parental settings route. Changes the enrolled grade,
+/// not an individual lesson preview. All grades are enabled by the parent's
+/// explicit selection; existing achievements and prior work stay intact.
+class _ParentSchoolGradeCard extends StatelessWidget {
+  const _ParentSchoolGradeCard({
+    required this.grade,
+    required this.childName,
+    required this.saving,
+    required this.error,
+    required this.onSelect,
+  });
+
+  final int grade;
+  final String childName;
+  final bool saving;
+  final String? error;
+  final ValueChanged<int> onSelect;
+
+  @override
+  Widget build(BuildContext context) => LumoGlassCard(
+    padding: const EdgeInsets.all(16),
+    radius: 22,
+    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+      const Row(children: [
+        Icon(Icons.school_rounded, color: LumoVisualTokens.cyanBright, size: 26),
+        SizedBox(width: 10),
+        Expanded(child: Text('Schulklasse und Lernstoff',
+          style: TextStyle(fontFamily: 'Nunito', color: Colors.white,
+              fontWeight: FontWeight.w900, fontSize: 20))),
+      ]),
+      const SizedBox(height: 6),
+      Text('Welche Volksschulklasse besucht $childName? '
+          'Die passende Klassenstufe wird sofort freigeschaltet.',
+        style: const TextStyle(color: LumoVisualTokens.muted,
+            fontFamily: 'Nunito', fontSize: 13)),
+      const SizedBox(height: 12),
+      LayoutBuilder(builder: (context, size) {
+        const gap = 10.0;
+        final columns = size.maxWidth >= 550 ? 4 : 2;
+        final width = (size.maxWidth - gap * (columns - 1)) / columns;
+        return Wrap(spacing: gap, runSpacing: gap, children: [
+          for (var schoolYear = 1; schoolYear <= 4; schoolYear++)
+            SizedBox(width: width, child: OutlinedButton(
+              key: ValueKey('parent-school-grade-$schoolYear'),
+              onPressed: saving ? null : () => onSelect(schoolYear),
+              style: OutlinedButton.styleFrom(
+                foregroundColor: Colors.white,
+                backgroundColor: schoolYear == grade
+                    ? const Color(0xFF137EBA) : const Color(0xDD0E2954),
+                side: BorderSide(
+                  width: schoolYear == grade ? 2 : 1,
+                  color: schoolYear == grade
+                      ? LumoVisualTokens.cyanBright
+                      : LumoVisualTokens.cyan.withOpacity(.45),
+                ),
+                minimumSize: const Size(0, 76),
+                padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+              ),
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Icon(schoolYear == grade ? Icons.check_circle_rounded
+                      : Icons.auto_stories_rounded,
+                    color: schoolYear == grade
+                        ? const Color(0xFF9FFFE3) : LumoVisualTokens.cyanBright,
+                    size: 24),
+                const SizedBox(height: 4),
+                Text('$schoolYear. Klasse',
+                  style: const TextStyle(fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900)),
+              ]),
+            )),
+        ]);
+      }),
+      const SizedBox(height: 10),
+      Text('Nach dem Wechsel erscheinen automatisch die Aufgaben der '
+          'ausgewählten Klasse. Sterne, Fortschritte und frühere Übungen '
+          'bleiben gespeichert.',
+        style: const TextStyle(fontFamily: 'Nunito',
+            color: LumoVisualTokens.muted, fontSize: 12)),
+      if (saving) ...[
+        const SizedBox(height: 8),
+        const LinearProgressIndicator(key: ValueKey('parent-school-grade-saving')),
+      ],
+      if (error != null) ...[
+        const SizedBox(height: 8),
+        Text(error!, style: const TextStyle(color: Color(0xFFFFA0A0))),
+      ],
+    ]),
+  );
 }
