@@ -22,6 +22,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
+import '../learning/cross_grade_practice_screen.dart';
 import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -1717,7 +1718,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   /// by an actual topic in the selected grade, never by a decorative counter.
   Widget _buildGradeFocus() {
     final grade = _currentGrade;
-    final preview = grade.grade != widget.appState.state.grade;
+    final otherGrade = grade.grade != widget.appState.state.grade;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 14),
       child: LumoGlassCard(
@@ -1731,7 +1732,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  '${grade.title} – ${preview ? 'Themenvorschau' : 'dein Lernstoff'}',
+                  '${grade.title} – ${otherGrade ? 'frei lernen' : 'dein Lernstoff'}',
                   key: const ValueKey('academy-grade-focus-title'),
                   style: const TextStyle(
                     fontFamily: 'Nunito',
@@ -1744,8 +1745,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             ]),
             const SizedBox(height: 6),
             Text(
-              preview
-                  ? 'Das ist ein Einblick. Aktiviere die Schulstufe im Elternbereich, um dort regulär Aufgaben zu lösen.'
+              otherGrade
+                  ? 'Alle Klassen sind zum Üben offen. Deine Profilklasse und regulären Belohnungen bleiben unverändert.'
                   : 'Wähle ein Thema deiner Klasse und beginne sofort mit echten Aufgaben.',
               style: const TextStyle(
                 fontFamily: 'Nunito',
@@ -2147,16 +2148,62 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       _openStories();
       return;
     }
-    // Browsing a higher class must not secretly turn its tasks into regular
-    // school progress or change the enrolled grade. New concepts need an
-    // introduction and their own explicitly allowed discovery writer.
-    if (_selectedGrade > widget.appState.state.grade) {
+    // Viewing any non-enrolled grade is real practice, not a teaser or
+    // implicit discovery redirect. Progress stays separate from the child's
+    // official school grade and its XP/wallet records.
+    if (_selectedGrade != widget.appState.state.grade) {
+      final available = Curriculum.unitsForGrade(s.name, _selectedGrade);
+      final preferred = switch (t.id) {
+        'm1_zahlen10' => 'Mengenvergleich',
+        'm1_formen' => 'Geometrie Formen',
+        'm2_zahlen100' => 'Plus bis 100',
+        'm2_einmaleins' => 'Einmaleins Vorbereitung',
+        'm2_uhr' => 'Uhrzeit',
+        'm2_geld' => 'Geld wechseln',
+        'm3_zahlen1000' => 'Plus bis 1000',
+        'm3_einmaleins_voll' => 'Einmaleins',
+        'm3_geometrie' => 'Umfang',
+        'm4_million' => 'Zahlenraum bis 1 Million',
+        'm4_bruch' => 'Bruchrechnen einfach',
+        'm4_textaufgaben' => 'Sachaufgaben drei Schritte',
+        'd2_saetze' => 'Erste Sätze',
+        'd2_artikel' => 'Artikel',
+        'd2_mehrzahl' => 'Einzahl und Mehrzahl',
+        'd3_wortarten' => 'Wortarten',
+        'd3_zeitformen' => 'Zeitformen',
+        'd4_grammatik' => 'Die 4 Fälle',
+        's1_koerper' => 'Körper',
+        's3_oesterreich' => 'Bundesländer Österreichs',
+        's3_natur' => 'Pflanzen',
+        's4_europa' => 'Kontinente und Ozeane',
+        'en1_3' => 'Begruessung',
+        _ => t.title,
+      };
+      final currentUnits = Curriculum.unitsForGrade(
+        s.name, _selectedGrade, currentGradeOnly: true,
+      );
+      final unit = available.contains(preferred)
+          ? preferred
+          : (currentUnits.isNotEmpty ? currentUnits.first :
+              (available.isNotEmpty ? available.first : null));
+      if (unit == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(
+            'Für ${s.name} in der $_selectedGrade. Klasse sind noch keine '
+            'fertigen Übungen vorhanden.',
+          )),
+        );
+        return;
+      }
       Navigator.of(context).push<void>(MaterialPageRoute(
-          builder: (_) => GuidedLearningHub(
-              appState: widget.appState, discovery: true,
-              requestedTopicTitle: t.title,
-              preferredLessonId: t.id == 'm2_einmaleins'
-                  ? 'equal_groups' : null)));
+        builder: (_) => CrossGradePracticeScreen(
+          profileName: widget.appState.state.childName,
+          enrolledGrade: widget.appState.state.grade,
+          lessonGrade: _selectedGrade,
+          subject: s.name,
+          unit: unit,
+        ),
+      ));
       return;
     }
     // Each visible English/Sachunterricht curriculum tile must open a real
