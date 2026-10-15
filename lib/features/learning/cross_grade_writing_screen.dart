@@ -108,9 +108,11 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
     return CrossGradeVisualScene(
       title: '4. Klasse · Aufsätze',
       body: SafeArea(
-        child: ListView(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(16),
-          children: [
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
             CrossGradeLumoHeader(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -190,7 +192,8 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
               'Dein Schulprofil bleibt in der ${widget.enrolledGrade}. Klasse.',
               style: const TextStyle(color: Colors.white70),
             ),
-          ],
+            ],
+          ),
         ),
       ),
     );
