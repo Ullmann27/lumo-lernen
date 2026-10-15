@@ -153,12 +153,16 @@ class LumoStoryGenerator {
     required String location,
     required String theme,
     required int gradeLevel,
+    String companion = 'Lumo',
+    String magicItem = 'Sternenkompass',
+    int variationSeed = 0,
   }) {
     final pages = <LumoStoryPage>[];
     final newWords = <String>[];
 
     // Story-Arc: Setup -> Aufgabe -> Mitte -> Klimax -> Aufloesung
-    final arcs = _generateArc(hero, location, theme, gradeLevel);
+    final arcs = _generateArc(hero, location, theme, gradeLevel,
+        companion: companion, magicItem: magicItem, variationSeed: variationSeed);
 
     for (int i = 0; i < arcs.length; i++) {
       final arc = arcs[i];
@@ -221,8 +225,9 @@ class LumoStoryGenerator {
   // STORY-ARC-GENERIERUNG (8 Seiten)
   // ────────────────────────────────────────────────────────────────
 
-  List<_StoryArc> _generateArc(
-      String hero, String location, String theme, int gradeLevel) {
+  List<_StoryArc> _generateArc(String hero, String location, String theme,
+      int gradeLevel, {required String companion,
+      required String magicItem, required int variationSeed}) {
     final themeIntro = _themeIntro(theme);
     final art = _heroArticle(hero);
     final capitalArticle = art[0].toUpperCase() + art.substring(1);
@@ -230,6 +235,10 @@ class LumoStoryGenerator {
     final capitalPronoun = pron[0].toUpperCase() + pron.substring(1);
     final poss = _heroPossessive(hero); // sein/ihr
     final atmo = _locationAtmosphere(location); // 1-Satz-Stimmung des Ortes
+    final beats = _variantBeats(variationSeed);
+    final beatIntro = beats[0], beatChallenge = beats[1];
+    final beatTurn = beats[2], beatVictory = beats[3];
+    final beatImage = beats[4];
     return [
       // Seite 1: Setup - Helden-Welt vorstellen
       _StoryArc(
@@ -241,65 +250,54 @@ class LumoStoryGenerator {
         imagePrompt: 'cute $hero in $location, story book style',
         newWord: hero.toLowerCase(),
       ),
-      // Seite 2: Auslöser - Hilferuf
+      // Seite 2: Neuer Anlass für jede wiederholte Setup-Kombination.
       _StoryArc(
-        text:
-            'Plötzlich, mitten am Vormittag, hörte $art $hero ein leises Rufen. '
-            '"Hilfe, bitte hilf mir!", rief eine Stimme aus der Ferne. '
-            '$capitalArticle $hero spitzte $poss Ohren und lauschte ganz genau. '
-            'Da war es wieder! Ohne lange zu zögern, lief $pron in die Richtung, '
-            'aus der das Rufen kam. Was würde $pron wohl finden?',
-        imagePrompt: 'cute $hero running in $location',
+        text: 'Am nächsten Morgen kam $companion zu $art $hero. '
+            '"Wir müssen helfen!", rief $companion. '
+            '$beatIntro '
+            '$capitalArticle $hero packte den Zaubergegenstand $magicItem ein. '
+            'Gemeinsam machten sie sich auf den Weg.',
+        imagePrompt: 'storybook $hero with $companion, $magicItem in $location',
       ),
-      // Seite 3: Begegnung - neuer Freund
       _StoryArc(
-        text: 'Hinter einem großen Baum saß ein kleines Wesen und weinte. '
-            '"Ich habe mich verlaufen", schluchzte es. '
-            '$capitalArticle $hero setzte sich daneben und sagte ganz ruhig: '
-            '"Keine Sorge, ich helfe dir nach Hause." '
-            'Sie schauten sich an, lächelten - und ab jetzt waren sie Freunde fürs Leben.',
-        imagePrompt: 'cute $hero with cute friend in $location',
+        text: 'Schon bald trafen $art $hero und $companion ein kleines Wesen. '
+            'Es brauchte dringend Hilfe. '
+            '"Wir schaffen das gemeinsam", versprach $companion. '
+            '$capitalArticle $hero zeigte den Zaubergegenstand $magicItem. '
+            'Jetzt waren alle ein Team.',
+        imagePrompt: 'cute $hero, $companion and friend in $location',
         newWord: 'Freund',
       ),
-      // Seite 4: Herausforderung - Rätsel
       _StoryArc(
-        text: 'Auf dem Weg nach Hause kamen die beiden zu einem alten Tor. '
-            'Auf dem Tor stand: "Nur wer das Rätsel löst, darf hindurch." '
-            'Sie überlegten und überlegten. Schließlich hatte $art $hero eine Idee: '
-            '"Wenn wir es zusammen versuchen, schaffen wir das bestimmt!" '
-            'Und siehe da - das Tor schwang langsam auf.',
-        imagePrompt: 'cute $hero solving puzzle in $location',
+        text: '$beatChallenge '
+            '$capitalArticle $hero und $companion überlegten ganz genau. '
+            '"Wir lösen das Rätsel gemeinsam!", rief $companion. '
+            'Mit dem Zaubergegenstand $magicItem fanden sie eine Spur.',
+        imagePrompt: 'storybook puzzle, $hero, $companion in $location',
         newWord: 'Rätsel',
       ),
-      // Seite 5: Mitte - magische Steine
       _StoryArc(
-        text:
-            'Auf der anderen Seite des Tors leuchteten überall kleine Steine im Gras. '
-            'Es waren magische Steine, die nur funkelten, wenn jemand etwas Gutes tat. '
-            '$capitalArticle $hero und $poss Freund sammelten gemeinsam viele bunte Steine. '
-            'Mit jedem Stein fühlte $pron sich stärker, mutiger und glücklicher. '
-            'Eine warme Sonne schien auf die beiden herab.',
-        imagePrompt: 'cute $hero with magic stones in $location',
+        text: 'Die Spur führte sie immer tiefer durch $location. '
+            '$companion fand drei leuchtende Zeichen. '
+            '$capitalArticle $hero schaute auf den Zaubergegenstand $magicItem. '
+            'Ein Zeichen passte zum nächsten. '
+            'Endlich wussten beide, was zu tun war.',
+        imagePrompt: 'glowing clues, $hero, $companion in $location',
       ),
-      // Seite 6: Wendepunkt - Schatten
       _StoryArc(
-        text: 'Da, ganz unerwartet, wurde es plötzlich dunkel um sie herum. '
-            'Ein großer Schatten erhob sich vor ihnen - er war riesig und sah furchteinflößend aus! '
-            '$poss Freund zitterte. Doch $art $hero atmete tief ein und ging einen Schritt nach vorne. '
-            '"Ich habe keine Angst", sagte $pron mit fester Stimme. '
-            'Und wisst ihr was? Im selben Moment wurde der Schatten kleiner und kleiner.',
-        imagePrompt: 'cute brave $hero facing shadow in $location',
+        text: '$beatTurn '
+            '$companion war erst unsicher. Doch $art $hero blieb ruhig. '
+            '"Wir geben nicht auf!", sagte $pron. '
+            'Mit dem Zaubergegenstand $magicItem gingen beide mutig weiter.',
+        imagePrompt: 'brave $hero and $companion, $beatImage in $location',
         newWord: 'tapfer',
       ),
-      // Seite 7: Klimax - Sieg
       _StoryArc(
-        text:
-            'Als der Schatten ganz verschwunden war, blieben nur leuchtende Lichter zurück. '
-            '$capitalArticle $hero und $poss Freund hatten es geschafft - sie waren tapfer geblieben! '
-            'Aus allen Ecken des $location kamen Tiere und Wesen herbei und jubelten ihnen zu. '
-            'Sie klatschten in die Hände und riefen laut: "Was für ein Mut!" '
-            '$capitalArticle $hero strahlte über das ganze Gesicht. Heute war wirklich ein besonderer Tag.',
-        imagePrompt: 'cute happy $hero celebrating in $location',
+        text: '$beatVictory '
+            '$capitalArticle $hero und $companion jubelten. '
+            'Der kleine Freund bedankte sich. '
+            'Alle freuten sich über ihre gute Zusammenarbeit.',
+        imagePrompt: 'celebrating $hero and $companion in $location',
       ),
       // Seite 8: Ende - Heimkehr
       _StoryArc(
@@ -312,6 +310,42 @@ class LumoStoryGenerator {
         imagePrompt: 'cute sleeping $hero at home, peaceful story book ending',
       ),
     ];
+  }
+
+  List<String> _variantBeats(int seed) {
+    const scenarios = <List<String>>[
+      ['Ein kleines Tier ist verschwunden.',
+       'Vor ihnen stand ein Tor mit drei Zeichen.',
+       'Dichter Nebel verdeckte plötzlich das Tor.',
+       'Das Tor öffnete sich und das Tier war wieder frei.',
+       'glowing gate'],
+      ['Das Sternenfest braucht Licht.',
+       'Alle bunten Laternen waren erloschen.',
+       'Der Wind trug die letzte Laterne davon.',
+       'Alle Laternen leuchteten und das Fest begann.',
+       'festival lanterns'],
+      ['Eine Schatzkarte wurde gefunden.',
+       'Auf der Schatzkarte fehlte ein Wegzeichen.',
+       'Die Brücke über dem Bach wackelte.',
+       'In der Schatzkiste lagen funkelnde Wissenssterne.',
+       'treasure map'],
+      ['Eine Erfindung funktioniert nicht mehr.',
+       'Der Sternenmaschine fehlte ein Zahnrad.',
+       'Das große Uhrwerk blieb stehen.',
+       'Die Maschine funktionierte wieder.',
+       'clockwork machine'],
+      ['Ein wichtiges Buch ist verschwunden.',
+       'In der Bibliothek lag nur eine leere Buchhülle.',
+       'Der Wind verstreute alle Hinweise.',
+       'Das Buch wurde gefunden und vorgelesen.',
+       'flying pages'],
+      ['Eine Wolkenbahn hat sich verfahren.',
+       'Die Wegweiser zeigten in falsche Richtungen.',
+       'Dunkle Wolken verdeckten die Schienen.',
+       'Die Bahn fuhr wieder sicher ans Ziel.',
+       'rainbow train'],
+    ];
+    return scenarios[seed % scenarios.length];
   }
 
   /// Possessivpronomen (sein/ihr) passend zum Helden.
