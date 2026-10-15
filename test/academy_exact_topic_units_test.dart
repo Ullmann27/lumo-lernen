@@ -110,6 +110,7 @@ void main() {
     final textField = tester.widget<TextField>(
         find.byKey(const ValueKey('cross-grade-writing-input')));
     expect(textField.controller?.text, contains('Lumo findet eine Karte.'));
-    expect(find.textContaining('2. Klasse'), findsWidgets);
+    expect(tester.widget<CrossGradeWritingScreen>(
+        find.byType(CrossGradeWritingScreen)).enrolledGrade, 2);
   });
 }
