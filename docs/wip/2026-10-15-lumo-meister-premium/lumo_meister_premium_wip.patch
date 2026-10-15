@@ -1,0 +1,3101 @@
+diff --git a/lib/features/quiz/quiz_show_content.dart b/lib/features/quiz/quiz_show_content.dart
+index a1e5bb07..101a71a0 100644
+--- a/lib/features/quiz/quiz_show_content.dart
++++ b/lib/features/quiz/quiz_show_content.dart
+@@ -5,40 +5,65 @@ import 'package:flutter/material.dart';
+ 
+ import '../../app/app_state.dart';
+ import '../../core/lumo_sound.dart';
+-import '../../app/app_theme.dart';
+ import '../../domain/quiz/quiz_question_bank.dart';
+ import '../../domain/quiz/quiz_show.dart';
+-import '../../theme/lumo_visual_tokens.dart';
+-import '../../widgets/design/lumo_design_system.dart';
+-import '../../widgets/fox/lumo_character.dart';
+-
++import 'meister/meister_assets.dart';
++import 'meister/meister_style.dart';
++import 'meister/meister_widgets.dart';
++
++/// „Wer wird Lumo-Meister?“ – Lumo-Quizshow mit 20 Fragen, drei Jokern und
++/// vier sicheren Stern-Stufen (50 / 200 / 800 / 5.000).
++///
++/// Ablauf: Einstieg → Fragerunde (Auswahl, Prüfen, Rückmeldung) → Ergebnis.
++/// Die Spielregeln liegen unverändert in [QuizShowEngine]; Sterne werden genau
++/// einmal bei Spielende gebucht.
+ class QuizShowContent extends StatefulWidget {
+-  const QuizShowContent({super.key, required this.appState});
++  const QuizShowContent({super.key, required this.appState, this.random});
+ 
+   final LumoAppState appState;
+ 
++  /// Nur für Tests: feste Fragenauswahl. Sonst zufällig je Runde.
++  final math.Random? random;
++
+   @override
+   State<QuizShowContent> createState() => _QuizShowContentState();
+ }
+ 
++enum _Phase { intro, play, result }
++
++const _letters = ['A', 'B', 'C', 'D'];
++
+ class _QuizShowContentState extends State<QuizShowContent> {
+   static const _engine = QuizShowEngine();
+   static const _bank = QuizQuestionBank();
+   late QuizShowState _state;
++  _Phase _phase = _Phase.intro;
++  bool _confetti = false;
++  int _confettiRun = 0;
+ 
+   @override
+   void initState() {
+     super.initState();
+     unawaited(LumoSound.instance.init());
+-    _startNewGame();
++    _newGame();
+   }
+ 
+-  void _startNewGame() {
++  void _newGame() {
+     final questions = _bank.generateGameQuestions(
+       grade: widget.appState.state.grade,
+-      random: math.Random(DateTime.now().millisecondsSinceEpoch),
++      random: widget.random ?? math.Random(DateTime.now().millisecondsSinceEpoch),
+     );
+     _state = _engine.start(questions: questions);
++    _confetti = false;
++  }
++
++  bool _reduceMotion(BuildContext context) =>
++      widget.appState.state.settings.reduceAnimations ||
++      MediaQuery.disableAnimationsOf(context);
++
++  void _begin() {
++    unawaited(LumoSound.instance.play(SoundEffect.click));
++    setState(() => _phase = _Phase.play);
+   }
+ 
+   void _select(int index) {
+@@ -52,22 +77,21 @@ class _QuizShowContentState extends State<QuizShowContent> {
+   void _reveal() {
+     final before = _state;
+     final selected = before.selectedOption;
+-    final correct = selected != null &&
+-        selected == before.currentQuestion.correctIndex;
+-
++    final correct =
++        selected != null && selected == before.currentQuestion.correctIndex;
+     setState(() {
+       final wasGameOver = _state.gameOver;
+       final next = _engine.reveal(_state);
+       _state = next;
+-
+-      // Die Engine liefert die Auszahlung nur beim ersten Spielende.
+-      // Dadurch werden Sterne weder bei Meilensteinen doppelt gebucht noch
+-      // beim erneuten Rendern des Ergebnisbildschirms nochmals vergeben.
++      // Die Engine liefert die Auszahlung nur beim ersten Spielende. Dadurch
++      // werden Sterne weder bei Stufen doppelt gebucht noch beim erneuten
++      // Aufbau des Ergebnisbildschirms nochmals vergeben.
+       if (!wasGameOver && next.gameOver && next.awardedStars > 0) {
+         widget.appState.addStars(next.awardedStars);
+       }
++      _confetti = correct;
++      if (correct) _confettiRun++;
+     });
+-
+     if (!correct) {
+       unawaited(LumoSound.instance.play(SoundEffect.error));
+     } else if (_state.won || _state.securedStars > before.securedStars) {
+@@ -77,7 +101,19 @@ class _QuizShowContentState extends State<QuizShowContent> {
+ 
+   void _next() {
+     unawaited(LumoSound.instance.play(SoundEffect.click));
+-    setState(() => _state = _engine.nextQuestion(_state));
++    setState(() {
++      _state = _engine.nextQuestion(_state);
++      _confetti = false;
++    });
++  }
++
++  void _showResult() {
++    unawaited(LumoSound.instance.play(SoundEffect.click));
++    setState(() {
++      _phase = _Phase.result;
++      _confetti = _state.awardedStars > 0;
++      if (_confetti) _confettiRun++;
++    });
+   }
+ 
+   void _joker(QuizJoker joker) {
+@@ -90,615 +126,811 @@ class _QuizShowContentState extends State<QuizShowContent> {
+ 
+   void _restart() {
+     unawaited(LumoSound.instance.play(SoundEffect.click));
+-    setState(_startNewGame);
++    setState(() {
++      _newGame();
++      _phase = _Phase.play;
++    });
++  }
++
++  void _leave() => Navigator.of(context).maybePop();
++
++  void _continueLearning() {
++    widget.appState.setSection(LumoSection.learn);
++    Navigator.of(context).maybePop();
+   }
+ 
+   @override
+   Widget build(BuildContext context) {
+-    final q = _state.currentQuestion;
++    final reduce = _reduceMotion(context);
++    final stars = widget.appState.state.stars;
++    final Widget view = switch (_phase) {
++      _Phase.intro => _IntroView(
++          key: const ValueKey('meister-phase-intro'),
++          grade: widget.appState.state.grade,
++          stars: stars,
++          reduceMotion: reduce,
++          onStart: _begin,
++          onBack: _leave,
++        ),
++      _Phase.play => _PlayView(
++          key: const ValueKey('meister-phase-play'),
++          state: _state,
++          stars: stars,
++          reduceMotion: reduce,
++          onSelect: _select,
++          onReveal: _reveal,
++          onNext: _next,
++          onResult: _showResult,
++          onJoker: _joker,
++          onBack: _leave,
++        ),
++      _Phase.result => _ResultView(
++          key: const ValueKey('meister-phase-result'),
++          state: _state,
++          stars: stars,
++          reduceMotion: reduce,
++          onRestart: _restart,
++          onLearn: _continueLearning,
++          onBack: _leave,
++        ),
++    };
+     return Scaffold(
+-      backgroundColor: LumoVisualTokens.night,
+-      appBar: AppBar(
+-        title: const Text(
+-          'Wer wird Lumo-Meister?',
+-          style: TextStyle(
+-            fontFamily: 'Nunito',
+-            fontWeight: FontWeight.w900,
+-            color: Colors.white,
++      backgroundColor: MeisterColors.stageTop,
++      body: MeisterStage(
++        child: Stack(children: [
++          SafeArea(
++            child: AnimatedSwitcher(
++              duration: reduce ? Duration.zero : const Duration(milliseconds: 350),
++              child: view,
++            ),
+           ),
+-        ),
+-        backgroundColor: LumoVisualTokens.navigation.withOpacity(.96),
+-        foregroundColor: Colors.white,
+-        elevation: 0,
+-      ),
+-      body: LumoSceneBackground(
+-        scene: LumoScene.tests,
+-        dimmed: true,
+-        showPlaceholderLabel: false,
+-        child: SafeArea(
+-          child: LayoutBuilder(
+-            builder: (context, constraints) {
+-              final wide = constraints.maxWidth >= 720;
+-              final card = _QuizCard(
+-                state: _state,
+-                question: q,
+-                onSelect: _select,
+-                onReveal: _reveal,
+-                onNext: _next,
+-                onRestart: _restart,
+-                onJoker: _joker,
+-              );
+-              final prizes = _PrizeColumn(state: _state);
+-              return SingleChildScrollView(
+-                padding: const EdgeInsets.all(18),
+-                child: wide
+-                    ? Row(
+-                        crossAxisAlignment: CrossAxisAlignment.start,
+-                        children: [
+-                          Expanded(flex: 3, child: card),
+-                          const SizedBox(width: 18),
+-                          SizedBox(width: 280, child: prizes),
+-                        ],
+-                      )
+-                    : Column(
+-                        children: [
+-                          card,
+-                          const SizedBox(height: 16),
+-                          prizes,
+-                        ],
+-                      ),
+-              );
+-            },
++          Positioned.fill(
++            child: MeisterConfetti(
++              key: ValueKey('meister-confetti-$_confettiRun'),
++              play: _confetti,
++              reduceMotion: reduce,
++            ),
+           ),
+-        ),
++        ]),
+       ),
+     );
+   }
+ }
+ 
+-class _QuizCard extends StatelessWidget {
+-  const _QuizCard({
+-    required this.state,
+-    required this.question,
+-    required this.onSelect,
+-    required this.onReveal,
+-    required this.onNext,
+-    required this.onRestart,
+-    required this.onJoker,
+-  });
++class _TopBar extends StatelessWidget {
++  const _TopBar({required this.stars, required this.onBack, this.center});
+ 
+-  final QuizShowState state;
+-  final QuizQuestion question;
+-  final ValueChanged<int> onSelect;
+-  final VoidCallback onReveal;
+-  final VoidCallback onNext;
+-  final VoidCallback onRestart;
+-  final ValueChanged<QuizJoker> onJoker;
++  final int stars;
++  final VoidCallback onBack;
++  final Widget? center;
+ 
+   @override
+   Widget build(BuildContext context) {
+-    final selected = state.selectedOption;
+-    final answered = state.revealed;
+-    final isCorrect = selected == question.correctIndex;
++    return Row(children: [
++      MeisterRoundButton(
++          icon: Icons.chevron_left_rounded, label: 'Zurück', onPressed: onBack),
++      const SizedBox(width: 10),
++      Expanded(child: center ?? const SizedBox.shrink()),
++      const SizedBox(width: 10),
++      MeisterStarChip(stars: stars),
++    ]);
++  }
++}
+ 
+-    final finale = state.displayQuestionNumber == state.questions.length;
+-    final tension = state.displayQuestionNumber >= 15;
++class _Title extends StatelessWidget {
++  const _Title({required this.size});
+ 
+-    return Container(
+-      padding: const EdgeInsets.all(20),
+-      decoration: BoxDecoration(
+-        gradient: LinearGradient(
+-          begin: Alignment.topLeft,
+-          end: Alignment.bottomRight,
+-          colors: finale
+-              ? const [Color(0xEE32135F), Color(0xEE071D46)]
+-              : const [Color(0xEE071D46), Color(0xEE0B3159)],
+-        ),
+-        borderRadius: BorderRadius.circular(28),
+-        border: Border.all(
+-          color: finale
+-              ? const Color(0xFFFFC94A)
+-              : LumoVisualTokens.cyanBright.withOpacity(.72),
+-          width: finale ? 2.2 : 1.2,
+-        ),
+-        boxShadow: [
+-          BoxShadow(
+-            color: (finale
+-                    ? const Color(0xFFFFC94A)
+-                    : LumoVisualTokens.cyanBright)
+-                .withOpacity(tension ? .30 : .16),
+-            blurRadius: tension ? 32 : 22,
+-            spreadRadius: tension ? 3 : 0,
+-          ),
+-        ],
+-      ),
+-      child: Column(
+-        crossAxisAlignment: CrossAxisAlignment.stretch,
+-        children: [
+-          _QuizHost(
+-            questionNumber: state.displayQuestionNumber,
+-            finale: finale,
+-            won: state.won,
+-          ),
+-          const SizedBox(height: 10),
+-          Row(children: [
+-            _Pill('Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
+-            const Spacer(),
+-            Flexible(
+-              child: Text(
+-                question.subject,
+-                textAlign: TextAlign.right,
+-                style: LumoTextStyles.caption.copyWith(
+-                  color: finale
+-                      ? const Color(0xFFFFD873)
+-                      : LumoVisualTokens.cyanBright,
+-                  fontWeight: FontWeight.w900,
+-                ),
+-              ),
+-            ),
+-          ]),
+-          const SizedBox(height: 18),
+-          Text(
+-            question.prompt,
+-            textAlign: TextAlign.center,
+-            style: LumoTextStyles.heading1.copyWith(
+-              fontSize: finale ? 30 : 28,
+-              color: Colors.white,
+-              fontWeight: FontWeight.w900,
+-              shadows: const [
+-                Shadow(color: Color(0xAA000000), blurRadius: 10),
+-              ],
+-            ),
+-          ),
+-          const SizedBox(height: 18),
+-          Wrap(
+-            spacing: 10,
+-            runSpacing: 10,
+-            alignment: WrapAlignment.center,
+-            children: [
+-              _JokerButton(label: '50:50', used: state.usedJokers.contains(QuizJoker.fiftyFifty), onTap: () => onJoker(QuizJoker.fiftyFifty)),
+-              _JokerButton(label: 'Publikum', used: state.usedJokers.contains(QuizJoker.audience), onTap: () => onJoker(QuizJoker.audience)),
+-              _JokerButton(label: 'Lumo anrufen', used: state.usedJokers.contains(QuizJoker.callLumo), onTap: () => onJoker(QuizJoker.callLumo)),
+-            ],
+-          ),
+-          if (state.lumoHint != null) ...[
+-            const SizedBox(height: 14),
+-            _HintBubble(text: state.lumoHint!),
+-          ],
+-          if (state.audienceVotes != null) ...[
+-            const SizedBox(height: 14),
+-            _AudienceVotes(votes: state.audienceVotes!),
+-          ],
+-          const SizedBox(height: 18),
+-          for (var i = 0; i < question.options.length; i++)
+-            Padding(
+-              padding: const EdgeInsets.only(bottom: 10),
+-              child: _AnswerButton(
+-                label: question.options[i],
+-                index: i,
+-                hidden: state.fiftyFiftyHiddenOptions.contains(i),
+-                selected: selected == i,
+-                revealed: answered,
+-                correct: question.correctIndex == i,
+-                onTap: () => onSelect(i),
+-              ),
+-            ),
+-          const SizedBox(height: 8),
+-          if (state.gameOver)
+-            FilledButton.icon(
+-              onPressed: onRestart,
+-              icon: const Icon(Icons.refresh_rounded),
+-              label: Text(state.won ? 'Nochmal Lumo-Meister werden' : 'Neue Quizrunde starten'),
+-            )
+-          else if (!answered)
+-            FilledButton.icon(
+-              onPressed: selected == null ? null : onReveal,
+-              icon: const Icon(Icons.check_rounded),
+-              label: const Text('Antwort einloggen'),
+-            )
+-          else
+-            FilledButton.icon(
+-              onPressed: onNext,
+-              icon: const Icon(Icons.arrow_forward_rounded),
+-              label: const Text('Nächste Frage'),
+-            ),
+-          if (answered) ...[
+-            const SizedBox(height: 14),
+-            _ResultPanel(
+-              correct: isCorrect,
+-              answer: question.correctAnswer,
+-              won: state.won,
+-              securedStars: state.securedStars,
+-              awardedStars: state.awardedStars,
+-            ),
+-          ],
+-        ],
++  final double size;
++
++  @override
++  Widget build(BuildContext context) {
++    return Column(mainAxisSize: MainAxisSize.min, children: [
++      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
++        Image.asset(MeisterAssets.sparkleGold, width: size * .7),
++        Image.asset(MeisterAssets.crown, height: size * 1.25),
++        Image.asset(MeisterAssets.sparkleGold, width: size * .7),
++      ]),
++      Semantics(
++        header: true,
++        child: MeisterGoldText('Wer wird Lumo-Meister?', size: size),
+       ),
+-    );
++    ]);
+   }
+ }
+ 
++class _InfoPill extends StatelessWidget {
++  const _InfoPill({required this.text, this.image, this.icon});
+ 
+-class _QuizHost extends StatelessWidget {
+-  const _QuizHost({
+-    required this.questionNumber,
+-    required this.finale,
+-    required this.won,
+-  });
+-
+-  final int questionNumber;
+-  final bool finale;
+-  final bool won;
++  final String text;
++  final String? image;
++  final IconData? icon;
+ 
+   @override
+   Widget build(BuildContext context) {
+-    final message = won
+-        ? 'Du bist Lumo-Meister!'
+-        : finale
+-            ? 'Das ist die Meisterfrage!'
+-            : questionNumber >= 15
+-                ? 'Jetzt wird es richtig spannend!'
+-                : 'Bereit? Denk in Ruhe nach.';
+-
+-    return Semantics(
+-      label: 'Lumo moderiert die Quizshow',
+-      child: Row(
+-        children: [
+-          LumoCharacter(
+-            pose: won || finale
+-                ? LumoDesignFoxPose.trophyWink
+-                : LumoDesignFoxPose.pointSide,
+-            size: 92,
+-            reduceMotion: MediaQuery.disableAnimationsOf(context),
+-            idleHops: !finale,
+-            ambientPoses: finale
+-                ? const <LumoDesignFoxPose>[]
+-                : const <LumoDesignFoxPose>[
+-                    LumoDesignFoxPose.thumbWink,
+-                    LumoDesignFoxPose.teacherStick,
+-                  ],
+-          ),
+-          const SizedBox(width: 8),
+-          Expanded(
+-            child: Container(
+-              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+-              decoration: BoxDecoration(
+-                color: finale
+-                    ? const Color(0x33FFC94A)
+-                    : const Color(0x3328D7FA),
+-                borderRadius: BorderRadius.circular(18),
+-                border: Border.all(
+-                  color: finale
+-                      ? const Color(0xFFFFC94A)
+-                      : LumoVisualTokens.cyanBright.withOpacity(.55),
+-                ),
+-              ),
+-              child: Text(
+-                message,
+-                style: const TextStyle(
+-                  fontFamily: 'Nunito',
+-                  color: Colors.white,
+-                  fontSize: 15,
+-                  fontWeight: FontWeight.w900,
+-                ),
+-              ),
+-            ),
+-          ),
+-        ],
+-      ),
++    return Container(
++      padding: const EdgeInsets.fromLTRB(8, 6, 14, 6),
++      decoration: meisterPanel(border: MeisterColors.gold, radius: 22, glow: .18),
++      child: Row(mainAxisSize: MainAxisSize.min, children: [
++        if (image != null) Image.asset(image!, width: 28, height: 28),
++        if (icon != null) Icon(icon, color: MeisterColors.goldLight, size: 24),
++        const SizedBox(width: 6),
++        Flexible(child: Text(text, style: meisterText(15, weight: FontWeight.w900))),
++      ]),
+     );
+   }
+ }
+ 
+-class _Pill extends StatelessWidget {
+-  const _Pill(this.text);
+-  final String text;
++/// Die vier sicheren Stern-Stufen als Medaillen-Reihe.
++class _StageMedals extends StatelessWidget {
++  const _StageMedals();
+ 
+   @override
+   Widget build(BuildContext context) {
+-    return Container(
+-      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+-      decoration: BoxDecoration(
+-        color: const Color(0x3328D7FA),
+-        borderRadius: BorderRadius.circular(LumoRadius.pill),
+-        border: Border.all(color: LumoVisualTokens.cyanBright.withOpacity(.55)),
+-      ),
+-      child: Text(
+-        text,
+-        style: LumoTextStyles.label.copyWith(
+-          color: Colors.white,
+-          fontWeight: FontWeight.w900,
+-        ),
+-      ),
++    Widget medal(String stars, String label, {bool top = false}) => Expanded(
++          child: Container(
++            margin: const EdgeInsets.symmetric(horizontal: 4),
++            padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 4),
++            decoration: meisterPanel(
++              border: MeisterColors.gold,
++              radius: 18,
++              glow: top ? .45 : .2,
++              colors: top
++                  ? const [Color(0xF2614211), Color(0xF22A1C08)]
++                  : null,
++            ),
++            child: Column(mainAxisSize: MainAxisSize.min, children: [
++              Image.asset(top ? MeisterAssets.crown : MeisterAssets.star,
++                  height: top ? 30 : 26),
++              const SizedBox(height: 4),
++              FittedBox(
++                child: Text(stars,
++                    style: meisterText(19,
++                        weight: FontWeight.w900, color: MeisterColors.goldLight)),
++              ),
++              Text(label,
++                  textAlign: TextAlign.center,
++                  maxLines: 1,
++                  overflow: TextOverflow.ellipsis,
++                  style: meisterText(12, color: MeisterColors.muted)),
++            ]),
++          ),
++        );
++    return Semantics(
++      label: 'Sichere Stern-Stufen: nach Frage 5 50 Sterne, nach Frage 10 200, '
++          'nach Frage 15 800, nach Frage 20 5.000 Sterne.',
++      excludeSemantics: true,
++      child: Row(children: [
++        medal('50', 'Frage 5'),
++        medal('200', 'Frage 10'),
++        medal('800', 'Frage 15'),
++        medal('5.000', 'Family Park', top: true),
++      ]),
+     );
+   }
+ }
+ 
+-class _AnswerButton extends StatelessWidget {
+-  const _AnswerButton({
+-    required this.label,
+-    required this.index,
+-    required this.hidden,
+-    required this.selected,
+-    required this.revealed,
+-    required this.correct,
+-    required this.onTap,
++class _IntroView extends StatelessWidget {
++  const _IntroView({
++    super.key,
++    required this.grade,
++    required this.stars,
++    required this.reduceMotion,
++    required this.onStart,
++    required this.onBack,
+   });
+ 
+-  final String label;
+-  final int index;
+-  final bool hidden;
+-  final bool selected;
+-  final bool revealed;
+-  final bool correct;
+-  final VoidCallback onTap;
++  final int grade;
++  final int stars;
++  final bool reduceMotion;
++  final VoidCallback onStart;
++  final VoidCallback onBack;
+ 
+   @override
+   Widget build(BuildContext context) {
+-    if (hidden) {
+-      return Opacity(
+-        opacity: .28,
+-        child: _shell(
+-          'Antwort verborgen',
+-          Colors.white70,
+-          const Color(0xCC102A50),
+-          LumoVisualTokens.cyan.withOpacity(.25),
++    return LayoutBuilder(builder: (context, c) {
++      final wide = c.maxWidth >= 680 && c.maxWidth > c.maxHeight * .9;
++      final titleSize = (c.maxWidth * (wide ? .055 : .1)).clamp(30.0, 54.0);
++      final lumoH = wide
++          ? (c.maxHeight * .7).clamp(260.0, 460.0)
++          : (c.maxWidth * .92).clamp(260.0, 430.0);
++      final info = Column(mainAxisSize: MainAxisSize.min, children: [
++        Container(
++          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
++          decoration: meisterPanel(border: MeisterColors.gold, radius: 24, glow: .25),
++          child: Text(
++            'Beantworte 20 Fragen und werde Lumo-Meister!',
++            textAlign: TextAlign.center,
++            style: meisterText(18, weight: FontWeight.w900),
++          ),
++        ),
++        const SizedBox(height: 14),
++        Wrap(
++          spacing: 8,
++          runSpacing: 8,
++          alignment: WrapAlignment.center,
++          children: [
++            const _InfoPill(text: '20 Fragen · immer schwerer', icon: Icons.trending_up_rounded),
++            const _InfoPill(text: '3 Joker', icon: Icons.auto_awesome_rounded),
++            _InfoPill(text: '$grade. Klasse', image: MeisterAssets.badge),
++          ],
++        ),
++        const SizedBox(height: 14),
++        const _StageMedals(),
++        const SizedBox(height: 10),
++        Text(
++          'Eine falsche Antwort beendet die Show – deine erreichte Stern-Stufe '
++          'bleibt dir sicher.',
++          textAlign: TextAlign.center,
++          style: meisterText(14, color: MeisterColors.muted, weight: FontWeight.w700),
++        ),
++        const SizedBox(height: 18),
++        MeisterGoldButton(
++          key: const ValueKey('meister-start'),
++          label: 'Show starten',
++          icon: Icons.play_arrow_rounded,
++          height: 68,
++          onPressed: onStart,
++        ),
++      ]);
++      final lumo = MeisterLumo(
++        pose: MeisterAssets.host,
++        height: lumoH,
++        reduceMotion: reduceMotion,
++      );
++      return SingleChildScrollView(
++        padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
++        child: ConstrainedBox(
++          constraints: BoxConstraints(minHeight: c.maxHeight - 34),
++          child: Column(children: [
++            _TopBar(stars: stars, onBack: onBack),
++            const SizedBox(height: 8),
++            _Title(size: titleSize),
++            const SizedBox(height: 10),
++            if (wide)
++              Row(crossAxisAlignment: CrossAxisAlignment.center, children: [
++                Expanded(child: lumo),
++                const SizedBox(width: 20),
++                Expanded(child: info),
++              ])
++            else ...[
++              lumo,
++              const SizedBox(height: 16),
++              info,
++            ],
++          ]),
+         ),
+       );
++    });
++  }
++}
++
++class _PlayView extends StatelessWidget {
++  const _PlayView({
++    super.key,
++    required this.state,
++    required this.stars,
++    required this.reduceMotion,
++    required this.onSelect,
++    required this.onReveal,
++    required this.onNext,
++    required this.onResult,
++    required this.onJoker,
++    required this.onBack,
++  });
++
++  final QuizShowState state;
++  final int stars;
++  final bool reduceMotion;
++  final ValueChanged<int> onSelect;
++  final VoidCallback onReveal;
++  final VoidCallback onNext;
++  final VoidCallback onResult;
++  final ValueChanged<QuizJoker> onJoker;
++  final VoidCallback onBack;
++
++  bool get _answeredCorrectly =>
++      state.revealed && state.selectedOption == state.currentQuestion.correctIndex;
++
++  String get _pose {
++    if (!state.revealed) {
++      return state.selectedOption == null ? MeisterAssets.host : MeisterAssets.hostPoint;
++    }
++    if (_answeredCorrectly) {
++      return state.won ? MeisterAssets.champion : MeisterAssets.celebration;
+     }
++    return MeisterAssets.encourage;
++  }
+ 
+-    final color = revealed && correct
+-        ? Colors.white
+-        : revealed && selected
+-            ? Colors.white
+-            : Colors.white;
+-    final bg = revealed && correct
+-        ? const Color(0xFF16794B)
+-        : revealed && selected
+-            ? const Color(0xFF9F3042)
+-            : selected
+-                ? const Color(0xFFE58A22)
+-                : const Color(0xE6122C52);
+-
+-    return GestureDetector(
+-      onTap: revealed ? null : onTap,
+-      child: _shell('${String.fromCharCode(65 + index)}  $label', color, bg, color),
+-    );
++  MeisterAnswerLook _look(int i) {
++    final q = state.currentQuestion;
++    if (state.fiftyFiftyHiddenOptions.contains(i)) return MeisterAnswerLook.hidden;
++    if (state.revealed) {
++      if (i == q.correctIndex) return MeisterAnswerLook.correct;
++      if (i == state.selectedOption) return MeisterAnswerLook.wrong;
++      return MeisterAnswerLook.faded;
++    }
++    return i == state.selectedOption ? MeisterAnswerLook.selected : MeisterAnswerLook.idle;
+   }
+ 
+-  Widget _shell(String text, Color fg, Color bg, Color? border) {
+-    return AnimatedContainer(
+-      duration: const Duration(milliseconds: 180),
+-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+-      decoration: BoxDecoration(
+-        color: bg,
+-        borderRadius: BorderRadius.circular(LumoRadius.lg),
+-        border: Border.all(
+-          color: border?.withOpacity(.75) ??
+-              LumoVisualTokens.cyanBright.withOpacity(.38),
+-          width: 1.2,
+-        ),
+-        boxShadow: [
+-          BoxShadow(
+-            color: (border ?? LumoVisualTokens.cyanBright).withOpacity(.14),
+-            blurRadius: 16,
+-            offset: const Offset(0, 5),
+-          ),
++  Widget _answers(double width) {
++    final q = state.currentQuestion;
++    final longest = q.options.fold<int>(0, (m, o) => math.max(m, o.length));
++    final oneColumn = width < 520 && longest > 14;
++    Widget tile(int i) => MeisterAnswerTile(
++          key: ValueKey('meister-answer-$i'),
++          letter: _letters[i],
++          text: q.options[i],
++          look: _look(i),
++          votePercent: state.audienceVotes?[i],
++          onTap: state.revealed || state.fiftyFiftyHiddenOptions.contains(i)
++              ? null
++              : () => onSelect(i),
++        );
++    if (oneColumn) {
++      return Column(children: [
++        for (var i = 0; i < 4; i++) ...[
++          tile(i),
++          if (i < 3) const SizedBox(height: 10),
+         ],
++      ]);
++    }
++    return Column(children: [
++      for (var row = 0; row < 2; row++) ...[
++        IntrinsicHeight(
++          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
++            Expanded(child: tile(row * 2)),
++            const SizedBox(width: 10),
++            Expanded(child: tile(row * 2 + 1)),
++          ]),
++        ),
++        if (row == 0) const SizedBox(height: 10),
++      ],
++    ]);
++  }
++
++  Widget _jokers(bool vertical, double size) {
++    final items = [
++      MeisterJoker(
++        key: const ValueKey('meister-joker-5050'),
++        label: '50:50',
++        caption: '50:50',
++        size: size,
++        used: state.usedJokers.contains(QuizJoker.fiftyFifty),
++        onTap: state.revealed ? null : () => onJoker(QuizJoker.fiftyFifty),
+       ),
+-      child: Text(
+-        text,
+-        textAlign: TextAlign.center,
+-        style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: fg),
++      MeisterJoker(
++        key: const ValueKey('meister-joker-tipp'),
++        label: 'Lumo-Tipp',
++        image: MeisterAssets.bust,
++        size: size,
++        used: state.usedJokers.contains(QuizJoker.callLumo),
++        onTap: state.revealed ? null : () => onJoker(QuizJoker.callLumo),
+       ),
+-    );
++      MeisterJoker(
++        key: const ValueKey('meister-joker-freunde'),
++        label: 'Freunde',
++        icon: Icons.groups_rounded,
++        size: size,
++        used: state.usedJokers.contains(QuizJoker.audience),
++        onTap: state.revealed ? null : () => onJoker(QuizJoker.audience),
++      ),
++    ];
++    return vertical
++        ? Column(
++            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
++            children: items,
++          )
++        : Row(
++            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
++            children: items,
++          );
+   }
+-}
+ 
+-class _JokerButton extends StatelessWidget {
+-  const _JokerButton({required this.label, required this.used, required this.onTap});
+-  final String label;
+-  final bool used;
+-  final VoidCallback onTap;
+-
+-  @override
+-  Widget build(BuildContext context) {
+-    return OutlinedButton(onPressed: used ? null : onTap, child: Text(used ? '$label ✓' : label));
++  Widget? _feedback() {
++    final q = state.currentQuestion;
++    if (state.revealed) {
++      if (_answeredCorrectly) {
++        final stage = _QuizStage.reachedAt(state.currentQuestionIndex);
++        return _FeedbackPanel(
++          key: const ValueKey('meister-feedback-correct'),
++          good: true,
++          title: state.won ? 'Finale geschafft!' : 'Richtig! Super gemacht!',
++          lines: [
++            if (stage != null) 'Stern-Stufe erreicht: ${formatStars(stage)} Sterne sind dir sicher.',
++            if (q.explanation != null) q.explanation!,
++          ],
++        );
++      }
++      final correct = q.options[q.correctIndex];
++      return _FeedbackPanel(
++        key: const ValueKey('meister-feedback-wrong'),
++        good: false,
++        title: 'Fast! Das war knapp.',
++        lines: [
++          'Richtig ist ${_letters[q.correctIndex]}: $correct.',
++          if (q.explanation != null) q.explanation!,
++          state.securedStars > 0
++              ? 'Du behältst ${formatStars(state.securedStars)} Sterne. Toll gespielt!'
++              : 'Probier es gleich noch einmal – Lumo glaubt an dich!',
++        ],
++      );
++    }
++    if (state.lumoHint != null) {
++      return _FeedbackPanel(
++        key: const ValueKey('meister-feedback-hint'),
++        good: true,
++        hint: true,
++        title: 'Lumo-Tipp',
++        lines: [state.lumoHint!],
++      );
++    }
++    if (state.audienceVotes != null) {
++      return const _FeedbackPanel(
++        key: ValueKey('meister-feedback-friends'),
++        good: true,
++        hint: true,
++        title: 'Lumos Freunde haben getippt',
++        lines: ['Die Balken zeigen, wie viele Freunde welche Antwort gewählt haben.'],
++      );
++    }
++    return null;
+   }
+-}
+ 
+-class _HintBubble extends StatelessWidget {
+-  const _HintBubble({required this.text});
+-  final String text;
+-
+-  @override
+-  Widget build(BuildContext context) {
+-    return Container(
+-      padding: const EdgeInsets.all(14),
+-      decoration: BoxDecoration(color: const Color(0xFFF3E8FF), borderRadius: BorderRadius.circular(LumoRadius.lg)),
+-      child: Text('🦊 $text', style: LumoTextStyles.body),
++  Widget _action() {
++    if (!state.revealed) {
++      return MeisterGoldButton(
++        key: const ValueKey('meister-check'),
++        label: 'Antwort prüfen',
++        icon: Icons.check_rounded,
++        onPressed: state.selectedOption == null ? null : onReveal,
++      );
++    }
++    if (state.gameOver) {
++      return MeisterGoldButton(
++        key: const ValueKey('meister-to-result'),
++        label: 'Zum Ergebnis',
++        onPressed: onResult,
++      );
++    }
++    return MeisterGoldButton(
++      key: const ValueKey('meister-next'),
++      label: 'Nächste Frage',
++      onPressed: onNext,
+     );
+   }
+-}
+-
+-class _AudienceVotes extends StatelessWidget {
+-  const _AudienceVotes({required this.votes});
+-  final List<int> votes;
+ 
+   @override
+   Widget build(BuildContext context) {
+-    return Column(
+-      children: List.generate(votes.length, (i) {
+-        return Padding(
+-          padding: const EdgeInsets.only(bottom: 6),
+-          child: Row(children: [
+-            SizedBox(width: 28, child: Text(String.fromCharCode(65 + i), style: LumoTextStyles.label)),
+-            Expanded(
+-              child: ClipRRect(
+-                borderRadius: BorderRadius.circular(99),
+-                child: LinearProgressIndicator(
+-                  value: votes[i] / 100,
+-                  minHeight: 10,
+-                  color: LumoColors.orange,
+-                  backgroundColor: LumoColors.orange.withOpacity(.13),
++    final q = state.currentQuestion;
++    final finale = state.displayQuestionNumber == state.questions.length;
++    return LayoutBuilder(builder: (context, c) {
++      final wide = c.maxWidth >= 680;
++      final header = _TopBar(
++        stars: stars,
++        onBack: onBack,
++        center: Column(mainAxisSize: MainAxisSize.min, children: [
++          MeisterGoldText('Lumo-Meister', size: wide ? 30 : 24),
++          const SizedBox(height: 2),
++          Text('Frage ${state.displayQuestionNumber} von ${state.questions.length}',
++              style: meisterText(14, color: MeisterColors.muted)),
++        ]),
++      );
++      final card = MeisterQuestionCard(
++        subject: q.subject,
++        prompt: q.prompt,
++        number: state.displayQuestionNumber,
++        total: state.questions.length,
++        finale: finale,
++      );
++      final feedback = _feedback();
++
++      if (!wide) {
++        final stageH = (c.maxWidth * 1.08).clamp(350.0, 470.0);
++        return SingleChildScrollView(
++          padding: const EdgeInsets.fromLTRB(14, 10, 14, 24),
++          child: Column(children: [
++            header,
++            const SizedBox(height: 6),
++            SizedBox(
++              height: stageH,
++              child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
++                SizedBox(width: 74, child: _jokers(true, 58)),
++                Expanded(
++                  child: Align(
++                    alignment: Alignment.bottomCenter,
++                    child: MeisterLumo(
++                      pose: _pose,
++                      height: stageH * .92,
++                      reduceMotion: reduceMotion,
++                      glow: state.revealed && !_answeredCorrectly
++                          ? MeisterAssets.glowCyan
++                          : (state.revealed ? MeisterAssets.glowGreen : MeisterAssets.glowGold),
++                    ),
++                  ),
+                 ),
+-              ),
++                Align(
++                  alignment: Alignment.topCenter,
++                  child: MeisterPrizeLadder(
++                      state: state, height: stageH, width: c.maxWidth < 380 ? 96 : 108),
++                ),
++              ]),
+             ),
+-            const SizedBox(width: 8),
+-            SizedBox(width: 42, child: Text('${votes[i]}%', textAlign: TextAlign.right, style: LumoTextStyles.caption)),
++            card,
++            const SizedBox(height: 12),
++            _answers(c.maxWidth),
++            if (feedback != null) ...[const SizedBox(height: 12), feedback],
++            const SizedBox(height: 16),
++            _action(),
+           ]),
+         );
+-      }),
+-    );
++      }
++
++      final lumoH = (c.maxHeight * .36).clamp(220.0, 330.0);
++      return Padding(
++        padding: const EdgeInsets.fromLTRB(18, 10, 18, 12),
++        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
++          Expanded(
++            child: SingleChildScrollView(
++              child: Column(children: [
++                header,
++                const SizedBox(height: 6),
++                SizedBox(
++                  height: lumoH,
++                  child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
++                    SizedBox(width: 92, child: _jokers(true, 66)),
++                    Expanded(
++                      child: Align(
++                        alignment: Alignment.bottomCenter,
++                        child: MeisterLumo(
++                          pose: _pose,
++                          height: lumoH * .96,
++                          reduceMotion: reduceMotion,
++                          glow: state.revealed && !_answeredCorrectly
++                              ? MeisterAssets.glowCyan
++                              : (state.revealed
++                                  ? MeisterAssets.glowGreen
++                                  : MeisterAssets.glowGold),
++                        ),
++                      ),
++                    ),
++                  ]),
++                ),
++                card,
++                const SizedBox(height: 14),
++                _answers(c.maxWidth - 200),
++                if (feedback != null) ...[const SizedBox(height: 12), feedback],
++                const SizedBox(height: 16),
++                ConstrainedBox(
++                  constraints: const BoxConstraints(maxWidth: 520),
++                  child: _action(),
++                ),
++              ]),
++            ),
++          ),
++          const SizedBox(width: 16),
++          MeisterPrizeLadder(
++              state: state, height: c.maxHeight - 22, width: c.maxWidth >= 860 ? 180 : 150),
++        ]),
++      );
++    });
+   }
+ }
+ 
+-class _ResultPanel extends StatelessWidget {
+-  const _ResultPanel({
+-    required this.correct,
+-    required this.answer,
+-    required this.won,
+-    required this.securedStars,
+-    required this.awardedStars,
++/// Welche sichere Stufe mit der aktuellen Frage erreicht wurde (oder null).
++abstract final class _QuizStage {
++  static int? reachedAt(int index) {
++    final stars = const QuizShowEngine().safeSpotStarsForIndex(index);
++    return stars > 0 ? stars : null;
++  }
++}
++
++class _FeedbackPanel extends StatelessWidget {
++  const _FeedbackPanel({
++    super.key,
++    required this.good,
++    required this.title,
++    required this.lines,
++    this.hint = false,
+   });
+ 
+-  final bool correct;
+-  final String answer;
+-  final bool won;
+-  final int securedStars;
+-  final int awardedStars;
++  final bool good;
++  final bool hint;
++  final String title;
++  final List<String> lines;
+ 
+   @override
+   Widget build(BuildContext context) {
+-    final color = correct ? Colors.green : Colors.redAccent;
+-    final text = won
+-        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 Sterne gewonnen! Family-Park-Stufe erreicht!'
+-        : correct
+-            ? securedStars > 0
+-                ? '✅ Richtig! Sichere Stufe: $securedStars Sterne.'
+-                : '✅ Richtig! Weiter geht’s.'
+-            : awardedStars > 0
+-                ? '💡 Richtig wäre: $answer\n⭐ Du sicherst $awardedStars Sterne.'
+-                : '💡 Richtig wäre: $answer\nBeim nächsten Versuch schaffst du die erste Stern-Stufe!';
+-    return Container(
+-      padding: const EdgeInsets.all(14),
+-      decoration: BoxDecoration(
+-        color: color.withOpacity(.10),
+-        borderRadius: BorderRadius.circular(LumoRadius.lg),
+-        border: Border.all(color: color.withOpacity(.25)),
+-      ),
+-      child: Text(
+-        text,
+-        style: LumoTextStyles.body.copyWith(
+-          color: LumoColors.ink900,
+-          fontWeight: FontWeight.w800,
+-        ),
++    final accent = hint
++        ? MeisterColors.cyan
++        : (good ? MeisterColors.green : MeisterColors.coral);
++    final colors = hint
++        ? null
++        : good
++            ? const [Color(0xF2177A4A), Color(0xF20B4F33)]
++            : const [Color(0xF2643054), Color(0xF23A1B3F)];
++    return Semantics(
++      liveRegion: true,
++      label: '$title. ${lines.join(' ')}',
++      excludeSemantics: true,
++      child: Container(
++        width: double.infinity,
++        padding: const EdgeInsets.fromLTRB(12, 12, 16, 14),
++        decoration: meisterPanel(border: accent, radius: 22, glow: .35, colors: colors),
++        child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
++          Image.asset(
++            hint || !good ? MeisterAssets.bust : MeisterAssets.star,
++            width: 54,
++            height: 54,
++          ),
++          const SizedBox(width: 12),
++          Expanded(
++            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
++              Text(title, style: meisterText(20, weight: FontWeight.w900)),
++              for (final line in lines) ...[
++                const SizedBox(height: 4),
++                Text(line,
++                    style: meisterText(16, weight: FontWeight.w700, height: 1.3)),
++              ],
++            ]),
++          ),
++        ]),
+       ),
+     );
+   }
+ }
+ 
+-class _PrizeColumn extends StatelessWidget {
+-  const _PrizeColumn({required this.state});
++class _ResultView extends StatelessWidget {
++  const _ResultView({
++    super.key,
++    required this.state,
++    required this.stars,
++    required this.reduceMotion,
++    required this.onRestart,
++    required this.onLearn,
++    required this.onBack,
++  });
++
+   final QuizShowState state;
++  final int stars;
++  final bool reduceMotion;
++  final VoidCallback onRestart;
++  final VoidCallback onLearn;
++  final VoidCallback onBack;
++
++  int get _correct => state.won ? state.questions.length : state.currentQuestionIndex;
+ 
+   @override
+   Widget build(BuildContext context) {
+-    return Container(
+-      padding: const EdgeInsets.all(16),
+-      decoration: BoxDecoration(
+-        color: const Color(0xE8082144),
+-        borderRadius: BorderRadius.circular(24),
+-        border: Border.all(color: LumoVisualTokens.cyanBright.withOpacity(.45)),
+-        boxShadow: [
+-          BoxShadow(
+-            color: LumoVisualTokens.cyan.withOpacity(.12),
+-            blurRadius: 24,
+-          ),
+-        ],
+-      ),
+-      child: Column(
+-        crossAxisAlignment: CrossAxisAlignment.stretch,
+-        children: [
+-          Text(
+-            'Deine Stern-Leiter',
+-            style: LumoTextStyles.heading3.copyWith(color: Colors.white),
+-          ),
+-          const SizedBox(height: 6),
+-          Text(
+-            'Bei einer falschen Antwort bleiben die zuletzt gesicherten Sterne erhalten.',
+-            style: LumoTextStyles.caption.copyWith(color: Colors.white70),
+-          ),
+-          const SizedBox(height: 10),
+-          _Milestone(
+-            label: 'Frage 5  •  50 Sterne',
+-            emoji: '⭐',
+-            active: state.securedStars >= 50,
+-          ),
+-          _Milestone(
+-            label: 'Frage 10  •  200 Sterne',
+-            emoji: '🌟',
+-            active: state.securedStars >= 200,
+-          ),
+-          _Milestone(
+-            label: 'Frage 15  •  800 Sterne',
+-            emoji: '🏅',
+-            active: state.securedStars >= 800,
+-          ),
+-          _Milestone(
+-            label: 'Frage 20  •  5.000 Sterne',
+-            emoji: '🎢',
+-            active: state.securedStars >= 5000,
+-          ),
+-          const SizedBox(height: 8),
+-          Text(
+-            'Finalziel: 5.000 Sterne – Family-Park-Stufe',
+-            style: LumoTextStyles.body.copyWith(
+-              fontWeight: FontWeight.w900,
+-              color: const Color(0xFFFFD873),
++    final earned = state.awardedStars;
++    final title = state.won
++        ? 'Du bist Lumo-Meister!'
++        : (earned > 0 ? 'Super gespielt!' : 'Gut versucht!');
++    final subtitle = state.won
++        ? 'Alle 20 Fragen richtig – 5.000 Sterne für dich!'
++        : (earned > 0
++            ? 'Deine Stern-Stufe ist gesichert. Beim nächsten Mal schaffst du noch mehr!'
++            : 'Jede Runde macht dich schlauer. Komm, wir probieren es gleich noch einmal!');
++    final pose = state.won
++        ? MeisterAssets.champion
++        : (earned > 0 ? MeisterAssets.celebration : MeisterAssets.encourage);
++
++    return LayoutBuilder(builder: (context, c) {
++      final wide = c.maxWidth >= 680 && c.maxWidth > c.maxHeight * .9;
++      final lumoH = wide
++          ? (c.maxHeight * .62).clamp(240.0, 420.0)
++          : (c.maxWidth * .78).clamp(240.0, 380.0);
++      final trophySize = (lumoH * .42).clamp(90.0, 170.0);
++
++      final visual = SizedBox(
++        height: lumoH,
++        child: Stack(alignment: Alignment.bottomCenter, children: [
++          MeisterLumo(pose: pose, height: lumoH, reduceMotion: reduceMotion),
++          if (state.won) ...[
++            Positioned(
++              left: 0,
++              bottom: lumoH * .05,
++              child: Image.asset(MeisterAssets.trophy, height: trophySize),
+             ),
+-          ),
+-        ],
+-      ),
+-    );
+-  }
+-}
++            Positioned(
++              right: 0,
++              bottom: lumoH * .05,
++              child: Image.asset(MeisterAssets.badge, height: trophySize),
++            ),
++          ] else if (earned > 0)
++            Positioned(
++              right: 0,
++              bottom: lumoH * .05,
++              child: Image.asset(MeisterAssets.badge, height: trophySize * .8),
++            ),
++        ]),
++      );
+ 
+-class _Milestone extends StatelessWidget {
+-  const _Milestone({required this.label, required this.emoji, required this.active});
+-  final String label;
+-  final String emoji;
+-  final bool active;
++      Widget stat(String asset, String value, String label) => Expanded(
++            child: Container(
++              margin: const EdgeInsets.symmetric(horizontal: 4),
++              padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 6),
++              decoration: meisterPanel(border: MeisterColors.gold, radius: 20, glow: .22),
++              child: Column(mainAxisSize: MainAxisSize.min, children: [
++                Image.asset(asset, height: 40),
++                const SizedBox(height: 6),
++                FittedBox(
++                  child: Text(value,
++                      style: meisterText(24,
++                          weight: FontWeight.w900, color: MeisterColors.goldLight)),
++                ),
++                Text(label,
++                    textAlign: TextAlign.center,
++                    maxLines: 2,
++                    style: meisterText(13, color: MeisterColors.muted)),
++              ]),
++            ),
++          );
+ 
+-  @override
+-  Widget build(BuildContext context) {
+-    return Container(
+-      margin: const EdgeInsets.only(bottom: 8),
+-      padding: const EdgeInsets.all(12),
+-      decoration: BoxDecoration(
+-        color: active
+-            ? const Color(0x6637D2FD)
+-            : const Color(0x99122C52),
+-        borderRadius: BorderRadius.circular(LumoRadius.md),
+-        border: Border.all(
+-          color: active
+-              ? LumoVisualTokens.cyanBright
+-              : Colors.white.withOpacity(.10),
++      final details = Column(mainAxisSize: MainAxisSize.min, children: [
++        Semantics(
++          header: true,
++          child: MeisterGoldText(title, size: (c.maxWidth * (wide ? .05 : .09)).clamp(30.0, 50.0)),
+         ),
+-      ),
+-      child: Row(children: [
+-        Text(emoji, style: const TextStyle(fontSize: 24)),
+-        const SizedBox(width: 10),
+-        Expanded(
+-          child: Text(
+-            label,
+-            style: LumoTextStyles.body.copyWith(
+-              fontWeight: FontWeight.w900,
+-              color: active ? Colors.white : Colors.white70,
++        const SizedBox(height: 8),
++        Text(subtitle,
++            textAlign: TextAlign.center,
++            style: meisterText(17, weight: FontWeight.w800, height: 1.3)),
++        const SizedBox(height: 16),
++        Row(children: [
++          stat(MeisterAssets.star, '+${formatStars(earned)}', 'Sterne gewonnen'),
++          stat(MeisterAssets.xp, '$_correct / ${state.questions.length}', 'Fragen richtig'),
++          stat(MeisterAssets.crown,
++              state.securedStars > 0 ? formatStars(state.securedStars) : '–',
++              'Stern-Stufe'),
++        ]),
++        const SizedBox(height: 20),
++        MeisterGoldButton(
++          key: const ValueKey('meister-restart'),
++          label: 'Nochmal spielen',
++          icon: Icons.replay_rounded,
++          onPressed: onRestart,
++        ),
++        const SizedBox(height: 12),
++        Row(children: [
++          Expanded(
++            child: MeisterGlassButton(
++              key: const ValueKey('meister-learn'),
++              label: 'Weiterlernen',
++              icon: Icons.school_rounded,
++              onPressed: onLearn,
+             ),
+           ),
+-        ),
+-      ]),
+-    );
++          const SizedBox(width: 10),
++          Expanded(
++            child: MeisterGlassButton(
++              key: const ValueKey('meister-back'),
++              label: 'Zurück',
++              icon: Icons.chevron_left_rounded,
++              accent: MeisterColors.gold,
++              onPressed: onBack,
++            ),
++          ),
++        ]),
++      ]);
++
++      return SingleChildScrollView(
++        padding: const EdgeInsets.fromLTRB(16, 10, 16, 24),
++        child: Column(children: [
++          _TopBar(stars: stars, onBack: onBack),
++          const SizedBox(height: 10),
++          if (wide)
++            Row(children: [
++              Expanded(child: visual),
++              const SizedBox(width: 20),
++              Expanded(child: details),
++            ])
++          else ...[
++            visual,
++            const SizedBox(height: 14),
++            details,
++          ],
++        ]),
++      );
++    });
+   }
+ }
+diff --git a/pubspec.yaml b/pubspec.yaml
+index 6210632e..befaad70 100644
+--- a/pubspec.yaml
++++ b/pubspec.yaml
+@@ -31,6 +31,7 @@ flutter:
+     - assets/videos/
+     - assets/images/
+     - assets/lumo_design/fox/
++    - assets/lumo_meister/
+     - assets/lumo_design/bg/
+     - assets/lumo_design/learning_world/
+     - assets/lumo_design/logo/
+diff --git a/lib/features/quiz/meister/meister_assets.dart b/lib/features/quiz/meister/meister_assets.dart
+new file mode 100644
+index 00000000..61895c0d
+--- /dev/null
++++ b/lib/features/quiz/meister/meister_assets.dart
+@@ -0,0 +1,32 @@
++/// Einzelbilder für „Wer wird Lumo-Meister?“ (alle PNG mit transparentem
++/// Hintergrund, erzeugt von tools/assets/build_lumo_meister_assets.py).
++abstract final class MeisterAssets {
++  static const _dir = 'assets/lumo_meister';
++
++  // Lumo – freigegebene Posen des App-Fuchses.
++  static const host = '$_dir/lumo_meister_host.png';
++  static const hostPoint = '$_dir/lumo_meister_host_point.png';
++  static const bust = '$_dir/lumo_meister_bust.png';
++  static const celebration = '$_dir/lumo_meister_celebration.png';
++  static const champion = '$_dir/lumo_meister_champion.png';
++  static const encourage = '$_dir/lumo_meister_encourage.png';
++
++  // Auszeichnungen und Belohnungen.
++  static const trophy = '$_dir/meister_trophy.png';
++  static const crown = '$_dir/meister_crown.png';
++  static const badge = '$_dir/meister_badge.png';
++  static const star = '$_dir/meister_rewards_star.png';
++  static const coin = '$_dir/meister_rewards_coin.png';
++  static const xp = '$_dir/meister_rewards_xp.png';
++  static const gift = '$_dir/meister_rewards_gift.png';
++  static const chest = '$_dir/meister_rewards_chest.png';
++
++  // Effekte.
++  static const confetti = '$_dir/meister_confetti_set.png';
++  static const sparkleGold = '$_dir/meister_sparkle_gold.png';
++  static const sparkleCyan = '$_dir/meister_sparkle_cyan.png';
++  static const glowGold = '$_dir/meister_glow_gold.png';
++  static const glowCyan = '$_dir/meister_glow_cyan.png';
++  static const glowGreen = '$_dir/meister_glow_green.png';
++  static const spotlight = '$_dir/meister_spotlight.png';
++}
+diff --git a/lib/features/quiz/meister/meister_style.dart b/lib/features/quiz/meister/meister_style.dart
+new file mode 100644
+index 00000000..75d24290
+--- /dev/null
++++ b/lib/features/quiz/meister/meister_style.dart
+@@ -0,0 +1,412 @@
++import 'package:flutter/material.dart';
++
++import 'meister_assets.dart';
++
++/// Farbwelt der Lumo-Meister-Bühne: tiefes Bühnenblau, Gold für Auszeichnung,
++/// Cyan für Auswahl (wie im Rest der Hologlas-App), Grün für „richtig“ und ein
++/// warmes Korall statt Alarmrot für „noch nicht“.
++abstract final class MeisterColors {
++  static const stageTop = Color(0xFF061036);
++  static const stageMid = Color(0xFF0B2370);
++  static const stageBottom = Color(0xFF071A52);
++  static const panel = Color(0xFF0A1F5C);
++  static const panelDeep = Color(0xFF071547);
++  static const gold = Color(0xFFFFC83D);
++  static const goldLight = Color(0xFFFFE89A);
++  static const goldDeep = Color(0xFFE08A12);
++  static const cyan = Color(0xFF53DDFD);
++  static const green = Color(0xFF2FD47A);
++  static const greenDeep = Color(0xFF0E7A45);
++  static const coral = Color(0xFFFF8A7A);
++  static const coralDeep = Color(0xFF8E2D45);
++  static const text = Color(0xFFF7FBFF);
++  static const muted = Color(0xFFB8C8EF);
++}
++
++const _font = 'Nunito';
++
++TextStyle meisterText(double size,
++        {FontWeight weight = FontWeight.w800,
++        Color color = MeisterColors.text,
++        double height = 1.15}) =>
++    TextStyle(
++      fontFamily: _font,
++      fontSize: size,
++      fontWeight: weight,
++      color: color,
++      height: height,
++    );
++
++/// Bühne: Verlauf, zwei Scheinwerfer, Lichtpunkte und ein leuchtendes Podest.
++class MeisterStage extends StatelessWidget {
++  const MeisterStage({super.key, required this.child});
++
++  final Widget child;
++
++  @override
++  Widget build(BuildContext context) {
++    return DecoratedBox(
++      decoration: const BoxDecoration(
++        gradient: LinearGradient(
++          begin: Alignment.topCenter,
++          end: Alignment.bottomCenter,
++          colors: [
++            MeisterColors.stageTop,
++            MeisterColors.stageMid,
++            MeisterColors.stageBottom,
++          ],
++          stops: [0, .55, 1],
++        ),
++      ),
++      child: Stack(
++        fit: StackFit.expand,
++        children: [
++          const IgnorePointer(child: _StageLights()),
++          child,
++        ],
++      ),
++    );
++  }
++}
++
++class _StageLights extends StatelessWidget {
++  const _StageLights();
++
++  @override
++  Widget build(BuildContext context) {
++    return LayoutBuilder(builder: (context, c) {
++      final w = c.maxWidth;
++      final h = c.maxHeight;
++      Widget spot(double left, double angle) => Positioned(
++            left: left,
++            top: -h * .04,
++            width: w * .42,
++            height: h * .78,
++            child: Transform.rotate(
++              angle: angle,
++              alignment: Alignment.topCenter,
++              child: Opacity(
++                opacity: .55,
++                child: Image.asset(MeisterAssets.spotlight, fit: BoxFit.fill),
++              ),
++            ),
++          );
++      Widget dot(double x, double y, double size, String asset) => Positioned(
++            left: x * w - size / 2,
++            top: y * h - size / 2,
++            width: size,
++            height: size,
++            child: Opacity(opacity: .7, child: Image.asset(asset)),
++          );
++      return Stack(children: [
++        spot(-w * .06, -.28),
++        spot(w * .64, .28),
++        Positioned(
++          left: -w * .2,
++          right: -w * .2,
++          bottom: -h * .12,
++          height: h * .34,
++          child: Opacity(
++            opacity: .35,
++            child: Image.asset(MeisterAssets.glowCyan, fit: BoxFit.fill),
++          ),
++        ),
++        dot(.12, .16, 26, MeisterAssets.sparkleGold),
++        dot(.88, .12, 22, MeisterAssets.sparkleCyan),
++        dot(.06, .52, 18, MeisterAssets.sparkleCyan),
++        dot(.94, .46, 20, MeisterAssets.sparkleGold),
++        dot(.50, .05, 16, MeisterAssets.sparkleGold),
++      ]);
++    });
++  }
++}
++
++/// Goldener Schriftzug mit dunkler Kontur und Glanz – eigener Lumo-Stil.
++class MeisterGoldText extends StatelessWidget {
++  const MeisterGoldText(this.text,
++      {super.key, required this.size, this.textAlign = TextAlign.center});
++
++  final String text;
++  final double size;
++  final TextAlign textAlign;
++
++  @override
++  Widget build(BuildContext context) {
++    final base = meisterText(size, weight: FontWeight.w900, height: 1.02);
++    return Stack(
++      alignment: Alignment.center,
++      children: [
++        Text(
++          text,
++          textAlign: textAlign,
++          style: base.copyWith(
++            foreground: Paint()
++              ..style = PaintingStyle.stroke
++              ..strokeWidth = size * .16
++              ..strokeJoin = StrokeJoin.round
++              ..color = const Color(0xFF3A1B05),
++            shadows: const [
++              Shadow(color: Color(0xCC000000), blurRadius: 14, offset: Offset(0, 5)),
++            ],
++          ),
++        ),
++        ShaderMask(
++          blendMode: BlendMode.srcIn,
++          shaderCallback: (rect) => const LinearGradient(
++            begin: Alignment.topCenter,
++            end: Alignment.bottomCenter,
++            colors: [
++              Color(0xFFFFF6C4),
++              MeisterColors.gold,
++              MeisterColors.goldDeep,
++            ],
++            stops: [0, .48, 1],
++          ).createShader(rect),
++          child: Text(text, textAlign: textAlign, style: base),
++        ),
++      ],
++    );
++  }
++}
++
++/// Glas-Panel der Bühne mit Lichtkante.
++BoxDecoration meisterPanel({
++  Color border = MeisterColors.cyan,
++  double radius = 24,
++  double glow = .25,
++  List<Color>? colors,
++}) =>
++    BoxDecoration(
++      gradient: LinearGradient(
++        begin: Alignment.topCenter,
++        end: Alignment.bottomCenter,
++        colors: colors ??
++            const [Color(0xF0123A8F), Color(0xF00A1F5C), Color(0xF0071547)],
++      ),
++      borderRadius: BorderRadius.circular(radius),
++      border: Border.all(color: border.withOpacity(.85), width: 1.6),
++      boxShadow: [
++        BoxShadow(color: border.withOpacity(glow), blurRadius: 18, spreadRadius: 1),
++        const BoxShadow(
++            color: Color(0x66000000), blurRadius: 16, offset: Offset(0, 8)),
++      ],
++    );
++
++/// Große goldene Hauptschaltfläche (mindestens 64 dp hoch).
++class MeisterGoldButton extends StatefulWidget {
++  const MeisterGoldButton({
++    super.key,
++    required this.label,
++    required this.onPressed,
++    this.icon = Icons.chevron_right_rounded,
++    this.height = 64,
++  });
++
++  final String label;
++  final VoidCallback? onPressed;
++  final IconData icon;
++  final double height;
++
++  @override
++  State<MeisterGoldButton> createState() => _MeisterGoldButtonState();
++}
++
++class _MeisterGoldButtonState extends State<MeisterGoldButton> {
++  bool _down = false;
++
++  @override
++  Widget build(BuildContext context) {
++    final enabled = widget.onPressed != null;
++    return Semantics(
++      button: true,
++      enabled: enabled,
++      label: widget.label,
++      excludeSemantics: true,
++      child: GestureDetector(
++        onTapDown: enabled ? (_) => setState(() => _down = true) : null,
++        onTapCancel: () => setState(() => _down = false),
++        onTapUp: enabled ? (_) => setState(() => _down = false) : null,
++        onTap: widget.onPressed,
++        child: AnimatedScale(
++          scale: _down ? .97 : 1,
++          duration: const Duration(milliseconds: 110),
++          child: AnimatedOpacity(
++            opacity: enabled ? 1 : .45,
++            duration: const Duration(milliseconds: 200),
++            child: Container(
++              height: widget.height,
++              alignment: Alignment.center,
++              padding: const EdgeInsets.symmetric(horizontal: 26),
++              decoration: BoxDecoration(
++                gradient: const LinearGradient(
++                  begin: Alignment.topCenter,
++                  end: Alignment.bottomCenter,
++                  colors: [Color(0xFFFFF0A8), MeisterColors.gold, Color(0xFFF2A51C)],
++                  stops: [0, .45, 1],
++                ),
++                borderRadius: BorderRadius.circular(widget.height / 2),
++                border: Border.all(color: const Color(0xFFFFF7D1), width: 2),
++                boxShadow: [
++                  BoxShadow(
++                      color: MeisterColors.gold.withOpacity(enabled ? .55 : .1),
++                      blurRadius: 24,
++                      spreadRadius: 1),
++                  const BoxShadow(
++                      color: Color(0x88000000), blurRadius: 12, offset: Offset(0, 6)),
++                ],
++              ),
++              child: Row(
++                mainAxisSize: MainAxisSize.min,
++                children: [
++                  Flexible(
++                    child: Text(
++                      widget.label,
++                      maxLines: 1,
++                      overflow: TextOverflow.ellipsis,
++                      style: meisterText(widget.height * .38,
++                          weight: FontWeight.w900, color: const Color(0xFF3A1F02)),
++                    ),
++                  ),
++                  const SizedBox(width: 8),
++                  Icon(widget.icon,
++                      size: widget.height * .5, color: const Color(0xFF3A1F02)),
++                ],
++              ),
++            ),
++          ),
++        ),
++      ),
++    );
++  }
++}
++
++/// Zweitrangige Glas-Schaltfläche.
++class MeisterGlassButton extends StatelessWidget {
++  const MeisterGlassButton({
++    super.key,
++    required this.label,
++    required this.icon,
++    required this.onPressed,
++    this.accent = MeisterColors.cyan,
++  });
++
++  final String label;
++  final IconData icon;
++  final VoidCallback onPressed;
++  final Color accent;
++
++  @override
++  Widget build(BuildContext context) {
++    return Semantics(
++      button: true,
++      label: label,
++      excludeSemantics: true,
++      child: Material(
++        color: Colors.transparent,
++        child: InkWell(
++          borderRadius: BorderRadius.circular(30),
++          onTap: onPressed,
++          child: Container(
++            constraints: const BoxConstraints(minHeight: 56),
++            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
++            decoration: meisterPanel(border: accent, radius: 30, glow: .18),
++            child: Row(
++              mainAxisSize: MainAxisSize.min,
++              mainAxisAlignment: MainAxisAlignment.center,
++              children: [
++                Icon(icon, color: accent, size: 24),
++                const SizedBox(width: 8),
++                Flexible(
++                  child: Text(label,
++                      maxLines: 1,
++                      overflow: TextOverflow.ellipsis,
++                      style: meisterText(17, weight: FontWeight.w900)),
++                ),
++              ],
++            ),
++          ),
++        ),
++      ),
++    );
++  }
++}
++
++/// Runde Glas-Schaltfläche (z. B. Zurück), 52 dp.
++class MeisterRoundButton extends StatelessWidget {
++  const MeisterRoundButton(
++      {super.key, required this.icon, required this.label, required this.onPressed});
++
++  final IconData icon;
++  final String label;
++  final VoidCallback onPressed;
++
++  @override
++  Widget build(BuildContext context) {
++    return Semantics(
++      button: true,
++      label: label,
++      excludeSemantics: true,
++      child: Material(
++        color: Colors.transparent,
++        shape: const CircleBorder(),
++        child: InkWell(
++          customBorder: const CircleBorder(),
++          onTap: onPressed,
++          child: Container(
++            width: 52,
++            height: 52,
++            decoration: BoxDecoration(
++              shape: BoxShape.circle,
++              gradient: const LinearGradient(
++                begin: Alignment.topCenter,
++                end: Alignment.bottomCenter,
++                colors: [Color(0xFF1D4FB8), Color(0xFF0A1F5C)],
++              ),
++              border: Border.all(color: MeisterColors.cyan, width: 1.6),
++              boxShadow: [
++                BoxShadow(color: MeisterColors.cyan.withOpacity(.3), blurRadius: 12),
++              ],
++            ),
++            child: Icon(icon, color: MeisterColors.text, size: 28),
++          ),
++        ),
++      ),
++    );
++  }
++}
++
++/// Sterne-Anzeige mit dem echten Kontostand.
++class MeisterStarChip extends StatelessWidget {
++  const MeisterStarChip({super.key, required this.stars});
++
++  final int stars;
++
++  @override
++  Widget build(BuildContext context) {
++    return Semantics(
++      label: '$stars Sterne',
++      excludeSemantics: true,
++      child: Container(
++        height: 48,
++        padding: const EdgeInsets.fromLTRB(8, 4, 16, 4),
++        decoration: meisterPanel(border: MeisterColors.gold, radius: 26, glow: .25),
++        child: Row(mainAxisSize: MainAxisSize.min, children: [
++          Image.asset(MeisterAssets.star, width: 34, height: 34),
++          const SizedBox(width: 6),
++          Text(formatStars(stars), style: meisterText(19, weight: FontWeight.w900)),
++        ]),
++      ),
++    );
++  }
++}
++
++/// 5000 → „5.000“ (österreichische/deutsche Tausendertrennung).
++String formatStars(int value) {
++  final digits = value.abs().toString();
++  final buffer = StringBuffer(value < 0 ? '-' : '');
++  for (var i = 0; i < digits.length; i++) {
++    if (i > 0 && (digits.length - i) % 3 == 0) buffer.write('.');
++    buffer.write(digits[i]);
++  }
++  return buffer.toString();
++}
+diff --git a/lib/features/quiz/meister/meister_widgets.dart b/lib/features/quiz/meister/meister_widgets.dart
+new file mode 100644
+index 00000000..1fb52de8
+--- /dev/null
++++ b/lib/features/quiz/meister/meister_widgets.dart
+@@ -0,0 +1,725 @@
++import 'dart:math' as math;
++
++import 'package:flutter/material.dart';
++
++import '../../../domain/quiz/quiz_show.dart';
++import 'meister_assets.dart';
++import 'meister_style.dart';
++
++/// Lumo auf dem leuchtenden Podest; atmet leicht, wechselt die Pose weich.
++class MeisterLumo extends StatefulWidget {
++  const MeisterLumo({
++    super.key,
++    required this.pose,
++    required this.height,
++    required this.reduceMotion,
++    this.glow = MeisterAssets.glowGold,
++  });
++
++  final String pose;
++  final double height;
++  final bool reduceMotion;
++  final String glow;
++
++  @override
++  State<MeisterLumo> createState() => _MeisterLumoState();
++}
++
++class _MeisterLumoState extends State<MeisterLumo>
++    with SingleTickerProviderStateMixin {
++  late final AnimationController _breath;
++
++  @override
++  void initState() {
++    super.initState();
++    _breath = AnimationController(
++        vsync: this, duration: const Duration(milliseconds: 2600));
++    if (!widget.reduceMotion) _breath.repeat(reverse: true);
++  }
++
++  @override
++  void didUpdateWidget(MeisterLumo old) {
++    super.didUpdateWidget(old);
++    if (widget.reduceMotion && _breath.isAnimating) _breath.stop();
++    if (!widget.reduceMotion && !_breath.isAnimating) {
++      _breath.repeat(reverse: true);
++    }
++  }
++
++  @override
++  void dispose() {
++    _breath.dispose();
++    super.dispose();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    final h = widget.height;
++    return SizedBox(
++      height: h,
++      child: Stack(
++        alignment: Alignment.bottomCenter,
++        clipBehavior: Clip.none,
++        children: [
++          Positioned(
++            bottom: h * .02,
++            width: h * 1.05,
++            height: h * .95,
++            child: Opacity(opacity: .8, child: Image.asset(widget.glow)),
++          ),
++          // Podest: goldener Ring unter Lumo.
++          Positioned(
++            bottom: 0,
++            child: Container(
++              width: h * .78,
++              height: h * .13,
++              decoration: BoxDecoration(
++                borderRadius: BorderRadius.all(Radius.elliptical(h * .39, h * .065)),
++                gradient: const LinearGradient(
++                  colors: [Color(0xFF173E9E), Color(0xFF2B66E0), Color(0xFF173E9E)],
++                ),
++                border: Border.all(color: MeisterColors.gold, width: 2.2),
++                boxShadow: [
++                  BoxShadow(color: MeisterColors.gold.withOpacity(.45), blurRadius: 18),
++                ],
++              ),
++            ),
++          ),
++          Positioned(
++            bottom: h * .045,
++            height: h * .93,
++            child: AnimatedBuilder(
++              animation: _breath,
++              builder: (context, child) {
++                final t = Curves.easeInOut.transform(_breath.value);
++                return Transform.translate(
++                  offset: Offset(0, -3 * t),
++                  child: Transform.scale(
++                    scale: 1 + .018 * t,
++                    alignment: Alignment.bottomCenter,
++                    child: child,
++                  ),
++                );
++              },
++              child: AnimatedSwitcher(
++                duration: widget.reduceMotion
++                    ? Duration.zero
++                    : const Duration(milliseconds: 380),
++                transitionBuilder: (child, animation) => ScaleTransition(
++                  scale: Tween<double>(begin: .86, end: 1).animate(
++                      CurvedAnimation(parent: animation, curve: Curves.easeOutBack)),
++                  child: FadeTransition(opacity: animation, child: child),
++                ),
++                child: Image.asset(
++                  widget.pose,
++                  key: ValueKey(widget.pose),
++                  height: h * .93,
++                  fit: BoxFit.contain,
++                  semanticLabel: 'Lumo, der Fuchs',
++                ),
++              ),
++            ),
++          ),
++        ],
++      ),
++    );
++  }
++}
++
++enum MeisterAnswerLook { idle, selected, correct, wrong, hidden, faded }
++
++/// Große Antwortkarte A–D mit Buchstaben-Medaillon.
++class MeisterAnswerTile extends StatelessWidget {
++  const MeisterAnswerTile({
++    super.key,
++    required this.letter,
++    required this.text,
++    required this.look,
++    required this.onTap,
++    this.votePercent,
++    this.height = 72,
++  });
++
++  final String letter;
++  final String text;
++  final MeisterAnswerLook look;
++  final VoidCallback? onTap;
++  final int? votePercent;
++  final double height;
++
++  @override
++  Widget build(BuildContext context) {
++    final (List<Color> colors, Color border, Color glow, Color badge) = switch (look) {
++      MeisterAnswerLook.correct => (
++          const [Color(0xFF39E08A), Color(0xFF128A4E), Color(0xFF0B5E36)],
++          const Color(0xFFB8FFD2),
++          MeisterColors.green,
++          Colors.white,
++        ),
++      MeisterAnswerLook.wrong => (
++          const [Color(0xFFB4506A), Color(0xFF7A2A44), Color(0xFF5A1D35)],
++          MeisterColors.coral,
++          MeisterColors.coral,
++          MeisterColors.goldLight,
++        ),
++      MeisterAnswerLook.selected => (
++          const [Color(0xFF2A8BEA), Color(0xFF1356B8), Color(0xFF0C3A8E)],
++          const Color(0xFFBFF4FF),
++          MeisterColors.cyan,
++          MeisterColors.gold,
++        ),
++      _ => (
++          const [Color(0xFF1B4BB0), Color(0xFF10307E), Color(0xFF0A2063)],
++          MeisterColors.gold,
++          MeisterColors.gold,
++          MeisterColors.gold,
++        ),
++    };
++    final hidden = look == MeisterAnswerLook.hidden;
++    final faded = look == MeisterAnswerLook.faded || hidden;
++    final highlighted = look == MeisterAnswerLook.correct ||
++        look == MeisterAnswerLook.selected ||
++        look == MeisterAnswerLook.wrong;
++    final stateWord = switch (look) {
++      MeisterAnswerLook.correct => ', richtig',
++      MeisterAnswerLook.wrong => ', leider nicht richtig',
++      MeisterAnswerLook.selected => ', ausgewählt',
++      MeisterAnswerLook.hidden => ', ausgeblendet',
++      _ => '',
++    };
++    return Semantics(
++      button: true,
++      enabled: onTap != null,
++      selected: look == MeisterAnswerLook.selected,
++      label: 'Antwort $letter: $text$stateWord',
++      excludeSemantics: true,
++      child: GestureDetector(
++        onTap: onTap,
++        child: AnimatedOpacity(
++          opacity: hidden ? .22 : (faded ? .55 : 1),
++          duration: const Duration(milliseconds: 260),
++          child: AnimatedContainer(
++            duration: const Duration(milliseconds: 260),
++            curve: Curves.easeOutCubic,
++            constraints: BoxConstraints(minHeight: height),
++            padding: const EdgeInsets.fromLTRB(8, 8, 14, 8),
++            decoration: BoxDecoration(
++              gradient: LinearGradient(
++                begin: Alignment.topCenter,
++                end: Alignment.bottomCenter,
++                colors: colors,
++              ),
++              borderRadius: BorderRadius.circular(22),
++              border: Border.all(color: border, width: highlighted ? 2.6 : 1.8),
++              boxShadow: [
++                BoxShadow(
++                    color: glow.withOpacity(highlighted ? .7 : .22),
++                    blurRadius: highlighted ? 22 : 10,
++                    spreadRadius: highlighted ? 2 : 0),
++                const BoxShadow(
++                    color: Color(0x66000000), blurRadius: 10, offset: Offset(0, 5)),
++              ],
++            ),
++            child: Row(
++              children: [
++                Container(
++                  width: height * .66,
++                  height: height * .66,
++                  alignment: Alignment.center,
++                  decoration: BoxDecoration(
++                    shape: BoxShape.circle,
++                    color: const Color(0x55000A2E),
++                    border: Border.all(color: badge.withOpacity(.85), width: 1.6),
++                  ),
++                  child: Text(letter,
++                      style: meisterText(height * .36,
++                          weight: FontWeight.w900, color: badge)),
++                ),
++                const SizedBox(width: 12),
++                Expanded(
++                  child: Column(
++                    mainAxisSize: MainAxisSize.min,
++                    crossAxisAlignment: CrossAxisAlignment.start,
++                    children: [
++                      Text(
++                        text,
++                        maxLines: 3,
++                        overflow: TextOverflow.ellipsis,
++                        style: meisterText(text.length > 18 ? 18 : 24,
++                            weight: FontWeight.w900),
++                      ),
++                      if (votePercent != null) ...[
++                        const SizedBox(height: 6),
++                        _VoteBar(percent: votePercent!),
++                      ],
++                    ],
++                  ),
++                ),
++                if (look == MeisterAnswerLook.correct)
++                  const _StatusDot(icon: Icons.check_rounded, color: MeisterColors.green),
++                if (look == MeisterAnswerLook.wrong)
++                  const _StatusDot(icon: Icons.close_rounded, color: MeisterColors.coral),
++              ],
++            ),
++          ),
++        ),
++      ),
++    );
++  }
++}
++
++class _StatusDot extends StatelessWidget {
++  const _StatusDot({required this.icon, required this.color});
++
++  final IconData icon;
++  final Color color;
++
++  @override
++  Widget build(BuildContext context) => Container(
++        width: 36,
++        height: 36,
++        margin: const EdgeInsets.only(left: 6),
++        decoration: BoxDecoration(
++          shape: BoxShape.circle,
++          color: Colors.white,
++          boxShadow: [BoxShadow(color: color.withOpacity(.6), blurRadius: 10)],
++        ),
++        child: Icon(icon, color: color, size: 26),
++      );
++}
++
++class _VoteBar extends StatelessWidget {
++  const _VoteBar({required this.percent});
++
++  final int percent;
++
++  @override
++  Widget build(BuildContext context) {
++    return Row(children: [
++      Expanded(
++        child: ClipRRect(
++          borderRadius: BorderRadius.circular(6),
++          child: LinearProgressIndicator(
++            value: percent / 100,
++            minHeight: 8,
++            backgroundColor: const Color(0x44000000),
++            valueColor: const AlwaysStoppedAnimation(MeisterColors.cyan),
++          ),
++        ),
++      ),
++      const SizedBox(width: 6),
++      Text('$percent %', style: meisterText(13, color: MeisterColors.muted)),
++    ]);
++  }
++}
++
++/// Runder Joker als Glas-Medaillon mit Beschriftung darunter.
++class MeisterJoker extends StatelessWidget {
++  const MeisterJoker({
++    super.key,
++    required this.label,
++    required this.used,
++    required this.onTap,
++    this.icon,
++    this.image,
++    this.size = 60,
++    this.caption,
++  });
++
++  final String label;
++  final bool used;
++  final VoidCallback? onTap;
++  final IconData? icon;
++  final String? image;
++  final String? caption;
++  final double size;
++
++  @override
++  Widget build(BuildContext context) {
++    final enabled = !used && onTap != null;
++    return Semantics(
++      button: true,
++      enabled: enabled,
++      label: used ? '$label, schon benutzt' : 'Joker $label',
++      excludeSemantics: true,
++      child: GestureDetector(
++        onTap: enabled ? onTap : null,
++        child: AnimatedOpacity(
++          opacity: used ? .38 : 1,
++          duration: const Duration(milliseconds: 250),
++          child: Column(mainAxisSize: MainAxisSize.min, children: [
++            Container(
++              width: size,
++              height: size,
++              alignment: Alignment.center,
++              decoration: BoxDecoration(
++                shape: BoxShape.circle,
++                gradient: const RadialGradient(
++                  colors: [Color(0xFF2E6CE6), Color(0xFF0D2B7A)],
++                  center: Alignment(-.3, -.4),
++                ),
++                border: Border.all(
++                    color: used ? MeisterColors.muted : MeisterColors.cyan, width: 2),
++                boxShadow: [
++                  BoxShadow(
++                      color: MeisterColors.cyan.withOpacity(used ? .0 : .45),
++                      blurRadius: 14),
++                ],
++              ),
++              child: image != null
++                  ? ClipOval(
++                      child: Image.asset(image!,
++                          width: size * .82, height: size * .82, fit: BoxFit.cover))
++                  : caption != null
++                      ? Text(caption!,
++                          style: meisterText(size * .3,
++                              weight: FontWeight.w900, color: MeisterColors.goldLight))
++                      : Icon(icon, color: MeisterColors.goldLight, size: size * .5),
++            ),
++            const SizedBox(height: 4),
++            Container(
++              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
++              decoration: BoxDecoration(
++                color: const Color(0xAA061036),
++                borderRadius: BorderRadius.circular(10),
++              ),
++              child: Text(label,
++                  textAlign: TextAlign.center,
++                  maxLines: 1,
++                  style: meisterText(13, weight: FontWeight.w900)),
++            ),
++          ]),
++        ),
++      ),
++    );
++  }
++}
++
++/// Stern-Leiter: 20 Stufen, die vier sicheren Stufen gold mit echtem Wert.
++/// Die Stufen teilen sich die vorgegebene Höhe genau auf (kein Überlauf).
++class MeisterPrizeLadder extends StatelessWidget {
++  const MeisterPrizeLadder({
++    super.key,
++    required this.state,
++    required this.height,
++    this.width = 116,
++  });
++
++  final QuizShowState state;
++  final double height;
++  final double width;
++
++  @override
++  Widget build(BuildContext context) {
++    const engine = QuizShowEngine();
++    final total = state.questions.length;
++    final current = state.currentQuestionIndex;
++    final compact = height < 560;
++    final header = compact ? 30.0 : 54.0;
++    final rung = ((height - 22 - header - 6) / total - 1.2).clamp(9.0, 30.0);
++    bool done(int i) =>
++        state.won ||
++        i < current ||
++        (i == current &&
++            state.revealed &&
++            state.selectedOption == state.currentQuestion.correctIndex);
++    return Semantics(
++      label: 'Stern-Leiter: Frage ${state.displayQuestionNumber} von $total. '
++          'Gesichert: ${formatStars(state.securedStars)} Sterne.',
++      excludeSemantics: true,
++      child: Container(
++        width: width,
++        height: height,
++        padding: const EdgeInsets.fromLTRB(6, 8, 6, 8),
++        decoration: meisterPanel(border: MeisterColors.gold, radius: 20, glow: .3,
++            colors: const [Color(0xF20E2A7C), Color(0xF2071547)]),
++        child: Column(children: [
++          SizedBox(
++            height: header,
++            child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
++              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
++                Image.asset(MeisterAssets.crown, width: compact ? 22 : 28),
++                const SizedBox(width: 4),
++                Flexible(
++                  child: FittedBox(
++                    child: Text('5.000',
++                        style: meisterText(compact ? 16 : 19,
++                            weight: FontWeight.w900, color: MeisterColors.goldLight)),
++                  ),
++                ),
++              ]),
++              if (!compact)
++                Text('Family Park',
++                    maxLines: 1,
++                    overflow: TextOverflow.ellipsis,
++                    style: meisterText(12, color: MeisterColors.muted)),
++            ]),
++          ),
++          const SizedBox(height: 6),
++          Expanded(
++            child: Column(children: [
++              for (var i = total - 1; i >= 0; i--)
++                Expanded(
++                  child: Padding(
++                    padding: const EdgeInsets.symmetric(vertical: .6),
++                    child: _Rung(
++                      number: i + 1,
++                      stars: engine.safeSpotStarsForIndex(i),
++                      current: i == current && !state.gameOver,
++                      done: done(i),
++                      height: rung,
++                    ),
++                  ),
++                ),
++            ]),
++          ),
++        ]),
++      ),
++    );
++  }
++}
++
++class _Rung extends StatelessWidget {
++  const _Rung({
++    required this.number,
++    required this.stars,
++    required this.current,
++    required this.done,
++    required this.height,
++  });
++
++  final int number;
++  final int stars;
++  final bool current;
++  final bool done;
++  final double height;
++
++  @override
++  Widget build(BuildContext context) {
++    final safe = stars > 0;
++    return AnimatedContainer(
++      duration: const Duration(milliseconds: 300),
++      padding: const EdgeInsets.symmetric(horizontal: 6),
++      decoration: BoxDecoration(
++        borderRadius: BorderRadius.circular(height / 2),
++        gradient: current
++            ? const LinearGradient(colors: [Color(0xFFFFE07A), MeisterColors.gold])
++            : null,
++        color: current ? null : (safe ? const Color(0x33FFC83D) : null),
++        border: safe && !current
++            ? Border.all(color: MeisterColors.gold.withOpacity(.6), width: 1)
++            : null,
++        boxShadow: current
++            ? [BoxShadow(color: MeisterColors.gold.withOpacity(.7), blurRadius: 10)]
++            : null,
++      ),
++      child: Row(children: [
++        SizedBox(
++          width: height * 1.25,
++          child: Text('$number',
++              textAlign: TextAlign.center,
++              style: meisterText(height * .58,
++                  weight: FontWeight.w900,
++                  color: current
++                      ? const Color(0xFF3A1F02)
++                      : (done ? MeisterColors.green : MeisterColors.text))),
++        ),
++        Icon(done ? Icons.check_circle_rounded : Icons.star_rounded,
++            size: height * .62,
++            color: current
++                ? const Color(0xFF3A1F02)
++                : (done
++                    ? MeisterColors.green
++                    : (safe ? MeisterColors.gold : MeisterColors.muted.withOpacity(.55)))),
++        const SizedBox(width: 3),
++        if (safe)
++          Expanded(
++            child: FittedBox(
++              alignment: Alignment.centerLeft,
++              fit: BoxFit.scaleDown,
++              child: Text(formatStars(stars),
++                  style: meisterText(height * .58,
++                      weight: FontWeight.w900,
++                      color: current ? const Color(0xFF3A1F02) : MeisterColors.goldLight)),
++            ),
++          ),
++      ]),
++    );
++  }
++}
++
++/// Fragekarte mit Fach-Abzeichen und Glanzfunken.
++class MeisterQuestionCard extends StatelessWidget {
++  const MeisterQuestionCard({
++    super.key,
++    required this.subject,
++    required this.prompt,
++    required this.number,
++    required this.total,
++    this.finale = false,
++  });
++
++  final String subject;
++  final String prompt;
++  final int number;
++  final int total;
++  final bool finale;
++
++  @override
++  Widget build(BuildContext context) {
++    final size = prompt.length > 90 ? 20.0 : (prompt.length > 50 ? 23.0 : 28.0);
++    return Stack(
++      clipBehavior: Clip.none,
++      children: [
++        Container(
++          width: double.infinity,
++          margin: const EdgeInsets.only(top: 16),
++          padding: const EdgeInsets.fromLTRB(26, 30, 26, 22),
++          decoration: meisterPanel(
++            border: finale ? MeisterColors.gold : MeisterColors.cyan,
++            radius: 26,
++            glow: finale ? .5 : .32,
++            colors: const [Color(0xF2164DB5), Color(0xF20D2A7E), Color(0xF2081B58)],
++          ),
++          child: Semantics(
++            header: true,
++            label: 'Frage $number von $total, $subject: $prompt',
++            excludeSemantics: true,
++            child: Text(
++              prompt,
++              textAlign: TextAlign.center,
++              style: meisterText(size, weight: FontWeight.w900, height: 1.2).copyWith(
++                shadows: const [Shadow(color: Color(0xAA000000), blurRadius: 8)],
++              ),
++            ),
++          ),
++        ),
++        Positioned(
++          top: 0,
++          left: 0,
++          right: 0,
++          child: Center(
++            child: Container(
++              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
++              decoration: BoxDecoration(
++                gradient: const LinearGradient(
++                    colors: [Color(0xFF1C55C9), Color(0xFF0E2E86)]),
++                borderRadius: BorderRadius.circular(20),
++                border: Border.all(
++                    color: finale ? MeisterColors.gold : MeisterColors.cyan, width: 1.6),
++              ),
++              child: Row(mainAxisSize: MainAxisSize.min, children: [
++                Icon(_subjectIcon(subject), size: 18, color: MeisterColors.cyan),
++                const SizedBox(width: 6),
++                Text(finale ? 'Finalfrage · $subject' : subject,
++                    style: meisterText(15, weight: FontWeight.w900)),
++              ]),
++            ),
++          ),
++        ),
++        Positioned(
++          left: 6,
++          top: 34,
++          child: Image.asset(MeisterAssets.sparkleGold, width: 28),
++        ),
++        Positioned(
++          right: 6,
++          bottom: 4,
++          child: Image.asset(MeisterAssets.sparkleGold, width: 24),
++        ),
++      ],
++    );
++  }
++
++  static IconData _subjectIcon(String subject) {
++    final s = subject.toLowerCase();
++    if (s.contains('mathe')) return Icons.calculate_rounded;
++    if (s.contains('deutsch')) return Icons.menu_book_rounded;
++    if (s.contains('englisch')) return Icons.translate_rounded;
++    if (s.contains('sach') || s.contains('natur')) return Icons.eco_rounded;
++    if (s.contains('logik')) return Icons.extension_rounded;
++    return Icons.lightbulb_rounded;
++  }
++}
++
++/// Fallendes Konfetti aus dem Konfetti-Set (einmal pro Auslösung).
++class MeisterConfetti extends StatefulWidget {
++  const MeisterConfetti({super.key, required this.play, required this.reduceMotion});
++
++  final bool play;
++  final bool reduceMotion;
++
++  @override
++  State<MeisterConfetti> createState() => _MeisterConfettiState();
++}
++
++class _MeisterConfettiState extends State<MeisterConfetti>
++    with SingleTickerProviderStateMixin {
++  // Sofort anlegen: ein erst in dispose() erzeugter (late) Controller würde
++  // auf ein bereits abgemeldetes Element zugreifen (bei reduzierter Bewegung).
++  late final AnimationController _c;
++
++  @override
++  void initState() {
++    super.initState();
++    _c = AnimationController(
++        vsync: this, duration: const Duration(milliseconds: 1900));
++    if (widget.play && !widget.reduceMotion) _c.forward();
++  }
++
++  @override
++  void didUpdateWidget(MeisterConfetti old) {
++    super.didUpdateWidget(old);
++    if (widget.play && !old.play && !widget.reduceMotion) _c.forward(from: 0);
++  }
++
++  @override
++  void dispose() {
++    _c.dispose();
++    super.dispose();
++  }
++
++  @override
++  Widget build(BuildContext context) {
++    if (!widget.play) return const SizedBox.shrink();
++    if (widget.reduceMotion) {
++      return IgnorePointer(
++        child: Opacity(
++          opacity: .6,
++          child: Align(
++            alignment: Alignment.topCenter,
++            child: Image.asset(MeisterAssets.confetti, width: 360),
++          ),
++        ),
++      );
++    }
++    return IgnorePointer(
++      child: AnimatedBuilder(
++        animation: _c,
++        builder: (context, _) {
++          final t = _c.value;
++          if (t >= 1) return const SizedBox.shrink();
++          return LayoutBuilder(builder: (context, c) {
++            final w = c.maxWidth;
++            final h = c.maxHeight;
++            return Stack(children: [
++              for (var i = 0; i < 3; i++)
++                Positioned(
++                  left: w * (i / 3) - w * .05,
++                  top: -h * .25 + (h * 1.1) * Curves.easeIn.transform(t) - i * 30,
++                  width: w * .45,
++                  child: Opacity(
++                    opacity: (1 - t).clamp(0, 1),
++                    child: Transform.rotate(
++                      angle: (i.isEven ? 1 : -1) * t * math.pi * .35,
++                      child: Image.asset(MeisterAssets.confetti),
++                    ),
++                  ),
++                ),
++            ]);
++          });
++        },
++      ),
++    );
++  }
++}
+diff --git a/test/design/lumo_meister_screen_test.dart b/test/design/lumo_meister_screen_test.dart
+new file mode 100644
+index 00000000..2e1ad248
+--- /dev/null
++++ b/test/design/lumo_meister_screen_test.dart
+@@ -0,0 +1,205 @@
++import 'dart:io';
++import 'dart:math' as math;
++import 'dart:ui' as ui;
++
++import 'package:flutter/material.dart';
++import 'package:flutter/rendering.dart';
++import 'package:flutter/services.dart';
++import 'package:flutter_test/flutter_test.dart';
++import 'package:shared_preferences/shared_preferences.dart';
++import 'package:lumo_lernen/app/app_state.dart';
++import 'package:lumo_lernen/core/lumo_sound.dart';
++import 'package:lumo_lernen/core/lumo_voice.dart';
++import 'package:lumo_lernen/core/reward_wallet_repository.dart';
++import 'package:lumo_lernen/domain/quiz/quiz_question_bank.dart';
++import 'package:lumo_lernen/domain/quiz/quiz_show.dart';
++import 'package:lumo_lernen/features/quiz/quiz_show_content.dart';
++
++/// „Wer wird Lumo-Meister?“: alle Zustände auf Telefon, Fold-Außen- und
++/// Innendisplay sowie Querformat ohne Überlauf; Sterne werden einmal gebucht.
++/// Mit LUMO_MEISTER_CAPTURES=<ordner> entstehen echte Renderings der Widgets.
++const _captureKey = ValueKey('meister-capture');
++const _seed = 1946;
++
++const _sizes = <String, Size>{
++  'telefon': Size(393, 852),
++  'fold-aussen': Size(344, 882),
++  'fold-innen': Size(690, 829),
++  'quer': Size(915, 412),
++};
++
++List<QuizQuestion> _questions(int grade) => const QuizQuestionBank()
++    .generateGameQuestions(grade: grade, random: math.Random(_seed));
++
++Future<LumoAppState> _open(WidgetTester tester, Size size) async {
++  await tester.binding.setSurfaceSize(size);
++  final app = LumoAppState(walletRepository: RewardWalletRepository());
++  app.update(app.state.copyWith(grade: 2));
++  await tester.pumpWidget(RepaintBoundary(
++    key: _captureKey,
++    child: MaterialApp(
++      debugShowCheckedModeBanner: false,
++      builder: (context, child) => MediaQuery(
++        data: MediaQuery.of(context).copyWith(disableAnimations: true),
++        child: child!,
++      ),
++      home: QuizShowContent(appState: app, random: math.Random(_seed)),
++    ),
++  ));
++  await _settle(tester);
++  return app;
++}
++
++Future<void> _settle(WidgetTester tester) async {
++  // Bilder vorab dekodieren; als Kontext dient der stabile Quizshow-Bildschirm
++  // (alte Ansichten können während eines Wechsels schon abgebaut sein).
++  final context = tester.element(find.byType(QuizShowContent));
++  final providers = [
++    for (final image in tester.widgetList<Image>(find.byType(Image))) image.image,
++  ];
++  await tester.runAsync(() async {
++    for (final provider in providers) {
++      await precacheImage(provider, context);
++    }
++  });
++  for (var i = 0; i < 6; i++) {
++    await tester.pump(const Duration(milliseconds: 120));
++  }
++}
++
++Future<void> _tap(WidgetTester tester, Finder finder) async {
++  await tester.ensureVisible(finder);
++  await tester.pump();
++  await tester.tap(finder);
++  await _settle(tester);
++}
++
++Future<void> _capture(WidgetTester tester, String name) async {
++  expect(tester.takeException(), isNull, reason: name);
++  final directory = Platform.environment['LUMO_MEISTER_CAPTURES'];
++  if (directory == null) return;
++  final boundary =
++      tester.renderObject<RenderRepaintBoundary>(find.byKey(_captureKey));
++  await tester.runAsync(() async {
++    final image = await boundary.toImage(pixelRatio: 2.5);
++    final png = await image.toByteData(format: ui.ImageByteFormat.png);
++    final file = File('$directory/$name.png');
++    await file.parent.create(recursive: true);
++    await file.writeAsBytes(png!.buffer.asUint8List());
++    image.dispose();
++  });
++}
++
++Future<void> _answer(WidgetTester tester, int option) async {
++  await _tap(tester, find.byKey(ValueKey('meister-answer-$option')));
++  await _tap(tester, find.byKey(const ValueKey('meister-check')));
++}
++
++void main() {
++  TestWidgetsFlutterBinding.ensureInitialized();
++  setUpAll(() async {
++    final loader = FontLoader('Nunito');
++    for (final weight in ['Regular', 'Bold', 'ExtraBold', 'Black']) {
++      loader.addFont(rootBundle.load('assets/fonts/Nunito-$weight.ttf'));
++    }
++    await loader.load();
++  });
++  setUp(() {
++    // Geräusche stumm (wie die übrigen Bildschirmtests): kein Audio-Plugin im Test.
++    SharedPreferences.setMockInitialValues({'lumo_sfx_muted': true});
++    LumoSound.instance.muted = true;
++    LumoVoice.instance.isEnabled = false;
++  });
++  tearDown(() => LumoVoice.instance.isEnabled = true);
++
++  for (final entry in _sizes.entries) {
++    testWidgets('${entry.key}: Start, richtig, falsch, Ergebnis ohne Überlauf',
++        (tester) async {
++      addTearDown(() => tester.binding.setSurfaceSize(null));
++      final app = await _open(tester, entry.value);
++      addTearDown(app.dispose);
++      final questions = _questions(2);
++
++      expect(find.text('Wer wird Lumo-Meister?'), findsWidgets);
++      expect(find.text('Show starten'), findsOneWidget);
++      await _capture(tester, '${entry.key}-01-start');
++
++      await _tap(tester, find.byKey(const ValueKey('meister-start')));
++      expect(find.text('Frage 1 von 20'), findsOneWidget);
++      await _capture(tester, '${entry.key}-02-frage');
++
++      await _tap(tester, find.byKey(const ValueKey('meister-joker-tipp')));
++      await _tap(tester,
++          find.byKey(ValueKey('meister-answer-${questions[0].correctIndex}')));
++      await _capture(tester, '${entry.key}-03-auswahl-mit-tipp');
++
++      await _tap(tester, find.byKey(const ValueKey('meister-check')));
++      expect(find.byKey(const ValueKey('meister-feedback-correct')), findsOneWidget);
++      await _capture(tester, '${entry.key}-04-richtig');
++
++      await _tap(tester, find.byKey(const ValueKey('meister-next')));
++      expect(find.text('Frage 2 von 20'), findsOneWidget);
++      final wrong = (questions[1].correctIndex + 1) % 4;
++      await _answer(tester, wrong);
++      expect(find.byKey(const ValueKey('meister-feedback-wrong')), findsOneWidget);
++      await _capture(tester, '${entry.key}-05-falsch');
++
++      await _tap(tester, find.byKey(const ValueKey('meister-to-result')));
++      expect(find.text('Gut versucht!'), findsOneWidget);
++      expect(find.text('1 / 20'), findsOneWidget);
++      // Vor der ersten Stern-Stufe wird nichts gebucht.
++      expect(app.state.stars, 0);
++      await _capture(tester, '${entry.key}-06-ergebnis');
++    });
++  }
++
++  for (final entry in {'telefon': _sizes['telefon']!, 'fold-innen': _sizes['fold-innen']!}.entries) {
++    testWidgets('${entry.key}: alle 20 richtig – Lumo-Meister, 5.000 Sterne genau einmal',
++        (tester) async {
++      addTearDown(() => tester.binding.setSurfaceSize(null));
++      final app = await _open(tester, entry.value);
++      addTearDown(app.dispose);
++      final questions = _questions(2);
++      await _tap(tester, find.byKey(const ValueKey('meister-start')));
++      for (var i = 0; i < 20; i++) {
++        expect(find.text('Frage ${i + 1} von 20'), findsOneWidget);
++        await _answer(tester, questions[i].correctIndex);
++        expect(tester.takeException(), isNull, reason: 'Frage ${i + 1}');
++        if (i == 4) await _capture(tester, '${entry.key}-07-stufe-50');
++        if (i == 19) {
++          await _capture(tester, '${entry.key}-08-finale-richtig');
++          await _tap(tester, find.byKey(const ValueKey('meister-to-result')));
++        } else {
++          await _tap(tester, find.byKey(const ValueKey('meister-next')));
++        }
++      }
++      expect(find.text('Du bist Lumo-Meister!'), findsOneWidget);
++      expect(find.text('+5.000'), findsOneWidget);
++      expect(app.state.stars, 5000);
++      await _capture(tester, '${entry.key}-09-meister');
++      // Erneuter Aufbau bucht nicht doppelt.
++      await tester.pump(const Duration(seconds: 1));
++      expect(app.state.stars, 5000);
++    });
++  }
++
++  testWidgets('Antwortkarten und Joker sind beschriftete Schaltflächen',
++      (tester) async {
++    final semantics = tester.ensureSemantics();
++    addTearDown(() => tester.binding.setSurfaceSize(null));
++    final app = await _open(tester, _sizes['telefon']!);
++    addTearDown(app.dispose);
++    await _tap(tester, find.byKey(const ValueKey('meister-start')));
++    final q = _questions(2).first;
++    final data = tester
++        .getSemantics(find.byKey(const ValueKey('meister-answer-0')))
++        .getSemanticsData();
++    expect(data.label, 'Antwort A: ${q.options[0]}');
++    expect(data.flagsCollection.isButton, isTrue);
++    expect(data.hasAction(SemanticsAction.tap), isTrue);
++    expect(find.bySemanticsLabel('Joker 50:50'), findsOneWidget);
++    await _tap(tester, find.byKey(const ValueKey('meister-joker-5050')));
++    expect(find.bySemanticsLabel('50:50, schon benutzt'), findsOneWidget);
++    semantics.dispose();
++  });
++}
+diff --git a/tools/assets/build_lumo_meister_assets.py b/tools/assets/build_lumo_meister_assets.py
+new file mode 100644
+index 00000000..204001c0
+--- /dev/null
++++ b/tools/assets/build_lumo_meister_assets.py
+@@ -0,0 +1,220 @@
++#!/usr/bin/env python3
++"""Baut die Einzelbilder für „Wer wird Lumo-Meister?“ nach assets/lumo_meister/.
++
++Alle Dateien sind PNG mit echtem Alphakanal (transparenter Hintergrund).
++
++- Lumo-Posen und Belohnungs-Symbole stammen aus den freigegebenen Originalen in
++  assets/lumo_design/ (gleicher Fuchs wie überall in der App: Brille, dunkle Jacke
++  mit leuchtendem „L“). Sie werden nur auf ihren Inhalt zugeschnitten, verkleinert
++  und verlustfrei komprimiert, nicht übermalt.
++- Konfetti, Funken, Leuchten, Scheinwerfer und das Meister-Emblem werden hier
++  reproduzierbar erzeugt (fester Zufallsstartwert), ohne externen Bilddienst.
++
++Aufruf (aus dem Repository-Wurzelverzeichnis):
++    python3 tools/assets/build_lumo_meister_assets.py
++"""
++from __future__ import annotations
++
++import math
++import random
++from pathlib import Path
++
++from PIL import Image, ImageChops, ImageDraw, ImageFilter
++
++ROOT = Path(__file__).resolve().parents[2]
++SRC = ROOT / 'assets' / 'lumo_design'
++OUT = ROOT / 'assets' / 'lumo_meister'
++
++GOLD = (255, 200, 61)
++GOLD_LIGHT = (255, 236, 150)
++CYAN = (67, 225, 255)
++ORANGE = (255, 138, 51)
++PINK = (255, 96, 170)
++WHITE = (255, 255, 255)
++VIOLET = (150, 110, 255)
++
++
++def trimmed(image: Image.Image, margin: int = 8) -> Image.Image:
++    """Schneidet auf den sichtbaren Inhalt (Alpha > 8) plus Rand zu."""
++    alpha = image.getchannel('A').point(lambda v: 255 if v > 8 else 0)
++    box = alpha.getbbox()
++    if box is None:
++        return image
++    left, top, right, bottom = box
++    return image.crop((max(0, left - margin), max(0, top - margin),
++                       min(image.width, right + margin), min(image.height, bottom + margin)))
++
++
++def fit(image: Image.Image, longest: int) -> Image.Image:
++    scale = longest / max(image.size)
++    if scale >= 1:
++        return image
++    return image.resize((round(image.width * scale), round(image.height * scale)),
++                        Image.Resampling.LANCZOS)
++
++
++def save(image: Image.Image, name: str) -> None:
++    if image.mode != 'RGBA':
++        image = image.convert('RGBA')
++    path = OUT / name
++    image.save(path, optimize=True)
++    alpha = image.getchannel('A')
++    transparent = sum(1 for v in alpha.getdata() if v < 10) / (image.width * image.height)
++    print(f'{name:34s} {image.width}x{image.height}  transparent {transparent:4.0%}  '
++          f'{path.stat().st_size // 1024} KB')
++
++
++def derived(source: str, name: str, longest: int) -> None:
++    image = Image.open(SRC / source).convert('RGBA')
++    save(fit(trimmed(image), longest), name)
++
++
++def supersampled(size: tuple[int, int], draw_fn, factor: int = 4) -> Image.Image:
++    """Zeichnet in vierfacher Größe und verkleinert – glatte Kanten."""
++    big = Image.new('RGBA', (size[0] * factor, size[1] * factor), (0, 0, 0, 0))
++    draw_fn(big, factor)
++    return big.resize(size, Image.Resampling.LANCZOS)
++
++
++def star_points(cx: float, cy: float, outer: float, inner: float, tips: int = 5,
++                rotation: float = -math.pi / 2) -> list[tuple[float, float]]:
++    points = []
++    for i in range(tips * 2):
++        radius = outer if i % 2 == 0 else inner
++        angle = rotation + i * math.pi / tips
++        points.append((cx + radius * math.cos(angle), cy + radius * math.sin(angle)))
++    return points
++
++
++def radial_glow(size: int, color: tuple[int, int, int], strength: float = 1.0,
++                falloff: float = 2.2) -> Image.Image:
++    """Weiches, kreisförmiges Leuchten mit Alpha-Verlauf (Mitte hell, Rand transparent)."""
++    image = Image.new('RGBA', (size, size), (0, 0, 0, 0))
++    pixels = image.load()
++    c = (size - 1) / 2
++    for y in range(size):
++        for x in range(size):
++            d = math.hypot(x - c, y - c) / c
++            if d >= 1:
++                continue
++            a = (1 - d) ** falloff * strength
++            # Kern leicht ins Weiße ziehen: wirkt wie echtes Licht.
++            mix = max(0.0, 1 - d * 2.4)
++            r = round(color[0] + (255 - color[0]) * mix)
++            g = round(color[1] + (255 - color[1]) * mix)
++            b = round(color[2] + (255 - color[2]) * mix)
++            pixels[x, y] = (r, g, b, round(min(1.0, a) * 255))
++    return image
++
++
++def sparkle(size: int, color: tuple[int, int, int]) -> Image.Image:
++    """Vierzackiger Funke mit Lichthof."""
++    def draw(img: Image.Image, f: int) -> None:
++        d = ImageDraw.Draw(img)
++        s = size * f
++        c = s / 2
++        for long, short, alpha in ((0.48, 0.07, 255), (0.30, 0.05, 255)):
++            pts = star_points(c, c, s * long, s * short, tips=4, rotation=0)
++            d.polygon(pts, fill=(*color, alpha))
++        core = s * 0.08
++        d.ellipse((c - core, c - core, c + core, c + core), fill=(*WHITE, 255))
++    shape = supersampled((size, size), draw)
++    halo = radial_glow(size, color, strength=0.55, falloff=2.6)
++    halo.alpha_composite(shape)
++    return halo
++
++
++def confetti_set(size: int = 640, pieces: int = 70, seed: int = 1946) -> Image.Image:
++    rng = random.Random(seed)
++    colors = [GOLD, CYAN, ORANGE, PINK, WHITE, VIOLET, (120, 230, 140)]
++
++    def draw(img: Image.Image, f: int) -> None:
++        s = size * f
++        for _ in range(pieces):
++            color = rng.choice(colors)
++            kind = rng.random()
++            cx, cy = rng.uniform(0.06, 0.94) * s, rng.uniform(0.06, 0.94) * s
++            piece = Image.new('RGBA', (int(0.12 * s), int(0.12 * s)), (0, 0, 0, 0))
++            pd = ImageDraw.Draw(piece)
++            w, h = piece.size
++            if kind < 0.45:      # Streifen
++                pw, ph = rng.uniform(0.018, 0.03) * s, rng.uniform(0.05, 0.08) * s
++                pd.rounded_rectangle((w / 2 - pw / 2, h / 2 - ph / 2, w / 2 + pw / 2, h / 2 + ph / 2),
++                                     radius=pw / 3, fill=(*color, 255))
++            elif kind < 0.75:    # Punkt
++                r = rng.uniform(0.010, 0.018) * s
++                pd.ellipse((w / 2 - r, h / 2 - r, w / 2 + r, h / 2 + r), fill=(*color, 255))
++            else:                # kleiner Stern
++                r = rng.uniform(0.022, 0.035) * s
++                pd.polygon(star_points(w / 2, h / 2, r, r * 0.45), fill=(*color, 255))
++            piece = piece.rotate(rng.uniform(0, 360), resample=Image.Resampling.BICUBIC)
++            img.alpha_composite(piece, (int(cx - w / 2), int(cy - h / 2)))
++    return supersampled((size, size), draw)
++
++
++def spotlight(width: int = 420, height: int = 900, color=(160, 210, 255)) -> Image.Image:
++    """Scheinwerferkegel von oben: oben schmal und hell, unten breit und weich."""
++    image = Image.new('RGBA', (width, height), (0, 0, 0, 0))
++    pixels = image.load()
++    for y in range(height):
++        t = y / (height - 1)
++        half = width * (0.06 + 0.44 * t)
++        vertical = (1 - t) ** 1.3 * 0.75 + 0.05
++        for x in range(width):
++            dx = abs(x - width / 2) / half if half else 1
++            if dx >= 1:
++                continue
++            a = vertical * (1 - dx ** 2)
++            pixels[x, y] = (*color, round(max(0.0, min(1.0, a)) * 150))
++    return image.filter(ImageFilter.GaussianBlur(6))
++
++
++def badge() -> Image.Image:
++    """Meister-Emblem: Lorbeerkranz mit Stern (Original) und Krone darüber."""
++    laurel = Image.open(SRC / 'rewards' / 'laurel_star.webp').convert('RGBA')
++    crown = trimmed(Image.open(SRC / 'icons' / 'crown.png').convert('RGBA'))
++    laurel = trimmed(laurel)
++    size = 640
++    canvas = Image.new('RGBA', (size, size), (0, 0, 0, 0))
++    glow = radial_glow(size, GOLD, strength=0.45, falloff=2.4)
++    canvas.alpha_composite(glow)
++    lw = int(size * 0.80)
++    laurel = laurel.resize((lw, int(laurel.height * lw / laurel.width)), Image.Resampling.LANCZOS)
++    top = size - laurel.height - int(size * 0.04)
++    canvas.alpha_composite(laurel, ((size - lw) // 2, top))
++    cw = int(size * 0.46)
++    crown = crown.resize((cw, int(crown.height * cw / crown.width)), Image.Resampling.LANCZOS)
++    canvas.alpha_composite(crown, ((size - cw) // 2, max(0, top - int(crown.height * 0.62))))
++    return trimmed(canvas, margin=4)
++
++
++def main() -> None:
++    OUT.mkdir(parents=True, exist_ok=True)
++    # Lumo – freigegebene Posen
++    derived('fox/fox_arms_open.png', 'lumo_meister_host.png', 760)
++    derived('fox/fox_point_side.png', 'lumo_meister_host_point.png', 760)
++    derived('fox/fox_avatar.png', 'lumo_meister_bust.png', 420)
++    derived('fox/fox_cheer.png', 'lumo_meister_celebration.png', 760)
++    derived('fox/fox_trophy_wink.png', 'lumo_meister_champion.png', 760)
++    derived('fox/fox_thumb_wink.png', 'lumo_meister_encourage.png', 760)
++    # Auszeichnungen und Belohnungen – freigegebene Symbole
++    derived('icons/trophy_gold.png', 'meister_trophy.png', 384)
++    derived('icons/crown.png', 'meister_crown.png', 320)
++    derived('icons/star_gold.png', 'meister_rewards_star.png', 256)
++    derived('rewards/coin_star.webp', 'meister_rewards_coin.png', 256)
++    derived('icons/lightning.webp', 'meister_rewards_xp.png', 256)
++    derived('icons/gift_box.webp', 'meister_rewards_gift.png', 256)
++    derived('icons/treasure_chest.png', 'meister_rewards_chest.png', 320)
++    save(badge(), 'meister_badge.png')
++    # Effekte – erzeugt
++    save(confetti_set(), 'meister_confetti_set.png')
++    save(sparkle(256, GOLD_LIGHT), 'meister_sparkle_gold.png')
++    save(sparkle(256, CYAN), 'meister_sparkle_cyan.png')
++    save(radial_glow(512, GOLD, strength=0.85), 'meister_glow_gold.png')
++    save(radial_glow(512, CYAN, strength=0.75), 'meister_glow_cyan.png')
++    save(radial_glow(512, (120, 235, 150), strength=0.8), 'meister_glow_green.png')
++    save(spotlight(), 'meister_spotlight.png')
++
++
++if __name__ == '__main__':
++    main()
