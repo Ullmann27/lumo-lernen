@@ -884,7 +884,7 @@ jobs:
           assert character['status'] == 'PASS'
           assert character['flutter_source_commit'] == source
           assert character['godot_source_commit'] == pin['revision']
-          assert character['measured_checks'] == {'character-pose': 2325, 'face-depth': 23, 'start-hero': 69}
+          assert character['measured_checks'] == {'character-pose': 2325, 'face-depth': 23, 'start-hero': 225}
           assert character['aquarium']['gpu_instance_clearance_verified'] is True
           assert len(character['captures']) == 20
           for frame in character['captures']:
