@@ -71,7 +71,7 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
     if (!mounted) return;
     setState(() {
       _promptIndex = (prefs.getInt('$_scope:prompt') ?? 0)
-          .clamp(0, _prompts.length - 1);
+          .clamp(0, _prompts.length - 1).toInt();
       _controller.text = prefs.getString('$_scope:draft:$_promptIndex') ?? '';
     });
   }
