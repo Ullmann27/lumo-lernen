@@ -51,7 +51,8 @@ jobs:
           ]
           out_dir = workspace / "output"
           out_dir.mkdir(exist_ok=True)
-          full_path = out_dir / "Lumo_Gemini_Kompletter_Quellcode_2026-10-15.zip"
+          flutter_path = out_dir / "Lumo_Gemini_Quellcode_Lernapp_2026-10-15.zip"
+          godot_path = out_dir / "Lumo_Gemini_Quellcode_Kart_2026-10-15.zip"
           slim_path = out_dir / "Lumo_Gemini_Code_Review_2026-10-15.zip"
           code_ext = {
               ".dart", ".gd", ".gdshader", ".shader", ".glsl", ".tscn", ".tres",
@@ -154,7 +155,9 @@ jobs:
               "Do not represent a Familypark outing as a guaranteed real prize.\\n"
               "Return a ZIP of actual edited files with a full change list and baseline diff.\\n"
           )
-          for destination, compact in ((full_path, False), (slim_path, True)):
+          for destination, compact, only_repo in ((flutter_path, False, "lumo-lernen"),
+                                                   (godot_path, False, "lumo-godot"),
+                                                   (slim_path, True, None)):
               count = 0
               with zipfile.ZipFile(
                   destination, "w", compression=zipfile.ZIP_DEFLATED,
@@ -164,6 +167,8 @@ jobs:
                   zip_out.writestr("GEMINI_REVIEW_TASK.txt", notes)
                   zip_out.writestr("MANIFEST.json", json.dumps(manifest, indent=2, ensure_ascii=False))
                   for archive_name, data, rel in entries:
+                      if only_repo is not None and not archive_name.startswith(only_repo + "/"):
+                          continue
                       if compact and (Path(rel).suffix.lower() not in code_ext
                                       and Path(rel).name not in {"Makefile", "Dockerfile", ".gitignore"}):
                           continue
@@ -174,11 +179,19 @@ jobs:
               print(f"{destination.name}: {count} files, {destination.stat().st_size} ZIP bytes", flush=True)
           print(f"Skipped sensitive files: {len(manifest['excluded'])}; unavailable: {len(manifest['unavailable'])}", flush=True)
           PY
-      - name: Upload full source ZIP
+      - name: Upload full Flutter and Android source
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-gemini-full-source-2026-10-15
-          path: output/Lumo_Gemini_Kompletter_Quellcode_2026-10-15.zip
+          name: lumo-gemini-lernen-complete-2026-10-15
+          path: output/Lumo_Gemini_Quellcode_Lernapp_2026-10-15.zip
+          compression-level: 0
+          retention-days: 7
+          if-no-files-found: error
+      - name: Upload full Godot and Kart source
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-gemini-godot-complete-2026-10-15
+          path: output/Lumo_Gemini_Quellcode_Kart_2026-10-15.zip
           compression-level: 0
           retention-days: 7
           if-no-files-found: error
