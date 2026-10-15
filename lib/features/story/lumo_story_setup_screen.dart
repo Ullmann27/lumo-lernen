@@ -248,6 +248,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton.icon(
+                  key: const ValueKey('lumo-story-generate'),
                   onPressed: _canStart ? _startStory : null,
                   icon: const Icon(Icons.auto_stories_rounded, size: 28),
                   label: const Text('Geschichte starten!'),
