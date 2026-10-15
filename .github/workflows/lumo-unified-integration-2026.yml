@@ -1,7 +1,7 @@
 name: Lumo Lernen Kart unified integration APK
 on:
   push:
-    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15]
+    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15]
   pull_request:
     paths:
       - 'lib/features/quiz/**'
@@ -9,6 +9,10 @@ on:
       - '.github/probes/kart_complete_android_probe.py'
       - '.github/probes/lumo_learning_journey_probe.py'
       - 'config/godot-source.json'
+      - 'lib/app/app_state.dart'
+      - 'lib/features/settings/**'
+      - 'lib/features/teacher_mode/**'
+      - 'test/parents/parent_school_grade_progression_test.dart'
       - '.github/workflows/lumo-unified-integration-2026.yml'
   workflow_dispatch:
 permissions:
@@ -35,7 +39,7 @@ jobs:
           python3 - <<'PY'
           import json
           config=json.load(open("config/godot-source.json"))
-          assert config["revision"]=="94c95e1d3a7de530744e998a505ce7792eb07fc5", "Unexpected Godot pin"
+          assert config["revision"]=="ad6bd8856a9d7d07b965dec46eeadf41d4ed676c", "Unexpected Godot pin"
           assert config["engine"]=="4.6.3", "Unexpected Godot engine"
           PY
       - uses: actions/setup-java@v4
@@ -57,7 +61,9 @@ jobs:
             test/quiz_premium_stage_layout_test.dart \
             test/quiz_premium_stage_visual_capture_test.dart \
             test/home_navigation_progress_test.dart \
-            test/home_subject_islands_premium_test.dart
+            test/home_subject_islands_premium_test.dart \
+            test/academy_grade_3_4_visible_navigation_test.dart \
+            test/parents/parent_school_grade_progression_test.dart
       - name: Full Flutter regression suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
       - name: Code-level Android probe regression with verified image dependencies

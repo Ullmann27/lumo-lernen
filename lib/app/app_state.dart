@@ -10,6 +10,7 @@ import '../core/learning_profile_engine.dart';
 import '../core/legacy_learning_data.dart';
 import '../core/lumo_cosmos.dart';
 import '../core/progress_repository.dart';
+import '../core/profile_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
 import '../core/lumo_error_log.dart';
@@ -1079,6 +1080,35 @@ class LumoAppState extends ChangeNotifier {
   void update(LumoSessionState next) {
     if (_disposed) return;
     _state = next;
+    _safeNotify();
+  }
+
+  /// Parent-controlled school-year promotion. Saves the existing profile
+  /// before changing the active curriculum; never resets earned progress.
+  Future<void> changeEnrolledGrade(int grade) async {
+    if (grade < 1 || grade > 4) {
+      throw RangeError.range(grade, 1, 4, 'grade');
+    }
+    if (_disposed || _resetting) {
+      throw StateError('Derzeit kann die Klasse nicht gewechselt werden.');
+    }
+    final repository = ProfileRepository();
+    final profile = await repository.loadProfile();
+    if (profile == null) {
+      throw StateError('Kein gespeichertes Kinderprofil vorhanden.');
+    }
+    if (profile.grade != grade) {
+      await repository.saveProfile(profile.copyWith(grade: grade));
+    }
+    if (_disposed || _resetting) return;
+    // A current lesson may belong to the previous grade. Reset only its
+    // navigation, not the child's results, rewards or learning records.
+    _state = _state.copyWith(
+      grade: grade,
+      subject: 'Alle',
+      unit: 'Alle',
+      lumoMessage: 'Willkommen in der $grade. Klasse! Ich lerne mit dir.',
+    );
     _safeNotify();
   }
 
