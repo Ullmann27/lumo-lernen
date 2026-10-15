@@ -373,11 +373,11 @@ abstract class GameLevelCatalog {
         learningGoal: 'Schriftliche Subtraktion'),
     GameLevel(
         id: 50,
-        title: 'Lumo-Champion',
+        title: 'Lumo-Meister',
         gradeFloor: 4,
         miniType: GameMiniType.mixedQuiz,
         subject: 'Mix',
-        learningGoal: 'Finale Mix-Challenge - alle Themen',
+        learningGoal: 'Meister-Finale: gemischte Challenge aus allen Themen',
         maxStars: 3),
   ];
 
