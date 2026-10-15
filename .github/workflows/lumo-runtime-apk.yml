@@ -142,8 +142,11 @@ jobs:
           python3 - <<'PYCODE'
           from pathlib import Path
           text = Path('proof/photo-lesson-base-red.log').read_text()
+          # Seit Build 1943 prüft der Test Sachunterricht strenger (fünf echte Tiere-Aufgaben)
+          # und bricht dort mit einer anderen Meldung ab. Belegt wird weiterhin: Die alte
+          # Fassung scheitert an jedem der drei Fächer.
           for subject in ('Deutsch', 'Englisch', 'Sachunterricht'):
-              assert f'Photo lesson must keep recognized subject {subject} and topic.' in text
+              assert f'photo lesson displays actual {subject} exercises after OCR callback [E]' in text, subject
           print('PASS: preserved photo lesson fails for all three wrong-subject prompts')
           PYCODE
           cp "$RUNNER_TEMP/candidate-photo-lesson.dart" "$lesson"
