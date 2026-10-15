@@ -572,7 +572,7 @@ class _ResultPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = correct ? Colors.green : Colors.redAccent;
     final text = won
-        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 Sterne gewonnen! Family-Park-Stufe erreicht!'
+        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 virtuelle App-Sterne gewonnen! Ein Familienausflug ist nur eine Wunsch-Idee, über die deine Eltern entscheiden.'
         : correct
             ? securedStars > 0
                 ? '✅ Richtig! Sichere Stufe: $securedStars Sterne.'
@@ -590,7 +590,7 @@ class _ResultPanel extends StatelessWidget {
       child: Text(
         text,
         style: LumoTextStyles.body.copyWith(
-          color: LumoColors.ink900,
+          color: Colors.white,
           fontWeight: FontWeight.w800,
         ),
       ),
@@ -652,7 +652,7 @@ class _PrizeColumn extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           Text(
-            'Finalziel: 5.000 Sterne – Family-Park-Stufe',
+            'Finalziel: 5.000 App-Sterne · Familienausflug nur als Wunsch-Idee mit Eltern',
             style: LumoTextStyles.body.copyWith(
               fontWeight: FontWeight.w900,
               color: const Color(0xFFFFD873),
