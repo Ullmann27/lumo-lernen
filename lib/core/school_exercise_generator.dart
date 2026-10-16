@@ -1140,7 +1140,6 @@ class ExerciseFactory {
   }
 
   bool _looksNumeric(String value) => RegExp(r'^-?\d+').hasMatch(value);
-  int _positive(int seed, int length) => length <= 1 ? 0 : (seed & 0x7fffffff) % length;
   String _normalizeChoice(String value) => value.trim().toLowerCase().replaceAll(RegExp(r'\s+'), ' ');
 }
 
