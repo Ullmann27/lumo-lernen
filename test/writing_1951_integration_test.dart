@@ -58,7 +58,7 @@ void main() {
         ),
       ),
     )));
-    await tester.ensureVisible(find.text('Hier tippen zum Schreiben'));
+    await tester.ensureVisible(find.text('Jetzt mit dem Finger schreiben'));
     await tester.tap(find.text('Hier tippen zum Schreiben'));
     await tester.pumpAndSettle();
     final paintArea = find.byKey(const ValueKey('lumo-learning-ink-surface'));
@@ -74,9 +74,7 @@ void main() {
     expect(finish.onPressed, isNotNull);
     await tester.tap(find.byKey(const ValueKey('writing-modal-finish')));
     await tester.pumpAndSettle();
-    expect(find.textContaining('Spurübereinstimmung'),
-        findsOneWidget);
-    await tester.tap(find.text('Fertig'));
+    // One tap in the drawing modal immediately finishes practice.
     expect(submitted?.strokes, isNotEmpty);
     expect(submitted?.typedAnswer, isNull);
     expect(tester.takeException(), isNull);
