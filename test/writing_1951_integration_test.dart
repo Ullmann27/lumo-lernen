@@ -59,7 +59,7 @@ void main() {
       ),
     )));
     await tester.ensureVisible(find.text('Jetzt mit dem Finger schreiben'));
-    await tester.tap(find.text('Hier tippen zum Schreiben'));
+    await tester.tap(find.text('Jetzt mit dem Finger schreiben'));
     await tester.pumpAndSettle();
     final paintArea = find.byKey(const ValueKey('lumo-learning-ink-surface'));
     expect(paintArea, findsOneWidget);
@@ -97,8 +97,8 @@ void main() {
     await tester.ensureVisible(input);
     await tester.enterText(input, 'Mama');
     await tester.pump();
-    await tester.ensureVisible(find.text('Fertig'));
-    await tester.tap(find.text('Fertig'));
+    await tester.ensureVisible(find.text('Weiter'));
+    await tester.tap(find.text('Weiter'));
     expect(result?.typedAnswer, 'Mama');
     expect(result?.graded, isTrue);
     expect(result?.strokes, isEmpty);
