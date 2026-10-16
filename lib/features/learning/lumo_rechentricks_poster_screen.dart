@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_theme.dart';
 import '../../core/math/lumo_rechentricks.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import 'widgets/rechentricks_mentor_card.dart';
 
 class LumoRechentricksPosterScreen extends StatelessWidget {
@@ -45,9 +45,9 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
           ),
         ),
       ),
-      body: LumoMagicBackground(
-        intensity: 1.0,
-        starCount: 22,
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 28),
@@ -189,7 +189,7 @@ class _HeroBanner extends StatelessWidget {
             ),
           ),
           SizedBox(width: 10),
-          Text('🦊', style: TextStyle(fontSize: 56)),
+          LumoFoxPose(pose: LumoDesignFoxPose.teacherStick, size: 76),
         ],
       ),
     );
@@ -272,7 +272,7 @@ class _MentorSection extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
-                        color: LumoColors.ink900,
+                        color: const Color(0xFF142747),
                         height: 1.2,
                       ),
                     ),
@@ -289,7 +289,7 @@ class _MentorSection extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 12.5,
                 fontWeight: FontWeight.w700,
-                color: LumoColors.ink600,
+                color: const Color(0xFF315273),
                 height: 1.32,
               ),
             ),
