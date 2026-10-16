@@ -1,0 +1,299 @@
+name: Verify existing APK 1948 Kart recovery and package
+on:
+  push:
+    branches: [chatgpt/apk1948-resume-qa-2026-10-16]
+    paths: [.github/workflows/lumo-1948-recheck.yml, .github/probes/kart_complete_android_probe.py, tools/android_qa/tests/test_kart_resume_caption.py, tools/android_qa/tests/fixtures/kart-resume-1948/**]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-1948-recheck-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  reader-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Require unchanged already-built product
+        run: git diff --exit-code f8732a56ef9d4ea00f0a53d04bbb82b2bbd51bd9 HEAD -- lib assets android pubspec.yaml pubspec.lock config scripts/build_unified_apk.sh
+      - name: Read real failure screenshot and retain all Android evidence guards
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .qa-venv
+          .qa-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .qa-venv/bin/python -m unittest discover -s tools/android_qa/tests -v
+  android:
+    needs: reader-regression
+    runs-on: ubuntu-latest
+    # Der Software-Emulator fährt API 36 etwa 1,8-mal langsamer als API 35: Zwei Runden brauchten dort
+    # über 20 Minuten Wartezeit. Die Fristen unten sind Wartezeiten, keine Prüfbedingungen.
+    timeout-minutes: 75
+    strategy:
+      fail-fast: false
+      matrix:
+        # Update von der geprüften APK 1602 auf den neuen Versionsstand.
+        game: [kart]
+        api: [35]
+        include:
+          - game: kart
+            api: 36
+    env:
+      LUMO_EXPECT_SOURCE: f8732a56ef9d4ea00f0a53d04bbb82b2bbd51bd9
+      LUMO_EXPECT_VERSION: '1948'
+      LUMO_EXPECT_ANDROID_API: ${{ matrix.api }}
+      LUMO_BASE_DIGEST: 82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38843372425
+          name: lumo-visual-apk-38843372425
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37674457852
+          name: lumo-visual-apk-37674457852
+          path: baseline/dist/
+      - name: Pin candidate and baseline before starting emulator
+        run: |
+          set -euo pipefail
+          test -f baseline/dist/Lumo-Lernen-Neu.apk
+          test -f candidate/Lumo-Lernen-Neu.apk
+          echo "29770003b8352422a7d8b1383ba6fe8d1a8f7ccf62994d573d83348b1ca69203  candidate/Lumo-Lernen-Neu.apk" | sha256sum -c -
+          echo "LUMO_EXPECT_GODOT=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" >> "$GITHUB_ENV"
+          echo "$LUMO_BASE_DIGEST  baseline/dist/Lumo-Lernen-Neu.apk" | sha256sum -c -
+      - name: Prepare independent live UI and screenshot readers
+        timeout-minutes: 8
+        run: |
+          mkdir -p native-proof
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y ripgrep tesseract-ocr tesseract-ocr-deu xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > native-proof/dependencies.txt
+          python3 -m py_compile .github/probes/creative_android_probe.py .github/probes/lumo_learning_journey_probe.py
+          cp candidate/BUILD-PROVENANCE.json candidate/APK-VERIFICATION.json native-proof/
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start verified software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          rg -i 'OpenGL renderer string:.*llvmpipe' native-proof/mesa-renderer.txt
+      - name: Prepare the exact existing system image before original emulator runner
+        timeout-minutes: 11
+        run: |
+          set -euo pipefail
+          mkdir -p native-proof/system-image
+          echo '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51  tools/android_qa/prepare_system_image.py' | sha256sum -c -
+          python3 tools/android_qa/prepare_system_image.py --api '${{ matrix.api }}' --out native-proof/system-image --timeout 600
+      - name: Update exact APK and exercise actual offline native game
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof --game-scope ${{ matrix.game }}
+            if [ '${{ matrix.game }}' = kart ]; then .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 2400; fi
+            if [ '${{ matrix.game }}' = build ]; then .probe-venv/bin/python .github/probes/lumo_learning_journey_probe.py --out native-proof/learning-journey; fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1948-recheck-android-${{ matrix.game }}-api${{ matrix.api }}-${{ github.run_id }}
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14
+  verified-test-apk:
+    name: Package verified Android test APK
+    needs: [reader-regression, android]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38843372425
+          name: lumo-visual-apk-38843372425
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 38843372425
+          name: lumo-sonnenhafen-1001-update-38843372425
+          path: update-proof/
+      - name: Bind the downloadable APK to all completed native and Android checks
+        env:
+          LUMO_ACTIONS_TOKEN: ${{ github.token }}
+          LUMO_EXPECT_SOURCE: f8732a56ef9d4ea00f0a53d04bbb82b2bbd51bd9
+          LUMO_BUILD_NUMBER: 1948
+          LUMO_VERSION_NAME: 0.12.40
+        run: |
+          set -euo pipefail
+          (cd candidate && sha256sum -c SHA256SUMS.txt)
+          python3 - <<'PYCODE'
+          import hashlib, json, os, urllib.request
+          from pathlib import Path
+          candidate = Path('candidate')
+          apk = candidate / 'Lumo-Lernen-Neu.apk'
+          actual_sha = hashlib.sha256(apk.read_bytes()).hexdigest()
+          source = os.environ['LUMO_EXPECT_SOURCE']
+          version_name = os.environ['LUMO_VERSION_NAME']
+          version_code = int(os.environ['LUMO_BUILD_NUMBER'])
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          provenance = json.loads((candidate / 'BUILD-PROVENANCE.json').read_text())
+          verification = json.loads((candidate / 'APK-VERIFICATION.json').read_text())
+          for report in (provenance, verification):
+              assert report['sha256'] == actual_sha and report['bytes'] == apk.stat().st_size
+              assert report['versionName'] == version_name and report['versionCode'] == version_code
+              assert report['godot']['revision'] == pin['revision']
+          assert provenance['flutter_source_commit'] == source
+          assert provenance['tracked_source_clean'] is True
+          profile_path = candidate / 'PROFILE-IDENTITY-EVIDENCE.json'
+          profile = json.loads(profile_path.read_text())
+          assert profile['schema'] == 'lumo.profile-checks.v2'
+          assert profile['status'] == 'PASS' and profile['flutter_source_commit'] == source
+          current_profile = profile['current']
+          assert current_profile['source_commit'] == source and current_profile['status'] == 'PASS'
+          assert current_profile['exit_code'] == 0 and current_profile['skipped'] == 0
+          for name, expected in current_profile['input_sha256'].items():
+              assert hashlib.sha256(Path(name).read_bytes()).hexdigest() == expected, name
+          profile_capture_path = candidate / 'profile-captures/PROFILE-CAPTURE-EVIDENCE.json'
+          assert hashlib.sha256(profile_capture_path.read_bytes()).hexdigest() == profile['widget_capture_evidence_sha256']
+          profile_captures = json.loads(profile_capture_path.read_text())
+          assert profile_captures['status'] == 'PASS' and profile_captures['flutter_source_commit'] == source
+          assert profile_captures['test_path'] == 'test/design/legacy_learning_assignment_test.dart'
+          assert profile_captures['test_sha256'] == current_profile['input_sha256'][profile_captures['test_path']]
+          expected_profile_captures = {'legacy_parent_phone.png', 'legacy_parent_fold_confirm.png',
+                                       'legacy_parent_fold_assigned.png', 'legacy_parent_large_text.png'}
+          assert len(profile_captures['captures']) == 4
+          assert {frame['file'] for frame in profile_captures['captures']} == expected_profile_captures
+          for frame in profile_captures['captures']:
+              image = candidate / 'profile-captures' / frame['file']
+              assert image.stat().st_size == frame['bytes']
+              assert hashlib.sha256(image.read_bytes()).hexdigest() == frame['sha256']
+          historical_profile = profile['historical']
+          assert historical_profile['original_commit'] == 'ab21b2295ca5307bae5e07c0c8a01c3017ee91a3'
+          assert historical_profile['repaired_commit'] == 'd07b2b48593b939a2a0446fcb83a25a2b2a59db6'
+          assert historical_profile['red']['status'] == 'EXPECTED_RED'
+          assert historical_profile['red']['exit_code'] == 1
+          assert historical_profile['green']['status'] == 'PASS'
+          assert historical_profile['green']['exit_code'] == 0
+          assert historical_profile['red']['visible_tests'] == historical_profile['green']['visible_tests'] == 3
+          for phase in ('red', 'green'):
+              expected_commit = historical_profile['original_commit' if phase == 'red' else 'repaired_commit']
+              assert historical_profile[phase]['source_commit'] == expected_commit
+              assert historical_profile[phase]['input_sha256']['test/app_state_student_identity_test.dart'] == \
+                  historical_profile['unchanged_test_sha256']
+          character = json.loads((candidate / 'character-review/CHARACTER-EVIDENCE.json').read_text())
+          assert character['status'] == 'PASS'
+          assert character['flutter_source_commit'] == source
+          assert character['godot_source_commit'] == pin['revision']
+          assert character['measured_checks'] == {'character-pose': 2325, 'face-depth': 23, 'start-hero': 225}
+          assert character['aquarium']['gpu_instance_clearance_verified'] is True
+          assert len(character['captures']) == 20
+          for frame in character['captures']:
+              image = candidate / 'character-review' / frame['file']
+              assert hashlib.sha256(image.read_bytes()).hexdigest() == frame['sha256']
+          repository = os.environ['GITHUB_REPOSITORY']
+          run_id = os.environ['GITHUB_RUN_ID']
+          def checked_jobs(checked_run, required, expected_source):
+              request = urllib.request.Request(
+                  f"{os.environ['GITHUB_API_URL']}/repos/{repository}/actions/runs/{checked_run}/jobs?filter=latest&per_page=100",
+                  headers={'Authorization': 'Bearer ' + os.environ['LUMO_ACTIONS_TOKEN'],
+                           'Accept': 'application/vnd.github+json',
+                           'X-GitHub-Api-Version': '2022-11-28'})
+              with urllib.request.urlopen(request, timeout=30) as response:
+                  jobs = json.load(response)['jobs']
+              checked = [job for job in jobs if job['name'] in required]
+              assert len(checked) == len(required) and {job['name'] for job in checked} == required
+              assert all(job['status'] == 'completed' and job['conclusion'] == 'success'
+                         and job['head_sha'] == expected_source for job in checked)
+              return checked
+          checked = checked_jobs('38843372425', {
+              'verify-and-build', 'android (build, 35)', 'android (puzzle, 35)',
+              'android (rhythm, 35)', 'android (treasure, 35)',
+              'Update the published Sonnenhafen 1001 APK in place'}, source)
+          checked += checked_jobs(run_id, {'reader-regression', 'android (kart, 35)',
+                                          'android (kart, 36)'}, os.environ['GITHUB_SHA'])
+          update = json.loads(Path('update-proof/sonnenhafen-update-result.json').read_text())
+          assert update['status'] == 'PASS' and update['profile_retained'] is True
+          assert update['source'] == source and update['godot'] == pin['revision']
+          assert update['candidate_sha256'] == actual_sha and update['offline'] is True
+          assert update['before']['versionCode'].split()[0] == '1001'
+          assert update['after']['versionCode'].split()[0] == '1948'
+          for key in ('userId', 'firstInstallTime'):
+              assert update['before'][key] == update['after'][key]
+          (candidate / 'SONNENHAFEN-UPDATE.json').write_text(json.dumps(update, indent=2) + '\n')
+          filename = f'LUMO-Lernen-{version_name}-{version_code}.apk'
+          apk.rename(candidate / filename)
+          (candidate / 'SHA256SUMS.txt').write_text(f'{actual_sha}  {filename}\n')
+          (candidate / 'QA-RESULTS.json').write_text(json.dumps({
+              'status': 'PASS', 'original_build_run': 38843372425,
+              'qa_source_commit': os.environ['GITHUB_SHA'], 'apk_rebuilt': False,
+              'apk_file': filename, 'apk_sha256': actual_sha,
+              'flutter_source_commit': source, 'godot_source_commit': pin['revision'],
+              'profile_identity_evidence_sha256': hashlib.sha256(profile_path.read_bytes()).hexdigest(),
+              'profile_widget_capture_evidence_sha256': hashlib.sha256(profile_capture_path.read_bytes()).hexdigest(),
+              'workflow_run': f"{os.environ['GITHUB_SERVER_URL']}/{repository}/actions/runs/{run_id}",
+              'verified_jobs': [{'name': job['name'], 'job_id': job['id'],
+                                 'url': job['html_url'], 'conclusion': job['conclusion']}
+                                for job in checked],
+              'physical_device_performance': 'NOT EXECUTED',
+          }, indent=2) + '\n')
+          print(f'PASS: exact APK {filename}, {len(character["captures"])} character frames and all original build/update and repeated Kart checks')
+          PYCODE
+      - uses: actions/upload-artifact@v4
+        with:
+          name: LUMO-Lernen-0.12.40-1948-Android-APK
+          path: candidate/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0

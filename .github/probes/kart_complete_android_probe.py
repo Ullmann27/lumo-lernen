@@ -945,7 +945,10 @@ def main() -> int:
         result['offline_result_recovery'] = {'status': 'PASS', 'reward_stars': 3,
                                              'reward_xp': payload.get('xp', 0), 'host_acknowledged': True}
         open_kart('11-reopen-completed-race')
-        tap_native('Gespeichertes Rennen', 'actual-completed-race-resume')
+        # The actual compact landscape garage uses this short caption. Keep
+        # exact OCR and the two-frame touch guard; the result identity and
+        # reward-deduplication assertions below still prove genuine recovery.
+        tap_native('Fortsetzen', 'actual-completed-race-resume')
         reopened = session('12-reopened-finished-result')
         require_race_identity(reopened, result_id)
         if not reopened['finished'] or reopened['result_payload'] != payload:
