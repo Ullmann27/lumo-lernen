@@ -49,12 +49,20 @@ void main() {
       expect(find.text('75 %'), findsOneWidget);
       final boundary = captureKey.currentContext!.findRenderObject()
           as RenderRepaintBoundary;
-      final image = await boundary.toImage(pixelRatio: 1.5);
-      final data = await image.toByteData(format: ui.ImageByteFormat.png);
-      expect(data, isNotNull);
-      File('${output.path}/cross_grade_$name.png')
-          .writeAsBytesSync(data!.buffer.asUint8List());
-      image.dispose();
+      // The rasterizer runs asynchronously; a testWidgets fake-async await
+      // on toImage() can deadlock indefinitely in headless GitHub CI.
+      // Keep the true rendered pixels and their original PNG bytes.
+      await tester.runAsync(() async {
+        final image = await boundary.toImage(pixelRatio: 1.5);
+        try {
+          final data = await image.toByteData(format: ui.ImageByteFormat.png);
+          expect(data, isNotNull);
+          await File('${output.path}/cross_grade_$name.png')
+              .writeAsBytes(data!.buffer.asUint8List(), flush: true);
+        } finally {
+          image.dispose();
+        }
+      });
       expect(tester.takeException(), isNull);
     }
     await tester.binding.setSurfaceSize(null);
