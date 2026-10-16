@@ -13,6 +13,7 @@ on:
       - chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16
       - chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
       - claude/lumo-android-integration-m0-aloove
+      - chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16
       - chatgpt/lumo-1958-visual-story-integration-2026-10-16
     paths:
       - lib/**
@@ -188,6 +189,45 @@ jobs:
             sleep 0.25
           done
           grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      # The emulator runner uses sdkmanager internally. A damaged Android 35
+      # system-image ZIP must not be mistaken for an APK or gameplay failure.
+      # Preinstall this exact image with bounded retries; the runner will use
+      # the already installed package. Do not bypass any runtime QA assertions.
+      - name: Preinstall verified Android 35 system image
+        shell: bash
+        timeout-minutes: 18
+        run: |
+          set -euo pipefail
+          sdk_root="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
+          image_dir="${sdk_root}/system-images/android-35/google_apis/x86_64"
+          package='system-images;android-35;google_apis;x86_64'
+          command -v sdkmanager >/dev/null 2>&1 || {
+            echo '::error::Android sdkmanager is missing'
+            exit 1
+          }
+          for attempt in 1 2 3 4; do
+            if test -s "${image_dir}/system.img" && test -s "${image_dir}/source.properties"; then
+              echo 'Android API 35 google_apis x86_64 image verified'
+              exit 0
+            fi
+            echo "Installing ${package} (attempt ${attempt}/4)"
+            if sdkmanager --sdk_root="${sdk_root}" --install "${package}" --channel=0; then
+              if test -s "${image_dir}/system.img" && test -s "${image_dir}/source.properties"; then
+                echo 'Android emulator image verified after installation'
+                exit 0
+              fi
+              echo '::warning::SDK manager returned success, but the Android image is incomplete'
+            fi
+            # Only remove the specific failed emulator image and disposable
+            # SDK download cache; never touch an installed NDK, build tools,
+            # application data, or the APK/provenance artifacts.
+            rm -rf -- "${image_dir}" "${HOME}/.android/cache"
+            if [ "${attempt}" -lt 4 ]; then
+              sleep "$(( attempt * 5 ))"
+            fi
+          done
+          echo '::error::Could not obtain a complete Android API 35 emulator image after four attempts'
+          exit 1
       - name: Install and tour the exact APK
         uses: reactivecircus/android-emulator-runner@v2
         env:

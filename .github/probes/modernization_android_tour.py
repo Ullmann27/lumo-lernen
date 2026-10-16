@@ -202,6 +202,48 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
                     y = (y0 + y1) // (2 * scale) + offset_y
                     if y >= image.height * .6:
                         return x, y
+    # Targeted OCR only after the whole-screen scans fail. A moving 3D
+    # background can hide the navy word inside the bright gold action pill
+    # from Tesseract's sparse-text layout. Discover the pill by its ACTUAL
+    # on-screen yellow pixels and require its real caption. Nothing here
+    # assumes a pixel coordinate or accepts a colour patch without text.
+    min_hits = max(10, int(image.width * .02))
+    gold_rows: list[tuple[int, int, int]] = []
+    pixels = image.load()
+    for row_y in range(int(image.height * .70), image.height, 3):
+        matches = []
+        for col_x in range(int(image.width * .70), image.width, 3):
+            r, g, b = pixels[col_x, row_y]
+            if r >= 205 and g >= 185 and b <= 185 and r - b > 40:
+                matches.append(col_x)
+        if len(matches) >= min_hits:
+            gold_rows.append((row_y, min(matches), max(matches)))
+    if len(gold_rows) >= 6:
+        top = gold_rows[0][0]
+        bottom = gold_rows[-1][0]
+        left = min(row[1] for row in gold_rows)
+        right = max(row[2] for row in gold_rows)
+        width, height = right - left, bottom - top
+        # A solid rounded native action control, not isolated gold pixels
+        # elsewhere in the racing-world illustration.
+        if width >= image.width * .08 and height >= image.height * .04:
+            inset = image.crop((
+                left + round(width * .06), top + round(height * .12),
+                right - round(width * .05), bottom - round(height * .08),
+            ))
+            if inset.width > 0 and inset.height > 0:
+                enlarged = inset.resize((inset.width * 4, inset.height * 4),
+                                        Image.Resampling.LANCZOS)
+                buffer = io.BytesIO()
+                enlarged.save(buffer, format='PNG')
+                result = subprocess.run(
+                    ['tesseract', 'stdin', 'stdout', '--psm', '7', '-l', 'deu+eng'],
+                    input=buffer.getvalue(), capture_output=True, timeout=35,
+                    check=True,
+                )
+                caption = _simplify(result.stdout.decode('utf-8', 'replace'))
+                if _simplify(expected) in caption:
+                    return (left + right) // 2, (top + bottom) // 2
     return None
 
 
