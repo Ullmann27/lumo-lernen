@@ -1,0 +1,92 @@
+name: Lumo 1950 combined Lern-App and Kart APK
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1950-all-integrated-2026-10-16
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-1950-candidate-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  flutter-regressions:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Frozen dependencies and analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Verify existing lessons and added visual progress
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+  signed-arm64-candidate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Print exact commit and embedded 3D source
+        run: |
+          set -euo pipefail
+          mkdir -p release-proof
+          git rev-parse HEAD | tee release-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json release-proof/GODOT-SOURCE.json
+          python3 - <<'PY'
+          import json
+          cfg=json.load(open('config/godot-source.json'))
+          assert cfg['revision']=='268c9b327a8f81ba08c55e1b4bccd3664ce12f88'
+          assert cfg['engine']=='4.6.3'
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve Flutter and Android toolchain
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh release-proof/ndk
+      - name: Install exact Godot
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build verified signed integrated arm64 Android package
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > release-proof/VERIFICATION.json
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee release-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE.json
+      - name: Deliver exact arm64 APK and source proof
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1950-lernen-kart-android-arm64
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            release-proof/VERIFICATION.json
+            release-proof/SHA256SUMS.txt
+            release-proof/BUILD-PROVENANCE.json
+            release-proof/FLUTTER-SOURCE.txt
+            release-proof/GODOT-SOURCE.json
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
