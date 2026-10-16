@@ -53,7 +53,7 @@ HARD_STEPS = (
 # Downscaled JPEG copies of these real screenshots are written to the job log
 # (originals and their SHA-256 stay in the uploaded tour artifact).
 LOG_IMAGES = (
-    '07_home_after_onboarding', '10_lernen', '20_spiele', '21_kart_garage_step_5',
+    '07_home_after_onboarding', '08_games_after_navigation', '10_lernen', '20_spiele', '21_kart_garage_step_5',
     '21_lumo_kart_real_race', '21_race_hud', '21_race_driving_late', '21_lumo_kart_pause',
     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
     '99_fehler',
