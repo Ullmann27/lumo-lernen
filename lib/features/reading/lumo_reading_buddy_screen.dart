@@ -22,7 +22,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_feature_permissions.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import 'reading_text_library.dart';
 import 'voice_reading_evaluator.dart';
 
@@ -204,9 +204,9 @@ class _TextPicker extends StatelessWidget {
           ),
         ),
       ),
-      body: LumoMagicBackground(
-        intensity: 1.0,
-        starCount: 18,
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
@@ -290,14 +290,8 @@ class _Hero extends StatelessWidget {
                 ),
               ],
             ),
-            child: ClipOval(
-              child: Image.asset(
-                'assets/companion/lumo_idle.png',
-                fit: BoxFit.contain,
-                errorBuilder: (_, __, ___) => const Center(
-                  child: Text('🦊', style: TextStyle(fontSize: 32)),
-                ),
-              ),
+            child: const ClipOval(
+              child: LumoFoxPose(pose: LumoDesignFoxPose.bookWelcome, size: 64),
             ),
           ),
           const SizedBox(width: 12),
@@ -377,7 +371,7 @@ class _TextCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 16,
                         fontWeight: FontWeight.w900,
-                        color: LumoColors.ink900,
+                        color: Color(0xFF142747),
                       ),
                     ),
                     Text(
@@ -386,7 +380,7 @@ class _TextCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: LumoColors.ink500,
+                        color: Color(0xFF48617D),
                       ),
                     ),
                   ],
