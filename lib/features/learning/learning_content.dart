@@ -19,6 +19,7 @@ import '../../core/math/lumo_rechentricks.dart';
 import '../../core/lumo_visual_aid_service.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../core/task_quality_guard.dart';
+import '../../core/writing_target_parser.dart';
 import '../../core/task_hint_service.dart';
 import '../../core/recent_task_repository.dart';
 import '../../core/session_variety_guard.dart';
@@ -806,6 +807,20 @@ class _LearningContentState extends State<LearningContent> {
 
   void _answerWriting(WritingTaskResult result) {
     if (_answered) return;
+    final typedAnswer = result.typedAnswer;
+    if (typedAnswer != null) {
+      // Keyboard-mode is actual spelling practice, not handwriting.
+      // Compare real text directly, without manufacturing an ink score.
+      final target = WritingTargetParser.parse(result.task.prompt);
+      String normalize(String value) =>
+          value.trim().replaceAll(RegExp(r'\\s+'), ' ').toLowerCase();
+      _completeAnswer(
+        correct: normalize(typedAnswer) == normalize(target),
+        hintUsed: false,
+        answerGiven: typedAnswer,
+      );
+      return;
+    }
     if (!result.graded) {
       // Free words/sentences are honest practice without invented grading.
       _nextQuestion();
