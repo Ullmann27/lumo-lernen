@@ -1,0 +1,77 @@
+name: Lumo 1963 - verified direct ARM64 preview APK
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1963-direct-arm64-apk-2026-10-16
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-1963-direct-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  verified-apk:
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      CI: 'true'
+      FLUTTER_SUPPRESS_ANALYTICS: 'true'
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record source and version
+        run: |
+          set -euo pipefail
+          mkdir -p release-proof
+          git rev-parse HEAD | tee release-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json release-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee release-proof/APP-VERSION.txt
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies and native toolchain
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh release-proof/ndk
+      - name: Install exact pinned Godot 4.6.3
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build real combined Flutter and Godot Android APKs
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/x86_64/Lumo-Lernen-Neu.apk
+      - name: Verify ARM64 and x86_64 release content, signs and source pin
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > release-proof/VERIFICATION-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > release-proof/VERIFICATION-x86_64.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk | tee release-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE.json
+          cp dist/x86_64/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE-x86_64.json
+          grep -q '0.12.52+1963' release-proof/APP-VERSION.txt
+      - name: Upload exact verified ARM64 APK for user preview
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1963-direct-arm64-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            release-proof/APP-VERSION.txt
+            release-proof/FLUTTER-SOURCE.txt
+            release-proof/GODOT-SOURCE.json
+            release-proof/BUILD-PROVENANCE.json
+            release-proof/SHA256SUMS.txt
+            release-proof/VERIFICATION-arm64.json
+          if-no-files-found: error
+          retention-days: 21
+          compression-level: 0
