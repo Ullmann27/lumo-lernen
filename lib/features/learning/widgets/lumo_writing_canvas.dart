@@ -151,7 +151,7 @@ class _LumoWritingCanvasState extends State<LumoWritingCanvas> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(mainAxisSize: MainAxisSize.min, children: [
       LayoutBuilder(builder: (context, constraints) {
         final width = constraints.maxWidth <= 0 ? 1.0 : constraints.maxWidth;
         final size = Size(width, widget.height);
@@ -281,7 +281,7 @@ class _WritingCanvasPainter extends CustomPainter {
 
   void _drawGuideGrid(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = LumoColors.orange.withOpacity(.07)
+      ..color = const Color(0xFF7CA3D1).withOpacity(.23)
       ..strokeWidth = 1;
     canvas.drawLine(Offset(0, size.height * .25), Offset(size.width, size.height * .25), paint);
     canvas.drawLine(Offset(0, size.height * .50), Offset(size.width, size.height * .50), paint);
@@ -290,8 +290,12 @@ class _WritingCanvasPainter extends CustomPainter {
 
   void _drawTemplate(Canvas canvas, Size size) {
     final paint = Paint()
-      ..color = (mode == WritingMode.guided ? LumoColors.orange : LumoColors.ink900).withOpacity(.20)
-      ..strokeWidth = 10
+      // Weißes Papier braucht eine dunkelblaue, sichtbare Musterlinie.
+      // LumoColors.ink900 ist im neuen Night-Theme fast weiß und war
+      // deshalb auf der hellen Zeichenfläche praktisch unsichtbar.
+      ..color = const Color(0xFF2563A8).withOpacity(
+          mode == WritingMode.guided ? .52 : .39)
+      ..strokeWidth = 8
       ..strokeCap = StrokeCap.round
       ..strokeJoin = StrokeJoin.round
       ..style = PaintingStyle.stroke;

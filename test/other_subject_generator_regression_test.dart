@@ -151,9 +151,15 @@ void main() {
         expect(WritingTargetParser.parse(sentence.prompt).split(' ').length,
             greaterThanOrEqualTo(2));
       }
-      final wave = factory.next(
-          grade: grade, subject: 'Schreiben', unit: 'Schwunguebung');
-      expect(WritingTargetParser.parse(wave.prompt), '∿');
+      // Schwungübungen zeigen jetzt echte Buchstaben statt der alten
+      // Wellenlinie ∿ aus dem veralteten Symboltraining.
+      for (var n = 0; n < 30; n++) {
+        final curve = factory.next(
+            grade: grade, subject: 'Schreiben', unit: 'Schwunguebung');
+        expect(WritingTargetParser.parse(curve.prompt),
+            anyOf('S', 'C', 'O', 'U'));
+        expect(curve.prompt, isNot(contains('∿')));
+      }
     }
   });
 
