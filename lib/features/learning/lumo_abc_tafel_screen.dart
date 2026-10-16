@@ -135,7 +135,7 @@ class _LumoAbcTafelScreenState extends State<LumoAbcTafelScreen> {
                         crossAxisCount: columns,
                         mainAxisSpacing: 12,
                         crossAxisSpacing: 12,
-                        childAspectRatio: columns >= 6 ? 0.88 : 0.80,
+                        childAspectRatio: columns <= 3 ? 0.70 : columns >= 6 ? 0.88 : 0.78,
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -379,7 +379,7 @@ class _AbcCard extends StatelessWidget {
                 ),
               ],
             ),
-            padding: const EdgeInsets.fromLTRB(7, 8, 7, 9),
+            padding: const EdgeInsets.fromLTRB(7, 6, 7, 7),
             child: LayoutBuilder(
               builder: (context, space) {
                 final compact = space.maxHeight < 135;
