@@ -10,6 +10,7 @@ import '../../app/app_state.dart';
 import '../../core/lumo_companion_state.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
@@ -143,11 +144,30 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 ],
               ),
               const SizedBox(height: LumoTokens.space8),
-              // Featured Lumo-Mirror Showcase mit smartem Mood
+              // Der 3D-Lumo bleibt die visuelle Hauptfigur. Der kleine
+              // Reaktionsspiegel zeigt die bestehenden acht Emotionen weiter,
+              // statt die Mood-Logik beim Umbau zu verlieren.
               Center(
-                child: LumoMirror(
-                  mood: _mood,
-                  size: 140,
+                child: SizedBox(
+                  width: 184,
+                  height: 180,
+                  child: Stack(
+                    alignment: Alignment.center,
+                    children: [
+                      const LumoFoxPose(
+                        pose: LumoDesignFoxPose.armsOpen,
+                        size: 176,
+                      ),
+                      Positioned(
+                        right: 0,
+                        bottom: 0,
+                        child: Semantics(
+                          label: 'Lumos aktuelle Stimmung',
+                          child: LumoMirror(mood: _mood, size: 58),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: LumoTokens.space12),
