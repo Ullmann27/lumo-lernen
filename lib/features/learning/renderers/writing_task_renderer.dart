@@ -460,12 +460,16 @@ class _CanvasLaunchCard extends StatelessWidget {
     required this.mode,
     required this.existingStrokes,
     required this.onResult,
+    required this.onFinish,
+    required this.onSkip,
   });
 
   final WritingTemplate template;
   final WritingMode mode;
   final List<Stroke> existingStrokes;
   final void Function(List<Stroke> strokes, WritingEvaluation? evaluation) onResult;
+  final void Function(List<Stroke> strokes, WritingEvaluation? evaluation) onFinish;
+  final VoidCallback onSkip;
 
   @override
   Widget build(BuildContext context) {
@@ -529,7 +533,7 @@ class _CanvasLaunchCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    hasStrokes ? 'Schreiben fertig?' : 'Hier tippen zum Schreiben',
+                    hasStrokes ? 'Nochmals üben' : 'Jetzt mit dem Finger schreiben',
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 17,
@@ -540,8 +544,8 @@ class _CanvasLaunchCard extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     hasStrokes
-                        ? 'Antippen um nachzubessern oder zu bestätigen.'
-                        : 'Großer Mal-Bildschirm öffnet sich.',
+                        ? 'Du kannst den Buchstaben noch einmal malen.'
+                        : 'Ein Versuch reicht. Keine Noten oder Prozentzahlen.',
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 12,
@@ -571,16 +575,28 @@ class _CanvasLaunchCard extends StatelessWidget {
         ),
       ),
     );
-    if (result != null) {
+    if (result == null) return; // X = back, no attempt submitted.
+    if (result.skipped) {
+      onSkip();
+    } else if (result.completed) {
+      onFinish(result.strokes, result.evaluation);
+    } else {
       onResult(result.strokes, result.evaluation);
     }
   }
 }
 
 class _WritingModalResult {
-  const _WritingModalResult({required this.strokes, required this.evaluation});
+  const _WritingModalResult({
+    required this.strokes,
+    required this.evaluation,
+    this.completed = false,
+    this.skipped = false,
+  });
   final List<Stroke> strokes;
   final WritingEvaluation? evaluation;
+  final bool completed;
+  final bool skipped;
 }
 
 /// Vollbild-Schreib-Modal.
@@ -633,10 +649,10 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                 ? null
                 : () => Navigator.of(context).pop<_WritingModalResult>(
                     _WritingModalResult(
-                        strokes: _strokes, evaluation: _evaluation),
+                        strokes: _strokes, evaluation: _evaluation, completed: true),
                   ),
             child: const Text(
-              'Fertig',
+              'Weiter',
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Nunito',
@@ -685,6 +701,12 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
+              const Text(
+                'Mal so, wie du kannst. Es gibt hier keine Noten.',
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 14,
+                  color: Color(0xFFCEF4FF), fontWeight: FontWeight.w800),
+              ),
               const SizedBox(height: 14),
               // Canvas mit grossem Bereich. Keine Scroll-Konflikte mehr,
               // weil das Modal keinen aeusseren Scroll hat.
@@ -725,6 +747,22 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                     );
                   },
                 ),
+              ),
+              TextButton.icon(
+                key: const ValueKey('writing-modal-skip'),
+                onPressed: () => Navigator.of(context).pop<_WritingModalResult>(
+                  const _WritingModalResult(
+                    strokes: <Stroke>[],
+                    evaluation: null,
+                    skipped: true,
+                  ),
+                ),
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFFD6EEFF),
+                  minimumSize: const Size(48, 52),
+                ),
+                icon: const Icon(Icons.skip_next_rounded),
+                label: const Text('Andere Aufgabe versuchen'),
               ),
             ],
           ),
