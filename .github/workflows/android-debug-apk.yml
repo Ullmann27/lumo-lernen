@@ -62,6 +62,12 @@ jobs:
           python3 scripts/prepare_embedded_games.py
           python3 scripts/export_embedded_game.py
 
+      # Java speech sources are installed by prepare_android.py, but their
+      # ONNX Runtime dependency and packaged model are wired here. Without it
+      # assembleDebug fails with "package ai.onnxruntime does not exist".
+      - name: Install verified offline voice model and Android dependency
+        run: python3 scripts/prepare_offline_voice.py
+
       - name: Backend regression tests
         run: node --test server/lumo-ai-proxy/test/*.test.js
 
