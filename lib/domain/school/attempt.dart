@@ -18,7 +18,6 @@ class Attempt {
     this.expected = '',
     this.durationMs,
     this.score,
-    this.grade,
   });
 
   final String id;
@@ -40,10 +39,6 @@ class Attempt {
   /// Teilbewertung 0..1, z. B. Lese-Genauigkeit eines vorgelesenen Satzes.
   final double? score;
 
-  /// Klassenstufe der Aufgabe (1–4). Fehlt bei älteren Einträgen. Damit bleibt
-  /// erkennbar, wenn ein Kind Stoff einer anderen Klasse geübt hat.
-  final int? grade;
-
   Map<String, dynamic> toJson() => {
         'id': id,
         'sid': studentId,
@@ -58,7 +53,6 @@ class Attempt {
         if (expected.isNotEmpty) 'e': expected,
         if (durationMs != null) 'ms': durationMs,
         if (score != null) 'sc': double.parse(score!.toStringAsFixed(3)),
-        if (grade != null) 'g': grade,
       };
 
   static Attempt? tryFromJson(Object? raw) {
@@ -80,7 +74,6 @@ class Attempt {
       expected: '${raw['e'] ?? ''}',
       durationMs: (raw['ms'] as num?)?.toInt(),
       score: (raw['sc'] as num?)?.toDouble(),
-      grade: (raw['g'] as num?)?.toInt(),
     );
   }
 }
