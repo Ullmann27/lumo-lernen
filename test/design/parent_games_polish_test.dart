@@ -340,12 +340,16 @@ void main() {
     expect(find.byType(LumoCardsScreen), findsOneWidget);
     final gameContext = tester.element(find.byType(LumoCardsScreen));
     Navigator.of(gameContext).pop();
-    await tester.pump(const Duration(seconds: 1));
+    // First pump starts the reverse route transition; a subsequent frame
+    // must advance that animation. One single long pump leaves it on frame 0.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 550));
     expect(find.byType(LumoCardsScreen), findsNothing);
     expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
     final showcaseContext = tester.element(find.byType(LumoCardsShowcaseScreen));
     Navigator.of(showcaseContext).pop();
-    await tester.pump(const Duration(seconds: 3));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 550));
     await settleData(tester);
     expect(find.byType(LumoCardsShowcaseScreen), findsNothing);
     expect(tester.widget<FilledButton>(cardButton).onPressed, isNotNull);
