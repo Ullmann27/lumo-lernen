@@ -18,6 +18,7 @@ import 'package:lumo_lernen/core/reward_shop_repository.dart';
 import 'package:lumo_lernen/core/settings_repository.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 import 'package:lumo_lernen/features/settings/settings_content.dart';
 import 'package:lumo_lernen/features/settings/writing_report_card.dart';
 import 'package:lumo_lernen/features/rewards/test_photo_entry_card.dart';
@@ -327,12 +328,30 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(seconds: 1));
     expect(observer.count - before, 1);
-    expect(find.byType(LumoCardsScreen), findsOneWidget);
-    final routeContext = tester.element(find.byType(LumoCardsScreen));
-    Navigator.of(routeContext).pop();
-    await tester.pump(const Duration(seconds: 3));
-    await settleData(tester);
+    // The premium Cards hub is a real, independently navigable route.
+    // Verify the next action enters the live game, not just a static image.
+    expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
     expect(find.byType(LumoCardsScreen), findsNothing);
+    expect(find.byKey(const ValueKey('cards-hub-solo')), findsOneWidget);
+    await tester.tap(find.byKey(const ValueKey('cards-hub-solo')));
+    await tester.pump();
+    await tester.pump(const Duration(seconds: 1));
+    expect(observer.count - before, 2);
+    expect(find.byType(LumoCardsScreen), findsOneWidget);
+    final gameContext = tester.element(find.byType(LumoCardsScreen));
+    Navigator.of(gameContext).pop();
+    // First pump starts the reverse route transition; a subsequent frame
+    // must advance that animation. One single long pump leaves it on frame 0.
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 550));
+    expect(find.byType(LumoCardsScreen), findsNothing);
+    expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
+    final showcaseContext = tester.element(find.byType(LumoCardsShowcaseScreen));
+    Navigator.of(showcaseContext).pop();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 550));
+    await settleData(tester);
+    expect(find.byType(LumoCardsShowcaseScreen), findsNothing);
     expect(tester.widget<FilledButton>(cardButton).onPressed, isNotNull);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());

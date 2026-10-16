@@ -379,30 +379,94 @@ def find_gas(out: Path, name: str) -> tuple[int, int]:
 
 
 def drive_with_gas(out: Path, point: tuple[int, int], session: 'RaceSession', start: dict,
-                   hold_ms: int = 7000) -> dict:
-    """Hold the real GAS touch button; the world must move and the saved race advance."""
+                   hold_ms: int = 9000) -> dict:
+    """Prove *physical* driving on a slow software-rendered Android emulator.
+
+    Godot persists its session every 5 seconds of simulated race time, not
+    Android wall time. One 7-second ADB hold plus a 30-second wall-clock poll
+    can therefore read an unchanged save although the race is alive. We never
+    inject or modify save data, never lower the 8m/2.5s threshold and never
+    infer an actual drive from an animated HUD alone. Repeat bounded *real*
+    GAS holds and archive the intermediate read-only telemetry.
+    """
     before = _shot(out, '21_race_before_gas')
     x, y = map(str, point)
-    holding = subprocess.Popen(['adb', 'shell', 'input', 'swipe', x, y, x, y, str(hold_ms)])
-    try:
-        time.sleep(hold_ms / 1000 * .4)
-        _shot(out, '21_race_driving_mid')
-        time.sleep(hold_ms / 1000 * .4)
-        late = _shot(out, '21_race_driving_late')
-    finally:
-        holding.wait(timeout=hold_ms / 1000 + 30)
+    samples = []
+    late = before
+    last = start
+    for pulse in range(3):
+        if not godot_alive():
+            raise RuntimeError('Godot exited during the actual GAS touch test')
+        holding = subprocess.Popen(
+            ['adb', 'shell', 'input', 'swipe', x, y, x, y, str(hold_ms)])
+        try:
+            time.sleep(hold_ms / 1000 * .45)
+            _shot(out, f'21_race_driving_mid_{pulse}')
+            time.sleep(hold_ms / 1000 * .40)
+        finally:
+            return_code = holding.wait(timeout=hold_ms / 1000 + 30)
+        if return_code:
+            raise RuntimeError(f'Android GAS input swipe exited {return_code}')
+        late = _shot(out, f'21_race_driving_late_{pulse}')
+        # The save may still be from the previous five seconds of in-game
+        # physics. Each snapshot and its speed are archived independently.
+        last = session.read(f'21_race_after_gas_pulse_{pulse}')
+        sample = {
+            'pulse': pulse + 1, 'distance': last['distance'],
+            'elapsed': last['elapsed'], 'speed': last['speed'],
+            'distance_gain': round(last['distance'] - start['distance'], 3),
+            'elapsed_gain': round(last['elapsed'] - start['elapsed'], 3),
+        }
+        samples.append(sample)
+        print('[KartDriveSample] ' + json.dumps(sample, sort_keys=True),
+              flush=True)
+        if (sample['distance_gain'] >= 8.0 and
+                sample['elapsed_gain'] >= 2.5):
+            break
+
+    # Bounded post-input wait: the native save must catch up after the
+    # simulator has processed the touch and physics frames.
+    deadline, index = time.monotonic() + 90, 0
+    while (last['distance'] - start['distance'] < 8 or
+           last['elapsed'] - start['elapsed'] < 2.5) and time.monotonic() < deadline:
+        if not godot_alive():
+            raise RuntimeError('Godot exited while awaiting persisted GAS progress')
+        time.sleep(3)
+        last = session.read(f'21_race_after_gas_poll_{index}')
+        sample = {
+            'poll': index + 1, 'distance': last['distance'],
+            'elapsed': last['elapsed'], 'speed': last['speed'],
+            'distance_gain': round(last['distance'] - start['distance'], 3),
+            'elapsed_gain': round(last['elapsed'] - start['elapsed'], 3),
+        }
+        samples.append(sample)
+        print('[KartDriveSample] ' + json.dumps(sample, sort_keys=True),
+              flush=True)
+        index += 1
+
+    # Both the moving world *and* same-race actual persisted drive must pass.
+    # This intentionally preserves the original hard failure on a stuck kart.
     moved = evidence.world_moved(before, late)
     frame = evidence.rendered_race_frame(late)
-    # While racing the game saves every five seconds of game time.
-    deadline, index, last = time.monotonic() + 30, 0, None
-    while time.monotonic() < deadline:
-        last = session.read(f'21_race_after_gas_{index}')
-        if last['elapsed'] - start['elapsed'] >= 2.5:
-            break
-        index += 1
-        time.sleep(2)
-    return {'gas_touch': list(point), 'hold_ms': hold_ms, 'world_moved': moved,
-            'rendered_frame': frame, 'native_progress': evidence.driving_progress(start, last)}
+    try:
+        progress = evidence.driving_progress(start, last)
+    except RuntimeError as error:
+        (out / '21_race_drive_telemetry.json').write_text(
+            json.dumps({'gas_touch': list(point), 'hold_ms': hold_ms,
+                        'samples': samples, 'failure': str(error)},
+                       ensure_ascii=False, indent=2))
+        raise RuntimeError(
+            f'{error}; ADB GAS held in {len([s for s in samples if "pulse" in s])} '
+            f'physical pulses; final native speed={last["speed"]}; '
+            f'see 21_race_drive_telemetry.json') from error
+    (out / '21_race_drive_telemetry.json').write_text(
+        json.dumps({'gas_touch': list(point), 'hold_ms': hold_ms,
+                    'samples': samples, 'native_progress': progress},
+                   ensure_ascii=False, indent=2))
+    return {'gas_touch': list(point), 'hold_ms': hold_ms,
+            'gas_pulses': len([s for s in samples if 'pulse' in s]),
+            'world_moved': moved, 'rendered_frame': frame,
+            'native_progress': progress}
 
 
 def log_images(out: Path) -> None:
