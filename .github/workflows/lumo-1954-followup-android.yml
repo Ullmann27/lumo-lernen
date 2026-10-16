@@ -4,6 +4,9 @@ name: Lumo 1954 – Hologlas, Journal, Flutter und Android
 # provenance, then the x86_64 APK installed and toured on an emulator.
 # No release, no main merge.
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - chatgpt/opus-1953-mentor-journal-followup-2026-10-16
@@ -15,7 +18,7 @@ on:
       - scripts/**
       - pubspec.yaml
       - pubspec.lock
-      - .github/workflows/lumo-1954-apk.yml
+      - .github/workflows/lumo-1954-followup-android.yml
       - .github/probes/modernization_android_tour.py
   workflow_dispatch:
 permissions:
