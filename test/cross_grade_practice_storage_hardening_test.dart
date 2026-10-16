@@ -99,6 +99,10 @@ void main() {
     await _frames(tester);
     expect(store.rejectedWrites, greaterThan(0));
     final next = find.byKey(const ValueKey('cross-grade-next'));
+    // A ListView lazily builds off-screen buttons. Scroll to the real Next
+    // control before inspecting its enabled state (never weaken the assertion).
+    await tester.scrollUntilVisible(next, 180);
+    await tester.pump();
     expect(tester.widget<FilledButton>(next).onPressed, isNull,
         reason: 'Next must wait for successful storage of the accepted answer.');
     expect(find.byKey(const ValueKey('cross-grade-save-error')), findsOneWidget);
