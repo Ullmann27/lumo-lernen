@@ -28,6 +28,7 @@ import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
 import 'lumo_cards/lumo_cards_screen.dart';
+import 'lumo_cards/lumo_cards_showcase_screen.dart';
 import 'memory/lumo_memory_game.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
@@ -212,20 +213,37 @@ class _GamesContentState extends State<GamesContent> {
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
-    // Heinz 2026-05-21 'zu langweilig' -> Solo-Bot ist jetzt der
-    // Default. Pass-and-Play (vsBot=false) ist spaeter ueber einen
-    // sekundaeren Button erreichbar.
     try {
+      // One tap opens the actual branded world; both buttons enter the
+      // existing, tested live card engine (solo or local pass-and-play).
       await Navigator.of(context).push<void>(
-      MaterialPageRoute<void>(
-        builder: (_) => LumoCardsScreen(
-          appState: widget.appState,
-          player1Name: 'Du',
-          player2Name: 'Lumo',
-          vsBot: true,
+        MaterialPageRoute<void>(
+          builder: (hubContext) => LumoCardsShowcaseScreen(
+            onSolo: () => Navigator.of(hubContext).push<void>(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoCardsScreen(
+                  appState: widget.appState,
+                  player1Name: 'Du',
+                  player2Name: 'Lumo',
+                  vsBot: true,
+                  skipIntro: true,
+                ),
+              ),
+            ),
+            onLocal: () => Navigator.of(hubContext).push<void>(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoCardsScreen(
+                  appState: widget.appState,
+                  player1Name: 'Spieler 1',
+                  player2Name: 'Spieler 2',
+                  vsBot: false,
+                  skipIntro: true,
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
-    );
+      );
       if (mounted) await _load();
     } finally {
       if (mounted) setState(() => _launchingGame = false);
