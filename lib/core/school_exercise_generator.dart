@@ -964,8 +964,15 @@ class ExerciseFactory {
       prompt = 'Spure den Buchstaben $letter nach.';
       explanation = 'Beginne am Startpunkt und folge den Strichen der Vorlage.';
     } else if (unit == 'Schwunguebung') {
-      prompt = 'Schreibe: ∿';
-      explanation = 'Ziehe eine fließende Wellenlinie von links nach rechts.';
+      // Auch eine Schwungübung trainiert einen lesbaren Buchstaben statt
+      // ein unbekanntes mathematisches Symbol als "Schreibaufgabe".
+      // Alle vier Buchstaben haben echte, geprüfte Ein-Strich-Vorlagen.
+      const curveLetters = <String>['S', 'C', 'O', 'U'];
+      final letter = curveLetters[_random.nextInt(curveLetters.length)];
+      prompt = 'Schreibe: $letter';
+      explanation =
+          'Spure den Buchstaben $letter in einem ruhigen Schwung nach. '
+          'Beginne beim markierten Startpunkt.';
     } else if (unit == 'Satz abschreiben') {
       final options = readingPassages[grade.clamp(1, 4)]!;
       final passage = options[_random.nextInt(options.length)];
