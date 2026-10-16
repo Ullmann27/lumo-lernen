@@ -51,7 +51,10 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(14, 12, 14, 28),
-            child: Column(
+            child: Center(
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(maxWidth: 920),
+                child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const _HeroBanner(),
@@ -62,6 +65,8 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
                 ],
                 const _FooterCredit(),
               ],
+            ),
+              ),
             ),
           ),
         ),
@@ -145,14 +150,14 @@ class _HeroBanner extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFB923C), Color(0xFFEC4899)],
+          colors: [Color(0xFF123B66), Color(0xFF092448)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         boxShadow: [
           BoxShadow(
-            color: const Color(0xFFFB923C).withOpacity(0.4),
+            color: const Color(0xFF56CFFF).withOpacity(0.30),
             blurRadius: 18,
             offset: const Offset(0, 8),
           ),
@@ -181,7 +186,7 @@ class _HeroBanner extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 13,
                     fontWeight: FontWeight.w700,
-                    color: Color(0xFFFFF7ED),
+                    color: Color(0xFFE8F4FF),
                     height: 1.25,
                   ),
                 ),
@@ -207,12 +212,16 @@ class _MentorSection extends StatelessWidget {
     final desc = kRechentricksDescription[m.kind] ?? '';
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        gradient: const LinearGradient(
+          colors: [Color(0xF5123057), Color(0xF1092141)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: accent.withOpacity(0.45), width: 1.6),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
+            color: const Color(0xFF071E42).withOpacity(0.5),
             blurRadius: 14,
             offset: const Offset(0, 6),
           ),
@@ -272,7 +281,7 @@ class _MentorSection extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 15,
                         fontWeight: FontWeight.w900,
-                        color: const Color(0xFF142747),
+                        color: Colors.white,
                         height: 1.2,
                       ),
                     ),
@@ -289,7 +298,7 @@ class _MentorSection extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 12.5,
                 fontWeight: FontWeight.w700,
-                color: const Color(0xFF315273),
+                color: const Color(0xFFD6E8F9),
                 height: 1.32,
               ),
             ),
