@@ -23,8 +23,8 @@ class RechentricksMentorCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            accent.withOpacity(0.08),
-            accent.withOpacity(0.02),
+            accent.withOpacity(0.19),
+            accent.withOpacity(0.12),
           ],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -100,7 +100,7 @@ class RechentricksMentorCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 13.5,
                         fontWeight: FontWeight.w800,
-                        color: LumoColors.ink700,
+                        color: const Color(0xFF254263),
                         height: 1.2,
                       ),
                     ),
@@ -124,7 +124,7 @@ class RechentricksMentorCard extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 16,
                 fontWeight: FontWeight.w900,
-                color: LumoColors.ink900,
+                color: const Color(0xFF142747),
               ),
             ),
           ),
@@ -225,7 +225,7 @@ class _StepLine extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontSize: 14,
                 fontWeight: FontWeight.w800,
-                color: LumoColors.ink700,
+                color: const Color(0xFF254263),
                 height: 1.25,
               ),
             ),
