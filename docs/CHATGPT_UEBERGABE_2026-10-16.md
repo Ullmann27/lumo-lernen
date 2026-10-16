@@ -4,6 +4,8 @@ Diese Übergabe gilt für den Master-Übernahmeauftrag vom 16.10. (Astra sichern
 Kart-Garage-Test, Zusammenführung, Grafik, APK). Alles unten ist geprüft. Ungeprüftes ist ausdrücklich
 als offen markiert.
 
+> **Nachtrag (Ende der Claude-Sitzung):** Schritte 1–3 aus Abschnitt 4 sind begonnen. Commit `f8732a56` setzt den Godot-Pin auf `74eeb466bfaad77a57280b2dcabdb5923b80d827` (Android-Garage grün in Lauf 38841952066) und baut auf ChatGPTs Reservierung 0.12.40+1948 (`89d13ba1`) auf. Der volle APK-Lauf **38843372425** wurde gestartet; Claude hat sein Ergebnis **nicht** mehr gesehen. ChatGPT: Lauf auswerten. Bei Fehlern den ersten Fehler beheben. Bei Grün das Artefakt `LUMO-Lernen-0.12.40-1948-Android-APK` mit SHA-256, Zertifikat, Provenienz und dem Ergebnis des Jobs `sonnenhafen-update` melden. Ein lokaler `flutter test` des vollen Stands ist nach dem Pin nicht gelaufen.
+
 ## 1. Stand der Zweige
 
 | Repo | Zweig | Kopf | Zustand |
