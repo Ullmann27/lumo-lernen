@@ -357,7 +357,7 @@ class _AppShellState extends State<AppShell>
     }
     if (settings.voiceEnabled && settings.autoReadEnabled) {
       unawaited(LumoVoice.instance.speak(
-        _appState.state.lumoMessage.replaceAll('\\n', ' '),
+        _appState.state.lumoMessage.replaceAll('\n', ' '),
       ));
     }
     if (mounted) await _fadeCtrl.forward();
