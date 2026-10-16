@@ -263,7 +263,11 @@ def main() -> int:
             base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', check=False)
             time.sleep(6)
             probe.capture(out, '22_nach_kart_zurueck')
-            step('return-from-kart', alive() and not godot_alive())
+            # Android is allowed to keep the Godot process cached after Activity
+            # finishes; requiring pidof == empty would be a false failure.
+            # The actual Flutter screen has returned to portrait.
+            returned = Image.open(out / '22_nach_kart_zurueck.png')
+            step('return-from-kart', alive() and returned.height > returned.width)
         else:
             step('open-kart', False, label=None)
 
