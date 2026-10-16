@@ -1,5 +1,8 @@
 name: Lumo 1950 combined Lern-App and Kart APK
 on:
+  pull_request:
+    branches:
+      - main
   push:
     branches:
       - chatgpt/lumo-1950-all-integrated-2026-10-16
