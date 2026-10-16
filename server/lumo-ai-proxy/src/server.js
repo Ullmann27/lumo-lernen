@@ -3,6 +3,7 @@ import { synthesizeSulafat, validateSpeechRequest, DEFAULT_TTS_MODEL, SULAFAT_PR
 import { pathToFileURL } from 'node:url';
 import { normalizePrompt, buildCalculationTask } from './taskValidation.js';
 import { inspectChildSafety, buildLumoSystemPrompt, allowedTopicHints } from './childSafetyPolicy.js';
+import { callNvidiaPilot, normalizeNvidiaPilotInput, nvidiaPilotStatus } from './nvidiaPilot.js';
 
 const port = Number(process.env.PORT || 8787);
 const openAiApiKey = process.env.OPENAI_API_KEY || '';
@@ -368,6 +369,12 @@ export function createLumoServer({
   // No verifier is installed by default. A provider key or a flag alone
   // can never enable an unauthenticated, billable speech endpoint.
   authorizeSpeech = null,
+  // A separate verified parent identity/consent verifier is mandatory.
+  authorizeNvidiaPilot = null,
+  nvidiaApiKey = process.env.NVIDIA_API_KEY || '',
+  nvidiaEnabled = process.env.LUMO_NVIDIA_PILOT_ENABLED === '1',
+  nvidiaPerParentDay = Number(process.env.LUMO_NVIDIA_PILOT_PER_PARENT_DAY || 15),
+  nvidiaTotalDay = Number(process.env.LUMO_NVIDIA_PILOT_TOTAL_DAY || 100),
   ttsPerParentDay = Number(process.env.LUMO_TTS_PER_PARENT_DAY || process.env.LUMO_TTS_PER_IP_DAY || 200),
   ttsTotalDay = Number(process.env.LUMO_TTS_TOTAL_DAY || 1600),
 } = {}) {
@@ -377,6 +384,46 @@ const batchInFlight = new Map();
 // Per-process daily budgets over verified opaque parent identities.
 // Persistent/distributed accounting is still a separate public-release gate.
 const speechBudgets = new Map();
+const nvidiaPilotBudgets = new Map();
+let nvidiaPilotDay = '';
+let nvidiaPilotTotal = 0;
+async function nvidiaPilotAuthorization(req) {
+  const header = req.headers.authorization;
+  if (typeof header !== 'string' || header.length > 4096 ||
+      !/^Bearer [A-Za-z0-9._~+/-]+=*$/i.test(header)) return null;
+  let timeout;
+  try {
+    const identity = await Promise.race([
+      Promise.resolve().then(() => authorizeNvidiaPilot(header.slice(7))),
+      new Promise(resolve => {
+        timeout = setTimeout(() => resolve(null), 5000);
+        timeout.unref?.();
+      }),
+    ]);
+    if (!identity || identity.parentVerified !== true ||
+        typeof identity.principalId !== 'string' ||
+        identity.principalId.length < 1 || identity.principalId.length > 120)
+      return null;
+    return identity;
+  } catch (_) { return null; } finally { clearTimeout(timeout); }
+}
+function chargeNvidiaBudget(principalId) {
+  const today = new Date().toISOString().slice(0, 10);
+  if (nvidiaPilotDay !== today) {
+    nvidiaPilotDay = today;
+    nvidiaPilotTotal = 0;
+    nvidiaPilotBudgets.clear();
+  }
+  const userLimit = Number.isFinite(nvidiaPerParentDay)
+    ? Math.max(1, Math.min(100, Math.floor(nvidiaPerParentDay))) : 15;
+  const totalLimit = Number.isFinite(nvidiaTotalDay)
+    ? Math.max(1, Math.min(1000, Math.floor(nvidiaTotalDay))) : 100;
+  const used = nvidiaPilotBudgets.get(principalId) || 0;
+  if (used >= userLimit || nvidiaPilotTotal >= totalLimit) return false;
+  nvidiaPilotBudgets.set(principalId, used + 1);
+  nvidiaPilotTotal += 1;
+  return true;
+}
 let speechDay = '';
 let speechTotal = 0;
 function speechStatus() {
@@ -438,7 +485,52 @@ return createServer(async (req, res) => {
     return json(res, 200, {
       ...healthPayload(apiKey, upstreamStatus),
       speech: speechStatus(),
+      nvidiaPilot: nvidiaPilotStatus({
+        enabled: nvidiaEnabled, apiKey: nvidiaApiKey,
+        authorize: authorizeNvidiaPilot,
+      }),
     });
+  }
+  if (req.method === 'GET' && path === '/nvidia/pilot/status') {
+    return json(res, 200, nvidiaPilotStatus({
+      enabled: nvidiaEnabled, apiKey: nvidiaApiKey,
+      authorize: authorizeNvidiaPilot,
+    }));
+  }
+  if (req.method === 'POST' && path === '/nvidia/pilot/chat') {
+    // Fail closed before reading child text or making a billable request.
+    if (!nvidiaEnabled || !nvidiaApiKey || typeof authorizeNvidiaPilot !== 'function')
+      return json(res, 503, { error: 'nvidia_pilot_unavailable' }, true);
+    const identity = await nvidiaPilotAuthorization(req);
+    if (!identity) return json(res, 401, { error: 'parent_authorization_required' }, true);
+    if (identity.nvidiaConsent !== true)
+      return json(res, 403, { error: 'parent_nvidia_consent_required' }, true);
+    try {
+      const body = await readJson(req);
+      const input = normalizeNvidiaPilotInput(body);
+      if (!input) return json(res, 400, { error: 'nvidia_invalid_input' });
+      if (!chargeNvidiaBudget(identity.principalId))
+        return json(res, 429, { error: 'nvidia_pilot_budget_exceeded' });
+      const result = await callNvidiaPilot({
+        input, apiKey: nvidiaApiKey, fetchImpl,
+      });
+      return json(res, 200, { ...result, source: 'nvidia_nemotron_pilot' });
+    } catch (error) {
+      const safe = ['invalid_json', 'body_too_large'].includes(error?.message)
+        ? error.message
+        : ['nvidia_rate_limited', 'nvidia_auth_failed',
+           'nvidia_invalid_reply'].includes(error?.code)
+          ? error.code : 'nvidia_upstream_unavailable';
+      // Never log child text, parent identity, tokens or provider response.
+      console.warn('[lumo-ai-proxy] NVIDIA pilot failed: ' + safe);
+      const status = safe === 'invalid_json' ? 400
+        : safe === 'body_too_large' ? 413
+        : safe === 'nvidia_rate_limited' ? 503 : 502;
+      return json(res, status, {
+        error: safe,
+        reply: 'Die Online-Lernhilfe ist gerade nicht erreichbar. Lumo hilft dir lokal weiter.',
+      }, status === 413);
+    }
   }
   if (req.method === 'GET' && path === '/speech/status') {
     // Configuration only; never spend a synthesis call or claim audibility.

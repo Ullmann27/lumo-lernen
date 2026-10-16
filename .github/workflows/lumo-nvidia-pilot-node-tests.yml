@@ -1,0 +1,39 @@
+name: Lumo NVIDIA pilot mock verification
+on:
+  push:
+    branches:
+      - perplexity/lumo-nvidia-tutor-pilot-2026-10-15
+  pull_request:
+    paths:
+      - 'server/lumo-ai-proxy/**'
+      - '.github/workflows/lumo-nvidia-pilot-node-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verify-nvidia-pilot:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run:
+        working-directory: server/lumo-ai-proxy
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Static syntax checks
+        run: |
+          node --check src/nvidiaPilot.js
+          node --check src/server.js
+          node --check test/nvidiaPilot.test.js
+      - name: All proxy tests with mocked upstreams (no credentials)
+        run: npm test
+        env:
+          OPENAI_API_KEY: ''
+          NVIDIA_API_KEY: ''
+          LUMO_NVIDIA_PILOT_ENABLED: '0'
+          GEMINI_API_KEY: ''
+          LUMO_TTS_ENABLED: '0'
