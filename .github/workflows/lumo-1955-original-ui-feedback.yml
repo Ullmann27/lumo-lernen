@@ -11,6 +11,7 @@ on:
     branches:
       - chatgpt/opus-1953-mentor-journal-followup-2026-10-16
       - chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16
+      - chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
     paths:
       - lib/**
       - test/**
