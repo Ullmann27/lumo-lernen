@@ -14,11 +14,17 @@ from __future__ import annotations
 
 import argparse
 import json
+import csv
+import io
+import re
+import unicodedata
 from pathlib import Path
 import subprocess
 import sys
 import time
 import traceback
+
+from PIL import Image, ImageChops, ImageStat
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import creative_android_probe as probe  # noqa: E402  (pinned live helpers)
@@ -60,6 +66,128 @@ def try_tap(out: Path, labels: list[str], tag: str) -> str | None:
         except Exception:  # The next alternative label is tried.
             continue
     return None
+
+
+def _simplify(word: str) -> str:
+    plain = unicodedata.normalize('NFKD', word).encode('ascii', 'ignore').decode()
+    return re.sub('[^a-z0-9]', '', plain.lower())
+
+
+def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
+    """Read the real, visible Godot footer. No hardcoded touch coordinates.
+
+    This mirrors the screenshot OCR approach tested by lumo-godot PR #77.
+    """
+    from PIL import Image
+    image = Image.open(io.BytesIO(png)).convert('RGB')
+    for scale, transformed in (
+        (2, image.convert('L').point(lambda value: 0 if value >= 170 else 255)
+         .resize((image.width * 2, image.height * 2))),
+        (2, image.resize((image.width * 2, image.height * 2), Image.Resampling.LANCZOS)
+         .convert('L').point(lambda value: 0 if value < 140 else 255)),
+    ):
+        temp = io.BytesIO()
+        transformed.save(temp, format='PNG')
+        process = subprocess.run(
+            ['tesseract', 'stdin', 'stdout', '--psm', '11', '-l', 'deu+eng', 'tsv'],
+            input=temp.getvalue(), capture_output=True, timeout=35, check=True,
+        )
+        rows = csv.DictReader(io.StringIO(process.stdout.decode('utf-8', 'replace')),
+                              delimiter='\\t', quoting=csv.QUOTE_NONE)
+        lines: dict[tuple[str, str, str], list[dict]] = {}
+        for word in rows:
+            if not (word.get('text') or '').strip() or float(word.get('conf', -1)) < 15:
+                continue
+            key = tuple(word[k] for k in ('block_num', 'par_num', 'line_num'))
+            lines.setdefault(key, []).append(word)
+        for words in lines.values():
+            words.sort(key=lambda word: int(word['left']))
+            for start in range(len(words)):
+                for end in range(start + 1, min(start + 8, len(words)) + 1):
+                    span = words[start:end]
+                    if _simplify(' '.join(word['text'] for word in span)) != _simplify(expected):
+                        continue
+                    bounds = [
+                        (min(int(w['left']) for w in span) +
+                         max(int(w['left']) + int(w['width']) for w in span)) // (2 * scale),
+                        (min(int(w['top']) for w in span) +
+                         max(int(w['top']) + int(w['height']) for w in span)) // (2 * scale)
+                    ]
+                    if bounds[1] >= image.height * .6:
+                        return bounds[0], bounds[1]
+    return None
+
+
+def _race_frame_difference(garage: bytes, race: bytes) -> dict:
+    """Fail if the screenshot still looks like the garage despite log markers.
+
+    Screenshots must come from the same live emulator and orientation.
+    """
+    a, b = Image.open(io.BytesIO(garage)).convert('RGB'), Image.open(io.BytesIO(race)).convert('RGB')
+    if a.size != b.size:
+        raise RuntimeError(f'Race and garage viewport differ: {a.size} / {b.size}')
+    left, top, right, bottom = (a.width // 12, a.height // 8,
+                                a.width * 11 // 12, a.height * 7 // 8)
+    first, second = a.crop((left, top, right, bottom)), b.crop((left, top, right, bottom))
+    first.thumbnail((400, 200))
+    second = second.resize(first.size)
+    diff = ImageChops.difference(first, second)
+    thresholded = diff.convert('RGB')
+    pixels = list(thresholded.getdata())
+    changed = sum(1 for p in pixels if sum(p) >= 96) / max(1, len(pixels))
+    mean = sum(ImageStat.Stat(diff).mean) / 3
+    report = {'changed_fraction': round(changed, 3), 'mean_channel_delta': round(mean, 2)}
+    if changed < .22 or mean < 18:
+        raise RuntimeError(f'Android still shows the garage, not the race: {report}')
+    return report
+
+
+def _start_actual_embedded_race(out: Path) -> dict:
+    if not godot_alive():
+        raise RuntimeError('Native Godot game process is not alive')
+    evidence = []
+    garage_fifth = None
+    for index in range(5):
+        wanted = 'Weiter' if index < 4 else 'Rennen starten'
+        for attempt in range(12):
+            png = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],
+                                 check=True, capture_output=True, timeout=25).stdout
+            capture = out / f'21_kart_garage_step_{index + 1}.png'
+            capture.write_bytes(png)
+            point = _read_garage_footer(png, wanted)
+            if point is not None:
+                if index == 4:
+                    garage_fifth = png
+                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
+                evidence.append({'step': index + 1, 'button': wanted, 'tap': point})
+                time.sleep(2)
+                break
+            time.sleep(1)
+        else:
+            raise RuntimeError(f'Missing Android kart footer at step {index + 1}: {wanted}')
+    (out / '21_kart_real_touches.json').write_text(json.dumps(evidence, indent=2))
+    if garage_fifth is None:
+        raise RuntimeError('Last garage image was not captured')
+
+    # Godot logs belong to a separate :lumo_game process, not Flutter.
+    deadline = time.monotonic() + 55
+    while time.monotonic() < deadline:
+        if not godot_alive():
+            raise RuntimeError('Godot quit before showing the race')
+        screen = subprocess.run(['adb', 'exec-out', 'screencap', '-p'], check=True,
+                                capture_output=True, timeout=25).stdout
+        (out / '21_lumo_kart_real_race.png').write_bytes(screen)
+        log = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
+        if '[Kart] race_world_ready: sonnenhafen mode=race' in log:
+            try:
+                report = _race_frame_difference(garage_fifth, screen)
+                (out / '21_kart_race_frame_check.json').write_text(
+                    json.dumps(report, indent=2))
+                return report
+            except RuntimeError:
+                pass
+        time.sleep(2)
+    raise RuntimeError('Native Android kart race did not visibly replace the garage')
 
 
 def main() -> int:
@@ -119,10 +247,17 @@ def main() -> int:
                 time.sleep(wait)
                 probe.capture(out, f'21_lumo_kart_{wait}s')
             step('open-kart', godot_alive(), label=kart)
+            report = _start_actual_embedded_race(out)
+            step('start-kart-race', True, **report)
+            # Back while driving opens pause; Back while paused hands the
+            # session back to Flutter. Both are the actual native UI flow.
+            base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', check=False)
+            time.sleep(2)
+            probe.capture(out, '21_lumo_kart_pause')
             base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', check=False)
             time.sleep(6)
             probe.capture(out, '22_nach_kart_zurueck')
-            step('return-from-kart', alive())
+            step('return-from-kart', alive() and not godot_alive())
         else:
             step('open-kart', False, label=None)
 
@@ -144,7 +279,7 @@ def main() -> int:
                 if not s['ok'] and s['step'] in (
                     'launch', 'onboarding', 'navigate-start',
                     'navigate-lernen', 'navigate-spiele', 'open-kart',
-                    'return-from-kart')]
+                    'start-kart-race', 'return-from-kart')]
         if fatal or hard or not alive():
             raise RuntimeError(f'Hard failure: crashes={len(fatal)} steps={hard} '
                                f'alive={alive()}')
