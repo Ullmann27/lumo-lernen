@@ -11,6 +11,7 @@ on:
     branches:
       - chatgpt/opus-1953-mentor-journal-followup-2026-10-16
       - chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16
+      - chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
     paths:
       - lib/**
       - test/**
@@ -20,6 +21,7 @@ on:
       - pubspec.yaml
       - pubspec.lock
       - .github/workflows/lumo-1955-original-ui-feedback.yml
+      - .github/workflows/lumo-unified-integration-2026.yml
       - .github/probes/modernization_android_tour.py
   workflow_dispatch:
 permissions:
@@ -118,6 +120,19 @@ jobs:
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
+      # Keep the combined two-ABI artifact for automated emulator QA, and
+      # publish an additional single ARM64 archive small enough to deliver
+      # directly without changing release signing or build provenance.
+      - name: Archive separate verified ARM64 APK for direct delivery
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1956-direct-arm64-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            release-proof/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
   android-tour:
     needs: apk
     runs-on: ubuntu-latest
@@ -136,7 +151,7 @@ jobs:
           set -euo pipefail
           mkdir -p tour
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           python3 -m py_compile .github/probes/modernization_android_tour.py
