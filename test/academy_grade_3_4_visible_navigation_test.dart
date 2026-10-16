@@ -39,12 +39,12 @@ void main() {
     await tester.ensureVisible(find.byKey(const ValueKey('grade-pill-4')));
     await tester.tap(find.byKey(const ValueKey('grade-pill-4')));
     await tester.pump(const Duration(milliseconds: 400));
-    expect(find.text('4. Klasse – Themenvorschau'), findsOneWidget);
+    expect(find.text('4. Klasse – frei lernen'), findsOneWidget);
     expect(find.text('Mathematik · Zahlen bis 1 Million'), findsOneWidget);
     expect(find.text('Deutsch · Grammatik'), findsOneWidget);
     expect(find.text('Sachunterricht · Kontinente und Ozeane'), findsOneWidget);
     expect(find.text('Mathematik · Zahlen bis 1000'), findsNothing);
-    // Grade chips are previews; no stealth change to the child's profile.
+    // Grade selection opens practice without changing the enrolled grade.
     expect(app.state.grade, 3);
     expect(tester.takeException(), isNull);
 

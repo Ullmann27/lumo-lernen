@@ -17,11 +17,15 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
+import '../../core/curriculum/academy_topic_units.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
+import '../learning/cross_grade_practice_screen.dart';
+import '../learning/cross_grade_writing_screen.dart';
+import 'widgets/academy_subject_art.dart';
 import '../learning/widgets/lumo_learning_tree_card.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -1491,6 +1495,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   }
 
   void _openLearningArea(_LearningArea area) {
+    // Cross-grade Fachkarten must show the selected grade's subject topics,
+    // not the official-grade Deutsch hub or a generic profile-bound session.
+    if (_selectedGrade != widget.appState.state.grade &&
+        area.curriculumIndex != null) {
+      setState(() => _selectedSubjectIndex = area.curriculumIndex!);
+      return;
+    }
     if (area.subject == 'Deutsch' && _selectedGrade <= 2) {
       _openDeutsch();
       return;
@@ -1717,7 +1728,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   /// by an actual topic in the selected grade, never by a decorative counter.
   Widget _buildGradeFocus() {
     final grade = _currentGrade;
-    final preview = grade.grade != widget.appState.state.grade;
+    final otherGrade = grade.grade != widget.appState.state.grade;
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 0, 16, 14),
       child: LumoGlassCard(
@@ -1731,7 +1742,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  '${grade.title} – ${preview ? 'Themenvorschau' : 'dein Lernstoff'}',
+                  '${grade.title} – ${otherGrade ? 'frei lernen' : 'dein Lernstoff'}',
                   key: const ValueKey('academy-grade-focus-title'),
                   style: const TextStyle(
                     fontFamily: 'Nunito',
@@ -1744,8 +1755,8 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             ]),
             const SizedBox(height: 6),
             Text(
-              preview
-                  ? 'Das ist ein Einblick. Aktiviere die Schulstufe im Elternbereich, um dort regulär Aufgaben zu lösen.'
+              otherGrade
+                  ? 'Alle Klassen sind zum Üben offen. Deine Profilklasse und regulären Belohnungen bleiben unverändert.'
                   : 'Wähle ein Thema deiner Klasse und beginne sofort mit echten Aufgaben.',
               style: const TextStyle(
                 fontFamily: 'Nunito',
@@ -1782,7 +1793,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
                               borderRadius: BorderRadius.circular(15)),
                         ),
                         child: Row(children: [
-                          _GradeSubjectArt(subject: subject),
+                          AcademySubjectArt(subjectName: subject.name, subjectId: subject.id, accent: subject.color),
                           const SizedBox(width: 12),
                           Expanded(child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -2147,22 +2158,50 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       _openStories();
       return;
     }
-    // Browsing a higher class must not secretly turn its tasks into regular
-    // school progress or change the enrolled grade. New concepts need an
-    // introduction and their own explicitly allowed discovery writer.
-    if (_selectedGrade > widget.appState.state.grade) {
+    // Creative writing cannot be represented by unrelated multiple-choice
+    // tasks. The voluntary fourth-grade route stores its own draft.
+    if (t.id == 'd4_aufsatz' &&
+        _selectedGrade != widget.appState.state.grade) {
       Navigator.of(context).push<void>(MaterialPageRoute(
-          builder: (_) => GuidedLearningHub(
-              appState: widget.appState, discovery: true,
-              requestedTopicTitle: t.title,
-              preferredLessonId: t.id == 'm2_einmaleins'
-                  ? 'equal_groups' : null)));
+        builder: (_) => CrossGradeWritingScreen(
+          profileName: widget.appState.state.childName,
+          enrolledGrade: widget.appState.state.grade,
+        ),
+      ));
       return;
     }
-    // Each visible English/Sachunterricht curriculum tile must open a real
-    // locally generated task, rather than a generic teacher-chat with no
-    // guaranteed question/options. Browsing higher classes remains discovery
-    // only (guard above) and never silently changes the profile grade.
+    // Viewing any non-enrolled grade is real practice, not a teaser or
+    // implicit discovery redirect. Progress stays separate from the child's
+    // official school grade and its XP/wallet records.
+    if (_selectedGrade != widget.appState.state.grade) {
+      final unit = AcademyTopicUnits.exerciseUnit(
+        topicId: t.id,
+        title: t.title,
+        subject: s.name,
+        grade: _selectedGrade,
+      );
+      if (unit == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(
+            'Für ${s.name} in der $_selectedGrade. Klasse sind noch keine '
+            'fertigen Übungen vorhanden.',
+          )),
+        );
+        return;
+      }
+      Navigator.of(context).push<void>(MaterialPageRoute(
+        builder: (_) => CrossGradePracticeScreen(
+          profileName: widget.appState.state.childName,
+          enrolledGrade: widget.appState.state.grade,
+          lessonGrade: _selectedGrade,
+          subject: s.name,
+          unit: unit,
+        ),
+      ));
+      return;
+    }
+    // Same-grade science and English retain their registered specialist modules
+    // and otherwise start an exact, locally generated curriculum unit.
     if (s.name == 'Englisch' || s.name == 'Sachunterricht') {
       // Eigene Fachmodule (Tiere, Jahreszeiten, Wetter, Verkehr) haben
       // Vorrang vor dem Aufgabengenerator; vorher waren sie von keiner Kachel
@@ -2175,24 +2214,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         return;
       }
       final subject = s.name;
-      final topicUnit = switch (t.id) {
-        's1_koerper' => 'Körper',
-        'en1_3' => 'Begruessung',
-        's3_oesterreich' => 'Bundesländer Österreichs',
-        's3_natur' => 'Pflanzen',
-        's4_europa' => 'Kontinente und Ozeane',
-        _ => t.title,
-      };
-      final units = Curriculum.unitsForGrade(
-          subject, widget.appState.state.grade);
-      if (!units.contains(topicUnit)) {
-        // Don't present an unrelated task under a misleading topic label.
-        Navigator.of(context).push<void>(MaterialPageRoute(
-          builder: (_) => GuidedLearningHub(
-            appState: widget.appState,
-            discovery: true,
-            requestedTopicTitle: t.title,
-          ),
+      final topicUnit = AcademyTopicUnits.exerciseUnit(
+        topicId: t.id,
+        title: t.title,
+        subject: subject,
+        grade: _selectedGrade,
+      );
+      if (topicUnit == null) {
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text('Für ${t.title} gibt es noch keine passende Übung.'),
         ));
         return;
       }
@@ -2251,29 +2281,13 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     // then route all generator-backed Mathematics/German topics to actual
     // local exercises instead of the old online-only teacher chat.
     if (s.name == 'Mathematik' || s.name == 'Deutsch') {
-      final unit = switch (t.id) {
-        'm1_zahlen10' => 'Mengenvergleich',
-        'm1_formen' => 'Geometrie Formen',
-        'm2_zahlen100' => 'Plus bis 100',
-        'm2_einmaleins' => 'Einmaleins Vorbereitung',
-        'm2_uhr' => 'Uhrzeit',
-        'm2_geld' => 'Geld wechseln',
-        'm3_zahlen1000' => 'Plus bis 1000',
-        'm3_einmaleins_voll' => 'Einmaleins',
-        'm3_geometrie' => 'Umfang',
-        'm4_million' => 'Zahlenraum bis 1 Million',
-        'm4_bruch' => 'Bruchrechnen einfach',
-        'm4_textaufgaben' => 'Sachaufgaben drei Schritte',
-        'd2_saetze' => 'Erste Sätze',
-        'd2_artikel' => 'Artikel',
-        'd2_mehrzahl' => 'Einzahl und Mehrzahl',
-        'd3_wortarten' => 'Wortarten',
-        'd3_zeitformen' => 'Zeitformen',
-        'd4_grammatik' => 'Die 4 Fälle',
-        _ => t.title,
-      };
-      if (Curriculum.unitsForGrade(
-              s.name, widget.appState.state.grade).contains(unit)) {
+      final unit = AcademyTopicUnits.exerciseUnit(
+        topicId: t.id,
+        title: t.title,
+        subject: s.name,
+        grade: _selectedGrade,
+      );
+      if (unit != null) {
         widget.appState.update(widget.appState.state.copyWith(
           section: LumoSection.exercises,
           subject: s.name,
@@ -2472,43 +2486,3 @@ class _AnimatedRing extends StatelessWidget {
 /// Glowing, illustrated learning icons in every grade's first visible subject
 /// cards. The existing Lumo illustrated book is used for German; platform
 /// color emoji provide large illustrated subject marks without new downloads.
-class _GradeSubjectArt extends StatelessWidget {
-  const _GradeSubjectArt({required this.subject});
-  final LearningSubject subject;
-
-  @override
-  Widget build(BuildContext context) {
-    final emoji = switch (subject.name) {
-      'Mathematik' => '🔢',
-      'Englisch' => '🇬🇧',
-      'Sachunterricht' => '🌍',
-      _ => '📚',
-    };
-    return Semantics(
-      label: 'Fachsymbol ${subject.name}',
-      child: Container(
-        key: ValueKey('academy-grade-icon-${subject.id}'),
-        width: 68,
-        height: 68,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [subject.color.withOpacity(.6), const Color(0xFF082653)],
-          ),
-          border: Border.all(color: subject.color.withOpacity(.9)),
-          boxShadow: [
-            BoxShadow(color: subject.color.withOpacity(.35),
-                blurRadius: 13, offset: const Offset(0, 5)),
-          ],
-        ),
-        alignment: Alignment.center,
-        child: ExcludeSemantics(child: subject.name == 'Deutsch'
-          ? Image.asset('assets/lumo_design/icons/book_open.png',
-              width: 57, height: 57, fit: BoxFit.contain)
-          : Text(emoji, style: const TextStyle(fontSize: 39))),
-      ),
-    );
-  }
-}
