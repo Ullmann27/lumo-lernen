@@ -94,7 +94,7 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
   }
 
   Widget _hero(int unlocked, int total) {
-    final percent = (unlocked / total * 100).round();
+    final percent = total == 0 ? 0 : (unlocked / total * 100).round();
     return Container(
       padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
       decoration: BoxDecoration(
@@ -122,7 +122,7 @@ class _AchievementsWallScreenState extends State<AchievementsWallScreen> {
                 width: 76,
                 height: 76,
                 child: CircularProgressIndicator(
-                  value: unlocked / total,
+                  value: total == 0 ? 0 : unlocked / total,
                   strokeWidth: 6,
                   backgroundColor: Colors.white.withOpacity(0.30),
                   valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
@@ -260,7 +260,7 @@ class _BadgeCard extends StatelessWidget {
             ),
             alignment: Alignment.center,
             child: Opacity(
-              opacity: unlocked ? 1.0 : 0.35,
+              opacity: unlocked ? 1.0 : 0.76,
               child: Text(
                 unlocked ? progress.achievement.emoji : '🔒',
                 style: const TextStyle(fontSize: 28),
@@ -278,7 +278,7 @@ class _BadgeCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w900,
-                    color: unlocked ? LumoVisualTokens.white : const Color(0xFF86A0BD),
+                    color: unlocked ? LumoVisualTokens.white : const Color(0xFFE6F3FF),
                   ),
                 ),
                 const SizedBox(height: 2),
@@ -288,7 +288,7 @@ class _BadgeCard extends StatelessWidget {
                     fontFamily: 'Nunito',
                     fontSize: 11,
                     fontWeight: FontWeight.w700,
-                    color: unlocked ? LumoVisualTokens.muted : const Color(0xFF7D94AE),
+                    color: unlocked ? LumoVisualTokens.muted : const Color(0xFFCBDFF5),
                     height: 1.3,
                   ),
                 ),
