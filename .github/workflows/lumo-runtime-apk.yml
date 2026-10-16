@@ -203,6 +203,43 @@ jobs:
           git -C "$LUMO_NATIVE_DIRECTORY" rev-parse HEAD > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/source-sha.txt"
           godot --path "$LUMO_NATIVE_DIRECTORY" --headless --editor --import --quit > "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log" 2>&1
           if rg 'SCRIPT ERROR|Parse Error|Failed to load|ERROR:' "$LUMO_NATIVE_DIRECTORY/exports/fold-controls/import.log"; then exit 1; fi
+      - name: Fail fast if native QA source bindings are stale
+        # Source-bound evidence is generated much later; catching stale digest
+        # constants here avoids wasting a full native render and APK build.
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import hashlib
+          import os
+          import sys
+          from pathlib import Path
+          qa_directory = Path(os.environ['GITHUB_WORKSPACE']) / 'tools/android_qa'
+          sys.path.insert(0, str(qa_directory))
+          import native_lap_evidence_recovery as lap
+          import native_handoff_evidence_recovery as handoff
+          root = Path(os.environ['LUMO_NATIVE_DIRECTORY'])
+          source_bindings = {
+              'scripts/games/kart_island.gd': (lap.SOURCE_SHA256, handoff.SOURCE_SHA256),
+              'scripts/tests/kart_race_continuity_regression.gd':
+                  (lap.LAP_PROBE_SHA256, handoff.PROBE_SHA256),
+              'scripts/tests/kart_lap_session_fixtures.gd': (lap.FIXTURE_PROBE_SHA256,),
+              'scripts/tests/kart_complete_flow_regression.gd': (lap.FLOW_PROBE_SHA256,),
+              'scripts/tests/kart_time_format_regression.gd': (lap.TIME_PROBE_SHA256,),
+              'scripts/tests/kart_handoff_lifecycle_fixtures.gd': (handoff.HELPER_SHA256,),
+          }
+          for relative, expected_digests in source_bindings.items():
+              path = root / relative
+              if not path.is_file() or path.is_symlink():
+                  raise SystemExit(f'Missing or invalid pinned native source: {relative}')
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              for expected in expected_digests:
+                  if actual != expected:
+                      raise SystemExit(
+                          f'Stale native evidence binding for {relative}: expected {expected}, '
+                          f'pinned Godot SHA256 {actual}; update reviewed source-bound contracts'
+                      )
+          print(f'PASS source bindings for {len(source_bindings)} files on pinned Godot revision')
+          PYCODE
       - name: Check per-profile lifetime and workshop budgets
         working-directory: ${{ env.LUMO_NATIVE_DIRECTORY }}
         run: |
