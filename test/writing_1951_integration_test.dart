@@ -5,7 +5,6 @@ import 'package:lumo_lernen/core/writing_target_parser.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/domain/writing/expanded_writing_template_repository.dart';
 import 'package:lumo_lernen/features/learning/renderers/writing_task_renderer.dart';
-import 'package:lumo_lernen/features/learning/widgets/lumo_writing_canvas.dart';
 
 TaskInstance writingTask(String target) => TaskInstance(
       taskInstanceId: '1951-$target',
@@ -69,12 +68,12 @@ void main() {
     await tester.dragFrom(
         rect.center + const Offset(-45, -35), const Offset(80, 75));
     await tester.pump();
-    final finish = tester.widget<TextButton>(
+    final finish = tester.widget<ButtonStyleButton>(
         find.byKey(const ValueKey('writing-modal-finish')));
     expect(finish.onPressed, isNotNull);
     await tester.tap(find.byKey(const ValueKey('writing-modal-finish')));
     await tester.pumpAndSettle();
-    // One tap in the drawing modal immediately finishes practice.
+    // One tap on "Weiter" after a real attempt finishes the practice.
     expect(submitted?.strokes, isNotEmpty);
     expect(submitted?.typedAnswer, isNull);
     expect(submitted?.graded, isFalse);
@@ -98,8 +97,9 @@ void main() {
     await tester.ensureVisible(input);
     await tester.enterText(input, 'Mama');
     await tester.pump();
-    await tester.ensureVisible(find.text('Weiter'));
-    await tester.tap(find.text('Weiter'));
+    final check = find.byKey(const ValueKey('writing-keyboard-check'));
+    await tester.ensureVisible(check);
+    await tester.tap(check);
     expect(result?.typedAnswer, 'Mama');
     expect(result?.graded, isTrue);
     expect(result?.strokes, isEmpty);
@@ -119,7 +119,7 @@ void main() {
     await tester.ensureVisible(find.text('Jetzt mit dem Finger schreiben'));
     await tester.tap(find.text('Jetzt mit dem Finger schreiben'));
     await tester.pumpAndSettle();
-    final proceed = tester.widget<TextButton>(
+    final proceed = tester.widget<ButtonStyleButton>(
         find.byKey(const ValueKey('writing-modal-finish')));
     expect(proceed.onPressed, isNull);
     await tester.tap(find.byKey(const ValueKey('writing-modal-skip')));

@@ -821,9 +821,22 @@ class _LearningContentState extends State<LearningContent> {
       );
       return;
     }
-    // Handwriting is non-graded practice. Low contour scores do not block progress.
-    // The existing typed-answer branch above remains an assessed spelling task.
+    if (result.skipped) {
+      // "Andere Aufgabe": a different task at the same position. No XP, no
+      // wrong answer and no progress that was not earned.
+      if (!mounted) return;
+      setState(() => _loadNextTask());
+      return;
+    }
+    // Handwriting is ungraded practice: a real attempt in the trainer always
+    // leads on. Low contour scores never block progress or become a grade.
+    // The typed-answer branch above remains an assessed spelling task.
     _nextQuestion();
+  }
+
+  void _speakWritingPraise(String text) {
+    if (!widget.appState.state.settings.voiceEnabled) return;
+    LumoVoice.instance.speak(text);
   }
 
   /// 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgaben.
@@ -1463,6 +1476,7 @@ class _LearningContentState extends State<LearningContent> {
                           allowRetry: _allowHelp,
                           onAnswered: _answerAdaptive,
                           onWritingSubmitted: _answerWriting,
+                          onWritingPraise: _speakWritingPraise,
                           onShapeTraced: _answerShapeTrace,
                         ),
                       ),
