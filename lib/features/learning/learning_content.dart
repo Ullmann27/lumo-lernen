@@ -813,7 +813,7 @@ class _LearningContentState extends State<LearningContent> {
       // Compare real text directly, without manufacturing an ink score.
       final target = WritingTargetParser.parse(result.task.prompt);
       String normalize(String value) =>
-          value.trim().replaceAll(RegExp(r'\\s+'), ' ').toLowerCase();
+          value.trim().replaceAll(RegExp(r'\s+'), ' ').toLowerCase();
       _completeAnswer(
         correct: normalize(typedAnswer) == normalize(target),
         hintUsed: false,
