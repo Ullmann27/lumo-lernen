@@ -15,6 +15,7 @@ on:
       - claude/lumo-android-integration-m0-aloove
       - chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16
       - chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16
+      - chatgpt/lumo-1964-abc-premium-design-2026-10-16
       - chatgpt/lumo-1958-visual-story-integration-2026-10-16
     paths:
       - lib/**
