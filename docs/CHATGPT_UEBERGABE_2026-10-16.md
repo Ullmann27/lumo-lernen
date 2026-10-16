@@ -167,3 +167,17 @@ lumo-lernen:
 - Im Kart-Rennen keine Lernfragen; keine Nintendo- oder Mario-Kart-Inhalte.
 - Nur Geprüftes als erledigt melden; Screenshots nie nachträglich bearbeiten.
 - Commits, die einen laufenden erfolgreichen CI-Lauf abbrechen würden, mit `[skip ci]` im Kopf-Commit pushen (Concurrency mit cancel-in-progress).
+
+## 6. Letzte Claude-Schritte (Fehlersuche und Anschlüsse)
+
+- Godot-Lauf 38842736798 auf `28c0dae` ist rot, aber nur wegen der Emulator-Infrastruktur: „adb: device offline“ und
+  „Could not capture logcat“ vor dem Garage-Schritt. Kein Spielfehler.
+- Angeschlossen: `chatgpt/kart-android-adb-resilience-2026-10-16` → Godot-Kandidat `ea69d12`. Die eigenen Tests sind lokal
+  grün (8 Tests inkl. Garage-OCR). Der neue CI-Lauf **38844004716** ist gestartet; Ergebnis offen. Ist er grün, kann der
+  App-Pin von `74eeb46` auf `ea69d12` wechseln. Die Wiederholungen betreffen nur die CI, die Spiel-Inhalte sind gleich.
+- Angestoßen: `chatgpt/gemini-story-compatibility-2026-10-15` liegt konfliktfrei zusammengeführt auf dem **eigenen** Zweig
+  `claude/integration-stories-2026-10-16`. Er löst keine CI aus und bricht deshalb den APK-Lauf nicht ab.
+  `flutter analyze` meldet 0 Fehler und 0 Warnungen; 29 Story-Tests sind grün. Nach grünem APK-Lauf 38843372425 in den
+  Hauptzweig mergen.
+- Weiter offen: NVIDIA-Pilot (Freigabe, Kosten, Datenschutz) und die alte Sonnenhafen-Linie (nur einzelne Commits portieren).
+- Hinweis: Die Testausgaben in `.ci-results/onboarding-visual/` sind versioniert, nicht löschen.
