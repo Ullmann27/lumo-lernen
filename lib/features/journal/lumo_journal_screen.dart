@@ -17,6 +17,7 @@ import 'package:flutter/services.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import 'journal_repository.dart';
 
 class LumoJournalScreen extends StatefulWidget {
@@ -81,9 +82,9 @@ class _LumoJournalScreenState extends State<LumoJournalScreen> {
             ),
         ],
       ),
-      body: LumoMagicBackground(
-        intensity: 0.95,
-        starCount: 16,
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: SafeArea(
           child: _writing
               ? _Editor(
@@ -525,10 +526,11 @@ class _EntriesList extends StatelessWidget {
     if (entries.isEmpty) {
       return SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-        child: Column(
-          children: [
-            _Empty(onNew: onNew),
-          ],
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 760),
+            child: SizedBox(width: double.infinity, child: _Empty(onNew: onNew)),
+          ),
         ),
       );
     }
@@ -583,7 +585,7 @@ class _ListHeader extends StatelessWidget {
                 'assets/companion/lumo_idle.png',
                 fit: BoxFit.contain,
                 errorBuilder: (_, __, ___) => const Center(
-                  child: Text('🦊', style: TextStyle(fontSize: 30)),
+                  child: LumoFoxPose(pose: LumoDesignFoxPose.bookPoint, size: 60),
                 ),
               ),
             ),
@@ -627,8 +629,10 @@ class _Empty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         Container(
+          width: double.infinity,
           padding: const EdgeInsets.fromLTRB(18, 22, 18, 22),
           decoration: BoxDecoration(
             color: Colors.white.withOpacity(0.18),
@@ -649,7 +653,7 @@ class _Empty extends StatelessWidget {
                     'assets/companion/lumo_think.png',
                     fit: BoxFit.contain,
                     errorBuilder: (_, __, ___) => const Center(
-                      child: Text('🦊', style: TextStyle(fontSize: 42)),
+                      child: LumoFoxPose(pose: LumoDesignFoxPose.bookWelcome, size: 80),
                     ),
                   ),
                 ),
