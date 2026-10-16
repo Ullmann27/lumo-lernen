@@ -56,6 +56,7 @@ class LumoCardsScreen extends StatefulWidget {
     this.player2Name = 'Lumo',
     this.vsBot = true,
     this.seed,
+    this.skipIntro = false,
   });
 
   final LumoAppState appState;
@@ -63,6 +64,7 @@ class LumoCardsScreen extends StatefulWidget {
   final String player2Name;
   final bool vsBot;
   final int? seed;
+  final bool skipIntro;
 
   @override
   State<LumoCardsScreen> createState() => _LumoCardsScreenState();
@@ -131,6 +133,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   @override
   void initState() {
     super.initState();
+    _showIntro = !widget.skipIntro;
     _controller = LumoCardsGameController(
       player1Name: widget.player1Name,
       player2Name: widget.player2Name,
