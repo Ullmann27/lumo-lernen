@@ -6,9 +6,9 @@ onboarding and records the screens a child actually sees: start, learning,
 games, Lumo Kart (native Godot) and the Fold cover/open sizes. Controls are
 found in the live accessibility tree; nothing is injected into the app.
 
-The run fails only on hard defects: install/launch failure, broken
-onboarding, a fatal crash or a dead app process. Optional navigation steps
-are recorded as observations with their screenshots either way.
+The run fails on install, onboarding, primary navigation or a missing native
+Godot launch. Every mandatory failure stays in the report; a visible Kart
+preview never counts as an actual working game.
 """
 from __future__ import annotations
 
@@ -44,10 +44,18 @@ def alive() -> bool:
     return bool(base.adb('shell', 'pidof', PACKAGE, check=False).strip())
 
 
+def godot_alive() -> bool:
+    # LumoGameActivity runs in :lumo_game. The Flutter host remaining
+    # alive does not prove the embedded 3D engine actually launched.
+    return bool(base.adb('shell', 'pidof', PACKAGE + ':lumo_game',
+                         check=False).strip())
+
+
 def try_tap(out: Path, labels: list[str], tag: str) -> str | None:
     for label in labels:
         try:
-            probe.flutter_tap(out, label, f'{tag}-{len(label)}', scroll_attempts=3)
+            probe.flutter_tap(out, label, f'{tag}-{len(label)}',
+                              scroll_attempts=10 if tag == 'open-kart' else 3)
             return label
         except Exception:  # The next alternative label is tried.
             continue
@@ -104,13 +112,13 @@ def main() -> int:
         time.sleep(2)
         probe.capture(out, '20_spiele')
         step('navigate-spiele', tapped is not None, label=tapped)
-        kart = try_tap(out, ['Lumo Kart'], 'open-kart')
+        kart = try_tap(out, ['Losfahren', 'Rennen starten'], 'open-kart')
         if kart is not None:
             # The embedded Godot engine needs time on the software renderer.
             for wait in (12, 20):
                 time.sleep(wait)
                 probe.capture(out, f'21_lumo_kart_{wait}s')
-            step('open-kart', alive(), label=kart)
+            step('open-kart', godot_alive(), label=kart)
             base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', check=False)
             time.sleep(6)
             probe.capture(out, '22_nach_kart_zurueck')
@@ -133,7 +141,10 @@ def main() -> int:
         (out / 'fatal-logcat.txt').write_text('\n\n'.join(fatal))
         result['fatal_crashes'] = len(fatal)
         hard = [s['step'] for s in result['steps']
-                if not s['ok'] and s['step'] in ('launch', 'onboarding')]
+                if not s['ok'] and s['step'] in (
+                    'launch', 'onboarding', 'navigate-start',
+                    'navigate-lernen', 'navigate-spiele', 'open-kart',
+                    'return-from-kart')]
         if fatal or hard or not alive():
             raise RuntimeError(f'Hard failure: crashes={len(fatal)} steps={hard} '
                                f'alive={alive()}')
