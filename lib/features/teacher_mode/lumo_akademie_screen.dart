@@ -1731,7 +1731,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
               const SizedBox(width: 10),
               Expanded(
                 child: Text(
-                  '${grade.title} – ${preview ? 'Themenvorschau' : 'dein Lernstoff'}',
+                  '${grade.title} – ${preview ? 'Lernstoff' : 'dein Lernstoff'}',
                   key: const ValueKey('academy-grade-focus-title'),
                   style: const TextStyle(
                     fontFamily: 'Nunito',
@@ -1745,7 +1745,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             const SizedBox(height: 6),
             Text(
               preview
-                  ? 'Das ist ein Einblick. Aktiviere die Schulstufe im Elternbereich, um dort regulär Aufgaben zu lösen.'
+                  ? 'Echte Aufgaben der ${grade.title}. Deine Klasse im Profil bleibt die ${widget.appState.state.grade}. Klasse.'
                   : 'Wähle ein Thema deiner Klasse und beginne sofort mit echten Aufgaben.',
               style: const TextStyle(
                 fontFamily: 'Nunito',
@@ -2147,22 +2147,15 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
       _openStories();
       return;
     }
-    // Browsing a higher class must not secretly turn its tasks into regular
-    // school progress or change the enrolled grade. New concepts need an
-    // introduction and their own explicitly allowed discovery writer.
-    if (_selectedGrade > widget.appState.state.grade) {
-      Navigator.of(context).push<void>(MaterialPageRoute(
-          builder: (_) => GuidedLearningHub(
-              appState: widget.appState, discovery: true,
-              requestedTopicTitle: t.title,
-              preferredLessonId: t.id == 'm2_einmaleins'
-                  ? 'equal_groups' : null)));
-      return;
-    }
+    // Jede Klasse 1–4 öffnet ihren echten Lernstoff, auch wenn sie nicht die
+    // Profilklasse ist (Heinz, 15.10.: Kind der 2. Klasse übt Stoff der 3./4.).
+    // Die gewählte Klasse gilt als Lernklasse dieser Übung; die Profilklasse
+    // bleibt unverändert. „Mit Lumo Neues entdecken“ ist ein eigener Bereich
+    // und kein Ersatz für Klasseninhalte.
+    final learningGrade = _selectedGrade.clamp(1, 4).toInt();
     // Each visible English/Sachunterricht curriculum tile must open a real
     // locally generated task, rather than a generic teacher-chat with no
-    // guaranteed question/options. Browsing higher classes remains discovery
-    // only (guard above) and never silently changes the profile grade.
+    // guaranteed question/options.
     if (s.name == 'Englisch' || s.name == 'Sachunterricht') {
       // Eigene Fachmodule (Tiere, Jahreszeiten, Wetter, Verkehr) haben
       // Vorrang vor dem Aufgabengenerator; vorher waren sie von keiner Kachel
@@ -2183,8 +2176,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         's4_europa' => 'Kontinente und Ozeane',
         _ => t.title,
       };
-      final units = Curriculum.unitsForGrade(
-          subject, widget.appState.state.grade);
+      final units = Curriculum.unitsForGrade(subject, learningGrade);
       if (!units.contains(topicUnit)) {
         // Don't present an unrelated task under a misleading topic label.
         Navigator.of(context).push<void>(MaterialPageRoute(
@@ -2200,6 +2192,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         section: LumoSection.exercises,
         subject: subject,
         unit: topicUnit,
+        learningGrade: learningGrade,
         mood: LumoMood.point,
         lumoMessage: 'Wir üben $topicUnit. Ich helfe dir Schritt für Schritt.',
       ));
@@ -2272,12 +2265,12 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         'd4_grammatik' => 'Die 4 Fälle',
         _ => t.title,
       };
-      if (Curriculum.unitsForGrade(
-              s.name, widget.appState.state.grade).contains(unit)) {
+      if (Curriculum.unitsForGrade(s.name, learningGrade).contains(unit)) {
         widget.appState.update(widget.appState.state.copyWith(
           section: LumoSection.exercises,
           subject: s.name,
           unit: unit,
+          learningGrade: learningGrade,
           mood: LumoMood.point,
           lumoMessage: 'Wir üben ${Curriculum.prettifyUnit(unit)}.',
         ));

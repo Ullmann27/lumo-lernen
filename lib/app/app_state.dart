@@ -77,6 +77,7 @@ class LumoSessionState {
     this.sessionKind = LumoSessionKind.quickPractice,
     this.testLevel = 0,
     this.lastScanAnalysis,
+    this.learningGrade,
   });
 
   LumoSection section;
@@ -102,6 +103,14 @@ class LumoSessionState {
   /// 0 mittel (eigene Klasse), 1 schwer (eine Klasse darüber).
   int testLevel;
   ScannedWorkAnalysis? lastScanAnalysis;
+
+  /// Klasse, deren Lernstoff gerade geübt wird, wenn das Kind in der Akademie
+  /// eine andere Klasse als seine Profilklasse gewählt hat (z. B. Profil 2,
+  /// Lernstoff 3). Die Profilklasse [grade] bleibt dabei unverändert.
+  int? learningGrade;
+
+  /// Klasse für Aufgabenauswahl und Lehrplan der aktuellen Übung.
+  int get curriculumGrade => (learningGrade ?? grade).clamp(1, 4).toInt();
 
   int get level => xp ~/ 400 + 1;
   int get levelXpPercent => ((xp % 400) / 4).round().clamp(0, 100);
@@ -132,6 +141,8 @@ class LumoSessionState {
     LumoSessionKind? sessionKind,
     int? testLevel,
     ScannedWorkAnalysis? lastScanAnalysis,
+    int? learningGrade,
+    bool clearLearningGrade = false,
   }) =>
       LumoSessionState(
         section: section ?? this.section,
@@ -157,6 +168,8 @@ class LumoSessionState {
         sessionKind: sessionKind ?? this.sessionKind,
         testLevel: testLevel ?? this.testLevel,
         lastScanAnalysis: lastScanAnalysis ?? this.lastScanAnalysis,
+        learningGrade:
+            clearLearningGrade ? null : (learningGrade ?? this.learningGrade),
       );
 }
 
@@ -663,6 +676,7 @@ class LumoAppState extends ChangeNotifier {
     String expected = '',
     int? durationMs,
     double? score,
+    int? grade,
     LearningProfileLease? lease,
   }) {
     if (_disposed || _resetting) return Future<void>.value();
@@ -696,6 +710,7 @@ class LumoAppState extends ChangeNotifier {
             expected: expected,
             durationMs: durationMs,
             score: score,
+            grade: grade,
           );
         }
         if (isCurrentLearningLease(owner)) {
@@ -825,6 +840,7 @@ class LumoAppState extends ChangeNotifier {
     required String expected,
     int? durationMs,
     double? score,
+    int? grade,
   }) async {
     final now = DateTime.now();
     _unsavedAttempts.add(Attempt(
@@ -842,6 +858,7 @@ class LumoAppState extends ChangeNotifier {
       expected: expected,
       durationMs: durationMs,
       score: score,
+      grade: grade,
     ));
     await flushAttemptLog();
   }
@@ -1079,6 +1096,14 @@ class LumoAppState extends ChangeNotifier {
 
   void update(LumoSessionState next) {
     if (_disposed) return;
+    // Eine gewählte Lernklasse gilt nur für die Übung, die mit ihr geöffnet
+    // wurde. Wer den Übungsbereich verlässt, übt danach wieder den Stoff der
+    // Profilklasse; nichts davon verändert die Profilklasse.
+    if (next.learningGrade != null &&
+        (next.section != LumoSection.exercises ||
+            next.learningGrade == next.grade)) {
+      next = next.copyWith(clearLearningGrade: true);
+    }
     _state = next;
     _safeNotify();
   }
@@ -1105,6 +1130,7 @@ class LumoAppState extends ChangeNotifier {
     // navigation, not the child's results, rewards or learning records.
     _state = _state.copyWith(
       grade: grade,
+      clearLearningGrade: true,
       subject: 'Alle',
       unit: 'Alle',
       lumoMessage: 'Willkommen in der $grade. Klasse! Ich lerne mit dir.',

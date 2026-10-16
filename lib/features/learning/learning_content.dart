@@ -603,7 +603,9 @@ class _LearningContentState extends State<LearningContent> {
   /// schwer (eine Klasse darunter, die eigene, eine darüber).
   int get _taskGrade {
     final st = widget.appState.state;
-    if (st.sessionKind != LumoSessionKind.test) return st.grade;
+    // Außerhalb von Tests: die Lernklasse (in der Akademie gewählte Klasse,
+    // sonst die Profilklasse).
+    if (st.sessionKind != LumoSessionKind.test) return st.curriculumGrade;
     return (st.grade + st.testLevel).clamp(1, 4).toInt();
   }
 
@@ -855,7 +857,7 @@ class _LearningContentState extends State<LearningContent> {
     final request = LumoTutorRequest(
       mode: mode,
       subject: _tutorSubjectFor(_task.subject),
-      grade: widget.appState.state.grade,
+      grade: widget.appState.state.curriculumGrade,
       unit: _task.unit,
       helpLevel: helpLevel,
       childFirstName: _childFirstName,
@@ -878,7 +880,7 @@ class _LearningContentState extends State<LearningContent> {
     try {
       final aid = await _visualAidService.buildAid(
         task: _task,
-        grade: widget.appState.state.grade,
+        grade: widget.appState.state.curriculumGrade,
         attemptCount: _attemptCount,
         // settings sind nur fuer den Cloud-Pfad relevant. Wir uebergeben
         // bewusst die aktuellen Settings - shouldUsePaidImage prueft
@@ -918,7 +920,7 @@ class _LearningContentState extends State<LearningContent> {
         SkillState(
           childId: _childId,
           skillId: _taskInstance.skillId,
-          currentDifficulty: widget.appState.state.grade,
+          currentDifficulty: widget.appState.state.curriculumGrade,
           masteryScore: .20,
           repetitionNeed: .50,
         );
@@ -976,7 +978,7 @@ class _LearningContentState extends State<LearningContent> {
       nextRechentricks = const LumoRechentricks().explain(
         prompt: _task.prompt,
         correctAnswer: '${_taskInstance.correctAnswer}',
-        grade: widget.appState.state.grade,
+        grade: widget.appState.state.curriculumGrade,
       );
     }
     // 4. Eskalations-Stufe: nach 5+ Fehlversuchen lokale Bildhilfe nachladen.
@@ -1049,6 +1051,7 @@ class _LearningContentState extends State<LearningContent> {
       widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed,
         prompt: _task.prompt, given: '$answerGiven', expected: '${_taskInstance.correctAnswer}', durationMs: responseTimeMs,
+        grade: _task.grade,
       );
       LumoVoice.instance.speak(feedback.spokenText);
       _autoAdvanceTimer = Timer(Duration(milliseconds: feedback.autoAdvanceDelayMs), _nextQuestion,
@@ -1061,6 +1064,7 @@ class _LearningContentState extends State<LearningContent> {
       }
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed,
         prompt: _task.prompt, given: '$answerGiven', expected: '${_taskInstance.correctAnswer}', durationMs: responseTimeMs,
+        grade: _task.grade,
       );
       LumoVoice.instance.speak(feedback.spokenText);
     }
@@ -1290,7 +1294,7 @@ class _LearningContentState extends State<LearningContent> {
     // zu aendern, die als Lookup in template-Maps weiter funktionieren.
     final unitDisplay = st.unit == 'Alle' ? 'alle Themen' : Curriculum.prettifyUnit(st.unit);
     final chip = st.subject == 'Alle'
-        ? 'Klasse ${st.grade} • adaptiv'
+        ? 'Klasse ${st.curriculumGrade} • adaptiv'
         : '${st.subject} • $unitDisplay';
     final progressTitle =
         st.subject == 'Mathematik' ? 'Mathe-Abenteuer • $unitDisplay' : chip;
