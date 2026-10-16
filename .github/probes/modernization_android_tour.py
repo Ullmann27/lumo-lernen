@@ -74,18 +74,24 @@ def _simplify(word: str) -> str:
 
 
 def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
-    """Read the real, visible Godot footer. No hardcoded touch coordinates.
+    """Read the native Godot footer from actual Android screenshots, not fixed coordinates.
 
-    This mirrors the screenshot OCR approach tested by lumo-godot PR #77.
+    Crop fallback is essential: on 2400x1080 Flutter-hosted Godot screens,
+    Tesseract skips the golden 'Weiter' button when scanning the full scene.
+    The same crop also recognises 'Rennen starten' on compact 640x320 screens.
     """
-    from PIL import Image
     image = Image.open(io.BytesIO(png)).convert('RGB')
-    for scale, transformed in (
-        (2, image.convert('L').point(lambda value: 0 if value >= 170 else 255)
+    crop_top = int(image.height * .54)
+    lower = image.crop((0, crop_top, image.width, image.height))
+    variants = [
+        (0, 0, 2, image.convert('L').point(lambda value: 0 if value >= 170 else 255)
          .resize((image.width * 2, image.height * 2))),
-        (2, image.resize((image.width * 2, image.height * 2), Image.Resampling.LANCZOS)
+        (0, 0, 2, image.resize((image.width * 2, image.height * 2), Image.Resampling.LANCZOS)
          .convert('L').point(lambda value: 0 if value < 140 else 255)),
-    ):
+        (0, crop_top, 2, lower.convert('L').resize(
+            (lower.width * 2, lower.height * 2), Image.Resampling.LANCZOS)),
+    ]
+    for offset_x, offset_y, scale, transformed in variants:
         temp = io.BytesIO()
         transformed.save(temp, format='PNG')
         process = subprocess.run(
@@ -107,14 +113,14 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
                     span = words[start:end]
                     if _simplify(' '.join(word['text'] for word in span)) != _simplify(expected):
                         continue
-                    bounds = [
-                        (min(int(w['left']) for w in span) +
-                         max(int(w['left']) + int(w['width']) for w in span)) // (2 * scale),
-                        (min(int(w['top']) for w in span) +
-                         max(int(w['top']) + int(w['height']) for w in span)) // (2 * scale)
-                    ]
-                    if bounds[1] >= image.height * .6:
-                        return bounds[0], bounds[1]
+                    x0 = min(int(w['left']) for w in span)
+                    x1 = max(int(w['left']) + int(w['width']) for w in span)
+                    y0 = min(int(w['top']) for w in span)
+                    y1 = max(int(w['top']) + int(w['height']) for w in span)
+                    x = (x0 + x1) // (2 * scale) + offset_x
+                    y = (y0 + y1) // (2 * scale) + offset_y
+                    if y >= image.height * .6:
+                        return x, y
     return None
 
 
