@@ -1,0 +1,39 @@
+name: Lumo Lernen Hologlas real Flutter screenshot QA
+on:
+  pull_request:
+    paths:
+      - lib/features/learning/cross_grade_practice_screen.dart
+      - lib/features/learning/widgets/cross_grade_visual_scene.dart
+      - test/cross_grade_visual_capture_test.dart
+      - .github/workflows/lumo-cross-grade-visual-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  actual-flutter-screens:
+    runs-on: ubuntu-latest
+    timeout-minutes: 18
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install dependencies
+        run: flutter pub get
+      - name: Capture three actual Flutter widget surfaces
+        run: |
+          set -euo pipefail
+          flutter test test/cross_grade_visual_capture_test.dart --reporter expanded
+          test -s visual-evidence/cross_grade_phone_390x844.png
+          test -s visual-evidence/cross_grade_fold_cover_320x780.png
+          test -s visual-evidence/cross_grade_fold_open_840x760.png
+      - name: Upload original PNGs
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-cross-grade-real-flutter-screens-${{ github.run_id }}
+          path: visual-evidence/
+          if-no-files-found: warn
+          retention-days: 21
