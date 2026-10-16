@@ -120,6 +120,19 @@ jobs:
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
+      # Keep the combined two-ABI artifact for automated emulator QA, and
+      # publish an additional single ARM64 archive small enough to deliver
+      # directly without changing release signing or build provenance.
+      - name: Archive separate verified ARM64 APK for direct delivery
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1956-direct-arm64-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            release-proof/
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
   android-tour:
     needs: apk
     runs-on: ubuntu-latest
