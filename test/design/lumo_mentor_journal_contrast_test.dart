@@ -36,6 +36,7 @@ void main() {
     'fold-cover': const Size(320, 780),
     'phone': const Size(390, 840),
     'fold-open': const Size(860, 770),
+    'large-text': const Size(320, 780),
   }.entries) {
     testWidgets('journal paper is readable on ${size.key}', (tester) async {
       SharedPreferences.setMockInitialValues({});
@@ -44,9 +45,16 @@ void main() {
       final state = LumoAppState();
       addTearDown(state.dispose);
       await tester.pumpWidget(MaterialApp(
+        builder: (context, child) => MediaQuery(
+          data: MediaQuery.of(context).copyWith(
+            textScaler: TextScaler.linear(size.key == 'large-text' ? 1.6 : 1),
+          ),
+          child: child!,
+        ),
         home: LumoJournalScreen(appState: state),
       ));
       await tester.pump(const Duration(milliseconds: 300));
+      expect(tester.takeException(), isNull);
       await tester.tap(find.byIcon(Icons.add_rounded));
       await tester.pump();
       final fields = find.byType(TextField);

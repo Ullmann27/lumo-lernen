@@ -16,7 +16,6 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import 'journal_repository.dart';
 
@@ -304,13 +303,16 @@ class _EditorState extends State<_Editor> {
                         Icon(Icons.auto_awesome_rounded,
                             color: Colors.white, size: 16),
                         SizedBox(width: 6),
-                        Text(
-                          'Lumo liest',
-                          style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 14,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
+                        Flexible(
+                          child: Text(
+                            'Lumo liest',
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ],
@@ -732,13 +734,16 @@ class _Empty extends StatelessWidget {
                       Icon(Icons.edit_rounded,
                           color: Colors.white, size: 20),
                       SizedBox(width: 8),
-                      Text(
-                        'Jetzt schreiben',
-                        style: TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 15,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white,
+                      Flexible(
+                        child: Text(
+                          'Jetzt schreiben',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white,
+                          ),
                         ),
                       ),
                     ],
