@@ -165,7 +165,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    const accent = Color(0xFF62E5F4);
+    final accent = const Color(0xFF62E5F4);
     final choices = _task.choices;
     final selected = _selected;
     return CrossGradeVisualScene(
@@ -204,27 +204,27 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                       fontWeight: FontWeight.w800,
                     ),
                   ),
+                  if (_progressLoaded) ...[
+                    const SizedBox(height: 10),
+                    CrossGradeProgressRibbon(answered: _answered, correct: _correct),
+                  ],
                 ],
               ),
             ),
             if (_loadError != null) ...[
+              const SizedBox(height: 12),
               Text(
                 _loadError!,
                 key: const ValueKey('cross-grade-load-error'),
-                style: const TextStyle(
-                  color: Color(0xFFFFD58D),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                ),
+                style: const TextStyle(color: Color(0xFFFFD58D), fontWeight: FontWeight.w800),
               ),
-              const SizedBox(height: 12),
             ] else if (!_progressLoaded) ...[
-              const Text(
-                'Lernfortschritt wird geladen …',
-                key: ValueKey('cross-grade-loading'),
-                style: TextStyle(color: Color(0xFFE2F1F8)),
+              const Padding(
+                padding: EdgeInsets.only(top: 12),
+                child: Text('Lernfortschritt wird geladen …',
+                  key: ValueKey('cross-grade-loading'),
+                  style: TextStyle(color: Colors.white70)),
               ),
-              const SizedBox(height: 12),
             ],
             const SizedBox(height: 22),
             CrossGradeGlassPanel(child: Text(
@@ -241,10 +241,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             for (var i = 0; i < choices.length; i++) ...[
               OutlinedButton(
                 key: ValueKey('cross-grade-choice-$i'),
-                onPressed: _progressLoaded && _loadError == null &&
-                        !_saving && selected == null
-                    ? () => _answer(choices[i])
-                    : null,
+                onPressed: _progressLoaded && _loadError == null && !_saving && selected == null
+                    ? () => _answer(choices[i]) : null,
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(54),
                   alignment: Alignment.centerLeft,
@@ -297,29 +295,22 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               )),
               if (_saveError != null) ...[
                 const SizedBox(height: 12),
-                Text(
-                  _saveError!,
-                  key: const ValueKey('cross-grade-save-error'),
-                  style: const TextStyle(
-                    color: Color(0xFFFFD58D),
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
+                Text(_saveError!,
+                    key: const ValueKey('cross-grade-save-error'),
+                    style: const TextStyle(color: Color(0xFFFFD58D), fontWeight: FontWeight.w800)),
                 TextButton.icon(
-                  key: const ValueKey('cross-grade-save-retry'),
-                  onPressed: _saving ? null : _retrySave,
-                  icon: const Icon(Icons.refresh_rounded),
-                  label: const Text('Erneut speichern'),
-                ),
+                    key: const ValueKey('cross-grade-save-retry'),
+                    onPressed: _saving ? null : _retrySave,
+                    icon: const Icon(Icons.refresh_rounded),
+                    label: const Text('Erneut speichern')),
               ],
-              if (_saving) ...[
-                const SizedBox(height: 12),
-                const Text(
-                  'Antwort wird gespeichert …',
-                  key: ValueKey('cross-grade-saving'),
-                  style: TextStyle(color: Color(0xFFE2F1F8)),
+              if (_saving)
+                const Padding(
+                  padding: EdgeInsets.only(top: 12),
+                  child: Text('Antwort wird gespeichert …',
+                    key: ValueKey('cross-grade-saving'),
+                    style: TextStyle(color: Colors.white70)),
                 ),
-              ],
               const SizedBox(height: 18),
               FilledButton.icon(
                 key: const ValueKey('cross-grade-next'),
@@ -328,10 +319,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   foregroundColor: const Color(0xFF07223C),
                   minimumSize: const Size.fromHeight(54),
                 ),
-                onPressed: !_saving && _saveError == null &&
-                        _progressLoaded
-                    ? _next
-                    : null,
+                onPressed: !_saving && _saveError == null && _progressLoaded ? _next : null,
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('Nächste Aufgabe',
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
