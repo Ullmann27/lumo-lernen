@@ -99,6 +99,11 @@ void main() {
     await _frames(tester);
     expect(store.rejectedWrites, greaterThan(0));
     final next = find.byKey(const ValueKey('cross-grade-next'));
+    // Seit der Lumo-Bühne (#315) liegt „Weiter“ unterhalb des vorab gebauten
+    // Bereichs der Liste: wie ein Kind dorthin scrollen, dann streng prüfen.
+    await tester.scrollUntilVisible(next, 200,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+    await tester.pump();
     expect(tester.widget<FilledButton>(next).onPressed, isNull,
         reason: 'Next must wait for successful storage of the accepted answer.');
     expect(find.byKey(const ValueKey('cross-grade-save-error')), findsOneWidget);
