@@ -1,3 +1,5 @@
+> **Aktuell (16.10.2026):** Zuerst [die Übergabe Claude → ChatGPT](docs/CHATGPT_UEBERGABE_2026-10-16.md) lesen. Dort stehen: Stand der Zweige (Lernen + Godot-Kandidat), der grüne Android-Garage-Beleg, die offenen Branches und die nächsten Schritte zur APK 0.12.40+1948. Der Text darunter ist älter.
+
 # Fortsetzung · 10. Oktober 2026 · Quellkandidat 0.12.13+1920
 
 Zuerst [die Fortsetzungsnotiz für Build 1920](docs/CONTINUATION_2026-10-10_BUILD_1920.md)
