@@ -804,6 +804,82 @@ jobs:
             !native-proof/*-ocr-input.png
           if-no-files-found: error
           retention-days: 14
+  sonnenhafen-update:
+    # Familien haben die Vorabversion 1001 (0.10.6, Sonnenhafen) installiert.
+    # Der Kandidat muss sie in place aktualisieren und das Kinderprofil behalten.
+    name: Update the published Sonnenhafen 1001 APK in place
+    needs: verify-and-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      LUMO_EXPECT_SOURCE: ${{ github.sha }}
+      LUMO_EXPECT_VERSION: ${{ needs.verify-and-build.outputs.build-number }}
+      LUMO_EXPECT_ANDROID_API: '35'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-visual-apk-${{ github.run_id }}
+          path: candidate/
+      - name: Download and pin the published Sonnenhafen 1001 APK
+        run: |
+          set -euo pipefail
+          mkdir -p sonnenhafen update-proof
+          curl -fsSL --retry 3 -o sonnenhafen/Lumo-Lernen-Neu.apk \
+            https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-lernen-sonnenhafen-unified-test-20261015/Lumo-Lernen-Neu.apk
+          echo 'dd9ad0c73c691488f09e45cea2dcbe820af07c6140f506d9461b9cf2905c7944  sonnenhafen/Lumo-Lernen-Neu.apk' | sha256sum -c -
+          echo "LUMO_EXPECT_GODOT=$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')" >> "$GITHUB_ENV"
+      - name: Prepare live UI reader
+        timeout-minutes: 8
+        run: |
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/sonnenhafen_update_probe.py
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Prepare the exact existing system image
+        timeout-minutes: 11
+        run: |
+          set -euo pipefail
+          echo '8925b7b41fada3c41fc80959c03fb71314f60530adbdc8e6614ea94e0c6a9c51  tools/android_qa/prepare_system_image.py' | sha256sum -c -
+          python3 tools/android_qa/prepare_system_image.py --api 35 --out update-proof/system-image --timeout 600
+      - name: Update 1001 in place and keep the child profile
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/sonnenhafen_update_probe.py --baseline sonnenhafen/Lumo-Lernen-Neu.apk --candidate candidate/Lumo-Lernen-Neu.apk --out update-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-sonnenhafen-1001-update-${{ github.run_id }}
+          path: |
+            update-proof/
+            !update-proof/system-image/
+            !update-proof/*-ocr-input.png
+          if-no-files-found: error
+          retention-days: 14
   verified-test-apk:
     name: Package verified Android test APK
     needs: [verify-and-build, android]
