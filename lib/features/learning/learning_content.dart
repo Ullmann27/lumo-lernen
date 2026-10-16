@@ -821,25 +821,9 @@ class _LearningContentState extends State<LearningContent> {
       );
       return;
     }
-    if (!result.graded) {
-      // Free words/sentences are honest practice without invented grading.
-      _nextQuestion();
-      return;
-    }
-    // Heinz' Wunsch: Schreib-Pruefung war zu ungenau (>= 0.55 reichte).
-    // Jetzt strenger:
-    //  - overallScore muss >= 0.70 sein (vorher 0.55)
-    //  - UND nicht incomplete (Coverage zu niedrig)
-    //  - UND nicht spiegelverkehrt
-    // So bekommen schlampige Striche nicht mehr "richtig" geantwortet.
-    final ev = result.evaluation;
-    final correctEnough = ev.overallScore >= 0.70 && !ev.incomplete && !ev.mirrored;
-    _completeAnswer(
-      correct: correctEnough,
-      hintUsed: _allowHelp && ev.overallScore < .80,
-      answerGiven: 'writing:${ev.overallScore.toStringAsFixed(2)}',
-      handwritingScore: ev.overallScore,
-    );
+    // Handwriting is non-graded practice. Low contour scores do not block progress.
+    // The existing typed-answer branch above remains an assessed spelling task.
+    _nextQuestion();
   }
 
   /// 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgaben.

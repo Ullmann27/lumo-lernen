@@ -171,7 +171,7 @@ void main() {
               task: task(symbol), onSubmitted: (result) => submitted = result),
         )));
     await tester.pumpWidget(screen('Mama'));
-    await tester.tap(find.text('Hier tippen zum Schreiben'));
+    await tester.tap(find.text('Jetzt mit dem Finger schreiben'));
     await tester.pumpAndSettle();
     final canvas = find.byType(LumoWritingCanvas);
     expect(tester.widget<LumoWritingCanvas>(canvas).template.strokes, isEmpty);
@@ -181,17 +181,12 @@ void main() {
     await tester.dragFrom(
         area.topLeft + const Offset(30, 60), const Offset(200, 100));
     await tester.pump();
-    await tester.tap(find.text('Fertig'));
+    await tester.tap(find.byKey(const ValueKey('writing-modal-finish')));
     await tester.pumpAndSettle();
-    expect(find.textContaining('keine Note oder Richtig-Bewertung'),
-        findsOneWidget);
-    await tester.tap(find.text('Fertig'));
-    await tester.pump();
     expect(submitted?.graded, isFalse);
     expect(submitted?.evaluation.overallScore, 0);
     submitted = null;
     await tester.pumpWidget(screen('B'));
-    await tester.tap(find.text('Fertig'));
     expect(submitted, isNull);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());

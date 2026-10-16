@@ -58,8 +58,8 @@ void main() {
         ),
       ),
     )));
-    await tester.ensureVisible(find.text('Hier tippen zum Schreiben'));
-    await tester.tap(find.text('Hier tippen zum Schreiben'));
+    await tester.ensureVisible(find.text('Jetzt mit dem Finger schreiben'));
+    await tester.tap(find.text('Jetzt mit dem Finger schreiben'));
     await tester.pumpAndSettle();
     final paintArea = find.byKey(const ValueKey('lumo-learning-ink-surface'));
     expect(paintArea, findsOneWidget);
@@ -74,11 +74,10 @@ void main() {
     expect(finish.onPressed, isNotNull);
     await tester.tap(find.byKey(const ValueKey('writing-modal-finish')));
     await tester.pumpAndSettle();
-    expect(find.textContaining('Spurübereinstimmung'),
-        findsOneWidget);
-    await tester.tap(find.text('Fertig'));
+    // One tap in the drawing modal immediately finishes practice.
     expect(submitted?.strokes, isNotEmpty);
     expect(submitted?.typedAnswer, isNull);
+    expect(submitted?.graded, isFalse);
     expect(tester.takeException(), isNull);
   });
 
@@ -99,11 +98,55 @@ void main() {
     await tester.ensureVisible(input);
     await tester.enterText(input, 'Mama');
     await tester.pump();
-    await tester.ensureVisible(find.text('Fertig'));
-    await tester.tap(find.text('Fertig'));
+    await tester.ensureVisible(find.text('Weiter'));
+    await tester.tap(find.text('Weiter'));
     expect(result?.typedAnswer, 'Mama');
     expect(result?.graded, isTrue);
     expect(result?.strokes, isEmpty);
     expect(tester.takeException(), isNull);
   });
+  testWidgets('a child can skip an unresponsive drawing surface without ink',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(390, 850));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    WritingTaskResult? result;
+    await tester.pumpWidget(MaterialApp(home: Scaffold(
+      body: SingleChildScrollView(child: WritingTaskRenderer(
+        task: writingTask('M'),
+        onSubmitted: (value) => result = value,
+      )),
+    )));
+    await tester.ensureVisible(find.text('Jetzt mit dem Finger schreiben'));
+    await tester.tap(find.text('Jetzt mit dem Finger schreiben'));
+    await tester.pumpAndSettle();
+    final proceed = tester.widget<TextButton>(
+        find.byKey(const ValueKey('writing-modal-finish')));
+    expect(proceed.onPressed, isNull);
+    await tester.tap(find.byKey(const ValueKey('writing-modal-skip')));
+    await tester.pumpAndSettle();
+    expect(result?.skipped, isTrue);
+    expect(result?.graded, isFalse);
+    expect(result?.strokes, isEmpty);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets('other task is accessible before entering the drawing screen',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(320, 740));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    WritingTaskResult? result;
+    await tester.pumpWidget(MaterialApp(home: Scaffold(
+      body: SingleChildScrollView(child: WritingTaskRenderer(
+        task: writingTask('U'),
+        onSubmitted: (value) => result = value,
+      )),
+    )));
+    final skip = find.byKey(const ValueKey('writing-parent-skip'));
+    await tester.ensureVisible(skip);
+    await tester.tap(skip);
+    expect(result?.skipped, isTrue);
+    expect(result?.graded, isFalse);
+    expect(tester.takeException(), isNull);
+  });
+
 }
