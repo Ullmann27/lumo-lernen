@@ -17,6 +17,7 @@ class WritingTaskResult {
     required this.strokes,
     this.graded = true,
     this.typedAnswer,
+    this.skipped = false,
   });
 
   final TaskInstance task;
@@ -26,6 +27,7 @@ class WritingTaskResult {
 
   /// Keyboard writing checks spelling without pretending a stylus score.
   final String? typedAnswer;
+  final bool skipped;
 }
 
 class WritingTaskRenderer extends StatefulWidget {
@@ -46,6 +48,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
   final _templates = const ExpandedWritingTemplateRepository();
   List<Stroke> _strokes = <Stroke>[];
   WritingEvaluation? _evaluation;
+  bool _submitted = false;
   final TextEditingController _typedController = TextEditingController();
 
   // Placeholder only for the result transport. Typed answers bypass
@@ -116,8 +119,32 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
     if (oldWidget.task.taskInstanceId != widget.task.taskInstanceId) {
       _strokes = <Stroke>[];
       _evaluation = null;
+      _submitted = false;
       _typedController.clear();
     }
+  }
+
+  void _finishPractice(List<Stroke> strokes, WritingEvaluation? evaluation) {
+    if (_submitted || !mounted || strokes.isEmpty) return;
+    _submitted = true;
+    widget.onSubmitted?.call(WritingTaskResult(
+      task: widget.task,
+      evaluation: evaluation ?? _typedTransport,
+      strokes: List<Stroke>.unmodifiable(strokes),
+      graded: false, // Practice, never an automatic handwriting exam.
+    ));
+  }
+
+  void _skipPractice() {
+    if (_submitted || !mounted) return;
+    _submitted = true;
+    widget.onSubmitted?.call(WritingTaskResult(
+      task: widget.task,
+      evaluation: _typedTransport,
+      strokes: const <Stroke>[],
+      graded: false,
+      skipped: true, // No artificial XP or incorrect-answer history.
+    ));
   }
 
   @override
@@ -283,30 +310,45 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
                 _evaluation = evaluation;
               });
             },
+            onFinish: _finishPractice,
+            onSkip: _skipPractice,
           ),
         ]),
       ),
       const SizedBox(height: 14),
-      if (evaluation != null)
-        _isFreeTarget
-            ? const Text('Schreibübung aufgezeichnet. Bitte gemeinsam ansehen; es wird keine Note oder Richtig-Bewertung vergeben.')
-            : _WritingFeedbackCard(evaluation: evaluation, wordMode: false),
+      if (evaluation != null && _strokes.isNotEmpty)
+        const _WritingPracticeFeedback(),
       const SizedBox(height: 14),
-      Align(
-        alignment: Alignment.centerRight,
-        child: GestureDetector(
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          TextButton.icon(
+            key: const ValueKey('writing-parent-skip'),
+            onPressed: _skipPractice,
+            icon: const Icon(Icons.skip_next_rounded),
+            label: const Text('Andere Aufgabe'),
+            style: TextButton.styleFrom(
+              foregroundColor: LumoVisualTokens.white,
+              minimumSize: const Size(48, 52),
+            ),
+          ),
+          GestureDetector(
           onTap: !canSubmit
               ? null
               : () {
-                  widget.onSubmitted?.call(
-                    WritingTaskResult(
+                  if (typedText.isNotEmpty) {
+                    if (_submitted) return;
+                    _submitted = true;
+                    widget.onSubmitted?.call(WritingTaskResult(
                       task: widget.task,
-                      evaluation: evaluation ?? _typedTransport,
+                      evaluation: _typedTransport,
                       strokes: List<Stroke>.unmodifiable(_strokes),
-                      graded: typedText.isNotEmpty || !_isFreeTarget,
-                      typedAnswer: typedText.isEmpty ? null : typedText,
-                    ),
-                  );
+                      graded: true,
+                      typedAnswer: typedText,
+                    ));
+                  } else {
+                    _finishPractice(_strokes, evaluation);
+                  }
                 },
           child: AnimatedOpacity(
             duration: const Duration(milliseconds: 160),
@@ -319,7 +361,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
                 boxShadow: LumoShadow.pill,
               ),
               child: const Text(
-                'Fertig',
+                'Weiter',
                 style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 15,
@@ -330,7 +372,7 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
             ),
           ),
         ),
-      ),
+      ]),
     ]);
   }
 }
@@ -378,86 +420,34 @@ class _WordTargetStrip extends StatelessWidget {
   }
 }
 
-class _WritingFeedbackCard extends StatelessWidget {
-  const _WritingFeedbackCard({required this.evaluation, this.wordMode = false});
-
-  final WritingEvaluation evaluation;
-  final bool wordMode;
+/// Non-numeric encouragement; handwriting cannot block a child's progress.
+class _WritingPracticeFeedback extends StatelessWidget {
+  const _WritingPracticeFeedback();
 
   @override
-  Widget build(BuildContext context) {
-    final scorePercent = (evaluation.overallScore * 100).round();
-    final primaryHint = evaluation.hints.isEmpty
-        ? 'Gut gemacht.'
-        : evaluation.hints.first.message;
-
-    return Container(
+  Widget build(BuildContext context) => Semantics(
+    label: 'Gut gemacht, du hast geübt und darfst weiterlernen.',
+    child: Container(
       width: double.infinity,
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: evaluation.overallScore >= .70
-              ? const [Color(0xDD176C5B), Color(0xEE0B3A35)]
-              : const [Color(0xDD123D72), Color(0xEE0A2852)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
+        gradient: const LinearGradient(
+          colors: [Color(0xDD146B60), Color(0xEE0A3A4D)],
         ),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(
-          color: (evaluation.overallScore >= .70
-                  ? const Color(0xFF5FF0BF)
-                  : LumoVisualTokens.cyan)
-              .withOpacity(.48),
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: LumoVisualTokens.cyan.withOpacity(.12),
-            blurRadius: 16,
-            offset: const Offset(0, 7),
-          ),
-        ],
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: const Color(0xFF54E7B6)),
       ),
-      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Icon(
-            evaluation.overallScore >= .70 ? Icons.check_circle_rounded : Icons.tips_and_updates_rounded,
-            color: evaluation.overallScore >= .70 ? const Color(0xFF22C55E) : LumoColors.orange,
-          ),
-          const SizedBox(width: 8),
-          Expanded(
-            child: Text(
-              wordMode
-                  ? 'Wort geschrieben'
-                  : evaluation.overallScore >= .70
-                      ? 'Klasse, das hast du gut nachgespurt!'
-                      : 'Weiterüben · $scorePercent% Spurübereinstimmung',
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 16,
-                fontWeight: FontWeight.w900,
-                color: LumoColors.ink900,
-              ),
-            ),
-          ),
-        ]),
-        const SizedBox(height: 8),
-        Text(
-          primaryHint,
-          style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.muted, fontWeight: FontWeight.w900),
-        ),
-        const SizedBox(height: 10),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(LumoRadius.pill),
-          child: LinearProgressIndicator(
-            value: evaluation.overallScore.clamp(0.0, 1.0),
-            minHeight: 8,
-            color: evaluation.overallScore >= .70 ? const Color(0xFF22C55E) : LumoColors.orange,
-            backgroundColor: LumoColors.orange.withOpacity(.14),
-          ),
-        ),
+      child: const Row(children: [
+        Icon(Icons.auto_awesome_rounded, color: Color(0xFFFFD776)),
+        SizedBox(width: 12),
+        Expanded(child: Text(
+          'Toll geübt! Jeder Versuch zählt. Du darfst jetzt weiter.',
+          style: TextStyle(fontFamily: 'Nunito',
+            fontSize: 16, fontWeight: FontWeight.w900, color: Colors.white),
+        )),
       ]),
-    );
-  }
+    ),
+  );
 }
 
 /// Tipp-Karte die ein Vollbild-Schreib-Modal oeffnet.
@@ -470,12 +460,16 @@ class _CanvasLaunchCard extends StatelessWidget {
     required this.mode,
     required this.existingStrokes,
     required this.onResult,
+    required this.onFinish,
+    required this.onSkip,
   });
 
   final WritingTemplate template;
   final WritingMode mode;
   final List<Stroke> existingStrokes;
   final void Function(List<Stroke> strokes, WritingEvaluation? evaluation) onResult;
+  final void Function(List<Stroke> strokes, WritingEvaluation? evaluation) onFinish;
+  final VoidCallback onSkip;
 
   @override
   Widget build(BuildContext context) {
@@ -539,7 +533,7 @@ class _CanvasLaunchCard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    hasStrokes ? 'Schreiben fertig?' : 'Hier tippen zum Schreiben',
+                    hasStrokes ? 'Nochmals üben' : 'Jetzt mit dem Finger schreiben',
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 17,
@@ -550,8 +544,8 @@ class _CanvasLaunchCard extends StatelessWidget {
                   const SizedBox(height: 3),
                   Text(
                     hasStrokes
-                        ? 'Antippen um nachzubessern oder zu bestätigen.'
-                        : 'Großer Mal-Bildschirm öffnet sich.',
+                        ? 'Du kannst den Buchstaben noch einmal malen.'
+                        : 'Ein Versuch reicht. Keine Noten oder Prozentzahlen.',
                     style: const TextStyle(
                       fontFamily: 'Nunito',
                       fontSize: 12,
@@ -581,16 +575,28 @@ class _CanvasLaunchCard extends StatelessWidget {
         ),
       ),
     );
-    if (result != null) {
+    if (result == null) return; // X = back, no attempt submitted.
+    if (result.skipped) {
+      onSkip();
+    } else if (result.completed) {
+      onFinish(result.strokes, result.evaluation);
+    } else {
       onResult(result.strokes, result.evaluation);
     }
   }
 }
 
 class _WritingModalResult {
-  const _WritingModalResult({required this.strokes, required this.evaluation});
+  const _WritingModalResult({
+    required this.strokes,
+    required this.evaluation,
+    this.completed = false,
+    this.skipped = false,
+  });
   final List<Stroke> strokes;
   final WritingEvaluation? evaluation;
+  final bool completed;
+  final bool skipped;
 }
 
 /// Vollbild-Schreib-Modal.
@@ -643,10 +649,10 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                 ? null
                 : () => Navigator.of(context).pop<_WritingModalResult>(
                     _WritingModalResult(
-                        strokes: _strokes, evaluation: _evaluation),
+                        strokes: _strokes, evaluation: _evaluation, completed: true),
                   ),
             child: const Text(
-              'Fertig',
+              'Weiter',
               style: TextStyle(
                 color: Colors.white,
                 fontFamily: 'Nunito',
@@ -695,6 +701,12 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                   ],
                 ),
               ),
+              const SizedBox(height: 10),
+              const Text(
+                'Mal so, wie du kannst. Es gibt hier keine Noten.',
+                style: TextStyle(fontFamily: 'Nunito', fontSize: 14,
+                  color: Color(0xFFCEF4FF), fontWeight: FontWeight.w800),
+              ),
               const SizedBox(height: 14),
               // Canvas mit grossem Bereich. Keine Scroll-Konflikte mehr,
               // weil das Modal keinen aeusseren Scroll hat.
@@ -735,6 +747,22 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                     );
                   },
                 ),
+              ),
+              TextButton.icon(
+                key: const ValueKey('writing-modal-skip'),
+                onPressed: () => Navigator.of(context).pop<_WritingModalResult>(
+                  const _WritingModalResult(
+                    strokes: <Stroke>[],
+                    evaluation: null,
+                    skipped: true,
+                  ),
+                ),
+                style: TextButton.styleFrom(
+                  foregroundColor: const Color(0xFFD6EEFF),
+                  minimumSize: const Size(48, 52),
+                ),
+                icon: const Icon(Icons.skip_next_rounded),
+                label: const Text('Andere Aufgabe versuchen'),
               ),
             ],
           ),
