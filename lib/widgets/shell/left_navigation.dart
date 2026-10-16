@@ -158,38 +158,125 @@ class _MoreNavigationRoutesState extends State<_MoreNavigationRoutes> {
     }
   }
 
-  @override
-  Widget build(BuildContext context) => Column(
-        children: [
-          if (!widget.iconOnly)
-            TextButton.icon(
-              onPressed: () => setState(() => _expanded = !_expanded),
-              icon: Icon(
-                _expanded
-                    ? Icons.expand_less_rounded
-                    : Icons.more_horiz_rounded,
-                color: LumoVisualTokens.cyan,
-              ),
-              label: Text(
-                _expanded ? 'Weniger' : 'Mehr',
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w800,
-                  color: LumoVisualTokens.muted,
+  // One tap on 'Entdecken', then one tap on the destination. No nested
+  // dialogs or additional submenus; all existing LumoSection routes survive.
+  static const _learning = <LumoSection>{
+    LumoSection.reading,
+    LumoSection.exercises,
+    LumoSection.schoolwork,
+    LumoSection.scanner,
+  };
+
+  static const _growth = <LumoSection>{
+    LumoSection.missions,
+    LumoSection.progress,
+  };
+
+  Widget _cluster(String title, IconData icon, List<_NavItem> items) {
+    if (items.isEmpty) return const SizedBox.shrink();
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 6, 12, 10),
+      child: DecoratedBox(
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.glassRow.withOpacity(.7),
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.22)),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(9),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(children: [
+                Icon(icon, color: LumoVisualTokens.cyanBright, size: 17),
+                const SizedBox(width: 6),
+                Expanded(child: Text(title, style: const TextStyle(
+                  color: LumoVisualTokens.white,
+                  fontFamily: 'Nunito', fontSize: 12,
+                  fontWeight: FontWeight.w900,
+                ))),
+              ]),
+              const SizedBox(height: 8),
+              for (final item in items)
+                Semantics(
+                  button: true,
+                  label: item.label,
+                  child: Padding(
+                    padding: const EdgeInsets.only(bottom: 4),
+                    child: Material(
+                      color: item.section == widget.active
+                          ? LumoVisualTokens.cyan.withOpacity(.26)
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(12),
+                      child: InkWell(
+                        key: ValueKey('lumo-nav-${item.section.name}'),
+                        borderRadius: BorderRadius.circular(12),
+                        onTap: () => widget.onSelect(item.section),
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(minHeight: 48),
+                          child: Row(children: [
+                            SizedBox(width: 44, height: 44,
+                              child: Icon(item.icon,
+                                color: LumoVisualTokens.cyanBright, size: 22)),
+                            if (!widget.iconOnly)
+                              Expanded(child: Text(item.label,
+                                maxLines: 2,
+                                style: const TextStyle(
+                                  color: LumoVisualTokens.white,
+                                  fontFamily: 'Nunito',
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.w800))),
+                          ]),
+                        ),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-          if (_expanded)
-            ...widget.items.map(
-              (item) => _NavPill(
-                item: item,
-                isActive: item.section == widget.active,
-                iconOnly: widget.iconOnly,
-                onTap: () => widget.onSelect(item.section),
-              ),
-            ),
-        ],
-      );
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final learning = widget.items
+        .where((item) => _learning.contains(item.section)).toList();
+    final growth = widget.items
+        .where((item) => _growth.contains(item.section)).toList();
+    final others = widget.items
+        .where((item) => !_learning.contains(item.section) &&
+            !_growth.contains(item.section)).toList();
+    return Column(children: [
+      Semantics(
+        button: true,
+        expanded: _expanded,
+        label: 'Entdecken: weitere Lumo-Bereiche',
+        child: TextButton.icon(
+          key: const ValueKey('lumo-nav-explore'),
+          onPressed: () => setState(() => _expanded = !_expanded),
+          style: TextButton.styleFrom(
+            minimumSize: const Size(48, 52),
+          ),
+          icon: Icon(_expanded ? Icons.expand_less_rounded
+              : Icons.explore_rounded, color: LumoVisualTokens.cyan),
+          label: widget.iconOnly
+              ? const SizedBox.shrink()
+              : Text(_expanded ? 'Weniger' : 'Entdecken',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  )),
+        ),
+      ),
+      if (_expanded) ...[
+        _cluster('Lernen & Üben', Icons.menu_book_rounded, learning),
+        _cluster('Meine Erfolge', Icons.auto_awesome_rounded, growth),
+        _cluster('Lumo & Eltern', Icons.face_rounded, others),
+      ],
+    ]);
+  }
 }
 
 class _NavPill extends StatefulWidget {
@@ -213,7 +300,21 @@ class _NavPillState extends State<_NavPill>
     _glowCtrl = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 2200),
-    )..repeat(reverse: true);
+    );
+    if (widget.isActive) _glowCtrl.repeat(reverse: true);
+  }
+
+  @override
+  void didUpdateWidget(covariant _NavPill oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    // Inactive navigation pills must not consume animation frames.
+    if (oldWidget.isActive != widget.isActive) {
+      if (widget.isActive) {
+        _glowCtrl.repeat(reverse: true);
+      } else {
+        _glowCtrl.stop();
+      }
+    }
   }
 
   @override
