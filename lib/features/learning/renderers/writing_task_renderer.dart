@@ -650,7 +650,9 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                             .clamp(120.0, 680.0)
                             .toDouble();
                     return Center(
-                      child: LumoWritingCanvas(
+                      child: SizedBox(
+                        width: canvasHeight,
+                        child: LumoWritingCanvas(
                       template: widget.template,
                       mode: widget.mode,
                       height: canvasHeight,
@@ -665,7 +667,8 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                         if (mounted) setState(() => _strokes = strokes);
                       },
                       onEvaluated: (next) => _evaluation = next,
-                    ),
+                        ),
+                      ),
                     );
                   },
                 ),
