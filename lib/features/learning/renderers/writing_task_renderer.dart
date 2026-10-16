@@ -1,9 +1,11 @@
+import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../app/app_theme.dart';
 import '../../../core/writing_target_parser.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_design_system.dart';
 import '../../../domain/writing/expanded_writing_template_repository.dart';
 import '../../../domain/writing/writing_domain.dart';
 import '../widgets/lumo_writing_canvas.dart';
@@ -151,6 +153,52 @@ class _WritingTaskRendererState extends State<WritingTaskRenderer> {
               color: LumoVisualTokens.cyanBright,
             ),
           ),
+          if (!_isWordTarget) ...[
+            const SizedBox(height: 12),
+            Semantics(
+              label: 'So sieht dein Zeichen aus: ${template.symbol}',
+              child: Container(
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: const Color(0xAA092344),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                      color: LumoVisualTokens.cyan.withOpacity(.55)),
+                ),
+                child: Row(children: [
+                  Container(
+                    constraints: const BoxConstraints(minWidth: 74),
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    alignment: Alignment.center,
+                    child: Text(
+                      template.symbol,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 53,
+                        fontWeight: FontWeight.w900,
+                        color: Color(0xFFFFD27E),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(width: 10),
+                  const Expanded(
+                    child: Text(
+                      'Sieh dir den Buchstaben an. '
+                      'Fahre dann die blaue Spur mit dem Finger nach.',
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 13,
+                        fontWeight: FontWeight.w800,
+                        color: LumoVisualTokens.white,
+                      ),
+                    ),
+                  ),
+                  const LumoFoxPose(
+                    pose: LumoDesignFoxPose.teacherStick, size: 58),
+                ]),
+              ),
+            ),
+          ],
           if (_isWordTarget) ...[
             const SizedBox(height: 8),
             _WordTargetStrip(word: template.symbol),
@@ -527,9 +575,13 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
         ),
         actions: [
           TextButton(
-            onPressed: () => Navigator.of(context).pop<_WritingModalResult>(
-              _WritingModalResult(strokes: _strokes, evaluation: _evaluation),
-            ),
+            key: const ValueKey('writing-modal-finish'),
+            onPressed: _strokes.isEmpty
+                ? null
+                : () => Navigator.of(context).pop<_WritingModalResult>(
+                    _WritingModalResult(
+                        strokes: _strokes, evaluation: _evaluation),
+                  ),
             child: const Text(
               'Fertig',
               style: TextStyle(
@@ -561,11 +613,13 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                 ),
                 child: Row(
                   children: [
-                    const Text('✏️', style: TextStyle(fontSize: 24)),
+                    const LumoFoxPose(
+                      pose: LumoDesignFoxPose.teacherStick, size: 54),
                     const SizedBox(width: 10),
                     Expanded(
                       child: Text(
-                        'Schreibe "${widget.template.symbol}". Du kannst frei zeichnen, der Bildschirm bewegt sich nicht mehr.',
+                        'Fahre die blaue Vorlage für "${widget.template.symbol}" '
+                        'mit dem Finger nach. Du kannst jeden Strich zurücknehmen.',
                         style: const TextStyle(
                           fontFamily: 'Nunito',
                           fontSize: 13,
@@ -588,8 +642,15 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                         ? constraints.maxHeight
                         : 460.0;
                     // 70px Puffer fuer Zurueck/Neustart-Buttons + Spacer
-                    final canvasHeight = (available - 70).clamp(220.0, 1200.0);
-                    return LumoWritingCanvas(
+                    // Eine 100x100-Vorlage darf nicht auf das gesamte
+                    // Hochformat gestreckt werden. Quadratische, zentrierte
+                    // Leinwand: gleiche x/y-Skalierung für Finger und Modell.
+                    final canvasHeight =
+                        math.min(constraints.maxWidth, available - 82)
+                            .clamp(120.0, 680.0)
+                            .toDouble();
+                    return Center(
+                      child: LumoWritingCanvas(
                       template: widget.template,
                       mode: widget.mode,
                       height: canvasHeight,
@@ -598,8 +659,13 @@ class _WritingFullscreenModalState extends State<_WritingFullscreenModal> {
                       // nicht im build() verwendet (nur beim Pop). Ein setState
                       // bei jedem Stroke wuerde das ganze Modal neu layouten
                       // und das Canvas-Feld koennte dabei sichtbar springen.
-                      onChanged: (strokes) => _strokes = strokes,
+                      // Nur nach Abschluss eines Strichs neu aufbauen,
+                      // niemals bei jeder Pointer-Bewegung.
+                      onChanged: (strokes) {
+                        if (mounted) setState(() => _strokes = strokes);
+                      },
                       onEvaluated: (next) => _evaluation = next,
+                    ),
                     );
                   },
                 ),
