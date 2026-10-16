@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../app/app_state.dart';
 import '../app/app_theme.dart';
 import '../widgets/shell/left_navigation.dart';
@@ -25,6 +26,8 @@ import '../core/achievements/lumo_achievement.dart';
 import '../core/lumo_ai_proxy_client.dart';
 import '../core/lumo_companion_agent.dart';
 import '../core/lumo_voice.dart';
+import '../core/lumo_sound.dart';
+import '../core/lumo_interaction_feedback_policy.dart';
 import '../core/user_profile.dart';
 import '../core/embedded_game_service.dart';
 import '../widgets/design/lumo_design_system.dart';
@@ -65,6 +68,7 @@ class _AppShellState extends State<AppShell>
   final _proxyClient = const LumoAiProxyClient();
   Timer? _keepAliveTimer;
   StreamSubscription<LumoAchievement>? _achievementSubscription;
+  int _navigationRequest = 0;
 
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
@@ -231,6 +235,24 @@ class _AppShellState extends State<AppShell>
     try {
       await _appState.hydrateFromWallet();
     } catch (_) {}
+    // Existing real audio files; audio initialization does not block UI.
+    unawaited(LumoSound.instance.init());
+    // Exact pre-recorded Lumo Frei clip. Respect preferences and do not
+    // greet again when Godot deep-links back into the Flutter shell.
+    if (mounted && LumoInteractionFeedbackPolicy.shouldGreet(
+      hasProfile: widget.profile != null,
+      isDeepLink: widget.initialSection != null,
+      enabled: settings.voiceEnabled,
+      autoRead: settings.autoReadEnabled,
+    )) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (!mounted || _appState.state.section != LumoSection.home) return;
+        unawaited(LumoVoice.instance.speak(
+          LumoInteractionFeedbackPolicy.recordedGreeting,
+          style: VoiceStyle.greeting,
+        ));
+      });
+    }
     // Sofortiger Warmup beim App-Start. Render Free-Tier schlaeft
     // nach 15min ein und braucht 30-45s zum Aufwachen - wenn das
     // Kind direkt in einen Lernmodus geht, wartet es sonst.
@@ -311,19 +333,32 @@ class _AppShellState extends State<AppShell>
 
   Future<void> _navigateTo(LumoSection section) async {
     if (_appState.state.section == section) return;
+    // A faster second tap wins; stale animation callbacks cannot navigate
+    // to an outdated page or play its sound.
+    final request = ++_navigationRequest;
     if (_requiresLoadedSettings(section)) {
       await _appState.ensureSettingsLoaded();
-      if (!mounted || !_appState.settingsLoaded) return;
+      if (!mounted || !_appState.settingsLoaded ||
+          request != _navigationRequest) return;
     }
     if (!mounted) return;
     await _fadeCtrl.reverse();
-    if (!mounted) return;
+    if (!mounted || request != _navigationRequest) return;
     _appState.setSection(section);
     final settings = _appState.state.settings;
+    if (LumoInteractionFeedbackPolicy.shouldPlayTap(
+      soundEnabled: settings.soundEnabled,
+      destinationChanged: true,
+    )) {
+      unawaited(LumoSound.instance.play(SoundEffect.click));
+    }
+    if (!settings.calmMode) {
+      unawaited(HapticFeedback.selectionClick());
+    }
     if (settings.voiceEnabled && settings.autoReadEnabled) {
-      LumoVoice.instance.speak(
+      unawaited(LumoVoice.instance.speak(
         _appState.state.lumoMessage.replaceAll('\n', ' '),
-      );
+      ));
     }
     if (mounted) await _fadeCtrl.forward();
   }
