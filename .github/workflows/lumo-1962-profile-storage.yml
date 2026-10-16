@@ -1,0 +1,36 @@
+name: Lumo 1962 – Non-destructive profile persistence
+on:
+  pull_request:
+    paths:
+      - lib/core/profile_repository.dart
+      - lib/main.dart
+      - test/profile_repository_storage_hardening_test.dart
+      - test/profile_fail_closed_regression_test.dart
+      - .github/workflows/lumo-1962-profile-storage.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  profile-persistence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Analyze production code and tests
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Run actual profile data-loss regressions and parent grade transition
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=1 \
+            test/profile_repository_storage_hardening_test.dart \
+            test/profile_fail_closed_regression_test.dart \
+            test/parents/parent_school_grade_progression_test.dart
