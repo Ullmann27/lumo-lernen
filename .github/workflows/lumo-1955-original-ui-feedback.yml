@@ -14,6 +14,7 @@ on:
       - chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
       - claude/lumo-android-integration-m0-aloove
       - chatgpt/lumo-1959-kart-garage-ocr-repair-2026-10-16
+      - chatgpt/lumo-1963-integrated-profile-fold-android-2026-10-16
       - chatgpt/lumo-1958-visual-story-integration-2026-10-16
     paths:
       - lib/**
@@ -201,17 +202,29 @@ jobs:
           sdk_root="${ANDROID_SDK_ROOT:-${ANDROID_HOME:-/usr/local/lib/android/sdk}}"
           image_dir="${sdk_root}/system-images/android-35/google_apis/x86_64"
           package='system-images;android-35;google_apis;x86_64'
-          command -v sdkmanager >/dev/null 2>&1 || {
-            echo '::error::Android sdkmanager is missing'
+          # GitHub-hosted runners ship sdkmanager inside Android's SDK
+          # commandline-tools directory; this directory is not always on PATH
+          # until android-emulator-runner prepends it later in its action.
+          sdkmanager_bin=''
+          if command -v sdkmanager >/dev/null 2>&1; then
+            sdkmanager_bin="$(command -v sdkmanager)"
+          elif test -x "${sdk_root}/cmdline-tools/latest/bin/sdkmanager"; then
+            sdkmanager_bin="${sdk_root}/cmdline-tools/latest/bin/sdkmanager"
+          elif test -d "${sdk_root}/cmdline-tools"; then
+            sdkmanager_bin="$(find "${sdk_root}/cmdline-tools" -maxdepth 3 -type f -name sdkmanager -print -quit)"
+          fi
+          if test -z "${sdkmanager_bin}" || ! test -x "${sdkmanager_bin}"; then
+            echo '::error::Android SDK commandline-tools not installed on runner'
             exit 1
-          }
+          fi
+          echo "Using Android SDK manager at ${sdkmanager_bin}"
           for attempt in 1 2 3 4; do
             if test -s "${image_dir}/system.img" && test -s "${image_dir}/source.properties"; then
               echo 'Android API 35 google_apis x86_64 image verified'
               exit 0
             fi
             echo "Installing ${package} (attempt ${attempt}/4)"
-            if sdkmanager --sdk_root="${sdk_root}" --install "${package}" --channel=0; then
+            if "${sdkmanager_bin}" --sdk_root="${sdk_root}" --install "${package}" --channel=0; then
               if test -s "${image_dir}/system.img" && test -s "${image_dir}/source.properties"; then
                 echo 'Android emulator image verified after installation'
                 exit 0
