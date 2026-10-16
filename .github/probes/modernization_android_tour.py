@@ -93,7 +93,7 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
             input=temp.getvalue(), capture_output=True, timeout=35, check=True,
         )
         rows = csv.DictReader(io.StringIO(process.stdout.decode('utf-8', 'replace')),
-                              delimiter='\\t', quoting=csv.QUOTE_NONE)
+                              delimiter=chr(9), quoting=csv.QUOTE_NONE)
         lines: dict[tuple[str, str, str], list[dict]] = {}
         for word in rows:
             if not (word.get('text') or '').strip() or float(word.get('conf', -1)) < 15:
