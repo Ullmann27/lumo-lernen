@@ -15,6 +15,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_quest_library.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_stage_header.dart';
 import 'lumo_story_reader_screen.dart';
 
@@ -96,7 +97,7 @@ class LumoQuestHubScreen extends StatelessWidget {
       ),
       child: Row(
         children: [
-          const Text('🦊', style: TextStyle(fontSize: 42)),
+          const LumoFoxPose(pose: LumoDesignFoxPose.spielweltWave, size: 72),
           const SizedBox(width: 14),
           Expanded(
             child: Column(
@@ -208,7 +209,7 @@ class _QuestCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(LumoRadius.md),
                 ),
                 alignment: Alignment.center,
-                child: Text(quest.emoji, style: const TextStyle(fontSize: 38)),
+                child: const LumoFoxPose(pose: LumoDesignFoxPose.bookPoint, size: 62),
               ),
               const SizedBox(width: 14),
               Expanded(
