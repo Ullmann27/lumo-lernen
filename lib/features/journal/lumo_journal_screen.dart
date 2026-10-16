@@ -137,19 +137,13 @@ class _EditorState extends State<_Editor> {
     HapticFeedback.mediumImpact();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          _EditorHeader(),
-          const SizedBox(height: 12),
-          Container(
+  /// Readable daylight paper, independent of the app's dark-night tokens.
+  Widget _writingPaper() {
+    return Container(
             decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(18),
+              color: const Color(0xFFF7FAFF),
+              borderRadius: BorderRadius.circular(24),
+              border: Border.all(color: const Color(0xFF74C7ED), width: 1.5),
               boxShadow: [
                 BoxShadow(
                   color: Colors.black.withOpacity(0.15),
@@ -169,14 +163,14 @@ class _EditorState extends State<_Editor> {
                     fontFamily: 'Nunito',
                     fontSize: 18,
                     fontWeight: FontWeight.w900,
-                    color: LumoColors.ink900,
+                    color: Color(0xFF102943),
                   ),
                   decoration: const InputDecoration(
                     hintText: 'Titel deiner Geschichte ...',
                     hintStyle: TextStyle(
                       fontFamily: 'Nunito',
                       fontWeight: FontWeight.w800,
-                      color: LumoColors.ink300,
+                      color: Color(0xFF697F96),
                     ),
                     border: InputBorder.none,
                   ),
@@ -192,7 +186,7 @@ class _EditorState extends State<_Editor> {
                     fontFamily: 'Nunito',
                     fontSize: 15,
                     fontWeight: FontWeight.w700,
-                    color: LumoColors.ink700,
+                    color: Color(0xFF27415F),
                     height: 1.5,
                   ),
                   decoration: const InputDecoration(
@@ -202,7 +196,7 @@ class _EditorState extends State<_Editor> {
                       fontFamily: 'Nunito',
                       fontSize: 14,
                       fontWeight: FontWeight.w700,
-                      color: LumoColors.ink300,
+                      color: Color(0xFF697F96),
                       height: 1.4,
                     ),
                     border: InputBorder.none,
@@ -212,6 +206,43 @@ class _EditorState extends State<_Editor> {
                 ),
               ],
             ),
+          );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
+      child: Center(
+        child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 1024),
+          child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          LayoutBuilder(
+            builder: (context, constraints) {
+              // A Fold/tablet receives a reading desk with a proper
+              // editorial sidebar. A phone keeps the familiar vertical flow.
+              final isWide = constraints.maxWidth >= 720;
+              return Flex(
+                direction: isWide ? Axis.horizontal : Axis.vertical,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: isWide ? 230 : constraints.maxWidth,
+                    child: _EditorHeader(),
+                  ),
+                  SizedBox(width: isWide ? 16 : 0, height: isWide ? 0 : 12),
+                  if (isWide)
+                    Expanded(child: _writingPaper())
+                  else
+                    SizedBox(
+                      width: constraints.maxWidth,
+                      child: _writingPaper(),
+                    ),
+                ],
+              );
+            },
           ),
           const SizedBox(height: 16),
           if (_showPraise && _praise != null) ...[
@@ -334,6 +365,8 @@ class _EditorState extends State<_Editor> {
             ),
           ],
         ],
+          ),
+        ),
       ),
     );
   }

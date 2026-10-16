@@ -33,6 +33,7 @@ class AdaptiveTaskRenderer extends StatefulWidget {
     this.onAnswered,
     this.onWritingSubmitted,
     this.onShapeTraced,
+    this.onWritingPraise,
   this.allowRetry = true,
   });
 
@@ -40,6 +41,9 @@ class AdaptiveTaskRenderer extends StatefulWidget {
   final ValueChanged<AdaptiveTaskAnswer>? onAnswered;
   final ValueChanged<WritingTaskResult>? onWritingSubmitted;
   final ValueChanged<ShapeTraceTaskResult>? onShapeTraced;
+
+  /// Speaks Lumo's praise after a real writing attempt (voice permitting).
+  final ValueChanged<String>? onWritingPraise;
   final bool allowRetry;
 
   @override
@@ -61,6 +65,7 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
       return WritingTaskRenderer(
         task: task,
         onSubmitted: widget.onWritingSubmitted,
+        speak: widget.onWritingPraise,
       );
     }
 
