@@ -19,7 +19,7 @@ import '../../core/school_exercise_generator.dart';
 import '../../core/scanned_work_analysis.dart';
 import '../../core/progress_repository.dart';
 import '../../core/lumo_feature_permissions.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/scan_screen.dart';
 import 'photo_lesson_practice.dart';
 
@@ -93,9 +93,9 @@ class _LumoPhotoLessonScreenState extends State<LumoPhotoLessonScreen> {
           ),
         ),
       ),
-      body: LumoMagicBackground(
-        intensity: 1.0,
-        starCount: 18,
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: SafeArea(
           child: SingleChildScrollView(
             padding: const EdgeInsets.fromLTRB(16, 12, 16, 24),
@@ -170,7 +170,7 @@ class _IntroPanel extends StatelessWidget {
                     'assets/companion/lumo_think.png',
                     fit: BoxFit.contain,
                     errorBuilder: (_, __, ___) => const Center(
-                      child: Text('🦊', style: TextStyle(fontSize: 32)),
+                      child: LumoFoxPose(pose: LumoDesignFoxPose.tabletThumb, size: 64),
                     ),
                   ),
                 ),
