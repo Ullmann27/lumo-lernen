@@ -65,6 +65,14 @@ jobs:
       - name: Backend regression tests
         run: node --test server/lumo-ai-proxy/test/*.test.js
 
+      - name: Install required native source-audit tooling
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=3 update -qq
+          sudo apt-get -o Acquire::Retries=3 install -y ripgrep
+          command -v rg
+          rg --version
+
       - name: Android preparation regression test
         run: python3 -m unittest discover -s scripts/tests
 
