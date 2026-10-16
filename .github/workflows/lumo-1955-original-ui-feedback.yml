@@ -21,6 +21,7 @@ on:
       - pubspec.yaml
       - pubspec.lock
       - .github/workflows/lumo-1955-original-ui-feedback.yml
+      - .github/workflows/lumo-unified-integration-2026.yml
       - .github/probes/modernization_android_tour.py
   workflow_dispatch:
 permissions:
