@@ -12,6 +12,7 @@ on:
       - chatgpt/opus-1953-mentor-journal-followup-2026-10-16
       - chatgpt/lumo-feedback-voice-navigation-1955-2026-10-16
       - chatgpt/lumo-1956-sonnenhafen-lookouts-2026-10-16
+      - claude/lumo-android-integration-m0-aloove
     paths:
       - lib/**
       - test/**
@@ -22,7 +23,8 @@ on:
       - pubspec.lock
       - .github/workflows/lumo-1955-original-ui-feedback.yml
       - .github/workflows/lumo-unified-integration-2026.yml
-      - .github/probes/modernization_android_tour.py
+      - .github/probes/**
+      - tools/android_qa/**
   workflow_dispatch:
 permissions:
   contents: read
@@ -64,6 +66,15 @@ jobs:
           path: captures/
           if-no-files-found: error
           retention-days: 30
+      - name: Android QA probe and build-script regressions
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ripgrep
+          python3 -m venv .qa-venv
+          .qa-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          .qa-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py'
+          .qa-venv/bin/python -m unittest discover -s scripts/tests
   apk:
     needs: verify
     runs-on: ubuntu-latest
@@ -154,7 +165,7 @@ jobs:
           sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
-          python3 -m py_compile .github/probes/modernization_android_tour.py
+          python3 -m py_compile .github/probes/modernization_android_tour.py tools/android_qa/kart_tour_evidence.py
           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
       - name: Enable accelerated disposable emulator
         run: |
@@ -194,7 +205,7 @@ jobs:
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/release-proof/BUILD-PROVENANCE-x86_64.json --sums candidate/release-proof/SHA256SUMS.txt --out tour
       - uses: actions/upload-artifact@v4
         if: always()
         with:

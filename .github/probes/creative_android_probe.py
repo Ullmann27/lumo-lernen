@@ -639,12 +639,23 @@ def onboard(out: Path) -> dict:
     else:
         raise RuntimeError('Saved full profile name missing from actual home UI')
     home = capture(out,'07_home_after_onboarding')
-    base.tap_label(out,'Spiele','home-to-games')
-    games = capture(out,'08_games_after_navigation')
-    if not any(s in base.accessible_text(live.live_nodes(out,'onboard-games'))
-               for s in ('Lumo Cards','Lumo Kart','Spielewelt')):
-        raise RuntimeError('Actual games entry missing after onboarding')
-    return {'status':'PASS','profile_name':'LumoTest','captures':[home,games]}
+    # One accessibility read 2 s after the tap missed a still-building games
+    # page (run 38909874763, same app that passed in run 38892673870). Wait
+    # boundedly for a real games entry; the current navigation says "Spielen".
+    for label in ('Spiele', 'Spielen'):
+        try:
+            base.tap_label(out, label, 'home-to-games' + ('' if label == 'Spiele' else '-spielen'))
+        except RuntimeError:
+            continue
+        for attempt in range(10):
+            text = base.accessible_text(live.live_nodes(out, f'onboard-games-{label}-{attempt}'))
+            if any(s in text for s in ('Lumo Cards','Lumo Kart','Spielewelt')):
+                games = capture(out,'08_games_after_navigation')
+                return {'status':'PASS','profile_name':'LumoTest','captures':[home,games],
+                        'games_label':label}
+            time.sleep(1)
+    capture(out,'08_games_after_navigation')
+    raise RuntimeError('Actual games entry missing after onboarding')
 
 
 def main() -> int:
