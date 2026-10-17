@@ -1,0 +1,60 @@
+"""Reject mismatched or unknown Godot source for version-bound APK releases."""
+import importlib.util
+import json
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[2]
+spec = importlib.util.spec_from_file_location(
+    "verify_legacy_release_pin", ROOT / "scripts" / "verify_legacy_release_pin.py"
+)
+module = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(module)
+ORIGIN = "https://github.com/Ullmann27/lumo-godot.git"
+
+
+def config(sha: str, *, engine: str = "4.6.3", origin: str = ORIGIN) -> str:
+    return json.dumps({"repository": origin, "revision": sha, "engine": engine})
+
+
+def pubspec(build: int) -> str:
+    return f"name: lumo_lernen\nversion: 0.12.56+{build}\n"
+
+
+class VersionBoundGodotSourceTests(unittest.TestCase):
+    def test_preserved_release_1950_to_1952_requires_original_source(self):
+        for number in (1950, 1951, 1952):
+            with self.subTest(number=number):
+                self.assertEqual(
+                    module.verify(pubspec(number), config(module.APPROVED[number])),
+                    (number, module.APPROVED[number]),
+                )
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    module.verify(pubspec(number), config(module.APPROVED[1968]))
+
+    def test_stabilized_1968_rejects_original_1950_source(self):
+        number, expected = module.verify(
+            pubspec(1968), config(module.APPROVED[1968]),
+        )
+        self.assertEqual(number, 1968)
+        self.assertEqual(expected, module.APPROVED[1968])
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1968), config(module.APPROVED[1950]))
+
+    def test_unknown_release_source_and_engine_fail_closed(self):
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(1969), config(module.APPROVED[1968]))
+        with self.assertRaisesRegex(ValueError, "origin"):
+            module.verify(pubspec(1968), config(module.APPROVED[1968], origin="https://example.org"))
+        with self.assertRaisesRegex(ValueError, "engine"):
+            module.verify(pubspec(1968), config(module.APPROVED[1968], engine="4.7"))
+        with self.assertRaisesRegex(ValueError, "source config keys"):
+            module.verify(pubspec(1968), json.dumps({"revision": module.APPROVED[1968]}))
+
+    def test_malformed_version_is_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Exactly one"):
+            module.verify("name: lumo_lernen\n", config(module.APPROVED[1968]))
+
+
+if __name__ == "__main__":
+    unittest.main()
