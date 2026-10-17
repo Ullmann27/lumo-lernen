@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -7,7 +8,36 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 
+/// Fail closed on the original 390x844 screenshot regression: the WebP
+/// key art was missing despite a nonempty PNG and active menu buttons.
+bool _hasVisibleCardsArtwork(Uint8List rgba, int width, int height) {
+  if (width <= 0 || height <= 0 || rgba.length < width * height * 4) {
+    return false;
+  }
+  var bright = 0;
+  var samples = 0;
+  for (var y = (height * .22).floor(); y < (height * .72).floor(); y += 7) {
+    for (var x = (width * .22).floor(); x < (width * .78).floor(); x += 7) {
+      final i = 4 * (y * width + x);
+      if ((rgba[i] + rgba[i + 1] + rgba[i + 2]) / 3 > 105) bright++;
+      samples++;
+    }
+  }
+  return samples > 0 && bright / samples > .07;
+}
+
 void main() {
+  test('original blank dark Cards hero fixture cannot pass screenshot gate', () {
+    final pixels = Uint8List(60 * 90 * 4);
+    for (var i = 0; i < pixels.length; i += 4) {
+      pixels[i] = 3;
+      pixels[i + 1] = 19;
+      pixels[i + 2] = 41;
+      pixels[i + 3] = 255;
+    }
+    expect(_hasVisibleCardsArtwork(pixels, 60, 90), isFalse);
+  });
+
   TestWidgetsFlutterBinding.ensureInitialized();
 
   test('approved concept key art is packaged into the real Flutter bundle',
@@ -66,6 +96,18 @@ void main() {
         ),
       ));
       await tester.pump(const Duration(milliseconds: 250));
+      // PNG dimensions/byte sizes alone let the first cold 390x844 frame
+      // pass even though the central hero was entirely dark. Decode and
+      // paint the actual bundled ORIGINAL approved WebP before capture.
+      await tester.runAsync(() async {
+        await precacheImage(
+          const AssetImage(LumoCardsShowcaseScreen.referenceArt),
+          tester.element(
+            find.byKey(const ValueKey('cards-approved-reference-art')),
+          ),
+        );
+      });
+      await tester.pump();
       for (final id in ['cards-hub-solo', 'cards-hub-local']) {
         final rect = tester.getRect(find.byKey(ValueKey(id)));
         final viewport = Offset.zero & size;
@@ -80,6 +122,18 @@ void main() {
       await tester.runAsync(() async {
         final image = await boundary.toImage(pixelRatio: 1.5);
         try {
+          final rgba = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+          expect(rgba, isNotNull);
+          expect(
+            _hasVisibleCardsArtwork(
+              rgba!.buffer.asUint8List(rgba.offsetInBytes, rgba.lengthInBytes),
+              image.width,
+              image.height,
+            ),
+            isTrue,
+            reason: 'Original Lumo Cards artwork was absent at $name; '
+                'a nonblank PNG with buttons is not adequate proof.',
+          );
           final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
           expect(bytes, isNotNull);
           await File('${folder.path}/cards_hub_$name.png')
