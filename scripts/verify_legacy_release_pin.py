@@ -20,6 +20,7 @@ APPROVED = {
     1968: "61f51b942b2521b506e6b203b89a1b3ec2bd284f",
     1969: "6b3945583a361c4ea974e4b6846ae0d616b1727a",
     1970: "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
+    1971: "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
