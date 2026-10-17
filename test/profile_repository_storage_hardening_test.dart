@@ -211,4 +211,63 @@ void main() {
     expect(disk['flutter.$_introKey'], isTrue);
     _expectUnrelatedData(disk);
   });
+
+  for (final field in <String, Object>{
+    'id': 123,
+    'name': <String>[],
+    'createdAt': 42,
+    'lastActiveAt': <String>[],
+  }.entries) {
+    test('unreadable ${field.key} cannot be overwritten by a normal save',
+        () async {
+      final raw = jsonEncode({
+        ..._profile().toJson(),
+        field.key: field.value,
+      });
+      final store = _ControlledProfileStore({
+        ..._seed(raw),
+        _introKey: false,
+      });
+      SharedPreferencesStorePlatform.instance = store;
+      final repository = ProfileRepository();
+
+      expect(await repository.loadProfile(), isNull);
+      await expectLater(
+        repository.saveProfile(_profile(name: 'Updated')),
+        throwsStateError,
+      );
+
+      final disk = await store.snapshot();
+      expect(disk['flutter.$_profileKey'], raw);
+      expect(disk['flutter.$_introKey'], isFalse);
+      _expectUnrelatedData(disk);
+    });
+  }
+
+  test('valid legacy data with extra fields stays readable and updatable',
+      () async {
+    final raw = jsonEncode({
+      ..._profile(name: ' Anna ').toJson(),
+      'futureField': {'preserveOnRead': true},
+    });
+    final store = _ControlledProfileStore(_seed(raw));
+    SharedPreferencesStorePlatform.instance = store;
+    final repository = ProfileRepository();
+
+    final loaded = await repository.loadProfile();
+    expect(loaded?.id, 'child-storage-test');
+    expect(loaded?.name, 'Anna');
+    expect(loaded?.grade, 2);
+    expect((await store.snapshot())['flutter.$_profileKey'], raw);
+
+    await repository.saveProfile(_profile(name: 'Updated'));
+    final disk = await store.snapshot();
+    final saved = jsonDecode(disk['flutter.$_profileKey']! as String)
+        as Map<String, dynamic>;
+    expect(saved['id'], 'child-storage-test');
+    expect(saved['name'], 'Updated');
+    expect(saved['grade'], 2);
+    expect(disk['flutter.$_introKey'], isTrue);
+    _expectUnrelatedData(disk);
+  });
 }
