@@ -21,6 +21,43 @@ import 'package:lumo_lernen/core/user_profile.dart';
 final String? _out = Platform.environment['LUMO_TOUR_DIR'];
 const _boundary = ValueKey('lumo-app-tour');
 
+// Pure Flutter widget tests do not register audioplayers' Android plugin.
+// AppShell deliberately keeps real tap sounds enabled. Its first AudioPlayer
+// subscribes to the global EventChannel, whose asynchronous `listen` error
+// escapes the existing Future try/catch and fails the *next* captured screen.
+// Stub only the native transport for this test library, not app audio logic.
+const _nativeAudioGlobal = MethodChannel('xyz.luan/audioplayers.global');
+const _nativeAudioEvents =
+    MethodChannel('xyz.luan/audioplayers.global/events');
+final _audioCalls = <String>[];
+
+void _installCaptureAudioTransport() {
+  final messenger =
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+  messenger.setMockMethodCallHandler(_nativeAudioGlobal, (call) async {
+    _audioCalls.add('global:${call.method}');
+    if (call.method == 'init' ||
+        call.method == 'setGlobalAudioContext') {
+      return null;
+    }
+    throw MissingPluginException('Unexpected audioplayers global call: ${call.method}');
+  });
+  messenger.setMockMethodCallHandler(_nativeAudioEvents, (call) async {
+    _audioCalls.add('events:${call.method}');
+    if (call.method == 'listen' || call.method == 'cancel') {
+      return null;
+    }
+    throw MissingPluginException('Unexpected audioplayers events call: ${call.method}');
+  });
+}
+
+void _removeCaptureAudioTransport() {
+  final messenger =
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+  messenger.setMockMethodCallHandler(_nativeAudioGlobal, null);
+  messenger.setMockMethodCallHandler(_nativeAudioEvents, null);
+}
+
 const sizes = <String, Size>{
   'phone': Size(412, 915),
   'fold': Size(690, 829),
@@ -39,6 +76,7 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
   setUpAll(() async {
+    _installCaptureAudioTransport();
     final font = FontLoader('Nunito')
       ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
       ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'))
@@ -49,6 +87,8 @@ void main() {
           ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
         .load();
   });
+
+  tearDownAll(_removeCaptureAudioTransport);
 
   setUp(() async {
     SharedPreferences.setMockInitialValues({
@@ -89,6 +129,21 @@ void main() {
       image.dispose();
     });
   }
+
+  test('Capture audio transport accepts native global init and event lifecycle',
+      () async {
+    _audioCalls.clear();
+    await _nativeAudioGlobal.invokeMethod<void>('init');
+    const events = EventChannel('xyz.luan/audioplayers.global/events');
+    final subscription = events.receiveBroadcastStream().listen((_) {});
+    await Future<void>.delayed(Duration.zero);
+    await subscription.cancel();
+    expect(_audioCalls, containsAllInOrder([
+      'global:init',
+      'events:listen',
+      'events:cancel',
+    ]));
+  });
 
   for (final size in sizes.entries) {
     for (final section in sections) {
