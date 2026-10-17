@@ -12,7 +12,10 @@ from native_lap_evidence_recovery import (
     bound_file, equal, evidence_guard, load_evidence, regular_bytes, require, subset,
 )
 
-SOURCE_SHA256 = "0120a9938b4ba84b065330441dd5754bbfa6637551951c78cac58721c1aef831"
+# Reviewed for Godot pin b5f1989 (commit 8473037): the only change since
+# aebfcd7 adds the race_world_ready log marker at the end of _begin_race();
+# lap, checkpoint, session and handoff logic are byte-identical.
+SOURCE_SHA256 = "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064"
 PROBE_SHA256 = "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245"
 HELPER_SHA256 = "16e7349c0cfa65f0d585c8f528b9fb069b8b3d2069380d0776d83bc90342507f"
 PROBE_PATH = "res://scripts/tests/kart_race_continuity_regression.gd"
