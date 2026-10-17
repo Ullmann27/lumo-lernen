@@ -42,5 +42,37 @@ class AndroidTourProvenanceArguments(unittest.TestCase):
                 self.assertIn("release-proof/SHA256SUMS.txt", text)
 
 
+    def test_each_android_tour_installs_real_ocr_runtime_and_language_packs(self):
+        # The 1954 Android tour previously reported FileNotFoundError:
+        # [Errno 2] No such file or directory: 'tesseract' at race start.
+        # Only packages from the Android tour job count: installation in the
+        # preceding 'verify' job lives on a different GitHub Actions runner.
+        for path in WORKFLOWS:
+            with self.subTest(workflow=path.name):
+                text = path.read_text(encoding="utf-8")
+                self.assertIn("  android-tour:", text)
+                tour = text.split("  android-tour:", 1)[1]
+                self.assertIn("tesseract-ocr", tour)
+                self.assertIn("tesseract-ocr-deu", tour)
+                self.assertIn("tesseract-ocr-eng", tour)
+                self.assertIn("modernization_android_tour.py", tour)
+
+    def test_1954_checks_available_ocr_languages_before_booting_emulator(self):
+        path = WORKFLOWS[0]
+        text = path.read_text(encoding="utf-8")
+        tour = text.split("  android-tour:", 1)[1]
+        commands = (
+            "command -v tesseract",
+            "tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt",
+            "grep -Fxq 'deu' tour/tesseract-installed-languages.txt",
+            "grep -Fxq 'eng' tour/tesseract-installed-languages.txt",
+        )
+        for command in commands:
+            with self.subTest(command=command):
+                self.assertIn(command, tour)
+        self.assertLess(tour.index("command -v tesseract"),
+                        tour.index("modernization_android_tour.py"))
+
+
 if __name__ == "__main__":
     unittest.main()
