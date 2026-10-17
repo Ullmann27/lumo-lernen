@@ -1,0 +1,47 @@
+#!/usr/bin/env python3
+"""Fail-closed identity gate for preserved 1950–1952 and current 1968 APK jobs.
+
+Old candidate workflows intentionally pin their original Godot source. A
+modern stabilization PR must retain an equally explicit verified pin rather
+than fail an obsolete 1950-only assertion or accept any SHA from config.
+Unknown release numbers REQUIRE an explicit reviewed policy update.
+"""
+from __future__ import annotations
+
+import json
+import re
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+APPROVED = {
+    1950: "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+    1951: "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+    1952: "268c9b327a8f81ba08c55e1b4bccd3664ce12f88",
+    1968: "61f51b942b2521b506e6b203b89a1b3ec2bd284f",
+}
+
+def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
+    versions = re.findall(r"^version:\s*[0-9]+(?:\.[0-9]+)*\+([0-9]+)\s*$", pubspec_text, re.MULTILINE)
+    if len(versions) != 1:
+        raise ValueError("Exactly one explicit release build number is required")
+    version = int(versions[0])
+    required = APPROVED.get(version)
+    if required is None:
+        raise ValueError(f"Version {version} has no reviewed native pin; update policy after source review")
+    cfg = json.loads(source_text)
+    if type(cfg) is not dict or set(cfg) != {"repository", "revision", "engine"}:
+        raise ValueError("Unexpected native source config keys")
+    if cfg["repository"] != "https://github.com/Ullmann27/lumo-godot.git":
+        raise ValueError("Native source origin is not approved")
+    if cfg["engine"] != "4.6.3":
+        raise ValueError("Unreviewed Godot engine version")
+    if cfg["revision"] != required:
+        raise ValueError(f"Native revision mismatch for build {version}: expected {required}, got {cfg['revision']}")
+    return version, required
+
+if __name__ == "__main__":
+    version, sha = verify(
+        (ROOT / "pubspec.yaml").read_text(encoding="utf-8"),
+        (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8"),
+    )
+    print(f"PASS reviewed Lumo build {version}; exact Godot 4.6.3 source {sha}")
