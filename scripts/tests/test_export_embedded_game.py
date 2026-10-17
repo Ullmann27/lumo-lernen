@@ -102,7 +102,7 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
     def generate_images(self):
         for name in self.files:
             path = self.repo / name
-            path.write_bytes(b'\\xff\\xd8\\xff' + b'x' * 120 + b'\\xff\\xd9')
+            path.write_bytes(b'\xff\xd8\xff' + b'x' * 120 + b'\xff\xd9')
 
     def cleanup(self, before=None, source=None):
         with patch.object(MODULE, 'GROUNDED_GATE_GLB_SHA256', self.digest):
@@ -123,7 +123,7 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
     def test_unknown_untracked_file_is_not_deleted(self):
         self.generate_images()
         outsider = self.glb.parent / 'lumo_kart_start_finish_gate_mobile_Hacked.jpg'
-        outsider.write_bytes(b'\\xff\\xd8\\xff' + b'x' * 120 + b'\\xff\\xd9')
+        outsider.write_bytes(b'\xff\xd8\xff' + b'x' * 120 + b'\xff\xd9')
         self.cleanup()
         self.assertTrue(outsider.exists())
         self.assertIn(
