@@ -49,9 +49,12 @@ class ProfileRepository {
     final previous = prefs.getString(_profileKey);
     if (previous != null && previous.trim().isNotEmpty) {
       try {
-        if (jsonDecode(previous) is! Map) {
+        final decoded = jsonDecode(previous);
+        if (decoded is! Map) {
           throw const FormatException('Previously stored profile is not a map');
         }
+        // Match the loader: a JSON object can still have unreadable fields.
+        UserProfile.fromJson(Map<String, dynamic>.from(decoded)).normalized();
       } catch (_) {
         throw StateError('Das vorhandene Kinderprofil kann nicht gelesen '
             'werden. Die alten Daten wurden nicht ueberschrieben.');
