@@ -86,6 +86,11 @@ Die Tour verlangt jetzt:
   - `kart_courses_driving_regression`
   - `kart_physics_regression`
 - Der Godot-Import ist fehlerfrei.
+- Später nachgeholt, alle PASS:
+  - `kart_race_continuity_regression`
+  - `kart_track_detail_regression` (sechs Welten)
+  - `kart_coastal_terrain_extent_regression`
+  - `kart_complete_flow_regression`: echtes Menü und Touch, 16 Gates, gespeicherte Fortsetzung, Ergebnis, ACK, genau eine Belohnung. Dieser Test braucht einen echten Renderer und lief unter `xvfb-run` mit `gl_compatibility`; mit `--headless` scheitert er absichtlich an `DisplayServer != headless`. Er ist mit Kran (`61f51b9`) und ohne Kran (`b5f1989`) identisch PASS.
 
 **Echte Renderings** (gl_compatibility unter Xvfb, identische Kameraposen):
 - Vorher aus `b5f1989`, nachher aus `61f51b9`.
@@ -93,7 +98,6 @@ Die Tour verlangt jetzt:
 
 **OFFEN:**
 - Godot-CI auf PR #78 (startet durch den PR gegen `main`) auswerten.
-- `kart_complete_flow_regression`, `kart_race_continuity_regression`, `kart_track_detail_regression` und `kart_coastal_terrain_extent_regression` liefen beim Schreiben noch und sind **nicht ausgewertet**.
 - Android-Gerät und FPS sind nicht gemessen.
 
 ## 5. Integrationsauftrag Godot → Flutter (nicht ausgeführt)
