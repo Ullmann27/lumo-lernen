@@ -70,7 +70,7 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ripgrep
           python3 -m venv .qa-venv
           .qa-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           .qa-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py'
