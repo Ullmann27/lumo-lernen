@@ -84,6 +84,8 @@ jobs:
           .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
           .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+      - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
+        run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
       - name: Build unified real Android APK
