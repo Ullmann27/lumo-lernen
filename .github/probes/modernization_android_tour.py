@@ -548,18 +548,18 @@ def main() -> int:
 
         tapped = try_tap(out, ['Start', 'Home'], 'nav-start')
         time.sleep(2)
-        probe.capture(out, '10_start')
+        probe.capture_flutter_ready(out, '10_start')
         step('navigate-start', tapped is not None, label=tapped)
         tapped = try_tap(out, ['Lernen'], 'nav-lernen')
         time.sleep(2)
         lernen_before = labels(live.live_nodes(out, 'lernen-before-kart'))
-        probe.capture(out, '10_lernen')
+        probe.capture_flutter_ready(out, '10_lernen')
         step('navigate-lernen', tapped is not None and bool(lernen_before), label=tapped,
              visible_labels=len(lernen_before))
 
         tapped = try_tap(out, ['Spielen', 'Spiele'], 'nav-spiele')
         time.sleep(2)
-        probe.capture(out, '20_spiele')
+        probe.capture_flutter_ready(out, '20_spiele')
         step('navigate-spiele', tapped is not None, label=tapped)
         prefs_before = probe.prefs(out, 'before-kart')
         if json.loads(prefs_before.get(evidence.PROFILE_KEY, '{}')).get('name') != 'LumoTest':
