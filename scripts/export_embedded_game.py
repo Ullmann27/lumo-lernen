@@ -99,7 +99,7 @@ def remove_generated_gate_images(repo: Path, before: set[str], source: dict):
             prefix = handle.read(3)
             handle.seek(-2, 2)
             suffix = handle.read(2)
-        if prefix != b'\\xff\\xd8\\xff' or suffix != b'\\xff\\xd9':
+        if prefix != b'\xff\xd8\xff' or suffix != b'\xff\xd9':
             raise RuntimeError('Refusing gate image cleanup: non-JPEG output ' + relative)
 
     for relative in sorted(generated):
