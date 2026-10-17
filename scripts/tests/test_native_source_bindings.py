@@ -51,7 +51,7 @@ class NativeSourceBindingsTests(unittest.TestCase):
         self.assertEqual(config["engine"], "4.6.3")
         self.assertEqual(
             config["revision"],
-            "6b3945583a361c4ea974e4b6846ae0d616b1727a",
+            "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
             "Godot pin changed: review real source and renew hashes, never silently accept it",
         )
         self.assertEqual(lap, handoff)
