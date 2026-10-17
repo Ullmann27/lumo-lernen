@@ -38,6 +38,46 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                   fit: BoxFit.contain,
                   alignment: Alignment.center,
                   filterQuality: FilterQuality.high,
+                  // Cold-start WebP decoding is asynchronous, even for a
+                  // bundled original asset. Never show an empty navy panel.
+                  // Keep the approved artwork unchanged once its first
+                  // decoded frame becomes available.
+                  frameBuilder: (context, image, frame, syncLoaded) {
+                    if (syncLoaded || frame != null) return image;
+                    return const DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.topLeft,
+                          end: Alignment.bottomRight,
+                          colors: [
+                            Color(0xFF092A57),
+                            Color(0xFF124B75),
+                            Color(0xFF081C3C),
+                          ],
+                        ),
+                      ),
+                      child: Center(
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.style_rounded,
+                                color: Color(0xFFFFCB62), size: 76),
+                            SizedBox(height: 12),
+                            Text(
+                              'LUMO CARDS',
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                color: Colors.white,
+                                fontSize: 26,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 1.1,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    );
+                  },
                   semanticLabel:
                       'Lumo Cards: Lumo und seine Tierfreunde an einem magisch beleuchteten Kartentisch',
                   errorBuilder: (_, __, ___) => Container(
