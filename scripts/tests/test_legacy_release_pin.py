@@ -76,6 +76,19 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1971), config(module.APPROVED[1969]))
 
+    def test_1972_multilevel_road_keeps_1971_profile_candidate_frozen(self):
+        prior = module.APPROVED[1971]
+        new = module.APPROVED[1972]
+        self.assertEqual(prior, "3453a43a8bbdcb0495718e1eced2a40837d6e3ab")
+        self.assertEqual(new, "b8f464d946f73d9b88458bf223f1b83db3975a1a")
+        self.assertNotEqual(new, prior)
+        self.assertEqual(module.verify(pubspec(1971), config(prior)), (1971, prior))
+        self.assertEqual(module.verify(pubspec(1972), config(new)), (1972, new))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1972), config(prior))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1971), config(new))
+
     def test_unknown_release_source_and_engine_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
             module.verify(pubspec(1972), config(module.APPROVED[1968]))
