@@ -12,7 +12,9 @@ from native_lap_evidence_recovery import (
     bound_file, equal, evidence_guard, load_evidence, regular_bytes, require, subset,
 )
 
-# Reviewed against pinned Godot 61f51b9: kart_island.gd has the same content as b5f1989.\n# Original lap/handoff fixtures remain historical and their individual hashes unchanged.\nSOURCE_SHA256 = "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064"
+# Reviewed against pinned Godot 61f51b9: kart_island.gd has the same content as b5f1989.
+# Original lap/handoff fixtures remain historical and their individual hashes unchanged.
+SOURCE_SHA256 = "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064"
 PROBE_SHA256 = "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245"
 HELPER_SHA256 = "16e7349c0cfa65f0d585c8f528b9fb069b8b3d2069380d0776d83bc90342507f"
 PROBE_PATH = "res://scripts/tests/kart_race_continuity_regression.gd"
