@@ -89,9 +89,24 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1971), config(new))
 
+    def test_1973_sonnenhafen_b3_keeps_1972_road_candidate_frozen(self):
+        old = module.APPROVED[1972]
+        upgraded = module.APPROVED[1973]
+        self.assertEqual(old, "b8f464d946f73d9b88458bf223f1b83db3975a1a")
+        self.assertEqual(upgraded, "7bdb7ca91691396399abf3b16f09a54259538df7")
+        self.assertNotEqual(old, upgraded)
+        self.assertEqual(module.verify(pubspec(1972), config(old)), (1972, old))
+        self.assertEqual(module.verify(pubspec(1973), config(upgraded)), (1973, upgraded))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1972), config(upgraded))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1973), config(old))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(1974), config(upgraded))
+
     def test_unknown_release_source_and_engine_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1973), config(module.APPROVED[1968]))
+            module.verify(pubspec(1974), config(module.APPROVED[1968]))
         with self.assertRaisesRegex(ValueError, "origin"):
             module.verify(pubspec(1968), config(module.APPROVED[1968], origin="https://example.org"))
         with self.assertRaisesRegex(ValueError, "engine"):
