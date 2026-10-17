@@ -1,0 +1,55 @@
+name: Lumo 1966 – Cards route and native race-drive QA
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1966-cards-route-race-telemetry-2026-10-16
+    paths:
+      - test/design/parent_games_polish_test.dart
+      - .github/probes/modernization_android_tour.py
+      - .github/workflows/lumo-1966-cards-route-kart-qa.yml
+  pull_request:
+    paths:
+      - test/design/parent_games_polish_test.dart
+      - .github/probes/modernization_android_tour.py
+      - .github/workflows/lumo-1966-cards-route-kart-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cards-route-and-probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 22
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve exact Flutter lockfile
+        run: flutter pub get --enforce-lockfile
+      - name: Check updated Flutter and Python source
+        run: |
+          set -euo pipefail
+          dart analyze test/design/parent_games_polish_test.dart
+          python3 -m py_compile .github/probes/modernization_android_tour.py
+      - name: Verify real showcase to solo to return navigation
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=120s \
+            test/design/parent_games_polish_test.dart \
+            --plain-name 'Cards rapid double activation opens one route and permits returning'
+      - name: Preserve proven failure expectations
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          s = Path('.github/probes/modernization_android_tour.py').read_text()
+          assert 'evidence.world_moved(before, late)' in s
+          assert 'evidence.driving_progress(start, last)' in s
+          assert 'pulse in range(3)' in s
+          assert 'session.read(' in s
+          assert "['adb', 'shell', 'input', 'swipe'" in s
+          assert '21_race_drive_telemetry.json' in s
+          print('Strict native physics/session world-movement test is still required.')
+          PY

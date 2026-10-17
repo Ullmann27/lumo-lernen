@@ -1,7 +1,7 @@
 name: lumo_lernen
 description: Lumo Lernen - Lern-App mit integrierten Spielen fuer die 1. bis 4. Klasse Volksschule in Oesterreich
 publish_to: none
-version: 0.12.43+1951
+version: 0.12.58+1970
 
 environment:
   sdk: '>=3.4.0 <4.0.0'
@@ -70,6 +70,7 @@ flutter:
     - assets/lumo_cards/cards/special/
     - assets/lumo_cards/cards/back/
     - assets/lumo_cards/avatars/
+    - docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp
     - assets/rivals/
     - assets/audio/sfx/
     - assets/audio/music/

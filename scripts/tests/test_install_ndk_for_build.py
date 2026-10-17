@@ -31,11 +31,14 @@ assert '--install' in sys.argv
 attempt = 1 + sum('--install' in item for item in previous)
 target = sdk / 'ndk' / '28.2.13676358'
 target.mkdir(parents=True, exist_ok=True)
-if scenario in ('first-invalid', 'first-invalid-exit-zero', 'permanent-invalid', 'uninstall-fails') and (
-        attempt == 1 or scenario == 'permanent-invalid'):
+if scenario in ('first-invalid', 'first-invalid-exit-zero', 'permanent-invalid', 'uninstall-fails', 'first-unknown-archive', 'permanent-unknown-archive') and (
+        attempt == 1 or scenario in ('permanent-invalid', 'permanent-unknown-archive')):
     (target / 'source.properties').write_text('Pkg.Revision = 28.2.13676358\n')
-    print('Warning: Error reading Zip content from a SeekableByteChannel.')
-    print('java.util.zip.ZipException: Archive is not a ZIP archive')
+    if scenario in ('first-unknown-archive', 'permanent-unknown-archive'):
+        print('Warning: An error occurred while preparing SDK package NDK (Side by side) 28.2.13676358: Error on ZipFile unknown archive.')
+    else:
+        print('Warning: Error reading Zip content from a SeekableByteChannel.')
+        print('java.util.zip.ZipException: Archive is not a ZIP archive')
     sys.exit(0 if scenario == 'first-invalid-exit-zero' else 1)
 if scenario == 'permission-failure':
     print('Permission denied; actual failure remains fatal')
@@ -148,6 +151,29 @@ class InstallNdkForBuildTests(unittest.TestCase):
                 self.assertIn('Archive is not a ZIP archive', first[0].read_text())
                 self.assertIn('SDK package installed', second[0].read_text())
                 self.assertTrue(list(self.evidence.rglob('incomplete-ndk-'+REVISION)))
+
+    def test_real_sdkmanager_unknown_archive_error_is_bounded_and_preserves_sdk(self):
+        result = self.run_preflight('first-unknown-archive')
+        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual([call[-2] for call in self.calls()],
+                         ['--install', '--uninstall', '--install'])
+        self.assertTrue(list(self.evidence.rglob('sdkmanager-install-1.log')))
+        self.assertTrue(list(self.evidence.rglob('sdkmanager-install-2.log')))
+        self.assertIn('Error on ZipFile unknown archive', result.stdout)
+        self.assertTrue(list(self.evidence.rglob('incomplete-ndk-'+REVISION)))
+
+    def test_unknown_archive_without_disposable_runner_does_not_retry(self):
+        result = self.run_preflight('first-unknown-archive', allow_reinstall=False)
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual(len(self.calls()), 1)
+        self.assertTrue(self.target.exists())
+
+    def test_permanent_unknown_archive_error_stops_after_two_installations(self):
+        result = self.run_preflight('permanent-unknown-archive')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertEqual([call[-2] for call in self.calls()],
+                         ['--install', '--uninstall', '--install'])
+        self.assertNotIn('[NDKPreflight] PASS', result.stdout)
 
     def test_sdkmanager_exit_zero_partial_package_is_rejected_without_retry(self):
         result = self.run_preflight('partial')

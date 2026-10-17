@@ -385,6 +385,15 @@ class LumoColorTile extends StatelessWidget {
                                       height: iconSize,
                                       fit: BoxFit.contain,
                                       excludeFromSemantics: true,
+                                      // A local asset still decodes asynchronously
+                                      // on first use. Keep the meaningful icon
+                                      // visible until the PNG frame is painted.
+                                      frameBuilder: (context, image, frame, sync) =>
+                                          sync || frame != null
+                                              ? image
+                                              : Icon(icon,
+                                                  size: iconSize,
+                                                  color: LumoVisualTokens.cyanBright),
                                       errorBuilder: (_, __, ___) => Icon(icon,
                                           size: iconSize,
                                           color: LumoVisualTokens.cyanBright))

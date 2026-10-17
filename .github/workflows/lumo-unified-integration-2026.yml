@@ -38,9 +38,13 @@ jobs:
           cat config/godot-source.json | tee dist/GODOT-SOURCE.json
           python3 - <<'PY'
           import json
+          import re
           config=json.load(open("config/godot-source.json"))
-          assert config["revision"]=="ad6bd8856a9d7d07b965dec46eeadf41d4ed676c", "Unexpected Godot pin"
+          assert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"
+          assert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"
           assert config["engine"]=="4.6.3", "Unexpected Godot engine"
+          # scripts/export_embedded_game.py subsequently fetches/checks out this
+          # exact SHA, then compares its HEAD before packaging the native PCK.
           PY
       - uses: actions/setup-java@v4
         with:

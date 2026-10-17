@@ -821,25 +821,22 @@ class _LearningContentState extends State<LearningContent> {
       );
       return;
     }
-    if (!result.graded) {
-      // Free words/sentences are honest practice without invented grading.
-      _nextQuestion();
+    if (result.skipped) {
+      // "Andere Aufgabe": a different task at the same position. No XP, no
+      // wrong answer and no progress that was not earned.
+      if (!mounted) return;
+      setState(() => _loadNextTask());
       return;
     }
-    // Heinz' Wunsch: Schreib-Pruefung war zu ungenau (>= 0.55 reichte).
-    // Jetzt strenger:
-    //  - overallScore muss >= 0.70 sein (vorher 0.55)
-    //  - UND nicht incomplete (Coverage zu niedrig)
-    //  - UND nicht spiegelverkehrt
-    // So bekommen schlampige Striche nicht mehr "richtig" geantwortet.
-    final ev = result.evaluation;
-    final correctEnough = ev.overallScore >= 0.70 && !ev.incomplete && !ev.mirrored;
-    _completeAnswer(
-      correct: correctEnough,
-      hintUsed: _allowHelp && ev.overallScore < .80,
-      answerGiven: 'writing:${ev.overallScore.toStringAsFixed(2)}',
-      handwritingScore: ev.overallScore,
-    );
+    // Handwriting is ungraded practice: a real attempt in the trainer always
+    // leads on. Low contour scores never block progress or become a grade.
+    // The typed-answer branch above remains an assessed spelling task.
+    _nextQuestion();
+  }
+
+  void _speakWritingPraise(String text) {
+    if (!widget.appState.state.settings.voiceEnabled) return;
+    LumoVoice.instance.speak(text);
   }
 
   /// 2026-06-05 Iter 20: Form-Nachzeichnen-Aufgaben.
@@ -1479,6 +1476,7 @@ class _LearningContentState extends State<LearningContent> {
                           allowRetry: _allowHelp,
                           onAnswered: _answerAdaptive,
                           onWritingSubmitted: _answerWriting,
+                          onWritingPraise: _speakWritingPraise,
                           onShapeTraced: _answerShapeTrace,
                         ),
                       ),

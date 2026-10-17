@@ -8,7 +8,7 @@ import 'package:lumo_lernen/domain/writing/expanded_writing_template_repository.
 import 'package:lumo_lernen/domain/writing/writing_domain.dart';
 import 'package:lumo_lernen/domain/writing/writing_path_geometry.dart';
 import 'package:lumo_lernen/features/learning/renderers/writing_task_renderer.dart';
-import 'package:lumo_lernen/features/learning/widgets/lumo_writing_canvas.dart';
+import 'package:lumo_lernen/features/writing/widgets/lumo_letter_practice_board.dart';
 
 const repository = ExpandedWritingTemplateRepository();
 
@@ -75,6 +75,8 @@ void main() {
   test('All supported paths are bounded and accept a matching trace', () {
     for (final symbol in [
       ...ExpandedWritingTemplateRepository.uppercaseLetters,
+      ...ExpandedWritingTemplateRepository.uppercaseUmlauts,
+      ...ExpandedWritingTemplateRepository.lowercaseLetters,
       ...ExpandedWritingTemplateRepository.numberSymbols,
       '∿'
     ]) {
@@ -108,13 +110,24 @@ void main() {
     expect(model.strokes.map((s) => s.order).toList(), [1, 2]);
   });
 
-  test('Unknown and lowercase targets stay ungraded rather than turning into A',
+  test('Unknown targets stay ungraded; lowercase gets its own trace, never A',
       () {
-    for (final target in ['100', 'a', 'ä', '?', 'Mama', '']) {
+    for (final target in ['100', '?', 'Mama', '']) {
       final model = repository.findOrFallback(target);
       expect(model.symbol, target);
       expect(model.strokes, isEmpty);
       expect(evaluate(target, trace('A')).overallScore, 0);
+    }
+    for (final target in ['a', 'ä']) {
+      final model = repository.findOrFallback(target);
+      expect(model.symbol, target);
+      expect(model.strokes, isNotEmpty);
+      expect(model.strokes.map((s) => s.pathData),
+          isNot(repository.findOrFallback('A').strokes.map((s) => s.pathData)));
+      expect(evaluate(target, trace('A')).overallScore, lessThan(.70));
+      final own = evaluate(target, trace(target));
+      expect(own.overallScore, greaterThan(.95), reason: target);
+      expect(own.incomplete, isFalse, reason: target);
     }
     expect(WritingTargetParser.parse('Schreibe: Lumo liest.'), 'Lumo liest.');
     expect(WritingTargetParser.parse('Schreibe: ∿'), '∿');
@@ -171,27 +184,21 @@ void main() {
               task: task(symbol), onSubmitted: (result) => submitted = result),
         )));
     await tester.pumpWidget(screen('Mama'));
-    await tester.tap(find.text('Hier tippen zum Schreiben'));
+    await tester.tap(find.text('Jetzt mit dem Finger schreiben'));
     await tester.pumpAndSettle();
-    final canvas = find.byType(LumoWritingCanvas);
-    expect(tester.widget<LumoWritingCanvas>(canvas).template.strokes, isEmpty);
-    final paint =
-        find.descendant(of: canvas, matching: find.byType(CustomPaint)).first;
-    final area = tester.getRect(paint);
+    final page = find.byType(LumoLetterPracticePage);
+    expect(tester.widget<LumoLetterPracticePage>(page).template.strokes, isEmpty);
+    final area =
+        tester.getRect(find.byKey(const ValueKey('lumo-learning-ink-surface')));
     await tester.dragFrom(
         area.topLeft + const Offset(30, 60), const Offset(200, 100));
     await tester.pump();
-    await tester.tap(find.text('Fertig'));
+    await tester.tap(find.byKey(const ValueKey('writing-modal-finish')));
     await tester.pumpAndSettle();
-    expect(find.textContaining('keine Note oder Richtig-Bewertung'),
-        findsOneWidget);
-    await tester.tap(find.text('Fertig'));
-    await tester.pump();
     expect(submitted?.graded, isFalse);
     expect(submitted?.evaluation.overallScore, 0);
     submitted = null;
     await tester.pumpWidget(screen('B'));
-    await tester.tap(find.text('Fertig'));
     expect(submitted, isNull);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
