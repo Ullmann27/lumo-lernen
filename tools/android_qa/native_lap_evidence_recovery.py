@@ -15,7 +15,7 @@ import zlib
 from functools import wraps
 from pathlib import Path
 
-SOURCE_SHA256 = "0120a9938b4ba84b065330441dd5754bbfa6637551951c78cac58721c1aef831"
+# Reviewed against pinned Godot 61f51b9: kart_island.gd has the same content as b5f1989.\n# Original lap/handoff fixtures remain historical and their individual hashes unchanged.\nSOURCE_SHA256 = "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064"
 LAP_PROBE_SHA256 = "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245"
 FIXTURE_PROBE_SHA256 = "b9155b5ddb7332875d96a7785f0ea3fb7749a7670fac18562815f88bc88a2ff9"
 FLOW_PROBE_SHA256 = "efeb21871cf8be91e5bf74226d1e70e51f52729a8a3ed45a242984b0fb7990f5"
