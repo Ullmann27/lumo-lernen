@@ -36,6 +36,77 @@ def remove_generated_sidecars(repo: Path, before: set[str]):
             path.unlink()
 
 
+
+# Godot 4.6.3 extracts the three embedded JPEG images in the *verified*
+# Meshy gate GLB to source-adjacent JPGs during import. They are generated
+# files, not new application sources; the pack is exported BEFORE cleanup.
+# For earlier releases, or for any other name or content, fail closed.
+GROUNDED_GATE_REVISION = 'a17b06c4719cc94c94bdf97afb3b6862cd049323'
+GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
+GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
+GROUNDED_GATE_GENERATED_IMAGES = frozenset(
+    'assets/kart/gates/lumo_kart_start_finish_gate_mobile_' + name + '.jpg'
+    for name in ('LumoBaseColor', 'LumoMetallicRoughness', 'LumoNormal')
+)
+
+
+def remove_generated_gate_images(repo: Path, before: set[str], source: dict):
+    """Clean only import-extracted GLB JPEG sidecars of the exact 1975 asset.
+
+    Preserve unexpected/untrusted files so the existing final dirty-source
+    gate rejects packaging. Never remove a file present before import.
+    """
+    if source.get('revision') != GROUNDED_GATE_REVISION:
+        return
+    untracked = git_paths(repo, 'ls-files', '--others', '--exclude-standard')
+    generated = (untracked - before) & GROUNDED_GATE_GENERATED_IMAGES
+    if not generated:
+        return
+
+    glb = repo / GROUNDED_GATE_FILE
+    if glb.is_symlink() or not glb.is_file():
+        raise RuntimeError('Refusing gate image cleanup: missing trusted GLB')
+    with glb.open('rb') as handle:
+        digest = hashlib.file_digest(handle, 'sha256').hexdigest()
+    if digest != GROUNDED_GATE_GLB_SHA256:
+        raise RuntimeError('Refusing gate image cleanup: GLB hash mismatch')
+
+    # A GLB v2 with embedded JPEGs is required, not an unrelated object
+    # sharing a filename. Import-generated texture bytes remain unchanged
+    # in the finished Godot PCK; only the temporary source checkout is reset.
+    raw = glb.read_bytes()
+    if len(raw) < 28 or raw[:4] != b'glTF':
+        raise RuntimeError('Refusing gate image cleanup: malformed glTF header')
+    _, version, total, json_length, json_tag = struct.unpack_from('<4s4I', raw)
+    if version != 2 or total != len(raw) or json_tag != 0x4e4f534a:
+        raise RuntimeError('Refusing gate image cleanup: invalid glTF 2.0')
+    manifest = json.loads(raw[20:20 + json_length])
+    jpeg_images = [
+        image for image in manifest.get('images', [])
+        if image.get('mimeType') == 'image/jpeg' and 'bufferView' in image
+    ]
+    if len(jpeg_images) < 3:
+        raise RuntimeError('Refusing gate image cleanup: embedded JPEGs missing')
+
+    for relative in sorted(generated):
+        path = repo / relative
+        if path.is_symlink() or not path.is_file():
+            raise RuntimeError('Refusing gate image cleanup: unsafe output ' + relative)
+        size = path.stat().st_size
+        if not 100 <= size <= 6000000:
+            raise RuntimeError('Refusing gate image cleanup: invalid size ' + relative)
+        with path.open('rb') as handle:
+            prefix = handle.read(3)
+            handle.seek(-2, 2)
+            suffix = handle.read(2)
+        if prefix != b'\\xff\\xd8\\xff' or suffix != b'\\xff\\xd9':
+            raise RuntimeError('Refusing gate image cleanup: non-JPEG output ' + relative)
+
+    for relative in sorted(generated):
+        (repo / relative).unlink()
+        print('[LumoGateImport] removed verified temporary JPEG:', relative)
+
+
 def export(repo: Path, binary: str):
     source = json.loads((ROOT / 'config/godot-source.json').read_text())
     if not repo.exists():
@@ -68,6 +139,7 @@ def export(repo: Path, binary: str):
         print(json.dumps(proof))
     finally:
         remove_generated_sidecars(repo, before)
+        remove_generated_gate_images(repo, before, source)
     remaining = subprocess.check_output(['git', 'status', '--porcelain'], cwd=repo, text=True).strip()
     if remaining:
         raise RuntimeError('Godot import changed sources; refuse exported candidate:\n' + remaining)
