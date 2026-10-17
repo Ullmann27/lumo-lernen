@@ -101,7 +101,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
             module.verify(pubspec(1972), config(upgraded))
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1973), config(old))
-        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1974), config(upgraded))
 
     def test_1974_sonnenhafen_clearance_never_mutates_1973_baseline(self):
@@ -116,12 +116,27 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
             module.verify(pubspec(1973), config(current))
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1974), config(prior))
-        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1975), config(current))
+
+    def test_1975_grounded_gate_pins_verified_godot_without_rewriting_1974(self):
+        prior = module.APPROVED[1974]
+        current = module.APPROVED[1975]
+        self.assertEqual(prior, "42b011dc23abffc24a5df2e13171fa5ada22d6eb")
+        self.assertEqual(current, "a17b06c4719cc94c94bdf97afb3b6862cd049323")
+        self.assertNotEqual(prior, current)
+        self.assertEqual(module.verify(pubspec(1974), config(prior)), (1974, prior))
+        self.assertEqual(module.verify(pubspec(1975), config(current)), (1975, current))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1974), config(current))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1975), config(prior))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(1976), config(current))
 
     def test_unknown_release_source_and_engine_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1975), config(module.APPROVED[1968]))
+            module.verify(pubspec(1976), config(module.APPROVED[1968]))
         with self.assertRaisesRegex(ValueError, "origin"):
             module.verify(pubspec(1968), config(module.APPROVED[1968], origin="https://example.org"))
         with self.assertRaisesRegex(ValueError, "engine"):
