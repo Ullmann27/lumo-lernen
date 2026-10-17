@@ -140,3 +140,14 @@ Die Tour verlangt jetzt:
 3. Gegner-Schwierigkeit „flott“ umsetzen (siehe 7) und mit Regression belegen.
 4. Hash-Bindung `kart_island.gd` prüfen und erneuern, damit `lumo-runtime-apk.yml` wieder läuft.
 5. M1: #320 (Testdatei-Konflikt) und #306 kontrolliert übernehmen, Regel-8-Liste abarbeiten.
+
+## 9. Reparaturgang (Sitzungsende, 17.10.)
+
+| Reparatur | Commit | Stand |
+|---|---|---|
+| Godot-PR #78 (Containerkran) | `61f51b9` | **CI grün:** Lumo 3D Build (inkl. Android), Kart Stage 2, Video Reference Grade |
+| `ripgrep` im QA-Schritt | `71b44b5` | 1955-Tour läuft: [38993583186](https://github.com/Ullmann27/lumo-lernen/actions/runs/38993583186), Ergebnis **offen** |
+| Veraltete Hash-Bindung `kart_island.gd` (blockierte `lumo-runtime-apk.yml`) | `f3c2ca9` | Geprüft: Einzige Änderung `aebfcd7`→`8473037` ist der Log-Marker `race_world_ready`, die übrigen 5 Bindungen stimmen. 639 QA-Tests PASS. |
+| Runtime-Gate für den Integrationsbranch aktiviert | `2890855` | Läuft: [38995087692](https://github.com/Ullmann27/lumo-lernen/actions/runs/38995087692) (native Regressionen, volles Rennen API 35/36, 1001-Update, verifizierte APK), Ergebnis **offen** |
+
+**Nächste Sitzung:** beide Läufe auswerten und jeweils den ersten Fehler beheben. Der Dispatch per API war hier nicht erlaubt (403), deshalb die Push-Trigger.
