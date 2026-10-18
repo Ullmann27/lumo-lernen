@@ -89,7 +89,7 @@ class _QuizStudioPainter extends CustomPainter {
         Paint()..color = i.isEven ? _cyan : _gold,
       );
       canvas.drawCircle(
-        Offset(left, 7), math.max(5, w * .025),
+        Offset(left, 7), math.max(5.0, w * .025),
         Paint()
           ..color = (i.isEven ? _cyan : _gold).withOpacity(.48)
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12),
