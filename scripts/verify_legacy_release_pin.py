@@ -31,8 +31,6 @@ APPROVED = {
     1979: "20652880eda687c67cfa72301dad5a173b1fe6c5",
     1980: "20652880eda687c67cfa72301dad5a173b1fe6c5",
     1981: "20652880eda687c67cfa72301dad5a173b1fe6c5",
-    # 1982 only changes Flutter quiz art/UI; exact same reviewed Godot source.
-    1982: "20652880eda687c67cfa72301dad5a173b1fe6c5",
     # Quizshow 1982 changes Flutter presentation only; retain the 1981
     # native SHA already verified by the Android integration workflow.
     1982: "20652880eda687c67cfa72301dad5a173b1fe6c5",
