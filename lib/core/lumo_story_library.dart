@@ -63,6 +63,12 @@ Map<String, dynamic> _serializeStory(LumoStory s) => {
       'grade': s.gradeLevel,
       'words': s.newWords,
       'keyPoints': s.keyPoints,
+      'bookQuestions': s.bookQuestions.map((q) => {
+            'prompt': q.prompt,
+            'answer': q.correctAnswer,
+            'options': q.options,
+            'evidencePage': q.evidencePage,
+          }).toList(),
       'pages': s.pages.map((p) => {
             'n': p.pageNum,
             't': p.text,
@@ -89,6 +95,16 @@ LumoStory _deserializeStory(Map<String, dynamic> j) {
     newWords: (j['words'] as List).cast<String>(),
     keyPoints:
         (j['keyPoints'] as List?)?.cast<String>() ?? const <String>[],
+    bookQuestions: (j['bookQuestions'] as List?)
+            ?.map((raw) {
+              final q = raw as Map<String, dynamic>;
+              return StoryBookQuestion(
+                q['prompt'] as String,
+                q['answer'] as String,
+                (q['options'] as List).cast<String>(),
+                q['evidencePage'] as int,
+              );
+            }).toList() ?? const <StoryBookQuestion>[],
     pages: (j['pages'] as List).map((p) {
       final pp = p as Map<String, dynamic>;
       final e = pp['e'] as Map<String, dynamic>?;
