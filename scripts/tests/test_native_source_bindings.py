@@ -44,18 +44,33 @@ class NativeSourceBindingsTests(unittest.TestCase):
                         self.assertTrue(hasattr(module, attribute), attribute)
                         self.assertRegex(getattr(module, attribute), HEX256)
 
-    def test_both_source_bindings_agree_with_reviewed_godot_pin(self):
+    def test_historical_evidence_is_preserved_and_current_release_pin_is_verified(self):
         from native_lap_evidence_recovery import SOURCE_SHA256 as lap
         from native_handoff_evidence_recovery import SOURCE_SHA256 as handoff
-        config = json.loads((ROOT / "config" / "godot-source.json").read_text(encoding="utf-8"))
-        self.assertEqual(config["engine"], "4.6.3")
-        self.assertEqual(
-            config["revision"],
-            "3453a43a8bbdcb0495718e1eced2a40837d6e3ab",
-            "Godot pin changed: review real source and renew hashes, never silently accept it",
-        )
+
+        # 1970's original native screenshots and probes are historical evidence.
+        # Their source hashes are NOT claims about the 1975 runtime. Never
+        # rewrite these archived hashes merely to make a newer release pass.
+        historic_revision = "3453a43a8bbdcb0495718e1eced2a40837d6e3ab"
+        historic_content_hash = "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064"
         self.assertEqual(lap, handoff)
-        self.assertEqual(lap, "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064")
+        self.assertEqual(lap, historic_content_hash)
+
+        spec = importlib.util.spec_from_file_location(
+            "verify_legacy_release_pin", ROOT / "scripts" / "verify_legacy_release_pin.py"
+        )
+        policy = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(policy)
+        self.assertEqual(policy.APPROVED[1970], historic_revision)
+        pubspec = (ROOT / "pubspec.yaml").read_text(encoding="utf-8")
+        config_text = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
+        version, approved_sha = policy.verify(pubspec, config_text)
+        config = json.loads(config_text)
+        self.assertEqual(config["revision"], approved_sha)
+        self.assertEqual(config["engine"], "4.6.3")
+        self.assertEqual(version, 1975, "This branch is the isolated 1975 release candidate")
+        self.assertNotEqual(approved_sha, historic_revision,
+                            "Do not conflate 1970 evidence with the new 1975 renderer")
 
 
 if __name__ == "__main__":
