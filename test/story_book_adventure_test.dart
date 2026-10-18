@@ -23,6 +23,8 @@ void main() {
       expect(book.title, contains('Lumo und das große Rätsel:'));
       expect(book.pages[1].text, contains('Darin stand:'));
       expect(book.pages[9].text, contains('Alle waren erleichtert'));
+      expect(book.illustrationVariant, seed,
+          reason: 'A different mystery must display a different recovered item');
       expect(book.pages, hasLength(12));
       expect(book.pages.map((p) => p.pageNum), orderedEquals(
         List<int>.generate(12, (i) => i + 1)));
@@ -66,6 +68,8 @@ void main() {
     expect(legacy.bookQuestions, isEmpty);
     expect(updated.pages.length, 12);
     expect(updated.bookQuestions.length, 10);
+    expect(updated.illustrationVariant, newBook.illustrationVariant);
+    expect(legacy.illustrationVariant, 0);
     expect(updated.bookQuestions[4].evidencePage, 6);
     expect(updated.pages[4].exercise!.type, StoryExerciseType.wordChoice);
   });
