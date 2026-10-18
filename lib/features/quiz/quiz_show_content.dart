@@ -385,6 +385,18 @@ class _QuizCard extends StatelessWidget {
               onPressed: onNext,
               icon: const Icon(Icons.arrow_forward_rounded),
               label: const Text('Nächste Frage'),
+              style: FilledButton.styleFrom(
+                backgroundColor: const Color(0xFF064DAB),
+                foregroundColor: Colors.white,
+                minimumSize: const Size.fromHeight(53),
+                side: const BorderSide(
+                  color: Color(0xFFFFD777), width: 1.6),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(25)),
+                textStyle: const TextStyle(
+                  fontFamily: 'Nunito', fontSize: 17,
+                  fontWeight: FontWeight.w900),
+              ),
             ),
           if (answered) ...[
             const SizedBox(height: 14),
@@ -1057,14 +1069,14 @@ class _ResultPanel extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = correct ? Colors.green : Colors.redAccent;
     final text = won
-        ? '🏆 Lumo-Meister! 20 von 20 geschafft – 5.000 virtuelle App-Sterne gewonnen! Ein Familienausflug ist nur eine Wunsch-Idee, über die deine Eltern entscheiden.'
+        ? 'Lumo-Meister! 20 von 20 geschafft – 5.000 virtuelle App-Sterne gewonnen! Ein Familienausflug ist nur eine Wunsch-Idee, über die deine Eltern entscheiden.'
         : correct
             ? securedStars > 0
-                ? '✅ Richtig! Sichere Stufe: $securedStars Sterne.'
-                : '✅ Richtig! Weiter geht’s.'
+                ? 'Richtig! Sichere Stufe: $securedStars Sterne.'
+                : 'Richtig! Weiter geht’s.'
             : awardedStars > 0
-                ? '💡 Richtig wäre: $answer\n⭐ Du sicherst $awardedStars Sterne.'
-                : '💡 Richtig wäre: $answer\nBeim nächsten Versuch schaffst du die erste Stern-Stufe!';
+                ? 'Richtig wäre: $answer\nDu sicherst $awardedStars Sterne.'
+                : 'Richtig wäre: $answer\nBeim nächsten Versuch schaffst du die erste Stern-Stufe!';
     return Container(
       padding: const EdgeInsets.all(14),
       decoration: BoxDecoration(
@@ -1072,12 +1084,24 @@ class _ResultPanel extends StatelessWidget {
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(color: color.withOpacity(.25)),
       ),
-      child: Text(
-        text,
-        style: LumoTextStyles.body.copyWith(
-          color: Colors.white,
-          fontWeight: FontWeight.w800,
-        ),
+      child: Row(
+        children: [
+          Icon(won ? Icons.emoji_events_rounded
+              : correct ? Icons.check_circle_rounded
+              : Icons.lightbulb_rounded,
+            color: correct ? const Color(0xFF87FFBE)
+                : const Color(0xFFFFD776), size: 26),
+          const SizedBox(width: 9),
+          Expanded(
+            child: Text(
+              text,
+              style: LumoTextStyles.body.copyWith(
+                color: Colors.white,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
