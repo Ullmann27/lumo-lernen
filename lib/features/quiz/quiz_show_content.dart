@@ -160,11 +160,34 @@ class _QuizShowContentState extends State<QuizShowContent> {
             fontFamily: 'Nunito',
             fontWeight: FontWeight.w900,
             color: Colors.white,
+            shadows: [
+              Shadow(color: Color(0xAA19B7FF), blurRadius: 12),
+            ],
           ),
         ),
-        backgroundColor: LumoVisualTokens.navigation.withOpacity(.96),
+        backgroundColor: const Color(0xFF071432),
         foregroundColor: Colors.white,
         elevation: 0,
+        flexibleSpace: const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [Color(0xFF092A67), Color(0xFF04102C),
+                Color(0xFF12285C)],
+            ),
+            border: Border(
+              bottom: BorderSide(color: Color(0xFF2BCAFF), width: 1.2),
+            ),
+          ),
+        ),
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 13),
+            child: Icon(Icons.star_rounded,
+              color: Color(0xFFFFDA77), size: 27),
+          ),
+        ],
       ),
       body: LumoSceneBackground(
         scene: LumoScene.tests,
