@@ -130,19 +130,19 @@ jobs:
         run: flutter test --no-pub --reporter=expanded test/design/connect_four_visual_test.dart
       - name: Render genuine offline atelier on phone and Fold
         env:
-          LUMO_LAB_CAPTURES: visual-evidence/1979/atelier
+          LUMO_LAB_CAPTURES: visual-evidence/1980/atelier
         run: |
           set -euo pipefail
           flutter test --no-pub --reporter=expanded --timeout=60s test/design/learning_lab_visual_capture_test.dart
           for device in phone fold-open fold-cover-large-text; do
             for phase in example build; do
-              test -s "visual-evidence/1979/atelier/${device}-${phase}.png"
+              test -s "visual-evidence/1980/atelier/${device}-${phase}.png"
             done
           done
       - name: Archive only verified readable Flutter captures
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1979-real-flutter-captures
+          name: lumo-1980-real-flutter-captures
           path: visual-evidence/
           if-no-files-found: error
           retention-days: 30
@@ -174,7 +174,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1979-arm64-verified
+          name: lumo-1980-arm64-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-SHA256.txt
@@ -254,6 +254,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-1979-android-tour
+          name: lumo-1980-android-tour
           path: tour/
           retention-days: 30
