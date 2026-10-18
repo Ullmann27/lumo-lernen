@@ -793,6 +793,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         width: double.infinity,
         height: 56,
         child: ElevatedButton.icon(
+          key: const ValueKey('lumo-story-continue'),
           onPressed: canContinue && !_finishing ? _nextPage : null,
           icon: Icon(_pageIdx + 1 >= widget.story.pages.length
               ? Icons.celebration_rounded
