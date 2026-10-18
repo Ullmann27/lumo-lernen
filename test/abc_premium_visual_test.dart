@@ -19,7 +19,11 @@ void main() {
 
   testWidgets('ABC shows its own Lumo artwork, 26 entries and a readable guide',
       (tester) async {
-    await tester.pumpWidget(MaterialApp(theme: LumoAppTheme.light(), home: const LumoAbcTafelScreen()));
+    await tester.pumpWidget(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: LumoAppTheme.light(),
+      home: const LumoAbcTafelScreen(),
+    ));
     await tester.pump(const Duration(milliseconds: 350));
     expect(find.text('Entdecke dein ABC!'), findsOneWidget);
     expect(find.byKey(const ValueKey('abc-original-lumo-fox')),
@@ -43,7 +47,11 @@ void main() {
     final wasEnabled = LumoVoice.instance.isEnabled;
     LumoVoice.instance.isEnabled = false;
     try {
-      await tester.pumpWidget(MaterialApp(theme: LumoAppTheme.light(), home: const LumoAbcTafelScreen()));
+      await tester.pumpWidget(MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: LumoAppTheme.light(),
+      home: const LumoAbcTafelScreen(),
+    ));
       await tester.pump(const Duration(milliseconds: 350));
       await tester.tap(find.byKey(const ValueKey('abc-letter-A')));
       await tester.pump();
@@ -69,7 +77,11 @@ void main() {
       final key = GlobalKey();
       await tester.pumpWidget(RepaintBoundary(
         key: key,
-        child: MaterialApp(theme: LumoAppTheme.light(), home: const LumoAbcTafelScreen()),
+        child: MaterialApp(
+      debugShowCheckedModeBanner: false,
+      theme: LumoAppTheme.light(),
+      home: const LumoAbcTafelScreen(),
+    ),
       ));
       await tester.pump(const Duration(milliseconds: 450));
       expect(find.text('Entdecke dein ABC!'), findsOneWidget);
