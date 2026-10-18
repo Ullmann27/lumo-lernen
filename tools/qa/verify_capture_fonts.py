@@ -43,7 +43,7 @@ def assert_real_text_rendering(path: Path) -> dict:
     lengths = header_white_run_lengths(path)
     with Image.open(path) as image:
         width, height = image.size
-    long_run = max(75, round(width * 0.155))
+    long_run = max(75, round(width * 0.13))
     streak = highest_streak = 0
     for pixels in lengths:
         streak = streak + 1 if pixels >= long_run else 0
