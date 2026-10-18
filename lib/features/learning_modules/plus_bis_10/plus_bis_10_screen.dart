@@ -961,6 +961,18 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
                       fontWeight: FontWeight.w800,
                       color: LumoVisualTokens.gold,
                       fontSize: 12)),
+              // A correct answer actually awards five XP in _saveAnswer().
+              // Keep this earned-reward indicator visible alongside the
+              // premium progress bar, including in narrow/Fold layouts.
+              const Tooltip(
+                message: 'Fünf Erfahrungspunkte pro richtiger Antwort',
+                child: Text('+5 XP',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900,
+                        color: LumoVisualTokens.gold,
+                        fontSize: 12)),
+              ),
             ]),
         const SizedBox(height: 9),
         LumoLessonProgress(
