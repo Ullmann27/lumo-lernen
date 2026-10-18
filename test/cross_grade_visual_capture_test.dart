@@ -4,6 +4,9 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/app/app_theme.dart';
+
+import 'helpers/lumo_capture.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:lumo_lernen/features/learning/cross_grade_practice_screen.dart';
@@ -12,6 +15,9 @@ import 'package:lumo_lernen/features/learning/cross_grade_practice_screen.dart';
 // synthetic QA fixtures, not a child profile or remotely earned points.
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  // Capture the APK's real Nunito glyph outlines and Material icon font.
+  // Without these, the default Flutter test font paints solid Ahem blocks.
+  setUpAll(loadLumoCaptureFonts);
 
   testWidgets('captures real library/hologlass lesson on phone and Fold',
       (tester) async {
@@ -33,8 +39,9 @@ void main() {
       final captureKey = GlobalKey();
       await tester.pumpWidget(RepaintBoundary(
         key: captureKey,
-        child: const MaterialApp(
-          home: CrossGradePracticeScreen(
+        child: MaterialApp(
+          theme: LumoAppTheme.light(),
+          home: const CrossGradePracticeScreen(
             profileName: 'VisuelleProbe',
             enrolledGrade: 2,
             lessonGrade: 3,
