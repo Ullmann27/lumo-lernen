@@ -243,11 +243,60 @@ class LumoStoryGenerator {
     final friend = '${_heroArticle(hero)} $lead';
     final team = companion == 'Lumo'
         ? 'Lumo und $friend' : 'Lumo, $friend und $companion';
-    const mysteries = <String>[
-      'Sternenkarte', 'Geschichtenbuch', 'Mondlaterne',
-      'Wolkenbild', 'Musikschlüssel', 'Schatzzeichnung',
+    // Each book has its own mystery, social purpose and resolution.
+    // All share the hand-authored 12-scene first book visual grammar.
+    const mysteries = <(String, String, String, String)>[
+      ('Sternenkarte',
+        'Die Sternenkarte, die den Weg zur Kindersternwarte zeigte, ist verschwunden.',
+        'Ohne die Karte kann die Nachtwanderung nicht beginnen.',
+        'So konnte die Kindergruppe endlich die Sternwarte besuchen.'),
+      ('Geschichtenbuch',
+        'Das Geschichtenbuch mit den Erinnerungen aller Kinder ist verschwunden.',
+        'Morgen soll in der Bücherei daraus vorgelesen werden.',
+        'So konnte die Vorleserin den Kindern ihre eigenen Geschichten zeigen.'),
+      ('Mondlaterne',
+        'Die Mondlaterne für den abendlichen Laternenzug ist verschwunden.',
+        'Die Kinder hoffen sehr, ihren gemeinsamen Umzug zu feiern.',
+        'So leuchtete am Abend wieder die Mondlaterne beim Umzug.'),
+      ('Wolkenbild',
+        'Das Wolkenbild der Schulklasse ist verschwunden.',
+        'Es sollte morgen beim Sommerfest im Flur hängen.',
+        'So konnten alle ihr Kunstwerk beim Schulfest bewundern.'),
+      ('Musikschlüssel',
+        'Der Musikschlüssel für das Konzertzimmer ist verschwunden.',
+        'Die Kinder möchten dort ihre Instrumente für den Auftritt holen.',
+        'So konnten die kleinen Musiker rechtzeitig proben.'),
+      ('Schatzzeichnung',
+        'Die Schatzzeichnung für das große Freundschaftsspiel ist verschwunden.',
+        'Ohne sie findet niemand den Treffpunkt für das gemeinsame Spiel.',
+        'So fanden alle den Treffpunkt und spielten miteinander.'),
+      ('Sonnenkompass',
+        'Der Sonnenkompass für einen Ausflug zum Hügel ist verschwunden.',
+        'Die Wandergruppe möchte den sicheren Weg über die Wiese finden.',
+        'So konnte die Wandergruppe den sicheren Weg erkennen.'),
+      ('Friedensbrief',
+        'Der Friedensbrief zweier Kindergruppen ist verschwunden.',
+        'Die Kinder möchten den Streit mit einem freundlichen Brief beenden.',
+        'So konnten die beiden Gruppen sich wieder vertragen.'),
+      ('Wunderherbar',
+        'Das Wunderherbar mit den gepressten Pflanzen ist verschwunden.',
+        'Die jungen Forscher wollen morgen ihre Funde ausstellen.',
+        'So konnte die Pflanzenausstellung endlich beginnen.'),
+      ('Waldbuch',
+        'Das Waldbuch mit den Tierspuren ist verschwunden.',
+        'Die Kinder möchten herausfinden, welche Tiere im Wald leben.',
+        'So konnten alle die Tierspuren gemeinsam vergleichen.'),
+      ('Farbenatlas',
+        'Der Farbenatlas für den Malnachmittag ist verschwunden.',
+        'Die Malgruppe wollte damit die Farben der Natur entdecken.',
+        'So konnten die Kinder ihre bunten Bilder fertig malen.'),
+      ('Mutabzeichen',
+        'Das Mutabzeichen für den gemeinsamen Klettertag ist verschwunden.',
+        'Ein Kind soll für seine Hilfsbereitschaft geehrt werden.',
+        'So konnte die Gruppe den mutigen Helfer feiern.'),
     ];
-    final missing = mysteries[variationSeed % mysteries.length];
+    final mystery = mysteries[variationSeed % mysteries.length];
+    final missing = mystery.$1;
     final pages = <LumoStoryPage>[];
     void add(String text, String image, {String? word, StoryExercise? puzzle}) {
       pages.add(LumoStoryPage(
@@ -270,10 +319,9 @@ class LumoStoryGenerator {
     );
     add(
       'Am nächsten Morgen klopfte eine Botin an die Tür. '
-      'Sie übergab Lumo einen Brief. Darin stand, dass der Gegenstand '
-      'namens $missing verschwunden war. '
-      'Ohne diesen Gegenstand fehlte der Bücherei ein wichtiger Schatz. '
-      '„Findet ihn, aber achtet auf die Hinweise“, bat die Botin. '
+      'Sie übergab Lumo einen Brief. Darin stand: „${mystery.$2}“ '
+      'Dazu stand dort: „${mystery.$3}“ '
+      '„Findet den Gegenstand, aber achtet auf die Hinweise“, bat die Botin. '
       'Lumo schrieb drei Wörter auf: Suchen, Verstehen, Helfen.',
       'messenger with letter',
     );
@@ -353,8 +401,8 @@ class LumoStoryGenerator {
       'Auf einem Tisch entdeckte Lumo den vermissten Gegenstand: $missing. '
       'Daneben lag eine Nachricht: „Danke für eure Geduld.“ '
       'Der Gegenstand war hier sicher aufbewahrt worden. '
-      'Alle waren erleichtert. Nur durch gutes Lesen und Nachdenken '
-      'hatten sie den richtigen Weg gefunden.',
+      '${mystery.$4} Alle waren erleichtert. Nur durch gutes Lesen und '
+      'Nachdenken hatten sie den richtigen Weg gefunden.',
       'hidden book chamber discovery',
     );
     add(
