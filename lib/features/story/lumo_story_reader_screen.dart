@@ -522,6 +522,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               for (final page in widget.story.pages) ...[
                 LumoStoryScene(
                   page: page.pageNum,
+                  variant: widget.story.illustrationVariant,
                   height: MediaQuery.sizeOf(context).width > 650 ? 252 : 192,
                 ),
                 const SizedBox(height: 10),
@@ -633,6 +634,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               LumoStoryScene(
                 key: ValueKey('lumo-story-scene-${page.pageNum}'),
                 page: page.pageNum,
+                variant: widget.story.illustrationVariant,
                 height: MediaQuery.sizeOf(context).width > 650 ? 270 : 198,
               ),
               const SizedBox(height: 12),
