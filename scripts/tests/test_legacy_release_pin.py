@@ -132,7 +132,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1975), config(prior))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1978), config(current))
+            module.verify(pubspec(1979), config(current))
 
     def test_1976_darkride_neon_and_motion_fix_use_exact_reviewed_source(self):
         old = module.APPROVED[1975]
@@ -157,9 +157,25 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1976), config(new))
 
+    def test_1978_visual_and_fold_release_retains_exact_1977_godot_binary(self):
+        latest = module.APPROVED[1978]
+        self.assertEqual(latest, module.APPROVED[1977])
+        self.assertEqual(latest, "efa1f69b4128a047e6196ee85762447e412db266")
+        for build in (1976, 1977, 1978):
+            self.assertEqual(
+                module.verify(pubspec(build), config(module.APPROVED[build])),
+                (build, module.APPROVED[build]),
+            )
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1978), config(module.APPROVED[1976]))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1977), config(module.APPROVED[1976]))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(1979), config(latest))
+
     def test_unknown_release_source_and_engine_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1978), config(module.APPROVED[1968]))
+            module.verify(pubspec(1979), config(module.APPROVED[1968]))
         with self.assertRaisesRegex(ValueError, "origin"):
             module.verify(pubspec(1968), config(module.APPROVED[1968], origin="https://example.org"))
         with self.assertRaisesRegex(ValueError, "engine"):

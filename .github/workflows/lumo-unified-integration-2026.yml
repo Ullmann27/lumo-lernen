@@ -66,6 +66,12 @@ jobs:
           flutter-version: '3.44.9'
           channel: stable
           cache: true
+      - name: Install real system emoji for ABC screenshots and Flutter test suite
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
       - name: Resolve immutable Flutter dependencies
         run: flutter pub get --enforce-lockfile
       - name: Flutter static analysis
@@ -99,21 +105,30 @@ jobs:
           sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
           .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
           .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+      - name: Reject unreadable Ahem-font captures before issuing visual proof
+        run: |
+          set -euo pipefail
+          .ci-python/bin/python -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
+          .ci-python/bin/python tools/qa/verify_capture_fonts.py visual-evidence
       - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
         run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
       - name: Render actual premium lessons on phone and Fold
         env:
-          LUMO_LESSON_CAPTURES: visual-evidence/1977/lessons
+          LUMO_LESSON_CAPTURES: visual-evidence/1978/lessons
         run: flutter test --no-pub --reporter=expanded test/design/lesson_premium_capture_test.dart
       - name: Render actual app sections on phone and Fold
         env:
-          LUMO_TOUR_DIR: visual-evidence/1977/tour
+          LUMO_TOUR_DIR: visual-evidence/1978/tour
           LUMO_TOUR_CAPTURE_SCALE: '1'
         run: flutter test --no-pub --reporter=expanded test/design/app_tour_capture_test.dart
-      - name: Archive real Flutter lesson captures
+      - name: Render playable Connect Four on five real layout sizes
+        env:
+          LUMO_CONNECT_CAPTURES: visual-evidence/1978/connect_four
+        run: flutter test --no-pub --reporter=expanded test/design/connect_four_visual_test.dart
+      - name: Archive only verified readable Flutter captures
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1977-real-flutter-captures
+          name: lumo-1978-real-flutter-captures
           path: visual-evidence/
           if-no-files-found: error
           retention-days: 30
@@ -138,6 +153,21 @@ jobs:
         with:
           name: lumo-lernen-kart-unified-2026-candidate
           path: dist/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Deliver verified ARM64 APK separately for direct download
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1978-arm64-verified
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-SHA256.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/GODOT-SOURCE.json
+            dist/APP-VERSION.txt
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
@@ -210,6 +240,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-1977-android-tour
+          name: lumo-1978-android-tour
           path: tour/
           retention-days: 30
