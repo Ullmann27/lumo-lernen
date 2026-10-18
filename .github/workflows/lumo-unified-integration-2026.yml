@@ -314,7 +314,7 @@ jobs:
             --repo Ullmann27/lumo-lernen \
             --target "$SOURCE_SHA" \
             --title 'Lumo 1983 – Lumo-Meister Neon-Studio und Quizbühne (Android)' \
-            --notes 'Android-Testversion 0.12.70 (Build 1982). 20 einzeln dargestellte Stufen, moderner Menüeintritt, Quizmusik aus bestehenden App-Assets und abgebremstes Antwort-Einloggen mit Ergebnisanimation. Basis ist der geprüfte Lumo-1981-Zweig; die Godot-Kart-Integration bleibt erhalten. Nur nach bestandenem Flutter-Test und Android-Tour wird die Version veröffentlicht. Bitte anschließend auf dem Fold testen.' \
+            --notes 'Android-Testversion 0.12.71 (Build 1983). Echte responsive Flutter-Neonbuehne mit TV-Lichtkegeln, Publikum, beleuchtetem Podest, Moderator-Lumo im Sakko, 20 einzeln hervorgehobenen Sternenstufen, glanzvollen Antwortfeldern, Quizmusik und Antwort-Countdown. Lumo Lernen und gepinntes Godot-Kart bleiben erhalten. Verfuegbar nur nach erfolgreichen Flutter-Tests und Android-Emulatortour. Bitte Design auf dem Fold vergleichen.' \
             --prerelease
           gh release view "$TAG" --repo Ullmann27/lumo-lernen \
             --json url,isDraft,assets \
