@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_sound.dart';
+import 'quiz_show_music.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_show.dart';
@@ -33,6 +34,9 @@ class _QuizShowContentState extends State<QuizShowContent> {
   static const _engine = QuizShowEngine();
   static const _bank = QuizQuestionBank();
   late QuizShowState _state;
+  late QuizShowMusic _music;
+  Timer? _lockTimer;
+  bool _locking = false;
 
   @override
   void initState() {
@@ -40,7 +44,16 @@ class _QuizShowContentState extends State<QuizShowContent> {
     if (widget.appState.state.settings.soundEnabled) {
       unawaited(LumoSound.instance.init());
     }
+    _music = QuizShowMusic(enabled: widget.appState.state.settings.soundEnabled);
     _startNewGame();
+    unawaited(_music.start());
+  }
+
+  @override
+  void dispose() {
+    _lockTimer?.cancel();
+    unawaited(_music.dispose());
+    super.dispose();
   }
 
   void _playEffect(SoundEffect effect) {
@@ -60,6 +73,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _select(int index) {
+    if (_locking) return;
     final next = _engine.selectAnswer(_state, index);
     if (next.selectedOption != _state.selectedOption) {
       _playEffect(SoundEffect.click);
@@ -68,6 +82,21 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _reveal() {
+    if (_locking || _state.revealed || _state.gameOver ||
+        _state.selectedOption == null) return;
+    setState(() => _locking = true);
+    _playEffect(SoundEffect.click);
+    unawaited(_music.pauseForLockIn());
+    _lockTimer?.cancel();
+    final reduced = MediaQuery.disableAnimationsOf(context);
+    _lockTimer = Timer(Duration(milliseconds: reduced ? 750 : 1600), () {
+      if (!mounted || !_locking) return;
+      setState(() => _locking = false);
+      _resolveAnswer();
+    });
+  }
+
+  void _resolveAnswer() {
     final before = _state;
     final selected = before.selectedOption;
     final correct = selected != null &&
@@ -91,14 +120,18 @@ class _QuizShowContentState extends State<QuizShowContent> {
     } else if (_state.won || _state.securedStars > before.securedStars) {
       _playEffect(SoundEffect.win);
     }
+    if (_state.gameOver) unawaited(_music.stop());
   }
 
   void _next() {
+    if (_locking) return;
+    unawaited(_music.resume());
     _playEffect(SoundEffect.click);
     setState(() => _state = _engine.nextQuestion(_state));
   }
 
   void _joker(QuizJoker joker) {
+    if (_locking) return;
     final next = _engine.useJoker(_state, joker);
     if (next.usedJokers.length > _state.usedJokers.length) {
       _playEffect(SoundEffect.click);
@@ -107,8 +140,11 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _restart() {
+    _lockTimer?.cancel();
+    _locking = false;
     _playEffect(SoundEffect.click);
     setState(_startNewGame);
+    unawaited(_music.start());
   }
 
   @override
@@ -140,6 +176,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
                 state: _state, question: q,
                 onSelect: _select, onReveal: _reveal, onNext: _next,
                 onRestart: _restart, onJoker: _joker,
+                 locking: _locking,
               );
               return SingleChildScrollView(
                 padding: EdgeInsets.all(constraints.maxWidth < 400 ? 10 : 18),
@@ -167,8 +204,10 @@ class _QuizCard extends StatelessWidget {
     required this.onNext,
     required this.onRestart,
     required this.onJoker,
+    required this.locking,
   });
 
+  final bool locking;
   final QuizShowState state;
   final QuizQuestion question;
   final ValueChanged<int> onSelect;
@@ -236,16 +275,28 @@ class _QuizCard extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 18),
-          Text(
-            question.prompt,
-            textAlign: TextAlign.center,
-            style: LumoTextStyles.heading1.copyWith(
-              fontSize: finale ? 30 : 28,
-              color: Colors.white,
-              fontWeight: FontWeight.w900,
-              shadows: const [
-                Shadow(color: Color(0xAA000000), blurRadius: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 22),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [
+                Color(0xFF061935), Color(0xFF103A70), Color(0xFF061A39),
+              ]),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: const Color(0xFFFFD873), width: 1.5),
+              boxShadow: const [
+                BoxShadow(color: Color(0x5545C7FC), blurRadius: 20),
               ],
+            ),
+            child: Text(
+              question.prompt,
+              textAlign: TextAlign.center,
+              style: LumoTextStyles.heading1.copyWith(
+                fontSize: finale ? 30 : 28, color: Colors.white,
+                fontWeight: FontWeight.w900,
+                shadows: const [
+                  Shadow(color: Color(0xAA000000), blurRadius: 10),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 18),
@@ -275,7 +326,7 @@ class _QuizCard extends StatelessWidget {
                         hidden: state.fiftyFiftyHiddenOptions.contains(i),
                         selected: selected == i, revealed: answered,
                         correct: question.correctIndex == i,
-                        onTap: () => onSelect(i),
+                        onTap: locking ? null : () => onSelect(i),
                       ),
                     ),
                 ],
@@ -290,10 +341,10 @@ class _QuizCard extends StatelessWidget {
               label: Text(state.won ? 'Nochmal Lumo-Meister werden' : 'Neue Quizrunde starten'),
             )
           else if (!answered)
-            FilledButton.icon(
-              onPressed: selected == null ? null : onReveal,
-              icon: const Icon(Icons.check_rounded),
-              label: const Text('Antwort einloggen'),
+            _LockInButton(
+              enabled: selected != null && !locking,
+              locking: locking,
+              onTap: onReveal,
             )
           else
             FilledButton.icon(
@@ -331,7 +382,7 @@ class _QuizStage extends StatelessWidget {
       final compact = c.maxWidth < 400;
       final tablet = c.maxWidth >= 700;
       final leftWidth = tablet ? 100.0 : (compact ? 62.0 : 78.0);
-      final rightWidth = tablet ? 158.0 : (compact ? 90.0 : 122.0);
+      final rightWidth = tablet ? 168.0 : (compact ? 100.0 : 132.0);
       final gap = tablet ? 18.0 : (compact ? 6.0 : 12.0);
       // On the unfolded Fold and tablet, the mascot is the visual hero,
       // not a miniature floating inside an oversized empty stage.
@@ -347,7 +398,7 @@ class _QuizStage extends StatelessWidget {
         // The stage must expand with accessibility font scaling: the
         // three joker buttons and prize ladder otherwise overflow by 47px
         // at 1.5x on Fold / phone widths. The outer page already scrolls.
-        height: (compact ? 250.0 : (tablet ? 420.0 : 296.0)) *
+        height: (compact ? 380.0 : (tablet ? 490.0 : 418.0)) *
             math.max(1.0, MediaQuery.textScalerOf(context).scale(1)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -400,19 +451,13 @@ class _QuizStage extends StatelessWidget {
                         child: SizedBox(
                           key: const ValueKey('lumo-meister-fox-slot'),
                           width: foxSize, height: foxSize,
-                          child: LumoCharacter(
+                          child: Image.asset(
+                            'assets/lumo_design/fox/fox_quiz_host_1982.webp',
                             key: const ValueKey('lumo-meister-fox'),
-                            pose: state.won || finale
-                                ? LumoDesignFoxPose.trophyWink
-                                : state.revealed &&
-                                  state.selectedOption ==
-                                      state.currentQuestion.correctIndex
-                                    ? LumoDesignFoxPose.thumbWink
-                                    : LumoDesignFoxPose.pointSide,
-                            size: foxSize,
-                            reduceMotion: MediaQuery.disableAnimationsOf(context),
-                            intro: false, idleHops: false,
-                            ambientPoses: const <LumoDesignFoxPose>[],
+                            width: foxSize, height: foxSize,
+                            fit: BoxFit.contain,
+                            filterQuality: FilterQuality.high,
+                            semanticLabel: 'Lumo als Quizmoderator mit Fliege und Quizkarte',
                           ),
                         ),
                       ),
@@ -463,62 +508,171 @@ class _QuizStage extends StatelessWidget {
   );
 }
 
+/// All 20 rows are visual progress, not independent wallet grants.
+/// The engine alone awards the four secured milestone prizes.
 class _QuizPrizeRail extends StatelessWidget {
   const _QuizPrizeRail({required this.state});
   final QuizShowState state;
+  static const amounts = <int>[
+    0, 10, 20, 30, 40, 50, 80, 90, 100, 150, 200,
+    400, 450, 500, 600, 800, 2000, 2500, 3000, 4000, 5000,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    const milestones = <(int, int)>[(20, 5000), (15, 800), (10, 200), (5, 50)];
+    final current = state.displayQuestionNumber;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF15356D), Color(0xFF071735)],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFFFC94A), width: 1.5),
+          colors: [Color(0xFF15356D), Color(0xFF071735)]),
+        borderRadius: BorderRadius.circular(17),
+        border: Border.all(color: const Color(0xFFFFC94A), width: 2),
+        boxShadow: const [
+          BoxShadow(color: Color(0x55FFCE65), blurRadius: 14),
+        ],
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text('★ 5.000', style: TextStyle(
-              color: Color(0xFFFFD873), fontSize: 18,
-              fontWeight: FontWeight.w900)),
-          ),
-          const Text('APP-STERNE', maxLines: 1,
-            style: TextStyle(color: Colors.white70, fontSize: 8)),
-          const Divider(color: Color(0x77FFD873), height: 12),
-          for (final step in milestones)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                color: state.displayQuestionNumber == step.$1
-                    ? const Color(0xFFFFC94A)
-                    : state.securedStars >= step.$2
-                        ? const Color(0xFF146B55) : Colors.transparent,
-              ),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  step.$1.toString() + ' · ★ ' + step.$2.toString(),
-                  maxLines: 1,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900,
-                    color: state.displayQuestionNumber == step.$1
-                      ? const Color(0xFF1D2140) : Colors.white),
+          for (int step = 20; step >= 1; step--)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 1),
+                child: Container(
+                  key: ValueKey('lumo-meister-prize-step-$step'),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    gradient: LinearGradient(colors: step == current
+                      ? const [Color(0xFF00BDF4), Color(0xFF0649A1)]
+                      : const [Color(0xFF112F5E), Color(0xFF081831)]),
+                    border: Border.all(
+                      color: step == current
+                        ? const Color(0xFF55EEFF)
+                        : const Color(0x664C8DCE),
+                      width: step == current ? 1.4 : 0.6),
+                    boxShadow: step == current
+                      ? const [BoxShadow(
+                          color: Color(0x9955EFFF), blurRadius: 9)]
+                      : null,
+                  ),
+                  child: Row(children: [
+                    SizedBox(
+                      width: 22,
+                      child: Text(step.toString(),
+                        maxLines: 1, textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: const Color(0xFFFFDF79),
+                          fontSize: 11,
+                          fontWeight: step % 5 == 0
+                            ? FontWeight.w900 : FontWeight.w700,
+                        )),
+                    ),
+                    const Expanded(child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Icon(Icons.star_rounded,
+                        color: Color(0xFFFFD45C), size: 13))),
+                    SizedBox(width: 42, child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(_amount(step),
+                        style: TextStyle(
+                          fontFamily: 'Nunito', fontSize: 12,
+                          fontWeight: step % 5 == 0
+                            ? FontWeight.w900 : FontWeight.w700,
+                          color: step == current || step % 5 == 0
+                            ? const Color(0xFFFFE59E) : Colors.white,
+                        )),
+                    )),
+                  ]),
                 ),
               ),
             ),
-          const Text('Ausflug nur\nEltern-Wunsch',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFFFFE0A5), fontSize: 9,
-              fontWeight: FontWeight.w700)),
         ],
+      ),
+    );
+  }
+
+  static String _amount(int step) {
+    final value = amounts[step];
+    if (value < 1000) return value.toString();
+    return '${value ~/ 1000}.${(value % 1000).toString().padLeft(3, '0')}';
+  }
+}
+
+class _LockInButton extends StatelessWidget {
+  const _LockInButton({
+    required this.enabled, required this.locking, required this.onTap,
+  });
+  final bool enabled;
+  final bool locking;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+    return Semantics(
+      liveRegion: locking,
+      child: AnimatedContainer(
+        key: const ValueKey('lumo-meister-lock-bar'),
+        duration: const Duration(milliseconds: 180),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: enabled || locking
+            ? const [Color(0xFF064EAA), Color(0xFF12275A), Color(0xFF05418C)]
+            : const [Color(0xFF293C60), Color(0xFF162B4C)]),
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(
+            color: locking || enabled
+              ? const Color(0xFFFFCD62) : const Color(0xFF557AA6),
+            width: 1.7),
+          boxShadow: locking
+            ? const [BoxShadow(color: Color(0x88FFD66B), blurRadius: 19)]
+            : const [BoxShadow(color: Color(0x6638CAFF), blurRadius: 12)],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(30),
+            onTap: enabled ? onTap : null,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, vertical: 13),
+              child: Column(children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Icon(locking ? Icons.hourglass_top_rounded
+                      : Icons.check_circle_outline_rounded,
+                      color: const Color(0xFFFFD873)),
+                  const SizedBox(width: 8),
+                  Flexible(child: Text(
+                    locking ? 'Lumo prüft deine Antwort …'
+                        : 'Antwort einloggen',
+                    maxLines: 2, textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: enabled || locking
+                        ? Colors.white : Colors.white60,
+                      fontFamily: 'Nunito', fontSize: 17,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  )),
+                ]),
+                if (locking) ...[
+                  const SizedBox(height: 10),
+                  TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0, end: 1),
+                    duration: Duration(
+                      milliseconds: reduceMotion ? 750 : 1600),
+                    builder: (context, progress, _) =>
+                      LinearProgressIndicator(
+                        value: progress, minHeight: 5,
+                        backgroundColor: const Color(0xFF11295A),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          Color(0xFFFFD76A)),
+                      ),
+                  ),
+                ],
+              ]),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -565,7 +719,7 @@ class _AnswerButton extends StatelessWidget {
   final bool selected;
   final bool revealed;
   final bool correct;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -605,12 +759,14 @@ class _AnswerButton extends StatelessWidget {
       duration: const Duration(milliseconds: 180),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
-        color: bg,
+        gradient: LinearGradient(colors: [
+          bg, Color.lerp(bg, const Color(0xFF1688CB), .28)!,
+        ]),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(
           color: border?.withOpacity(.75) ??
               LumoVisualTokens.cyanBright.withOpacity(.38),
-          width: 1.2,
+          width: selected ? 2 : 1.5,
         ),
         boxShadow: [
           BoxShadow(

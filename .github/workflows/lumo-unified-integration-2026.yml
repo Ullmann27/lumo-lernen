@@ -178,7 +178,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1981-arm64-verified
+          name: lumo-1982-arm64-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-SHA256.txt
@@ -258,14 +258,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-1981-android-tour
+          name: lumo-1982-android-tour
           path: tour/
           retention-days: 30
 
   publish-reading-adventure-prerelease:
-    name: Publish verified 1981 Android test APK to Releases
+    name: Publish verified 1982 Quizshow test APK to Releases
     needs: [verify-and-build, android-tour]
-    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'codex/lumo-learning-lab-2026-10-18'
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-1982-meister-show-2026-10-18'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -274,7 +274,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: lumo-1981-arm64-verified
+          name: lumo-1982-arm64-verified
           path: dist/
       - name: Verify delivered native APK identity without rebuilding
         run: |
@@ -289,22 +289,22 @@ jobs:
           import json
           p = Path('dist/Lumo-Lernen-Neu.apk')
           provenance = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
-          assert provenance['versionCode'] == 1981
-          assert provenance['versionName'] == '0.12.69'
+          assert provenance['versionCode'] == 1982
+          assert provenance['versionName'] == '0.12.70'
           assert provenance['godot']['revision'] == '20652880eda687c67cfa72301dad5a173b1fe6c5'
           assert 'arm64-v8a' in provenance['abis']
           assert provenance['sha256'] == hashlib.sha256(p.read_bytes()).hexdigest()
-          print('PASS verified 1981 ARM64 APK')
+          print('PASS verified 1982 ARM64 APK')
           PY
-          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1981-ARM64.apk
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1982-ARM64.apk
       - name: Publish a mobile-visible prerelease only after Android tour PASS
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          TAG=lumo-v0.12.69-1981-reading-adventure
-          FILE=dist/Lumo-Lernen-Kart-1981-ARM64.apk
+          TAG=lumo-v0.12.70-1982-meister-show
+          FILE=dist/Lumo-Lernen-Kart-1982-ARM64.apk
           test -s "$FILE"
           if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
             echo 'Release tag already exists: refusing to overwrite previously published APK'
@@ -313,8 +313,8 @@ jobs:
           gh release create "$TAG" "$FILE" \
             --repo Ullmann27/lumo-lernen \
             --target "$SOURCE_SHA" \
-            --title 'Lumo 1981 – Leseabenteuer und ruhigeres 4 Gewinnt (Android)' \
-            --notes 'Android-Testversion 0.12.69 (Build 1981). Enthält die neue zwölfseitige Lumo-Buchgeschichte, zwei aufeinander aufbauende Rätsel, vier unabhängige Textverständnisfragen, optionales Volltextlesen und deutlich weniger Sprachunterbrechungen bei 4 Gewinnt. Das etablierte Lumo Kart samt Cinema-Sonnenhafen bleibt unverändert integriert. GitHub Flutter-, Android-Build- und reale Android-Tour-Prüfungen müssen für die Freigabe erfolgreich sein. Bitte auf dem eigenen Fold testen.' \
+            --title 'Lumo 1982 – Wer wird Lumo-Meister? Quizshow (Android)' \
+            --notes 'Android-Testversion 0.12.70 (Build 1982). 20 einzeln dargestellte Stufen, moderner Menüeintritt, Quizmusik aus bestehenden App-Assets und abgebremstes Antwort-Einloggen mit Ergebnisanimation. Basis ist der geprüfte Lumo-1981-Zweig; die Godot-Kart-Integration bleibt erhalten. Nur nach bestandenem Flutter-Test und Android-Tour wird die Version veröffentlicht. Bitte anschließend auf dem Fold testen.' \
             --prerelease
           gh release view "$TAG" --repo Ullmann27/lumo-lernen \
             --json url,isDraft,assets \
