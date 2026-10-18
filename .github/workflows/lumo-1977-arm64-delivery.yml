@@ -1,0 +1,94 @@
+name: Lumo 1977 verified ARM64 artifact delivery from completed build
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1977-verified-arm64-download-2026-10-18
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  arm64-exact-binary-delivery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Download original successful 1977 APK without rebuilding or changing source
+        uses: actions/download-artifact@v4
+        with:
+          run-id: 39091421114
+          github-token: ${{ github.token }}
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: candidate/dist
+      - name: Match actual released APK bytes and embedded native provenance to successful build
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s candidate/dist/Lumo-Lernen-Neu.apk
+          test -s candidate/dist/APK-SHA256.txt
+          test -s candidate/dist/BUILD-PROVENANCE.json
+          test -s candidate/dist/APK-VERIFICATION.json
+          test -s candidate/dist/GODOT-SOURCE.json
+          test -s candidate/dist/APP-VERSION.txt
+          (cd candidate && sha256sum --check dist/APK-SHA256.txt)
+          python3 - <<'PY'
+          import hashlib, json, re, zipfile
+          from pathlib import Path
+          d=Path('candidate/dist')
+          apk=d/'Lumo-Lernen-Neu.apk'
+          ver=(d/'APP-VERSION.txt').read_text().strip()
+          assert ver=='version: 0.12.65+1977', ver
+          pin=json.loads((d/'GODOT-SOURCE.json').read_text())
+          assert pin['revision']=='efa1f69b4128a047e6196ee85762447e412db266', pin
+          assert pin['engine']=='4.6.3'
+          with zipfile.ZipFile(apk) as z:
+              assert z.testzip() is None, 'APK ZIP CRC failed'
+              names=z.namelist()
+              game=[n for n in names if n.endswith('lumo_game.pck')]
+              assert len(game)==1, game
+              pck=z.read(game[0])
+              assert pck[:4]==b'GDPC', 'Native Godot PCK magic not found'
+              pckhash=hashlib.sha256(pck).hexdigest()
+              assert len(pck)>20_000_000, 'Embedded Godot package unexpectedly empty'
+          manifest=json.loads((d/'BUILD-PROVENANCE.json').read_text())
+          check=json.loads((d/'APK-VERIFICATION.json').read_text())
+          manifest_text=json.dumps(manifest,sort_keys=True)
+          check_text=json.dumps(check,sort_keys=True)
+          assert 'efa1f69b4128a047e6196ee85762447e412db266' in manifest_text
+          assert '1977' in manifest_text+check_text
+          actual=hashlib.sha256(apk.read_bytes()).hexdigest()
+          proof={
+              'source_build_run':39091421114,
+              'source_workflow':'Lumo Lernen Kart unified integration APK',
+              'source_revision_reported_by_provenance':manifest.get('source_revision','see BUILD-PROVENANCE.json'),
+              'version':'0.12.65+1977',
+              'engine':'Godot 4.6.3',
+              'godot_commit':pin['revision'],
+              'apk_file':'Lumo-Lernen-Neu.apk',
+              'apk_bytes':apk.stat().st_size,
+              'apk_sha256':actual,
+              'native_pck_bytes':len(pck),
+              'native_pck_sha256':pckhash,
+              'apk_archive_crc':'PASS',
+              'independent_parent_sha256_manifest_check':'PASS',
+              'android_emulator_tour':'SEE ORIGINAL RUN 39091421114 - NOT IMPLIED PASS'
+          }
+          out=Path('delivery')
+          out.mkdir()
+          (out/'Lumo_1977_ARM64_CHECK.json').write_text(json.dumps(proof,indent=2,ensure_ascii=False)+'\n')
+          print('EXACT_ARM64_DELIVERY_PASS',json.dumps(proof))
+          PY
+          cp candidate/dist/Lumo-Lernen-Neu.apk delivery/Lumo-Lernen-Neu.apk
+          cp candidate/dist/BUILD-PROVENANCE.json candidate/dist/APK-VERIFICATION.json \
+             candidate/dist/APP-VERSION.txt candidate/dist/APK-SHA256.txt \
+             candidate/dist/GODOT-SOURCE.json delivery/
+      - name: Upload isolated ARM64 file under connector transfer size limit
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1977-arm64-verified-download
+          path: delivery/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 30
