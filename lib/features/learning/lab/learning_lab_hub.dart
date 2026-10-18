@@ -98,19 +98,66 @@ class _LearningLabHubState extends State<LearningLabHub> {
                 key: const ValueKey('learning-lab-worlds'),
                 padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
                 children: [
-                  const Text('Entdecken, bauen, selbst verstehen',
-                      style: TextStyle(color: LumoVisualTokens.white,
-                          fontSize: 23, fontWeight: FontWeight.w900)),
-                  const SizedBox(height: 8),
-                  const Text(
-                    'Lumo zeigt dir zuerst ein Beispiel. Danach baust du selbst und prüfst, was du ohne Hilfe kannst.',
-                    style: TextStyle(color: LumoVisualTokens.muted,
-                        fontSize: 15, height: 1.4)),
-                  const SizedBox(height: 16),
+                  Container(
+                    padding: const EdgeInsets.all(18),
+                    decoration: BoxDecoration(
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xFF145D8E),
+                          Color(0xFF27366F),
+                          Color(0xFF0B2744),
+                        ],
+                      ),
+                      borderRadius: BorderRadius.circular(24),
+                      border: Border.all(color: const Color(0xFF6BCFF1), width: 1.3),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x3200B6E7),
+                          blurRadius: 24,
+                          offset: Offset(0, 8),
+                        ),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: const [
+                        Text('Entdecken, bauen, selbst verstehen',
+                          style: TextStyle(
+                            color: LumoVisualTokens.white,
+                            fontSize: 23,
+                            height: 1.2,
+                            fontWeight: FontWeight.w900)),
+                        SizedBox(height: 10),
+                        Text(
+                          'Lumo zeigt dir ein Beispiel. Du baust selbst und probierst danach eine neue Aufgabe ohne Hilfe.',
+                          style: TextStyle(
+                            color: Color(0xFFE2F5FF),
+                            fontSize: 16,
+                            height: 1.4)),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 19),
                   for (final topic in topics) ...[
                     Builder(builder: (context) {
                       final record = _records[SkillRecord.makeId(
                           topic.subject, topic.unit)];
+                      final topicIcon = switch (topic.mode) {
+                        LabMode.bridge => Icons.calculate_rounded,
+                        LabMode.word => Icons.menu_book_rounded,
+                        LabMode.english => Icons.translate_rounded,
+                        LabMode.nature => Icons.water_drop_rounded,
+                        LabMode.fraction => Icons.pie_chart_rounded,
+                      };
+                      final topicColor = switch (topic.mode) {
+                        LabMode.bridge => const Color(0xFF41DCFB),
+                        LabMode.word => const Color(0xFFD9A9FF),
+                        LabMode.english => const Color(0xFFFFAFD9),
+                        LabMode.nature => const Color(0xFF8BE3BF),
+                        LabMode.fraction => const Color(0xFFFFD182),
+                      };
                       return Card(
                         color: const Color(0xFF123659),
                         shape: RoundedRectangleBorder(
@@ -125,11 +172,31 @@ class _LearningLabHubState extends State<LearningLabHub> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(topic.title,
-                                    style: const TextStyle(
-                                      color: LumoVisualTokens.white,
-                                      fontSize: 20, fontWeight: FontWeight.w900)),
-                                const SizedBox(height: 7),
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 54,
+                                      height: 54,
+                                      alignment: Alignment.center,
+                                      decoration: BoxDecoration(
+                                        color: topicColor.withOpacity(.16),
+                                        borderRadius: BorderRadius.circular(16),
+                                        border: Border.all(color: topicColor.withOpacity(.7)),
+                                      ),
+                                      child: Icon(topicIcon, size: 29, color: topicColor),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: Text(topic.title,
+                                        style: const TextStyle(
+                                          color: LumoVisualTokens.white,
+                                          fontSize: 20,
+                                          height: 1.2,
+                                          fontWeight: FontWeight.w900)),
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 10),
                                 Text(topic.goal,
                                     style: const TextStyle(
                                       color: LumoVisualTokens.muted,
@@ -147,9 +214,32 @@ class _LearningLabHubState extends State<LearningLabHub> {
                                         fontSize: 13, height: 1.35)),
                                 ],
                                 const SizedBox(height: 10),
-                                const Align(alignment: Alignment.centerRight,
-                                  child: Icon(Icons.arrow_forward_rounded,
-                                    color: LumoVisualTokens.cyanBright)),
+                                Align(
+                                  alignment: Alignment.centerRight,
+                                  child: Container(
+                                    height: 48,
+                                    constraints: const BoxConstraints(minWidth: 112),
+                                    padding: const EdgeInsets.symmetric(horizontal: 15),
+                                    decoration: BoxDecoration(
+                                      color: topicColor.withOpacity(.16),
+                                      border: Border.all(color: topicColor.withOpacity(.55)),
+                                      borderRadius: BorderRadius.circular(14),
+                                    ),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Text('Los gehts',
+                                          style: TextStyle(
+                                            color: LumoVisualTokens.white,
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w900)),
+                                        const SizedBox(width: 10),
+                                        Icon(Icons.arrow_forward_rounded,
+                                          color: topicColor),
+                                      ],
+                                    ),
+                                  ),
+                                ),
                               ],
                             ),
                           ),
