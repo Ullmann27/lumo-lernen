@@ -487,10 +487,10 @@ def focused_race_hud_visible(text: str) -> bool:
     'RUNDE 1/2 PLATZ6/6 Okm/h x0'. A pause/countdown screen must still be
     rejected by the tour's existing separate state and overlay gates.
     """
-    normalized = folded(text).replace('\\n', ' ').upper()
-    lap = re.search(r'\\bRUNDE\\s*([1-9]\\d*)\\s*/\\s*([1-9]\\d*)', normalized)
-    rank = re.search(r'\\bPLATZ\\s*([1-9]\\d*)\\s*/\\s*([1-9]\\d*)', normalized)
-    speed = re.search(r'\\b[0-9O]{1,3}\\s*KM\\s*/\\s*H\\b', normalized)
+    normalized = folded(text).replace('\n', ' ').upper()
+    lap = re.search(r'\bRUNDE\s*([1-9]\d*)\s*/\s*([1-9]\d*)', normalized)
+    rank = re.search(r'\bPLATZ\s*([1-9]\d*)\s*/\s*([1-9]\d*)', normalized)
+    speed = re.search(r'\b[0-9O]{1,3}\s*KM\s*/\s*H\b', normalized)
     return bool(lap and rank and speed
                 and int(lap.group(1)) <= int(lap.group(2))
                 and int(rank.group(1)) <= int(rank.group(2)))
