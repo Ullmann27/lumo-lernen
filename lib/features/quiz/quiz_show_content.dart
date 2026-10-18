@@ -332,7 +332,7 @@ class _QuizCard extends StatelessWidget {
             const SizedBox(height: 8),
             const LinearProgressIndicator(minHeight: 5,
               backgroundColor: Color(0xFF12305B), color: Color(0xFFFFD873)),
-            const Semantics(liveRegion: true,
+            Semantics(liveRegion: true,
               child: Text('Antwort wird eingeloggt …', textAlign: TextAlign.center,
                 style: TextStyle(color: Color(0xFFFFD873)))),
           ],
