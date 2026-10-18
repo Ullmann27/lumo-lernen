@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
@@ -10,15 +9,11 @@ import 'package:lumo_lernen/features/games/mini_games/number_house_game.dart';
 import 'package:lumo_lernen/features/games/mini_games/stars_path_game.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dice_race_runtime_test.dart' show boundary, capture;
+import '../helpers/lumo_capture.dart' show loadLumoCaptureFonts;
 
 void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
-  setUpAll(() async {
-    await (FontLoader('Nunito')
-          ..addFont(rootBundle.load('assets/fonts/Nunito-Regular.ttf'))
-          ..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf')))
-        .load();
-  });
+  setUpAll(loadLumoCaptureFonts);
   for (final size in const [Size(360, 640), Size(967, 805), Size(926, 362)]) {
     for (final game in ['boxes', 'letters', 'house', 'stars']) {
       testWidgets('$game on $size with large text remains playable',
@@ -61,6 +56,8 @@ void main() {
         await tester.ensureVisible(control);
         await tester.pump();
         expect(control.hitTestable(), findsOneWidget);
+        await capture(tester,
+            '$game-answers-${size.width.toInt()}x${size.height.toInt()}');
         await tester.tap(control);
         await tester.pump();
         expect(tester.takeException(), isNull);

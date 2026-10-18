@@ -29,6 +29,8 @@ void main() {
   Completer<void>? playbackEntered;
   Completer<void>? pausingPlayback;
   Completer<void>? pauseEntered;
+  Completer<void>? stoppingPlayback;
+  Completer<void>? stopEntered;
 
   // Der Lumo-Player ist ein Singleton: Plattform-Mocks einmal registrieren,
   // damit sein Ereignisstrom über alle Tests offen bleibt.
@@ -52,6 +54,12 @@ void main() {
       if (call.method == 'pause' && pausingPlayback != null) {
         if (!pauseEntered!.isCompleted) pauseEntered!.complete();
         await pausingPlayback!.future;
+      }
+      if (call.method == 'stop' && stoppingPlayback != null) {
+        final stopping = stoppingPlayback!;
+        stoppingPlayback = null;
+        stopEntered!.complete();
+        await stopping.future;
       }
       if (call.method == 'setSourceUrl') {
         playerEvents?.success({'event': 'audio.onPrepared', 'value': true});
@@ -483,6 +491,33 @@ void main() {
     expect(playerCalls.length, callsBefore);
   });
 
+  test('a new source waits for an older native stop acknowledgement', () async {
+    final voice = LumoVoice.instance;
+    await voice.speak('Super!');
+    final startsBefore = voice.startedPlaybackCount;
+    final stopping = stoppingPlayback = Completer<void>();
+    stopEntered = Completer<void>();
+    final stopped = voice.stop();
+    await stopEntered!.future;
+
+    final next = voice.test();
+    // Drain the method-channel work while the previous stop is held open.
+    // No newer native source may start and then be reset by its late reply.
+    await Future<void>.delayed(const Duration(milliseconds: 30));
+    final startsWhileStopping = voice.startedPlaybackCount;
+    stopping.complete();
+    await stopped;
+    await next;
+    stopEntered = null;
+
+    expect(startsWhileStopping, startsBefore,
+        reason: 'An unacknowledged stop still owns the native player.');
+    expect(voice.startedPlaybackCount, startsBefore + 1);
+    expect(voice.status.value, VoiceStatus.speaking);
+    expect(voice.lastStartedAudioIdentity, 'Originalaufnahme c3034465f7dd.m4a');
+    expect(voice.clipMouth.value, isNotNull);
+  });
+
   test('late native pause cannot pause or relabel a newly selected source',
       () async {
     final voice = LumoVoice.instance;
@@ -620,17 +655,21 @@ void main() {
 
   testWidgets('Seite verlassen beendet Lumos Sprechen', (tester) async {
     final key = GlobalKey<NavigatorState>();
-    await tester.pumpWidget(MaterialApp(
-      navigatorKey: key,
-      navigatorObservers: [LumoVoiceRouteObserver()],
-      home: const SizedBox(),
-    ));
-    key.currentState!.push(MaterialPageRoute<void>(
-        builder: (_) => const Scaffold(body: Text('Aufgabe'))));
+    // The observer stops native audio even for the initial route. Build and
+    // navigate on the same real event loop as playback, not the fake clock.
+    await tester.runAsync(() => tester.pumpWidget(MaterialApp(
+          navigatorKey: key,
+          navigatorObservers: [LumoVoiceRouteObserver()],
+          home: const SizedBox(),
+        )));
+    await tester.runAsync(() async {
+      key.currentState!.push(MaterialPageRoute<void>(
+          builder: (_) => const Scaffold(body: Text('Aufgabe'))));
+    });
     await tester.pumpAndSettle();
     await tester.runAsync(() => LumoVoice.instance.speak('Super!'));
     expect(LumoVoice.instance.status.value, VoiceStatus.speaking);
-    key.currentState!.pop();
+    await tester.runAsync(() async => key.currentState!.pop());
     // Kein pumpAndSettle: der echte Clip-Takt läuft außerhalb der Testuhr.
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 400));
