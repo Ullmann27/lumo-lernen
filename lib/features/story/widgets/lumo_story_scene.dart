@@ -8,10 +8,12 @@ class LumoStoryScene extends StatelessWidget {
   const LumoStoryScene({
     super.key,
     required this.page,
+    this.variant = 0,
     this.height = 226,
   });
 
   final int page;
+  final int variant;
   final double height;
 
   @override
@@ -26,7 +28,7 @@ class LumoStoryScene extends StatelessWidget {
           width: double.infinity,
           height: height,
           child: CustomPaint(
-            painter: _ScenePainter(scene),
+            painter: _ScenePainter(scene, variant),
             size: Size.infinite,
           ),
         ),
@@ -51,8 +53,9 @@ const _descriptions = <String>[
 ];
 
 class _ScenePainter extends CustomPainter {
-  _ScenePainter(this.scene);
+  _ScenePainter(this.scene, this.variant);
   final int scene;
+  final int variant;
   Canvas get _c => _canvas!;
   Canvas? _canvas;
 
@@ -234,6 +237,71 @@ class _ScenePainter extends CustomPainter {
     _poly(pts, color, end: const Color(0xFFF7A647));
   }
 
+  void _recoveredObject() {
+    // Final discovery must show the correct type of artifact for the book
+    // the child actually selected, not a generic book on every storyline.
+    final center = const Offset(194, 151);
+    _glow(center, 64, _gold, opacity: .5);
+    switch (variant % 12) {
+      case 0: // star map
+      case 5: // treasure drawing
+        _poly(const [Offset(158, 116), Offset(220, 112),
+          Offset(232, 179), Offset(150, 183)],
+          const Color(0xFFFFEDC6), end: const Color(0xFFB69364));
+        _star(const Offset(194, 150), 15, const Color(0xFFE8AB52));
+        break;
+      case 1: // children's keepsake book
+      case 8: // herbarium
+      case 9: // forest field guide
+      case 10: // color atlas
+        _book(168, 119, 53, 67,
+          cover: variant == 8 ? const Color(0xFF3C9675)
+              : variant == 10 ? const Color(0xFFC3578A)
+              : const Color(0xFF754DA5));
+        break;
+      case 2: // moon lantern
+        _line(const Offset(194, 112), const Offset(194, 124), _gold, 6);
+        _orb(194, 154, 34, const Color(0xFFE6DCA5));
+        _rect(const Rect.fromLTWH(177, 175, 33, 10), _gold, radius: 5);
+        break;
+      case 3: // cloud picture frame
+        _rect(const Rect.fromLTWH(158, 117, 72, 67),
+          const Color(0xFFC89D69), end: const Color(0xFF6C4A52), radius: 3);
+        _rect(const Rect.fromLTWH(166, 125, 56, 51),
+          const Color(0xFF4788C2), end: const Color(0xFFB6DCE7), radius: 1);
+        for (int i = 0; i < 3; i++) {
+          _ellipse(Offset(180 + 13.0 * i, 147), 14, 9,
+            const Color(0xFFDFEFF8));
+        }
+        break;
+      case 4: // musical key
+      case 6: // compass
+        _orb(194, 147, 27, const Color(0xFFCCA964));
+        if (variant == 6) {
+          _star(center, 19, _gold);
+        } else {
+          _line(const Offset(198, 116), const Offset(198, 162), _gold, 6);
+          _ellipse(const Offset(185, 166), 14, 10, _gold);
+        }
+        break;
+      case 7: // peace letter
+        _poly(const [Offset(154, 125), Offset(226, 125),
+          Offset(226, 182), Offset(154, 182)],
+          const Color(0xFFFFEBD1), end: const Color(0xFFC5B4AC));
+        _poly(const [Offset(154, 126), Offset(190, 157), Offset(226, 126)],
+          const Color(0xFFFBEBD7), end: const Color(0xFFCFBBA7));
+        _star(center, 10, const Color(0xFFCA6278));
+        break;
+      case 11: // merit badge
+        _orb(194, 149, 26, _gold);
+        _star(center, 20, const Color(0xFFEFBD67));
+        _poly(const [Offset(179, 169), Offset(187, 196),
+          Offset(196, 178), Offset(205, 196), Offset(212, 168)],
+          const Color(0xFF88B6E8), end: const Color(0xFF31559B));
+        break;
+    }
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     _canvas = canvas;
@@ -324,7 +392,7 @@ class _ScenePainter extends CustomPainter {
           Offset(291, 211), Offset(102, 211)],
           const Color(0xFFA8825C), end: const Color(0xFF664A5C));
         _glow(const Offset(193, 150), 85, _gold);
-        _book(168, 126, 51, 61, cover: const Color(0xFF754DA5));
+        _recoveredObject();
         break;
       case 10:
         _garden();
@@ -353,5 +421,5 @@ class _ScenePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _ScenePainter oldDelegate) =>
-      oldDelegate.scene != scene;
+      oldDelegate.scene != scene || oldDelegate.variant != variant;
 }
