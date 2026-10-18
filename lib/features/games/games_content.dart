@@ -631,76 +631,109 @@ class _LumoMeisterPortal extends StatelessWidget {
             onTap: onTap,
             borderRadius: BorderRadius.circular(28),
             child: Ink(
-              padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(28),
                 gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFF30135F), Color(0xFF071D46)],
+                  begin: Alignment.topLeft, end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF063C81), Color(0xFF09193D), Color(0xFF261349),
+                  ],
                 ),
-                border: Border.all(
-                  color: const Color(0xFFFFC94A),
-                  width: 1.8,
-                ),
+                border: Border.all(color: const Color(0xFFFFD16D), width: 2),
                 boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x5537D2FD),
-                    blurRadius: 24,
-                    spreadRadius: 1,
-                  ),
+                  BoxShadow(color: Color(0x8842CDFF), blurRadius: 24),
+                  BoxShadow(color: Color(0x44FFD16D), blurRadius: 28),
                 ],
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  LumoCharacter(
-                    pose: LumoDesignFoxPose.trophyWink,
-                    size: 96,
-                    reduceMotion: reduceMotion,
-                    idleHops: !reduceMotion,
-                  ),
-                  const SizedBox(width: 12),
-                  const Expanded(
-                    child: Column(
+                  const Row(children: [
+                    Icon(Icons.stars_rounded,
+                      color: Color(0xFFFFD873), size: 22),
+                    SizedBox(width: 6),
+                    Expanded(child: Text('LUMO QUIZSHOW · LIVE',
+                      style: TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                        color: Color(0xFFFFE2A2), letterSpacing: 1.1,
+                        fontSize: 12,
+                      ))),
+                    Icon(Icons.mic_rounded,
+                      color: Color(0xFF69E8FF), size: 20),
+                  ]),
+                  const SizedBox(height: 10),
+                  Row(children: [
+                    Image.asset(
+                      'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+                      width: 92, height: 112,
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
+                      semanticLabel: 'Lumo präsentiert die Quizshow',
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Wer wird Lumo-Meister?',
+                        Text('Wer wird Lumo-Meister?',
                           style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 22,
+                            fontFamily: 'Nunito', fontSize: 21,
                             fontWeight: FontWeight.w900,
                             color: Colors.white,
-                          ),
-                        ),
+                          )),
                         SizedBox(height: 4),
-                        Text(
-                          '20 Fragen · 3 Joker · bis 5.000 Sterne',
+                        Text('20 Fragen · 3 Joker · bis 5.000 Sterne',
                           style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 14,
+                            fontFamily: 'Nunito', fontSize: 13,
                             fontWeight: FontWeight.w800,
                             color: Color(0xFFFFD873),
-                          ),
-                        ),
+                          )),
                         SizedBox(height: 4),
-                        Text(
-                          'Frage 20 ist deine Meister-Finalfrage.',
+                        Text('Deine große Bühne mit Lumo als Quizleiter.',
                           style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 13,
+                            fontFamily: 'Nunito', fontSize: 12,
                             fontWeight: FontWeight.w700,
                             color: Color(0xFFD7E9FF),
-                          ),
-                        ),
+                          )),
+                      ],
+                    )),
+                  ]),
+                  const SizedBox(height: 10),
+                  Container(
+                    key: const ValueKey('games-lumo-meister-play'),
+                    constraints: const BoxConstraints(minHeight: 52),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22),
+                      gradient: const LinearGradient(colors: [
+                        Color(0xFF0666C4), Color(0xFF00B9EF),
+                      ]),
+                      border: Border.all(
+                        color: const Color(0xFFFFD873), width: 1.5),
+                      boxShadow: const [
+                        BoxShadow(color: Color(0x6639DDFF), blurRadius: 12),
                       ],
                     ),
-                  ),
-                  SizedBox(width: 8),
-                  Icon(
-                    Icons.play_circle_fill_rounded,
-                    color: Color(0xFFFFC94A),
-                    size: 42,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 10),
+                      child: Row(
+                        children: [
+                          Icon(Icons.play_arrow_rounded,
+                            color: Colors.white, size: 26),
+                          SizedBox(width: 5),
+                          Expanded(child: Text('QUIZSHOW STARTEN',
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            style: TextStyle(
+                              fontFamily: 'Nunito', fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white, letterSpacing: .4,
+                            ))),
+                          SizedBox(width: 5),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFFFFE2A2), size: 16),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
