@@ -27,6 +27,12 @@ jobs:
           flutter-version: '3.44.9'
           channel: stable
           cache: true
+      - name: Install real Linux color emoji glyphs for ABC (Android has its own)
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
       - name: Restore exact Flutter dependencies
         run: flutter pub get --enforce-lockfile
       - name: Verify screenshot renderer and quality gate code
