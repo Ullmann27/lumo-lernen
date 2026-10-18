@@ -63,17 +63,36 @@ void main() {
               ? 'Fragen zum ganzen Buch'
               : 'Erzähl mir die Geschichte!'
           : 'Weiterlesen';
-      await tester.runAsync(() => tester.tap(find.text(label)));
+      final next = find.text(label);
+      expect(next, findsOneWidget,
+          reason: 'Story must expose its next-reading action on page ${index + 1}');
+      await tester.ensureVisible(next);
+      await tester.pump();
+      await tester.tap(next);
       await _routeFrames(tester);
     }
     if (story.bookQuestions.isNotEmpty) {
-      for (final question in story.bookQuestions) {
+      expect(find.byKey(const ValueKey('lumo-book-reading-quiz')),
+          findsOneWidget,
+          reason: 'The book must open its independent comprehension check');
+      for (var questionIndex = 0;
+          questionIndex < story.bookQuestions.length;
+          questionIndex++) {
+        final question = story.bookQuestions[questionIndex];
         await _routeFrames(tester);
-        final answer = find.text(question.correctAnswer);
+        expect(find.byKey(const ValueKey('lumo-book-question-$questionIndex')),
+            findsOneWidget);
+        final correctIndex = question.options.indexOf(question.correctAnswer);
+        expect(correctIndex, greaterThanOrEqualTo(0));
+        final answer = find.byKey(ValueKey('book-answer-$correctIndex'));
         await tester.ensureVisible(answer);
+        await tester.pump();
         await tester.tap(answer);
         await _routeFrames(tester);
-        await tester.tap(find.byKey(const ValueKey('lumo-book-quiz-next')));
+        final next = find.byKey(const ValueKey('lumo-book-quiz-next'));
+        await tester.ensureVisible(next);
+        await tester.pump();
+        await tester.tap(next);
         await _routeFrames(tester);
       }
     }
