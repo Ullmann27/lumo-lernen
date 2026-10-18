@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_sound.dart';
+import 'quiz_show_music.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_show.dart';
@@ -33,6 +34,9 @@ class _QuizShowContentState extends State<QuizShowContent> {
   static const _engine = QuizShowEngine();
   static const _bank = QuizQuestionBank();
   late QuizShowState _state;
+  late QuizShowMusic _music;
+  Timer? _lockTimer;
+  bool _locking = false;
 
   @override
   void initState() {
@@ -40,7 +44,16 @@ class _QuizShowContentState extends State<QuizShowContent> {
     if (widget.appState.state.settings.soundEnabled) {
       unawaited(LumoSound.instance.init());
     }
+    _music = QuizShowMusic(enabled: widget.appState.state.settings.soundEnabled);
     _startNewGame();
+    unawaited(_music.start());
+  }
+
+  @override
+  void dispose() {
+    _lockTimer?.cancel();
+    unawaited(_music.dispose());
+    super.dispose();
   }
 
   void _playEffect(SoundEffect effect) {
@@ -60,6 +73,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _select(int index) {
+    if (_locking) return;
     final next = _engine.selectAnswer(_state, index);
     if (next.selectedOption != _state.selectedOption) {
       _playEffect(SoundEffect.click);
@@ -68,6 +82,21 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _reveal() {
+    if (_locking || _state.revealed || _state.gameOver ||
+        _state.selectedOption == null) return;
+    setState(() => _locking = true);
+    _playEffect(SoundEffect.click);
+    unawaited(_music.pauseForLockIn());
+    _lockTimer?.cancel();
+    final reduced = MediaQuery.disableAnimationsOf(context);
+    _lockTimer = Timer(Duration(milliseconds: reduced ? 750 : 1600), () {
+      if (!mounted || !_locking) return;
+      setState(() => _locking = false);
+      _resolveAnswer();
+    });
+  }
+
+  void _resolveAnswer() {
     final before = _state;
     final selected = before.selectedOption;
     final correct = selected != null &&
@@ -91,14 +120,18 @@ class _QuizShowContentState extends State<QuizShowContent> {
     } else if (_state.won || _state.securedStars > before.securedStars) {
       _playEffect(SoundEffect.win);
     }
+    if (_state.gameOver) unawaited(_music.stop());
   }
 
   void _next() {
+    if (_locking) return;
+    unawaited(_music.resume());
     _playEffect(SoundEffect.click);
     setState(() => _state = _engine.nextQuestion(_state));
   }
 
   void _joker(QuizJoker joker) {
+    if (_locking) return;
     final next = _engine.useJoker(_state, joker);
     if (next.usedJokers.length > _state.usedJokers.length) {
       _playEffect(SoundEffect.click);
@@ -107,8 +140,11 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _restart() {
+    _lockTimer?.cancel();
+    _locking = false;
     _playEffect(SoundEffect.click);
     setState(_startNewGame);
+    unawaited(_music.start());
   }
 
   @override
@@ -140,6 +176,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
                 state: _state, question: q,
                 onSelect: _select, onReveal: _reveal, onNext: _next,
                 onRestart: _restart, onJoker: _joker,
+                 locking: _locking,
               );
               return SingleChildScrollView(
                 padding: EdgeInsets.all(constraints.maxWidth < 400 ? 10 : 18),
@@ -167,8 +204,10 @@ class _QuizCard extends StatelessWidget {
     required this.onNext,
     required this.onRestart,
     required this.onJoker,
+    required this.locking,
   });
 
+  final bool locking;
   final QuizShowState state;
   final QuizQuestion question;
   final ValueChanged<int> onSelect;
@@ -275,7 +314,7 @@ class _QuizCard extends StatelessWidget {
                         hidden: state.fiftyFiftyHiddenOptions.contains(i),
                         selected: selected == i, revealed: answered,
                         correct: question.correctIndex == i,
-                        onTap: () => onSelect(i),
+                        onTap: locking ? null : () => onSelect(i),
                       ),
                     ),
                 ],
@@ -290,10 +329,10 @@ class _QuizCard extends StatelessWidget {
               label: Text(state.won ? 'Nochmal Lumo-Meister werden' : 'Neue Quizrunde starten'),
             )
           else if (!answered)
-            FilledButton.icon(
-              onPressed: selected == null ? null : onReveal,
-              icon: const Icon(Icons.check_rounded),
-              label: const Text('Antwort einloggen'),
+            _LockInButton(
+              enabled: selected != null && !locking,
+              locking: locking,
+              onTap: onReveal,
             )
           else
             FilledButton.icon(
