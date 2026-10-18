@@ -407,9 +407,20 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                                   ),
                                 );
                               },
-                              child: KeyedSubtree(
-                                key: ValueKey('lumo-story-page-flip-${page.pageNum}'),
-                                child: _buildPage(page),
+                              child: GestureDetector(
+                                behavior: HitTestBehavior.translucent,
+                                onHorizontalDragEnd: (details) {
+                                  // A swipe must NEVER bypass a reading clue.
+                                  if ((details.primaryVelocity ?? 0) < -480 &&
+                                      (page.exercise == null || _exerciseDone) &&
+                                      !_finishing) {
+                                    _nextPage();
+                                  }
+                                },
+                                child: KeyedSubtree(
+                                  key: ValueKey('lumo-story-page-flip-${page.pageNum}'),
+                                  child: _buildPage(page),
+                                ),
                               ),
                             ),
                 ),
