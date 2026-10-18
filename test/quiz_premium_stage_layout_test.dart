@@ -32,6 +32,8 @@ void main() {
       expect(mascot, findsOneWidget);
       expect(prize, findsOneWidget);
       expect(find.byKey(const ValueKey('lumo-meister-fox')), findsOneWidget);
+      expect(find.byKey(const ValueKey('lumo-meister-prize-step-20')), findsOneWidget);
+      expect(find.byKey(const ValueKey('lumo-meister-prize-step-1')), findsOneWidget);
       expect(find.text('50:50'), findsOneWidget);
       expect(find.text('Publikum'), findsOneWidget);
       expect(find.text('Lumo-Tipp'), findsOneWidget);
@@ -64,7 +66,7 @@ void main() {
     ));
     await tester.pump(const Duration(milliseconds: 260));
 
-    final answer = find.textContaining(RegExp(r'^A  '));
+    final answer = find.byKey(const ValueKey('lumo-meister-answer-0'));
     expect(answer, findsOneWidget);
     await tester.ensureVisible(answer);
     await tester.pump();
