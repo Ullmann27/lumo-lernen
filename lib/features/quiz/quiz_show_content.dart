@@ -275,16 +275,28 @@ class _QuizCard extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 18),
-          Text(
-            question.prompt,
-            textAlign: TextAlign.center,
-            style: LumoTextStyles.heading1.copyWith(
-              fontSize: finale ? 30 : 28,
-              color: Colors.white,
-              fontWeight: FontWeight.w900,
-              shadows: const [
-                Shadow(color: Color(0xAA000000), blurRadius: 10),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 22),
+            decoration: BoxDecoration(
+              gradient: const LinearGradient(colors: [
+                Color(0xFF061935), Color(0xFF103A70), Color(0xFF061A39),
+              ]),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: const Color(0xFFFFD873), width: 1.5),
+              boxShadow: const [
+                BoxShadow(color: Color(0x5545C7FC), blurRadius: 20),
               ],
+            ),
+            child: Text(
+              question.prompt,
+              textAlign: TextAlign.center,
+              style: LumoTextStyles.heading1.copyWith(
+                fontSize: finale ? 30 : 28, color: Colors.white,
+                fontWeight: FontWeight.w900,
+                shadows: const [
+                  Shadow(color: Color(0xAA000000), blurRadius: 10),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 18),
@@ -534,7 +546,7 @@ class _QuizPrizeRail extends StatelessWidget {
               child: Padding(
                 padding: const EdgeInsets.symmetric(vertical: 1),
                 child: Container(
-                  key: ValueKey('lumo-meister-prize-step-$' + 'step'),
+                  key: ValueKey('lumo-meister-prize-step-$step'),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
                     gradient: LinearGradient(colors: step == current
@@ -713,7 +725,7 @@ class _AnswerButton extends StatelessWidget {
   final bool selected;
   final bool revealed;
   final bool correct;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -753,12 +765,14 @@ class _AnswerButton extends StatelessWidget {
       duration: const Duration(milliseconds: 180),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
       decoration: BoxDecoration(
-        color: bg,
+        gradient: LinearGradient(colors: [
+          bg, Color.lerp(bg, const Color(0xFF1688CB), .28)!,
+        ]),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         border: Border.all(
           color: border?.withOpacity(.75) ??
               LumoVisualTokens.cyanBright.withOpacity(.38),
-          width: 1.2,
+          width: selected ? 2 : 1.5,
         ),
         boxShadow: [
           BoxShadow(
