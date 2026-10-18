@@ -19,6 +19,8 @@ Future<void> frames(WidgetTester tester) async {
 Future<void> tap(WidgetTester tester, String key) async {
   final finder = find.byKey(ValueKey(key));
   await tester.ensureVisible(finder);
+  // Commit scroll geometry before touch on the 320dp and Fold landscape.
+  await tester.pump();
   await tester.tap(finder);
   await frames(tester);
 }
@@ -126,6 +128,7 @@ void main() {
       expect(tester.takeException(), isNull);
       final check = find.byKey(const ValueKey('lab-check-model'));
       await tester.ensureVisible(check);
+      await tester.pump();
       expect(tester.getSize(check).height, greaterThanOrEqualTo(48));
       expect(tester.takeException(), isNull);
     });
