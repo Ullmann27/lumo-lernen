@@ -48,6 +48,7 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     GROUNDED_GATE_REVISION,
     '6518a13fb8eb30c81c8a2115d14791cbe7ddd24a',
     'efa1f69b4128a047e6196ee85762447e412db266',
+    '20652880eda687c67cfa72301dad5a173b1fe6c5',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
