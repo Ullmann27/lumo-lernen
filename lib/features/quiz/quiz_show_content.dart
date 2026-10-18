@@ -33,6 +33,15 @@ class _QuizShowContentState extends State<QuizShowContent> {
   static const _engine = QuizShowEngine();
   static const _bank = QuizQuestionBank();
   late QuizShowState _state;
+  bool _locking = false;
+  Timer? _lockTimer;
+
+  @override
+  void dispose() {
+    _lockTimer?.cancel();
+    super.dispose();
+  }
+
 
   @override
   void initState() {
@@ -60,6 +69,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _select(int index) {
+    if (_locking) return;
     final next = _engine.selectAnswer(_state, index);
     if (next.selectedOption != _state.selectedOption) {
       _playEffect(SoundEffect.click);
@@ -68,6 +78,18 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _reveal() {
+    if (_locking || _state.selectedOption == null || _state.revealed) return;
+    setState(() => _locking = true);
+    _playEffect(SoundEffect.click);
+    _lockTimer?.cancel();
+    _lockTimer = Timer(const Duration(milliseconds: 1500), () {
+      if (!mounted) return;
+      setState(() => _locking = false);
+      _finishReveal();
+    });
+  }
+
+  void _finishReveal() {
     final before = _state;
     final selected = before.selectedOption;
     final correct = selected != null &&
@@ -99,6 +121,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _joker(QuizJoker joker) {
+    if (_locking) return;
     final next = _engine.useJoker(_state, joker);
     if (next.usedJokers.length > _state.usedJokers.length) {
       _playEffect(SoundEffect.click);
@@ -107,6 +130,8 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _restart() {
+    _lockTimer?.cancel();
+    _locking = false;
     _playEffect(SoundEffect.click);
     setState(_startNewGame);
   }
@@ -137,7 +162,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final card = _QuizCard(
-                state: _state, question: q,
+                state: _state, question: q, locking: _locking,
                 onSelect: _select, onReveal: _reveal, onNext: _next,
                 onRestart: _restart, onJoker: _joker,
               );
@@ -162,6 +187,7 @@ class _QuizCard extends StatelessWidget {
   const _QuizCard({
     required this.state,
     required this.question,
+    required this.locking,
     required this.onSelect,
     required this.onReveal,
     required this.onNext,
@@ -171,6 +197,7 @@ class _QuizCard extends StatelessWidget {
 
   final QuizShowState state;
   final QuizQuestion question;
+  final bool locking;
   final ValueChanged<int> onSelect;
   final VoidCallback onReveal;
   final VoidCallback onNext;
@@ -217,7 +244,7 @@ class _QuizCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          _QuizStage(state: state, onJoker: onJoker),
+          _QuizStage(state: state, onJoker: onJoker, locking: locking),
           const SizedBox(height: 10),
           Row(children: [
             _Pill('Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
@@ -275,7 +302,7 @@ class _QuizCard extends StatelessWidget {
                         hidden: state.fiftyFiftyHiddenOptions.contains(i),
                         selected: selected == i, revealed: answered,
                         correct: question.correctIndex == i,
-                        onTap: () => onSelect(i),
+                        onTap: locking ? null : () => onSelect(i),
                       ),
                     ),
                 ],
@@ -291,9 +318,9 @@ class _QuizCard extends StatelessWidget {
             )
           else if (!answered)
             FilledButton.icon(
-              onPressed: selected == null ? null : onReveal,
+              onPressed: selected == null || locking ? null : onReveal,
               icon: const Icon(Icons.check_rounded),
-              label: const Text('Antwort einloggen'),
+              label: Text(locking ? 'Spannung … Lumo prüft!' : 'Antwort einloggen'),
             )
           else
             FilledButton.icon(
@@ -301,6 +328,14 @@ class _QuizCard extends StatelessWidget {
               icon: const Icon(Icons.arrow_forward_rounded),
               label: const Text('Nächste Frage'),
             ),
+          if (locking) ...[
+            const SizedBox(height: 8),
+            const LinearProgressIndicator(minHeight: 5,
+              backgroundColor: Color(0xFF12305B), color: Color(0xFFFFD873)),
+            Semantics(liveRegion: true,
+              child: Text('Antwort wird eingeloggt …', textAlign: TextAlign.center,
+                style: TextStyle(color: Color(0xFFFFD873)))),
+          ],
           if (answered) ...[
             const SizedBox(height: 14),
             _ResultPanel(
@@ -321,7 +356,8 @@ class _QuizCard extends StatelessWidget {
 /// Three functional jokers, a permanently mounted Lumo stage and the
 /// real 50/200/800/5000-star milestones. Each area owns its hitbox.
 class _QuizStage extends StatelessWidget {
-  const _QuizStage({required this.state, required this.onJoker});
+  const _QuizStage({required this.state, required this.onJoker, required this.locking});
+  final bool locking;
   final QuizShowState state;
   final ValueChanged<QuizJoker> onJoker;
 
@@ -331,7 +367,7 @@ class _QuizStage extends StatelessWidget {
       final compact = c.maxWidth < 400;
       final tablet = c.maxWidth >= 700;
       final leftWidth = tablet ? 100.0 : (compact ? 62.0 : 78.0);
-      final rightWidth = tablet ? 158.0 : (compact ? 90.0 : 122.0);
+      final rightWidth = tablet ? 170.0 : (compact ? 100.0 : 136.0);
       final gap = tablet ? 18.0 : (compact ? 6.0 : 12.0);
       // On the unfolded Fold and tablet, the mascot is the visual hero,
       // not a miniature floating inside an oversized empty stage.
@@ -347,7 +383,7 @@ class _QuizStage extends StatelessWidget {
         // The stage must expand with accessibility font scaling: the
         // three joker buttons and prize ladder otherwise overflow by 47px
         // at 1.5x on Fold / phone widths. The outer page already scrolls.
-        height: (compact ? 250.0 : (tablet ? 420.0 : 296.0)) *
+        height: (compact ? 365.0 : (tablet ? 490.0 : 415.0)) *
             math.max(1.0, MediaQuery.textScalerOf(context).scale(1)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -463,63 +499,60 @@ class _QuizStage extends StatelessWidget {
   );
 }
 
+/// All twenty distinct rungs are drawn live, never baked into a static PNG.
+/// This keeps the active animation, accessibility and prize amounts correct.
 class _QuizPrizeRail extends StatelessWidget {
   const _QuizPrizeRail({required this.state});
   final QuizShowState state;
+  static const rewards = <int>[
+    10,20,30,40,50,80,90,100,150,200,
+    400,450,500,600,800,2000,2500,3000,4000,5000,
+  ];
   @override
   Widget build(BuildContext context) {
-    const milestones = <(int, int)>[(20, 5000), (15, 800), (10, 200), (5, 50)];
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+      key: const ValueKey('lumo-meister-prize-ladder-20'),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 6),
       decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF15356D), Color(0xFF071735)],
-        ),
+        gradient: const LinearGradient(begin: Alignment.topCenter,
+          end: Alignment.bottomCenter, colors: [Color(0xFF15356D),Color(0xFF071735)]),
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFFFC94A), width: 1.5),
+        border: Border.all(color: const Color(0xFFFFC94A),width: 1.7),
+        boxShadow: const [BoxShadow(color: Color(0x55FFC94A), blurRadius: 12)],
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          const FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text('★ 5.000', style: TextStyle(
-              color: Color(0xFFFFD873), fontSize: 18,
-              fontWeight: FontWeight.w900)),
-          ),
-          const Text('APP-STERNE', maxLines: 1,
-            style: TextStyle(color: Colors.white70, fontSize: 8)),
-          const Divider(color: Color(0x77FFD873), height: 12),
-          for (final step in milestones)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                color: state.displayQuestionNumber == step.$1
-                    ? const Color(0xFFFFC94A)
-                    : state.securedStars >= step.$2
-                        ? const Color(0xFF146B55) : Colors.transparent,
-              ),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  step.$1.toString() + ' · ★ ' + step.$2.toString(),
-                  maxLines: 1,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900,
-                    color: state.displayQuestionNumber == step.$1
-                      ? const Color(0xFF1D2140) : Colors.white),
-                ),
-              ),
+      child: Column(children: [
+        for (var level = 20; level >= 1; level--)
+          Expanded(child: AnimatedContainer(
+            key: ValueKey('lumo-meister-step-$level'),
+            duration: const Duration(milliseconds: 420),
+            margin: const EdgeInsets.symmetric(vertical: 1),
+            padding: const EdgeInsets.symmetric(horizontal: 3),
+            decoration: BoxDecoration(
+              color: state.displayQuestionNumber == level
+                ? const Color(0xFF116DBB)
+                : const [5,10,15,20].contains(level)
+                  ? const Color(0xFF524015) : const Color(0xFF102A55),
+              borderRadius: BorderRadius.circular(5),
+              border: Border.all(color: state.displayQuestionNumber == level
+                ? const Color(0xFF70E7FF)
+                : const [5,10,15,20].contains(level)
+                  ? const Color(0xFFFFC94A) : const Color(0xFF345C90),
+                width: state.displayQuestionNumber == level ? 1.7 : .6),
             ),
-          const Text('Ausflug nur\nEltern-Wunsch',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFFFFE0A5), fontSize: 9,
-              fontWeight: FontWeight.w700)),
-        ],
-      ),
+            child: Row(children: [
+              SizedBox(width: 20, child: Text('$level',
+                style: const TextStyle(fontSize: 10,fontWeight: FontWeight.w900,
+                  color: Colors.white))),
+              const Icon(Icons.star_rounded,size: 11,color: Color(0xFFFFD873)),
+              const SizedBox(width: 2),
+              Expanded(child: FittedBox(fit: BoxFit.scaleDown,
+                alignment: Alignment.centerRight,
+                child: Text('${rewards[level - 1]}',maxLines: 1,
+                  style: const TextStyle(fontSize: 11,fontWeight: FontWeight.w900,
+                    color: Colors.white)))),
+            ]),
+          )),
+      ]),
     );
   }
 }
@@ -565,7 +598,7 @@ class _AnswerButton extends StatelessWidget {
   final bool selected;
   final bool revealed;
   final bool correct;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
