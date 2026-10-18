@@ -58,6 +58,7 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
     super.initState();
     widget.appState.addListener(_checkProfile);
     _progress.addListener(_repaint);
+    _narration.addListener(_repaint);
     unawaited(_load());
   }
   Future<void> _load() async {
@@ -81,6 +82,9 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
         widget.appState.state.grade < widget.topic.minimumGrade) {
       setState(() => _invalid = true);
       unawaited(_narration.stop());
+    } else {
+      // Also refresh visible controls when voice or animation settings change.
+      setState(() {});
     }
   }
   void _repaint() { if (mounted) setState(() {}); }
@@ -210,6 +214,36 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
           style: const TextStyle(fontFamily: 'Nunito',
             fontSize: 17, fontWeight: FontWeight.w900)),
     );
+  /// Playback controls use the existing session-bound narrator; no new
+  /// audio service or profile data is created.
+  Widget _narrationControls() => Wrap(
+    spacing: 8,
+    runSpacing: 8,
+    children: [
+      OutlinedButton.icon(
+        key: const ValueKey('lab-voice-repeat'),
+        onPressed: _safe ? () => unawaited(_narration.repeat()) : null,
+        icon: const Icon(Icons.replay),
+        label: const Text('Wiederholen'),
+        style: OutlinedButton.styleFrom(
+          minimumSize: const Size(48, 52),
+          foregroundColor: LumoVisualTokens.cyanBright,
+        ),
+      ),
+      if (_narration.isActive)
+        OutlinedButton.icon(
+          key: const ValueKey('lab-voice-pause'),
+          onPressed: _safe ? () => unawaited(_narration.pause()) : null,
+          icon: const Icon(Icons.pause),
+          label: const Text('Pause'),
+          style: OutlinedButton.styleFrom(
+            minimumSize: const Size(48, 52),
+            foregroundColor: LumoVisualTokens.cyanBright,
+          ),
+        ),
+    ],
+  );
+
   Widget _content() {
     final p = _current;
     if (_phase == _Phase.reflection) {
@@ -356,6 +390,11 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
                               padding: const EdgeInsets.all(16),
                               child: _content()),
                           ),
+                          if (widget.appState.state.settings.voiceEnabled &&
+                              _narration.currentText != null) ...[
+                            const SizedBox(height: 8),
+                            _narrationControls(),
+                          ],
                           if (_feedback.isNotEmpty) ...[
                             const SizedBox(height: 12),
                             Semantics(liveRegion: true,
@@ -383,6 +422,7 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
   void dispose() {
     widget.appState.removeListener(_checkProfile);
     _progress.removeListener(_repaint);
+    _narration.removeListener(_repaint);
     _progress.dispose();
     _narration.dispose();
     _fox.dispose();
