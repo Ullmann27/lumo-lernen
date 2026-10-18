@@ -40,6 +40,7 @@ void main() {
       await tester.pumpWidget(RepaintBoundary(
         key: captureKey,
         child: MaterialApp(
+          debugShowCheckedModeBanner: false,
           theme: LumoAppTheme.light(),
           home: const CrossGradePracticeScreen(
             profileName: 'VisuelleProbe',
