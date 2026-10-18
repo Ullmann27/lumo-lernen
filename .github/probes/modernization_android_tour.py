@@ -363,7 +363,7 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
                     ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen')),
             }
             (out / (name + '-focused-hud.json')).write_text(
-                json.dumps(focus, ensure_ascii=False, indent=2) + '\\n')
+                json.dumps(focus, ensure_ascii=False, indent=2) + '\n')
         if race_view_visible(frame) or (
             focus is not None
             and focus['three_hud_indicators']
