@@ -451,21 +451,14 @@ class _QuizStage extends StatelessWidget {
                         child: SizedBox(
                           key: const ValueKey('lumo-meister-fox-slot'),
                           width: foxSize, height: foxSize,
-                          child: LumoCharacter(
+                          child: Image.asset(
+                            'assets/lumo_design/fox/fox_quiz_host_1982.webp',
                             key: const ValueKey('lumo-meister-fox'),
-                            pose: state.won || finale
-                                ? LumoDesignFoxPose.trophyWink
-                                : state.revealed &&
-                                  state.selectedOption ==
-                                      state.currentQuestion.correctIndex
-                                    ? LumoDesignFoxPose.thumbWink
-                                    : LumoDesignFoxPose.pointSide,
-                            size: foxSize,
-                            reduceMotion: MediaQuery.disableAnimationsOf(context),
-                            intro: false, idleHops: false,
-                            ambientPoses: const <LumoDesignFoxPose>[],
-                          ),
-                        ),
+                            width: foxSize, height: foxSize,
+                            fit: BoxFit.contain,
+                            filterQuality: FilterQuality.high,
+                            semanticLabel: 'Lumo als Quizmoderator mit Fliege und Quizkarte',
+                          ),                       ),
                       ),
                     ),
                     Positioned(
