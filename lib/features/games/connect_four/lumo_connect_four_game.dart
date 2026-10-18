@@ -420,11 +420,21 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       });
 
   Widget _columnControls({double maxWidth = 560}) => Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(children: [
+        // On an outer Fold display (or a small phone with large text), seven
+        // minimum 44dp touch targets cannot always fit side-by-side.
+        // Keep every real column control accessible by horizontal scrolling
+        // instead of compressing its hit target or overflowing the viewport.
+        child: SizedBox(
+          width: maxWidth,
+          child: SingleChildScrollView(
+            key: const ValueKey('connect-column-scroll'),
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: math.max(
+                  maxWidth, ConnectFourEngine.columns * 44.0 + 24.0),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(children: [
               for (var c = 0; c < ConnectFourEngine.columns; c++)
                 Expanded(
                   child: LumoPressable(
@@ -457,7 +467,9 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                     ),
                   ),
                 ),
-            ]),
+                ]),
+              ),
+            ),
           ),
         ),
       );
