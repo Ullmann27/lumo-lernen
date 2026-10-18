@@ -17,6 +17,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 import '../writing/lumo_writing_coach_screen.dart';
+import 'widgets/lumo_story_scene.dart';
 
 class LumoStoryReaderScreen extends StatefulWidget {
   const LumoStoryReaderScreen({
@@ -518,6 +519,11 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 )),
               const SizedBox(height: 18),
               for (final page in widget.story.pages) ...[
+                LumoStoryScene(
+                  page: page.pageNum,
+                  height: MediaQuery.sizeOf(context).width > 650 ? 252 : 192,
+                ),
+                const SizedBox(height: 10),
                 LumoGlassCard(
                   key: ValueKey('full-book-page-${page.pageNum}'),
                   padding: const EdgeInsets.all(17),
@@ -544,21 +550,13 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   ),
                 ),
                 if (page.pageNum % 3 == 0) ...[
-                  const SizedBox(height: 12),
-                  LumoGlassCard(
-                    padding: const EdgeInsets.all(12),
-                    child: Row(children: [
-                      const LumoFoxPose(
-                        pose: LumoDesignFoxPose.bookPoint, size: 78),
-                      const SizedBox(width: 14),
-                      const Expanded(child: Text(
-                        'Bildpause: Lumo überlegt, was als Nächstes geschieht.',
-                        style: TextStyle(
-                          color: LumoVisualTokens.white,
-                          fontWeight: FontWeight.w800, fontSize: 15),
-                      )),
-                    ]),
-                  ),
+                  const SizedBox(height: 9),
+                  Text('Kapitel ${page.pageNum ~/ 3} geschafft. '
+                      'Was könnte als Nächstes passieren?',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: LumoVisualTokens.muted,
+                      height: 1.35, fontSize: 15)),
                 ],
                 const SizedBox(height: 14),
               ],
@@ -597,6 +595,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
+              LumoStoryScene(
+                key: ValueKey('lumo-story-scene-${page.pageNum}'),
+                page: page.pageNum,
+                height: MediaQuery.sizeOf(context).width > 650 ? 290 : 214,
+              ),
+              const SizedBox(height: 14),
               LumoGlassCard(
                 key: const ValueKey('lumo-story-visible-page-text'),
                 padding: const EdgeInsets.all(18),
