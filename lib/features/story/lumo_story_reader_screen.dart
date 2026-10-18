@@ -373,7 +373,45 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                           ? _buildSummaryPage()
                       : _inBookQuiz
                           ? _buildBookQuiz()
-                          : _buildPage(page),
+                          : AnimatedSwitcher(
+                              duration: widget.appState.state.settings.reduceAnimations ||
+                                      widget.appState.state.settings.calmMode
+                                  ? Duration.zero
+                                  : const Duration(milliseconds: 320),
+                              reverseDuration: const Duration(milliseconds: 160),
+                              layoutBuilder: (currentChild, previousChildren) =>
+                                  Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ...previousChildren,
+                                      if (currentChild != null) currentChild,
+                                    ],
+                                  ),
+                              transitionBuilder: (child, animation) {
+                                final turn = CurvedAnimation(
+                                  parent: animation,
+                                  curve: Curves.easeOutCubic,
+                                );
+                                return AnimatedBuilder(
+                                  animation: turn,
+                                  child: child,
+                                  builder: (context, pageChild) => Transform(
+                                    alignment: Alignment.centerRight,
+                                    transform: Matrix4.identity()
+                                      ..setEntry(3, 2, 0.0005)
+                                      ..rotateY((1.0 - turn.value) * -0.11),
+                                    child: FadeTransition(
+                                      opacity: turn,
+                                      child: pageChild,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: KeyedSubtree(
+                                key: ValueKey('lumo-story-page-flip-${page.pageNum}'),
+                                child: _buildPage(page),
+                              ),
+                            ),
                 ),
                 _fullBookView
                     ? _buildFullBookBottomNav()
