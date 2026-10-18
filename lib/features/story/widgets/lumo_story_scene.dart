@@ -268,6 +268,7 @@ class _ScenePainter extends CustomPainter {
           end: const Color(0xFF503D52));
         _glow(const Offset(195, 122), 85, _gold);
         _book(167, 120, 58, 43, cover: const Color(0xFF89456D));
+        break;
       case 1:
         _bookshelf(6, 48, 93, 164);
         _poly(const [Offset(142, 209), Offset(150, 105),
@@ -278,21 +279,26 @@ class _ScenePainter extends CustomPainter {
           Offset(245, 190), Offset(147, 190)],
           const Color(0xFFFFF1D1), end: const Color(0xFFD5B58B));
         _star(const Offset(196, 150), 17, const Color(0xFFD44B6C));
+        break;
       case 2:
         _garden(); _fountain();
         _orb(84, 196, 8, const Color(0xFFE4507E));
         _ribbon();
+        break;
       case 3:
         _garden(); _stoneSteps(); _ribbon();
+        break;
       case 4:
         _garden(); _stoneSteps(); _ribbon();
         _glow(const Offset(269, 128), 63, _teal);
+        break;
       case 5:
         _garden(); _fountain();
         _rect(const Rect.fromLTWH(80, 174, 100, 10),
             const Color(0xFFCC9A64), end: const Color(0xFF653E42), radius: 4);
         _rect(const Rect.fromLTWH(89, 181, 7, 22), const Color(0xFF513E49));
         _rect(const Rect.fromLTWH(163, 181, 7, 22), const Color(0xFF513E49));
+        break;
       case 6:
         _garden();
         _poly(const [Offset(87, 39), Offset(288, 53),
@@ -304,10 +310,13 @@ class _ScenePainter extends CustomPainter {
         _poly(const [Offset(185, 118), Offset(167, 147),
             Offset(200, 147)], const Color(0xFF7765B7));
         _star(const Offset(249, 133), 22, _gold);
+        break;
       case 7:
         _garden(); _door();
+        break;
       case 8:
         _garden(); _door(showStar: true);
+        break;
       case 9:
         _bookshelf(14, 35, 115, 183);
         _bookshelf(267, 35, 111, 183);
@@ -316,6 +325,7 @@ class _ScenePainter extends CustomPainter {
           const Color(0xFFA8825C), end: const Color(0xFF664A5C));
         _glow(const Offset(193, 150), 85, _gold);
         _book(168, 126, 51, 61, cover: const Color(0xFF754DA5));
+        break;
       case 10:
         _garden();
         _poly(const [Offset(82, 174), Offset(260, 164),
@@ -323,6 +333,7 @@ class _ScenePainter extends CustomPainter {
           const Color(0xFFA67657), end: const Color(0xFF59435D));
         _book(136, 133, 99, 59, cover: const Color(0xFFC34D64));
         _star(const Offset(188, 160), 16, _gold);
+        break;
       case 11:
         _bookshelf(15, 60, 110, 159);
         _poly(const [Offset(107, 200), Offset(272, 199),
@@ -332,6 +343,7 @@ class _ScenePainter extends CustomPainter {
         _rect(const Rect.fromLTWH(275, 92, 8, 110), _gold);
         _glow(const Offset(280, 83), 90, _gold, opacity: .55);
         _orb(281, 89, 24, _gold);
+        break;
     }
     _rect(const Rect.fromLTWH(0, 229, 390, 11),
         Colors.black.withOpacity(.4));
