@@ -4,16 +4,22 @@ import 'dart:ui' as ui;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:lumo_lernen/app/app_theme.dart';
+
+import 'helpers/lumo_capture.dart';
 
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/learning/lumo_abc_tafel_screen.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
+  // Capture the APK's real Nunito glyph outlines and Material icon font.
+  // Without these, the default Flutter test font paints solid Ahem blocks.
+  setUpAll(loadLumoCaptureFonts);
 
   testWidgets('ABC shows its own Lumo artwork, 26 entries and a readable guide',
       (tester) async {
-    await tester.pumpWidget(const MaterialApp(home: LumoAbcTafelScreen()));
+    await tester.pumpWidget(MaterialApp(theme: LumoAppTheme.light(), home: const LumoAbcTafelScreen()));
     await tester.pump(const Duration(milliseconds: 350));
     expect(find.text('Entdecke dein ABC!'), findsOneWidget);
     expect(find.byKey(const ValueKey('abc-original-lumo-fox')),
@@ -37,7 +43,7 @@ void main() {
     final wasEnabled = LumoVoice.instance.isEnabled;
     LumoVoice.instance.isEnabled = false;
     try {
-      await tester.pumpWidget(const MaterialApp(home: LumoAbcTafelScreen()));
+      await tester.pumpWidget(MaterialApp(theme: LumoAppTheme.light(), home: const LumoAbcTafelScreen()));
       await tester.pump(const Duration(milliseconds: 350));
       await tester.tap(find.byKey(const ValueKey('abc-letter-A')));
       await tester.pump();
@@ -63,7 +69,7 @@ void main() {
       final key = GlobalKey();
       await tester.pumpWidget(RepaintBoundary(
         key: key,
-        child: const MaterialApp(home: LumoAbcTafelScreen()),
+        child: MaterialApp(theme: LumoAppTheme.light(), home: const LumoAbcTafelScreen()),
       ));
       await tester.pump(const Duration(milliseconds: 450));
       expect(find.text('Entdecke dein ABC!'), findsOneWidget);
