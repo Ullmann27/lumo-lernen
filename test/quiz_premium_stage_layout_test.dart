@@ -45,6 +45,10 @@ void main() {
           reason: 'Jokers must not overlap mascot at width $width');
       expect(center.right, lessThanOrEqualTo(right.left + .1),
           reason: 'Mascot must not overlap prize rail at width $width');
+      if (width == 320) {
+        expect(tester.getSize(mascot).width, greaterThanOrEqualTo(125),
+          reason: 'Moderator must stay prominent even on a Fold cover display');
+      }
       expect(tester.takeException(), isNull,
           reason: 'No Flex or render overflow at width $width');
       await tester.pumpWidget(const SizedBox.shrink());
