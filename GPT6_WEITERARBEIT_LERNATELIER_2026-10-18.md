@@ -86,7 +86,7 @@ Finale gezielte Prüfung: **104 Tests bestanden, Exit 0**, einschließlich der R
 
 Vollanalyse hat dieselben 44 bestehenden **Info**-Meldungen wie die Basis, keine neuen Warnungen/Fehler; daher vorhandenen CI-Aufruf `flutter analyze --no-fatal-infos --no-fatal-warnings` verwenden und Infos transparent berichten.
 
-Der separate vollständige Basislauf unter `/workspace/lumo-lernen` war bei Übergabevorbereitung noch aktiv; nicht dessen Zwischenzähler als Gesamterfolg ausgeben. Vollständige neue Branch-Suite/Android-Integration sind noch offen.
+Der separate vollständige Basislauf unter `/workspace/lumo-lernen` ist inzwischen abgeschlossen: **1674 bestanden, 152 übersprungen, Exit 0** (`flutter test --reporter=expanded`). Das prüft die unveränderte Basis, nicht das neue Delta. Vollständige neue Branch-Suite/Android-Integration sind noch offen. Entwurfs-PR dieser Arbeit: [#369](https://github.com/Ullmann27/lumo-lernen/pull/369).
 
 **Keine neuen App-Screenshots, keine neue App-Animationsaufnahme, keine neue hörbare Cartoon-Stimme, keine neue APK und keine physische Fold-/FPS-Prüfung in diesem Zwischenstand.** Originalclips wurden dekodiert/vermessen, siehe [Sprachnachweis](docs/evidence/learning-lab/speech.md). Kein Nutzer-Lernstand oder vorhandenes APK überschrieben.
 
