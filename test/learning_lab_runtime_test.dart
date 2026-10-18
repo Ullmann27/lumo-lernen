@@ -56,6 +56,27 @@ Future<LumoAppState> mountLab(WidgetTester tester,
 }
 
 void main() {
+  testWidgets('learning narration replay remains accessible and opt-in', (tester) async {
+    final app = await mountLab(tester);
+    expect(find.byKey(const ValueKey('lab-voice-repeat')), findsNothing);
+
+    app.updateSettings(const AppSettings(
+      voiceEnabled: true, autoReadEnabled: false, reduceAnimations: true));
+    await tester.pump();
+    await tap(tester, 'lab-speak');
+
+    final repeat = find.byKey(const ValueKey('lab-voice-repeat'));
+    expect(repeat, findsOneWidget);
+    expect(tester.getSize(repeat).height, greaterThanOrEqualTo(48));
+    await tap(tester, 'lab-voice-repeat');
+    expect(tester.takeException(), isNull);
+
+    app.updateSettings(const AppSettings(
+      voiceEnabled: false, autoReadEnabled: false, reduceAnimations: true));
+    await tester.pump();
+    expect(find.byKey(const ValueKey('lab-voice-repeat')), findsNothing);
+  });
+
   testWidgets('real build then two new free recall problems persist honest evidence', (tester) async {
     final app = await mountLab(tester);
     await tap(tester, 'lab-next');
