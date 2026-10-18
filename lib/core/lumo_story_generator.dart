@@ -386,16 +386,29 @@ class LumoStoryGenerator {
       newWords: const ['Notizbuch', 'Spur', 'Garten', 'Zeichen', 'Erinnerung'],
       keyPoints: const ['Notizbuch', 'Botin', 'Brunnen', 'Band',
           'Garten', 'Stern', 'Buch'],
+      // Whole-book recall: none of these are the two puzzle answers.
+      // Every correct answer is explicitly evidenced on the stated page.
       bookQuestions: const [
+        StoryBookQuestion(
+          'Wo entdeckte Lumo das Buch mit dem leeren Umschlag?',
+          'in der Bücherei',
+          ['im Garten', 'in der Bücherei', 'am Hafen'], 1,
+        ),
         StoryBookQuestion(
           'Was schrieb Lumo ganz am Anfang in das rote Notizbuch?',
           'den Namen des Ortes',
-          ['den Namen des Ortes', 'eine Einkaufsliste', 'ein Lied'],
-          1,
+          ['den Namen des Ortes', 'eine Einkaufsliste', 'ein Lied'], 1,
         ),
         StoryBookQuestion(
           'Wer brachte am Morgen die Nachricht?',
-          'eine Botin', ['ein Koch', 'eine Botin', 'ein Musiker'], 2,
+          'eine Botin',
+          ['ein Koch', 'eine Botin', 'ein Musiker'], 2,
+        ),
+        StoryBookQuestion(
+          'Welche drei Wörter notierte Lumo nach dem Brief?',
+          'Suchen, Verstehen, Helfen',
+          ['Essen, Rennen, Schlafen', 'Suchen, Verstehen, Helfen',
+            'Malen, Tanzen, Singen'], 2,
         ),
         StoryBookQuestion(
           'Wo machte Lumo eine Pause und aß einen Apfel?',
@@ -403,9 +416,31 @@ class LumoStoryGenerator {
           ['in einem Zug', 'auf einer Holzbank', 'in einem Boot'], 6,
         ),
         StoryBookQuestion(
+          'Was hörte Lumo hinter der Gartenmauer?',
+          'ein leises Klopfen',
+          ['ein lautes Hupen', 'ein leises Klopfen', 'ein Lied'], 6,
+        ),
+        StoryBookQuestion(
+          'Worauf lag der gesuchte Gegenstand im versteckten Raum?',
+          'auf einem Tisch',
+          ['auf einem Tisch', 'unter einem Baum', 'im Wasser'], 10,
+        ),
+        StoryBookQuestion(
+          'Was stand auf der Nachricht im geheimen Raum?',
+          'Danke für eure Geduld',
+          ['Kommt morgen wieder', 'Danke für eure Geduld',
+            'Geht zurück zum Brunnen'], 10,
+        ),
+        StoryBookQuestion(
           'Was zeichnete Lumo am Ende als Erinnerung?',
           'die Holzbank und die Tür',
           ['einen Drachen', 'die Holzbank und die Tür', 'eine Rakete'], 11,
+        ),
+        StoryBookQuestion(
+          'Wo lag das rote Notizbuch am Abend?',
+          'auf Lumos Tisch',
+          ['auf Lumos Tisch', 'in einem Briefkasten',
+            'unter der Gartenmauer'], 12,
         ),
       ],
     );
