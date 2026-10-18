@@ -377,7 +377,7 @@ class LumoStoryGenerator {
     );
 
     return LumoStory(
-      title: 'Lumo und das Geheimnis der $missing',
+      title: 'Lumo und das große Rätsel: $missing',
       heroName: hero,
       location: location,
       theme: theme,
