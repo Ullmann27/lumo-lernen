@@ -108,7 +108,7 @@ jobs:
       - name: Reject unreadable Ahem-font captures before issuing visual proof
         run: |
           set -euo pipefail
-          python3 -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
+          .ci-python/bin/python -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
           .ci-python/bin/python tools/qa/verify_capture_fonts.py visual-evidence
       - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
         run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
