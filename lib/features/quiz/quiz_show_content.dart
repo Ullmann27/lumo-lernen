@@ -227,7 +227,7 @@ class _QuizCard extends StatelessWidget {
     final tension = state.displayQuestionNumber >= 15;
 
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: EdgeInsets.all(MediaQuery.sizeOf(context).width <= 360 ? 10 : 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -263,14 +263,19 @@ class _QuizCard extends StatelessWidget {
             _Pill('Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
             const Spacer(),
             Flexible(
-              child: Text(
-                question.subject,
-                textAlign: TextAlign.right,
-                style: LumoTextStyles.caption.copyWith(
-                  color: finale
-                      ? const Color(0xFFFFD873)
-                      : LumoVisualTokens.cyanBright,
-                  fontWeight: FontWeight.w900,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.centerRight,
+                child: Text(
+                  question.subject,
+                  maxLines: 1,
+                  textAlign: TextAlign.right,
+                  style: LumoTextStyles.caption.copyWith(
+                    color: finale
+                        ? const Color(0xFFFFD873)
+                        : LumoVisualTokens.cyanBright,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
               ),
             ),
@@ -382,9 +387,11 @@ class _QuizStage extends StatelessWidget {
     builder: (context, c) {
       final compact = c.maxWidth < 400;
       final tablet = c.maxWidth >= 700;
-      final leftWidth = tablet ? 106.0 : (compact ? 66.0 : 84.0);
-      final rightWidth = tablet ? 170.0 : (compact ? 98.0 : 130.0);
-      final gap = tablet ? 14.0 : 6.0;
+      final leftWidth = tablet ? 106.0
+          : compact ? math.max(44.0, c.maxWidth * .17) : 84.0;
+      final rightWidth = tablet ? 170.0
+          : compact ? math.max(80.0, c.maxWidth * .29) : 130.0;
+      final gap = tablet ? 14.0 : compact ? 4.0 : 6.0;
       final usable = math.max(
         38.0, c.maxWidth - leftWidth - rightWidth - gap * 2,
       );
@@ -462,15 +469,23 @@ class _QuizStage extends StatelessWidget {
                                   child: const Padding(
                                     padding: EdgeInsets.symmetric(
                                       horizontal: 10, vertical: 4),
-                                    child: FittedBox(
-                                      fit: BoxFit.scaleDown,
-                                      child: Text('★  LIVE  ★',
-                                        maxLines: 1,
-                                        style: TextStyle(
-                                          color: Color(0xFFFFE3A0),
-                                          fontFamily: 'Nunito',
-                                          fontWeight: FontWeight.w900,
-                                          fontSize: 11)),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: const [
+                                        Icon(Icons.star_rounded,
+                                          color: Color(0xFFFFD978), size: 12),
+                                        SizedBox(width: 3),
+                                        Text('LIVE',
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            color: Color(0xFFFFE3A0),
+                                            fontFamily: 'Nunito',
+                                            fontWeight: FontWeight.w900,
+                                            fontSize: 11)),
+                                        SizedBox(width: 3),
+                                        Icon(Icons.star_rounded,
+                                          color: Color(0xFFFFD978), size: 12),
+                                      ],
                                     ),
                                   ),
                                 ),
@@ -523,14 +538,24 @@ class _QuizStage extends StatelessWidget {
                                   alignment: Alignment.center,
                                   child: FittedBox(
                                     fit: BoxFit.scaleDown,
-                                    child: Text('★   $caption   ★',
-                                      maxLines: 1,
-                                      style: const TextStyle(
-                                        color: Color(0xFFFFD978),
-                                        fontSize: 18,
-                                        fontFamily: 'Nunito',
-                                        fontWeight: FontWeight.w900,
-                                        letterSpacing: 1.1),
+                                    child: Row(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        const Icon(Icons.star_rounded,
+                                          color: Color(0xFFFFD978), size: 19),
+                                        const SizedBox(width: 7),
+                                        Text(caption,
+                                          maxLines: 1,
+                                          style: const TextStyle(
+                                            color: Color(0xFFFFD978),
+                                            fontSize: 18,
+                                            fontFamily: 'Nunito',
+                                            fontWeight: FontWeight.w900,
+                                            letterSpacing: 1.1)),
+                                        const SizedBox(width: 7),
+                                        const Icon(Icons.star_rounded,
+                                          color: Color(0xFFFFD978), size: 19),
+                                      ],
                                     ),
                                   ),
                                 ),
