@@ -751,6 +751,8 @@ class _Pill extends StatelessWidget {
   }
 }
 
+/// One accessible, glossy answer card with a separate gold letter medallion.
+/// Kept as native Flutter controls so state, focus and touch remain real.
 class _AnswerButton extends StatelessWidget {
   const _AnswerButton({
     required this.label,
@@ -772,63 +774,98 @@ class _AnswerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (hidden) {
-      return Opacity(
-        opacity: .28,
-        child: _shell(
-          'Antwort verborgen',
-          Colors.white70,
-          const Color(0xCC102A50),
-          LumoVisualTokens.cyan.withOpacity(.25),
-        ),
-      );
-    }
-
-    final color = revealed && correct
-        ? Colors.white
-        : revealed && selected
-            ? Colors.white
-            : Colors.white;
-    final bg = revealed && correct
-        ? const Color(0xFF16794B)
-        : revealed && selected
-            ? const Color(0xFF9F3042)
-            : selected
-                ? const Color(0xFFE58A22)
-                : const Color(0xE6122C52);
-
-    return GestureDetector(
-      onTap: revealed ? null : onTap,
-      child: _shell('${String.fromCharCode(65 + index)}  $label', color, bg, color),
-    );
-  }
-
-  Widget _shell(String text, Color fg, Color bg, Color? border) {
-    return AnimatedContainer(
-      duration: const Duration(milliseconds: 180),
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(colors: [
-          bg, Color.lerp(bg, const Color(0xFF1688CB), .28)!,
-        ]),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(
-          color: border?.withOpacity(.75) ??
-              LumoVisualTokens.cyanBright.withOpacity(.38),
-          width: selected ? 2 : 1.5,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: (border ?? LumoVisualTokens.cyanBright).withOpacity(.14),
-            blurRadius: 16,
-            offset: const Offset(0, 5),
+    final letter = String.fromCharCode(65 + index);
+    final enabled = !hidden && !revealed && onTap != null;
+    final showCorrect = revealed && correct;
+    final showError = revealed && selected && !correct;
+    final colors = showCorrect
+      ? const [Color(0xFF034D3A), Color(0xFF139D73)]
+      : showError
+        ? const [Color(0xFF51152F), Color(0xFFB73A55)]
+        : selected
+          ? const [Color(0xFF673E0D), Color(0xFFCE8B1C)]
+          : const [Color(0xFF061637), Color(0xFF0547A4), Color(0xFF042B79)];
+    final border = showCorrect
+      ? const Color(0xFF7BFFC6)
+      : showError
+        ? const Color(0xFFFF92A2)
+        : selected
+          ? const Color(0xFFFFE69C)
+          : const Color(0xFF48E4FF);
+    return Opacity(
+      opacity: hidden ? .27 : 1,
+      child: Semantics(
+        button: true,
+        enabled: enabled,
+        label: '$letter: $label',
+        child: AnimatedContainer(
+          key: ValueKey('lumo-meister-answer-$index'),
+          duration: const Duration(milliseconds: 210),
+          constraints: const BoxConstraints(minHeight: 66),
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: colors),
+            borderRadius: BorderRadius.circular(27),
+            border: Border.all(color: border, width: 2.1),
+            boxShadow: [
+              BoxShadow(
+                color: border.withOpacity(selected ? .51 : .31),
+                blurRadius: selected ? 19 : 13,
+                spreadRadius: selected ? 1.5 : .5,
+              ),
+              const BoxShadow(
+                color: Color(0x99000B2A),
+                blurRadius: 8,
+                offset: Offset(0, 5),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Text(
-        text,
-        textAlign: TextAlign.center,
-        style: TextStyle(fontFamily: 'Nunito', fontSize: 18, fontWeight: FontWeight.w900, color: fg),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(27),
+              onTap: enabled ? onTap : null,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
+                child: Row(children: [
+                  Container(
+                    width: 41, height: 41,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: const LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [Color(0xFF0F4B94), Color(0xFF06122C)],
+                      ),
+                      border: Border.all(
+                        color: const Color(0xFF6CCBFF), width: 1.8),
+                      boxShadow: const [
+                        BoxShadow(
+                          color: Color(0x664CE5FF), blurRadius: 9),
+                      ],
+                    ),
+                    alignment: Alignment.center,
+                    child: Text(letter,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito', fontSize: 24,
+                        color: Color(0xFFFFD978),
+                        fontWeight: FontWeight.w900)),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: Text(hidden ? '—' : label,
+                      key: ValueKey('lumo-meister-answer-text-$index'),
+                      maxLines: 2, overflow: TextOverflow.ellipsis,
+                      textAlign: TextAlign.start,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito', fontSize: 17,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white)),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+        ),
       ),
     );
   }
@@ -845,37 +882,61 @@ class _JokerButton extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => SizedBox(
-    width: double.infinity,
-    child: OutlinedButton(
-      onPressed: used ? null : onTap,
-      style: OutlinedButton.styleFrom(
-        minimumSize: const Size(48, 68),
-        padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 6),
-        backgroundColor: used
-            ? const Color(0xFF26344E) : const Color(0xFF113C84),
-        foregroundColor: Colors.white,
-        disabledForegroundColor: Colors.white60,
-        side: BorderSide(
-          color: used ? Colors.white24 : LumoVisualTokens.cyanBright,
-          width: 1.5),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(14)),
-      ),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        Icon(icon, color: used
-            ? Colors.white38 : const Color(0xFFFFD873)),
-        const SizedBox(height: 4),
-        FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(used ? label + ' ✓' : label,
-            maxLines: 1, style: const TextStyle(
-              fontSize: 11, fontFamily: 'Nunito',
-              fontWeight: FontWeight.w900)),
+  Widget build(BuildContext context) {
+    return Opacity(
+      opacity: used ? .50 : 1,
+      child: Container(
+        height: 80,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(17),
+          gradient: const LinearGradient(
+            begin: Alignment.topLeft, end: Alignment.bottomRight,
+            colors: [Color(0xFF0A69C8), Color(0xFF071D56),
+              Color(0xFF0745A3)],
+          ),
+          border: Border.all(
+            color: used ? const Color(0xFF69809F)
+                : const Color(0xFF61E6FF),
+            width: 1.8),
+          boxShadow: used ? null : const [
+            BoxShadow(color: Color(0xBB00C7FF), blurRadius: 13),
+            BoxShadow(color: Color(0x5502A9FF), blurRadius: 22),
+          ],
         ),
-      ]),
-    ),
-  );
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(17),
+            onTap: used ? null : onTap,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(icon, size: 27,
+                    color: used ? Colors.white54
+                      : const Color(0xFFFFD978)),
+                  const SizedBox(height: 5),
+                  SizedBox(
+                    width: double.infinity,
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(label,
+                        maxLines: 1,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito', fontSize: 12,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white)),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }
 
 class _HintBubble extends StatelessWidget {
