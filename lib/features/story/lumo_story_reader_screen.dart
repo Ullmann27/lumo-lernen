@@ -85,6 +85,109 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     } catch (_) {}
   }
 
+  void _openClueNotebook() {
+    final notes = <(String, String)>[
+      (
+        'Der erste Brief',
+        'Jemand hat eine Farbe beschrieben, die man bei klarem Wetter '
+        'oben am Himmel sehen kann.',
+      ),
+      if (_pageIdx >= 2) (
+        'Der Brunnen',
+        'Drei Fundstücke sind wichtig: eine Feder, ein Stein und ein Band. '
+        'Nur eine Sache ist an einem Zweig festgeknotet.',
+      ),
+      if (_pageIdx >= 3) (
+        'Die Treppe',
+        'An der ersten Stufe wurden drei Gegenstände gezeichnet. '
+        'Vergleiche sie mit dem Brief und mit dem Fund am Brunnen.',
+      ),
+      if (_pageIdx >= 6) (
+        'Die Karte',
+        'Kreis, Dreieck und Stern führen nicht zum gleichen Ort. '
+        'Ein Zeichen steht ausdrücklich beim letzten Weg.',
+      ),
+      if (_pageIdx >= 7) (
+        'Die geheime Tür',
+        'Die Zeichen an der Tür gleichen denen der alten Karte. '
+        'Du brauchst kein Glück: Du brauchst deine Erinnerung.',
+      ),
+    ];
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF101D3B),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 18, 20, 26),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(ctx).height * .74,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(children: [
+                  const Icon(Icons.auto_stories_rounded,
+                    color: LumoVisualTokens.gold, size: 30),
+                  const SizedBox(width: 10),
+                  const Expanded(child: Text('Lumos Hinweis-Notizbuch',
+                    style: TextStyle(color: Colors.white,
+                      fontWeight: FontWeight.w900, fontSize: 21))),
+                  IconButton(
+                    tooltip: 'Notizbuch schließen',
+                    onPressed: () => Navigator.pop(ctx),
+                    icon: const Icon(Icons.close_rounded, color: Colors.white),
+                  ),
+                ]),
+                const Text('Hier stehen nur Beobachtungen. Die Rätsel '
+                    'lösen wir nicht für dich.',
+                  style: TextStyle(
+                    color: LumoVisualTokens.muted,
+                    height: 1.3, fontSize: 14)),
+                const SizedBox(height: 12),
+                Flexible(child: ListView.separated(
+                  key: const ValueKey('lumo-story-clue-notebook'),
+                  shrinkWrap: true,
+                  itemCount: notes.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 10),
+                  itemBuilder: (ctx, index) {
+                    final note = notes[index];
+                    return Container(
+                      padding: const EdgeInsets.all(13),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        color: const Color(0xFF18345B),
+                        border: Border.all(
+                          color: const Color(0xFF3F7197)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(note.$1,
+                            style: const TextStyle(
+                              color: LumoVisualTokens.gold,
+                              fontSize: 16, fontWeight: FontWeight.w900)),
+                          const SizedBox(height: 5),
+                          Text(note.$2,
+                            style: const TextStyle(
+                              color: Colors.white, fontSize: 16, height: 1.4)),
+                        ],
+                      ),
+                    );
+                  },
+                )),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   void _nextPage() {
     if (_pageIdx + 1 >= widget.story.pages.length) {
       // Letzte Seite fertig: wenn die Geschichte keyPoints hat, starten wir
@@ -470,6 +573,14 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               ],
             ),
           ),
+          if (widget.story.bookQuestions.isNotEmpty)
+            IconButton(
+              key: const ValueKey('lumo-story-clue-notebook-toggle'),
+              tooltip: 'Gefundene Hinweise nachlesen',
+              onPressed: _openClueNotebook,
+              icon: const Icon(Icons.explore_rounded,
+                color: LumoVisualTokens.gold),
+            ),
           IconButton(
             key: const ValueKey('lumo-full-book-toggle'),
             tooltip: _fullBookView
