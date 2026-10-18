@@ -670,7 +670,8 @@ class _LumoMeisterPortal extends StatelessWidget {
                       fit: BoxFit.contain,
                       filterQuality: FilterQuality.high,
                       semanticLabel: 'Lumo präsentiert die Quizshow',
-                    ),                    const SizedBox(width: 12),
+                    ),
+                    const SizedBox(width: 12),
                     const Expanded(child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
