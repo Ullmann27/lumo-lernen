@@ -193,20 +193,6 @@ class HomeContent extends StatelessWidget {
                     label: const Text('Geschichten lesen und erfinden'),
                   ),
                   const SizedBox(height: 12),
-                  FilledButton.icon(
-                    key: const ValueKey('home-learning-lab'),
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size.fromHeight(56),
-                      backgroundColor: const Color(0xFF144D69),
-                      foregroundColor: LumoVisualTokens.white,
-                      side: const BorderSide(color: LumoVisualTokens.cyan),
-                    ),
-                    onPressed: () => _open(context,
-                        LearningLabHub(appState: appState)),
-                    icon: const Icon(Icons.auto_awesome_rounded),
-                    label: const Text('Lumos Lernatelier · gemeinsam bauen'),
-                  ),
-                  const SizedBox(height: 12),
                   _HomeEntrance(
                     reduceMotion: reduceMotion,
                     delay: const Duration(milliseconds: 60),
@@ -525,6 +511,20 @@ class HomeContent extends StatelessWidget {
                             () => onSection(LumoSection.games)),
                       ],
                     ),
+                  ),
+                  const SizedBox(height: 12),
+                  FilledButton.icon(
+                    key: const ValueKey('home-learning-lab'),
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(56),
+                      backgroundColor: const Color(0xFF144D69),
+                      foregroundColor: LumoVisualTokens.white,
+                      side: const BorderSide(color: LumoVisualTokens.cyan),
+                    ),
+                    onPressed: () => _open(context,
+                        LearningLabHub(appState: appState)),
+                    icon: const Icon(Icons.auto_awesome_rounded),
+                    label: const Text('Lumos Lernatelier · gemeinsam bauen'),
                   ),
                 ],
               );
