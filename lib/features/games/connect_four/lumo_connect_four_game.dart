@@ -414,12 +414,21 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             SizedBox(width: width, height: width * 6 / 7, child: _board()),
             const SizedBox(height: 8),
-            SizedBox(width: width, child: _columnControls(maxWidth: width)),
+            SizedBox(
+                width: width,
+                child: _columnControls(
+                    maxWidth: width,
+                    protectNarrowTouchTargets:
+                        MediaQuery.sizeOf(context).width <= 360 &&
+                        MediaQuery.orientationOf(context) == Orientation.portrait),
+              ),
           ]),
         );
       });
 
-  Widget _columnControls({double maxWidth = 560}) => Center(
+  Widget _columnControls(
+          {double maxWidth = 560, bool protectNarrowTouchTargets = false}) =>
+      Center(
         // On an outer Fold display (or a small phone with large text), seven
         // minimum 44dp touch targets cannot always fit side-by-side.
         // Keep every real column control accessible by horizontal scrolling
@@ -431,7 +440,10 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
             scrollDirection: Axis.horizontal,
             child: SizedBox(
               width: math.max(
-                  maxWidth, ConnectFourEngine.columns * 44.0 + 24.0),
+                  maxWidth,
+                  protectNarrowTouchTargets
+                      ? ConnectFourEngine.columns * 44.0 + 24.0
+                      : maxWidth),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(children: [
