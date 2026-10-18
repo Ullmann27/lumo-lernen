@@ -14,6 +14,7 @@ import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_scene_art_panel.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -749,7 +750,17 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 height: MediaQuery.sizeOf(context).width > 650 ? 270 : 198,
               ),
               const SizedBox(height: 12),
-              LumoGlassCard(
+              if (widget.story.title.toLowerCase().contains('sternenkarte') &&
+                  _pageIdx < 2)
+                LumoSceneArtPanel(
+                  key: ValueKey('lumo-story-scene-$_pageIdx'),
+                  scene: _pageIdx == 0
+                      ? LumoSceneArt.storyLibrary
+                      : LumoSceneArt.storyStarMap,
+                  height: 205,
+                )
+              else
+                LumoGlassCard(
                 key: const ValueKey('lumo-story-original-fox-art'),
                 padding: const EdgeInsets.all(10),
                 child: Row(children: [
