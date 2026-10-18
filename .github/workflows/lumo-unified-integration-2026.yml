@@ -4,6 +4,12 @@ on:
     branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15]
   pull_request:
     paths:
+      - 'lib/widgets/design/**'
+      - 'test/design/lesson_premium_capture_test.dart'
+      - 'test/design/**'
+      - 'lib/features/games/**'
+      - 'lib/core/lumo_voice.dart'
+      - 'lib/features/learning_modules/**'
       - 'lib/features/quiz/**'
       - 'lib/features/home/**'
       - '.github/probes/kart_complete_android_probe.py'
@@ -75,6 +81,8 @@ jobs:
             test/parents/parent_school_grade_progression_test.dart
       - name: Full Flutter regression suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Verify all build and preservation contracts
+        run: python3 -m unittest discover -s scripts/tests -v
       - name: Code-level Android probe regression with verified image dependencies
         run: |
           set -euo pipefail
@@ -86,6 +94,22 @@ jobs:
           .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
       - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
         run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
+      - name: Render actual premium lessons on phone and Fold
+        env:
+          LUMO_LESSON_CAPTURES: visual-evidence/1977/lessons
+        run: flutter test --no-pub --reporter=expanded test/design/lesson_premium_capture_test.dart
+      - name: Render actual app sections on phone and Fold
+        env:
+          LUMO_TOUR_DIR: visual-evidence/1977/tour
+          LUMO_TOUR_CAPTURE_SCALE: '1'
+        run: flutter test --no-pub --reporter=expanded test/design/app_tour_capture_test.dart
+      - name: Archive real Flutter lesson captures
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1977-real-flutter-captures
+          path: visual-evidence/
+          if-no-files-found: error
+          retention-days: 30
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
       - name: Build unified real Android APK
@@ -98,20 +122,87 @@ jobs:
           sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
           test -s dist/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64
+          sha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt
           grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
       - name: Upload exact candidate (no release or synthetic screenshots)
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: lumo-lernen-kart-unified-2026-candidate
-          path: |
-            dist/Lumo-Lernen-Neu.apk
-            dist/APK-VERIFICATION.json
-            dist/BUILD-PROVENANCE.json
-            dist/APK-SHA256.txt
-            dist/BUILD-SOURCE.txt
-            dist/GODOT-SOURCE.json
-            dist/APP-VERSION.txt
+          path: dist/
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
+  android-tour:
+    needs: verify-and-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: candidate/dist/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Install and tour the exact APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1977-android-tour
+          path: tour/
+          retention-days: 30
