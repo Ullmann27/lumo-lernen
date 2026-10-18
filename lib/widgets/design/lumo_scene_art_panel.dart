@@ -12,6 +12,21 @@ enum LumoSceneArt {
 }
 
 extension LumoSceneArtAssets on LumoSceneArt {
+  // Lightweight native cues keep each lesson recognizable even without PNGs.
+  IconData get subjectIcon => switch (this) {
+    LumoSceneArt.storyLibrary => Icons.menu_book_rounded,
+    LumoSceneArt.storyStarMap => Icons.auto_awesome_rounded,
+    LumoSceneArt.seasons => Icons.wb_sunny_rounded,
+    LumoSceneArt.mathematics => Icons.calculate_rounded,
+  };
+
+  Color get subjectColor => switch (this) {
+    LumoSceneArt.storyLibrary => const Color(0xFFFFCD75),
+    LumoSceneArt.storyStarMap => const Color(0xFF81EBFF),
+    LumoSceneArt.seasons => const Color(0xFFB0EEAE),
+    LumoSceneArt.mathematics => const Color(0xFFFFAFDD),
+  };
+
   String get assetPath {
     switch (this) {
       case LumoSceneArt.storyLibrary:
@@ -54,10 +69,23 @@ class LumoSceneArtPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Only the entry moves. The art itself never triggers perpetual repaints.
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
     return Semantics(
       image: true,
       label: scene.description,
-      child: SizedBox(
+      child: RepaintBoundary(
+        child: TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0, end: 1),
+          duration: reduceMotion
+              ? Duration.zero
+              : const Duration(milliseconds: 420),
+          curve: Curves.easeOutCubic,
+          builder: (context, progress, child) => Transform.translate(
+            offset: Offset(0, (1 - progress) * 8),
+            child: child,
+          ),
+          child: SizedBox(
         width: double.infinity,
         height: height,
         child: ClipRRect(
@@ -116,8 +144,19 @@ class LumoSceneArtPanel extends StatelessWidget {
                     },
                   ),
                 ),
+                Positioned(
+                  top: 10,
+                  left: 12,
+                  child: Icon(
+                    scene.subjectIcon,
+                    color: scene.subjectColor,
+                    size: 27,
+                  ),
+                ),
               ],
             ),
+          ),
+        ),
           ),
         ),
       ),
