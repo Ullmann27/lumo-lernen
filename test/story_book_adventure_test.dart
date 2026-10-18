@@ -11,8 +11,8 @@ import 'package:lumo_lernen/features/story/lumo_story_reader_screen.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('All six new plots have twelve readable pages, solved clues and independent book questions', () {
-    for (var seed = 0; seed < 6; seed++) {
+  test('Twelve distinct mystery hooks have twelve readable pages, solved clues and independent book questions', () {
+    for (var seed = 0; seed < 12; seed++) {
       final book = LumoStoryGenerator.instance.generateReadingAdventure(
         hero: 'Prinzessin',
         location: 'Weltraum',
@@ -20,6 +20,9 @@ void main() {
         gradeLevel: 2,
         variationSeed: seed,
       );
+      expect(book.title, contains('Lumo und das große Rätsel:'));
+      expect(book.pages[1].text, contains('Darin stand:'));
+      expect(book.pages[9].text, contains('Alle waren erleichtert'));
       expect(book.pages, hasLength(12));
       expect(book.pages.map((p) => p.pageNum), orderedEquals(
         List<int>.generate(12, (i) => i + 1)));
