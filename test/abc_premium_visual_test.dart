@@ -15,7 +15,10 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   // Capture the APK's real Nunito glyph outlines and Material icon font.
   // Without these, the default Flutter test font paints solid Ahem blocks.
-  setUpAll(loadLumoCaptureFonts);
+  setUpAll(() async {
+    await loadLumoCaptureFonts();
+    await loadLumoCaptureEmojiFont();
+  });
 
   testWidgets('ABC shows its own Lumo artwork, 26 entries and a readable guide',
       (tester) async {
