@@ -131,6 +131,18 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
             MODULE.git_paths(self.repo, 'ls-files', '--others', '--exclude-standard'),
         )
 
+    def test_exact_1976_same_trusted_glb_jpegs_are_cleaned(self):
+        self.generate_images()
+        self.assertIn("6518a13fb8eb30c81c8a2115d14791cbe7ddd24a", MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source={'revision': "6518a13fb8eb30c81c8a2115d14791cbe7ddd24a"})
+        self.assertTrue(all(not (self.repo / name).exists() for name in self.files))
+        self.assertTrue(self.glb.is_file())
+
+    def test_future_unknown_pin_must_not_remove_images(self):
+        self.generate_images()
+        self.cleanup(source={'revision': '0' * 40})
+        self.assertTrue(all((self.repo / name).exists() for name in self.files))
+
     def test_old_release_does_not_cleanup(self):
         self.generate_images()
         self.cleanup(source={'revision': '42b011dc23abffc24a5df2e13171fa5ada22d6eb'})
