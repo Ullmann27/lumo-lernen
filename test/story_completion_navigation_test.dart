@@ -53,7 +53,7 @@ void main() {
         final options = exercise.options;
         final label = options == null
             ? 'Wort merken!'
-            : options.firstWhere((o) => o != exercise.correctAnswer);
+            : exercise.correctAnswer;
         await tester.ensureVisible(find.text(label));
         await tester.tap(find.text(label));
         await tester.pump();
@@ -63,6 +63,17 @@ void main() {
           : 'Weiterlesen';
       await tester.runAsync(() => tester.tap(find.text(label)));
       await _routeFrames(tester);
+    }
+    if (story.bookQuestions.isNotEmpty) {
+      for (final question in story.bookQuestions) {
+        await _routeFrames(tester);
+        final answer = find.text(question.correctAnswer);
+        await tester.ensureVisible(answer);
+        await tester.tap(answer);
+        await _routeFrames(tester);
+        await tester.tap(find.byKey(const ValueKey('lumo-book-quiz-next')));
+        await _routeFrames(tester);
+      }
     }
     if (story.keyPoints.isNotEmpty) {
       await tester.enterText(
