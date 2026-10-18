@@ -637,7 +637,7 @@ class _LumoMeisterPortal extends StatelessWidget {
                 gradient: const LinearGradient(
                   begin: Alignment.topLeft,
                   end: Alignment.bottomRight,
-                  colors: [Color(0xFF30135F), Color(0xFF071D46)],
+                  colors: [Color(0xFF074A95), Color(0xFF07142F)],
                 ),
                 border: Border.all(
                   color: const Color(0xFFFFC94A),
@@ -645,8 +645,8 @@ class _LumoMeisterPortal extends StatelessWidget {
                 ),
                 boxShadow: const [
                   BoxShadow(
-                    color: Color(0x5537D2FD),
-                    blurRadius: 24,
+                    color: Color(0xAA37D2FD),
+                    blurRadius: 30,
                     spreadRadius: 1,
                   ),
                 ],
