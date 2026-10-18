@@ -408,6 +408,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                                 );
                               },
                               child: GestureDetector(
+                                key: ValueKey('lumo-story-page-flip-${page.pageNum}'),
                                 behavior: HitTestBehavior.translucent,
                                 onHorizontalDragEnd: (details) {
                                   // A swipe must NEVER bypass a reading clue.
@@ -417,10 +418,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                                     _nextPage();
                                   }
                                 },
-                                child: KeyedSubtree(
-                                  key: ValueKey('lumo-story-page-flip-${page.pageNum}'),
-                                  child: _buildPage(page),
-                                ),
+                                child: _buildPage(page),
                               ),
                             ),
                 ),
