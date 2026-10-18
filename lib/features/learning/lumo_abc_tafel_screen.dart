@@ -400,8 +400,15 @@ class _AbcCard extends StatelessWidget {
                       ),
                       padding: const EdgeInsets.all(5),
                       child: ExcludeSemantics(
-                        child: Text(entry.emoji,
-                            style: TextStyle(fontSize: symbolSize)),
+                        child: Text(
+                          entry.emoji,
+                          style: TextStyle(
+                            fontSize: symbolSize,
+                            // Nunito does not contain emoji. Explicit fallback
+                            // keeps icons readable in the app and real-font QA.
+                            fontFamilyFallback: const ['Noto Color Emoji'],
+                          ),
+                        ),
                       ),
                     ),
                     Text(
