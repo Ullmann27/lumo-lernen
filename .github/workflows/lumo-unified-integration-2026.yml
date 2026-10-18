@@ -91,6 +91,8 @@ jobs:
             test/home_navigation_progress_test.dart \
             test/home_subject_islands_premium_test.dart \
             test/academy_grade_3_4_visible_navigation_test.dart \
+            test/lumo_scene_art_panel_test.dart \
+            test/learning_lab_runtime_test.dart \
             test/parents/parent_school_grade_progression_test.dart
       - name: Save genuine rendered Quizshow screenshots for reference comparison
         if: always()
@@ -187,7 +189,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1983-arm64-verified
+          name: lumo-1984-arm64-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-SHA256.txt
@@ -267,14 +269,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-1983-android-tour
+          name: lumo-1984-android-tour
           path: tour/
           retention-days: 30
 
   publish-reading-adventure-prerelease:
-    name: Publish verified 1983 immersive quiz studio APK to Releases
+    name: Publish verified 1984 scene and atelier APK to Releases
     needs: [verify-and-build, android-tour]
-    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-1983-quiz-studio-reference-2026-10-18'
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-1984-animated-scenes-android-2026-10-18'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -283,7 +285,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: lumo-1983-arm64-verified
+          name: lumo-1984-arm64-verified
           path: dist/
       - name: Verify delivered native APK identity without rebuilding
         run: |
@@ -298,22 +300,22 @@ jobs:
           import json
           p = Path('dist/Lumo-Lernen-Neu.apk')
           provenance = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
-          assert provenance['versionCode'] == 1983
-          assert provenance['versionName'] == '0.12.71'
+          assert provenance['versionCode'] == 1984
+          assert provenance['versionName'] == '0.12.72'
           assert provenance['godot']['revision'] == '20652880eda687c67cfa72301dad5a173b1fe6c5'
           assert 'arm64-v8a' in provenance['abis']
           assert provenance['sha256'] == hashlib.sha256(p.read_bytes()).hexdigest()
-          print('PASS verified 1983 ARM64 APK')
+          print('PASS verified 1984 ARM64 APK')
           PY
-          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1983-ARM64.apk
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1984-ARM64.apk
       - name: Publish a mobile-visible prerelease only after Android tour PASS
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          TAG=lumo-v0.12.71-1983-immersive-quiz-studio
-          FILE=dist/Lumo-Lernen-Kart-1983-ARM64.apk
+          TAG=lumo-v0.12.72-1984-atelier-scenes
+          FILE=dist/Lumo-Lernen-Kart-1984-ARM64.apk
           test -s "$FILE"
           if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
             echo 'Release tag already exists: refusing to overwrite previously published APK'
@@ -322,8 +324,8 @@ jobs:
           gh release create "$TAG" "$FILE" \
             --repo Ullmann27/lumo-lernen \
             --target "$SOURCE_SHA" \
-            --title 'Lumo 1983 – Lumo-Meister Neon-Studio und Quizbühne (Android)' \
-            --notes 'Android-Testversion 0.12.71 (Build 1983). Echte responsive Flutter-Neonbuehne mit TV-Lichtkegeln, Publikum, beleuchtetem Podest, Moderator-Lumo im Sakko, 20 einzeln hervorgehobenen Sternenstufen, glanzvollen Antwortfeldern, Quizmusik und Antwort-Countdown. Lumo Lernen und gepinntes Godot-Kart bleiben erhalten. Verfuegbar nur nach erfolgreichen Flutter-Tests und Android-Emulatortour. Bitte Design auf dem Fold vergleichen.' \
+            --title 'Lumo 1984 – Atelier-Stimme und Szenenglas (Android-Test)' \
+            --notes 'Android-Testversion 0.12.72 (Build 1984). Aufbauend auf 1983 mit opt-in Wiederholen/Pausieren fuer Lernatelier-Erklaerungen, vier neuen transparenten Szenenplaetzen in Geschichten/Jahreszeiten/Mathe und kurzer, abschaltbarer Einblendanimation. Die vier extern erzeugten transparenten PNGs fehlen weiterhin: Original-Lumo-Fuchs wird als Fallback angezeigt. Verifiziertes Godot-Kart unveraendert. Nur nach kompletten Flutter-Tests und realer Android-Emulatortour freigegeben. Bitte auf Samsung Fold pruefen.' \
             --prerelease
           gh release view "$TAG" --repo Ullmann27/lumo-lernen \
             --json url,isDraft,assets \
