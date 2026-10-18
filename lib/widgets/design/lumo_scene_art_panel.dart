@@ -54,10 +54,23 @@ class LumoSceneArtPanel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Only the entry moves. The art itself never triggers perpetual repaints.
+    final reduceMotion = MediaQuery.of(context).disableAnimations;
     return Semantics(
       image: true,
       label: scene.description,
-      child: SizedBox(
+      child: RepaintBoundary(
+        child: TweenAnimationBuilder<double>(
+          tween: Tween<double>(begin: 0, end: 1),
+          duration: reduceMotion
+              ? Duration.zero
+              : const Duration(milliseconds: 420),
+          curve: Curves.easeOutCubic,
+          builder: (context, progress, child) => Transform.translate(
+            offset: Offset(0, (1 - progress) * 8),
+            child: child,
+          ),
+          child: SizedBox(
         width: double.infinity,
         height: height,
         child: ClipRRect(
@@ -118,6 +131,8 @@ class LumoSceneArtPanel extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+        ),
           ),
         ),
       ),
