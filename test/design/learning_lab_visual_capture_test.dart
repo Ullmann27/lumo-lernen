@@ -31,18 +31,16 @@ void main() {
       final wasVoice = LumoVoice.instance.isEnabled;
       LumoVoice.instance.isEnabled = false;
       addTearDown(() => LumoVoice.instance.isEnabled = wasVoice);
-      await tester.runAsync(() async {
-        await app.school.setActiveStudent('atelier-visual-only');
-        await app.hydrateFromWallet();
-        await app.loadLearningProfile();
-        app.updateSettings(const AppSettings(
-          voiceEnabled: false,
-          autoReadEnabled: false,
-          soundEnabled: false,
-          reduceAnimations: true,
-          calmMode: true,
-        ));
-      });
+      // Screenshot tests must not hydrate the entire reward wallet.
+      // The screen itself resolves a fresh local lease; production evidence
+      // remains tied to that lease, whereas the visual fixture only renders.
+      app.updateSettings(const AppSettings(
+        voiceEnabled: false,
+        autoReadEnabled: false,
+        soundEnabled: false,
+        reduceAnimations: true,
+        calmMode: true,
+      ));
       const boundary = ValueKey('lab-real-capture');
       await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(),
@@ -95,6 +93,7 @@ void main() {
       }
       await tester.pumpWidget(const SizedBox.shrink());
       await tester.pump();
+      app.dispose();
     });
   }
 }
