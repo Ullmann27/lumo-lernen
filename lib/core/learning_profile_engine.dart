@@ -1,4 +1,5 @@
 import 'discovery_progress.dart';
+import 'learning_journey.dart';
 import 'progress_repository.dart';
 import 'recommendation_engine.dart';
 import 'weakness_detection_engine.dart';
@@ -48,9 +49,14 @@ class LearningProfileEngine {
   bool _discoveryDirty = false;
   int _discoveryRevision = 0;
   bool _discoveryPermissionPending = false;
+  LearningJourney _journey = LearningJourney();
+  bool _journeyLoaded = false;
+  Future<void>? _journeyLoading;
+  bool _journeyDirty = false;
+  int _journeyRevision = 0;
 
   Future<String> get studentId => _repo.studentId;
-  bool get hasUnsavedChanges => _dirty || _discoveryDirty;
+  bool get hasUnsavedChanges => _dirty || _discoveryDirty || _journeyDirty;
   Future<void> _saveTail = Future<void>.value();
 
   bool get isLoaded => _loaded;
@@ -60,6 +66,57 @@ class LearningProfileEngine {
   bool get isDiscoveryLoaded => _discoveryLoaded;
   DiscoveryProgress get discovery => _discovery;
   bool get discoveryPermissionPending => _discoveryPermissionPending;
+  bool get isJourneyLoaded => _journeyLoaded;
+  LearningJourney get journey => _journey;
+
+  Future<void> loadJourney() {
+    if (_journeyLoaded) return Future<void>.value();
+    return _journeyLoading ??= _loadJourney();
+  }
+
+  Future<void> _loadJourney() async {
+    try {
+      final loaded = await _repo.loadJourney();
+      _journey = loaded;
+      _journeyLoaded = true;
+    } finally {
+      _journeyLoading = null;
+    }
+  }
+
+  /// Accept once in memory, then queue an immutable snapshot. On save failure,
+  /// retry [flushJourney] rather than submitting a new attempt identity.
+  Future<JourneySkill> recordJourneyEvidence({
+    required String subject,
+    required String unit,
+    required LearningEvidence evidence,
+    DateTime? now,
+  }) async {
+    await loadJourney();
+    final updated = _journey.recordEvidence(
+      subject: subject,
+      unit: unit,
+      evidence: evidence,
+      now: now ?? DateTime.now(),
+    );
+    if (!identical(updated, _journey)) {
+      _journey = updated;
+      _journeyRevision++;
+      _journeyDirty = true;
+    }
+    await _persistJourney();
+    return _journey.records[SkillRecord.makeId(subject, unit)]!;
+  }
+
+  Future<void> flushJourney() => _persistJourney();
+
+  Future<void> _persistJourney() => _enqueueSave(() async {
+        if (!_journeyLoaded || !_journeyDirty) return;
+        final revision = _journeyRevision;
+        final snapshot = _journey;
+        await _repo.saveJourney(snapshot);
+        if (revision == _journeyRevision) _journeyDirty = false;
+      });
 
   /// An in-memory grant after a rejected native write is not an effective
   /// permission. A pending revocation blocks immediately as well.
@@ -257,6 +314,7 @@ class LearningProfileEngine {
   Future<void> reset() async {
     if (_loading != null) await _loading;
     if (_discoveryLoading != null) await _discoveryLoading;
+    if (_journeyLoading != null) await _journeyLoading;
     try {
       await _saveTail;
     } catch (_) {}
@@ -271,6 +329,10 @@ class LearningProfileEngine {
     _discoveryDirty = false;
     _discoveryPermissionPending = false;
     _discoveryRevision++;
+    _journey = LearningJourney();
+    _journeyLoaded = true;
+    _journeyDirty = false;
+    _journeyRevision++;
   }
 
   // ── interne helpers ───────────────────────────────────────
@@ -278,6 +340,7 @@ class LearningProfileEngine {
     // A discovery-only engine must not overwrite unloaded school progress.
     if (_loaded || _dirty) await _persist();
     await _persistDiscovery();
+    await _persistJourney();
   }
 
   Future<void> _persist() {
