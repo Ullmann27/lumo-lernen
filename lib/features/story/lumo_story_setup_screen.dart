@@ -58,7 +58,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
     final lastVariant = variants.isEmpty
         ? -1
         : int.tryParse(variants.last.split('|v').last) ?? -1;
-    final variationSeed = (lastVariant + 1) % 6;
+    final variationSeed = (lastVariant + 1) % 12;
     final story = LumoStoryGenerator.instance.generateReadingAdventure(
       hero: _hero!,
       location: _location!,
@@ -82,7 +82,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
         LumoStoryGenerator.instance.generateReadingAdventure(
           hero: 'Fuchs', location: 'Zauberwald', theme: 'Geheimnis',
           gradeLevel: _gradeLevel,
-          variationSeed: DateTime.now().millisecondsSinceEpoch % 6);
+          variationSeed: DateTime.now().millisecondsSinceEpoch % 12);
     await _openReader(story);
   }
 
