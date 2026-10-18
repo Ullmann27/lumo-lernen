@@ -239,7 +239,7 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
                 tooltip: 'Pausieren / Zurück',
                 onPressed: _clock.pause,
                 icon: const Icon(Icons.arrow_back_rounded)),
-            backgroundColor: LumoColors.orange,
+            backgroundColor: LumoBoardColors.backdrop,
             foregroundColor: Colors.white,
             title: Text(widget.level.title,
                 style: const TextStyle(
@@ -249,24 +249,15 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(children: [
-                // Fortschritt
-                Row(children: [
-                  Text('Aufgabe ${_taskIndex + 1} / $_tasksPerRound',
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF7C2D12))),
-                  const Spacer(),
-                  const Icon(Icons.star_rounded,
-                      color: Color(0xFFFCD34D), size: 24),
-                  Text(' $_correct',
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xFF7C2D12))),
-                ]),
+                LumoBoardRoundProgress(
+                  currentIndex: _taskIndex,
+                  total: _tasksPerRound,
+                  correct: _correct,
+                  label: "Aufgabe",
+                  reduceMotion:
+                      widget.appState.state.settings.reduceAnimations ||
+                          widget.appState.state.settings.calmMode,
+                ),
                 const SizedBox(height: 24),
                 // Aufgabe
                 Container(
@@ -320,6 +311,9 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
                           button: true,
                           child: _BoxTile(
                             filled: _boxes[i],
+                            reduceMotion: widget
+                                    .appState.state.settings.reduceAnimations ||
+                                widget.appState.state.settings.calmMode,
                             onTap: () => _toggleBox(i),
                           )),
                     ),
@@ -353,8 +347,10 @@ class _ColorBoxesGameState extends State<ColorBoxesGame> {
 }
 
 class _BoxTile extends StatelessWidget {
-  const _BoxTile({required this.filled, required this.onTap});
+  const _BoxTile(
+      {required this.filled, required this.onTap, required this.reduceMotion});
   final bool filled;
+  final bool reduceMotion;
   final VoidCallback onTap;
 
   @override
@@ -362,7 +358,7 @@ class _BoxTile extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: lumoBoardMotionDuration(context, reduceMotion: reduceMotion),
         decoration: BoxDecoration(
           gradient: filled
               ? const LinearGradient(

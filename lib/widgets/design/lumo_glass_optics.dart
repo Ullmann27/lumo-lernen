@@ -50,6 +50,34 @@ class LumoGlassOptics extends CustomPainter {
               accent.withValues(alpha: .6)
             ],
           ).createShader(rect));
+    // Inset contact shadow and reflected lower lip give the glass thickness.
+    final inner = RRect.fromRectAndRadius(
+        rect.deflate(3), Radius.circular((radius - 3).clamp(0, radius)));
+    canvas.drawRRect(
+        inner,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1
+          ..shader = const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            stops: [0, .30, .82, 1],
+            colors: [
+              Color(0x32FFFFFF),
+              Color(0x00FFFFFF),
+              Color(0x22000000),
+              Color(0x6673DAFF)
+            ],
+          ).createShader(rect));
+    final shine = Rect.fromLTWH(0, 0, size.width, size.height.clamp(0, 52));
+    canvas.drawRect(
+        shine,
+        Paint()
+          ..shader = LinearGradient(
+                  begin: Alignment.topCenter,
+                  end: Alignment.bottomCenter,
+                  colors: [accent.withValues(alpha: .08), Colors.transparent])
+              .createShader(shine));
     canvas.restore();
   }
 

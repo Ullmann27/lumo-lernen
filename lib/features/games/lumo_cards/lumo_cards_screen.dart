@@ -537,6 +537,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                           mainAxisSize: MainAxisSize.min,
                                           children: [
                                             LumoDrawPile(
+                                              reduceMotion: _reduceMotion,
                                               cardsLeft: s.drawPile.length,
                                               onDraw: s.phase ==
                                                           GamePhase.playing &&

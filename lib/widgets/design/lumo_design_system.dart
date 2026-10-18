@@ -272,8 +272,8 @@ class LumoGlassCard extends StatelessWidget {
         ),
         borderRadius: BorderRadius.circular(radius),
         border: Border.all(
-          color: borderColor ??
-              LumoVisualTokens.cyanBright.withValues(alpha: .60),
+          color:
+              borderColor ?? LumoVisualTokens.cyanBright.withValues(alpha: .60),
           width: 1.25,
         ),
         boxShadow: [
@@ -322,116 +322,127 @@ class LumoColorTile extends StatelessWidget {
         final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.2;
         // Symbol wächst mit der Kachel: auf dem Fold-Innendisplay keine leeren Flächen.
         final iconSize = constraints.maxHeight.isFinite
-            ? (constraints.maxHeight * 0.30).clamp(32.0, 88.0).toDouble()
+            ? ((constraints.maxHeight - 58) * 0.82).clamp(30.0, 92.0).toDouble()
             : (narrow ? 32.0 : 40.0);
-        final titleSize = iconSize >= 60 ? 24.0 : (narrow ? 15.0 : 18.0);
+        final titleSize =
+            constraints.maxWidth >= 240 ? 24.0 : (narrow ? 15.0 : 18.0);
         return Semantics(
             button: true,
             label: '$title. $subtitle',
             child: LumoPressable(
-              glowColor: Color.lerp(LumoVisualTokens.cyanBright, color, .35)!,
-              child: Material(
-              color: Colors.transparent,
-              child: InkWell(
-                onTap: onTap,
-                borderRadius: BorderRadius.circular(22),
-                child: Ink(
-                  padding: EdgeInsets.all(constraints.maxHeight < 100
-                      ? 8
-                      : narrow
-                          ? 12
-                          : 14),
-                  decoration: BoxDecoration(
+                glowColor: Color.lerp(LumoVisualTokens.cyanBright, color, .35)!,
+                child: Material(
+                  color: Colors.transparent,
+                  child: InkWell(
+                    onTap: onTap,
                     borderRadius: BorderRadius.circular(22),
-                    gradient: LinearGradient(
-                        begin: Alignment.topLeft,
-                        end: Alignment.bottomRight,
-                        stops: const [0.0, 0.18, 1.0],
-                        colors: [
-                          // Leichter Glanz an der oberen Kante für Tiefe.
-                          Color.lerp(const Color(0xF0215A8F), color, .68)!,
-                          Color.lerp(const Color(0xEE123A68), color, .42)!,
-                          const Color(0xF0081D3D)
-                        ]),
-                    border: Border.all(
-                        color: LumoVisualTokens.cyan.withValues(alpha: .43)),
-                    boxShadow: [
-                      BoxShadow(
-                          color: color.withValues(alpha: .12),
-                          blurRadius: 16,
-                          offset: const Offset(0, 6))
-                    ],
-                  ),
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(children: [
-                          // Weicher Lichthof in der Akzentfarbe hinter dem Symbol.
-                          DecoratedBox(
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              gradient: RadialGradient(colors: [
-                                color.withValues(alpha: .38),
-                                color.withValues(alpha: 0),
-                              ]),
-                            ),
-                            child: Padding(
-                              padding: EdgeInsets.all(iconSize * 0.12),
-                              child: iconAsset != null
-                                  ? Image.asset(iconAsset!,
-                                      key: ValueKey(
-                                          'lumo-color-tile-icon-${title.toLowerCase()}'),
-                                      width: iconSize,
-                                      height: iconSize,
-                                      fit: BoxFit.contain,
-                                      excludeFromSemantics: true,
-                                      // A local asset still decodes asynchronously
-                                      // on first use. Keep the meaningful icon
-                                      // visible until the PNG frame is painted.
-                                      frameBuilder: (context, image, frame, sync) =>
-                                          sync || frame != null
-                                              ? image
-                                              : Icon(icon,
-                                                  size: iconSize,
-                                                  color: LumoVisualTokens.cyanBright),
-                                      errorBuilder: (_, __, ___) => Icon(icon,
-                                          size: iconSize,
-                                          color: LumoVisualTokens.cyanBright))
-                                  : Icon(icon,
-                                      size: iconSize,
-                                      color: LumoVisualTokens.cyanBright),
-                            ),
-                          ),
-                          const Spacer(),
-                          const Icon(Icons.north_east_rounded,
-                              size: 17, color: LumoVisualTokens.cyanBright),
-                        ]),
-                        const Spacer(),
-                        Text(title,
-                            maxLines: 2,
-                            style: TextStyle(
-                                fontFamily: 'Nunito',
-                                fontSize: titleSize,
-                                height: 1.05,
-                                fontWeight: FontWeight.w900,
-                                color: Colors.white)),
-                        // Symbol + zweizeiliger Titel brauchen auf flachen
-                        // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
-                        // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
-                        if (!largeText && constraints.maxHeight >= 155) ...[
-                          const SizedBox(height: 5),
-                          Text(subtitle,
-                              maxLines: 2,
-                              overflow: TextOverflow.ellipsis,
-                              style: TextStyle(
-                                  fontSize: iconSize >= 60 ? 14 : 11,
-                                  height: 1.15,
-                                  color: LumoVisualTokens.muted)),
+                    child: Ink(
+                      padding: EdgeInsets.all(constraints.maxHeight < 100
+                          ? 8
+                          : narrow
+                              ? 12
+                              : 14),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(22),
+                        gradient: LinearGradient(
+                            begin: Alignment.topLeft,
+                            end: Alignment.bottomRight,
+                            stops: const [
+                              0.0,
+                              0.18,
+                              1.0
+                            ],
+                            colors: [
+                              // Leichter Glanz an der oberen Kante für Tiefe.
+                              Color.lerp(const Color(0xF0215A8F), color, .68)!,
+                              Color.lerp(const Color(0xEE123A68), color, .42)!,
+                              const Color(0xF0081D3D)
+                            ]),
+                        border: Border.all(
+                            color:
+                                LumoVisualTokens.cyan.withValues(alpha: .43)),
+                        boxShadow: [
+                          BoxShadow(
+                              color: color.withValues(alpha: .12),
+                              blurRadius: 16,
+                              offset: const Offset(0, 6))
                         ],
-                      ]),
-                ),
-              ),
-            )));
+                      ),
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                                child: Row(children: [
+                              // Weicher Lichthof in der Akzentfarbe hinter dem Symbol.
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  gradient: RadialGradient(colors: [
+                                    color.withValues(alpha: .38),
+                                    color.withValues(alpha: 0),
+                                  ]),
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(iconSize * 0.12),
+                                  child: iconAsset != null
+                                      ? Image.asset(iconAsset!,
+                                          key: ValueKey(
+                                              'lumo-color-tile-icon-${title.toLowerCase()}'),
+                                          width: iconSize,
+                                          height: iconSize,
+                                          fit: BoxFit.contain,
+                                          excludeFromSemantics: true,
+                                          // A local asset still decodes asynchronously
+                                          // on first use. Keep the meaningful icon
+                                          // visible until the PNG frame is painted.
+                                          frameBuilder: (context, image, frame,
+                                                  sync) =>
+                                              sync || frame != null
+                                                  ? image
+                                                  : Icon(icon,
+                                                      size: iconSize,
+                                                      color: LumoVisualTokens
+                                                          .cyanBright),
+                                          errorBuilder: (_, __, ___) => Icon(
+                                              icon,
+                                              size: iconSize,
+                                              color:
+                                                  LumoVisualTokens.cyanBright))
+                                      : Icon(icon,
+                                          size: iconSize,
+                                          color: LumoVisualTokens.cyanBright),
+                                ),
+                              ),
+                              const Spacer(),
+                              const Icon(Icons.north_east_rounded,
+                                  size: 17, color: LumoVisualTokens.cyanBright),
+                            ])),
+                            const SizedBox(height: 6),
+                            Text(title,
+                                maxLines: 2,
+                                style: TextStyle(
+                                    fontFamily: 'Nunito',
+                                    fontSize: titleSize,
+                                    height: 1.05,
+                                    fontWeight: FontWeight.w900,
+                                    color: Colors.white)),
+                            // Symbol + zweizeiliger Titel brauchen auf flachen
+                            // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
+                            // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
+                            if (!largeText && constraints.maxHeight >= 155) ...[
+                              const SizedBox(height: 5),
+                              Text(subtitle,
+                                  maxLines: 2,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                      fontSize: iconSize >= 60 ? 14 : 11,
+                                      height: 1.15,
+                                      color: LumoVisualTokens.muted)),
+                            ],
+                          ]),
+                    ),
+                  ),
+                )));
       });
 }
 
@@ -461,7 +472,9 @@ class LumoTopBar extends StatelessWidget {
     final xpInLevel = state.xp % 400;
     return LayoutBuilder(
       builder: (context, constraints) {
-        final compact = constraints.maxWidth < 300;
+        final compact = constraints.maxWidth < 300 ||
+            (constraints.maxWidth < 500 &&
+                MediaQuery.textScalerOf(context).scale(1) > 1.25);
         final avatarSize = compact ? 32.0 : 52.0;
         const glow = [Shadow(color: LumoVisualTokens.cyan, blurRadius: 14)];
         final logoSize = compact ? 24.0 : 34.0;
@@ -898,22 +911,29 @@ class LumoBottomNavigation extends StatelessWidget {
   static const _items = <_LumoNavigationItem>[
     _LumoNavigationItem(LumoSection.home, Icons.home_rounded, 'Start'),
     _LumoNavigationItem(LumoSection.learn, Icons.menu_book_rounded, 'Lernen'),
-    _LumoNavigationItem(LumoSection.games, Icons.sports_esports_rounded, 'Spielen'),
+    _LumoNavigationItem(
+        LumoSection.games, Icons.sports_esports_rounded, 'Spielen'),
     _LumoNavigationItem(LumoSection.tests, Icons.emoji_events_rounded, 'Tests'),
-    _LumoNavigationItem(LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
+    _LumoNavigationItem(
+        LumoSection.profile, Icons.sentiment_satisfied_rounded, 'Profil'),
   ];
 
   // Match the Fold sidebar's additional destinations, including rewards.
   static const _moreItems = <_LumoNavigationItem>[
     _LumoNavigationItem(LumoSection.rewards, Icons.star_rounded, 'Belohnungen'),
-    _LumoNavigationItem(LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
+    _LumoNavigationItem(
+        LumoSection.reading, Icons.record_voice_over_rounded, 'Lesemodus'),
     _LumoNavigationItem(LumoSection.exercises, Icons.edit_rounded, 'Übungen'),
-    _LumoNavigationItem(LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
-    _LumoNavigationItem(LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
+    _LumoNavigationItem(
+        LumoSection.schoolwork, Icons.description_rounded, 'Schularbeit'),
+    _LumoNavigationItem(
+        LumoSection.scanner, Icons.photo_camera_rounded, 'Foto'),
     _LumoNavigationItem(LumoSection.missions, Icons.flag_rounded, 'Missionen'),
-    _LumoNavigationItem(LumoSection.progress, Icons.bar_chart_rounded, 'Fortschritt'),
+    _LumoNavigationItem(
+        LumoSection.progress, Icons.bar_chart_rounded, 'Fortschritt'),
     _LumoNavigationItem(LumoSection.agent, Icons.smart_toy_rounded, 'Lumo'),
-    _LumoNavigationItem(LumoSection.settings, Icons.settings_rounded, 'Elternbereich'),
+    _LumoNavigationItem(
+        LumoSection.settings, Icons.settings_rounded, 'Elternbereich'),
   ];
 
   void _showMore(BuildContext context) {
@@ -952,12 +972,16 @@ class LumoBottomNavigation extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text('Mehr mit Lumo',
-                          style: TextStyle(fontFamily: 'Nunito',
-                            fontSize: 21, fontWeight: FontWeight.w900,
-                            color: LumoVisualTokens.white)),
+                            style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 21,
+                                fontWeight: FontWeight.w900,
+                                color: LumoVisualTokens.white)),
                         Text('Alle Bereiche – nach unten scrollen',
-                          style: TextStyle(fontFamily: 'Nunito', fontSize: 12,
-                            color: LumoVisualTokens.muted)),
+                            style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 12,
+                                color: LumoVisualTokens.muted)),
                       ],
                     ),
                   ),
@@ -965,7 +989,7 @@ class LumoBottomNavigation extends StatelessWidget {
                     key: const ValueKey('lumo-nav-more-close'),
                     tooltip: 'Menü schließen',
                     icon: const Icon(Icons.close_rounded,
-                      color: LumoVisualTokens.cyanBright),
+                        color: LumoVisualTokens.cyanBright),
                     onPressed: () => Navigator.of(sheetContext).pop(),
                   ),
                 ],
@@ -986,27 +1010,32 @@ class LumoBottomNavigation extends StatelessWidget {
                     padding: const EdgeInsets.symmetric(vertical: 3),
                     child: Material(
                       color: selected
-                        ? LumoVisualTokens.cyan.withOpacity(.16)
-                        : LumoVisualTokens.glass.withOpacity(.5),
+                          ? LumoVisualTokens.cyan.withOpacity(.16)
+                          : LumoVisualTokens.glass.withOpacity(.5),
                       borderRadius: BorderRadius.circular(18),
                       child: ListTile(
                         key: ValueKey('lumo-nav-extra-' + item.section.name),
                         minTileHeight: 56,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18),
-                          side: BorderSide(color: selected
-                            ? LumoVisualTokens.cyan.withOpacity(.8)
-                            : LumoVisualTokens.cyan.withOpacity(.16)),
+                          side: BorderSide(
+                              color: selected
+                                  ? LumoVisualTokens.cyan.withOpacity(.8)
+                                  : LumoVisualTokens.cyan.withOpacity(.16)),
                         ),
-                        leading: Icon(item.icon, size: 25,
-                          color: LumoVisualTokens.cyanBright),
+                        leading: Icon(item.icon,
+                            size: 25, color: LumoVisualTokens.cyanBright),
                         title: Text(item.label,
-                          style: const TextStyle(fontFamily: 'Nunito',
-                            fontWeight: FontWeight.w800, fontSize: 15,
-                            color: LumoVisualTokens.white)),
-                        trailing: Icon(selected ? Icons.check_circle_rounded
-                          : Icons.chevron_right_rounded,
-                          color: LumoVisualTokens.cyanBright),
+                            style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w800,
+                                fontSize: 15,
+                                color: LumoVisualTokens.white)),
+                        trailing: Icon(
+                            selected
+                                ? Icons.check_circle_rounded
+                                : Icons.chevron_right_rounded,
+                            color: LumoVisualTokens.cyanBright),
                         selected: selected,
                         onTap: () {
                           Navigator.of(sheetContext).pop();
@@ -1024,82 +1053,97 @@ class LumoBottomNavigation extends StatelessWidget {
     );
   }
 
-  bool get _moreSelected =>
-      _moreItems.any((item) => item.section == active);
+  bool get _moreSelected => _moreItems.any((item) => item.section == active);
 
   @override
   Widget build(BuildContext context) => Container(
-    padding: const EdgeInsets.fromLTRB(4, 5, 4, 4),
-    decoration: BoxDecoration(
-      color: LumoVisualTokens.navigation.withOpacity(.98),
-      borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
-      border: Border(top: BorderSide(
-        color: LumoVisualTokens.cyan.withOpacity(.42))),
-      boxShadow: [BoxShadow(
-        color: LumoVisualTokens.cyan.withOpacity(.16),
-        blurRadius: 20, offset: const Offset(0, -3))],
-    ),
-    child: Row(
-      children: [
-        Expanded(child: LayoutBuilder(
-          builder: (context, constraints) {
-            // Full five tabs fit at normal phone width. Extra-narrow covers
-            // can swipe the primary rail; the More control never scrolls away.
-            final tabWidth = constraints.maxWidth >= 280
-              ? constraints.maxWidth / _items.length : 56.0;
-            return SingleChildScrollView(
-              key: const ValueKey('lumo-nav-primary-scroll'),
-              scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
-              child: Row(children: [
-                for (final item in _items)
-                  SizedBox(width: tabWidth, child: _buildTab(item)),
-              ]),
-            );
-          },
-        )),
-        Container(width: 1, height: 40,
-          color: LumoVisualTokens.cyan.withOpacity(.30)),
-        SizedBox(
-          width: 67,
-          child: Semantics(
-            button: true,
-            selected: _moreSelected,
-            label: 'Mehr',
-            child: InkWell(
-              key: const ValueKey('lumo-nav-more'),
-              borderRadius: BorderRadius.circular(15),
-              onTap: () => _showMore(context),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 7),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.keyboard_arrow_up_rounded, size: 25,
-                      color: _moreSelected
-                        ? LumoVisualTokens.cyanBright : LumoVisualTokens.cyan),
-                    const SizedBox(height: 2),
-                    Text('Mehr', style: TextStyle(
-                      fontFamily: 'Nunito', fontSize: 11,
-                      fontWeight: FontWeight.w900,
-                      color: _moreSelected
-                        ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted)),
-                  ],
+        padding: const EdgeInsets.fromLTRB(4, 5, 4, 4),
+        decoration: BoxDecoration(
+          color: LumoVisualTokens.navigation.withOpacity(.98),
+          borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
+          border: Border(
+              top: BorderSide(color: LumoVisualTokens.cyan.withOpacity(.42))),
+          boxShadow: [
+            BoxShadow(
+                color: LumoVisualTokens.cyan.withOpacity(.16),
+                blurRadius: 20,
+                offset: const Offset(0, -3))
+          ],
+        ),
+        child: Row(
+          children: [
+            Expanded(child: LayoutBuilder(
+              builder: (context, constraints) {
+                // Full five tabs fit at normal phone width. Extra-narrow covers
+                // can swipe the primary rail; the More control never scrolls away.
+                final minTabWidth = 56.0 *
+                    MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.5);
+                final tabWidth =
+                    constraints.maxWidth / _items.length >= minTabWidth
+                        ? constraints.maxWidth / _items.length
+                        : minTabWidth;
+                return SingleChildScrollView(
+                  key: const ValueKey('lumo-nav-primary-scroll'),
+                  scrollDirection: Axis.horizontal,
+                  physics: const BouncingScrollPhysics(),
+                  child: Row(children: [
+                    for (final item in _items)
+                      SizedBox(width: tabWidth, child: _buildTab(item)),
+                  ]),
+                );
+              },
+            )),
+            Container(
+                width: 1,
+                height: 40,
+                color: LumoVisualTokens.cyan.withOpacity(.30)),
+            SizedBox(
+              width: 67,
+              child: Semantics(
+                button: true,
+                selected: _moreSelected,
+                label: 'Mehr',
+                child: InkWell(
+                  key: const ValueKey('lumo-nav-more'),
+                  borderRadius: BorderRadius.circular(15),
+                  onTap: () => _showMore(context),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 7),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(Icons.keyboard_arrow_up_rounded,
+                            size: 25,
+                            color: _moreSelected
+                                ? LumoVisualTokens.cyanBright
+                                : LumoVisualTokens.cyan),
+                        const SizedBox(height: 2),
+                        Text('Mehr',
+                            style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 11,
+                                fontWeight: FontWeight.w900,
+                                color: _moreSelected
+                                    ? LumoVisualTokens.cyanBright
+                                    : LumoVisualTokens.muted)),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
-      ],
-    ),
-  );
+      );
 
   Widget _buildTab(_LumoNavigationItem item) {
     final selected = active == item.section;
-    final color = selected
-        ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted;
+    final color =
+        selected ? LumoVisualTokens.cyanBright : LumoVisualTokens.muted;
     return Semantics(
-      button: true, selected: selected, label: item.label,
+      button: true,
+      selected: selected,
+      label: item.label,
       child: InkWell(
         key: ValueKey('lumo-nav-' + item.label.toLowerCase()),
         borderRadius: BorderRadius.circular(16),
@@ -1111,22 +1155,31 @@ class LumoBottomNavigation extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 7),
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             AnimatedScale(
-              scale: selected ? 1.12 : 1,
-              duration: const Duration(milliseconds: 180),
-              child: Icon(item.icon, size: 25, color: color,
-                shadows: selected ? const [
-                  Shadow(color: LumoVisualTokens.cyan, blurRadius: 12),
-                ] : null)),
+                scale: selected ? 1.12 : 1,
+                duration: const Duration(milliseconds: 180),
+                child: Icon(item.icon,
+                    size: 25,
+                    color: color,
+                    shadows: selected
+                        ? const [
+                            Shadow(
+                                color: LumoVisualTokens.cyan, blurRadius: 12),
+                          ]
+                        : null)),
             const SizedBox(height: 2),
-            Text(item.label, maxLines: 1,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                fontFamily: 'Nunito',
-                fontWeight: selected ? FontWeight.w900 : FontWeight.w700,
-                fontSize: 11, color: color,
-                shadows: selected ? const [
-                  Shadow(color: LumoVisualTokens.cyan, blurRadius: 8),
-                ] : null)),
+            Text(item.label,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontWeight: selected ? FontWeight.w900 : FontWeight.w700,
+                    fontSize: 11,
+                    color: color,
+                    shadows: selected
+                        ? const [
+                            Shadow(color: LumoVisualTokens.cyan, blurRadius: 8),
+                          ]
+                        : null)),
           ]),
         ),
       ),
@@ -1319,27 +1372,27 @@ class _FoldSkillRing extends StatelessWidget {
               child: LumoAnimatedValue(
                 value: value,
                 builder: (context, value) => Stack(
-                alignment: Alignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    value: value,
-                    strokeWidth: 6,
-                    backgroundColor: LumoVisualTokens.navigation,
-                    valueColor: const AlwaysStoppedAnimation<Color>(
-                      LumoVisualTokens.cyanBright,
+                  alignment: Alignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      value: value,
+                      strokeWidth: 6,
+                      backgroundColor: LumoVisualTokens.navigation,
+                      valueColor: const AlwaysStoppedAnimation<Color>(
+                        LumoVisualTokens.cyanBright,
+                      ),
                     ),
-                  ),
-                  Text(
-                    '${(value * 100).round()}%',
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 11,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
+                    Text(
+                      '${(value * 100).round()}%',
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 11,
+                        fontWeight: FontWeight.w900,
+                        color: LumoVisualTokens.white,
+                      ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
               ),
             ),
             const SizedBox(height: 3),
