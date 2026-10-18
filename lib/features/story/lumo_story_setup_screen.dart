@@ -59,7 +59,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
         ? -1
         : int.tryParse(variants.last.split('|v').last) ?? -1;
     final variationSeed = (lastVariant + 1) % 6;
-    final story = LumoStoryGenerator.instance.generate(
+    final story = LumoStoryGenerator.instance.generateReadingAdventure(
       hero: _hero!,
       location: _location!,
       theme: _theme!,
@@ -79,7 +79,10 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
 
   Future<void> _surprise() async {
     final story =
-        LumoStoryGenerator.instance.generateRandom(gradeLevel: _gradeLevel);
+        LumoStoryGenerator.instance.generateReadingAdventure(
+          hero: 'Fuchs', location: 'Zauberwald', theme: 'Geheimnis',
+          gradeLevel: _gradeLevel,
+          variationSeed: DateTime.now().millisecondsSinceEpoch % 6);
     await _openReader(story);
   }
 
@@ -122,7 +125,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
-                    child: Text('Lumo erfindet dir eine Geschichte!',
+                    child: Text('Lumos Bücher und Leseabenteuer',
                         style: const TextStyle(color: LumoVisualTokens.white,
                             fontSize: 22, fontWeight: FontWeight.w900)),
                   ),
@@ -146,7 +149,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                             style: TextStyle(color: LumoVisualTokens.white,
                               fontSize: 18, fontWeight: FontWeight.w900)),
                           SizedBox(height: 5),
-                          Text('Wähle eine Idee oder lass Lumo entscheiden.',
+                          Text('Wähle Held, Ort und Abenteuer. Oder starte gleich ein Buch.',
                             style: TextStyle(color: LumoVisualTokens.muted,
                               fontSize: 12.5)),
                         ],
@@ -226,22 +229,21 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 LumoTokens.colors.gold,
               ),
               const SizedBox(height: LumoTokens.space20),
-              _SectionLabel('4. Wer begleitet dich?'),
-              const SizedBox(height: 8),
-              _buildChips(
-                const ['Lumo', 'Sternenroboter', 'Eule', 'Delfin'],
-                _companion,
-                (v) => setState(() => _companion = v),
-                LumoTokens.colors.lumoOrange,
-              ),
-              const SizedBox(height: LumoTokens.space20),
-              _SectionLabel('5. Welchen Zaubergegenstand?'),
-              const SizedBox(height: 8),
-              _buildChips(
-                const ['Sternenkompass', 'Zauberbuch', 'Leuchtkristall', 'Mondschlüssel'],
-                _magicItem,
-                (v) => setState(() => _magicItem = v),
-                LumoTokens.colors.gold,
+              const SizedBox(height: 6),
+              LumoGlassCard(
+                padding: const EdgeInsets.all(14),
+                child: Row(children: const [
+                  Icon(Icons.menu_book_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                  SizedBox(width: 10),
+                  Expanded(child: Text(
+                    'Du liest zwölf Buchseiten, löst zwei Rätsel und '
+                    'beantwortest am Schluss Fragen zur ganzen Geschichte. '
+                    'Lumo liest nur vor, wenn du auf den Lautsprecher tippst.',
+                    style: TextStyle(color: LumoVisualTokens.white,
+                      height: 1.4, fontSize: 14),
+                  )),
+                ]),
               ),
               const SizedBox(height: LumoTokens.space32),
               SizedBox(
