@@ -36,6 +36,8 @@ APPROVED = {
     1982: "20652880eda687c67cfa72301dad5a173b1fe6c5",
     # Visual-only quiz studio remains pinned to the same inspected native tree.
     1983: "20652880eda687c67cfa72301dad5a173b1fe6c5",
+    # 1984 only changes Flutter scenes and narration; preserve the validated Kart pin.
+    1984: "20652880eda687c67cfa72301dad5a173b1fe6c5",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
