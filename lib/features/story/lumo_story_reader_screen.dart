@@ -701,7 +701,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   ),
                 );
               }).toList(),
-            )
+            ),
           if (ex.type == StoryExerciseType.wordChoice &&
               _selectedAnswer != null && !_exerciseDone)
             const Padding(
@@ -920,6 +920,20 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               ],
             ),
           ),
+          if (widget.story.bookQuestions.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Text(
+              'Buchfragen: $_bookQuestionsCorrectFirstTry von '
+              '${widget.story.bookQuestions.length} sofort gewusst. '
+              'Wichtiger als Punkte ist, dass du den Text verstanden hast.',
+              style: const TextStyle(
+                color: LumoVisualTokens.white,
+                fontSize: 15,
+                height: 1.4,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ],
           const SizedBox(height: LumoTokens.space12),
           // Eingabefeld
           LumoPremiumCard(
