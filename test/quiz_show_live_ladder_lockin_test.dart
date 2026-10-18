@@ -28,6 +28,8 @@ void main() {
     }
     expect(find.byKey(const ValueKey('lumo-meister-lock-bar')),
         findsOneWidget);
+    expect(find.byKey(const ValueKey('lumo-meister-answer-0')),
+        findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -44,7 +46,7 @@ void main() {
       ),
     ));
     await tester.pump(const Duration(milliseconds: 260));
-    final answer = find.textContaining(RegExp(r'^A  '));
+    final answer = find.byKey(const ValueKey('lumo-meister-answer-0'));
     await tester.ensureVisible(answer);
     await tester.pump();
     await tester.tap(answer);
