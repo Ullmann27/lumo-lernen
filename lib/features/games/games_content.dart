@@ -700,7 +700,7 @@ class _LumoMeisterPortal extends StatelessWidget {
                   const SizedBox(height: 10),
                   Container(
                     key: const ValueKey('games-lumo-meister-play'),
-                    height: 48,
+                    constraints: const BoxConstraints(minHeight: 52),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(22),
                       gradient: const LinearGradient(colors: [
@@ -712,22 +712,26 @@ class _LumoMeisterPortal extends StatelessWidget {
                         BoxShadow(color: Color(0x6639DDFF), blurRadius: 12),
                       ],
                     ),
-                    child: const Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.play_arrow_rounded,
-                          color: Colors.white, size: 28),
-                        SizedBox(width: 8),
-                        Text('QUIZSHOW STARTEN',
-                          style: TextStyle(
-                            fontFamily: 'Nunito', fontSize: 17,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white, letterSpacing: .6,
-                          )),
-                        SizedBox(width: 8),
-                        Icon(Icons.arrow_forward_ios_rounded,
-                          color: Color(0xFFFFE2A2), size: 17),
-                      ],
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 10),
+                      child: Row(
+                        children: [
+                          Icon(Icons.play_arrow_rounded,
+                            color: Colors.white, size: 26),
+                          SizedBox(width: 5),
+                          Expanded(child: Text('QUIZSHOW STARTEN',
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            style: TextStyle(
+                              fontFamily: 'Nunito', fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white, letterSpacing: .4,
+                            ))),
+                          SizedBox(width: 5),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFFFFE2A2), size: 16),
+                        ],
+                      ),
                     ),
                   ),
                 ],
