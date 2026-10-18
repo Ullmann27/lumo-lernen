@@ -42,6 +42,12 @@ def remove_generated_sidecars(repo: Path, before: set[str]):
 # files, not new application sources; the pack is exported BEFORE cleanup.
 # For earlier releases, or for any other name or content, fail closed.
 GROUNDED_GATE_REVISION = 'a17b06c4719cc94c94bdf97afb3b6862cd049323'
+# Both reviewed revisions embed the exact same byte-identical GLB and 3 JPEGs.
+# Cleanup remains restricted to these release pins; all other files fail closed.
+GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
+    GROUNDED_GATE_REVISION,
+    '6518a13fb8eb30c81c8a2115d14791cbe7ddd24a',
+))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
 GROUNDED_GATE_GENERATED_IMAGES = frozenset(
@@ -51,12 +57,12 @@ GROUNDED_GATE_GENERATED_IMAGES = frozenset(
 
 
 def remove_generated_gate_images(repo: Path, before: set[str], source: dict):
-    """Clean only import-extracted GLB JPEG sidecars of the exact 1975 asset.
+    """Clean only verified GLB image sidecars of explicitly reviewed release pins.
 
     Preserve unexpected/untrusted files so the existing final dirty-source
     gate rejects packaging. Never remove a file present before import.
     """
-    if source.get('revision') != GROUNDED_GATE_REVISION:
+    if source.get('revision') not in GROUNDED_GATE_ALLOWED_REVISIONS:
         return
     untracked = git_paths(repo, 'ls-files', '--others', '--exclude-standard')
     generated = (untracked - before) & GROUNDED_GATE_GENERATED_IMAGES
