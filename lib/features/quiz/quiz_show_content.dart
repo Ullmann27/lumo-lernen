@@ -458,7 +458,8 @@ class _QuizStage extends StatelessWidget {
                             fit: BoxFit.contain,
                             filterQuality: FilterQuality.high,
                             semanticLabel: 'Lumo als Quizmoderator mit Fliege und Quizkarte',
-                          ),                       ),
+                          ),
+                        ),
                       ),
                     ),
                     Positioned(
