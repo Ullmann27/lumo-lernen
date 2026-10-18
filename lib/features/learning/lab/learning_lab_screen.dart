@@ -82,6 +82,9 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
         widget.appState.state.grade < widget.topic.minimumGrade) {
       setState(() => _invalid = true);
       unawaited(_narration.stop());
+    } else {
+      // Also refresh visible controls when voice or animation settings change.
+      setState(() {});
     }
   }
   void _repaint() { if (mounted) setState(() {}); }
