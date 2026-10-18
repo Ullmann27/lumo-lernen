@@ -17,6 +17,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 import '../writing/lumo_writing_coach_screen.dart';
+import 'widgets/lumo_story_scene.dart';
 
 class LumoStoryReaderScreen extends StatefulWidget {
   const LumoStoryReaderScreen({
@@ -46,6 +47,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   // "Am Schluss wird gefragt um was es geht und das Kind kann erklaeren,
   //  dann bewertet Lumo die Zusammenfassung").
   bool _inSummaryMode = false;
+  bool _inBookQuiz = false;
+  bool _fullBookView = false;
+  int _bookQuestionIndex = 0;
+  String? _bookQuizSelected;
+  int _bookQuestionsCorrectFirstTry = 0;
+  bool _bookQuestionHadMistake = false;
   final TextEditingController _summaryCtrl = TextEditingController();
   final LumoSpeechListener _speech = LumoSpeechListener();
   bool _summaryEvaluated = false;
@@ -59,7 +66,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     super.initState();
     _savedStoryId = widget.storyId;
     WidgetsBinding.instance.addObserver(this);
-    WidgetsBinding.instance.addPostFrameCallback((_) => _speak());
+    // Reading comes first. The loudspeaker remains available on demand.
   }
 
   @override
@@ -78,18 +85,118 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     } catch (_) {}
   }
 
+  void _openClueNotebook() {
+    final notes = <(String, String)>[
+      (
+        'Der erste Brief',
+        'Jemand hat eine Farbe beschrieben, die man bei klarem Wetter '
+        'oben am Himmel sehen kann.',
+      ),
+      if (_pageIdx >= 2) (
+        'Der Brunnen',
+        'Drei Fundstücke sind wichtig: eine Feder, ein Stein und ein Band. '
+        'Nur eine Sache ist an einem Zweig festgeknotet.',
+      ),
+      if (_pageIdx >= 3) (
+        'Die Treppe',
+        'An der ersten Stufe wurden drei Gegenstände gezeichnet. '
+        'Vergleiche sie mit dem Brief und mit dem Fund am Brunnen.',
+      ),
+      if (_pageIdx >= 6) (
+        'Die Karte',
+        'Kreis, Dreieck und Stern führen nicht zum gleichen Ort. '
+        'Ein Zeichen steht ausdrücklich beim letzten Weg.',
+      ),
+      if (_pageIdx >= 7) (
+        'Die geheime Tür',
+        'Die Zeichen an der Tür gleichen denen der alten Karte. '
+        'Du brauchst kein Glück: Du brauchst deine Erinnerung.',
+      ),
+    ];
+    showModalBottomSheet<void>(
+      context: context,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF101D3B),
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(28)),
+      ),
+      builder: (ctx) => SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(20, 18, 20, 26),
+          child: ConstrainedBox(
+            constraints: BoxConstraints(
+              maxHeight: MediaQuery.sizeOf(ctx).height * .74,
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Row(children: [
+                  const Icon(Icons.auto_stories_rounded,
+                    color: LumoVisualTokens.gold, size: 30),
+                  const SizedBox(width: 10),
+                  const Expanded(child: Text('Lumos Hinweis-Notizbuch',
+                    style: TextStyle(color: Colors.white,
+                      fontWeight: FontWeight.w900, fontSize: 21))),
+                  IconButton(
+                    tooltip: 'Notizbuch schließen',
+                    onPressed: () => Navigator.pop(ctx),
+                    icon: const Icon(Icons.close_rounded, color: Colors.white),
+                  ),
+                ]),
+                const Text('Hier stehen nur Beobachtungen. Die Rätsel '
+                    'lösen wir nicht für dich.',
+                  style: TextStyle(
+                    color: LumoVisualTokens.muted,
+                    height: 1.3, fontSize: 14)),
+                const SizedBox(height: 12),
+                Flexible(child: ListView.separated(
+                  key: const ValueKey('lumo-story-clue-notebook'),
+                  shrinkWrap: true,
+                  itemCount: notes.length,
+                  separatorBuilder: (_, __) => const SizedBox(height: 10),
+                  itemBuilder: (ctx, index) {
+                    final note = notes[index];
+                    return Container(
+                      padding: const EdgeInsets.all(13),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(14),
+                        color: const Color(0xFF18345B),
+                        border: Border.all(
+                          color: const Color(0xFF3F7197)),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(note.$1,
+                            style: const TextStyle(
+                              color: LumoVisualTokens.gold,
+                              fontSize: 16, fontWeight: FontWeight.w900)),
+                          const SizedBox(height: 5),
+                          Text(note.$2,
+                            style: const TextStyle(
+                              color: Colors.white, fontSize: 16, height: 1.4)),
+                        ],
+                      ),
+                    );
+                  },
+                )),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
   void _nextPage() {
     if (_pageIdx + 1 >= widget.story.pages.length) {
       // Letzte Seite fertig: wenn die Geschichte keyPoints hat, starten wir
       // die Zusammenfassungs-Phase. Sonst direkt zu Finish.
-      if (widget.story.keyPoints.isNotEmpty) {
-        setState(() => _inSummaryMode = true);
-        try {
-          LumoVoice.instance.speak(
-              'Schön! Erzähl mir, worum es in der Geschichte ging. Was ist alles passiert?');
-        } catch (_) {}
+      if (widget.story.bookQuestions.isNotEmpty) {
+        LumoVoice.instance.stop();
+        setState(() => _inBookQuiz = true);
       } else {
-        _showFinish();
+        _enterSummaryOrFinish();
       }
       return;
     }
@@ -100,7 +207,49 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     });
     // Pages are rendered directly by _buildPage, not by a PageView.
     // The page index above is the actual navigation state.
-    _speak();
+    // Page changes never trigger automatic speech. The child reads first.
+  }
+
+  void _enterSummaryOrFinish() {
+    if (widget.story.keyPoints.isNotEmpty) {
+      setState(() {
+        _inBookQuiz = false;
+        _inSummaryMode = true;
+      });
+    } else {
+      _showFinish();
+    }
+  }
+
+  void _chooseBookAnswer(String option) {
+    final question = widget.story.bookQuestions[_bookQuestionIndex];
+    if (_bookQuizSelected == question.correctAnswer) return;
+    final isCorrect = option == question.correctAnswer;
+    setState(() {
+      _bookQuizSelected = option;
+      if (!isCorrect) {
+        _bookQuestionHadMistake = true;
+      } else if (!_bookQuestionHadMistake) {
+        _bookQuestionsCorrectFirstTry++;
+      }
+    });
+    HapticFeedback.selectionClick();
+  }
+
+  void _nextBookQuestion() {
+    if (_bookQuizSelected !=
+        widget.story.bookQuestions[_bookQuestionIndex].correctAnswer) {
+      return;
+    }
+    if (_bookQuestionIndex + 1 == widget.story.bookQuestions.length) {
+      _enterSummaryOrFinish();
+      return;
+    }
+    setState(() {
+      _bookQuestionIndex++;
+      _bookQuizSelected = null;
+      _bookQuestionHadMistake = false;
+    });
   }
 
   void _startListeningSummary() async {
@@ -195,13 +344,16 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     final correct = answer == ex.correctAnswer;
     setState(() {
       _selectedAnswer = answer;
-      _exerciseDone = true;
+      _exerciseDone = ex.type == StoryExerciseType.wordChoice
+          ? correct
+          : true;
     });
     if (correct) {
+      // Keep the progress reward, but do not push a blocking modal over
+      // the next reading page 1s later. That interrupted child-led reading
+      // and could swallow the next mystery clue tap.
       widget.appState.addStars(1);
       widget.appState.addXp(5);
-      await Future.delayed(const Duration(milliseconds: 1000));
-      if (mounted) showLumoRewardBurst(context, stars: 1, xp: 5);
     }
   }
 
@@ -320,9 +472,68 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               children: [
                 _buildTopBar(),
                 Expanded(
-                  child: _inSummaryMode ? _buildSummaryPage() : _buildPage(page),
+                  child: _fullBookView
+                      ? _buildFullBook()
+                      : _inSummaryMode
+                          ? _buildSummaryPage()
+                      : _inBookQuiz
+                          ? _buildBookQuiz()
+                          : AnimatedSwitcher(
+                              duration: widget.appState.state.settings.reduceAnimations ||
+                                      widget.appState.state.settings.calmMode
+                                  ? Duration.zero
+                                  : const Duration(milliseconds: 320),
+                              reverseDuration: const Duration(milliseconds: 160),
+                              layoutBuilder: (currentChild, previousChildren) =>
+                                  Stack(
+                                    fit: StackFit.expand,
+                                    children: [
+                                      ...previousChildren,
+                                      if (currentChild != null) currentChild,
+                                    ],
+                                  ),
+                              transitionBuilder: (child, animation) {
+                                final turn = CurvedAnimation(
+                                  parent: animation,
+                                  curve: Curves.easeOutCubic,
+                                );
+                                return AnimatedBuilder(
+                                  animation: turn,
+                                  child: child,
+                                  builder: (context, pageChild) => Transform(
+                                    alignment: Alignment.centerRight,
+                                    transform: Matrix4.identity()
+                                      ..setEntry(3, 2, 0.0005)
+                                      ..rotateY((1.0 - turn.value) * -0.11),
+                                    child: FadeTransition(
+                                      opacity: turn,
+                                      child: pageChild,
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: GestureDetector(
+                                key: ValueKey('lumo-story-page-flip-${page.pageNum}'),
+                                behavior: HitTestBehavior.translucent,
+                                onHorizontalDragEnd: (details) {
+                                  // A swipe must NEVER bypass a reading clue.
+                                  if ((details.primaryVelocity ?? 0) < -480 &&
+                                      (page.exercise == null || _exerciseDone) &&
+                                      !_finishing) {
+                                    _nextPage();
+                                  }
+                                },
+                                child: _buildPage(page),
+                              ),
+                            ),
                 ),
-                _inSummaryMode ? _buildSummaryBottomNav() : _buildBottomNav(page),
+                _fullBookView
+                    ? _buildFullBookBottomNav()
+                    : _inSummaryMode
+                        ? _buildSummaryBottomNav()
+                    : _inBookQuiz
+                        ? _buildBookQuizNavigation()
+                        : _buildBottomNav(page),
               ],
             ),
           ),
@@ -362,15 +573,129 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               ],
             ),
           ),
+          if (widget.story.bookQuestions.isNotEmpty)
+            IconButton(
+              key: const ValueKey('lumo-story-clue-notebook-toggle'),
+              tooltip: 'Gefundene Hinweise nachlesen',
+              onPressed: _openClueNotebook,
+              icon: const Icon(Icons.explore_rounded,
+                color: LumoVisualTokens.gold),
+            ),
           IconButton(
-            icon: Icon(Icons.volume_up_rounded,
+            key: const ValueKey('lumo-full-book-toggle'),
+            tooltip: _fullBookView
+                ? 'Zurück zum Leseabenteuer'
+                : 'Gesamtes Buch im Volltext lesen',
+            icon: Icon(_fullBookView
+                ? Icons.menu_book_rounded
+                : Icons.chrome_reader_mode_rounded,
                 color: LumoVisualTokens.cyanBright),
-            onPressed: _speak,
+            onPressed: () => setState(() => _fullBookView = !_fullBookView),
+          ),
+          IconButton(
+            tooltip: 'Seite vorlesen',
+            icon: const Icon(Icons.volume_up_rounded,
+                color: LumoVisualTokens.cyanBright),
+            onPressed: _fullBookView ? null : _speak,
           ),
         ],
       ),
     );
   }
+
+  Widget _buildFullBook() {
+    return ListView(
+      key: const ValueKey('lumo-story-complete-book'),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+      children: [
+        Center(child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 740),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(widget.story.title,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 25,
+                )),
+              const SizedBox(height: 8),
+              const Text(
+                'Dein ganzes Buch – ohne Unterbrechung. '
+                'Wenn du miträtseln möchtest, kehre zur Leseansicht zurück.',
+                style: TextStyle(
+                  color: LumoVisualTokens.muted,
+                  height: 1.4,
+                  fontSize: 15,
+                )),
+              const SizedBox(height: 18),
+              for (final page in widget.story.pages) ...[
+                LumoStoryScene(
+                  page: page.pageNum,
+                  variant: widget.story.illustrationVariant,
+                  height: MediaQuery.sizeOf(context).width > 650 ? 252 : 192,
+                ),
+                const SizedBox(height: 10),
+                LumoGlassCard(
+                  key: ValueKey('full-book-page-${page.pageNum}'),
+                  padding: const EdgeInsets.all(17),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Kapitel ${((page.pageNum - 1) ~/ 3) + 1} '
+                          '· Seite ${page.pageNum}',
+                        style: const TextStyle(
+                          color: LumoVisualTokens.cyanBright,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 14,
+                        )),
+                      const SizedBox(height: 12),
+                      Text(page.text,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          color: LumoVisualTokens.white,
+                          height: 1.65,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w700,
+                        )),
+                    ],
+                  ),
+                ),
+                if (page.pageNum % 3 == 0) ...[
+                  const SizedBox(height: 9),
+                  Text('Kapitel ${page.pageNum ~/ 3} geschafft. '
+                      'Was könnte als Nächstes passieren?',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: LumoVisualTokens.muted,
+                      height: 1.35, fontSize: 15)),
+                ],
+                const SizedBox(height: 14),
+              ],
+            ],
+          ),
+        )),
+      ],
+    );
+  }
+
+  Widget _buildFullBookBottomNav() => Padding(
+    padding: const EdgeInsets.all(16),
+    child: SizedBox(
+      height: 56,
+      child: ElevatedButton.icon(
+        key: const ValueKey('lumo-return-from-full-book'),
+        onPressed: () => setState(() => _fullBookView = false),
+        icon: const Icon(Icons.auto_stories_rounded),
+        label: const Text('Zurück zum Leseabenteuer'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: LumoVisualTokens.cyanBright,
+          foregroundColor: LumoVisualTokens.navigation,
+        ),
+      ),
+    ),
+  );
 
   /// The child's words come first; illustration is secondary to reading.
   Widget _buildPage(LumoStoryPage page) {
@@ -394,7 +719,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                           color: LumoVisualTokens.cyanBright, size: 21),
                       const SizedBox(width: 9),
                       Expanded(child: Text(
-                        'Seite ${page.pageNum} von ${widget.story.pages.length}',
+                        'Kapitel ${(_pageIdx ~/ 3) + 1} · Seite ${page.pageNum} von ${widget.story.pages.length}',
                         style: const TextStyle(
                           color: LumoVisualTokens.cyanBright,
                           fontSize: 13,
@@ -417,6 +742,13 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 ),
               ),
               const SizedBox(height: 12),
+              LumoStoryScene(
+                key: ValueKey('lumo-story-scene-${page.pageNum}'),
+                page: page.pageNum,
+                variant: widget.story.illustrationVariant,
+                height: MediaQuery.sizeOf(context).width > 650 ? 270 : 198,
+              ),
+              const SizedBox(height: 12),
               LumoGlassCard(
                 key: const ValueKey('lumo-story-original-fox-art'),
                 padding: const EdgeInsets.all(10),
@@ -429,7 +761,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   const Expanded(child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Lumo liest mit dir',
+                      Text('Du liest – Lumo hilft dir',
                         style: TextStyle(
                           color: LumoVisualTokens.white,
                           fontWeight: FontWeight.w900,
@@ -437,7 +769,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                         ),
                       ),
                       SizedBox(height: 5),
-                      Text('Entdecke Seite für Seite dein Abenteuer.',
+                      Text('Lies selbst. Bei Bedarf tippe oben auf den Lautsprecher.',
                         style: TextStyle(
                           color: LumoVisualTokens.muted,
                           fontSize: 12.5,
@@ -511,7 +843,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 final isSel = _selectedAnswer == o;
                 final isCorrect = o == ex.correctAnswer;
                 Color bg = Colors.white;
-                if (_exerciseDone && isSel) {
+                if (isSel) {
                   bg = isCorrect
                       ? LumoTokens.colors.success
                       : LumoTokens.colors.errorSoft;
@@ -534,8 +866,22 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                   ),
                 );
               }).toList(),
-            )
-          else
+            ),
+          if (ex.type == StoryExerciseType.wordChoice &&
+              _selectedAnswer != null && !_exerciseDone)
+            const Padding(
+              padding: EdgeInsets.only(top: 12),
+              child: Text(
+                'Noch nicht. Lies die Hinweise der vorherigen Seiten '
+                'noch einmal und versuche es erneut.',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.w800,
+                ),
+              ),
+            ),
+          if (ex.options == null)
             // Wort-Schreib-Aufgabe: einfacher Button "Im Schreibcoach üben"
             ElevatedButton.icon(
               onPressed: () {
@@ -561,18 +907,133 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
         width: double.infinity,
         height: 56,
         child: ElevatedButton.icon(
+          key: const ValueKey('lumo-story-continue'),
           onPressed: canContinue && !_finishing ? _nextPage : null,
           icon: Icon(_pageIdx + 1 >= widget.story.pages.length
               ? Icons.celebration_rounded
               : Icons.arrow_forward_rounded),
           label: Text(_pageIdx + 1 >= widget.story.pages.length
-              ? 'Erzähl mir die Geschichte!'
+              ? widget.story.bookQuestions.isNotEmpty
+                  ? 'Fragen zum ganzen Buch'
+                  : 'Erzähl mir die Geschichte!'
               : 'Weiterlesen'),
           style: ElevatedButton.styleFrom(
             backgroundColor: LumoVisualTokens.cyanBright,
             foregroundColor: LumoVisualTokens.navigation,
             textStyle: LumoTokens.typo.labelLarge.copyWith(fontSize: 16),
             shape: RoundedRectangleBorder(borderRadius: LumoTokens.brLarge),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildBookQuiz() {
+    final question = widget.story.bookQuestions[_bookQuestionIndex];
+    final correct = _bookQuizSelected == question.correctAnswer;
+    return SingleChildScrollView(
+      key: const ValueKey('lumo-book-reading-quiz'),
+      padding: const EdgeInsets.all(16),
+      child: Center(child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 740),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            const Text('Was hast du dir aus dem Buch gemerkt?',
+              style: TextStyle(
+                color: LumoVisualTokens.white,
+                fontFamily: 'Nunito',
+                fontSize: 23,
+                fontWeight: FontWeight.w900,
+              )),
+            const SizedBox(height: 8),
+            Text('Frage ${_bookQuestionIndex + 1} von ${widget.story.bookQuestions.length} '
+                '· Es geht jetzt nicht um die beiden Rätsel.',
+              style: const TextStyle(
+                color: LumoVisualTokens.muted,
+                height: 1.4,
+                fontSize: 15)),
+            const SizedBox(height: 16),
+            LumoGlassCard(
+              key: ValueKey('lumo-book-question-$_bookQuestionIndex'),
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(question.prompt,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 21,
+                      height: 1.4,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                    )),
+                  const SizedBox(height: 16),
+                  for (final option in question.options) ...[
+                    Material(
+                      color: _bookQuizSelected == option
+                          ? option == question.correctAnswer
+                              ? const Color(0xFF184C46)
+                              : const Color(0xFF58373B)
+                          : const Color(0xFF122F50),
+                      borderRadius: BorderRadius.circular(16),
+                      child: InkWell(
+                        key: ValueKey('book-answer-${question.options.indexOf(option)}'),
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: correct ? null : () => _chooseBookAnswer(option),
+                        child: Container(
+                          constraints: const BoxConstraints(minHeight: 54),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 16, vertical: 14),
+                          alignment: Alignment.centerLeft,
+                          child: Text(option, style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 17,
+                            fontWeight: FontWeight.w800,
+                          )),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 9),
+                  ],
+                  if (_bookQuizSelected != null) ...[
+                    const SizedBox(height: 10),
+                    Text(correct
+                        ? 'Richtig erinnert! Du hast aufmerksam gelesen.'
+                        : 'Schau noch einmal auf die Antworten. '
+                          'Du darfst es erneut versuchen.',
+                      key: const ValueKey('lumo-book-answer-feedback'),
+                      style: const TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.w800),
+                    ),
+                  ],
+                ],
+              ),
+            ),
+          ],
+        ),
+      )),
+    );
+  }
+
+  Widget _buildBookQuizNavigation() {
+    final question = widget.story.bookQuestions[_bookQuestionIndex];
+    final solved = _bookQuizSelected == question.correctAnswer;
+    return Padding(
+      padding: const EdgeInsets.all(16),
+      child: SizedBox(
+        height: 56,
+        width: double.infinity,
+        child: ElevatedButton.icon(
+          key: const ValueKey('lumo-book-quiz-next'),
+          onPressed: solved ? _nextBookQuestion : null,
+          icon: const Icon(Icons.auto_stories_rounded),
+          label: Text(_bookQuestionIndex + 1 == widget.story.bookQuestions.length
+              ? 'Zum Buchrückblick'
+              : 'Nächste Buchfrage'),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: LumoVisualTokens.cyanBright,
+            foregroundColor: LumoVisualTokens.navigation,
           ),
         ),
       ),
@@ -625,6 +1086,20 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               ],
             ),
           ),
+          if (widget.story.bookQuestions.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Text(
+              'Buchfragen: $_bookQuestionsCorrectFirstTry von '
+              '${widget.story.bookQuestions.length} sofort gewusst. '
+              'Wichtiger als Punkte ist, dass du den Text verstanden hast.',
+              style: const TextStyle(
+                color: LumoVisualTokens.white,
+                fontSize: 15,
+                height: 1.4,
+                fontWeight: FontWeight.w800,
+              ),
+            ),
+          ],
           const SizedBox(height: LumoTokens.space12),
           // Eingabefeld
           LumoPremiumCard(

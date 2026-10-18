@@ -54,6 +54,15 @@ class StoryExercise {
   final List<String>? options;
 }
 
+/// Whole-book understanding, separate from clues used to solve riddles.
+class StoryBookQuestion {
+  const StoryBookQuestion(this.prompt, this.correctAnswer, this.options,
+      this.evidencePage);
+  final String prompt, correctAnswer;
+  final List<String> options;
+  final int evidencePage;
+}
+
 class LumoStory {
   const LumoStory({
     required this.title,
@@ -64,6 +73,8 @@ class LumoStory {
     required this.newWords,
     required this.gradeLevel,
     this.keyPoints = const <String>[],
+    this.bookQuestions = const <StoryBookQuestion>[],
+    this.illustrationVariant = 0,
   });
 
   final String title;
@@ -86,6 +97,10 @@ class LumoStory {
   /// genutzt: Kind erzaehlt nach, Lumo zaehlt, wie viele Stichworte
   /// getroffen wurden -> Sterne-Bewertung.
   final List<String> keyPoints;
+  final List<StoryBookQuestion> bookQuestions;
+
+  /// Stable cover/detail art per story, persisted for offline rereads.
+  final int illustrationVariant;
 }
 
 /// Generator fuer personalisierte Lern-Geschichten.
@@ -209,6 +224,279 @@ class LumoStoryGenerator {
       'jubeln', // Seite 7
       'Hause', // Seite 8
     ];
+  }
+
+  /// Full 12-page reading adventure for the new story-selection flow.
+  /// Older generated and stored eight-page stories stay backward-compatible.
+  LumoStory generateReadingAdventure({
+    required String hero,
+    required String location,
+    required String theme,
+    required int gradeLevel,
+    String companion = 'Lumo',
+    String magicItem = 'Sternenkompass',
+    int variationSeed = 0,
+  }) {
+    final lead = hero.replaceAll('Eichhoernchen', 'Eichhörnchen')
+        .replaceAll('Baeckerin', 'Bäckerin')
+        .replaceAll('Gaertner', 'Gärtner')
+        .replaceAll('Lokfuehrerin', 'Lokführerin');
+    final place = location.replaceAll('Wueste', 'Wüste')
+        .replaceAll('Suessigkeiten', 'Süßigkeiten')
+        .replaceAll('Drachen-Hoehle', 'Drachenhöhle');
+    final friend = '${_heroArticle(hero)} $lead';
+    final team = companion == 'Lumo'
+        ? 'Lumo und $friend' : 'Lumo, $friend und $companion';
+    // Each book has its own mystery, social purpose and resolution.
+    // All share the hand-authored 12-scene first book visual grammar.
+    const mysteries = <(String, String, String, String)>[
+      ('Sternenkarte',
+        'Die Sternenkarte, die den Weg zur Kindersternwarte zeigte, ist verschwunden.',
+        'Ohne die Karte kann die Nachtwanderung nicht beginnen.',
+        'So konnte die Kindergruppe endlich die Sternwarte besuchen.'),
+      ('Geschichtenbuch',
+        'Das Geschichtenbuch mit den Erinnerungen aller Kinder ist verschwunden.',
+        'Morgen soll in der Bücherei daraus vorgelesen werden.',
+        'So konnte die Vorleserin den Kindern ihre eigenen Geschichten zeigen.'),
+      ('Mondlaterne',
+        'Die Mondlaterne für den abendlichen Laternenzug ist verschwunden.',
+        'Die Kinder hoffen sehr, ihren gemeinsamen Umzug zu feiern.',
+        'So leuchtete am Abend wieder die Mondlaterne beim Umzug.'),
+      ('Wolkenbild',
+        'Das Wolkenbild der Schulklasse ist verschwunden.',
+        'Es sollte morgen beim Sommerfest im Flur hängen.',
+        'So konnten alle ihr Kunstwerk beim Schulfest bewundern.'),
+      ('Musikschlüssel',
+        'Der Musikschlüssel für das Konzertzimmer ist verschwunden.',
+        'Die Kinder möchten dort ihre Instrumente für den Auftritt holen.',
+        'So konnten die kleinen Musiker rechtzeitig proben.'),
+      ('Schatzzeichnung',
+        'Die Schatzzeichnung für das große Freundschaftsspiel ist verschwunden.',
+        'Ohne sie findet niemand den Treffpunkt für das gemeinsame Spiel.',
+        'So fanden alle den Treffpunkt und spielten miteinander.'),
+      ('Sonnenkompass',
+        'Der Sonnenkompass für einen Ausflug zum Hügel ist verschwunden.',
+        'Die Wandergruppe möchte den sicheren Weg über die Wiese finden.',
+        'So konnte die Wandergruppe den sicheren Weg erkennen.'),
+      ('Friedensbrief',
+        'Der Friedensbrief zweier Kindergruppen ist verschwunden.',
+        'Die Kinder möchten den Streit mit einem freundlichen Brief beenden.',
+        'So konnten die beiden Gruppen sich wieder vertragen.'),
+      ('Wunderherbar',
+        'Das Wunderherbar mit den gepressten Pflanzen ist verschwunden.',
+        'Die jungen Forscher wollen morgen ihre Funde ausstellen.',
+        'So konnte die Pflanzenausstellung endlich beginnen.'),
+      ('Waldbuch',
+        'Das Waldbuch mit den Tierspuren ist verschwunden.',
+        'Die Kinder möchten herausfinden, welche Tiere im Wald leben.',
+        'So konnten alle die Tierspuren gemeinsam vergleichen.'),
+      ('Farbenatlas',
+        'Der Farbenatlas für den Malnachmittag ist verschwunden.',
+        'Die Malgruppe wollte damit die Farben der Natur entdecken.',
+        'So konnten die Kinder ihre bunten Bilder fertig malen.'),
+      ('Mutabzeichen',
+        'Das Mutabzeichen für den gemeinsamen Klettertag ist verschwunden.',
+        'Ein Kind soll für seine Hilfsbereitschaft geehrt werden.',
+        'So konnte die Gruppe den mutigen Helfer feiern.'),
+    ];
+    final mystery = mysteries[variationSeed % mysteries.length];
+    final missing = mystery.$1;
+    final pages = <LumoStoryPage>[];
+    void add(String text, String image, {String? word, StoryExercise? puzzle}) {
+      pages.add(LumoStoryPage(
+        pageNum: pages.length + 1,
+        text: text,
+        imagePrompt: 'Lumo illustrated book: $image, $place',
+        newWord: word,
+        exercise: puzzle,
+      ));
+    }
+
+    add(
+      'Der Ort hieß $place. Lumo liebte diesen Ort und besonders '
+      'Geschichten über $theme. Heute fand Lumo in der Bücherei ein Buch '
+      'mit einem leeren Umschlag. Auf der ersten Seite stand: '
+      '„Eine gute Geschichte beginnt mit genauem Hinsehen.“ '
+      'Lumo schrieb den Namen des Ortes in ein rotes Notizbuch. '
+      'Vor der Tür wartete $friend. Ein neues Abenteuer konnte beginnen.',
+      'red notebook and library', word: 'Notizbuch',
+    );
+    add(
+      'Am nächsten Morgen klopfte eine Botin an die Tür. '
+      'Sie übergab Lumo einen Brief. Darin stand: „${mystery.$2}“ '
+      'Dazu stand dort: „${mystery.$3}“ '
+      '„Findet den Gegenstand, aber achtet auf die Hinweise“, bat die Botin. '
+      'Lumo schrieb drei Wörter auf: Suchen, Verstehen, Helfen.',
+      'messenger with letter',
+    );
+    add(
+      '$team gingen zum alten Brunnen. '
+      'Dort lagen eine rote Feder, ein grauer Stein und ein blaues Band. '
+      'Die Feder bewegte sich im Wind. Der Stein lag still im Gras. '
+      'Das Band war an einem Zweig festgeknotet. '
+      'Auf dem Brief stand: „Folge der Farbe des klaren Himmels.“ '
+      'Lumo betrachtete die drei Fundstücke ganz genau.',
+      'fountain with blue ribbon red feather and stone',
+    );
+    add(
+      'Hinter dem Brunnen begann eine steinerne Treppe. '
+      'An ihrer ersten Stufe waren die drei Fundstücke abgebildet. '
+      'Nur das blaue Band war frisch angemalt. '
+      'Lumo verglich die Bilder mit dem Brief. '
+      '„Der Himmel ist blau“, bemerkte Lumo. '
+      'Jetzt mussten alle überlegen, welchem Zeichen sie folgen sollten.',
+      'stone stairs with three clues',
+    );
+    add(
+      'Die Suche wurde spannend. Lumo wollte nicht einfach raten. '
+      'Der Brief und die Zeichnung an der Treppe passten zusammen. '
+      'Eine Spur führte nach oben, die anderen endeten am Brunnen. '
+      'Wer aufmerksam gelesen hatte, konnte die richtige Spur finden.',
+      'first puzzle at blue ribbon', word: 'Spur',
+      puzzle: const StoryExercise(
+        type: StoryExerciseType.wordChoice,
+        prompt: 'Erstes Rätsel: Welchem Fundstück sollen alle folgen?',
+        correctAnswer: 'dem blauen Band',
+        options: ['der roten Feder', 'dem blauen Band', 'dem grauen Stein'],
+      ),
+    );
+    add(
+      'Die Treppe führte zu einem ruhigen Garten. '
+      'Hier machten alle eine Pause. Lumo setzte sich auf eine Holzbank '
+      'neben einem kleinen Brunnen und aß einen Apfel. '
+      'Der Wind raschelte in den Blättern. '
+      'Plötzlich hörte Lumo ein leises Klopfen hinter der Mauer. '
+      'Das nächste Geheimnis war ganz in der Nähe.',
+      'wooden bench in garden', word: 'Garten',
+    );
+    add(
+      'Hinter der Mauer hing eine alte Karte. '
+      'Auf ihr waren ein Kreis, ein Dreieck und ein Stern gezeichnet. '
+      'Der Kreis führte zum Markt. Das Dreieck zeigte zurück. '
+      'Beim Stern stand: „Hier beginnt der letzte Weg.“ '
+      'Lumo zeichnete alle drei Zeichen in das rote Notizbuch. '
+      'So konnten die Hinweise nicht verloren gehen.',
+      'map with three symbols',
+    );
+    add(
+      'Am Ende des Gartens entdeckte Lumo eine Tür ohne Griff. '
+      'Darüber leuchteten die gleichen Zeichen wie auf der Karte. '
+      'Lumo nahm den Gegenstand namens $magicItem aus der Tasche. '
+      'Er passte in eine Vertiefung, doch die Tür blieb verschlossen. '
+      'Ein einziges Zeichen musste zuerst berührt werden. '
+      'Zum Glück war der Hinweis aus der Karte noch bekannt.',
+      'secret door with symbols',
+    );
+    add(
+      'Vor der Tür dachte Lumo lange nach. '
+      'Der Kreis führte zum Markt. Das Dreieck zeigte zurück. '
+      'Doch ein Zeichen versprach den letzten Weg. '
+      'Lumo wusste: Die Lösung stand bereits auf der Karte.',
+      'second puzzle door', word: 'Zeichen',
+      puzzle: const StoryExercise(
+        type: StoryExerciseType.wordChoice,
+        prompt: 'Zweites Rätsel: Welches Zeichen öffnet den letzten Weg?',
+        correctAnswer: 'der Stern',
+        options: ['der Kreis', 'das Dreieck', 'der Stern'],
+      ),
+    );
+    add(
+      'Hinter der Tür lag ein heller Raum mit hohen Bücherregalen. '
+      'Auf einem Tisch entdeckte Lumo den vermissten Gegenstand: $missing. '
+      'Daneben lag eine Nachricht: „Danke für eure Geduld.“ '
+      'Der Gegenstand war hier sicher aufbewahrt worden. '
+      '${mystery.$4} Alle waren erleichtert. Nur durch gutes Lesen und '
+      'Nachdenken hatten sie den richtigen Weg gefunden.',
+      'hidden book chamber discovery',
+    );
+    add(
+      'Die Botin kam zurück und bedankte sich bei allen. '
+      'Lumo erzählte vom Brunnen, vom Garten und von der Tür. '
+      'Danach zeichnete Lumo die Holzbank und die geheimnisvolle Tür '
+      'in das rote Notizbuch. Diese Zeichnung sollte später '
+      'an die lange Suche erinnern. '
+      'Auch $friend wollte das Abenteuer eines Tages nachlesen.',
+      'friends and red sketchbook',
+    );
+    add(
+      'Am Abend lag das Notizbuch auf Lumos Tisch. '
+      'Darin standen der Name des Ortes und die Nachricht der Botin. '
+      'Daneben war die Zeichnung aus dem Garten zu sehen. '
+      'Lumo dachte noch einmal über die beiden Rätsel nach. '
+      'Am schönsten war aber, dass alle zusammengeholfen hatten. '
+      '„Morgen lese ich wieder ein Buch“, sagte Lumo.',
+      'storybook reading lamp and notebook', word: 'Erinnerung',
+    );
+
+    return LumoStory(
+      title: 'Lumo und das große Rätsel: $missing',
+      heroName: hero,
+      location: location,
+      theme: theme,
+      gradeLevel: gradeLevel,
+      pages: pages,
+      newWords: const ['Notizbuch', 'Spur', 'Garten', 'Zeichen', 'Erinnerung'],
+      keyPoints: const ['Notizbuch', 'Botin', 'Brunnen', 'Band',
+          'Garten', 'Stern', 'Buch'],
+      illustrationVariant: variationSeed % mysteries.length,
+      // Whole-book recall: none of these are the two puzzle answers.
+      // Every correct answer is explicitly evidenced on the stated page.
+      bookQuestions: const [
+        StoryBookQuestion(
+          'Wo entdeckte Lumo das Buch mit dem leeren Umschlag?',
+          'in der Bücherei',
+          ['im Garten', 'in der Bücherei', 'am Hafen'], 1,
+        ),
+        StoryBookQuestion(
+          'Was schrieb Lumo ganz am Anfang in das rote Notizbuch?',
+          'den Namen des Ortes',
+          ['den Namen des Ortes', 'eine Einkaufsliste', 'ein Lied'], 1,
+        ),
+        StoryBookQuestion(
+          'Wer brachte am Morgen die Nachricht?',
+          'eine Botin',
+          ['ein Koch', 'eine Botin', 'ein Musiker'], 2,
+        ),
+        StoryBookQuestion(
+          'Welche drei Wörter notierte Lumo nach dem Brief?',
+          'Suchen, Verstehen, Helfen',
+          ['Essen, Rennen, Schlafen', 'Suchen, Verstehen, Helfen',
+            'Malen, Tanzen, Singen'], 2,
+        ),
+        StoryBookQuestion(
+          'Wo machte Lumo eine Pause und aß einen Apfel?',
+          'auf einer Holzbank',
+          ['in einem Zug', 'auf einer Holzbank', 'in einem Boot'], 6,
+        ),
+        StoryBookQuestion(
+          'Was hörte Lumo hinter der Gartenmauer?',
+          'ein leises Klopfen',
+          ['ein lautes Hupen', 'ein leises Klopfen', 'ein Lied'], 6,
+        ),
+        StoryBookQuestion(
+          'Worauf lag der gesuchte Gegenstand im versteckten Raum?',
+          'auf einem Tisch',
+          ['auf einem Tisch', 'unter einem Baum', 'im Wasser'], 10,
+        ),
+        StoryBookQuestion(
+          'Was stand auf der Nachricht im geheimen Raum?',
+          'Danke für eure Geduld',
+          ['Kommt morgen wieder', 'Danke für eure Geduld',
+            'Geht zurück zum Brunnen'], 10,
+        ),
+        StoryBookQuestion(
+          'Was zeichnete Lumo am Ende als Erinnerung?',
+          'die Holzbank und die Tür',
+          ['einen Drachen', 'die Holzbank und die Tür', 'eine Rakete'], 11,
+        ),
+        StoryBookQuestion(
+          'Wo lag das rote Notizbuch am Abend?',
+          'auf Lumos Tisch',
+          ['auf Lumos Tisch', 'in einem Briefkasten',
+            'unter der Gartenmauer'], 12,
+        ),
+      ],
+    );
   }
 
   /// Generiert eine zufaellige Story (alles random).

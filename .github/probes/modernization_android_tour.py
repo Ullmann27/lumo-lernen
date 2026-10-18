@@ -49,14 +49,16 @@ PACKAGE = probe.PACKAGE
 SESSION_NAME = 'kart_sonnenhafen_session.cfg'
 HARD_STEPS = (
     'apk-identity', 'launch', 'onboarding', 'navigate-start', 'navigate-lernen',
-    'navigate-spiele', 'open-kart', 'start-kart-race', 'race-running', 'race-hud',
+    'atelier-roundtrip', 'navigate-spiele', 'open-kart', 'start-kart-race', 'race-running', 'race-hud',
     'race-drive', 'pause-menu', 'return-from-kart', 'learning-state-after-kart',
     'lernen-usable-after-kart', 'profile-after-kart', 'restart-keeps-learning-state',
 )
 # Downscaled JPEG copies of these real screenshots are written to the job log
 # (originals and their SHA-256 stay in the uploaded tour artifact).
 LOG_IMAGES = (
-    '07_home_after_onboarding', '08_games_after_navigation', '10_lernen', '20_spiele', '21_kart_garage_step_5',
+    '07_home_after_onboarding', '08_games_after_navigation', '10_lernen',
+    '11_atelier_hub', '12_atelier_beispiel', '13_atelier_zehnerbruecke',
+    '20_spiele', '21_kart_garage_step_5',
     '21_lumo_kart_real_race', '21_race_hud', '21_race_driving_late', '21_lumo_kart_pause',
     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
     '99_fehler',
@@ -106,6 +108,53 @@ def labels(nodes: list[dict]) -> list[str]:
         for value in (node.get('text', ''), node.get('content-desc', '')):
             found.extend(line.strip() for line in value.split('\n') if line.strip())
     return found
+
+
+
+def _atelier_roundtrip(out: Path) -> dict:
+    """Touch the genuine Flutter learning world, build model, and return.
+
+    Requires the same source-pinned Android installation and live accessibility
+    reader as the Kart tour. Never writes fabricated progress, reward or answers.
+    """
+    def must_see(tag: str, expected: str) -> list[str]:
+        for index in range(12):
+            visible = labels(live.live_nodes(out, f'atelier-{tag}-{index}'))
+            if any(expected in caption for caption in visible):
+                return visible
+            time.sleep(.5)
+        raise RuntimeError(
+            f'Atelier {tag} did not show actual Flutter text {expected!r}')
+
+    probe.flutter_tap(out, 'Lumos Lernatelier · gemeinsam bauen',
+                      'atelier-home-entry', scroll_attempts=18)
+    must_see('hub', 'Lumos Lernatelier')
+    must_see('topic-list', 'Die Zehnerbrücke')
+    probe.capture_flutter_ready(out, '11_atelier_hub')
+    probe.flutter_tap(out, 'Die Zehnerbrücke',
+                      'atelier-enter-bridge', scroll_attempts=5)
+    must_see('worked-example', 'Jetzt gemeinsam bauen')
+    probe.capture_flutter_ready(out, '12_atelier_beispiel')
+    probe.flutter_tap(out, 'Jetzt gemeinsam bauen',
+                      'atelier-build', scroll_attempts=8)
+    must_see('real-ten-frame', 'Dein Zehnerfeld')
+    must_see('model-check', 'Mein Modell prüfen')
+    probe.capture_flutter_ready(out, '13_atelier_zehnerbruecke')
+    for page in ('lesson', 'hub'):
+        base.adb('shell', 'input', 'keyevent', '4')
+        time.sleep(1.4)
+    if not alive():
+        raise RuntimeError('Flutter app quit during atelier return')
+    if not any('Lernen' in x for x in labels(
+            live.live_nodes(out, 'atelier-after-return'))):
+        raise RuntimeError('Flutter navigation unavailable after atelier return')
+    return {
+        'screen': 'Real native-Android Flutter Zehnerbrücke',
+        'observed': ['Hub', 'Worked example', 'Interactive ten-frame',
+                     'Model check', 'Flutter return'],
+        'screenshots': ['11_atelier_hub.png', '12_atelier_beispiel.png',
+                        '13_atelier_zehnerbruecke.png'],
+    }
 
 
 def _simplify(word: str) -> str:
@@ -576,6 +625,10 @@ def main() -> int:
         time.sleep(2)
         probe.capture_flutter_ready(out, '10_start')
         step('navigate-start', tapped is not None, label=tapped)
+        # The child must be able to reach the shipped atelier in the
+        # actual installed APK, not merely pass Flutter widget screenshots.
+        # Returning to Start is necessary before the existing Kart journey.
+        attempt('atelier-roundtrip', lambda: _atelier_roundtrip(out))
         tapped = try_tap(out, ['Lernen'], 'nav-lernen')
         time.sleep(2)
         lernen_before = labels(live.live_nodes(out, 'lernen-before-kart'))
@@ -673,11 +726,41 @@ def main() -> int:
             if try_tap(out, ['Start', 'Home'], 'nav-start-after-kart') is None:
                 raise RuntimeError('The Start tab is not tappable after the Kart')
             time.sleep(2)
-            text = base.accessible_text(live.live_nodes(out, 'start-after-kart'))
-            probe.capture(out, '25_start_nach_kart')
-            if 'LumoTest' not in text:
-                raise RuntimeError('The child profile name is missing from Start after the Kart')
-            return {'profile_name_visible': 'LumoTest'}
+            # Flutter intentionally preserves the Start scroll position. After
+            # visiting the atelier at the foot of Start, the greeting is out
+            # of view. A missing off-screen semantics label is not evidence
+            # of lost profile data. Check actual on-screen greeting by moving
+            # the live scrollable content toward its top, no fake profiles.
+            for index in range(12):
+                nodes = live.live_nodes(out, f'start-after-kart-{index}')
+                if 'LumoTest' in base.accessible_text(nodes):
+                    probe.capture(out, '25_start_nach_kart')
+                    return {
+                        'profile_name_visible': 'LumoTest',
+                        'observed_after_scrolls': index,
+                        'source': 'live Android accessibility tree',
+                    }
+                scrolls = []
+                for node in nodes:
+                    if node.get('package') != PACKAGE or node.get('scrollable') != 'true':
+                        continue
+                    bounds = list(map(int, re.findall('[0-9]+', node.get('bounds', ''))))
+                    if len(bounds) == 4:
+                        x0, y0, x1, y1 = bounds
+                        if x1 > x0 and y1 > y0:
+                            scrolls.append(((x1 - x0) * (y1 - y0), x0, y0, x1, y1))
+                if not scrolls:
+                    break
+                _, x0, y0, x1, y1 = max(scrolls)
+                x = str((x0 + x1) // 2)
+                top = str(y0 + (y1 - y0) // 5)
+                bottom = str(y0 + (y1 - y0) * 4 // 5)
+                base.adb('shell', 'input', 'swipe', x, top, x, bottom, '390')
+                time.sleep(1)
+            probe.capture(out, '25_start_nach_kart_greeting_missing')
+            raise RuntimeError(
+                'The child greeting is missing from the actual Start accessibility '
+                'tree even after scrolling to its top; check profile rendering')
 
         attempt('profile-after-kart', profile_visible)
 

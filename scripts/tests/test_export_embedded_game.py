@@ -145,6 +145,14 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
         self.assertTrue(all(not (self.repo / name).exists() for name in self.files))
         self.assertTrue(self.glb.is_file())
 
+    def test_1979_cinema_source_only_cleans_hash_checked_gate_images(self):
+        self.generate_images()
+        source = {'revision': '20652880eda687c67cfa72301dad5a173b1fe6c5'}
+        self.assertIn(source['revision'], MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source=source)
+        self.assertTrue(self.glb.is_file())
+        self.assertTrue(all(not (self.repo / name).exists() for name in self.files))
+
     def test_future_unknown_pin_must_not_remove_images(self):
         self.generate_images()
         self.cleanup(source={'revision': '0' * 40})

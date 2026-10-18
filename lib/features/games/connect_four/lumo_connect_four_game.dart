@@ -37,6 +37,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   bool _rewarded = false;
   bool _twoPlayers = false;
   int _round = 0;
+  int _completedChildMoves = 0;
   String _message = 'Vier in einer Reihe. Du fängst an!';
 
   bool get _reduced =>
@@ -92,6 +93,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       _fallPiece = ConnectPiece.empty;
       _busy = false;
       _rewarded = false;
+      _completedChildMoves = 0;
       _message = 'Neues Spiel. Du fängst an!';
     });
   }
@@ -112,6 +114,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     final piece = _game.turn;
     final position = _game.drop(column);
     if (position == null) return;
+    if (piece == ConnectPiece.child) _completedChildMoves++;
     final round = _round;
     final duration = _reduced
         ? Duration.zero
@@ -152,8 +155,16 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
               ? 'Du bist dran!'
               : 'Gold ist dran!';
         });
-        if (_game.turn == ConnectPiece.child) {
-          unawaited(LumoVoice.instance.speak('Du bist dran!'));
+        // The visual turn label stays live on every move; narration is a
+        // sparse reminder rather than an interruption after every move.
+        if (_game.turn == ConnectPiece.child &&
+            _completedChildMoves > 0 &&
+            _completedChildMoves % 5 == 0) {
+          unawaited(LumoVoice.instance.speak(
+            (_completedChildMoves ~/ 5).isEven
+                ? 'Überleg dir deinen nächsten Zug.'
+                : 'Du bist wieder dran!',
+          ));
         }
       }
     });
