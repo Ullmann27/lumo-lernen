@@ -726,11 +726,41 @@ def main() -> int:
             if try_tap(out, ['Start', 'Home'], 'nav-start-after-kart') is None:
                 raise RuntimeError('The Start tab is not tappable after the Kart')
             time.sleep(2)
-            text = base.accessible_text(live.live_nodes(out, 'start-after-kart'))
-            probe.capture(out, '25_start_nach_kart')
-            if 'LumoTest' not in text:
-                raise RuntimeError('The child profile name is missing from Start after the Kart')
-            return {'profile_name_visible': 'LumoTest'}
+            # Flutter intentionally preserves the Start scroll position. After
+            # visiting the atelier at the foot of Start, the greeting is out
+            # of view. A missing off-screen semantics label is not evidence
+            # of lost profile data. Check actual on-screen greeting by moving
+            # the live scrollable content toward its top, no fake profiles.
+            for index in range(12):
+                nodes = live.live_nodes(out, f'start-after-kart-{index}')
+                if 'LumoTest' in base.accessible_text(nodes):
+                    probe.capture(out, '25_start_nach_kart')
+                    return {
+                        'profile_name_visible': 'LumoTest',
+                        'observed_after_scrolls': index,
+                        'source': 'live Android accessibility tree',
+                    }
+                scrolls = []
+                for node in nodes:
+                    if node.get('package') != PACKAGE or node.get('scrollable') != 'true':
+                        continue
+                    bounds = list(map(int, re.findall('[0-9]+', node.get('bounds', ''))))
+                    if len(bounds) == 4:
+                        x0, y0, x1, y1 = bounds
+                        if x1 > x0 and y1 > y0:
+                            scrolls.append(((x1 - x0) * (y1 - y0), x0, y0, x1, y1))
+                if not scrolls:
+                    break
+                _, x0, y0, x1, y1 = max(scrolls)
+                x = str((x0 + x1) // 2)
+                top = str(y0 + (y1 - y0) // 5)
+                bottom = str(y0 + (y1 - y0) * 4 // 5)
+                base.adb('shell', 'input', 'swipe', x, top, x, bottom, '390')
+                time.sleep(1)
+            probe.capture(out, '25_start_nach_kart_greeting_missing')
+            raise RuntimeError(
+                'The child greeting is missing from the actual Start accessibility '
+                'tree even after scrolling to its top; check profile rendering')
 
         attempt('profile-after-kart', profile_visible)
 
