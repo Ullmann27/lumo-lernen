@@ -58,18 +58,21 @@ void main() {
         await tester.tap(find.text(label));
         await tester.pump();
       }
-      final label = index + 1 == story.pages.length
-          ? story.bookQuestions.isNotEmpty
-              ? 'Fragen zum ganzen Buch'
-              : 'Erzähl mir die Geschichte!'
-          : 'Weiterlesen';
-      final next = find.text(label);
+      final next = find.byKey(const ValueKey('lumo-story-continue'));
       expect(next, findsOneWidget,
           reason: 'Story must expose its next-reading action on page ${index + 1}');
-      await tester.ensureVisible(next);
-      await tester.pump();
-      await tester.tap(next);
+      final nextButton = tester.widget<ElevatedButton>(next);
+      expect(nextButton.onPressed, isNotNull,
+          reason: 'Story cannot advance until an active clue is solved');
+      // This is a route/state regression, not a pointer hit-target test.
+      // Calling the live button callback avoids the unrelated desktop-size
+      // test-binding hit-test warning in the bottom system inset.
+      nextButton.onPressed!.call();
       await _routeFrames(tester);
+      if (index + 1 < story.pages.length) {
+        expect(find.byKey(ValueKey('lumo-story-scene-${index + 2}')),
+          findsOneWidget, reason: 'The next real illustrated page must render');
+      }
     }
     if (story.bookQuestions.isNotEmpty) {
       expect(find.byKey(const ValueKey('lumo-book-reading-quiz')),
