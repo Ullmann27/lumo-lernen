@@ -140,7 +140,7 @@ void main() {
         final prefix = '${width.toInt()}px-scale-${textScale.toStringAsFixed(1)}';
         await _capture(tester, '$prefix-initial', viewport, textScale, 'initial');
 
-        final answer = find.textContaining(RegExp(r'^A  '));
+        final answer = find.byKey(const ValueKey('lumo-meister-answer-0'));
         expect(answer, findsOneWidget);
         await tester.ensureVisible(answer);
         await tester.pump();
