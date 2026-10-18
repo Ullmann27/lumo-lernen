@@ -81,15 +81,22 @@ jobs:
             test/parents/parent_school_grade_progression_test.dart
       - name: Full Flutter regression suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Install actual app-script verification dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          python3 -m venv .ci-python
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          command -v rg
+          .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
       - name: Verify all build and preservation contracts
-        run: python3 -m unittest discover -s scripts/tests -v
+        run: .ci-python/bin/python -m unittest discover -s scripts/tests -v
       - name: Code-level Android probe regression with verified image dependencies
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
           sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
-          python3 -m venv .ci-python
-          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
           .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
       - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
