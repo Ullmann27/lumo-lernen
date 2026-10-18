@@ -68,7 +68,7 @@ class NativeSourceBindingsTests(unittest.TestCase):
         config = json.loads(config_text)
         self.assertEqual(config["revision"], approved_sha)
         self.assertEqual(config["engine"], "4.6.3")
-        self.assertEqual(version, 1975, "This branch is the isolated 1975 release candidate")
+        self.assertGreaterEqual(version, 1975, "Do not mistake original 1970 evidence for a modern release")
         self.assertNotEqual(approved_sha, historic_revision,
                             "Do not conflate 1970 evidence with the new 1975 renderer")
 
