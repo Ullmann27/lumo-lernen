@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_scene_art_panel.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 import 'season_question_deck.dart';
@@ -298,6 +299,12 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
                 child: child);
           },
           child: Column(children: [
+            const LumoSceneArtPanel(
+              key: ValueKey('lumo-seasons-scene-illustration'),
+              scene: LumoSceneArt.seasons,
+              height: 115,
+            ),
+            const SizedBox(height: 10),
             _buildTaskHeader(),
             const SizedBox(height: 12),
             if (_typ == _JahreszeitFrageTyp.bildErraten)
