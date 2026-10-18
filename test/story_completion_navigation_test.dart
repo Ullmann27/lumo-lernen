@@ -59,7 +59,9 @@ void main() {
         await tester.pump();
       }
       final label = index + 1 == story.pages.length
-          ? 'Erzähl mir die Geschichte!'
+          ? story.bookQuestions.isNotEmpty
+              ? 'Fragen zum ganzen Buch'
+              : 'Erzähl mir die Geschichte!'
           : 'Weiterlesen';
       await tester.runAsync(() => tester.tap(find.text(label)));
       await _routeFrames(tester);
