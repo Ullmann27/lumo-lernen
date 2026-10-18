@@ -9,6 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_scene_art_panel.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -298,6 +299,12 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
                 child: child);
           },
           child: Column(children: [
+            const LumoSceneArtPanel(
+              key: ValueKey('lumo-mathematics-scene-illustration'),
+              scene: LumoSceneArt.mathematics,
+              height: 110,
+            ),
+            const SizedBox(height: 10),
             _buildTaskHeader(),
             const SizedBox(height: 12),
             _buildVisualization(),
