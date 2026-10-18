@@ -38,7 +38,7 @@ jobs:
       - name: Capture real ABC and cross-grade screens with real Nunito and icons
         run: |
           set -euo pipefail
-          flutter test --no-pub --no-test-fonts --reporter=expanded --timeout=120s \
+          flutter test --no-pub --reporter=expanded --timeout=120s \
             test/abc_premium_visual_test.dart test/cross_grade_visual_capture_test.dart
       - name: Reject any placeholder text rectangles before publishing proof
         run: |
