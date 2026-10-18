@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_sound.dart';
 import 'quiz_show_music.dart';
+import 'quiz_studio_scene.dart';
 import '../../app/app_theme.dart';
 import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_show.dart';
@@ -369,8 +370,8 @@ class _QuizCard extends StatelessWidget {
 }
 
 
-/// Three functional jokers, a permanently mounted Lumo stage and the
-/// real 50/200/800/5000-star milestones. Each area owns its hitbox.
+/// The three real jokers and the 20-step ladder flank a lit TV-show set.
+/// Each control remains inside its own hitbox on phones and unfolded Fold.
 class _QuizStage extends StatelessWidget {
   const _QuizStage({required this.state, required this.onJoker});
   final QuizShowState state;
@@ -381,127 +382,175 @@ class _QuizStage extends StatelessWidget {
     builder: (context, c) {
       final compact = c.maxWidth < 400;
       final tablet = c.maxWidth >= 700;
-      final leftWidth = tablet ? 100.0 : (compact ? 62.0 : 78.0);
-      final rightWidth = tablet ? 168.0 : (compact ? 100.0 : 132.0);
-      final gap = tablet ? 18.0 : (compact ? 6.0 : 12.0);
-      // On the unfolded Fold and tablet, the mascot is the visual hero,
-      // not a miniature floating inside an oversized empty stage.
-      final foxSize = math.min(tablet ? 320.0 : (compact ? 146.0 : 208.0),
-          math.max(40.0, c.maxWidth - leftWidth - rightWidth - gap * 2 - 4));
-      final finale = state.displayQuestionNumber == state.questions.length;
+      final leftWidth = tablet ? 106.0 : (compact ? 66.0 : 84.0);
+      final rightWidth = tablet ? 170.0 : (compact ? 98.0 : 130.0);
+      final gap = tablet ? 14.0 : 6.0;
+      final usable = math.max(
+        38.0, c.maxWidth - leftWidth - rightWidth - gap * 2,
+      );
+      final foxSize = math.min(
+        tablet ? 330.0 : (compact ? 208.0 : 262.0),
+        math.max(38.0, usable - 4),
+      );
+      final current = state.displayQuestionNumber;
+      final finale = current == state.questions.length;
       final caption = state.won ? 'LUMO-MEISTER!'
           : finale ? 'MEISTERFRAGE!'
-          : state.displayQuestionNumber >= 15 ? 'DU SCHAFFST DAS!'
+          : current >= 15 ? 'DU SCHAFFST DAS!'
           : 'LUMO LIVE';
-      return SizedBox(
-        key: const ValueKey('lumo-meister-stage'),
-        // The stage must expand with accessibility font scaling: the
-        // three joker buttons and prize ladder otherwise overflow by 47px
-        // at 1.5x on Fold / phone widths. The outer page already scrolls.
-        height: (compact ? 380.0 : (tablet ? 490.0 : 418.0)) *
-            math.max(1.0, MediaQuery.textScalerOf(context).scale(1)),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            SizedBox(
-              key: const ValueKey('lumo-meister-joker-rail'),
-              width: leftWidth,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _JokerButton(
-                    label: '50:50', icon: Icons.filter_2_rounded,
-                    used: state.usedJokers.contains(QuizJoker.fiftyFifty),
-                    onTap: () => onJoker(QuizJoker.fiftyFifty),
-                  ),
-                  const SizedBox(height: 7),
-                  _JokerButton(
-                    label: 'Publikum', icon: Icons.groups_rounded,
-                    used: state.usedJokers.contains(QuizJoker.audience),
-                    onTap: () => onJoker(QuizJoker.audience),
-                  ),
-                  const SizedBox(height: 7),
-                  _JokerButton(
-                    label: 'Lumo-Tipp', icon: Icons.lightbulb_rounded,
-                    used: state.usedJokers.contains(QuizJoker.callLumo),
-                    onTap: () => onJoker(QuizJoker.callLumo),
-                  ),
-                ],
+      final scale = math.max(1.0, MediaQuery.textScalerOf(context).scale(1));
+
+      return ClipRRect(
+        borderRadius: BorderRadius.circular(21),
+        child: SizedBox(
+          key: const ValueKey('lumo-meister-stage'),
+          height: (compact ? 414.0 : tablet ? 510.0 : 455.0) * scale,
+          child: Stack(
+            children: [
+              const Positioned.fill(
+                child: IgnorePointer(child: QuizStudioScene()),
               ),
-            ),
-            SizedBox(width: gap),
-            Expanded(
-              child: ClipRect(
-                child: Stack(
-                  fit: StackFit.expand,
+              Positioned.fill(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const IgnorePointer(
-                      child: DecoratedBox(
-                        decoration: BoxDecoration(
-                          gradient: RadialGradient(colors: [
-                            Color(0x7755DFFF),
-                            Color(0x443959A8),
-                            Colors.transparent,
-                          ]),
-                        ),
+                    SizedBox(
+                      key: const ValueKey('lumo-meister-joker-rail'),
+                      width: leftWidth,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          _JokerButton(
+                            label: '50:50',
+                            icon: Icons.filter_2_rounded,
+                            used: state.usedJokers.contains(QuizJoker.fiftyFifty),
+                            onTap: () => onJoker(QuizJoker.fiftyFifty),
+                          ),
+                          const SizedBox(height: 9),
+                          _JokerButton(
+                            label: 'Publikum',
+                            icon: Icons.groups_rounded,
+                            used: state.usedJokers.contains(QuizJoker.audience),
+                            onTap: () => onJoker(QuizJoker.audience),
+                          ),
+                          const SizedBox(height: 9),
+                          _JokerButton(
+                            label: 'Lumo-Tipp',
+                            icon: Icons.lightbulb_rounded,
+                            used: state.usedJokers.contains(QuizJoker.callLumo),
+                            onTap: () => onJoker(QuizJoker.callLumo),
+                          ),
+                        ],
                       ),
                     ),
-                    Center(
-                      child: IgnorePointer(
-                        child: SizedBox(
-                          key: const ValueKey('lumo-meister-fox-slot'),
-                          width: foxSize, height: foxSize,
-                          child: Image.asset(
-                            'assets/lumo_design/fox/fox_quiz_host_1982.webp',
-                            key: const ValueKey('lumo-meister-fox'),
-                            width: foxSize, height: foxSize,
-                            fit: BoxFit.contain,
-                            filterQuality: FilterQuality.high,
-                            semanticLabel: 'Lumo als Quizmoderator mit Fliege und Quizkarte',
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 3, left: 0, right: 0,
-                      child: IgnorePointer(
-                        child: DecoratedBox(
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(colors: [
-                              Color(0xFF052251), Color(0xFF126AAF),
-                            ]),
-                            border: Border.all(color: const Color(0xFFFFD873)),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 3, vertical: 7),
-                            child: FittedBox(
-                              fit: BoxFit.scaleDown,
-                              child: Text(
-                                caption, maxLines: 1,
-                                style: const TextStyle(
-                                  color: Colors.white, fontSize: 13,
-                                  fontFamily: 'Nunito',
-                                  fontWeight: FontWeight.w900,
+                    SizedBox(width: gap),
+                    Expanded(
+                      child: ClipRect(
+                        child: Stack(
+                          fit: StackFit.expand,
+                          children: [
+                            Positioned(
+                              left: 0, right: 0, top: 7,
+                              child: Center(
+                                child: DecoratedBox(
+                                  decoration: BoxDecoration(
+                                    color: const Color(0xC905204B),
+                                    borderRadius: BorderRadius.circular(18),
+                                    border: Border.all(
+                                      color: const Color(0xAA56E7FF)),
+                                  ),
+                                  child: const Padding(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal: 10, vertical: 4),
+                                    child: FittedBox(
+                                      fit: BoxFit.scaleDown,
+                                      child: Text('★  LIVE  ★',
+                                        maxLines: 1,
+                                        style: TextStyle(
+                                          color: Color(0xFFFFE3A0),
+                                          fontFamily: 'Nunito',
+                                          fontWeight: FontWeight.w900,
+                                          fontSize: 11)),
+                                    ),
+                                  ),
                                 ),
                               ),
                             ),
-                          ),
+                            Positioned(
+                              left: 0, right: 0, bottom: 45,
+                              child: Center(
+                                child: SizedBox(
+                                  key: const ValueKey('lumo-meister-fox-slot'),
+                                  width: foxSize, height: foxSize * 1.12,
+                                  child: Image.asset(
+                                    'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+                                    key: const ValueKey('lumo-meister-fox'),
+                                    width: foxSize, height: foxSize * 1.12,
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.high,
+                                    semanticLabel:
+                                      'Lumo moderiert die Quizshow mit Fliege, Mikrofon und Sternkarte',
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 6, left: 0, right: 0,
+                              child: IgnorePointer(
+                                child: Container(
+                                  height: 39,
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                      colors: [
+                                        Color(0xFF06143A),
+                                        Color(0xFF1549A0),
+                                        Color(0xFF071637),
+                                      ],
+                                    ),
+                                    border: Border.all(
+                                      color: const Color(0xFFFFD26F),
+                                      width: 1.8),
+                                    borderRadius: BorderRadius.circular(13),
+                                    boxShadow: const [
+                                      BoxShadow(
+                                        color: Color(0xB3FFB83A),
+                                        blurRadius: 15),
+                                      BoxShadow(
+                                        color: Color(0x8034E5FF),
+                                        blurRadius: 20),
+                                    ],
+                                  ),
+                                  alignment: Alignment.center,
+                                  child: FittedBox(
+                                    fit: BoxFit.scaleDown,
+                                    child: Text('★   $caption   ★',
+                                      maxLines: 1,
+                                      style: const TextStyle(
+                                        color: Color(0xFFFFD978),
+                                        fontSize: 18,
+                                        fontFamily: 'Nunito',
+                                        fontWeight: FontWeight.w900,
+                                        letterSpacing: 1.1),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
+                    ),
+                    SizedBox(width: gap),
+                    SizedBox(
+                      key: const ValueKey('lumo-meister-prize-rail'),
+                      width: rightWidth,
+                      child: _QuizPrizeRail(state: state),
                     ),
                   ],
                 ),
               ),
-            ),
-            SizedBox(width: gap),
-            SizedBox(
-              key: const ValueKey('lumo-meister-prize-rail'),
-              width: rightWidth,
-              child: _QuizPrizeRail(state: state),
-            ),
-          ],
+            ],
+          ),
         ),
       );
     },
