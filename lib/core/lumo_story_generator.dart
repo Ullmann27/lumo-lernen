@@ -74,6 +74,7 @@ class LumoStory {
     required this.gradeLevel,
     this.keyPoints = const <String>[],
     this.bookQuestions = const <StoryBookQuestion>[],
+    this.illustrationVariant = 0,
   });
 
   final String title;
@@ -97,6 +98,9 @@ class LumoStory {
   /// getroffen wurden -> Sterne-Bewertung.
   final List<String> keyPoints;
   final List<StoryBookQuestion> bookQuestions;
+
+  /// Stable cover/detail art per story, persisted for offline rereads.
+  final int illustrationVariant;
 }
 
 /// Generator fuer personalisierte Lern-Geschichten.
@@ -434,6 +438,7 @@ class LumoStoryGenerator {
       newWords: const ['Notizbuch', 'Spur', 'Garten', 'Zeichen', 'Erinnerung'],
       keyPoints: const ['Notizbuch', 'Botin', 'Brunnen', 'Band',
           'Garten', 'Stern', 'Buch'],
+      illustrationVariant: variationSeed % mysteries.length,
       // Whole-book recall: none of these are the two puzzle answers.
       // Every correct answer is explicitly evidenced on the stated page.
       bookQuestions: const [
