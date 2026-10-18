@@ -30,9 +30,9 @@ void main() {
       expect(book.pages.where((p) => p.exercise != null), hasLength(2));
       expect(book.pages[2].text, contains('blaues Band'));
       expect(book.pages[6].text, contains('Beim Stern'));
-      expect(book.bookQuestions, hasLength(4));
+      expect(book.bookQuestions, hasLength(10));
       expect(book.bookQuestions.map((q) => q.evidencePage),
-          orderedEquals([1, 2, 6, 11]));
+          orderedEquals([1, 1, 2, 2, 6, 6, 10, 10, 11, 12]));
       for (final check in book.bookQuestions) {
         expect(book.pages[check.evidencePage - 1].text,
             contains(check.correctAnswer.split(' ').last),
@@ -62,8 +62,8 @@ void main() {
     expect(legacy.pages.length, 8);
     expect(legacy.bookQuestions, isEmpty);
     expect(updated.pages.length, 12);
-    expect(updated.bookQuestions.length, 4);
-    expect(updated.bookQuestions[2].evidencePage, 6);
+    expect(updated.bookQuestions.length, 10);
+    expect(updated.bookQuestions[4].evidencePage, 6);
     expect(updated.pages[4].exercise!.type, StoryExerciseType.wordChoice);
   });
 
