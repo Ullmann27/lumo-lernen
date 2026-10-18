@@ -370,7 +370,7 @@ class _QuizStage extends StatelessWidget {
       final compact = c.maxWidth < 400;
       final tablet = c.maxWidth >= 700;
       final leftWidth = tablet ? 100.0 : (compact ? 62.0 : 78.0);
-      final rightWidth = tablet ? 158.0 : (compact ? 90.0 : 122.0);
+      final rightWidth = tablet ? 168.0 : (compact ? 100.0 : 132.0);
       final gap = tablet ? 18.0 : (compact ? 6.0 : 12.0);
       // On the unfolded Fold and tablet, the mascot is the visual hero,
       // not a miniature floating inside an oversized empty stage.
@@ -386,7 +386,7 @@ class _QuizStage extends StatelessWidget {
         // The stage must expand with accessibility font scaling: the
         // three joker buttons and prize ladder otherwise overflow by 47px
         // at 1.5x on Fold / phone widths. The outer page already scrolls.
-        height: (compact ? 250.0 : (tablet ? 420.0 : 296.0)) *
+        height: (compact ? 380.0 : (tablet ? 490.0 : 418.0)) *
             math.max(1.0, MediaQuery.textScalerOf(context).scale(1)),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -502,62 +502,171 @@ class _QuizStage extends StatelessWidget {
   );
 }
 
+/// All 20 rows are visual progress, not independent wallet grants.
+/// The engine alone awards the four secured milestone prizes.
 class _QuizPrizeRail extends StatelessWidget {
   const _QuizPrizeRail({required this.state});
   final QuizShowState state;
+  static const amounts = <int>[
+    0, 10, 20, 30, 40, 50, 80, 90, 100, 150, 200,
+    400, 450, 500, 600, 800, 2000, 2500, 3000, 4000, 5000,
+  ];
+
   @override
   Widget build(BuildContext context) {
-    const milestones = <(int, int)>[(20, 5000), (15, 800), (10, 200), (5, 50)];
+    final current = state.displayQuestionNumber;
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
           begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF15356D), Color(0xFF071735)],
-        ),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: const Color(0xFFFFC94A), width: 1.5),
+          colors: [Color(0xFF15356D), Color(0xFF071735)]),
+        borderRadius: BorderRadius.circular(17),
+        border: Border.all(color: const Color(0xFFFFC94A), width: 2),
+        boxShadow: const [
+          BoxShadow(color: Color(0x55FFCE65), blurRadius: 14),
+        ],
       ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const FittedBox(
-            fit: BoxFit.scaleDown,
-            child: Text('★ 5.000', style: TextStyle(
-              color: Color(0xFFFFD873), fontSize: 18,
-              fontWeight: FontWeight.w900)),
-          ),
-          const Text('APP-STERNE', maxLines: 1,
-            style: TextStyle(color: Colors.white70, fontSize: 8)),
-          const Divider(color: Color(0x77FFD873), height: 12),
-          for (final step in milestones)
-            Container(
-              width: double.infinity,
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(9),
-                color: state.displayQuestionNumber == step.$1
-                    ? const Color(0xFFFFC94A)
-                    : state.securedStars >= step.$2
-                        ? const Color(0xFF146B55) : Colors.transparent,
-              ),
-              child: FittedBox(
-                fit: BoxFit.scaleDown,
-                child: Text(
-                  step.$1.toString() + ' · ★ ' + step.$2.toString(),
-                  maxLines: 1,
-                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.w900,
-                    color: state.displayQuestionNumber == step.$1
-                      ? const Color(0xFF1D2140) : Colors.white),
+          for (int step = 20; step >= 1; step--)
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 1),
+                child: Container(
+                  key: ValueKey('lumo-meister-prize-step-$' + 'step'),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(6),
+                    gradient: LinearGradient(colors: step == current
+                      ? const [Color(0xFF00BDF4), Color(0xFF0649A1)]
+                      : const [Color(0xFF112F5E), Color(0xFF081831)]),
+                    border: Border.all(
+                      color: step == current
+                        ? const Color(0xFF55EEFF)
+                        : const Color(0x664C8DCE),
+                      width: step == current ? 1.4 : 0.6),
+                    boxShadow: step == current
+                      ? const [BoxShadow(
+                          color: Color(0x9955EFFF), blurRadius: 9)]
+                      : null,
+                  ),
+                  child: Row(children: [
+                    SizedBox(
+                      width: 22,
+                      child: Text(step.toString(),
+                        maxLines: 1, textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: const Color(0xFFFFDF79),
+                          fontSize: 11,
+                          fontWeight: step % 5 == 0
+                            ? FontWeight.w900 : FontWeight.w700,
+                        )),
+                    ),
+                    const Expanded(child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Icon(Icons.star_rounded,
+                        color: Color(0xFFFFD45C), size: 13))),
+                    SizedBox(width: 42, child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(_amount(step),
+                        style: TextStyle(
+                          fontFamily: 'Nunito', fontSize: 12,
+                          fontWeight: step % 5 == 0
+                            ? FontWeight.w900 : FontWeight.w700,
+                          color: step == current || step % 5 == 0
+                            ? const Color(0xFFFFE59E) : Colors.white,
+                        )),
+                    )),
+                  ]),
                 ),
               ),
             ),
-          const Text('Ausflug nur\nEltern-Wunsch',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: Color(0xFFFFE0A5), fontSize: 9,
-              fontWeight: FontWeight.w700)),
         ],
+      ),
+    );
+  }
+
+  static String _amount(int step) {
+    final value = amounts[step];
+    if (value < 1000) return value.toString();
+    return '${value ~/ 1000}.${(value % 1000).toString().padLeft(3, '0')}';
+  }
+}
+
+class _LockInButton extends StatelessWidget {
+  const _LockInButton({
+    required this.enabled, required this.locking, required this.onTap,
+  });
+  final bool enabled;
+  final bool locking;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    final reduceMotion = MediaQuery.disableAnimationsOf(context);
+    return Semantics(
+      liveRegion: locking,
+      child: AnimatedContainer(
+        key: const ValueKey('lumo-meister-lock-bar'),
+        duration: const Duration(milliseconds: 180),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: enabled || locking
+            ? const [Color(0xFF064EAA), Color(0xFF12275A), Color(0xFF05418C)]
+            : const [Color(0xFF293C60), Color(0xFF162B4C)]),
+          borderRadius: BorderRadius.circular(30),
+          border: Border.all(
+            color: locking || enabled
+              ? const Color(0xFFFFCD62) : const Color(0xFF557AA6),
+            width: 1.7),
+          boxShadow: locking
+            ? const [BoxShadow(color: Color(0x88FFD66B), blurRadius: 19)]
+            : const [BoxShadow(color: Color(0x6638CAFF), blurRadius: 12)],
+        ),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(30),
+            onTap: enabled ? onTap : null,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 12, vertical: 13),
+              child: Column(children: [
+                Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                  Icon(locking ? Icons.hourglass_top_rounded
+                      : Icons.check_circle_outline_rounded,
+                      color: const Color(0xFFFFD873)),
+                  const SizedBox(width: 8),
+                  Flexible(child: Text(
+                    locking ? 'Lumo prüft deine Antwort …'
+                        : 'Antwort einloggen',
+                    maxLines: 2, textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: enabled || locking
+                        ? Colors.white : Colors.white60,
+                      fontFamily: 'Nunito', fontSize: 17,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  )),
+                ]),
+                if (locking) ...[
+                  const SizedBox(height: 10),
+                  TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0, end: 1),
+                    duration: Duration(
+                      milliseconds: reduceMotion ? 750 : 1600),
+                    builder: (context, progress, _) =>
+                      LinearProgressIndicator(
+                        value: progress, minHeight: 5,
+                        backgroundColor: const Color(0xFF11295A),
+                        valueColor: const AlwaysStoppedAnimation<Color>(
+                          Color(0xFFFFD76A)),
+                      ),
+                  ),
+                ],
+              ]),
+            ),
+          ),
+        ),
       ),
     );
   }
