@@ -154,15 +154,20 @@ class _QuizShowContentState extends State<QuizShowContent> {
     return Scaffold(
       backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
-        title: const Text(
-          'Wer wird Lumo-Meister?',
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-            shadows: [
-              Shadow(color: Color(0xAA19B7FF), blurRadius: 12),
-            ],
+        title: const FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.centerLeft,
+          child: Text(
+            'Wer wird Lumo-Meister?',
+            maxLines: 1,
+            style: TextStyle(
+              fontFamily: 'Nunito',
+              fontWeight: FontWeight.w900,
+              color: Colors.white,
+              shadows: [
+                Shadow(color: Color(0xAA19B7FF), blurRadius: 12),
+              ],
+            ),
           ),
         ),
         backgroundColor: const Color(0xFF071432),
