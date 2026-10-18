@@ -126,7 +126,7 @@ class _ScenePainter extends CustomPainter {
         Offset(x + w, y + h - 4), Offset(x, y + h)],
         cover, end: Color.lerp(cover, _navy, .5));
     _rect(Rect.fromLTWH(x + w * .12, y + h * .26,
-        w * .7, math.max(2, h * .09)), _gold, radius: 1);
+        w * .7, math.max(2.0, h * .09)), _gold, radius: 1);
     _line(Offset(x + 4, y + 2), Offset(x + 4, y + h - 1),
         Colors.white.withOpacity(.34), 2);
   }
