@@ -246,10 +246,11 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           : true;
     });
     if (correct) {
+      // Keep the progress reward, but do not push a blocking modal over
+      // the next reading page 1s later. That interrupted child-led reading
+      // and could swallow the next mystery clue tap.
       widget.appState.addStars(1);
       widget.appState.addXp(5);
-      await Future.delayed(const Duration(milliseconds: 1000));
-      if (mounted) showLumoRewardBurst(context, stars: 1, xp: 5);
     }
   }
 
@@ -595,12 +596,6 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              LumoStoryScene(
-                key: ValueKey('lumo-story-scene-${page.pageNum}'),
-                page: page.pageNum,
-                height: MediaQuery.sizeOf(context).width > 650 ? 290 : 214,
-              ),
-              const SizedBox(height: 14),
               LumoGlassCard(
                 key: const ValueKey('lumo-story-visible-page-text'),
                 padding: const EdgeInsets.all(18),
@@ -633,6 +628,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                     ),
                   ],
                 ),
+              ),
+              const SizedBox(height: 12),
+              LumoStoryScene(
+                key: ValueKey('lumo-story-scene-${page.pageNum}'),
+                page: page.pageNum,
+                height: MediaQuery.sizeOf(context).width > 650 ? 270 : 198,
               ),
               const SizedBox(height: 12),
               LumoGlassCard(
