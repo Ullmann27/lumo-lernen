@@ -598,7 +598,7 @@ class _AnswerButton extends StatelessWidget {
   final bool selected;
   final bool revealed;
   final bool correct;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
