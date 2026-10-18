@@ -664,13 +664,13 @@ class _LumoMeisterPortal extends StatelessWidget {
                   ]),
                   const SizedBox(height: 10),
                   Row(children: [
-                    LumoCharacter(
-                      pose: LumoDesignFoxPose.pointSide,
-                      size: 92,
-                      reduceMotion: reduceMotion,
-                      idleHops: !reduceMotion,
-                    ),
-                    const SizedBox(width: 12),
+                    Image.asset(
+                      'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+                      width: 92, height: 112,
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
+                      semanticLabel: 'Lumo präsentiert die Quizshow',
+                    ),                    const SizedBox(width: 12),
                     const Expanded(child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
