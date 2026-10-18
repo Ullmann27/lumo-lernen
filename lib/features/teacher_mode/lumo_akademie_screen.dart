@@ -34,6 +34,7 @@ import '../writing/writing_feature_flags.dart';
 import 'lumo_teacher_screen.dart';
 import 'letter_writing_screen.dart';
 import '../tutoring/guided_learning_hub.dart';
+import '../learning/lab/learning_lab_hub.dart';
 import '../story/lumo_story_library_screen.dart';
 
 // Datenstruktur für Lehrpläne
@@ -1466,6 +1467,22 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
             icon: const Icon(Icons.school_rounded),
             label: const Text('Lumo erklärt es mir',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
+          ),
+          const SizedBox(height: 10),
+          FilledButton.icon(
+            key: const ValueKey('akademie-learning-lab'),
+            onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(builder: (_) => LearningLabHub(
+                    appState: widget.appState))),
+            style: FilledButton.styleFrom(
+              minimumSize: const Size(64, 56),
+              backgroundColor: const Color(0xFF168CA7),
+              foregroundColor: Colors.white,
+            ),
+            icon: const Icon(Icons.auto_awesome_rounded),
+            label: const Text('Lumos interaktives Lernatelier',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900)),
           ),
           const SizedBox(height: 10),
           OutlinedButton.icon(
