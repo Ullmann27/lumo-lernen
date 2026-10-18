@@ -80,7 +80,7 @@ void main() {
           questionIndex++) {
         final question = story.bookQuestions[questionIndex];
         await _routeFrames(tester);
-        expect(find.byKey(const ValueKey('lumo-book-question-$questionIndex')),
+        expect(find.byKey(ValueKey('lumo-book-question-$questionIndex')),
             findsOneWidget);
         final correctIndex = question.options.indexOf(question.correctAnswer);
         expect(correctIndex, greaterThanOrEqualTo(0));
