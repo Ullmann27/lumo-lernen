@@ -47,6 +47,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   //  dann bewertet Lumo die Zusammenfassung").
   bool _inSummaryMode = false;
   bool _inBookQuiz = false;
+  bool _fullBookView = false;
   int _bookQuestionIndex = 0;
   String? _bookQuizSelected;
   int _bookQuestionsCorrectFirstTry = 0;
@@ -366,14 +367,18 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
               children: [
                 _buildTopBar(),
                 Expanded(
-                  child: _inSummaryMode
-                      ? _buildSummaryPage()
+                  child: _fullBookView
+                      ? _buildFullBook()
+                      : _inSummaryMode
+                          ? _buildSummaryPage()
                       : _inBookQuiz
                           ? _buildBookQuiz()
                           : _buildPage(page),
                 ),
-                _inSummaryMode
-                    ? _buildSummaryBottomNav()
+                _fullBookView
+                    ? _buildFullBookBottomNav()
+                    : _inSummaryMode
+                        ? _buildSummaryBottomNav()
                     : _inBookQuiz
                         ? _buildBookQuizNavigation()
                         : _buildBottomNav(page),
@@ -417,14 +422,122 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
             ),
           ),
           IconButton(
-            icon: Icon(Icons.volume_up_rounded,
+            key: const ValueKey('lumo-full-book-toggle'),
+            tooltip: _fullBookView
+                ? 'Zurück zum Leseabenteuer'
+                : 'Gesamtes Buch im Volltext lesen',
+            icon: Icon(_fullBookView
+                ? Icons.menu_book_rounded
+                : Icons.chrome_reader_mode_rounded,
                 color: LumoVisualTokens.cyanBright),
-            onPressed: _speak,
+            onPressed: () => setState(() => _fullBookView = !_fullBookView),
+          ),
+          IconButton(
+            tooltip: 'Seite vorlesen',
+            icon: const Icon(Icons.volume_up_rounded,
+                color: LumoVisualTokens.cyanBright),
+            onPressed: _fullBookView ? null : _speak,
           ),
         ],
       ),
     );
   }
+
+  Widget _buildFullBook() {
+    return ListView(
+      key: const ValueKey('lumo-story-complete-book'),
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 28),
+      children: [
+        Center(child: ConstrainedBox(
+          constraints: const BoxConstraints(maxWidth: 740),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Text(widget.story.title,
+                style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  color: LumoVisualTokens.white,
+                  fontWeight: FontWeight.w900,
+                  fontSize: 25,
+                )),
+              const SizedBox(height: 8),
+              const Text(
+                'Dein ganzes Buch – ohne Unterbrechung. '
+                'Wenn du miträtseln möchtest, kehre zur Leseansicht zurück.',
+                style: TextStyle(
+                  color: LumoVisualTokens.muted,
+                  height: 1.4,
+                  fontSize: 15,
+                )),
+              const SizedBox(height: 18),
+              for (final page in widget.story.pages) ...[
+                LumoGlassCard(
+                  key: ValueKey('full-book-page-${page.pageNum}'),
+                  padding: const EdgeInsets.all(17),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Kapitel ${((page.pageNum - 1) ~/ 3) + 1} '
+                          '· Seite ${page.pageNum}',
+                        style: const TextStyle(
+                          color: LumoVisualTokens.cyanBright,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 14,
+                        )),
+                      const SizedBox(height: 12),
+                      Text(page.text,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          color: LumoVisualTokens.white,
+                          height: 1.65,
+                          fontSize: 19,
+                          fontWeight: FontWeight.w700,
+                        )),
+                    ],
+                  ),
+                ),
+                if (page.pageNum % 3 == 0) ...[
+                  const SizedBox(height: 12),
+                  LumoGlassCard(
+                    padding: const EdgeInsets.all(12),
+                    child: Row(children: [
+                      const LumoFoxPose(
+                        pose: LumoDesignFoxPose.bookPoint, size: 78),
+                      const SizedBox(width: 14),
+                      const Expanded(child: Text(
+                        'Bildpause: Lumo überlegt, was als Nächstes geschieht.',
+                        style: TextStyle(
+                          color: LumoVisualTokens.white,
+                          fontWeight: FontWeight.w800, fontSize: 15),
+                      )),
+                    ]),
+                  ),
+                ],
+                const SizedBox(height: 14),
+              ],
+            ],
+          ),
+        )),
+      ],
+    );
+  }
+
+  Widget _buildFullBookBottomNav() => Padding(
+    padding: const EdgeInsets.all(16),
+    child: SizedBox(
+      height: 56,
+      child: ElevatedButton.icon(
+        key: const ValueKey('lumo-return-from-full-book'),
+        onPressed: () => setState(() => _fullBookView = false),
+        icon: const Icon(Icons.auto_stories_rounded),
+        label: const Text('Zurück zum Leseabenteuer'),
+        style: ElevatedButton.styleFrom(
+          backgroundColor: LumoVisualTokens.cyanBright,
+          foregroundColor: LumoVisualTokens.navigation,
+        ),
+      ),
+    ),
+  );
 
   /// The child's words come first; illustration is secondary to reading.
   Widget _buildPage(LumoStoryPage page) {
