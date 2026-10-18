@@ -38,7 +38,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import creative_android_probe as probe  # noqa: E402  (pinned live helpers)
 import kart_complete_android_probe as complete  # noqa: E402  (proven race-save reader)
 import kart_tour_evidence as evidence  # noqa: E402  (tools/android_qa, added by probe)
-from kart_android_race import race_state, race_view_visible, read_frame  # noqa: E402
+from kart_android_race import (  # noqa: E402
+    focused_race_hud_text, focused_race_hud_visible, marker as race_marker,
+    race_state, race_view_visible, read_frame,
+)
 
 base = probe.base
 live = probe.live
@@ -343,7 +346,29 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
         screen = _shot(out, name)
         frame = read_frame(out / (name + '.png'))
         last = frame['text'][:300]
-        if race_view_visible(frame):
+        # The original 1978 emulator PNG visibly contains RUNDE 1/2,
+        # PLATZ 6/6 and km/h, yet full-frame OCR omitted the first token.
+        # Re-read only the real top HUD pixels with Tesseract psm 7.
+        # This is NOT a bypass: the native save was already verified as
+        # countdown=0 with an advancing race clock, and the existing GAS
+        # distance + changing-world gates remain mandatory downstream.
+        focus = None
+        if not race_view_visible(frame):
+            focus_text = focused_race_hud_text(out / (name + '.png'))
+            focus = {
+                'ocr': focus_text,
+                'three_hud_indicators': focused_race_hud_visible(focus_text),
+                'not_paused_or_finished': not any(
+                    race_marker(frame, caption) for caption in
+                    ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen')),
+            }
+            (out / (name + '-focused-hud.json')).write_text(
+                json.dumps(focus, ensure_ascii=False, indent=2) + '\\n')
+        if race_view_visible(frame) or (
+            focus is not None
+            and focus['three_hud_indicators']
+            and focus['not_paused_or_finished']
+        ):
             (out / '21_race_hud.png').write_bytes(screen)
             try:
                 state = race_state(frame)
@@ -352,7 +377,8 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
             return {'capture': name, 'race_state': state,
                     'rendered_frame': evidence.rendered_race_frame(screen),
                     'hud_lines': [line['text'] for line in frame['lines']
-                                  if any(word in line['text'].upper() for word in ('RUNDE', 'PLATZ', 'KM/H'))][:6]}
+                                  if any(word in line['text'].upper() for word in ('RUNDE', 'PLATZ', 'KM/H'))][:6],
+                    'focused_hud': focus}
         attempt += 1
         time.sleep(1)
     raise RuntimeError(f'No current race HUD (RUNDE) was observed. Last OCR: {last!r}')
