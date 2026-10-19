@@ -13,6 +13,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 import 'cognitive_profile_start_view.dart';
 import 'iq/iq_widgets.dart';
+import 'iq/iq_style.dart';
 
 class CognitiveProfileScreen extends StatefulWidget {
   const CognitiveProfileScreen({
