@@ -14,7 +14,7 @@ import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../../widgets/design/lumo_scene_art_panel.dart';
+import '../../widgets/design/lumo_motion.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
 import '../writing/lumo_writing_coach_screen.dart';
@@ -341,13 +341,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   }
 
   void _onAnswer(String answer, StoryExercise ex) async {
+    if (_exerciseDone) return;
     HapticFeedback.lightImpact();
     final correct = answer == ex.correctAnswer;
     setState(() {
       _selectedAnswer = answer;
-      _exerciseDone = ex.type == StoryExerciseType.wordChoice
-          ? correct
-          : true;
+      _exerciseDone = correct;
     });
     if (correct) {
       // Keep the progress reward, but do not push a blocking modal over
@@ -632,6 +631,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 )),
               const SizedBox(height: 18),
               for (final page in widget.story.pages) ...[
+                if (widget.story.bookQuestions.isNotEmpty)
                 LumoStoryScene(
                   page: page.pageNum,
                   variant: widget.story.illustrationVariant,
@@ -743,6 +743,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 ),
               ),
               const SizedBox(height: 12),
+              if (widget.story.bookQuestions.isNotEmpty)
               LumoStoryScene(
                 key: ValueKey('lumo-story-scene-${page.pageNum}'),
                 page: page.pageNum,
@@ -750,16 +751,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                 height: MediaQuery.sizeOf(context).width > 650 ? 270 : 198,
               ),
               const SizedBox(height: 12),
-              if (widget.story.title.toLowerCase().contains('sternenkarte') &&
-                  _pageIdx < 2)
-                LumoSceneArtPanel(
-                  key: ValueKey('lumo-story-scene-$_pageIdx'),
-                  scene: _pageIdx == 0
-                      ? LumoSceneArt.storyLibrary
-                      : LumoSceneArt.storyStarMap,
-                  height: 205,
-                )
-              else
+              if (widget.story.bookQuestions.isEmpty)
                 LumoGlassCard(
                 key: const ValueKey('lumo-story-original-fox-art'),
                 padding: const EdgeInsets.all(10),
@@ -821,89 +813,98 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   }
 
   Widget _buildExerciseCard(StoryExercise ex) {
-    return LumoPremiumCard(
-      gradient: LinearGradient(
-        colors: [LumoTokens.colors.gold, LumoTokens.colors.goldDeep],
-      ),
+    final answered = _selectedAnswer != null;
+    return LumoGlassCard(
+      borderColor:
+          _exerciseDone ? const Color(0xFF70E7BD) : LumoVisualTokens.cyanBright,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: const [
-              Icon(Icons.auto_awesome_rounded, color: Colors.white),
-              SizedBox(width: 8),
-              Text('Lumo-Mini-Aufgabe:',
-                  style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      color: Colors.white)),
-            ],
-          ),
+          const Row(children: [
+            Icon(Icons.auto_awesome_rounded, color: LumoVisualTokens.gold),
+            SizedBox(width: 8),
+            Expanded(
+                child: Text('Lumo-Mini-Aufgabe:',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white))),
+          ]),
           const SizedBox(height: 12),
           Text(ex.prompt,
               style: LumoTokens.typo.titleLarge
-                  .copyWith(color: Colors.white, fontSize: 20),
-              textAlign: TextAlign.center),
-          const SizedBox(height: 12),
+                  .copyWith(color: Colors.white, fontSize: 20)),
+          const SizedBox(height: 16),
           if (ex.options != null)
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              alignment: WrapAlignment.center,
-              children: ex.options!.map((o) {
-                final isSel = _selectedAnswer == o;
-                final isCorrect = o == ex.correctAnswer;
-                Color bg = Colors.white;
-                if (isSel) {
-                  bg = isCorrect
-                      ? LumoTokens.colors.success
-                      : LumoTokens.colors.errorSoft;
-                } else if (_exerciseDone && isCorrect) {
-                  bg = LumoTokens.colors.successLight;
-                }
-                return GestureDetector(
-                  onTap: _exerciseDone ? null : () => _onAnswer(o, ex),
-                  child: AnimatedContainer(
-                    duration: const Duration(milliseconds: 200),
+            for (final option in ex.options!) ...[
+              LumoPressable(
+                enabled: !_exerciseDone,
+                child: OutlinedButton.icon(
+                  onPressed: _exerciseDone ? null : () => _onAnswer(option, ex),
+                  icon: Icon(
+                      _selectedAnswer == option
+                          ? (_exerciseDone
+                              ? Icons.check_circle_rounded
+                              : Icons.refresh_rounded)
+                          : Icons.circle_outlined,
+                      size: 22),
+                  label: Align(
+                      alignment: Alignment.centerLeft, child: Text(option)),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size(48, 54),
                     padding: const EdgeInsets.symmetric(
-                        horizontal: 24, vertical: 14),
-                    decoration: BoxDecoration(
-                      color: bg,
-                      borderRadius: LumoTokens.brMedium,
-                    ),
-                    child: Text(o,
-                        style: LumoTokens.typo.titleLarge
-                            .copyWith(color: LumoTokens.colors.textDark)),
+                        horizontal: 16, vertical: 14),
+                    foregroundColor: Colors.white,
+                    disabledForegroundColor: Colors.white,
+                    backgroundColor: _selectedAnswer == option
+                        ? (_exerciseDone
+                            ? const Color(0xFF155A4D)
+                            : const Color(0xFF503A29))
+                        : const Color(0xFF102A50),
+                    side: BorderSide(
+                        color: _selectedAnswer == option
+                            ? (_exerciseDone
+                                ? const Color(0xFF70E7BD)
+                                : LumoVisualTokens.gold)
+                            : const Color(0xFF5284A6)),
+                    textStyle: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 18,
+                        fontWeight: FontWeight.w800),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16)),
                   ),
-                );
-              }).toList(),
-            ),
-          if (ex.type == StoryExerciseType.wordChoice &&
-              _selectedAnswer != null && !_exerciseDone)
-            const Padding(
-              padding: EdgeInsets.only(top: 12),
-              child: Text(
-                'Noch nicht. Lies die Hinweise der vorherigen Seiten '
-                'noch einmal und versuche es erneut.',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.w800,
                 ),
+              ),
+              const SizedBox(height: 8),
+            ],
+          if (answered)
+            Semantics(
+              liveRegion: true,
+              child: Padding(
+                padding: const EdgeInsets.only(top: 8),
+                child: Text(
+                    _exerciseDone
+                        ? 'Geschafft! Du kannst weiterlesen.'
+                        : ex.type == StoryExerciseType.wordChoice
+                            ? 'Noch nicht. Lies die Hinweise der vorherigen Seiten noch einmal und versuche es erneut.'
+                            : 'Versuche es noch einmal. Zähle in kleinen Schritten und prüfe deine Antwort.',
+                    style: const TextStyle(
+                        color: Colors.white,
+                        fontSize: 15,
+                        height: 1.4,
+                        fontWeight: FontWeight.w700)),
               ),
             ),
           if (ex.options == null)
-            // Wort-Schreib-Aufgabe: einfacher Button "Im Schreibcoach üben"
             ElevatedButton.icon(
-              onPressed: () {
-                setState(() => _exerciseDone = true);
-              },
+              onPressed: _exerciseDone
+                  ? null
+                  : () => setState(() => _exerciseDone = true),
               icon: const Icon(Icons.check_rounded),
               label: const Text('Wort merken!'),
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: LumoTokens.colors.lumoOrangeDeep,
-              ),
+              style: ElevatedButton.styleFrom(minimumSize: const Size(48, 52)),
             ),
         ],
       ),
