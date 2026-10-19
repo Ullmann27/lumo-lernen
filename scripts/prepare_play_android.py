@@ -69,9 +69,39 @@ def prepare(root: Path, application_id: str) -> None:
     for element in doc.iter():
         if element.get(prepare_android.attr('name')) == 'android.permission.REQUEST_INSTALL_PACKAGES':
             raise ValueError('Install-packages permission survives Play sanitization')
+    # Disable every native sideload action for the Play flavor. Removing only
+    # REQUEST_INSTALL_PACKAGES is insufficient: the old APK installer channel
+    # can still open the Android unknown-sources settings page.
+    activities = list((root / 'android/app/src/main/kotlin').rglob('MainActivity.kt'))
+    if len(activities) != 1:
+        raise ValueError('Play host requires exactly one generated MainActivity')
+    activity_path = activities[0]
+    activity = activity_path.read_text(encoding='utf-8')
+    start_marker = '''        MethodChannel(
+            flutterEngine.dartExecutor.binaryMessenger,
+            installerChannel
+        ).setMethodCallHandler'''
+    end_marker = '''        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "lumo_lernen/bridge")'''
+    if activity.count(start_marker) != 1 or activity.count(end_marker) != 1:
+        raise ValueError('Cannot safely disable native APK installer')
+    prefix, rest = activity.split(start_marker, 1)
+    _, suffix = rest.split(end_marker, 1)
+    restricted_handler = '''        // Play Store: no unknown-source installation or APK sideload.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, installerChannel)
+            .setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "canInstall", "requestInstallPermission", "install" ->
+                        result.success(false)
+                    else -> result.notImplemented()
+                }
+            }
+'''
+    activity = prefix + restricted_handler + end_marker + suffix
+
     ET.indent(tree)
     gradle.write_text(text, encoding='utf-8')
     tree.write(manifest, encoding='utf-8', xml_declaration=True)
+    activity_path.write_text(activity, encoding='utf-8')
     print('Play Android host ready: API 36, private upload signing, no install permission')
 
 
