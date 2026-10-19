@@ -45,9 +45,10 @@ command -v jarsigner >/dev/null || {
 jarsigner -verify -strict -verbose "$bundle" > "$temp/jarsigner-result.txt" || {
   echo "AAB signature failed; detailed credentials redacted" >&2; exit 1;
 }
-unzip -Z1 "$bundle" | grep -qx 'base/manifest/AndroidManifest.xml'
-unzip -Z1 "$bundle" | grep -qx 'base/dex/classes.dex'
-unzip -Z1 "$bundle" | grep -q '^base/assets/flutter_assets/'
+unzip -Z1 "$bundle" > "$temp/bundle-members.txt"
+grep -qx 'base/manifest/AndroidManifest.xml' "$temp/bundle-members.txt"
+grep -qx 'base/dex/classes.dex' "$temp/bundle-members.txt"
+grep -q '^base/assets/flutter_assets/' "$temp/bundle-members.txt"
 test -z "$(git status --porcelain --untracked-files=no)"
 mkdir -p dist/play
 cp "$bundle" dist/play/Lumo-Lernen-Play-${build_number}.aab
