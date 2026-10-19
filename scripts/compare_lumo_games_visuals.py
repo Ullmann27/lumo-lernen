@@ -47,7 +47,7 @@ def compare(directory: Path, baseline: str, candidate: str) -> dict:
                     "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 19)
             except OSError:
                 font = ImageFont.load_default()
-            draw.text((24, 24), "VORHER · 1986", font=font, fill="#e6f6ff")
+            draw.text((24, 24), "VORHER · 1989", font=font, fill="#e6f6ff")
             draw.text((target_width + 48, 24), "NACHHER · 1990",
                       font=font, fill="#53e0ff")
             canvas.paste(a, (24, 70))
@@ -68,7 +68,7 @@ def compare(directory: Path, baseline: str, candidate: str) -> dict:
     manifest = {
         "type": "actual_flutter_rendered_screenshots",
         "baseline_sha": baseline, "candidate_sha": candidate,
-        "baseline_release": "lumo-v0.12.74-1986-integrated-reading",
+        "baseline_release": "lumo-v0.12.77-1989-test",
         "note": "Flutter raster captures, not physical Samsung screenshots.",
         "pairs": records,
     }
@@ -79,7 +79,7 @@ def compare(directory: Path, baseline: str, candidate: str) -> dict:
             '<style>body{font:16px system-ui;background:#081d37;color:white;',
             'padding:22px;max-width:1100px;margin:auto}img{max-width:100%}',
             'section{border-bottom:1px solid #44ccea;padding:22px 0}</style>',
-            '<h1>Spielewelt: Originalscreenshots 1986 / 1990</h1>']
+            '<h1>Spielewelt: Originalscreenshots 1989 / 1990</h1>']
     for r in records:
         page += ['<section><h2>' + r["device"] + '</h2>',
                  '<img src="' + r["comparison"] + '">',

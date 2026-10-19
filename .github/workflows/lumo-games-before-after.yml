@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: lumo-v0.12.74-1986-integrated-reading
+          ref: lumo-v0.12.77-1989-test
           path: before
       - uses: actions/checkout@v4
         with:
@@ -39,7 +39,7 @@ jobs:
       - name: Check source identities, dependencies and output areas
         run: |
           set -euo pipefail
-          test "$(grep '^version:' before/pubspec.yaml)" = 'version: 0.12.74+1986'
+          test "$(grep '^version:' before/pubspec.yaml)" = 'version: 0.12.77+1989'
           test "$(grep '^version:' after/pubspec.yaml)" = 'version: 0.12.78+1990'
           test "$(git -C before rev-parse HEAD)" != "$(git -C after rev-parse HEAD)"
           mkdir -p visual/before visual/after
