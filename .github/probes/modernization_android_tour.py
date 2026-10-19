@@ -176,7 +176,10 @@ def verify_apk_identity(apk: Path, provenance_path: Path, sums_path: Path) -> di
     """Bind this tour to the exact APK the build job produced and verified."""
     provenance = json.loads(provenance_path.read_text())
     digest = probe.digest(apk)
-    expected_source = os.environ.get('GITHUB_SHA') or base.command('git', 'rev-parse', 'HEAD').strip()
+    # On pull_request, GITHUB_SHA identifies GitHub's synthetic merge commit,
+    # while both build and tour explicitly checkout pull_request.head.sha.
+    # Bind APK provenance to the exact immutable commit actually checked out.
+    expected_source = base.command('git', 'rev-parse', 'HEAD').strip()
     pin = json.loads(Path('config/godot-source.json').read_text())['revision']
     version = re.search(r'^version:\s*([0-9.]+)\+(\d+)\s*$', Path('pubspec.yaml').read_text(), re.M)
     sums = {}
