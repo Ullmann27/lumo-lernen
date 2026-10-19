@@ -330,7 +330,7 @@ class LumoColorTile extends StatelessWidget {
             button: true,
             label: '$title. $subtitle',
             child: LumoPressable(
-                glowColor: Color.lerp(LumoVisualTokens.cyanBright, color, .35)!,
+                glowColor: color,
                 child: Material(
                   color: Colors.transparent,
                   child: InkWell(
@@ -347,25 +347,23 @@ class LumoColorTile extends StatelessWidget {
                         gradient: LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
-                            stops: const [
-                              0.0,
-                              0.18,
-                              1.0
-                            ],
+                            stops: const [0, .52, 1],
                             colors: [
-                              // Leichter Glanz an der oberen Kante für Tiefe.
-                              Color.lerp(const Color(0xF0215A8F), color, .68)!,
-                              Color.lerp(const Color(0xEE123A68), color, .42)!,
-                              const Color(0xF0081D3D)
+                              Color.lerp(Colors.white, color, .14)!,
+                              Color.lerp(Colors.white, color, .31)!,
+                              Color.lerp(Colors.white, color, .56)!,
                             ]),
-                        border: Border.all(
-                            color:
-                                LumoVisualTokens.cyan.withValues(alpha: .43)),
+                        border: Border.all(color: color.withValues(alpha: .82), width: 1.8),
                         boxShadow: [
                           BoxShadow(
-                              color: color.withValues(alpha: .12),
-                              blurRadius: 16,
-                              offset: const Offset(0, 6))
+                              color: color.withValues(alpha: .36),
+                              blurRadius: 22,
+                              spreadRadius: -3,
+                              offset: const Offset(0, 9)),
+                          const BoxShadow(
+                              color: Color(0x39051432),
+                              blurRadius: 5,
+                              offset: Offset(0, 4))
                         ],
                       ),
                       child: Column(
@@ -378,9 +376,20 @@ class LumoColorTile extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   gradient: RadialGradient(colors: [
-                                    color.withValues(alpha: .38),
-                                    color.withValues(alpha: 0),
+                                    Colors.white,
+                                    Color.lerp(Colors.white, color, .42)!,
+                                    color.withValues(alpha: .56),
                                   ]),
+                                  border: Border.all(
+                                      color: Colors.white.withValues(alpha: .92),
+                                      width: 2),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: color.withValues(alpha: .32),
+                                      blurRadius: 12,
+                                      offset: const Offset(0, 5),
+                                    )
+                                  ],
                                 ),
                                 child: Padding(
                                   padding: EdgeInsets.all(iconSize * 0.12),
@@ -415,7 +424,7 @@ class LumoColorTile extends StatelessWidget {
                               ),
                               const Spacer(),
                               const Icon(Icons.north_east_rounded,
-                                  size: 17, color: LumoVisualTokens.cyanBright),
+                                  size: 19, color: Color(0xFF153B69)),
                             ])),
                             const SizedBox(height: 6),
                             Text(title,
@@ -425,7 +434,7 @@ class LumoColorTile extends StatelessWidget {
                                     fontSize: titleSize,
                                     height: 1.05,
                                     fontWeight: FontWeight.w900,
-                                    color: Colors.white)),
+                                    color: const Color(0xFF10264A))),
                             // Symbol + zweizeiliger Titel brauchen auf flachen
                             // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
                             // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
@@ -437,7 +446,7 @@ class LumoColorTile extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: iconSize >= 60 ? 14 : 11,
                                       height: 1.15,
-                                      color: LumoVisualTokens.muted)),
+                                      color: const Color(0xFF29466D))),
                             ],
                           ]),
                     ),
