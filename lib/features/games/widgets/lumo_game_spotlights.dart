@@ -10,12 +10,14 @@ class LumoGameSpotlights extends StatelessWidget {
   const LumoGameSpotlights({
     super.key,
     required this.onCards,
+    this.showBuildPreview = false,
     required this.onKart,
     required this.busy,
     required this.reduceMotion,
   });
 
   final VoidCallback onCards;
+  final bool showBuildPreview;
   final VoidCallback onKart;
   final bool busy;
   final bool reduceMotion;
@@ -36,7 +38,9 @@ class LumoGameSpotlights extends StatelessWidget {
                   shadows: [Shadow(color: Color(0xCC03122E), blurRadius: 10)],
                 )),
             const SizedBox(height: 4),
-            const Text('Karten-Duell oder 3D-Rennen – du entscheidest.',
+            Text(showBuildPreview
+                    ? 'Bauwelt: In Entwicklung · Cards & Kart spielen!'
+                    : 'Karten-Duell oder 3D-Rennen – du entscheidest.',
                 style: TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 14,
