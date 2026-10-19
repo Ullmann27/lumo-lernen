@@ -50,6 +50,7 @@ void main() {
     ('phone', const Size(393, 852), 1.0),
     ('fold-cover', const Size(320, 740), 1.2),
     ('fold-open', const Size(840, 960), 1.0),
+    ('large-text', const Size(900, 1200), 1.5),
   ]) {
     testWidgets('Real home premium islands $device', (tester) async {
       await tester.binding.setSurfaceSize(size);
