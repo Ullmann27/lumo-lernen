@@ -421,7 +421,7 @@ class _GamesContentState extends State<GamesContent> {
             slivers: [
               if (GameCatalog.byId(GameId.build).availability ==
                   GameAvailability.comingSoon)
-                const SliverToBoxAdapter(
+                SliverToBoxAdapter(
                   child: Padding(
                     padding: EdgeInsets.fromLTRB(12, 10, 12, 2),
                     child: Semantics(
