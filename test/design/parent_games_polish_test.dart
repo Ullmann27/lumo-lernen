@@ -257,6 +257,25 @@ void main() {
   });
 
   testWidgets(
+      'cover display keeps Cards and Kart playable above larger previews',
+      (tester) async {
+    final app = await stateFor(tester, size: const Size(320, 720));
+    await mount(tester, GamesContent(appState: app));
+    expect(find.textContaining('Bauwelt: In Entwicklung'), findsOneWidget);
+    for (final name in ['launch-lumo-cards', 'launch-lumo-kart']) {
+      final control = find.byKey(ValueKey(name));
+      expect(control, findsOneWidget);
+      final bounds = tester.getRect(control);
+      expect(bounds.top, greaterThanOrEqualTo(0));
+      expect(bounds.bottom, lessThanOrEqualTo(720));
+      expect(bounds.height, greaterThanOrEqualTo(48));
+      expect(control.hitTestable(), findsOneWidget);
+    }
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets(
       'game entries resize without replacing state or clipping enlarged labels',
       (tester) async {
     final app = await stateFor(tester);

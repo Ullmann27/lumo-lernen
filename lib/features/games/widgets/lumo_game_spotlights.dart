@@ -99,7 +99,7 @@ class LumoGameSpotlights extends StatelessWidget {
                             const SizedBox(height: 8),
                             Text(
                               showBuildPreview
-                                ? 'Cards und Kart warten auf dich! Die Bauwelt entsteht.'
+                                ? 'Bauwelt: In Entwicklung · Cards und Kart warten auf dich!'
                                 : 'Wähle dein Abenteuer: Karten oder Rennstrecke.',
                               style: const TextStyle(fontFamily: 'Nunito',
                                 fontSize: 13, height: 1.3,
@@ -123,6 +123,42 @@ class LumoGameSpotlights extends StatelessWidget {
                 ),
               );
             }),
+            const SizedBox(height: 12),
+            // Primary launch actions must remain visible on compact phones.
+            // The larger artwork panels below are optional discovery content.
+            Row(children: [
+              Expanded(
+                child: FilledButton.icon(
+                  key: const ValueKey('launch-lumo-cards'),
+                  onPressed: busy ? null : onCards,
+                  icon: const Icon(Icons.style_rounded, size: 18),
+                  label: const Text('Cards spielen',
+                    maxLines: 1, overflow: TextOverflow.ellipsis),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(48, 52),
+                    padding: const EdgeInsets.symmetric(horizontal: 7),
+                    foregroundColor: LumoVisualTokens.night,
+                    backgroundColor: const Color(0xFFD8BDFF),
+                  ),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Expanded(
+                child: FilledButton.icon(
+                  key: const ValueKey('launch-lumo-kart'),
+                  onPressed: busy ? null : onKart,
+                  icon: const Icon(Icons.sports_motorsports_rounded, size: 18),
+                  label: const Text('Kart starten',
+                    maxLines: 1, overflow: TextOverflow.ellipsis),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(48, 52),
+                    padding: const EdgeInsets.symmetric(horizontal: 7),
+                    foregroundColor: LumoVisualTokens.night,
+                    backgroundColor: LumoVisualTokens.cyanBright,
+                  ),
+                ),
+              ),
+            ]),
             const SizedBox(height: 16),
             LayoutBuilder(builder: (context, constraints) {
               final largeText = MediaQuery.textScalerOf(context).scale(14) > 21;
@@ -137,7 +173,7 @@ class LumoGameSpotlights extends StatelessWidget {
                     eyebrow: 'KARTENSPIEL',
                     description: 'Lege passende Karten ab und spiele gegen Lumo.',
                     action: 'Kartenspiel starten',
-                    actionKey: 'launch-lumo-cards',
+                    actionKey: 'preview-launch-lumo-cards',
                     pose: LumoDesignFoxPose.cardsWelcome,
                     previewAsset: 'assets/lumo_design/spielwelt/portal_cards.png',
                     accent: const Color(0xFFD8BDFF),
@@ -158,7 +194,7 @@ class LumoGameSpotlights extends StatelessWidget {
                     showWorldTags: true,
                     showRecoveredKartArt: true,
                     action: 'Losfahren',
-                    actionKey: 'launch-lumo-kart',
+                    actionKey: 'preview-launch-lumo-kart',
                     pose: LumoDesignFoxPose.kartRear,
                     accent: LumoVisualTokens.cyanBright,
                     icon: Icons.sports_motorsports_rounded,
