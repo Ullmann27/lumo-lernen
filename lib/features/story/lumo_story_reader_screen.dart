@@ -10,6 +10,7 @@ import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_story_generator.dart';
 import '../../core/lumo_story_library.dart';
+import '../../core/lumo_story_summary_scoring.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -54,6 +55,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   String? _bookQuizSelected;
   int _bookQuestionsCorrectFirstTry = 0;
   bool _bookQuestionHadMistake = false;
+  bool _bookEvidenceHintVisible = false;
   final TextEditingController _summaryCtrl = TextEditingController();
   final LumoSpeechListener _speech = LumoSpeechListener();
   bool _summaryEvaluated = false;
@@ -250,6 +252,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _bookQuestionIndex++;
       _bookQuizSelected = null;
       _bookQuestionHadMistake = false;
+      _bookEvidenceHintVisible = false;
     });
   }
 
@@ -288,43 +291,31 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     if (mounted) setState(() {});
   }
 
-  /// Bewertung: zaehlt, wie viele keyPoints (oder einfache Wort-Stamm-Treffer)
-  /// im Kind-Text vorkommen. Jeder Treffer = 1 Punkt. >=70% -> 5 Sterne,
-  /// >=50% -> 4, >=30% -> 3, sonst 2 (Kind hat es zumindest versucht).
+  /// Conservative keyword aid, not a full semantic evaluation. Each summary
+  /// can be rewarded only once while this reader is open.
   void _evaluateSummary() {
+    if (!mounted || _finishing || _summaryEvaluated) return;
     final raw = _summaryCtrl.text.trim();
-    final lower = raw.toLowerCase();
-    if (lower.isEmpty) {
+    if (raw.isEmpty) {
       try {
         LumoVoice.instance
             .speak('Erzaehl mir doch ein paar Sätze, ich hör dir gerne zu!');
       } catch (_) {}
       return;
     }
-    var hits = 0;
-    for (final kp in widget.story.keyPoints) {
-      // Stamm-Matching: erste 4 Buchstaben des keypoints in lower suchen.
-      final stem = kp.toLowerCase().length >= 4
-          ? kp.toLowerCase().substring(0, 4)
-          : kp.toLowerCase();
-      if (lower.contains(stem)) hits++;
-    }
-    final total = widget.story.keyPoints.length.clamp(1, 99);
-    final ratio = hits / total;
-    final stars = ratio >= 0.7
-        ? 5
-        : ratio >= 0.5
-            ? 4
-            : ratio >= 0.3
-                ? 3
-                : 2;
+    final result = LumoStorySummaryScorer.evaluate(
+      summary: raw,
+      keyPoints: widget.story.keyPoints,
+    );
+    final hits = result.hits;
+    final stars = result.stars;
+    if (stars == 0) return;
     setState(() {
       _summaryEvaluated = true;
       _summaryHits = hits;
       _summaryStars = stars;
     });
-    widget.appState.addStars(stars);
-    widget.appState.addXp(stars * 10);
+    widget.appState.addRewards(stars: stars, xp: stars * 10);
     final msg = stars >= 5
         ? 'Super! Du hast die Geschichte fast komplett erzaehlt! $stars Sterne fuer dich!'
         : stars >= 4
@@ -352,8 +343,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       // Keep the progress reward, but do not push a blocking modal over
       // the next reading page 1s later. That interrupted child-led reading
       // and could swallow the next mystery clue tap.
-      widget.appState.addStars(1);
-      widget.appState.addXp(5);
+      widget.appState.addRewards(stars: 1, xp: 5);
     }
   }
 
@@ -460,6 +450,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   @override
   Widget build(BuildContext context) {
     final page = widget.story.pages[_pageIdx];
+    // Respect both Lumo's settings and Android's accessibility animation flag.
+    final reducePageMotion = widget.appState.state.settings.reduceAnimations ||
+        widget.appState.state.settings.calmMode ||
+        MediaQuery.of(context).disableAnimations;
     return PopScope(
       canPop: !_finishing,
       child: Scaffold(
@@ -479,11 +473,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                       : _inBookQuiz
                           ? _buildBookQuiz()
                           : AnimatedSwitcher(
-                              duration: widget.appState.state.settings.reduceAnimations ||
-                                      widget.appState.state.settings.calmMode
+                              duration: reducePageMotion
                                   ? Duration.zero
                                   : const Duration(milliseconds: 320),
-                              reverseDuration: const Duration(milliseconds: 160),
+                              reverseDuration: reducePageMotion
+                                  ? Duration.zero
+                                  : const Duration(milliseconds: 160),
                               layoutBuilder: (currentChild, previousChildren) =>
                                   Stack(
                                     fit: StackFit.expand,
@@ -1018,6 +1013,37 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                       style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w800),
                     ),
+                  ],
+                  // Evidence pages are part of the saved book-question data.
+                  // Offer a location, never the correct answer or a spoiler.
+                  if (question.evidencePage >= 1 &&
+                      question.evidencePage <= widget.story.pages.length) ...[
+                    const SizedBox(height: 8),
+                    TextButton.icon(
+                      key: const ValueKey('lumo-book-evidence-hint-toggle'),
+                      onPressed: () => setState(() {
+                        _bookEvidenceHintVisible = !_bookEvidenceHintVisible;
+                      }),
+                      icon: const Icon(Icons.menu_book_rounded),
+                      label: Text(_bookEvidenceHintVisible
+                          ? 'Hinweis ausblenden'
+                          : 'Hinweis zur Textstelle'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(48, 48),
+                      ),
+                    ),
+                    if (_bookEvidenceHintVisible)
+                      Text(
+                        'Schau noch einmal auf Seite ${question.evidencePage} '
+                        'deines Buches. Dort findest du den Hinweis.',
+                        key: const ValueKey('lumo-book-evidence-page-hint'),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          height: 1.4,
+                        ),
+                      ),
                   ],
                 ],
               ),
