@@ -84,7 +84,8 @@ void main() {
       final colors = <LumoCardColor>{};
       for (var seed = 0; seed < 60; seed++) {
         colors.add(LumoCardsBotPolicy.selectColor(
-          ownHand: own, rng: Random(seed)));
+          // Equal visible blue/green counts; the choice should vary.
+          ownHand: [own[0], own[1], own[2], own[5]], rng: Random(seed)));
       }
       expect(colors, contains(LumoCardColor.blue));
       expect(colors.length, greaterThan(1));
