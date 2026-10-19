@@ -12,6 +12,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 import 'cognitive_profile_start_view.dart';
+import 'cognitive_profile_visual_prompt.dart';
 import 'iq/iq_widgets.dart';
 import 'iq/iq_style.dart';
 
@@ -222,6 +223,11 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
                 _MemoryStimulus(text: q.stimulus!)
               else ...[
                 _QuestionCard(question: q),
+                const SizedBox(height: 12),
+                CognitiveProfileVisualPrompt(
+                  key: const ValueKey('cognitive-puzzle-board'),
+                  question: q,
+                ),
                 const SizedBox(height: 12),
                 for (final choice in q.choices) ...[
                   _ChoiceTile(
