@@ -172,6 +172,9 @@ class _IqTestScreenState extends State<IqTestScreen> {
     }
     IqTestResult? previous;
     for (final item in earlier) {
+      // A 24-puzzle score must not be compared with the 36-puzzle variant.
+      if (item.version != result.version ||
+          item.items.length != result.items.length) continue;
       if (previous == null || item.finishedAt.isAfter(previous.finishedAt)) {
         previous = item;
       }
