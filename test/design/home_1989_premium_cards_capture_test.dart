@@ -75,6 +75,12 @@ void main() {
         ),
       );
       await tester.pump(const Duration(milliseconds: 700));
+      final out = Platform.environment['LUMO_1989_CARD_CAPTURES'];
+      if (out != null) {
+        await captureLumoBoundary(
+          tester, captureKey, '$out/$device-start.png',
+        );
+      }
       final first = find.byKey(const ValueKey('home-island-mathe'));
       await tester.scrollUntilVisible(
         first, 270, scrollable: find.byType(Scrollable).first,
@@ -92,7 +98,6 @@ void main() {
       }
       expect(tester.takeException(), isNull,
           reason: 'No small-cover/Fold overflow for $device');
-      final out = Platform.environment['LUMO_1989_CARD_CAPTURES'];
       if (out != null) {
         await captureLumoBoundary(
           tester, captureKey, '$out/$device-learning-cards.png',
