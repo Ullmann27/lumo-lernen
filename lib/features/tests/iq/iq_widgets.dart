@@ -194,6 +194,7 @@ class IqSkillChip extends StatelessWidget {
           ),
         ),
       );
+}
 
 /// Glas-Kachel für ein Feld (Figur, Zahl, Merk-Feld).
 class IqTile extends StatelessWidget {
