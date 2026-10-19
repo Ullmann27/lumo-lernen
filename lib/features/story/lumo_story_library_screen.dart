@@ -32,6 +32,7 @@ class LumoStoryLibraryScreen extends StatefulWidget {
 
 class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   bool _loaded = false;
+  bool _loadFailed = false;
   bool _showFavOnly = false;
   String _searchQuery = '';
   _StorySort _sort = _StorySort.newest;
@@ -43,12 +44,34 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
   }
 
   Future<void> _load() async {
-    await LumoStoryLibrary.instance.load();
-    if (mounted) setState(() => _loaded = true);
+    try {
+      await LumoStoryLibrary.instance.load();
+      if (mounted) setState(() {
+        _loaded = true;
+        _loadFailed = false;
+      });
+    } catch (_) {
+      if (mounted) setState(() {
+        _loaded = false;
+        _loadFailed = true;
+      });
+    }
+  }
+
+  void _showSaveError(String message) {
+    if (!mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      behavior: SnackBarBehavior.floating,
+      content: Text(message),
+    ));
   }
 
   void _openStory(StoredStory stored) async {
-    await LumoStoryLibrary.instance.incrementRead(stored.id);
+    try {
+      await LumoStoryLibrary.instance.incrementRead(stored.id);
+    } catch (_) {
+      _showSaveError('Dein Lesezähler konnte nicht gespeichert werden. Das Buch bleibt lesbar.');
+    }
     if (!mounted) return;
     setState(() {});
     Navigator.push(
@@ -79,6 +102,51 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (_loadFailed) {
+      // Never show an empty library or offer to save over an unreadable archive.
+      return Scaffold(
+        backgroundColor: LumoVisualTokens.night,
+        body: SafeArea(
+          child: Center(
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 420),
+              child: Padding(
+                padding: const EdgeInsets.all(24),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    const Icon(Icons.menu_book_rounded,
+                        size: 64, color: LumoVisualTokens.cyanBright),
+                    const SizedBox(height: 16),
+                    const Text('Die Bücherei kann gerade nicht geladen werden.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 20,
+                            fontWeight: FontWeight.w900)),
+                    const SizedBox(height: 12),
+                    const Text('Deine gespeicherten Geschichten bleiben unverändert. '
+                        'Versuche es später erneut oder bitte einen Erwachsenen um Hilfe.',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: LumoVisualTokens.muted, fontSize: 16)),
+                    const SizedBox(height: 20),
+                    FilledButton.icon(
+                      key: const ValueKey('lumo-library-retry-load'),
+                      onPressed: () {
+                        setState(() => _loadFailed = false);
+                        _load();
+                      },
+                      icon: const Icon(Icons.refresh_rounded),
+                      label: const Text('Erneut versuchen'),
+                      style: FilledButton.styleFrom(
+                          minimumSize: const Size(48, 48)),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
     if (!_loaded) {
       return const Scaffold(body: Center(child: CircularProgressIndicator()));
     }
@@ -156,7 +224,11 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                                   stored: s,
                                   onTap: () => _openStory(s),
                                   onFav: () async {
-                                    await lib.toggleFavorite(s.id);
+                                    try {
+                                      await lib.toggleFavorite(s.id);
+                                    } catch (_) {
+                                      _showSaveError('Favorit konnte nicht gespeichert werden.');
+                                    }
                                     if (mounted) setState(() {});
                                   },
                                   onDelete: () => _confirmDelete(s),
@@ -386,7 +458,12 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
               child: const Text('Abbrechen')),
           TextButton(
             onPressed: () async {
-              await LumoStoryLibrary.instance.delete(s.id);
+              try {
+                await LumoStoryLibrary.instance.delete(s.id);
+              } catch (_) {
+                _showSaveError('Das Buch konnte nicht gelöscht werden. Es bleibt erhalten.');
+                return;
+              }
               if (ctx.mounted) Navigator.pop(ctx);
               if (mounted) {
                 setState(() {});
