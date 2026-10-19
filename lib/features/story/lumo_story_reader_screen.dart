@@ -296,7 +296,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   void _evaluateSummary() {
     if (!mounted || _finishing || _summaryEvaluated) return;
     final raw = _summaryCtrl.text.trim();
-    if (lower.isEmpty) {
+    if (raw.isEmpty) {
       try {
         LumoVoice.instance
             .speak('Erzaehl mir doch ein paar Sätze, ich hör dir gerne zu!');
