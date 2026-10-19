@@ -286,7 +286,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
-      actions: read
+      actions: write
       contents: write
     steps:
       - uses: actions/download-artifact@v4
@@ -336,3 +336,18 @@ jobs:
           gh release view "$TAG" --repo Ullmann27/lumo-lernen \
             --json url,isDraft,assets \
             --jq '{url: .url, draft: .isDraft, assets: [.assets[].name]}'
+      # No cleanup before successful build, emulator tour and release creation.
+      # Preserve all published versions (including 1984 and 1985).
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Remove only reviewed obsolete draft APK releases and aged disposable artifacts
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/cleanup_obsolete_github_assets.py
+          python3 scripts/cleanup_obsolete_github_assets.py --execute
+
