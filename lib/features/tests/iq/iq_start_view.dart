@@ -19,11 +19,13 @@ class IqStartView extends StatelessWidget {
   const IqStartView({
     super.key,
     required this.onStart,
+    this.onStartExtended,
     required this.onBack,
     this.lastPoints,
   });
 
   final VoidCallback onStart;
+  final VoidCallback? onStartExtended;
   final VoidCallback onBack;
 
   /// Denkpunkte des letzten echten Ergebnisses (null: noch keins).
@@ -70,12 +72,29 @@ class IqStartView extends StatelessWidget {
               ),
             ),
             IqBottomBar(
-              child: IqPrimaryButton(
-                key: const ValueKey('iq-start-button'),
-                label: 'Test starten',
-                icon: Icons.play_arrow_rounded,
-                height: 62,
-                onPressed: onStart,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IqPrimaryButton(
+                    key: const ValueKey('iq-start-button'),
+                    label: '24 Rätsel starten',
+                    icon: Icons.play_arrow_rounded,
+                    height: 62,
+                    onPressed: onStart,
+                  ),
+                  if (onStartExtended != null) ...[
+                    const SizedBox(height: 8),
+                    IqPrimaryButton(
+                      key: const ValueKey('iq-extended-button'),
+                      label: 'Entdecker-Runde · 36 Rätsel',
+                      icon: Icons.explore_rounded,
+                      height: 52,
+                      outlined: true,
+                      fontSize: 15,
+                      onPressed: onStartExtended,
+                    ),
+                  ],
+                ],
               ),
             ),
           ],
