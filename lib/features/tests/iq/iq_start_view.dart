@@ -292,27 +292,11 @@ class _AreaChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = iqAreaStyle(area);
-    return Semantics(
-      label: '${area.title}: ${area.skill}',
-      excludeSemantics: true,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(99),
-          color: style.color.withValues(alpha: .12),
-          border: Border.all(color: style.color.withValues(alpha: .5)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(4, 4, 14, 4),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IqAreaMedallion(area, size: 32, glow: false),
-              const SizedBox(width: 8),
-              Text(area.title, style: iqText(13.5, weight: FontWeight.w900)),
-            ],
-          ),
-        ),
-      ),
+    return IqSkillChip(
+      label: area.title,
+      description: area.skill,
+      icon: style.icon,
+      color: style.color,
     );
   }
 }
