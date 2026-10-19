@@ -47,6 +47,7 @@ jobs:
             test/home_navigation_progress_test.dart
           for device in phone fold-cover fold-open; do
             test -s "visual-evidence/1989-learning-cards/$device-learning-cards.png"
+            test -s "visual-evidence/1989-learning-cards/$device-start.png"
           done
       - name: Publish original Flutter-rendered pictures
         if: always()
