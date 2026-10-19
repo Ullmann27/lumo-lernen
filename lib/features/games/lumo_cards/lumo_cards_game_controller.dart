@@ -19,6 +19,7 @@ import '../../../core/lumo_sound.dart';
 import '../../../core/lumo_voice.dart';
 import 'learning_question_repository.dart';
 import 'lumo_cards_deck.dart';
+import 'lumo_cards_bot_policy.dart';
 import 'lumo_cards_models.dart';
 import 'lumo_cards_rules.dart';
 import '../shared/lumo_game_pause_scope.dart';
@@ -329,7 +330,8 @@ class LumoCardsGameController extends ChangeNotifier {
     if (s.phase == GamePhase.learningQuestion) {
       final q = s.pendingLearningQuestion;
       if (q == null) return;
-      final lumoCorrect = _rng.nextDouble() < 0.60;
+      final lumoCorrect = _rng.nextDouble() <
+          LumoCardsBotPolicy.answerProbability(grade);
       final chosen = lumoCorrect
           ? q.correctIndex
           : (q.correctIndex + 1 + _rng.nextInt(q.options.length - 1)) %
@@ -375,77 +377,23 @@ class LumoCardsGameController extends ChangeNotifier {
     }
   }
 
-  /// Strategische Karten-Auswahl fuer den Bot.
-  ///
-  /// Heinz 2026-05-22: 'cleverer + strategischer'.
-  /// Statt der ersten spielbaren Karte wertet der Bot jede Option per Score:
-  ///  - Wild Draw 4: nur wenn keine andere Option ODER der Gegner schon
-  ///    fast leer ist (Killer-Move). Sonst zurueckhalten als Joker.
-  ///  - Wild: nur wenn keine Farbe matcht. Sonst Color-Karte spielen.
-  ///  - Block-Karten (Skip/Reverse/+2): besonders hoch wenn der Gegner
-  ///    schon 1-2 Karten hat -> Tempo rausnehmen.
-  ///  - Zahlen: bevorzugt aus der Farbe in der wir VIELE Karten haben
-  ///    (behalten Farbkontrolle) und hohe Zahlen zuerst (Punkt-Strafe
-  ///    minimieren falls wir verlieren).
-  LumoCard? _chooseBestPlay(LumoCardsGameState s, LumoCard topCard) {
-    final playables = s.currentPlayer.hand
-        .where((c) => LumoCardsRules.isPlayable(
-              card: c,
-              topCard: topCard,
-              selectedColor: s.selectedColor,
-            ))
-        .toList();
-    if (playables.isEmpty) return null;
-    if (playables.length == 1) return playables.first;
+  /// Lumo sees only its own hand and public opponent card count.
+  /// Each turn uses randomized, grade-appropriate legal tactics.
+  LumoCard? _chooseBestPlay(LumoCardsGameState s, LumoCard topCard) =>
+      LumoCardsBotPolicy.select(
+        ownHand: s.currentPlayer.hand,
+        topCard: topCard,
+        selectedColor: s.selectedColor,
+        opponentCardCount: s.otherPlayer.hand.length,
+        grade: grade,
+        rng: _rng,
+      );
 
-    final oppLow = s.otherPlayer.hand.length <= 2;
-    final hand = s.currentPlayer.hand;
-
-    int colorCountInHand(LumoCardColor c) =>
-        hand.where((h) => h.color == c).length;
-
-    int score(LumoCard c) {
-      switch (c.type) {
-        case LumoCardType.superRain:
-          // Wild Draw 4: heben fuer Notfall. Killer wenn Gegner low.
-          return oppLow ? 92 : 8;
-        case LumoCardType.colorMagic:
-          // Wild: nur wenn wir KEINE Farbkarte haben die passt.
-          final hasColorMatch = playables.any((p) =>
-              !p.isWild &&
-              (p.color == s.selectedColor || p.number == topCard.number));
-          return hasColorMatch ? 12 : 75;
-        case LumoCardType.lumoJump: // Skip
-        case LumoCardType.whirlwind: // Reverse
-        case LumoCardType.starRain: // +2
-          return oppLow ? 88 : 58;
-        case LumoCardType.thinkPause:
-          return 48;
-        case LumoCardType.number:
-          // Behalte Farbkontrolle: bevorzugt die Farbe mit den meisten
-          // Karten in unserer Hand. Plus hohe Zahlen zuerst.
-          final dominance = colorCountInHand(c.color);
-          final num = c.number ?? 0;
-          return 30 + num + dominance * 3;
-      }
-    }
-
-    playables.sort((a, b) => score(b).compareTo(score(a)));
-    return playables.first;
-  }
-
-  /// Bot waehlt die haeufigste Farbe in seiner Hand.
-  LumoCardColor _pickBotColor(LumoCardsGameState s) {
-    final counts = <LumoCardColor, int>{
-      for (final c in LumoCardColor.values) c: 0,
-    };
-    for (final card in s.currentPlayer.hand) {
-      counts[card.color] = (counts[card.color] ?? 0) + 1;
-    }
-    final sorted = counts.entries.toList()
-      ..sort((a, b) => b.value.compareTo(a.value));
-    return sorted.first.key;
-  }
+  LumoCardColor _pickBotColor(LumoCardsGameState s) =>
+      LumoCardsBotPolicy.selectColor(
+        ownHand: s.currentPlayer.hand,
+        rng: _rng,
+      );
 
   // ──────────────────────────────────────────────────────────────────
   // VOICE-KOMMENTARE

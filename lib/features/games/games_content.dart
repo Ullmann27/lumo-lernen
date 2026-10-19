@@ -421,6 +421,7 @@ class _GamesContentState extends State<GamesContent> {
             slivers: [
               SliverToBoxAdapter(
                 child: LumoGameSpotlights(
+                  showBuildPreview: GameCatalog.byId(GameId.build).availability == GameAvailability.comingSoon,
                   onCards: () => _openGame(GameId.cards, _launchLumoCards),
                   onKart: () => _openGame(GameId.kart, () => _launch3D('kart')),
                   busy: _launchingGame,
