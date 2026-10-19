@@ -169,11 +169,11 @@ class LumoGameSpotlights extends StatelessWidget {
               ]);
             }),
             if (busy)
-              const Padding(
-                padding: EdgeInsets.only(top: 8),
+              Padding(
+                padding: const EdgeInsets.only(top: 8),
                 child: Semantics(
                   liveRegion: true,
-                  child: Text('Spiel wird geöffnet. Bitte einen Moment warten.',
+                  child: const Text('Spiel wird geöffnet. Bitte einen Moment warten.',
                     style: TextStyle(color: LumoVisualTokens.muted)),
                 ),
               ),
