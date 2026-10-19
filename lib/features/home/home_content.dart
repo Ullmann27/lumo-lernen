@@ -300,7 +300,14 @@ class HomeContent extends StatelessWidget {
                   LayoutBuilder(
                     builder: (context, bounds) {
                       final scale = MediaQuery.textScalerOf(context).scale(1);
-                      final columns = bounds.maxWidth >= 700 && scale <= 1.3 ? 3 : 2;
+                      // 1989: no broken words or microscopic illustration columns
+                      // on narrow Android/Fold covers. One legible premium card
+                      // per row; three columns only on a spacious unfolded Fold.
+                      final columns = bounds.maxWidth >= 700 && scale <= 1.3
+                          ? 3
+                          : bounds.maxWidth >= 460 && scale <= 1.2
+                              ? 2
+                              : 1;
                       const gap = 10.0;
                       final width = (bounds.maxWidth - (columns - 1) * gap) / columns;
                       final grade = appState.state.grade;
