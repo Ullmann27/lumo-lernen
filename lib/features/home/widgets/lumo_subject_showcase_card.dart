@@ -240,18 +240,24 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                               children: [
                                 Row(
                                   children: [
-                                    Text(
-                                      'MEIN FORTSCHRITT',
-                                      maxLines: 1,
-                                      style: TextStyle(
-                                        fontFamily: 'Nunito',
-                                        fontSize: compact ? 8 : 9,
-                                        letterSpacing: .3,
-                                        fontWeight: FontWeight.w900,
-                                        color: const Color(0xFFE2F6FF),
+                                    Expanded(
+                                      child: FittedBox(
+                                        alignment: Alignment.centerLeft,
+                                        fit: BoxFit.scaleDown,
+                                        child: Text(
+                                          'MEIN FORTSCHRITT',
+                                          maxLines: 1,
+                                          style: TextStyle(
+                                            fontFamily: 'Nunito',
+                                            fontSize: compact ? 8 : 9,
+                                            letterSpacing: .3,
+                                            fontWeight: FontWeight.w900,
+                                            color: const Color(0xFFE2F6FF),
+                                          ),
+                                        ),
                                       ),
                                     ),
-                                    const Spacer(),
+                                    const SizedBox(width: 4),
                                     for (var index = 0; index < 3; index++)
                                       Icon(
                                         index < earnedStars
