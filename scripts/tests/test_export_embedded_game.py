@@ -153,6 +153,16 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
         self.assertTrue(self.glb.is_file())
         self.assertTrue(all(not (self.repo / name).exists() for name in self.files))
 
+    def test_1985_pinned_kart_preserves_gate_and_cleans_only_verified_images(self):
+        self.generate_images()
+        current = 'ffd2955ca9222daf02e6b602b3f213fd9383204a'
+        self.assertIn(current, MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source={'revision': current})
+        self.assertTrue(self.glb.is_file())
+        self.assertTrue(all(not (self.repo / path).exists() for path in self.files))
+        self.assertEqual(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard'), set())
+
     def test_future_unknown_pin_must_not_remove_images(self):
         self.generate_images()
         self.cleanup(source={'revision': '0' * 40})
