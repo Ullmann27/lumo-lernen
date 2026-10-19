@@ -57,6 +57,27 @@ class PlayUploadSignatureTests(unittest.TestCase):
                 "-storepass:env", "LUMO_PLAY_UPLOAD_STORE_PASSWORD", str(bundle),
             ]
             self.assertEqual(subprocess.run(verify, env=env, capture_output=True).returncode, 0)
+
+            # A correctly signed bundle is still UNTRUSTED if the verifier
+            # receives a different upload key. Check certificate identity,
+            # not merely the presence of any valid JAR signature.
+            unrelated_store = root / "unrelated.p12"
+            unrelated_key = [
+                "keytool", "-genkeypair", "-alias", "unrelated",
+                "-keyalg", "RSA", "-keysize", "2048", "-validity", "3",
+                "-dname", "CN=Unrelated Test Upload, C=AT",
+                "-keystore", str(unrelated_store), "-storetype", "PKCS12",
+                "-storepass:env", "LUMO_PLAY_UPLOAD_STORE_PASSWORD",
+                "-keypass:env", "LUMO_PLAY_UPLOAD_KEY_PASSWORD", "-noprompt",
+            ]
+            self.assertEqual(
+                subprocess.run(unrelated_key, env=env, capture_output=True).returncode, 0
+            )
+            wrong_store_verify = verify.copy()
+            wrong_store_verify[wrong_store_verify.index("-keystore") + 1] = str(unrelated_store)
+            self.assertNotEqual(
+                subprocess.run(wrong_store_verify, env=env, capture_output=True).returncode, 0
+            )
             with zipfile.ZipFile(bundle, "a") as data:
                 data.writestr("base/dex/unsigned.dex", b"tampered")
             self.assertNotEqual(subprocess.run(verify, env=env, capture_output=True).returncode, 0)
