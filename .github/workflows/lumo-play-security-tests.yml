@@ -1,0 +1,62 @@
+name: Lumo Play – offline AAB security regression (no secrets)
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-play-aab-staging.yml'
+      - '.github/workflows/lumo-play-security-tests.yml'
+      - 'scripts/build_play_aab.sh'
+      - 'scripts/prepare_play_android.py'
+      - 'scripts/tests/test_prepare_play_android.py'
+      - 'scripts/tests/test_play_aab_signature.py'
+      - 'tools/auto_install/MainActivity.kt'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-play-security-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  secure-play-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify JDK signing tools and shell syntax
+        run: |
+          set -euo pipefail
+          command -v keytool
+          command -v jarsigner
+          bash -n scripts/build_play_aab.sh
+          git diff --check
+      - name: Exercise isolated Play host, strict signing and tamper rejection
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p 'test_*play*.py' -v
+      - name: Assert manual production workflow covers both security regressions
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          from pathlib import Path
+          workflow = Path('.github/workflows/lumo-play-aab-staging.yml').read_text()
+          required = (
+              "if: github.ref_name == 'main'",
+              'environment: play-upload',
+              "test_*play*.py",
+              'LUMO_PLAY_UPLOAD_KEYSTORE_BASE64',
+              'Upload staged AAB and checksum, NEVER publish',
+          )
+          missing = [item for item in required if item not in workflow]
+          if missing:
+              raise SystemExit(f'Play CI contract missing: {missing}')
+          print('Manual release gate verified; no production secrets used.')
+          PY

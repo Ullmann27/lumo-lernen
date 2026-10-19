@@ -1,0 +1,93 @@
+name: Lumo Play – signed AAB staging (manual, no publication)
+
+on:
+  workflow_dispatch:
+    inputs:
+      application_id:
+        description: 'Exact package ID registered in YOUR Google Play Console'
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-play-aab-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  stage-play-bundle:
+    if: github.ref_name == 'main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 85
+    environment: play-upload
+    env:
+      CI: 'true'
+      LUMO_PLAY_APPLICATION_ID: ${{ inputs.application_id }}
+      LUMO_PLAY_UPLOAD_STORE_PASSWORD: ${{ secrets.LUMO_PLAY_UPLOAD_STORE_PASSWORD }}
+      LUMO_PLAY_UPLOAD_KEY_ALIAS: ${{ secrets.LUMO_PLAY_UPLOAD_KEY_ALIAS }}
+      LUMO_PLAY_UPLOAD_KEY_PASSWORD: ${{ secrets.LUMO_PLAY_UPLOAD_KEY_PASSWORD }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Fail closed if Play credentials or verified identity are not configured
+        env:
+          KEYSTORE_B64: ${{ secrets.LUMO_PLAY_UPLOAD_KEYSTORE_BASE64 }}
+        run: |
+          set -euo pipefail
+          test -n "$KEYSTORE_B64"
+          test -n "$LUMO_PLAY_UPLOAD_STORE_PASSWORD"
+          test -n "$LUMO_PLAY_UPLOAD_KEY_ALIAS"
+          test -n "$LUMO_PLAY_UPLOAD_KEY_PASSWORD"
+          case "$LUMO_PLAY_APPLICATION_ID" in
+            *.coachpreview|''|*' '*|*/*) exit 1 ;;
+          esac
+          umask 077
+          printf '%s' "$KEYSTORE_B64" | base64 -d > "$RUNNER_TEMP/lumo-play-upload.jks"
+          test -s "$RUNNER_TEMP/lumo-play-upload.jks"
+          echo "LUMO_PLAY_UPLOAD_KEYSTORE=$RUNNER_TEMP/lumo-play-upload.jks" >> "$GITHUB_ENV"
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Prepare isolated Android toolchain
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji ripgrep
+          mkdir -p "$HOME/.gradle/init.d"
+          cp scripts/gradle/lumo-maven-central-mirror.init.gradle "$HOME/.gradle/init.d/"
+          bash scripts/install_godot_for_build.sh
+      - name: Validate Play host safety and complete Flutter regression
+        run: |
+          set -euo pipefail
+          # Also run the real self-signed-key + unsigned-payload tamper regression.
+          # This generates only disposable JDK test keys; production secrets
+          # remain confined to the approved play-upload environment.
+          python3 -m unittest discover -s scripts/tests -p 'test_*play*.py' -v
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Build complete privately signed Google Play AAB
+        run: bash scripts/build_play_aab.sh
+      - name: Upload staged AAB and checksum, NEVER publish to Play automatically
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-play-aab-review-${{ github.run_id }}
+          path: |
+            dist/play/Lumo-Lernen-Play-*.aab
+            dist/play/SHA256SUMS.txt
+            dist/play/PLAY-AAB-VERIFICATION.json
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+      - name: Remove private keystore from disposable runner
+        if: always()
+        run: rm -f "$RUNNER_TEMP/lumo-play-upload.jks"
