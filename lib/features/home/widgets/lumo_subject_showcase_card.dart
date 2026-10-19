@@ -40,6 +40,7 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final compact = constraints.maxWidth < 172;
+      final footerScale = MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 1.6);
       final artworkSize = compact ? 51.0 : 76.0;
       final radius = BorderRadius.circular(24);
       final progress = (completed / 10).clamp(0.0, 1.0);
@@ -216,7 +217,9 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                             ),
                           ),
                           Container(
-                            height: 65,
+                            // Large Android text needs genuine vertical room;
+                            // never hide overflowing progress or reward labels.
+                            height: 65 * footerScale,
                             padding: EdgeInsets.fromLTRB(
                               compact ? 10 : 13, 7, compact ? 10 : 13, 7,
                             ),
