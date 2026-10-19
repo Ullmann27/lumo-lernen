@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../report/lumo_coach_card.dart';
+import 'widgets/lumo_subject_showcase_card.dart';
 import '../teacher/student_assignments_card.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -299,7 +300,14 @@ class HomeContent extends StatelessWidget {
                   LayoutBuilder(
                     builder: (context, bounds) {
                       final scale = MediaQuery.textScalerOf(context).scale(1);
-                      final columns = bounds.maxWidth >= 700 && scale <= 1.3 ? 3 : 2;
+                      // 1989: no broken words or microscopic illustration columns
+                      // on narrow Android/Fold covers. One legible premium card
+                      // per row; three columns only on a spacious unfolded Fold.
+                      final columns = bounds.maxWidth >= 700 && scale <= 1.3
+                          ? 3
+                          : bounds.maxWidth >= 460 && scale <= 1.2
+                              ? 2
+                              : 1;
                       const gap = 10.0;
                       final width = (bounds.maxWidth - (columns - 1) * gap) / columns;
                       final grade = appState.state.grade;
@@ -937,7 +945,8 @@ class _RecommendationCard extends StatelessWidget {
       );
 }
 
-/// Neun navigierbare Lerninseln aus originalen freigestellten Lumo-Assets.
+/// Navigation and progress stay unchanged; presentation is shared across
+/// all nine subjects, including the 320dp Fold cover width.
 class _SubjectCard extends StatelessWidget {
   const _SubjectCard({
     required this.subject,
@@ -947,6 +956,7 @@ class _SubjectCard extends StatelessWidget {
     required this.completed,
     required this.onTap,
   });
+
   final String subject;
   final String subtitle;
   final IconData icon;
@@ -961,177 +971,29 @@ class _SubjectCard extends StatelessWidget {
         'Technik und Design' => 'Technik',
         _ => subject,
       };
+
   String? get artwork => switch (subject) {
+        'Mathematik' => 'assets/lumo_design/cards/test_rechnen.png',
         'Deutsch' => 'assets/lumo_design/icons/book_open.png',
         'Lesen' => 'assets/lumo_design/buildings/book_arch.webp',
+        'Schreiben' => 'assets/lumo_design/fox/fox_book_point.png',
+        'Englisch' => 'assets/lumo_design/characters/fox_wave.webp',
+        'Sachunterricht' => 'assets/lumo_design/icons/season_spring.png',
         'Technik und Design' => 'assets/lumo_design/icons/wrench.webp',
         _ => null,
       };
 
   @override
-  Widget build(BuildContext context) {
-    final earned = completed >= 10
-        ? 3
-        : completed >= 5
-            ? 2
-            : completed > 0
-                ? 1
-                : 0;
-    return Semantics(
-      button: true,
-      label: subject + ': ' + subtitle,
-      child: LumoPressable(
-        glowColor: color,
-        radius: 22,
-        pressedScale: .975,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            key: ValueKey('home-island-' + shortName.toLowerCase()),
-            borderRadius: BorderRadius.circular(22),
-            onTap: onTap,
-            child: Ink(
-              decoration: BoxDecoration(
-                gradient: const LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [Color(0xE9123D79), Color(0xE7081C42)],
-                ),
-                borderRadius: BorderRadius.circular(22),
-                border: Border.all(color: color.withOpacity(.66), width: 1.7),
-                boxShadow: [
-                  BoxShadow(
-                      color: color.withOpacity(.15),
-                      blurRadius: 16,
-                      offset: const Offset(0, 6))
-                ],
-              ),
-              child: CustomPaint(
-                foregroundPainter: LumoGlassOptics(radius: 22, accent: color),
-                child: Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    Positioned.fill(
-                      child: DecoratedBox(
-                          decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(22),
-                        gradient: RadialGradient(
-                          center: const Alignment(0, -.5),
-                          radius: .9,
-                          colors: [
-                            color.withValues(alpha: .25),
-                            Colors.transparent
-                          ],
-                        ),
-                      )),
-                    ),
-                    Positioned(
-                      right: 9,
-                      top: 9,
-                      child: Icon(Icons.north_east_rounded,
-                          size: 16, color: color.withValues(alpha: .9)),
-                    ),
-                    Positioned(
-                      top: 29,
-                      left: 0,
-                      right: 0,
-                      height: 117,
-                      child: ExcludeSemantics(
-                        child: Image.asset(
-                          'assets/lumo_design/nature/island_grass.webp',
-                          fit: BoxFit.contain,
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      top: 4,
-                      left: 0,
-                      right: 0,
-                      height: 91,
-                      child: Center(
-                        child: ExcludeSemantics(
-                          child: artwork != null
-                              ? Image.asset(artwork!,
-                                  width: 76, height: 76, fit: BoxFit.contain)
-                              : Icon(icon, color: color, size: 62),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 45,
-                      left: 5,
-                      right: 5,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 5, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: const Color(0xEF09244E),
-                          border: Border.all(color: color.withOpacity(.72)),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            shortName,
-                            maxLines: 1,
-                            style: const TextStyle(
-                                fontFamily: 'Nunito',
-                                color: Colors.white,
-                                fontWeight: FontWeight.w900,
-                                fontSize: 16),
-                          ),
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 21,
-                      left: 0,
-                      right: 0,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          for (var i = 0; i < 3; i++)
-                            Icon(
-                              i < earned
-                                  ? Icons.star_rounded
-                                  : Icons.star_outline_rounded,
-                              size: 19,
-                              color: i < earned
-                                  ? const Color(0xFFFFD35C)
-                                  : Colors.white54,
-                            ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      bottom: 5,
-                      left: 3,
-                      right: 3,
-                      child: FittedBox(
-                        fit: BoxFit.scaleDown,
-                        child: Text(
-                          completed.toString() +
-                              ' ' +
-                              (completed == 1 ? 'Aufgabe' : 'Aufgaben') +
-                              ' geschafft',
-                          maxLines: 1,
-                          style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              color: Colors.white70,
-                              fontSize: 10,
-                              fontWeight: FontWeight.w700),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
+  Widget build(BuildContext context) => LumoSubjectShowcaseCard(
+        subject: subject,
+        shortName: shortName,
+        subtitle: subtitle,
+        icon: icon,
+        accent: color,
+        completed: completed,
+        artwork: artwork,
+        onTap: onTap,
+      );
 }
 
 class _HomeHero extends StatelessWidget {

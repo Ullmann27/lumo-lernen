@@ -1,0 +1,59 @@
+name: Lumo 1989 – real premium learning cards and Fold visuals
+
+on:
+  pull_request:
+    paths:
+      - 'lib/features/home/**'
+      - 'test/design/home_1989_premium_cards_capture_test.dart'
+      - '.github/workflows/lumo-1989-learning-cards.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-1989-card-visual-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  validate-learning-cards:
+    runs-on: ubuntu-latest
+    timeout-minutes: 24
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install real emoji and verify pinned dependency graph
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          flutter pub get --enforce-lockfile
+      - name: Run static Flutter analysis
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Render actual premium learning cards on three Android-sized layouts
+        env:
+          LUMO_1989_CARD_CAPTURES: visual-evidence/1989-learning-cards
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s \
+            test/design/home_1989_premium_cards_capture_test.dart \
+            test/home_subject_islands_premium_test.dart \
+            test/home_navigation_progress_test.dart
+          for device in phone fold-cover fold-open; do
+            test -s "visual-evidence/1989-learning-cards/$device-learning-cards.png"
+            test -s "visual-evidence/1989-learning-cards/$device-start.png"
+          done
+      - name: Publish original Flutter-rendered pictures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1989-original-learning-cards
+          path: visual-evidence/1989-learning-cards/
+          if-no-files-found: warn
+          retention-days: 30

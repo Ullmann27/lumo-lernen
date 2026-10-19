@@ -200,7 +200,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1988-arm64-verified
+          name: lumo-unified-arm64-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-SHA256.txt
@@ -281,7 +281,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-1988-android-tour
+          name: lumo-unified-android-tour
           path: tour/
           retention-days: 30
 
@@ -297,7 +297,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: lumo-1988-arm64-verified
+          name: lumo-unified-arm64-verified
           path: dist/
       - name: Verify delivered native APK identity without rebuilding
         run: |
@@ -357,3 +357,59 @@ jobs:
           python3 scripts/cleanup_obsolete_github_assets.py
           python3 scripts/cleanup_obsolete_github_assets.py --execute
 
+  publish-1989-android-test-prerelease:
+    name: Publish verified Lumo 1989 ARM64 test APK
+    needs: [verify-and-build, android-tour]
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chatgpt/lumo-1989-premium-learning-cards-2026-10-19'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
+          path: dist/
+      - name: Verify version and native APK identity without rebuilding
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          evidence = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text(encoding='utf-8'))
+          native = json.loads(Path('dist/GODOT-SOURCE.json').read_text(encoding='utf-8'))
+          assert evidence['versionCode'] == 1989
+          assert evidence['versionName'] == '0.12.77'
+          assert evidence['godot']['revision'] == 'ffd2955ca9222daf02e6b602b3f213fd9383204a'
+          assert native['revision'] == evidence['godot']['revision']
+          assert 'arm64-v8a' in evidence['abis']
+          assert evidence['sha256'] == hashlib.sha256(apk.read_bytes()).hexdigest()
+          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.77+1989'
+          print('PASS: immutable 1989 ARM64 candidate identity')
+          PY
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1989-ARM64.apk
+          sha256sum dist/Lumo-Lernen-Kart-1989-ARM64.apk > dist/Lumo-Lernen-Kart-1989-ARM64.sha256
+      - name: Publish one safe prerelease for human device testing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          TAG=lumo-v0.12.77-1989-test
+          FILE=dist/Lumo-Lernen-Kart-1989-ARM64.apk
+          test -s "$FILE"
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Existing immutable 1989 test release preserved"
+            exit 0
+          fi
+          gh release create "$TAG" "$FILE" dist/Lumo-Lernen-Kart-1989-ARM64.sha256 \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title 'Lumo 1989 – Android ARM64 Testversion' \
+            --notes "APK 0.12.77+1989; source $SOURCE_SHA. Verified complete Flutter suite, signed ARM64 archive and successful x86_64 Android emulator tour. NOT tested on physical Fold; NOT production, Play Store or ministry approved. Build 1988 remains unchanged." \
+            --prerelease
+          gh release view "$TAG" --repo Ullmann27/lumo-lernen --json url,assets \
+            --jq '{url: .url, assets: [.assets[].name]}'

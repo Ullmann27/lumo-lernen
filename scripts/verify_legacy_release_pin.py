@@ -46,6 +46,8 @@ APPROVED = {
     1987: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
     # 1988 integrates the fair Cards bot and Bauwelt preview without native Kart changes.
     1988: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+    # 1989 adds Flutter-only subject cards; preserve Build 1988's verified Kart.
+    1989: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

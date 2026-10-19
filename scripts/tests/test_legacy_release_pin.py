@@ -46,14 +46,28 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         self.assertEqual(current, module.APPROVED[1986])
         self.assertEqual(module.verify(pubspec(1987), config(current)), (1987, current))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(current))
+            module.verify(pubspec(1990), config(current))
 
     def test_1988_cards_build_preserves_exact_verified_kart_pin(self):
         selected = module.APPROVED[1988]
         self.assertEqual(selected, module.APPROVED[1987])
         self.assertEqual(module.verify(pubspec(1988), config(selected)), (1988, selected))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(selected))
+            module.verify(pubspec(1990), config(selected))
+
+    def test_1989_subject_cards_preserve_1988_native_source_and_reject_mismatch(self):
+        current = module.APPROVED[1989]
+        self.assertEqual(current, module.APPROVED[1988])
+        self.assertEqual(current, "ffd2955ca9222daf02e6b602b3f213fd9383204a")
+        self.assertEqual(module.verify(pubspec(1989), config(current)), (1989, current))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1989), config(module.APPROVED[1984]))
+        with self.assertRaisesRegex(ValueError, "origin"):
+            module.verify(pubspec(1989), config(current, origin="https://example.org"))
+        with self.assertRaisesRegex(ValueError, "engine"):
+            module.verify(pubspec(1989), config(current, engine="4.7"))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(1990), config(current))
 
     def test_preserved_release_1950_to_1952_requires_original_source(self):
         for number in (1950, 1951, 1952):
@@ -165,7 +179,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1975), config(prior))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(current))
+            module.verify(pubspec(1990), config(current))
 
     def test_1976_darkride_neon_and_motion_fix_use_exact_reviewed_source(self):
         old = module.APPROVED[1975]
@@ -204,7 +218,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1977), config(module.APPROVED[1976]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(latest))
+            module.verify(pubspec(1990), config(latest))
 
     def test_1979_cinema_lab_uses_exact_godot_source_and_preserves_fallbacks(self):
         new = module.APPROVED[1979]
@@ -221,7 +235,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1979), config(old))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(new))
+            module.verify(pubspec(1990), config(new))
 
     def test_1980_integrated_atelier_and_kart_preserves_verified_cinema(self):
         previous = module.APPROVED[1979]
@@ -236,7 +250,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1980), config(module.APPROVED[1978]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(selected))
+            module.verify(pubspec(1990), config(selected))
 
     def test_1981_reading_adventure_preserves_native_source(self):
         old = module.APPROVED[1980]
@@ -246,7 +260,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1981), config(module.APPROVED[1978]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(new))
+            module.verify(pubspec(1990), config(new))
 
     def test_1982_quizshow_ui_only_preserves_1981_native_pin(self):
         previous = module.APPROVED[1981]
@@ -259,7 +273,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1982), config(module.APPROVED[1978]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(selected))
+            module.verify(pubspec(1990), config(selected))
 
     def test_1983_tv_studio_preserves_exact_1982_native_revision(self):
         current = module.APPROVED[1983]
@@ -268,7 +282,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1983), config(module.APPROVED[1978]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(current))
+            module.verify(pubspec(1990), config(current))
 
     def test_1984_scene_and_voice_release_keeps_1983_verified_kart_pin(self):
         current = module.APPROVED[1984]
@@ -278,11 +292,11 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1984), config(module.APPROVED[1978]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(current))
+            module.verify(pubspec(1990), config(current))
 
     def test_unknown_release_source_and_engine_fail_closed(self):
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(1989), config(module.APPROVED[1968]))
+            module.verify(pubspec(1990), config(module.APPROVED[1968]))
         with self.assertRaisesRegex(ValueError, "origin"):
             module.verify(pubspec(1968), config(module.APPROVED[1968], origin="https://example.org"))
         with self.assertRaisesRegex(ValueError, "engine"):

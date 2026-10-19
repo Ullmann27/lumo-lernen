@@ -18,6 +18,9 @@ concurrency:
 
 jobs:
   visual-before-after:
+    # This fixed 1986-vs-1987 golden comparison must not block subsequent
+    # feature releases by asserting every future pubspec is version 1987.
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'chatgpt/lumo-1987-denkprofil-knobel-unified-2026-10-19'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
