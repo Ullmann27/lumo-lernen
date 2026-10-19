@@ -1027,12 +1027,12 @@ class _HomeHero extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xDE173E74),
-                  Color(0xB30A2247),
-                  Color(0x8C135779)
+                  Color(0xFF204F97),
+                  Color(0xEE123367),
+                  Color(0xE720B8C8)
                 ]),
             border:
-                Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .48)),
+                Border.all(color: const Color(0xFF89F3FF), width: 2),
             boxShadow: const [
               BoxShadow(
                   color: Color(0x2600CFFF),
@@ -1057,9 +1057,9 @@ class _HomeHero extends StatelessWidget {
                         child: DecoratedBox(
                             decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [
-                        Color(0xF0061839),
-                        Color(0xC908244B),
-                        Color(0x150B315F)
+                        Color(0xF00A2354),
+                        Color(0xD5114277),
+                        Color(0x163CE4E8)
                       ], stops: [
                         0,
                         .48,
