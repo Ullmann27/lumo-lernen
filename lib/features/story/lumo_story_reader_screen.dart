@@ -54,6 +54,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   String? _bookQuizSelected;
   int _bookQuestionsCorrectFirstTry = 0;
   bool _bookQuestionHadMistake = false;
+  bool _bookEvidenceHintVisible = false;
   final TextEditingController _summaryCtrl = TextEditingController();
   final LumoSpeechListener _speech = LumoSpeechListener();
   bool _summaryEvaluated = false;
@@ -250,6 +251,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       _bookQuestionIndex++;
       _bookQuizSelected = null;
       _bookQuestionHadMistake = false;
+      _bookEvidenceHintVisible = false;
     });
   }
 
@@ -1023,6 +1025,37 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                       style: const TextStyle(
                         color: Colors.white, fontWeight: FontWeight.w800),
                     ),
+                  ],
+                  // Evidence pages are part of the saved book-question data.
+                  // Offer a location, never the correct answer or a spoiler.
+                  if (question.evidencePage >= 1 &&
+                      question.evidencePage <= widget.story.pages.length) ...[
+                    const SizedBox(height: 8),
+                    TextButton.icon(
+                      key: const ValueKey('lumo-book-evidence-hint-toggle'),
+                      onPressed: () => setState(() {
+                        _bookEvidenceHintVisible = !_bookEvidenceHintVisible;
+                      }),
+                      icon: const Icon(Icons.menu_book_rounded),
+                      label: Text(_bookEvidenceHintVisible
+                          ? 'Hinweis ausblenden'
+                          : 'Hinweis zur Textstelle'),
+                      style: TextButton.styleFrom(
+                        foregroundColor: Colors.white,
+                        minimumSize: const Size(48, 48),
+                      ),
+                    ),
+                    if (_bookEvidenceHintVisible)
+                      Text(
+                        'Schau noch einmal auf Seite ${question.evidencePage} '
+                        'deines Buches. Dort findest du den Hinweis.',
+                        key: const ValueKey('lumo-book-evidence-page-hint'),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                          height: 1.4,
+                        ),
+                      ),
                   ],
                 ],
               ),
