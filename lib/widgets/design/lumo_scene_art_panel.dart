@@ -40,6 +40,19 @@ extension LumoSceneArtAssets on LumoSceneArt {
     }
   }
 
+  /// Existing approved Lumo character art shown until story-specific cutouts
+  /// are supplied. Keep the intended assetPath above unchanged.
+  String get fallbackAssetPath => switch (this) {
+    LumoSceneArt.storyLibrary =>
+      'assets/lumo_design/fox/fox_book_welcome.png',
+    LumoSceneArt.storyStarMap =>
+      'assets/lumo_design/fox/fox_book_point.png',
+    LumoSceneArt.seasons =>
+      'assets/lumo_design/fox/fox_teacher_stick.png',
+    LumoSceneArt.mathematics =>
+      'assets/lumo_design/fox/fox_tablet_thumb.png',
+  };
+
   String get description {
     switch (this) {
       case LumoSceneArt.storyLibrary:
@@ -135,11 +148,21 @@ class LumoSceneArtPanel extends StatelessWidget {
                     filterQuality: FilterQuality.high,
                     excludeFromSemantics: true,
                     errorBuilder: (context, error, stackTrace) {
-                      return const Center(
-                        child: LumoFoxPose(
-                          pose: LumoDesignFoxPose.bookPoint,
-                          size: 130,
-                        ),
+                      // Each module has a real, distinct Lumo illustration
+                      // even before its bespoke transparent scene art exists.
+                      return Image.asset(
+                        scene.fallbackAssetPath,
+                        fit: BoxFit.contain,
+                        filterQuality: FilterQuality.medium,
+                        excludeFromSemantics: true,
+                        errorBuilder: (context, error, stackTrace) {
+                          return const Center(
+                            child: LumoFoxPose(
+                              pose: LumoDesignFoxPose.bookPoint,
+                              size: 130,
+                            ),
+                          );
+                        },
                       );
                     },
                   ),
