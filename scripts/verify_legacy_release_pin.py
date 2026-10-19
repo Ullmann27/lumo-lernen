@@ -40,6 +40,8 @@ APPROVED = {
     1984: "20652880eda687c67cfa72301dad5a173b1fe6c5",
     # Separate 1985 candidate: PR #106 persistence and tested start-light polish.
     1985: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+    # 1986 builds the integrated Flutter improvements without changing native Kart source.
+    1986: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
