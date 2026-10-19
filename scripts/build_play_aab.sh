@@ -42,7 +42,13 @@ unzip -tqq "$bundle"
 command -v jarsigner >/dev/null || {
   echo "Missing JDK jarsigner" >&2; exit 1;
 }
-jarsigner -verify -strict -verbose "$bundle" > "$temp/jarsigner-result.txt" || {
+# Java upload certificates are normally self-signed. Trust the configured
+# private upload keystore while keeping strict unsigned-entry enforcement.
+# Read the store password from the environment, never a process argument.
+jarsigner -verify -strict -verbose \
+  -keystore "$LUMO_PLAY_UPLOAD_KEYSTORE" \
+  -storepass:env LUMO_PLAY_UPLOAD_STORE_PASSWORD \
+  "$bundle" > "$temp/jarsigner-result.txt" 2>&1 || {
   echo "AAB signature failed; detailed credentials redacted" >&2; exit 1;
 }
 unzip -Z1 "$bundle" > "$temp/bundle-members.txt"
