@@ -45,7 +45,11 @@ if scenario == 'permission-failure':
     sys.exit(7)
 if scenario == 'timeout-with-invalid':
     print('Archive is not a ZIP archive', flush=True)
-if scenario in ('timeout', 'timeout-with-invalid'):
+# Keep the shared-deadline probe longer than its real remaining budget;
+# the 1-second per-command probes below still terminate immediately.
+if scenario == 'timeout':
+    time.sleep(15)
+elif scenario == 'timeout-with-invalid':
     time.sleep(3)
 if scenario in ('zip-complete', 'zip-compiler-fails', 'zip-compiler-timeout', 'zip-wrong-version'):
     print('Warning: Error reading Zip content from a SeekableByteChannel.', flush=True)
@@ -289,7 +293,12 @@ class InstallNdkForBuildTests(unittest.TestCase):
         self.assertIn('verification 2', result.stderr)
 
     def test_shared_deadline_bounds_default_600_second_installation(self):
-        result = self.run_preflight('timeout', total_timeout=11)
+        # A total budget of 11s reserves 10s for kill grace and leaves at
+        # most 1s for process startup. Busy CI runners can exhaust it before
+        # sdkmanager launches, making the invocation assertion flaky.
+        # 16s allows startup while the fake manager's 15s delay still proves
+        # that the shared deadline overrides the default 600s command limit.
+        result = self.run_preflight('timeout', total_timeout=16)
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(len(self.calls()), 1)
         self.assertIn('sdkmanager exit 124', result.stderr)
