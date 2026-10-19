@@ -19,7 +19,13 @@ Ein grüner APK-Emulatortest ist kein Google-Play-Abnahmebeleg.
   **für diese APK**, nicht automatisch für ein künftiges AAB.
 - [Integrationsbuild einschließlich voller Flutter-Regression und Emulator-Tour:
   erfolgreich](https://github.com/Ullmann27/lumo-lernen/actions/runs/39240144926).
-  Die Android-Tour installierte und durchlief genau das geprüfte Artefakt.
+  Die Android-Tour installierte und durchlief **die x86_64-Emulatorvariante**
+  aus demselben Build. Sie hat die Prüfsumme
+  `1942f7e7f1584b969212189cb5d9a4cd9e3a1fd86ed9bb00216723d7f95731a8`.
+  Das separat veröffentlichte **ARM64-Artefakt** hat die oben genannte andere
+  SHA-256-Prüfsumme und ist paketgeprüft, aber **noch nicht auf einem ARM64-Gerät
+  live installiert und gespielt**. Beide Varianten haben denselben Flutter- und
+  Godot-Quellstand; eine identische APK-Datei wird nicht behauptet.
 - [Echter Spielewelt-Bildvergleich: erfolgreich](https://github.com/Ullmann27/lumo-lernen/actions/runs/39240145096),
   mit sichtbarem Hinweis `Bauwelt: In Entwicklung`. Cards, Kart und die
   Lerneinstiege dürfen dadurch auf 360×800 nicht aus dem sichtbaren Bereich rutschen.
