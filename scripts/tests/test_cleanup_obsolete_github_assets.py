@@ -32,10 +32,13 @@ class CleanupSafetyTests(unittest.TestCase):
         for name in ("lumo-1986-arm64-verified", "lumo-1984-android-tour",
                      "story-storage-runtime-screenshots", "source-provenance",
                      "lumo-1985-capture", "APK-VERIFICATION.json"):
-            self.assertFalse(module.deletable_artifact(dict(sample, name=name), NOW)
-                             if name == "lumo-1986-arm64-verified"
-                             else module.deletable_artifact(dict(sample, name=name,
-                                                                created_at=ts(1)), NOW))
+            # Recent artifacts are always retained, whatever their name.
+            self.assertFalse(module.deletable_artifact(
+                dict(sample, name=name, created_at=ts(1)), NOW))
+        for name in ("story-storage-runtime-screenshots", "source-provenance",
+                     "lumo-1985-capture", "APK-VERIFICATION.json"):
+            self.assertFalse(module.deletable_artifact(
+                dict(sample, name=name), NOW))
         self.assertFalse(module.deletable_artifact(dict(sample, expired=True), NOW))
         self.assertFalse(module.deletable_artifact(dict(sample, name="lumo-1986-arm64-verified",
                                                           created_at=ts(1)), NOW))
