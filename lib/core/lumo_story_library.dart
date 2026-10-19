@@ -130,6 +130,9 @@ LumoStory _deserializeStory(Map<String, dynamic> j) {
 
 class LumoStoryLibrary {
   LumoStoryLibrary._();
+
+  /// Independent storage instance for regression tests; production uses [instance].
+  LumoStoryLibrary.testInstance();
   static final LumoStoryLibrary instance = LumoStoryLibrary._();
 
   static const _key = 'lumo_story_library_v1';
@@ -150,8 +153,14 @@ class LumoStoryLibrary {
       try {
         final list = (jsonDecode(raw) as List).cast<Map<String, dynamic>>();
         _stories = list.map(StoredStory.fromJson).toList();
+      } on FormatException {
+        // Do not overwrite a damaged archive with an empty library on the
+        // next save. Keep the original bytes for recovery or investigation.
+        throw const FormatException(
+            'Gespeicherte Geschichten sind unlesbar; Originaldaten bleiben erhalten.');
       } catch (_) {
-        _stories = [];
+        throw const FormatException(
+            'Gespeicherte Geschichten sind unlesbar; Originaldaten bleiben erhalten.');
       }
     }
     _loaded = true;
@@ -189,9 +198,14 @@ class LumoStoryLibrary {
     await load();
     final idx = _stories.indexWhere((s) => s.id == id);
     if (idx >= 0) {
-      _stories[idx] = _stories[idx].copyWith(
-          timesRead: _stories[idx].timesRead + 1);
-      await save();
+      final original = _stories[idx];
+      _stories[idx] = original.copyWith(timesRead: original.timesRead + 1);
+      try {
+        await save();
+      } catch (_) {
+        _stories[idx] = original;
+        rethrow;
+      }
     }
   }
 
@@ -199,16 +213,28 @@ class LumoStoryLibrary {
     await load();
     final idx = _stories.indexWhere((s) => s.id == id);
     if (idx >= 0) {
-      _stories[idx] = _stories[idx].copyWith(
-          isFavorite: !_stories[idx].isFavorite);
-      await save();
+      final original = _stories[idx];
+      _stories[idx] = original.copyWith(isFavorite: !original.isFavorite);
+      try {
+        await save();
+      } catch (_) {
+        _stories[idx] = original;
+        rethrow;
+      }
     }
   }
 
   Future<void> delete(String id) async {
     await load();
+    if (!_stories.any((s) => s.id == id)) return;
+    final previous = List<StoredStory>.of(_stories);
     _stories.removeWhere((s) => s.id == id);
-    await save();
+    try {
+      await save();
+    } catch (_) {
+      _stories = previous;
+      rethrow;
+    }
   }
 
   /// Alle Worte aus allen Geschichten - fuer Schreibcoach.
