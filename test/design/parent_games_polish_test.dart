@@ -238,6 +238,7 @@ void main() {
     final app = await stateFor(tester);
     await mount(tester, GamesContent(appState: app));
     await capture(tester, 'games_phone');
+    expect(find.textContaining('Bauwelt: In Entwicklung'), findsOneWidget);
     for (final name in ['launch-lumo-cards', 'launch-lumo-kart']) {
       final button = find.byKey(ValueKey(name));
       expect(button, findsOneWidget);
