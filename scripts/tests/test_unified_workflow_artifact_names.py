@@ -20,6 +20,17 @@ class UnifiedArtifactNamingTests(unittest.TestCase):
         self.assertIn("dist/APP-VERSION.txt", source)
         self.assertIn("dist/BUILD-PROVENANCE.json", source)
 
+    def test_1989_test_release_is_gated_by_real_android_tour(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("publish-1989-android-test-prerelease:", source)
+        self.assertIn("head.repo.full_name == github.repository", source)
+        self.assertIn("head.ref == 'chatgpt/lumo-1989-premium-learning-cards-2026-10-19'", source)
+        self.assertIn("needs: [verify-and-build, android-tour]", source)
+        self.assertIn("assert evidence['versionCode'] == 1989", source)
+        self.assertIn("assert evidence['versionName'] == '0.12.77'", source)
+        self.assertIn("TAG=lumo-v0.12.77-1989-test", source)
+        self.assertIn("--prerelease", source)
+
     def test_original_1988_release_requires_old_branch_and_original_version(self):
         source = WORKFLOW.read_text(encoding="utf-8")
         self.assertIn("github.event.pull_request.head.ref == 'chatgpt/lumo-fair-cards-buildworld-release-gates-2026-10-19'", source)
