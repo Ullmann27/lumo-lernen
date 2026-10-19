@@ -460,6 +460,10 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
   @override
   Widget build(BuildContext context) {
     final page = widget.story.pages[_pageIdx];
+    // Respect both Lumo's settings and Android's accessibility animation flag.
+    final reducePageMotion = widget.appState.state.settings.reduceAnimations ||
+        widget.appState.state.settings.calmMode ||
+        MediaQuery.of(context).disableAnimations;
     return PopScope(
       canPop: !_finishing,
       child: Scaffold(
@@ -479,11 +483,12 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
                       : _inBookQuiz
                           ? _buildBookQuiz()
                           : AnimatedSwitcher(
-                              duration: widget.appState.state.settings.reduceAnimations ||
-                                      widget.appState.state.settings.calmMode
+                              duration: reducePageMotion
                                   ? Duration.zero
                                   : const Duration(milliseconds: 320),
-                              reverseDuration: const Duration(milliseconds: 160),
+                              reverseDuration: reducePageMotion
+                                  ? Duration.zero
+                                  : const Duration(milliseconds: 160),
                               layoutBuilder: (currentChild, previousChildren) =>
                                   Stack(
                                     fit: StackFit.expand,
