@@ -419,59 +419,9 @@ class _GamesContentState extends State<GamesContent> {
           )
         : CustomScrollView(
             slivers: [
-              if (GameCatalog.byId(GameId.build).availability ==
-                  GameAvailability.comingSoon)
-                SliverToBoxAdapter(
-                  child: Padding(
-                    padding: EdgeInsets.fromLTRB(12, 10, 12, 2),
-                    child: Semantics(
-                      label: 'Bauwelt ist in Entwicklung. Andere Spiele sind weiterhin verfügbar.',
-                      child: DecoratedBox(
-                        key: ValueKey('games-bauwelt-preview-notice'),
-                        decoration: BoxDecoration(
-                          color: Color(0xFF123B66),
-                          borderRadius: BorderRadius.all(Radius.circular(18)),
-                          border: Border.fromBorderSide(
-                            BorderSide(color: Color(0xFF75DDF7), width: 1.4),
-                          ),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-                          child: Row(
-                            children: [
-                              Icon(Icons.construction_rounded,
-                                  color: Color(0xFFFFD16D), size: 28),
-                              SizedBox(width: 10),
-                              Expanded(
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text('Bauwelt · In Entwicklung',
-                                        style: TextStyle(
-                                          fontFamily: 'Nunito',
-                                          color: Colors.white,
-                                          fontSize: 15,
-                                          fontWeight: FontWeight.w900,
-                                        )),
-                                    Text('Lumo baut noch daran. Die anderen Spiele warten auf dich!',
-                                        style: TextStyle(
-                                          fontFamily: 'Nunito',
-                                          color: Color(0xFFD9F5FF),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w700,
-                                        )),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               SliverToBoxAdapter(
                 child: LumoGameSpotlights(
+                  showBuildPreview: GameCatalog.byId(GameId.build).availability == GameAvailability.comingSoon,
                   onCards: () => _openGame(GameId.cards, _launchLumoCards),
                   onKart: () => _openGame(GameId.kart, () => _launch3D('kart')),
                   busy: _launchingGame,
