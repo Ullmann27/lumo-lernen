@@ -13,7 +13,7 @@ WORKFLOW = ROOT / ".github" / "workflows" / "lumo-unified-integration-2026.yml"
 class UnifiedArtifactNamingTests(unittest.TestCase):
     def test_generic_name_is_identical_for_arm64_upload_and_release_download(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 2)
+        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 3)
         self.assertEqual(source.count("name: lumo-unified-android-tour"), 1)
         self.assertNotIn("lumo-1988-arm64-verified", source)
         self.assertNotIn("lumo-1988-android-tour", source)
