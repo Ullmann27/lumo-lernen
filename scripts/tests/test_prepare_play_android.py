@@ -38,6 +38,10 @@ class PlayHostTests(unittest.TestCase):
             '    }\n'
             '}\n' + prepare_android.SIGNING_BLOCK + '\n',
             encoding='utf-8')
+        kotlin = main / 'kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt'
+        kotlin.parent.mkdir(parents=True, exist_ok=True)
+        source = Path(__file__).resolve().parents[2] / 'tools/auto_install/MainActivity.kt'
+        kotlin.write_text(source.read_text(encoding='utf-8'), encoding='utf-8')
         return manifest, gradle
 
     def test_removes_install_permission_and_debug_keys_and_targets_api36(self):
@@ -61,6 +65,12 @@ class PlayHostTests(unittest.TestCase):
             self.assertNotIn('androiddebugkey', text)
             self.assertNotIn('coachpreview', text)
             self.assertNotIn('storePassword = "android"', text)
+            kotlin = Path(temp) / 'android/app/src/main/kotlin/dev/ullmann/lumo/lumo_lernen/MainActivity.kt'
+            source = kotlin.read_text()
+            self.assertIn('Play Store: no unknown-source installation', source)
+            self.assertIn('"canInstall", "requestInstallPermission", "install"', source)
+            self.assertNotIn('Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES', source)
+            self.assertNotIn('Intent.ACTION_VIEW', source)
             with self.assertRaisesRegex(ValueError, 'Expected unchanged'):
                 prepare_play_android.prepare(Path(temp), APP_ID)
 
