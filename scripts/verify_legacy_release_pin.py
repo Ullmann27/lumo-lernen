@@ -42,6 +42,8 @@ APPROVED = {
     1985: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
     # 1986 builds the integrated Flutter improvements without changing native Kart source.
     1986: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+    # 1987 only updates Flutter education UI; native Kart remains validated.
+    1987: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
