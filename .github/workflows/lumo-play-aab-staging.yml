@@ -68,7 +68,10 @@ jobs:
       - name: Validate Play host safety and complete Flutter regression
         run: |
           set -euo pipefail
-          python3 -m unittest discover -s scripts/tests -p 'test_prepare_play_android.py' -v
+          # Also run the real self-signed-key + unsigned-payload tamper regression.
+          # This generates only disposable JDK test keys; production secrets
+          # remain confined to the approved play-upload environment.
+          python3 -m unittest discover -s scripts/tests -p 'test_*play*.py' -v
           flutter pub get --enforce-lockfile
           flutter analyze --no-fatal-infos --no-fatal-warnings
           flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
