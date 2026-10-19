@@ -77,7 +77,7 @@ class IqStartView extends StatelessWidget {
                 children: [
                   IqPrimaryButton(
                     key: const ValueKey('iq-start-button'),
-                    label: '24 Rätsel starten',
+                    label: 'Test starten',
                     icon: Icons.play_arrow_rounded,
                     height: 62,
                     onPressed: onStart,
