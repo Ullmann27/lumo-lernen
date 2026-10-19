@@ -9,6 +9,7 @@ import '../../core/lumo_story_library.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/design/lumo_glass_optics.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../../widgets/fox/lumo_character.dart';
 import '../../theme/lumo_visual_tokens.dart';
 
@@ -202,11 +203,12 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Deine Bibliothek (${stories.length})',
-                          style: const TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white)),
+                      LumoSectionHeading(
+                        title: 'Deine Bibliothek (${stories.length})',
+                        subtitle: 'Deine Geschichten, jederzeit wiederentdecken',
+                        icon: Icons.auto_stories_rounded,
+                        accent: LumoVisualTokens.gold,
+                      ),
                       const SizedBox(height: 16),
                       LayoutBuilder(builder: (context, constraints) {
                         final columns = constraints.maxWidth >= 700 &&
@@ -494,7 +496,9 @@ class _StoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LumoGlassCard(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(17),
+        radius: 26,
+        borderColor: LumoVisualTokens.cyanBright.withValues(alpha: .56),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           InkWell(
               onTap: onTap,
@@ -534,10 +538,13 @@ class _StoryCard extends StatelessWidget {
                                       horizontal: 8, vertical: 3),
                                   decoration: BoxDecoration(
                                       color: const Color(0x5537D2FD),
-                                      borderRadius: BorderRadius.circular(8)),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: LumoVisualTokens.cyanBright.withValues(alpha: .30))),
                                   child: Text(word,
                                       style: const TextStyle(
-                                          color: Colors.white, fontSize: 11)),
+                                          color: Colors.white, fontSize: 12,
+                                          fontWeight: FontWeight.w800)),
                                 )
                             ]),
                           ])),

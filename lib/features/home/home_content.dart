@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../report/lumo_coach_card.dart';
 import 'widgets/lumo_subject_showcase_card.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -261,11 +262,11 @@ class HomeContent extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 20),
-                  Text(
-                    'Das passt heute zu dir',
-                    style: LumoTextStyles.heading3.copyWith(
-                      color: LumoVisualTokens.white,
-                    ),
+                  const LumoSectionHeading(
+                    title: 'Das passt heute zu dir',
+                    subtitle: 'Eine passende Lernrunde für deinen nächsten Schritt',
+                    icon: Icons.auto_awesome_rounded,
+                    accent: LumoVisualTokens.gold,
                   ),
                   const SizedBox(height: 10),
                   _RecommendationCard(
@@ -290,11 +291,11 @@ class HomeContent extends StatelessWidget {
                         _startPractice(subject, unit: unit),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    'Deine Lernfächer',
-                    style: LumoTextStyles.heading3.copyWith(
-                      color: LumoVisualTokens.white,
-                    ),
+                  const LumoSectionHeading(
+                    title: 'Deine Lernfächer',
+                    subtitle: 'Wähle deine Lernwelt und sammle neue Erfolge',
+                    icon: Icons.school_rounded,
+                    accent: LumoVisualTokens.cyanBright,
                   ),
                   const SizedBox(height: 10),
                   LayoutBuilder(
@@ -1026,12 +1027,12 @@ class _HomeHero extends StatelessWidget {
                 begin: Alignment.topLeft,
                 end: Alignment.bottomRight,
                 colors: [
-                  Color(0xDE173E74),
-                  Color(0xB30A2247),
-                  Color(0x8C135779)
+                  Color(0xFF204F97),
+                  Color(0xEE123367),
+                  Color(0xE720B8C8)
                 ]),
             border:
-                Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .48)),
+                Border.all(color: const Color(0xFF89F3FF), width: 2),
             boxShadow: const [
               BoxShadow(
                   color: Color(0x2600CFFF),
@@ -1056,9 +1057,9 @@ class _HomeHero extends StatelessWidget {
                         child: DecoratedBox(
                             decoration: BoxDecoration(
                       gradient: LinearGradient(colors: [
-                        Color(0xF0061839),
-                        Color(0xC908244B),
-                        Color(0x150B315F)
+                        Color(0xF00A2354),
+                        Color(0xD5114277),
+                        Color(0x163CE4E8)
                       ], stops: [
                         0,
                         .48,

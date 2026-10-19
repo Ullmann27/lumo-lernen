@@ -24,88 +24,158 @@ class LumoGameSpotlights extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.fromLTRB(14, 14, 14, 8),
+        padding: const EdgeInsets.fromLTRB(14, 14, 14, 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Schatten halten die Überschrift über dem hellen Mond lesbar.
-            const Text('Jetzt spielen',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: LumoVisualTokens.white,
-                  shadows: [Shadow(color: Color(0xCC03122E), blurRadius: 10)],
-                )),
-            const SizedBox(height: 4),
-            Text(showBuildPreview
-                    ? 'Bauwelt: In Entwicklung · Cards & Kart spielen!'
-                    : 'Karten-Duell oder 3D-Rennen – du entscheidest.',
-                style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 14,
-                  height: 1.4,
-                  fontWeight: FontWeight.w700,
-                  color: Color(0xF2FFFFFF),
-                  shadows: [
-                    Shadow(color: Color(0xE603122E), blurRadius: 8),
-                    Shadow(color: Color(0x9903122E), offset: Offset(0, 1)),
+            LayoutBuilder(builder: (context, constraints) {
+              final narrow = constraints.maxWidth < 410;
+              return Container(
+                key: const ValueKey('games-1990-hero'),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(30),
+                  gradient: const LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [
+                      Color(0xFF424DAD),
+                      Color(0xFF164884),
+                      Color(0xFF086B83),
+                    ],
+                    stops: [0, .58, 1],
+                  ),
+                  border: Border.all(
+                      color: const Color(0xFF84EEFF), width: 2),
+                  boxShadow: const [
+                    BoxShadow(color: Color(0x6646CDFF),
+                      blurRadius: 30, spreadRadius: -9,
+                      offset: Offset(0, 14)),
                   ],
-                )),
-            const SizedBox(height: 14),
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(28),
+                  child: Stack(children: [
+                    const Positioned(
+                      right: -64, top: -89,
+                      child: IgnorePointer(child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          gradient: RadialGradient(colors: [
+                            Color(0x99B4F9FF),
+                            Color(0x4477DDFE),
+                            Color(0x001B8FDC),
+                          ]),
+                        ),
+                        child: SizedBox(width: 290, height: 290),
+                      )),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(18, 18, 10, 16),
+                      child: Row(children: [
+                        Expanded(child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Container(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 11, vertical: 6),
+                              decoration: BoxDecoration(
+                                color: const Color(0xCC0B214F),
+                                borderRadius: BorderRadius.circular(99),
+                                border: Border.all(color: const Color(0xFFB3F5FF)),
+                              ),
+                              child: const Text('LUMOS SPIELEWELT',
+                                style: TextStyle(fontFamily: 'Nunito',
+                                  fontSize: 10, fontWeight: FontWeight.w900,
+                                  letterSpacing: 1.0, color: Color(0xFFE8FDFF))),
+                            ),
+                            const SizedBox(height: 11),
+                            Text('Jetzt spielen',
+                              style: TextStyle(fontFamily: 'Nunito',
+                                fontSize: narrow ? 27 : 34, height: 1.06,
+                                fontWeight: FontWeight.w900, color: Colors.white,
+                                shadows: const [Shadow(
+                                  color: Color(0x66041B45), blurRadius: 8)])),
+                            const SizedBox(height: 8),
+                            Text(
+                              showBuildPreview
+                                ? 'Cards und Kart warten auf dich! Die Bauwelt entsteht.'
+                                : 'Wähle dein Abenteuer: Karten oder Rennstrecke.',
+                              style: const TextStyle(fontFamily: 'Nunito',
+                                fontSize: 13, height: 1.3,
+                                fontWeight: FontWeight.w800,
+                                color: Color(0xFFE6F8FF))),
+                          ],
+                        )),
+                        SizedBox(
+                          width: narrow ? 87 : 139,
+                          child: ExcludeSemantics(child: LumoCharacter(
+                            pose: LumoDesignFoxPose.spielweltJump,
+                            size: narrow ? 92 : 136,
+                            idleHops: false,
+                            shadow: false,
+                            reduceMotion: reduceMotion,
+                          )),
+                        ),
+                      ]),
+                    ),
+                  ]),
+                ),
+              );
+            }),
+            const SizedBox(height: 16),
             LayoutBuilder(builder: (context, constraints) {
               final largeText = MediaQuery.textScalerOf(context).scale(14) > 21;
               final columns = constraints.maxWidth >= 650 && !largeText ? 2 : 1;
               final width =
-                  (constraints.maxWidth - (columns - 1) * 12) / columns;
-              return Wrap(spacing: 12, runSpacing: 12, children: [
+                  (constraints.maxWidth - (columns - 1) * 14) / columns;
+              return Wrap(spacing: 14, runSpacing: 14, children: [
                 SizedBox(
-                    width: width,
-                    child: _Spotlight(
-                      title: 'Lumo Cards',
-                      eyebrow: 'KARTENSPIEL',
-                      description:
-                          'Lege passende Karten ab und spiele gegen Lumo.',
-                      action: 'Kartenspiel starten',
-                      actionKey: 'launch-lumo-cards',
-                      pose: LumoDesignFoxPose.cardsWelcome,
-                      previewAsset:
-                          'assets/lumo_design/spielwelt/portal_cards.png',
-                      accent: const Color(0xFFB5A1FF),
-                      icon: Icons.style_rounded,
-                      onPressed: busy ? null : onCards,
-                      reduceMotion: reduceMotion,
-                    )),
+                  width: width,
+                  child: _Spotlight(
+                    title: 'Lumo Cards',
+                    eyebrow: 'KARTENSPIEL',
+                    description: 'Lege passende Karten ab und spiele gegen Lumo.',
+                    action: 'Kartenspiel starten',
+                    actionKey: 'launch-lumo-cards',
+                    pose: LumoDesignFoxPose.cardsWelcome,
+                    previewAsset: 'assets/lumo_design/spielwelt/portal_cards.png',
+                    accent: const Color(0xFFD8BDFF),
+                    icon: Icons.style_rounded,
+                    onPressed: busy ? null : onCards,
+                    reduceMotion: reduceMotion,
+                  ),
+                ),
                 SizedBox(
-                    width: width,
-                    child: _Spotlight(
-                      title: 'Lumo Kart',
-                      eyebrow: '3D-RENNSPIEL',
-                      description:
-                          'Erkunde zwölf Rennwelten am Meer, in den Wolken und auf Vulkanstrecken. Dein nächstes Rennen wartet.',
-                      previewAsset:
-                          'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
-                      showWorldTags: true,
-                      showRecoveredKartArt: true,
-                      action: 'Losfahren',
-                      actionKey: 'launch-lumo-kart',
-                      pose: LumoDesignFoxPose.kartRear,
-                      accent: LumoVisualTokens.cyanBright,
-                      icon: Icons.sports_motorsports_rounded,
-                      onPressed: busy ? null : onKart,
-                      reduceMotion: reduceMotion,
-                    )),
+                  width: width,
+                  child: _Spotlight(
+                    title: 'Lumo Kart',
+                    eyebrow: '3D-RENNSPIEL',
+                    description:
+                      'Fahre durch zwölf Rennwelten: Meer, Wolken und Vulkane.',
+                    previewAsset:
+                      'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
+                    showWorldTags: true,
+                    showRecoveredKartArt: true,
+                    action: 'Losfahren',
+                    actionKey: 'launch-lumo-kart',
+                    pose: LumoDesignFoxPose.kartRear,
+                    accent: LumoVisualTokens.cyanBright,
+                    icon: Icons.sports_motorsports_rounded,
+                    onPressed: busy ? null : onKart,
+                    reduceMotion: reduceMotion,
+                  ),
+                ),
               ]);
             }),
             if (busy)
               Padding(
                 padding: const EdgeInsets.only(top: 8),
                 child: Semantics(
-                    liveRegion: true,
-                    child: const Text(
-                      'Spiel wird geöffnet. Bitte einen Moment warten.',
-                      style: TextStyle(color: LumoVisualTokens.muted),
-                    )),
+                  liveRegion: true,
+                  child: const Text('Spiel wird geöffnet. Bitte einen Moment warten.',
+                    style: TextStyle(color: LumoVisualTokens.muted)),
+                ),
               ),
           ],
         ),
@@ -145,7 +215,7 @@ class _Spotlight extends StatelessWidget {
                 child: LumoCharacter(
           pose: pose,
           celebratePose: null,
-          size: 82,
+          size: 102,
           shadow: false,
           reduceMotion: reduceMotion,
         ))),
@@ -173,49 +243,68 @@ class _Spotlight extends StatelessWidget {
   @override
   Widget build(BuildContext context) => DecoratedBox(
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(24),
+          borderRadius: BorderRadius.circular(28),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.alphaBlend(
-                  accent.withValues(alpha: .13), const Color(0xFF0B3155)),
-              const Color(0xF2071A3E),
+              Color.alphaBlend(accent.withValues(alpha: .28), const Color(0xFF133963)),
+              const Color(0xFF071B3B),
             ],
           ),
-          border: Border.all(color: accent.withValues(alpha: .68)),
+          border: Border.all(color: accent.withValues(alpha: .88), width: 1.7),
           boxShadow: [
-            BoxShadow(color: accent.withValues(alpha: .12), blurRadius: 16)
+            BoxShadow(color: accent.withValues(alpha: .27),
+              blurRadius: 25, spreadRadius: -7,
+              offset: const Offset(0, 12)),
           ],
         ),
         child: Padding(
-          padding: const EdgeInsets.all(14),
-          child:
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          padding: const EdgeInsets.all(12),
+          child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             if (previewAsset != null)
               ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: Stack(children: [
-                  Positioned.fill(
-                      child: Image.asset(previewAsset!,
-                          fit: BoxFit.cover,
-                          alignment: const Alignment(0, -.15),
-                          excludeFromSemantics: true)),
-                  Positioned.fill(
-                      child: DecoratedBox(
-                          decoration: BoxDecoration(
-                    gradient: LinearGradient(
+                borderRadius: BorderRadius.circular(21),
+                child: SizedBox(
+                  height: MediaQuery.textScalerOf(context).scale(1) > 1.3 ? 228 : 208,
+                  child: Stack(fit: StackFit.expand, children: [
+                    Image.asset(previewAsset!, fit: BoxFit.cover,
+                      alignment: const Alignment(0, -.12),
+                      excludeFromSemantics: true,
+                      errorBuilder: (_, __, ___) => DecoratedBox(
+                        decoration: BoxDecoration(gradient: LinearGradient(
+                          colors: [accent, const Color(0xFF163D71)])),
+                        child: Center(child: Icon(icon, color: Colors.white, size: 64)),
+                      )),
+                    const DecoratedBox(decoration: BoxDecoration(
+                      gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
+                        stops: [0, .41, .78, 1],
                         colors: [
-                          const Color(0xFF071A3E).withValues(alpha: .08),
-                          const Color(0xFF071A3E).withValues(alpha: .95)
-                        ]),
-                  ))),
-                  Padding(
-                      padding: const EdgeInsets.fromLTRB(10, 46, 10, 8),
+                          Color(0x11041538), Color(0x00041538),
+                          Color(0xBB061A3C), Color(0xFB06142F),
+                        ],
+                      ),
+                    )),
+                    Positioned(top: 13, right: 13,
+                      child: DecoratedBox(
+                        decoration: BoxDecoration(
+                          color: const Color(0xDA071A3E),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: accent, width: 1.3),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 6),
+                          child: Icon(icon, color: accent, size: 22),
+                        ),
+                      ),
+                    ),
+                    Positioned(left: 10, right: 10, bottom: 8,
                       child: _heading()),
-                ]),
+                  ]),
+                ),
               )
             else
               _heading(),

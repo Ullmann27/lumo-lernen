@@ -24,7 +24,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: lumo-v0.12.74-1986-integrated-reading
+          ref: lumo-v0.12.77-1989-test
           path: before
       - uses: actions/checkout@v4
         with:
@@ -39,8 +39,8 @@ jobs:
       - name: Check source identities, dependencies and output areas
         run: |
           set -euo pipefail
-          test "$(grep '^version:' before/pubspec.yaml)" = 'version: 0.12.74+1986'
-          test "$(grep '^version:' after/pubspec.yaml)" = 'version: 0.12.76+1988'
+          test "$(grep '^version:' before/pubspec.yaml)" = 'version: 0.12.77+1989'
+          test "$(grep '^version:' after/pubspec.yaml)" = 'version: 0.12.78+1990'
           test "$(git -C before rev-parse HEAD)" != "$(git -C after rev-parse HEAD)"
           mkdir -p visual/before visual/after
       - name: Capture REAL old games hub with same Flutter test seed
@@ -75,7 +75,7 @@ jobs:
           test "$(find visual/vergleich -type f -name '*.png' | wc -l)" -eq 3
       - uses: actions/upload-artifact@v4
         with:
-          name: lumo-1988-games-real-before-after-${{ github.run_id }}
+          name: lumo-1990-games-real-before-after-${{ github.run_id }}
           path: visual/
           if-no-files-found: error
           retention-days: 90
