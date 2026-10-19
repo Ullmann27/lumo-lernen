@@ -1,75 +1,98 @@
-# Lumo Lernen – Google-Play-Abnahme (Quellcodeaudit, 19.10.2026)
+# Lumo Lernen – Google-Play-Abnahme (19. Oktober 2026)
 
-**Status: NICHT produktionsfreigegeben.** Dieses Dokument ist die
-Release-Entscheidung nach Quellcodeprüfung, keine Play-Console-Abnahme.
-Der bestätigte Direktinstallations-Testbuild ist **1986**.
-Build **1987** ist Entwicklungsarbeit, unabhängig davon, ob Screenshots
-bereits real gerendert wurden.
+**Entscheidung: Die Android-Test-APK 1988 ist nachgewiesen; eine Play-Store-Veröffentlichung ist NICHT freigegeben.**
 
-## Entscheidung: zuerst Lumo Lernen, Spiele kontrolliert
+Dieses Dokument unterscheidet strikt den bereits gebauten **privaten Sideload-/Testkanal**
+von einer noch **nicht signierten und nicht in Play geprüften AAB**.
+Ein grüner APK-Emulatortest ist kein Google-Play-Abnahmebeleg.
 
-- Lumo Lernen bleibt das Kernprodukt, einschließlich Mathe, Deutsch,
-  Englisch, Geschichten, Schreibtrainer und bestehenden Kinderdaten.
-- Vier Gewinnt bleibt verfügbar; dafür existieren echte Spiel- und Testszenen.
-- Lumo Cards bleibt spielbar, sobald die faire, varianzreiche Gegnerstrategie
-  auf echter APK samt Regressionstests bestätigt ist.
-- Die grafisch unreife Bauwelt trägt im Katalog **In Entwicklung** und
-  wird über die vorhandene `_comingSoon`-Oberfläche nicht gestartet.
-  Die Daten werden **nicht gelöscht**.
-- Lumo Kart (Rennspiel) bleibt als getrennt abzusicherndes, eingebettetes
-  Godot-Modul sichtbar. Freigabegrad 60 FPS oder AAA ist **nicht gemessen**.
-  Release-Entscheidung erst nach Gameplay-Screenshots, Crash- und FPS-Proben.
-- Unfertige Features dürfen nicht in Store-Screenshots als fertig erscheinen.
+## Reproduzierbar bestätigter Stand
 
-## Technische Play-Blocker – source confirmed
+- **Lumo 0.12.76+1988**, Quellstand `cb4ee545864caaa84f1ed5d465f0490a121038a3`,
+  [GitHub-Release](https://github.com/Ullmann27/lumo-lernen/releases/tag/lumo-v0.12.76-1988-fair-cards).
+- Signierte **Android-Test-APK** mit 316.123.454 Bytes und
+  SHA-256 `3bb0e5a723e084effb5dd784b3cb323afd14badc434c6ec48eddbb29bd6b58c4`.
+- **App-ID der Test-APK:** `dev.ullmann.lumo.lumo_lernen.coachpreview`.
+  **Nicht** als registrierte Google-Play-Paket-ID behaupten.
+- `APK-VERIFICATION.json` aus `lumo-1988-arm64-verified` meldet
+  versionCode 1988, minSdk 24, targetSdk 36, ARM64 und 16-KB-ELF-Alignment
+  **für diese APK**, nicht automatisch für ein künftiges AAB.
+- [Integrationsbuild einschließlich voller Flutter-Regression und Emulator-Tour:
+  erfolgreich](https://github.com/Ullmann27/lumo-lernen/actions/runs/39240144926).
+  Die Android-Tour installierte und durchlief genau das geprüfte Artefakt.
+- [Echter Spielewelt-Bildvergleich: erfolgreich](https://github.com/Ullmann27/lumo-lernen/actions/runs/39240145096),
+  mit sichtbarem Hinweis `Bauwelt: In Entwicklung`. Cards, Kart und die
+  Lerneinstiege dürfen dadurch auf 360×800 nicht aus dem sichtbaren Bereich rutschen.
 
-| Gate | Quelle | Ergebnis |
+**Grenzen dieser Nachweise:** Kein physischer Fold-Test, keine reproduzierbare
+60-FPS-Messung, keine hörende Qualitätsabnahme der Stimme, keine Play-Console-Prüfung
+und keine Store-Produktionsfreigabe.
+
+## Produktgrenzen, die beim Play-Paket erhalten bleiben müssen
+
+- **Lumo Lernen** (Mathematik, Deutsch, Englisch, Geschichten, Schreibtrainer,
+  Lern- und Denkprofil) ist das Kernprodukt. Bestehende kindliche Lerndaten
+  nicht versehentlich löschen oder ändern.
+- Lumo Cards hat einen regelgebundenen Bot mit variabler Strategie und Tests.
+  Vier Gewinnt und das Kartenmodul nicht ohne Fehlernachweis deaktivieren.
+- **Bauwelt** bleibt sichtbar als `In Entwicklung`, aber nicht startbar;
+  bestehende Bauwelt-Spielstände bleiben gespeichert.
+- Lumo Kart bleibt als eingebettetes Godot-Spiel prüfpflichtig;
+  Grafikqualität/60 FPS sind keine gemessenen Tatsachen.
+- **Wichtig bei Wechsel der Paket-ID:** `.coachpreview` und eine andere
+  Play-`applicationId` haben getrennte Android-App-Datensandboxes.
+  Eine automatische Übernahme vorhandener Kinderprofile/Spielstände ist
+  damit **nicht** belegt. Datenmigration gesondert planen und testen;
+  keine irreführende Zusage im Store-Listing.
+
+## Separater Play-Staging-Kanal (in PR #382; noch nicht auf main)
+
+- `scripts/prepare_play_android.py` erzeugt eine eigene Android-Hostkonfiguration:
+  API 36, kontrollierte Paket-ID und private Upload-Signatur.
+  Der Sideload-APK-Kanal bleibt unverändert.
+- `REQUEST_INSTALL_PACKAGES` und die native APK-Installationsmöglichkeit
+  werden für den Play-Host deaktiviert.
+- `scripts/build_play_aab.sh` baut ein Flutter-App-Bundle und prüft die
+  Signatur mit `jarsigner -verify -strict` gegen den privaten Upload-Keystore.
+  Kennwörter gelangen nicht als Klartext-Argumente in die Kommandozeile.
+- `.github/workflows/lumo-play-aab-staging.yml` ist **manuell**, auf
+  `main` und die geschützte GitHub-Umgebung `play-upload` begrenzt und
+  veröffentlicht **nie** eigenmächtig im Play Store.
+- `.github/workflows/lumo-play-security-tests.yml` testet für Änderungen
+  ohne Store-Secrets die Host-Konfiguration, ein selbstsigniertes
+  Testzertifikat und die Zurückweisung nachträglich unsignierter Archive.
+  Das manuelle AAB-Staging wiederholt dieselben Regressionen zwingend.
+
+**Keine echte AAB mit bestätigter finaler Paket-ID und echtem privaten
+Play-Upload-Schlüssel liegt bislang als überprüftes Release-Artefakt vor.**
+Grüne Offline-Regressionsprüfungen allein ändern das nicht.
+
+## Noch offene Freigabegates
+
+| Gate | Status | Erforderlicher Nachweis |
 | --- | --- | --- |
-| Android Target API 36 | `scripts/verify_unified_apk.py` | Der APK-Verifikator prüft 36; tatsächliches Store-AAB gesondert nachweisen |
-| AAB statt APK | `scripts/build_unified_apk.sh` | **BLOCKIERT:** bislang `flutter build apk`, kein verifiziertes `flutter build appbundle` |
-| Paket-ID für öffentliches Play | `scripts/build_unified_apk.sh`, `scripts/prepare_android.py` | **BLOCKIERT:** Entwicklungsinstallation verwendet `--side-by-side` / `.coachpreview`; produktive ID an Play-Console-Status binden |
-| Produktionssignierung | `scripts/prepare_android.py` | **BLOCKIERT:** Release nutzt `tools/lumo-debug.keystore` mit Debug-Passwort; niemals als Play-Upload-Schlüssel verwenden |
-| Minimalberechtigungen | `scripts/prepare_android.py` | **BLOCKIERT:** `REQUEST_INSTALL_PACKAGES` wird für sideload-Updates hinzugefügt; eigener Play-Kanal muss diese Berechtigung entfernen, sofern kein von Play gestatteter Kernzweck gegeben ist |
-| Kinder-Datenschutz | `PRIVACY.md` | **BLOCKIERT:** lokale Kinderprofile, optionale Mikrofon-/Kamera-Funktion und ein schaltbarer externer KI-Proxy. Tatsächliche Netzwerkziele, SDKs, Elternfreigaben, Auftragsverarbeiter und Datenfristen prüfen |
-| 16-KB-Seitengrößen | eingebettete Godot-Engine, native Android-Plug-ins | **OFFEN:** für API ≥35 64-bit natives Packaging und 16-KB-Seitengrößen anhand tatsächlichem AAB/emulierter 16-KB-Runtime prüfen |
-| Größe/Asset Delivery | 1986 APK ~316 MB | **OFFEN:** AAB-Inhalt, Download-/Base-Modulbudget und Play Asset Delivery für große integrierte Kart-/3D-Dateien prüfen |
-| Privatsphäre/Store-Angaben | `PRIVACY.md` | **BLOCKIERT:** öffentlich erreichbare, zutreffende Datenschutzerklärung, Data Safety, Familien-Erklärungen, Altersfreigabe und Store-Listing müssen final überprüft werden |
-| Google Play Console | nicht über diesen Repositorycode zugänglich | **NICHT VERIFIZIERT:** Kontotyp, alte Paket-ID, Testerstatus, Veröffentlichungsrechte, Signatur und Zahlungsprofil erfordern Play-Console-Prüfung |
+| Finaler Paketname | BLOCKIERT | Exakter App-Eintrag in der Play Console bestätigt |
+| Privater Upload-Key | BLOCKIERT | Play-Upload-Zertifikat, sichere GitHub-Secrets und geschützte Umgebung |
+| Tatsächlich signierte AAB | BLOCKIERT | Manuelles Staging auf `main`; AAB, Prüfsumme, Zertifikatsfingerabdruck, Bundle-Inhalt |
+| App-Bundle-Laufzeit | OFFEN | `bundletool`-Installationstest der abgeleiteten APKs auf API 36, 64-bit und 16-KB-Laufzeit |
+| Geräte/Fold | OFFEN | Echtes Gerät, Hoch-/Querformat, Lebenszyklus, Sprachwiedergabe, Performance/Abstürze |
+| Bundle-Größe | OFFEN | Tatsächliche Play-Auslieferungsgröße und mögliche Asset-Delivery-Beschränkungen messen |
+| Paketwechsel/Daten | OFFEN | Sichere Migration aus der Test-App oder ausdrückliche, nutzerfreundliche Trennung |
+| Kinder-/Datenschutz | BLOCKIERT | SDK-/Netzwerkprüfung, Elternzustimmung, Data Safety, Datenschutzerklärung, Lösch- und Speicherfristen |
+| Store-Listing | BLOCKIERT | Verifizierte Bilder, Altersfreigabe, Familienrichtlinien und keine unfertigen Spiele als fertig darstellen |
+| Kaufmodell | OFFEN | Tatsächlich konfigurierte Play-Abos und Preis; **9,99 €/Monat ist bislang nur ein geplantes Angebot** |
+| Test-/Produktionsfreigabe | BLOCKIERT | Nachweise aus dem tatsächlichen Play-Console-Konto und erforderlichen Tests |
 
-## Offizielle Anforderungen (Stand 19.10.2026)
+## Offizielle Referenzen (bei Freigabe erneut auf Aktualität prüfen)
 
-1. Seit 31.08.2026 **Target API 36** für neue Mobile-Apps/Updates:
-   https://support.google.com/googleplay/android-developer/answer/11926878
-2. Neue Google-Play-Apps verwenden **Android App Bundle**:
-   https://support.google.com/googleplay/android-developer/answer/9844279
-3. Für Kinder: **Families**, sensible Daten, SDKs, Berechtigungen und Werbung:
-   https://support.google.com/googleplay/android-developer/answer/9893335
-4. Privatsphäre und Data Safety:
-   https://support.google.com/googleplay/android-developer/answer/10144311
-5. **16-KB-native Page Size**, aktuelle Kompatibilitäts-/Deadlinehinweise:
-   https://developer.android.com/guide/practices/page-sizes
-6. Neue persönliche Entwicklerkonten nach 13.11.2023: grundsätzlich
-   **12 Tester ≥14 Tage** geschlossener Test vor Produktionsfreigabe:
-   https://support.google.com/googleplay/android-developer/answer/14151465
+- [Ziel-API-Anforderungen](https://support.google.com/googleplay/android-developer/answer/11926878)
+- [Android App Bundle](https://support.google.com/googleplay/android-developer/answer/9844279)
+- [Families Policy](https://support.google.com/googleplay/android-developer/answer/9893335)
+- [Data Safety](https://support.google.com/googleplay/android-developer/answer/10144311)
+- [Android 16-KB Page Size](https://developer.android.com/guide/practices/page-sizes)
+- [Anforderungen an geschlossene Tests neuer persönlicher Entwicklerkonten](https://support.google.com/googleplay/android-developer/answer/14151465)
 
-## Reihenfolge mit überprüfbaren Outputs
-
-1. 1987 Flutter-Tests und visuellen Vergleich reparieren und Emulator-Apk
-   abnehmen; nicht den stabilen 1986-Direktdownload ersetzen.
-2. Faire Lumo Cards / Bauwelt-Preview-Gate mit echten Tests und Screenshots
-   für Handy + Fold in nächsten getesteten Release integrieren.
-3. Kart-FPS, Grafik, Intro und Spiele auf Android (nicht nur Unit-Tests)
-   mit echten Screenshots prüfen, ohne alte Fortschrittsdaten zu verlieren.
-4. Einen getrennten **Play-AAB-Flavour** mit bekannter Paket-ID und
-   dediziertem privatem Upload-Key **nur nach geklärter Signatur-/ID-Frage**
-   und ohne `REQUEST_INSTALL_PACKAGES` implementieren. Keine Schlüssel im
-   Repository, Chat oder Log speichern.
-5. AAB + `bundletool` auf realen 64-bit-Emulatoren, API36,
-   16-KB-Seiten, Fold und Performance verifizieren; Größenlimit auf
-   Basis des fertigen AAB statt der APK messen.
-6. Datenschutz, Play-Konsole/Closed Test, Store-Grafiken, Beschreibung
-   und Familienrichtlinien nach realen Datenflüssen abnehmen.
-
-**Freigaberegel:** Keine Aussage „Play-Store-ready“ ohne grüne AAB-/Geräte-
-Tests, verifizierte Produkt-ID/Uploadsignatur und überprüfte gesetzliche,
-Familien- und Kontoangaben.
+**Harte Freigaberegel:** Keine Zusammenführung auf `main` und keine
+Play-Store-/Produktionsbehauptung allein aufgrund von Test-APK- oder
+Offline-CI-Ergebnissen. Erst konkrete Paketidentität, Signierung, AAB-Gerätetest,
+Datenschutz- und Play-Console-Abnahme nachweisen.
