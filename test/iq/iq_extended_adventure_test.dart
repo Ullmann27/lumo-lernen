@@ -35,6 +35,11 @@ void main() {
       finishedAt: DateTime(2026, 10, 19),
       durationMs: 144000,
     );
+    expect(result.version, endsWith('-explorer36'));
+    expect(IqTestSession(grade: 3, seed: 1987).result(
+      id: 'short', studentId: 'local-test',
+      finishedAt: DateTime(2026, 10, 19), durationMs: 0,
+    ).version, IqTestSession.version);
     expect(result.items, hasLength(36));
     expect(result.items.map((item) => item.puzzleId).toSet(), hasLength(36));
   });
