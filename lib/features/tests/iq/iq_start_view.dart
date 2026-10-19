@@ -33,7 +33,7 @@ class IqStartView extends StatelessWidget {
   Widget build(BuildContext context) => LayoutBuilder(builder: (context, c) {
         final wide = _isWide(c);
         final reduced = LumoMotion.reduced(context);
-        final hero = _Hero(reduced: reduced, scale: c.maxWidth >= 600 ? 1.2 : 1);
+        final hero = IqHeroHeader(reduced: reduced, scale: c.maxWidth >= 600 ? 1.2 : 1);
         final details = _Details(lastPoints: lastPoints);
         return Column(
           children: [
@@ -83,8 +83,18 @@ class IqStartView extends StatelessWidget {
       });
 }
 
-class _Hero extends StatelessWidget {
-  const _Hero({required this.reduced, this.scale = 1});
+/// Identical premium Lumo hero for both Knobeltest and Denkprofil.
+class IqHeroHeader extends StatelessWidget {
+  const IqHeroHeader({
+    super.key,
+    required this.reduced,
+    this.scale = 1,
+    this.title = 'Lumo Knobel-Test',
+    this.subtitle = 'Spielerisches Denk-Abenteuer',
+  });
+
+  final String title;
+  final String subtitle;
 
   final bool reduced;
 
@@ -169,7 +179,7 @@ class _Hero extends StatelessWidget {
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-                'Lumo Knobel-Test',
+                title,
                 style: iqText(
                   34,
                   weight: FontWeight.w900,
@@ -183,7 +193,7 @@ class _Hero extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            'Spielerisches Denk-Abenteuer',
+            subtitle,
             textAlign: TextAlign.center,
             style: iqText(17,
                 color: LumoVisualTokens.cyanBright, shadows: iqScrim),
