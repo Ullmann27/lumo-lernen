@@ -168,9 +168,23 @@ class LumoStoryLibrary {
 
   Future<void> save() async {
     final p = await SharedPreferences.getInstance();
-    final saved = await p.setString(
-        _key, jsonEncode(_stories.map((s) => s.toJson()).toList()));
-    if (!saved) throw StateError('Geschichten konnten nicht gespeichert werden');
+    try {
+      final saved = await p.setString(
+          _key, jsonEncode(_stories.map((s) => s.toJson()).toList()));
+      if (!saved) {
+        throw StateError('Geschichten konnten nicht gespeichert werden');
+      }
+    } catch (_) {
+      // The legacy SharedPreferences cache changes *before* the native write
+      // reports a failure. Reload it from the backing store so a failed
+      // favorite/read/delete does not reappear on the next in-process load.
+      // If reload also fails, propagate the original write error; never claim
+      // the archive was saved.
+      try {
+        await p.reload();
+      } catch (_) {}
+      rethrow;
+    }
   }
 
   Future<StoredStory> addStory(LumoStory story) async {
