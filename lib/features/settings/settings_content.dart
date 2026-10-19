@@ -4,6 +4,7 @@ import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../../widgets/design/lumo_night_scope.dart';
 import '../../widgets/lumo_speech_controls.dart';
 import '../../core/ai_task_cache.dart';
@@ -437,7 +438,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           emoji: '⚙️',
           accent: LumoVisualTokens.white,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Gerät und Sicherheit',
+          subtitle: 'Updates und Einstellungen für einen sicheren Betrieb',
+          icon: Icons.verified_user_rounded,
+          accent: LumoVisualTokens.cyanBright,
+        ),
+        const SizedBox(height: 12),
         _AppUpdateCard(
           info: _updateInfo,
           checking: _checkingUpdate,
@@ -445,7 +453,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           error: _updateError,
           onUpdate: _checkAndUpdate,
         ),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Schule und Lernwege',
+          subtitle: 'Klassenstufe, Lehreraufgaben und lokale Lerndaten',
+          icon: Icons.school_rounded,
+          accent: LumoVisualTokens.gold,
+        ),
+        const SizedBox(height: 12),
         _ParentSchoolGradeCard(
           grade: state.grade,
           childName: state.childName,
@@ -472,7 +487,14 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         const SizedBox(height: 18),
         _ProfileResetCard(
           onReset: () => _confirmResetProfile(context)),
-        const SizedBox(height: 18),
+        const SizedBox(height: 22),
+        const LumoSectionHeading(
+          title: 'Lernfortschritt verstehen',
+          subtitle: 'Berichte und Hinweise auf einen Blick',
+          icon: Icons.insights_rounded,
+          accent: LumoVisualTokens.cyanBright,
+        ),
+        const SizedBox(height: 12),
         ParentReportCard(appState: widget.appState),
         const SizedBox(height: 18),
         // Phase 6b: Schreibcoach-Uebungsstand (geuebte/schwache Buchstaben,

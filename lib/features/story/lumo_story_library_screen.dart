@@ -9,6 +9,7 @@ import '../../core/lumo_story_library.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/design/lumo_glass_optics.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../../widgets/fox/lumo_character.dart';
 import '../../theme/lumo_visual_tokens.dart';
 
@@ -202,11 +203,12 @@ class _LumoStoryLibraryScreenState extends State<LumoStoryLibraryScreen> {
                 child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Deine Bibliothek (${stories.length})',
-                          style: const TextStyle(
-                              fontSize: 21,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white)),
+                      LumoSectionHeading(
+                        title: 'Deine Bibliothek (${stories.length})',
+                        subtitle: 'Deine Geschichten, jederzeit wiederentdecken',
+                        icon: Icons.auto_stories_rounded,
+                        accent: LumoVisualTokens.gold,
+                      ),
                       const SizedBox(height: 16),
                       LayoutBuilder(builder: (context, constraints) {
                         final columns = constraints.maxWidth >= 700 &&

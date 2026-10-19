@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../report/lumo_coach_card.dart';
 import 'widgets/lumo_subject_showcase_card.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../teacher/student_assignments_card.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
@@ -261,11 +262,11 @@ class HomeContent extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 20),
-                  Text(
-                    'Das passt heute zu dir',
-                    style: LumoTextStyles.heading3.copyWith(
-                      color: LumoVisualTokens.white,
-                    ),
+                  const LumoSectionHeading(
+                    title: 'Das passt heute zu dir',
+                    subtitle: 'Eine passende Lernrunde für deinen nächsten Schritt',
+                    icon: Icons.auto_awesome_rounded,
+                    accent: LumoVisualTokens.gold,
                   ),
                   const SizedBox(height: 10),
                   _RecommendationCard(
@@ -290,11 +291,11 @@ class HomeContent extends StatelessWidget {
                         _startPractice(subject, unit: unit),
                   ),
                   const SizedBox(height: 20),
-                  Text(
-                    'Deine Lernfächer',
-                    style: LumoTextStyles.heading3.copyWith(
-                      color: LumoVisualTokens.white,
-                    ),
+                  const LumoSectionHeading(
+                    title: 'Deine Lernfächer',
+                    subtitle: 'Wähle deine Lernwelt und sammle neue Erfolge',
+                    icon: Icons.school_rounded,
+                    accent: LumoVisualTokens.cyanBright,
                   ),
                   const SizedBox(height: 10),
                   LayoutBuilder(

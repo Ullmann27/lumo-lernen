@@ -22,6 +22,7 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../quiz/quiz_show_content.dart';
 import 'flame/lumo_jump_game.dart';
@@ -437,6 +438,7 @@ class _GamesContentState extends State<GamesContent> {
               SliverToBoxAdapter(
                 child: LumoNightScope(child: ExpansionTile(
                   key: const PageStorageKey('extra-spielwelten'),
+                  leading: const Icon(Icons.explore_rounded, color: LumoVisualTokens.gold),
                   title: const Text('Weitere Spielwelten entdecken'),
                   subtitle: const Text('Alle bisherigen Spiele und Portale'),
                   collapsedIconColor: LumoVisualTokens.cyanBright,
@@ -466,14 +468,11 @@ class _GamesContentState extends State<GamesContent> {
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(16, 6, 16, 4),
-                  child: Text(
-                    'Weitere Spiele',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                    ),
+                  child: LumoSectionHeading(
+                    title: 'Weitere Spiele',
+                    subtitle: 'Kleine Abenteuer – allein oder mit Lumo',
+                    icon: Icons.sports_esports_rounded,
+                    accent: LumoVisualTokens.gold,
                   ),
                 ),
               ),
@@ -491,6 +490,7 @@ class _GamesContentState extends State<GamesContent> {
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                 sliver: SliverToBoxAdapter(
                   child: LumoNightScope(child: ExpansionTile(
+                    leading: const Icon(Icons.tune_rounded, color: LumoVisualTokens.cyanBright),
                     title: const Text('3D-Profiloptionen'),
                     subtitle: const Text('Keine Aufgaben während des Rennens'),
                     children: [Padding(padding: const EdgeInsets.all(12), child: _kartOptions())],
@@ -500,14 +500,11 @@ class _GamesContentState extends State<GamesContent> {
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(16, 6, 16, 4),
-                  child: Text(
-                    'Mehr Abenteuer',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                    ),
+                  child: LumoSectionHeading(
+                    title: 'Mehr Abenteuer',
+                    subtitle: 'Entdecke weitere Welten und Herausforderungen',
+                    icon: Icons.rocket_launch_rounded,
+                    accent: LumoVisualTokens.cyanBright,
                   ),
                 ),
               ),
