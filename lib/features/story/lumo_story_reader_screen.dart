@@ -10,6 +10,7 @@ import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_story_generator.dart';
 import '../../core/lumo_story_library.dart';
+import '../../core/lumo_story_summary_scoring.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -290,12 +291,11 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
     if (mounted) setState(() {});
   }
 
-  /// Bewertung: zaehlt, wie viele keyPoints (oder einfache Wort-Stamm-Treffer)
-  /// im Kind-Text vorkommen. Jeder Treffer = 1 Punkt. >=70% -> 5 Sterne,
-  /// >=50% -> 4, >=30% -> 3, sonst 2 (Kind hat es zumindest versucht).
+  /// Conservative keyword aid, not a full semantic evaluation. Each summary
+  /// can be rewarded only once while this reader is open.
   void _evaluateSummary() {
+    if (!mounted || _finishing || _summaryEvaluated) return;
     final raw = _summaryCtrl.text.trim();
-    final lower = raw.toLowerCase();
     if (lower.isEmpty) {
       try {
         LumoVoice.instance
@@ -303,30 +303,19 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       } catch (_) {}
       return;
     }
-    var hits = 0;
-    for (final kp in widget.story.keyPoints) {
-      // Stamm-Matching: erste 4 Buchstaben des keypoints in lower suchen.
-      final stem = kp.toLowerCase().length >= 4
-          ? kp.toLowerCase().substring(0, 4)
-          : kp.toLowerCase();
-      if (lower.contains(stem)) hits++;
-    }
-    final total = widget.story.keyPoints.length.clamp(1, 99);
-    final ratio = hits / total;
-    final stars = ratio >= 0.7
-        ? 5
-        : ratio >= 0.5
-            ? 4
-            : ratio >= 0.3
-                ? 3
-                : 2;
+    final result = LumoStorySummaryScorer.evaluate(
+      summary: raw,
+      keyPoints: widget.story.keyPoints,
+    );
+    final hits = result.hits;
+    final stars = result.stars;
+    if (stars == 0) return;
     setState(() {
       _summaryEvaluated = true;
       _summaryHits = hits;
       _summaryStars = stars;
     });
-    widget.appState.addStars(stars);
-    widget.appState.addXp(stars * 10);
+    widget.appState.addRewards(stars: stars, xp: stars * 10);
     final msg = stars >= 5
         ? 'Super! Du hast die Geschichte fast komplett erzaehlt! $stars Sterne fuer dich!'
         : stars >= 4
@@ -354,8 +343,7 @@ class _LumoStoryReaderScreenState extends State<LumoStoryReaderScreen>
       // Keep the progress reward, but do not push a blocking modal over
       // the next reading page 1s later. That interrupted child-led reading
       // and could swallow the next mystery clue tap.
-      widget.appState.addStars(1);
-      widget.appState.addXp(5);
+      widget.appState.addRewards(stars: 1, xp: 5);
     }
   }
 
