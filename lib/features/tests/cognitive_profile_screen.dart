@@ -31,7 +31,7 @@ class CognitiveProfileScreen extends StatefulWidget {
 
 class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
   late final List<CognitiveQuestion> _questions;
-  late final DateTime _startedAt;
+  late DateTime _startedAt;
   final Map<String, String> _answers = <String, String>{};
   int _index = 0;
   bool _started = false;
@@ -46,8 +46,7 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
     super.initState();
     _questions =
         CognitiveProfileGenerator.forGrade(widget.appState.state.grade);
-    _startedAt = DateTime.now();
-    _prepareQuestion();
+    // The stopwatch and memory stimulus begin only after the child taps Start.
   }
 
   @override
@@ -151,7 +150,11 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
                   ? _testBody()
                   : CognitiveProfileStartView(
                       questionCount: _questions.length,
-                      onStart: () => setState(() => _started = true),
+                      onStart: () => setState(() {
+                        _startedAt = DateTime.now();
+                        _prepareQuestion();
+                        _started = true;
+                      }),
                       onBack: () => Navigator.of(context).maybePop(),
                     ))
               : _resultBody(result),
