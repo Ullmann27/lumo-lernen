@@ -496,7 +496,9 @@ class _StoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LumoGlassCard(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(17),
+        radius: 26,
+        borderColor: LumoVisualTokens.cyanBright.withValues(alpha: .56),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           InkWell(
               onTap: onTap,
@@ -536,10 +538,13 @@ class _StoryCard extends StatelessWidget {
                                       horizontal: 8, vertical: 3),
                                   decoration: BoxDecoration(
                                       color: const Color(0x5537D2FD),
-                                      borderRadius: BorderRadius.circular(8)),
+                                      borderRadius: BorderRadius.circular(10),
+                                      border: Border.all(
+                                        color: LumoVisualTokens.cyanBright.withValues(alpha: .30))),
                                   child: Text(word,
                                       style: const TextStyle(
-                                          color: Colors.white, fontSize: 11)),
+                                          color: Colors.white, fontSize: 12,
+                                          fontWeight: FontWeight.w800)),
                                 )
                             ]),
                           ])),

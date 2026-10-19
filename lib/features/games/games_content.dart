@@ -1109,8 +1109,9 @@ class _HeaderStrip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 14, 12, 6),
       child: LumoGlassCard(
-        padding: const EdgeInsets.fromLTRB(8, 8, 14, 8),
-        radius: 20,
+        padding: const EdgeInsets.fromLTRB(10, 11, 16, 11),
+        radius: 24,
+        borderColor: LumoVisualTokens.gold.withValues(alpha: .55),
         child: Row(
           children: [
             const LumoFoxPose(pose: LumoDesignFoxPose.avatar, size: 52),

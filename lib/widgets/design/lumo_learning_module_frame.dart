@@ -774,11 +774,23 @@ class LumoLessonSurface extends StatelessWidget {
         padding: padding,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: LumoVisualTokens.cyan.withValues(alpha: .6),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              LumoVisualTokens.lessonPanel.withValues(alpha: .94),
+              LumoVisualTokens.navigation.withValues(alpha: .91),
+            ],
           ),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(
+            color: LumoVisualTokens.cyanBright.withValues(alpha: .53),
+            width: 1.3,
+          ),
+          boxShadow: [
+            BoxShadow(color: LumoVisualTokens.cyan.withValues(alpha: .10),
+              blurRadius: 20, spreadRadius: -7, offset: const Offset(0, 7)),
+          ],
         ),
         child: child,
       );

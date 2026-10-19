@@ -874,24 +874,29 @@ class _SettingsCard extends StatelessWidget {
       padding: const EdgeInsets.all(18),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xDD123D72), Color(0xEE0A2852)],
+          colors: [Color(0xF01B4A80), Color(0xF00A2852)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.40)),
+        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .52), width: 1.25),
         boxShadow: [
           BoxShadow(
-            color: LumoVisualTokens.cyan.withOpacity(.12),
-            blurRadius: 18,
+            color: LumoVisualTokens.cyan.withValues(alpha: .15),
+            blurRadius: 22,
             offset: const Offset(0, 8),
+            spreadRadius: -5,
           ),
         ],
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text(
           title,
-          style: LumoTextStyles.heading3.copyWith(color: LumoVisualTokens.white),
+          style: LumoTextStyles.heading3.copyWith(
+            color: LumoVisualTokens.white,
+            fontSize: 18,
+            height: 1.2,
+          ),
         ),
         const SizedBox(height: 12),
         ...children,

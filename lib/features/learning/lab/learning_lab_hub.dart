@@ -5,6 +5,7 @@ import '../../../app/app_state.dart';
 import '../../../core/learning_journey.dart';
 import '../../../core/progress_repository.dart';
 import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_section_heading.dart';
 import 'learning_lab_catalog.dart';
 import 'learning_lab_screen.dart';
 
@@ -140,6 +141,13 @@ class _LearningLabHubState extends State<LearningLabHub> {
                     ),
                   ),
                   const SizedBox(height: 19),
+                  const LumoSectionHeading(
+                    title: 'Deine Lernwerkstätten',
+                    subtitle: 'Ausprobieren, verstehen und selbst lösen',
+                    icon: Icons.construction_rounded,
+                    accent: LumoVisualTokens.cyanBright,
+                  ),
+                  const SizedBox(height: 12),
                   for (final topic in topics) ...[
                     Builder(builder: (context) {
                       final record = _records[SkillRecord.makeId(
@@ -159,10 +167,16 @@ class _LearningLabHubState extends State<LearningLabHub> {
                         LabMode.fraction => const Color(0xFFFFD182),
                       };
                       return Card(
-                        color: const Color(0xFF123659),
+                        color: const Color(0xFF123B68),
+                        elevation: 2,
+                        shadowColor: topicColor.withValues(alpha: .17),
+                        clipBehavior: Clip.antiAlias,
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          side: const BorderSide(color: Color(0xFF40739A))),
+                          borderRadius: BorderRadius.circular(22),
+                          side: BorderSide(
+                            color: topicColor.withValues(alpha: .65),
+                            width: 1.4,
+                          )),
                         child: InkWell(
                           key: ValueKey('lab-topic-' + topic.id),
                           borderRadius: BorderRadius.circular(20),
