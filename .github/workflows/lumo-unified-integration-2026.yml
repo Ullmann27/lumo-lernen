@@ -9,6 +9,12 @@ on:
       - 'test/design/**'
       - 'lib/features/games/**'
       - 'lib/features/story/**'
+      - 'lib/features/tests/**'
+      - 'lib/core/iq/**'
+      - 'lib/core/cognitive_profile_generator.dart'
+      - 'lib/domain/cognitive/**'
+      - 'test/iq/**'
+      - 'test/cognitive_profile*.dart'
       - 'lib/core/lumo_story_generator.dart'
       - 'lib/core/lumo_story_library.dart'
       - 'test/story_*.dart'
@@ -108,7 +114,7 @@ jobs:
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
       - name: Capture spatial reading, answer retry and subject cards on phone and Fold
         env:
-          LUMO_SPATIAL_CAPTURES: visual-evidence/1986/spatial-reading
+          LUMO_SPATIAL_CAPTURES: visual-evidence/1987/spatial-reading
         run: flutter test --no-pub --reporter=expanded test/design/lumo_spatial_reading_capture_test.dart
       - name: Install actual app-script verification dependencies
         run: |
@@ -194,7 +200,7 @@ jobs:
         if: success()
         uses: actions/upload-artifact@v4
         with:
-          name: lumo-1986-arm64-verified
+          name: lumo-1987-arm64-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
             dist/APK-SHA256.txt
@@ -275,14 +281,14 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-1986-android-tour
+          name: lumo-1987-android-tour
           path: tour/
           retention-days: 30
 
   publish-reading-adventure-prerelease:
-    name: Publish verified 1986 spatial reading APK to Releases
+    name: Publish verified 1987 spatial reading APK to Releases
     needs: [verify-and-build, android-tour]
-    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-1986-integrated-reading-release-2026-10-19'
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-1987-denkprofil-knobel-unified-2026-10-19'
     runs-on: ubuntu-latest
     timeout-minutes: 12
     permissions:
@@ -291,7 +297,7 @@ jobs:
     steps:
       - uses: actions/download-artifact@v4
         with:
-          name: lumo-1986-arm64-verified
+          name: lumo-1987-arm64-verified
           path: dist/
       - name: Verify delivered native APK identity without rebuilding
         run: |
@@ -306,22 +312,22 @@ jobs:
           import json
           p = Path('dist/Lumo-Lernen-Neu.apk')
           provenance = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
-          assert provenance['versionCode'] == 1986
-          assert provenance['versionName'] == '0.12.74'
+          assert provenance['versionCode'] == 1987
+          assert provenance['versionName'] == '0.12.75'
           assert provenance['godot']['revision'] == 'ffd2955ca9222daf02e6b602b3f213fd9383204a'
           assert 'arm64-v8a' in provenance['abis']
           assert provenance['sha256'] == hashlib.sha256(p.read_bytes()).hexdigest()
-          print('PASS verified 1986 ARM64 APK')
+          print('PASS verified 1987 ARM64 APK')
           PY
-          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1986-ARM64.apk
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1987-ARM64.apk
       - name: Publish a mobile-visible prerelease only after Android tour PASS
         env:
           GH_TOKEN: ${{ github.token }}
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          TAG=lumo-v0.12.74-1986-integrated-reading
-          FILE=dist/Lumo-Lernen-Kart-1986-ARM64.apk
+          TAG=lumo-v0.12.75-1987-denkprofil-knobel
+          FILE=dist/Lumo-Lernen-Kart-1987-ARM64.apk
           test -s "$FILE"
           if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
             echo 'Release tag already exists: refusing to overwrite previously published APK'
@@ -330,8 +336,8 @@ jobs:
           gh release create "$TAG" "$FILE" \
             --repo Ullmann27/lumo-lernen \
             --target "$SOURCE_SHA" \
-            --title 'Lumo 1986 – Lumo in allen Rätselszenen, Bücherei-Datenschutz und Kart' \
-            --notes 'Android-Testversion 0.12.74 (Build 1986). Neue individuelle Original-Lumo-Posen auf den Rätselbuchseiten, barrierefreie räumliche Fachkarten, präzise lesedidaktische Hinweise, sichere Bibliotheksspeicherung, kindgerechte Fehler- und Retry-Ansichten. Separater Godot-Pin mit Grafikprofil-Persistenz und ressourcenschonender Startampel. Nur nach vollständiger Flutter-Suite, Paketprüfung und erfolgreicher Android-Emulatortour veröffentlicht. Keine physische Fold- oder 60-FPS-Messung.' \
+            --title 'Lumo 1987 – Premium-Denkprofil und große Knobel-Entdeckerrunde' \
+            --notes 'Android-Testversion 0.12.75 (Build 1987). Alle Verbesserungen aus 1986 plus Denkprofil im gleichen Original-Lumo-Premium-Stil wie der Knobeltest, gemeinsame Glas-UI-Bausteine, 36-Rätsel-Entdeckerrunde und vielfältigere Zahlenmuster; Standardtest 24 bleibt bestehen. Separater Godot-Pin mit Grafikprofil-Persistenz und ressourcenschonender Startampel. Nur nach vollständiger Flutter-Suite, Paketprüfung und erfolgreicher Android-Emulatortour veröffentlicht. Keine physische Fold- oder 60-FPS-Messung.' \
             --prerelease
           gh release view "$TAG" --repo Ullmann27/lumo-lernen \
             --json url,isDraft,assets \
