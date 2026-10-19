@@ -58,8 +58,15 @@ class TourApkIdentityTests(unittest.TestCase):
     def verify(self, **changes):
         provenance = dict(self.provenance, **changes)
         self.provenance_path.write_text(json.dumps(provenance))
-        with patch.dict(os.environ, {'GITHUB_SHA': 'a' * 40}):
-            return TOUR_MODULE.verify_apk_identity(self.apk, self.provenance_path, self.sums)
+        # A PR has a synthetic merge GITHUB_SHA, but the workflow checks out
+        # the immutable pull_request.head.sha. Verify against that Git HEAD.
+        with patch.dict(os.environ, {'GITHUB_SHA': 'd' * 40}):
+            with patch.object(TOUR_MODULE.base, 'command',
+                              return_value='a' * 40) as checkout:
+                result = TOUR_MODULE.verify_apk_identity(
+                    self.apk, self.provenance_path, self.sums)
+                checkout.assert_called_once_with('git', 'rev-parse', 'HEAD')
+                return result
 
     def test_the_exact_verified_build_is_accepted(self):
         report = self.verify()
