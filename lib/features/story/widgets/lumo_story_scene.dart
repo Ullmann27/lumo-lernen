@@ -36,9 +36,32 @@ class LumoStoryScene extends StatelessWidget {
                 foregroundPainter: const LumoGlassOptics(),
                 child: scene == 0 || scene == 11
                     ? _LibraryDiorama(closing: scene == 11)
-                    : CustomPaint(
-                        painter: _ScenePainter(scene, variant),
-                        size: Size.infinite,
+                    : Stack(
+                        fit: StackFit.expand,
+                        children: [
+                          CustomPaint(
+                            painter: _ScenePainter(scene, variant),
+                            size: Size.infinite,
+                          ),
+                          // Bring the established Lumo character into every
+                          // mystery page. The 2D clue diorama remains visible
+                          // underneath and keeps its story-specific objects.
+                          Positioned(
+                            right: 2,
+                            bottom: 1,
+                            width: 128,
+                            height: 176,
+                            child: IgnorePointer(
+                              child: Image.asset(
+                                _mysteryHeroArt[scene % _mysteryHeroArt.length],
+                                fit: BoxFit.contain,
+                                alignment: Alignment.bottomRight,
+                                filterQuality: FilterQuality.medium,
+                                excludeFromSemantics: true,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
               ),
             ),
@@ -48,6 +71,16 @@ class LumoStoryScene extends StatelessWidget {
     );
   }
 }
+
+/// These are packaged, approved Lumo illustrations (not network placeholders).
+/// The scene clue artwork and the real fox image are separate repaint layers.
+const _mysteryHeroArt = <String>[
+  'assets/lumo_design/fox/fox_book_point.png',
+  'assets/lumo_design/fox/fox_point_side.png',
+  'assets/lumo_design/fox/fox_tablet_thumb.png',
+  'assets/lumo_design/fox/fox_teacher_stick.png',
+  'assets/lumo_design/fox/fox_book_welcome.png',
+];
 
 /// Original transparent Lumo PNG over the existing library artwork.
 /// Separate foreground, contact shadow and background create spatial depth
