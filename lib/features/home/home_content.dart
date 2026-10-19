@@ -970,7 +970,7 @@ class _SubjectCard extends StatelessWidget {
         'Deutsch' => 'assets/lumo_design/icons/book_open.png',
         'Lesen' => 'assets/lumo_design/buildings/book_arch.webp',
         'Schreiben' => 'assets/lumo_design/fox/fox_book_point.png',
-        'Englisch' => 'assets/lumo_design/fox/fox_wave.webp',
+        'Englisch' => 'assets/lumo_design/characters/fox_wave.webp',
         'Sachunterricht' => 'assets/lumo_design/icons/season_spring.png',
         'Technik und Design' => 'assets/lumo_design/icons/wrench.webp',
         _ => null,
