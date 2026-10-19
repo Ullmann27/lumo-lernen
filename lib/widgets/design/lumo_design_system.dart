@@ -273,14 +273,14 @@ class LumoGlassCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(radius),
         border: Border.all(
           color:
-              borderColor ?? LumoVisualTokens.cyanBright.withValues(alpha: .60),
-          width: 1.25,
+              borderColor ?? LumoVisualTokens.cyanBright.withValues(alpha: .50),
+          width: 1.35,
         ),
         boxShadow: [
           BoxShadow(
-            color: LumoVisualTokens.cyan.withValues(alpha: .16),
-            blurRadius: 22,
-            spreadRadius: -5,
+            color: LumoVisualTokens.cyan.withValues(alpha: .20),
+            blurRadius: 26,
+            spreadRadius: -7,
           ),
           const BoxShadow(
             color: Color(0x44000000),
