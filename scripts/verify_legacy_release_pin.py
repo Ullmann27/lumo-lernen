@@ -48,6 +48,8 @@ APPROVED = {
     1988: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
     # 1989 adds Flutter-only subject cards; preserve Build 1988's verified Kart.
     1989: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+    # Flutter-only UI polish; native Godot 4.6.3 remains pinned unchanged.
+    1990: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
