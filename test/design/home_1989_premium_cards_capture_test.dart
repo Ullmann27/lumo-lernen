@@ -81,7 +81,15 @@ void main() {
       );
       await tester.pump(const Duration(milliseconds: 500));
       expect(first, findsOneWidget);
-      expect(find.byKey(const ValueKey('home-island-deutsch')), findsOneWidget);
+      final deutsch = find.byKey(const ValueKey('home-island-deutsch'));
+      expect(deutsch, findsOneWidget);
+      if (size.width < 460) {
+        final matheRect = tester.getRect(first);
+        final deutschRect = tester.getRect(deutsch);
+        expect(deutschRect.top, greaterThanOrEqualTo(matheRect.bottom),
+            reason: 'Narrow phone needs full-width legible card rows');
+        expect(deutschRect.left, closeTo(matheRect.left, 1));
+      }
       expect(tester.takeException(), isNull,
           reason: 'No small-cover/Fold overflow for $device');
       final out = Platform.environment['LUMO_1989_CARD_CAPTURES'];
