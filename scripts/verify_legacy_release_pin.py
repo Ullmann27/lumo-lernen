@@ -50,6 +50,9 @@ APPROVED = {
     1989: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
     # Flutter-only UI polish; native Godot 4.6.3 remains pinned unchanged.
     1990: "ffd2955ca9222daf02e6b602b3f213fd9383204a",
+    # 1991 adds the proven live scene-switch quality regression to the exact
+    # same gameplay tree; source delta is one headless test plus its CI hook.
+    1991: "63cecf09fa89dd504cc468ebd121b4ec71a0f36c",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

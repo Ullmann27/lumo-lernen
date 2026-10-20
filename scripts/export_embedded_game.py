@@ -51,6 +51,9 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     '20652880eda687c67cfa72301dad5a173b1fe6c5',
     # 1985's six Kart commits only change scripts/tests/workflows, not the gate GLB.
     'ffd2955ca9222daf02e6b602b3f213fd9383204a',
+    # 1991 adds ONLY one headless scene-switch regression and CI job hook;
+    # Git ancestry confirms identical trusted Meshy gate GLB to 1985–1990.
+    '63cecf09fa89dd504cc468ebd121b4ec71a0f36c',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'
