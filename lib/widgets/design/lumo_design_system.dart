@@ -321,8 +321,17 @@ class LumoColorTile extends StatelessWidget {
         final narrow = constraints.maxWidth < 165;
         final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.2;
         // Symbol wächst mit der Kachel: auf dem Fold-Innendisplay keine leeren Flächen.
+        final availableIconWidth = (constraints.maxWidth -
+                (constraints.maxHeight < 100 ? 16 : narrow ? 24 : 28) -
+                26.0)
+            .clamp(30.0, 92.0)
+            .toDouble();
         final iconSize = constraints.maxHeight.isFinite
-            ? ((constraints.maxHeight - 58) * 0.82).clamp(30.0, 92.0).toDouble()
+            ? ((constraints.maxHeight - 58) * 0.82)
+                .clamp(30.0, 92.0)
+                .toDouble()
+                .clamp(30.0, availableIconWidth * 0.75)
+                .toDouble()
             : (narrow ? 32.0 : 40.0);
         final titleSize =
             constraints.maxWidth >= 240 ? 24.0 : (narrow ? 15.0 : 18.0);
