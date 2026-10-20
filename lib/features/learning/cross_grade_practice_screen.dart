@@ -295,7 +295,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               ),
               const SizedBox(height: 9),
             ],
-            if (selected != null) ...[
+            if (selected != null || _firstWrongChoice != null) ...[
               const SizedBox(height: 12),
               Text(
                 selected == _task.answer
