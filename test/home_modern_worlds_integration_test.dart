@@ -7,6 +7,7 @@ import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/features/cosmos/lumo_cosmos_screen.dart';
 import 'package:lumo_lernen/features/home/home_content.dart';
 import 'package:lumo_lernen/features/magic_hub/lumo_magic_hub_screen.dart';
+import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -81,6 +82,22 @@ void main() {
     await openDiscovery(tester, const ValueKey('home-discover-cosmos'));
     expect(find.byType(LumoCosmosScreen), findsOneWidget);
     expect(app.state.grade, 4);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('Magic hub keeps all premium worlds on a readable 1992 scene',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(393, 852));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+
+    await showHome(tester, app);
+    await openDiscovery(tester, const ValueKey('home-discover-magic-hub'));
+    expect(find.byType(LumoMagicHubScreen), findsOneWidget);
+    expect(find.byType(LumoSceneBackground), findsOneWidget);
+    expect(find.text('Lumo Magic ✨'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
