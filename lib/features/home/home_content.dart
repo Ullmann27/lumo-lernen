@@ -21,6 +21,7 @@ import '../learning/lumo_rechentricks_poster_screen.dart';
 import '../learning/curriculum_activities_screen.dart';
 import '../learning/lab/learning_lab_hub.dart';
 import '../live/lumo_live_pro_screen.dart';
+import '../cosmos/lumo_cosmos_screen.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../photo_lesson/lumo_photo_lesson_screen.dart';
@@ -481,7 +482,7 @@ class HomeContent extends StatelessWidget {
                           color: LumoVisualTokens.white,
                         ),
                       ),
-                      subtitle: Text('Lesen, Abenteuer und deine Sammlung',
+                      subtitle: Text('LIVE, Mirror, Cosmos, Quest und mehr',
                           style: LumoTextStyles.body
                               .copyWith(color: LumoVisualTokens.muted)),
                       leading: const Icon(Icons.explore_rounded,
@@ -525,6 +526,13 @@ class HomeContent extends StatelessWidget {
                             () => _open(context,
                                 LumoLiveProScreen(appState: appState))),
                         _extra(
+                            'Lumo Mirror',
+                            'Acht Gefühle – Lumo reagiert auf dich',
+                            Icons.face_rounded,
+                            () => _open(context,
+                                const LumoMirrorShowcaseScreen()),
+                            key: const ValueKey('home-discover-mirror')),
+                        _extra(
                             'Lumo Journal',
                             'Dein eigenes Tagebuch',
                             Icons.edit_note_rounded,
@@ -536,6 +544,13 @@ class HomeContent extends StatelessWidget {
                             Icons.landscape_rounded,
                             () => _open(
                                 context, LumoWeltScreen(appState: appState))),
+                        _extra(
+                            'Lumo Cosmos',
+                            'Deine wachsende Welt und Tageszeiten',
+                            Icons.auto_awesome_motion_rounded,
+                            () => _open(context,
+                                LumoCosmosScreen(appState: appState)),
+                            key: const ValueKey('home-discover-cosmos')),
                         _extra(
                             'Foto-Lektion',
                             'Übungen zu deinem Heft',
