@@ -45,7 +45,9 @@ void main() {
     for (final name in ['Mathematik', 'Deutsch', 'Englisch', 'Sachunterricht']) {
       expect(find.byKey(ValueKey('learning-subject-$name')), findsOneWidget);
     }
-    expect(find.byKey(const ValueKey('learning-other-subjects')), findsOneWidget);
+    // The secondary section is intentionally below the first viewport.
+    // Verify it after the primary subject -> real unit path, not by assuming
+    // Flutter has eagerly mounted an offscreen ListView child.
     expect(find.byKey(const ValueKey('learning-extra-Musik')), findsNothing);
     await tester.tap(find.byKey(const ValueKey('learning-subject-Mathematik')));
     await tester.pump();
@@ -59,6 +61,14 @@ void main() {
     expect(selectedSubject, 'Mathematik');
     expect(selectedUnit, topics.first);
     expect(find.text('4. Klasse · aus deinem Profil'), findsOneWidget);
+    final back = find.byKey(const ValueKey('learning-back-to-subjects'));
+    await tester.ensureVisible(back);
+    await tester.tap(back);
+    await tester.pump();
+    final more = find.byKey(const ValueKey('learning-other-subjects'));
+    await tester.scrollUntilVisible(more, 180,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 15);
+    expect(more, findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 
@@ -75,7 +85,8 @@ void main() {
       onPractical: (s) => practical = s,
     ));
     final more = find.byKey(const ValueKey('learning-other-subjects'));
-    await tester.ensureVisible(more);
+    await tester.scrollUntilVisible(more, 180,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 15);
     await tester.tap(more);
     await tester.pump(const Duration(milliseconds: 600));
     final readingEntry = find.byKey(const ValueKey('learning-extra-Lesen'));
@@ -87,7 +98,8 @@ void main() {
     await tester.tap(music);
     expect(practical, 'Musik');
     final openAdvanced = find.byKey(const ValueKey('learning-advanced-entry'));
-    await tester.ensureVisible(openAdvanced);
+    await tester.scrollUntilVisible(openAdvanced, 180,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 15);
     await tester.tap(openAdvanced);
     expect(advanced, 1);
     expect(tester.takeException(), isNull);
