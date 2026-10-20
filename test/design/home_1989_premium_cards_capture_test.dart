@@ -82,6 +82,11 @@ void main() {
           tester, captureKey, '$out/$device-start.png',
         );
       }
+      final subjects = find.byKey(const ValueKey('home-all-subjects'));
+      await tester.scrollUntilVisible(
+        subjects, 270, scrollable: find.byType(Scrollable).first);
+      await tester.tap(subjects);
+      await tester.pump(const Duration(milliseconds: 650));
       final first = find.byKey(const ValueKey('home-island-mathe'));
       await tester.scrollUntilVisible(
         first, 270, scrollable: find.byType(Scrollable).first,
