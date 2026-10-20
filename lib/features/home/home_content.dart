@@ -184,7 +184,7 @@ class HomeContent extends StatelessWidget {
                   Card(
                     color: LumoVisualTokens.glass,
                     child: ExpansionTile(
-                      key: const ValueKey('home-secondary-actions'),
+                      key: const PageStorageKey<String>('home-secondary-actions'),
                       title: const Text('Tests & Belohnungen',
                         style: TextStyle(color: LumoVisualTokens.white,
                           fontFamily: 'Nunito', fontWeight: FontWeight.w800)),
@@ -317,7 +317,7 @@ class HomeContent extends StatelessWidget {
                   Card(
                     color: LumoVisualTokens.glass,
                     child: ExpansionTile(
-                      key: const ValueKey('home-all-subjects'),
+                      key: const PageStorageKey<String>('home-all-subjects'),
                       title: const Text('Alle Fächer direkt öffnen',
                         style: TextStyle(color: LumoVisualTokens.white,
                           fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
