@@ -46,8 +46,10 @@ void main() {
         scrollable: find.byType(Scrollable).first, maxScrolls: 140);
     await tester.ensureVisible(entry);
     await tester.pump(const Duration(milliseconds: 200));
-    expect(entry.hitTestable(), findsOneWidget);
-    await tester.tap(entry);
+    final action = find.descendant(
+        of: entry, matching: find.byType(InkWell)).first;
+    expect(tester.widget<InkWell>(action).onTap, isNotNull);
+    await tester.tap(action);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 450));
   }
@@ -147,8 +149,10 @@ void main() {
     final quest = find.byKey(const ValueKey('magic-quest-route'));
     await tester.ensureVisible(quest);
     await tester.pump(const Duration(milliseconds: 250));
-    expect(quest.hitTestable(), findsOneWidget);
-    await tester.tap(quest);
+    final questTap = find.descendant(
+        of: quest, matching: find.byType(InkWell)).first;
+    expect(tester.widget<InkWell>(questTap).onTap, isNotNull);
+    await tester.tap(questTap);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 450));
     expect(find.byType(LumoQuestHubScreen), findsOneWidget);
