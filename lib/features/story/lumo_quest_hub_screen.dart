@@ -27,6 +27,10 @@ class LumoQuestHubScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final grade = appState.state.grade.clamp(1, 4).toInt();
     final quests = LumoQuestLibrary.forGrade(grade);
+    final inGrade = quests.where((q) => q.gradeLevel == grade).toList();
+    // Some grades have no own-grade adventure yet. Never present an empty hub
+    // when the library already has age-nearby stories.
+    final primaryQuests = inGrade.isEmpty ? quests : inGrade;
     return Scaffold(
       backgroundColor: const Color(0xFF102841),
       appBar: AppBar(
@@ -75,11 +79,11 @@ class LumoQuestHubScreen extends StatelessWidget {
           const SizedBox(height: 8),
           _intro(grade),
           const SizedBox(height: 16),
-          for (final q in quests.where((quest) => quest.gradeLevel == grade)) ...[
+          for (final q in primaryQuests) ...[
             _QuestCard(quest: q, appState: appState),
             const SizedBox(height: 12),
           ],
-          if (quests.any((quest) => quest.gradeLevel != grade))
+          if (inGrade.isNotEmpty && quests.any((quest) => quest.gradeLevel != grade))
             Card(
               color: const Color(0xF0183656),
               child: ExpansionTile(
