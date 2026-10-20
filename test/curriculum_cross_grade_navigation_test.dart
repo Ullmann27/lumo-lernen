@@ -75,8 +75,19 @@ void main() {
       await tester.pump(const Duration(milliseconds: 160));
       expect(find.byKey(const ValueKey('cross-grade-feedback')),
           findsOneWidget);
+      // A wrong first answer is only a hint; it must not be saved as a
+      // completed attempt. Use a different second answer if necessary.
+      if (find.byKey(const ValueKey('cross-grade-explanation')).evaluate().isEmpty) {
+        final second = find.byKey(const ValueKey('cross-grade-choice-1'));
+        await tester.ensureVisible(second);
+        await tester.tap(second);
+        await tester.pump(const Duration(milliseconds: 160));
+      }
+      expect(find.byKey(const ValueKey('cross-grade-explanation')),
+          findsOneWidget);
       expect(find.byKey(const ValueKey('cross-grade-next')),
           findsOneWidget);
+      await tester.pump(const Duration(milliseconds: 160));
       expect(app.state.grade, 2);
       expect(app.state.stars, initialStars);
       expect(app.state.xp, initialXp);
