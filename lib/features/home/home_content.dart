@@ -218,102 +218,6 @@ class HomeContent extends StatelessWidget {
                       ],
                     ),
                   ),
-                  FilledButton.icon(
-                    key: const ValueKey('home-stories'),
-                    style: FilledButton.styleFrom(
-                      minimumSize: const Size.fromHeight(56),
-                      backgroundColor: LumoVisualTokens.navigation,
-                      foregroundColor: LumoVisualTokens.cyanBright,
-                      side: const BorderSide(color: LumoVisualTokens.cyan),
-                    ),
-                    onPressed: () {
-                      if (ModalRoute.of(context)?.isCurrent != true) return;
-                      _open(
-                          context, LumoStoryLibraryScreen(appState: appState));
-                    },
-                    icon: const Icon(Icons.auto_stories_rounded),
-                    label: const Text('Geschichten lesen und erfinden'),
-                  ),
-                  const SizedBox(height: 12),
-                  _HomeEntrance(
-                    reduceMotion: reduceMotion,
-                    delay: const Duration(milliseconds: 60),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        key: const ValueKey('home-kart-banner'),
-                        borderRadius: BorderRadius.circular(24),
-                        onTap: () => onSection(LumoSection.games),
-                        child: _KartBanner(compact: compact),
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: compact ? 6 : 12),
-                  const SizedBox(height: 10),
-                  Align(
-                    alignment: Alignment.centerLeft,
-                    child: TextButton.icon(
-                      key: const ValueKey('home-explanation'),
-                      style: TextButton.styleFrom(
-                        minimumSize: const Size(48, 48),
-                        foregroundColor: LumoVisualTokens.cyanBright,
-                      ),
-                      onPressed: () => LumoCompanionRequests.instance
-                          .requestAppExplanation(),
-                      icon: const Icon(Icons.waving_hand_rounded, size: 20),
-                      label: const Text("Lumo zeigt's dir"),
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  if (constraints.maxWidth >= 620)
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 11,
-                          child: SizedBox(
-                            height: cardHeight,
-                            child: _ProgressCard(
-                              appState: appState,
-                              reduceMotion: reduceMotion,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          flex: 10,
-                          child: _MotivationCard(
-                            reduceMotion: reduceMotion,
-                            onLearn: () => onSection(LumoSection.learn),
-                            height: cardHeight,
-                          ),
-                        ),
-                      ],
-                    )
-                  else ...[
-                    _ProgressCard(
-                      appState: appState,
-                      reduceMotion: reduceMotion,
-                    ),
-                    const SizedBox(height: 12),
-                    _MotivationCard(
-                      reduceMotion: reduceMotion,
-                      onLearn: () => onSection(LumoSection.learn),
-                    ),
-                  ],
-                  const SizedBox(height: 20),
-                  const SizedBox(height: 12),
-                  LumoCoachCard(
-                    appState: appState,
-                    onStart: (subject, unit) =>
-                        _startPractice(subject, unit: unit),
-                  ),
-                  const SizedBox(height: 12),
-                  StudentAssignmentsCard(
-                    appState: appState,
-                    onStart: (subject, unit) =>
-                        _startPractice(subject, unit: unit),
-                  ),
-                  const SizedBox(height: 20),
                   Card(
                     color: LumoVisualTokens.glass,
                     child: ExpansionTile(
@@ -463,6 +367,102 @@ class HomeContent extends StatelessWidget {
                       ],
                     ),
                   ),
+                  FilledButton.icon(
+                    key: const ValueKey('home-stories'),
+                    style: FilledButton.styleFrom(
+                      minimumSize: const Size.fromHeight(56),
+                      backgroundColor: LumoVisualTokens.navigation,
+                      foregroundColor: LumoVisualTokens.cyanBright,
+                      side: const BorderSide(color: LumoVisualTokens.cyan),
+                    ),
+                    onPressed: () {
+                      if (ModalRoute.of(context)?.isCurrent != true) return;
+                      _open(
+                          context, LumoStoryLibraryScreen(appState: appState));
+                    },
+                    icon: const Icon(Icons.auto_stories_rounded),
+                    label: const Text('Geschichten lesen und erfinden'),
+                  ),
+                  const SizedBox(height: 12),
+                  _HomeEntrance(
+                    reduceMotion: reduceMotion,
+                    delay: const Duration(milliseconds: 60),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        key: const ValueKey('home-kart-banner'),
+                        borderRadius: BorderRadius.circular(24),
+                        onTap: () => onSection(LumoSection.games),
+                        child: _KartBanner(compact: compact),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: compact ? 6 : 12),
+                  const SizedBox(height: 10),
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: TextButton.icon(
+                      key: const ValueKey('home-explanation'),
+                      style: TextButton.styleFrom(
+                        minimumSize: const Size(48, 48),
+                        foregroundColor: LumoVisualTokens.cyanBright,
+                      ),
+                      onPressed: () => LumoCompanionRequests.instance
+                          .requestAppExplanation(),
+                      icon: const Icon(Icons.waving_hand_rounded, size: 20),
+                      label: const Text("Lumo zeigt's dir"),
+                    ),
+                  ),
+                  const SizedBox(height: 4),
+                  if (constraints.maxWidth >= 620)
+                    Row(
+                      children: [
+                        Expanded(
+                          flex: 11,
+                          child: SizedBox(
+                            height: cardHeight,
+                            child: _ProgressCard(
+                              appState: appState,
+                              reduceMotion: reduceMotion,
+                            ),
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Expanded(
+                          flex: 10,
+                          child: _MotivationCard(
+                            reduceMotion: reduceMotion,
+                            onLearn: () => onSection(LumoSection.learn),
+                            height: cardHeight,
+                          ),
+                        ),
+                      ],
+                    )
+                  else ...[
+                    _ProgressCard(
+                      appState: appState,
+                      reduceMotion: reduceMotion,
+                    ),
+                    const SizedBox(height: 12),
+                    _MotivationCard(
+                      reduceMotion: reduceMotion,
+                      onLearn: () => onSection(LumoSection.learn),
+                    ),
+                  ],
+                  const SizedBox(height: 20),
+                  const SizedBox(height: 12),
+                  LumoCoachCard(
+                    appState: appState,
+                    onStart: (subject, unit) =>
+                        _startPractice(subject, unit: unit),
+                  ),
+                  const SizedBox(height: 12),
+                  StudentAssignmentsCard(
+                    appState: appState,
+                    onStart: (subject, unit) =>
+                        _startPractice(subject, unit: unit),
+                  ),
+                  const SizedBox(height: 20),
                   const SizedBox(height: 10),
                   Card(
                     margin: EdgeInsets.zero,
