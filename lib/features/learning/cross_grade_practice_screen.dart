@@ -97,7 +97,14 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
         _selected != null || _saving) {
       return;
     }
+    if (choice == _firstWrongChoice) return;
     final correct = choice == _task.answer;
+    // The first wrong attempt is unfinished: offer a hint, without writing
+    // counters or disclosing the solution until the child tries again.
+    if (!correct && _firstWrongChoice == null) {
+      setState(() => _firstWrongChoice = choice);
+      return;
+    }
     setState(() {
       _selected = choice;
       _answered++;
@@ -161,7 +168,23 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
         unit: widget.unit,
       );
       _selected = null;
+      _firstWrongChoice = null;
     });
+  }
+
+  String get _secondChanceHint {
+    switch (widget.subject) {
+      case 'Mathematik':
+        return 'Prüfe das Rechenzeichen und rechne in kleinen Schritten.';
+      case 'Deutsch':
+      case 'Rechtschreibung':
+      case 'Lesen':
+        return 'Lies die Aufgabe langsam und vergleiche die übrigen Antworten.';
+      case 'Englisch':
+        return 'Lies die Wörter einzeln und prüfe ihre Bedeutung.';
+      default:
+        return 'Schau auf die Frage und prüfe die übrigen Möglichkeiten.';
+    }
   }
 
   @override
