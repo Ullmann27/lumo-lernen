@@ -82,14 +82,17 @@ void main() {
           tester, captureKey, '$out/$device-start.png',
         );
       }
-      final subjects = find.byKey(const ValueKey('home-all-subjects'));
+      final subjects = find.text('Alle Fächer direkt öffnen');
       await tester.scrollUntilVisible(
-        subjects, 270, scrollable: find.byType(Scrollable).first);
+        subjects, -260, scrollable: find.byType(Scrollable).first);
+      await tester.ensureVisible(subjects);
+      await tester.pump(const Duration(milliseconds: 250));
+      expect(subjects.hitTestable(), findsOneWidget);
       await tester.tap(subjects);
       await tester.pump(const Duration(milliseconds: 650));
       final first = find.byKey(const ValueKey('home-island-mathe'));
       await tester.scrollUntilVisible(
-        first, 270, scrollable: find.byType(Scrollable).first,
+        first, -270, scrollable: find.byType(Scrollable).first,
       );
       await tester.pump(const Duration(milliseconds: 500));
       expect(first, findsOneWidget);
