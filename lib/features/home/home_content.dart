@@ -632,7 +632,8 @@ class HomeContent extends StatelessWidget {
           color: Colors.transparent,
           child: InkWell(
             onTap: onTap,
-            child: Padding(
+            child: Container(
+              constraints: const BoxConstraints(minHeight: 52),
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.center,
