@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/lumo_quest_library.dart';
-import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import 'lumo_story_reader_screen.dart';
 
@@ -37,20 +36,20 @@ class LumoQuestHubScreen extends StatelessWidget {
         backgroundColor: const Color(0xFF102841),
         elevation: 0,
         leading: const BackButton(color: Colors.white),
-        title: const Text(
-          '🦊 Lumo Quest',
-          style: TextStyle(
-            fontFamily: 'Nunito',
-            fontSize: 22,
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-          ),
-        ),
+        title: const Row(children: [
+          Icon(Icons.auto_awesome_rounded, color: Color(0xFFFFD873)),
+          SizedBox(width: 8),
+          Expanded(child: Text('Lumo Quest',
+            maxLines: 1, overflow: TextOverflow.ellipsis,
+            style: TextStyle(fontFamily: 'Nunito', fontSize: 22,
+                fontWeight: FontWeight.w900, color: Colors.white),
+          )),
+        ]),
       ),
       extendBodyBehindAppBar: false,
-      body: LumoMagicBackground(
-        intensity: 1.1,
-        starCount: 26,
+      body: LumoSceneBackground(
+        scene: LumoScene.library,
+        dimmed: true,
         child: ListView(
         padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
         children: [
@@ -170,7 +169,7 @@ class LumoQuestHubScreen extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: const Color(0xFF103151),
         borderRadius: BorderRadius.circular(LumoRadius.md),
         border: Border.all(color: LumoColors.orange.withOpacity(0.30)),
       ),
@@ -252,7 +251,10 @@ class _QuestCard extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    Wrap(
+                      spacing: 8,
+                      runSpacing: 5,
+                      crossAxisAlignment: WrapCrossAlignment.center,
                       children: [
                         Container(
                           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
@@ -271,14 +273,13 @@ class _QuestCard extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(width: 8),
                         Text(
                           '$exerciseCount Aufgaben',
                           style: const TextStyle(
                             fontFamily: 'Nunito',
                             fontSize: 11,
                             fontWeight: FontWeight.w800,
-                            color: Color(0xFF7C2D12),
+                            color: Colors.white,
                           ),
                         ),
                       ],
@@ -290,7 +291,7 @@ class _QuestCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 17,
                         fontWeight: FontWeight.w900,
-                        color: Color(0xFF7C2D12),
+                        color: Colors.white,
                         height: 1.15,
                       ),
                     ),
@@ -324,7 +325,7 @@ class _QuestCard extends StatelessWidget {
                                   fontFamily: 'Nunito',
                                   fontSize: 10,
                                   fontWeight: FontWeight.w800,
-                                  color: Color(0xFF92400E),
+                                  color: Color(0xFFDBEBFA),
                                 ),
                               ),
                             ),
