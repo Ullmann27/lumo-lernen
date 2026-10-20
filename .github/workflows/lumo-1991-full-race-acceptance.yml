@@ -1,0 +1,148 @@
+name: Lumo 1991 genuine Android two-lap Kart acceptance
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-1991-full-race-acceptance.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-1991-full-race-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  exact-apk-two-lap:
+    if: github.repository == 'Ullmann27/lumo-lernen' && (github.event_name == 'workflow_dispatch' || github.event.pull_request.head.ref == 'chatgpt/lumo-1991-full-race-qa-2026-10-20')
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      CI: 'true'
+      LUMO_EXPECT_SOURCE: '3ff5ba4dc4299a546e043b40f51b879446493c8e'
+      LUMO_EXPECT_VERSION: '1991'
+      LUMO_EXPECT_GODOT: '63cecf09fa89dd504cc468ebd121b4ec71a0f36c'
+      LUMO_EXPECT_ANDROID_API: '35'
+      LUMO_BASE_DIGEST: '82865962c7c00413c75bfc2e427a201bb957ab564d8c8eb944f2b798dfbf1511'
+      LUMO_FOLD_PROBE: '1'
+    steps:
+      - name: Check out the exact tested Lumo 1991 source, not a moving branch
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 3ff5ba4dc4299a546e043b40f51b879446493c8e
+      - name: Download immutable 1991 Android candidate from green unified run
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 39357775306
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: candidate/dist/
+      - name: Download immutable historical baseline, only for existing UI probe
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 37674457852
+          name: lumo-visual-apk-37674457852
+          path: baseline/dist/
+      - name: Fail closed on source, native pin, version, certificate and exact bytes
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$LUMO_EXPECT_SOURCE"
+          test -s candidate/dist/x86_64/Lumo-Lernen-Neu.apk
+          test -s candidate/dist/x86_64/BUILD-PROVENANCE.json
+          test -s baseline/dist/Lumo-Lernen-Neu.apk
+          printf '%s  %s\n' cdcbf70cfe0c7a331b41bf27a1fa13b2b31885e5dd0a389a82f4047a42c5f060 candidate/dist/x86_64/Lumo-Lernen-Neu.apk | sha256sum -c -
+          printf '%s  %s\n' "$LUMO_BASE_DIGEST" baseline/dist/Lumo-Lernen-Neu.apk | sha256sum -c -
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('candidate/dist/x86_64')
+          data=json.loads((root/'BUILD-PROVENANCE.json').read_text())
+          assert data['flutter_source_commit'] == '3ff5ba4dc4299a546e043b40f51b879446493c8e'
+          assert data['versionCode'] == 1991 and data['versionName'] == '0.12.79'
+          assert data['godot']['revision'] == '63cecf09fa89dd504cc468ebd121b4ec71a0f36c'
+          assert 'x86_64' in data['abis']
+          assert data['sha256'] == 'cdcbf70cfe0c7a331b41bf27a1fa13b2b31885e5dd0a389a82f4047a42c5f060'
+          assert data['tracked_source_clean'] is True
+          print('PASS: exact previously built/tested x86_64 APK, no rebuild')
+          PY
+      - name: Install OCR readers and original Android harness test prerequisites
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p native-proof
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m py_compile .github/probes/creative_android_probe.py .github/probes/kart_complete_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_kart_complete_android_evidence.py' -v
+          cp candidate/dist/x86_64/BUILD-PROVENANCE.json native-proof/source-provenance.json
+      - name: Enable accelerated, disposable and isolated Android emulator
+        run: |
+          set -euo pipefail
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start real software-rendered display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > native-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > native-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' native-proof/mesa-renderer.txt
+      - name: Play the exact APK, then genuinely finish two offline laps
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            set -euo pipefail
+            .probe-venv/bin/python .github/probes/creative_android_probe.py --baseline baseline/dist/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out native-proof --game-scope kart
+            .probe-venv/bin/python .github/probes/kart_complete_android_probe.py --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out native-proof/full-race --timeout 1200
+            .probe-venv/bin/python - <<'PY'
+            import json
+            from pathlib import Path
+            x=json.loads(Path('native-proof/full-race/result.json').read_text())
+            assert x['status']=='PASS', x.get('error', 'complete race did not pass')
+            assert x['replay_deduplication']['status']=='PASS'
+            assert x['resource_snapshots']['first-driving']['status']=='PASS'
+            assert x['resource_snapshots']['completed-before-fold']['status']=='PASS'
+            print('PASS: two physical emulator laps, native finish/reward and replay deduplication')
+            PY
+      - name: Retain evidence even on failure; never upload an unverified APK
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1991-complete-two-lap-evidence
+          path: |
+            native-proof/
+            !native-proof/**/ocr-work.png
+            !native-proof/*-ocr-input.png
+          if-no-files-found: warn
+          retention-days: 30
