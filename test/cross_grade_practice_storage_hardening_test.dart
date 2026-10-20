@@ -99,7 +99,7 @@ void main() {
     await _frames(tester);
     // An incorrect first choice now receives a second chance before any
     // counter write. Finish that question to reach the storage-failure path.
-    if (find.byKey(const ValueKey('cross-grade-second-chance')).evaluate().isNotEmpty) {
+    if (find.text('Prüfe das Rechenzeichen und rechne in kleinen Schritten.').evaluate().isNotEmpty) {
       await tester.runAsync(() => tester.tap(
         find.byKey(const ValueKey('cross-grade-choice-1'))));
       await _frames(tester);
