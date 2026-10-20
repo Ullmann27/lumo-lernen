@@ -12,12 +12,14 @@ class LumoLearningHub extends StatefulWidget {
     required this.onStartUnit,
     required this.onReading,
     required this.onPracticalSubject,
+    required this.onAdvanced,
   });
 
   final int grade;
   final void Function(String subject, String unit) onStartUnit;
   final VoidCallback onReading;
   final ValueChanged<String> onPracticalSubject;
+  final VoidCallback onAdvanced;
 
   @override
   State<LumoLearningHub> createState() => _LumoLearningHubState();
@@ -165,6 +167,16 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                   ),
               ],
             ),
+          ),
+          const SizedBox(height: 16),
+          OutlinedButton.icon(
+            key: const ValueKey('learning-advanced-entry'),
+            onPressed: widget.onAdvanced,
+            icon: const Icon(Icons.tune_rounded),
+            label: const Text('Alle Lernwege & andere Klassen'),
+            style: OutlinedButton.styleFrom(
+              foregroundColor: LumoVisualTokens.cyanBright,
+              minimumSize: const Size.fromHeight(52)),
           ),
         ] else ...[
           OutlinedButton.icon(
