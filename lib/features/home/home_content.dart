@@ -103,8 +103,8 @@ class HomeContent extends StatelessWidget {
               // Bild 01: vier Kacheln in einer Reihe; schmal oder mit großer
               // Schrift zwei pro Reihe, damit die Namen ganz lesbar bleiben.
               final textScale = MediaQuery.textScalerOf(context).scale(1);
-              final columns =
-                  constraints.maxWidth >= 700 && textScale <= 1.2 ? 4 : 2;
+              // Exactly two primary routes; keep them balanced on Fold too.
+              const columns = 2;
               final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 LumoColorTile(
