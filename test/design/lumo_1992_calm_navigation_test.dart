@@ -65,7 +65,7 @@ void main() {
     await tester.ensureVisible(back);
     await tester.tap(back);
     await tester.pump();
-    final more = find.byKey(const ValueKey('learning-other-subjects'));
+    final more = find.byKey(const PageStorageKey<String>('learning-other-subjects'));
     await tester.scrollUntilVisible(more, 180,
         scrollable: find.byType(Scrollable).first, maxScrolls: 15);
     expect(more, findsOneWidget);
@@ -84,7 +84,7 @@ void main() {
       onRead: () => reading++,
       onPractical: (s) => practical = s,
     ));
-    final more = find.byKey(const ValueKey('learning-other-subjects'));
+    final more = find.byKey(const PageStorageKey<String>('learning-other-subjects'));
     await tester.scrollUntilVisible(more, 180,
         scrollable: find.byType(Scrollable).first, maxScrolls: 15);
     await tester.tap(more);
