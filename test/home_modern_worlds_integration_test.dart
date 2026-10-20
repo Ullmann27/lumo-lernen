@@ -101,4 +101,36 @@ void main() {
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
+
+  testWidgets('all five premium discovery routes keep 48dp touch targets',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(360, 800));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+
+    await showHome(tester, app);
+    final discover = find.text('Mehr mit Lumo entdecken');
+    await tester.scrollUntilVisible(discover, -250,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 140);
+    await tester.ensureVisible(discover);
+    await tester.tap(discover);
+    await tester.pump(const Duration(milliseconds: 650));
+    for (final name in const [
+      'home-discover-live',
+      'home-discover-mirror',
+      'home-discover-cosmos',
+      'home-discover-quest',
+      'home-discover-magic-hub',
+    ]) {
+      final entry = find.byKey(ValueKey(name));
+      expect(entry, findsOneWidget, reason: name);
+      await tester.ensureVisible(entry);
+      await tester.pump(const Duration(milliseconds: 100));
+      expect(tester.getSize(entry).height, greaterThanOrEqualTo(48),
+          reason: '$name has to be comfortable for children to touch');
+    }
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
 }
