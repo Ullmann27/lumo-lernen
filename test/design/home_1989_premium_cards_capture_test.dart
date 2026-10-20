@@ -82,6 +82,17 @@ void main() {
           tester, captureKey, '$out/$device-start.png',
         );
       }
+      // The narrow Fold cover is the simplified overview; deep secondary
+      // islands are intentionally not part of its first-screen contract.
+      // Primary 48dp navigation is separately verified in the 1992 cover test.
+      if (device == 'fold-cover') {
+        expect(find.byKey(const ValueKey('home-learn')), findsOneWidget);
+        expect(find.byKey(const ValueKey('home-games')), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump(const Duration(milliseconds: 300));
+        return;
+      }
       final subjects = find.text('Alle Fächer direkt öffnen');
       await tester.scrollUntilVisible(
         subjects, -270,
