@@ -312,7 +312,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              CrossGradeGlassPanel(child: Text(
+              if (selected != null)
+                CrossGradeGlassPanel(child: Text(
                 _task.explanation,
                 key: const ValueKey('cross-grade-explanation'),
                 style: const TextStyle(
