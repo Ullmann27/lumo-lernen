@@ -5,6 +5,7 @@ on:
     paths:
       - 'lib/features/home/**'
       - 'lib/features/magic_hub/**'
+      - 'lib/features/story/lumo_quest_hub_screen.dart'
       - 'test/home_modern_worlds_integration_test.dart'
       - 'test/design/lumo_1992_modern_worlds_capture_test.dart'
       - 'test/design/home_1989_premium_cards_capture_test.dart'
@@ -52,7 +53,7 @@ jobs:
             test -s "visual-evidence/1989-learning-cards/$device-learning-cards.png"
             test -s "visual-evidence/1989-learning-cards/$device-start.png"
           done
-      - name: Render real Lumo 1992 Magic and Mirror on phone and Fold
+      - name: Render real Lumo 1992 Magic, Mirror and Quest on phone and Fold
         env:
           LUMO_MODERN_WORLDS_CAPTURES: visual-evidence/1992-modern-worlds
         run: |
@@ -63,6 +64,7 @@ jobs:
           for device in fold-cover phone fold-open; do
             test -s "visual-evidence/1992-modern-worlds/magic-$device.png"
             test -s "visual-evidence/1992-modern-worlds/mirror-$device.png"
+            test -s "visual-evidence/1992-modern-worlds/quest-$device.png"
           done
       - name: Publish Lumo 1992 real-world captures
         if: always()
