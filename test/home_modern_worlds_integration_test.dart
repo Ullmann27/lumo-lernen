@@ -34,7 +34,7 @@ void main() {
 
   Future<void> openDiscovery(WidgetTester tester, Key target) async {
     final discover = find.text('Mehr mit Lumo entdecken');
-    await tester.scrollUntilVisible(discover, -250,
+    await tester.scrollUntilVisible(discover, 250,
         scrollable: find.byType(Scrollable).first, maxScrolls: 140);
     await tester.ensureVisible(discover);
     await tester.pump(const Duration(milliseconds: 250));
@@ -42,7 +42,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 650));
 
     final entry = find.byKey(target);
-    await tester.scrollUntilVisible(entry, -220,
+    await tester.scrollUntilVisible(entry, 220,
         scrollable: find.byType(Scrollable).first, maxScrolls: 140);
     await tester.ensureVisible(entry);
     await tester.pump(const Duration(milliseconds: 200));
@@ -112,7 +112,7 @@ void main() {
 
     await showHome(tester, app);
     final discover = find.text('Mehr mit Lumo entdecken');
-    await tester.scrollUntilVisible(discover, -250,
+    await tester.scrollUntilVisible(discover, 250,
         scrollable: find.byType(Scrollable).first, maxScrolls: 140);
     await tester.ensureVisible(discover);
     await tester.tap(discover);
