@@ -1,3 +1,5 @@
+> **AKTUELLE ANWEISUNG (20.10.2026, höher priorisiert als alle älteren Einstiegstexte):** Lies zuerst [AGENTS.md](AGENTS.md) und [Cloud-Rettungsprotokoll](docs/CLOUD_RECOVERY_PROTOCOL_2026-10-20.md). Sicherung bereits vorhandener lokaler Arbeiten VOR jedem Checkout/Pull. `python3 tools/lumo_autosave.py once` nach kleinen Arbeitspaketen und vor langen Tests; nur `REMOTE SAVED` mit SHA bedeutet, dass andere Codex-Sitzungen übernehmen können. Der übrige Inhalt dieser Datei enthält **historische** Hinweise vom 4.–8. Oktober und darf nicht für einen stillen Rücksprung auf alte Branches benutzt werden.
+
 # Lumo – Einstieg (für jede KI zuerst lesen)
 
 **Aktuelle Fortsetzung vom 8. Oktober 2026:** Zuerst
