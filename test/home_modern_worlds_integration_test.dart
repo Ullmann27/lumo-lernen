@@ -42,12 +42,19 @@ void main() {
     await tester.pump(const Duration(milliseconds: 650));
 
     final entry = find.byKey(target);
-    await tester.scrollUntilVisible(entry, 220,
-        scrollable: find.byType(Scrollable).first, maxScrolls: 140);
-    await tester.ensureVisible(entry);
-    await tester.pump(const Duration(milliseconds: 200));
     final action = find.descendant(
         of: entry, matching: find.byType(InkWell)).first;
+    final homeList =
+        find.byKey(const PageStorageKey<String>('lumo-home-scroll'));
+    expect(homeList, findsOneWidget);
+    // Scroll the actual outer home viewport. Nested scrollables can make
+    // scrollUntilVisible/ensureVisible leave the InkWell below the screen.
+    for (var i = 0; i < 60 && action.hitTestable().evaluate().isEmpty; i++) {
+      await tester.drag(homeList, const Offset(0, -140));
+      await tester.pump(const Duration(milliseconds: 80));
+    }
+    expect(action.hitTestable(), findsOneWidget,
+        reason: 'Discovery action must be physically touchable in the viewport');
     expect(tester.widget<InkWell>(action).onTap, isNotNull);
     await tester.tap(action);
     await tester.pump();
@@ -147,10 +154,16 @@ void main() {
     await showHome(tester, app);
     await openDiscovery(tester, const ValueKey('home-discover-magic-hub'));
     final quest = find.byKey(const ValueKey('magic-quest-route'));
-    await tester.ensureVisible(quest);
-    await tester.pump(const Duration(milliseconds: 250));
     final questTap = find.descendant(
         of: quest, matching: find.byType(InkWell)).first;
+    final questList = find.descendant(
+        of: find.byType(LumoMagicHubScreen),
+        matching: find.byType(ListView)).first;
+    for (var i = 0; i < 30 && questTap.hitTestable().evaluate().isEmpty; i++) {
+      await tester.drag(questList, const Offset(0, -140));
+      await tester.pump(const Duration(milliseconds: 80));
+    }
+    expect(questTap.hitTestable(), findsOneWidget);
     expect(tester.widget<InkWell>(questTap).onTap, isNotNull);
     await tester.tap(questTap);
     await tester.pump();
