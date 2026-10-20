@@ -2,6 +2,21 @@
 
 **Datum:** 20.10.2026 · **Anlass:** Astra Sehr hoch endete bei Lumo NEXT GEN während einer Flutter-Render- und Testiteration; laut Screenshot lief die Arbeit noch in \`/workspace/lumo-lernen\`, mit Dateien unter \`/workspace/scratch\`. Der letzte Remote-Task wurde als fehlgeschlagen markiert. Screenshots von Befehlen sind **kein Nachweis** für publizierte Commits.
 
+## EINMALIGE SOFORTRETTUNG – OHNE CHECKOUT/RESET, FÜR DAS ALTE CLOUD-FENSTER
+
+Falls die alte Cloud-Aufgabe noch läuft und dieses Skript im älteren Workspace **nicht** vorhanden ist, verwende diesen Befehl **in genau derselben bereits begonnenen Astra-Sitzung**. Er holt ausschließlich eine Hilfsdatei aus einem GitHub-Branch; er wechselt vorher weder das bestehende Projekt noch verwirft er Dateien:
+
+\`\`\`bash
+cd /workspace/lumo-lernen
+git status --short --branch
+git fetch origin ops/lumo-codex-checkpoint-protection-20261020
+mkdir -p tools
+git show FETCH_HEAD:tools/lumo_autosave.py > tools/lumo_autosave.py
+python3 tools/lumo_autosave.py once
+\`\`\`
+
+Belege nach dem letzten Befehl \`[LUMO-CHECKPOINT] REMOTE SAVED: <branch>@<sha>\`. Wenn \`BLOCKED: already-staged changes\` erscheint: zunächst den bestehenden Staging-Inhalt prüfen und selbst kontrolliert committen, dann erneut sichern. Bei fehlendem GitHub-Schreibrecht ehrlich stoppen und eine alternative übertragbare Handoff-Datei in derselben Sitzung exportieren.
+
 ## Konkrete Wiederaufnahme der unterbrochenen Sitzung (PRIORITÄT 1)
 Wenn **dieselbe** Code-/Cloud-Aufgabe noch geöffnet werden kann, NICHT zuerst \`git pull\`, \`git reset --hard\`, \`git clean -fd\` oder einen neuen Branch auschecken. Zuerst:
 \`\`\`bash
