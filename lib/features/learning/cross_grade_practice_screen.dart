@@ -34,6 +34,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   late final ExerciseFactory _factory;
   late LumoTask _task;
   String? _selected;
+  String? _firstWrongChoice;
   int _answered = 0;
   int _correct = 0;
   bool _progressLoaded = false;
