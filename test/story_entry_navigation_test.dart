@@ -18,6 +18,7 @@ import 'package:lumo_lernen/features/reading/reading_content.dart';
 import 'package:lumo_lernen/features/story/lumo_story_library_screen.dart';
 import 'package:lumo_lernen/features/story/lumo_story_setup_screen.dart';
 import 'package:lumo_lernen/features/story/lumo_story_reader_screen.dart';
+import 'package:lumo_lernen/features/sections/lumo_learning_hub.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 
 Future<void> frames(WidgetTester tester) async {
@@ -204,6 +205,18 @@ void main() {
             key: ValueKey('capture-$entry'), child: Scaffold(body: source)),
         ));
         await frames(tester);
+        if (entry == 'academy' &&
+            find.byType(LumoLearningHub).evaluate().isNotEmpty) {
+          // In Lumo 1992 the full Academy, including story links, is an
+          // explicit optional route from the simpler grade-aware entry.
+          // On narrow displays the entry itself can be lazily mounted.
+          final advanced =
+              find.byKey(const ValueKey('learning-advanced-entry'));
+          await tester.scrollUntilVisible(advanced, 180,
+              scrollable: find.byType(Scrollable).first, maxScrolls: 20);
+          await tester.tap(advanced);
+          await frames(tester);
+        }
         final action = find.byKey(ValueKey('$entry-stories'));
         if (action.evaluate().isEmpty) {
           // Nested lazy slivers can omit offscreen actions from the element
