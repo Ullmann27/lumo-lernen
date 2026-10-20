@@ -108,7 +108,7 @@ def safe_content(value: str) -> bool:
     if not p.exists():
         # Deletion of an already tracked safe-path source file is versioned.
         return True
-    if not p.is_file() or p.stat().st_size > MAX_FILE_BYTES:
+    if p.is_symlink() or not p.is_file() or p.stat().st_size > MAX_FILE_BYTES:
         return False
     if p.suffix.lower() in TEXT_SUFFIXES or value in ROOT_FILES:
         data = p.read_bytes()
@@ -190,7 +190,8 @@ def main() -> int:
     args = parser.parse_args()
     os.chdir(Path(__file__).resolve().parents[1])
     if args.mode == "check":
-        log(f"Working branch: {ensure_branch()}")
+        branch = git("branch", "--show-current").stdout.decode().strip() or "(detached)"
+        log(f"Working branch: {branch}; no branch mutation in check mode.")
         approved, skipped = eligible_files()
         log(f"Allowed pending paths: {len(approved)}; filtered: {len(skipped)}")
         return 0
