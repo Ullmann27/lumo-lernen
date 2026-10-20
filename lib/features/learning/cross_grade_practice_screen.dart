@@ -298,6 +298,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             if (selected != null || _firstWrongChoice != null) ...[
               const SizedBox(height: 12),
               Text(
+                selected == null ? _secondChanceHint :
                 selected == _task.answer
                     ? 'Richtig! Gut gemacht!'
                     : 'Die richtige Antwort ist: ${_task.answer}',
