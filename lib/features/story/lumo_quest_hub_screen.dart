@@ -87,7 +87,7 @@ class LumoQuestHubScreen extends StatelessWidget {
             Card(
               color: const Color(0xF0183656),
               child: ExpansionTile(
-                key: const ValueKey('quest-other-grades'),
+                key: const PageStorageKey<String>('quest-other-grades'),
                 title: const Text('Abenteuer anderer Klassen',
                   style: TextStyle(fontFamily: 'Nunito',
                       fontWeight: FontWeight.w900, color: Colors.white)),
