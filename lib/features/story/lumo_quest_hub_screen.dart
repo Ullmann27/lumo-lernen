@@ -16,7 +16,6 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_quest_library.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../../widgets/premium/lumo_stage_header.dart';
 import 'lumo_story_reader_screen.dart';
 
 class LumoQuestHubScreen extends StatelessWidget {
@@ -29,46 +28,78 @@ class LumoQuestHubScreen extends StatelessWidget {
     final grade = appState.state.grade.clamp(1, 4).toInt();
     final quests = LumoQuestLibrary.forGrade(grade);
     return Scaffold(
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: const Color(0xFF102841),
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color(0xFF102841),
         elevation: 0,
-        leading: const BackButton(color: Color(0xFF7C2D12)),
+        leading: const BackButton(color: Colors.white),
         title: const Text(
           '🦊 Lumo Quest',
           style: TextStyle(
             fontFamily: 'Nunito',
             fontSize: 22,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF7C2D12),
+            color: Colors.white,
           ),
         ),
       ),
-      extendBodyBehindAppBar: true,
+      extendBodyBehindAppBar: false,
       body: LumoMagicBackground(
         intensity: 1.1,
         starCount: 26,
         child: ListView(
-        padding: const EdgeInsets.fromLTRB(16, 0, 16, 32),
+        padding: const EdgeInsets.fromLTRB(16, 16, 16, 32),
         children: [
-          // 2026-06-05 Iter 17/A4: LumoStageHeader prominent oben mit
-          // Level + Sterne + Streak. Bisher nur Showcase, jetzt aktiv.
-          LumoStageHeader(
-            greeting: 'Hallo ${appState.state.childName.isEmpty ? "Held" : appState.state.childName}!',
-            subtitle: 'Welche Quest startest du heute?',
-            stars: appState.state.stars,
-            xp: appState.state.xp,
-            level: appState.state.level,
-            streak: appState.learningStreakDays(),
-            padding: const EdgeInsets.fromLTRB(0, 8, 0, 4),
+          Container(
+            key: const ValueKey('quest-compact-progress'),
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            decoration: BoxDecoration(
+              color: const Color(0xF0183656),
+              borderRadius: BorderRadius.circular(18),
+              border: Border.all(color: const Color(0xFF67D9E5).withOpacity(.5)),
+            ),
+            child: Row(children: [
+              const Icon(Icons.auto_stories_rounded,
+                  color: Color(0xFF67D9E5), size: 27),
+              const SizedBox(width: 10),
+              Expanded(child: Text('Lernabenteuer · $grade. Klasse',
+                style: const TextStyle(color: Colors.white, fontFamily: 'Nunito',
+                  fontSize: 16, fontWeight: FontWeight.w900))),
+              const Icon(Icons.star_rounded, color: Color(0xFFFFCB62), size: 21),
+              const SizedBox(width: 4),
+              Text('${appState.state.stars}',
+                style: const TextStyle(color: Colors.white,
+                  fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            ]),
           ),
           const SizedBox(height: 8),
           _intro(grade),
           const SizedBox(height: 16),
-          for (final q in quests) ...[
+          for (final q in quests.where((quest) => quest.gradeLevel == grade)) ...[
             _QuestCard(quest: q, appState: appState),
             const SizedBox(height: 12),
           ],
+          if (quests.any((quest) => quest.gradeLevel != grade))
+            Card(
+              color: const Color(0xF0183656),
+              child: ExpansionTile(
+                key: const ValueKey('quest-other-grades'),
+                title: const Text('Abenteuer anderer Klassen',
+                  style: TextStyle(fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900, color: Colors.white)),
+                subtitle: const Text('Weitere Geschichten freiwillig öffnen',
+                  style: TextStyle(color: Color(0xFFD4EAF5))),
+                leading: const Icon(Icons.library_books_rounded,
+                    color: Color(0xFF67D9E5)),
+                children: [
+                  for (final q in quests.where((quest) => quest.gradeLevel != grade))
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(10, 0, 10, 12),
+                      child: _QuestCard(quest: q, appState: appState),
+                    ),
+                ],
+              ),
+            ),
           if (quests.isEmpty) _noQuestsForGrade(),
         ],
       ), // close ListView
@@ -81,7 +112,7 @@ class LumoQuestHubScreen extends StatelessWidget {
       padding: const EdgeInsets.fromLTRB(18, 16, 18, 16),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          colors: [Color(0xFFFFB96B), Color(0xFFFF7A2F)],
+          colors: [Color(0xFF234C76), Color(0xFF974A92)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -104,7 +135,7 @@ class LumoQuestHubScreen extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Komm mit auf Abenteuer!',
+                  'Dein nächstes Abenteuer',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 19,
@@ -114,7 +145,7 @@ class LumoQuestHubScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  'Klasse $grade - jede Geschichte hat kleine Aufgaben.\nLoese sie und Lumo erzaehlt weiter.',
+                  'Geschichten lesen, Aufgaben lösen und den nächsten Abschnitt entdecken.',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 13,
@@ -145,7 +176,7 @@ class LumoQuestHubScreen extends StatelessWidget {
           fontFamily: 'Nunito',
           fontSize: 14,
           fontWeight: FontWeight.w700,
-          color: Color(0xFF7C2D12),
+          color: Colors.white,
         ),
       ),
     );
@@ -172,6 +203,7 @@ class _QuestCard extends StatelessWidget {
     return Material(
       color: Colors.transparent,
       child: InkWell(
+        key: ValueKey('quest-start-${quest.id}'),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
         onTap: () {
           Navigator.of(context).push(
@@ -187,7 +219,7 @@ class _QuestCard extends StatelessWidget {
         child: Container(
           padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: const Color(0xF0153353),
             borderRadius: BorderRadius.circular(LumoRadius.lg),
             border: Border.all(color: accent.withOpacity(0.50), width: 1.6),
             boxShadow: [
@@ -265,7 +297,7 @@ class _QuestCard extends StatelessWidget {
                         fontFamily: 'Nunito',
                         fontSize: 12,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF92400E),
+                        color: Color(0xFFD4EAF5),
                         height: 1.35,
                       ),
                     ),
@@ -279,7 +311,7 @@ class _QuestCard extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
                               decoration: BoxDecoration(
-                                color: const Color(0xFFFEF3C7),
+                                color: const Color(0xFF274967),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Text(
