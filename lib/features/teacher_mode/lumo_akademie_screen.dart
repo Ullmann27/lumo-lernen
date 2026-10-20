@@ -21,6 +21,7 @@ import '../../core/curriculum/academy_topic_units.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../deutsch/lumo_deutsch_screen.dart';
+import '../sections/lumo_learning_hub.dart';
 import '../learning_modules/learning_module_registry.dart';
 import '../learning/curriculum_activities_screen.dart';
 import '../learning/cross_grade_practice_screen.dart';
@@ -996,6 +997,7 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
   late final AnimationController _heroCtrl;
   int _selectedGrade = 1;
   int _selectedSubjectIndex = 0;
+  bool _allLearningWays = false;
 
   @override
   void initState() {
@@ -1023,13 +1025,72 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
         MediaQuery.disableAnimationsOf(context);
   }
 
+  void _beginClearLearningTask(String subject, String unit) {
+    // A real curriculum unit, not a placeholder exercise or fake progress.
+    // Keep the enrolled grade and child profile untouched.
+    widget.appState.update(widget.appState.state.copyWith(
+      section: LumoSection.exercises,
+      subject: subject,
+      unit: unit,
+      mood: LumoMood.point,
+      sessionKind: LumoSessionKind.quickPractice,
+      lumoMessage: 'Wir üben ${Curriculum.prettifyUnit(unit)}. Ich helfe dir.',
+    ));
+  }
+
+  Widget _buildCalmLearningHome() {
+    final hub = SafeArea(
+      top: widget.drawBackground,
+      bottom: false,
+      child: LumoLearningHub(
+        grade: widget.appState.state.grade,
+        onStartUnit: _beginClearLearningTask,
+        onReading: () => _openLearningArea(
+          _learningAreas.firstWhere((area) => area.subject == 'Lesen')),
+        onPracticalSubject: (name) => _openLearningArea(
+          _learningAreas.firstWhere((area) => area.subject == name)),
+        onAdvanced: () => setState(() {
+          _selectedGrade = widget.appState.state.grade.clamp(1, 4);
+          _allLearningWays = true;
+        }),
+      ),
+    );
+    return Scaffold(
+      backgroundColor:
+          widget.drawBackground ? LumoVisualTokens.night : Colors.transparent,
+      body: widget.drawBackground
+          ? LumoSceneBackground(
+              scene: LumoScene.learning,
+              showPlaceholderLabel: false,
+              dimmed: true,
+              child: hub,
+            )
+          : hub,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (!_allLearningWays) return _buildCalmLearningHome();
     final content = SafeArea(
       top: widget.drawBackground,
       bottom: false,
       child: CustomScrollView(
         slivers: [
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 8),
+              child: OutlinedButton.icon(
+                key: const ValueKey('academy-return-clear-overview'),
+                onPressed: () => setState(() => _allLearningWays = false),
+                icon: const Icon(Icons.arrow_back_rounded),
+                label: const Text('Zur einfachen Lernübersicht'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: LumoVisualTokens.cyanBright,
+                  minimumSize: const Size.fromHeight(52)),
+              ),
+            ),
+          ),
           SliverToBoxAdapter(child: _buildHero()),
           SliverToBoxAdapter(child: _buildTitleRow()),
           SliverToBoxAdapter(child: _buildGradePicker()),

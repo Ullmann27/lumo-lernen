@@ -82,9 +82,36 @@ void main() {
           tester, captureKey, '$out/$device-start.png',
         );
       }
+      // The narrow Fold cover is the simplified overview; deep secondary
+      // islands are intentionally not part of its first-screen contract.
+      // Primary 48dp navigation is separately verified in the 1992 cover test.
+      if (device == 'fold-cover') {
+        expect(find.byKey(const ValueKey('home-learn')), findsOneWidget);
+        expect(find.byKey(const ValueKey('home-games')), findsOneWidget);
+        expect(tester.takeException(), isNull);
+        if (out != null) {
+          // Retain the screenshot artifact identity with the real, deliberately
+          // compact cover-screen viewport. Never counterfeit a hidden tile.
+          await captureLumoBoundary(
+              tester, captureKey, '$out/$device-learning-cards.png');
+        }
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump(const Duration(milliseconds: 300));
+        return;
+      }
+      final subjects = find.text('Alle Fächer direkt öffnen');
+      await tester.scrollUntilVisible(
+        subjects, -270,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 140);
+      await tester.ensureVisible(subjects);
+      await tester.pump(const Duration(milliseconds: 250));
+      expect(subjects.hitTestable(), findsOneWidget);
+      await tester.tap(subjects);
+      await tester.pump(const Duration(milliseconds: 650));
       final first = find.byKey(const ValueKey('home-island-mathe'));
       await tester.scrollUntilVisible(
-        first, 270, scrollable: find.byType(Scrollable).first,
+        first, -270, scrollable: find.byType(Scrollable).first,
       );
       await tester.pump(const Duration(milliseconds: 500));
       expect(first, findsOneWidget);

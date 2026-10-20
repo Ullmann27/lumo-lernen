@@ -152,6 +152,8 @@ void main() {
     await tester
         .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await _frames(tester);
+    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+    await _frames(tester);
     final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
     await tester.scrollUntilVisible(
       mathArea, 180,

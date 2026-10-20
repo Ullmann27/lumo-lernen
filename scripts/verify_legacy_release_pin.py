@@ -53,6 +53,8 @@ APPROVED = {
     # 1991 adds the proven live scene-switch quality regression to the exact
     # same gameplay tree; source delta is one headless test plus its CI hook.
     1991: "63cecf09fa89dd504cc468ebd121b4ec71a0f36c",
+    # 1992 redesign is Flutter-only. Retain identical tested native Kart bits.
+    1992: "63cecf09fa89dd504cc468ebd121b4ec71a0f36c",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

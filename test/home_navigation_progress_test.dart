@@ -111,7 +111,9 @@ void main() {
     expect(find.text('25 / 400 XP bis Level 3'), findsOneWidget);
     expect(find.text('Heute: 2 von 3 Aufgaben'), findsOneWidget);
     expect(find.text('1 Lerntag in Folge'), findsOneWidget);
-    expect(find.textContaining('1 Aufgabe geschafft'), findsNWidgets(2));
+    // The duplicate subject-progress cards are intentionally folded away.
+    // Real wallet values above remain visible in the compact home overview.
+    expect(find.textContaining('1 Aufgabe geschafft'), findsNothing);
     for (var index = 0; index < 3; index++) {
       expect(find.byKey(ValueKey('home-daily-task-$index')), findsOneWidget);
     }
@@ -151,7 +153,7 @@ void main() {
     await tester.pumpWidget(home(state, (_) {}));
     await tester.pump();
 
-    for (final title in ['lernen', 'spielen', 'tests', 'belohnungen']) {
+    for (final title in ['lernen', 'spielen']) {
       expect(
         find.byKey(ValueKey('lumo-color-tile-icon-$title')),
         findsOneWidget,
