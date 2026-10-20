@@ -25,6 +25,11 @@ void main() {
         ),
       ));
       await tester.pump(const Duration(milliseconds: 150));
+      final chooser = find.byKey(const ValueKey('home-all-subjects'));
+      await tester.scrollUntilVisible(
+        chooser, 300, scrollable: find.byType(Scrollable).first);
+      await tester.tap(chooser);
+      await tester.pump(const Duration(milliseconds: 450));
       final island = find.byKey(const ValueKey('home-island-technik'));
       await tester.scrollUntilVisible(
         island, 360, scrollable: find.byType(Scrollable).first);
@@ -53,6 +58,11 @@ void main() {
       ),
     ));
     await tester.pump();
+    final chooser = find.byKey(const ValueKey('home-all-subjects'));
+    await tester.scrollUntilVisible(
+      chooser, 300, scrollable: find.byType(Scrollable).first);
+    await tester.tap(chooser);
+    await tester.pump(const Duration(milliseconds: 450));
     final music = find.byKey(const ValueKey('home-island-musik'));
     await tester.scrollUntilVisible(
       music, 360, scrollable: find.byType(Scrollable).first);
