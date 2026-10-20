@@ -89,6 +89,10 @@ void main() {
       await tester.pumpWidget(MaterialApp(
           theme: LumoAppTheme.light(), home: Scaffold(body: source)));
       await frames(tester);
+      if (entry == 'academy') {
+        await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+        await frames(tester);
+      }
       final action = find.byKey(ValueKey('$entry-stories'));
       expect(action, findsOneWidget);
       await tester.ensureVisible(action);
@@ -132,6 +136,8 @@ void main() {
     final app = await profile(tester, 1);
     await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(), home: LumoAkademieScreen(appState: app)));
+    await frames(tester);
+    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
     await frames(tester);
     final grade = find.byKey(const ValueKey('grade-pill-3'));
     await tester.ensureVisible(grade);
