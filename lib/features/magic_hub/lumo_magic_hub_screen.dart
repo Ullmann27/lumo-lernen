@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_companion_state.dart';
 import '../../theme/lumo_design_tokens.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
@@ -124,8 +125,10 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
   Widget build(BuildContext context) {
     final appState = widget.appState;
     return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
+      backgroundColor: LumoVisualTokens.night,
+      body: LumoSceneBackground(
+        scene: LumoScene.home,
+        dimmed: true,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(LumoTokens.space16,
@@ -134,12 +137,15 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back_rounded),
+                    icon: const Icon(Icons.arrow_back_rounded,
+                        color: Colors.white),
+                    tooltip: 'Zurück',
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
                     child: Text('Lumo Magic ✨',
-                        style: LumoTokens.typo.headlineLarge),
+                        style: LumoTokens.typo.headlineLarge.copyWith(
+                            color: Colors.white)),
                   ),
                 ],
               ),
@@ -177,7 +183,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(_greeting,
                       style: LumoTokens.typo.headlineSmall
-                          .copyWith(color: LumoTokens.colors.textDark),
+                          .copyWith(color: Colors.white),
                       textAlign: TextAlign.center),
                 ),
               ),
@@ -279,7 +285,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const _LumoMirrorShowcase(),
+                    builder: (_) => const LumoMirrorShowcaseScreen(),
                   ),
                 ),
               ),
