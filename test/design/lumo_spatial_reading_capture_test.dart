@@ -49,10 +49,27 @@ void main() {
       await show(
           Scaffold(body: HomeContent(appState: state, onSection: (_) {})));
       await capture('home');
+      // Lumo 1992 deliberately keeps the nine premium subject cards behind
+      // an optional entry. Capture the actual navigation path rather than
+      // searching for a card that is intentionally not mounted initially.
+      final chooser = find.text('Alle Fächer direkt öffnen');
       await tester.scrollUntilVisible(
-          find.byKey(const ValueKey('home-island-mathe')), 220,
-          scrollable: find.byType(Scrollable).first);
-      await tester.pump();
+          chooser, -270,
+          scrollable: find.byType(Scrollable).first,
+          maxScrolls: 140);
+      await tester.ensureVisible(chooser);
+      await tester.pump(const Duration(milliseconds: 250));
+      expect(chooser.hitTestable(), findsOneWidget);
+      await tester.tap(chooser);
+      await tester.pump(const Duration(milliseconds: 650));
+      final firstSubject =
+          find.byKey(const ValueKey('home-island-mathe'));
+      await tester.scrollUntilVisible(
+          firstSubject, -270,
+          scrollable: find.byType(Scrollable).first,
+          maxScrolls: 140);
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(firstSubject, findsOneWidget);
       await capture('subjects');
       await tester.pumpWidget(const SizedBox.shrink());
       final story = LumoStoryGenerator.instance.generateReadingAdventure(
