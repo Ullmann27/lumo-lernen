@@ -84,7 +84,9 @@ void main() {
       }
       final subjects = find.text('Alle Fächer direkt öffnen');
       await tester.scrollUntilVisible(
-        subjects, -260, scrollable: find.byType(Scrollable).first);
+        subjects, -270,
+        scrollable: find.byType(Scrollable).first,
+        maxScrolls: 140);
       await tester.ensureVisible(subjects);
       await tester.pump(const Duration(milliseconds: 250));
       expect(subjects.hitTestable(), findsOneWidget);
