@@ -265,7 +265,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             for (var i = 0; i < choices.length; i++) ...[
               OutlinedButton(
                 key: ValueKey('cross-grade-choice-$i'),
-                onPressed: _progressLoaded && _loadError == null && !_saving && selected == null
+                onPressed: _progressLoaded && _loadError == null && !_saving && selected == null && choices[i] != _firstWrongChoice
                     ? () => _answer(choices[i]) : null,
                 style: OutlinedButton.styleFrom(
                   minimumSize: const Size.fromHeight(54),
