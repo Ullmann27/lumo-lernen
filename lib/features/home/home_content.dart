@@ -125,22 +125,6 @@ class HomeContent extends StatelessWidget {
                   color: LumoVisualTokens.games,
                   onTap: () => onSection(LumoSection.games),
                 ),
-                LumoColorTile(
-                  title: 'Tests',
-                  subtitle: 'Wissen überprüfen',
-                  icon: Icons.assignment_rounded,
-                  iconAsset: 'assets/lumo_design/icons/trophy_gold.png',
-                  color: LumoVisualTokens.tests,
-                  onTap: () => onSection(LumoSection.tests),
-                ),
-                LumoColorTile(
-                  title: 'Belohnungen',
-                  subtitle: 'Sterne und Extras',
-                  icon: Icons.star_rounded,
-                  iconAsset: 'assets/lumo_design/icons/treasure_chest.png',
-                  color: LumoVisualTokens.rewards,
-                  onTap: () => onSection(LumoSection.rewards),
-                ),
               ];
               final list = ListView(
                 key: const PageStorageKey('lumo-home-scroll'),
@@ -179,6 +163,61 @@ class HomeContent extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
+                  // Primary action comes before secondary panels and repeated subjects.
+                  const LumoSectionHeading(
+                    title: 'Das passt heute zu dir',
+                    subtitle: 'Eine passende Lernrunde für deinen nächsten Schritt',
+                    icon: Icons.auto_awesome_rounded,
+                    accent: LumoVisualTokens.gold,
+                  ),
+                  const SizedBox(height: 10),
+                  _RecommendationCard(
+                    message: recommendation?.message ??
+                        'Wähle ein Fach. Wir starten mit kleinen Schritten.',
+                    label: recommendation?.cta ?? 'Kurze Lernrunde',
+                    onTap: () => _startPractice(
+                      recommendation?.subject ?? 'Mathematik',
+                      unit: recommendation?.unit,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Card(
+                    color: LumoVisualTokens.glass,
+                    child: ExpansionTile(
+                      key: const ValueKey('home-secondary-actions'),
+                      title: const Text('Tests & Belohnungen',
+                        style: TextStyle(color: LumoVisualTokens.white,
+                          fontFamily: 'Nunito', fontWeight: FontWeight.w800)),
+                      subtitle: const Text('Weitere Bereiche bei Bedarf',
+                        style: TextStyle(color: LumoVisualTokens.muted)),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Row(children: [
+                            Expanded(child: OutlinedButton.icon(
+                              key: const ValueKey('home-secondary-tests'),
+                              onPressed: () => onSection(LumoSection.tests),
+                              icon: const Icon(Icons.assignment_rounded),
+                              label: const Text('Tests'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: LumoVisualTokens.cyanBright,
+                                minimumSize: const Size.fromHeight(52)),
+                            )),
+                            const SizedBox(width: 8),
+                            Expanded(child: OutlinedButton.icon(
+                              key: const ValueKey('home-secondary-rewards'),
+                              onPressed: () => onSection(LumoSection.rewards),
+                              icon: const Icon(Icons.star_rounded),
+                              label: const Text('Belohnungen'),
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: LumoVisualTokens.cyanBright,
+                                minimumSize: const Size.fromHeight(52)),
+                            )),
+                          ]),
+                        ),
+                      ],
+                    ),
+                  ),
                   FilledButton.icon(
                     key: const ValueKey('home-stories'),
                     style: FilledButton.styleFrom(
@@ -262,22 +301,6 @@ class HomeContent extends StatelessWidget {
                     ),
                   ],
                   const SizedBox(height: 20),
-                  const LumoSectionHeading(
-                    title: 'Das passt heute zu dir',
-                    subtitle: 'Eine passende Lernrunde für deinen nächsten Schritt',
-                    icon: Icons.auto_awesome_rounded,
-                    accent: LumoVisualTokens.gold,
-                  ),
-                  const SizedBox(height: 10),
-                  _RecommendationCard(
-                    message: recommendation?.message ??
-                        'Wähle ein Fach. Wir starten mit kleinen Schritten.',
-                    label: recommendation?.cta ?? 'Kurze Lernrunde',
-                    onTap: () => _startPractice(
-                      recommendation?.subject ?? 'Mathematik',
-                      unit: recommendation?.unit,
-                    ),
-                  ),
                   const SizedBox(height: 12),
                   LumoCoachCard(
                     appState: appState,
@@ -291,6 +314,23 @@ class HomeContent extends StatelessWidget {
                         _startPractice(subject, unit: unit),
                   ),
                   const SizedBox(height: 20),
+                  Card(
+                    color: LumoVisualTokens.glass,
+                    child: ExpansionTile(
+                      key: const ValueKey('home-all-subjects'),
+                      title: const Text('Alle Fächer direkt öffnen',
+                        style: TextStyle(color: LumoVisualTokens.white,
+                          fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+                      subtitle: const Text('Neun Lernwelten und Logik',
+                        style: TextStyle(color: LumoVisualTokens.muted)),
+                      leading: const Icon(Icons.school_rounded,
+                        color: LumoVisualTokens.cyanBright),
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
                   const LumoSectionHeading(
                     title: 'Deine Lernfächer',
                     subtitle: 'Wähle deine Lernwelt und sammle neue Erfolge',
@@ -415,6 +455,12 @@ class HomeContent extends StatelessWidget {
                       side: BorderSide(
                         color: LumoVisualTokens.cyanBright.withOpacity(.5)),
                       minimumSize: const Size.fromHeight(48),
+                    ),
+                  ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   const SizedBox(height: 10),
