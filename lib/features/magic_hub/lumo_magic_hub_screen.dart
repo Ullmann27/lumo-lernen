@@ -18,6 +18,7 @@ import '../../widgets/premium/lumo_premium_card.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../story/lumo_story_library_screen.dart';
+import '../story/lumo_quest_hub_screen.dart';
 
 class LumoMagicHubScreen extends StatefulWidget {
   const LumoMagicHubScreen({super.key, required this.appState});
@@ -223,6 +224,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
 
               // 1. LUMO STORY
               LumoHeroCard(
+                key: const ValueKey('magic-story-route'),
                 title: 'Lumo Story',
                 subtitle: 'Deine Geschichten - Bibliothek + neue erstellen',
                 icon: Icons.auto_stories_rounded,
@@ -238,8 +240,29 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
               ),
               const SizedBox(height: LumoTokens.space12),
 
-              // 2. LUMO COSMOS
+              // An existing interactive adventure is now reachable from
+              // the same premium hub as stories, cosmos and Mirror.
               LumoHeroCard(
+                key: const ValueKey('magic-quest-route'),
+                title: 'Lumo Quest',
+                subtitle: 'Abenteuer und Geschichten für deine Klasse',
+                icon: Icons.auto_awesome_rounded,
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF246CB6), Color(0xFF7C4BCC)],
+                ),
+                glowColor: const Color(0xFF6EE7F5),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => LumoQuestHubScreen(appState: appState),
+                  ),
+                ),
+              ),
+              const SizedBox(height: LumoTokens.space12),
+
+              // LUMO COSMOS
+              LumoHeroCard(
+                key: const ValueKey('magic-cosmos-route'),
                 title: 'Meine Welt',
                 subtitle: 'Tag/Nacht + 4 Jahreszeiten + dein Garten waechst',
                 icon: Icons.eco_rounded,
@@ -259,6 +282,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
 
               // 3. LUMO LIVE PRO
               LumoHeroCard(
+                key: const ValueKey('magic-live-route'),
                 title: 'Lumo LIVE',
                 subtitle: 'Wort-Magie · Foto-Quiz · Tier-Safari',
                 icon: Icons.mic_rounded,
@@ -276,6 +300,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
 
               // 4. LUMO MIRROR (Showcase)
               LumoHeroCard(
+                key: const ValueKey('magic-mirror-route'),
                 title: 'Lumo Mirror',
                 subtitle: '8 Emotionen + reagiert auf dich',
                 icon: Icons.face_rounded,
