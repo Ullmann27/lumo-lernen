@@ -349,14 +349,14 @@ class LumoColorTile extends StatelessWidget {
                             end: Alignment.bottomRight,
                             stops: const [0, .52, 1],
                             colors: [
-                              Color.lerp(Colors.white, color, .14)!,
-                              Color.lerp(Colors.white, color, .31)!,
-                              Color.lerp(Colors.white, color, .56)!,
+                              Color.lerp(LumoVisualTokens.navigation, color, .19)!,
+                              Color.lerp(LumoVisualTokens.glass, color, .23)!,
+                              Color.lerp(LumoVisualTokens.navigation, color, .14)!,
                             ]),
-                        border: Border.all(color: color.withValues(alpha: .82), width: 1.8),
+                        border: Border.all(color: color.withValues(alpha: .92), width: 1.6),
                         boxShadow: [
                           BoxShadow(
-                              color: color.withValues(alpha: .36),
+                              color: color.withValues(alpha: .25),
                               blurRadius: 22,
                               spreadRadius: -3,
                               offset: const Offset(0, 9)),
@@ -376,12 +376,12 @@ class LumoColorTile extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
                                   gradient: RadialGradient(colors: [
-                                    Colors.white,
-                                    Color.lerp(Colors.white, color, .42)!,
-                                    color.withValues(alpha: .56),
+                                    LumoVisualTokens.glass,
+                                    Color.lerp(LumoVisualTokens.glass, color, .36)!,
+                                    color.withValues(alpha: .28),
                                   ]),
                                   border: Border.all(
-                                      color: Colors.white.withValues(alpha: .92),
+                                      color: LumoVisualTokens.cyanBright.withValues(alpha: .72),
                                       width: 2),
                                   boxShadow: [
                                     BoxShadow(
@@ -424,7 +424,7 @@ class LumoColorTile extends StatelessWidget {
                               ),
                               const Spacer(),
                               const Icon(Icons.north_east_rounded,
-                                  size: 19, color: Color(0xFF153B69)),
+                                  size: 19, color: LumoVisualTokens.cyanBright),
                             ])),
                             const SizedBox(height: 6),
                             Text(title,
@@ -434,7 +434,7 @@ class LumoColorTile extends StatelessWidget {
                                     fontSize: titleSize,
                                     height: 1.05,
                                     fontWeight: FontWeight.w900,
-                                    color: const Color(0xFF10264A))),
+                                    color: LumoVisualTokens.white)),
                             // Symbol + zweizeiliger Titel brauchen auf flachen
                             // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
                             // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
@@ -446,7 +446,7 @@ class LumoColorTile extends StatelessWidget {
                                   style: TextStyle(
                                       fontSize: iconSize >= 60 ? 14 : 11,
                                       height: 1.15,
-                                      color: const Color(0xFF29466D))),
+                                      color: LumoVisualTokens.muted)),
                             ],
                           ]),
                     ),
