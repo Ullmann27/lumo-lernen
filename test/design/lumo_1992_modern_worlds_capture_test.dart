@@ -8,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/features/magic_hub/lumo_magic_hub_screen.dart';
+import 'package:lumo_lernen/features/story/lumo_quest_hub_screen.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 
 import '../helpers/lumo_capture.dart';
@@ -22,7 +23,7 @@ void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
   for (final layout in lumoCaptureSizes.entries) {
-    testWidgets('Magic and Mirror use real premium graphics on ${layout.key}',
+    testWidgets('Magic, Mirror and Quest use real premium graphics on ${layout.key}',
         (tester) async {
       await tester.binding.setSurfaceSize(layout.value);
       addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -63,7 +64,26 @@ void main() {
             tester, boundary, '$out/mirror-${layout.key}.png',
             pixelRatio: 1.5);
       }
-      expect(tester.takeException(), isNull);
+      // Quest must remain readable and free of horizontal overflow on the
+      // smallest Fold cover, not just be linked from Magic.
+      await tester.pumpWidget(MaterialApp(
+        theme: LumoAppTheme.light(),
+        home: RepaintBoundary(
+          key: boundary,
+          child: LumoQuestHubScreen(appState: app),
+        ),
+      ));
+      await tester.pump(const Duration(milliseconds: 700));
+      expect(find.byType(LumoQuestHubScreen), findsOneWidget);
+      expect(find.byType(LumoSceneBackground), findsOneWidget);
+      expect(find.text('Lumo Quest'), findsOneWidget);
+      if (out != null) {
+        await captureLumoBoundary(
+            tester, boundary, '$out/quest-${layout.key}.png',
+            pixelRatio: 1.5);
+      }
+      expect(tester.takeException(), isNull,
+          reason: 'Quest must not overflow on ${layout.key}');
       await tester.pumpWidget(const SizedBox.shrink());
     });
   }
