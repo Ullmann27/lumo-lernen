@@ -64,6 +64,8 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   });
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
   await _frames(tester);
+  await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+  await _frames(tester);
   expect(_akademieCaption, findsOneWidget);
   expect(find.text('Lernen'), findsOneWidget);
   expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
