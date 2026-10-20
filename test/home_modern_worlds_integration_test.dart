@@ -98,7 +98,7 @@ void main() {
     await openDiscovery(tester, const ValueKey('home-discover-magic-hub'));
     expect(find.byType(LumoMagicHubScreen), findsOneWidget);
     expect(find.byType(LumoSceneBackground), findsOneWidget);
-    expect(find.text('Lumo Magic ✨'), findsOneWidget);
+    expect(find.text('Lumo Magic'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
