@@ -345,7 +345,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   foregroundColor: const Color(0xFF07223C),
                   minimumSize: const Size.fromHeight(54),
                 ),
-                onPressed: !_saving && _saveError == null && _progressLoaded ? _next : null,
+                onPressed: _selected == null ? null : (!_saving && _saveError == null && _progressLoaded ? _next : null),
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('Nächste Aufgabe',
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
