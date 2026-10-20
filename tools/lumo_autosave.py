@@ -177,8 +177,17 @@ def checkpoint() -> int:
     log(f"LOCAL SAVED: commit {sha} ({len(approved)} paths) on {branch}")
     pushed = git("push", "origin", f"HEAD:refs/heads/{branch}", check=False)
     if pushed.returncode != 0:
-        log("REMOTE NOT SAVED: push failed. Check GitHub authentication and retry.")
-        return 3
+        # A parallel Codex session may already have advanced the same branch.
+        # Never force-push or reset the other agent's work: preserve the
+        # current commit on a NEW remote rescue branch instead.
+        stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%d-%H%M%S")
+        rescue = f"checkpoint/lumo-cloud-rescue-{stamp}-{os.getpid()}"
+        git("switch", "-c", rescue)
+        pushed = git("push", "origin", f"HEAD:refs/heads/{rescue}", check=False)
+        if pushed.returncode:
+            log("REMOTE NOT SAVED: both pushes failed. Verify GitHub write access.")
+            return 3
+        branch = rescue
     log(f"REMOTE SAVED: {branch}@{sha}. A new Codex session can resume from GitHub.")
     return 0
 
