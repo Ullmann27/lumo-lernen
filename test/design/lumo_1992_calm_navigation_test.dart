@@ -88,19 +88,30 @@ void main() {
     await tester.scrollUntilVisible(more, 180,
         scrollable: find.byType(Scrollable).first, maxScrolls: 15);
     await tester.tap(more);
-    await tester.pump(const Duration(milliseconds: 600));
+    // ExpansionTile rebuilds and animates its clipped children. Pump until
+    // the row can actually accept pointer events, not merely until its key
+    // appears in the element tree.
+    await tester.pumpAndSettle();
     final readingEntry = find.byKey(const ValueKey('learning-extra-Lesen'));
     await tester.ensureVisible(readingEntry);
+    await tester.pumpAndSettle();
+    expect(tester.widget<ListTile>(readingEntry).onTap, isNotNull);
     await tester.tap(readingEntry);
+    await tester.pump();
     expect(reading, 1);
     final music = find.byKey(const ValueKey('learning-extra-Musik'));
     await tester.ensureVisible(music);
+    await tester.pumpAndSettle();
+    expect(tester.widget<ListTile>(music).onTap, isNotNull);
     await tester.tap(music);
+    await tester.pump();
     expect(practical, 'Musik');
     final openAdvanced = find.byKey(const ValueKey('learning-advanced-entry'));
     await tester.scrollUntilVisible(openAdvanced, 180,
         scrollable: find.byType(Scrollable).first, maxScrolls: 15);
+    await tester.pumpAndSettle();
     await tester.tap(openAdvanced);
+    await tester.pump();
     expect(advanced, 1);
     expect(tester.takeException(), isNull);
   });
