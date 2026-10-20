@@ -315,6 +315,15 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
   }
 }
 
+/// Public, stable route to the existing 1992 Mirror studio.
+/// Keep the original stateful interaction and its eight emotion variants.
+class LumoMirrorShowcaseScreen extends StatelessWidget {
+  const LumoMirrorShowcaseScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) => const _LumoMirrorShowcase();
+}
+
 /// Mirror-Showcase: alle 8 Moods anschauen + interagieren.
 class _LumoMirrorShowcase extends StatefulWidget {
   const _LumoMirrorShowcase();
