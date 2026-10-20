@@ -7,6 +7,7 @@ import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/features/cosmos/lumo_cosmos_screen.dart';
 import 'package:lumo_lernen/features/home/home_content.dart';
 import 'package:lumo_lernen/features/magic_hub/lumo_magic_hub_screen.dart';
+import 'package:lumo_lernen/features/story/lumo_quest_hub_screen.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
 
 void main() {
@@ -130,6 +131,27 @@ void main() {
       expect(tester.getSize(entry).height, greaterThanOrEqualTo(48),
           reason: '$name has to be comfortable for children to touch');
     }
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox.shrink());
+  });
+
+  testWidgets('premium Magic hub opens the real Quest screen on Fold cover',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(320, 740));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+
+    await showHome(tester, app);
+    await openDiscovery(tester, const ValueKey('home-discover-magic-hub'));
+    final quest = find.byKey(const ValueKey('magic-quest-route'));
+    await tester.ensureVisible(quest);
+    await tester.pump(const Duration(milliseconds: 250));
+    expect(quest.hitTestable(), findsOneWidget);
+    await tester.tap(quest);
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 450));
+    expect(find.byType(LumoQuestHubScreen), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
