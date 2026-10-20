@@ -139,7 +139,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
               dividerColor: Colors.transparent,
             ),
             child: ExpansionTile(
-              key: const ValueKey('learning-other-subjects'),
+              key: const PageStorageKey<String>('learning-other-subjects'),
               initiallyExpanded: _expanded,
               onExpansionChanged: (v) => setState(() => _expanded = v),
               title: const Text('Weitere Lernbereiche',
