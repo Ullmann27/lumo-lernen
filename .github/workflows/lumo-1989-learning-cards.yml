@@ -4,6 +4,9 @@ on:
   pull_request:
     paths:
       - 'lib/features/home/**'
+      - 'lib/features/magic_hub/**'
+      - 'test/home_modern_worlds_integration_test.dart'
+      - 'test/design/lumo_1992_modern_worlds_capture_test.dart'
       - 'test/design/home_1989_premium_cards_capture_test.dart'
       - '.github/workflows/lumo-1989-learning-cards.yml'
   workflow_dispatch:
@@ -49,6 +52,26 @@ jobs:
             test -s "visual-evidence/1989-learning-cards/$device-learning-cards.png"
             test -s "visual-evidence/1989-learning-cards/$device-start.png"
           done
+      - name: Render real Lumo 1992 Magic and Mirror on phone and Fold
+        env:
+          LUMO_MODERN_WORLDS_CAPTURES: visual-evidence/1992-modern-worlds
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s \
+            test/design/lumo_1992_modern_worlds_capture_test.dart \
+            test/home_modern_worlds_integration_test.dart
+          for device in fold-cover phone fold-open; do
+            test -s "visual-evidence/1992-modern-worlds/magic-$device.png"
+            test -s "visual-evidence/1992-modern-worlds/mirror-$device.png"
+          done
+      - name: Publish Lumo 1992 real-world captures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1992-modern-worlds-real-screenshots
+          path: visual-evidence/1992-modern-worlds/
+          if-no-files-found: warn
+          retention-days: 30
       - name: Publish original Flutter-rendered pictures
         if: always()
         uses: actions/upload-artifact@v4
