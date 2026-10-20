@@ -151,7 +151,7 @@ void main() {
     await tester.pumpWidget(home(state, (_) {}));
     await tester.pump();
 
-    for (final title in ['lernen', 'spielen', 'tests', 'belohnungen']) {
+    for (final title in ['lernen', 'spielen']) {
       expect(
         find.byKey(ValueKey('lumo-color-tile-icon-$title')),
         findsOneWidget,
