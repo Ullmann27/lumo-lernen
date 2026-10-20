@@ -163,6 +163,18 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
         self.assertEqual(MODULE.git_paths(
             self.repo, 'ls-files', '--others', '--exclude-standard'), set())
 
+    def test_1991_scene_quality_regression_pin_only_cleans_verified_gate_jpegs(self):
+        # Native PR #108 adds only the scene-switch QA script and workflow hook.
+        # The tracked gate GLB is byte-identical to the checksum-verified 1985 pin.
+        self.generate_images()
+        source = {'revision': '63cecf09fa89dd504cc468ebd121b4ec71a0f36c'}
+        self.assertIn(source['revision'], MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source=source)
+        self.assertTrue(self.glb.is_file())
+        self.assertTrue(all(not (self.repo / filename).exists() for filename in self.files))
+        self.assertEqual(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard'), set())
+
     def test_future_unknown_pin_must_not_remove_images(self):
         self.generate_images()
         self.cleanup(source={'revision': '0' * 40})
