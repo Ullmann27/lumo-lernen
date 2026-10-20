@@ -144,10 +144,12 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
-                    child: Text('Lumo Magic ✨',
+                    child: Text('Lumo Magic',
                         style: LumoTokens.typo.headlineLarge.copyWith(
                             color: Colors.white)),
                   ),
+                  const Icon(Icons.auto_awesome_rounded,
+                      color: Color(0xFFFFD873), size: 26),
                 ],
               ),
               const SizedBox(height: LumoTokens.space8),
@@ -373,7 +375,9 @@ class _LumoMirrorShowcaseState extends State<_LumoMirrorShowcase> {
     final moodLabel = _moodLabel(_mood);
     return Scaffold(
       backgroundColor: const Color(0xFF102841),
-      body: LumoMagicBackground(
+      body: LumoSceneBackground(
+        scene: LumoScene.home,
+        dimmed: true,
         child: SafeArea(
           child: LayoutBuilder(builder: (context, constraints) {
             final narrow = constraints.maxWidth < 380;
