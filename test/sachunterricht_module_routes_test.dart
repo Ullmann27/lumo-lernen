@@ -27,6 +27,8 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 650));
+    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+    await tester.pump(const Duration(milliseconds: 400));
 
     // Die Lernbereiche liegen in einem erst beim Scrollen gebauten Bereich.
     final area = find.byKey(const ValueKey('learning-area-sachunterricht'));
