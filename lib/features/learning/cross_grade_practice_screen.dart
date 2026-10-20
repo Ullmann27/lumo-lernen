@@ -275,7 +275,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   backgroundColor: selected != null &&
                           choices[i] == _task.answer
                       ? const Color(0xFF185848)
-                      : selected == choices[i]
+                      : selected == choices[i] || choices[i] == _firstWrongChoice
                           ? const Color(0xFF593643)
                           : const Color(0xFF123B65),
                   side: BorderSide(
