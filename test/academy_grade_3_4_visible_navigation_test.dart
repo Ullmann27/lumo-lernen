@@ -25,6 +25,8 @@ void main() {
       home: LumoAkademieScreen(appState: app),
     ));
     await tester.pump(const Duration(milliseconds: 900));
+    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+    await tester.pump(const Duration(milliseconds: 400));
 
     await tester.ensureVisible(find.byKey(const ValueKey('grade-pill-3')));
     await tester.tap(find.byKey(const ValueKey('grade-pill-3')));
