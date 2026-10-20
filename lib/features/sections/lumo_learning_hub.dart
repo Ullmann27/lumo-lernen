@@ -71,10 +71,16 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
         ? <String>[]
         : Curriculum.unitsForGrade(subject.name, grade, currentGradeOnly: true);
     final accessible = MediaQuery.textScalerOf(context).scale(1);
-    return ListView(
+    // Only a handful of primary navigation controls exist on this screen.
+    // Mount them eagerly so the optional paths remain discoverable on short
+    // phones and under large text, even before the user scrolls. Lazy slivers
+    // can otherwise keep essential secondary navigation absent from the tree.
+    return SingleChildScrollView(
       key: const PageStorageKey<String>('lumo-1992-learning-hub'),
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 36),
-      children: [
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
         DecoratedBox(
           decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -227,7 +233,8 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
               ),
             ),
         ],
-      ],
+        ],
+      ),
     );
   }
 
