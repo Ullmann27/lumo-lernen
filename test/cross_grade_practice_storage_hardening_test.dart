@@ -97,6 +97,13 @@ void main() {
     await tester.runAsync(() => tester.tap(
         find.byKey(const ValueKey('cross-grade-choice-0'))));
     await _frames(tester);
+    // An incorrect first choice now receives a second chance before any
+    // counter write. Finish that question to reach the storage-failure path.
+    if (store.rejectedWrites == 0) {
+      await tester.runAsync(() => tester.tap(
+        find.byKey(const ValueKey('cross-grade-choice-1'))));
+      await _frames(tester);
+    }
     expect(store.rejectedWrites, greaterThan(0));
     final next = find.byKey(const ValueKey('cross-grade-next'));
     // Seit der Lumo-Bühne (#315) liegt „Weiter“ unterhalb des vorab gebauten
