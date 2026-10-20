@@ -1,3 +1,5 @@
+> **AKTUELL 20.10.2026 – Checkpoint-Pflicht:** Root [AGENTS.md](../AGENTS.md) hat Vorrang vor historischen Oktober-4-Anweisungen. Keine ungepushten Cloud-Änderungen zurücklassen: nach jedem Grafik-Implementierungspaket `python3 tools/lumo_autosave.py once`, Remote-Branch und SHA bestätigen. Vor Cloud-Fortsetzung zuerst ungesicherte Originaldateien des aktiven Workspaces retten; keine alten PR-Bases blind überschreiben. `docs/CLOUD_RECOVERY_PROTOCOL_2026-10-20.md` beschreibt den vollständigen Rettungsweg.
+
 # Lumo: aktuelle Arbeitsanweisungen für Copilot
 
 **Vorrang ab 4. Oktober 2026:** Zuerst `docs/DESIGN_ZIEL_2026-10-04.md` lesen. Heinz will, dass die komplette App genau wie die elf Bilder in `docs/design_targets/2026-10-04/` aussieht. Die Bilder liegen jetzt als Dateien im Repo. Etappen, Abnahmepunkte und Regeln stehen in diesem Dokument. Claude koordiniert und prüft jede Etappe.
