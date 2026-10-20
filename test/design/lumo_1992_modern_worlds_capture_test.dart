@@ -40,7 +40,7 @@ void main() {
       await tester.pump(const Duration(milliseconds: 700));
       expect(find.byType(LumoMagicHubScreen), findsOneWidget);
       expect(find.byType(LumoSceneBackground), findsOneWidget);
-      expect(find.text('Lumo Magic ✨'), findsOneWidget);
+      expect(find.text('Lumo Magic'), findsOneWidget);
       if (out != null) {
         await captureLumoBoundary(
             tester, boundary, '$out/magic-${layout.key}.png',
@@ -56,6 +56,7 @@ void main() {
       ));
       await tester.pump(const Duration(milliseconds: 700));
       expect(find.byType(LumoMirrorShowcaseScreen), findsOneWidget);
+      expect(find.byType(LumoSceneBackground), findsOneWidget);
       expect(find.text('Lumo Mirror'), findsOneWidget);
       if (out != null) {
         await captureLumoBoundary(
