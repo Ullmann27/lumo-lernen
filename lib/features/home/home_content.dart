@@ -524,7 +524,8 @@ class HomeContent extends StatelessWidget {
                             'Sprache und Foto-Hilfe',
                             Icons.mic_rounded,
                             () => _open(context,
-                                LumoLiveProScreen(appState: appState))),
+                                LumoLiveProScreen(appState: appState)),
+                            key: const ValueKey('home-discover-live')),
                         _extra(
                             'Lumo Mirror',
                             'Acht Gefühle – Lumo reagiert auf dich',
@@ -568,13 +569,15 @@ class HomeContent extends StatelessWidget {
                             'Kleine Lernabenteuer',
                             Icons.auto_awesome_rounded,
                             () => _open(context,
-                                LumoQuestHubScreen(appState: appState))),
+                                LumoQuestHubScreen(appState: appState)),
+                            key: const ValueKey('home-discover-quest')),
                         _extra(
                             'Lumo Zauberwelt',
                             'Geschichten und weitere Ideen',
                             Icons.auto_fix_high_rounded,
                             () => _open(context,
-                                LumoMagicHubScreen(appState: appState))),
+                                LumoMagicHubScreen(appState: appState)),
+                            key: const ValueKey('home-discover-magic-hub')),
                         _extra(
                             'Lumo 3D Welt',
                             'Deine Spiele in einer App',
