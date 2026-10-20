@@ -1,0 +1,113 @@
+name: Lumo 1992 – direct Chrome APK release
+
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1992-direct-release-20261020
+    paths:
+      - .github/workflows/lumo-1992-chrome-direct-release.yml
+
+permissions:
+  contents: write
+  actions: read
+
+concurrency:
+  group: lumo-1992-exact-release
+  cancel-in-progress: false
+
+jobs:
+  publish-verified-apk:
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPO: Ullmann27/lumo-lernen
+      SOURCE_RUN: '39403810495'
+      EXPECTED_SOURCE: d2a01779a14a113b9d36b69393de1116fa39f205
+      EXPECTED_DIGEST: 843a7dfe59a1b46fb8dc0699078681cd90ba55620f56f605f10795ea1b04912d
+      RELEASE_TAG: lumo-v0.12.80-1992-modern-worlds-test
+      ASSET: Lumo-Lernen-Kart-1992-ARM64.apk
+
+    steps:
+      - name: Confirm exact successful source and Android tour
+        run: |
+          set -euo pipefail
+          gh api "repos/$REPO/actions/runs/$SOURCE_RUN" > source-run.json
+          gh api "repos/$REPO/actions/runs/$SOURCE_RUN/jobs?per_page=100" > source-jobs.json
+          python3 - <<'PY'
+          import json, os
+          run=json.load(open('source-run.json'))
+          jobs=json.load(open('source-jobs.json'))['jobs']
+          assert run['head_sha']==os.environ['EXPECTED_SOURCE'], 'Source SHA mismatch'
+          assert run['status']=='completed' and run['conclusion']=='success', 'Source workflow is not green'
+          assert run['head_branch']=='chatgpt/lumo-1992-premium-navigation-magic-2026-10-20', 'Incorrect branch'
+          for name in ['verify-and-build','android-tour']:
+              matching=[j for j in jobs if j['name']==name]
+              assert len(matching)==1 and matching[0]['conclusion']=='success', 'Missing green '+name
+          print('Release source confirmed:', run['head_sha'])
+          PY
+      - name: Download exact existing APK from its original GitHub workflow
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          gh run download "$SOURCE_RUN" --repo "$REPO" --name lumo-unified-arm64-verified --dir dist
+          for file in Lumo-Lernen-Neu.apk APK-SHA256.txt BUILD-PROVENANCE.json APK-VERIFICATION.json APP-VERSION.txt GODOT-SOURCE.json; do
+            test -s "dist/$file"
+          done
+      - name: Verify exact SHA256 version ABI signature and game source
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          apk=Path('dist/Lumo-Lernen-Neu.apk')
+          p=json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          with apk.open('rb') as f:
+              sha=hashlib.file_digest(f,'sha256').hexdigest()
+          assert sha==os.environ['EXPECTED_DIGEST']==p['sha256']
+          assert p['flutter_source_commit']==os.environ['EXPECTED_SOURCE']
+          assert p['bytes']==apk.stat().st_size==316143170
+          assert p['versionCode']==1992 and p['versionName']=='0.12.80'
+          assert p['abis']==['arm64-v8a']
+          assert p['godot']['engine']=='4.6.3'
+          assert p['godot']['revision']=='63cecf09fa89dd504cc468ebd121b4ec71a0f36c'
+          assert len(p['signingCertificateSha256'])==64
+          assert Path('dist/APK-SHA256.txt').read_text().split()[0]==sha
+          assert Path('dist/APP-VERSION.txt').read_text().strip()=='version: 0.12.80+1992'
+          print('Verified: original APK exact bytes, ARM64, signing, Flutter and Godot pins',sha)
+          PY
+          cp dist/Lumo-Lernen-Neu.apk "dist/$ASSET"
+          printf '%s  %s\n' "$EXPECTED_DIGEST" "$ASSET" > "dist/$ASSET.sha256"
+          printf 'Source run: %s\nSource commit: %s\n' "$SOURCE_RUN" "$EXPECTED_SOURCE" > dist/SOURCE-IDENTITY.txt
+      - name: Publish direct download on GitHub Releases instead of ZIP
+        run: |
+          set -euo pipefail
+          if gh release view "$RELEASE_TAG" --repo "$REPO" >/dev/null 2>&1; then
+            echo 'Tag already exists; refusing to overwrite a distributed build.'
+            exit 1
+          fi
+          gh release create "$RELEASE_TAG" \
+            "dist/$ASSET" "dist/$ASSET.sha256" dist/BUILD-PROVENANCE.json \
+            dist/APK-VERIFICATION.json dist/SOURCE-IDENTITY.txt \
+            --repo "$REPO" --target "$EXPECTED_SOURCE" \
+            --title 'Lumo Lernen + Kart 1992 – Premium-Welten Android-Test' \
+            --notes "Direkter Download der ARM64-APK über Chrome/GitHub ohne ChatGPT oder ZIP. Version 0.12.80+1992, Git-Quellstand $EXPECTED_SOURCE, Godot 4.6.3. Erfolgreiche Flutter-Regression, Android-Build und Emulatortour: https://github.com/$REPO/actions/runs/$SOURCE_RUN. SHA256 $EXPECTED_DIGEST. Testversion; Hardwareabnahme auf einem realen Samsung ausständig." \
+            --prerelease
+      - name: Verify public-facing release asset identity
+        run: |
+          set -euo pipefail
+          gh api "repos/$REPO/releases/tags/$RELEASE_TAG" > release.json
+          python3 - <<'PY'
+          import json, os
+          r=json.load(open('release.json'))
+          assert r['prerelease'] and not r['draft']
+          assert r['tag_name']==os.environ['RELEASE_TAG']
+          apk=[a for a in r['assets'] if a['name']==os.environ['ASSET']]
+          assert len(apk)==1 and apk[0]['state']=='uploaded'
+          assert apk[0]['size']==316143170
+          if apk[0].get('digest'):
+              assert apk[0]['digest']=='sha256:'+os.environ['EXPECTED_DIGEST']
+          print('CHROME_DOWNLOAD:',apk[0]['browser_download_url'])
+          print('RELEASE_PAGE:',r['html_url'])
+          PY
