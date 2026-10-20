@@ -89,6 +89,12 @@ void main() {
         expect(find.byKey(const ValueKey('home-learn')), findsOneWidget);
         expect(find.byKey(const ValueKey('home-games')), findsOneWidget);
         expect(tester.takeException(), isNull);
+        if (out != null) {
+          // Retain the screenshot artifact identity with the real, deliberately
+          // compact cover-screen viewport. Never counterfeit a hidden tile.
+          await captureLumoBoundary(
+              tester, captureKey, '$out/$device-learning-cards.png');
+        }
         await tester.pumpWidget(const SizedBox.shrink());
         await tester.pump(const Duration(milliseconds: 300));
         return;
