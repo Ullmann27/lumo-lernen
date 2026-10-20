@@ -65,8 +65,10 @@ void main() {
     await tester.pump(const Duration(milliseconds: 450));
     final music = find.byKey(const ValueKey('home-island-musik'));
     await tester.scrollUntilVisible(
-      music, 360, scrollable: find.byType(Scrollable).first);
-    await tester.pump();
+      music, -260, scrollable: find.byType(Scrollable).first);
+    await tester.ensureVisible(music);
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(music.hitTestable(), findsOneWidget);
     await tester.tap(music);
     // MaterialPageRoute builds through its first transition frame. Check the
     // real destination after navigation, not during the initial push frame.
