@@ -24,7 +24,24 @@ genannten Dateien sind vorhanden; der vollständige Inhalt bleibt unverändert.
   Es liegen keine weiteren ignorierten Quelländerungen vor.
 
 Der folgende Ausgangsbericht bleibt als historische Dokumentation erhalten.
-Remote-Nachweis und laufender Sicherungsprozess werden nach dem Rettungs-Push ergänzt.
+## Verifizierter Rettungs-Push
+
+- Eigener Branch: `checkpoint/lumo-cloud-rescue-20261021-014435`.
+- Erster vollständiger Rettungscommit:
+  [`ec0fc517d5c0fc6e01d5c8b221aad94e573a4cbd`](https://github.com/Ullmann27/lumo-lernen/commit/ec0fc517d5c0fc6e01d5c8b221aad94e573a4cbd).
+- Sicherungsskript meldete `REMOTE SAVED`. `git ls-remote` bestätigte exakt
+  denselben vollständigen SHA auf GitHub.
+- Zusätzlich GitHub-Git-Tree über die API gelesen: alle **35** Quell-/Nachweispfade
+  stimmen mit den lokalen Git-Blobs überein; alle **elf** ursprünglichen Dateien
+  stimmen außerdem bytegenau mit dem SHA-256-Inventar vor dem Branchwechsel überein.
+- Python-Sicherungstests aus PR #394: **3/3 bestanden**, neu am 21. Oktober ausgeführt.
+  Der Test mit synthetischen Schlüsselmustern wurde gelesen und kontrolliert
+  separat hinzugefügt, da der Sicherheitsfilter ihn erwartungsgemäß ausschließt.
+- `AGENTS.md`, Rettungsprotokoll, Hilfsskript, Tests und CI-Guard aus dem
+  geprüften PR-Head übernommen. Main und andere Entwicklungsbranches unverändert.
+- Der regelmäßige Watcher wird nach diesem Dokumentationscommit im aktiven
+  Workspace gestartet. Start, PID und tatsächliche Meldung werden separat belegt.
+
 
 ---
 
