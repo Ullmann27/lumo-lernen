@@ -15,6 +15,7 @@ import 'package:lumo_lernen/features/learning_modules/learning_module_registry.d
 import 'package:lumo_lernen/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart';
 import 'package:lumo_lernen/widgets/design/lumo_design_system.dart';
+import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 import 'package:lumo_lernen/widgets/design/lumo_quantity_art.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
@@ -70,8 +71,12 @@ Future<LumoAppState> _open(
 
 Finder _answers(String topic) => find.descendant(
     of: find.byType(GridView),
-    matching: topic == 'm1_plus10'
-        ? find.byType(GestureDetector)
+    // The actual SOL maths route now uses pressable crystal answer widgets.
+    // Preserve the original accessibility, visible-bounds and 48dp assertions
+    // against the REAL answer controls, rather than counting inner gestures
+    // (or the removed legacy wrapper).
+    matching: {'m1_plus10', 'm1_minus10', 'm1_zahlen10'}.contains(topic)
+        ? find.byType(LumoAnswerCrystal)
         : find.byType(LumoLessonAnswerTap));
 
 int _choiceCount(String topic) => topic == 'm1_zahlen10' &&
@@ -106,6 +111,10 @@ int _numberSeedFor(int kind, int first, {int? second}) {
 
 void _expectVisibleAnswers(WidgetTester tester, String topic) {
   final choices = _answers(topic);
+  if ({'m1_plus10', 'm1_minus10', 'm1_zahlen10'}.contains(topic)) {
+    expect(choices, findsWidgets,
+        reason: 'Real arithmetic answers must use interactive Lumo crystals');
+  }
   expect(choices, findsNWidgets(_choiceCount(topic)));
   final navigation = tester.getRect(find.byType(LumoBottomNavigation));
   for (final element in choices.evaluate()) {
