@@ -62,8 +62,10 @@ void main() {
       expect(chooser.hitTestable(), findsOneWidget);
       await tester.tap(chooser);
       await tester.pump(const Duration(milliseconds: 650));
-      final firstSubject =
-          find.byKey(const ValueKey('home-island-mathe'));
+      // The newer premium subject cards no longer have the obsolete
+      // 'home-island-mathe' key. Use the real child-facing title and
+      // description, which are guaranteed by the current production card.
+      final firstSubject = find.text('Zahlen, Rechnen und Formen');
       await tester.scrollUntilVisible(
           firstSubject, -270,
           scrollable: find.byType(Scrollable).first,
