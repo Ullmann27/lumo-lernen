@@ -433,7 +433,7 @@ jobs:
           path: dist/
       - name: Verify complete release evidence, exact Flutter commit and newer Kart
         env:
-          SOURCE_SHA: \${{ github.event.pull_request.head.sha }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
           GODOT_SHA: 8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c
         run: |
           set -euo pipefail
@@ -458,12 +458,12 @@ jobs:
           PY
       - name: Publish unique, immutable test APK without touching existing Releases
         env:
-          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
-          SOURCE_SHA: \${{ github.event.pull_request.head.sha }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
         run: |
           set -euo pipefail
-          short_sha="\${SOURCE_SHA:0:12}"
-          tag="lumo-nextgen-20261021-\${short_sha}"
+          short_sha="${SOURCE_SHA:0:12}"
+          tag="lumo-nextgen-20261021-${short_sha}"
           if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
             echo "Candidate already published; existing release preserved."
             exit 0
