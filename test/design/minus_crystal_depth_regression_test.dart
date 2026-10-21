@@ -76,12 +76,12 @@ void main() {
     expect(find.byType(MinusBis10Screen), findsOneWidget);
     final crystals = find.byType(LumoAnswerCrystal);
     expect(crystals, findsNWidgets(4));
-    expect(tester.widgetList<LumoAnswerCrystal>(crystals)
-        .every((c) => c.state == LumoCrystalState.neutral), isTrue);
+    expect(
+        tester
+            .widgetList<LumoAnswerCrystal>(crystals)
+            .every((c) => c.state == LumoCrystalState.neutral),
+        isTrue);
     final output = Platform.environment['LUMO_CRYSTAL_CAPTURE_DIR'];
-    if (output != null) {
-      await captureLumoBoundary(tester, boundaryKey, '$output/minus-phone.png');
-    }
     for (var i = 0; i < 4; i++) {
       final rect = tester.getRect(crystals.at(i));
       expect(rect.height, greaterThanOrEqualTo(100),
@@ -91,22 +91,33 @@ void main() {
           of: crystals.at(i), matching: find.byType(OutlinedButton));
       expect(button.hitTestable(), findsOneWidget);
       final node = tester.getSemantics(button);
-      expect(node.label, contains(tester.widget<LumoAnswerCrystal>(crystals.at(i)).label));
+      expect(node.label,
+          contains(tester.widget<LumoAnswerCrystal>(crystals.at(i)).label));
     }
     // Inspect actual composite pixels, including Material/Button descendants.
     // A theme background covering the painter also fails this check.
-    final boundary = tester.renderObject<RenderRepaintBoundary>(find.byKey(boundaryKey));
+    final boundary =
+        tester.renderObject<RenderRepaintBoundary>(find.byKey(boundaryKey));
     final rect = tester.getRect(crystals.first);
     await tester.runAsync(() async {
       final image = await boundary.toImage();
       try {
-        final pixels = (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
+        if (output != null) {
+          final png = (await image.toByteData(format: ui.ImageByteFormat.png))!;
+          final file = File('$output/minus-phone.png');
+          await file.parent.create(recursive: true);
+          await file.writeAsBytes(png.buffer.asUint8List());
+        }
+        final pixels =
+            (await image.toByteData(format: ui.ImageByteFormat.rawRgba))!;
         var brightFacetPixels = 0;
         var samples = 0;
         for (var y = (rect.top + rect.height * .2).round();
-            y < rect.top + rect.height * .56; y++) {
+            y < rect.top + rect.height * .56;
+            y++) {
           for (var x = (rect.left + rect.width * .08).round();
-              x < rect.left + rect.width * .24; x++) {
+              x < rect.left + rect.width * .24;
+              x++) {
             final offset = (y * image.width + x) * 4;
             if (pixels.getUint8(offset + 1) > 105 &&
                 pixels.getUint8(offset + 2) > 150) brightFacetPixels++;
