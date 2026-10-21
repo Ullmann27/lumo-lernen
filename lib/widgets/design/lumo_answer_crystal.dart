@@ -241,6 +241,39 @@ class LumoCrystalPainter extends CustomPainter {
             ..color = accent.withValues(alpha: .28)
             ..strokeWidth = .7);
     }
+    // Fine refracted crystal veins add visual depth to the real interactive
+    // answer controls. Only decorative edges are painted: the central digit
+    // stays unobstructed and the correct choice is never revealed beforehand.
+    final fracture = Paint()
+      ..color = Colors.white.withValues(alpha: .24)
+      ..strokeWidth = .8
+      ..style = PaintingStyle.stroke;
+    final rainbow = Paint()
+      ..color = accent.withValues(alpha: .4)
+      ..strokeWidth = 1.05
+      ..style = PaintingStyle.stroke;
+    final leftVein = Path()
+      ..moveTo(p(.05, .48).dx, p(.05, .48).dy)
+      ..lineTo(p(.18, .33).dx, p(.18, .33).dy)
+      ..lineTo(p(.13, .19).dx, p(.13, .19).dy)
+      ..moveTo(p(.16, .73).dx, p(.16, .73).dy)
+      ..lineTo(p(.24, .84).dx, p(.24, .84).dy);
+    final topVein = Path()
+      ..moveTo(p(.44, .05).dx, p(.44, .05).dy)
+      ..lineTo(p(.54, .13).dx, p(.54, .13).dy)
+      ..lineTo(p(.73, .12).dx, p(.73, .12).dy);
+    final rightVein = Path()
+      ..moveTo(p(.96, .49).dx, p(.96, .49).dy)
+      ..lineTo(p(.83, .62).dx, p(.83, .62).dy)
+      ..lineTo(p(.89, .78).dx, p(.89, .78).dy);
+    canvas.drawPath(leftVein, fracture);
+    canvas.drawPath(topVein, fracture);
+    canvas.drawPath(rightVein, rainbow);
+    canvas.drawCircle(p(.2, .14), 1.8,
+        Paint()..color = Colors.white.withValues(alpha: .76));
+    canvas.drawCircle(p(.79, .79), 1.5,
+        Paint()..color = accent.withValues(alpha: .85));
+
     canvas.drawPath(
         body,
         Paint()

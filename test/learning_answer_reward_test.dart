@@ -6,6 +6,7 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -45,6 +46,14 @@ void main() {
         await tester.pump();
         final renderer = tester.widget<AdaptiveTaskRenderer>(
           find.byType(AdaptiveTaskRenderer),
+        );
+        // Regression: the real schoolwork/quick-practice Maths route must
+        // actually render crystals; a standalone design fixture is not enough.
+        expect(find.byType(LumoAnswerCrystal), findsWidgets);
+        expect(
+          tester.widgetList<LumoAnswerCrystal>(find.byType(LumoAnswerCrystal))
+              .every((crystal) => crystal.state == LumoCrystalState.neutral),
+          isTrue,
         );
         final wrong = renderer.task.options.firstWhere(
           (option) =>

@@ -307,23 +307,50 @@ def _start_actual_embedded_race(out: Path) -> dict:
         raise RuntimeError('Native Godot game process is not alive')
     evidence_taps = []
     garage_fifth = None
-    for index in range(5):
-        wanted = 'Weiter' if index < 4 else 'Rennen starten'
-        for attempt in range(12):
-            png = _screencap()
-            capture = out / f'21_kart_garage_step_{index + 1}.png'
-            capture.write_bytes(png)
-            point = _read_garage_footer(png, wanted)
-            if point is not None:
-                if index == 4:
-                    garage_fifth = png
-                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
-                evidence_taps.append({'step': index + 1, 'button': wanted, 'tap': point})
-                time.sleep(2)
-                break
-            time.sleep(1)
-        else:
-            raise RuntimeError(f'Missing Android kart footer at step {index + 1}: {wanted}')
+    # NextGen Android opens the real illustrated landing before the preserved
+    # five-step garage. The real golden START starts the race directly.
+    # Recognise its text from an actual screenshot; do not inject an
+    # unverified coordinate or claim a race merely because the game is alive.
+    premium_start = None
+    for attempt in range(8):
+        screen = _screencap()
+        (out / '21_kart_premium_start.png').write_bytes(screen)
+        premium_start = _read_garage_footer(screen, 'START')
+        if premium_start is not None:
+            garage_fifth = screen
+            base.adb('shell', 'input', 'tap',
+                     str(premium_start[0]), str(premium_start[1]))
+            evidence_taps.append({
+                'step': 'premium-start', 'button': 'START', 'tap': premium_start,
+            })
+            time.sleep(2)
+            break
+        time.sleep(1)
+    if premium_start is None:
+        # Older/compatibility builds still expose the verified five-step
+        # wizard. Require each actual Android-rendered button explicitly.
+        for index in range(5):
+            wanted = 'Weiter' if index < 4 else 'Rennen starten'
+            for attempt in range(12):
+                png = _screencap()
+                capture = out / f'21_kart_garage_step_{index + 1}.png'
+                capture.write_bytes(png)
+                point = _read_garage_footer(png, wanted)
+                if point is not None:
+                    if index == 4:
+                        garage_fifth = png
+                    base.adb('shell', 'input', 'tap',
+                             str(point[0]), str(point[1]))
+                    evidence_taps.append({
+                        'step': index + 1, 'button': wanted, 'tap': point,
+                    })
+                    time.sleep(2)
+                    break
+                time.sleep(1)
+            else:
+                raise RuntimeError(
+                    f'Missing Android kart footer at step {index + 1}: {wanted}'
+                )
     (out / '21_kart_real_touches.json').write_text(json.dumps(evidence_taps, indent=2))
     if garage_fifth is None:
         raise RuntimeError('Last garage image was not captured')
@@ -337,7 +364,8 @@ def _start_actual_embedded_race(out: Path) -> dict:
         screen = _screencap()
         (out / '21_lumo_kart_real_race.png').write_bytes(screen)
         log = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
-        if '[Kart] race_world_ready: sonnenhafen mode=race' in log:
+        if any('[Kart] race_world_ready: sonnenhafen mode=' + mode in log
+               for mode in ('race', 'cup', 'time_trial')):
             try:
                 report = {'touches': evidence_taps,
                           'garage_replaced': evidence.garage_replaced(garage_fifth, screen),

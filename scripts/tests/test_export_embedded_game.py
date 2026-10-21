@@ -175,6 +175,26 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
         self.assertEqual(MODULE.git_paths(
             self.repo, 'ls-files', '--others', '--exclude-standard'), set())
 
+    def test_1993_cinematic_kart_only_cleans_original_digest_verified_gate_images(self):
+        self.generate_images()
+        source = {'revision': '8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c'}
+        self.assertIn(source['revision'], MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source=source)
+        self.assertTrue(self.glb.is_file())
+        self.assertTrue(all(not (self.repo / filename).exists() for filename in self.files))
+        self.assertEqual(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard'), set())
+
+    def test_1994_premium_kart_preserves_meshy_gate_hash_guard(self):
+        self.generate_images()
+        source = {'revision': '928fed3c7f0b39357e0f06463ce13c8d5677d6e1'}
+        self.assertIn(source['revision'], MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source=source)
+        self.assertTrue(self.glb.is_file())
+        self.assertTrue(all(not (self.repo / path).exists() for path in self.files))
+        self.assertEqual(MODULE.git_paths(
+            self.repo, 'ls-files', '--others', '--exclude-standard'), set())
+
     def test_future_unknown_pin_must_not_remove_images(self):
         self.generate_images()
         self.cleanup(source={'revision': '0' * 40})
