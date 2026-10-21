@@ -18,10 +18,12 @@ abstract final class LumoMaterials {
         gradient: LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          stops: const [0, .24, 1],
+          stops: const [0, .16, .47, 1],
           colors: [
             Color.lerp(base, LumoVisualTokens.glassHighlight, .65)!
                 .withValues(alpha: (opacity + .10).clamp(0, 1)),
+            Color.lerp(base, LumoVisualTokens.glassHighlight, .32)!
+                .withValues(alpha: (opacity + .06).clamp(0, 1)),
             base.withValues(alpha: opacity),
             LumoVisualTokens.glassDeep
                 .withValues(alpha: (opacity + .12).clamp(0, 1)),
