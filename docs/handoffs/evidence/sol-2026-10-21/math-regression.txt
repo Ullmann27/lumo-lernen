@@ -61,3 +61,10 @@ The test description was:
 02:36 +19 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: (tearDownAll)
 02:36 +19 -1: loading /workspace/lumo-lernen/test/cross_grade_second_chance_test.dart
 02:38 +19 -1: /workspace/lumo-lernen/test/cross_grade_second_chance_test.dart: first mistake has a second chance and no saved attempt
+02:41 +20 -1: loading /workspace/lumo-lernen/test/learning_answer_reward_test.dart
+02:42 +20 -1: /workspace/lumo-lernen/test/learning_answer_reward_test.dart: incorrect LumoSessionKind.schoolwork answer updates the wallet without earning XP
+02:46 +21 -1: /workspace/lumo-lernen/test/learning_answer_reward_test.dart: incorrect LumoSessionKind.quickPractice answer updates the wallet without earning XP
+02:47 +22 -1: Some tests failed.
+
+Failing tests:
+  /workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung
