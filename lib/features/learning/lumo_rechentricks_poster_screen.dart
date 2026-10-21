@@ -98,7 +98,7 @@ class _LumoRechentricksPosterScreenState
         body: Center(child: Text('Hier entstehen bald neue Rechentricks.')),
       );
     }
-    final selection = _selected.clamp(0, activeEntries.length - 1);
+    final selection = _selected.clamp(0, activeEntries.length - 1).toInt();
     final entry = activeEntries[selection];
     final exercise = entry.examples[_exampleIndex % entry.examples.length];
     final mentor = entry.mentor;
