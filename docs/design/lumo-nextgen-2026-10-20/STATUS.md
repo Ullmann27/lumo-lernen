@@ -1,3 +1,58 @@
+# Cloud-Rettung – 21. Oktober 2026
+
+Die Designarbeit wurde auf Nutzeranweisung pausiert. Im ursprünglichen
+Workspace wurden vor Branchwechsel/Update alle elf uncommitteten Quell- und
+Testdateien erfasst und zusätzlich lokal archiviert. Die vier ausdrücklich
+genannten Dateien sind vorhanden; der vollständige Inhalt bleibt unverändert.
+
+- Ausgangs-HEAD: `4746aebdefb10c7c5aaa4d0258a46797bfd7def6`.
+- Verfahren: [PR #394](https://github.com/Ullmann27/lumo-lernen/pull/394),
+  Hilfsdateien gezielt aus `b63e0e8415404454705e8b33d619237836b99532` übernommen.
+  Keine Übernahme der abweichenden App-Basis.
+- [Originaldateien und SHA-256](evidence/cloud-rescue-2026-10-21/original-manifest.json).
+- [Render-/Protokollinventar](evidence/cloud-rescue-2026-10-21/evidence-manifest.json).
+- Beide Scratch-Renderiterationen mit jeweils sechs PNGs sind archiviert.
+- Der erhaltene zweite Flutter-Testlauf meldet **15 bestandene Tests**:
+  Hero-Begrenzung/Text, kompakte Lernkacheln, Effektbudget/Bewegungsreduktion
+  und sechs echte AppShell-Render mit Navigation. Dies ist ein erhaltener
+  Testnachweis vom 20. Oktober, kein neuer Lauf und keine visuelle Abnahme.
+- Iteration 1 enthält bekannte Layoutfehler. Iteration 2 war vor der
+  Unterbrechung noch nicht vollständig visuell überprüft.
+- Die vollständigen Referenzbilder wurden inzwischen im Chat bereitgestellt.
+  Ihre Bilddateien liegen weiterhin nicht als lokale Produktionsassets vor.
+- Generierte Flutter-/Build-Caches wurden inventarisiert und nicht versioniert.
+  Es liegen keine weiteren ignorierten Quelländerungen vor.
+
+Der folgende Ausgangsbericht bleibt als historische Dokumentation erhalten.
+## Verifizierter Rettungs-Push
+
+- Eigener Branch: `checkpoint/lumo-cloud-rescue-20261021-014435`.
+- Erster vollständiger Rettungscommit:
+  [`ec0fc517d5c0fc6e01d5c8b221aad94e573a4cbd`](https://github.com/Ullmann27/lumo-lernen/commit/ec0fc517d5c0fc6e01d5c8b221aad94e573a4cbd).
+- Sicherungsskript meldete `REMOTE SAVED`. `git ls-remote` bestätigte exakt
+  denselben vollständigen SHA auf GitHub.
+- Zusätzlich GitHub-Git-Tree über die API gelesen: alle **35** Quell-/Nachweispfade
+  stimmen mit den lokalen Git-Blobs überein; alle **elf** ursprünglichen Dateien
+  stimmen außerdem bytegenau mit dem SHA-256-Inventar vor dem Branchwechsel überein.
+- Python-Sicherungstests aus PR #394: **3/3 bestanden**, neu am 21. Oktober ausgeführt.
+  Der Test mit synthetischen Schlüsselmustern wurde gelesen und kontrolliert
+  separat hinzugefügt, da der Sicherheitsfilter ihn erwartungsgemäß ausschließt.
+- `AGENTS.md`, Rettungsprotokoll, Hilfsskript, Tests und CI-Guard aus dem
+  geprüften PR-Head übernommen. Main und andere Entwicklungsbranches unverändert.
+- Der erste `nohup`-Prozess (PID 5863) wurde nach dem Tool-Aufruf beendet
+  und bestand die spätere Lebensprüfung nicht. Er wurde ersetzt durch einen
+  verwalteten laufenden Exec-Prozess (PID **5983**, Session **2651**), Intervall
+  **120 Sekunden**. Log: `/tmp/lumo-autosave-managed.log`.
+  Der nächste geplante Durchlauf hat die drei Dokumentationsdateien selbstständig
+  committed und gepusht: `cd812bf709e6789ad02b0a996919249b9da10f30`.
+  `REMOTE SAVED` und identischer Remote-SHA sind geprüft; der Prozess lief
+  anschließend weiter. Damit ist ein realer automatischer Push nachgewiesen.
+  Ein suspendierter/beendeter Cloud-Workspace kann auch diesen Prozess stoppen;
+  manuelle Remote-Checkpoints nach Arbeitspaketen bleiben verpflichtend.
+
+
+---
+
 # Lumo Next Gen – Produktion, 20. Oktober 2026
 
 ## Verifizierte Arbeitsbasis

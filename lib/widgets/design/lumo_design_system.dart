@@ -7,6 +7,8 @@ import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import 'lumo_motion.dart';
 import 'lumo_glass_optics.dart';
+import 'lumo_materials.dart';
+import 'lumo_scene_artwork.dart';
 
 enum LumoDesignFoxPose {
   cardsWelcome('fox_cards_welcome', 'Lumo lädt dich zum Kartenspiel ein'),
@@ -252,42 +254,12 @@ class LumoGlassCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final base = color ?? LumoVisualTokens.glass;
-    final highlightAlpha = (surfaceOpacity + .20).clamp(0.0, 1.0).toDouble();
-    final upperAlpha = (surfaceOpacity + .14).clamp(0.0, 1.0).toDouble();
-    final lowerAlpha = (surfaceOpacity + .08).clamp(0.0, 1.0).toDouble();
-    final deepAlpha = (surfaceOpacity + .17).clamp(0.0, 1.0).toDouble();
     return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          stops: const [0.0, .12, .48, 1.0],
-          colors: [
-            Color.lerp(base, LumoVisualTokens.cyanBright, .19)!
-                .withValues(alpha: highlightAlpha),
-            base.withValues(alpha: upperAlpha),
-            base.withValues(alpha: lowerAlpha),
-            LumoVisualTokens.navigation.withValues(alpha: deepAlpha),
-          ],
-        ),
-        borderRadius: BorderRadius.circular(radius),
-        border: Border.all(
-          color:
-              borderColor ?? LumoVisualTokens.cyanBright.withValues(alpha: .50),
-          width: 1.35,
-        ),
-        boxShadow: [
-          BoxShadow(
-            color: LumoVisualTokens.cyan.withValues(alpha: .20),
-            blurRadius: 26,
-            spreadRadius: -7,
-          ),
-          const BoxShadow(
-            color: Color(0x44000000),
-            blurRadius: 19,
-            offset: Offset(0, 9),
-          ),
-        ],
+      decoration: LumoMaterials.glass(
+        radius: radius,
+        base: base,
+        border: borderColor,
+        opacity: (surfaceOpacity + .12).clamp(0, 1),
       ),
       child: CustomPaint(
         foregroundPainter: LumoGlassOptics(radius: radius),
@@ -307,9 +279,11 @@ class LumoColorTile extends StatelessWidget {
       required this.subtitle,
       required this.color,
       required this.onTap,
+      this.sceneAsset,
       this.iconAsset});
   final IconData icon;
   final String? iconAsset;
+  final String? sceneAsset;
   final String title;
   final String subtitle;
   final Color color;
@@ -321,9 +295,14 @@ class LumoColorTile extends StatelessWidget {
         final narrow = constraints.maxWidth < 165;
         final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.2;
         // Symbol wächst mit der Kachel: auf dem Fold-Innendisplay keine leeren Flächen.
-        final iconSize = constraints.maxHeight.isFinite
+        final naturalIconSize = constraints.maxHeight.isFinite
             ? ((constraints.maxHeight - 58) * 0.82).clamp(30.0, 92.0).toDouble()
             : (narrow ? 32.0 : 40.0);
+        // Reserve both horizontal padding and the arrow before sizing art.
+        // Height alone overflows a 148dp tile (the #392 compact regression).
+        final maxIconSize =
+            ((constraints.maxWidth - 56) / 1.24).clamp(24.0, 92.0);
+        final iconSize = naturalIconSize.clamp(24.0, maxIconSize);
         final titleSize =
             constraints.maxWidth >= 240 ? 24.0 : (narrow ? 15.0 : 18.0);
         return Semantics(
@@ -337,118 +316,150 @@ class LumoColorTile extends StatelessWidget {
                     onTap: onTap,
                     borderRadius: BorderRadius.circular(22),
                     child: Ink(
-                      padding: EdgeInsets.all(constraints.maxHeight < 100
-                          ? 8
-                          : narrow
-                              ? 12
-                              : 14),
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(22),
                         gradient: LinearGradient(
                             begin: Alignment.topLeft,
                             end: Alignment.bottomRight,
-                            stops: const [0, .52, 1],
+                            stops: const [
+                              0,
+                              .52,
+                              1
+                            ],
                             colors: [
-                              Color.lerp(LumoVisualTokens.navigation, color, .19)!,
+                              Color.lerp(
+                                  LumoVisualTokens.navigation, color, .19)!,
                               Color.lerp(LumoVisualTokens.glass, color, .23)!,
-                              Color.lerp(LumoVisualTokens.navigation, color, .14)!,
+                              Color.lerp(
+                                  LumoVisualTokens.navigation, color, .14)!,
                             ]),
-                        border: Border.all(color: color.withValues(alpha: .92), width: 1.6),
+                        border: Border.all(
+                            color: Color.lerp(color, LumoVisualTokens.cyan, .4)!
+                                .withValues(alpha: .45)),
                         boxShadow: [
                           BoxShadow(
-                              color: color.withValues(alpha: .25),
-                              blurRadius: 22,
-                              spreadRadius: -3,
-                              offset: const Offset(0, 9)),
+                              color: color.withValues(alpha: .12),
+                              blurRadius: 18,
+                              spreadRadius: -5,
+                              offset: const Offset(0, 6)),
                           const BoxShadow(
                               color: Color(0x39051432),
                               blurRadius: 5,
                               offset: Offset(0, 4))
                         ],
                       ),
-                      child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                                child: Row(children: [
-                              // Weicher Lichthof in der Akzentfarbe hinter dem Symbol.
-                              DecoratedBox(
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  gradient: RadialGradient(colors: [
-                                    LumoVisualTokens.glass,
-                                    Color.lerp(LumoVisualTokens.glass, color, .36)!,
-                                    color.withValues(alpha: .28),
-                                  ]),
-                                  border: Border.all(
-                                      color: LumoVisualTokens.cyanBright.withValues(alpha: .72),
-                                      width: 2),
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: color.withValues(alpha: .32),
-                                      blurRadius: 12,
-                                      offset: const Offset(0, 5),
-                                    )
-                                  ],
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.all(iconSize * 0.12),
-                                  child: iconAsset != null
-                                      ? Image.asset(iconAsset!,
-                                          key: ValueKey(
-                                              'lumo-color-tile-icon-${title.toLowerCase()}'),
-                                          width: iconSize,
-                                          height: iconSize,
-                                          fit: BoxFit.contain,
-                                          excludeFromSemantics: true,
-                                          // A local asset still decodes asynchronously
-                                          // on first use. Keep the meaningful icon
-                                          // visible until the PNG frame is painted.
-                                          frameBuilder: (context, image, frame,
-                                                  sync) =>
-                                              sync || frame != null
-                                                  ? image
-                                                  : Icon(icon,
-                                                      size: iconSize,
-                                                      color: LumoVisualTokens
-                                                          .cyanBright),
-                                          errorBuilder: (_, __, ___) => Icon(
-                                              icon,
-                                              size: iconSize,
-                                              color:
-                                                  LumoVisualTokens.cyanBright))
-                                      : Icon(icon,
-                                          size: iconSize,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(22),
+                        child: Stack(fit: StackFit.expand, children: [
+                          if (sceneAsset != null)
+                            LumoSceneArtwork(asset: sceneAsset!),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(22),
+                              gradient: sceneAsset == null
+                                  ? null
+                                  : const LinearGradient(
+                                      begin: Alignment.topRight,
+                                      end: Alignment.bottomLeft,
+                                      stops: [0, .46, .72, 1],
+                                      colors: [
+                                        Color(0x1506193F),
+                                        Color(0x8F061939),
+                                        Color(0xF5061939),
+                                        Color(0xFF061839),
+                                      ],
+                                    ),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsets.all(constraints.maxHeight < 100
+                                      ? 8
+                                      : narrow
+                                          ? 12
+                                          : 14),
+                              child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Expanded(
+                                        child: Row(children: [
+                                      // Weicher Lichthof in der Akzentfarbe hinter dem Symbol.
+                                      DecoratedBox(
+                                        decoration: BoxDecoration(
+                                          shape: BoxShape.circle,
+                                          gradient: RadialGradient(colors: [
+                                            color.withValues(alpha: .26),
+                                            color.withValues(alpha: .08),
+                                            color.withValues(alpha: 0),
+                                          ]),
+                                        ),
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsets.all(iconSize * 0.12),
+                                          child: iconAsset != null
+                                              ? Image.asset(iconAsset!,
+                                                  key: ValueKey(
+                                                      'lumo-color-tile-icon-${title.toLowerCase()}'),
+                                                  width: iconSize,
+                                                  height: iconSize,
+                                                  fit: BoxFit.contain,
+                                                  excludeFromSemantics: true,
+                                                  // A local asset still decodes asynchronously
+                                                  // on first use. Keep the meaningful icon
+                                                  // visible until the PNG frame is painted.
+                                                  frameBuilder: (context, image,
+                                                          frame, sync) =>
+                                                      sync || frame != null
+                                                          ? image
+                                                          : Icon(icon,
+                                                              size: iconSize,
+                                                              color: LumoVisualTokens
+                                                                  .cyanBright),
+                                                  errorBuilder: (_, __, ___) =>
+                                                      Icon(icon,
+                                                          size: iconSize,
+                                                          color:
+                                                              LumoVisualTokens
+                                                                  .cyanBright))
+                                              : Icon(icon,
+                                                  size: iconSize,
+                                                  color: LumoVisualTokens
+                                                      .cyanBright),
+                                        ),
+                                      ),
+                                      const Spacer(),
+                                      const Icon(Icons.north_east_rounded,
+                                          size: 19,
                                           color: LumoVisualTokens.cyanBright),
-                                ),
-                              ),
-                              const Spacer(),
-                              const Icon(Icons.north_east_rounded,
-                                  size: 19, color: LumoVisualTokens.cyanBright),
-                            ])),
-                            const SizedBox(height: 6),
-                            Text(title,
-                                maxLines: 2,
-                                style: TextStyle(
-                                    fontFamily: 'Nunito',
-                                    fontSize: titleSize,
-                                    height: 1.05,
-                                    fontWeight: FontWeight.w900,
-                                    color: LumoVisualTokens.white)),
-                            // Symbol + zweizeiliger Titel brauchen auf flachen
-                            // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
-                            // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
-                            if (!largeText && constraints.maxHeight >= 155) ...[
-                              const SizedBox(height: 5),
-                              Text(subtitle,
-                                  maxLines: 2,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                      fontSize: iconSize >= 60 ? 14 : 11,
-                                      height: 1.15,
-                                      color: LumoVisualTokens.muted)),
-                            ],
-                          ]),
+                                    ])),
+                                    const SizedBox(height: 6),
+                                    Text(title,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                            fontFamily: 'Nunito',
+                                            fontSize: titleSize,
+                                            height: 1.05,
+                                            fontWeight: FontWeight.w900,
+                                            color: LumoVisualTokens.white)),
+                                    // Symbol + zweizeiliger Titel brauchen auf flachen
+                                    // Fold-/Tablet-Kacheln bereits fast die volle Höhe.
+                                    // Den Untertitel nur zeigen, wenn dafür real Platz bleibt.
+                                    if (!largeText &&
+                                        constraints.maxHeight >= 155) ...[
+                                      const SizedBox(height: 5),
+                                      Text(subtitle,
+                                          maxLines: 2,
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize:
+                                                  iconSize >= 60 ? 14 : 11,
+                                              height: 1.15,
+                                              color: LumoVisualTokens.muted)),
+                                    ],
+                                  ]),
+                            ),
+                          ),
+                        ]),
+                      ),
                     ),
                   ),
                 )));
