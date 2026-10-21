@@ -112,7 +112,15 @@ class LumoAnswerCrystal extends StatelessWidget {
                               : states.contains(WidgetState.hovered)
                                   ? accent.withValues(alpha: .12)
                                   : null)),
-                  child: Text(label, textAlign: TextAlign.center),
+                  child: Text(label,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(shadows: [
+                        Shadow(
+                            color: Color(0xFF041D55),
+                            blurRadius: 4,
+                            offset: Offset(0, 2)),
+                        Shadow(color: Color(0x9953DDFD), blurRadius: 9),
+                      ])),
                 ),
                 if (state != LumoCrystalState.neutral)
                   Positioned(
@@ -211,6 +219,16 @@ class LumoCrystalPainter extends CustomPainter {
     }
 
     canvas.drawShadow(body, const Color(0xCC000A25), 4, false);
+    // A visible lower side gives the crystal thickness even without motion.
+    canvas.drawPath(body.shift(const Offset(0, 6)),
+        Paint()..color = const Color(0xFF041B4F));
+    canvas.drawPath(
+        body,
+        Paint()
+          ..color = accent.withValues(alpha: .48)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 5
+          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 3));
     canvas.drawPath(
         body,
         Paint()
@@ -218,10 +236,10 @@ class LumoCrystalPainter extends CustomPainter {
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
             colors: [
-              Color.lerp(const Color(0xFF12527A), accent, .22)!,
-              const Color(0xFF112B75),
-              const Color(0xFF092853),
-              Color.lerp(const Color(0xFF144E82), accent, .22)!
+              Color.lerp(const Color(0xFF225EC4), accent, .45)!,
+              const Color(0xFF163D9A),
+              const Color(0xFF071D5B),
+              Color.lerp(const Color(0xFF2363B8), accent, .44)!
             ],
             stops: const [0, .35, .72, 1],
           ).createShader(Rect.fromLTWH(0, 0, w, h)));
@@ -240,18 +258,40 @@ class LumoCrystalPainter extends CustomPainter {
     for (var i = 0; i < points.length; i++) {
       final next = (i + 1) % points.length;
       final facet = polygon([points[i], points[next], inner[next], inner[i]]);
+      const facetLight = [.52, .68, .40, .14, .32, .24, .52, .62];
       canvas.drawPath(
           facet,
           Paint()
-            ..color = (i < 3 ? Colors.white : accent)
-                .withValues(alpha: i.isEven ? .13 : .055));
+            ..shader = LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color.lerp(accent, Colors.white, .55)!
+                    .withValues(alpha: facetLight[i]),
+                accent.withValues(alpha: facetLight[i] * .30),
+              ],
+            ).createShader(Rect.fromLTWH(0, 0, w, h)));
+      // Split the broad bevels into irregular refracting planes. Their bright
+      // and dark triangles remain outside the central number's reading area.
+      final ridge = Offset.lerp(points[i], inner[next], .52)!;
+      canvas.drawPath(
+          polygon([points[i], ridge, inner[i]]),
+          Paint()
+            ..color = (i.isEven ? Colors.white : const Color(0xFF020F3B))
+                .withValues(alpha: i.isEven ? .18 : .34));
       canvas.drawLine(
           points[i],
           inner[i],
           Paint()
-            ..color = accent.withValues(alpha: .28)
-            ..strokeWidth = .7);
+            ..color = const Color(0xB9C8F7FF)
+            ..strokeWidth = .9);
     }
+    canvas.drawPath(
+        polygon(inner),
+        Paint()
+          ..color = accent.withValues(alpha: .48)
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 1.1);
     // Fine refracted crystal veins add visual depth to the real interactive
     // answer controls. Only decorative edges are painted: the central digit
     // stays unobstructed and the correct choice is never revealed beforehand.
@@ -288,9 +328,9 @@ class LumoCrystalPainter extends CustomPainter {
     canvas.drawPath(
         body,
         Paint()
-          ..color = accent.withValues(alpha: .88)
+          ..color = Color.lerp(accent, Colors.white, .30)!
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.4);
+          ..strokeWidth = 1.8);
     canvas.drawLine(
         points[0],
         points[1],
