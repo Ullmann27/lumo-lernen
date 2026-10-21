@@ -422,7 +422,7 @@ jobs:
       github.event_name == 'pull_request' &&
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.head.ref == 'design/lumo-full-visual-integration-apk-20261021'
+      github.event.pull_request.head.ref == 'chatgpt/lumo-sol-integrated-1995-20261021'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -434,7 +434,7 @@ jobs:
       - name: Verify complete release evidence, exact Flutter commit and newer Kart
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
-          GODOT_SHA: 928fed3c7f0b39357e0f06463ce13c8d5677d6e1
+          GODOT_SHA: 700baf49828eda693ecce15b415847818b1b56d3
         run: |
           set -euo pipefail
           sha256sum -c dist/APK-SHA256.txt
@@ -454,6 +454,14 @@ jobs:
           assert proof['godot']['revision'] == os.environ['GODOT_SHA'], 'Wrong embedded Kart revision'
           assert pin['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot pin file'
           assert proof['tracked_source_clean'] is True, 'Modified tracked sources'
+          assert proof['versionCode'] == 1995, 'Unexpected APK versionCode'
+          assert proof['versionName'] == '0.12.83', 'Unexpected APK versionName'
+          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.83+1995', 'Unexpected app source version'
+          verification = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+          assert verification['versionCode'] == 1995, 'APK verifier build mismatch'
+          assert verification['versionName'] == '0.12.83', 'APK verifier name mismatch'
+          assert verification['sha256'] == actual_hash, 'APK verifier hash mismatch'
+          assert verification['godot']['revision'] == os.environ['GODOT_SHA'], 'APK embedded Kart mismatch'
           print('PASS candidate and integrated Godot SHA verified')
           PY
       - name: Publish unique, immutable test APK without touching existing Releases
@@ -469,9 +477,10 @@ jobs:
             exit 0
           fi
           cat > dist/RELEASE-NOTES.txt <<EOF
-          Lumo Lernen + Lumo Kart NextGen Android ARM64 test candidate.
+          Lumo Lernen + Lumo Kart 0.12.83 Build 1995 ARM64 test candidate.
           Flutter source commit: $SOURCE_SHA
-          Godot source commit: 8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c
+          Godot source commit: 700baf49828eda693ecce15b415847818b1b56d3
+          Includes SOL math crystals, verified four-size complete Kart garage.
           App source passed Flutter tests, actual Android integration build,
           integrity checks, and x86_64 Android emulator tour before publication.
           This is an installation test, NOT Google Play approval or a
