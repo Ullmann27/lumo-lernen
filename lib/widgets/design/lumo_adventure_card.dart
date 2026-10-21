@@ -35,6 +35,7 @@ class LumoAdventureCard extends StatelessWidget {
         return Semantics(
           button: true,
           label: '$title. $subtitle',
+          onTap: onTap,
           excludeSemantics: true,
           child: LumoPressable(
             radius: 22,

@@ -45,7 +45,7 @@ class LumoCharacterStage extends StatelessWidget {
             bottom: 0,
             child: Image.asset('assets/lumo_design/nature/platform.webp',
                 height: size * .34,
-                fit: BoxFit.fill,
+                fit: BoxFit.contain,
                 excludeFromSemantics: true),
           ),
           LumoCharacter(
