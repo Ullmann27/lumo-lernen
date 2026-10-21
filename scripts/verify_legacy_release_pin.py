@@ -58,6 +58,9 @@ APPROVED = {
     # 1993 NextGen release: separate native candidate reviewed in Godot PR #113,
     # verified by six independent Godot 4.6.3 CI workflows; never alter 1992.
     1993: "8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c",
+    # 1994 integrates real selected mode → premium START, new typography,
+    # while 1993 stays immutable for installed user test builds.
+    1994: "928fed3c7f0b39357e0f06463ce13c8d5677d6e1",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
