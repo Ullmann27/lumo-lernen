@@ -145,9 +145,13 @@ class HomeContent extends StatelessWidget {
                     crossAxisCount: columns,
                     mainAxisSpacing: 8,
                     crossAxisSpacing: 8,
-                    mainAxisExtent: textScale > 1.2
-                        ? 140 * textScale.clamp(1.0, 2.0)
-                        : 160,
+                    mainAxisExtent: compact
+                        // Keep the two primary actions within a narrow Fold
+                        // cover without shrinking their 48dp touch targets.
+                        ? (textScale > 1.2 ? 140 * textScale - 28 : 150)
+                        : textScale > 1.2
+                            ? 140 * textScale.clamp(1.0, 2.0)
+                            : 160,
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
                     children: [
