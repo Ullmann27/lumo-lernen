@@ -127,7 +127,9 @@ void main() {
                 x++) {
               final offset = (y * image.width + x) * 4;
               if (pixels.getUint8(offset + 1) > 105 &&
-                  pixels.getUint8(offset + 2) > 150) brightFacetPixels++;
+                  pixels.getUint8(offset + 2) > 150) {
+                brightFacetPixels++;
+              }
               samples++;
             }
           }
