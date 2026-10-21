@@ -413,3 +413,79 @@ jobs:
             --prerelease
           gh release view "$TAG" --repo Ullmann27/lumo-lernen --json url,assets \
             --jq '{url: .url, assets: [.assets[].name]}'
+
+
+  publish-nextgen-20261021:
+    name: Publish independently tested NextGen ARM64 prerelease
+    needs: [verify-and-build, android-tour]
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'design/lumo-full-visual-integration-apk-20261021'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
+          path: dist/
+      - name: Verify complete release evidence, exact Flutter commit and newer Kart
+        env:
+          SOURCE_SHA: \${{ github.event.pull_request.head.sha }}
+          GODOT_SHA: 8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c
+        run: |
+          set -euo pipefail
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          proof = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          actual_hash = hashlib.sha256(apk.read_bytes()).hexdigest()
+          expected = Path('dist/APK-SHA256.txt').read_text().split()[0]
+          pin = json.loads(Path('dist/GODOT-SOURCE.json').read_text())
+          assert actual_hash == expected, 'APK hash mismatch'
+          assert proof['flutter_source_commit'] == os.environ['SOURCE_SHA'], 'Unexpected Flutter source'
+          assert proof['godot']['revision'] == os.environ['GODOT_SHA'], 'Wrong embedded Kart revision'
+          assert pin['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot pin file'
+          assert proof['tracked_source_clean'] is True, 'Modified tracked sources'
+          print('PASS candidate and integrated Godot SHA verified')
+          PY
+      - name: Publish unique, immutable test APK without touching existing Releases
+        env:
+          GH_TOKEN: \${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: \${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          short_sha="\${SOURCE_SHA:0:12}"
+          tag="lumo-nextgen-20261021-\${short_sha}"
+          if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Candidate already published; existing release preserved."
+            exit 0
+          fi
+          cat > dist/RELEASE-NOTES.txt <<EOF
+          Lumo Lernen + Lumo Kart NextGen Android ARM64 test candidate.
+          Flutter source commit: $SOURCE_SHA
+          Godot source commit: 8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c
+          App source passed Flutter tests, actual Android integration build,
+          integrity checks, and x86_64 Android emulator tour before publication.
+          This is an installation test, NOT Google Play approval or a
+          physically verified Samsung/Fold performance claim.
+          Earlier versions/releases and the production main branch are preserved.
+          EOF
+          gh release create "$tag" \
+            "dist/Lumo-Lernen-Neu.apk#Lumo-Lernen-NextGen-ARM64.apk" \
+            "dist/APK-SHA256.txt" \
+            "dist/BUILD-PROVENANCE.json" \
+            "dist/GODOT-SOURCE.json" \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title "Lumo NextGen Android ARM64 • $short_sha" \
+            --notes-file dist/RELEASE-NOTES.txt \
+            --prerelease
+          gh release view "$tag" --repo Ullmann27/lumo-lernen --json url,assets
