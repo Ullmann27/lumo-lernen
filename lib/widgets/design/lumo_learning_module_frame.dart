@@ -38,6 +38,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
     this.mistakeGuidance = 'Fehler helfen beim Lernen.',
     this.companionUnit,
     this.companionGuide,
+    this.immersive = false,
   });
 
   final LumoAppState appState;
@@ -60,6 +61,8 @@ class LumoLearningModuleFrame extends StatefulWidget {
   final String mistakeGuidance;
   final String? companionUnit;
   final LumoCompanionGuide? companionGuide;
+  /// The task owns its character stage; retain the same navigation and progress.
+  final bool immersive;
   final bool Function() canLeave;
   final Widget child;
 
@@ -459,6 +462,13 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
       _helpOffer(),
       if (fill) Expanded(child: widget.child) else widget.child,
     ];
+    if (widget.immersive) {
+      return Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: contents),
+      );
+    }
     return LumoGlassCard(
       key: const ValueKey('learning-module-adventure-card'),
       surfaceOpacity: LumoLessonStyle.glassOpacity,
@@ -563,9 +573,24 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
           backgroundColor: LumoVisualTokens.night,
           body: LumoSceneBackground(
             scene: LumoScene.library,
+            backgroundAsset: widget.immersive
+                ? 'assets/lumo_design/bg/bg_glass_islands.png' : null,
             dimmed: true,
             child: SafeArea(
-              child: LumoLessonStyle.shortLandscape(context)
+              child: widget.immersive
+                  ? Column(children: [
+                      Expanded(child: LayoutBuilder(builder: (context, bounds) =>
+                        _LumoLessonViewport(height: bounds.maxHeight,
+                          child: SingleChildScrollView(controller: _scrollController,
+                            child: Center(child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 900),
+                              child: _card())),
+                          ),
+                        ))),
+                      if (widget.footer != null) widget.footer!,
+                      LumoBottomNavigation(active: LumoSection.learn, onSelect: _leaveTo),
+                    ])
+                  : LumoLessonStyle.shortLandscape(context)
                   ? _landscape()
                   : Column(
                       children: [
