@@ -1,47 +1,160 @@
-// ════════════════════════════════════════════════════════════════════════
-// LUMO RECHENTRICKS POSTER — Mildenberger-inspirierte Mentor-Uebersicht
-// ════════════════════════════════════════════════════════════════════════
-// 2026-06-05 Iter 22: Die 5 Mentoren (Emma, Max, Hanna, Tim, Mira) auf
-// einer scrollbaren Seite mit Catchphrase + 2 Beispiel-Aufgaben pro
-// Strategie. Kind kann hier in Ruhe schauen, welcher Trick wofuer gut
-// ist. Inspiriert vom Mildenberger Uebungsheft Mathematik 1+3 Poster
-// "Meine Rechentricks".
-// ════════════════════════════════════════════════════════════════════════
-
 import 'package:flutter/material.dart';
 
-import '../../app/app_theme.dart';
 import '../../core/math/lumo_rechentricks.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import 'widgets/rechentricks_mentor_card.dart';
 
-class LumoRechentricksPosterScreen extends StatelessWidget {
+/// Die Rechentrick-Werkstatt: keine acht langen Schulbuch-Plakate.
+/// Kinder wählen einen Freund und entdecken EINEN Schritt nach dem anderen.
+/// Rechenalgorithmen und gespeicherte Lernfortschritte bleiben unberührt.
+class LumoRechentricksPosterScreen extends StatefulWidget {
   const LumoRechentricksPosterScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  State<LumoRechentricksPosterScreen> createState() =>
+      _LumoRechentricksPosterScreenState();
+}
+
+class _LumoRechentricksPosterScreenState
+    extends State<LumoRechentricksPosterScreen> {
+  static const _night = Color(0xFF071C42);
+  static const _cyan = Color(0xFF4DDCFC);
+  static const _gold = Color(0xFFFFD061);
+
+  late final List<_PosterEntry> _entries = _buildEntries();
+  int _selected = 0;
+  int _exampleIndex = 0;
+  int _shownStep = 0;
+  bool _showAnswer = false;
+  bool _advanced = false;
+  bool _showCredits = false;
+
+  List<_PosterEntry> _buildEntries() {
     const tricks = LumoRechentricks();
-    // Pro Mentor 2 Beispiel-Aufgaben generieren.
-    final entries = <_PosterEntry>[];
-    for (final m in kAllRechentricksMentors) {
-      final examples = _examplesFor(m, tricks);
-      if (examples.isEmpty) continue;
-      entries.add(_PosterEntry(mentor: m, examples: examples));
+    final result = <_PosterEntry>[];
+    for (final mentor in kAllRechentricksMentors) {
+      // Some sample prompts can be routed by the existing math engine
+      // to another strategy. Only display the mentor's OWN examples.
+      final examples = _examplesFor(mentor, tricks)
+          .where((example) => example.mentor.kind == mentor.kind)
+          .toList(growable: false);
+      if (examples.isNotEmpty) {
+        result.add(_PosterEntry(mentor: mentor, examples: examples));
+      } else if (mentor.kind == RechentricksKind.decomposeBoth) {
+        // The current core automatically prefers simplifying a near-ten
+        // number. Keep its policy, but offer a correct, authored visual
+        // demonstration of splitting both numbers on this reference page.
+        result.add(_PosterEntry(mentor: mentor, examples: [
+          RechentricksExplanation(
+            mentor: mentor,
+            taskText: '234 + 382 = ?',
+            steps: const [
+              '200 + 300 = 500',
+              '34 + 82 = 116',
+              '500 + 116 = 616',
+            ],
+            resultText: '616',
+          ),
+        ]));
+      }
     }
+    return result;
+  }
+
+  void _chooseMentor(int index) {
+    setState(() {
+      _selected = index;
+      _exampleIndex = 0;
+      _shownStep = 0;
+      _showAnswer = false;
+    });
+  }
+
+  void _nextStep(RechentricksExplanation exercise) {
+    setState(() {
+      if (_shownStep < exercise.steps.length - 1) {
+        _shownStep++;
+      } else {
+        _showAnswer = true;
+      }
+    });
+  }
+
+  void _nextExample(_PosterEntry entry) {
+    setState(() {
+      _exampleIndex = (_exampleIndex + 1) % entry.examples.length;
+      _shownStep = 0;
+      _showAnswer = false;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final activeEntries = _advanced
+        ? _entries
+        : _entries.where((e) => e.mentor.kind.index <=
+            RechentricksKind.bridgeTen.index).toList(growable: false);
+    if (activeEntries.isEmpty) {
+      return const Scaffold(
+        body: Center(child: Text('Hier entstehen bald neue Rechentricks.')),
+      );
+    }
+    final selection = _selected.clamp(0, activeEntries.length - 1).toInt();
+    final entry = activeEntries[selection];
+    final exercise = entry.examples[_exampleIndex % entry.examples.length];
+    final mentor = entry.mentor;
+    final accent = Color(mentor.color);
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFF071C42),
+            border: Border(
+              top: BorderSide(color: Color(0xFF2D85A8), width: 1),
+            ),
+          ),
+          padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+          child: FilledButton.icon(
+            key: const ValueKey('tricks-next'),
+            onPressed: () => _showAnswer
+                ? _nextExample(entry)
+                : _nextStep(exercise),
+            icon: Icon(_showAnswer
+                ? Icons.refresh_rounded
+                : Icons.arrow_forward_rounded),
+            label: Text(_showAnswer
+                ? 'Noch ein Beispiel'
+                : _shownStep == exercise.steps.length - 1
+                    ? 'Lösung entdecken!'
+                    : 'Nächster Schritt'),
+            style: FilledButton.styleFrom(
+              backgroundColor: _gold,
+              foregroundColor: _night,
+              minimumSize: const Size.fromHeight(58),
+              textStyle: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 17,
+                fontWeight: FontWeight.w900,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(19),
+              ),
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
         iconTheme: const IconThemeData(color: Colors.white),
         title: const Text(
-          'Meine Rechentricks',
+          'Lumos Trick-Werkstatt',
           style: TextStyle(
-            fontFamily: 'Nunito',
-            fontWeight: FontWeight.w900,
-            color: Colors.white,
-            fontSize: 18,
+            fontFamily: 'Nunito', fontSize: 20,
+            fontWeight: FontWeight.w900, color: Colors.white,
           ),
         ),
       ),
@@ -49,27 +162,426 @@ class LumoRechentricksPosterScreen extends StatelessWidget {
         scene: LumoScene.library,
         dimmed: true,
         child: SafeArea(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.fromLTRB(14, 12, 14, 28),
-            child: Center(
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(maxWidth: 920),
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const _HeroBanner(),
-                const SizedBox(height: 14),
-                for (final e in entries) ...[
-                  _MentorSection(entry: e),
-                  const SizedBox(height: 14),
-                ],
-                const _FooterCredit(),
-              ],
-            ),
+          child: LayoutBuilder(
+            builder: (context, limits) => SingleChildScrollView(
+              key: const ValueKey('tricks-scroll'),
+              padding: EdgeInsets.fromLTRB(
+                limits.maxWidth < 350 ? 12 : 20, 12,
+                limits.maxWidth < 350 ? 12 : 20, 36,
+              ),
+              child: Center(
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(maxWidth: 740),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      _welcome(context),
+                      const SizedBox(height: 18),
+                      const Text(
+                        'Wer hilft dir heute?',
+                        style: TextStyle(
+                          color: Colors.white, fontSize: 22,
+                          fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                      const SizedBox(height: 5),
+                      const Text(
+                        'Tippe auf einen Freund!',
+                        style: TextStyle(
+                          color: Color(0xFFE0F2FF), fontSize: 15,
+                          fontFamily: 'Nunito', fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                      const SizedBox(height: 12),
+                      _mentorChoices(activeEntries, selection),
+                      const SizedBox(height: 16),
+                      _lesson(context, entry, exercise, accent),
+                      const SizedBox(height: 14),
+                      if (!_advanced)
+                        Center(
+                          child: TextButton.icon(
+                            key: const ValueKey('tricks-more-mentors'),
+                            onPressed: () => setState(() => _advanced = true),
+                            icon: const Icon(Icons.auto_awesome_rounded),
+                            label: const Text('Tricks für große Zahlen'),
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              minimumSize: const Size(48, 52),
+                            ),
+                          ),
+                        )
+                      else
+                        Center(
+                          child: TextButton.icon(
+                            onPressed: () => setState(() {
+                              _advanced = false;
+                              _selected = 0;
+                              _exampleIndex = 0;
+                              _shownStep = 0;
+                              _showAnswer = false;
+                            }),
+                            icon: const Icon(Icons.auto_awesome_outlined),
+                            label: const Text('Leichte Tricks zeigen'),
+                            style: TextButton.styleFrom(
+                              foregroundColor: Colors.white,
+                              minimumSize: const Size(48, 52),
+                            ),
+                          ),
+                        ),
+                      Center(
+                        child: TextButton(
+                          onPressed: () => setState(() =>
+                              _showCredits = !_showCredits),
+                          child: const Text('Woher kommen die Ideen?',
+                            style: TextStyle(color: Color(0xFFD8E8FA))),
+                        ),
+                      ),
+                      if (_showCredits)
+                        const Text(
+                          'Die Rechenideen sind in Anlehnung an '
+                          '„Meine Rechentricks“ aus dem Mildenberger-'
+                          'Übungsheft Mathematik 1 + 3 entstanden.',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white70,
+                              fontFamily: 'Nunito', fontSize: 12),
+                        ),
+                    ],
+                  ),
+                ),
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _welcome(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xFF134F79), Color(0xFF0A2858), _night],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(25),
+        border: Border.all(color: _cyan.withValues(alpha: .55), width: 1.3),
+        boxShadow: [BoxShadow(
+          color: _cyan.withValues(alpha: .17),
+          blurRadius: 18, offset: const Offset(0, 5),
+        )],
+      ),
+      padding: const EdgeInsets.fromLTRB(17, 12, 10, 12),
+      child: Row(
+        children: [
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text('Rechnen kann zaubern!',
+                  style: TextStyle(color: Colors.white,
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                    fontSize: 22)),
+                SizedBox(height: 4),
+                Text('Wir probieren einen Trick nach dem anderen.',
+                  style: TextStyle(color: Color(0xFFDBF7FF),
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w700,
+                    fontSize: 14)),
+              ],
+            ),
+          ),
+          const SizedBox(width: 4),
+          const LumoFoxPose(
+            pose: LumoDesignFoxPose.teacherStick, size: 78,
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _mentorChoices(List<_PosterEntry> entries, int current) {
+    return SizedBox(
+      height: 115,
+      child: ListView.separated(
+        scrollDirection: Axis.horizontal,
+        itemCount: entries.length,
+        itemBuilder: (context, i) {
+          final mentor = entries[i].mentor;
+          final active = i == current;
+          final accent = Color(mentor.color);
+          return Semantics(
+            button: true,
+            selected: active,
+            label: 'Rechentrick von ${mentor.name}: ${mentor.catchphrase}',
+            child: InkWell(
+              key: ValueKey('tricks-mentor-$i'),
+              onTap: () => _chooseMentor(i),
+              borderRadius: BorderRadius.circular(20),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                width: 108,
+                padding: const EdgeInsets.all(9),
+                decoration: BoxDecoration(
+                  color: active
+                      ? accent.withValues(alpha: .25)
+                      : const Color(0xE7092045),
+                  borderRadius: BorderRadius.circular(20),
+                  border: Border.all(
+                    color: active ? accent : _cyan.withValues(alpha: .35),
+                    width: active ? 2.5 : 1,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    _avatar(mentor, 53, accent),
+                    const SizedBox(height: 6),
+                    Text(mentor.name,
+                      maxLines: 1, overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                        color: Colors.white, fontSize: 16,
+                      )),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
+        separatorBuilder: (_, __) => const SizedBox(width: 10),
+      ),
+    );
+  }
+
+  Widget _lesson(BuildContext context, _PosterEntry entry,
+      RechentricksExplanation exercise, Color accent) {
+    final mentor = entry.mentor;
+    final steps = exercise.steps;
+    final total = steps.length;
+    final progress = (_shownStep + 1).clamp(1, total);
+    return Container(
+      width: double.infinity,
+      key: const ValueKey('tricks-lesson'),
+      decoration: BoxDecoration(
+        gradient: const LinearGradient(
+          colors: [Color(0xF514396A), Color(0xF509224A)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        ),
+        borderRadius: BorderRadius.circular(26),
+        border: Border.all(color: accent.withValues(alpha: .78), width: 1.6),
+        boxShadow: [
+          BoxShadow(color: accent.withValues(alpha: .18), blurRadius: 22),
+        ],
+      ),
+      padding: const EdgeInsets.fromLTRB(17, 18, 17, 22),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(children: [
+            _avatar(mentor, 57, accent),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text('${mentor.name} zeigt dir:',
+                    style: TextStyle(color: accent,
+                      fontSize: 16, fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900)),
+                  Text(mentor.catchphrase,
+                    style: const TextStyle(color: Colors.white,
+                      fontFamily: 'Nunito',
+                      fontSize: 17, fontWeight: FontWeight.w900)),
+                ],
+              ),
+            ),
+          ]),
+          const SizedBox(height: 18),
+          Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+            decoration: BoxDecoration(
+              color: const Color(0xFF1D456C),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: _cyan.withValues(alpha: .65)),
+            ),
+            child: Column(children: [
+              const Text('Unsere Aufgabe',
+                style: TextStyle(fontFamily: 'Nunito', color: Color(0xFFC6EFFF),
+                  fontWeight: FontWeight.w800, fontSize: 14)),
+              const SizedBox(height: 4),
+              FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(exercise.taskText,
+                  key: const ValueKey('tricks-task'),
+                  style: const TextStyle(color: Colors.white,
+                    fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                    fontSize: 36),
+                ),
+              ),
+            ]),
+          ),
+          const SizedBox(height: 14),
+          _countingDots(exercise.taskText, accent),
+          const SizedBox(height: 12),
+          Row(children: [
+            const Icon(Icons.auto_awesome_rounded,
+              color: _gold, size: 23),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(_showAnswer ? 'Super, geschafft!'
+                  : 'Schritt ${progress} von $total',
+                key: const ValueKey('tricks-progress'),
+                style: const TextStyle(
+                  color: Colors.white, fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900, fontSize: 19,
+                ),
+              ),
+            ),
+          ]),
+          const SizedBox(height: 8),
+          LinearProgressIndicator(
+            value: _showAnswer ? 1 : progress / (total + 1),
+            minHeight: 8,
+            borderRadius: BorderRadius.circular(10),
+            color: _gold,
+            backgroundColor: Colors.white.withValues(alpha: .13),
+          ),
+          const SizedBox(height: 14),
+          AnimatedSwitcher(
+            duration: const Duration(milliseconds: 220),
+            child: Container(
+              key: ValueKey('step-$_shownStep'),
+              width: double.infinity,
+              constraints: const BoxConstraints(minHeight: 90),
+              alignment: Alignment.center,
+              padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 18),
+              decoration: BoxDecoration(
+                color: accent.withValues(alpha: .13),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(color: accent.withValues(alpha: .54)),
+              ),
+              child: Text(steps[_shownStep],
+                key: const ValueKey('tricks-step-text'),
+                textAlign: TextAlign.center,
+                style: const TextStyle(color: Colors.white,
+                  fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                  fontSize: 22, height: 1.3),
+              ),
+            ),
+          ),
+          if (_showAnswer) ...[
+            const SizedBox(height: 14),
+            Container(
+              key: const ValueKey('tricks-result'),
+              alignment: Alignment.center,
+              width: double.infinity,
+              padding: const EdgeInsets.all(16),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(colors: [
+                  Color(0xFF217A4B), Color(0xFF114B46)]),
+                borderRadius: BorderRadius.circular(18),
+                border: Border.all(color: const Color(0xFF72F0A4),
+                  width: 1.5),
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(Icons.check_circle_rounded,
+                    color: Color(0xFFB5FFD4)),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Text(exercise.resultText,
+                      style: const TextStyle(color: Colors.white,
+                        fontSize: 23, fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900)),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          const SizedBox(height: 12),
+          if (entry.examples.length > 1 && !_showAnswer)
+            Center(
+              child: TextButton(
+                key: const ValueKey('tricks-change-example'),
+                onPressed: () => _nextExample(entry),
+                style: TextButton.styleFrom(
+                  foregroundColor: Colors.white,
+                  minimumSize: const Size(48, 50),
+                ),
+                child: const Text('Anderes Beispiel'),
+              ),
+            ),
+        ],
+      ),
+    );
+  }
+
+  Widget _countingDots(String task, Color accent) {
+    final parsed = RegExp(r'^(\d+)\s*\+\s*(\d+)').firstMatch(task);
+    if (parsed == null) return const SizedBox.shrink();
+    final a = int.tryParse(parsed.group(1)!);
+    final b = int.tryParse(parsed.group(2)!);
+    if (a == null || b == null || a > 10 || b > 10) {
+      return const SizedBox.shrink();
+    }
+    return Semantics(
+      label: '$a blaue und $b goldene Zählpunkte',
+      child: Container(
+        padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 12),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(18),
+          color: const Color(0xD40B294D),
+        ),
+        child: Wrap(
+          alignment: WrapAlignment.center,
+          crossAxisAlignment: WrapCrossAlignment.center,
+          spacing: 5, runSpacing: 7,
+          children: [
+            for (var i = 0; i < a; i++) _dot(_cyan),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 5),
+              child: Icon(Icons.add_rounded, color: Colors.white, size: 23),
+            ),
+            for (var i = 0; i < b; i++) _dot(_gold),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _dot(Color color) => Container(
+    width: 18, height: 18,
+    decoration: BoxDecoration(
+      color: color, shape: BoxShape.circle,
+      boxShadow: [BoxShadow(color: color.withValues(alpha: .5),
+        blurRadius: 7)],
+    ),
+  );
+
+  Widget _avatar(RechentricksMentor m, double size, Color accent) {
+    return Container(
+      width: size, height: size,
+      padding: const EdgeInsets.all(3),
+      decoration: BoxDecoration(
+        shape: BoxShape.circle, color: const Color(0xFF163454),
+        border: Border.all(color: accent, width: 2),
+        boxShadow: [
+          BoxShadow(color: accent.withValues(alpha: .35), blurRadius: 10),
+        ],
+      ),
+      child: ClipOval(
+        child: m.avatarAsset == null
+            ? Center(child: Text(m.emoji,
+                style: TextStyle(fontSize: size * .55)))
+            : Image.asset(m.avatarAsset!, fit: BoxFit.cover,
+                errorBuilder: (_, __, ___) => Center(
+                  child: Text(m.emoji,
+                      style: TextStyle(fontSize: size * .55)),
+                )),
       ),
     );
   }
@@ -139,197 +651,4 @@ class _PosterEntry {
   const _PosterEntry({required this.mentor, required this.examples});
   final RechentricksMentor mentor;
   final List<RechentricksExplanation> examples;
-}
-
-class _HeroBanner extends StatelessWidget {
-  const _HeroBanner();
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xFF123B66), Color(0xFF092448)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF56CFFF).withOpacity(0.30),
-            blurRadius: 18,
-            offset: const Offset(0, 8),
-          ),
-        ],
-      ),
-      child: Row(
-        children: const [
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  '5 schlaue Wege zur Antwort',
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
-                  ),
-                ),
-                SizedBox(height: 4),
-                Text(
-                  'Jeder Mentor zeigt dir einen anderen Trick. '
-                  'Such dir den aus der dir gefaellt!',
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 13,
-                    fontWeight: FontWeight.w700,
-                    color: Color(0xFFE8F4FF),
-                    height: 1.25,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(width: 10),
-          LumoFoxPose(pose: LumoDesignFoxPose.teacherStick, size: 76),
-        ],
-      ),
-    );
-  }
-}
-
-class _MentorSection extends StatelessWidget {
-  const _MentorSection({required this.entry});
-  final _PosterEntry entry;
-
-  @override
-  Widget build(BuildContext context) {
-    final m = entry.mentor;
-    final accent = Color(m.color);
-    final desc = kRechentricksDescription[m.kind] ?? '';
-    return Container(
-      decoration: BoxDecoration(
-        gradient: const LinearGradient(
-          colors: [Color(0xF5123057), Color(0xF1092141)],
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-        ),
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: accent.withOpacity(0.45), width: 1.6),
-        boxShadow: [
-          BoxShadow(
-            color: const Color(0xFF071E42).withOpacity(0.5),
-            blurRadius: 14,
-            offset: const Offset(0, 6),
-          ),
-        ],
-      ),
-      padding: const EdgeInsets.fromLTRB(14, 14, 14, 16),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              // 2026-06-06 Iter 31: Premium-Avatar-PNG mit Emoji-Fallback.
-              Container(
-                width: 48,
-                height: 48,
-                alignment: Alignment.center,
-                padding: const EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: accent.withOpacity(0.18),
-                  border: Border.all(color: accent, width: 1.6),
-                ),
-                child: ClipOval(
-                  child: m.avatarAsset != null
-                      ? Image.asset(
-                          m.avatarAsset!,
-                          fit: BoxFit.cover,
-                          errorBuilder: (_, __, ___) => Center(
-                            child: Text(m.emoji,
-                                style: const TextStyle(fontSize: 26)),
-                          ),
-                        )
-                      : Center(
-                          child: Text(m.emoji,
-                              style: const TextStyle(fontSize: 26)),
-                        ),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${m.name} sagt:',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 13,
-                        fontWeight: FontWeight.w800,
-                        color: accent,
-                      ),
-                    ),
-                    Text(
-                      '„${m.catchphrase}"',
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 15,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                        height: 1.2,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 8),
-          if (desc.isNotEmpty)
-            Text(
-              desc,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 12.5,
-                fontWeight: FontWeight.w700,
-                color: const Color(0xFFD6E8F9),
-                height: 1.32,
-              ),
-            ),
-          const SizedBox(height: 12),
-          for (final ex in entry.examples) ...[
-            RechentricksMentorCard(explanation: ex),
-            const SizedBox(height: 10),
-          ],
-        ],
-      ),
-    );
-  }
-}
-
-class _FooterCredit extends StatelessWidget {
-  const _FooterCredit();
-  @override
-  Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.symmetric(vertical: 8),
-      child: Text(
-        'Diese Tricks sind in Anlehnung an die "Meine Rechentricks"-Poster '
-        'aus dem Mildenberger-Uebungsheft Mathematik 1 + 3 entstanden.',
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontFamily: 'Nunito',
-          fontSize: 11,
-          fontWeight: FontWeight.w700,
-          color: Colors.white70,
-        ),
-      ),
-    );
-  }
 }
