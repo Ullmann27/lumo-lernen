@@ -66,7 +66,7 @@ if scenario in ('compiler-fails', 'zip-compiler-fails'):
 if scenario == 'not-clang':
     body = "#!/usr/bin/env bash\nprintf 'gcc version 14.2.0\\n'\n"
 if scenario == 'zip-compiler-timeout':
-    body = '#!/usr/bin/env bash\nsleep 3\n'
+    body = '#!/usr/bin/env bash\nsleep 20\n'
 compiler.write_text(body)
 compiler.chmod(0o755)
 print('SDK package installed')
@@ -304,7 +304,7 @@ class InstallNdkForBuildTests(unittest.TestCase):
         self.assertIn('sdkmanager exit 124', result.stderr)
 
     def test_compiler_timeout_after_zip_warning_cannot_reinstall(self):
-        result = self.run_preflight('zip-compiler-timeout', total_timeout=11)
+        result = self.run_preflight('zip-compiler-timeout', total_timeout=16)
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(len(self.calls()), 1)
         self.assertIn('verification 126', result.stderr)
