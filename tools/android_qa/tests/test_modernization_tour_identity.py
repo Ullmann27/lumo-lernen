@@ -101,5 +101,32 @@ class TourLabelTests(unittest.TestCase):
         self.assertEqual(TOUR_MODULE.labels(nodes), ['Mathematik', 'Deutsch', 'Lesen'])
 
 
+class TourRaceModeTests(unittest.TestCase):
+    def test_premium_start_binds_the_tour_to_the_real_grand_prix_mode(self):
+        with tempfile.TemporaryDirectory() as temp, \
+                patch.object(TOUR_MODULE, 'godot_alive', return_value=True), \
+                patch.object(TOUR_MODULE, '_screencap', return_value=b'frame'), \
+                patch.object(TOUR_MODULE, '_read_garage_footer', return_value=(20, 30)), \
+                patch.object(TOUR_MODULE.time, 'sleep'), \
+                patch.object(TOUR_MODULE.base, 'adb', return_value=
+                             '[Kart] race_world_ready: sonnenhafen mode=cup'), \
+                patch.object(TOUR_MODULE.evidence, 'garage_replaced', return_value={}), \
+                patch.object(TOUR_MODULE.evidence, 'rendered_race_frame', return_value={}):
+            report = TOUR_MODULE._start_actual_embedded_race(Path(temp))
+        self.assertEqual(report['expected_mode'], 'cup')
+        self.assertEqual(report['expected_track'], 'sonnenhafen')
+
+    def test_running_clock_uses_the_launch_expectation(self):
+        state = {'mode': 'cup', 'track_id': 'sonnenhafen', 'finished': False,
+                 'completed_race': False, 'countdown': 0, 'elapsed': 2,
+                 'distance': 0, 'result_id': 'actual-race'}
+        session = SimpleNamespace(expected_mode='cup', expected_track='sonnenhafen',
+                                  read=lambda _: state)
+        with patch.object(TOUR_MODULE, 'godot_alive', return_value=True), \
+                patch.object(TOUR_MODULE.time, 'sleep'), \
+                patch.object(TOUR_MODULE.time, 'monotonic', side_effect=[0, 0, 2]):
+            self.assertEqual(TOUR_MODULE.wait_race_running(session, timeout=1), state)
+
+
 if __name__ == '__main__':
     unittest.main()
