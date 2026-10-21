@@ -43,8 +43,10 @@ Der folgende Ausgangsbericht bleibt als historische Dokumentation erhalten.
   und bestand die spätere Lebensprüfung nicht. Er wurde ersetzt durch einen
   verwalteten laufenden Exec-Prozess (PID **5983**, Session **2651**), Intervall
   **120 Sekunden**. Log: `/tmp/lumo-autosave-managed.log`.
-  Startmeldung und Prozess wurden geprüft; dieser Dokumentationsstand dient
-  als realer Schreib-/Push-Nachweis beim nächsten automatischen Durchlauf.
+  Der nächste geplante Durchlauf hat die drei Dokumentationsdateien selbstständig
+  committed und gepusht: `cd812bf709e6789ad02b0a996919249b9da10f30`.
+  `REMOTE SAVED` und identischer Remote-SHA sind geprüft; der Prozess lief
+  anschließend weiter. Damit ist ein realer automatischer Push nachgewiesen.
   Ein suspendierter/beendeter Cloud-Workspace kann auch diesen Prozess stoppen;
   manuelle Remote-Checkpoints nach Arbeitspaketen bleiben verpflichtend.
 
