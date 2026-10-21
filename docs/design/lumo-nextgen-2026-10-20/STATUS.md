@@ -39,9 +39,13 @@ Der folgende Ausgangsbericht bleibt als historische Dokumentation erhalten.
   separat hinzugefügt, da der Sicherheitsfilter ihn erwartungsgemäß ausschließt.
 - `AGENTS.md`, Rettungsprotokoll, Hilfsskript, Tests und CI-Guard aus dem
   geprüften PR-Head übernommen. Main und andere Entwicklungsbranches unverändert.
-- Watcher im ursprünglichen Workspace aktiviert: PID **5863**, Intervall
-  **120 Sekunden**, Prozess und Startmeldung geprüft. Log: `/tmp/lumo-autosave.log`.
-  Ein suspendierter/beendeter Cloud-Workspace kann den Prozess stoppen;
+- Der erste `nohup`-Prozess (PID 5863) wurde nach dem Tool-Aufruf beendet
+  und bestand die spätere Lebensprüfung nicht. Er wurde ersetzt durch einen
+  verwalteten laufenden Exec-Prozess (PID **5983**, Session **2651**), Intervall
+  **120 Sekunden**. Log: `/tmp/lumo-autosave-managed.log`.
+  Startmeldung und Prozess wurden geprüft; dieser Dokumentationsstand dient
+  als realer Schreib-/Push-Nachweis beim nächsten automatischen Durchlauf.
+  Ein suspendierter/beendeter Cloud-Workspace kann auch diesen Prozess stoppen;
   manuelle Remote-Checkpoints nach Arbeitspaketen bleiben verpflichtend.
 
 

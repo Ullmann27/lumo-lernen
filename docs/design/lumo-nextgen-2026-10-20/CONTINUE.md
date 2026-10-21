@@ -10,6 +10,11 @@ erfasst. Nicht vom älteren Designbrief oder Main neu beginnen.
    [Rettungsprotokoll](../../CLOUD_RECOVERY_PROTOCOL_2026-10-20.md) beachten.
 2. `python3 tools/lumo_autosave.py check` ausführen. Den Watcher je aktivem
    Workspace einmal starten: `python3 -u tools/lumo_autosave.py watch --interval 120`.
+   In diesem Cloud-Executor wurde ein einfaches `nohup ... &` nach Ende des
+   Tool-Aufrufs beendet. Deshalb den Watcher in einer verwalteten laufenden
+   Exec-/Terminal-Session ausführen; Prozess nach einem vollständigen Intervall
+   erneut prüfen (Zombie-PID zählt nicht als aktiv). Log der geretteten Sitzung:
+   `/tmp/lumo-autosave-managed.log`, Exec-Session `2651`.
    Ein suspendierter Workspace führt ihn nicht garantiert weiter aus.
    Nach Arbeitspaketen und vor langen Tests zusätzlich `once` ausführen;
    Push-Erfolg mit Remote-SHA bestätigen.
