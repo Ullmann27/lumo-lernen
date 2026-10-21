@@ -240,7 +240,7 @@ class _LumoRechentricksPosterScreenState
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('Rechnen kann zaubern! ✨',
+                Text('Rechnen kann zaubern!',
                   style: TextStyle(color: Colors.white,
                     fontFamily: 'Nunito', fontWeight: FontWeight.w900,
                     fontSize: 22)),
@@ -392,7 +392,7 @@ class _LumoRechentricksPosterScreenState
               color: _gold, size: 23),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(_showAnswer ? 'Super, geschafft! 🌟'
+              child: Text(_showAnswer ? 'Super, geschafft!'
                   : 'Schritt ${progress} von $total',
                 key: const ValueKey('tricks-progress'),
                 style: const TextStyle(
