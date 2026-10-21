@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/school_exercise_generator.dart';
 import 'widgets/cross_grade_visual_scene.dart';
+import '../../widgets/design/lumo_answer_crystal.dart';
 
 /// Direct, offline, interactive lessons in a voluntarily selected school grade.
 ///
@@ -263,36 +264,57 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             )),
             const SizedBox(height: 16),
             for (var i = 0; i < choices.length; i++) ...[
-              OutlinedButton(
-                key: ValueKey('cross-grade-choice-$i'),
-                onPressed: _progressLoaded && _loadError == null && !_saving && selected == null && choices[i] != _firstWrongChoice
-                    ? () => _answer(choices[i]) : null,
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(54),
-                  alignment: Alignment.centerLeft,
-                  foregroundColor: Colors.white,
-                  disabledForegroundColor: Colors.white,
-                  backgroundColor: selected != null &&
-                          choices[i] == _task.answer
-                      ? const Color(0xFF185848)
-                      : selected == choices[i] || choices[i] == _firstWrongChoice
-                          ? const Color(0xFF593643)
-                          : const Color(0xFF123B65),
-                  side: BorderSide(
-                    color: selected != null &&
+              if (widget.subject == 'Mathematik' &&
+                  choices[i].length <= 14)
+                SizedBox(
+                  height: 110,
+                  child: LumoAnswerCrystal(
+                    buttonKey: ValueKey('cross-grade-choice-$i'),
+                    label: choices[i],
+                    fontSize: choices[i].length <= 5 ? 29 : 19,
+                    state: selected != null && choices[i] == _task.answer
+                        ? LumoCrystalState.correct
+                        : choices[i] == _firstWrongChoice
+                            ? LumoCrystalState.retry
+                            : LumoCrystalState.neutral,
+                    onPressed: _progressLoaded && _loadError == null &&
+                            !_saving && selected == null &&
+                            choices[i] != _firstWrongChoice
+                        ? () => _answer(choices[i])
+                        : null,
+                  ),
+                )
+              else
+                OutlinedButton(
+                  key: ValueKey('cross-grade-choice-$i'),
+                  onPressed: _progressLoaded && _loadError == null && !_saving && selected == null && choices[i] != _firstWrongChoice
+                      ? () => _answer(choices[i]) : null,
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(54),
+                    alignment: Alignment.centerLeft,
+                    foregroundColor: Colors.white,
+                    disabledForegroundColor: Colors.white,
+                    backgroundColor: selected != null &&
                             choices[i] == _task.answer
-                        ? const Color(0xFF72F0B0)
-                        : accent.withOpacity(.75),
-                    width: 1.5,
+                        ? const Color(0xFF185848)
+                        : selected == choices[i] || choices[i] == _firstWrongChoice
+                            ? const Color(0xFF593643)
+                            : const Color(0xFF123B65),
+                    side: BorderSide(
+                      color: selected != null &&
+                              choices[i] == _task.answer
+                          ? const Color(0xFF72F0B0)
+                          : accent.withOpacity(.75),
+                      width: 1.5,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  child: Text(choices[i],
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.w700)),
                 ),
-                child: Text(choices[i],
-                    style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.w700)),
-              ),
               const SizedBox(height: 9),
             ],
             if (selected != null || _firstWrongChoice != null) ...[
