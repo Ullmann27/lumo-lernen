@@ -64,6 +64,9 @@ APPROVED = {
     # 1995: reviewed SOL+ChatGPT completion of responsive 5-page garage,
     # seven green Godot pipelines and immutable Kart SHA; keep 1994 intact.
     1995: "700baf49828eda693ecce15b415847818b1b56d3",
+    # 1996 keeps the exact seven-stage-tested Godot gameplay, while only
+    # Flutter crystal rendering and Android scroll safety advance.
+    1996: "700baf49828eda693ecce15b415847818b1b56d3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

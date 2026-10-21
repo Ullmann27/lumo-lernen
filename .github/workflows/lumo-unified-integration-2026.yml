@@ -422,7 +422,7 @@ jobs:
       github.event_name == 'pull_request' &&
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.event.pull_request.head.ref == 'chatgpt/lumo-sol-integrated-1995-20261021'
+      github.event.pull_request.head.ref == 'chatgpt/lumo-crystal-depth-integration-20261021'
     runs-on: ubuntu-latest
     permissions:
       contents: write
@@ -454,12 +454,12 @@ jobs:
           assert proof['godot']['revision'] == os.environ['GODOT_SHA'], 'Wrong embedded Kart revision'
           assert pin['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot pin file'
           assert proof['tracked_source_clean'] is True, 'Modified tracked sources'
-          assert proof['versionCode'] == 1995, 'Unexpected APK versionCode'
-          assert proof['versionName'] == '0.12.83', 'Unexpected APK versionName'
-          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.83+1995', 'Unexpected app source version'
+          assert proof['versionCode'] == 1996, 'Unexpected APK versionCode'
+          assert proof['versionName'] == '0.12.84', 'Unexpected APK versionName'
+          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.84+1996', 'Unexpected app source version'
           verification = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
-          assert verification['versionCode'] == 1995, 'APK verifier build mismatch'
-          assert verification['versionName'] == '0.12.83', 'APK verifier name mismatch'
+          assert verification['versionCode'] == 1996, 'APK verifier build mismatch'
+          assert verification['versionName'] == '0.12.84', 'APK verifier name mismatch'
           assert verification['sha256'] == actual_hash, 'APK verifier hash mismatch'
           assert verification['godot']['revision'] == os.environ['GODOT_SHA'], 'APK embedded Kart mismatch'
           print('PASS candidate and integrated Godot SHA verified')
@@ -477,7 +477,7 @@ jobs:
             exit 0
           fi
           cat > dist/RELEASE-NOTES.txt <<EOF
-          Lumo Lernen + Lumo Kart 0.12.83 Build 1995 ARM64 test candidate.
+          Lumo Lernen + Lumo Kart 0.12.84 Build 1996 ARM64 with 3D crystal depth.
           Flutter source commit: $SOURCE_SHA
           Godot source commit: 700baf49828eda693ecce15b415847818b1b56d3
           Includes SOL math crystals, verified four-size complete Kart garage.
