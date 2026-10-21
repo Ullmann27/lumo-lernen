@@ -106,6 +106,45 @@ class _LumoRechentricksPosterScreenState
 
     return Scaffold(
       extendBodyBehindAppBar: true,
+      bottomNavigationBar: SafeArea(
+        top: false,
+        child: Container(
+          decoration: const BoxDecoration(
+            color: Color(0xFF071C42),
+            border: Border(
+              top: BorderSide(color: Color(0xFF2D85A8), width: 1),
+            ),
+          ),
+          padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+          child: FilledButton.icon(
+            key: const ValueKey('tricks-next'),
+            onPressed: () => _showAnswer
+                ? _nextExample(entry)
+                : _nextStep(exercise),
+            icon: Icon(_showAnswer
+                ? Icons.refresh_rounded
+                : Icons.arrow_forward_rounded),
+            label: Text(_showAnswer
+                ? 'Noch ein Beispiel'
+                : _shownStep == exercise.steps.length - 1
+                    ? 'Lösung entdecken!'
+                    : 'Nächster Schritt'),
+            style: FilledButton.styleFrom(
+              backgroundColor: _gold,
+              foregroundColor: _night,
+              minimumSize: const Size.fromHeight(58),
+              textStyle: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 17,
+                fontWeight: FontWeight.w900,
+              ),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(19),
+              ),
+            ),
+          ),
+        ),
+      ),
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         surfaceTintColor: Colors.transparent,
@@ -463,29 +502,7 @@ class _LumoRechentricksPosterScreenState
               ),
             ),
           ],
-          const SizedBox(height: 18),
-          SizedBox(
-            width: double.infinity,
-            child: FilledButton.icon(
-              key: const ValueKey('tricks-next'),
-              onPressed: () => _showAnswer
-                  ? _nextExample(entry) : _nextStep(exercise),
-              icon: Icon(_showAnswer
-                  ? Icons.refresh_rounded : Icons.arrow_forward_rounded),
-              label: Text(_showAnswer ? 'Noch ein Beispiel'
-                  : _shownStep == total - 1
-                      ? 'Lösung entdecken!' : 'Nächster Schritt'),
-              style: FilledButton.styleFrom(
-                backgroundColor: _gold, foregroundColor: _night,
-                minimumSize: const Size.fromHeight(58),
-                textStyle: const TextStyle(
-                  fontSize: 17, fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w900),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(19)),
-              ),
-            ),
-          ),
+          const SizedBox(height: 12),
           if (entry.examples.length > 1 && !_showAnswer)
             Center(
               child: TextButton(
