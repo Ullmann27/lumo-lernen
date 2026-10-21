@@ -258,7 +258,9 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
         !task.answering ||
         task.isExam ||
         task.profileGeneration != widget.appState.profileGeneration ||
-        !(ModalRoute.of(context)?.isCurrent ?? true)) return;
+        !(ModalRoute.of(context)?.isCurrent ?? true)) {
+      return;
+    }
     LumoCompanionRequests.instance.requestTaskHelp();
   }
 
