@@ -122,12 +122,12 @@ class TourRealKartTouchTests(unittest.TestCase):
         clipped = rect('Losfahren', 1992, 1993, clickable=True)
         usable = rect('Losfahren', 1250, 1380, clickable=True)
         scroll = rect('', 100, 1940, scrollable=True)
-        with tempfile.TemporaryDirectory() as temp, \\
+        with tempfile.TemporaryDirectory() as temp, \
                 patch.object(TOUR_MODULE.probe.live, 'live_nodes',
-                             side_effect=[[clipped, scroll], [usable, scroll]]), \\
+                             side_effect=[[clipped, scroll], [usable, scroll]]), \
                 patch.object(TOUR_MODULE.probe, 'recover_launcher_dialog',
-                             return_value=False), \\
-                patch.object(TOUR_MODULE.base, 'adb') as adb, \\
+                             return_value=False), \
+                patch.object(TOUR_MODULE.base, 'adb') as adb, \
                 patch.object(TOUR_MODULE.probe.time, 'sleep'):
             label = TOUR_MODULE.try_tap(Path(temp), ['Losfahren'], 'open-kart')
         self.assertEqual(label, 'Losfahren')
