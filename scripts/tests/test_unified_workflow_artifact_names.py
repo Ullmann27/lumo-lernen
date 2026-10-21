@@ -13,7 +13,11 @@ WORKFLOW = ROOT / ".github" / "workflows" / "lumo-unified-integration-2026.yml"
 class UnifiedArtifactNamingTests(unittest.TestCase):
     def test_generic_name_is_identical_for_arm64_upload_and_release_download(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 3)
+        # One verified upload, two legacy downloads, and one strictly gated
+        # NextGen download must all use the exact identical artifact name.
+        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 4)
+        self.assertIn("publish-nextgen-20261021:", source)
+        self.assertIn("head.ref == 'design/lumo-full-visual-integration-apk-20261021'", source)
         self.assertEqual(source.count("name: lumo-unified-android-tour"), 1)
         self.assertNotIn("lumo-1988-arm64-verified", source)
         self.assertNotIn("lumo-1988-android-tour", source)
