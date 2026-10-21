@@ -1,29 +1,94 @@
-# Aktueller gezielter Auftrag: Kristalltiefe – 21.10.2026
+# SOL – Kristallkorrektur abgeschlossen und remote gesichert
 
-Branch: `sol/fix-answer-crystal-depth-20261021`.
-Basis: remote bestätigter SOL-Checkpoint
-`0eef84aa54f1ee4b180718e917bf8f1d529fe81c` (inklusive #399).
-Originalzweige und Godot werden für diesen Auftrag nicht verändert.
+Stand: 21.10.2026. Branch:
+`sol/fix-answer-crystal-depth-20261021`.
+Geprüfter Code-/Nachweis-Checkpoint, erfolgreich gepusht:
+`f7e359cc4df29c4b113ab8206def03c95feb08aa`.
+Die danach folgende reine Übergabe-Aktualisierung enthält keine UI-Änderung;
+ihren SHA liefert `git rev-parse HEAD` auf diesem Remote-Branch.
+Basis: `0eef84aa54f1ee4b180718e917bf8f1d529fe81c`, inklusive #399 und
+sämtlicher gesicherter SOL-Änderungen. Main, SOL-Originalzweig, Version/Pins,
+Godot und laufende Buildkonfigurationen wurden nicht verändert.
 
-Diagnose gesichert: #399 / APK 1994 baut in
-`lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart`
-noch `LumoLessonAnswerTap` + `AnimatedContainer`, keinen Kristall.
-Der neuere SOL-Branch enthält die Anbindung bereits. Dessen echter Flutter-
-Render zeigt die Facetten unverdeckt; Grid-Kacheln nur ca. 68 dp hoch,
-Kristallkörper zusätzlich auf 79 % reduziert, dunkle Facetten mit 5,5–13 %
-Deckkraft: sehr flach und wenig Materialkontrast. Keine opaque Überdeckung
-im OutlinedButton; dessen Hintergrund ist explizit transparent.
+## Nachgewiesene Ursache
 
-Vorher: `docs/handoffs/evidence/crystal-depth-2026-10-21/before/minus-bis-10-phone-360x800.png`.
-Test: `test/design/minus_crystal_depth_regression_test.dart` nutzt den echten
-Akademiepfad → Klasse 1 → Mathe → Minus bis 10 und prüft Geometrie,
-Hit-Test, Semantik und tatsächlich zusammengesetzte Facettenpixel.
-Korrektur und grüner Test stehen beim Diagnose-Checkpoint noch aus.
-Nächster Schritt: Kachelraum für Körper/Podest und sichtbare Facetten korrigieren;
-gezielte Minus-Speicher-/Zwei-Versuche-Tests, echter Flutter-Render, Remote-Push.
-Keine vollständigen Builds und keine neue APK für diesen gezielten Auftrag.
+1. #399 / Quellstand der APK 0.12.82+1994 enthält bei Minus bis 10 noch
+   `LumoLessonAnswerTap` + `AnimatedContainer`, keinen `LumoAnswerCrystal`.
+   Die Kristall-Anbindung entstand erst in den neueren gesicherten SOL-Commits.
+   Daher kann die unverändert installierte APK 1994 diese Änderungen nicht zeigen.
+2. Im neuesten SOL-Stand lädt der echte Akademiepfad bereits vier Kristalle.
+   Es liegt keine Überdeckung durch Button/Material vor: transparente native
+   Buttons liegen über dem Painter, Facetten sind im zusammengesetzten Bild da.
+3. `LumoLessonAnswerGrid` begrenzt hier die Kacheln auf 68–84 dp; der rote
+   reale Akademie-Routentest maß 72 dp. Der Painter verwendet davon nur 79 %
+   für den Körper. Gestreckte Geometrie und Facetten mit nur 5,5–13 %
+   Deckkraft ergeben schmale, dunkle, fast flache blaue Formen.
+
+## Korrektur – exakte Dateien
+
+- `lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart`:
+  vorhandenes `LumoCrystalAnswerGrid` statt kompakter Lesson-Kacheln, 108 dp
+  je Antwort, mit vorhandenem Textskalierungs-/Einspaltenverhalten.
+- `lib/widgets/design/lumo_answer_crystal.dart`: sichtbare untere Seitenfläche,
+  kontrastreiche triangulierte Lichtfacetten, beleuchtete innere/äußere Kanten,
+  lokaler Cyan-Schein und dezente Zahlenschatten. Keine neue Dauerschleife,
+  kein Shader/Asset und keine Änderung der Bewertung/Touch-Handler.
+- `test/design/minus_crystal_depth_regression_test.dart`: echter Pfad
+  Akademie → erweiterte Lernübersicht → Klasse 1 → Mathe → Minus bis 10;
+  vier neutrale Kristalle, Mindesthöhe, Hit-Tests, native Zahlensemantik und
+  sichtbare Facettenpixel im zusammengesetzten Flutter-Render. Die unteren
+  Antworten werden über den echten Scrollpfad vollständig sichtbar gemacht.
+
+## Tatsächlich bestandene Prüfungen und Nachweise
+
+Verzeichnis: `docs/handoffs/evidence/crystal-depth-2026-10-21/`.
+
+- `regression-red.txt`: Test reproduziert vor dem Patch 72 statt mindestens
+  100 dp Kristallhöhe. Kein absichtlich abgeschwächter Testvertrag.
+- `regression-green.txt`: 12 bestandene Tests: neuer Routen-/Rastertest plus
+  elf bestehende Modul-Fortschrittstests. Einschließlich erst falsch, dann
+  richtig bei Minus, zweiter Versuch ohne Lösungshinweis, gespeicherte
+  Sterne/XP, verzögerte/fehlerhafte Wallet-/Profilzugriffe, Navigation und
+  Hintergrund-/Wiederaufnahmeverhalten. Keine Lernlogik geändert.
+- `route-final.txt`: finaler Akademie-Routen-/Rastertest nochmals bestanden,
+  inklusive finalem Screenshot ohne Debugbanner.
+- `analyze.txt`: gezieltes `dart analyze` für die beiden Produktdateien und
+  den neuen Test: `No issues found!`.
+- Vorher: `before/minus-bis-10-phone-360x800.png`.
+- Nachher: `after/minus-phone.png` (360 × 800, vollständige vier Körper und
+  Podeste). Echter unretuschierter Flutter-Test-Runtime-/Skia-Render der
+  Produktionswidgets nach echter Navigation; kein Mockup, kein Android-
+  Gerätescreenshot. Vorher/Nachher können verschiedene echte Aufgaben zeigen.
+
+Vergleich intern mit dem Kristall-Zielbild aus dem Chat: vier facettierte,
+leuchtende Antwortkörper auf Podesten, gleiche neutrale Behandlung aller
+Antworten. Die lokale ältere Referenz
+`docs/design/2026-10-10-lumo-games/references/50608.png` zeigt dagegen noch
+runde Glaskarten; sie darf nicht mit dem neueren Kristallbild verwechselt werden.
+Keine vollständige Referenztreue oder gemessene Android-Performance behauptet.
+
+## Übernahme / nächste konkrete Aufgabe
+
+1. Diesen Branch bzw. seine zwei Produktdateien und den Regressionstest in
+   die fortlaufende geprüfte SOL-Entwicklung übernehmen, ohne nach main zu mergen.
+   Kein APK-Build/Release wurde in diesem gezielten Auftrag gestartet.
+2. Für weitere interne Nachweise ohne Android-Build:
+   `LUMO_CRYSTAL_CAPTURE_DIR=<Ausgabeordner> /workspace/flutter/bin/flutter test --no-pub test/design/minus_crystal_depth_regression_test.dart`.
+   Der neue Test reproduziert den echten Navigationspfad.
+3. Nächste sinnvolle Erweiterung: derselbe gezielte Geometrie-/Semantikcheck
+   auf schmalem Fold-Cover mit großer Schrift; Android-Einbindung erst in
+   einem später ausdrücklich wieder aufgenommenen Build-Arbeitsblock.
+4. Die alte installierte APK 1994 bleibt unverändert. Für ihr sichtbares
+   Update ist später ein aus diesem Code gebautes, geprüftes APK erforderlich.
+
+Cloud-Checkpoint-Wächter lief während dieses Auftrags alle 120 Sekunden;
+zusätzliche erfolgreiche `tools/lumo_autosave.py once`-Pushes vor Tests und
+zum Abschluss. Der Remote-Branch ist die dauerhafte Übergabe; ein Cloud-
+Prozess kann bei Sitzungsunterbrechung stoppen.
 
 ---
+
+## Archiv: vorheriger breiter SOL-Arbeitsauftrag (nicht aktueller Abschluss)
 
 # SOL Lumo – laufender, remote gesicherter Stand
 
