@@ -159,12 +159,21 @@ void main() {
         findsOneWidget,
       );
     }
-    expect(find.byKey(const ValueKey('home-kart-image')), findsOneWidget);
     expect(find.text('Hallo, Mia!'), findsOneWidget);
     expect(
         find.textContaining('Bereit für ein neues Abenteuer?',
             findRichText: true),
         findsOneWidget);
+    // Kart's secondary promotional banner is intentionally below the
+    // priority learning routes. ListView lazily builds its offscreen children:
+    // scroll there before checking the real original illustration.
+    await tester.scrollUntilVisible(
+      find.byKey(const ValueKey('home-kart-banner')),
+      220,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pump();
+    expect(find.byKey(const ValueKey('home-kart-image')), findsOneWidget);
     expect(tester.takeException(), isNull);
 
     await tester.pumpWidget(const SizedBox.shrink());
