@@ -1,3 +1,30 @@
+# Aktueller gezielter Auftrag: Kristalltiefe – 21.10.2026
+
+Branch: `sol/fix-answer-crystal-depth-20261021`.
+Basis: remote bestätigter SOL-Checkpoint
+`0eef84aa54f1ee4b180718e917bf8f1d529fe81c` (inklusive #399).
+Originalzweige und Godot werden für diesen Auftrag nicht verändert.
+
+Diagnose gesichert: #399 / APK 1994 baut in
+`lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart`
+noch `LumoLessonAnswerTap` + `AnimatedContainer`, keinen Kristall.
+Der neuere SOL-Branch enthält die Anbindung bereits. Dessen echter Flutter-
+Render zeigt die Facetten unverdeckt; Grid-Kacheln nur ca. 68 dp hoch,
+Kristallkörper zusätzlich auf 79 % reduziert, dunkle Facetten mit 5,5–13 %
+Deckkraft: sehr flach und wenig Materialkontrast. Keine opaque Überdeckung
+im OutlinedButton; dessen Hintergrund ist explizit transparent.
+
+Vorher: `docs/handoffs/evidence/crystal-depth-2026-10-21/before/minus-bis-10-phone-360x800.png`.
+Test: `test/design/minus_crystal_depth_regression_test.dart` nutzt den echten
+Akademiepfad → Klasse 1 → Mathe → Minus bis 10 und prüft Geometrie,
+Hit-Test, Semantik und tatsächlich zusammengesetzte Facettenpixel.
+Korrektur und grüner Test stehen beim Diagnose-Checkpoint noch aus.
+Nächster Schritt: Kachelraum für Körper/Podest und sichtbare Facetten korrigieren;
+gezielte Minus-Speicher-/Zwei-Versuche-Tests, echter Flutter-Render, Remote-Push.
+Keine vollständigen Builds und keine neue APK für diesen gezielten Auftrag.
+
+---
+
 # SOL Lumo – laufender, remote gesicherter Stand
 
 Stand: 21.10.2026. Entwicklungsbranch in beiden Repositories:
