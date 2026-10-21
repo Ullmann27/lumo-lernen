@@ -5,7 +5,7 @@ import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/design/lumo_materials.dart';
 import '../../../widgets/design/lumo_scene_atmosphere.dart';
 import '../../../widgets/design/lumo_scene_artwork.dart';
-import '../../../widgets/fox/lumo_character.dart';
+import '../../../widgets/design/lumo_character_stage.dart';
 import '../../../widgets/fox/lumo_companion_requests.dart';
 
 /// The original character and original scene remain separate image layers.
@@ -30,7 +30,7 @@ class LumoHomeHero extends StatelessWidget {
           final stacked = scale > 1.45;
           final foxSize = stacked
               ? (width * .66).clamp(150.0, 260.0)
-              : (width * .56).clamp(132.0, 286.0);
+              : (width * .51).clamp(124.0, 270.0);
           const eyebrow = Text('DEIN LERNABENTEUER',
               style: TextStyle(
                   fontSize: 10,
@@ -45,7 +45,7 @@ class LumoHomeHero extends StatelessWidget {
                   key: const ValueKey('home-greeting'),
                   style: TextStyle(
                       fontFamily: 'Nunito',
-                      fontSize: width < 340 ? 22 : 26,
+                      fontSize: width < 340 ? 22 : 24,
                       height: 1.12,
                       fontWeight: FontWeight.w900,
                       color: LumoVisualTokens.white)),
@@ -66,20 +66,17 @@ class LumoHomeHero extends StatelessWidget {
           );
           final fox = SizedBox(
             width: foxSize,
-            height: foxSize,
+            height: foxSize * 1.06,
             child: TweenAnimationBuilder<double>(
               tween: Tween(begin: reduceMotion ? 1 : 0, end: 1),
               duration: reduceMotion
                   ? Duration.zero
                   : const Duration(milliseconds: 600),
               curve: Curves.easeOutCubic,
-              child: LumoCharacter(
+              child: LumoCharacterStage(
                 pose: LumoDesignFoxPose.bookWelcome,
                 size: foxSize,
-                intro: false,
-                idleHops: false,
                 reduceMotion: reduceMotion,
-                celebratePose: null,
                 onTap: () =>
                     LumoCompanionRequests.instance.requestAppExplanation(),
               ),
@@ -113,8 +110,8 @@ class LumoHomeHero extends StatelessWidget {
                   children: [
                     const Positioned.fill(
                       child: LumoSceneArtwork(
-                        asset: 'assets/lumo_design/bg/bg_home.png',
-                        alignment: Alignment(0, -.25),
+                        asset: 'assets/lumo_design/bg/bg_glass_islands.png',
+                        alignment: Alignment(0, -.42),
                       ),
                     ),
                     const Positioned.fill(
@@ -125,9 +122,9 @@ class LumoHomeHero extends StatelessWidget {
                             end: Alignment.centerRight,
                             stops: [0, .45, 1],
                             colors: [
-                              Color(0xEF03193F),
-                              Color(0xA003193F),
-                              Color(0x1803193F)
+                              Color(0xD503193F),
+                              Color(0x6803193F),
+                              Color(0x0003193F)
                             ],
                           ),
                         ),

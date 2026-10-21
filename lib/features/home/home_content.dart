@@ -1,3 +1,4 @@
+import '../../widgets/design/lumo_adventure_card.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -164,6 +165,43 @@ class HomeContent extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 12),
+                  SizedBox(
+                    height: textScale > 1.2 ? 80 * textScale : 82,
+                    child: Row(children: [
+                      Expanded(child: LumoAdventureCard(
+                        key: const ValueKey('home-secondary-tests'),
+                        title: 'Tests', subtitle: 'Wissen überprüfen', compact: true,
+                        artwork: 'assets/lumo_design/icons/trophy_gold.png',
+                        scene: 'assets/lumo_design/bg/bg_tests.png',
+                        accent: LumoVisualTokens.gold,
+                        onTap: () => onSection(LumoSection.tests),
+                      )),
+                      const SizedBox(width: 8),
+                      Expanded(child: LumoAdventureCard(
+                        key: const ValueKey('home-secondary-rewards'),
+                        title: 'Belohnungen', subtitle: 'Deine Sterne und Extras', compact: true,
+                        artwork: 'assets/lumo_design/icons/treasure_chest.png',
+                        scene: 'assets/lumo_design/bg/bg_home.png',
+                        accent: LumoVisualTokens.gold,
+                        onTap: () => onSection(LumoSection.rewards),
+                      )),
+                    ]),
+                  ),
+                  const SizedBox(height: 10),
+                  _HomeEntrance(
+                    reduceMotion: reduceMotion,
+                    delay: const Duration(milliseconds: 60),
+                    child: Material(
+                      color: Colors.transparent,
+                      child: InkWell(
+                        key: const ValueKey('home-kart-banner'),
+                        borderRadius: BorderRadius.circular(24),
+                        onTap: () => onSection(LumoSection.games),
+                        child: _KartBanner(compact: compact),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
                   // Primary action comes before secondary panels and repeated subjects.
                   const LumoSectionHeading(
                     title: 'Das passt heute zu dir',
@@ -182,43 +220,6 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 10),
-                  Card(
-                    color: LumoVisualTokens.glass,
-                    child: ExpansionTile(
-                      key: const PageStorageKey<String>('home-secondary-actions'),
-                      title: const Text('Tests & Belohnungen',
-                        style: TextStyle(color: LumoVisualTokens.white,
-                          fontFamily: 'Nunito', fontWeight: FontWeight.w800)),
-                      subtitle: const Text('Weitere Bereiche bei Bedarf',
-                        style: TextStyle(color: LumoVisualTokens.muted)),
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: Row(children: [
-                            Expanded(child: OutlinedButton.icon(
-                              key: const ValueKey('home-secondary-tests'),
-                              onPressed: () => onSection(LumoSection.tests),
-                              icon: const Icon(Icons.assignment_rounded),
-                              label: const Text('Tests'),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: LumoVisualTokens.cyanBright,
-                                minimumSize: const Size.fromHeight(52)),
-                            )),
-                            const SizedBox(width: 8),
-                            Expanded(child: OutlinedButton.icon(
-                              key: const ValueKey('home-secondary-rewards'),
-                              onPressed: () => onSection(LumoSection.rewards),
-                              icon: const Icon(Icons.star_rounded),
-                              label: const Text('Belohnungen'),
-                              style: OutlinedButton.styleFrom(
-                                foregroundColor: LumoVisualTokens.cyanBright,
-                                minimumSize: const Size.fromHeight(52)),
-                            )),
-                          ]),
-                        ),
-                      ],
-                    ),
-                  ),
                   Card(
                     color: LumoVisualTokens.glass,
                     child: ExpansionTile(
@@ -385,19 +386,6 @@ class HomeContent extends StatelessWidget {
                     label: const Text('Geschichten lesen und erfinden'),
                   ),
                   const SizedBox(height: 12),
-                  _HomeEntrance(
-                    reduceMotion: reduceMotion,
-                    delay: const Duration(milliseconds: 60),
-                    child: Material(
-                      color: Colors.transparent,
-                      child: InkWell(
-                        key: const ValueKey('home-kart-banner'),
-                        borderRadius: BorderRadius.circular(24),
-                        onTap: () => onSection(LumoSection.games),
-                        child: _KartBanner(compact: compact),
-                      ),
-                    ),
-                  ),
                   SizedBox(height: compact ? 6 : 12),
                   const SizedBox(height: 10),
                   Align(

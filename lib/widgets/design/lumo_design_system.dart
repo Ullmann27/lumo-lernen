@@ -9,6 +9,7 @@ import 'lumo_motion.dart';
 import 'lumo_glass_optics.dart';
 import 'lumo_materials.dart';
 import 'lumo_scene_artwork.dart';
+import 'lumo_adventure_card.dart';
 
 enum LumoDesignFoxPose {
   cardsWelcome('fox_cards_welcome', 'Lumo lädt dich zum Kartenspiel ein'),
@@ -292,6 +293,13 @@ class LumoColorTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) =>
       LayoutBuilder(builder: (context, constraints) {
+        if (sceneAsset != null && iconAsset != null) {
+          return LumoAdventureCard(
+            title: title, subtitle: subtitle, artwork: iconAsset!,
+            scene: sceneAsset!, accent: color, onTap: onTap,
+            artworkKey: ValueKey('lumo-color-tile-icon-${title.toLowerCase()}'),
+          );
+        }
         final narrow = constraints.maxWidth < 165;
         final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.2;
         // Symbol wächst mit der Kachel: auf dem Fold-Innendisplay keine leeren Flächen.
