@@ -7,3 +7,57 @@
 00:24 +5: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Zahlen bis 100: actual controls persist false then correct once, retaining rewards
 00:28 +6: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Kleines 1×1: actual controls persist false then correct once, retaining rewards
 00:33 +7: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Großes 1×1: actual controls persist false then correct once, retaining rewards
+00:38 +8: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual Minus retries wallet then profile, blocks both Back paths and pauses feedback
+00:44 +9: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual module unmount during a delayed wallet still stores the learning answer
+00:47 +10: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual complete Uhr session persists eight answers and only one separate finish bonus
+01:04 +11: loading /workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart
+01:06 +11: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: has semantics with label: Antwort 9 with actions: [tap]  without actions: [focus,
+longPress, scrollLeft, scrollRight, scrollUp, scrollDown, increase, decrease, showOnScreen,
+moveCursorForwardByCharacter, moveCursorBackwardByCharacter, setSelection, copy, cut, paste,
+didGainAccessibilityFocus, didLoseAccessibilityFocus, dismiss, moveCursorForwardByWord,
+moveCursorBackwardByWord, setText]  with flags: isButton  without flags: hasCheckedState, isChecked,
+isCheckStateMixed, isSelected, hasSelectedState, isSlider, isKeyboardKey, isLink, isTextField,
+isReadOnly, isFocused, isFocusable, hasEnabledState, isEnabled, isInMutuallyExclusiveGroup,
+isHeader, isObscured, isMultiline, namesRoute, scopesRoute, isHidden, isImage, isLiveRegion,
+hasToggledState, isToggled, hasImplicitScrolling, hasExpandedState, isExpanded, hasRequiredState,
+isRequired  with validation result: SemanticsValidationResult.none
+  Actual: SemanticsNode:<SemanticsNode#40(Rect.fromLTRB(0.0, 0.0, 101.5, 67.7), tags:
+[RenderViewport.twoPane], actions: [tap], flags: [isButton, hasEnabledState, isEnabled], label:
+"Antwort 9", textDirection: ltr, indexInParent: 0)>
+   Which: missing flags:  unexpected flags: hasEnabledState,isEnabled
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart:43:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart line 43
+The test description was:
+  Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung
+════════════════════════════════════════════════════════════════════════════════════════════════════
+01:10 +11 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_semantics_test.dart: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung [E]
+  Test failed. See exception logs above.
+  The test description was: Antwortkarten sind Schaltflächen mit eindeutiger Beschriftung
+  
+01:10 +11 -1: loading /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart
+01:13 +11 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: (setUpAll)
+01:13 +11 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: actual Akademie grade1 topic gives local help then saves a single answer and reward
+01:27 +12 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: wallet failure blocks next task and Back then retries one atomic reward
+01:32 +13 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: profile failure retries existing counters without double-counting answer or reward
+01:36 +14 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: accepted answer continues durable saving after external unmount and background
+01:38 +15 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: a pending wrong answer cannot accept a new answer before profile saving
+01:42 +16 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: saved correct feedback waits for foreground before advancing the real task
+01:44 +17 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: concurrent learning writes serialize and a failed write does not poison flush
+01:44 +18 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: thirty real visible sums complete the module and restart without farming saved bonus
+02:36 +19 -1: /workspace/lumo-lernen/test/learning_modules/plus_bis_10_persistence_test.dart: (tearDownAll)
+02:36 +19 -1: loading /workspace/lumo-lernen/test/cross_grade_second_chance_test.dart
+02:38 +19 -1: /workspace/lumo-lernen/test/cross_grade_second_chance_test.dart: first mistake has a second chance and no saved attempt
