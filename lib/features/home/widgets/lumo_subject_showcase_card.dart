@@ -44,8 +44,10 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
       final artworkSize = compact ? 51.0 : 76.0;
       final radius = BorderRadius.circular(24);
       final progress = (completed / 10).clamp(0.0, 1.0);
-      final base = Color.lerp(accent, Colors.white, .79)!;
-      final light = Color.lerp(accent, Colors.white, .94)!;
+      // Midnight-glass island palette preserves per-subject identity
+      // without the old pale template cards breaking the Lumo art direction.
+      final base = Color.lerp(const Color(0xFF0C2A59), accent, .16)!;
+      final light = Color.lerp(const Color(0xFF164A85), accent, .18)!;
 
       return Semantics(
         button: true,
@@ -69,8 +71,13 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
-                    colors: [light, base, Colors.white],
-                    stops: const [0, .62, 1],
+                    colors: [
+                      light,
+                      base,
+                      const Color(0xFF071B3C),
+                      const Color(0xFF06142F),
+                    ],
+                    stops: const [0, .33, .76, 1],
                   ),
                   boxShadow: [
                     BoxShadow(
@@ -126,6 +133,15 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                           ),
                         ),
                       ),
+                      // Tiny deterministic highlights anchor the illustration
+                      // in the magical scene; this is not a costly animation.
+                      Positioned.fill(
+                        child: IgnorePointer(
+                          child: CustomPaint(
+                            painter: _LumoSubjectStarlightPainter(accent),
+                          ),
+                        ),
+                      ),
                       Column(
                         children: [
                           Expanded(
@@ -151,7 +167,7 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                                             fontWeight: FontWeight.w900,
                                             fontSize: compact ? 15 : 18,
                                             height: 1.08,
-                                            color: const Color(0xFF10264A),
+                                            color: const Color(0xFFF3FBFF),
                                           ),
                                         ),
                                         const SizedBox(height: 6),
@@ -164,7 +180,7 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
                                             fontWeight: FontWeight.w800,
                                             fontSize: compact ? 10 : 11,
                                             height: 1.15,
-                                            color: const Color(0xFF395378),
+                                            color: const Color(0xFFC8E8FA),
                                           ),
                                         ),
                                       ],
@@ -310,4 +326,49 @@ class LumoSubjectShowcaseCard extends StatelessWidget {
       );
     });
   }
+}
+
+/// Static four-point starlight; no ticker, blur filter or asset decoding.
+class _LumoSubjectStarlightPainter extends CustomPainter {
+  const _LumoSubjectStarlightPainter(this.accent);
+  final Color accent;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final highlight = Paint()
+      ..color = Color.lerp(accent, Colors.white, .7)!.withValues(alpha: .7)
+      ..style = PaintingStyle.fill;
+    final rays = Paint()
+      ..color = Colors.white.withValues(alpha: .38)
+      ..strokeWidth = .8
+      ..strokeCap = StrokeCap.round;
+    const locations = <(double, double, double)>[
+      (.12, .19, 4.5), (.83, .12, 3.8), (.56, .42, 2.8),
+      (.23, .59, 3.1), (.88, .55, 2.4),
+    ];
+    for (final (x, y, radius) in locations) {
+      final center = Offset(size.width * x, size.height * y * .64);
+      final path = Path()
+        ..moveTo(center.dx, center.dy - radius * 1.8)
+        ..quadraticBezierTo(center.dx + radius * .27,
+            center.dy - radius * .27, center.dx + radius, center.dy)
+        ..quadraticBezierTo(center.dx + radius * .27,
+            center.dy + radius * .27, center.dx, center.dy + radius * 1.8)
+        ..quadraticBezierTo(center.dx - radius * .27,
+            center.dy + radius * .27, center.dx - radius, center.dy)
+        ..quadraticBezierTo(center.dx - radius * .27,
+            center.dy - radius * .27, center.dx, center.dy - radius * 1.8)
+        ..close();
+      canvas.drawPath(path, highlight);
+      canvas.drawLine(
+        Offset(center.dx - radius * 1.3, center.dy),
+        Offset(center.dx + radius * 1.3, center.dy),
+        rays,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _LumoSubjectStarlightPainter oldDelegate) =>
+      oldDelegate.accent != accent;
 }
