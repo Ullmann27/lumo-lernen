@@ -15,7 +15,7 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(home: LumoRechentricksPosterScreen()),
     );
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 350));
 
     expect(find.text('Lumos Trick-Werkstatt'), findsOneWidget);
     expect(find.text('Wer hilft dir heute?'), findsOneWidget);
@@ -30,12 +30,12 @@ void main() {
     final next = find.byKey(const ValueKey('tricks-next'));
     await tester.ensureVisible(next);
     await tester.tap(next);
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 350));
     expect(find.textContaining('Schritte weiterzaehlen'), findsOneWidget);
     expect(find.byKey(const ValueKey('tricks-result')), findsNothing);
 
     await tester.tap(next);
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 350));
     expect(find.byKey(const ValueKey('tricks-result')), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
@@ -52,11 +52,11 @@ void main() {
     await tester.pumpWidget(
       const MaterialApp(home: LumoRechentricksPosterScreen()),
     );
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 350));
     final advanced = find.byKey(const ValueKey('tricks-more-mentors'));
     await tester.ensureVisible(advanced);
     await tester.tap(advanced);
-    await tester.pumpAndSettle();
+    await tester.pump(const Duration(milliseconds: 350));
     expect(find.text('Leichte Tricks zeigen'), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
