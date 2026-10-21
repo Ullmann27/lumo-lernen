@@ -61,6 +61,9 @@ APPROVED = {
     # 1994 integrates real selected mode → premium START, new typography,
     # while 1993 stays immutable for installed user test builds.
     1994: "928fed3c7f0b39357e0f06463ce13c8d5677d6e1",
+    # 1995: reviewed SOL+ChatGPT completion of responsive 5-page garage,
+    # seven green Godot pipelines and immutable Kart SHA; keep 1994 intact.
+    1995: "700baf49828eda693ecce15b415847818b1b56d3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

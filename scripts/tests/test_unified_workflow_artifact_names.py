@@ -17,7 +17,7 @@ class UnifiedArtifactNamingTests(unittest.TestCase):
         # NextGen download must all use the exact identical artifact name.
         self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 4)
         self.assertIn("publish-nextgen-20261021:", source)
-        self.assertIn("head.ref == 'design/lumo-full-visual-integration-apk-20261021'", source)
+        self.assertIn("head.ref == 'chatgpt/lumo-sol-integrated-1995-20261021'", source)
         self.assertEqual(source.count("name: lumo-unified-android-tour"), 1)
         self.assertNotIn("lumo-1988-arm64-verified", source)
         self.assertNotIn("lumo-1988-android-tour", source)

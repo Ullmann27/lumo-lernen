@@ -91,8 +91,16 @@ def godot_alive() -> bool:
 def try_tap(out: Path, labels: list[str], tag: str) -> str | None:
     for label in labels:
         try:
-            probe.flutter_tap(out, label, f'{tag}-{len(label)}',
-                              scroll_attempts=10 if tag == 'open-kart' else 3)
+            is_kart = tag == 'open-kart'
+            probe.flutter_tap(
+                out, label, f'{tag}-{len(label)}',
+                scroll_attempts=10 if is_kart else 3,
+                direction_order=(1, -1) if is_kart else (-1, 1),
+                # The actual 1995 Android tree exposed 'Losfahren' at
+                # [68,1992][1012,1993]: 1 pixel because it was clipped.
+                # Wait for a meaningful physical touch target before pressing.
+                min_visible_height_px=48 if is_kart else 1,
+            )
             return label
         except Exception:  # The next alternative label is tried.
             continue
