@@ -1,0 +1,86 @@
+name: Publish existing Lumo 1993 test APK for Chrome
+on:
+  push:
+    branches:
+      - release/lumo-1993-direct-chrome-20261021
+
+permissions:
+  actions: read
+  contents: write
+
+jobs:
+  publish-existing-test-binary:
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Retrieve exact already built candidate from immutable run
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh run download 39571651576 --repo Ullmann27/lumo-lernen --name lumo-unified-arm64-verified --dir dist
+          ls -lh dist/Lumo-Lernen-Neu.apk dist/APK-SHA256.txt dist/BUILD-PROVENANCE.json dist/APK-VERIFICATION.json
+
+      - name: Verify SHA256, signature report, exact source and native revision
+        run: |
+          set -euo pipefail
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          apk=Path("dist/Lumo-Lernen-Neu.apk")
+          proof=json.loads(Path("dist/BUILD-PROVENANCE.json").read_text())
+          report=json.loads(Path("dist/APK-VERIFICATION.json").read_text())
+          digest=hashlib.sha256(apk.read_bytes()).hexdigest()
+          assert digest=="b07f32b7a413c62de2afe80a15589238b4ea07b5eee0dad2c61c952f253700d8"
+          assert proof["flutter_source_commit"]=="bd084119691e48ad48f465f53d6d1c439adc63f0"
+          assert proof["tracked_source_clean"] is True
+          assert proof["versionCode"]==report["versionCode"]==1993
+          assert proof["versionName"]==report["versionName"]=="0.12.81"
+          assert proof["sha256"]==report["sha256"]==digest
+          assert report["package"]=="dev.ullmann.lumo.lumo_lernen.coachpreview"
+          assert report["abis"]==["arm64-v8a"]
+          assert report["signingCertificateSha256"]=="a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702"
+          assert proof["godot"]["revision"]==report["godot"]["revision"]=="8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c"
+          print("PASS immutable APK/signature/source proof; intentionally NOT claiming full emulator acceptance")
+          PY
+
+      - name: Publish explicitly experimental APK for direct Chrome download
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          TAG="lumo-1993-20261021-direct-test"
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Existing tag is preserved. No overwrite."
+            exit 0
+          fi
+          cat > RELEASE-NOTES.md <<'EOF'
+          ## Lumo Lernen + Lumo Kart · Android ARM64 · 0.12.81 / Build 1993
+
+          **TESTVERSION – keine vollständige Endfreigabe.**
+          Die APK wurde unverändert aus dem erfolgreich abgeschlossenen Android-Build
+          von Run 39571651576 übernommen. Ihre SHA-256-Prüfsumme, Paketkennung,
+          Signierungszertifikat und beide Source-Revisionen wurden erneut verifiziert.
+
+          **Bekannte Grenze:** Der anschließende Android-Emulatortest ist beim
+          Kart-Menü-Testschritt `start-kart-race` gescheitert: Das aktualisierte
+          Menü zeigte anfangs nicht den vom älteren Test erwarteten Knopf
+          `Weiter`. Keine bestätigte erfolgreiche Rennfahrt; keine Play-Freigabe.
+
+          Keine Änderung an `main` oder früheren Releases. Für manuelle Tests
+          der neuen Lernoberfläche und der Kart-Menünavigation. Der Download
+          dieser APK soll über Chrome erfolgen. Nutzer sollten ihre bestehenden
+          Lerndaten vorher sichern.
+          EOF
+          gh release create "$TAG" \
+            "dist/Lumo-Lernen-Neu.apk#Lumo-Lernen-0.12.81-1993-Test.apk" \
+            "dist/APK-SHA256.txt" \
+            "dist/APK-VERIFICATION.json" \
+            "dist/BUILD-PROVENANCE.json" \
+            --repo Ullmann27/lumo-lernen \
+            --target bd084119691e48ad48f465f53d6d1c439adc63f0 \
+            --title "Lumo 1993 Android NextGen · Testversion" \
+            --notes-file RELEASE-NOTES.md \
+            --prerelease
