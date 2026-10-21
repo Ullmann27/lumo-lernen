@@ -62,16 +62,21 @@ void main() {
       expect(chooser.hitTestable(), findsOneWidget);
       await tester.tap(chooser);
       await tester.pump(const Duration(milliseconds: 650));
-      // The newer premium subject cards no longer have the obsolete
-      // 'home-island-mathe' key. Use the real child-facing title and
-      // description, which are guaranteed by the current production card.
-      final firstSubject = find.text('Zahlen, Rechnen und Formen');
-      await tester.scrollUntilVisible(
-          firstSubject, -270,
-          scrollable: find.byType(Scrollable).first,
-          maxScrolls: 140);
-      await tester.pump(const Duration(milliseconds: 500));
-      expect(firstSubject, findsOneWidget);
+      // ExpansionTile cards may be lazily mounted on unfolded Fold screens.
+      // Scroll in bounded steps before asking Flutter for a target element:
+      // scrollUntilVisible throws Bad state if the target is not mounted yet.
+      final firstSubject = find.byKey(const ValueKey('home-island-mathe'));
+      final listScroller = find.byType(Scrollable).first;
+      for (var step = 0;
+          step < 26 && firstSubject.evaluate().isEmpty;
+          step++) {
+        await tester.drag(listScroller, const Offset(0, -280));
+        await tester.pump(const Duration(milliseconds: 100));
+      }
+      expect(firstSubject, findsOneWidget,
+          reason: 'Mathe must remain reachable in the expanded home list');
+      await tester.ensureVisible(firstSubject);
+      await tester.pump(const Duration(milliseconds: 350));
       await capture('subjects');
       await tester.pumpWidget(const SizedBox.shrink());
       final story = LumoStoryGenerator.instance.generateReadingAdventure(
