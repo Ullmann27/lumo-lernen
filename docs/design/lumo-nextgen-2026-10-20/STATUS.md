@@ -1,3 +1,33 @@
+# Cloud-Rettung – 21. Oktober 2026
+
+Die Designarbeit wurde auf Nutzeranweisung pausiert. Im ursprünglichen
+Workspace wurden vor Branchwechsel/Update alle elf uncommitteten Quell- und
+Testdateien erfasst und zusätzlich lokal archiviert. Die vier ausdrücklich
+genannten Dateien sind vorhanden; der vollständige Inhalt bleibt unverändert.
+
+- Ausgangs-HEAD: `4746aebdefb10c7c5aaa4d0258a46797bfd7def6`.
+- Verfahren: [PR #394](https://github.com/Ullmann27/lumo-lernen/pull/394),
+  Hilfsdateien gezielt aus `b63e0e8415404454705e8b33d619237836b99532` übernommen.
+  Keine Übernahme der abweichenden App-Basis.
+- [Originaldateien und SHA-256](evidence/cloud-rescue-2026-10-21/original-manifest.json).
+- [Render-/Protokollinventar](evidence/cloud-rescue-2026-10-21/evidence-manifest.json).
+- Beide Scratch-Renderiterationen mit jeweils sechs PNGs sind archiviert.
+- Der erhaltene zweite Flutter-Testlauf meldet **15 bestandene Tests**:
+  Hero-Begrenzung/Text, kompakte Lernkacheln, Effektbudget/Bewegungsreduktion
+  und sechs echte AppShell-Render mit Navigation. Dies ist ein erhaltener
+  Testnachweis vom 20. Oktober, kein neuer Lauf und keine visuelle Abnahme.
+- Iteration 1 enthält bekannte Layoutfehler. Iteration 2 war vor der
+  Unterbrechung noch nicht vollständig visuell überprüft.
+- Die vollständigen Referenzbilder wurden inzwischen im Chat bereitgestellt.
+  Ihre Bilddateien liegen weiterhin nicht als lokale Produktionsassets vor.
+- Generierte Flutter-/Build-Caches wurden inventarisiert und nicht versioniert.
+  Es liegen keine weiteren ignorierten Quelländerungen vor.
+
+Der folgende Ausgangsbericht bleibt als historische Dokumentation erhalten.
+Remote-Nachweis und laufender Sicherungsprozess werden nach dem Rettungs-Push ergänzt.
+
+---
+
 # Lumo Next Gen – Produktion, 20. Oktober 2026
 
 ## Verifizierte Arbeitsbasis

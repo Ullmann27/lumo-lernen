@@ -1,0 +1,40 @@
+Waiting for another flutter command to release the startup lock...                                                                  [1/10] Material Fonts                                              443ms
+[2/10] Gradle Wrapper                                              179ms
+[3/10] Flutter SDK
+  ├─ [1/5] sky_engine                                              407ms
+  ├─ [2/5] flutter_gpu                                             214ms
+  ├─ [3/5] flutter_patched_sdk                                     658ms
+  ├─ [4/5] flutter_patched_sdk_product                             379ms
+  └─ [5/5] linux-x64                                             1,366ms
+[10/10] linux-x64/font-subset                                      386ms
+Resolving dependencies...
+Downloading packages...
+  clock 1.1.2 (1.1.3 available)
+  code_assets 1.2.1 (2.1.0 available)
+  cross_file 0.3.5+5 (0.4.0 available)
+  file_selector_macos 0.9.5+1 (0.9.5+2 available)
+  flutter_lints 4.0.0 (6.0.0 available)
+  google_mlkit_commons 0.8.1 (0.13.0 available)
+  google_mlkit_text_recognition 0.13.1 (0.17.1 available)
+  hooks 2.0.2 (2.2.0 available)
+  image_picker 1.2.3 (1.2.4 available)
+  image_picker_ios 0.8.13+9 (0.8.13+12 available)
+  image_picker_platform_interface 2.11.1 (2.11.2 available)
+  jni_flutter 1.0.3 (1.0.4+1 available)
+  lints 4.0.0 (6.1.0 available)
+  matcher 0.12.19 (0.12.20 available)
+  material_color_utilities 0.13.0 (0.13.1 available)
+  meta 1.18.0 (1.19.0 available)
+  objective_c 9.5.0 (9.6.2 available)
+  record_use 0.6.0 (1.1.1 available)
+  shared_preferences 2.5.5 (2.5.6 available)
+  shared_preferences_android 2.4.28 (2.5.1 available)
+  shared_preferences_foundation 2.5.7 (2.6.0 available)
+  stack_trace 1.12.1 (1.12.2 available)
+  synchronized 3.4.2 (3.5.0 available)
+  test_api 0.7.11 (0.7.15 available)
+  vector_math 2.2.0 (2.4.3 available)
+  vm_service 15.3.0 (15.4.0 available)
+Got dependencies!
+26 packages have newer versions incompatible with dependency constraints.
+Try `flutter pub outdated` for more information.

@@ -655,11 +655,16 @@ class _AppShellState extends State<AppShell>
                                             child: _buildContent(),
                                           ),
                                         )),
-                                        LumoCompanionHost(
-                                            appState: _appState,
-                                            onSection: _navigateTo,
-                                            compact:
-                                                constraints.maxHeight < 600),
+                                        if (section == LumoSection.home)
+                                          _LumoHelpDock(
+                                              appState: _appState,
+                                              onSection: _navigateTo)
+                                        else
+                                          LumoCompanionHost(
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                              compact:
+                                                  constraints.maxHeight < 600),
                                       ]),
                                     ),
                                   ),
