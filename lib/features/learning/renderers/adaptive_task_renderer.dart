@@ -674,7 +674,7 @@ class _OptionGrid extends StatelessWidget {
           // part of the task flow, not merely in an isolated demo module.
           // Keep long written answers in the readable original cards.
           final crystalAnswer = task.subject == LearningSubject.mathematik &&
-              shortAnswers && option.label.length <= 14;
+              option.label.length <= 14;
           return SizedBox(
             width: itemWidth,
             child: crystalAnswer

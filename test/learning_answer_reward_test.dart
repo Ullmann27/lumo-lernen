@@ -16,12 +16,14 @@ void main() {
   });
   tearDown(() => LumoVoice.instance.isEnabled = true);
 
-  for (final kind in [
-    LumoSessionKind.schoolwork,
-    LumoSessionKind.quickPractice,
+  for (final (kind, scale) in [
+    (LumoSessionKind.schoolwork, 1.0),
+    (LumoSessionKind.quickPractice, 1.0),
+    (LumoSessionKind.schoolwork, 2.0),
+    (LumoSessionKind.quickPractice, 2.0),
   ]) {
     testWidgets(
-      'incorrect $kind answer updates the wallet without earning XP',
+      'incorrect $kind at text scale $scale updates the wallet without earning XP',
       (tester) async {
         await tester.binding.setSurfaceSize(const Size(1000, 1400));
         addTearDown(() => tester.binding.setSurfaceSize(null));
@@ -40,6 +42,11 @@ void main() {
         await state.hydrateFromWallet();
         await tester.pumpWidget(
           MaterialApp(
+            builder: (context, child) => MediaQuery(
+              data: MediaQuery.of(context)
+                  .copyWith(textScaler: TextScaler.linear(scale)),
+              child: child!,
+            ),
             home: Scaffold(body: LearningContent(appState: state)),
           ),
         );
@@ -51,7 +58,8 @@ void main() {
         // actually render crystals; a standalone design fixture is not enough.
         expect(find.byType(LumoAnswerCrystal), findsWidgets);
         expect(
-          tester.widgetList<LumoAnswerCrystal>(find.byType(LumoAnswerCrystal))
+          tester
+              .widgetList<LumoAnswerCrystal>(find.byType(LumoAnswerCrystal))
               .every((crystal) => crystal.state == LumoCrystalState.neutral),
           isTrue,
         );
@@ -60,6 +68,12 @@ void main() {
               '${option.payload ?? option.label}' !=
               '${renderer.task.correctAnswer}',
         );
+        await tester.ensureVisible(find
+            .descendant(
+                of: find.byType(AdaptiveTaskRenderer),
+                matching: find.text(wrong.label))
+            .last);
+        await tester.pump();
         await tester.tap(
           find
               .descendant(

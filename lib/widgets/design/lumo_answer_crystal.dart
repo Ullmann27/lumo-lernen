@@ -69,7 +69,10 @@ class LumoAnswerCrystal extends StatelessWidget {
         glowColor: accent,
         pressedScale: .97,
         child: LayoutBuilder(builder: (context, bounds) {
-          final height = bounds.hasBoundedHeight ? bounds.maxHeight : 112.0;
+          final height = bounds.hasBoundedHeight
+              ? bounds.maxHeight
+              : 112.0 *
+                  MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0);
           return SizedBox(
             height: height,
             child: TweenAnimationBuilder<double>(
