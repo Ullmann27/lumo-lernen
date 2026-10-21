@@ -1,0 +1,7 @@
+Verified at 2026-10-21T01:47:16.972104+00:00
+PID: 5863
+Command: python3 -B -u tools/lumo_autosave.py watch --interval 120 
+[LUMO-CHECKPOINT] Watch mode active; checking at most once every 120s.
+[LUMO-CHECKPOINT] Nothing new to save on checkpoint/lumo-cloud-rescue-20261021-014435.
+
+Process-local best effort; start a watcher in each resumed workspace.
