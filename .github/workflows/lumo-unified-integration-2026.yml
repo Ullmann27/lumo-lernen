@@ -434,7 +434,7 @@ jobs:
       - name: Verify complete release evidence, exact Flutter commit and newer Kart
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
-          GODOT_SHA: 8342a2f10b2ecb8cf9cf1cb9566093fbc4d0b07c
+          GODOT_SHA: 928fed3c7f0b39357e0f06463ce13c8d5677d6e1
         run: |
           set -euo pipefail
           sha256sum -c dist/APK-SHA256.txt
