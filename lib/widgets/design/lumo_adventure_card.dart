@@ -31,7 +31,7 @@ class LumoAdventureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) => LayoutBuilder(builder: (context, box) {
         final large = MediaQuery.textScalerOf(context).scale(1) > 1.2;
-        final artSize = math.min(box.maxWidth * .62, compact ? 90.0 : 110.0);
+        final artSize = math.min(box.maxWidth * .62, compact ? 76.0 : 110.0);
         return Semantics(
           button: true,
           label: '$title. $subtitle',
@@ -61,9 +61,9 @@ class LumoAdventureCard extends StatelessWidget {
                   ),
                 )),
                 Positioned(
-                  right: compact ? -6 : null,
+                  right: compact ? 0 : null,
                   left: compact ? null : 6,
-                  top: compact ? -4 : 2,
+                  top: 2,
                   child: IgnorePointer(
                       child: Image.asset(artwork,
                           key: artworkKey,
@@ -72,6 +72,13 @@ class LumoAdventureCard extends StatelessWidget {
                           fit: BoxFit.contain,
                           excludeFromSemantics: true)),
                 ),
+                if (compact)
+                  const DecoratedBox(decoration: BoxDecoration(
+                    gradient: LinearGradient(begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0x00061839), Color(0xE6061839)],
+                      stops: [.35, 1]),
+                  )),
                 Align(
                   alignment: Alignment.bottomLeft,
                   child: Padding(
