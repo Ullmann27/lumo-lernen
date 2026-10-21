@@ -1,0 +1,11 @@
+test_any_other_build_identity_is_refused (test_modernization_tour_identity.TourApkIdentityTests.test_any_other_build_identity_is_refused) ... ok
+test_build_job_checksum_must_match_the_tested_file (test_modernization_tour_identity.TourApkIdentityTests.test_build_job_checksum_must_match_the_tested_file) ... ok
+test_the_exact_verified_build_is_accepted (test_modernization_tour_identity.TourApkIdentityTests.test_the_exact_verified_build_is_accepted) ... ok
+test_only_this_apps_visible_captions_are_compared (test_modernization_tour_identity.TourLabelTests.test_only_this_apps_visible_captions_are_compared) ... ok
+test_premium_start_binds_the_tour_to_the_real_grand_prix_mode (test_modernization_tour_identity.TourRaceModeTests.test_premium_start_binds_the_tour_to_the_real_grand_prix_mode) ... ok
+test_running_clock_uses_the_launch_expectation (test_modernization_tour_identity.TourRaceModeTests.test_running_clock_uses_the_launch_expectation) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.021s
+
+OK

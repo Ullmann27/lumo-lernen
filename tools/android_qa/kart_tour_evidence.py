@@ -110,17 +110,18 @@ def require_race_session(state: dict, *, track: str = 'sonnenhafen', mode: str =
             raise RuntimeError(f'Saved race field {key} is not a finite number')
 
 
-def race_running(state: dict) -> bool:
+def race_running(state: dict, *, track: str = 'sonnenhafen', mode: str = 'race') -> bool:
     """True once the countdown is over and the race clock has run for a second."""
-    require_race_session(state)
+    require_race_session(state, track=track, mode=mode)
     return state['countdown'] <= 0 and state['elapsed'] >= 1.0
 
 
 def driving_progress(start: dict, later: dict, *, min_distance: float = 8.0,
-                     min_elapsed: float = 2.5) -> dict:
+                     min_elapsed: float = 2.5, track: str = 'sonnenhafen',
+                     mode: str = 'race') -> dict:
     """The same live race advanced: the kart covered distance and the clock ran."""
-    require_race_session(start)
-    require_race_session(later)
+    require_race_session(start, track=track, mode=mode)
+    require_race_session(later, track=track, mode=mode)
     if start['result_id'] != later['result_id']:
         raise RuntimeError('Driving evidence spans two different races')
     distance = later['distance'] - start['distance']
@@ -132,8 +133,11 @@ def driving_progress(start: dict, later: dict, *, min_distance: float = 8.0,
     return report
 
 
-def paused_unchanged(first: dict, second: dict) -> dict:
+def paused_unchanged(first: dict, second: dict, *, track: str = 'sonnenhafen',
+                     mode: str = 'race') -> dict:
     """While the pause menu is open the saved race must not advance."""
+    require_race_session(first, track=track, mode=mode)
+    require_race_session(second, track=track, mode=mode)
     keys = ('result_id', 'distance', 'elapsed', 'checkpoint_index', 'finished')
     changed = {key: [first.get(key), second.get(key)] for key in keys if first.get(key) != second.get(key)}
     if changed:

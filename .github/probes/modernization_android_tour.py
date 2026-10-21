@@ -356,6 +356,11 @@ def _start_actual_embedded_race(out: Path) -> dict:
         raise RuntimeError('Last garage image was not captured')
 
     # Godot logs belong to a separate :lumo_game process, not Flutter.
+    # The production premium landing defaults to Grand Prix (cup); the
+    # compatibility wizard defaults to a single race. Bind every later gate
+    # to this actual UI path, never accept an arbitrary saved mode.
+    expected_mode = 'cup' if premium_start is not None else 'race'
+    expected_track = 'sonnenhafen'
     deadline = time.monotonic() + 55
     last_error = 'race_world_ready marker not observed'
     while time.monotonic() < deadline:
@@ -364,10 +369,12 @@ def _start_actual_embedded_race(out: Path) -> dict:
         screen = _screencap()
         (out / '21_lumo_kart_real_race.png').write_bytes(screen)
         log = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
-        if any('[Kart] race_world_ready: sonnenhafen mode=' + mode in log
-               for mode in ('race', 'cup', 'time_trial')):
+        expected_marker = (r'\[Kart\] race_world_ready: ' + re.escape(expected_track)
+                           + r' mode=' + re.escape(expected_mode) + r'(?:\s|$)')
+        if re.search(expected_marker, log):
             try:
                 report = {'touches': evidence_taps,
+                          'expected_mode': expected_mode, 'expected_track': expected_track,
                           'garage_replaced': evidence.garage_replaced(garage_fifth, screen),
                           'rendered_frame': evidence.rendered_race_frame(screen)}
                 (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
@@ -381,8 +388,11 @@ def _start_actual_embedded_race(out: Path) -> dict:
 class RaceSession:
     """READ ONLY access to the race session the game itself persists."""
 
-    def __init__(self, out: Path):
+    def __init__(self, out: Path, *, expected_mode: str = 'race',
+                 expected_track: str = 'sonnenhafen'):
         self.out = out
+        self.expected_mode = expected_mode
+        self.expected_track = expected_track
         self.path: str | None = None
 
     def read(self, tag: str) -> dict:
@@ -395,7 +405,9 @@ class RaceSession:
             self.path = found[0]
         raw = base.adb('exec-out', 'cat', self.path, timeout=60)
         (self.out / f'{tag}-session.cfg').write_text(raw)
-        return complete.parse_session(raw)
+        state = complete.parse_session(raw)
+        evidence.require_race_session(state, mode=self.expected_mode, track=self.expected_track)
+        return state
 
 
 def wait_race_running(session: RaceSession, timeout: float = 150) -> dict:
@@ -407,7 +419,7 @@ def wait_race_running(session: RaceSession, timeout: float = 150) -> dict:
             raise RuntimeError('Godot quit before the race clock started')
         try:
             state = session.read(f'21_race_running_{attempt}')
-            if evidence.race_running(state):
+            if evidence.race_running(state, mode=session.expected_mode, track=session.expected_track):
                 return state
             last = {key: state[key] for key in ('countdown', 'elapsed', 'distance')}
         except RuntimeError as error:
@@ -555,7 +567,7 @@ def drive_with_gas(out: Path, point: tuple[int, int], session: 'RaceSession', st
     moved = evidence.world_moved(before, late)
     frame = evidence.rendered_race_frame(late)
     try:
-        progress = evidence.driving_progress(start, last)
+        progress = evidence.driving_progress(start, last, mode=session.expected_mode, track=session.expected_track)
     except RuntimeError as error:
         (out / '21_race_drive_telemetry.json').write_text(
             json.dumps({'gas_touch': list(point), 'hold_ms': hold_ms,
@@ -677,17 +689,21 @@ def main() -> int:
 
         kart = try_tap(out, ['Losfahren', 'Rennen starten'], 'open-kart')
         race_started = False
+        race_launch = None
         if kart is not None:
             # The embedded Godot engine needs time on the software renderer.
             for wait in (12, 20):
                 time.sleep(wait)
                 probe.capture(out, f'21_lumo_kart_{wait}s')
             step('open-kart', godot_alive(), label=kart)
-            race_started = attempt('start-kart-race', lambda: _start_actual_embedded_race(out)) is not None
+            race_launch = attempt('start-kart-race', lambda: _start_actual_embedded_race(out))
+            race_started = race_launch is not None
         else:
             step('open-kart', False, label=None)
 
-        session = RaceSession(out)
+        session = RaceSession(out,
+            expected_mode=race_launch['expected_mode'] if race_launch else 'race',
+            expected_track=race_launch['expected_track'] if race_launch else 'sonnenhafen')
         running: dict = {}
 
         def race_clock() -> dict:
@@ -709,11 +725,12 @@ def main() -> int:
                 probe.native_text(out, 'Weiterfahren', '21_pause_resume', exact=True)
                 probe.capture(out, '21_lumo_kart_pause')
                 paused = session.read('21_pause_first')
-                evidence.require_race_session(paused)
+                evidence.require_race_session(paused, mode=session.expected_mode, track=session.expected_track)
                 if paused['result_id'] != start_state['result_id']:
                     raise RuntimeError('The pause belongs to a different race')
                 time.sleep(3)
-                frozen = evidence.paused_unchanged(paused, session.read('21_pause_second'))
+                frozen = evidence.paused_unchanged(paused, session.read('21_pause_second'),
+                                                   mode=session.expected_mode, track=session.expected_track)
                 return {'frozen_while_paused': frozen}
 
             attempt('pause-menu', pause)
