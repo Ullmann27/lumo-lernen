@@ -224,13 +224,21 @@ void main() {
         expect(choices, findsNWidgets(_choiceCount(topic)));
         final navigation = tester.getRect(find.byType(LumoBottomNavigation));
         for (final choice in choices.evaluate()) {
-          final rect = tester.getRect(find.byWidget(choice.widget));
-          expect(rect.height, greaterThanOrEqualTo(48));
+          final target = find.byWidget(choice.widget);
+          if (topic == 'm1_minus10') {
+            // The faceted 108dp answers need actual scroll on compact phones.
+            // Do not weaken the visible-area or 48dp safety requirements.
+            await tester.ensureVisible(target);
+            await tester.pumpAndSettle();
+          }
+          final rect = tester.getRect(target);
+          expect(rect.height, greaterThanOrEqualTo(
+              topic == 'm1_minus10' ? 100 : 48));
           expect(rect.width, greaterThanOrEqualTo(48));
           expect(rect.top, greaterThan(24));
           expect(rect.bottom, lessThanOrEqualTo(navigation.top),
               reason: 'An answer must not be covered by bottom navigation');
-          expect(find.byWidget(choice.widget).hitTestable(), findsOneWidget);
+          expect(target.hitTestable(), findsOneWidget);
         }
         if (topic != 'm1_plus10' || layout.$2.width >= 760) {
           final fox = tester
@@ -298,10 +306,14 @@ void main() {
         final navigation = tester.getRect(find.byType(LumoBottomNavigation));
         for (final element in _answers('m1_minus10').evaluate()) {
           final choice = find.byWidget(element.widget);
+          await tester.ensureVisible(choice);
+          await tester.pumpAndSettle();
           expect(choice.hitTestable(), findsOneWidget);
-          expect(tester.getSize(choice).height, greaterThanOrEqualTo(48));
-          expect(
-              tester.getRect(choice).bottom, lessThanOrEqualTo(navigation.top));
+          expect(tester.getSize(choice).height, greaterThanOrEqualTo(100));
+          final rect = tester.getRect(choice);
+          expect(rect.top, greaterThanOrEqualTo(24));
+          expect(rect.bottom, lessThanOrEqualTo(navigation.top),
+              reason: 'Scroll-revealed pedestal must clear bottom navigation');
         }
         expect(tester.takeException(), isNull);
         await tester.pumpWidget(const SizedBox());
