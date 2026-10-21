@@ -36,6 +36,7 @@ class LumoAnswerCrystal extends StatelessWidget {
     this.state = LumoCrystalState.neutral,
     this.buttonKey,
     this.fontSize = 32,
+    this.semanticLabel,
   });
 
   final String label;
@@ -43,6 +44,7 @@ class LumoAnswerCrystal extends StatelessWidget {
   final LumoCrystalState state;
   final Key? buttonKey;
   final double fontSize;
+  final String? semanticLabel;
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +54,11 @@ class LumoAnswerCrystal extends StatelessWidget {
       LumoCrystalState.neutral => LumoVisualTokens.cyan,
     };
     return Semantics(
+      label: semanticLabel,
+      button: semanticLabel == null ? null : true,
+      enabled: semanticLabel == null ? null : onPressed != null,
+      excludeSemantics: semanticLabel != null,
+      onTap: semanticLabel == null ? null : onPressed,
       value: switch (state) {
         LumoCrystalState.correct => 'Richtig',
         LumoCrystalState.retry => 'Noch nicht richtig',
@@ -86,7 +93,8 @@ class LumoAnswerCrystal extends StatelessWidget {
                     disabledForegroundColor: LumoVisualTokens.white,
                     side: BorderSide.none,
                     minimumSize: const Size(48, 48),
-                    padding: EdgeInsets.fromLTRB(14, 4, 14, height * .22),
+                    padding: EdgeInsets.fromLTRB(bounds.maxWidth < 96 ? 5 : 14,
+                        4, bounds.maxWidth < 96 ? 5 : 14, height * .22),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24)),
                     textStyle: TextStyle(
@@ -269,10 +277,10 @@ class LumoCrystalPainter extends CustomPainter {
     canvas.drawPath(leftVein, fracture);
     canvas.drawPath(topVein, fracture);
     canvas.drawPath(rightVein, rainbow);
-    canvas.drawCircle(p(.2, .14), 1.8,
-        Paint()..color = Colors.white.withValues(alpha: .76));
-    canvas.drawCircle(p(.79, .79), 1.5,
-        Paint()..color = accent.withValues(alpha: .85));
+    canvas.drawCircle(
+        p(.2, .14), 1.8, Paint()..color = Colors.white.withValues(alpha: .76));
+    canvas.drawCircle(
+        p(.79, .79), 1.5, Paint()..color = accent.withValues(alpha: .85));
 
     canvas.drawPath(
         body,

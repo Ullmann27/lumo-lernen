@@ -1,3 +1,4 @@
+import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // PLUS BIS 10 — Erstes echtes interaktives Lern-Modul (Klasse 1 Mathematik)
 // ════════════════════════════════════════════════════════════════════════
@@ -1347,64 +1348,14 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           final isCorrect = _answered && ans == _correct;
           final isWrong = isSelected && ans != _correct;
 
-          var colors = const [Color(0xFF1C5BB8), Color(0xFF0E3A82)];
-          var borderColor = LumoVisualTokens.cyan.withOpacity(.55);
-          if (isCorrect) {
-            colors = const [Color(0xFF1FA27A), Color(0xFF0F6B50)];
-            borderColor = const Color(0xFF4BE0A5);
-          } else if (isWrong) {
-            colors = const [Color(0xFF9B2C55), Color(0xFF6B1D3B)];
-            borderColor = const Color(0xFFFF6B8A);
-          } else if (isSelected) {
-            colors = const [Color(0xFF2AA7E8), Color(0xFF1466B8)];
-            borderColor = LumoVisualTokens.cyanBright;
-          }
-
           return AnimatedScale(
-            scale: isCorrect && !_reduceMotion
-                ? 1.0 + (_bounceCtrl.value * 0.1)
-                : 1.0,
-            duration: _reduceMotion
-                ? Duration.zero
-                : const Duration(milliseconds: 200),
-            // Vorleser (TalkBack) nennt die Karte als Schaltfläche „Antwort 7“
-            // statt nur „7“; dieselbe Beschriftung nutzt die Android-Prüfung.
-            child: Semantics(
-              button: true,
-              label: 'Antwort $ans',
-              excludeSemantics: true,
-              onTap: () => _handleAnswer(ans),
-              child: GestureDetector(
-                onTap: () => _handleAnswer(ans),
-                child: AnimatedContainer(
-                  duration: _reduceMotion
-                      ? Duration.zero
-                      : const Duration(milliseconds: 200),
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: colors,
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: borderColor, width: 1.6),
-                    boxShadow: [
-                      BoxShadow(
-                          color: borderColor.withOpacity(0.35),
-                          blurRadius: 12,
-                          offset: const Offset(0, 4))
-                    ],
-                  ),
-                  alignment: Alignment.center,
-                  child: Text('$ans',
-                      style: const TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: 32,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                      )),
-                ),
-              ),
+            scale: isCorrect && !_reduceMotion ? 1 + _bounceCtrl.value * .1 : 1,
+            duration: _reduceMotion ? Duration.zero : const Duration(milliseconds: 200),
+            child: LumoAnswerCrystal(
+              label: '$ans', semanticLabel: 'Antwort $ans',
+              onPressed: _saving || _answered ? null : () => _handleAnswer(ans),
+              state: isCorrect ? LumoCrystalState.correct
+                  : isWrong ? LumoCrystalState.retry : LumoCrystalState.neutral,
             ),
           );
         }).toList(),

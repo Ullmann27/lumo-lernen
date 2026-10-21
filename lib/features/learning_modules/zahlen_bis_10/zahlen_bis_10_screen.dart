@@ -1,3 +1,4 @@
+import '../../../widgets/design/lumo_answer_crystal.dart';
 // ════════════════════════════════════════════════════════════════════════
 // ZAHLEN BIS 10 — Klasse 1 Mathematik (visuelles Zaehlen)
 // ════════════════════════════════════════════════════════════════════════
@@ -433,48 +434,21 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
   Widget _buildAnswerButton(int value) {
     final isSelected = _selectedAnswer == value;
     final isCorrect = value == _correctAnswer;
-    Color bgColor = LumoVisualTokens.lessonAnswer;
-    Color textColor = LumoVisualTokens.white;
-    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
-    if (_answered && isSelected) {
-      if (isCorrect) {
-        bgColor = const Color(0xFFD1FAE5);
-        textColor = const Color(0xFF065F46);
-        borderColor = const Color(0xFF10B981);
-      } else {
-        bgColor = const Color(0xFFFEE2E2);
-        textColor = const Color(0xFF991B1B);
-        borderColor = const Color(0xFFEF4444);
-      }
-    }
     return AnimatedBuilder(
       animation: _bounceCtrl,
-      builder: (_, child) {
-        final s = isSelected &&
-                isCorrect &&
+      builder: (_, child) => Transform.scale(
+        scale: isSelected && isCorrect &&
                 !LumoLessonStyle.reducedMotion(context, widget.appState)
-            ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
-            : 1.0;
-        return Transform.scale(scale: s, child: child);
-      },
-      child: LumoLessonAnswerTap(
-        correct: _answered && isSelected ? isCorrect : null,
-        onTap: _answered ? null : () => _onAnswer(value),
-        child: AnimatedContainer(
-          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
-              ? Duration.zero
-              : const Duration(milliseconds: 200),
-          decoration:
-              LumoLessonStyle.answer(background: bgColor, border: borderColor),
-          child: Center(
-            child: Text('$value',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 36,
-                    fontWeight: FontWeight.w900,
-                    color: textColor)),
-          ),
-        ),
+            ? 1 + math.sin(_bounceCtrl.value * math.pi) * .1 : 1,
+        child: child,
+      ),
+      child: LumoAnswerCrystal(
+        label: '$value',
+        onPressed: _answered ? null : () => _onAnswer(value),
+        state: _answered && isCorrect && (isSelected || false)
+            ? LumoCrystalState.correct
+            : _answered && isSelected ? LumoCrystalState.retry
+            : LumoCrystalState.neutral,
       ),
     );
   }
