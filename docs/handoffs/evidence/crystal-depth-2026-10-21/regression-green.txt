@@ -1,3 +1,17 @@
 00:00 +0: loading /workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart
-00:00 +0: (setUpAll)
-00:00 +0: Akademie Minus route renders four deep, visible crystal answers
+00:00 +0: /workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart: (setUpAll)
+00:00 +0: /workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart: Akademie Minus route renders four deep, visible crystal answers
+00:03 +1: /workspace/lumo-lernen/test/design/minus_crystal_depth_regression_test.dart: (tearDownAll)
+00:04 +1: loading /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart
+00:05 +1: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Minus bis 10: actual controls persist false then correct once, retaining rewards
+00:13 +2: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Zahlen 1-10: actual controls persist false then correct once, retaining rewards
+00:17 +3: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Formen: actual controls persist false then correct once, retaining rewards
+00:20 +4: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Die Uhr: actual controls persist false then correct once, retaining rewards
+00:23 +5: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Geld: actual controls persist false then correct once, retaining rewards
+00:25 +6: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Zahlen bis 100: actual controls persist false then correct once, retaining rewards
+00:27 +7: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Kleines 1×1: actual controls persist false then correct once, retaining rewards
+00:29 +8: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: Großes 1×1: actual controls persist false then correct once, retaining rewards
+00:31 +9: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual Minus retries wallet then profile, blocks both Back paths and pauses feedback
+00:34 +10: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual module unmount during a delayed wallet still stores the learning answer
+00:35 +11: /workspace/lumo-lernen/test/learning_modules/math_module_progress_test.dart: actual complete Uhr session persists eight answers and only one separate finish bonus
+00:42 +12: All tests passed!
