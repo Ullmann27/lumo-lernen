@@ -21,12 +21,11 @@ void main() {
     await tester.pump(const Duration(milliseconds: 600));
 
     expect(find.text('Lumo Kart'), findsOneWidget);
-    expect(find.byKey(const ValueKey('launch-lumo-kart')), findsOneWidget);
-    expect(find.bySemanticsLabel(RegExp('Losfahren')), findsOneWidget);
-    await tester.ensureVisible(find.text('Weitere Spielwelten entdecken'));
-    await tester.pump();
-    await tester.tap(find.text('Weitere Spielwelten entdecken'));
-    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.byKey(const ValueKey('spielwelt-portal-kart')), findsOneWidget);
+    expect(find.byKey(const ValueKey('spielwelt-portal-quizShow')), findsOneWidget);
+    expect(find.byKey(const ValueKey('games-lumo-meister-portal')), findsNothing);
+    expect(find.byKey(const ValueKey('games-1990-hero')), findsNothing);
+    expect(find.text('Weitere Spielwelten entdecken'), findsNothing);
     expect(find.bySemanticsLabel('Lumo Spielewelt'), findsOneWidget);
     for (final title in [
       'Memory',
@@ -36,13 +35,14 @@ void main() {
       'Rhythm Party',
       'Schatzsuche',
       'Bauwelt',
-      'Vier gewinnt',
-      'Würfel-Wettlauf',
+      'Lumo Kart',
     ]) {
       expect(find.text(title), findsWidgets, reason: title);
     }
     expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
     expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
+    expect(find.text('Wer wird\nLumo-Meister?'), findsOneWidget);
+    expect(find.text('Zusätzliche Spielmodi'), findsOneWidget);
     expect(find.text('Wortjagd'), findsNothing,
         reason: 'kein Spiel anzeigen, das es nicht gibt');
 
@@ -65,7 +65,7 @@ void main() {
       await tester.pumpWidget(MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
       await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
       await tester.pump(const Duration(milliseconds: 600));
-      final start = find.byKey(const ValueKey('launch-creative-rhythm'));
+      final start = find.byKey(const ValueKey('spielwelt-portal-rhythm'));
       await tester.ensureVisible(start); await tester.tap(start);
       await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 300)));
       await tester.pump(const Duration(milliseconds: 600));

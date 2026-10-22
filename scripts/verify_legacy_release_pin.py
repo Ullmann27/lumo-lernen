@@ -72,6 +72,9 @@ APPROVED = {
     # stays readable above START in landscape; new headless fit regression.
     # Flutter adds real-progress subject cards and topic lists. 1996 stays intact.
     1997: "3a3142608f6b150ee251373ba81e6face2eed4b3",
+    # 1998 changes only Flutter's Spielewelt navigation and two portals.
+    # Preserve the source-identical, reviewed Godot 4.6.3 Kart engine.
+    1998: "3a3142608f6b150ee251373ba81e6face2eed4b3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

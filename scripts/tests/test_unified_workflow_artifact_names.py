@@ -13,10 +13,9 @@ WORKFLOW = ROOT / ".github" / "workflows" / "lumo-unified-integration-2026.yml"
 class UnifiedArtifactNamingTests(unittest.TestCase):
     def test_generic_name_is_identical_for_arm64_upload_and_release_download(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        # One verified upload, two legacy downloads, the strictly gated
-        # NextGen download, and the new strictly gated 1997 direct release
-        # must all consume the same verified ARM64 build artifact.
-        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 5)
+        # One upload; two legacy, NextGen, 1997 and new 1998 release
+        # consumers. Every publisher must use the exact same verified APK.
+        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 6)
         self.assertIn("publish-nextgen-20261021:", source)
         self.assertIn("head.ref == 'chatgpt/lumo-crystal-depth-integration-20261021'", source)
         self.assertEqual(source.count("name: lumo-unified-android-tour"), 1)
@@ -37,6 +36,27 @@ class UnifiedArtifactNamingTests(unittest.TestCase):
         self.assertIn("assert proof['flutter_source_commit'] == os.environ['SOURCE_SHA']", section)
         self.assertIn("tag=\"lumo-0.12.85-1997\"", section)
         self.assertIn("if gh release view \"$tag\"", section)
+
+    def test_1998_spielwelt_apk_download_requires_actual_android_tour(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("publish-0-12-86-1998:", source)
+        section = source.split("  publish-0-12-86-1998:", 1)[1]
+        self.assertIn("needs: [verify-and-build, android-tour]", section)
+        self.assertIn("github.event_name == 'pull_request'", section)
+        self.assertIn("head.repo.full_name == github.repository", section)
+        self.assertIn(
+            "head.ref == 'design/lumo-spielwelt-kart-quiz-20261022'", section)
+        self.assertIn("name: lumo-unified-arm64-verified", section)
+        self.assertIn("sha256sum -c dist/APK-SHA256.txt", section)
+        self.assertIn("assert proof['tracked_source_clean'] is True", section)
+        self.assertIn("assert proof['flutter_source_commit'] == os.environ['SOURCE_SHA']", section)
+        self.assertIn("assert pin['revision'] == os.environ['GODOT_SHA']", section)
+        self.assertIn("versionCode'] == 1998", section)
+        self.assertIn("versionName'] == '0.12.86'", section)
+        self.assertIn("tag=\"lumo-0.12.86-1998\"", section)
+        self.assertIn("if gh release view \"$tag\"", section)
+        self.assertIn("Lumo-Lernen-0.12.86-1998-ARM64.apk", section)
+        self.assertIn("--target \"$SOURCE_SHA\"", section)
 
     def test_1989_test_release_is_gated_by_real_android_tour(self):
         source = WORKFLOW.read_text(encoding="utf-8")
