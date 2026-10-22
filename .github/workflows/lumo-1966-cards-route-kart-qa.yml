@@ -46,7 +46,7 @@ jobs:
           from pathlib import Path
           s = Path('.github/probes/modernization_android_tour.py').read_text()
           assert 'evidence.world_moved(before, late)' in s
-          assert 'evidence.driving_progress(start, last)' in s
+          assert 'evidence.driving_progress(start, last, mode=session.expected_mode, track=session.expected_track)' in s
           assert 'pulse in range(3)' in s
           assert 'session.read(' in s
           assert "['adb', 'shell', 'input', 'swipe'" in s
