@@ -3,6 +3,20 @@
 Stand: 22.10.2026, Claude (Opus 5.5) · Auftrag: PROMPTRIX Lumo-Master-Entwicklungsauftrag
 Priorität 1 (GitHub-Actions-unabhängige Android-Buildkette) und erster Schritt Priorität 2.
 
+## 0. Übernahme durch eine andere KI (ChatGPT, Codex, neue Opus-Sitzung)
+
+Nichts ist gesperrt. Der Branch ist ein normaler, öffentlicher GitHub-Branch ohne Schutzregeln; jeder Stand ist gepusht (kein Arbeitsstand liegt nur in einer Sitzung). Weiterarbeiten, ohne fremde Arbeit zu überschreiben:
+
+```bash
+git clone https://github.com/Ullmann27/lumo-lernen.git && cd lumo-lernen
+git fetch origin claude/lumo-android-integration-m0-aloove
+git checkout -b <dein-neuer-branch> origin/claude/lumo-android-integration-m0-aloove
+bash scripts/portable-android.sh doctor   # zeigt fehlende Werkzeuge
+bash scripts/portable-android.sh tests    # komplette Prüfkette ohne GitHub Actions
+```
+
+Wer direkt auf diesem Branch weiterarbeiten darf, pusht normal (kein Force-Push). Offener PR: #331 (nicht gemergt; `main` unberührt). Geprüfter Rückfallstand: `dea695e2f8634d520fd8e1ef7f0bceb4f88cb40b`, Version 0.12.84+1996, Unified-Lauf 39723572595 (Build und Android-Emulator-Tour grün).
+
 ## 1. Branch und Commit
 
 - Repository: `Ullmann27/lumo-lernen`
