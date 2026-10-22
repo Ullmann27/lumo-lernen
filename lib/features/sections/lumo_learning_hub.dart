@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
+import '../../core/progress_repository.dart';
 import '../../core/school_exercise_generator.dart';
 import '../../theme/lumo_visual_tokens.dart';
+import '../teacher_mode/widgets/academy_subject_art.dart';
 
 /// A deliberately quiet entrance: subject -> real grade-specific unit -> task.
 /// Neither the enrolled grade nor existing progress is changed by browsing.
@@ -13,9 +15,12 @@ class LumoLearningHub extends StatefulWidget {
     required this.onReading,
     required this.onPracticalSubject,
     required this.onAdvanced,
+    this.skills = const {},
   });
 
   final int grade;
+  /// The child's real answer records; drives each subject's topic ring.
+  final Map<String, SkillRecord> skills;
   final void Function(String subject, String unit) onStartUnit;
   final VoidCallback onReading;
   final ValueChanged<String> onPracticalSubject;
@@ -48,8 +53,25 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     _Subject('Kunst und Gestaltung', 'Kreativ werden', Icons.palette_rounded, Color(0xFFFF9E9E)),
     _Subject('Technik und Design', 'Erfinden & Bauen', Icons.handyman_rounded, Color(0xFF80DCE7)),
   ];
+  // Bright corner for art, deep corner behind the text (white >= 5.3:1).
+  static const _cardColors = <String, (Color, Color)>{
+    'Mathematik': (Color(0xFFF29A2E), Color(0xFFA9520A)),
+    'Deutsch': (Color(0xFF9B5CF0), Color(0xFF7A3FD6)),
+    'Englisch': (Color(0xFF3D8BF2), Color(0xFF2A66D3)),
+    'Sachunterricht': (Color(0xFF22B597), Color(0xFF0C6E64)),
+  };
   _Subject? _selected;
   bool _expanded = false;
+
+  /// Topics of the enrolled grade with at least one correct answer.
+  (int, int) _topicProgress(String subject, int grade) {
+    final units = Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true);
+    final practiced = units
+        .where((unit) => widget.skills.values.any((skill) =>
+            skill.subject == subject && skill.unit == unit && skill.correct > 0))
+        .length;
+    return (practiced, units.length);
+  }
 
   void _choose(_Subject subject) {
     if (subject.name == 'Lesen') {
@@ -87,7 +109,9 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(18),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+            Row(children: [
+              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               Text(
                 subject == null ? 'Was möchtest du lernen?' : subject.name,
                 style: const TextStyle(fontFamily: 'Nunito', fontSize: 23,
@@ -115,6 +139,38 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                         fontWeight: FontWeight.w800, color: Colors.white)),
                 ),
               ),
+              ])),
+              if (subject == null &&
+                  MediaQuery.sizeOf(context).width >= 360 &&
+                  accessible <= 1.3)
+                const ExcludeSemantics(
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 8),
+                    child: Image(
+                      key: ValueKey('learning-hub-lumo'),
+                      image: AssetImage(
+                          'assets/lumo_design/characters/fox_point.webp'),
+                      width: 89,
+                      height: 112,
+                      fit: BoxFit.contain,
+                    ),
+                  ),
+                ),
+            ]),
+            // Other grades and all learning paths belong with the grade, and
+            // stay reachable without scrolling past the subject cards.
+            if (subject == null) ...[
+              const SizedBox(height: 12),
+              OutlinedButton.icon(
+                key: const ValueKey('learning-advanced-entry'),
+                onPressed: widget.onAdvanced,
+                icon: const Icon(Icons.tune_rounded),
+                label: const Text('Alle Lernwege & andere Klassen'),
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: LumoVisualTokens.cyanBright,
+                  minimumSize: const Size.fromHeight(52)),
+              ),
+            ],
             ]),
           ),
         ),
@@ -130,7 +186,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
             final width = (constraints.maxWidth - (cols - 1) * 10) / cols;
             return Wrap(spacing: 10, runSpacing: 10, children: [
               for (final entry in _main)
-                SizedBox(width: width, child: _subjectCard(entry)),
+                SizedBox(width: width, child: _subjectCard(entry, grade)),
             ]);
           }),
           const SizedBox(height: 14),
@@ -167,16 +223,6 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                   ),
               ],
             ),
-          ),
-          const SizedBox(height: 16),
-          OutlinedButton.icon(
-            key: const ValueKey('learning-advanced-entry'),
-            onPressed: widget.onAdvanced,
-            icon: const Icon(Icons.tune_rounded),
-            label: const Text('Alle Lernwege & andere Klassen'),
-            style: OutlinedButton.styleFrom(
-              foregroundColor: LumoVisualTokens.cyanBright,
-              minimumSize: const Size.fromHeight(52)),
           ),
         ] else ...[
           OutlinedButton.icon(
@@ -231,36 +277,121 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     );
   }
 
-  Widget _subjectCard(_Subject subject) {
-    return Material(
-      color: const Color(0xFF142E4F),
-      borderRadius: BorderRadius.circular(20),
-      child: InkWell(
-        key: ValueKey('learning-subject-${subject.name}'),
-        onTap: () => _choose(subject),
-        borderRadius: BorderRadius.circular(20),
-        child: Container(
-          constraints: const BoxConstraints(minHeight: 122),
-          padding: const EdgeInsets.all(14),
-          decoration: BoxDecoration(
-            border: Border.all(color: subject.accent.withOpacity(.55)),
-            borderRadius: BorderRadius.circular(20),
+  Widget _subjectCard(_Subject subject, int grade) {
+    final (bright, deep) = _cardColors[subject.name] ??
+        (subject.accent, const Color(0xFF142E4F));
+    final (practiced, total) = _topicProgress(subject.name, grade);
+    final status = practiced == 0
+        ? 'Noch nicht begonnen'
+        : '$practiced von $total Themen geübt';
+    const shadow = [Shadow(color: Color(0x99000000), blurRadius: 4, offset: Offset(0, 1))];
+    // One accessible button: name, description and real progress, one per
+    // line like Flutter's own merged captions, with the card's tap action.
+    return Semantics(
+      label: '${subject.name}\n${subject.description}\n$status',
+      button: true,
+      onTap: () => _choose(subject),
+      excludeSemantics: true,
+      child: Material(
+        color: Colors.transparent,
+        child: InkWell(
+          key: ValueKey('learning-subject-${subject.name}'),
+          onTap: () => _choose(subject),
+          borderRadius: BorderRadius.circular(22),
+          child: Ink(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topRight,
+                end: Alignment.bottomLeft,
+                colors: [bright, deep, deep],
+                stops: const [0, .55, 1],
+              ),
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: Colors.white.withOpacity(.35)),
+              boxShadow: [
+                BoxShadow(color: deep.withOpacity(.55), blurRadius: 14,
+                    offset: const Offset(0, 6)),
+              ],
+            ),
+            child: Container(
+              constraints: const BoxConstraints(minHeight: 150),
+              padding: const EdgeInsets.all(12),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min, children: [
+                Row(crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+                  Flexible(child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.topLeft,
+                    child: AcademySubjectArt(
+                      subjectName: subject.name,
+                      subjectId: 'hub-${subject.name}',
+                      accent: Colors.white,
+                    ),
+                  )),
+                  const SizedBox(width: 6),
+                  _TopicRing(practiced: practiced, total: total),
+                ]),
+                const SizedBox(height: 10),
+                Text(subject.name, maxLines: 2,
+                    style: const TextStyle(color: Colors.white,
+                        fontFamily: 'Nunito', fontSize: 17,
+                        fontWeight: FontWeight.w900, shadows: shadow)),
+                const SizedBox(height: 2),
+                Text(subject.description, maxLines: 2,
+                    style: const TextStyle(color: Colors.white,
+                        fontFamily: 'Nunito', fontSize: 12,
+                        fontWeight: FontWeight.w700, shadows: shadow)),
+                const SizedBox(height: 6),
+                Text(status, maxLines: 2,
+                    key: ValueKey('learning-subject-progress-${subject.name}'),
+                    style: const TextStyle(color: Color(0xFFFFF3C4),
+                        fontFamily: 'Nunito', fontSize: 12,
+                        fontWeight: FontWeight.w800, shadows: shadow)),
+              ]),
+            ),
           ),
-          child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.center, children: [
-            Icon(subject.icon, size: 30, color: subject.accent),
-            const SizedBox(height: 7),
-            Text(subject.name, maxLines: 2,
-                style: const TextStyle(color: Colors.white,
-                    fontFamily: 'Nunito', fontSize: 15,
-                    fontWeight: FontWeight.w900)),
-            const SizedBox(height: 3),
-            Text(subject.description, maxLines: 2,
-                style: const TextStyle(color: Color(0xFFD4EAF5),
-                    fontFamily: 'Nunito', fontSize: 11)),
-          ]),
         ),
       ),
     );
   }
 }
+
+/// Static ring (no ticker): practiced topics of the enrolled grade.
+class _TopicRing extends StatelessWidget {
+  const _TopicRing({required this.practiced, required this.total});
+  final int practiced;
+  final int total;
+
+  @override
+  Widget build(BuildContext context) {
+    final value = total == 0 ? 0.0 : practiced / total;
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Colors.black.withOpacity(.28),
+      ),
+      child: SizedBox(
+        width: 50,
+        height: 50,
+        child: Stack(alignment: Alignment.center, children: [
+          Positioned.fill(
+            child: Padding(
+              padding: const EdgeInsets.all(4),
+              child: CircularProgressIndicator(
+                value: value,
+                strokeWidth: 5,
+                backgroundColor: Colors.white.withOpacity(.25),
+                valueColor: const AlwaysStoppedAnimation(Colors.white),
+              ),
+            ),
+          ),
+          Text('${(value * 100).round()}%',
+              style: const TextStyle(color: Colors.white, fontFamily: 'Nunito',
+                  fontSize: 12, fontWeight: FontWeight.w900)),
+        ]),
+      ),
+    );
+  }
+}
+

@@ -107,7 +107,8 @@ void main() {
     await tester.pump();
     expect(practical, 'Musik');
     final openAdvanced = find.byKey(const ValueKey('learning-advanced-entry'));
-    await tester.scrollUntilVisible(openAdvanced, 180,
+    // The entry sits with the profile grade above the subjects: scroll back up.
+    await tester.scrollUntilVisible(openAdvanced, -180,
         scrollable: find.byType(Scrollable).first, maxScrolls: 15);
     await tester.pumpAndSettle();
     await tester.tap(openAdvanced);

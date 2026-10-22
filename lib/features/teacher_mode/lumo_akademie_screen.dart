@@ -1042,17 +1042,22 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen>
     final hub = SafeArea(
       top: widget.drawBackground,
       bottom: false,
-      child: LumoLearningHub(
-        grade: widget.appState.state.grade,
-        onStartUnit: _beginClearLearningTask,
-        onReading: () => _openLearningArea(
-          _learningAreas.firstWhere((area) => area.subject == 'Lesen')),
-        onPracticalSubject: (name) => _openLearningArea(
-          _learningAreas.firstWhere((area) => area.subject == name)),
-        onAdvanced: () => setState(() {
-          _selectedGrade = widget.appState.state.grade.clamp(1, 4);
-          _allLearningWays = true;
-        }),
+      // Rebuild when the child's saved answers finish loading or change.
+      child: AnimatedBuilder(
+        animation: widget.appState,
+        builder: (context, _) => LumoLearningHub(
+          grade: widget.appState.state.grade,
+          skills: widget.appState.learningSkills(),
+          onStartUnit: _beginClearLearningTask,
+          onReading: () => _openLearningArea(
+            _learningAreas.firstWhere((area) => area.subject == 'Lesen')),
+          onPracticalSubject: (name) => _openLearningArea(
+            _learningAreas.firstWhere((area) => area.subject == name)),
+          onAdvanced: () => setState(() {
+            _selectedGrade = widget.appState.state.grade.clamp(1, 4);
+            _allLearningWays = true;
+          }),
+        ),
       ),
     );
     return Scaffold(
