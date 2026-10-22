@@ -169,6 +169,8 @@ ensure_godot() {
 }
 
 run_tests() {
+  # Resolve packages first: the Dart content audit imports package:lumo_lernen.
+  logged pub-get flutter pub get --enforce-lockfile
   logged proxy-tests node --test server/lumo-ai-proxy/test/*.test.js
   logged script-tests python3 -m unittest discover -s scripts/tests -p 'test_*.py'
   if command -v tesseract >/dev/null && python3 -c 'import PIL' 2>/dev/null; then
@@ -178,7 +180,6 @@ run_tests() {
   fi
   logged content-audit dart scripts/audit_content.dart
   logged repair-guard bash scripts/lumo_repair_guard.sh
-  logged pub-get flutter pub get --enforce-lockfile
   logged analyze flutter analyze --no-fatal-infos --no-fatal-warnings
   logged flutter-tests flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
   source_unchanged tests
