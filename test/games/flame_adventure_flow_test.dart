@@ -58,11 +58,15 @@ Future<LumoFlameJumpGame> _menuAndCollect(
   expect(extras.hitTestable(), findsOneWidget);
   await tester.tap(extras);
   await tester.pump(const Duration(milliseconds: 450));
+  // The real 2D adventure is now first in the expanded extra modes.
+  // Do not use scrollUntilVisible here: with an animated ExpansionTile
+  // inside a SliverToBoxAdapter, that search can dispose the target sliver
+  // while scrolling. Keep the route genuinely tappable in the viewport.
   final card = find.text('Lumos Jump Adventure · 2D');
-  await tester.scrollUntilVisible(card, 250,
-      scrollable: find.byType(Scrollable).first);
-  await tester.ensureVisible(card);
+  expect(card, findsOneWidget);
+  await tester.drag(find.byType(CustomScrollView), const Offset(0, -110));
   await tester.pump();
+  expect(card.hitTestable(), findsOneWidget);
   await tester.tap(card);
   await _frames(tester);
   expect(find.byType(LumoJumpFlameScreen), findsOneWidget);
