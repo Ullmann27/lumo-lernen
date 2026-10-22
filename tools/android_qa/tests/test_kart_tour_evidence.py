@@ -75,6 +75,29 @@ class GarageAndMotionTests(unittest.TestCase):
 
 
 class NativeSessionTests(unittest.TestCase):
+    def test_explicit_cup_mode_keeps_all_running_and_driving_checks(self):
+        start = session(mode='cup')
+        self.assertTrue(race_running(start, mode='cup'))
+        self.assertFalse(race_running(session(mode='cup', countdown=2), mode='cup'))
+        report = driving_progress(start, session(mode='cup', distance=46, elapsed=8), mode='cup')
+        self.assertGreaterEqual(report['distance_gain'], 8)
+        with self.assertRaisesRegex(RuntimeError, 'did not actually drive'):
+            driving_progress(start, session(mode='cup', distance=1, elapsed=8), mode='cup')
+        with self.assertRaisesRegex(RuntimeError, 'not race/sonnenhafen'):
+            race_running(start)
+
+    def test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause(self):
+        start = session(mode='cup')
+        for later in [session(mode='race'), session(mode='arena'),
+                      session(mode='cup', track_id='zauberwald'),
+                      session(mode='cup', result_id='other')]:
+            with self.subTest(later=later):
+                with self.assertRaises(RuntimeError):
+                    driving_progress(start, later, mode='cup')
+                with self.assertRaises(RuntimeError):
+                    paused_unchanged(start, later, mode='cup')
+        self.assertEqual(paused_unchanged(start, dict(start), mode='cup')['result_id'], 'kart-1')
+
     def test_race_counts_as_running_only_after_countdown_and_first_second(self):
         self.assertFalse(race_running(session(countdown=2.1, elapsed=0.0)))
         self.assertFalse(race_running(session(elapsed=0.4)))

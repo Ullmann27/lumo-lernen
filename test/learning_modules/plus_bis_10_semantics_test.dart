@@ -43,7 +43,8 @@ void main() {
       expect(
         tester.getSemantics(label),
         matchesSemantics(
-            label: 'Antwort $value', isButton: true, hasTapAction: true),
+            label: 'Antwort $value', isButton: true, hasTapAction: true,
+            hasEnabledState: true, isEnabled: true),
       );
     }
 

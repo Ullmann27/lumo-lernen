@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_story_generator.dart';
+import '../../core/reading_story_memory_repository.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -26,9 +27,12 @@ class LumoStorySetupScreen extends StatefulWidget {
 }
 
 class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
+  final _storyMemory = ReadingStoryMemoryRepository();
   String? _hero;
   String? _location;
   String? _theme;
+  String _companion = 'Lumo';
+  String _magicItem = 'Sternenkompass';
   late int _gradeLevel;
 
   @override
@@ -42,18 +46,43 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
   bool get _canStart => _hero != null && _location != null && _theme != null;
 
   Future<void> _startStory() async {
-    final story = LumoStoryGenerator.instance.generate(
+    // Re-use the established child/grade-isolated memory store.
+    final childId = widget.appState.state.childName.trim().toLowerCase();
+    final signature = [_hero!, _location!, _theme!, _companion, _magicItem]
+        .map((part) => part.trim().toLowerCase())
+        .join('|');
+    final recent = await _storyMemory.loadRecent(
+      childId: childId, grade: _gradeLevel);
+    if (!mounted) return;
+    final variants = recent.where((key) => key.startsWith('$signature|v'));
+    final lastVariant = variants.isEmpty
+        ? -1
+        : int.tryParse(variants.last.split('|v').last) ?? -1;
+    final variationSeed = (lastVariant + 1) % 12;
+    final story = LumoStoryGenerator.instance.generateReadingAdventure(
       hero: _hero!,
       location: _location!,
       theme: _theme!,
       gradeLevel: _gradeLevel,
+      companion: _companion,
+      magicItem: _magicItem,
+      variationSeed: variationSeed,
     );
+    await _storyMemory.remember(
+      childId: childId,
+      grade: _gradeLevel,
+      signature: '$signature|v$variationSeed',
+    );
+    if (!mounted) return;
     await _openReader(story);
   }
 
   Future<void> _surprise() async {
     final story =
-        LumoStoryGenerator.instance.generateRandom(gradeLevel: _gradeLevel);
+        LumoStoryGenerator.instance.generateReadingAdventure(
+          hero: 'Fuchs', location: 'Zauberwald', theme: 'Geheimnis',
+          gradeLevel: _gradeLevel,
+          variationSeed: DateTime.now().millisecondsSinceEpoch % 12);
     await _openReader(story);
   }
 
@@ -96,7 +125,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
-                    child: Text('Lumo erfindet dir eine Geschichte!',
+                    child: Text('Lumos Bücher und Leseabenteuer',
                         style: const TextStyle(color: LumoVisualTokens.white,
                             fontSize: 22, fontWeight: FontWeight.w900)),
                   ),
@@ -120,7 +149,7 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                             style: TextStyle(color: LumoVisualTokens.white,
                               fontSize: 18, fontWeight: FontWeight.w900)),
                           SizedBox(height: 5),
-                          Text('Wähle eine Idee oder lass Lumo entscheiden.',
+                          Text('Wähle Held, Ort und Abenteuer. Oder starte gleich ein Buch.',
                             style: TextStyle(color: LumoVisualTokens.muted,
                               fontSize: 12.5)),
                         ],
@@ -199,11 +228,29 @@ class _LumoStorySetupScreenState extends State<LumoStorySetupScreen> {
                 (v) => setState(() => _theme = v),
                 LumoTokens.colors.gold,
               ),
+              const SizedBox(height: LumoTokens.space20),
+              const SizedBox(height: 6),
+              LumoGlassCard(
+                padding: const EdgeInsets.all(14),
+                child: Row(children: const [
+                  Icon(Icons.menu_book_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                  SizedBox(width: 10),
+                  Expanded(child: Text(
+                    'Du liest zwölf Buchseiten, löst zwei Rätsel und '
+                    'beantwortest am Schluss Fragen zur ganzen Geschichte. '
+                    'Lumo liest nur vor, wenn du auf den Lautsprecher tippst.',
+                    style: TextStyle(color: LumoVisualTokens.white,
+                      height: 1.4, fontSize: 14),
+                  )),
+                ]),
+              ),
               const SizedBox(height: LumoTokens.space32),
               SizedBox(
                 width: double.infinity,
                 height: 60,
                 child: ElevatedButton.icon(
+                  key: const ValueKey('lumo-story-generate'),
                   onPressed: _canStart ? _startStory : null,
                   icon: const Icon(Icons.auto_stories_rounded, size: 28),
                   label: const Text('Geschichte starten!'),

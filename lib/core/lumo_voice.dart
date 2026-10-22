@@ -42,6 +42,7 @@ class LumoVoice {
   LumoSpeechCancellation? _pendingRequest;
   Completer<void>? _playbackFinished;
   Future<void> _startup = Future<void>.value();
+  final Set<Future<void>> _nativeStops = {};
   int? _playingGeneration;
   Timer? _mouthTicker;
   Stopwatch? _playbackWatch;
@@ -471,6 +472,15 @@ class LumoVoice {
       completeCancelled();
       return;
     }
+    // A late stop reply resets AudioPlayer's state and position updater.
+    // Let every outstanding native stop finish before selecting a new source.
+    if (_nativeStops.isNotEmpty) {
+      await Future.wait<void>(_nativeStops.toList());
+      if (!_enabled || generation != _speechGeneration) {
+        completeCancelled();
+        return;
+      }
+    }
     final player = _ensurePlayer();
     _playbackFinished = onFinished;
     _playingGeneration = generation;
@@ -630,6 +640,7 @@ class LumoVoice {
   }
 
   Future<void> _stopPlayback() async {
+    final generation = _speechGeneration;
     _pendingRequest?.cancel();
     _pendingRequest = null;
     final cancelLocal = _localInferenceGeneration != null;
@@ -637,18 +648,24 @@ class LumoVoice {
     final localCancellation =
         cancelLocal ? _offline.cancel() : Future<void>.value();
     _finishAudio();
-    try {
-      await _player?.stop();
-    } catch (_) {}
-    if (status.value != VoiceStatus.error) status.value = VoiceStatus.idle;
+    final nativeStop =
+        (_player?.stop() ?? Future<void>.value()).catchError((Object _) {});
+    // Stop remains immediate, even during native preparation. Retain only
+    // outstanding stops, so no completed queue chain survives into playback.
+    _nativeStops.add(nativeStop);
+    await nativeStop;
+    _nativeStops.remove(nativeStop);
+    if (generation == _speechGeneration && status.value != VoiceStatus.error) {
+      status.value = VoiceStatus.idle;
+    }
     await localCancellation;
   }
 
   Future<void> stop() async {
     ++_requestRevision;
-    ++_speechGeneration;
+    final generation = ++_speechGeneration;
     await _stopPlayback();
-    status.value = VoiceStatus.idle;
+    if (generation == _speechGeneration) status.value = VoiceStatus.idle;
   }
 
   /// The active identity supplies this sample; old original binaries stay intact.

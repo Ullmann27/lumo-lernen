@@ -15,9 +15,8 @@ import zlib
 from functools import wraps
 from pathlib import Path
 
-# Reviewed for Godot pin b5f1989 (commit 8473037): the only change since
-# aebfcd7 adds the race_world_ready log marker at the end of _begin_race();
-# lap, checkpoint, session and handoff logic are byte-identical.
+# Reviewed against pinned Godot 61f51b9: kart_island.gd has the same content as b5f1989.
+# Original lap/handoff fixtures remain historical and their individual hashes unchanged.
 SOURCE_SHA256 = "0fbc839429f52ca4ed07641220b396e1be4ddb5fac250e2faaa2557f9b9d9064"
 LAP_PROBE_SHA256 = "8129eea26ded1a9ddba71d7cb3dd11f38a12a89d09d89218d726354ec318c245"
 FIXTURE_PROBE_SHA256 = "b9155b5ddb7332875d96a7785f0ea3fb7749a7670fac18562815f88bc88a2ff9"

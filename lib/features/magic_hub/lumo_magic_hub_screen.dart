@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_companion_state.dart';
 import '../../theme/lumo_design_tokens.dart';
+import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_hero_card.dart';
@@ -17,6 +18,7 @@ import '../../widgets/premium/lumo_premium_card.dart';
 import '../cosmos/lumo_cosmos_screen.dart';
 import '../live/lumo_live_pro_screen.dart';
 import '../story/lumo_story_library_screen.dart';
+import '../story/lumo_quest_hub_screen.dart';
 
 class LumoMagicHubScreen extends StatefulWidget {
   const LumoMagicHubScreen({super.key, required this.appState});
@@ -124,8 +126,10 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
   Widget build(BuildContext context) {
     final appState = widget.appState;
     return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
+      backgroundColor: LumoVisualTokens.night,
+      body: LumoSceneBackground(
+        scene: LumoScene.home,
+        dimmed: true,
         child: SafeArea(
           child: ListView(
             padding: const EdgeInsets.fromLTRB(LumoTokens.space16,
@@ -134,13 +138,18 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
               Row(
                 children: [
                   IconButton(
-                    icon: const Icon(Icons.arrow_back_rounded),
+                    icon: const Icon(Icons.arrow_back_rounded,
+                        color: Colors.white),
+                    tooltip: 'Zurück',
                     onPressed: () => Navigator.pop(context),
                   ),
                   Expanded(
-                    child: Text('Lumo Magic ✨',
-                        style: LumoTokens.typo.headlineLarge),
+                    child: Text('Lumo Magic',
+                        style: LumoTokens.typo.headlineLarge.copyWith(
+                            color: Colors.white)),
                   ),
+                  const Icon(Icons.auto_awesome_rounded,
+                      color: Color(0xFFFFD873), size: 26),
                 ],
               ),
               const SizedBox(height: LumoTokens.space8),
@@ -177,7 +186,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: Text(_greeting,
                       style: LumoTokens.typo.headlineSmall
-                          .copyWith(color: LumoTokens.colors.textDark),
+                          .copyWith(color: Colors.white),
                       textAlign: TextAlign.center),
                 ),
               ),
@@ -217,6 +226,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
 
               // 1. LUMO STORY
               LumoHeroCard(
+                key: const ValueKey('magic-story-route'),
                 title: 'Lumo Story',
                 subtitle: 'Deine Geschichten - Bibliothek + neue erstellen',
                 icon: Icons.auto_stories_rounded,
@@ -232,8 +242,29 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
               ),
               const SizedBox(height: LumoTokens.space12),
 
-              // 2. LUMO COSMOS
+              // An existing interactive adventure is now reachable from
+              // the same premium hub as stories, cosmos and Mirror.
               LumoHeroCard(
+                key: const ValueKey('magic-quest-route'),
+                title: 'Lumo Quest',
+                subtitle: 'Abenteuer und Geschichten für deine Klasse',
+                icon: Icons.auto_awesome_rounded,
+                gradient: const LinearGradient(
+                  colors: [Color(0xFF246CB6), Color(0xFF7C4BCC)],
+                ),
+                glowColor: const Color(0xFF6EE7F5),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute<void>(
+                    builder: (_) => LumoQuestHubScreen(appState: appState),
+                  ),
+                ),
+              ),
+              const SizedBox(height: LumoTokens.space12),
+
+              // LUMO COSMOS
+              LumoHeroCard(
+                key: const ValueKey('magic-cosmos-route'),
                 title: 'Meine Welt',
                 subtitle: 'Tag/Nacht + 4 Jahreszeiten + dein Garten waechst',
                 icon: Icons.eco_rounded,
@@ -253,6 +284,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
 
               // 3. LUMO LIVE PRO
               LumoHeroCard(
+                key: const ValueKey('magic-live-route'),
                 title: 'Lumo LIVE',
                 subtitle: 'Wort-Magie · Foto-Quiz · Tier-Safari',
                 icon: Icons.mic_rounded,
@@ -270,6 +302,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
 
               // 4. LUMO MIRROR (Showcase)
               LumoHeroCard(
+                key: const ValueKey('magic-mirror-route'),
                 title: 'Lumo Mirror',
                 subtitle: '8 Emotionen + reagiert auf dich',
                 icon: Icons.face_rounded,
@@ -279,7 +312,7 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (_) => const _LumoMirrorShowcase(),
+                    builder: (_) => const LumoMirrorShowcaseScreen(),
                   ),
                 ),
               ),
@@ -315,6 +348,15 @@ class _LumoMagicHubScreenState extends State<LumoMagicHubScreen> {
   }
 }
 
+/// Public, stable route to the existing 1992 Mirror studio.
+/// Keep the original stateful interaction and its eight emotion variants.
+class LumoMirrorShowcaseScreen extends StatelessWidget {
+  const LumoMirrorShowcaseScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) => const _LumoMirrorShowcase();
+}
+
 /// Mirror-Showcase: alle 8 Moods anschauen + interagieren.
 class _LumoMirrorShowcase extends StatefulWidget {
   const _LumoMirrorShowcase();
@@ -330,104 +372,173 @@ class _LumoMirrorShowcaseState extends State<_LumoMirrorShowcase> {
 
   @override
   Widget build(BuildContext context) {
+    final moodLabel = _moodLabel(_mood);
     return Scaffold(
-      backgroundColor: LumoTokens.colors.creme,
-      body: LumoMagicBackground(
+      backgroundColor: const Color(0xFF102841),
+      body: LumoSceneBackground(
+        scene: LumoScene.home,
+        dimmed: true,
         child: SafeArea(
-          child: Column(
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(LumoTokens.space12),
-                child: Row(
-                  children: [
-                    IconButton(
-                      icon: const Icon(Icons.arrow_back_rounded),
-                      onPressed: () => Navigator.pop(context),
-                    ),
-                    Expanded(
-                      child: Text('Lumo Mirror',
-                          style: LumoTokens.typo.headlineMedium),
-                    ),
-                  ],
-                ),
-              ),
-              // Lumo zentral - reagiert auf Finger
-              Expanded(
-                flex: 2,
-                child: GestureDetector(
-                  onPanUpdate: (d) {
-                    final box = context.findRenderObject() as RenderBox?;
-                    if (box != null) {
-                      final size = box.size;
-                      final center = Offset(size.width / 2, size.height / 2);
-                      final delta = d.globalPosition - center;
-                      setState(() {
-                        _lookAt = Offset(
-                            (delta.dx / size.width * 2).clamp(-1.0, 1.0),
-                            (delta.dy / size.height * 2).clamp(-1.0, 1.0));
-                      });
-                    }
-                  },
-                  child: Center(
-                    child: LumoMirror(
-                      mood: _mood,
-                      size: 240,
-                      isSpeaking: _speaking,
-                      lookAt: _lookAt,
-                      onTap: () {
-                        setState(() => _speaking = !_speaking);
-                      },
-                    ),
+          child: LayoutBuilder(builder: (context, constraints) {
+            final narrow = constraints.maxWidth < 380;
+            final cols = constraints.maxWidth >= 700 ? 4 : 2;
+            return ListView(
+              key: const PageStorageKey<String>('lumo-mirror-studio'),
+              padding: const EdgeInsets.fromLTRB(16, 12, 16, 32),
+              children: [
+                Row(children: [
+                  IconButton(
+                    icon: const Icon(Icons.arrow_back_rounded,
+                        color: Colors.white),
+                    tooltip: 'Zurück',
+                    onPressed: () => Navigator.pop(context),
                   ),
-                ),
-              ),
-              // Mood-Picker
-              Padding(
-                padding: const EdgeInsets.all(LumoTokens.space16),
-                child: Column(
-                  children: [
-                    Text('Tippe einen Mood, ich reagiere!',
-                        style: LumoTokens.typo.titleMedium),
-                    const SizedBox(height: 12),
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      alignment: WrapAlignment.center,
-                      children: LumoMirrorMood.values.map((m) {
-                        final active = _mood == m;
-                        return GestureDetector(
-                          onTap: () => setState(() => _mood = m),
-                          child: Container(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 14, vertical: 8),
-                            decoration: BoxDecoration(
-                              color: active
-                                  ? LumoTokens.colors.lumoOrange
-                                  : Colors.white,
-                              borderRadius: LumoTokens.brPill,
-                              border: Border.all(
-                                  color: active
-                                      ? LumoTokens.colors.lumoOrange
-                                      : LumoTokens.colors.outline,
-                                  width: 2),
-                            ),
-                            child: Text(_moodLabel(m),
-                                style: LumoTokens.typo.titleMedium.copyWith(
-                                    color: active
-                                        ? Colors.white
-                                        : LumoTokens.colors.textDark)),
-                          ),
-                        );
-                      }).toList(),
+                  const SizedBox(width: 6),
+                  const Expanded(child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Lumo Mirror',
+                        style: TextStyle(color: Colors.white,
+                            fontFamily: 'Nunito', fontSize: 22,
+                            fontWeight: FontWeight.w900)),
+                      Text('Entdecke Lumos Gefühle',
+                        style: TextStyle(color: Color(0xFFD6EAF4),
+                            fontFamily: 'Nunito', fontSize: 13)),
+                    ],
+                  )),
+                ]),
+                const SizedBox(height: 14),
+                Container(
+                  key: const ValueKey('mirror-avatar-stage'),
+                  padding: const EdgeInsets.all(18),
+                  decoration: BoxDecoration(
+                    gradient: const LinearGradient(
+                      colors: [Color(0xFF153B69), Color(0xFF5B3887)],
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                     ),
-                  ],
+                    borderRadius: BorderRadius.circular(28),
+                    border: Border.all(color: const Color(0xFF85DBF8).withOpacity(.65)),
+                  ),
+                  child: Column(children: [
+                    SizedBox(
+                      height: narrow ? 205 : 240,
+                      child: Stack(alignment: Alignment.center, children: [
+                        LumoFoxPose(
+                          pose: LumoDesignFoxPose.armsOpen,
+                          size: narrow ? 160 : 192,
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          right: narrow ? 12 : 45,
+                          child: GestureDetector(
+                            onPanUpdate: (details) {
+                              final pos = details.localPosition;
+                              setState(() => _lookAt = Offset(
+                                ((pos.dx - 60) / 60).clamp(-1.0, 1.0),
+                                ((pos.dy - 60) / 60).clamp(-1.0, 1.0),
+                              ));
+                            },
+                            child: LumoMirror(
+                              mood: _mood,
+                              size: 116,
+                              isSpeaking: _speaking,
+                              lookAt: _lookAt,
+                              onTap: () => setState(
+                                () => _speaking = !_speaking),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    ),
+                    const SizedBox(height: 12),
+                    Text(moodLabel,
+                      key: const ValueKey('mirror-active-mood'),
+                      style: const TextStyle(color: Colors.white,
+                          fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                          fontSize: 21)),
+                    const SizedBox(height: 6),
+                    Text(_moodHint(_mood),
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(color: Color(0xFFE0EAF7),
+                          fontFamily: 'Nunito', fontSize: 14)),
+                  ]),
                 ),
-              ),
-            ],
-          ),
+                const SizedBox(height: 18),
+                const Text('Wie soll Lumo reagieren?',
+                    style: TextStyle(fontFamily: 'Nunito',
+                        color: Colors.white, fontSize: 19,
+                        fontWeight: FontWeight.w900)),
+                const SizedBox(height: 5),
+                const Text('Wähle eine Stimmung. Die Animation reagiert sofort.',
+                    style: TextStyle(fontFamily: 'Nunito',
+                        color: Color(0xFFD6EAF4), fontSize: 13)),
+                const SizedBox(height: 12),
+                LayoutBuilder(builder: (context, width) {
+                  const gap = 10.0;
+                  final itemWidth = (width.maxWidth - (cols - 1) * gap) / cols;
+                  return Wrap(
+                    spacing: gap,
+                    runSpacing: gap,
+                    children: [
+                      for (final mood in LumoMirrorMood.values)
+                        SizedBox(
+                          width: itemWidth,
+                          height: 56,
+                          child: Semantics(
+                            selected: mood == _mood,
+                            child: Material(
+                              color: mood == _mood
+                                  ? const Color(0xFFF27632)
+                                  : const Color(0xFF173858),
+                              borderRadius: BorderRadius.circular(16),
+                              child: InkWell(
+                                key: ValueKey('mirror-mood-${mood.name}'),
+                                borderRadius: BorderRadius.circular(16),
+                                onTap: () => setState(() {
+                                  _mood = mood;
+                                  _lookAt = null;
+                                }),
+                                child: Center(
+                                  child: Text(_moodLabel(mood),
+                                    style: const TextStyle(
+                                      fontFamily: 'Nunito', color: Colors.white,
+                                      fontWeight: FontWeight.w900, fontSize: 15)),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  );
+                }),
+              ],
+            );
+          }),
         ),
       ),
     );
+  }
+
+  String _moodHint(LumoMirrorMood mood) {
+    switch (mood) {
+      case LumoMirrorMood.idle:
+        return 'Ganz ruhig. Wir können in deinem Tempo starten.';
+      case LumoMirrorMood.happy:
+        return 'Lumo freut sich mit dir.';
+      case LumoMirrorMood.think:
+        return 'Zeit, gemeinsam nachzudenken.';
+      case LumoMirrorMood.cheer:
+        return 'Ein guter Grund zum Jubeln!';
+      case LumoMirrorMood.sad:
+        return 'Auch traurige Gefühle dürfen da sein.';
+      case LumoMirrorMood.curious:
+        return 'Neugierig? Es gibt noch viel zu entdecken.';
+      case LumoMirrorMood.proud:
+        return 'Du kannst stolz auf deine Fortschritte sein.';
+      case LumoMirrorMood.sleepy:
+        return 'Eine Pause ist manchmal genau richtig.';
+    }
   }
 
   String _moodLabel(LumoMirrorMood m) {

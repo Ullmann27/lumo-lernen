@@ -9,6 +9,9 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_answer_crystal.dart';
+import '../../../widgets/design/lumo_math_stage.dart';
+import '../../../widgets/fox/lumo_character.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -38,7 +41,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     Color(0xFF0F766E),
   ];
 
-  late final AnimationController _bounceCtrl;
+  final _lumo = LumoCharacterController();
   late final AnimationController _shakeCtrl;
   late final AnimationController _entryCtrl;
   late final LearningModuleProgress _progress;
@@ -63,8 +66,6 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       subject: 'Mathematik',
       unit: 'Zahlen bis 100',
     );
-    _bounceCtrl = AnimationController(
-        vsync: this, duration: const Duration(milliseconds: 600));
     _shakeCtrl = AnimationController(
         vsync: this, duration: const Duration(milliseconds: 400));
     _entryCtrl = AnimationController(
@@ -77,7 +78,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   @override
   void dispose() {
     _progress.dispose();
-    _bounceCtrl.dispose();
+    _lumo.dispose();
     _shakeCtrl.dispose();
     _entryCtrl.dispose();
     super.dispose();
@@ -180,7 +181,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     );
     if (!saved || !mounted) return;
     if (isCorrect) {
-      _bounceCtrl.forward(from: 0);
+      _lumo.cheer();
       setState(() => _correctCount++);
       try {
         LumoVoice.instance.speak(LumoPhrases.correct());
@@ -188,6 +189,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     } else {
       HapticFeedback.mediumImpact();
       _shakeCtrl.forward(from: 0);
+      _lumo.comfort();
       try {
         LumoVoice.instance.speak(LumoPhrases.wrongGentle());
       } catch (_) {}
@@ -221,17 +223,20 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       context: context,
       barrierDismissible: false,
       builder: (_) => AlertDialog(
-        backgroundColor: const Color(0xFFFFFBEB),
+        backgroundColor: LumoVisualTokens.navigation,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-        title: const Text('🎉 Geschafft!',
+        title: const Text('Geschafft!',
             textAlign: TextAlign.center,
-            style:
-                TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+            style: TextStyle(
+                fontFamily: 'Nunito',
+                color: LumoVisualTokens.white,
+                fontWeight: FontWeight.w900)),
         content: Column(mainAxisSize: MainAxisSize.min, children: [
           Text('$_correctCount / $_totalTasks Aufgaben richtig!',
               style: const TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 16,
+                  color: LumoVisualTokens.white,
                   fontWeight: FontWeight.w800),
               textAlign: TextAlign.center),
           const SizedBox(height: 12),
@@ -254,6 +259,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
               style: const TextStyle(
                   fontFamily: 'Nunito',
                   fontSize: 14,
+                  color: LumoVisualTokens.white,
                   fontStyle: FontStyle.italic),
               textAlign: TextAlign.center),
         ]),
@@ -280,6 +286,9 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
       progress: _progress,
       child: LumoLearningModuleFrame(
         appState: widget.appState,
+        immersive: true,
+        characterController: _lumo,
+        scrollResetKey: _taskIdx,
         title: 'Mathe-Abenteuer',
         moduleTitle: 'Zahlen bis 100',
         icon: Icons.pin_rounded,
@@ -300,7 +309,12 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
           child: Column(children: [
             _buildTaskHeader(),
             const SizedBox(height: 12),
-            _buildVisualization(),
+            LumoMathStage(
+              visualization: _buildVisualization(),
+              controller: _lumo,
+              reduceMotion:
+                  LumoLessonStyle.reducedMotion(context, widget.appState),
+            ),
             const SizedBox(height: 16),
             _buildAnswerGrid(),
           ]),
@@ -333,14 +347,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
             : math.sin(_shakeCtrl.value * math.pi * 8) * 6;
         return Transform.translate(offset: Offset(shake, 0), child: child);
       },
-      child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-        decoration: BoxDecoration(
-          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
-          borderRadius: BorderRadius.circular(24),
-          border: Border.all(
-              color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
-        ),
+      child: LumoCrystalPanel(
         child: Text(text,
             textAlign: TextAlign.center,
             style: TextStyle(
@@ -356,11 +363,27 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     switch (_typ) {
       case _Zahl100FrageTyp.nachfolger:
       case _Zahl100FrageTyp.vorgaenger:
-        return LumoLessonNumberFlow(
-          before: _typ == _Zahl100FrageTyp.nachfolger ? '$_zahl1' : '?',
-          after: _typ == _Zahl100FrageTyp.nachfolger ? '?' : '$_zahl1',
-          fontSize: 56,
-        );
+        return LumoCrystalPanel(
+            child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(mainAxisSize: MainAxisSize.min, children: [
+                  Text(_typ == _Zahl100FrageTyp.nachfolger ? '$_zahl1' : '?',
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 56,
+                          fontWeight: FontWeight.w900,
+                          color: LumoVisualTokens.white)),
+                  const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: Icon(Icons.arrow_forward_rounded,
+                          size: 30, color: LumoVisualTokens.cyanBright)),
+                  Text(_typ == _Zahl100FrageTyp.nachfolger ? '?' : '$_zahl1',
+                      style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 56,
+                          fontWeight: FontWeight.w900,
+                          color: LumoVisualTokens.white)),
+                ])));
       case _Zahl100FrageTyp.vergleich:
         // Schmal oder mit großer Schrift verkleinern statt überlaufen.
         return FittedBox(
@@ -440,14 +463,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
   }
 
   Widget _bigNumberBox(int n) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
-      decoration: BoxDecoration(
-        color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
-        borderRadius: BorderRadius.circular(16),
-        border: Border.all(
-            color: LumoVisualTokens.cyan.withValues(alpha: .55), width: 2),
-      ),
+    return LumoCrystalPanel(
       child: Text('$n',
           style: TextStyle(
               fontFamily: 'Nunito',
@@ -457,68 +473,19 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     );
   }
 
-  Widget _buildAnswerGrid() {
-    return LumoLessonAnswerGrid(
-      crossAxisCount: 2,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      mainAxisSpacing: 12,
-      crossAxisSpacing: 12,
-      childAspectRatio: 1.8,
-      children: _answers.map((a) => _buildAnswerButton(a)).toList(),
-    );
-  }
+  Widget _buildAnswerGrid() => LumoCrystalAnswerGrid(
+        children: _answers.map(_buildAnswerButton).toList(),
+      );
 
-  Widget _buildAnswerButton(int value) {
-    final isSelected = _selectedAnswer == value;
-    final isCorrect = value == _correctAnswer;
-    Color bgColor = LumoVisualTokens.lessonAnswer;
-    Color textColor = LumoVisualTokens.white;
-    Color borderColor = LumoVisualTokens.cyan.withValues(alpha: .8);
-    if (_answered && isSelected) {
-      if (isCorrect) {
-        bgColor = const Color(0xFFD1FAE5);
-        textColor = const Color(0xFF065F46);
-        borderColor = const Color(0xFF10B981);
-      } else {
-        bgColor = const Color(0xFFFEE2E2);
-        textColor = const Color(0xFF991B1B);
-        borderColor = const Color(0xFFEF4444);
-      }
-    } else if (_answered && isCorrect) {
-      bgColor = const Color(0xFFFEF3C7);
-      textColor = const Color(0xFF713F12);
-      borderColor = const Color(0xFFFCD34D);
-    }
-    return AnimatedBuilder(
-      animation: _bounceCtrl,
-      builder: (_, child) {
-        final s = isSelected &&
-                isCorrect &&
-                !LumoLessonStyle.reducedMotion(context, widget.appState)
-            ? 1 + math.sin(_bounceCtrl.value * math.pi) * 0.1
-            : 1.0;
-        return Transform.scale(scale: s, child: child);
-      },
-      child: LumoLessonAnswerTap(
-        correct: _answered && isSelected ? isCorrect : null,
-        onTap: _answered ? null : () => _onAnswer(value),
-        child: AnimatedContainer(
-          duration: LumoLessonStyle.reducedMotion(context, widget.appState)
-              ? Duration.zero
-              : const Duration(milliseconds: 200),
-          decoration:
-              LumoLessonStyle.answer(background: bgColor, border: borderColor),
-          child: Center(
-            child: Text('$value',
-                style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 32,
-                    fontWeight: FontWeight.w900,
-                    color: textColor)),
-          ),
-        ),
-      ),
-    );
-  }
+  Widget _buildAnswerButton(int value) => LumoAnswerCrystal(
+        label: '$value',
+        onPressed: _answered ? null : () => _onAnswer(value),
+        state: !_answered
+            ? LumoCrystalState.neutral
+            : value == _correctAnswer
+                ? LumoCrystalState.correct
+                : _selectedAnswer == value
+                    ? LumoCrystalState.retry
+                    : LumoCrystalState.neutral,
+      );
 }

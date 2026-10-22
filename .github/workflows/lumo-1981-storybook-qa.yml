@@ -1,0 +1,45 @@
+name: Lumo 1981 storybook focused regression
+on:
+  push:
+    branches: [codex/lumo-learning-lab-2026-10-18]
+    paths:
+      - 'lib/core/lumo_story_generator.dart'
+      - 'lib/core/lumo_story_library.dart'
+      - 'lib/features/story/**'
+      - 'test/story_*.dart'
+      - 'test/design/lumo_story_actual_reader_visual_test.dart'
+      - '.github/workflows/lumo-1981-storybook-qa.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-storybook-focused-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  storybook:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - run: flutter pub get --enforce-lockfile
+      - name: Static analysis and story assets
+        run: |
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+          test -s lib/features/story/widgets/lumo_story_scene.dart
+      - name: Child-led stories, 10 recall questions, route completion and storage
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=120s \
+            test/story_book_adventure_test.dart \
+            test/story_completion_navigation_test.dart \
+            test/story_completion_storage_test.dart \
+            test/story_setup_learning_path_grade_test.dart \
+            test/story_setup_profile_grade_test.dart \
+            test/story_entry_navigation_test.dart \
+            test/design/lumo_story_actual_reader_visual_test.dart

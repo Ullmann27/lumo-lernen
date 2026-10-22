@@ -23,6 +23,7 @@ import unicodedata
 import xml.etree.ElementTree as ET
 
 from PIL import Image, ImageChops
+from flutter_surface_readiness import capture_when_ready
 
 # Keep screenshot recognition from oversubscribing the same software-rendered
 # emulator host. This changes only the independent OCR reader, not the app.
@@ -95,6 +96,11 @@ def capture(out: Path, name: str, timeout: float | None = None) -> dict:
             raise RuntimeError('screencap stayed incomplete after 4 transfers')
     print('[AndroidCapture]', result['file'], flush=True)
     return result
+
+
+def capture_flutter_ready(out: Path, name: str, *, timeout: float = 30) -> dict:
+    """Capture a real Flutter page only after its pixels finish rendering."""
+    return capture_when_ready(out, name, capture, timeout=timeout)
 
 
 def device_rotation(out: Path, tag: str, quarter_turns: int) -> None:
@@ -175,13 +181,16 @@ def recover_launcher_dialog(out: Path, nodes: list[dict], tag: str) -> bool:
 
 
 def flutter_tap(out: Path, label: str, tag: str, *,
-                scroll_attempts: int = 12, direction_order=(-1, 1)) -> None:
+                scroll_attempts: int = 12, direction_order=(-1, 1),
+                min_visible_height_px: int = 1) -> None:
     # Search both ends of the actual responsive scroll view. Named controls are
     # tapped only when their enabled live accessibility bounds have been read.
     if type(scroll_attempts) is not int or not 1 <= scroll_attempts <= 64:
         raise ValueError('Live control search requires a bounded scroll budget')
     if direction_order not in ((-1, 1), (1, -1)):
         raise ValueError('Live control search requires known scroll directions')
+    if not isinstance(min_visible_height_px, int) or not 1 <= min_visible_height_px <= 200:
+        raise ValueError('Live control requires a bounded minimum visible height')
     settle_waits = 0
     for direction in direction_order:
         for attempt in range(scroll_attempts):
@@ -197,7 +206,11 @@ def flutter_tap(out: Path, label: str, tag: str, *,
                 if len(bounds) != 4 or node.get('enabled') == 'false':
                     continue
                 x0, y0, x1, y1 = bounds
-                if x1 > x0 and y1 > y0:
+                # UiAutomator can mark a clipped 1px strip as visible and
+                # clickable. A center tap on that strip does NOT hit Flutter's
+                # real 48dp button. Do not mistake it for a game launch.
+                # Scroll until enough of the actual tappable rectangle is seen.
+                if x1 > x0 and y1-y0 >= min_visible_height_px:
                     choices.append(((x1-x0)*(y1-y0), x0, y0, x1, y1,
                                     node.get('clickable') == 'true'))
             if choices:
@@ -638,7 +651,7 @@ def onboard(out: Path) -> dict:
         time.sleep(1)
     else:
         raise RuntimeError('Saved full profile name missing from actual home UI')
-    home = capture(out,'07_home_after_onboarding')
+    home = capture_flutter_ready(out,'07_home_after_onboarding')
     # One accessibility read 2 s after the tap missed a still-building games
     # page (run 38909874763, same app that passed in run 38892673870). Wait
     # boundedly for a real games entry; the current navigation says "Spielen".

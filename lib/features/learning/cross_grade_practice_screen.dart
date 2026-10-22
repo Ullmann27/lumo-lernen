@@ -3,6 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../core/school_exercise_generator.dart';
 import 'widgets/cross_grade_visual_scene.dart';
+import '../../widgets/design/lumo_answer_crystal.dart';
 
 /// Direct, offline, interactive lessons in a voluntarily selected school grade.
 ///
@@ -34,6 +35,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   late final ExerciseFactory _factory;
   late LumoTask _task;
   String? _selected;
+  String? _firstWrongChoice;
   int _answered = 0;
   int _correct = 0;
   bool _progressLoaded = false;
@@ -96,7 +98,14 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
         _selected != null || _saving) {
       return;
     }
+    if (choice == _firstWrongChoice) return;
     final correct = choice == _task.answer;
+    // The first wrong attempt is unfinished: offer a hint, without writing
+    // counters or disclosing the solution until the child tries again.
+    if (!correct && _firstWrongChoice == null) {
+      setState(() => _firstWrongChoice = choice);
+      return;
+    }
     setState(() {
       _selected = choice;
       _answered++;
@@ -160,7 +169,23 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
         unit: widget.unit,
       );
       _selected = null;
+      _firstWrongChoice = null;
     });
+  }
+
+  String get _secondChanceHint {
+    switch (widget.subject) {
+      case 'Mathematik':
+        return 'Prüfe das Rechenzeichen und rechne in kleinen Schritten.';
+      case 'Deutsch':
+      case 'Rechtschreibung':
+      case 'Lesen':
+        return 'Lies die Aufgabe langsam und vergleiche die übrigen Antworten.';
+      case 'Englisch':
+        return 'Lies die Wörter einzeln und prüfe ihre Bedeutung.';
+      default:
+        return 'Schau auf die Frage und prüfe die übrigen Möglichkeiten.';
+    }
   }
 
   @override
@@ -239,41 +264,63 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             )),
             const SizedBox(height: 16),
             for (var i = 0; i < choices.length; i++) ...[
-              OutlinedButton(
-                key: ValueKey('cross-grade-choice-$i'),
-                onPressed: _progressLoaded && _loadError == null && !_saving && selected == null
-                    ? () => _answer(choices[i]) : null,
-                style: OutlinedButton.styleFrom(
-                  minimumSize: const Size.fromHeight(54),
-                  alignment: Alignment.centerLeft,
-                  foregroundColor: Colors.white,
-                  disabledForegroundColor: Colors.white,
-                  backgroundColor: selected != null &&
-                          choices[i] == _task.answer
-                      ? const Color(0xFF185848)
-                      : selected == choices[i]
-                          ? const Color(0xFF593643)
-                          : const Color(0xFF123B65),
-                  side: BorderSide(
-                    color: selected != null &&
+              if (widget.subject == 'Mathematik' &&
+                  choices[i].length <= 14)
+                SizedBox(
+                  height: 110,
+                  child: LumoAnswerCrystal(
+                    buttonKey: ValueKey('cross-grade-choice-$i'),
+                    label: choices[i],
+                    fontSize: choices[i].length <= 5 ? 29 : 19,
+                    state: selected != null && choices[i] == _task.answer
+                        ? LumoCrystalState.correct
+                        : choices[i] == _firstWrongChoice
+                            ? LumoCrystalState.retry
+                            : LumoCrystalState.neutral,
+                    onPressed: _progressLoaded && _loadError == null &&
+                            !_saving && selected == null &&
+                            choices[i] != _firstWrongChoice
+                        ? () => _answer(choices[i])
+                        : null,
+                  ),
+                )
+              else
+                OutlinedButton(
+                  key: ValueKey('cross-grade-choice-$i'),
+                  onPressed: _progressLoaded && _loadError == null && !_saving && selected == null && choices[i] != _firstWrongChoice
+                      ? () => _answer(choices[i]) : null,
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(54),
+                    alignment: Alignment.centerLeft,
+                    foregroundColor: Colors.white,
+                    disabledForegroundColor: Colors.white,
+                    backgroundColor: selected != null &&
                             choices[i] == _task.answer
-                        ? const Color(0xFF72F0B0)
-                        : accent.withOpacity(.75),
-                    width: 1.5,
+                        ? const Color(0xFF185848)
+                        : selected == choices[i] || choices[i] == _firstWrongChoice
+                            ? const Color(0xFF593643)
+                            : const Color(0xFF123B65),
+                    side: BorderSide(
+                      color: selected != null &&
+                              choices[i] == _task.answer
+                          ? const Color(0xFF72F0B0)
+                          : accent.withOpacity(.75),
+                      width: 1.5,
+                    ),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(15),
+                    ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(15),
-                  ),
+                  child: Text(choices[i],
+                      style: const TextStyle(
+                          fontSize: 17, fontWeight: FontWeight.w700)),
                 ),
-                child: Text(choices[i],
-                    style: const TextStyle(
-                        fontSize: 17, fontWeight: FontWeight.w700)),
-              ),
               const SizedBox(height: 9),
             ],
-            if (selected != null) ...[
+            if (selected != null || _firstWrongChoice != null) ...[
               const SizedBox(height: 12),
               Text(
+                selected == null ? _secondChanceHint :
                 selected == _task.answer
                     ? 'Richtig! Gut gemacht!'
                     : 'Die richtige Antwort ist: ${_task.answer}',
@@ -287,7 +334,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 ),
               ),
               const SizedBox(height: 8),
-              CrossGradeGlassPanel(child: Text(
+              if (selected != null)
+                CrossGradeGlassPanel(child: Text(
                 _task.explanation,
                 key: const ValueKey('cross-grade-explanation'),
                 style: const TextStyle(
@@ -319,7 +367,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   foregroundColor: const Color(0xFF07223C),
                   minimumSize: const Size.fromHeight(54),
                 ),
-                onPressed: !_saving && _saveError == null && _progressLoaded ? _next : null,
+                onPressed: _selected == null ? null : (!_saving && _saveError == null && _progressLoaded ? _next : null),
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('Nächste Aufgabe',
                     style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),

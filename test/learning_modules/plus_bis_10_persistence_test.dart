@@ -1,3 +1,4 @@
+import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'dart:async';
 import 'dart:io';
 
@@ -63,6 +64,8 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
     await app.loadLearningProfile();
   });
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
+  await _frames(tester);
+  await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
   await _frames(tester);
   expect(_akademieCaption, findsOneWidget);
   expect(find.text('Lernen'), findsOneWidget);
@@ -188,6 +191,8 @@ void main() {
     final wallet = _BlockedWallet();
     final app = LumoAppState(walletRepository: wallet);
     await _open(tester, app);
+    expect(find.byType(LumoAnswerCrystal), findsNWidgets(4),
+        reason: 'The actual Akademie route must use the shared crystals');
     final prompt = _prompt(tester);
     final correct = _answer(tester);
     final wrong = tester

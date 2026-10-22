@@ -1,0 +1,32 @@
+00:00 +0: loading /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart
+00:00 +0: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: (setUpAll)
+00:00 +0: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home phone
+00:04 +1: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home small-phone
+00:05 +2: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home fold-cover
+00:06 +3: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home fold-open
+00:07 +4: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home landscape
+00:08 +5: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: Next Gen production home large-text
+00:09 +6: /workspace/lumo-lernen/test/design/home_nextgen_capture_test.dart: (tearDownAll)
+00:09 +6: loading /workspace/lumo-lernen/test/home_navigation_progress_test.dart
+00:10 +6: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: (setUpAll)
+00:10 +6: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: Lernen and Spielen stay visible and usable across Fold resize
+00:12 +7: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: home uses persisted daily learning and live wallet values
+00:13 +8: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: home uses the supplied 3D icons and Kart artwork
+00:13 +9: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: a saved weak topic opens the matching practice
+00:13 +10: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: Kart discovery uses the same in-app game selection
+00:13 +11: /workspace/lumo-lernen/test/home_navigation_progress_test.dart: (tearDownAll)
+00:13 +11: loading /workspace/lumo-lernen/test/home_hero_accessibility_test.dart
+00:15 +11: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: (setUpAll)
+00:15 +11: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: Home keeps the complete fox and welcome at 840.0 / 1.0
+00:17 +12: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: Home keeps the complete fox and welcome at 393.0 / 2.0
+00:17 +13: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: Home keeps the complete fox and welcome at 320.0 / 1.2
+00:17 +14: /workspace/lumo-lernen/test/home_hero_accessibility_test.dart: (tearDownAll)
+00:17 +14: loading /workspace/lumo-lernen/test/nextgen_premium_tiles_test.dart
+00:19 +14: /workspace/lumo-lernen/test/nextgen_premium_tiles_test.dart: Next Gen tile remains accessible and opens its real action
+00:20 +15: /workspace/lumo-lernen/test/nextgen_premium_tiles_test.dart: Next Gen card stays usable at compact phone width
+00:20 +16: loading /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart
+00:21 +16: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: HIGH requires measured headroom; repeated slow frames stop effects
+00:21 +17: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: one isolated expensive frame does not downgrade a smooth window
+00:21 +18: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: reduced motion and hidden routes stop the scene clock
+00:21 +19: /workspace/lumo-lernen/test/lumo_scene_atmosphere_test.dart: scene pauses when scrolled out and resumes when visible
+00:21 +20: All tests passed!

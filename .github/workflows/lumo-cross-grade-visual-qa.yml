@@ -1,0 +1,59 @@
+name: Lumo 1961 – Hologlas Fold visual proof
+on:
+  pull_request:
+    paths:
+      - test/cross_grade_visual_capture_test.dart
+      - .github/workflows/lumo-cross-grade-visual-qa.yml
+      - lib/features/learning/cross_grade_practice_screen.dart
+      - lib/features/learning/widgets/cross_grade_visual_scene.dart
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  cross-grade-real-flutter-render:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Execute actual Flutter phone and Fold capture regression
+        run: |
+          set -euo pipefail
+          flutter test --no-pub test/cross_grade_visual_capture_test.dart --reporter=expanded
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          wanted = {
+              "phone_390x844": (585, 1266),
+              "fold_cover_320x780": (480, 1170),
+              "fold_open_840x760": (1260, 1140),
+          }
+          for label, expected in wanted.items():
+              path = Path("visual-evidence") / f"cross_grade_{label}.png"
+              blob = path.read_bytes()
+              if blob[:8] != b"\x89PNG\r\n\x1a\n" or len(blob) < 33:
+                  raise SystemExit(f"Invalid Flutter PNG: {path}")
+              size = struct.unpack(">II", blob[16:24])
+              if size != expected:
+                  raise SystemExit(f"Wrong Flutter PNG size {path}: {size} != {expected}")
+              print(f"PROVEN_FLUTTER_RENDER {path} {size[0]}x{size[1]} {len(blob)} bytes")
+          PY
+          git rev-parse HEAD > visual-evidence/SOURCE-COMMIT.txt
+          printf 'Captured by flutter_test RenderRepaintBoundary.toImage; NOT an Android/device screenshot.\n' > visual-evidence/CAPTURE-TYPE.txt
+          sha256sum visual-evidence/cross_grade_*.png > visual-evidence/SHA256SUMS.txt
+      - name: Archive unaltered Flutter render evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1961-cross-grade-fold-captures
+          path: visual-evidence/
+          if-no-files-found: warn
+          retention-days: 21

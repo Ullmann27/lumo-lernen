@@ -38,7 +38,10 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import creative_android_probe as probe  # noqa: E402  (pinned live helpers)
 import kart_complete_android_probe as complete  # noqa: E402  (proven race-save reader)
 import kart_tour_evidence as evidence  # noqa: E402  (tools/android_qa, added by probe)
-from kart_android_race import race_state, race_view_visible, read_frame  # noqa: E402
+from kart_android_race import (  # noqa: E402
+    focused_race_hud_text, focused_race_hud_visible, marker as race_marker,
+    race_state, race_view_visible, read_frame,
+)
 
 base = probe.base
 live = probe.live
@@ -46,14 +49,16 @@ PACKAGE = probe.PACKAGE
 SESSION_NAME = 'kart_sonnenhafen_session.cfg'
 HARD_STEPS = (
     'apk-identity', 'launch', 'onboarding', 'navigate-start', 'navigate-lernen',
-    'navigate-spiele', 'open-kart', 'start-kart-race', 'race-running', 'race-hud',
+    'atelier-roundtrip', 'navigate-spiele', 'open-kart', 'start-kart-race', 'race-running', 'race-hud',
     'race-drive', 'pause-menu', 'return-from-kart', 'learning-state-after-kart',
     'lernen-usable-after-kart', 'profile-after-kart', 'restart-keeps-learning-state',
 )
 # Downscaled JPEG copies of these real screenshots are written to the job log
 # (originals and their SHA-256 stay in the uploaded tour artifact).
 LOG_IMAGES = (
-    '07_home_after_onboarding', '08_games_after_navigation', '10_lernen', '20_spiele', '21_kart_garage_step_5',
+    '07_home_after_onboarding', '08_games_after_navigation', '10_lernen',
+    '11_atelier_hub', '12_atelier_beispiel', '13_atelier_zehnerbruecke',
+    '20_spiele', '21_kart_garage_step_5',
     '21_lumo_kart_real_race', '21_race_hud', '21_race_driving_late', '21_lumo_kart_pause',
     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
     '99_fehler',
@@ -86,8 +91,16 @@ def godot_alive() -> bool:
 def try_tap(out: Path, labels: list[str], tag: str) -> str | None:
     for label in labels:
         try:
-            probe.flutter_tap(out, label, f'{tag}-{len(label)}',
-                              scroll_attempts=10 if tag == 'open-kart' else 3)
+            is_kart = tag == 'open-kart'
+            probe.flutter_tap(
+                out, label, f'{tag}-{len(label)}',
+                scroll_attempts=10 if is_kart else 3,
+                direction_order=(1, -1) if is_kart else (-1, 1),
+                # The actual 1995 Android tree exposed 'Losfahren' at
+                # [68,1992][1012,1993]: 1 pixel because it was clipped.
+                # Wait for a meaningful physical touch target before pressing.
+                min_visible_height_px=48 if is_kart else 1,
+            )
             return label
         except Exception:  # The next alternative label is tried.
             continue
@@ -103,6 +116,53 @@ def labels(nodes: list[dict]) -> list[str]:
         for value in (node.get('text', ''), node.get('content-desc', '')):
             found.extend(line.strip() for line in value.split('\n') if line.strip())
     return found
+
+
+
+def _atelier_roundtrip(out: Path) -> dict:
+    """Touch the genuine Flutter learning world, build model, and return.
+
+    Requires the same source-pinned Android installation and live accessibility
+    reader as the Kart tour. Never writes fabricated progress, reward or answers.
+    """
+    def must_see(tag: str, expected: str) -> list[str]:
+        for index in range(12):
+            visible = labels(live.live_nodes(out, f'atelier-{tag}-{index}'))
+            if any(expected in caption for caption in visible):
+                return visible
+            time.sleep(.5)
+        raise RuntimeError(
+            f'Atelier {tag} did not show actual Flutter text {expected!r}')
+
+    probe.flutter_tap(out, 'Lumos Lernatelier · gemeinsam bauen',
+                      'atelier-home-entry', scroll_attempts=18)
+    must_see('hub', 'Lumos Lernatelier')
+    must_see('topic-list', 'Die Zehnerbrücke')
+    probe.capture_flutter_ready(out, '11_atelier_hub')
+    probe.flutter_tap(out, 'Die Zehnerbrücke',
+                      'atelier-enter-bridge', scroll_attempts=5)
+    must_see('worked-example', 'Jetzt gemeinsam bauen')
+    probe.capture_flutter_ready(out, '12_atelier_beispiel')
+    probe.flutter_tap(out, 'Jetzt gemeinsam bauen',
+                      'atelier-build', scroll_attempts=8)
+    must_see('real-ten-frame', 'Dein Zehnerfeld')
+    must_see('model-check', 'Mein Modell prüfen')
+    probe.capture_flutter_ready(out, '13_atelier_zehnerbruecke')
+    for page in ('lesson', 'hub'):
+        base.adb('shell', 'input', 'keyevent', '4')
+        time.sleep(1.4)
+    if not alive():
+        raise RuntimeError('Flutter app quit during atelier return')
+    if not any('Lernen' in x for x in labels(
+            live.live_nodes(out, 'atelier-after-return'))):
+        raise RuntimeError('Flutter navigation unavailable after atelier return')
+    return {
+        'screen': 'Real native-Android Flutter Zehnerbrücke',
+        'observed': ['Hub', 'Worked example', 'Interactive ten-frame',
+                     'Model check', 'Flutter return'],
+        'screenshots': ['11_atelier_hub.png', '12_atelier_beispiel.png',
+                        '13_atelier_zehnerbruecke.png'],
+    }
 
 
 def _simplify(word: str) -> str:
@@ -124,7 +184,10 @@ def verify_apk_identity(apk: Path, provenance_path: Path, sums_path: Path) -> di
     """Bind this tour to the exact APK the build job produced and verified."""
     provenance = json.loads(provenance_path.read_text())
     digest = probe.digest(apk)
-    expected_source = os.environ.get('GITHUB_SHA') or base.command('git', 'rev-parse', 'HEAD').strip()
+    # On pull_request, GITHUB_SHA identifies GitHub's synthetic merge commit,
+    # while both build and tour explicitly checkout pull_request.head.sha.
+    # Bind APK provenance to the exact immutable commit actually checked out.
+    expected_source = base.command('git', 'rev-parse', 'HEAD').strip()
     pin = json.loads(Path('config/godot-source.json').read_text())['revision']
     version = re.search(r'^version:\s*([0-9.]+)\+(\d+)\s*$', Path('pubspec.yaml').read_text(), re.M)
     sums = {}
@@ -202,6 +265,48 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
                     y = (y0 + y1) // (2 * scale) + offset_y
                     if y >= image.height * .6:
                         return x, y
+    # Targeted OCR only after the whole-screen scans fail. A moving 3D
+    # background can hide the navy word inside the bright gold action pill
+    # from Tesseract's sparse-text layout. Discover the pill by its ACTUAL
+    # on-screen yellow pixels and require its real caption. Nothing here
+    # assumes a pixel coordinate or accepts a colour patch without text.
+    min_hits = max(10, int(image.width * .02))
+    gold_rows: list[tuple[int, int, int]] = []
+    pixels = image.load()
+    for row_y in range(int(image.height * .70), image.height, 3):
+        matches = []
+        for col_x in range(int(image.width * .70), image.width, 3):
+            r, g, b = pixels[col_x, row_y]
+            if r >= 205 and g >= 185 and b <= 185 and r - b > 40:
+                matches.append(col_x)
+        if len(matches) >= min_hits:
+            gold_rows.append((row_y, min(matches), max(matches)))
+    if len(gold_rows) >= 6:
+        top = gold_rows[0][0]
+        bottom = gold_rows[-1][0]
+        left = min(row[1] for row in gold_rows)
+        right = max(row[2] for row in gold_rows)
+        width, height = right - left, bottom - top
+        # A solid rounded native action control, not isolated gold pixels
+        # elsewhere in the racing-world illustration.
+        if width >= image.width * .08 and height >= image.height * .04:
+            inset = image.crop((
+                left + round(width * .06), top + round(height * .12),
+                right - round(width * .05), bottom - round(height * .08),
+            ))
+            if inset.width > 0 and inset.height > 0:
+                enlarged = inset.resize((inset.width * 4, inset.height * 4),
+                                        Image.Resampling.LANCZOS)
+                buffer = io.BytesIO()
+                enlarged.save(buffer, format='PNG')
+                result = subprocess.run(
+                    ['tesseract', 'stdin', 'stdout', '--psm', '7', '-l', 'deu+eng'],
+                    input=buffer.getvalue(), capture_output=True, timeout=35,
+                    check=True,
+                )
+                caption = _simplify(result.stdout.decode('utf-8', 'replace'))
+                if _simplify(expected) in caption:
+                    return (left + right) // 2, (top + bottom) // 2
     return None
 
 
@@ -210,28 +315,60 @@ def _start_actual_embedded_race(out: Path) -> dict:
         raise RuntimeError('Native Godot game process is not alive')
     evidence_taps = []
     garage_fifth = None
-    for index in range(5):
-        wanted = 'Weiter' if index < 4 else 'Rennen starten'
-        for attempt in range(12):
-            png = _screencap()
-            capture = out / f'21_kart_garage_step_{index + 1}.png'
-            capture.write_bytes(png)
-            point = _read_garage_footer(png, wanted)
-            if point is not None:
-                if index == 4:
-                    garage_fifth = png
-                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
-                evidence_taps.append({'step': index + 1, 'button': wanted, 'tap': point})
-                time.sleep(2)
-                break
-            time.sleep(1)
-        else:
-            raise RuntimeError(f'Missing Android kart footer at step {index + 1}: {wanted}')
+    # NextGen Android opens the real illustrated landing before the preserved
+    # five-step garage. The real golden START starts the race directly.
+    # Recognise its text from an actual screenshot; do not inject an
+    # unverified coordinate or claim a race merely because the game is alive.
+    premium_start = None
+    for attempt in range(8):
+        screen = _screencap()
+        (out / '21_kart_premium_start.png').write_bytes(screen)
+        premium_start = _read_garage_footer(screen, 'START')
+        if premium_start is not None:
+            garage_fifth = screen
+            base.adb('shell', 'input', 'tap',
+                     str(premium_start[0]), str(premium_start[1]))
+            evidence_taps.append({
+                'step': 'premium-start', 'button': 'START', 'tap': premium_start,
+            })
+            time.sleep(2)
+            break
+        time.sleep(1)
+    if premium_start is None:
+        # Older/compatibility builds still expose the verified five-step
+        # wizard. Require each actual Android-rendered button explicitly.
+        for index in range(5):
+            wanted = 'Weiter' if index < 4 else 'Rennen starten'
+            for attempt in range(12):
+                png = _screencap()
+                capture = out / f'21_kart_garage_step_{index + 1}.png'
+                capture.write_bytes(png)
+                point = _read_garage_footer(png, wanted)
+                if point is not None:
+                    if index == 4:
+                        garage_fifth = png
+                    base.adb('shell', 'input', 'tap',
+                             str(point[0]), str(point[1]))
+                    evidence_taps.append({
+                        'step': index + 1, 'button': wanted, 'tap': point,
+                    })
+                    time.sleep(2)
+                    break
+                time.sleep(1)
+            else:
+                raise RuntimeError(
+                    f'Missing Android kart footer at step {index + 1}: {wanted}'
+                )
     (out / '21_kart_real_touches.json').write_text(json.dumps(evidence_taps, indent=2))
     if garage_fifth is None:
         raise RuntimeError('Last garage image was not captured')
 
     # Godot logs belong to a separate :lumo_game process, not Flutter.
+    # The production premium landing defaults to Grand Prix (cup); the
+    # compatibility wizard defaults to a single race. Bind every later gate
+    # to this actual UI path, never accept an arbitrary saved mode.
+    expected_mode = 'cup' if premium_start is not None else 'race'
+    expected_track = 'sonnenhafen'
     deadline = time.monotonic() + 55
     last_error = 'race_world_ready marker not observed'
     while time.monotonic() < deadline:
@@ -240,9 +377,12 @@ def _start_actual_embedded_race(out: Path) -> dict:
         screen = _screencap()
         (out / '21_lumo_kart_real_race.png').write_bytes(screen)
         log = base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
-        if '[Kart] race_world_ready: sonnenhafen mode=race' in log:
+        expected_marker = (r'\[Kart\] race_world_ready: ' + re.escape(expected_track)
+                           + r' mode=' + re.escape(expected_mode) + r'(?:\s|$)')
+        if re.search(expected_marker, log):
             try:
                 report = {'touches': evidence_taps,
+                          'expected_mode': expected_mode, 'expected_track': expected_track,
                           'garage_replaced': evidence.garage_replaced(garage_fifth, screen),
                           'rendered_frame': evidence.rendered_race_frame(screen)}
                 (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
@@ -256,8 +396,11 @@ def _start_actual_embedded_race(out: Path) -> dict:
 class RaceSession:
     """READ ONLY access to the race session the game itself persists."""
 
-    def __init__(self, out: Path):
+    def __init__(self, out: Path, *, expected_mode: str = 'race',
+                 expected_track: str = 'sonnenhafen'):
         self.out = out
+        self.expected_mode = expected_mode
+        self.expected_track = expected_track
         self.path: str | None = None
 
     def read(self, tag: str) -> dict:
@@ -270,7 +413,9 @@ class RaceSession:
             self.path = found[0]
         raw = base.adb('exec-out', 'cat', self.path, timeout=60)
         (self.out / f'{tag}-session.cfg').write_text(raw)
-        return complete.parse_session(raw)
+        state = complete.parse_session(raw)
+        evidence.require_race_session(state, mode=self.expected_mode, track=self.expected_track)
+        return state
 
 
 def wait_race_running(session: RaceSession, timeout: float = 150) -> dict:
@@ -282,7 +427,7 @@ def wait_race_running(session: RaceSession, timeout: float = 150) -> dict:
             raise RuntimeError('Godot quit before the race clock started')
         try:
             state = session.read(f'21_race_running_{attempt}')
-            if evidence.race_running(state):
+            if evidence.race_running(state, mode=session.expected_mode, track=session.expected_track):
                 return state
             last = {key: state[key] for key in ('countdown', 'elapsed', 'distance')}
         except RuntimeError as error:
@@ -301,7 +446,29 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
         screen = _shot(out, name)
         frame = read_frame(out / (name + '.png'))
         last = frame['text'][:300]
-        if race_view_visible(frame):
+        # The original 1978 emulator PNG visibly contains RUNDE 1/2,
+        # PLATZ 6/6 and km/h, yet full-frame OCR omitted the first token.
+        # Re-read only the real top HUD pixels with Tesseract psm 7.
+        # This is NOT a bypass: the native save was already verified as
+        # countdown=0 with an advancing race clock, and the existing GAS
+        # distance + changing-world gates remain mandatory downstream.
+        focus = None
+        if not race_view_visible(frame):
+            focus_text = focused_race_hud_text(out / (name + '.png'))
+            focus = {
+                'ocr': focus_text,
+                'three_hud_indicators': focused_race_hud_visible(focus_text),
+                'not_paused_or_finished': not any(
+                    race_marker(frame, caption) for caption in
+                    ('Weiterfahren', 'Kleine Pause', 'geschafft', 'Noch ein Rennen')),
+            }
+            (out / (name + '-focused-hud.json')).write_text(
+                json.dumps(focus, ensure_ascii=False, indent=2) + '\n')
+        if race_view_visible(frame) or (
+            focus is not None
+            and focus['three_hud_indicators']
+            and focus['not_paused_or_finished']
+        ):
             (out / '21_race_hud.png').write_bytes(screen)
             try:
                 state = race_state(frame)
@@ -310,7 +477,8 @@ def wait_race_hud(out: Path, timeout: float = 90) -> dict:
             return {'capture': name, 'race_state': state,
                     'rendered_frame': evidence.rendered_race_frame(screen),
                     'hud_lines': [line['text'] for line in frame['lines']
-                                  if any(word in line['text'].upper() for word in ('RUNDE', 'PLATZ', 'KM/H'))][:6]}
+                                  if any(word in line['text'].upper() for word in ('RUNDE', 'PLATZ', 'KM/H'))][:6],
+                    'focused_hud': focus}
         attempt += 1
         time.sleep(1)
     raise RuntimeError(f'No current race HUD (RUNDE) was observed. Last OCR: {last!r}')
@@ -337,30 +505,94 @@ def find_gas(out: Path, name: str) -> tuple[int, int]:
 
 
 def drive_with_gas(out: Path, point: tuple[int, int], session: 'RaceSession', start: dict,
-                   hold_ms: int = 7000) -> dict:
-    """Hold the real GAS touch button; the world must move and the saved race advance."""
+                   hold_ms: int = 9000) -> dict:
+    """Prove *physical* driving on a slow software-rendered Android emulator.
+
+    Godot persists its session every 5 seconds of simulated race time, not
+    Android wall time. One 7-second ADB hold plus a 30-second wall-clock poll
+    can therefore read an unchanged save although the race is alive. We never
+    inject or modify save data, never lower the 8m/2.5s threshold and never
+    infer an actual drive from an animated HUD alone. Repeat bounded *real*
+    GAS holds and archive the intermediate read-only telemetry.
+    """
     before = _shot(out, '21_race_before_gas')
     x, y = map(str, point)
-    holding = subprocess.Popen(['adb', 'shell', 'input', 'swipe', x, y, x, y, str(hold_ms)])
-    try:
-        time.sleep(hold_ms / 1000 * .4)
-        _shot(out, '21_race_driving_mid')
-        time.sleep(hold_ms / 1000 * .4)
-        late = _shot(out, '21_race_driving_late')
-    finally:
-        holding.wait(timeout=hold_ms / 1000 + 30)
+    samples = []
+    late = before
+    last = start
+    for pulse in range(3):
+        if not godot_alive():
+            raise RuntimeError('Godot exited during the actual GAS touch test')
+        holding = subprocess.Popen(
+            ['adb', 'shell', 'input', 'swipe', x, y, x, y, str(hold_ms)])
+        try:
+            time.sleep(hold_ms / 1000 * .45)
+            _shot(out, f'21_race_driving_mid_{pulse}')
+            time.sleep(hold_ms / 1000 * .40)
+        finally:
+            return_code = holding.wait(timeout=hold_ms / 1000 + 30)
+        if return_code:
+            raise RuntimeError(f'Android GAS input swipe exited {return_code}')
+        late = _shot(out, f'21_race_driving_late_{pulse}')
+        # The save may still be from the previous five seconds of in-game
+        # physics. Each snapshot and its speed are archived independently.
+        last = session.read(f'21_race_after_gas_pulse_{pulse}')
+        sample = {
+            'pulse': pulse + 1, 'distance': last['distance'],
+            'elapsed': last['elapsed'], 'speed': last['speed'],
+            'distance_gain': round(last['distance'] - start['distance'], 3),
+            'elapsed_gain': round(last['elapsed'] - start['elapsed'], 3),
+        }
+        samples.append(sample)
+        print('[KartDriveSample] ' + json.dumps(sample, sort_keys=True),
+              flush=True)
+        if (sample['distance_gain'] >= 8.0 and
+                sample['elapsed_gain'] >= 2.5):
+            break
+
+    # Bounded post-input wait: the native save must catch up after the
+    # simulator has processed the touch and physics frames.
+    deadline, index = time.monotonic() + 90, 0
+    while (last['distance'] - start['distance'] < 8 or
+           last['elapsed'] - start['elapsed'] < 2.5) and time.monotonic() < deadline:
+        if not godot_alive():
+            raise RuntimeError('Godot exited while awaiting persisted GAS progress')
+        time.sleep(3)
+        last = session.read(f'21_race_after_gas_poll_{index}')
+        sample = {
+            'poll': index + 1, 'distance': last['distance'],
+            'elapsed': last['elapsed'], 'speed': last['speed'],
+            'distance_gain': round(last['distance'] - start['distance'], 3),
+            'elapsed_gain': round(last['elapsed'] - start['elapsed'], 3),
+        }
+        samples.append(sample)
+        print('[KartDriveSample] ' + json.dumps(sample, sort_keys=True),
+              flush=True)
+        index += 1
+
+    # Both the moving world *and* same-race actual persisted drive must pass.
+    # This intentionally preserves the original hard failure on a stuck kart.
     moved = evidence.world_moved(before, late)
     frame = evidence.rendered_race_frame(late)
-    # While racing the game saves every five seconds of game time.
-    deadline, index, last = time.monotonic() + 30, 0, None
-    while time.monotonic() < deadline:
-        last = session.read(f'21_race_after_gas_{index}')
-        if last['elapsed'] - start['elapsed'] >= 2.5:
-            break
-        index += 1
-        time.sleep(2)
-    return {'gas_touch': list(point), 'hold_ms': hold_ms, 'world_moved': moved,
-            'rendered_frame': frame, 'native_progress': evidence.driving_progress(start, last)}
+    try:
+        progress = evidence.driving_progress(start, last, mode=session.expected_mode, track=session.expected_track)
+    except RuntimeError as error:
+        (out / '21_race_drive_telemetry.json').write_text(
+            json.dumps({'gas_touch': list(point), 'hold_ms': hold_ms,
+                        'samples': samples, 'failure': str(error)},
+                       ensure_ascii=False, indent=2))
+        raise RuntimeError(
+            f'{error}; ADB GAS held in {len([s for s in samples if "pulse" in s])} '
+            f'physical pulses; final native speed={last["speed"]}; '
+            f'see 21_race_drive_telemetry.json') from error
+    (out / '21_race_drive_telemetry.json').write_text(
+        json.dumps({'gas_touch': list(point), 'hold_ms': hold_ms,
+                    'samples': samples, 'native_progress': progress},
+                   ensure_ascii=False, indent=2))
+    return {'gas_touch': list(point), 'hold_ms': hold_ms,
+            'gas_pulses': len([s for s in samples if 'pulse' in s]),
+            'world_moved': moved, 'rendered_frame': frame,
+            'native_progress': progress}
 
 
 def log_images(out: Path) -> None:
@@ -442,18 +674,22 @@ def main() -> int:
 
         tapped = try_tap(out, ['Start', 'Home'], 'nav-start')
         time.sleep(2)
-        probe.capture(out, '10_start')
+        probe.capture_flutter_ready(out, '10_start')
         step('navigate-start', tapped is not None, label=tapped)
+        # The child must be able to reach the shipped atelier in the
+        # actual installed APK, not merely pass Flutter widget screenshots.
+        # Returning to Start is necessary before the existing Kart journey.
+        attempt('atelier-roundtrip', lambda: _atelier_roundtrip(out))
         tapped = try_tap(out, ['Lernen'], 'nav-lernen')
         time.sleep(2)
         lernen_before = labels(live.live_nodes(out, 'lernen-before-kart'))
-        probe.capture(out, '10_lernen')
+        probe.capture_flutter_ready(out, '10_lernen')
         step('navigate-lernen', tapped is not None and bool(lernen_before), label=tapped,
              visible_labels=len(lernen_before))
 
         tapped = try_tap(out, ['Spielen', 'Spiele'], 'nav-spiele')
         time.sleep(2)
-        probe.capture(out, '20_spiele')
+        probe.capture_flutter_ready(out, '20_spiele')
         step('navigate-spiele', tapped is not None, label=tapped)
         prefs_before = probe.prefs(out, 'before-kart')
         if json.loads(prefs_before.get(evidence.PROFILE_KEY, '{}')).get('name') != 'LumoTest':
@@ -461,17 +697,21 @@ def main() -> int:
 
         kart = try_tap(out, ['Losfahren', 'Rennen starten'], 'open-kart')
         race_started = False
+        race_launch = None
         if kart is not None:
             # The embedded Godot engine needs time on the software renderer.
             for wait in (12, 20):
                 time.sleep(wait)
                 probe.capture(out, f'21_lumo_kart_{wait}s')
             step('open-kart', godot_alive(), label=kart)
-            race_started = attempt('start-kart-race', lambda: _start_actual_embedded_race(out)) is not None
+            race_launch = attempt('start-kart-race', lambda: _start_actual_embedded_race(out))
+            race_started = race_launch is not None
         else:
             step('open-kart', False, label=None)
 
-        session = RaceSession(out)
+        session = RaceSession(out,
+            expected_mode=race_launch['expected_mode'] if race_launch else 'race',
+            expected_track=race_launch['expected_track'] if race_launch else 'sonnenhafen')
         running: dict = {}
 
         def race_clock() -> dict:
@@ -493,11 +733,12 @@ def main() -> int:
                 probe.native_text(out, 'Weiterfahren', '21_pause_resume', exact=True)
                 probe.capture(out, '21_lumo_kart_pause')
                 paused = session.read('21_pause_first')
-                evidence.require_race_session(paused)
+                evidence.require_race_session(paused, mode=session.expected_mode, track=session.expected_track)
                 if paused['result_id'] != start_state['result_id']:
                     raise RuntimeError('The pause belongs to a different race')
                 time.sleep(3)
-                frozen = evidence.paused_unchanged(paused, session.read('21_pause_second'))
+                frozen = evidence.paused_unchanged(paused, session.read('21_pause_second'),
+                                                   mode=session.expected_mode, track=session.expected_track)
                 return {'frozen_while_paused': frozen}
 
             attempt('pause-menu', pause)
@@ -541,11 +782,41 @@ def main() -> int:
             if try_tap(out, ['Start', 'Home'], 'nav-start-after-kart') is None:
                 raise RuntimeError('The Start tab is not tappable after the Kart')
             time.sleep(2)
-            text = base.accessible_text(live.live_nodes(out, 'start-after-kart'))
-            probe.capture(out, '25_start_nach_kart')
-            if 'LumoTest' not in text:
-                raise RuntimeError('The child profile name is missing from Start after the Kart')
-            return {'profile_name_visible': 'LumoTest'}
+            # Flutter intentionally preserves the Start scroll position. After
+            # visiting the atelier at the foot of Start, the greeting is out
+            # of view. A missing off-screen semantics label is not evidence
+            # of lost profile data. Check actual on-screen greeting by moving
+            # the live scrollable content toward its top, no fake profiles.
+            for index in range(12):
+                nodes = live.live_nodes(out, f'start-after-kart-{index}')
+                if 'LumoTest' in base.accessible_text(nodes):
+                    probe.capture(out, '25_start_nach_kart')
+                    return {
+                        'profile_name_visible': 'LumoTest',
+                        'observed_after_scrolls': index,
+                        'source': 'live Android accessibility tree',
+                    }
+                scrolls = []
+                for node in nodes:
+                    if node.get('package') != PACKAGE or node.get('scrollable') != 'true':
+                        continue
+                    bounds = list(map(int, re.findall('[0-9]+', node.get('bounds', ''))))
+                    if len(bounds) == 4:
+                        x0, y0, x1, y1 = bounds
+                        if x1 > x0 and y1 > y0:
+                            scrolls.append(((x1 - x0) * (y1 - y0), x0, y0, x1, y1))
+                if not scrolls:
+                    break
+                _, x0, y0, x1, y1 = max(scrolls)
+                x = str((x0 + x1) // 2)
+                top = str(y0 + (y1 - y0) // 5)
+                bottom = str(y0 + (y1 - y0) * 4 // 5)
+                base.adb('shell', 'input', 'swipe', x, top, x, bottom, '390')
+                time.sleep(1)
+            probe.capture(out, '25_start_nach_kart_greeting_missing')
+            raise RuntimeError(
+                'The child greeting is missing from the actual Start accessibility '
+                'tree even after scrolling to its top; check profile rendering')
 
         attempt('profile-after-kart', profile_visible)
 

@@ -1,0 +1,51 @@
+name: Lumo 1980 publish phone prerelease
+on:
+  push:
+    branches:
+      - codex/lumo-learning-lab-2026-10-18
+    paths:
+      - .github/workflows/lumo-1980-publish-phone-prerelease.yml
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  make-apk-visible:
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Validate exact Android APK and its successful source publication
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          REPO=Ullmann27/lumo-lernen
+          TAG=lumo-v0.12.68-1980-mobile-test
+          PASS="$(gh api "repos/$REPO/actions/runs/39132835767" --jq .conclusion)"
+          test "$PASS" = success
+          gh api "repos/$REPO/releases/416474516" --jq '
+            .tag_name == "lumo-v0.12.68-1980-mobile-test"
+            and .prerelease == true
+            and .draft == true
+            and ([.assets[] | select(
+              .name == "Lumo-Lernen-1980-ARM64.apk"
+              and .state == "uploaded"
+              and .size == 316052816
+              and .digest == "sha256:91a77f8e9a528ed485beb272cf1226791094c2d0b74f1f4828d5c618b4f4551b"
+            )] | length == 1)
+          ' | grep -x true
+      - name: Make labeled test release visible in GitHub mobile app
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh release edit lumo-v0.12.68-1980-mobile-test \
+            --repo Ullmann27/lumo-lernen \
+            --draft=false \
+            --prerelease
+          gh release view lumo-v0.12.68-1980-mobile-test \
+            --repo Ullmann27/lumo-lernen \
+            --json url,isDraft,isPrerelease,assets \
+            --jq '{url: .url, draft: .isDraft, prerelease: .isPrerelease, assets: [.assets[].name]}'

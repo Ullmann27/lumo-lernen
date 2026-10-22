@@ -130,8 +130,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   Future<void> _saveStats() async {
     try {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(
-          _prefsKey, jsonEncode({'difficulty': _difficulty.name, 'best': _best}));
+      await prefs.setString(_prefsKey,
+          jsonEncode({'difficulty': _difficulty.name, 'best': _best}));
     } catch (_) {}
   }
 
@@ -449,6 +449,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
             score: _kindPairs,
             color: LumoVisualTokens.gold,
             active: _turn == _Player.kind,
+            total: _total ~/ 2,
+            reduceMotion: _reduceMotion,
           ),
         ),
         const SizedBox(width: 10),
@@ -458,6 +460,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
             score: _lumoPairs,
             color: LumoVisualTokens.cyanBright,
             active: _turn == _Player.lumo,
+            total: _total ~/ 2,
+            reduceMotion: _reduceMotion,
           ),
         ),
       ]);
@@ -493,7 +497,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
               final width = c.maxWidth;
               // Lumo steht links der Mitte, die Sprechblase rechts daneben –
               // nichts davon verdeckt sein Gesicht.
-              final lumoLeft = roomy ? width * .30 - lumoSize / 2 + lumoSize * .18 : 0.0;
+              final lumoLeft =
+                  roomy ? width * .30 - lumoSize / 2 + lumoSize * .18 : 0.0;
               final bubbleLeft = lumoLeft + lumoSize * .78;
               return Stack(clipBehavior: Clip.none, children: [
                 if (roomy)
@@ -655,7 +660,8 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     final motif = _cards[idx];
     return Semantics(
       label: 'Memory Karte ${idx + 1}'
-          '${showFront ? ', ${motif.label}' : ', verdeckt'}',
+          '${showFront ? ', ${motif.label}' : ', verdeckt'}'
+          '${_matched[idx] ? ', Paar gefunden' : ''}',
       button: !_matched[idx],
       excludeSemantics: true,
       child: GestureDetector(
@@ -718,7 +724,7 @@ class _MemoryCardState extends State<_MemoryCard> {
           final front = t > .5;
           final double lift = 1.0 +
               (w.reduceMotion ? 0.0 : .04 * math.sin(t * math.pi)) +
-              (_pressed && !w.faceUp ? .03 : 0.0);
+              (_pressed && !w.faceUp && !w.reduceMotion ? .03 : 0.0);
           final face = front
               ? Transform(
                   alignment: Alignment.center,
@@ -828,26 +834,45 @@ class _CardFront extends StatelessWidget {
               spreadRadius: matched ? 2 : 0),
         ],
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(11),
-        child: motif.sticker
-            ? DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [motif.tintLight, motif.tintDark],
+      child: Stack(fit: StackFit.expand, children: [
+        ClipRRect(
+          borderRadius: BorderRadius.circular(11),
+          child: motif.sticker
+              ? DecoratedBox(
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [motif.tintLight, motif.tintDark],
+                    ),
                   ),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(8),
-                  child: Image.asset(motif.path,
-                      fit: BoxFit.contain, filterQuality: FilterQuality.medium),
-                ),
-              )
-            : Image.asset(motif.path,
-                fit: BoxFit.cover, filterQuality: FilterQuality.medium),
-      ),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8),
+                    child: Image.asset(motif.path,
+                        fit: BoxFit.contain,
+                        filterQuality: FilterQuality.medium),
+                  ),
+                )
+              : Image.asset(motif.path,
+                  fit: BoxFit.cover, filterQuality: FilterQuality.medium),
+        ),
+        if (matched)
+          Positioned(
+            top: 5,
+            right: 5,
+            child: Container(
+              key: const ValueKey('memory-matched-mark'),
+              padding: const EdgeInsets.all(3),
+              decoration: BoxDecoration(
+                color: const Color(0xFFFFE9A6),
+                borderRadius: BorderRadius.circular(8),
+                border: Border.all(color: const Color(0xFF8A5A11)),
+              ),
+              child: const Icon(Icons.check_rounded,
+                  size: 16, color: Color(0xFF18334D)),
+            ),
+          ),
+      ]),
     );
   }
 }
@@ -919,7 +944,11 @@ class _ScorePill extends StatelessWidget {
     required this.score,
     required this.color,
     required this.active,
+    required this.total,
+    required this.reduceMotion,
   });
+  final int total;
+  final bool reduceMotion;
   final String label;
   final int score;
   final Color color;
@@ -927,7 +956,9 @@ class _ScorePill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => AnimatedContainer(
-        duration: const Duration(milliseconds: 220),
+        duration: reduceMotion || MediaQuery.disableAnimationsOf(context)
+            ? Duration.zero
+            : const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
           color: active ? const Color(0xF20E3A7A) : const Color(0xB30B2A5C),
@@ -940,9 +971,10 @@ class _ScorePill extends StatelessWidget {
               : null,
         ),
         child: Row(children: [
-          Flexible(
+          Expanded(
             child: FittedBox(
               fit: BoxFit.scaleDown,
+              alignment: Alignment.centerLeft,
               child: Text(label,
                   style: const TextStyle(
                       fontFamily: 'Nunito',
@@ -951,15 +983,30 @@ class _ScorePill extends StatelessWidget {
                       color: Colors.white)),
             ),
           ),
-          const Spacer(),
-          Icon(Icons.favorite_rounded, color: color, size: 18),
-          const SizedBox(width: 6),
-          Text('$score',
-              style: TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 24,
-                  fontWeight: FontWeight.w900,
-                  color: color)),
+          const SizedBox(width: 8),
+          Expanded(
+            flex: 2,
+            child: FittedBox(
+              fit: BoxFit.scaleDown,
+              alignment: Alignment.centerRight,
+              child: Row(mainAxisSize: MainAxisSize.min, children: [
+                Icon(Icons.copy_all_rounded, color: color, size: 18),
+                const SizedBox(width: 6),
+                Text('$score',
+                    style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                        color: color)),
+                Text(' / $total',
+                    style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
+                        color: Color(0xFFCCE0F5))),
+              ]),
+            ),
+          ),
         ]),
       );
 }
@@ -1002,8 +1049,7 @@ class _TurnText extends StatelessWidget {
         textAlign: TextAlign.center,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
-        textScaler:
-            MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.3),
+        textScaler: MediaQuery.textScalerOf(context).clamp(maxScaleFactor: 1.3),
         style: const TextStyle(
             fontFamily: 'Nunito',
             fontSize: 15,
@@ -1228,7 +1274,6 @@ class _ResultCard extends StatelessWidget {
   }
 }
 
-
 /// Schwebende, leicht gedrehte Tierkarte als Deko neben Lumo (Zielbild 02).
 class _FloatingCard extends StatefulWidget {
   const _FloatingCard({
@@ -1279,7 +1324,8 @@ class _FloatingCardState extends State<_FloatingCard>
           final t = math.sin((_c.value + widget.phase) * 2 * math.pi);
           return Transform.translate(
             offset: Offset(0, t * 4),
-            child: Transform.rotate(angle: widget.angle + t * .03, child: child),
+            child:
+                Transform.rotate(angle: widget.angle + t * .03, child: child),
           );
         },
       ),

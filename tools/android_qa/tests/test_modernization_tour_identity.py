@@ -58,8 +58,15 @@ class TourApkIdentityTests(unittest.TestCase):
     def verify(self, **changes):
         provenance = dict(self.provenance, **changes)
         self.provenance_path.write_text(json.dumps(provenance))
-        with patch.dict(os.environ, {'GITHUB_SHA': 'a' * 40}):
-            return TOUR_MODULE.verify_apk_identity(self.apk, self.provenance_path, self.sums)
+        # A PR has a synthetic merge GITHUB_SHA, but the workflow checks out
+        # the immutable pull_request.head.sha. Verify against that Git HEAD.
+        with patch.dict(os.environ, {'GITHUB_SHA': 'd' * 40}):
+            with patch.object(TOUR_MODULE.base, 'command',
+                              return_value='a' * 40) as checkout:
+                result = TOUR_MODULE.verify_apk_identity(
+                    self.apk, self.provenance_path, self.sums)
+                checkout.assert_called_once_with('git', 'rev-parse', 'HEAD')
+                return result
 
     def test_the_exact_verified_build_is_accepted(self):
         report = self.verify()
@@ -92,6 +99,81 @@ class TourLabelTests(unittest.TestCase):
                  {'package': package, 'text': '', 'content-desc': 'Deutsch\nLesen'},
                  {'package': 'com.android.systemui', 'text': '12:00', 'content-desc': ''}]
         self.assertEqual(TOUR_MODULE.labels(nodes), ['Mathematik', 'Deutsch', 'Lesen'])
+
+
+
+class TourRealKartTouchTests(unittest.TestCase):
+    """Regression from the actual Build 1995 Android UI hierarchy."""
+
+    def test_clipped_one_pixel_kart_button_scrolls_before_press(self):
+        package = TOUR_MODULE.PACKAGE
+
+        def rect(value, y0, y1, *, clickable=False, scrollable=False):
+            return {
+                'package': package, 'text': '', 'content-desc': value,
+                'bounds': f'[68,{y0}][1012,{y1}]',
+                'enabled': 'true',
+                'clickable': 'true' if clickable else 'false',
+                'scrollable': 'true' if scrollable else 'false',
+            }
+
+        # GitHub run 39622472973: the launcher claimed a clickable button,
+        # but exposed only y=1992..1993; the recorded tap never opened Godot.
+        clipped = rect('Losfahren', 1992, 1993, clickable=True)
+        usable = rect('Losfahren', 1250, 1380, clickable=True)
+        scroll = rect('', 100, 1940, scrollable=True)
+        with tempfile.TemporaryDirectory() as temp, \
+                patch.object(TOUR_MODULE.probe.live, 'live_nodes',
+                             side_effect=[[clipped, scroll], [usable, scroll]]), \
+                patch.object(TOUR_MODULE.probe, 'recover_launcher_dialog',
+                             return_value=False), \
+                patch.object(TOUR_MODULE.base, 'adb') as adb, \
+                patch.object(TOUR_MODULE.probe.time, 'sleep'):
+            label = TOUR_MODULE.try_tap(Path(temp), ['Losfahren'], 'open-kart')
+        self.assertEqual(label, 'Losfahren')
+        motions = [call.args for call in adb.call_args_list]
+        self.assertEqual(len(motions), 2)
+        self.assertEqual(motions[0][0:3], ('shell', 'input', 'swipe'))
+        self.assertGreater(int(motions[0][4]), int(motions[0][6]),
+                           'Kart must scroll toward the bottom before tapping')
+        self.assertEqual(motions[1], ('shell', 'input', 'swipe',
+                                      '540', '1315', '540', '1315', '120'))
+
+    def test_too_small_or_invalid_touch_threshold_is_rejected(self):
+        with tempfile.TemporaryDirectory() as temp:
+            for height in (-1, 0, 201):
+                with self.subTest(height=height):
+                    with self.assertRaises(ValueError):
+                        TOUR_MODULE.probe.flutter_tap(
+                            Path(temp), 'Losfahren', 'guard',
+                            min_visible_height_px=height)
+
+
+class TourRaceModeTests(unittest.TestCase):
+    def test_premium_start_binds_the_tour_to_the_real_grand_prix_mode(self):
+        with tempfile.TemporaryDirectory() as temp, \
+                patch.object(TOUR_MODULE, 'godot_alive', return_value=True), \
+                patch.object(TOUR_MODULE, '_screencap', return_value=b'frame'), \
+                patch.object(TOUR_MODULE, '_read_garage_footer', return_value=(20, 30)), \
+                patch.object(TOUR_MODULE.time, 'sleep'), \
+                patch.object(TOUR_MODULE.base, 'adb', return_value=
+                             '[Kart] race_world_ready: sonnenhafen mode=cup'), \
+                patch.object(TOUR_MODULE.evidence, 'garage_replaced', return_value={}), \
+                patch.object(TOUR_MODULE.evidence, 'rendered_race_frame', return_value={}):
+            report = TOUR_MODULE._start_actual_embedded_race(Path(temp))
+        self.assertEqual(report['expected_mode'], 'cup')
+        self.assertEqual(report['expected_track'], 'sonnenhafen')
+
+    def test_running_clock_uses_the_launch_expectation(self):
+        state = {'mode': 'cup', 'track_id': 'sonnenhafen', 'finished': False,
+                 'completed_race': False, 'countdown': 0, 'elapsed': 2,
+                 'distance': 0, 'result_id': 'actual-race'}
+        session = SimpleNamespace(expected_mode='cup', expected_track='sonnenhafen',
+                                  read=lambda _: state)
+        with patch.object(TOUR_MODULE, 'godot_alive', return_value=True), \
+                patch.object(TOUR_MODULE.time, 'sleep'), \
+                patch.object(TOUR_MODULE.time, 'monotonic', side_effect=[0, 0, 2]):
+            self.assertEqual(TOUR_MODULE.wait_race_running(session, timeout=1), state)
 
 
 if __name__ == '__main__':

@@ -1,0 +1,82 @@
+name: Lumo Games Visual QA – genuine before/after
+
+on:
+  pull_request:
+    paths:
+      - 'lib/domain/games/game_world.dart'
+      - 'lib/features/games/**'
+      - 'scripts/compare_lumo_games_visuals.py'
+      - '.github/workflows/lumo-games-before-after.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-games-before-after-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  capture-games:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: lumo-v0.12.77-1989-test
+          path: before
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          path: after
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Check source identities, dependencies and output areas
+        run: |
+          set -euo pipefail
+          test "$(grep '^version:' before/pubspec.yaml)" = 'version: 0.12.77+1989'
+          test "$(grep '^version:' after/pubspec.yaml)" = 'version: 0.12.78+1990'
+          test "$(git -C before rev-parse HEAD)" != "$(git -C after rev-parse HEAD)"
+          mkdir -p visual/before visual/after
+      - name: Capture REAL old games hub with same Flutter test seed
+        env:
+          LUMO_TOUR_DIR: ../visual/before
+          LUMO_TOUR_CAPTURE_SCALE: '1.5'
+        working-directory: before
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter test --no-pub --reporter=expanded --timeout=60s \
+            test/design/app_tour_capture_test.dart
+      - name: Capture REAL new games hub with same Flutter test seed
+        env:
+          LUMO_TOUR_DIR: ../visual/after
+          LUMO_TOUR_CAPTURE_SCALE: '1.5'
+        working-directory: after
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter test --no-pub --reporter=expanded --timeout=60s \
+            test/design/app_tour_capture_test.dart
+      - name: Produce manifest, direct comparisons and offline gallery
+        run: |
+          set -euo pipefail
+          python3 -m pip install --quiet --disable-pip-version-check Pillow==12.3.0
+          python3 after/scripts/compare_lumo_games_visuals.py \
+            visual "$(git -C before rev-parse HEAD)" \
+            "$(git -C after rev-parse HEAD)"
+          test -s visual/index.html
+          test -s visual/MANIFEST.json
+          test "$(find visual/vergleich -type f -name '*.png' | wc -l)" -eq 3
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1990-games-real-before-after-${{ github.run_id }}
+          path: visual/
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0

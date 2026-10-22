@@ -29,6 +29,8 @@ void main() {
         home: LumoAkademieScreen(appState: app),
       ));
       await tester.pump(const Duration(milliseconds: 900));
+      await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+      await tester.pump(const Duration(milliseconds: 400));
       final gradeChip = find.byKey(ValueKey('grade-pill-${item.grade}'));
       expect(gradeChip, findsOneWidget);
       await tester.ensureVisible(gradeChip);

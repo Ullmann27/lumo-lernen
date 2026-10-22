@@ -1,3 +1,4 @@
+import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -195,7 +196,17 @@ void main() {
       await _open(tester, app, screen);
       final answer = _correct(tester, unit);
       final wrong = _choices(tester).firstWhere((choice) => choice != answer);
+      if (find.byType(LumoAnswerCrystal).evaluate().isNotEmpty) {
+        expect(tester.widgetList<LumoAnswerCrystal>(find.byType(LumoAnswerCrystal))
+            .every((crystal) => crystal.state == LumoCrystalState.neutral), isTrue);
+      }
       await _tap(tester, wrong);
+      if (unit == 'Minus bis 10') {
+        final correctCrystal = tester.widgetList<LumoAnswerCrystal>(
+            find.byType(LumoAnswerCrystal)).singleWhere((c) => c.label == answer);
+        expect(correctCrystal.state, LumoCrystalState.neutral,
+            reason: 'The first mistake must not reveal the solution before retry');
+      }
       expect(app.learningDailyDone(), 0);
       await _tap(tester, _correct(tester, unit));
       expect(app.learningDailyDone(), 1);

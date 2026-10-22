@@ -15,10 +15,12 @@ class LumoDrawPile extends StatefulWidget {
     super.key,
     required this.cardsLeft,
     required this.onDraw,
+    this.reduceMotion = false,
   });
 
   final int cardsLeft;
   final VoidCallback? onDraw;
+  final bool reduceMotion;
 
   @override
   State<LumoDrawPile> createState() => _LumoDrawPileState();
@@ -28,6 +30,9 @@ class _LumoDrawPileState extends State<LumoDrawPile>
     with SingleTickerProviderStateMixin {
   late final AnimationController _pulseCtrl;
   late int _prevCardsLeft;
+
+  bool get _reduceMotion =>
+      widget.reduceMotion || MediaQuery.disableAnimationsOf(context);
 
   @override
   void initState() {
@@ -40,10 +45,22 @@ class _LumoDrawPileState extends State<LumoDrawPile>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_reduceMotion) {
+      _pulseCtrl.stop();
+      _pulseCtrl.value = 0;
+    }
+  }
+
+  @override
   void didUpdateWidget(LumoDrawPile old) {
     super.didUpdateWidget(old);
     // Nur bei Abnahme animieren (eine Karte wurde gezogen).
-    if (widget.cardsLeft < _prevCardsLeft) {
+    if (_reduceMotion) {
+      _pulseCtrl.stop();
+      _pulseCtrl.value = 0;
+    } else if (widget.cardsLeft < _prevCardsLeft) {
       _pulseCtrl.forward(from: 0.0);
     }
     _prevCardsLeft = widget.cardsLeft;
@@ -114,7 +131,7 @@ class _LumoDrawPileState extends State<LumoDrawPile>
             fontFamily: 'Nunito',
             fontSize: 12,
             fontWeight: FontWeight.w900,
-            color: Color(0xFF7C2D12),
+            color: Color(0xFFD6EBFF),
           ),
         ),
       ],
