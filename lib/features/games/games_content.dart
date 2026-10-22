@@ -754,6 +754,34 @@ class _GameTile extends StatelessWidget {
   }
 }
 
+class _IconArt extends StatelessWidget {
+  const _IconArt(this.icon, this.colors);
+  final IconData icon;
+  final List<Color> colors;
+
+  @override
+  Widget build(BuildContext context) => DecoratedBox(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: colors,
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+          ),
+        ),
+        child: LayoutBuilder(
+          builder: (context, c) => Center(
+            child: Icon(icon,
+                size: c.biggest.shortestSide * .62,
+                color: Colors.white,
+                shadows: const [
+                  Shadow(color: Color(0x99FFFFFF), blurRadius: 14),
+                ]),
+          ),
+        ),
+      );
+}
+
+/// Drei echte Lumo-Cards-Karten im Fächer.
 class _ConnectFourArt extends StatelessWidget {
   const _ConnectFourArt();
 
