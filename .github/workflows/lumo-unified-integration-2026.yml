@@ -681,7 +681,7 @@ jobs:
             dist/GODOT-SOURCE.json \
             --repo Ullmann27/lumo-lernen \
             --target "$SOURCE_SHA" \
-            --title "Lumo 0.12.86 (1997) Android ARM64 Test-APK" \
+            --title "Lumo 0.12.86 (1998) Android ARM64 Test-APK" \
             --notes-file dist/RELEASE-NOTES.txt \
             --prerelease
           echo "Direct download: https://github.com/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-0.12.86-1998-ARM64.apk"
