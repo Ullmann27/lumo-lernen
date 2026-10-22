@@ -1,0 +1,112 @@
+[
+  {
+    "path": "logs/lumo-before.txt",
+    "bytes": 427,
+    "sha256": "38425bd39573098abbdbad363feb04a83ca6dd241735ed753a20137387cf7f55"
+  },
+  {
+    "path": "logs/lumo-branches.txt",
+    "bytes": 16887,
+    "sha256": "b58e1f57d713afefe280d1a299d0a61b8361dec7f6ebd303d15459e4f170ab4f"
+  },
+  {
+    "path": "logs/lumo-first-render.txt",
+    "bytes": 126819,
+    "sha256": "0c08add69d33909a908159c7ca0e5aca85fb9caba7b6731830fda93f7fd7c06f"
+  },
+  {
+    "path": "logs/lumo-format.txt",
+    "bytes": 252,
+    "sha256": "d245d9b007f09ffae224bbc9314c789aee573a7b5c15c02ad73ce4b25e4e21b1"
+  },
+  {
+    "path": "logs/lumo-pub-get.txt",
+    "bytes": 2053,
+    "sha256": "5438ea9ca5d2d01f3e440bf4e249208ea9365c6e9ae131eaf516fd979b81145e"
+  },
+  {
+    "path": "logs/lumo-red.txt",
+    "bytes": 8350,
+    "sha256": "708029255751e2c73b3e35a020977de7b12e7d4c10fec7358bee743f128ee7e1"
+  },
+  {
+    "path": "logs/lumo-second-render.txt",
+    "bytes": 2537,
+    "sha256": "7ef41ea52b1d262ebc4fa9b88f9d7b59ba68d2f489f5acfac3c841bf8524c95b"
+  },
+  {
+    "path": "logs/pr392-checks.txt",
+    "bytes": 1026,
+    "sha256": "d0f7a8216ffb2acefc5f2982e5eb7f70eae38421961d4b5581537598dd4b4df2"
+  },
+  {
+    "path": "lumo-first-render/fold-cover.png",
+    "bytes": 1157089,
+    "sha256": "f8e8596e227e68f71d78e10e50258de727d2ccc485f82609132bdb9c35ef9cd6"
+  },
+  {
+    "path": "lumo-first-render/fold-open.png",
+    "bytes": 2677216,
+    "sha256": "2b56120f13ec3425b19cb5876d3b288c28f1d10724fe54cf7eb162d44179c07d"
+  },
+  {
+    "path": "lumo-first-render/landscape.png",
+    "bytes": 1521631,
+    "sha256": "d8b202895570c316235b410c98808962a81da5ee77c5324cb6ceabf26b947803"
+  },
+  {
+    "path": "lumo-first-render/large-text.png",
+    "bytes": 1514715,
+    "sha256": "9b009b134b1d9819a65d3ca588e8df4ef71d2aa9d58c874987179ac57bcdc778"
+  },
+  {
+    "path": "lumo-first-render/phone.png",
+    "bytes": 1358926,
+    "sha256": "f63e4afc4ab8bdcb59df9d54ccde63ea2d1c2df5cb05c3834c8075a189f8b261"
+  },
+  {
+    "path": "lumo-first-render/small-phone.png",
+    "bytes": 1345599,
+    "sha256": "228cd7232d01a8ee1b878f2e388ae57683d61efa9a8a3d24a8b5ad2d49270df9"
+  },
+  {
+    "path": "lumo-second-render/fold-cover.png",
+    "bytes": 1214082,
+    "sha256": "11c67f625268cd5cffe58849a32ee85eb0d9eb6b23a99f8c4476f590004f870a"
+  },
+  {
+    "path": "lumo-second-render/fold-open.png",
+    "bytes": 2564026,
+    "sha256": "290aae3d19083fe04db8c80d5f84be6b9f25ea1b38f5eaae3b0a0cfd03316ef8"
+  },
+  {
+    "path": "lumo-second-render/landscape.png",
+    "bytes": 1515833,
+    "sha256": "d488494fc8d89df79ebbbbf58e694f6bb4d887cc549bbb562933f94ec31d387a"
+  },
+  {
+    "path": "lumo-second-render/large-text.png",
+    "bytes": 1514542,
+    "sha256": "06ec028d6b0d5576aa51660fea1a3d3d124d1566d074b5154137fe2dc5f04c7a"
+  },
+  {
+    "path": "lumo-second-render/phone.png",
+    "bytes": 1539458,
+    "sha256": "b8be99a79264aeb6c9bf63cdfc51ec525893846bf45cecf89836fe34661d75af"
+  },
+  {
+    "path": "lumo-second-render/small-phone.png",
+    "bytes": 1364408,
+    "sha256": "963c0de4626739dc4a823cdc5e37fc7ff97d24d11d92013b898e59a0cc02c0ab"
+  },
+  {
+    "path": "original-manifest.json",
+    "bytes": 2083,
+    "sha256": "03834095257e2aac53af122d8a9325ca39e445faa80f1661bcf0043edb9b9930"
+  },
+  {
+    "path": "original-status.txt",
+    "bytes": 545,
+    "sha256": "72cb0d4237119239f215aeb35d39db7fd10f3006e4f8a01dcfab9d73eeed5eff"
+  }
+]

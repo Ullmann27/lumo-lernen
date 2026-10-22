@@ -1,0 +1,7 @@
+{
+  "source": "Ullmann27/lumo-godot tools/tests/fixtures/android_api35_kart_garage_step1.png",
+  "source_commit": "481d98c (fix(android QA): read dark footer text on the gold Weiter button)",
+  "origin": "Godot Android CI run 38803602256, API 35 emulator, real five-step Kart garage step 1",
+  "description": "Unmodified real Android screenshot of the native Kart garage. Used only to prove that a garage frame is not accepted as a race.",
+  "files": {"garage-step1-640x320.png": {"sha256": "298715b0b457b7c76959bdc18d84a81e343f5675a074b7076d63213a482e2be3", "bytes": 292224}}
+}

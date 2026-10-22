@@ -23,6 +23,7 @@ import '../../core/lumo_feature_permissions.dart';
 import '../../core/lumo_voice.dart';
 import '../../theme/lumo_design_tokens.dart';
 import '../../widgets/lumo_mirror.dart';
+import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/premium/lumo_magic_background.dart';
 import '../../widgets/premium/lumo_premium_card.dart';
 import '../../widgets/premium/lumo_reward_burst.dart';
@@ -481,12 +482,50 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                   padding: const EdgeInsets.all(LumoTokens.space16),
                   child: Column(
                     children: [
-                      // Lumo-Mirror gross zentriert
+                      // Original-Lumo remains the lead character; the expressive
+                      // mirror is a live reaction indicator, not the sole mascot.
                       Center(
-                        child: LumoMirror(
-                          mood: _mood,
-                          size: 160,
-                          isSpeaking: _speaking,
+                        child: SizedBox(
+                          height: 195,
+                          width: 260,
+                          child: Stack(alignment: Alignment.center, children: [
+                            const LumoFoxPose(
+                              pose: LumoDesignFoxPose.armsOpen, size: 178),
+                            Positioned(
+                              right: 0,
+                              bottom: 0,
+                              child: LumoMirror(
+                                mood: _mood, size: 105,
+                                isSpeaking: _speaking),
+                            ),
+                          ]),
+                        ),
+                      ),
+                      const SizedBox(height: 14),
+                      Container(
+                        key: const ValueKey('live-mode-instruction'),
+                        width: double.infinity,
+                        padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+                        decoration: BoxDecoration(
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF16395E), Color(0xFF4A3F87)]),
+                          border: Border.all(
+                            color: const Color(0xFF7FD9F1).withOpacity(.65)),
+                          borderRadius: BorderRadius.circular(22),
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(_mode.title,
+                              style: const TextStyle(fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w900, fontSize: 18,
+                                color: Colors.white)),
+                            const SizedBox(height: 4),
+                            Text(_mode.subtitle,
+                              style: const TextStyle(fontFamily: 'Nunito',
+                                fontWeight: FontWeight.w700, fontSize: 14,
+                                color: Color(0xFFE2F2FD))),
+                          ],
                         ),
                       ),
                       const SizedBox(height: LumoTokens.space12),
@@ -735,9 +774,11 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                       ? null
                       : _startListening,
                   icon: Icon(
-                      _listening ? Icons.hearing_rounded : Icons.mic_rounded,
+                      _mode == LiveMode.photoQuiz ? Icons.camera_alt_rounded
+                           : (_listening ? Icons.hearing_rounded : Icons.mic_rounded),
                       size: 28),
-                  label: Text(_listening ? 'Hoere...' : 'Sprechen'),
+                  label: Text(_mode == LiveMode.photoQuiz
+                       ? 'Foto machen' : (_listening ? 'Hoere...' : 'Sprechen')),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: LumoTokens.colors.lumoOrange,
                     foregroundColor: Colors.white,
@@ -750,24 +791,6 @@ class _LumoLiveProScreenState extends State<LumoLiveProScreen>
                 ),
               ),
             ),
-            if (_mode == LiveMode.photoQuiz) ...[
-              const SizedBox(width: 12),
-              SizedBox(
-                width: 64,
-                height: 64,
-                child: ElevatedButton(
-                  onPressed: _capturePhoto,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: LumoTokens.colors.lumoLila,
-                    foregroundColor: Colors.white,
-                    shape: RoundedRectangleBorder(
-                        borderRadius: LumoTokens.brLarge),
-                    padding: EdgeInsets.zero,
-                  ),
-                  child: const Icon(Icons.camera_alt_rounded, size: 28),
-                ),
-              ),
-            ],
             if (_mode == LiveMode.safari && _safariAnimal != null) ...[
               const SizedBox(width: 12),
               SizedBox(

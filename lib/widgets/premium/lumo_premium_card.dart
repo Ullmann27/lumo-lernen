@@ -13,8 +13,10 @@
 import 'package:flutter/material.dart';
 
 import '../../theme/lumo_design_tokens.dart';
+import '../design/lumo_glass_optics.dart';
+import '../design/lumo_motion.dart';
 
-class LumoPremiumCard extends StatefulWidget {
+class LumoPremiumCard extends StatelessWidget {
   const LumoPremiumCard({
     super.key,
     required this.child,
@@ -39,74 +41,57 @@ class LumoPremiumCard extends StatefulWidget {
   final BorderRadius? radius;
 
   @override
-  State<LumoPremiumCard> createState() => _LumoPremiumCardState();
-}
-
-class _LumoPremiumCardState extends State<LumoPremiumCard>
-    with SingleTickerProviderStateMixin {
-  late final AnimationController _pressCtrl;
-  late final Animation<double> _scale;
-
-  @override
-  void initState() {
-    super.initState();
-    _pressCtrl = AnimationController(
-      vsync: this,
-      duration: const Duration(milliseconds: 120),
-      reverseDuration: const Duration(milliseconds: 220),
-    );
-    _scale = Tween(begin: 1.0, end: 0.97).animate(
-      CurvedAnimation(parent: _pressCtrl, curve: Curves.easeOut),
-    );
-  }
-
-  @override
-  void dispose() {
-    _pressCtrl.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
-    final shadows = widget.elevated
-        ? (widget.glow != null
-            ? LumoTokens.shadows.glow(widget.glow!)
-            : LumoTokens.shadows.softCard)
-        : <BoxShadow>[];
-
-    final card = AnimatedBuilder(
-      animation: _scale,
-      builder: (_, child) =>
-          Transform.scale(scale: _scale.value, child: child),
-      child: Container(
-        padding: widget.padding,
-        decoration: BoxDecoration(
-          color: widget.gradient == null
-              ? (widget.color ?? LumoTokens.colors.surface)
-              : null,
-          gradient: widget.gradient,
-          borderRadius: widget.radius ?? LumoTokens.brLarge,
-          boxShadow: shadows,
-          border: widget.borderColor != null
-              ? Border.all(
-                  color: widget.borderColor!, width: LumoTokens.borderRegular)
-              : null,
-        ),
-        child: widget.child,
-      ),
+    final shape = radius ?? LumoTokens.brLarge;
+    final accent = glow ?? borderColor ?? const Color(0xFF52E5FF);
+    final decoration = BoxDecoration(
+      color: gradient == null ? (color ?? LumoTokens.colors.surface) : null,
+      gradient: gradient,
+      borderRadius: shape,
+      boxShadow: elevated
+          ? (glow != null
+              ? LumoTokens.shadows.glow(glow!)
+              : LumoTokens.shadows.softCard)
+          : const [],
+      border: borderColor == null
+          ? null
+          : Border.all(color: borderColor!, width: LumoTokens.borderRegular),
     );
-
-    if (widget.onTap == null) return card;
-
-    return GestureDetector(
-      onTapDown: (_) => _pressCtrl.forward(),
-      onTapUp: (_) {
-        _pressCtrl.reverse();
-        widget.onTap!();
-      },
-      onTapCancel: () => _pressCtrl.reverse(),
-      behavior: HitTestBehavior.opaque,
-      child: card,
+    final content = CustomPaint(
+      foregroundPainter:
+          LumoGlassOptics(radius: shape.topLeft.x, accent: accent),
+      child: Padding(padding: padding, child: child),
+    );
+    if (onTap == null) {
+      return DecoratedBox(decoration: decoration, child: content);
+    }
+    // InkWell provides focus, keyboard activation and button semantics.
+    // The shared press response respects app and platform reduced motion.
+    return Semantics(
+      button: true,
+      child: LumoPressable(
+        radius: shape.topLeft.x,
+        glowColor: accent,
+        pressedScale: .975,
+        child: DecoratedBox(
+          decoration: decoration,
+          child: Material(
+            color: Colors.transparent,
+            borderRadius: shape,
+            child: InkWell(
+              onTap: onTap,
+              splashFactory: InkRipple.splashFactory,
+              borderRadius: shape,
+              focusColor: accent.withValues(alpha: .18),
+              highlightColor: accent.withValues(alpha: .12),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+                child: content,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

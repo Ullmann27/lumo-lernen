@@ -11,6 +11,10 @@ import '../../domain/school/attempt.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
+import 'cognitive_profile_start_view.dart';
+import 'cognitive_profile_visual_prompt.dart';
+import 'iq/iq_widgets.dart';
+import 'iq/iq_style.dart';
 
 class CognitiveProfileScreen extends StatefulWidget {
   const CognitiveProfileScreen({
@@ -28,9 +32,10 @@ class CognitiveProfileScreen extends StatefulWidget {
 
 class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
   late final List<CognitiveQuestion> _questions;
-  late final DateTime _startedAt;
+  late DateTime _startedAt;
   final Map<String, String> _answers = <String, String>{};
   int _index = 0;
+  bool _started = false;
   String? _selected;
   bool _stimulusVisible = false;
   Timer? _stimulusTimer;
@@ -42,8 +47,7 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
     super.initState();
     _questions =
         CognitiveProfileGenerator.forGrade(widget.appState.state.grade);
-    _startedAt = DateTime.now();
-    _prepareQuestion();
+    // The stopwatch and memory stimulus begin only after the child taps Start.
   }
 
   @override
@@ -142,7 +146,19 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
         scene: LumoScene.tests,
         dimmed: true,
         child: SafeArea(
-          child: result == null ? _testBody() : _resultBody(result),
+          child: result == null
+              ? (_started
+                  ? _testBody()
+                  : CognitiveProfileStartView(
+                      questionCount: _questions.length,
+                      onStart: () => setState(() {
+                        _startedAt = DateTime.now();
+                        _prepareQuestion();
+                        _started = true;
+                      }),
+                      onBack: () => Navigator.of(context).maybePop(),
+                    ))
+              : _resultBody(result),
         ),
       ),
     );
@@ -208,6 +224,11 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
               else ...[
                 _QuestionCard(question: q),
                 const SizedBox(height: 12),
+                CognitiveProfileVisualPrompt(
+                  key: const ValueKey('cognitive-puzzle-board'),
+                  question: q,
+                ),
+                const SizedBox(height: 12),
                 for (final choice in q.choices) ...[
                   _ChoiceTile(
                     label: choice,
@@ -216,39 +237,24 @@ class _CognitiveProfileScreenState extends State<CognitiveProfileScreen> {
                   ),
                   const SizedBox(height: 9),
                 ],
-                const SizedBox(height: 8),
-                FilledButton.icon(
-                  onPressed: _selected == null || _saving ? null : _next,
-                  icon: _saving
-                      ? const SizedBox(
-                          width: 18,
-                          height: 18,
-                          child: CircularProgressIndicator(
-                            strokeWidth: 2,
-                            color: Colors.white,
-                          ),
-                        )
-                      : Icon(_index == _questions.length - 1
-                          ? Icons.flag_rounded
-                          : Icons.arrow_forward_rounded),
-                  label: Text(_index == _questions.length - 1
-                      ? 'Denkprofil auswerten'
-                      : 'Weiter'),
-                  style: FilledButton.styleFrom(
-                    minimumSize: const Size.fromHeight(54),
-                    backgroundColor: const Color(0xFF207DE1),
-                    foregroundColor: Colors.white,
-                    textStyle: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 15,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                ),
+
               ],
             ],
           ),
         ),
+        if (!_stimulusVisible)
+          IqBottomBar(
+            child: IqPrimaryButton(
+              key: const ValueKey('cognitive-next'),
+              onPressed: _selected == null || _saving ? null : _next,
+              label: _index == _questions.length - 1
+                  ? 'Denkprofil auswerten'
+                  : 'Weiter',
+              icon: _index == _questions.length - 1
+                  ? Icons.flag_rounded
+                  : Icons.arrow_forward_rounded,
+            ),
+          ),
       ],
     );
   }
@@ -367,8 +373,9 @@ class _DomainHeader extends StatelessWidget {
   final CognitiveQuestion question;
 
   @override
-  Widget build(BuildContext context) => LumoGlassCard(
+  Widget build(BuildContext context) => IqPanel(
         radius: 18,
+        accent: LumoVisualTokens.cyanBright,
         padding: const EdgeInsets.symmetric(horizontal: 13, vertical: 10),
         child: Row(
           children: [
@@ -459,28 +466,19 @@ class _MemoryStimulus extends StatelessWidget {
 
 class _QuestionCard extends StatelessWidget {
   const _QuestionCard({required this.question});
+
   final CognitiveQuestion question;
 
   @override
-  Widget build(BuildContext context) => Container(
-        padding: const EdgeInsets.all(18),
-        decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [Color(0xEE103A68), Color(0xEE081F47)],
-          ),
-          borderRadius: BorderRadius.circular(22),
-          border:
-              Border.all(color: LumoVisualTokens.cyan.withOpacity(.42)),
-        ),
+  Widget build(BuildContext context) => IqPanel(
+        strong: true,
+        accent: LumoVisualTokens.cyanBright,
+        radius: 22,
+        padding: const EdgeInsets.all(19),
         child: Text(
           question.prompt,
-          style: const TextStyle(
-            fontFamily: 'Nunito',
-            color: LumoVisualTokens.white,
-            fontSize: 19,
-            height: 1.3,
-            fontWeight: FontWeight.w900,
-          ),
+          style: iqText(20,
+              weight: FontWeight.w900, height: 1.35, shadows: iqScrim),
         ),
       );
 }
@@ -497,50 +495,42 @@ class _ChoiceTile extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) => Material(
-        color: Colors.transparent,
-        child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(18),
-          child: Ink(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 15),
-            decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: selected
-                    ? const [Color(0xDD176FD1), Color(0xDD174A9F)]
-                    : const [Color(0xCC123760), Color(0xCC09264B)],
-              ),
-              borderRadius: BorderRadius.circular(18),
-              border: Border.all(
-                color: selected
-                    ? LumoVisualTokens.cyanBright
-                    : LumoVisualTokens.cyan.withOpacity(.26),
-                width: selected ? 1.8 : 1.0,
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  selected
-                      ? Icons.radio_button_checked_rounded
-                      : Icons.radio_button_off_rounded,
-                  color: selected
-                      ? LumoVisualTokens.cyanBright
-                      : LumoVisualTokens.muted,
-                ),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    label,
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      color: LumoVisualTokens.white,
-                      fontSize: 15,
-                      fontWeight: FontWeight.w900,
+  Widget build(BuildContext context) => Semantics(
+        button: true,
+        selected: selected,
+        label: label,
+        excludeSemantics: true,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            onTap: onTap,
+            borderRadius: BorderRadius.circular(20),
+            child: IqTile(
+              highlighted: selected,
+              accent: LumoVisualTokens.cyanBright,
+              radius: 20,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 16, vertical: 15),
+              child: ConstrainedBox(
+                constraints: const BoxConstraints(minHeight: 28),
+                child: Row(
+                  children: [
+                    Icon(
+                      selected
+                          ? Icons.radio_button_checked_rounded
+                          : Icons.radio_button_off_rounded,
+                      color: selected
+                          ? LumoVisualTokens.cyanBright
+                          : LumoVisualTokens.white,
                     ),
-                  ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Text(label,
+                          style: iqText(16, weight: FontWeight.w900)),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),

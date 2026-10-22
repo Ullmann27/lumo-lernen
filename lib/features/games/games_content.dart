@@ -22,12 +22,14 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../../widgets/design/lumo_section_heading.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../quiz/quiz_show_content.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
 import 'lumo_cards/lumo_cards_screen.dart';
+import 'lumo_cards/lumo_cards_showcase_screen.dart';
 import 'memory/lumo_memory_game.dart';
 import 'mini_games/color_boxes_game.dart';
 import 'mini_games/letter_fill_game.dart';
@@ -212,20 +214,37 @@ class _GamesContentState extends State<GamesContent> {
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
-    // Heinz 2026-05-21 'zu langweilig' -> Solo-Bot ist jetzt der
-    // Default. Pass-and-Play (vsBot=false) ist spaeter ueber einen
-    // sekundaeren Button erreichbar.
     try {
+      // One tap opens the actual branded world; both buttons enter the
+      // existing, tested live card engine (solo or local pass-and-play).
       await Navigator.of(context).push<void>(
-      MaterialPageRoute<void>(
-        builder: (_) => LumoCardsScreen(
-          appState: widget.appState,
-          player1Name: 'Du',
-          player2Name: 'Lumo',
-          vsBot: true,
+        MaterialPageRoute<void>(
+          builder: (hubContext) => LumoCardsShowcaseScreen(
+            onSolo: () => Navigator.of(hubContext).push<void>(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoCardsScreen(
+                  appState: widget.appState,
+                  player1Name: 'Du',
+                  player2Name: 'Lumo',
+                  vsBot: true,
+                  skipIntro: true,
+                ),
+              ),
+            ),
+            onLocal: () => Navigator.of(hubContext).push<void>(
+              MaterialPageRoute<void>(
+                builder: (_) => LumoCardsScreen(
+                  appState: widget.appState,
+                  player1Name: 'Spieler 1',
+                  player2Name: 'Spieler 2',
+                  vsBot: false,
+                  skipIntro: true,
+                ),
+              ),
+            ),
+          ),
         ),
-      ),
-    );
+      );
       if (mounted) await _load();
     } finally {
       if (mounted) setState(() => _launchingGame = false);
@@ -403,6 +422,7 @@ class _GamesContentState extends State<GamesContent> {
             slivers: [
               SliverToBoxAdapter(
                 child: LumoGameSpotlights(
+                  showBuildPreview: GameCatalog.byId(GameId.build).availability == GameAvailability.comingSoon,
                   onCards: () => _openGame(GameId.cards, _launchLumoCards),
                   onKart: () => _openGame(GameId.kart, () => _launch3D('kart')),
                   busy: _launchingGame,
@@ -418,6 +438,7 @@ class _GamesContentState extends State<GamesContent> {
               SliverToBoxAdapter(
                 child: LumoNightScope(child: ExpansionTile(
                   key: const PageStorageKey('extra-spielwelten'),
+                  leading: const Icon(Icons.explore_rounded, color: LumoVisualTokens.gold),
                   title: const Text('Weitere Spielwelten entdecken'),
                   subtitle: const Text('Alle bisherigen Spiele und Portale'),
                   collapsedIconColor: LumoVisualTokens.cyanBright,
@@ -447,14 +468,11 @@ class _GamesContentState extends State<GamesContent> {
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(16, 6, 16, 4),
-                  child: Text(
-                    'Weitere Spiele',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                    ),
+                  child: LumoSectionHeading(
+                    title: 'Weitere Spiele',
+                    subtitle: 'Kleine Abenteuer – allein oder mit Lumo',
+                    icon: Icons.sports_esports_rounded,
+                    accent: LumoVisualTokens.gold,
                   ),
                 ),
               ),
@@ -472,6 +490,7 @@ class _GamesContentState extends State<GamesContent> {
                 padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                 sliver: SliverToBoxAdapter(
                   child: LumoNightScope(child: ExpansionTile(
+                    leading: const Icon(Icons.tune_rounded, color: LumoVisualTokens.cyanBright),
                     title: const Text('3D-Profiloptionen'),
                     subtitle: const Text('Keine Aufgaben während des Rennens'),
                     children: [Padding(padding: const EdgeInsets.all(12), child: _kartOptions())],
@@ -481,14 +500,11 @@ class _GamesContentState extends State<GamesContent> {
               const SliverToBoxAdapter(
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(16, 6, 16, 4),
-                  child: Text(
-                    'Mehr Abenteuer',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                    ),
+                  child: LumoSectionHeading(
+                    title: 'Mehr Abenteuer',
+                    subtitle: 'Entdecke weitere Welten und Herausforderungen',
+                    icon: Icons.rocket_launch_rounded,
+                    accent: LumoVisualTokens.cyanBright,
                   ),
                 ),
               ),
@@ -613,76 +629,109 @@ class _LumoMeisterPortal extends StatelessWidget {
             onTap: onTap,
             borderRadius: BorderRadius.circular(28),
             child: Ink(
-              padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+              padding: const EdgeInsets.all(14),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(28),
                 gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFF30135F), Color(0xFF071D46)],
+                  begin: Alignment.topLeft, end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF063C81), Color(0xFF09193D), Color(0xFF261349),
+                  ],
                 ),
-                border: Border.all(
-                  color: const Color(0xFFFFC94A),
-                  width: 1.8,
-                ),
+                border: Border.all(color: const Color(0xFFFFD16D), width: 2),
                 boxShadow: const [
-                  BoxShadow(
-                    color: Color(0x5537D2FD),
-                    blurRadius: 24,
-                    spreadRadius: 1,
-                  ),
+                  BoxShadow(color: Color(0x8842CDFF), blurRadius: 24),
+                  BoxShadow(color: Color(0x44FFD16D), blurRadius: 28),
                 ],
               ),
-              child: Row(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  LumoCharacter(
-                    pose: LumoDesignFoxPose.trophyWink,
-                    size: 96,
-                    reduceMotion: reduceMotion,
-                    idleHops: !reduceMotion,
-                  ),
-                  const SizedBox(width: 12),
-                  const Expanded(
-                    child: Column(
+                  const Row(children: [
+                    Icon(Icons.stars_rounded,
+                      color: Color(0xFFFFD873), size: 22),
+                    SizedBox(width: 6),
+                    Expanded(child: Text('LUMO QUIZSHOW · LIVE',
+                      style: TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                        color: Color(0xFFFFE2A2), letterSpacing: 1.1,
+                        fontSize: 12,
+                      ))),
+                    Icon(Icons.mic_rounded,
+                      color: Color(0xFF69E8FF), size: 20),
+                  ]),
+                  const SizedBox(height: 10),
+                  Row(children: [
+                    Image.asset(
+                      'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+                      width: 92, height: 112,
+                      fit: BoxFit.contain,
+                      filterQuality: FilterQuality.high,
+                      semanticLabel: 'Lumo präsentiert die Quizshow',
+                    ),
+                    const SizedBox(width: 12),
+                    const Expanded(child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          'Wer wird Lumo-Meister?',
+                        Text('Wer wird Lumo-Meister?',
                           style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 22,
+                            fontFamily: 'Nunito', fontSize: 21,
                             fontWeight: FontWeight.w900,
                             color: Colors.white,
-                          ),
-                        ),
+                          )),
                         SizedBox(height: 4),
-                        Text(
-                          '20 Fragen · 3 Joker · bis 5.000 Sterne',
+                        Text('20 Fragen · 3 Joker · bis 5.000 Sterne',
                           style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 14,
+                            fontFamily: 'Nunito', fontSize: 13,
                             fontWeight: FontWeight.w800,
                             color: Color(0xFFFFD873),
-                          ),
-                        ),
+                          )),
                         SizedBox(height: 4),
-                        Text(
-                          'Frage 20 ist deine Meister-Finalfrage.',
+                        Text('Deine große Bühne mit Lumo als Quizleiter.',
                           style: TextStyle(
-                            fontFamily: 'Nunito',
-                            fontSize: 13,
+                            fontFamily: 'Nunito', fontSize: 12,
                             fontWeight: FontWeight.w700,
                             color: Color(0xFFD7E9FF),
-                          ),
-                        ),
+                          )),
+                      ],
+                    )),
+                  ]),
+                  const SizedBox(height: 10),
+                  Container(
+                    key: const ValueKey('games-lumo-meister-play'),
+                    constraints: const BoxConstraints(minHeight: 52),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(22),
+                      gradient: const LinearGradient(colors: [
+                        Color(0xFF0666C4), Color(0xFF00B9EF),
+                      ]),
+                      border: Border.all(
+                        color: const Color(0xFFFFD873), width: 1.5),
+                      boxShadow: const [
+                        BoxShadow(color: Color(0x6639DDFF), blurRadius: 12),
                       ],
                     ),
-                  ),
-                  SizedBox(width: 8),
-                  Icon(
-                    Icons.play_circle_fill_rounded,
-                    color: Color(0xFFFFC94A),
-                    size: 42,
+                    child: const Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 10),
+                      child: Row(
+                        children: [
+                          Icon(Icons.play_arrow_rounded,
+                            color: Colors.white, size: 26),
+                          SizedBox(width: 5),
+                          Expanded(child: Text('QUIZSHOW STARTEN',
+                            textAlign: TextAlign.center,
+                            softWrap: true,
+                            style: TextStyle(
+                              fontFamily: 'Nunito', fontSize: 16,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white, letterSpacing: .4,
+                            ))),
+                          SizedBox(width: 5),
+                          Icon(Icons.arrow_forward_ios_rounded,
+                            color: Color(0xFFFFE2A2), size: 16),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
@@ -1060,8 +1109,9 @@ class _HeaderStrip extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.fromLTRB(12, 14, 12, 6),
       child: LumoGlassCard(
-        padding: const EdgeInsets.fromLTRB(8, 8, 14, 8),
-        radius: 20,
+        padding: const EdgeInsets.fromLTRB(10, 11, 16, 11),
+        radius: 24,
+        borderColor: LumoVisualTokens.gold.withValues(alpha: .55),
         child: Row(
           children: [
             const LumoFoxPose(pose: LumoDesignFoxPose.avatar, size: 52),

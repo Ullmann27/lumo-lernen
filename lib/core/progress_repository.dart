@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'discovery_progress.dart';
+import 'learning_journey.dart';
 import 'legacy_learning_data.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
@@ -16,6 +17,7 @@ class ProgressRepository {
   static const _dailyKey = 'lumo_progress_daily';
   static const _lastKey = 'lumo_progress_last';
   static const _discoveryKey = 'lumo_progress_discovery_v1';
+  static const _journeyKey = 'lumo_progress_journey_v1';
   static const _skillFields = {
     'skillId',
     'subject',
@@ -55,6 +57,20 @@ class ProgressRepository {
 
   Future<void> saveDiscovery(DiscoveryProgress value) =>
       _namespace.write(_discoveryKey, jsonEncode(value.toJson()));
+
+  /// Additive, per-child evidence. A read never rewrites bad or newer bytes.
+  Future<LearningJourney> loadJourney() async {
+    final raw = await _namespace.read(_journeyKey);
+    if (raw == null) return LearningJourney();
+    // Bound parsing as well as the decoded collections.
+    if (raw.length > 20 * 1024 * 1024) {
+      throw const FormatException('Unsupported learning journey size');
+    }
+    return LearningJourney.fromJson(_readObject(raw));
+  }
+
+  Future<void> saveJourney(LearningJourney value) =>
+      _namespace.write(_journeyKey, jsonEncode(value.toJson()));
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);
@@ -157,6 +173,7 @@ class ProgressRepository {
     await _namespace.write(_dailyKey, '{}');
     await _namespace.write(_lastKey, '{}');
     await saveDiscovery(DiscoveryProgress());
+    await saveJourney(LearningJourney());
   }
 }
 

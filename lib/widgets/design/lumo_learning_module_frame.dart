@@ -9,6 +9,7 @@ import '../../theme/lumo_visual_tokens.dart';
 import '../fox/lumo_character.dart';
 import 'lumo_design_system.dart';
 import 'lumo_motion.dart';
+import 'lumo_lesson_progress.dart';
 
 /// Presentation only. Task generation, answer evaluation, storage leases and
 /// rewards remain owned by the existing learning module and its progress scope.
@@ -37,6 +38,7 @@ class LumoLearningModuleFrame extends StatefulWidget {
     this.mistakeGuidance = 'Fehler helfen beim Lernen.',
     this.companionUnit,
     this.companionGuide,
+    this.immersive = false,
   });
 
   final LumoAppState appState;
@@ -59,6 +61,8 @@ class LumoLearningModuleFrame extends StatefulWidget {
   final String mistakeGuidance;
   final String? companionUnit;
   final LumoCompanionGuide? companionGuide;
+  /// The task owns its character stage; retain the same navigation and progress.
+  final bool immersive;
   final bool Function() canLeave;
   final Widget child;
 
@@ -254,7 +258,9 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
         !task.answering ||
         task.isExam ||
         task.profileGeneration != widget.appState.profileGeneration ||
-        !(ModalRoute.of(context)?.isCurrent ?? true)) return;
+        !(ModalRoute.of(context)?.isCurrent ?? true)) {
+      return;
+    }
     LumoCompanionRequests.instance.requestTaskHelp();
   }
 
@@ -270,54 +276,132 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
     final index = widget.taskIndex.clamp(0, widget.totalTasks - 1);
     final complete = widget.progressComplete ? 1.0 : index / widget.totalTasks;
     final quiet = LumoLessonStyle.reducedMotion(context, widget.appState);
+    if (MediaQuery.sizeOf(context).height -
+                MediaQuery.paddingOf(context).vertical <
+            900 &&
+        MediaQuery.textScalerOf(context).scale(1) <= 1.35) {
+      return Container(
+        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+        decoration: BoxDecoration(
+            color: const Color(0xB3051836),
+            borderRadius: BorderRadius.circular(12),
+            border:
+                Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .3))),
+        child:
+            Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Wrap(
+              alignment: WrapAlignment.spaceBetween,
+              spacing: 8,
+              runSpacing: 2,
+              children: [
+                Text(
+                    '${widget.progressLabel} ${index + 1} / ${widget.totalTasks}',
+                    style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w800,
+                        color: LumoVisualTokens.white)),
+                Text('${widget.correctAnswers} ${widget.correctCaption}',
+                    key: const ValueKey('learning-module-correct-count'),
+                    style: const TextStyle(
+                        fontSize: 12,
+                        fontWeight: FontWeight.w800,
+                        color: LumoVisualTokens.gold)),
+              ]),
+          const SizedBox(height: 4),
+          SizedBox(
+              height: 8,
+              child: LumoLessonProgress(
+                  key: const ValueKey('learning-module-progress'),
+                  value: complete,
+                  totalTasks: widget.totalTasks,
+                  reduceMotion: quiet)),
+        ]),
+      );
+    }
     return Semantics(
       label: '${widget.progressLabel} ${index + 1} von ${widget.totalTasks}, '
           '${widget.correctAnswers} ${widget.correctCaption}',
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Wrap(
-            spacing: 12,
-            runSpacing: 4,
-            alignment: WrapAlignment.spaceBetween,
-            children: [
-              Text(
-                '${widget.progressLabel} ${index + 1} / ${widget.totalTasks}',
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                  color: LumoVisualTokens.white,
-                ),
-              ),
-              Text(
-                '${widget.correctAnswers} ${widget.correctCaption}',
-                key: const ValueKey('learning-module-correct-count'),
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 13,
-                  fontWeight: FontWeight.w800,
-                  color: LumoVisualTokens.gold,
-                ),
-              ),
-            ],
+      excludeSemantics: true,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: const Color(0xB3051836),
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(
+            color: LumoVisualTokens.cyan.withValues(alpha: .3),
           ),
-          const SizedBox(height: 8),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: TweenAnimationBuilder<double>(
-              tween: Tween(end: complete),
-              duration: quiet ? Duration.zero : LumoMotion.value,
-              builder: (context, value, _) => LinearProgressIndicator(
-                key: const ValueKey('learning-module-progress'),
-                value: value,
-                minHeight: 8,
-                backgroundColor: LumoVisualTokens.glassRow,
-                color: LumoVisualTokens.cyanBright,
-              ),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x22000000),
+              blurRadius: 6,
+              offset: Offset(0, 2),
             ),
-          ),
-        ],
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Wrap(
+              spacing: 8,
+              runSpacing: 6,
+              alignment: WrapAlignment.spaceBetween,
+              crossAxisAlignment: WrapCrossAlignment.center,
+              children: [
+                Text(
+                  '${widget.progressLabel} ${index + 1} / ${widget.totalTasks}',
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 13,
+                    fontWeight: FontWeight.w800,
+                    color: LumoVisualTokens.white,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 3,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xFF163650),
+                    borderRadius: BorderRadius.circular(20),
+                    border: Border.all(
+                      color: LumoVisualTokens.gold.withValues(alpha: .4),
+                    ),
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Icon(
+                        Icons.check_circle_rounded,
+                        size: 14,
+                        color: LumoVisualTokens.gold,
+                      ),
+                      const SizedBox(width: 5),
+                      Flexible(
+                          child: Text(
+                        '${widget.correctAnswers} ${widget.correctCaption}',
+                        key: const ValueKey('learning-module-correct-count'),
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 12,
+                          fontWeight: FontWeight.w800,
+                          color: LumoVisualTokens.gold,
+                        ),
+                      )),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 9),
+            LumoLessonProgress(
+              key: const ValueKey('learning-module-progress'),
+              value: complete,
+              totalTasks: widget.totalTasks,
+              reduceMotion: quiet,
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -335,8 +419,11 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
               backgroundColor: LumoVisualTokens.lessonAnswer,
               foregroundColor: LumoVisualTokens.white,
               minimumSize: const Size(48, 48),
+              side: BorderSide(
+                color: LumoVisualTokens.cyan.withValues(alpha: .35),
+              ),
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(13),
+                borderRadius: BorderRadius.circular(14),
               ),
             ),
             icon: const Icon(Icons.arrow_back_rounded),
@@ -346,26 +433,17 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Row(
-                  children: [
-                    Icon(widget.icon,
-                        size: 18, color: LumoVisualTokens.cyanBright),
-                    const SizedBox(width: 6),
-                    Expanded(
-                      child: Text(
-                        widget.title,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 20,
-                          height: 1.15,
-                          fontWeight: FontWeight.w900,
-                          color: LumoVisualTokens.white,
-                        ),
-                      ),
-                    ),
-                  ],
+                Text(
+                  widget.title,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 20,
+                    height: 1.15,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                  ),
                 ),
-                const SizedBox(height: 3),
+                const SizedBox(height: 4),
                 Text(
                   widget.moduleTitle,
                   style: const TextStyle(
@@ -386,6 +464,13 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
       _helpOffer(),
       if (fill) Expanded(child: widget.child) else widget.child,
     ];
+    if (widget.immersive) {
+      return Padding(
+        padding: const EdgeInsets.all(14),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: contents),
+      );
+    }
     return LumoGlassCard(
       key: const ValueKey('learning-module-adventure-card'),
       surfaceOpacity: LumoLessonStyle.glassOpacity,
@@ -490,9 +575,24 @@ class _LumoLearningModuleFrameState extends State<LumoLearningModuleFrame> {
           backgroundColor: LumoVisualTokens.night,
           body: LumoSceneBackground(
             scene: LumoScene.library,
+            backgroundAsset: widget.immersive
+                ? 'assets/lumo_design/bg/bg_glass_islands.png' : null,
             dimmed: true,
             child: SafeArea(
-              child: LumoLessonStyle.shortLandscape(context)
+              child: widget.immersive
+                  ? Column(children: [
+                      Expanded(child: LayoutBuilder(builder: (context, bounds) =>
+                        _LumoLessonViewport(height: bounds.maxHeight,
+                          child: SingleChildScrollView(controller: _scrollController,
+                            child: Center(child: ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 900),
+                              child: _card())),
+                          ),
+                        ))),
+                      if (widget.footer != null) widget.footer!,
+                      LumoBottomNavigation(active: LumoSection.learn, onSelect: _leaveTo),
+                    ])
+                  : LumoLessonStyle.shortLandscape(context)
                   ? _landscape()
                   : Column(
                       children: [
@@ -701,11 +801,23 @@ class LumoLessonSurface extends StatelessWidget {
         padding: padding,
         width: double.infinity,
         decoration: BoxDecoration(
-          color: LumoVisualTokens.lessonPanel.withValues(alpha: .65),
-          borderRadius: BorderRadius.circular(18),
-          border: Border.all(
-            color: LumoVisualTokens.cyan.withValues(alpha: .6),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              LumoVisualTokens.lessonPanel.withValues(alpha: .94),
+              LumoVisualTokens.navigation.withValues(alpha: .91),
+            ],
           ),
+          borderRadius: BorderRadius.circular(22),
+          border: Border.all(
+            color: LumoVisualTokens.cyanBright.withValues(alpha: .53),
+            width: 1.3,
+          ),
+          boxShadow: [
+            BoxShadow(color: LumoVisualTokens.cyan.withValues(alpha: .10),
+              blurRadius: 20, spreadRadius: -7, offset: const Offset(0, 7)),
+          ],
         ),
         child: child,
       );

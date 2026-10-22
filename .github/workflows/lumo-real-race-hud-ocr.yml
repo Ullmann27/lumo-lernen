@@ -1,0 +1,37 @@
+name: Lumo Android real cropped HUD OCR regression
+on:
+  push:
+    branches:
+      - chatgpt/lumo-1978-real-hud-ocr-recovery-2026-10-18
+  pull_request:
+    paths:
+      - 'tools/android_qa/kart_android_race.py'
+      - 'tools/android_qa/tests/test_focused_race_hud.py'
+      - '.github/probes/modernization_android_tour.py'
+      - '.github/workflows/lumo-real-race-hud-ocr.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  original-pixel-hud-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Install only real OCR / image dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-eng
+          python3 -m venv .ci-hud
+          .ci-hud/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+      - name: Compile original race-tour scripts and run actual pixel OCR regression
+        run: |
+          set -euo pipefail
+          .ci-hud/bin/python -m py_compile \
+            tools/android_qa/kart_android_race.py \
+            .github/probes/modernization_android_tour.py
+          .ci-hud/bin/python -m unittest discover \
+            -s tools/android_qa/tests -p 'test_focused_race_hud.py' -v

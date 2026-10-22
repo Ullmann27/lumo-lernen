@@ -1,0 +1,75 @@
+test_different_viewports_are_never_compared (test_kart_tour_evidence.GarageAndMotionTests.test_different_viewports_are_never_compared) ... ok
+test_the_real_garage_is_not_accepted_as_the_race (test_kart_tour_evidence.GarageAndMotionTests.test_the_real_garage_is_not_accepted_as_the_race) ... ok
+test_world_must_move_between_frames_of_one_race (test_kart_tour_evidence.GarageAndMotionTests.test_world_must_move_between_frames_of_one_race) ... ok
+test_a_different_child_profile_fails (test_kart_tour_evidence.LearningStateTests.test_a_different_child_profile_fails) ... ok
+test_lost_or_changed_learning_data_fails (test_kart_tour_evidence.LearningStateTests.test_lost_or_changed_learning_data_fails) ... ok
+test_page_must_keep_most_of_its_controls (test_kart_tour_evidence.LearningStateTests.test_page_must_keep_most_of_its_controls) ... ok
+test_return_keeps_profile_and_learning_data (test_kart_tour_evidence.LearningStateTests.test_return_keeps_profile_and_learning_data) ... ok
+test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) ... 
+  test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'kart-1', 'mode': 'race', 'track_id': 'sonnenhafen', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0}) ... ERROR
+  test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'kart-1', 'mode': 'arena', 'track_id': 'sonnenhafen', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0}) ... ERROR
+  test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'kart-1', 'mode': 'cup', 'track_id': 'zauberwald', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0}) ... ERROR
+  test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'other', 'mode': 'cup', 'track_id': 'sonnenhafen', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0}) ... ERROR
+test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) ... ERROR
+test_explicit_cup_mode_keeps_all_running_and_driving_checks (test_kart_tour_evidence.NativeSessionTests.test_explicit_cup_mode_keeps_all_running_and_driving_checks) ... ERROR
+test_holding_gas_must_cover_distance_in_the_same_race (test_kart_tour_evidence.NativeSessionTests.test_holding_gas_must_cover_distance_in_the_same_race) ... ok
+test_other_tracks_modes_or_finished_races_are_rejected (test_kart_tour_evidence.NativeSessionTests.test_other_tracks_modes_or_finished_races_are_rejected) ... ok
+test_pause_must_freeze_the_saved_race (test_kart_tour_evidence.NativeSessionTests.test_pause_must_freeze_the_saved_race) ... ok
+test_race_counts_as_running_only_after_countdown_and_first_second (test_kart_tour_evidence.NativeSessionTests.test_race_counts_as_running_only_after_countdown_and_first_second) ... ok
+test_actual_android_race_frames_are_rendered_3d_scenes (test_kart_tour_evidence.RenderedFrameTests.test_actual_android_race_frames_are_rendered_3d_scenes) ... ok
+test_black_flat_and_portrait_frames_are_rejected (test_kart_tour_evidence.RenderedFrameTests.test_black_flat_and_portrait_frames_are_rejected) ... ok
+
+======================================================================
+ERROR: test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'kart-1', 'mode': 'race', 'track_id': 'sonnenhafen', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/lumo-lernen/tools/android_qa/tests/test_kart_tour_evidence.py", line 96, in test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause
+    driving_progress(start, later, mode='cup')
+TypeError: driving_progress() got an unexpected keyword argument 'mode'
+
+======================================================================
+ERROR: test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'kart-1', 'mode': 'arena', 'track_id': 'sonnenhafen', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/lumo-lernen/tools/android_qa/tests/test_kart_tour_evidence.py", line 96, in test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause
+    driving_progress(start, later, mode='cup')
+TypeError: driving_progress() got an unexpected keyword argument 'mode'
+
+======================================================================
+ERROR: test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'kart-1', 'mode': 'cup', 'track_id': 'zauberwald', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/lumo-lernen/tools/android_qa/tests/test_kart_tour_evidence.py", line 96, in test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause
+    driving_progress(start, later, mode='cup')
+TypeError: driving_progress() got an unexpected keyword argument 'mode'
+
+======================================================================
+ERROR: test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) (later={'result_id': 'other', 'mode': 'cup', 'track_id': 'sonnenhafen', 'finished': False, 'completed_race': False, 'countdown': 0.0, 'elapsed': 1.2, 'distance': 0.4, 'checkpoint_index': 0})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/lumo-lernen/tools/android_qa/tests/test_kart_tour_evidence.py", line 96, in test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause
+    driving_progress(start, later, mode='cup')
+TypeError: driving_progress() got an unexpected keyword argument 'mode'
+
+======================================================================
+ERROR: test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/lumo-lernen/tools/android_qa/tests/test_kart_tour_evidence.py", line 99, in test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause
+    self.assertEqual(paused_unchanged(start, dict(start), mode='cup')['result_id'], 'kart-1')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: paused_unchanged() got an unexpected keyword argument 'mode'
+
+======================================================================
+ERROR: test_explicit_cup_mode_keeps_all_running_and_driving_checks (test_kart_tour_evidence.NativeSessionTests.test_explicit_cup_mode_keeps_all_running_and_driving_checks)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/lumo-lernen/tools/android_qa/tests/test_kart_tour_evidence.py", line 80, in test_explicit_cup_mode_keeps_all_running_and_driving_checks
+    self.assertTrue(race_running(start, mode='cup'))
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: race_running() got an unexpected keyword argument 'mode'
+
+----------------------------------------------------------------------
+Ran 15 tests in 2.599s
+
+FAILED (errors=6)

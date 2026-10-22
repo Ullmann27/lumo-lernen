@@ -85,7 +85,7 @@ class IqTestSession {
         id: id,
         studentId: studentId,
         grade: grade,
-        version: version,
+        version: itemsPerArea == 6 ? '$version-explorer36' : version,
         seed: seed,
         finishedAt: finishedAt,
         durationMs: durationMs.clamp(0, 86400000),

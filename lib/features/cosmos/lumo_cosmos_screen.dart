@@ -10,6 +10,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/lumo_cosmos.dart';
 import '../../theme/lumo_design_tokens.dart';
+import '../../widgets/design/lumo_design_system.dart';
 
 class LumoCosmosScreen extends StatefulWidget {
   const LumoCosmosScreen({super.key, required this.appState});
@@ -191,6 +192,76 @@ class _LumoCosmosScreenState extends State<LumoCosmosScreen>
                       },
                     ),
                   ),
+                  if (world.items.isEmpty)
+                    Positioned.fill(
+                      child: Center(
+                        child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 410),
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 20),
+                            child: Container(
+                              key: const ValueKey('cosmos-empty-journey'),
+                              padding: const EdgeInsets.all(20),
+                              decoration: BoxDecoration(
+                                gradient: const LinearGradient(
+                                  colors: [Color(0xF018385E), Color(0xF0443979)],
+                                  begin: Alignment.topLeft,
+                                  end: Alignment.bottomRight,
+                                ),
+                                borderRadius: BorderRadius.circular(26),
+                                border: Border.all(
+                                  color: const Color(0xFF8EE9EF).withOpacity(.8)),
+                                boxShadow: const [
+                                  BoxShadow(color: Color(0x55071A37),
+                                      blurRadius: 24, offset: Offset(0, 10)),
+                                ],
+                              ),
+                              child: Column(
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const LumoFoxPose(
+                                    pose: LumoDesignFoxPose.spielweltWave,
+                                    size: 112,
+                                  ),
+                                  const SizedBox(height: 10),
+                                  const Text('Deine Welt beginnt hier',
+                                    style: TextStyle(
+                                      fontFamily: 'Nunito', fontSize: 21,
+                                      fontWeight: FontWeight.w900,
+                                      color: Colors.white),
+                                    textAlign: TextAlign.center),
+                                  const SizedBox(height: 8),
+                                  const Text(
+                                    'Löse Lernaufgaben und entdecke nach und nach neue Dinge für deine Welt.',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(fontFamily: 'Nunito',
+                                      fontSize: 14, fontWeight: FontWeight.w700,
+                                      color: Color(0xFFE2F2FD))),
+                                  const SizedBox(height: 16),
+                                  SizedBox(
+                                    width: double.infinity,
+                                    child: FilledButton.icon(
+                                      key: const ValueKey('cosmos-back-to-learning'),
+                                      onPressed: () {
+                                        widget.appState.setSection(LumoSection.learn);
+                                        Navigator.of(context).popUntil(
+                                          (route) => route.isFirst);
+                                      },
+                                      icon: const Icon(Icons.school_rounded),
+                                      label: const Text('Zum Lernen'),
+                                      style: FilledButton.styleFrom(
+                                        minimumSize: const Size.fromHeight(52),
+                                        backgroundColor: const Color(0xFF0E91B0),
+                                        foregroundColor: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),

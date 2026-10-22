@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:typed_data';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -24,6 +25,21 @@ Future<void> loadLumoCaptureFonts() async {
   await (FontLoader('MaterialIcons')
         ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf')))
       .load();
+}
+
+/// The production Android device supplies its own color emoji font.
+/// GitHub's headless Linux Flutter test process does not. Load a real
+/// platform emoji font only for the rasterization test, never bundle or
+/// substitute an invented emoji image in the application.
+Future<void> loadLumoCaptureEmojiFont() async {
+  const path = '/usr/share/fonts/truetype/noto/NotoColorEmoji.ttf';
+  final file = File(path);
+  if (!await file.exists()) {
+    throw StateError('Missing Linux Noto Color Emoji test font: $path');
+  }
+  final emoji = FontLoader('Noto Color Emoji')
+    ..addFont(file.readAsBytes().then((bytes) => ByteData.sublistView(bytes)));
+  await emoji.load();
 }
 
 /// Decodes visible images, pumps a few frames and writes the boundary
