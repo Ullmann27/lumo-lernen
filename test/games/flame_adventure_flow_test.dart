@@ -41,9 +41,16 @@ Future<LumoFlameJumpGame> _menuAndCollect(
       MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
   await tester.pump();
   await tester.pump();
+  // The main game hub now opens directly into the illustrated Spielwelt.
+  // The original Flame adventure still exists under extra game modes.
+  final extras = find.text('Zusätzliche Spielmodi');
+  await tester.scrollUntilVisible(extras, 250,
+      scrollable: find.byType(Scrollable).first);
+  await tester.ensureVisible(extras);
+  await tester.tap(extras);
+  await tester.pump(const Duration(milliseconds: 350));
   final card = find.text('Lumos Jump Adventure · 2D');
-  // Die Spielewelt baut Karten unterhalb der Spielkarten erst beim Scrollen.
-  await tester.scrollUntilVisible(card, 300,
+  await tester.scrollUntilVisible(card, 250,
       scrollable: find.byType(Scrollable).first);
   await tester.ensureVisible(card);
   await tester.pump();
