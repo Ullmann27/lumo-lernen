@@ -250,13 +250,19 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLumoMeister() async {
+    if (_launchingGame) return;
+    setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
-    await Navigator.of(context).push<void>(
-      MaterialPageRoute<void>(
-        builder: (_) => QuizShowContent(appState: widget.appState),
-      ),
-    );
-    if (mounted) await _load();
+    try {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => QuizShowContent(appState: widget.appState),
+        ),
+      );
+      if (mounted) await _load();
+    } finally {
+      if (mounted) setState(() => _launchingGame = false);
+    }
   }
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
@@ -452,7 +458,6 @@ class _GamesContentState extends State<GamesContent> {
                       Padding(
                         padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                         child: _GameGrid(
-                          onMemory: () => _openGame(GameId.memory, _launchMemory),
                           onConnectFour: _launchConnectFour,
                           onDiceRace: _launchDiceRace,
                         ),
@@ -552,143 +557,6 @@ class _GamesContentState extends State<GamesContent> {
   }
 }
 
-class _LumoMeisterPortal extends StatelessWidget {
-  const _LumoMeisterPortal({
-    required this.onTap,
-    required this.reduceMotion,
-  });
-
-  final VoidCallback onTap;
-  final bool reduceMotion;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 10, 12, 8),
-      child: Semantics(
-        button: true,
-        label: 'Wer wird Lumo-Meister? öffnen',
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            key: const ValueKey('games-lumo-meister-portal'),
-            onTap: onTap,
-            borderRadius: BorderRadius.circular(28),
-            child: Ink(
-              padding: const EdgeInsets.all(14),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(28),
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft, end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF063C81), Color(0xFF09193D), Color(0xFF261349),
-                  ],
-                ),
-                border: Border.all(color: const Color(0xFFFFD16D), width: 2),
-                boxShadow: const [
-                  BoxShadow(color: Color(0x8842CDFF), blurRadius: 24),
-                  BoxShadow(color: Color(0x44FFD16D), blurRadius: 28),
-                ],
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const Row(children: [
-                    Icon(Icons.stars_rounded,
-                      color: Color(0xFFFFD873), size: 22),
-                    SizedBox(width: 6),
-                    Expanded(child: Text('LUMO QUIZSHOW · LIVE',
-                      style: TextStyle(
-                        fontFamily: 'Nunito', fontWeight: FontWeight.w900,
-                        color: Color(0xFFFFE2A2), letterSpacing: 1.1,
-                        fontSize: 12,
-                      ))),
-                    Icon(Icons.mic_rounded,
-                      color: Color(0xFF69E8FF), size: 20),
-                  ]),
-                  const SizedBox(height: 10),
-                  Row(children: [
-                    Image.asset(
-                      'assets/lumo_design/fox/fox_quiz_host_1982.webp',
-                      width: 92, height: 112,
-                      fit: BoxFit.contain,
-                      filterQuality: FilterQuality.high,
-                      semanticLabel: 'Lumo präsentiert die Quizshow',
-                    ),
-                    const SizedBox(width: 12),
-                    const Expanded(child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text('Wer wird Lumo-Meister?',
-                          style: TextStyle(
-                            fontFamily: 'Nunito', fontSize: 21,
-                            fontWeight: FontWeight.w900,
-                            color: Colors.white,
-                          )),
-                        SizedBox(height: 4),
-                        Text('20 Fragen · 3 Joker · bis 5.000 Sterne',
-                          style: TextStyle(
-                            fontFamily: 'Nunito', fontSize: 13,
-                            fontWeight: FontWeight.w800,
-                            color: Color(0xFFFFD873),
-                          )),
-                        SizedBox(height: 4),
-                        Text('Deine große Bühne mit Lumo als Quizleiter.',
-                          style: TextStyle(
-                            fontFamily: 'Nunito', fontSize: 12,
-                            fontWeight: FontWeight.w700,
-                            color: Color(0xFFD7E9FF),
-                          )),
-                      ],
-                    )),
-                  ]),
-                  const SizedBox(height: 10),
-                  Container(
-                    key: const ValueKey('games-lumo-meister-play'),
-                    constraints: const BoxConstraints(minHeight: 52),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(22),
-                      gradient: const LinearGradient(colors: [
-                        Color(0xFF0666C4), Color(0xFF00B9EF),
-                      ]),
-                      border: Border.all(
-                        color: const Color(0xFFFFD873), width: 1.5),
-                      boxShadow: const [
-                        BoxShadow(color: Color(0x6639DDFF), blurRadius: 12),
-                      ],
-                    ),
-                    child: const Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 9, vertical: 10),
-                      child: Row(
-                        children: [
-                          Icon(Icons.play_arrow_rounded,
-                            color: Colors.white, size: 26),
-                          SizedBox(width: 5),
-                          Expanded(child: Text('QUIZSHOW STARTEN',
-                            textAlign: TextAlign.center,
-                            softWrap: true,
-                            style: TextStyle(
-                              fontFamily: 'Nunito', fontSize: 16,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white, letterSpacing: .4,
-                            ))),
-                          SizedBox(width: 5),
-                          Icon(Icons.arrow_forward_ios_rounded,
-                            color: Color(0xFFFFE2A2), size: 16),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-}
-
 /// „Kommt bald“ für Spiele, die es noch nicht gibt. Beim Rhythmusspiel tanzt
 /// Lumo mit Kopfhörern, sonst winkt er; es wird nichts Spielbares vorgetäuscht.
 class _ComingSoonSheet extends StatelessWidget {
@@ -763,12 +631,10 @@ class _ComingSoonSheet extends StatelessWidget {
 
 class _GameGrid extends StatelessWidget {
   const _GameGrid({
-    required this.onMemory,
     required this.onConnectFour,
     required this.onDiceRace,
   });
 
-  final VoidCallback onMemory;
   final VoidCallback onConnectFour;
   final VoidCallback onDiceRace;
 
@@ -888,87 +754,6 @@ class _GameTile extends StatelessWidget {
   }
 }
 
-class _MemoryArt extends StatelessWidget {
-  const _MemoryArt();
-
-  @override
-  Widget build(BuildContext context) => DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Color(0xFF8B4BE8), Color(0xFF3A1C8C)],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: LayoutBuilder(builder: (context, c) {
-          final card = c.maxWidth * .36;
-          Widget memoryCard(double angle) => Transform.rotate(
-                angle: angle,
-                child: Container(
-                  width: card,
-                  height: card * 1.25,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    gradient: const LinearGradient(
-                      colors: [Color(0xFF3C8DFF), Color(0xFF1846C8)],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    ),
-                    border: Border.all(color: Colors.white, width: 1.6),
-                    boxShadow: const [
-                      BoxShadow(color: Color(0x9953DDFD), blurRadius: 10),
-                    ],
-                  ),
-                  child: Icon(Icons.pets_rounded,
-                      color: Colors.white, size: card * .55),
-                ),
-              );
-          return Stack(children: [
-            Positioned(
-              left: -c.maxWidth * .08,
-              bottom: -c.maxHeight * .04,
-              child: LumoFoxPose(
-                  pose: LumoDesignFoxPose.thumbWink, size: c.maxHeight * .9),
-            ),
-            Positioned(
-                right: card * .55,
-                top: c.maxHeight * .14,
-                child: memoryCard(-.18)),
-            Positioned(
-                right: 4, top: c.maxHeight * .32, child: memoryCard(.16)),
-          ]);
-        }),
-      );
-}
-
-class _IconArt extends StatelessWidget {
-  const _IconArt(this.icon, this.colors);
-  final IconData icon;
-  final List<Color> colors;
-
-  @override
-  Widget build(BuildContext context) => DecoratedBox(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: colors,
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
-        ),
-        child: LayoutBuilder(
-          builder: (context, c) => Center(
-            child: Icon(icon,
-                size: c.biggest.shortestSide * .62,
-                color: Colors.white,
-                shadows: const [
-                  Shadow(color: Color(0x99FFFFFF), blurRadius: 14),
-                ]),
-          ),
-        ),
-      );
-}
-
-/// Drei echte Lumo-Cards-Karten im Fächer.
 class _ConnectFourArt extends StatelessWidget {
   const _ConnectFourArt();
 
