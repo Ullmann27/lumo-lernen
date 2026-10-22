@@ -455,6 +455,10 @@ class _GamesContentState extends State<GamesContent> {
                     title: const Text('Zusätzliche Spielmodi'),
                     subtitle: const Text('Vier gewinnt, Würfel und Level-Abenteuer'),
                     children: [
+                      // Place the retained playable Flame adventure first:
+                      // it must remain reachable without scrolling past other
+                      // optional settings inside the expansion.
+                      _AdventureCard(onPlay: _launchAdventure),
                       Padding(
                         padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                         child: _GameGrid(
@@ -472,7 +476,6 @@ class _GamesContentState extends State<GamesContent> {
                           child: _kartOptions(),
                         )],
                       )),
-                      _AdventureCard(onPlay: _launchAdventure),
                       _VsLumoCard(
                         title: 'Wolkeninseln · 3D-Jump',
                         subtitle: 'Springe mit Lumo von Insel zu Insel',
