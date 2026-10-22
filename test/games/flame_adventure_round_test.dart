@@ -33,8 +33,17 @@ Future<LumoFlameJumpGame> _menuAndCollect(
   await tester.scrollUntilVisible(extras, 250,
       scrollable: find.byType(Scrollable).first);
   await tester.ensureVisible(extras);
+  await tester.pump();
+  // The SliverToBoxAdapter initially positions the expansion header at the
+  // bottom edge (y≈910 on a 900px test surface). Scroll it fully into
+  // the actual hit-testable viewport before tapping; do not change the game
+  // or skip the joystick/collision/persistence assertions.
+  await tester.drag(find.byType(CustomScrollView),
+      const Offset(0, -220));
+  await tester.pump();
+  expect(extras.hitTestable(), findsOneWidget);
   await tester.tap(extras);
-  await tester.pump(const Duration(milliseconds: 350));
+  await tester.pump(const Duration(milliseconds: 450));
   final card = find.text('Lumos Jump Adventure · 2D');
   await tester.scrollUntilVisible(card, 250,
       scrollable: find.byType(Scrollable).first);
