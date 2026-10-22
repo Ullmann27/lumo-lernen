@@ -284,7 +284,7 @@ void main() {
   });
 
   testWidgets(
-      'Cards tile ignores rapid double activation and returns to the world',
+      'Cards rapid double activation opens one route and permits returning',
       (tester) async {
     final app = await stateFor(tester);
     final observer = _PushObserver();
@@ -323,7 +323,7 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
-  testWidgets('Lumo Kart tile opens the real native kart scene once',
+  testWidgets('Kart spotlight uses the existing native launcher and unlocks after return',
       (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     try {
