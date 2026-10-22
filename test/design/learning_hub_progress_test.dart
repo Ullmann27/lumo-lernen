@@ -74,5 +74,20 @@ void main() {
     expect(semantics.label,
         'Mathematik\nRechnen & Knobeln\n2 von ${math2.length} Themen geübt');
     expect(semantics.getSemanticsData().hasAction(SemanticsAction.tap), isTrue);
+
+    // Topic list: each topic shows its own saved answers, untouched ones none.
+    await tester.tap(find.byKey(const ValueKey('learning-subject-Mathematik')));
+    await tester.pump();
+    String unitStatus(String unit) => tester
+        .widget<Text>(find.byKey(ValueKey('learning-unit-progress-Mathematik-$unit')))
+        .data!;
+    expect(unitStatus(math2[0]), '3 richtig · ${records[0].mastery} % sicher');
+    expect(unitStatus(math2[1]), '1 richtig · ${records[1].mastery} % sicher');
+    if (math2.length > 2) expect(unitStatus(math2[2]), 'Noch nicht geübt');
+    expect(find.byType(LinearProgressIndicator), findsNWidgets(2));
+    final unitSemantics = tester.getSemantics(
+        find.byKey(ValueKey('learning-unit-Mathematik-${math2[0]}')));
+    expect(unitSemantics.getSemanticsData().hasAction(SemanticsAction.tap), isTrue);
+    expect(tester.takeException(), isNull);
   });
 }

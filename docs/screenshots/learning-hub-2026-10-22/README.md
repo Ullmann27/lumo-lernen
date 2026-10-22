@@ -14,3 +14,12 @@ Antwort aus `appState.learningSkills()`; abgesichert durch
 `test/design/learning_hub_progress_test.dart`.
 
 **Nicht geprüft:** Darstellung auf einem echten Android-Gerät oder Emulator.
+
+## Themenliste eines Fachs (`topics_vorher_nachher.jpg`)
+
+Echte Flutter-Renderings von `LumoLearningHub` nach dem Tippen auf Mathematik
+(412×915, 2. Klasse). Vorher: `c1ec339f`. Nachher: der Commit, der dieses Bild
+hinzufügt. **Testdaten:** zwei Themen mit gespeicherten Antworten (9/1 und 2/3);
+in der App stammen sie aus `appState.learningSkills()`. Die Klötzchen auf
+„Alle Fächer“ sind ein Artefakt dieser Einzelaufnahme, in der die
+Standardschrift Roboto nicht geladen ist; die App rendert dort normalen Text.

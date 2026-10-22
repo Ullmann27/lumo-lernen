@@ -248,32 +248,104 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
           for (final unit in units)
             Padding(
               padding: const EdgeInsets.only(bottom: 10),
-              child: Material(
-                color: const Color(0xFF132F50),
-                borderRadius: BorderRadius.circular(17),
-                child: InkWell(
-                  key: ValueKey('learning-unit-${subject.name}-$unit'),
-                  borderRadius: BorderRadius.circular(17),
-                  onTap: () => widget.onStartUnit(subject.name, unit),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 16, vertical: 14),
-                    child: Row(children: [
-                      Icon(subject.icon, color: subject.accent, size: 26),
-                      const SizedBox(width: 14),
-                      Expanded(child: Text(Curriculum.prettifyUnit(unit),
-                          style: const TextStyle(color: Colors.white,
-                              fontFamily: 'Nunito',
-                              fontWeight: FontWeight.w800, fontSize: 15))),
-                      const Icon(Icons.chevron_right_rounded,
-                          color: LumoVisualTokens.cyanBright),
-                    ]),
-                  ),
-                ),
-              ),
+              child: _unitCard(subject, unit),
             ),
         ],
       ],
+    );
+  }
+
+  /// The child's saved record for one topic, or null if never answered.
+  SkillRecord? _skillFor(String subject, String unit) {
+    for (final skill in widget.skills.values) {
+      if (skill.subject == subject && skill.unit == unit) return skill;
+    }
+    return null;
+  }
+
+  Widget _unitCard(_Subject subject, String unit) {
+    final (bright, deep) = _cardColors[subject.name] ??
+        (subject.accent, const Color(0xFF142E4F));
+    final record = _skillFor(subject.name, unit);
+    final practiced = record != null && record.attempts > 0;
+    final mastery = record?.mastery ?? 0;
+    final title = Curriculum.prettifyUnit(unit);
+    final status = practiced
+        ? '${record.correct} richtig · $mastery % sicher'
+        : 'Noch nicht geübt';
+    return Semantics(
+      label: '$title\n$status',
+      button: true,
+      onTap: () => widget.onStartUnit(subject.name, unit),
+      excludeSemantics: true,
+      child: Material(
+        color: const Color(0xFF132F50),
+        borderRadius: BorderRadius.circular(17),
+        child: InkWell(
+          key: ValueKey('learning-unit-${subject.name}-$unit'),
+          borderRadius: BorderRadius.circular(17),
+          onTap: () => widget.onStartUnit(subject.name, unit),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(17),
+              border: Border.all(color: bright.withOpacity(.45)),
+            ),
+            child: Row(children: [
+              DecoratedBox(
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: LinearGradient(
+                    begin: Alignment.topRight,
+                    end: Alignment.bottomLeft,
+                    colors: [bright, deep],
+                  ),
+                ),
+                child: SizedBox(
+                  width: 46,
+                  height: 46,
+                  child: Icon(subject.icon, color: Colors.white, size: 25),
+                ),
+              ),
+              const SizedBox(width: 14),
+              Expanded(child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(title,
+                      style: const TextStyle(color: Colors.white,
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w800, fontSize: 15)),
+                  const SizedBox(height: 3),
+                  Text(status,
+                      key: ValueKey('learning-unit-progress-${subject.name}-$unit'),
+                      style: TextStyle(
+                          color: practiced
+                              ? const Color(0xFFFFF3C4)
+                              : const Color(0xFFB8CFE0),
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w700, fontSize: 12)),
+                  if (practiced) ...[
+                    const SizedBox(height: 6),
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(4),
+                      child: LinearProgressIndicator(
+                        value: mastery / 100,
+                        minHeight: 6,
+                        backgroundColor: Colors.white.withOpacity(.14),
+                        valueColor: AlwaysStoppedAnimation(bright),
+                      ),
+                    ),
+                  ],
+                ],
+              )),
+              const SizedBox(width: 8),
+              const Icon(Icons.chevron_right_rounded,
+                  color: LumoVisualTokens.cyanBright),
+            ]),
+          ),
+        ),
+      ),
     );
   }
 
