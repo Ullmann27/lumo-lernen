@@ -15,8 +15,6 @@ import '../../widgets/fox/lumo_character.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/lumo_voice.dart';
 import 'spielwelt/spielwelt_hub.dart';
-import 'widgets/lumo_game_spotlights.dart';
-import 'widgets/lumo_creative_game_shelf.dart';
 import '../../widgets/design/lumo_night_scope.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
@@ -777,12 +775,6 @@ class _GameGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final tiles = [
-      _GameTile(
-        title: 'Memory mit Lumo',
-        subtitle: 'Finde alle Paare!',
-        art: const _MemoryArt(),
-        onPlay: onMemory,
-      ),
       _GameTile(
         title: 'Vier gewinnt',
         subtitle: 'Baue zuerst eine Reihe aus 4!',
