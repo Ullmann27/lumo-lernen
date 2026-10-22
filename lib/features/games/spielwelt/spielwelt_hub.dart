@@ -18,9 +18,23 @@ class SpielweltPortal {
     this.semanticTitle,
   });
 
-  final GameDefinition game;
+  /// The quiz is a genuine route, never an alias for GameId.kart.
+  const SpielweltPortal.quizShow({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = null;
+
+  final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
+
+  String get identity => game?.id.name ?? 'quizShow';
+  String get title => game?.title ?? 'Wer wird Lumo-Meister?';
+  String get tagline => game?.tagline ?? '20 Fragen · 3 Joker · bis 5.000 Sterne';
+  bool get playable => game == null ||
+      game!.availability == GameAvailability.playable;
+  IconData get icon =>
+      game == null ? Icons.emoji_events_rounded : _iconFor(game!.id);
 
   /// Vorleser- und Prüftext, falls er vom sichtbaren Titel abweicht.
   final String? semanticTitle;
@@ -100,13 +114,13 @@ class _SpielweltHubState extends State<SpielweltHub>
 
   Widget _portal(SpielweltPortal portal, int index, {double? width}) =>
       _GlassPortal(
-        key: ValueKey('spielwelt-portal-${portal.game.id.name}'),
+        key: ValueKey('spielwelt-portal-${portal.identity}'),
         portal: portal,
         clock: _clock,
-        phase: index / 7,
+        phase: index / math.max(1, widget.portals.length),
         onTap: () {
           if (portal.state.unlocked &&
-              portal.game.availability == GameAvailability.playable) {
+              portal.playable) {
             _lumo.cheer();
           }
           portal.onOpen();
@@ -130,7 +144,10 @@ class _SpielweltHubState extends State<SpielweltHub>
       final width = constraints.maxWidth;
       final viewHeight = MediaQuery.sizeOf(context).height;
       final wide = width >= 720 && width / math.max(viewHeight, 1) >= 1.15;
-      return wide ? _buildWide(width) : _buildNarrow(width);
+      // Nine cards need the full-width responsive grid, not the fixed
+      // seven-slot landscape illustration, where they would overlap.
+      return wide && widget.portals.length <= 7
+          ? _buildWide(width) : _buildNarrow(width);
     });
   }
 
@@ -144,7 +161,10 @@ class _SpielweltHubState extends State<SpielweltHub>
           height: f.height * height,
           child: child,
         );
-    final byId = {for (final p in widget.portals) p.game.id: p};
+    final byId = {
+      for (final p in widget.portals)
+        if (p.game != null) p.game!.id: p,
+    };
     return SizedBox(
       width: width,
       height: height,
@@ -398,7 +418,7 @@ class _GlassPortalState extends State<_GlassPortal> {
     final portal = widget.portal;
     final game = portal.game;
     final open = portal.state.unlocked;
-    final playable = game.availability == GameAvailability.playable;
+    final playable = portal.playable;
     final status = !playable
         ? 'Kommt bald'
         : open
@@ -406,7 +426,7 @@ class _GlassPortalState extends State<_GlassPortal> {
             : 'Noch gesperrt';
     return Semantics(
       button: true,
-      label: '${portal.semanticTitle ?? game.title}. ${game.tagline} $status',
+      label: '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',
       excludeSemantics: true,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
@@ -466,7 +486,7 @@ class _GlassPortalState extends State<_GlassPortal> {
                   child: AspectRatio(
                     aspectRatio: 1.62,
                     child: _LivePreview(
-                      game: game.id,
+                      game: game?.id,
                       clock: widget.clock,
                       phase: widget.phase,
                     ),
@@ -474,7 +494,7 @@ class _GlassPortalState extends State<_GlassPortal> {
                 ),
                 Align(
                   alignment: Alignment.bottomCenter,
-                  child: _PortalLabel(game: game),
+                  child: _PortalLabel(portal: portal),
                 ),
                 const _GlassRim(),
                 if (!open || !playable)
@@ -499,18 +519,47 @@ class _GlassPortalState extends State<_GlassPortal> {
 class _LivePreview extends StatelessWidget {
   const _LivePreview(
       {required this.game, required this.clock, required this.phase});
-  final GameId game;
+  final GameId? game;
   final Animation<double> clock;
   final double phase;
 
   @override
   Widget build(BuildContext context) {
-    final image = Image.asset(
-      _artFor(game),
-      fit: BoxFit.cover,
-      filterQuality: FilterQuality.medium,
-      gaplessPlayback: true,
-    );
+    // Lumo's original quiz host appears on a matching holographic stage.
+    final Widget image = game == null
+        ? Stack(fit: StackFit.expand, children: [
+            const DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topLeft,
+                  end: Alignment.bottomRight,
+                  colors: [
+                    Color(0xFF187EC3), Color(0xFF45278D), Color(0xFF061A48),
+                  ],
+                ),
+              ),
+            ),
+            const Align(
+              alignment: Alignment.topRight,
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Icon(Icons.auto_awesome_rounded,
+                  size: 38, color: Color(0xFFFFDF8E)),
+              ),
+            ),
+            Image.asset(
+              'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+              fit: BoxFit.contain,
+              alignment: Alignment.center,
+              filterQuality: FilterQuality.high,
+            ),
+          ])
+        : Image.asset(
+            _artFor(game!),
+            fit: BoxFit.cover,
+            filterQuality: FilterQuality.medium,
+            gaplessPlayback: true,
+          );
     return RepaintBoundary(
       child: AnimatedBuilder(
         animation: clock,
@@ -549,13 +598,13 @@ class _LivePreview extends StatelessWidget {
               transform: m,
               child: child,
             ),
-            if (game == GameId.treasure || game == GameId.rhythm)
+            if (game == null || game == GameId.treasure || game == GameId.rhythm)
               CustomPaint(
                 painter: _GlitterPainter(
                   t: t,
-                  color: game == GameId.treasure
-                      ? const Color(0xFFFFE08A)
-                      : const Color(0xFFFF8BE8),
+                  color: game == GameId.rhythm
+                      ? const Color(0xFFFF8BE8)
+                      : const Color(0xFFFFE08A),
                 ),
               ),
             // Weicher Übergang in das Glas unten.
@@ -610,8 +659,8 @@ class _GlitterPainter extends CustomPainter {
 }
 
 class _PortalLabel extends StatelessWidget {
-  const _PortalLabel({required this.game});
-  final GameDefinition game;
+  const _PortalLabel({required this.portal});
+  final SpielweltPortal portal;
 
   @override
   Widget build(BuildContext context) {
@@ -641,7 +690,7 @@ class _PortalLabel extends StatelessWidget {
                     blurRadius: 10 * scale),
               ],
             ),
-            child: Icon(_iconFor(game.id),
+            child: Icon(portal.icon,
                 color: LumoVisualTokens.white, size: disc * .56),
           ),
           SizedBox(width: 8 * scale),
@@ -650,25 +699,24 @@ class _PortalLabel extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(
-                    game.title,
-                    maxLines: 1,
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 22 * scale,
-                      height: 1.05,
-                      fontWeight: FontWeight.w900,
-                      color: LumoVisualTokens.white,
-                      shadows: const [
-                        Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
-                      ],
-                    ),
+                Text(
+                  portal.game == null ? 'Wer wird\nLumo-Meister?' : portal.title,
+                  maxLines: portal.game == null ? 2 : 1,
+                  overflow: TextOverflow.ellipsis,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: (portal.game == null ? 17 : 22) * scale,
+                    height: 1.02,
+                    fontWeight: FontWeight.w900,
+                    color: LumoVisualTokens.white,
+                    shadows: const [
+                      Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
+                    ],
                   ),
                 ),
                 Text(
-                  game.tagline,
+                  portal.tagline,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                   textAlign: TextAlign.center,
