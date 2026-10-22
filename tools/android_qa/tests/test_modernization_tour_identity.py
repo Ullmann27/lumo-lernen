@@ -6,13 +6,19 @@ import json
 import os
 from pathlib import Path
 import re
+import shutil
 import sys
 import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 
+from PIL import Image
+
 sys.dont_write_bytecode = True
+# Import Pillow before load_tour(): patch.dict restores sys.modules on exit and
+# would otherwise drop the PIL plugin modules the tour's Image relies on.
+Image.preinit()
 ROOT = Path(__file__).resolve().parents[3]
 TOUR = ROOT / '.github/probes/modernization_android_tour.py'
 
@@ -147,6 +153,36 @@ class TourRealKartTouchTests(unittest.TestCase):
                         TOUR_MODULE.probe.flutter_tap(
                             Path(temp), 'Losfahren', 'guard',
                             min_visible_height_px=height)
+
+
+@unittest.skipUnless(shutil.which('tesseract'), 'tesseract OCR is required')
+class TourKartLandingStartTests(unittest.TestCase):
+    """The NextGen landing (Godot 700baf49) puts its golden START bottom-left.
+
+    Unified run 39720099333 never found it: the gold-pill fallback only
+    scanned the bottom-right corner of the classic garage's Weiter button.
+    """
+
+    FIXTURES = ROOT / 'tools/android_qa/tests/fixtures'
+
+    def test_real_landing_start_is_found_bottom_left(self):
+        for name, (width, height) in (('landing-1280x720.jpg', (1280, 720)),
+                                      ('landing-2400x1080.jpg', (2400, 1080))):
+            with self.subTest(name=name):
+                png = (self.FIXTURES / 'kart-landing-700baf49' / name).read_bytes()
+                point = TOUR_MODULE._read_garage_footer(png, 'START')
+                self.assertIsNotNone(point)
+                # The left action, not "Zurück zur Spielewelt" on the right.
+                self.assertLess(point[0], width * .5)
+                self.assertGreater(point[1], height * .85)
+                self.assertIsNone(TOUR_MODULE._read_garage_footer(png, 'Weiter'))
+
+    def test_real_android_garage_keeps_weiter_and_has_no_start(self):
+        png = (self.FIXTURES / 'kart-garage-api35/garage-step1-640x320.png').read_bytes()
+        weiter = TOUR_MODULE._read_garage_footer(png, 'Weiter')
+        self.assertIsNotNone(weiter)
+        self.assertGreater(weiter[0], 640 * .6)
+        self.assertIsNone(TOUR_MODULE._read_garage_footer(png, 'START'))
 
 
 class TourRaceModeTests(unittest.TestCase):

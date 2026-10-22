@@ -1,0 +1,16 @@
+{
+ "source": "Ullmann27/lumo-godot scripts/games/kart_reference_landing.gd",
+ "source_commit": "700baf49828eda693ecce15b415847818b1b56d3 (the Godot pin in config/godot-source.json)",
+ "origin": "Real Godot 4.6.3 render (gl_compatibility under xvfb) of the NextGen Kart landing, root sized to 1280x720 and 2400x1080 (the pixel_5 emulator in landscape); JPEG-compressed.",
+ "description": "Not an Android screenshot. Used to prove the tour finds the real golden START button at bottom-left, which the bottom-right-only gold scan missed.",
+ "files": {
+  "landing-1280x720.jpg": {
+   "sha256": "a11ee00460f313f3207bae62eecdb01a5a0df6620249aed856ae3a3b1eaa71c0",
+   "bytes": 211301
+  },
+  "landing-2400x1080.jpg": {
+   "sha256": "58a03702380338ff1403973bf58a128dd3147c067693e021ddabc2532465dc4e",
+   "bytes": 374735
+  }
+ }
+}

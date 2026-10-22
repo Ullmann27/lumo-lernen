@@ -58,7 +58,8 @@ HARD_STEPS = (
 LOG_IMAGES = (
     '07_home_after_onboarding', '08_games_after_navigation', '10_lernen',
     '11_atelier_hub', '12_atelier_beispiel', '13_atelier_zehnerbruecke',
-    '20_spiele', '21_kart_garage_step_5',
+    '20_spiele', '21_lumo_kart_20s', '21_kart_premium_start', '21_kart_garage_step_1',
+    '21_kart_garage_step_5',
     '21_lumo_kart_real_race', '21_race_hud', '21_race_driving_late', '21_lumo_kart_pause',
     '23_zurueck_in_flutter', '24_lernen_nach_kart', '25_start_nach_kart', '26_neustart',
     '99_fehler',
@@ -270,22 +271,42 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
     # from Tesseract's sparse-text layout. Discover the pill by its ACTUAL
     # on-screen yellow pixels and require its real caption. Nothing here
     # assumes a pixel coordinate or accepts a colour patch without text.
-    min_hits = max(10, int(image.width * .02))
+    # The pill can sit anywhere along the bottom: the classic garage puts
+    # "Weiter" bottom-right, the NextGen landing puts "START" bottom-left.
+    # Per row keep the longest contiguous gold run, so gold details of the
+    # illustration elsewhere in the row cannot widen the button box.
+    step = 3
+    min_run = max(10, int(image.width * .02)) * step
     gold_rows: list[tuple[int, int, int]] = []
     pixels = image.load()
-    for row_y in range(int(image.height * .70), image.height, 3):
-        matches = []
-        for col_x in range(int(image.width * .70), image.width, 3):
+    for row_y in range(int(image.height * .70), image.height, step):
+        best = (0, -1, -1)
+        run_start = previous = None
+        for col_x in range(0, image.width, step):
             r, g, b = pixels[col_x, row_y]
             if r >= 205 and g >= 185 and b <= 185 and r - b > 40:
-                matches.append(col_x)
-        if len(matches) >= min_hits:
-            gold_rows.append((row_y, min(matches), max(matches)))
-    if len(gold_rows) >= 6:
-        top = gold_rows[0][0]
-        bottom = gold_rows[-1][0]
-        left = min(row[1] for row in gold_rows)
-        right = max(row[2] for row in gold_rows)
+                if run_start is None or col_x - previous > step * 3:
+                    run_start = col_x
+                previous = col_x
+                if previous - run_start > best[0]:
+                    best = (previous - run_start, run_start, previous)
+        if best[0] >= min_run:
+            gold_rows.append((row_y, best[1], best[2]))
+    # The largest vertically contiguous band of such rows is the button.
+    # Caption rows split the gold left/right of the word, so the band spans
+    # the outermost run edges of all its rows.
+    bands: list[list[tuple[int, int, int]]] = []
+    for row in gold_rows:
+        if bands and row[0] - bands[-1][-1][0] <= step * 2:
+            bands[-1].append(row)
+        else:
+            bands.append([row])
+    band = max(bands, key=len, default=[])
+    if len(band) >= 6:
+        top = band[0][0]
+        bottom = band[-1][0]
+        left = min(row[1] for row in band)
+        right = max(row[2] for row in band)
         width, height = right - left, bottom - top
         # A solid rounded native action control, not isolated gold pixels
         # elsewhere in the racing-world illustration.
@@ -305,7 +326,11 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
                     check=True,
                 )
                 caption = _simplify(result.stdout.decode('utf-8', 'replace'))
-                if _simplify(expected) in caption:
+                wanted = _simplify(expected)
+                # Tolerate a misread play arrow or chevron, but never accept a
+                # different caption that merely contains the word, e.g. the
+                # garage's "Rennen starten" when looking for "START".
+                if wanted in caption and len(caption) <= len(wanted) + 3:
                     return (left + right) // 2, (top + bottom) // 2
     return None
 
