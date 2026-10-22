@@ -67,6 +67,11 @@ APPROVED = {
     # 1996 keeps the exact seven-stage-tested Godot gameplay, while only
     # Flutter crystal rendering and Android scroll safety advance.
     1996: "700baf49828eda693ecce15b415847818b1b56d3",
+    # 1997: 700baf49 plus one reviewed native fix (Godot branch
+    # claude/kart-landing-landscape-fit-20261022): every Kart landing choice
+    # stays readable above START in landscape; new headless fit regression.
+    # Flutter adds real-progress subject cards and topic lists. 1996 stays intact.
+    1997: "3a3142608f6b150ee251373ba81e6face2eed4b3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

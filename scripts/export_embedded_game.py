@@ -61,6 +61,8 @@ GROUNDED_GATE_ALLOWED_REVISIONS = frozenset((
     '928fed3c7f0b39357e0f06463ce13c8d5677d6e1',
     # 1995 reviewed SOL menu and responsive owner; gate GLB remains SHA-locked.
     '700baf49828eda693ecce15b415847818b1b56d3',
+    # 1997 changes only the landing layout script, one test and docs.
+    '3a3142608f6b150ee251373ba81e6face2eed4b3',
 ))
 GROUNDED_GATE_GLB_SHA256 = '8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d'
 GROUNDED_GATE_FILE = 'assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb'

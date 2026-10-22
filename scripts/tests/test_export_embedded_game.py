@@ -205,6 +205,14 @@ class GeneratedMeshyGateTexturesTests(unittest.TestCase):
         self.assertEqual(MODULE.git_paths(
             self.repo, 'ls-files', '--others', '--exclude-standard'), set())
 
+    def test_1997_landing_fit_kart_keeps_immutable_gate(self):
+        self.generate_images()
+        source = {'revision': '3a3142608f6b150ee251373ba81e6face2eed4b3'}
+        self.assertIn(source['revision'], MODULE.GROUNDED_GATE_ALLOWED_REVISIONS)
+        self.cleanup(source=source)
+        self.assertTrue(self.glb.is_file())
+        self.assertTrue(all(not (self.repo / name).exists() for name in self.files))
+
     def test_future_unknown_pin_must_not_remove_images(self):
         self.generate_images()
         self.cleanup(source={'revision': '0' * 40})
