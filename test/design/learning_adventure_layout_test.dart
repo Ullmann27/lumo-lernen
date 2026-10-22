@@ -222,6 +222,16 @@ void main() {
         await _open(tester, topic);
         final choices = _answers(topic);
         expect(choices, findsNWidgets(_choiceCount(topic)));
+        // Complete Lumo below the top bar in the resting layout. Revealing the
+        // 108dp Minus crystals below scrolls the fox under the top bar.
+        if (topic != 'm1_plus10' || layout.$2.width >= 760) {
+          final fox = tester
+              .getRect(find.byKey(const ValueKey('learning-module-lumo')));
+          expect(
+              fox.top,
+              greaterThanOrEqualTo(
+                  tester.getRect(find.byType(LumoTopBar)).bottom));
+        }
         final navigation = tester.getRect(find.byType(LumoBottomNavigation));
         for (final choice in choices.evaluate()) {
           final target = find.byWidget(choice.widget);
@@ -229,7 +239,8 @@ void main() {
             // The faceted 108dp answers need actual scroll on compact phones.
             // Do not weaken the visible-area or 48dp safety requirements.
             await tester.ensureVisible(target);
-            await tester.pumpAndSettle();
+            // Lumo's floating/glow ambient motion never settles by design.
+            await _frames(tester, 3);
           }
           final rect = tester.getRect(target);
           expect(rect.height, greaterThanOrEqualTo(
@@ -239,14 +250,6 @@ void main() {
           expect(rect.bottom, lessThanOrEqualTo(navigation.top),
               reason: 'An answer must not be covered by bottom navigation');
           expect(target.hitTestable(), findsOneWidget);
-        }
-        if (topic != 'm1_plus10' || layout.$2.width >= 760) {
-          final fox = tester
-              .getRect(find.byKey(const ValueKey('learning-module-lumo')));
-          expect(
-              fox.top,
-              greaterThanOrEqualTo(
-                  tester.getRect(find.byType(LumoTopBar)).bottom));
         }
         expect(tester.takeException(), isNull);
         await tester.pumpWidget(const SizedBox());
@@ -307,7 +310,7 @@ void main() {
         for (final element in _answers('m1_minus10').evaluate()) {
           final choice = find.byWidget(element.widget);
           await tester.ensureVisible(choice);
-          await tester.pumpAndSettle();
+          await _frames(tester, 3);
           expect(choice.hitTestable(), findsOneWidget);
           expect(tester.getSize(choice).height, greaterThanOrEqualTo(100));
           final rect = tester.getRect(choice);
