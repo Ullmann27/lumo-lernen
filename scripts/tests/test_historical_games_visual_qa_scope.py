@@ -15,7 +15,7 @@ INTEGRATION_BRANCH = "chatgpt/lumo-1990-integration-hardening-2026-10-19"
 class HistoricalGamesVisualWorkflowScopeTest(unittest.TestCase):
     def test_only_original_1990_branches_are_allowed(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        job = source.split("\njobs:\n", 1)[1].split("\n  capture-games:\n", 1)[1]
+        job = source.split("\n  capture-games:\n", 1)[1]
         gate = job.split("\n    runs-on:", 1)[0]
         self.assertIn("if: >-", gate)
         self.assertIn("github.event.pull_request.head.ref", gate)
