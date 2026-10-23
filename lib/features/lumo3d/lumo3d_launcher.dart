@@ -49,9 +49,10 @@ Future<bool> launchLumo3D(
     if (appState?.state.settings.requireDailyMissionForGames == true) {
       await appState!.loadDailyMission();
       if (!appState.canPlayToday) {
-        if (context.mounted)
+        if (context.mounted) {
           _showLaunchMessage(context,
               'Deine Tagesmission wartet auf dich. Hilfen und Pausen sind erlaubt.');
+        }
         return false;
       }
     }

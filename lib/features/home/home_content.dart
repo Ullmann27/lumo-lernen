@@ -15,7 +15,6 @@ import '../../core/school_exercise_generator.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../../widgets/design/lumo_motion.dart';
 import '../../widgets/fox/lumo_character.dart';
 import '../journal/lumo_journal_screen.dart';
 import '../learning/lumo_abc_tafel_screen.dart';
@@ -120,7 +119,6 @@ class HomeContent extends StatelessWidget {
               final textScale = MediaQuery.textScalerOf(context).scale(1);
               // Exactly two primary routes; keep them balanced on Fold too.
               const columns = 2;
-              final cardHeight = 240 * textScale.clamp(1.0, 1.5).toDouble();
               final actions = <Widget>[
                 LumoColorTile(
                   key: const ValueKey('home-learn'),
@@ -449,6 +447,26 @@ class HomeContent extends StatelessWidget {
                       onSubject: _browseSubject,
                       onGames: () => onSection(LumoSection.games)),
                   const SizedBox(height: 12),
+                  LumoGlassCard(
+                      child: Wrap(spacing: 14, runSpacing: 8, children: [
+                    Text('${state.stars} Sterne',
+                        style: const TextStyle(color: LumoVisualTokens.gold)),
+                    Text('Level ${state.level}',
+                        style: const TextStyle(
+                            color: LumoVisualTokens.cyanBright)),
+                    Text(
+                        '${state.xp % 400} / 400 XP bis Level ${state.level + 1}',
+                        key: const ValueKey('home-xp-progress'),
+                        style: const TextStyle(color: Colors.white)),
+                    Text(
+                        'Heute: ${appState.learningDailyDone()} von ${state.settings.dailyGoal} Aufgaben',
+                        key: const ValueKey('home-daily-progress'),
+                        style: const TextStyle(color: LumoVisualTokens.muted)),
+                    Text(
+                        '${appState.learningStreakDays()} ${appState.learningStreakDays() == 1 ? 'Lerntag' : 'Lerntage'} in Folge',
+                        style: const TextStyle(color: LumoVisualTokens.muted)),
+                  ])),
+                  const SizedBox(height: 12),
                   _MotivationCard(
                       reduceMotion: reduceMotion,
                       onLearn: () => onSection(LumoSection.learn)),
@@ -689,7 +707,6 @@ class _MotivationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => SizedBox(
-        height: height,
         child: LumoGlassCard(
           padding: const EdgeInsets.all(8),
           child: Column(

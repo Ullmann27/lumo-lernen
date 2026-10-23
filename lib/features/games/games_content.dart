@@ -20,7 +20,6 @@ import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../../widgets/design/lumo_section_heading.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../quiz/quiz_show_content.dart';
 import '../shared/widgets/lumo_mission_journey.dart';
@@ -142,7 +141,22 @@ class _GamesContentState extends State<GamesContent> {
     );
   }
 
+  Future<bool> _allowLaunch() async {
+    final generation = widget.appState.profileGeneration;
+    if (widget.appState.state.settings.requireDailyMissionForGames) {
+      await widget.appState.loadDailyMission();
+    }
+    if (!mounted || generation != widget.appState.profileGeneration)
+      return false;
+    if (!widget.appState.canPlayToday) {
+      setState(() {});
+      return false;
+    }
+    return true;
+  }
+
   Future<void> _launchAdventure() async {
+    if (!await _allowLaunch()) return;
     HapticFeedback.mediumImpact();
     // Adventure-Mode nutzt das erste Level-Objekt als Basis (Theme + ID),
     // aber laeuft als eigenstaendiges Plattform-Game. Sterne landen direkt
@@ -183,6 +197,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchMemory() async {
+    if (!await _allowLaunch()) return;
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
@@ -193,6 +208,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchConnectFour() async {
+    if (!await _allowLaunch()) return;
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
@@ -203,6 +219,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchDiceRace() async {
+    if (!await _allowLaunch()) return;
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
@@ -213,6 +230,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLumoCards() async {
+    if (!await _allowLaunch()) return;
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
@@ -254,6 +272,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLumoMeister() async {
+    if (!await _allowLaunch()) return;
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
@@ -270,6 +289,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
+    if (!await _allowLaunch()) return;
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
 
@@ -388,7 +408,6 @@ class _GamesContentState extends State<GamesContent> {
           GameId.build => () => _launch3D('build'),
           GameId.rhythm => () => _launch3D('rhythm'),
           GameId.treasure => () => _launch3D('treasure'),
-          _ => null,
         };
     return [
       SpielweltPortal(

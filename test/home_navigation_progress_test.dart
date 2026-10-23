@@ -37,13 +37,16 @@ void main() {
   });
 
   Widget home(LumoAppState state, ValueChanged<LumoSection> onSection,
-          {double textScale = 1}) =>
+          {double textScale = 1, ValueChanged<String>? onBrowseSubject}) =>
       MaterialApp(
         theme: LumoAppTheme.light(),
         home: MediaQuery(
           data: MediaQueryData(textScaler: TextScaler.linear(textScale)),
           child: Scaffold(
-              body: HomeContent(appState: state, onSection: onSection)),
+              body: HomeContent(
+                  appState: state,
+                  onSection: onSection,
+                  onBrowseSubject: onBrowseSubject)),
         ),
       );
 
@@ -89,11 +92,14 @@ void main() {
     final state = (await tester.runAsync(() async {
       final savedState = LumoAppState();
       await savedState.recordLearningAnswer(
-          subject: 'Mathematik', unit: 'Plus bis 10', correct: true);
+          subject: 'Mathematik', unit: 'Plus bis 10', correct: true,
+          taskId: 'home-progress-math-1');
       await savedState.recordLearningAnswer(
-          subject: 'Deutsch', unit: 'Silben', correct: true);
+          subject: 'Deutsch', unit: 'Silben', correct: true,
+          taskId: 'home-progress-german-1');
       await savedState.recordLearningAnswer(
-          subject: 'Deutsch', unit: 'Silben', correct: false);
+          subject: 'Deutsch', unit: 'Silben', correct: false,
+          taskId: 'home-progress-german-wrong');
       savedState.addStars(17);
       savedState.addXp(425);
       await savedState.flushRewards();
@@ -101,10 +107,35 @@ void main() {
       final restored = LumoAppState();
       await restored.hydrateFromWallet();
       await restored.loadLearningProfile();
+      await restored.loadDailyMission();
       return restored;
     }))!;
     await tester.binding.setSurfaceSize(const Size(840, 1200));
     await tester.pumpWidget(home(state, (_) {}));
+    await tester.pump();
+    final missionProgress = find.byKey(const ValueKey('home-mission-progress'));
+    await tester.scrollUntilVisible(missionProgress, 180,
+        scrollable: find.byType(Scrollable).first);
+    await tester.pump();
+    expect(state.dailyMission!.stations, hasLength(3));
+    expect(state.dailyMission!.targetCount, 12);
+    expect(state.dailyMission!.completedCount, 2);
+    expect(find.text('2 von 12 · Dein Fortschritt wird gespeichert.'), findsOneWidget);
+    for (final station in state.dailyMission!.stations) {
+      final tile = find.byKey(ValueKey('mission-station-${station.subject}'));
+      expect(tile, findsOneWidget);
+      expect(station.target, 4);
+      expect(station.completed,
+          ['Mathematik', 'Deutsch'].contains(station.subject) ? 1 : 0);
+      expect(find.descendant(of: tile,
+          matching: find.text('${station.completed} von 4 Aufgaben gelöst')),
+          findsOneWidget);
+      expect(find.descendant(of: tile,
+          matching: find.byIcon(Icons.diamond_outlined)), findsOneWidget);
+    }
+    await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('home-daily-progress')), 180,
+        scrollable: find.byType(Scrollable).first);
     await tester.pump();
     expect(find.text('17 Sterne'), findsOneWidget);
     expect(find.text('Level 2'), findsOneWidget);
@@ -114,23 +145,8 @@ void main() {
     // The duplicate subject-progress cards are intentionally folded away.
     // Real wallet values above remain visible in the compact home overview.
     expect(find.textContaining('1 Aufgabe geschafft'), findsNothing);
-    for (var index = 0; index < 3; index++) {
-      expect(find.byKey(ValueKey('home-daily-task-$index')), findsOneWidget);
-    }
-    expect(
-      find.descendant(
-        of: find.byKey(const ValueKey('home-daily-task-0')),
-        matching: find.byIcon(Icons.check_circle),
-      ),
-      findsOneWidget,
-    );
-    expect(
-      find.descendant(
-        of: find.byKey(const ValueKey('home-daily-task-2')),
-        matching: find.byIcon(Icons.circle_outlined),
-      ),
-      findsOneWidget,
-    );
+    expect(find.byKey(const ValueKey('home-daily-task-0')), findsNothing,
+        reason: 'Generic task rows must not replace persisted mission stations.');
     await tester.runAsync(() async {
       state.addStars(3);
       state.addXp(10);
@@ -139,6 +155,8 @@ void main() {
     await tester.pump();
     expect(find.text('20 Sterne'), findsOneWidget);
     expect(find.text('35 / 400 XP bis Level 3'), findsOneWidget);
+    expect(state.dailyMission!.completedCount, 2,
+        reason: 'Wallet rewards are not assessed mission answers.');
     await tester.pumpWidget(const SizedBox.shrink());
     state.dispose();
     await tester.binding.setSurfaceSize(null);
@@ -212,6 +230,7 @@ void main() {
       (tester) async {
     final state = LumoAppState();
     state.update(state.state.copyWith(settings: const AppSettings()));
+    await tester.runAsync(state.loadDailyMission);
     final sections = <LumoSection>[];
     await tester.binding.setSurfaceSize(const Size(840, 1600));
     await tester.pumpWidget(home(state, sections.add));

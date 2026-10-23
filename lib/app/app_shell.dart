@@ -375,8 +375,9 @@ class _AppShellState extends State<AppShell>
 
   void _goBack() {
     final section = _appState.state.section;
-    if (section == LumoSection.learn && _learningNavigation.backToSubjects())
+    if (section == LumoSection.learn && _learningNavigation.backToSubjects()) {
       return;
+    }
     _navigateTo(
         section == LumoSection.exercises || section == LumoSection.reading
             ? LumoSection.learn
@@ -399,11 +400,15 @@ class _AppShellState extends State<AppShell>
       await _appState.ensureSettingsLoaded();
       if (!mounted ||
           !_appState.settingsLoaded ||
-          request != _navigationRequest) return;
+          request != _navigationRequest) {
+        return;
+      }
     }
     if (!mounted) return;
     await _fadeCtrl.reverse();
-    if (!mounted || request != _navigationRequest) return;
+    if (!mounted || request != _navigationRequest) {
+      return;
+    }
     _appState.setSection(section);
     final settings = _appState.state.settings;
     if (LumoInteractionFeedbackPolicy.shouldPlayTap(

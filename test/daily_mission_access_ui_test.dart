@@ -6,14 +6,16 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  setUp(() {
+  setUp(() async {
     SharedPreferences.setMockInitialValues({});
     LumoVoice.instance.isEnabled = false;
+    await RewardWalletRepository.instance.reset();
   });
   tearDown(() {
     LumoVoice.instance.isEnabled = true;
@@ -28,6 +30,7 @@ void main() {
       (tester) async {
     final app = LumoAppState();
     addTearDown(app.dispose);
+    await tester.runAsync(app.ensureSettingsLoaded);
     app.updateSettings(const AppSettings(requireDailyMissionForGames: true));
     await tester.runAsync(app.loadDailyMission);
     LumoSection? destination;
@@ -65,6 +68,7 @@ void main() {
     });
     final app = LumoAppState();
     addTearDown(app.dispose);
+    await tester.runAsync(app.ensureSettingsLoaded);
     app.updateSettings(const AppSettings(requireDailyMissionForGames: true));
     late BuildContext launchContext;
     await tester.pumpWidget(
