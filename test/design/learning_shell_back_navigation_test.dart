@@ -17,6 +17,7 @@ void main() {
   setUp(() async {
     SharedPreferences.setMockInitialValues({
       'lumo_app_settings_v1': jsonEncode(const AppSettings(
+              soundEnabled: false,
               voiceEnabled: false,
               autoReadEnabled: false,
               reduceAnimations: true)

@@ -338,7 +338,12 @@ class LumoAppState extends ChangeNotifier {
         owner = await source;
         if (!canUseLearningLease(owner)) return;
         _installLearningLease(owner);
-        await flushLearningProgress(lease: owner);
+        if (owner._session.pendingMissionAnswers
+            .any((answer) => !answer.schoolSaved)) {
+          await flushLearningProgress(lease: owner);
+        } else {
+          await _flushDailyMission(owner);
+        }
         final snapshot = await _missionRepository(owner)
             .load(tasksPerStation: _state.settings.missionTasksPerStation);
         if (isCurrentLearningLease(owner)) {
