@@ -182,13 +182,20 @@ class LearningProfileLease {
   CosmosWorld get cosmos => _session.cosmos;
 }
 
+class _PendingMissionAnswer {
+  _PendingMissionAnswer(this.taskId, this.subject);
+  final String taskId;
+  final String subject;
+  bool schoolSaved = false;
+}
+
 class _LearningSession {
   _LearningSession(this.studentId, this.profile)
       : cosmos = CosmosWorld(studentId: studentId);
   final String studentId;
   final LearningProfileEngine profile;
   final CosmosWorld cosmos;
-  final Queue<({String taskId, String subject})> pendingMissionAnswers = Queue();
+  final Queue<_PendingMissionAnswer> pendingMissionAnswers = Queue();
   Future<void>? missionDrain;
   int epoch = 0;
 }
@@ -321,6 +328,7 @@ class LumoAppState extends ChangeNotifier {
 
   Future<void> loadDailyMission() {
     if (_disposed || _resetting) return Future<void>.value();
+    final generation = _profileGeneration;
     final source = captureLearningProfile();
     return _trackLearning(() async {
       LearningProfileLease? owner;
@@ -337,7 +345,8 @@ class LumoAppState extends ChangeNotifier {
           _safeNotify();
         }
       } catch (_) {
-        if (owner != null && isCurrentLearningLease(owner)) {
+        if ((owner != null && isCurrentLearningLease(owner)) ||
+            (owner == null && !_disposed && generation == _profileGeneration)) {
           _dailyMissionError = 'Deine Tagesmission konnte nicht sicher '
               'gespeichert oder geladen werden. Bitte versuche es erneut.';
           _safeNotify();
@@ -352,6 +361,7 @@ class LumoAppState extends ChangeNotifier {
       while (session.pendingMissionAnswers.isNotEmpty &&
           canUseLearningLease(owner)) {
         final answer = session.pendingMissionAnswers.first;
+        if (!answer.schoolSaved) return;
         final snapshot = await _missionRepository(owner).recordAnswer(
           taskId: answer.taskId,
           subject: answer.subject,
@@ -752,6 +762,10 @@ class LumoAppState extends ChangeNotifier {
         owner = await source;
         await _prepareLearningLease(owner);
         if (!canUseLearningLease(owner)) return;
+        if (correct && taskId != null) {
+          owner._session.pendingMissionAnswers
+              .add(_PendingMissionAnswer(taskId, subject));
+        }
         try {
           await owner.profile.recordAnswer(
             subject: subject,
@@ -759,6 +773,11 @@ class LumoAppState extends ChangeNotifier {
             isCorrect: correct,
             hintUsed: hintUsed,
           );
+          // The serialized school write also includes earlier accepted work
+          // for this owner, including a previous failed-save attempt.
+          for (final pending in owner._session.pendingMissionAnswers) {
+            pending.schoolSaved = true;
+          }
         } finally {
           // A failed progress write is retried without counting again. Keep
           // this accepted attempt's original owner in its log during retry.
@@ -778,8 +797,6 @@ class LumoAppState extends ChangeNotifier {
         // Only an explicit identity from an assessed task can enter a mission.
         // Legacy callers keep their school progress without invented evidence.
         if (correct && taskId != null) {
-          owner._session.pendingMissionAnswers
-              .add((taskId: taskId, subject: subject));
           try {
             await _flushDailyMission(owner);
           } catch (_) {
@@ -970,6 +987,9 @@ class LumoAppState extends ChangeNotifier {
       final owner = await source;
       if (!canUseLearningLease(owner)) return;
       await owner.profile.flush();
+      for (final pending in owner._session.pendingMissionAnswers) {
+        pending.schoolSaved = true;
+      }
       await flushAttemptLog();
       await _flushDailyMission(owner);
       if (isCurrentLearningLease(owner)) {

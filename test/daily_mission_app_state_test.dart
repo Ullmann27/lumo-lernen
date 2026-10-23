@@ -191,7 +191,7 @@ void main() {
           subject: 'Mathematik', unit: 'Plus', correct: true,
           taskId: 'same-id');
     }
-    await app.resetLearningProgress();
+    await app.resetLearningProfile();
     await app.loadDailyMission();
     expect(app.dailyMission!.completedCount, 0);
     await app.school.setActiveStudent('student-a');

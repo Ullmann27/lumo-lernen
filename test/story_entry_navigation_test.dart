@@ -18,7 +18,6 @@ import 'package:lumo_lernen/features/reading/reading_content.dart';
 import 'package:lumo_lernen/features/story/lumo_story_library_screen.dart';
 import 'package:lumo_lernen/features/story/lumo_story_setup_screen.dart';
 import 'package:lumo_lernen/features/story/lumo_story_reader_screen.dart';
-import 'package:lumo_lernen/features/sections/lumo_learning_hub.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 
 Future<void> frames(WidgetTester tester) async {
@@ -48,7 +47,6 @@ Future<LumoAppState> profile(WidgetTester tester, int grade,
   addTearDown(app.dispose);
   return app;
 }
-
 
 class DelayedSettingsApp extends LumoAppState {
   Completer<void>? settingsGate;
@@ -90,10 +88,6 @@ void main() {
       await tester.pumpWidget(MaterialApp(
           theme: LumoAppTheme.light(), home: Scaffold(body: source)));
       await frames(tester);
-      if (entry == 'academy') {
-        await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-        await frames(tester);
-      }
       final action = find.byKey(ValueKey('$entry-stories'));
       expect(action, findsOneWidget);
       await tester.ensureVisible(action);
@@ -138,11 +132,11 @@ void main() {
     await tester.pumpWidget(MaterialApp(
         theme: LumoAppTheme.light(), home: LumoAkademieScreen(appState: app)));
     await frames(tester);
-    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-    await frames(tester);
     final grade = find.byKey(const ValueKey('grade-pill-3'));
     await tester.ensureVisible(grade);
     await tester.tap(grade);
+    await frames(tester);
+    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
     await frames(tester);
     final action = find.byKey(const ValueKey('academy-stories'));
     expect(action, findsOneWidget);
@@ -180,7 +174,8 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await frames(tester);
   }, timeout: const Timeout(Duration(seconds: 45)));
-  testWidgets('story entries survive display resize and large text', (tester) async {
+  testWidgets('story entries survive display resize and large text',
+      (tester) async {
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.resetDevicePixelRatio);
     addTearDown(tester.view.resetPhysicalSize);
@@ -192,30 +187,30 @@ void main() {
         'academy' => LumoAkademieScreen(appState: app),
         _ => ReadingContent(appState: app, onBack: () {}),
       };
+      var academyToolsOpen = false;
       for (final width in [360.0, 800.0]) {
         tester.view.physicalSize = Size(width, 1200);
         await tester.pumpWidget(MaterialApp(
           theme: LumoAppTheme.light(),
           builder: (context, child) => MediaQuery(
-            data: MediaQuery.of(context).copyWith(
-              textScaler: const TextScaler.linear(1.5)),
+            data: MediaQuery.of(context)
+                .copyWith(textScaler: const TextScaler.linear(1.5)),
             child: child!,
           ),
           home: RepaintBoundary(
-            key: ValueKey('capture-$entry'), child: Scaffold(body: source)),
+              key: ValueKey('capture-$entry'), child: Scaffold(body: source)),
         ));
         await frames(tester);
-        if (entry == 'academy' &&
-            find.byType(LumoLearningHub).evaluate().isNotEmpty) {
-          // In Lumo 1992 the full Academy, including story links, is an
-          // explicit optional route from the simpler grade-aware entry.
-          // On narrow displays the entry itself can be lazily mounted.
+        if (entry == 'academy' && !academyToolsOpen) {
+          // Stories are now a tool in the same modern grade-aware hub.
+          // Open it once; resizing keeps the existing Academy state.
           final advanced =
               find.byKey(const ValueKey('learning-advanced-entry'));
           await tester.scrollUntilVisible(advanced, 180,
               scrollable: find.byType(Scrollable).first, maxScrolls: 20);
           await tester.tap(advanced);
           await frames(tester);
+          academyToolsOpen = true;
         }
         final action = find.byKey(ValueKey('$entry-stories'));
         if (action.evaluate().isEmpty) {
@@ -243,16 +238,19 @@ void main() {
         expect(tester.getSize(action).height, greaterThanOrEqualTo(48));
         expect(tester.takeException(), isNull);
         final boundary = tester.renderObject<RenderRepaintBoundary>(
-          find.byKey(ValueKey('capture-$entry')));
+            find.byKey(ValueKey('capture-$entry')));
         await tester.runAsync(() async {
           final image = await boundary.toImage(pixelRatio: 1);
           try {
-            final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+            final bytes =
+                await image.toByteData(format: ui.ImageByteFormat.png);
             final file = File(
-              '.ci-results/story-entry/$entry-${width.toInt()}-large-text.png');
+                '.ci-results/story-entry/$entry-${width.toInt()}-large-text.png');
             await file.parent.create(recursive: true);
             await file.writeAsBytes(bytes!.buffer.asUint8List());
-          } finally { image.dispose(); }
+          } finally {
+            image.dispose();
+          }
         });
         await tester.runAsync(() => tester.tap(action));
         await frames(tester);
@@ -286,16 +284,16 @@ void main() {
     });
     const speechChannel = MethodChannel('plugin.csdcorp.com/speech_to_text');
     final speechMethods = <String>[];
-    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
-      speechChannel, (call) async {
-        speechMethods.add(call.method);
-        return false;
-      });
+    tester.binding.defaultBinaryMessenger
+        .setMockMethodCallHandler(speechChannel, (call) async {
+      speechMethods.add(call.method);
+      return false;
+    });
     addTearDown(() => tester.binding.defaultBinaryMessenger
         .setMockMethodCallHandler(speechChannel, null));
     await tester.pumpWidget(MaterialApp(
-      theme: LumoAppTheme.light(),
-      home: Scaffold(body: ReadingContent(appState: app, onBack: () {}))));
+        theme: LumoAppTheme.light(),
+        home: Scaffold(body: ReadingContent(appState: app, onBack: () {}))));
     await frames(tester);
     expect(app.state.settings.microphoneEnabled, true);
     app.settingsGate = Completer<void>();
@@ -325,5 +323,4 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await frames(tester);
   }, timeout: const Timeout(Duration(seconds: 45)));
-
 }

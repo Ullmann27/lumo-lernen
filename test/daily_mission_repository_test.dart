@@ -203,4 +203,35 @@ void main() {
     expect(prefs.getString(key), before);
     expect(jsonDecode(before!)['version'], 1);
   });
+
+  test('a non-integer schema version is preserved instead of normalized',
+      () async {
+    await repository().load();
+    final prefs = await SharedPreferences.getInstance();
+    final key = LearningDataNamespace.keyFor(_base, 'child-a');
+    final changed = jsonDecode(prefs.getString(key)!) as Map<String, dynamic>;
+    changed['version'] = 1.0;
+    final raw = jsonEncode(changed);
+    await prefs.setString(key, raw);
+    await expectLater(repository().load(), throwsFormatException);
+    expect(prefs.getString(key), raw);
+  });
+
+  test('full evidence history fails closed without evicting replay identities',
+      () async {
+    await repository().load();
+    final prefs = await SharedPreferences.getInstance();
+    final key = LearningDataNamespace.keyFor(_base, 'child-a');
+    final changed = jsonDecode(prefs.getString(key)!) as Map<String, dynamic>;
+    changed['acceptedTaskIds'] = [
+      for (var i = 0; i < 50000; i++) i.toRadixString(16).padLeft(64, '0'),
+    ];
+    final raw = jsonEncode(changed);
+    await prefs.setString(key, raw);
+    await expectLater(
+        repository().recordAnswer(
+            taskId: 'capacity', subject: 'Mathematik', correct: true),
+        throwsStateError);
+    expect(prefs.getString(key), raw);
+  });
 }

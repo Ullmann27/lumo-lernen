@@ -152,26 +152,18 @@ void main() {
     await tester
         .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await _frames(tester);
-    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-    await _frames(tester);
-    final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
-    await tester.scrollUntilVisible(
-      mathArea, 180,
-      scrollable: find.byType(Scrollable).first,
-      maxScrolls: 35,
-    );
+    await tester.tap(find.byKey(const ValueKey('grade-pill-4')));
     await tester.pump();
-    await tester.tap(mathArea);
-    await _frames(tester);
-    // Themen weit unterhalb der Falz werden im Lazy-Sliver später gebaut.
-    // scrollUntilVisible findet auch noch nicht erzeugte Listenelemente.
-    await tester.scrollUntilVisible(
-      find.text('Bruchrechnen'),
-      220,
-      scrollable: find.byType(Scrollable).first,
-    );
-  await tester.pump();
-    await tester.tap(find.text('Bruchrechnen'));
+    final math = find.byKey(const ValueKey('learning-subject-Mathematik'));
+    await tester.ensureVisible(math);
+    await tester.tap(math);
+    await tester.pump();
+    final topic = find
+        .byKey(const ValueKey('learning-unit-Mathematik-Bruchrechnen einfach'));
+    await tester.scrollUntilVisible(topic, 180,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 35);
+    await tester.pump();
+    await tester.tap(topic);
     await _frames(tester);
     expect(find.byType(BruchrechnenScreen), findsOneWidget);
 
@@ -193,7 +185,7 @@ void main() {
       final answer = find.descendant(
           of: find.byType(GridView), matching: find.text(chosen));
       await tester.ensureVisible(answer);
-  await tester.pump();
+      await tester.pump();
       await tester.tap(answer);
       await tester.pump();
       if (task == 0) {
