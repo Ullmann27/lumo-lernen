@@ -71,6 +71,10 @@ void main() {
     await frames(tester);
     expect(find.text('Themen · Mathematik'), findsOneWidget,
         reason: 'Back must retain the chosen subject instead of jumping home.');
+    await tester.scrollUntilVisible(
+        find.byKey(const ValueKey('learning-profile-grade')), -200,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+    await frames(tester);
     expect(find.text('4. Klasse · aus deinem Profil'), findsOneWidget);
     await tester.binding.handlePopRoute();
     await frames(tester);

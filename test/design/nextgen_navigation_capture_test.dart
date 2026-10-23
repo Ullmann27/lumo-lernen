@@ -14,6 +14,7 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/core/user_profile.dart';
+import 'package:lumo_lernen/features/sections/lumo_learning_hub.dart';
 
 import '../helpers/lumo_capture.dart';
 
@@ -26,8 +27,28 @@ Future<void> _frames(WidgetTester tester) async {
   }
 }
 
-Future<void> _tap(WidgetTester tester, Finder target) async {
+Future<void> _reveal(WidgetTester tester, Finder target,
+    {double delta = 160}) async {
+  if (target.evaluate().isEmpty) {
+    // Production topics use a lazy ListView. Build the target by scrolling
+    // the real hub, then let ensureVisible position the existing element.
+    final scrollable = find.descendant(
+        of: find.byType(LumoLearningHub), matching: find.byType(Scrollable));
+    expect(scrollable, findsOneWidget);
+    await tester.scrollUntilVisible(target, delta,
+        scrollable: scrollable, maxScrolls: 40);
+  }
   await tester.ensureVisible(target);
+  await _frames(tester);
+}
+
+Future<void> _hubTop(WidgetTester tester) async {
+  await tester.drag(find.byType(LumoLearningHub), const Offset(0, 1800));
+  await _frames(tester);
+}
+
+Future<void> _tap(WidgetTester tester, Finder target) async {
+  await _reveal(tester, target);
   await _frames(tester);
   expect(target.hitTestable(), findsOneWidget);
   await tester.tap(target);
@@ -110,6 +131,7 @@ void main() {
       expect(find.text('4. Klasse · frei lernen'), findsOneWidget);
       expect(find.byKey(const ValueKey('academy-return-clear-overview')),
           findsNothing);
+      await _hubTop(tester);
       await _capture(tester, 'modern-grade-4-$device');
 
       await _tap(tester, find.byKey(const ValueKey('learning-advanced-entry')));
@@ -139,16 +161,14 @@ void main() {
         final unit =
             Curriculum.unitsForGrade(subject, 2, currentGradeOnly: true).first;
         final unitTarget = find.byKey(ValueKey('learning-unit-$subject-$unit'));
-        await tester.ensureVisible(unitTarget);
-        await _frames(tester);
+        await _hubTop(tester);
         await _capture(tester, '$slug-topics-$device');
         await _tap(tester, unitTarget);
         await _capture(tester, '$slug-task-$device');
         await tester.binding.handlePopRoute();
         await _frames(tester);
         final back = find.byKey(const ValueKey('learning-back-to-subjects'));
-        await tester.ensureVisible(back);
-        await _frames(tester);
+        await _reveal(tester, back, delta: -180);
         expect(find.text('Themen · $subject'), findsOneWidget,
             reason: 'Back retains the real task subject');
         expect(tester.takeException(), isNull, reason: 'Back from $subject');

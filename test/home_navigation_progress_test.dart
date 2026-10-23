@@ -92,13 +92,19 @@ void main() {
     final state = (await tester.runAsync(() async {
       final savedState = LumoAppState();
       await savedState.recordLearningAnswer(
-          subject: 'Mathematik', unit: 'Plus bis 10', correct: true,
+          subject: 'Mathematik',
+          unit: 'Plus bis 10',
+          correct: true,
           taskId: 'home-progress-math-1');
       await savedState.recordLearningAnswer(
-          subject: 'Deutsch', unit: 'Silben', correct: true,
+          subject: 'Deutsch',
+          unit: 'Silben',
+          correct: true,
           taskId: 'home-progress-german-1');
       await savedState.recordLearningAnswer(
-          subject: 'Deutsch', unit: 'Silben', correct: false,
+          subject: 'Deutsch',
+          unit: 'Silben',
+          correct: false,
           taskId: 'home-progress-german-wrong');
       savedState.addStars(17);
       savedState.addXp(425);
@@ -120,18 +126,24 @@ void main() {
     expect(state.dailyMission!.stations, hasLength(3));
     expect(state.dailyMission!.targetCount, 12);
     expect(state.dailyMission!.completedCount, 2);
-    expect(find.text('2 von 12 · Dein Fortschritt wird gespeichert.'), findsOneWidget);
+    expect(find.text('2 von 12 · Dein Fortschritt wird gespeichert.'),
+        findsOneWidget);
     for (final station in state.dailyMission!.stations) {
       final tile = find.byKey(ValueKey('mission-station-${station.subject}'));
       expect(tile, findsOneWidget);
       expect(station.target, 4);
       expect(station.completed,
           ['Mathematik', 'Deutsch'].contains(station.subject) ? 1 : 0);
-      expect(find.descendant(of: tile,
-          matching: find.text('${station.completed} von 4 Aufgaben gelöst')),
+      expect(
+          find.descendant(
+              of: tile,
+              matching:
+                  find.text('${station.completed} von 4 Aufgaben gelöst')),
           findsOneWidget);
-      expect(find.descendant(of: tile,
-          matching: find.byIcon(Icons.diamond_outlined)), findsOneWidget);
+      expect(
+          find.descendant(
+              of: tile, matching: find.byIcon(Icons.diamond_outlined)),
+          findsOneWidget);
     }
     await tester.scrollUntilVisible(
         find.byKey(const ValueKey('home-daily-progress')), 180,
@@ -146,7 +158,8 @@ void main() {
     // Real wallet values above remain visible in the compact home overview.
     expect(find.textContaining('1 Aufgabe geschafft'), findsNothing);
     expect(find.byKey(const ValueKey('home-daily-task-0')), findsNothing,
-        reason: 'Generic task rows must not replace persisted mission stations.');
+        reason:
+            'Generic task rows must not replace persisted mission stations.');
     await tester.runAsync(() async {
       state.addStars(3);
       state.addXp(10);
@@ -226,6 +239,54 @@ void main() {
     await tester.binding.setSurfaceSize(null);
   });
 
+  testWidgets('home subject cards browse topics and delegate to the shell',
+      (tester) async {
+    await tester.binding.setSurfaceSize(const Size(840, 1600));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    for (final delegateToShell in [false, true]) {
+      final state = LumoAppState();
+      final sections = <LumoSection>[];
+      final subjects = <String>[];
+      await tester.runAsync(state.loadDailyMission);
+      await tester.pumpWidget(home(state, sections.add,
+          onBrowseSubject: delegateToShell ? subjects.add : null));
+      final allSubjects =
+          find.byKey(const PageStorageKey<String>('home-all-subjects'));
+      await tester.scrollUntilVisible(allSubjects, 180,
+          scrollable: find.byType(Scrollable).first);
+      await Scrollable.ensureVisible(tester.element(allSubjects),
+          alignment: .5);
+      await tester.tap(allSubjects);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 300));
+      for (final entry in [
+        (subject: 'Mathematik', island: 'mathe'),
+        (subject: 'Deutsch', island: 'deutsch'),
+        (subject: 'Englisch', island: 'englisch'),
+        (subject: 'Sachunterricht', island: 'sachkunde'),
+      ]) {
+        final card = find.byKey(ValueKey('home-island-${entry.island}'));
+        await Scrollable.ensureVisible(tester.element(card), alignment: .5);
+        await tester.pump();
+        expect(card.hitTestable(), findsOneWidget);
+        await tester.tap(card);
+        if (delegateToShell) {
+          expect(subjects.last, entry.subject);
+          expect(sections, isEmpty);
+        } else {
+          expect(state.state.subject, entry.subject);
+          expect(sections.last, LumoSection.learn);
+        }
+        expect(state.state.unit, 'Alle',
+            reason: 'A subject choice must not silently resume an exercise.');
+      }
+      expect(sections, isNot(contains(LumoSection.exercises)));
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+      state.dispose();
+    }
+  });
+
   testWidgets('Kart discovery uses the same in-app game selection',
       (tester) async {
     final state = LumoAppState();
@@ -239,7 +300,8 @@ void main() {
     // lazily builds offscreen content; ensureVisible cannot find a widget
     // that has not been built yet. Scroll until it really exists instead.
     await tester.scrollUntilVisible(
-      discover, 280,
+      discover,
+      280,
       scrollable: find.byType(Scrollable).first,
     );
     await tester.pump();

@@ -50,7 +50,7 @@ void main() {
     await tester.ensureVisible(station);
     await tester.pump();
     await tester.tap(station);
-    expect(destination, LumoSection.learn);
+    expect(destination, LumoSection.exercises);
     expect(app.state.subject, 'Mathematik');
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
@@ -81,6 +81,7 @@ void main() {
     expect(launches, 0,
         reason: 'A direct launcher must enforce the same parental rule.');
     expect(launched, isFalse);
+    debugDefaultTargetPlatformOverride = null;
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));
   });

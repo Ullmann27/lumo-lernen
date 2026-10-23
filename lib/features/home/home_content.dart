@@ -444,7 +444,7 @@ class HomeContent extends StatelessWidget {
                   const SizedBox(height: 4),
                   LumoMissionJourney(
                       appState: appState,
-                      onSubject: _browseSubject,
+                      onSubject: (subject) => _startPractice(subject),
                       onGames: () => onSection(LumoSection.games)),
                   const SizedBox(height: 12),
                   LumoGlassCard(
@@ -698,15 +698,16 @@ class _MotivationCard extends StatelessWidget {
   const _MotivationCard({
     required this.reduceMotion,
     required this.onLearn,
-    this.height = 240,
   });
 
   final bool reduceMotion;
   final VoidCallback onLearn;
-  final double height;
+  static const double height = 240;
 
   @override
   Widget build(BuildContext context) => SizedBox(
+        height:
+            height * MediaQuery.textScalerOf(context).scale(1).clamp(1.0, 2.0),
         child: LumoGlassCard(
           padding: const EdgeInsets.all(8),
           child: Column(

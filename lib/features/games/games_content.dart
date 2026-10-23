@@ -461,9 +461,11 @@ class _GamesContentState extends State<GamesContent> {
                 LumoMissionJourney(
                     appState: widget.appState,
                     onSubject: (subject) {
-                      widget.appState.update(
-                          widget.appState.state.copyWith(subject: subject));
-                      widget.onSection?.call(LumoSection.learn);
+                      widget.appState.update(widget.appState.state.copyWith(
+                          subject: subject,
+                          unit: 'Alle',
+                          sessionKind: LumoSessionKind.quickPractice));
+                      widget.onSection?.call(LumoSection.exercises);
                     }),
               ])
             : CustomScrollView(

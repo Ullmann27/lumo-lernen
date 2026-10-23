@@ -925,62 +925,66 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
   }
 
   Widget _tools() => LumoGlassCard(
+      child: Material(
+          color: Colors.transparent,
           child:
               Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        const Text('Dein Lernatelier',
-            style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Nunito',
-                fontSize: 21,
-                fontWeight: FontWeight.w900)),
-        ListTile(
-            key: const ValueKey('academy-stories'),
-            leading: const Icon(Icons.auto_stories_rounded,
-                color: LumoVisualTokens.cyanBright),
-            title: const Text('Geschichten und Rätsel',
-                style: TextStyle(color: Colors.white)),
-            onTap: _openStories),
-        for (final subject in _currentGrade.subjects)
-          for (final topic in subject.topics.where((t) =>
-              t.isWriting ||
-              t.id == 'd1_schreibcoach' ||
-              t.id == 'd1_woerter' ||
-              t.id == 'd4_aufsatz'))
+            const Text('Dein Lernatelier',
+                style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Nunito',
+                    fontSize: 21,
+                    fontWeight: FontWeight.w900)),
             ListTile(
-                key: ValueKey('academy-tool-${topic.id}'),
-                leading: Icon(topic.icon, color: LumoVisualTokens.cyanBright),
-                title: Text(topic.title,
-                    style: const TextStyle(color: Colors.white)),
-                subtitle: Text(topic.shortDesc,
-                    style: const TextStyle(color: LumoVisualTokens.muted)),
-                onTap: () => _openTopic(topic, subject)),
-        ListTile(
-            key: const ValueKey('akademie-learning-lab'),
-            leading: const Icon(Icons.science_rounded,
-                color: LumoVisualTokens.cyanBright),
-            title: const Text('Lumos interaktives Lernatelier',
-                style: TextStyle(color: Colors.white)),
-            onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
-                builder: (_) => LearningLabHub(appState: widget.appState)))),
-        ListTile(
-            key: const ValueKey('akademie-guided-learning'),
-            leading: const Icon(Icons.school_rounded,
-                color: LumoVisualTokens.cyanBright),
-            title: const Text('Lumo erklärt es mir',
-                style: TextStyle(color: Colors.white)),
-            onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
-                builder: (_) => GuidedLearningHub(
-                    appState: widget.appState, discovery: false)))),
-        ListTile(
-            key: const ValueKey('akademie-voluntary-discovery'),
-            leading: const Icon(Icons.explore_rounded,
-                color: LumoVisualTokens.cyanBright),
-            title: const Text('Mit Lumo Neues entdecken',
-                style: TextStyle(color: Colors.white)),
-            onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
-                builder: (_) => GuidedLearningHub(
-                    appState: widget.appState, discovery: true)))),
-      ]));
+                key: const ValueKey('academy-stories'),
+                leading: const Icon(Icons.auto_stories_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('Geschichten und Rätsel',
+                    style: TextStyle(color: Colors.white)),
+                onTap: _openStories),
+            for (final subject in _currentGrade.subjects)
+              for (final topic in subject.topics.where((t) =>
+                  t.isWriting ||
+                  t.id == 'd1_schreibcoach' ||
+                  t.id == 'd1_woerter' ||
+                  t.id == 'd4_aufsatz'))
+                ListTile(
+                    key: ValueKey('academy-tool-${topic.id}'),
+                    leading:
+                        Icon(topic.icon, color: LumoVisualTokens.cyanBright),
+                    title: Text(topic.title,
+                        style: const TextStyle(color: Colors.white)),
+                    subtitle: Text(topic.shortDesc,
+                        style: const TextStyle(color: LumoVisualTokens.muted)),
+                    onTap: () => _openTopic(topic, subject)),
+            ListTile(
+                key: const ValueKey('akademie-learning-lab'),
+                leading: const Icon(Icons.science_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('Lumos interaktives Lernatelier',
+                    style: TextStyle(color: Colors.white)),
+                onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
+                    builder: (_) =>
+                        LearningLabHub(appState: widget.appState)))),
+            ListTile(
+                key: const ValueKey('akademie-guided-learning'),
+                leading: const Icon(Icons.school_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('Lumo erklärt es mir',
+                    style: TextStyle(color: Colors.white)),
+                onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
+                    builder: (_) => GuidedLearningHub(
+                        appState: widget.appState, discovery: false)))),
+            ListTile(
+                key: const ValueKey('akademie-voluntary-discovery'),
+                leading: const Icon(Icons.explore_rounded,
+                    color: LumoVisualTokens.cyanBright),
+                title: const Text('Mit Lumo Neues entdecken',
+                    style: TextStyle(color: Colors.white)),
+                onTap: () => Navigator.of(context).push<void>(MaterialPageRoute(
+                    builder: (_) => GuidedLearningHub(
+                        appState: widget.appState, discovery: true)))),
+          ])));
 
   @override
   Widget build(BuildContext context) {
