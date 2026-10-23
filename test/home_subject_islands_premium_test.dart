@@ -60,9 +60,13 @@ void main() {
       );
       await tester.pump();
       if (island.hitTestable().evaluate().isEmpty) {
+        final stillMounted = island.evaluate().isNotEmpty;
         debugPrint('Lumo Fold island: width=$width, '
-            'target=${tester.getRect(island)}, '
+            'stillMounted=$stillMounted, '
             'scrollable=${tester.getRect(find.byType(Scrollable).first)}');
+        if (stillMounted) {
+          debugPrint('Lumo Fold target geometry: ${tester.getRect(island)}');
+        }
       }
       expect(island.hitTestable(), findsOneWidget);
       expect(tester.takeException(), isNull,
