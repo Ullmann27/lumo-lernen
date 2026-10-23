@@ -48,13 +48,13 @@ Future<LumoFlameJumpGame> _menuAndCollect(
   // still leaves its children clipped at the collapsed height.
   await tester.pump();
   await tester.pump(const Duration(milliseconds: 450));
-  // The real 2D adventure is now first in the expanded extra modes.
-  // Do not use scrollUntilVisible here: with an animated ExpansionTile
-  // inside a SliverToBoxAdapter, that search can dispose the target sliver
-  // while scrolling. Keep the route genuinely tappable in the viewport.
+  // The real adventure is first in the expanded extra modes. A fixed drag
+  // offset becomes wrong as the portal grid or viewport height changes.
+  // Resolve the actual mounted child instead; Flutter computes the exact
+  // enclosing CustomScrollView offset without discarding the target sliver.
   final card = find.text('Lumos Jump Adventure · 2D');
   expect(card, findsOneWidget);
-  await tester.drag(find.byType(CustomScrollView), const Offset(0, -110));
+  await tester.ensureVisible(card);
   await tester.pump();
   expect(card.hitTestable(), findsOneWidget);
   await tester.tap(card);

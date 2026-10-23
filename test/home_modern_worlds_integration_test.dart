@@ -39,6 +39,9 @@ void main() {
     await tester.ensureVisible(discover);
     await tester.pump(const Duration(milliseconds: 250));
     await tester.tap(discover);
+    // Flutter establishes ExpansionTile's ticker epoch on the first frame.
+    // Without this frame the last discovery actions can be drawn but clipped.
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 650));
 
     final entry = find.byKey(target);
@@ -124,7 +127,22 @@ void main() {
     await tester.scrollUntilVisible(discover, 250,
         scrollable: find.byType(Scrollable).first, maxScrolls: 140);
     await tester.ensureVisible(discover);
+    await tester.pump();
+    final homeList =
+        find.byKey(const PageStorageKey<String>('lumo-home-scroll'));
+    expect(homeList, findsOneWidget);
+    // On a 360x800 viewport the expanded home scene can put this header at
+    // y>2400 even after ensureVisible. Drag the actual outer viewport until
+    // the real header receives touches, without bypassing its interaction.
+    for (var i = 0; i < 60 && discover.hitTestable().evaluate().isEmpty; i++) {
+      await tester.drag(homeList, const Offset(0, -140));
+      await tester.pump(const Duration(milliseconds: 80));
+    }
+    expect(discover.hitTestable(), findsOneWidget);
     await tester.tap(discover);
+    // Flutter establishes ExpansionTile's ticker epoch on the first frame.
+    // Without this frame the last discovery actions can be drawn but clipped.
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 650));
     for (final name in const [
       'home-discover-live',
