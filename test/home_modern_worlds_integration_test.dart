@@ -39,6 +39,9 @@ void main() {
     await tester.ensureVisible(discover);
     await tester.pump(const Duration(milliseconds: 250));
     await tester.tap(discover);
+    // Flutter establishes ExpansionTile's ticker epoch on the first frame.
+    // Without this frame the last discovery actions can be drawn but clipped.
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 650));
 
     final entry = find.byKey(target);
@@ -125,6 +128,9 @@ void main() {
         scrollable: find.byType(Scrollable).first, maxScrolls: 140);
     await tester.ensureVisible(discover);
     await tester.tap(discover);
+    // Flutter establishes ExpansionTile's ticker epoch on the first frame.
+    // Without this frame the last discovery actions can be drawn but clipped.
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 650));
     for (final name in const [
       'home-discover-live',
