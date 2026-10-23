@@ -77,7 +77,8 @@ void main() {
     store.pause!.complete();
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
-    expect((await SettingsRepository.load()).requireDailyMissionForGames, isFalse);
+    expect(
+        (await SettingsRepository.load()).requireDailyMissionForGames, isFalse);
     expect((await SettingsRepository.load()).soundEnabled, isTrue);
     expect(app.state.settings.requireDailyMissionForGames, isFalse);
     await tester.pumpWidget(const SizedBox());

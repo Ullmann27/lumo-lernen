@@ -405,6 +405,10 @@ class _AppShellState extends State<AppShell>
       }
     }
     if (!mounted) return;
+    if (section == LumoSection.exercises) {
+      _learningNavigation.selectGrade(_appState.state.grade);
+      _learningNavigation.selectSubject(_appState.state.subject);
+    }
     await _fadeCtrl.reverse();
     if (!mounted || request != _navigationRequest) {
       return;

@@ -314,7 +314,8 @@ class LumoAppState extends ChangeNotifier {
 
   /// A presentation/access decision, never a native authorization token.
   /// Call loadDailyMission immediately before a game start to refresh the day.
-  bool get canPlayToday => !_state.settings.requireDailyMissionForGames ||
+  bool get canPlayToday =>
+      !_state.settings.requireDailyMissionForGames ||
       (!_resetting &&
           _dailyMissionError == null &&
           _dailyMission?.isComplete == true &&
@@ -323,7 +324,8 @@ class LumoAppState extends ChangeNotifier {
   DailyMissionRepository _missionRepository(LearningProfileLease owner) =>
       _dailyMissionRepositories.putIfAbsent(
           owner.studentId,
-          () => _dailyMissionFactory?.call(owner.studentId) ??
+          () =>
+              _dailyMissionFactory?.call(owner.studentId) ??
               DailyMissionRepository(studentId: owner.studentId));
 
   Future<void> loadDailyMission() {
@@ -336,9 +338,9 @@ class LumoAppState extends ChangeNotifier {
         owner = await source;
         if (!canUseLearningLease(owner)) return;
         _installLearningLease(owner);
-        await _flushDailyMission(owner);
-        final snapshot = await _missionRepository(owner).load(
-            tasksPerStation: _state.settings.missionTasksPerStation);
+        await flushLearningProgress(lease: owner);
+        final snapshot = await _missionRepository(owner)
+            .load(tasksPerStation: _state.settings.missionTasksPerStation);
         if (isCurrentLearningLease(owner)) {
           _dailyMission = snapshot;
           _dailyMissionError = null;
@@ -374,8 +376,10 @@ class LumoAppState extends ChangeNotifier {
           _dailyMissionError = null;
         }
       }
-    }().whenComplete(() => session.missionDrain = null);
+    }()
+        .whenComplete(() => session.missionDrain = null);
   }
+
   final LegacyLearningDataRepository legacyLearningData =
       LegacyLearningDataRepository();
   final Map<String, _LearningSession> _learningSessions = {};

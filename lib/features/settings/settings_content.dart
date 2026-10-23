@@ -127,6 +127,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   }
 
   Future<void> _save(AppSettings next) async {
+    if (_saving) return;
     setState(() {
       _settings = next;
       _saving = true;
@@ -454,7 +455,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       scene: LumoScene.profile,
       dimmed: true,
       showPlaceholderLabel: false,
-      child: SingleChildScrollView(
+      child: AbsorbPointer(absorbing: _saving, child: SingleChildScrollView(
       padding: EdgeInsets.all(MediaQuery.sizeOf(context).width < 600 ? 14 : 24),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _Header(
@@ -796,7 +797,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         const _ErrorLogCard(),
       ],
         ),
-      ), // close SingleChildScrollView
+      )), // close SingleChildScrollView and pending-save input lock
     ); // close night scene
   }
 }

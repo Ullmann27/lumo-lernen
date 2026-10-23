@@ -86,13 +86,21 @@ void main() {
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
   });
-  testWidgets('a Home mission replaces an earlier browsing return path', (tester) async {
+  testWidgets('a Home mission replaces an earlier browsing return path',
+      (tester) async {
     await tester.binding.setSurfaceSize(const Size(800, 1280));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final date = DateTime(2026, 10, 23);
-    await tester.pumpWidget(MaterialApp(home: AppShell(
-      profile: UserProfile(id: 'mission-back', name: 'Mia', age: 8, grade: 2,
-        createdAt: date, lastActiveAt: date), initialSection: LumoSection.learn)));
+    await tester.pumpWidget(MaterialApp(
+        home: AppShell(
+            profile: UserProfile(
+                id: 'mission-back',
+                name: 'Mia',
+                age: 8,
+                grade: 2,
+                createdAt: date,
+                lastActiveAt: date),
+            initialSection: LumoSection.learn)));
     await frames(tester);
     await tester.tap(find.byKey(const ValueKey('grade-pill-4')));
     await frames(tester);
@@ -103,16 +111,23 @@ void main() {
     final home = tester.widget<HomeContent>(find.byType(HomeContent));
     await tester.runAsync(home.appState.loadDailyMission);
     await frames(tester);
+    expect(home.appState.dailyMissionError, isNull);
+    expect(home.appState.dailyMission, isNotNull);
     final mission = find.byKey(const ValueKey('mission-station-Mathematik'));
     await tester.scrollUntilVisible(mission, 240,
-      scrollable: find.byType(Scrollable).first, maxScrolls: 35);
+        scrollable: find
+            .descendant(
+                of: find.byType(HomeContent), matching: find.byType(Scrollable))
+            .first,
+        maxScrolls: 35);
     await frames(tester);
     await tester.tap(mission);
     await frames(tester);
     expect(find.byType(LearningContent), findsOneWidget);
     await tester.binding.handlePopRoute();
     await frames(tester);
-    final academy = tester.widget<LumoAkademieScreen>(find.byType(LumoAkademieScreen));
+    final academy =
+        tester.widget<LumoAkademieScreen>(find.byType(LumoAkademieScreen));
     expect(academy.navigation!.subject, 'Mathematik');
     expect(academy.navigation!.gradeFor(2), 2);
     await tester.pumpWidget(const SizedBox.shrink());
