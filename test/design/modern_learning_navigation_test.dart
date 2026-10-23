@@ -88,6 +88,10 @@ void main() {
     await tester.pageBack();
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 600));
+    final back = find.byKey(const ValueKey('learning-back-to-subjects'));
+    await tester.scrollUntilVisible(back, -200,
+      scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+    await tester.pump();
     expect(find.text('Themen · Mathematik'), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());

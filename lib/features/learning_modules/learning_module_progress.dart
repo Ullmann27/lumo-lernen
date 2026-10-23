@@ -294,6 +294,7 @@ class LearningModuleProgress extends ChangeNotifier
             correct: pending.correct!,
             hintUsed: pending.hintUsed,
             requireSaved: true,
+            taskId: pending.learningEvidence?.taskId,
             lease: owner,
             prompt: pending.prompt,
             given: pending.given,

@@ -553,6 +553,29 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ),
         const SizedBox(height: 18),
         _SettingsCard(title: 'Lernen', children: [
+          _SwitchRow(
+            title: 'Tagesmission vor dem Spielen',
+            subtitle: 'Optional: Erst die drei Lernstationen abschließen. '
+                'Auch richtig gelöste Aufgaben mit Hilfe zählen.',
+            value: _settings.requireDailyMissionForGames,
+            onChanged: (value) => _save(
+                _settings.copyWith(requireDailyMissionForGames: value)),
+          ),
+          const SizedBox(height: 10),
+          const Text('Aufgaben je Station (ab der nächsten Tagesmission)'),
+          Wrap(
+            spacing: 8,
+            children: [
+              for (final count in const [2, 4, 6])
+                ChoiceChip(
+                  label: Text('$count'),
+                  selected: _settings.missionTasksPerStation == count,
+                  onSelected: _saving ? null : (_) => _save(
+                      _settings.copyWith(missionTasksPerStation: count)),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
           _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v)),
                 ),
           const SizedBox(height: 12),
