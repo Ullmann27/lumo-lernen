@@ -146,8 +146,9 @@ class _GamesContentState extends State<GamesContent> {
     if (widget.appState.state.settings.requireDailyMissionForGames) {
       await widget.appState.loadDailyMission();
     }
-    if (!mounted || generation != widget.appState.profileGeneration)
+    if (!mounted || generation != widget.appState.profileGeneration) {
       return false;
+    }
     if (!widget.appState.canPlayToday) {
       setState(() {});
       return false;
@@ -156,7 +157,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchAdventure() async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     HapticFeedback.mediumImpact();
     // Adventure-Mode nutzt das erste Level-Objekt als Basis (Theme + ID),
     // aber laeuft als eigenstaendiges Plattform-Game. Sterne landen direkt
@@ -197,7 +198,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchMemory() async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
@@ -208,7 +209,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchConnectFour() async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
@@ -219,7 +220,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchDiceRace() async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     HapticFeedback.mediumImpact();
     await Navigator.of(context).push<void>(
       MaterialPageRoute<void>(
@@ -230,7 +231,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLumoCards() async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
@@ -272,7 +273,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLumoMeister() async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     if (_launchingGame) return;
     setState(() => _launchingGame = true);
     HapticFeedback.mediumImpact();
@@ -289,7 +290,7 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _launchLevel(GameLevelRuntime rt) async {
-    if (!await _allowLaunch()) return;
+    if (!await _allowLaunch() || !mounted) return;
     Navigator.of(context).pop(); // Sheet schliessen
     final level = rt.level;
 

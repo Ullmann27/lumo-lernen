@@ -988,25 +988,28 @@ class _LumoAkademieScreenState extends State<LumoAkademieScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final hub = SafeArea(
-        top: widget.drawBackground,
-        bottom: false,
-        child: AnimatedBuilder(
-            animation: Listenable.merge([widget.appState, _navigation]),
-            builder: (context, _) => LumoLearningHub(
-                grade: widget.appState.state.grade,
-                navigation: _navigation,
-                skills: _selectedGrade == widget.appState.state.grade
-                    ? widget.appState.learningSkills()
-                    : const {},
-                onStartUnit: _beginClearLearningTask,
-                onReading: _openReading,
-                onPracticalSubject: (subject) => Navigator.of(context)
-                    .push<void>(MaterialPageRoute(
-                        builder: (_) => CurriculumActivitiesScreen(
-                            grade: _selectedGrade, subject: subject))),
-                onAdvanced: () => setState(() => _showTools = !_showTools),
-                tools: _showTools ? _tools() : null)));
+    final hub = Semantics(
+        container: true,
+        label: 'LUMO AKADEMIE',
+        child: SafeArea(
+            top: widget.drawBackground,
+            bottom: false,
+            child: AnimatedBuilder(
+                animation: Listenable.merge([widget.appState, _navigation]),
+                builder: (context, _) => LumoLearningHub(
+                    grade: widget.appState.state.grade,
+                    navigation: _navigation,
+                    skills: _selectedGrade == widget.appState.state.grade
+                        ? widget.appState.learningSkills()
+                        : const {},
+                    onStartUnit: _beginClearLearningTask,
+                    onReading: _openReading,
+                    onPracticalSubject: (subject) => Navigator.of(context)
+                        .push<void>(MaterialPageRoute(
+                            builder: (_) => CurriculumActivitiesScreen(
+                                grade: _selectedGrade, subject: subject))),
+                    onAdvanced: () => setState(() => _showTools = !_showTools),
+                    tools: _showTools ? _tools() : null))));
     return Scaffold(
         backgroundColor:
             widget.drawBackground ? LumoVisualTokens.night : Colors.transparent,

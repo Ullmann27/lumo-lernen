@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../app/app_state.dart';
 import '../../core/discovery_progress.dart';
 import '../../core/learning_journey.dart';
+import '../../core/learning_attempt_id.dart';
 
 /// Durable answer/reward boundary shared by the direct Akademie modules.
 /// A failed write keeps the accepted answer locked until Retry flushes it.
@@ -101,6 +102,9 @@ class LearningModuleProgress extends ChangeNotifier
       durationMs: ms,
       discoveryStep: discoveryStep,
       learningEvidence: learningEvidence,
+      missionTaskId: discoveryTarget == null
+          ? learningEvidence?.taskId ?? newLearningAttemptId()
+          : null,
     ));
   }
 
@@ -294,7 +298,7 @@ class LearningModuleProgress extends ChangeNotifier
             correct: pending.correct!,
             hintUsed: pending.hintUsed,
             requireSaved: true,
-            taskId: pending.learningEvidence?.taskId,
+            taskId: pending.missionTaskId,
             lease: owner,
             prompt: pending.prompt,
             given: pending.given,
@@ -445,6 +449,7 @@ class LearningModuleProgress extends ChangeNotifier
 class _PendingModuleSave {
   _PendingModuleSave({
     this.correct,
+    this.missionTaskId,
     this.hintUsed = false,
     required this.stars,
     required this.xp,
@@ -472,6 +477,7 @@ class _PendingModuleSave {
   final ({bool enabled, int maxGrade})? discoveryPermission;
   final LearningEvidence? learningEvidence;
 
+  final String? missionTaskId;
   final bool? correct;
   final bool hintUsed;
   final int stars;
