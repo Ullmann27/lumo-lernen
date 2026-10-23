@@ -23,7 +23,8 @@ void main() {
     final app = LumoAppState(walletRepository: RewardWalletRepository());
     addTearDown(app.dispose);
     app.update(app.state.copyWith(grade: grade));
-    await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
+    await tester
+        .pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
     await tester.pump(const Duration(milliseconds: 900));
     return app;
   }
@@ -38,15 +39,23 @@ void main() {
       await tester.ensureVisible(picker);
       await tester.tap(picker);
       await tester.pump();
-      for (final subject in ['Mathematik', 'Deutsch', 'Englisch', 'Sachunterricht']) {
+      for (final subject in [
+        'Mathematik',
+        'Deutsch',
+        'Englisch',
+        'Sachunterricht'
+      ]) {
         final card = find.byKey(ValueKey('learning-subject-$subject'));
         await tester.ensureVisible(card);
         await tester.tap(card);
         await tester.pump();
         expect(find.text('Themen · $subject'), findsOneWidget);
-        expect(find.byKey(const ValueKey('learning-back-to-subjects')), findsOneWidget);
-        await tester.ensureVisible(find.byKey(const ValueKey('learning-back-to-subjects')));
-        await tester.tap(find.byKey(const ValueKey('learning-back-to-subjects')));
+        expect(find.byKey(const ValueKey('learning-back-to-subjects')),
+            findsOneWidget);
+        await tester.ensureVisible(
+            find.byKey(const ValueKey('learning-back-to-subjects')));
+        await tester
+            .tap(find.byKey(const ValueKey('learning-back-to-subjects')));
         await tester.pump();
       }
       expect(app.state.grade, 2);
@@ -55,12 +64,14 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
-  testWidgets('normal mathematics route opens the original answer crystal module',
+  testWidgets(
+      'normal mathematics route opens the original answer crystal module',
       (tester) async {
     await open(tester, 1);
     await tester.tap(find.byKey(const ValueKey('learning-subject-Mathematik')));
     await tester.pump();
-    final unit = find.byKey(const ValueKey('learning-unit-Mathematik-Minus bis 10'));
+    final unit =
+        find.byKey(const ValueKey('learning-unit-Mathematik-Minus bis 10'));
     await tester.ensureVisible(unit);
     await tester.tap(unit);
     await tester.pump();
@@ -70,14 +81,16 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
-  testWidgets('foreign class opens actual practice without changing the profile',
+  testWidgets(
+      'foreign class opens actual practice without changing the profile',
       (tester) async {
     final app = await open(tester, 2);
     await tester.tap(find.byKey(const ValueKey('grade-pill-4')));
     await tester.pump();
     await tester.tap(find.byKey(const ValueKey('learning-subject-Mathematik')));
     await tester.pump();
-    final unit = find.byKey(const ValueKey('learning-unit-Mathematik-Zahlenraum bis 1 Million'));
+    final unit = find.byKey(
+        const ValueKey('learning-unit-Mathematik-Zahlenraum bis 1 Million'));
     await tester.ensureVisible(unit);
     await tester.tap(unit);
     await tester.pump();
@@ -90,7 +103,7 @@ void main() {
     await tester.pump(const Duration(milliseconds: 600));
     final back = find.byKey(const ValueKey('learning-back-to-subjects'));
     await tester.scrollUntilVisible(back, -200,
-      scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+        scrollable: find.byType(Scrollable).first, maxScrolls: 30);
     await tester.pump();
     expect(find.text('Themen · Mathematik'), findsOneWidget);
     expect(tester.takeException(), isNull);

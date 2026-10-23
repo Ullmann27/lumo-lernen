@@ -40,10 +40,12 @@ class HomeContent extends StatelessWidget {
     required this.appState,
     required this.onSection,
     this.drawBackground = true,
+    this.onBrowseSubject,
   });
 
   final LumoAppState appState;
   final ValueChanged<LumoSection> onSection;
+  final ValueChanged<String>? onBrowseSubject;
 
   /// Im App-Rahmen malt die Shell die Szene vollflächig.
   final bool drawBackground;
@@ -51,11 +53,13 @@ class HomeContent extends StatelessWidget {
   void _startPractice(String subject, {String? unit}) {
     final lastUnit = appState.learningProfile.lastTopics[subject];
     final currentGradeUnits = Curriculum.unitsForGrade(
-      subject, appState.state.grade, currentGradeOnly: true);
+        subject, appState.state.grade,
+        currentGradeOnly: true);
     // A profile may retain a topic from the previous school year. Do not
     // silently resume a first-grade task under a fourth-grade home tile.
-    final resumable = lastUnit != null &&
-        currentGradeUnits.contains(lastUnit) ? lastUnit : null;
+    final resumable = lastUnit != null && currentGradeUnits.contains(lastUnit)
+        ? lastUnit
+        : null;
     appState.update(appState.state.copyWith(
       subject: subject,
       unit: unit ?? resumable ?? 'Alle',
@@ -64,6 +68,15 @@ class HomeContent extends StatelessWidget {
       sessionKind: LumoSessionKind.quickPractice,
     ));
     onSection(LumoSection.exercises);
+  }
+
+  void _browseSubject(String subject) {
+    if (onBrowseSubject != null) {
+      onBrowseSubject!(subject);
+    } else {
+      appState.update(appState.state.copyWith(subject: subject));
+      onSection(LumoSection.learn);
+    }
   }
 
   void _open(BuildContext context, Widget screen) {
@@ -168,18 +181,24 @@ class HomeContent extends StatelessWidget {
                   SizedBox(
                     height: textScale > 1.2 ? 80 * textScale : 82,
                     child: Row(children: [
-                      Expanded(child: LumoAdventureCard(
+                      Expanded(
+                          child: LumoAdventureCard(
                         key: const ValueKey('home-secondary-tests'),
-                        title: 'Tests', subtitle: 'Wissen überprüfen', compact: true,
+                        title: 'Tests',
+                        subtitle: 'Wissen überprüfen',
+                        compact: true,
                         artwork: 'assets/lumo_design/icons/trophy_gold.png',
                         scene: 'assets/lumo_design/bg/bg_tests.png',
                         accent: LumoVisualTokens.gold,
                         onTap: () => onSection(LumoSection.tests),
                       )),
                       const SizedBox(width: 8),
-                      Expanded(child: LumoAdventureCard(
+                      Expanded(
+                          child: LumoAdventureCard(
                         key: const ValueKey('home-secondary-rewards'),
-                        title: 'Belohnungen', subtitle: 'Deine Sterne und Extras', compact: true,
+                        title: 'Belohnungen',
+                        subtitle: 'Deine Sterne und Extras',
+                        compact: true,
                         artwork: 'assets/lumo_design/icons/treasure_chest.png',
                         scene: 'assets/lumo_design/bg/bg_home.png',
                         accent: LumoVisualTokens.gold,
@@ -205,7 +224,8 @@ class HomeContent extends StatelessWidget {
                   // Primary action comes before secondary panels and repeated subjects.
                   const LumoSectionHeading(
                     title: 'Das passt heute zu dir',
-                    subtitle: 'Eine passende Lernrunde für deinen nächsten Schritt',
+                    subtitle:
+                        'Eine passende Lernrunde für deinen nächsten Schritt',
                     icon: Icons.auto_awesome_rounded,
                     accent: LumoVisualTokens.gold,
                   ),
@@ -225,144 +245,164 @@ class HomeContent extends StatelessWidget {
                     child: ExpansionTile(
                       key: const PageStorageKey<String>('home-all-subjects'),
                       title: const Text('Alle Fächer direkt öffnen',
-                        style: TextStyle(color: LumoVisualTokens.white,
-                          fontFamily: 'Nunito', fontWeight: FontWeight.w900)),
+                          style: TextStyle(
+                              color: LumoVisualTokens.white,
+                              fontFamily: 'Nunito',
+                              fontWeight: FontWeight.w900)),
                       subtitle: const Text('Neun Lernwelten und Logik',
-                        style: TextStyle(color: LumoVisualTokens.muted)),
+                          style: TextStyle(color: LumoVisualTokens.muted)),
                       leading: const Icon(Icons.school_rounded,
-                        color: LumoVisualTokens.cyanBright),
+                          color: LumoVisualTokens.cyanBright),
                       children: [
                         Padding(
                           padding: const EdgeInsets.all(12),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                  const LumoSectionHeading(
-                    title: 'Deine Lernfächer',
-                    subtitle: 'Wähle deine Lernwelt und sammle neue Erfolge',
-                    icon: Icons.school_rounded,
-                    accent: LumoVisualTokens.cyanBright,
-                  ),
-                  const SizedBox(height: 10),
-                  LayoutBuilder(
-                    builder: (context, bounds) {
-                      final scale = MediaQuery.textScalerOf(context).scale(1);
-                      // 1989: no broken words or microscopic illustration columns
-                      // on narrow Android/Fold covers. One legible premium card
-                      // per row; three columns only on a spacious unfolded Fold.
-                      final columns = bounds.maxWidth >= 700 && scale <= 1.3
-                          ? 3
-                          : bounds.maxWidth >= 460 && scale <= 1.2
-                              ? 2
-                              : 1;
-                      const gap = 10.0;
-                      final width = (bounds.maxWidth - (columns - 1) * gap) / columns;
-                      final grade = appState.state.grade;
-                      final cards = <Widget>[
-                        _SubjectCard(
-                          subject: 'Mathematik',
-                          subtitle: 'Zahlen, Rechnen und Formen',
-                          icon: Icons.calculate_rounded,
-                          color: const Color(0xFFFFC04A),
-                          completed: _correctFor('Mathematik'),
-                          onTap: () => _startPractice('Mathematik'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Deutsch',
-                          subtitle: 'Buchstaben und Wörter',
-                          icon: Icons.menu_book_rounded,
-                          color: const Color(0xFFD6A0FF),
-                          completed: _correctFor('Deutsch'),
-                          onTap: () => _startPractice('Deutsch'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Lesen',
-                          subtitle: 'Geschichten verstehen',
-                          icon: Icons.auto_stories_rounded,
-                          color: const Color(0xFF86E8A1),
-                          completed: _correctFor('Lesen'),
-                          onTap: _startReading,
-                        ),
-                        _SubjectCard(
-                          subject: 'Schreiben',
-                          subtitle: 'Buchstaben gestalten',
-                          icon: Icons.edit_rounded,
-                          color: const Color(0xFFFF91BB),
-                          completed: _correctFor('Schreiben'),
-                          onTap: () => _startPractice('Schreiben'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Englisch',
-                          subtitle: 'Hello! Let us learn',
-                          icon: Icons.translate_rounded,
-                          color: const Color(0xFF83D5FF),
-                          completed: _correctFor('Englisch'),
-                          onTap: () => _startPractice('Englisch'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Sachunterricht',
-                          subtitle: 'Die Welt erforschen',
-                          icon: Icons.public_rounded,
-                          color: const Color(0xFF70E3D4),
-                          completed: _correctFor('Sachunterricht'),
-                          onTap: () => _startPractice('Sachunterricht'),
-                        ),
-                        _SubjectCard(
-                          subject: 'Musik',
-                          subtitle: 'Hören und musizieren',
-                          icon: Icons.music_note_rounded,
-                          color: const Color(0xFFB9A6FF),
-                          completed: _correctFor('Musik'),
-                          onTap: () => _open(context,
-                            CurriculumActivitiesScreen(grade: grade, subject: 'Musik')),
-                        ),
-                        _SubjectCard(
-                          subject: 'Kunst und Gestaltung',
-                          subtitle: 'Kreativ gestalten',
-                          icon: Icons.palette_rounded,
-                          color: const Color(0xFFFF9E9E),
-                          completed: _correctFor('Kunst und Gestaltung'),
-                          onTap: () => _open(context,
-                            CurriculumActivitiesScreen(
-                              grade: grade, subject: 'Kunst und Gestaltung')),
-                        ),
-                        _SubjectCard(
-                          subject: 'Technik und Design',
-                          subtitle: 'Erfinden und bauen',
-                          icon: Icons.handyman_rounded,
-                          color: const Color(0xFF80DCE7),
-                          completed: _correctFor('Technik und Design'),
-                          onTap: () => _open(context,
-                            CurriculumActivitiesScreen(
-                              grade: grade, subject: 'Technik und Design')),
-                        ),
-                      ];
-                      return Wrap(
-                        spacing: gap, runSpacing: gap,
-                        children: [
-                          for (final card in cards)
-                            SizedBox(
-                              width: width,
-                              height: 198.0 * scale.clamp(1.0, 1.3).toDouble(),
-                              child: card,
-                            ),
-                        ],
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 8),
-                  OutlinedButton.icon(
-                    key: const ValueKey('home-logic-shortcut'),
-                    onPressed: () => _startPractice('Logik'),
-                    icon: const Icon(Icons.psychology_alt_rounded),
-                    label: const Text('Logik · Rätsel und Denksport'),
-                    style: OutlinedButton.styleFrom(
-                      foregroundColor: LumoVisualTokens.cyanBright,
-                      side: BorderSide(
-                        color: LumoVisualTokens.cyanBright.withOpacity(.5)),
-                      minimumSize: const Size.fromHeight(48),
-                    ),
-                  ),
+                              const LumoSectionHeading(
+                                title: 'Deine Lernfächer',
+                                subtitle:
+                                    'Wähle deine Lernwelt und sammle neue Erfolge',
+                                icon: Icons.school_rounded,
+                                accent: LumoVisualTokens.cyanBright,
+                              ),
+                              const SizedBox(height: 10),
+                              LayoutBuilder(
+                                builder: (context, bounds) {
+                                  final scale =
+                                      MediaQuery.textScalerOf(context).scale(1);
+                                  // 1989: no broken words or microscopic illustration columns
+                                  // on narrow Android/Fold covers. One legible premium card
+                                  // per row; three columns only on a spacious unfolded Fold.
+                                  final columns = bounds.maxWidth >= 700 &&
+                                          scale <= 1.3
+                                      ? 3
+                                      : bounds.maxWidth >= 460 && scale <= 1.2
+                                          ? 2
+                                          : 1;
+                                  const gap = 10.0;
+                                  final width =
+                                      (bounds.maxWidth - (columns - 1) * gap) /
+                                          columns;
+                                  final grade = appState.state.grade;
+                                  final cards = <Widget>[
+                                    _SubjectCard(
+                                      subject: 'Mathematik',
+                                      subtitle: 'Zahlen, Rechnen und Formen',
+                                      icon: Icons.calculate_rounded,
+                                      color: const Color(0xFFFFC04A),
+                                      completed: _correctFor('Mathematik'),
+                                      onTap: () => _browseSubject('Mathematik'),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Deutsch',
+                                      subtitle: 'Buchstaben und Wörter',
+                                      icon: Icons.menu_book_rounded,
+                                      color: const Color(0xFFD6A0FF),
+                                      completed: _correctFor('Deutsch'),
+                                      onTap: () => _browseSubject('Deutsch'),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Lesen',
+                                      subtitle: 'Geschichten verstehen',
+                                      icon: Icons.auto_stories_rounded,
+                                      color: const Color(0xFF86E8A1),
+                                      completed: _correctFor('Lesen'),
+                                      onTap: _startReading,
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Schreiben',
+                                      subtitle: 'Buchstaben gestalten',
+                                      icon: Icons.edit_rounded,
+                                      color: const Color(0xFFFF91BB),
+                                      completed: _correctFor('Schreiben'),
+                                      onTap: () => _browseSubject('Schreiben'),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Englisch',
+                                      subtitle: 'Hello! Let us learn',
+                                      icon: Icons.translate_rounded,
+                                      color: const Color(0xFF83D5FF),
+                                      completed: _correctFor('Englisch'),
+                                      onTap: () => _browseSubject('Englisch'),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Sachunterricht',
+                                      subtitle: 'Die Welt erforschen',
+                                      icon: Icons.public_rounded,
+                                      color: const Color(0xFF70E3D4),
+                                      completed: _correctFor('Sachunterricht'),
+                                      onTap: () =>
+                                          _browseSubject('Sachunterricht'),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Musik',
+                                      subtitle: 'Hören und musizieren',
+                                      icon: Icons.music_note_rounded,
+                                      color: const Color(0xFFB9A6FF),
+                                      completed: _correctFor('Musik'),
+                                      onTap: () => _open(
+                                          context,
+                                          CurriculumActivitiesScreen(
+                                              grade: grade, subject: 'Musik')),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Kunst und Gestaltung',
+                                      subtitle: 'Kreativ gestalten',
+                                      icon: Icons.palette_rounded,
+                                      color: const Color(0xFFFF9E9E),
+                                      completed:
+                                          _correctFor('Kunst und Gestaltung'),
+                                      onTap: () => _open(
+                                          context,
+                                          CurriculumActivitiesScreen(
+                                              grade: grade,
+                                              subject: 'Kunst und Gestaltung')),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Technik und Design',
+                                      subtitle: 'Erfinden und bauen',
+                                      icon: Icons.handyman_rounded,
+                                      color: const Color(0xFF80DCE7),
+                                      completed:
+                                          _correctFor('Technik und Design'),
+                                      onTap: () => _open(
+                                          context,
+                                          CurriculumActivitiesScreen(
+                                              grade: grade,
+                                              subject: 'Technik und Design')),
+                                    ),
+                                  ];
+                                  return Wrap(
+                                    spacing: gap,
+                                    runSpacing: gap,
+                                    children: [
+                                      for (final card in cards)
+                                        SizedBox(
+                                          width: width,
+                                          height: 198.0 *
+                                              scale.clamp(1.0, 1.3).toDouble(),
+                                          child: card,
+                                        ),
+                                    ],
+                                  );
+                                },
+                              ),
+                              const SizedBox(height: 8),
+                              OutlinedButton.icon(
+                                key: const ValueKey('home-logic-shortcut'),
+                                onPressed: () => _startPractice('Logik'),
+                                icon: const Icon(Icons.psychology_alt_rounded),
+                                label:
+                                    const Text('Logik · Rätsel und Denksport'),
+                                style: OutlinedButton.styleFrom(
+                                  foregroundColor: LumoVisualTokens.cyanBright,
+                                  side: BorderSide(
+                                      color: LumoVisualTokens.cyanBright
+                                          .withOpacity(.5)),
+                                  minimumSize: const Size.fromHeight(48),
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -511,15 +551,15 @@ class HomeContent extends StatelessWidget {
                             'Lumo LIVE',
                             'Sprache und Foto-Hilfe',
                             Icons.mic_rounded,
-                            () => _open(context,
-                                LumoLiveProScreen(appState: appState)),
+                            () => _open(
+                                context, LumoLiveProScreen(appState: appState)),
                             key: const ValueKey('home-discover-live')),
                         _extra(
                             'Lumo Mirror',
                             'Acht Gefühle – Lumo reagiert auf dich',
                             Icons.face_rounded,
-                            () => _open(context,
-                                const LumoMirrorShowcaseScreen()),
+                            () => _open(
+                                context, const LumoMirrorShowcaseScreen()),
                             key: const ValueKey('home-discover-mirror')),
                         _extra(
                             'Lumo Journal',
@@ -537,8 +577,8 @@ class HomeContent extends StatelessWidget {
                             'Lumo Cosmos',
                             'Deine wachsende Welt und Tageszeiten',
                             Icons.auto_awesome_motion_rounded,
-                            () => _open(context,
-                                LumoCosmosScreen(appState: appState)),
+                            () => _open(
+                                context, LumoCosmosScreen(appState: appState)),
                             key: const ValueKey('home-discover-cosmos')),
                         _extra(
                             'Foto-Lektion',
@@ -583,8 +623,8 @@ class HomeContent extends StatelessWidget {
                       foregroundColor: LumoVisualTokens.white,
                       side: const BorderSide(color: LumoVisualTokens.cyan),
                     ),
-                    onPressed: () => _open(context,
-                        LearningLabHub(appState: appState)),
+                    onPressed: () =>
+                        _open(context, LearningLabHub(appState: appState)),
                     icon: const Icon(Icons.auto_awesome_rounded),
                     label: const Text('Lumos Lernatelier · gemeinsam bauen'),
                   ),
@@ -637,16 +677,14 @@ class HomeContent extends StatelessWidget {
                           title,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              const TextStyle(color: LumoVisualTokens.white),
+                          style: const TextStyle(color: LumoVisualTokens.white),
                         ),
                         const SizedBox(height: 2),
                         Text(
                           subtitle,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
-                          style:
-                              const TextStyle(color: LumoVisualTokens.muted),
+                          style: const TextStyle(color: LumoVisualTokens.muted),
                         ),
                       ],
                     ),
