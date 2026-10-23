@@ -30,6 +30,9 @@ void main() {
         chooser, -300, scrollable: find.byType(Scrollable).first);
       await tester.ensureVisible(chooser);
       await tester.tap(chooser);
+      // Start ExpansionTile's ticker before advancing its animation.
+      // Otherwise its final card can be painted yet still clipped.
+      await tester.pump();
       await tester.pump(const Duration(milliseconds: 450));
       // ExpansionTile builds all nine real islands. Verify the complete
       // catalogue before scrolling; forcing a fixed -360px delta on a
@@ -93,6 +96,8 @@ void main() {
       chooser, -300, scrollable: find.byType(Scrollable).first);
     await tester.ensureVisible(chooser);
     await tester.tap(chooser);
+    // Use the same real opening frames for the music touch-route test.
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 450));
     final music = find.byKey(const ValueKey('home-island-musik'));
     await tester.scrollUntilVisible(
