@@ -85,6 +85,10 @@ void main() {
     expect(find.byType(HomeContent), findsOneWidget);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
   });
   testWidgets('a Home mission replaces an earlier browsing return path',
       (tester) async {
@@ -131,5 +135,9 @@ void main() {
     expect(academy.navigation!.subject, 'Mathematik');
     expect(academy.navigation!.gradeFor(2), 2);
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
   });
 }

@@ -1,11 +1,10 @@
-import 'dart:async';
 import 'package:flutter/material.dart';
 import '../../../app/app_state.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 
 /// Real, persisted station progress. No sample rewards or invented duration.
-class LumoMissionJourney extends StatefulWidget {
+class LumoMissionJourney extends StatelessWidget {
   const LumoMissionJourney(
       {super.key,
       required this.appState,
@@ -16,27 +15,16 @@ class LumoMissionJourney extends StatefulWidget {
   final VoidCallback? onGames;
 
   @override
-  State<LumoMissionJourney> createState() => _LumoMissionJourneyState();
-}
-
-class _LumoMissionJourneyState extends State<LumoMissionJourney> {
-  @override
-  void initState() {
-    super.initState();
-    unawaited(widget.appState.loadDailyMission());
-  }
-
-  @override
   Widget build(BuildContext context) => AnimatedBuilder(
-      animation: widget.appState,
+      animation: appState,
       builder: (context, _) {
-        final mission = widget.appState.dailyMission;
-        final error = widget.appState.dailyMissionError;
+        final mission = appState.dailyMission;
+        final error = appState.dailyMissionError;
         final ready = mission?.isComplete == true &&
             error == null &&
             mission?.clockUncertain == false;
-        final reduced = widget.appState.state.settings.reduceAnimations ||
-            widget.appState.state.settings.calmMode ||
+        final reduced = appState.state.settings.reduceAnimations ||
+            appState.state.settings.calmMode ||
             MediaQuery.disableAnimationsOf(context);
         return LumoGlassCard(
             child: Column(
@@ -106,8 +94,7 @@ class _LumoMissionJourneyState extends State<LumoMissionJourney> {
                                     color: LumoVisualTokens.muted)),
                             trailing: const Icon(Icons.chevron_right_rounded,
                                 color: LumoVisualTokens.cyanBright),
-                            onTap: () =>
-                                widget.onSubject(mission.stations[i].subject),
+                            onTap: () => onSubject(mission.stations[i].subject),
                           ))),
                 TweenAnimationBuilder<double>(
                     tween: Tween(
@@ -140,14 +127,14 @@ class _LumoMissionJourneyState extends State<LumoMissionJourney> {
                     style: const TextStyle(
                         color: Colors.white, fontFamily: 'Nunito')),
                 TextButton(
-                    onPressed: widget.appState.loadDailyMission,
+                    onPressed: appState.loadDailyMission,
                     child: const Text('Erneut prüfen')),
               ],
-              if (ready && widget.onGames != null) ...[
+              if (ready && onGames != null) ...[
                 const SizedBox(height: 12),
                 FilledButton.icon(
                     key: const ValueKey('mission-game-access'),
-                    onPressed: widget.onGames,
+                    onPressed: onGames,
                     icon: const Icon(Icons.vpn_key_rounded),
                     label: const Text('Zur Spielewelt'),
                     style: FilledButton.styleFrom(

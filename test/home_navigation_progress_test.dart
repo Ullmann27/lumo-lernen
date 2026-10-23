@@ -83,6 +83,10 @@ void main() {
           [LumoSection.learn, LumoSection.games]);
     }
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
     state.dispose();
     await tester.binding.setSurfaceSize(null);
   });
@@ -171,6 +175,10 @@ void main() {
     expect(state.dailyMission!.completedCount, 2,
         reason: 'Wallet rewards are not assessed mission answers.');
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
     state.dispose();
     await tester.binding.setSurfaceSize(null);
   });
@@ -208,6 +216,10 @@ void main() {
     expect(tester.takeException(), isNull);
 
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
     await tester.binding.setSurfaceSize(null);
   });
 
@@ -235,6 +247,10 @@ void main() {
     expect(state.state.grade, 4);
     expect(sections, [LumoSection.exercises]);
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
     state.dispose();
     await tester.binding.setSurfaceSize(null);
   });
@@ -283,6 +299,10 @@ void main() {
       expect(sections, isNot(contains(LumoSection.exercises)));
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump(const Duration(milliseconds: 100));
+      await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 10)));
+      await tester.pump();
       state.dispose();
     }
   });
@@ -333,6 +353,10 @@ void main() {
         reason: 'Quiz discovery uses the same parent-controlled game world.');
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump(const Duration(milliseconds: 100));
+    await tester
+        .runAsync(() => Future<void>.delayed(const Duration(milliseconds: 10)));
+    await tester.pump();
     state.dispose();
     await tester.binding.setSurfaceSize(null);
   });
