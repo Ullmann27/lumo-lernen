@@ -143,6 +143,11 @@ class HomeContent extends StatelessWidget {
               ];
               final list = ListView(
                 key: const PageStorageKey('lumo-home-scroll'),
+                // The optional nine-card subject panel is one tall SliverList
+                // child. Preserve it while scrolling to its bottom cards,
+                // otherwise a far-offscreen jump can recycle the whole panel.
+                // Keep the main menu lazy; do not eagerly build every section.
+                cacheExtent: 3200,
                 padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
                 children: [
                   _HomeEntrance(
