@@ -323,6 +323,14 @@ void main() {
     expect(tester.getCenter(kartEntry).dy, inInclusiveRange(0, 1599));
     await tester.tap(kartEntry);
     expect(sections, [LumoSection.games]);
+    sections.clear();
+    final quizEntry = find.text('Wer wird Lumo-Meister?');
+    await tester.ensureVisible(quizEntry);
+    await tester.pump();
+    await tester.tap(quizEntry);
+    await tester.pump();
+    expect(sections, [LumoSection.games],
+        reason: 'Quiz discovery uses the same parent-controlled game world.');
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
     state.dispose();

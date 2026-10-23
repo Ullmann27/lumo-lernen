@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -11,9 +12,11 @@ import 'package:shared_preferences_platform_interface/shared_preferences_platfor
 class _RejectSettingsStore extends InMemorySharedPreferencesStore {
   _RejectSettingsStore() : super.withData({});
   bool reject = false;
+  Completer<void>? pause;
 
   @override
   Future<bool> setValue(String type, String key, Object value) async {
+    if (pause != null) await pause!.future;
     if (reject && key == 'flutter.lumo_app_settings_v1') return false;
     return super.setValue(type, key, value);
   }
@@ -64,6 +67,19 @@ void main() {
     await tester.pump();
     expect((await SettingsRepository.load()).missionTasksPerStation, 6);
     expect(app.state.settings.dailyGoal, 3);
+    // Other controls cannot overwrite a parental decision still being saved.
+    store.pause = Completer<void>();
+    tester.widget<SwitchListTile>(toggle).onChanged!(false);
+    await tester.pump();
+    final sound = find.widgetWithText(SwitchListTile, 'Ton-Effekte');
+    tester.widget<SwitchListTile>(sound).onChanged!(false);
+    await tester.pump();
+    store.pause!.complete();
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 100));
+    expect((await SettingsRepository.load()).requireDailyMissionForGames, isFalse);
+    expect((await SettingsRepository.load()).soundEnabled, isTrue);
+    expect(app.state.settings.requireDailyMissionForGames, isFalse);
     await tester.pumpWidget(const SizedBox());
   });
 }

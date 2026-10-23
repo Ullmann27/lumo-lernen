@@ -104,6 +104,24 @@ void main() {
     expect(app.canPlayToday, isTrue);
   });
 
+  test('mission reload recovers a failed school write without another answer', () async {
+    final store = _RejectStore();
+    SharedPreferencesStorePlatform.instance = store;
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await app.loadLearningProfile();
+    await app.loadDailyMission();
+    store.rejectedKey = 'lumo_progress_skills';
+    await app.recordLearningAnswer(subject: 'Mathematik', unit: 'Plus',
+      correct: true, taskId: 'home-retry-after-school-failure');
+    store.rejectedKey = null;
+    await app.loadDailyMission();
+    expect(app.dailyMission!.completedCount, 1);
+    await app.loadDailyMission();
+    expect(app.dailyMission!.completedCount, 1);
+    expect(app.learningDailyDone(), 1);
+  });
+
   test('school-save retry also persists accepted mission evidence exactly once',
       () async {
     final store = _RejectStore();
