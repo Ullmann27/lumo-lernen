@@ -30,7 +30,8 @@ void main() {
     now = DateTime.utc(2026, 10, 23, 12);
   });
 
-  test('creates a durable twelve-task mission without modifying school progress',
+  test(
+      'creates a durable twelve-task mission without modifying school progress',
       () async {
     SharedPreferences.setMockInitialValues({'lumo_progress_daily': 'legacy'});
     final mission = await repository().load();
@@ -82,15 +83,16 @@ void main() {
     expect(corrected.completedCount, 1);
   });
 
-  test('accepted IDs cannot count again after restart or day rotation', () async {
-    await repository().recordAnswer(
-        taskId: 'stable-1', subject: 'Mathematik', correct: true);
-    final duplicate = await repository().recordAnswer(
-        taskId: 'stable-1', subject: 'Deutsch', correct: true);
+  test('accepted IDs cannot count again after restart or day rotation',
+      () async {
+    await repository()
+        .recordAnswer(taskId: 'stable-1', subject: 'Mathematik', correct: true);
+    final duplicate = await repository()
+        .recordAnswer(taskId: 'stable-1', subject: 'Deutsch', correct: true);
     expect(duplicate.completedCount, 1);
     now = DateTime.utc(2026, 10, 24, 12);
-    final tomorrow = await repository().recordAnswer(
-        taskId: 'stable-1', subject: 'Mathematik', correct: true);
+    final tomorrow = await repository()
+        .recordAnswer(taskId: 'stable-1', subject: 'Mathematik', correct: true);
     expect(tomorrow.dayKey, '2026-10-24');
     expect(tomorrow.completedCount, 0);
     expect(tomorrow.stations.last.subject, 'Sachunterricht');
@@ -105,14 +107,14 @@ void main() {
           taskId: 'math-$i', subject: 'Mathematik', correct: true);
     }
     now = now.add(const Duration(days: 1));
-    final replay = await repository().recordAnswer(
-        taskId: 'math-2', subject: 'Mathematik', correct: true);
+    final replay = await repository()
+        .recordAnswer(taskId: 'math-2', subject: 'Mathematik', correct: true);
     expect(replay.completedCount, 0);
   });
 
   test('profiles keep missions and duplicate identities separate', () async {
-    await repository().recordAnswer(
-        taskId: 'shared-task', subject: 'Deutsch', correct: true);
+    await repository()
+        .recordAnswer(taskId: 'shared-task', subject: 'Deutsch', correct: true);
     expect((await repository('child-b').load()).completedCount, 0);
     expect(
         (await repository('child-b').recordAnswer(
@@ -122,24 +124,26 @@ void main() {
     expect((await repository().load()).completedCount, 1);
   });
 
-  test('a clock rollback preserves the day and refuses new task credit', () async {
+  test('a clock rollback preserves the day and refuses new task credit',
+      () async {
     final repo = repository();
     await repo.recordAnswer(
         taskId: 'first', subject: 'Mathematik', correct: true);
     now = DateTime.utc(2026, 10, 22, 12);
-    final rolledBack = await repository().recordAnswer(
-        taskId: 'blocked', subject: 'Deutsch', correct: true);
+    final rolledBack = await repository()
+        .recordAnswer(taskId: 'blocked', subject: 'Deutsch', correct: true);
     expect(rolledBack.dayKey, '2026-10-23');
     expect(rolledBack.completedCount, 1);
     expect(rolledBack.clockUncertain, isTrue);
     now = DateTime.utc(2026, 10, 23, 12, 1);
-    final caughtUp = await repository().recordAnswer(
-        taskId: 'blocked', subject: 'Deutsch', correct: true);
+    final caughtUp = await repository()
+        .recordAnswer(taskId: 'blocked', subject: 'Deutsch', correct: true);
     expect(caughtUp.clockUncertain, isFalse);
     expect(caughtUp.completedCount, 2);
   });
 
-  test('a target change takes effect on the next day, preserving today', () async {
+  test('a target change takes effect on the next day, preserving today',
+      () async {
     final repo = repository();
     await repo.load(tasksPerStation: 4);
     expect((await repo.load(tasksPerStation: 2)).targetCount, 12);
@@ -150,10 +154,10 @@ void main() {
   test('two repository instances cannot overwrite concurrent accepted answers',
       () async {
     await Future.wait([
-      repository().recordAnswer(
-          taskId: 'one', subject: 'Mathematik', correct: true),
-      repository().recordAnswer(
-          taskId: 'two', subject: 'Deutsch', correct: true),
+      repository()
+          .recordAnswer(taskId: 'one', subject: 'Mathematik', correct: true),
+      repository()
+          .recordAnswer(taskId: 'two', subject: 'Deutsch', correct: true),
     ]);
     expect((await repository().load()).completedCount, 2);
   });
@@ -165,13 +169,11 @@ void main() {
     await repo.load();
     store.reject = true;
     await expectLater(
-        repo.recordAnswer(
-            taskId: 'retry', subject: 'Deutsch', correct: true),
+        repo.recordAnswer(taskId: 'retry', subject: 'Deutsch', correct: true),
         throwsStateError);
     store.reject = false;
     expect((await repository().load()).completedCount, 0);
-    await repo.recordAnswer(
-        taskId: 'retry', subject: 'Deutsch', correct: true);
+    await repo.recordAnswer(taskId: 'retry', subject: 'Deutsch', correct: true);
     expect(
         (await repository().recordAnswer(
                 taskId: 'retry', subject: 'Deutsch', correct: true))
@@ -189,7 +191,8 @@ void main() {
     });
   }
 
-  test('invalid task identities cannot mutate persisted mission data', () async {
+  test('invalid task identities cannot mutate persisted mission data',
+      () async {
     final repo = repository();
     await repo.load();
     final prefs = await SharedPreferences.getInstance();

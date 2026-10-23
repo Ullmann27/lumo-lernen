@@ -62,8 +62,13 @@ void main() {
     expect(find.byType(LearningContent), findsOneWidget);
     await tester.binding.handlePopRoute();
     await frames(tester);
-    debugPrint('AFTER BACK: home=${find.byType(HomeContent).evaluate().length} task=${find.byType(LearningContent).evaluate().length} academy=${find.byType(LumoAkademieScreen).evaluate().length}');
-    for(final academy in tester.widgetList<LumoAkademieScreen>(find.byType(LumoAkademieScreen))) { debugPrint('BROWSE: ${academy.navigation?.subject} grade=${academy.navigation?.gradeFor(4)} section=${academy.appState.state.section}'); }
+    final academy =
+        tester.widget<LumoAkademieScreen>(find.byType(LumoAkademieScreen));
+    expect(academy.navigation!.subject, 'Mathematik');
+    final back = find.byKey(const ValueKey('learning-back-to-subjects'));
+    await tester.scrollUntilVisible(back, -200,
+        scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+    await frames(tester);
     expect(find.text('Themen · Mathematik'), findsOneWidget,
         reason: 'Back must retain the chosen subject instead of jumping home.');
     expect(find.text('4. Klasse · aus deinem Profil'), findsOneWidget);

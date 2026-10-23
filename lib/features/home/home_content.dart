@@ -4,6 +4,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import '../report/lumo_coach_card.dart';
+import '../shared/widgets/lumo_mission_journey.dart';
 import 'widgets/lumo_subject_showcase_card.dart';
 import 'widgets/lumo_home_hero.dart';
 import '../../widgets/design/lumo_section_heading.dart';
@@ -443,41 +444,14 @@ class HomeContent extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  if (constraints.maxWidth >= 620)
-                    Row(
-                      children: [
-                        Expanded(
-                          flex: 11,
-                          child: SizedBox(
-                            height: cardHeight,
-                            child: _ProgressCard(
-                              appState: appState,
-                              reduceMotion: reduceMotion,
-                            ),
-                          ),
-                        ),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          flex: 10,
-                          child: _MotivationCard(
-                            reduceMotion: reduceMotion,
-                            onLearn: () => onSection(LumoSection.learn),
-                            height: cardHeight,
-                          ),
-                        ),
-                      ],
-                    )
-                  else ...[
-                    _ProgressCard(
+                  LumoMissionJourney(
                       appState: appState,
+                      onSubject: _browseSubject,
+                      onGames: () => onSection(LumoSection.games)),
+                  const SizedBox(height: 12),
+                  _MotivationCard(
                       reduceMotion: reduceMotion,
-                    ),
-                    const SizedBox(height: 12),
-                    _MotivationCard(
-                      reduceMotion: reduceMotion,
-                      onLearn: () => onSection(LumoSection.learn),
-                    ),
-                  ],
+                      onLearn: () => onSection(LumoSection.learn)),
                   const SizedBox(height: 20),
                   const SizedBox(height: 12),
                   LumoCoachCard(
@@ -697,173 +671,6 @@ class HomeContent extends StatelessWidget {
                 ],
               ),
             ),
-          ),
-        ),
-      );
-}
-
-class _ProgressCard extends StatelessWidget {
-  const _ProgressCard({
-    required this.appState,
-    required this.reduceMotion,
-  });
-
-  final LumoAppState appState;
-  final bool reduceMotion;
-
-  @override
-  Widget build(BuildContext context) {
-    final state = appState.state;
-    final dailyDone = appState.learningDailyDone();
-    final dailyGoal = state.settings.dailyGoal.clamp(1, 500);
-    return LumoGlassCard(
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              const Icon(Icons.event_available_rounded,
-                  color: LumoVisualTokens.cyanBright, size: 19),
-              const SizedBox(width: 5),
-              Expanded(
-                child: Text(
-                  'Tägliche Aufgaben',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: LumoTextStyles.heading3.copyWith(
-                    color: LumoVisualTokens.white,
-                    fontSize: 15,
-                  ),
-                ),
-              ),
-              Text(
-                '$dailyDone / $dailyGoal',
-                key: const ValueKey('home-daily-progress'),
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w800,
-                  fontSize: 10,
-                  color: LumoVisualTokens.muted,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 6),
-          for (var index = 0; index < 3; index++)
-            _DailyTaskRow(
-              index: index,
-              complete: dailyDone > index,
-            ),
-          const SizedBox(height: 5),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: TweenAnimationBuilder<double>(
-              tween: Tween<double>(
-                begin: 0,
-                end: (dailyDone / dailyGoal).clamp(0.0, 1.0),
-              ),
-              duration: reduceMotion
-                  ? Duration.zero
-                  : const Duration(milliseconds: 900),
-              curve: Curves.easeOutCubic,
-              builder: (context, value, _) => LinearProgressIndicator(
-                value: value,
-                minHeight: 6,
-                color: LumoVisualTokens.cyanBright,
-                backgroundColor: LumoVisualTokens.navigation,
-              ),
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            'Heute: $dailyDone von $dailyGoal Aufgaben',
-            style: LumoTextStyles.body.copyWith(
-              fontSize: 10,
-              color: LumoVisualTokens.muted,
-            ),
-          ),
-          const SizedBox(height: 5),
-          Wrap(
-            spacing: 8,
-            runSpacing: 2,
-            children: [
-              Text('${state.stars} Sterne',
-                  style: _progressLabelStyle(LumoVisualTokens.gold)),
-              Text('Level ${state.level}',
-                  style: _progressLabelStyle(LumoVisualTokens.cyanBright)),
-              Text(
-                '${appState.learningStreakDays()} ${appState.learningStreakDays() == 1 ? 'Lerntag' : 'Lerntage'} in Folge',
-                style: _progressLabelStyle(LumoVisualTokens.rewards),
-              ),
-            ],
-          ),
-          const SizedBox(height: 3),
-          Text(
-            '${state.xp % 400} / 400 XP bis Level ${state.level + 1}',
-            key: const ValueKey('home-xp-progress'),
-            style: LumoTextStyles.body.copyWith(
-              fontSize: 10,
-              color: LumoVisualTokens.muted,
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  TextStyle _progressLabelStyle(Color color) => TextStyle(
-        fontFamily: 'Nunito',
-        fontWeight: FontWeight.w800,
-        fontSize: 10,
-        color: color,
-      );
-}
-
-class _DailyTaskRow extends StatelessWidget {
-  const _DailyTaskRow({required this.index, required this.complete});
-
-  final int index;
-  final bool complete;
-
-  @override
-  Widget build(BuildContext context) => Padding(
-        padding: const EdgeInsets.only(bottom: 4),
-        child: Container(
-          key: ValueKey('home-daily-task-$index'),
-          padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
-          decoration: BoxDecoration(
-            color: LumoVisualTokens.glassRow.withOpacity(.72),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.18)),
-          ),
-          child: Row(
-            children: [
-              Icon(
-                complete ? Icons.check_circle : Icons.circle_outlined,
-                color: complete
-                    ? LumoVisualTokens.cyanBright
-                    : LumoVisualTokens.muted,
-                size: 18,
-              ),
-              const SizedBox(width: 5),
-              Expanded(
-                child: Text(
-                  'Lernaufgabe ${index + 1}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 11,
-                    fontWeight: FontWeight.w700,
-                    color: LumoVisualTokens.white,
-                  ),
-                ),
-              ),
-              if (complete)
-                const Icon(Icons.chevron_right_rounded,
-                    color: LumoVisualTokens.cyan, size: 17),
-            ],
           ),
         ),
       );

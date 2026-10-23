@@ -95,8 +95,7 @@ class DailyMissionRepository {
     required bool correct,
     int tasksPerStation = 4,
   }) async {
-    if (!RegExp(r'^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,159}$')
-        .hasMatch(taskId)) {
+    if (!RegExp(r'^[A-Za-z0-9][A-Za-z0-9_.:/-]{0,159}$').hasMatch(taskId)) {
       throw ArgumentError('A stable opaque task identity is required');
     }
     return _transaction(
@@ -174,9 +173,7 @@ class DailyMissionRepository {
               subject: station.subject,
               target: station.target,
               completed: station.completed +
-                  (eligible &&
-                          station.subject == subject &&
-                          !station.isComplete
+                  (eligible && station.subject == subject && !station.isComplete
                       ? 1
                       : 0),
             ),
@@ -196,8 +193,13 @@ class DailyMissionRepository {
     final decoded = jsonDecode(raw);
     if (decoded is! Map<String, dynamic> ||
         decoded.keys.toSet().difference(const {
-          'version', 'dayKey', 'lastSeenAt', 'stations', 'acceptedTaskIds'
+          'version',
+          'dayKey',
+          'lastSeenAt',
+          'stations',
+          'acceptedTaskIds'
         }).isNotEmpty ||
+        decoded['version'] is! int ||
         decoded['version'] != 1) {
       throw const FormatException('Unsupported daily mission format');
     }
@@ -218,8 +220,11 @@ class DailyMissionRepository {
     final seen = DateTime.tryParse(seenValue);
     if (date == null ||
         _dayKey(date) != day ||
-        date.year < 2000 || date.year > 2200 ||
-        seen == null || seen.year < 2000 || seen.year > 2200) {
+        date.year < 2000 ||
+        date.year > 2200 ||
+        seen == null ||
+        seen.year < 2000 ||
+        seen.year > 2200) {
       throw const FormatException('Invalid daily mission time');
     }
     final names = _subjectsFor(day);
@@ -243,8 +248,8 @@ class DailyMissionRepository {
           target: value['target'] as int));
     }
     if (stations.any((station) => station.target != stations.first.target) ||
-        rawIds.any((value) => value is! String ||
-            !RegExp(r'^[0-9a-f]{64}$').hasMatch(value)) ||
+        rawIds.any((value) =>
+            value is! String || !RegExp(r'^[0-9a-f]{64}$').hasMatch(value)) ||
         rawIds.toSet().length != rawIds.length ||
         stations.fold<int>(0, (sum, station) => sum + station.completed) >
             rawIds.length) {
@@ -258,8 +263,7 @@ class DailyMissionRepository {
         acceptedTaskIds: rawIds.cast<String>().toSet());
   }
 
-  static String _dayKey(DateTime at) =>
-      '${at.year.toString().padLeft(4, '0')}-'
+  static String _dayKey(DateTime at) => '${at.year.toString().padLeft(4, '0')}-'
       '${at.month.toString().padLeft(2, '0')}-'
       '${at.day.toString().padLeft(2, '0')}';
 

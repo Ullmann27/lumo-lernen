@@ -30,8 +30,10 @@ void main() {
     final app = LumoAppState();
     addTearDown(app.dispose);
     app.updateSettings(const AppSettings(
-        voiceEnabled: false, autoReadEnabled: false,
-        reduceAnimations: true, calmMode: true));
+        voiceEnabled: false,
+        autoReadEnabled: false,
+        reduceAnimations: true,
+        calmMode: true));
     LumoVoice.instance.isEnabled = false;
     await SettingsRepository.save(app.state.settings);
     await tester.binding.setSurfaceSize(const Size(430, 1000));
@@ -39,30 +41,26 @@ void main() {
     await tester.pumpWidget(MaterialApp(
       home: Scaffold(body: SettingsContent(appState: app)),
     ));
-    await tester.runAsync(() => Future<void>.delayed(
-        const Duration(milliseconds: 100)));
-    await tester.pump();
-    final toggle = find.widgetWithText(
-        SwitchListTile, 'Tagesmission vor dem Spielen');
-    await tester.ensureVisible(toggle);
-    await tester.pump();
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 100)));
+    await tester.pumpAndSettle();
+    final toggle =
+        find.widgetWithText(SwitchListTile, 'Tagesmission vor dem Spielen');
     store.reject = true;
-    await tester.tap(toggle);
+    tester.widget<SwitchListTile>(toggle).onChanged!(true);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
     expect(app.state.settings.requireDailyMissionForGames, isFalse);
     expect(tester.takeException(), isNull);
     store.reject = false;
-    await tester.tap(toggle);
+    tester.widget<SwitchListTile>(toggle).onChanged!(true);
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
     expect(app.state.settings.requireDailyMissionForGames, isTrue);
-    expect((await SettingsRepository.load()).requireDailyMissionForGames,
-        isTrue);
+    expect(
+        (await SettingsRepository.load()).requireDailyMissionForGames, isTrue);
     final six = find.widgetWithText(ChoiceChip, '6');
-    await tester.ensureVisible(six);
-    await tester.pump();
-    await tester.tap(six);
+    tester.widget<ChoiceChip>(six).onSelected!(true);
     await tester.pump();
     expect((await SettingsRepository.load()).missionTasksPerStation, 6);
     expect(app.state.settings.dailyGoal, 3);

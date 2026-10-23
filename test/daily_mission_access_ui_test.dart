@@ -19,20 +19,29 @@ void main() {
     LumoVoice.instance.isEnabled = true;
     debugDefaultTargetPlatformOverride = null;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-      .setMockMethodCallHandler(const MethodChannel('lumo_lernen/bridge'), null);
+        .setMockMethodCallHandler(
+            const MethodChannel('lumo_lernen/bridge'), null);
   });
 
-  testWidgets('parent mission rule shows the actual stations before game portals', (tester) async {
+  testWidgets(
+      'parent mission rule shows the actual stations before game portals',
+      (tester) async {
     final app = LumoAppState();
     addTearDown(app.dispose);
     app.updateSettings(const AppSettings(requireDailyMissionForGames: true));
     await tester.runAsync(app.loadDailyMission);
     LumoSection? destination;
-    await tester.pumpWidget(MaterialApp(home: Scaffold(body: GamesContent(
-      appState: app, onSection: (value) => destination = value))));
-    for (var i = 0; i < 6; i++) { await tester.pump(const Duration(milliseconds: 200)); }
-    expect(find.byKey(const ValueKey('mission-station-Mathematik')), findsOneWidget);
-    expect(find.byKey(const ValueKey('mission-station-Deutsch')), findsOneWidget);
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: GamesContent(
+                appState: app, onSection: (value) => destination = value))));
+    for (var i = 0; i < 6; i++) {
+      await tester.pump(const Duration(milliseconds: 200));
+    }
+    expect(find.byKey(const ValueKey('mission-station-Mathematik')),
+        findsOneWidget);
+    expect(
+        find.byKey(const ValueKey('mission-station-Deutsch')), findsOneWidget);
     expect(find.byKey(const ValueKey('mission-game-access')), findsNothing);
     final station = find.byKey(const ValueKey('mission-station-Mathematik'));
     await tester.ensureVisible(station);
@@ -44,24 +53,29 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
   });
 
-  testWidgets('locked mission prevents a direct Flutter native game launch', (tester) async {
+  testWidgets('locked mission prevents a direct Flutter native game launch',
+      (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
     var launches = 0;
     TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
-      .setMockMethodCallHandler(const MethodChannel('lumo_lernen/bridge'), (call) async {
-        if (call.method == 'launch3D') launches++;
-        return <String, Object?>{'destination': 'games'};
-      });
+        .setMockMethodCallHandler(const MethodChannel('lumo_lernen/bridge'),
+            (call) async {
+      if (call.method == 'launch3D') launches++;
+      return <String, Object?>{'destination': 'games'};
+    });
     final app = LumoAppState();
     addTearDown(app.dispose);
     app.updateSettings(const AppSettings(requireDailyMissionForGames: true));
     late BuildContext launchContext;
-    await tester.pumpWidget(MaterialApp(home: Scaffold(body: Builder(builder: (context) {
+    await tester.pumpWidget(
+        MaterialApp(home: Scaffold(body: Builder(builder: (context) {
       launchContext = context;
       return const SizedBox();
     }))));
-    final launched = await tester.runAsync(() => launchLumo3D(launchContext, appState: app));
-    expect(launches, 0, reason: 'A direct launcher must enforce the same parental rule.');
+    final launched =
+        await tester.runAsync(() => launchLumo3D(launchContext, appState: app));
+    expect(launches, 0,
+        reason: 'A direct launcher must enforce the same parental rule.');
     expect(launched, isFalse);
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump(const Duration(seconds: 1));

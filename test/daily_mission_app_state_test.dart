@@ -39,7 +39,8 @@ void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() => SharedPreferences.setMockInitialValues({}));
 
-  test('mission requirement defaults off and settings survive a restart', () async {
+  test('mission requirement defaults off and settings survive a restart',
+      () async {
     final app = LumoAppState();
     addTearDown(app.dispose);
     expect(app.canPlayToday, isTrue);
@@ -63,11 +64,16 @@ void main() {
         subject: 'Mathematik', unit: 'Plus', correct: false, taskId: 'wrong');
     expect(app.dailyMission!.completedCount, 0);
     await app.recordLearningAnswer(
-        subject: 'Mathematik', unit: 'Plus', correct: true,
-        hintUsed: true, taskId: 'assisted-solved');
+        subject: 'Mathematik',
+        unit: 'Plus',
+        correct: true,
+        hintUsed: true,
+        taskId: 'assisted-solved');
     expect(app.dailyMission!.completedCount, 1);
     await app.recordLearningAnswer(
-        subject: 'Mathematik', unit: 'Plus', correct: true,
+        subject: 'Mathematik',
+        unit: 'Plus',
+        correct: true,
         taskId: 'assisted-solved');
     expect(app.dailyMission!.completedCount, 1);
     final restarted = LumoAppState();
@@ -87,7 +93,9 @@ void main() {
     for (final station in app.dailyMission!.stations) {
       for (var i = 0; i < 2; i++) {
         await app.recordLearningAnswer(
-            subject: station.subject, unit: 'Aufgabe', correct: true,
+            subject: station.subject,
+            unit: 'Aufgabe',
+            correct: true,
             taskId: '${station.subject}-$i');
       }
     }
@@ -107,8 +115,11 @@ void main() {
     store.rejectedKey = 'lumo_progress_skills';
     await expectLater(
         app.recordLearningAnswer(
-            subject: 'Mathematik', unit: 'Plus', correct: true,
-            taskId: 'accepted-before-save', requireSaved: true),
+            subject: 'Mathematik',
+            unit: 'Plus',
+            correct: true,
+            taskId: 'accepted-before-save',
+            requireSaved: true),
         throwsStateError);
     store.rejectedKey = null;
     await app.flushLearningProgress();
@@ -118,7 +129,8 @@ void main() {
     expect(app.learningDailyDone(), 1);
   });
 
-  test('mission-save failure blocks optional requirement and retries accepted work',
+  test(
+      'mission-save failure blocks optional requirement and retries accepted work',
       () async {
     final store = _RejectStore();
     SharedPreferencesStorePlatform.instance = store;
@@ -130,12 +142,16 @@ void main() {
     final subjects = app.dailyMission!.stations.map((s) => s.subject).toList();
     for (var i = 0; i < 5; i++) {
       await app.recordLearningAnswer(
-          subject: subjects[i ~/ 2], unit: 'Aufgabe', correct: true,
+          subject: subjects[i ~/ 2],
+          unit: 'Aufgabe',
+          correct: true,
           taskId: 'task-$i');
     }
     store.rejectedKey = 'lumo_daily_mission_v1';
     await app.recordLearningAnswer(
-        subject: subjects.last, unit: 'Aufgabe', correct: true,
+        subject: subjects.last,
+        unit: 'Aufgabe',
+        correct: true,
         taskId: 'task-5');
     expect(app.dailyMission!.completedCount, 5);
     expect(app.dailyMissionError, isNotNull);
@@ -166,8 +182,10 @@ void main() {
   test('a stale mission load cannot show the previous child after selection',
       () async {
     final delayed = _DelayedMission('student-a');
-    final app = LumoAppState(dailyMissionFactory: (id) => id == 'student-a'
-        ? delayed : DailyMissionRepository(studentId: id));
+    final app = LumoAppState(
+        dailyMissionFactory: (id) => id == 'student-a'
+            ? delayed
+            : DailyMissionRepository(studentId: id));
     addTearDown(app.dispose);
     await app.school.setActiveStudent('student-a');
     final first = app.loadDailyMission();
@@ -188,7 +206,9 @@ void main() {
     for (final id in ['student-a', 'student-b']) {
       await app.school.setActiveStudent(id);
       await app.recordLearningAnswer(
-          subject: 'Mathematik', unit: 'Plus', correct: true,
+          subject: 'Mathematik',
+          unit: 'Plus',
+          correct: true,
           taskId: 'same-id');
     }
     await app.resetLearningProfile();
@@ -202,8 +222,9 @@ void main() {
   test('a completed yesterday mission or rollback does not satisfy today',
       () async {
     var now = DateTime.utc(2026, 10, 23, 12);
-    final app = LumoAppState(dailyMissionFactory: (id) =>
-        DailyMissionRepository(studentId: id, now: () => now));
+    final app = LumoAppState(
+        dailyMissionFactory: (id) =>
+            DailyMissionRepository(studentId: id, now: () => now));
     addTearDown(app.dispose);
     app.updateSettings(const AppSettings(
         requireDailyMissionForGames: true, missionTasksPerStation: 2));
@@ -211,7 +232,9 @@ void main() {
     for (final station in app.dailyMission!.stations) {
       for (var i = 0; i < 2; i++) {
         await app.recordLearningAnswer(
-            subject: station.subject, unit: 'Aufgabe', correct: true,
+            subject: station.subject,
+            unit: 'Aufgabe',
+            correct: true,
             taskId: '${station.subject}-$i');
       }
     }

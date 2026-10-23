@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -142,6 +143,30 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
+  }
+
+  Future<void> _saveMissionSettings(AppSettings next) async {
+    if (_saving) return;
+    setState(() => _saving = true);
+    try {
+      await SettingsRepository.save(next);
+      widget.appState.updateSettings(next);
+      if (mounted) setState(() => _settings = next);
+    } catch (_) {
+      // A rejected platform write may still have changed the plugin cache.
+      // Keep the previous effective parent choice until durable saving works.
+      try {
+        await (await SharedPreferences.getInstance()).reload();
+      } catch (_) {}
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Die Einstellung konnte nicht gespeichert werden. '
+              'Bitte versuche es erneut.'),
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   Future<void> _resetSettings() async {
@@ -558,7 +583,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
             subtitle: 'Optional: Erst die drei Lernstationen abschließen. '
                 'Auch richtig gelöste Aufgaben mit Hilfe zählen.',
             value: _settings.requireDailyMissionForGames,
-            onChanged: (value) => _save(
+            onChanged: (value) => _saveMissionSettings(
                 _settings.copyWith(requireDailyMissionForGames: value)),
           ),
           const SizedBox(height: 10),
@@ -570,7 +595,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
                 ChoiceChip(
                   label: Text('$count'),
                   selected: _settings.missionTasksPerStation == count,
-                  onSelected: _saving ? null : (_) => _save(
+                  onSelected: _saving ? null : (_) => _saveMissionSettings(
                       _settings.copyWith(missionTasksPerStation: count)),
                 ),
             ],

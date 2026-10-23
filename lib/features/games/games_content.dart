@@ -23,6 +23,7 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/design/lumo_section_heading.dart';
 import '../lumo3d/lumo3d_launcher.dart';
 import '../quiz/quiz_show_content.dart';
+import '../shared/widgets/lumo_mission_journey.dart';
 import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
@@ -91,11 +92,14 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   Future<void> _load() async {
+    if (widget.appState.state.settings.requireDailyMissionForGames) {
+      await widget.appState.loadDailyMission();
+    }
     final s = await _repo.loadStars(_childId);
     final preserved = await _repo.loadUnlocked(_childId);
     final wallet = await RewardWalletRepository.instance.load();
-    final unlocks = await const GameUnlockService().load(
-        EarnedProgress(totalEarnedStars: wallet.totalEarnedStars));
+    final unlocks = await const GameUnlockService()
+        .load(EarnedProgress(totalEarnedStars: wallet.totalEarnedStars));
     final prefs = await SharedPreferences.getInstance();
     Map? options;
     try {
@@ -314,7 +318,8 @@ class _GamesContentState extends State<GamesContent> {
       case GameMiniType.wordForest:
       case GameMiniType.mixedQuiz:
         await Navigator.of(context).push(MaterialPageRoute<void>(
-          builder: (_) => LessonTrailGame(appState: widget.appState, level: level)));
+            builder: (_) =>
+                LessonTrailGame(appState: widget.appState, level: level)));
     }
     // Nach Rueckkehr: Fortschritt neu laden damit neue Sterne sichtbar sind.
     await _load();
@@ -337,7 +342,8 @@ class _GamesContentState extends State<GamesContent> {
   }
 
   void _locked(GameDefinition game, GameUnlockState state) {
-    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.lockedGameTapped);
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.lockedGameTapped);
     final text = switch (state.reason) {
       GameLockReason.needsPreviousGame =>
         'Spiele zuerst ${GameCatalog.byId(state.previous!).title}.',
@@ -367,7 +373,8 @@ class _GamesContentState extends State<GamesContent> {
     if (game.availability != GameAvailability.playable) {
       return _comingSoon(game);
     }
-    LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.gameRequested);
+    LumoCompanionRequests.instance
+        .recordInteraction(LumoInteractionKind.gameRequested);
     launch();
   }
 
@@ -416,8 +423,8 @@ class _GamesContentState extends State<GamesContent> {
 
   @override
   Widget build(BuildContext context) {
-    final runtime = _repo.buildRuntime(_stars,
-        preservedUnlocked: _preservedLevels);
+    final runtime =
+        _repo.buildRuntime(_stars, preservedUnlocked: _preservedLevels);
     final totalStars = runtime.fold<int>(0, (sum, r) => sum + r.starsEarned);
     final maxStars = GameLevelCatalog.playableLevels.fold<int>(
       0,
@@ -429,73 +436,96 @@ class _GamesContentState extends State<GamesContent> {
         ? const Center(
             child: CircularProgressIndicator(color: LumoVisualTokens.cyan),
           )
-        : CustomScrollView(
-            slivers: [
-              // Enter the real Lumo Spielwelt immediately: preserve its
-              // illustrated fox, logo, glass-card animations and all seven
-              // previous portals, with Kart + Lumo-Meister beside them.
-              SliverToBoxAdapter(
-                child: SpielweltHub(
-                  portals: _portals(),
-                  reduceMotion: _reduceMotion,
-                  onAdventure: () => _openGame(GameId.memory, _launchMemory),
-                  onParents: () => widget.onSection?.call(LumoSection.settings),
-                  onProgress: () => widget.onSection?.call(LumoSection.profile),
-                  onSettings: () => widget.onSection?.call(LumoSection.settings),
-                ),
-              ),
-              // Non-primary legacy modes stay reachable without duplicating
-              // Kart, Quiz, Cards or the big promotional panels above the hub.
-              SliverToBoxAdapter(
-                child: LumoNightScope(
-                  child: ExpansionTile(
-                    key: const PageStorageKey('games-extra-modes'),
-                    leading: const Icon(Icons.extension_rounded,
-                        color: LumoVisualTokens.cyanBright),
-                    title: const Text('Zusätzliche Spielmodi'),
-                    subtitle: const Text('Vier gewinnt, Würfel und Level-Abenteuer'),
-                    children: [
-                      // Place the retained playable Flame adventure first:
-                      // it must remain reachable without scrolling past other
-                      // optional settings inside the expansion.
-                      _AdventureCard(onPlay: _launchAdventure),
-                      Padding(
-                        padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
-                        child: _GameGrid(
-                          onConnectFour: _launchConnectFour,
-                          onDiceRace: _launchDiceRace,
-                        ),
-                      ),
-                      LumoNightScope(child: ExpansionTile(
-                        leading: const Icon(Icons.tune_rounded,
-                            color: LumoVisualTokens.cyanBright),
-                        title: const Text('3D-Profiloptionen'),
-                        subtitle: const Text('Keine Aufgaben während des Rennens'),
-                        children: [Padding(
-                          padding: const EdgeInsets.all(12),
-                          child: _kartOptions(),
-                        )],
-                      )),
-                      _VsLumoCard(
-                        title: 'Wolkeninseln · 3D-Jump',
-                        subtitle: 'Springe mit Lumo von Insel zu Insel',
-                        emoji: '☁️',
-                        gradient: const [Color(0xFF41A993), Color(0xFF237568)],
-                        onPlay: () => _launch3D('jump'),
-                      ),
-                      _HeaderStrip(
-                        totalStars: totalStars,
-                        maxStars: maxStars,
-                        unlockedCount: unlockedCount,
-                        levelCount: runtime.length,
-                      ),
-                      _LevelMap(runtime: runtime, onTap: _onLevelTap),
-                    ],
+        : widget.appState.state.settings.requireDailyMissionForGames &&
+                !widget.appState.canPlayToday
+            ? ListView(padding: const EdgeInsets.all(16), children: [
+                LumoMissionJourney(
+                    appState: widget.appState,
+                    onSubject: (subject) {
+                      widget.appState.update(
+                          widget.appState.state.copyWith(subject: subject));
+                      widget.onSection?.call(LumoSection.learn);
+                    }),
+              ])
+            : CustomScrollView(
+                slivers: [
+                  // Enter the real Lumo Spielwelt immediately: preserve its
+                  // illustrated fox, logo, glass-card animations and all seven
+                  // previous portals, with Kart + Lumo-Meister beside them.
+                  SliverToBoxAdapter(
+                    child: SpielweltHub(
+                      portals: _portals(),
+                      reduceMotion: _reduceMotion,
+                      onAdventure: () =>
+                          _openGame(GameId.memory, _launchMemory),
+                      onParents: () =>
+                          widget.onSection?.call(LumoSection.settings),
+                      onProgress: () =>
+                          widget.onSection?.call(LumoSection.profile),
+                      onSettings: () =>
+                          widget.onSection?.call(LumoSection.settings),
+                    ),
                   ),
-                ),
-              ),
-            ],
-          );
+                  // Non-primary legacy modes stay reachable without duplicating
+                  // Kart, Quiz, Cards or the big promotional panels above the hub.
+                  SliverToBoxAdapter(
+                    child: LumoNightScope(
+                      child: ExpansionTile(
+                        key: const PageStorageKey('games-extra-modes'),
+                        leading: const Icon(Icons.extension_rounded,
+                            color: LumoVisualTokens.cyanBright),
+                        title: const Text('Zusätzliche Spielmodi'),
+                        subtitle: const Text(
+                            'Vier gewinnt, Würfel und Level-Abenteuer'),
+                        children: [
+                          // Place the retained playable Flame adventure first:
+                          // it must remain reachable without scrolling past other
+                          // optional settings inside the expansion.
+                          _AdventureCard(onPlay: _launchAdventure),
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
+                            child: _GameGrid(
+                              onConnectFour: _launchConnectFour,
+                              onDiceRace: _launchDiceRace,
+                            ),
+                          ),
+                          LumoNightScope(
+                              child: ExpansionTile(
+                            leading: const Icon(Icons.tune_rounded,
+                                color: LumoVisualTokens.cyanBright),
+                            title: const Text('3D-Profiloptionen'),
+                            subtitle: const Text(
+                                'Keine Aufgaben während des Rennens'),
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(12),
+                                child: _kartOptions(),
+                              )
+                            ],
+                          )),
+                          _VsLumoCard(
+                            title: 'Wolkeninseln · 3D-Jump',
+                            subtitle: 'Springe mit Lumo von Insel zu Insel',
+                            emoji: '☁️',
+                            gradient: const [
+                              Color(0xFF41A993),
+                              Color(0xFF237568)
+                            ],
+                            onPlay: () => _launch3D('jump'),
+                          ),
+                          _HeaderStrip(
+                            totalStars: totalStars,
+                            maxStars: maxStars,
+                            unlockedCount: unlockedCount,
+                            levelCount: runtime.length,
+                          ),
+                          _LevelMap(runtime: runtime, onTap: _onLevelTap),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              );
     return widget.drawBackground
         ? LumoSceneBackground(
             scene: LumoScene.games,
@@ -664,8 +694,7 @@ class _GameGrid extends StatelessWidget {
       final columns = constraints.maxWidth >= 620 && !largeText ? 2 : 1;
       final width = (constraints.maxWidth - gap * (columns - 1)) / columns;
       return Wrap(spacing: gap, runSpacing: gap, children: [
-        for (final tile in tiles)
-          SizedBox(width: width, child: tile),
+        for (final tile in tiles) SizedBox(width: width, child: tile),
       ]);
     });
   }
@@ -709,7 +738,8 @@ class _GameTile extends StatelessWidget {
             ),
             child: Row(children: [
               SizedBox(
-                width: 72, height: 80,
+                width: 72,
+                height: 80,
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(14),
                   child: art,
@@ -733,18 +763,22 @@ class _GameTile extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                        subtitle,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          color: LumoVisualTokens.white,
-                          fontSize: 14,
-                          fontWeight: FontWeight.w700,
-                        ),
+                      subtitle,
+                      style: const TextStyle(
+                        fontFamily: 'Nunito',
+                        color: LumoVisualTokens.white,
+                        fontSize: 14,
+                        fontWeight: FontWeight.w700,
+                      ),
                     ),
                     const SizedBox(height: 8),
                     const Row(children: [
-                      Text('Spielen', style: TextStyle(color: LumoVisualTokens.cyanBright, fontWeight: FontWeight.w800)),
-                      Icon(Icons.arrow_forward_rounded, color: LumoVisualTokens.cyanBright, size: 20),
+                      Text('Spielen',
+                          style: TextStyle(
+                              color: LumoVisualTokens.cyanBright,
+                              fontWeight: FontWeight.w800)),
+                      Icon(Icons.arrow_forward_rounded,
+                          color: LumoVisualTokens.cyanBright, size: 20),
                     ]),
                   ],
                 ),

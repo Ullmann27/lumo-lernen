@@ -258,6 +258,7 @@ class _AppShellState extends State<AppShell>
     );
     try {
       await _appState.loadLearningProfile();
+      await _appState.loadDailyMission();
     } catch (_) {}
     // Persistente Sterne/XP laden (Heinz: 'bleibt nach Neustart')
     try {
@@ -476,7 +477,13 @@ class _AppShellState extends State<AppShell>
       case LumoSection.games:
         return GamesContent(
           appState: _appState,
-          onSection: _navigateTo,
+          onSection: (section) {
+            if (section == LumoSection.learn) {
+              _openLearningSubject(_appState.state.subject);
+            } else {
+              _navigateTo(section);
+            }
+          },
           onGameReturn: _embeddedGames.synchronize,
           drawBackground: !fullBleed,
         );
