@@ -143,13 +143,15 @@ class HomeContent extends StatelessWidget {
               ];
               final list = ListView(
                 key: const PageStorageKey('lumo-home-scroll'),
-                // The optional nine-card subject panel is one tall SliverList
-                // child. Preserve it while scrolling to its bottom cards,
-                // otherwise a far-offscreen jump can recycle the whole panel.
-                // Keep the main menu lazy; do not eagerly build every section.
-                cacheExtent: 3200,
                 padding: EdgeInsets.fromLTRB(16, compact ? 4 : 12, 16, 24),
+                // One continuous content child stays mounted throughout the
+                // scroll range. The nine-card ExpansionTile must not disappear
+                // when the child reaches its bottom on a narrow Fold cover.
+                // Collapsed sections still avoid building their inner content.
                 children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
                   _HomeEntrance(
                     reduceMotion: reduceMotion,
                     child: LumoHomeHero(
@@ -624,6 +626,8 @@ class HomeContent extends StatelessWidget {
                         _open(context, LearningLabHub(appState: appState)),
                     icon: const Icon(Icons.auto_awesome_rounded),
                     label: const Text('Lumos Lernatelier · gemeinsam bauen'),
+                  ),
+                    ],
                   ),
                 ],
               );
