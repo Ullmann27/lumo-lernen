@@ -75,6 +75,11 @@ APPROVED = {
     # 1998 changes only Flutter's Spielewelt navigation and two portals.
     # Preserve the source-identical, reviewed Godot 4.6.3 Kart engine.
     1998: "3a3142608f6b150ee251373ba81e6face2eed4b3",
+    # 1999: one reviewed ScrollContainer size flag fixes the invisible native
+    # games hub; Kart physics, saves, bridge and scenes are byte-identical.
+    # Fresh engine/routing/physics/render evidence: Godot audit 2026-10-23,
+    # docs/NEXTGEN_AUDIT_20261023.md at Godot commit 494416b.
+    1999: "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
