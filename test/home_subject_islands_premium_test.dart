@@ -49,10 +49,21 @@ void main() {
         expect(find.byKey(ValueKey(key)), findsOneWidget,
             reason: 'Missing genuine subject route $key at width $width');
       }
-      // The last island must also become actually tappable on a narrow Fold.
+      // The last island must also become genuinely tappable on a narrow Fold.
+      // Center its actual InkWell rather than aligning it against a viewport
+      // boundary hidden by a tall animated expansion panel.
       final island = find.byKey(const ValueKey('home-island-technik'));
-      await tester.ensureVisible(island);
+      await Scrollable.ensureVisible(
+        tester.element(island),
+        alignment: 0.5,
+        alignmentPolicy: ScrollPositionAlignmentPolicy.explicit,
+      );
       await tester.pump();
+      if (island.hitTestable().evaluate().isEmpty) {
+        debugPrint('Lumo Fold island: width=$width, '
+            'target=${tester.getRect(island)}, '
+            'scrollable=${tester.getRect(find.byType(Scrollable).first)}');
+      }
       expect(island.hitTestable(), findsOneWidget);
       expect(tester.takeException(), isNull,
           reason: 'No overflow or missing island at width $width');
