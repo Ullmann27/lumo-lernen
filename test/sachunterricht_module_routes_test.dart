@@ -27,13 +27,10 @@ void main() {
     );
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 650));
-    await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-    await tester.pump(const Duration(milliseconds: 400));
-
-    // Die Lernbereiche liegen in einem erst beim Scrollen gebauten Bereich.
-    final area = find.byKey(const ValueKey('learning-area-sachunterricht'));
-    await tester.scrollUntilVisible(area, 180,
-        scrollable: find.byType(Scrollable).first, maxScrolls: 35);
+    await tester.tap(find.byKey(ValueKey('grade-pill-$grade')));
+    await tester.pump();
+    final area = find.byKey(const ValueKey('learning-subject-Sachunterricht'));
+    await tester.ensureVisible(area);
     await tester.pump();
     expect(area, findsOneWidget);
     await tester.tap(area);
@@ -47,7 +44,7 @@ void main() {
     WidgetTester tester,
     String label,
   ) async {
-    final topic = find.text(label);
+    final topic = find.byKey(ValueKey('learning-unit-Sachunterricht-$label'));
     await tester.scrollUntilVisible(topic, 220,
         scrollable: find.byType(Scrollable).first, maxScrolls: 35);
     await tester.pump();
@@ -67,21 +64,24 @@ void main() {
     await assertTopicOpens<JahreszeitenScreen>(tester, 'Jahreszeiten');
   });
 
-  testWidgets('Klasse 2 Sachunterricht Wetter opens real module', (tester) async {
+  testWidgets('Klasse 2 Sachunterricht Wetter opens real module',
+      (tester) async {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = await openAcademy(tester);
     addTearDown(app.dispose);
     await assertTopicOpens<WetterScreen>(tester, 'Wetter');
   });
 
-  testWidgets('Klasse 2 Sachunterricht Verkehr opens real module', (tester) async {
+  testWidgets('Klasse 2 Sachunterricht Verkehr opens real module',
+      (tester) async {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = await openAcademy(tester);
     addTearDown(app.dispose);
     await assertTopicOpens<VerkehrScreen>(tester, 'Verkehr');
   });
 
-  testWidgets('Klasse 1 Sachunterricht Tiere opens real module', (tester) async {
+  testWidgets('Klasse 1 Sachunterricht Tiere opens real module',
+      (tester) async {
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = await openAcademy(tester, grade: 1);
     addTearDown(app.dispose);

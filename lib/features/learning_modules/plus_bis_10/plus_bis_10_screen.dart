@@ -25,6 +25,7 @@ import '../../../app/app_state.dart';
 import '../../../app/lumo_companion_host.dart';
 import '../../../core/lumo_companion_guide.dart';
 import '../../../core/lumo_voice.dart';
+import '../../../core/learning_attempt_id.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/design/lumo_quantity_art.dart';
@@ -67,6 +68,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   late final int _profileGeneration;
   LumoCompanionTaskContext? _publishedContext;
   int _taskSerial = 0;
+  late String _missionTaskId;
   int _submittedAttempts = 0;
   int _helpLevel = 0;
   bool? _lastCorrect;
@@ -150,6 +152,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
   }
 
   void _generateTask() {
+    _missionTaskId = newLearningAttemptId();
     _taskSerial++;
     _submittedAttempts = 0;
     _helpLevel = 0;
@@ -371,6 +374,7 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
           correct: correct,
           hintUsed: hintUsed,
           requireSaved: true,
+          taskId: _missionTaskId,
           lease: owner,
           prompt: '$_a + $_b = ?',
           given: '$answer',
@@ -1331,62 +1335,71 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     final canContinue = _answered && _pendingAnswer == null && !_saving;
     final largeText = MediaQuery.textScalerOf(context).scale(1) > 1.35;
     final landscape = LumoLessonStyle.shortLandscape(context);
-    final stackActions = largeText ||
-        landscape ||
-        (_showHint && !wide && MediaQuery.sizeOf(context).width < 500);
-    return Column(children: [
-      LumoLessonAnswerGrid(
-        crossAxisCount: largeText || landscape ? 2 : 4,
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        crossAxisSpacing: 8,
-        mainAxisSpacing: 8,
-        childAspectRatio: wide ? 2.2 : 1.5,
-        minimumHeight: wide && !landscape ? 72 : 56,
-        children: _answers.map((ans) {
-          final isSelected = _selectedAnswer == ans;
-          final isCorrect = _answered && ans == _correct;
-          final isWrong = isSelected && ans != _correct;
+    return LayoutBuilder(builder: (context, constraints) {
+      final stackActions =
+          largeText || landscape || (_showHint && constraints.maxWidth < 560);
+      return Column(children: [
+        LumoLessonAnswerGrid(
+          crossAxisCount: largeText || landscape ? 2 : 4,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          crossAxisSpacing: 8,
+          mainAxisSpacing: 8,
+          childAspectRatio: wide ? 2.2 : 1.5,
+          minimumHeight: wide && !landscape ? 72 : 56,
+          children: _answers.map((ans) {
+            final isSelected = _selectedAnswer == ans;
+            final isCorrect = _answered && ans == _correct;
+            final isWrong = isSelected && ans != _correct;
 
-          return AnimatedScale(
-            scale: isCorrect && !_reduceMotion ? 1 + _bounceCtrl.value * .1 : 1,
-            duration: _reduceMotion ? Duration.zero : const Duration(milliseconds: 200),
-            child: LumoAnswerCrystal(
-              label: '$ans', semanticLabel: 'Antwort $ans',
-              onPressed: _saving || _answered ? null : () => _handleAnswer(ans),
-              state: isCorrect ? LumoCrystalState.correct
-                  : isWrong ? LumoCrystalState.retry : LumoCrystalState.neutral,
+            return AnimatedScale(
+              scale:
+                  isCorrect && !_reduceMotion ? 1 + _bounceCtrl.value * .1 : 1,
+              duration: _reduceMotion
+                  ? Duration.zero
+                  : const Duration(milliseconds: 200),
+              child: LumoAnswerCrystal(
+                label: '$ans',
+                semanticLabel: 'Antwort $ans',
+                onPressed:
+                    _saving || _answered ? null : () => _handleAnswer(ans),
+                state: isCorrect
+                    ? LumoCrystalState.correct
+                    : isWrong
+                        ? LumoCrystalState.retry
+                        : LumoCrystalState.neutral,
+              ),
+            );
+          }).toList(),
+        ),
+        const SizedBox(height: 12),
+        Flex(
+          direction: stackActions ? Axis.vertical : Axis.horizontal,
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: stackActions
+              ? CrossAxisAlignment.stretch
+              : CrossAxisAlignment.center,
+          children: [
+            _pillButton(
+              label: _showHint ? 'Anderer Tipp' : 'Tipp',
+              onPressed: _answered || _saving ? null : _requestTaskHelp,
+              leading: const Icon(Icons.lightbulb_rounded,
+                  color: LumoVisualTokens.gold, size: 24),
+              colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
+              border: LumoVisualTokens.cyan.withOpacity(.6),
             ),
-          );
-        }).toList(),
-      ),
-      const SizedBox(height: 12),
-      Flex(
-        direction: stackActions ? Axis.vertical : Axis.horizontal,
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: stackActions
-            ? CrossAxisAlignment.stretch
-            : CrossAxisAlignment.center,
-        children: [
-          _pillButton(
-            label: _showHint ? 'Anderer Tipp' : 'Tipp',
-            onPressed: _answered || _saving ? null : _requestTaskHelp,
-            leading: const Icon(Icons.lightbulb_rounded,
-                color: LumoVisualTokens.gold, size: 24),
-            colors: const [Color(0xFF123F7C), Color(0xFF0B2A5A)],
-            border: LumoVisualTokens.cyan.withOpacity(.6),
-          ),
-          if (stackActions) const SizedBox(height: 8) else const Spacer(),
-          _pillButton(
-            label: 'Weiter',
-            onPressed: canContinue ? _continueAfterCorrect : null,
-            colors: const [Color(0xFF4FE3C1), Color(0xFF16A889)],
-            border: const Color(0xFFB4FFEE),
-            wide: true,
-          ),
-        ],
-      ),
-    ]);
+            if (stackActions) const SizedBox(height: 8) else const Spacer(),
+            _pillButton(
+              label: 'Weiter',
+              onPressed: canContinue ? _continueAfterCorrect : null,
+              colors: const [Color(0xFF4FE3C1), Color(0xFF16A889)],
+              border: const Color(0xFFB4FFEE),
+              wide: true,
+            ),
+          ],
+        ),
+      ]);
+    });
   }
 
   /// Glas-Pillen „Tipp“ und „Weiter“ wie in Bild 02; gesperrt wirken sie

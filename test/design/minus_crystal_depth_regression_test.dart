@@ -58,21 +58,19 @@ void main() {
         ),
       ));
       await _frames(tester);
-      await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-      await _frames(tester);
-      await tester.ensureVisible(find.text('1. Klasse'));
-      await tester.tap(find.text('1. Klasse'));
+      await tester.tap(find.byKey(const ValueKey('grade-pill-1')));
       await tester.pump();
-      final math = find.byKey(const ValueKey('learning-area-mathe'));
-      await tester.scrollUntilVisible(math, 180,
-          scrollable: find.byType(Scrollable).first, maxScrolls: 35);
+      final math = find.byKey(const ValueKey('learning-subject-Mathematik'));
+      await tester.ensureVisible(math);
       await tester.tap(math);
       await _frames(tester);
-      await tester.scrollUntilVisible(find.text('Minus bis 10'), 180,
+      final topic =
+          find.byKey(const ValueKey('learning-unit-Mathematik-Minus bis 10'));
+      await tester.scrollUntilVisible(topic, 180,
           scrollable: find.byType(Scrollable).first);
-      await tester.ensureVisible(find.text('Minus bis 10'));
+      await tester.ensureVisible(topic);
       await tester.pumpAndSettle();
-      await tester.tap(find.text('Minus bis 10'));
+      await tester.tap(topic);
       await _frames(tester);
       expect(find.byType(MinusBis10Screen), findsOneWidget);
       final crystals = find.byType(LumoAnswerCrystal);

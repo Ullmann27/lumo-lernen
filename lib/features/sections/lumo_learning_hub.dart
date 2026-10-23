@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../learning/learning_navigation.dart';
 
 import '../../core/progress_repository.dart';
 import '../../core/school_exercise_generator.dart';
@@ -16,9 +17,14 @@ class LumoLearningHub extends StatefulWidget {
     required this.onPracticalSubject,
     required this.onAdvanced,
     this.skills = const {},
+    this.navigation,
+    this.tools,
   });
 
   final int grade;
+  final LearningNavigation? navigation;
+  final Widget? tools;
+
   /// The child's real answer records; drives each subject's topic ring.
   final Map<String, SkillRecord> skills;
   final void Function(String subject, String unit) onStartUnit;
@@ -40,18 +46,28 @@ class _Subject {
 
 class _LumoLearningHubState extends State<LumoLearningHub> {
   static const _main = <_Subject>[
-    _Subject('Mathematik', 'Rechnen & Knobeln', Icons.calculate_rounded, Color(0xFFFFC04A)),
-    _Subject('Deutsch', 'Sprache & Schreiben', Icons.menu_book_rounded, Color(0xFFD6A0FF)),
-    _Subject('Englisch', 'Wörter & Sprechen', Icons.translate_rounded, Color(0xFF83D5FF)),
-    _Subject('Sachunterricht', 'Die Welt entdecken', Icons.public_rounded, Color(0xFF70E3D4)),
+    _Subject('Mathematik', 'Rechnen & Knobeln', Icons.calculate_rounded,
+        Color(0xFFFFC04A)),
+    _Subject('Deutsch', 'Sprache & Schreiben', Icons.menu_book_rounded,
+        Color(0xFFD6A0FF)),
+    _Subject('Englisch', 'Wörter & Sprechen', Icons.translate_rounded,
+        Color(0xFF83D5FF)),
+    _Subject('Sachunterricht', 'Die Welt entdecken', Icons.public_rounded,
+        Color(0xFF70E3D4)),
   ];
   static const _other = <_Subject>[
-    _Subject('Lesen', 'Texte verstehen', Icons.auto_stories_rounded, Color(0xFF86E8A1)),
-    _Subject('Schreiben', 'Wörter gestalten', Icons.edit_rounded, Color(0xFFFF91BB)),
-    _Subject('Logik', 'Rätsel lösen', Icons.psychology_alt_rounded, Color(0xFFB9A6FF)),
-    _Subject('Musik', 'Hören & Musizieren', Icons.music_note_rounded, Color(0xFFB9A6FF)),
-    _Subject('Kunst und Gestaltung', 'Kreativ werden', Icons.palette_rounded, Color(0xFFFF9E9E)),
-    _Subject('Technik und Design', 'Erfinden & Bauen', Icons.handyman_rounded, Color(0xFF80DCE7)),
+    _Subject('Lesen', 'Texte verstehen', Icons.auto_stories_rounded,
+        Color(0xFF86E8A1)),
+    _Subject(
+        'Schreiben', 'Wörter gestalten', Icons.edit_rounded, Color(0xFFFF91BB)),
+    _Subject('Logik', 'Rätsel lösen', Icons.psychology_alt_rounded,
+        Color(0xFFB9A6FF)),
+    _Subject('Musik', 'Hören & Musizieren', Icons.music_note_rounded,
+        Color(0xFFB9A6FF)),
+    _Subject('Kunst und Gestaltung', 'Kreativ werden', Icons.palette_rounded,
+        Color(0xFFFF9E9E)),
+    _Subject('Technik und Design', 'Erfinden & Bauen', Icons.handyman_rounded,
+        Color(0xFF80DCE7)),
   ];
   // Bright corner for art, deep corner behind the text (white >= 5.3:1).
   static const _cardColors = <String, (Color, Color)>{
@@ -60,15 +76,43 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
     'Englisch': (Color(0xFF3D8BF2), Color(0xFF2A66D3)),
     'Sachunterricht': (Color(0xFF22B597), Color(0xFF0C6E64)),
   };
-  _Subject? _selected;
+  late final LearningNavigation _navigation =
+      widget.navigation ?? LearningNavigation();
+  _Subject? get _selected {
+    for (final subject in [..._main, ..._other]) {
+      if (subject.name == _navigation.subject) return subject;
+    }
+    return null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _navigation.addListener(_navigationChanged);
+  }
+
+  void _navigationChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void dispose() {
+    _navigation.removeListener(_navigationChanged);
+    if (widget.navigation == null) _navigation.dispose();
+    super.dispose();
+  }
+
   bool _expanded = false;
 
   /// Topics of the enrolled grade with at least one correct answer.
   (int, int) _topicProgress(String subject, int grade) {
-    final units = Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true);
+    final units =
+        Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true);
     final practiced = units
         .where((unit) => widget.skills.values.any((skill) =>
-            skill.subject == subject && skill.unit == unit && skill.correct > 0))
+            skill.subject == subject &&
+            skill.unit == unit &&
+            skill.correct > 0))
         .length;
     return (practiced, units.length);
   }
@@ -81,13 +125,13 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
         subject.name == 'Technik und Design') {
       widget.onPracticalSubject(subject.name);
     } else {
-      setState(() => _selected = subject);
+      _navigation.selectSubject(subject.name);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    final grade = widget.grade.clamp(1, 4);
+    final grade = _navigation.gradeFor(widget.grade);
     final subject = _selected;
     final units = subject == null
         ? <String>[]
@@ -109,80 +153,135 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
           ),
           child: Padding(
             padding: const EdgeInsets.all(18),
-            child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-            Row(children: [
-              Expanded(child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(
-                subject == null ? 'Was möchtest du lernen?' : subject.name,
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 23,
-                    fontWeight: FontWeight.w900, color: Colors.white),
-              ),
-              const SizedBox(height: 6),
-              Text(
-                subject == null
-                    ? 'Ein Fach auswählen. Danach siehst du die passenden Themen.'
-                    : 'Wähle ein Thema. Danach startet die echte Lernaufgabe.',
-                style: const TextStyle(fontFamily: 'Nunito', fontSize: 14,
-                    fontWeight: FontWeight.w700, color: Color(0xFFD4EAF5)),
-              ),
-              const SizedBox(height: 12),
-              DecoratedBox(
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(.12),
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                  child: Text('$grade. Klasse · aus deinem Profil',
-                    key: const ValueKey('learning-profile-grade'),
-                    style: const TextStyle(fontFamily: 'Nunito', fontSize: 13,
-                        fontWeight: FontWeight.w800, color: Colors.white)),
-                ),
-              ),
-              ])),
-              if (subject == null &&
-                  MediaQuery.sizeOf(context).width >= 360 &&
-                  accessible <= 1.3)
-                const ExcludeSemantics(
-                  child: Padding(
-                    padding: EdgeInsets.only(left: 8),
-                    child: Image(
-                      key: ValueKey('learning-hub-lumo'),
-                      image: AssetImage(
-                          'assets/lumo_design/characters/fox_point.webp'),
-                      width: 89,
-                      height: 112,
-                      fit: BoxFit.contain,
+            child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Row(children: [
+                    Expanded(
+                        child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                          Text(
+                            subject == null
+                                ? 'Was möchtest du lernen?'
+                                : subject.name,
+                            style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 23,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white),
+                          ),
+                          const SizedBox(height: 6),
+                          Text(
+                            subject == null
+                                ? 'Ein Fach auswählen. Danach siehst du die passenden Themen.'
+                                : 'Wähle ein Thema. Danach startet die echte Lernaufgabe.',
+                            style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 14,
+                                fontWeight: FontWeight.w700,
+                                color: Color(0xFFD4EAF5)),
+                          ),
+                          const SizedBox(height: 12),
+                          DecoratedBox(
+                            decoration: BoxDecoration(
+                              color: Colors.white.withOpacity(.12),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 12, vertical: 8),
+                              child: Text(
+                                  grade == widget.grade
+                                      ? '$grade. Klasse · aus deinem Profil'
+                                      : '$grade. Klasse · frei lernen',
+                                  key: const ValueKey('learning-profile-grade'),
+                                  style: const TextStyle(
+                                      fontFamily: 'Nunito',
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w800,
+                                      color: Colors.white)),
+                            ),
+                          ),
+                        ])),
+                    if (subject == null &&
+                        MediaQuery.sizeOf(context).width >= 360 &&
+                        accessible <= 1.3)
+                      const ExcludeSemantics(
+                        child: Padding(
+                          padding: EdgeInsets.only(left: 8),
+                          child: Image(
+                            key: ValueKey('learning-hub-lumo'),
+                            image: AssetImage(
+                                'assets/lumo_design/characters/fox_point.webp'),
+                            width: 89,
+                            height: 112,
+                            fit: BoxFit.contain,
+                          ),
+                        ),
+                      ),
+                  ]),
+                  if (subject == null) ...[
+                    const SizedBox(height: 12),
+                    Row(children: [
+                      for (var level = 1; level <= 4; level++) ...[
+                        if (level > 1) const SizedBox(width: 6),
+                        Expanded(
+                            child: OutlinedButton(
+                          key: ValueKey('grade-pill-$level'),
+                          onPressed: () => _navigation.selectGrade(level),
+                          style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(48, 48),
+                            padding: const EdgeInsets.symmetric(horizontal: 2),
+                            foregroundColor: grade == level
+                                ? LumoVisualTokens.night
+                                : Colors.white,
+                            backgroundColor: grade == level
+                                ? LumoVisualTokens.cyanBright
+                                : Colors.white.withOpacity(.06),
+                          ),
+                          child: Text('$level. Klasse',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontWeight: FontWeight.w800)),
+                        )),
+                      ],
+                    ]),
+                  ],
+                  // Other grades and all learning paths belong with the grade, and
+                  // stay reachable without scrolling past the subject cards.
+                  if (subject == null) ...[
+                    const SizedBox(height: 12),
+                    OutlinedButton.icon(
+                      key: const ValueKey('learning-advanced-entry'),
+                      onPressed: widget.onAdvanced,
+                      icon: const Icon(Icons.tune_rounded),
+                      label: const Text('Lernwerkzeuge & Geschichten'),
+                      style: OutlinedButton.styleFrom(
+                          foregroundColor: LumoVisualTokens.cyanBright,
+                          minimumSize: const Size.fromHeight(52)),
                     ),
-                  ),
-                ),
-            ]),
-            // Other grades and all learning paths belong with the grade, and
-            // stay reachable without scrolling past the subject cards.
-            if (subject == null) ...[
-              const SizedBox(height: 12),
-              OutlinedButton.icon(
-                key: const ValueKey('learning-advanced-entry'),
-                onPressed: widget.onAdvanced,
-                icon: const Icon(Icons.tune_rounded),
-                label: const Text('Alle Lernwege & andere Klassen'),
-                style: OutlinedButton.styleFrom(
-                  foregroundColor: LumoVisualTokens.cyanBright,
-                  minimumSize: const Size.fromHeight(52)),
-              ),
-            ],
-            ]),
+                  ],
+                ]),
           ),
         ),
         const SizedBox(height: 16),
+        if (widget.tools != null) ...[
+          widget.tools!,
+          const SizedBox(height: 16)
+        ],
         if (subject == null) ...[
-          const Text('Fächer', style: TextStyle(fontFamily: 'Nunito',
-              fontSize: 18, fontWeight: FontWeight.w900,
-              color: LumoVisualTokens.white)),
+          const Text('Fächer',
+              style: TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 18,
+                  fontWeight: FontWeight.w900,
+                  color: LumoVisualTokens.white)),
           const SizedBox(height: 10),
           LayoutBuilder(builder: (context, constraints) {
-            final cols = constraints.maxWidth >= 740 && accessible <= 1.3
-                ? 4 : 2;
+            final cols =
+                constraints.maxWidth >= 740 && accessible <= 1.3 ? 4 : 2;
             final width = (constraints.maxWidth - (cols - 1) * 10) / cols;
             return Wrap(spacing: 10, runSpacing: 10, children: [
               for (final entry in _main)
@@ -199,9 +298,12 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
               initiallyExpanded: _expanded,
               onExpansionChanged: (v) => setState(() => _expanded = v),
               title: const Text('Weitere Lernbereiche',
-                  style: TextStyle(fontFamily: 'Nunito',
-                      fontWeight: FontWeight.w900, color: Colors.white)),
-              subtitle: const Text('Lesen, Schreiben, Logik, Musik, Kunst und Technik',
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      color: Colors.white)),
+              subtitle: const Text(
+                  'Lesen, Schreiben, Logik, Musik, Kunst und Technik',
                   style: TextStyle(color: Color(0xFFD4EAF5))),
               leading: const Icon(Icons.widgets_rounded,
                   color: LumoVisualTokens.cyanBright),
@@ -212,8 +314,10 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                     contentPadding: const EdgeInsets.symmetric(horizontal: 14),
                     leading: Icon(entry.icon, color: entry.accent),
                     title: Text(entry.name,
-                        style: const TextStyle(fontFamily: 'Nunito',
-                            color: Colors.white, fontWeight: FontWeight.w800)),
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            color: Colors.white,
+                            fontWeight: FontWeight.w800)),
                     subtitle: Text(entry.description,
                         style: const TextStyle(color: Color(0xFFD4EAF5))),
                     trailing: const Icon(Icons.chevron_right_rounded,
@@ -227,17 +331,20 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
         ] else ...[
           OutlinedButton.icon(
             key: const ValueKey('learning-back-to-subjects'),
-            onPressed: () => setState(() => _selected = null),
+            onPressed: _navigation.backToSubjects,
             icon: const Icon(Icons.arrow_back_rounded),
             label: const Text('Alle Fächer'),
             style: OutlinedButton.styleFrom(
-              foregroundColor: LumoVisualTokens.cyanBright,
-              minimumSize: const Size.fromHeight(52)),
+                foregroundColor: LumoVisualTokens.cyanBright,
+                minimumSize: const Size.fromHeight(52)),
           ),
           const SizedBox(height: 14),
-          Text('Themen · ${subject.name}', style: const TextStyle(
-            color: Colors.white, fontFamily: 'Nunito',
-            fontWeight: FontWeight.w900, fontSize: 18)),
+          Text('Themen · ${subject.name}',
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900,
+                  fontSize: 18)),
           const SizedBox(height: 10),
           if (units.isEmpty)
             const Padding(
@@ -264,8 +371,8 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
   }
 
   Widget _unitCard(_Subject subject, String unit) {
-    final (bright, deep) = _cardColors[subject.name] ??
-        (subject.accent, const Color(0xFF142E4F));
+    final (bright, deep) =
+        _cardColors[subject.name] ?? (subject.accent, const Color(0xFF142E4F));
     final record = _skillFor(subject.name, unit);
     final practiced = record != null && record.attempts > 0;
     final mastery = record?.mastery ?? 0;
@@ -308,23 +415,28 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                 ),
               ),
               const SizedBox(width: 14),
-              Expanded(child: Column(
+              Expanded(
+                  child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(title,
-                      style: const TextStyle(color: Colors.white,
+                      style: const TextStyle(
+                          color: Colors.white,
                           fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w800, fontSize: 15)),
+                          fontWeight: FontWeight.w800,
+                          fontSize: 15)),
                   const SizedBox(height: 3),
                   Text(status,
-                      key: ValueKey('learning-unit-progress-${subject.name}-$unit'),
+                      key: ValueKey(
+                          'learning-unit-progress-${subject.name}-$unit'),
                       style: TextStyle(
                           color: practiced
                               ? const Color(0xFFFFF3C4)
                               : const Color(0xFFB8CFE0),
                           fontFamily: 'Nunito',
-                          fontWeight: FontWeight.w700, fontSize: 12)),
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12)),
                   if (practiced) ...[
                     const SizedBox(height: 6),
                     ClipRRect(
@@ -350,13 +462,15 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
   }
 
   Widget _subjectCard(_Subject subject, int grade) {
-    final (bright, deep) = _cardColors[subject.name] ??
-        (subject.accent, const Color(0xFF142E4F));
+    final (bright, deep) =
+        _cardColors[subject.name] ?? (subject.accent, const Color(0xFF142E4F));
     final (practiced, total) = _topicProgress(subject.name, grade);
     final status = practiced == 0
         ? 'Noch nicht begonnen'
         : '$practiced von $total Themen geübt';
-    const shadow = [Shadow(color: Color(0x99000000), blurRadius: 4, offset: Offset(0, 1))];
+    const shadow = [
+      Shadow(color: Color(0x99000000), blurRadius: 4, offset: Offset(0, 1))
+    ];
     // One accessible button: name, description and real progress, one per
     // line like Flutter's own merged captions, with the card's tap action.
     return Semantics(
@@ -381,46 +495,66 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
               borderRadius: BorderRadius.circular(22),
               border: Border.all(color: Colors.white.withOpacity(.35)),
               boxShadow: [
-                BoxShadow(color: deep.withOpacity(.55), blurRadius: 14,
+                BoxShadow(
+                    color: deep.withOpacity(.55),
+                    blurRadius: 14,
                     offset: const Offset(0, 6)),
               ],
             ),
             child: Container(
               constraints: const BoxConstraints(minHeight: 150),
               padding: const EdgeInsets.all(12),
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min, children: [
-                Row(crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-                  Flexible(child: FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.topLeft,
-                    child: AcademySubjectArt(
-                      subjectName: subject.name,
-                      subjectId: 'hub-${subject.name}',
-                      accent: Colors.white,
-                    ),
-                  )),
-                  const SizedBox(width: 6),
-                  _TopicRing(practiced: practiced, total: total),
-                ]),
-                const SizedBox(height: 10),
-                Text(subject.name, maxLines: 2,
-                    style: const TextStyle(color: Colors.white,
-                        fontFamily: 'Nunito', fontSize: 17,
-                        fontWeight: FontWeight.w900, shadows: shadow)),
-                const SizedBox(height: 2),
-                Text(subject.description, maxLines: 2,
-                    style: const TextStyle(color: Colors.white,
-                        fontFamily: 'Nunito', fontSize: 12,
-                        fontWeight: FontWeight.w700, shadows: shadow)),
-                const SizedBox(height: 6),
-                Text(status, maxLines: 2,
-                    key: ValueKey('learning-subject-progress-${subject.name}'),
-                    style: const TextStyle(color: Color(0xFFFFF3C4),
-                        fontFamily: 'Nunito', fontSize: 12,
-                        fontWeight: FontWeight.w800, shadows: shadow)),
-              ]),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Flexible(
+                              child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.topLeft,
+                            child: AcademySubjectArt(
+                              subjectName: subject.name,
+                              subjectId: 'hub-${subject.name}',
+                              accent: Colors.white,
+                            ),
+                          )),
+                          const SizedBox(width: 6),
+                          _TopicRing(practiced: practiced, total: total),
+                        ]),
+                    const SizedBox(height: 10),
+                    Text(subject.name,
+                        maxLines: 2,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Nunito',
+                            fontSize: 17,
+                            fontWeight: FontWeight.w900,
+                            shadows: shadow)),
+                    const SizedBox(height: 2),
+                    Text(subject.description,
+                        maxLines: 2,
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Nunito',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            shadows: shadow)),
+                    const SizedBox(height: 6),
+                    Text(status,
+                        maxLines: 2,
+                        key: ValueKey(
+                            'learning-subject-progress-${subject.name}'),
+                        style: const TextStyle(
+                            color: Color(0xFFFFF3C4),
+                            fontFamily: 'Nunito',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w800,
+                            shadows: shadow)),
+                  ]),
             ),
           ),
         ),
@@ -459,11 +593,13 @@ class _TopicRing extends StatelessWidget {
             ),
           ),
           Text('${(value * 100).round()}%',
-              style: const TextStyle(color: Colors.white, fontFamily: 'Nunito',
-                  fontSize: 12, fontWeight: FontWeight.w900)),
+              style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontSize: 12,
+                  fontWeight: FontWeight.w900)),
         ]),
       ),
     );
   }
 }
-

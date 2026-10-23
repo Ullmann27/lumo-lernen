@@ -26,14 +26,15 @@ void main() {
       ));
       await tester.pump(const Duration(milliseconds: 150));
       final chooser = find.text('Alle Fächer direkt öffnen');
-      await tester.scrollUntilVisible(
-        chooser, -300, scrollable: find.byType(Scrollable).first);
+      await tester.scrollUntilVisible(chooser, 300,
+          scrollable: find.byType(Scrollable).first);
       await tester.ensureVisible(chooser);
       await tester.tap(chooser);
+      await tester.pump();
       await tester.pump(const Duration(milliseconds: 450));
       final island = find.byKey(const ValueKey('home-island-technik'));
-      await tester.scrollUntilVisible(
-        island, -360, scrollable: find.byType(Scrollable).first);
+      await tester.scrollUntilVisible(island, 360,
+          scrollable: find.byType(Scrollable).first);
       await tester.pump();
       expect(island, findsOneWidget);
       expect(find.byKey(const ValueKey('home-island-mathe')), findsOneWidget);
@@ -60,14 +61,15 @@ void main() {
     ));
     await tester.pump();
     final chooser = find.text('Alle Fächer direkt öffnen');
-    await tester.scrollUntilVisible(
-      chooser, -300, scrollable: find.byType(Scrollable).first);
+    await tester.scrollUntilVisible(chooser, 300,
+        scrollable: find.byType(Scrollable).first);
     await tester.ensureVisible(chooser);
     await tester.tap(chooser);
+    await tester.pump();
     await tester.pump(const Duration(milliseconds: 450));
     final music = find.byKey(const ValueKey('home-island-musik'));
-    await tester.scrollUntilVisible(
-      music, -260, scrollable: find.byType(Scrollable).first);
+    await tester.scrollUntilVisible(music, 260,
+        scrollable: find.byType(Scrollable).first);
     await tester.ensureVisible(music);
     await tester.pump(const Duration(milliseconds: 500));
     expect(music.hitTestable(), findsOneWidget);

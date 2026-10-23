@@ -34,18 +34,20 @@ void main() {
         home: LumoAkademieScreen(appState: app),
       ));
       await tester.pump(const Duration(milliseconds: 900));
-      await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-      await tester.pump(const Duration(milliseconds: 400));
       final gradeChip = find.byKey(ValueKey('grade-pill-${entry.grade}'));
       await tester.ensureVisible(gradeChip);
       await tester.tap(gradeChip);
       await tester.pump(const Duration(milliseconds: 400));
       expect(
-        find.text('${entry.grade}. Klasse – frei lernen'),
+        find.text('${entry.grade}. Klasse · frei lernen'),
         findsOneWidget,
       );
+      final subject = find.byKey(const ValueKey('learning-subject-Mathematik'));
+      await tester.ensureVisible(subject);
+      await tester.tap(subject);
+      await tester.pump();
       final button =
-          find.byKey(ValueKey('academy-grade-focus-${entry.subject}'));
+          find.byKey(ValueKey('learning-unit-Mathematik-${entry.unit}'));
       await tester.scrollUntilVisible(
         button,
         230,
@@ -57,44 +59,46 @@ void main() {
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 450));
       expect(find.byType(CrossGradePracticeScreen), findsOneWidget);
-      final practice =
-          tester.widget<CrossGradePracticeScreen>(
-              find.byType(CrossGradePracticeScreen));
+      final practice = tester.widget<CrossGradePracticeScreen>(
+          find.byType(CrossGradePracticeScreen));
       expect(practice.lessonGrade, entry.grade);
       expect(practice.subject, 'Mathematik');
       expect(practice.unit, entry.unit);
-      expect(find.byKey(const ValueKey('cross-grade-question')),
-          findsOneWidget);
-      expect(find.byKey(const ValueKey('cross-grade-choice-0')),
-          findsOneWidget);
+      expect(
+          find.byKey(const ValueKey('cross-grade-question')), findsOneWidget);
+      expect(
+          find.byKey(const ValueKey('cross-grade-choice-0')), findsOneWidget);
       // The outgoing Akademie route also contains profile-info text.
       // Identify the actual active cross-grade screen by its stable key.
       expect(find.byKey(const ValueKey('cross-grade-profile-info')),
           findsOneWidget);
       await tester.tap(find.byKey(const ValueKey('cross-grade-choice-0')));
       await tester.pump(const Duration(milliseconds: 160));
-      expect(find.byKey(const ValueKey('cross-grade-feedback')),
-          findsOneWidget);
+      expect(
+          find.byKey(const ValueKey('cross-grade-feedback')), findsOneWidget);
       // The first incorrect option is a hint, not a saved answer.
       // Choose a different enabled option to complete the second attempt.
-      if (find.byKey(const ValueKey('cross-grade-explanation'))
-          .evaluate().isEmpty) {
-        final alternative =
-            find.byKey(const ValueKey('cross-grade-choice-1'));
+      if (find
+          .byKey(const ValueKey('cross-grade-explanation'))
+          .evaluate()
+          .isEmpty) {
+        final alternative = find.byKey(const ValueKey('cross-grade-choice-1'));
         await tester.ensureVisible(alternative);
         await tester.tap(alternative);
         await tester.pump(const Duration(milliseconds: 220));
       }
       expect(find.byKey(const ValueKey('cross-grade-explanation')),
           findsOneWidget);
-      expect(find.byKey(const ValueKey('cross-grade-next')),
-          findsOneWidget);
+      expect(find.byKey(const ValueKey('cross-grade-next')), findsOneWidget);
       expect(app.state.grade, 2);
       expect(app.state.stars, initialStars);
       expect(app.state.xp, initialXp);
       final prefs = await SharedPreferences.getInstance();
-      expect(prefs.getKeys().where(
-          (key) => key.startsWith('cross_grade_practice_v1:')).isNotEmpty,
+      expect(
+          prefs
+              .getKeys()
+              .where((key) => key.startsWith('cross_grade_practice_v1:'))
+              .isNotEmpty,
           isTrue);
       await tester.pumpWidget(const SizedBox.shrink());
       app.dispose();

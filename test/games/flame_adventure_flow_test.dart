@@ -57,6 +57,10 @@ Future<LumoFlameJumpGame> _menuAndCollect(
   await tester.pump();
   expect(extras.hitTestable(), findsOneWidget);
   await tester.tap(extras);
+  // Start ExpansionTile's ticker before advancing its animation. The first
+  // frame after the tap establishes the ticker epoch; a long first pump alone
+  // still leaves its children clipped at the collapsed height.
+  await tester.pump();
   await tester.pump(const Duration(milliseconds: 450));
   // The real 2D adventure is now first in the expanded extra modes.
   // Do not use scrollUntilVisible here: with an animated ExpansionTile

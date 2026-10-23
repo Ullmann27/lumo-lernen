@@ -45,6 +45,17 @@ Future<bool> launchLumo3D(
         (MediaQuery.maybeOf(context)?.disableAnimations ?? false),
   );
   try {
+    await appState?.ensureSettingsLoaded();
+    if (appState?.state.settings.requireDailyMissionForGames == true) {
+      await appState!.loadDailyMission();
+      if (!appState.canPlayToday) {
+        if (context.mounted) {
+          _showLaunchMessage(context,
+              'Deine Tagesmission wartet auf dich. Hilfen und Pausen sind erlaubt.');
+        }
+        return false;
+      }
+    }
     try {
       await appState?.flushRewards();
     } catch (_) {
@@ -86,6 +97,7 @@ Future<bool> launchLumo3D(
         (originRoute != null && !originRoute.isCurrent)) {
       return false;
     }
+    if (appState != null && !appState.canPlayToday) return false;
     entry?.setPhase(LumoGameEntryPhase.opening);
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
@@ -115,7 +127,7 @@ Future<bool> launchLumo3D(
         context,
         error.code == 'game_running'
             ? 'Ein Spiel ist bereits geöffnet oder wird gerade beendet. '
-                  'Bitte versuche es nach der Rückkehr erneut.'
+                'Bitte versuche es nach der Rückkehr erneut.'
             : 'Das Spiel konnte nicht starten. Bitte versuche es erneut.',
       );
     }
@@ -151,8 +163,9 @@ Future<String> _childSaveKey(LumoAppState? appState) async {
   var salt = preferences.getString(key);
   if (salt == null) {
     final random = Random.secure();
-    salt = List.generate(24, (_) => random.nextInt(256)
-        .toRadixString(16).padLeft(2, '0')).join();
+    salt = List.generate(
+            24, (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'))
+        .join();
     if (!await preferences.setString(key, salt)) {
       throw StateError('Save identity could not be persisted');
     }

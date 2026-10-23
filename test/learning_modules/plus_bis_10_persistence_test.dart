@@ -43,11 +43,6 @@ class _BlockedProgress extends ProgressRepository {
   }
 }
 
-/// Bild 03 zeigt nur „Lernen“; der Bereichsname bleibt für Vorlesen und die
-/// Android-Prüfung als Semantik-Beschriftung erhalten.
-final _akademieCaption = find.byWidgetPredicate(
-    (widget) => widget is Semantics && widget.properties.label == 'LUMO AKADEMIE');
-
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
   // _open creates cached storage Futures in runAsync. Let that event loop
   // complete its awaits between the unchanged fake UI/feedback frames.
@@ -65,44 +60,32 @@ Future<void> _open(WidgetTester tester, LumoAppState app) async {
   });
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
   await _frames(tester);
-  await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
-  await _frames(tester);
-  expect(_akademieCaption, findsOneWidget);
-  expect(find.text('Lernen'), findsOneWidget);
-  expect(find.text('Heute lernen. Morgen mehr können!'), findsOneWidget);
-  expect(find.text('Deine Ziele'), findsOneWidget);
-  expect(find.text('0 von 3 Aufgaben geschafft'), findsOneWidget);
-  await tester.ensureVisible(find.text('1. Klasse'));
+  expect(find.text('Was möchtest du lernen?'), findsOneWidget);
+  expect(find.text('1. Klasse · aus deinem Profil'), findsOneWidget);
+  for (final subject in [
+    'Mathematik',
+    'Deutsch',
+    'Englisch',
+    'Sachunterricht'
+  ]) {
+    expect(find.byKey(ValueKey('learning-subject-$subject')), findsOneWidget);
+  }
+  expect(find.text('Deine Ziele'), findsNothing,
+      reason: 'The removed Academy dashboard must not precede real topics.');
+  final grade = find.byKey(const ValueKey('grade-pill-1'));
+  await tester.ensureVisible(grade);
+  await tester.tap(grade);
   await tester.pump();
-  await tester.tap(find.text('1. Klasse'));
+  final math = find.byKey(const ValueKey('learning-subject-Mathematik'));
+  await tester.ensureVisible(math);
+  await tester.tap(math);
   await tester.pump();
-  // These area cards live in a lazily built sliver below the header. Tests
-  // must navigate to them exactly as a child does, not assume they already
-  // exist at the top of a 480dp-high viewport.
-  final mathArea = find.byKey(const ValueKey('learning-area-mathe'));
-  await tester.scrollUntilVisible(
-    mathArea, 180,
-    scrollable: find.byType(Scrollable).first,
-    maxScrolls: 35,
-  );
+  final topic =
+      find.byKey(const ValueKey('learning-unit-Mathematik-Plus bis 10'));
+  await tester.scrollUntilVisible(topic, 180,
+      scrollable: find.byType(Scrollable).first, maxScrolls: 35);
   await tester.pump();
-  expect(find.text('Mathe'), findsOneWidget);
-  expect(find.text('Deutsch'), findsOneWidget);
-  expect(find.text('Lesen'), findsOneWidget);
-  expect(find.text('Schreiben'), findsOneWidget);
-  expect(find.text('Englisch'), findsOneWidget);
-  expect(find.text('Sachunterricht'), findsOneWidget);
-  await tester.tap(mathArea);
-  await tester.pump();
-  // Die Themenkarten werden in einem Lazy-Sliver erst beim Scrollen gebaut.
-  // Wie ein Kind die Akademie wirklich benutzt: bis zum Thema scrollen.
-  await tester.scrollUntilVisible(
-    find.text('Plus bis 10'),
-    220,
-    scrollable: find.byType(Scrollable).first,
-  );
-  await tester.pump();
-  await tester.tap(find.text('Plus bis 10'));
+  await tester.tap(topic);
   await _frames(tester);
   expect(find.byType(PlusBis10Screen), findsOneWidget);
   expect(find.text('Mathe-Abenteuer'), findsOneWidget);
@@ -205,7 +188,8 @@ void main() {
     expect(app.learningDailyDone(), 0);
     await _tap(tester, wrong);
     expect(_prompt(tester), prompt);
-    expect(find.byKey(const ValueKey('plus10-actual-companion-hint')), findsNothing);
+    expect(find.byKey(const ValueKey('plus10-actual-companion-hint')),
+        findsNothing);
     await tester.ensureVisible(find.text('Tipp'));
     await tester.tap(find.text('Tipp'));
     await _frames(tester, 10);
@@ -216,9 +200,11 @@ void main() {
     await tester.binding.handlePopRoute();
     await _frames(tester);
     expect(find.byType(PlusBis10Screen), findsNothing);
-    await tester.drag(find.byType(CustomScrollView), const Offset(0, 2000));
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, 2000));
     await _frames(tester);
-    expect(_akademieCaption, findsOneWidget);
+    expect(find.byType(LumoAkademieScreen), findsOneWidget);
+    expect(find.byKey(const ValueKey('learning-unit-Mathematik-Plus bis 10')),
+        findsOneWidget);
     await _assertStored(tester,
         correct: 1, wrong: 2, hints: 1, stars: 1, xp: 5);
     await _dispose(tester, app);

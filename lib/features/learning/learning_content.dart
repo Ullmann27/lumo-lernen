@@ -1060,6 +1060,7 @@ class _LearningContentState extends State<LearningContent> {
     if (correct) {
       widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: true, hintUsed: hintUsed,
+        taskId: _taskInstance.taskInstanceId,
         prompt: _task.prompt, given: '$answerGiven', expected: '${_taskInstance.correctAnswer}', durationMs: responseTimeMs,
       );
       LumoVoice.instance.speak(feedback.spokenText);
@@ -1072,6 +1073,7 @@ class _LearningContentState extends State<LearningContent> {
         widget.appState.addXp(rewardDelta.xp);
       }
       widget.appState.recordLearningAnswer(subject: _task.subject, unit: _task.unit, correct: false, hintUsed: hintUsed,
+        taskId: _taskInstance.taskInstanceId,
         prompt: _task.prompt, given: '$answerGiven', expected: '${_taskInstance.correctAnswer}', durationMs: responseTimeMs,
       );
       LumoVoice.instance.speak(feedback.spokenText);

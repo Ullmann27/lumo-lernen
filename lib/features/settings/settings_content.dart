@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -126,6 +127,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
   }
 
   Future<void> _save(AppSettings next) async {
+    if (_saving) return;
     setState(() {
       _settings = next;
       _saving = true;
@@ -142,6 +144,30 @@ class _SettingsContentState extends State<_SettingsContentBody> {
     );
     await SettingsRepository.save(next);
     if (mounted) setState(() => _saving = false);
+  }
+
+  Future<void> _saveMissionSettings(AppSettings next) async {
+    if (_saving) return;
+    setState(() => _saving = true);
+    try {
+      await SettingsRepository.save(next);
+      widget.appState.updateSettings(next);
+      if (mounted) setState(() => _settings = next);
+    } catch (_) {
+      // A rejected platform write may still have changed the plugin cache.
+      // Keep the previous effective parent choice until durable saving works.
+      try {
+        await (await SharedPreferences.getInstance()).reload();
+      } catch (_) {}
+      if (mounted) {
+        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Text('Die Einstellung konnte nicht gespeichert werden. '
+              'Bitte versuche es erneut.'),
+        ));
+      }
+    } finally {
+      if (mounted) setState(() => _saving = false);
+    }
   }
 
   Future<void> _resetSettings() async {
@@ -429,7 +455,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
       scene: LumoScene.profile,
       dimmed: true,
       showPlaceholderLabel: false,
-      child: SingleChildScrollView(
+      child: AbsorbPointer(absorbing: _saving, child: SingleChildScrollView(
       padding: EdgeInsets.all(MediaQuery.sizeOf(context).width < 600 ? 14 : 24),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         _Header(
@@ -553,6 +579,29 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         ),
         const SizedBox(height: 18),
         _SettingsCard(title: 'Lernen', children: [
+          _SwitchRow(
+            title: 'Tagesmission vor dem Spielen',
+            subtitle: 'Optional: Erst die drei Lernstationen abschließen. '
+                'Auch richtig gelöste Aufgaben mit Hilfe zählen.',
+            value: _settings.requireDailyMissionForGames,
+            onChanged: (value) => _saveMissionSettings(
+                _settings.copyWith(requireDailyMissionForGames: value)),
+          ),
+          const SizedBox(height: 10),
+          const Text('Aufgaben je Station (ab der nächsten Tagesmission)'),
+          Wrap(
+            spacing: 8,
+            children: [
+              for (final count in const [2, 4, 6])
+                ChoiceChip(
+                  label: Text('$count'),
+                  selected: _settings.missionTasksPerStation == count,
+                  onSelected: _saving ? null : (_) => _saveMissionSettings(
+                      _settings.copyWith(missionTasksPerStation: count)),
+                ),
+            ],
+          ),
+          const SizedBox(height: 12),
           _DailyGoalSelector(value: _settings.dailyGoal, onChanged: (v) => _save(_settings.copyWith(dailyGoal: v)),
                 ),
           const SizedBox(height: 12),
@@ -748,7 +797,7 @@ class _SettingsContentState extends State<_SettingsContentBody> {
         const _ErrorLogCard(),
       ],
         ),
-      ), // close SingleChildScrollView
+      )), // close SingleChildScrollView and pending-save input lock
     ); // close night scene
   }
 }
