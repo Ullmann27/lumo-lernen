@@ -31,15 +31,29 @@ void main() {
       await tester.ensureVisible(chooser);
       await tester.tap(chooser);
       await tester.pump(const Duration(milliseconds: 450));
+      // ExpansionTile builds all nine real islands. Verify the complete
+      // catalogue before scrolling; forcing a fixed -360px delta on a
+      // tall 320dp column can recycle its containing sliver.
+      for (final key in const [
+        'home-island-mathe',
+        'home-island-deutsch',
+        'home-island-lesen',
+        'home-island-schreiben',
+        'home-island-englisch',
+        'home-island-sachkunde',
+        'home-island-musik',
+        'home-island-kunst',
+        'home-island-technik',
+        'home-logic-shortcut',
+      ]) {
+        expect(find.byKey(ValueKey(key)), findsOneWidget,
+            reason: 'Missing genuine subject route $key at width $width');
+      }
+      // The last island must also become actually tappable on a narrow Fold.
       final island = find.byKey(const ValueKey('home-island-technik'));
-      await tester.scrollUntilVisible(
-        island, -360, scrollable: find.byType(Scrollable).first);
+      await tester.ensureVisible(island);
       await tester.pump();
-      expect(island, findsOneWidget);
-      expect(find.byKey(const ValueKey('home-island-mathe')), findsOneWidget);
-      expect(find.byKey(const ValueKey('home-island-musik')), findsOneWidget);
-      expect(find.byKey(const ValueKey('home-island-kunst')), findsOneWidget);
-      expect(find.byKey(const ValueKey('home-logic-shortcut')), findsOneWidget);
+      expect(island.hitTestable(), findsOneWidget);
       expect(tester.takeException(), isNull,
           reason: 'No overflow or missing island at width $width');
       await tester.pumpWidget(const SizedBox.shrink());
