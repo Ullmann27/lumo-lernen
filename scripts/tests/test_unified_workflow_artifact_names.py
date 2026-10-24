@@ -13,9 +13,10 @@ WORKFLOW = ROOT / ".github" / "workflows" / "lumo-unified-integration-2026.yml"
 class UnifiedArtifactNamingTests(unittest.TestCase):
     def test_generic_name_is_identical_for_arm64_upload_and_release_download(self):
         source = WORKFLOW.read_text(encoding="utf-8")
-        # One upload; two legacy, NextGen, 1997 and new 1998 release
-        # consumers. Every publisher must use the exact same verified APK.
-        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 6)
+        # One upload plus the preserved historical release consumers and
+        # the additional independent 1999 consumer. All seven paths must use
+        # the identical post-build verified APK artifact without rebuilding.
+        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 7)
         self.assertIn("publish-nextgen-20261021:", source)
         self.assertIn("head.ref == 'chatgpt/lumo-crystal-depth-integration-20261021'", source)
         self.assertEqual(source.count("name: lumo-unified-android-tour"), 1)
@@ -57,6 +58,29 @@ class UnifiedArtifactNamingTests(unittest.TestCase):
         self.assertIn("if gh release view \"$tag\"", section)
         self.assertIn("Lumo-Lernen-0.12.86-1998-ARM64.apk", section)
         self.assertIn("--target \"$SOURCE_SHA\"", section)
+
+    def test_1999_update_requires_identical_1997_identity_and_emulator(self):
+        source = WORKFLOW.read_text(encoding="utf-8")
+        self.assertIn("  publish-0-12-87-1999:", source)
+        section = source.split("  publish-0-12-87-1999:", 1)[1]
+        self.assertIn("needs: [verify-and-build, android-tour]", section)
+        self.assertIn("head.ref == 'release/lumo-nextgen-1999-integrated-20261024'", section)
+        self.assertIn("head.repo.full_name == github.repository", section)
+        self.assertIn("name: lumo-unified-arm64-verified", section)
+        self.assertIn("sha256sum -c dist/APK-SHA256.txt", section)
+        self.assertIn("version: 0.12.87+1999", section)
+        self.assertIn("versionCode'] == 1999", section)
+        self.assertIn("versionName'] == '0.12.87'", section)
+        self.assertIn("4d0fd40fdf188be6ca86057596c7b51f41701fa3", section)
+        self.assertIn("dev.ullmann.lumo.lumo_lernen.coachpreview", section)
+        self.assertIn(
+            "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+            section,
+        )
+        self.assertIn('tag="lumo-0.12.87-1999"', section)
+        self.assertIn("Existing version must remain immutable", section)
+        self.assertIn("Lumo-Lernen-0.12.87-1999-ARM64.apk", section)
+        self.assertIn('--target "$SOURCE_SHA"', section)
 
     def test_1989_test_release_is_gated_by_real_android_tour(self):
         source = WORKFLOW.read_text(encoding="utf-8")
