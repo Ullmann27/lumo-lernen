@@ -28,6 +28,7 @@ import '../magic_hub/lumo_magic_hub_screen.dart';
 import '../photo_lesson/lumo_photo_lesson_screen.dart';
 import '../reading/lumo_reading_buddy_screen.dart';
 import '../rewards/achievements_wall_screen.dart';
+import '../quiz/quiz_show_content.dart';
 import '../story/lumo_quest_hub_screen.dart';
 import '../story/lumo_story_library_screen.dart';
 
@@ -513,7 +514,7 @@ class HomeContent extends StatelessWidget {
                             'Wer wird Lumo-Meister?',
                             '20 Fragen · Joker · bis 5.000 Sterne',
                             Icons.emoji_events_rounded,
-                            () => onSection(LumoSection.games)),
+                            () => _open(context, QuizShowContent(appState: appState))),
                         _extra(
                             'Lumo Kart',
                             'In der Spieleauswahl starten',
