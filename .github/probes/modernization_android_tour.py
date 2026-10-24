@@ -720,7 +720,10 @@ def main() -> int:
         if json.loads(prefs_before.get(evidence.PROFILE_KEY, '{}')).get('name') != 'LumoTest':
             raise RuntimeError('The onboarded child profile LumoTest is not stored')
 
-        kart = try_tap(out, ['Losfahren', 'Rennen starten'], 'open-kart')
+        kart = try_tap(out, [
+            'Lumo Kart. Fahre mit Lumo um die Wette! Spielen',
+            'Losfahren', 'Rennen starten',
+        ], 'open-kart')
         race_started = False
         race_launch = None
         if kart is not None:
