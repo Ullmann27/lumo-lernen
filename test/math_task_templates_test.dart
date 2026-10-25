@@ -11,6 +11,49 @@ void main() {
       expect(MathTaskTemplates.templatesForGrade(4), hasLength(greaterThanOrEqualTo(30)));
     });
 
+    test('plus and minus mix in correct missing-number tasks', () {
+      // Not always the same "a + b = ?" with other numbers: about every
+      // fourth task asks for the missing number, e.g. "7 + ? = 12".
+      final arithmetic = MathTaskTemplates.templates.where((template) =>
+          template.kind == MathTemplateKind.addition ||
+          template.kind == MathTemplateKind.subtraction);
+      expect(arithmetic, isNotEmpty);
+      for (final template in arithmetic) {
+        final plus = template.kind == MathTemplateKind.addition;
+        final limit = int.tryParse(
+            RegExp(r'bis (\d+)').firstMatch(template.unit)?.group(1) ?? '');
+        var classic = 0;
+        var missing = 0;
+        for (var seed = 0; seed < 200; seed++) {
+          final task = template.concretize(seed);
+          expect(task.choices, contains(task.answer), reason: task.prompt);
+          final numbers = RegExp(r'\d+')
+              .allMatches(task.prompt)
+              .map((match) => int.parse(match.group(0)!))
+              .toList();
+          final answer = int.parse(task.answer);
+          if (limit != null) {
+            for (final value in [...numbers, answer]) {
+              expect(value, inInclusiveRange(0, limit), reason: task.prompt);
+            }
+          }
+          if (task.prompt.contains('?') && task.prompt.endsWith('= ?')) {
+            classic++;
+            expect(answer, plus ? numbers[0] + numbers[1] : numbers[0] - numbers[1],
+                reason: task.prompt);
+          } else {
+            missing++;
+            expect(task.prompt, matches(plus ? r'^\d+ \+ \? = \d+$' : r'^\d+ - \? = \d+$'));
+            expect(plus ? numbers[0] + answer : numbers[0] - answer, numbers[1],
+                reason: task.prompt);
+            expect(task.visual, 'missing_number', reason: 'no a+b picture');
+          }
+        }
+        expect(missing, inInclusiveRange(25, 80), reason: template.id);
+        expect(classic, greaterThan(missing), reason: template.id);
+      }
+    });
+
     test('parameter ranges provide more than 30 combinations', () {
       for (final template in MathTaskTemplates.templates) {
         // shapeTrace ist Form-Nachzeichnen (Demo+Trace, kein Multiple-Choice),
