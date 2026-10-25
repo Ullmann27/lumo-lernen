@@ -172,6 +172,18 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
             module.verify(pubspec(9999), config(new))
 
+    def test_1998_spielwelt_ui_preserves_1997_native_kart(self):
+        previous = module.APPROVED[1997]
+        current = module.APPROVED[1998]
+        self.assertEqual(previous, "3a3142608f6b150ee251373ba81e6face2eed4b3")
+        self.assertEqual(current, previous)
+        self.assertEqual(module.verify(pubspec(1997), config(previous)), (1997, previous))
+        self.assertEqual(module.verify(pubspec(1998), config(current)), (1998, current))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1998), config(module.APPROVED[1996]))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(1999), config(current))
+
     def test_preserved_release_1950_to_1952_requires_original_source(self):
         for number in (1950, 1951, 1952):
             with self.subTest(number=number):

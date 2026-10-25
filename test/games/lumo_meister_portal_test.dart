@@ -41,7 +41,7 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 100));
 
-    final portal = find.byKey(const ValueKey('games-lumo-meister-portal'));
+    final portal = find.byKey(const ValueKey('spielwelt-portal-quizShow'));
     if (portal.evaluate().isEmpty) {
       await tester.scrollUntilVisible(
         portal,
@@ -51,7 +51,7 @@ void main() {
     }
 
     expect(portal, findsOneWidget);
-    expect(find.text('Wer wird Lumo-Meister?'), findsOneWidget);
+    expect(find.text('Wer wird\nLumo-Meister?'), findsOneWidget);
     expect(find.text('20 Fragen · 3 Joker · bis 5.000 Sterne'), findsOneWidget);
 
     await tester.tap(portal);
