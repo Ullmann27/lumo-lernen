@@ -132,6 +132,12 @@ void main() {
         final a = int.parse(math[1]!), b = int.parse(math[3]!);
         return '${math[2] == '+' ? a + b : a - b}';
       }
+      final missing =
+          RegExp(r'^(\d+)\s*([+−-])\s*\?\s*=\s*(\d+)$').firstMatch(prompt);
+      if (missing != null) {
+        final a = int.parse(missing[1]!), result = int.parse(missing[3]!);
+        return '${missing[2] == '+' ? result - a : a - result}';
+      }
       final line = RegExp(r'^Welche Zahl fehlt\? (\d+), (\d+), _, (\d+)$')
           .firstMatch(prompt);
       if (line != null) return '${int.parse(line[2]!) + 1}';
