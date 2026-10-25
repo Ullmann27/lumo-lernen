@@ -1,0 +1,122 @@
+name: Lumo 1999 actual 1997 update and offline native tour
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-1999-update-gate.yml'
+      - '.github/probes/candidate_update_android_probe.py'
+      - 'tools/android_qa/update_preservation.py'
+      - 'tools/android_qa/tests/test_update_preservation.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-1999-update-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  update-and-tour:
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify the immutable candidate and baseline workflow identities
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p update-proof
+          gh api repos/Ullmann27/lumo-lernen/actions/runs/40096024152 > update-proof/candidate-run.json
+          gh api repos/Ullmann27/lumo-lernen/actions/runs/39755153883 > update-proof/baseline-run.json
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for name, sha in [('candidate', 'c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf'),
+                            ('baseline', '136f486ac3bdc4aabbd3b990e6629d2d6640c7d4')]:
+              data = json.loads(Path(f'update-proof/{name}-run.json').read_text())
+              assert data['head_sha'] == sha
+              assert data['status'] == 'completed' and data['conclusion'] == 'success'
+              assert data['repository']['full_name'] == 'Ullmann27/lumo-lernen'
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: candidate/dist/
+          run-id: 40096024152
+          github-token: ${{ github.token }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: baseline/dist/
+          run-id: 39755153883
+          github-token: ${{ github.token }}
+      - name: Install independent live UI and image readers
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .update-python
+          .update-python/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_kart_tour_evidence.py -v
+          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_modernization_tour_identity.py -v
+      - name: Independently verify both candidate ABIs and baseline signature
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py candidate/dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > update-proof/arm64-verification.json
+          python3 scripts/verify_unified_apk.py candidate/dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > update-proof/x86-verification.json
+          python3 scripts/verify_android_apk.py baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/baseline-signature.txt
+          sha256sum candidate/dist/Lumo-Lernen-Neu.apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > update-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > update-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 1
+          done
+          grep -i 'OpenGL renderer string' update-proof/mesa-renderer.txt
+      - name: Actual 1997 learning, in-place update, offline Kart and preserved progress
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .update-python/bin/python .github/probes/candidate_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out update-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1999-actual-update-proof
+          path: update-proof/
+          if-no-files-found: error
+          retention-days: 90
