@@ -25,7 +25,7 @@ Wer direkt auf diesem Branch weiterarbeiten darf, pusht normal (kein Force-Push)
   - Integrationsstand `origin/chatgpt/lumo-crystal-depth-integration-20261021` @ `9fae296a72211fc3843697932414d5119cfd51be` (0.12.84+1996), Merge `ab085e13`
   - PR #402 `review/render-first-portable-build-20261022` @ `ed0491c8`, Merge `c09334d943a2a89ccd9d77f1c15f3850d1cd41c4`
 - Godot-Pin: `Ullmann27/lumo-godot` @ `3a3142608f6b150ee251373ba81e6face2eed4b3` (Branch `claude/kart-landing-landscape-fit-20261022`, Engine 4.6.3), ab Version 0.12.85+1997. Vorher `700baf49`.
-- Weiterer Godot-Branch, noch nicht im Pin: `claude/kart-rival-race-craft-20261022` (Gegner-Rennverhalten, siehe Punkt 7).
+- Weiterer Godot-Branch, noch nicht im Pin: `claude/kart-rival-race-craft-20261022` @ `66b280a45f11c0be6e44e49a315be3f56898c1b4` (Gegner-Rennverhalten, siehe Punkt 7; dort `tools/validate_project.sh` Exit 0, 15/15, in diesem Container).
 - Letzter Code-Commit vor dieser Aktualisierung: `41e751a5` (Tour-START-Erkennung). Der Commit, der diese Fassung enthält, folgt direkt darauf; `git log -1` nennt den vollständigen SHA.
 
 ## 2. Abgeschlossene Änderungen
@@ -89,7 +89,7 @@ Wer direkt auf diesem Branch weiterarbeiten darf, pusht normal (kein Force-Push)
 | Tour-START-Erkennung auf echten Godot-Renderings (1280×720, 2400×1080) und echter API-35-Garage | dieser Container, tesseract | gefunden bzw. korrekt abgelehnt; Test scheitert auf altem Tour-Code; Android-QA 650 OK |
 | Lauf 39751337580 auf `50741c69` (0.12.85+1997) | GitHub Actions | **rot** in „Verify all build and preservation contracts“: `test_unified_workflow_artifact_names` erwartete 4 statt 5 Artefakt-Downloads |
 | Lauf 39755153883 auf `136f486a` (Heinz' Testkorrektur) | GitHub Actions | **grün**: Build, volle Flutter-Suite, Verträge, APK-Verifikation, x86_64-Emulator-Tour mit Rennen, danach Veröffentlichung von Release `lumo-0.12.85-1997` |
-| Mathe „Was fehlt?“ (Folge-Commit auf `136f486a`) | dieser Container, Flutter 3.44.9 | Verträge 199 OK, Android-QA 650 OK, Capture-Fonts OK, `flutter analyze` 0 Fehler, Flutter **1829 bestanden / 161 übersprungen / 0 fehlgeschlagen**, Mathe-Tests 19 OK, Content-Audit PASS (40.991). **Nicht in Release 1997** (braucht eine neue Build-Nummer) |
+| Mathe „Was fehlt?“ (Folge-Commit auf `136f486a`) | dieser Container, Flutter 3.44.9 | Verträge 199 OK, Android-QA 650 OK, Capture-Fonts OK, `flutter analyze` 0 Fehler, Flutter **1829 bestanden / 161 übersprungen / 0 fehlgeschlagen**, alle vier Mathe-Testdateien 23 OK (davon 9 in `math_task_templates_test.dart`), Content-Audit PASS (40.991). **Nicht in Release 1997** (braucht eine neue Build-Nummer) |
 | Godot `kart_reference_landing_fit_regression.gd` (3a31426) | dieser Container | vorher 20 Fehler, nachher PASS auf 4 Android-Größen |
 | Godot-Rennsimulation `kart_rival_race_simulation.gd` (Gegner-Branch) | dieser Container | PASS: Abenteuer vorher Platz 1 mit 477 m Vorsprung und 5,6 % der Zeit in Reichweite; nachher Platz 2, 100 % in Reichweite, 15 Führungswechsel; Profi Platz 2; Entdecken bleibt gewinnbar |
 
