@@ -1,7 +1,7 @@
 # Lumo – Entwicklungsübergabe (laufend aktualisiert)
 
-Stand: 22.10.2026, Claude (Opus 5.5) · Auftrag: PROMPTRIX Lumo-Master-Entwicklungsauftrag
-Priorität 1 (GitHub-Actions-unabhängige Android-Buildkette) und erster Schritt Priorität 2.
+Stand: 25.10.2026, Claude (Opus 5.5) · Auftrag: PROMPTRIX Master Execution vom 22.10.2026
+Heinz hat die Arbeit am 23.10. mit „Stop“ angehalten. Danach wurden nur noch die offenen Stände getestet, committet und gepusht, damit jede KI übernehmen kann.
 
 ## 0. Übernahme durch eine andere KI (ChatGPT, Codex, neue Opus-Sitzung)
 
@@ -24,7 +24,8 @@ Wer direkt auf diesem Branch weiterarbeiten darf, pusht normal (kein Force-Push)
 - Basis:
   - Integrationsstand `origin/chatgpt/lumo-crystal-depth-integration-20261021` @ `9fae296a72211fc3843697932414d5119cfd51be` (0.12.84+1996), Merge `ab085e13`
   - PR #402 `review/render-first-portable-build-20261022` @ `ed0491c8`, Merge `c09334d943a2a89ccd9d77f1c15f3850d1cd41c4`
-- Godot-Pin (unverändert): `Ullmann27/lumo-godot` @ `700baf49828eda693ecce15b415847818b1b56d3`, Engine 4.6.3
+- Godot-Pin: `Ullmann27/lumo-godot` @ `3a3142608f6b150ee251373ba81e6face2eed4b3` (Branch `claude/kart-landing-landscape-fit-20261022`, Engine 4.6.3), ab Version 0.12.85+1997. Vorher `700baf49`.
+- Weiterer Godot-Branch, noch nicht im Pin: `claude/kart-rival-race-craft-20261022` (Gegner-Rennverhalten, siehe Punkt 7).
 - Letzter Code-Commit vor dieser Aktualisierung: `41e751a5` (Tour-START-Erkennung). Der Commit, der diese Fassung enthält, folgt direkt darauf; `git log -1` nennt den vollständigen SHA.
 
 ## 2. Abgeschlossene Änderungen
@@ -86,6 +87,11 @@ Wer direkt auf diesem Branch weiterarbeiten darf, pusht normal (kein Force-Push)
 | Volle Flutter-Suite mit neuer Fächerauswahl | dieser Container | **1828 bestanden / 161 übersprungen / 0 fehlgeschlagen** |
 | `learning_hub_progress_test`, Akademie-/Sachunterricht-/Story-Navigation | dieser Container | grün |
 | Tour-START-Erkennung auf echten Godot-Renderings (1280×720, 2400×1080) und echter API-35-Garage | dieser Container, tesseract | gefunden bzw. korrekt abgelehnt; Test scheitert auf altem Tour-Code; Android-QA 650 OK |
+| Lauf 39751337580 auf `50741c69` (0.12.85+1997) | GitHub Actions | **rot** in „Verify all build and preservation contracts“: `test_unified_workflow_artifact_names` erwartete 4 statt 5 Artefakt-Downloads |
+| Lauf 39755153883 auf `136f486a` (Heinz' Testkorrektur) | GitHub Actions | **grün**: Build, volle Flutter-Suite, Verträge, APK-Verifikation, x86_64-Emulator-Tour mit Rennen, danach Veröffentlichung von Release `lumo-0.12.85-1997` |
+| Mathe „Was fehlt?“ (Folge-Commit auf `136f486a`) | dieser Container, Flutter 3.44.9 | Verträge 199 OK, Android-QA 650 OK, Capture-Fonts OK, `flutter analyze` 0 Fehler, Flutter **1829 bestanden / 161 übersprungen / 0 fehlgeschlagen**, Mathe-Tests 19 OK, Content-Audit PASS (40.991). **Nicht in Release 1997** (braucht eine neue Build-Nummer) |
+| Godot `kart_reference_landing_fit_regression.gd` (3a31426) | dieser Container | vorher 20 Fehler, nachher PASS auf 4 Android-Größen |
+| Godot-Rennsimulation `kart_rival_race_simulation.gd` (Gegner-Branch) | dieser Container | PASS: Abenteuer vorher Platz 1 mit 477 m Vorsprung und 5,6 % der Zeit in Reichweite; nachher Platz 2, 100 % in Reichweite, 15 Führungswechsel; Profi Platz 2; Entdecken bleibt gewinnbar |
 
 **Nicht getestet:**
 - `preview-apk`, also APK-Build, Signatur und Paket-ID: `dl.google.com` ist hier gesperrt.
@@ -101,7 +107,7 @@ Wer direkt auf diesem Branch weiterarbeiten darf, pusht normal (kein Force-Push)
 
 ## 6. APK-Artefakte und Nachweis
 
-Aus dieser Umgebung wurde **keine** APK erzeugt.
+Aus dieser Umgebung wurde **keine** APK erzeugt. Die veröffentlichte APK 0.12.85+1997 stammt aus GitHub Actions (Lauf 39755153883, Daten in Punkt 8).
 
 GitHub-Actions-APK (nicht von mir lokal geprüft): Lauf 39720099333 auf `750d790a`, Artefakt mit x86_64-APK SHA-256 `58eb1a64e62c71853bbd0d87ae86194cdb62562f9473d826e22965264edcd987`. Die APK-Identität wurde dort im Emulator bestätigt; ein vollständiger Gerätetest inklusive Rennen fehlt noch.
 
@@ -129,20 +135,21 @@ Ergebnis:
   - Weg, die APK herauszubringen (Token = sicherheitsrelevant)
   - Emulatortests sind dort nicht möglich
 - 14 Dateien in `lib/` sind von `main.dart` aus nicht erreichbar (CLAUDE.md-Regel 8), noch nicht bereinigt.
-- Lumo Kart: Wunsch „Gegner schwieriger, jeder will Erster werden, realistisch aussehende Fahrer“ ist **noch nicht umgesetzt** (Priorität 3).
+- Lumo Kart, Gegner: erster Schritt auf Godot-Branch `claude/kart-rival-race-craft-20261022` (Kurven, Überholen, Windschatten, Aufschließen, nie schneller als das Kind ohne Boost; Rennsimulation `scripts/tests/kart_rival_race_simulation.gd`). **Noch nicht im Pin** und nicht im APK. Heinz' weitergehender Wunsch (jeder Gegner gleich stark wie das Kind, Vorsprung nur durch Auto-Verbesserungen, Strecke mit Brücken, Schanzen, Hindernissen, Landschaft, Items wie Turbo/Abschießen) ist offen.
 - Godot-PCK ist nicht byte-reproduzierbar.
-- **Kart-Hauptmenü (Godot 700baf49), Befunde aus echten Renderings:**
-  - Im Querformat zeigen die unteren drei Kacheln (Sonnenhafen, Garage, Einstellungen) keine sichtbare Beschriftung.
-  - Auf dem Fold innen (2176×1812) ist der START-Balken nur etwa 2 % der Bildhöhe hoch.
-  - Beides gehört zu Priorität 3 und ist noch nicht geändert.
+- **Kart-Hauptmenü:** Die fehlenden Kachel-Beschriftungen im Querformat sind in Godot `3a3142608f6b150ee251373ba81e6face2eed4b3` behoben (Test `kart_reference_landing_fit_regression.gd`, Pin von 0.12.85+1997). Die frühere Meldung „START auf dem Fold innen zu dünn“ war **falsch**: Sie stammte aus einer Messung mit Dichte 1.0. Mit der echten Dichte 2.625 ist START mindestens 48 dp hoch.
+- **Kart-Test `kart_race_continuity_regression.gd`** scheitert („The actual pickup is consumed in lap one“) schon auf `3a31426` ohne jede Änderung von mir. Er läuft in keinem Workflow dieses Branches. Ursache nicht untersucht.
+- **Heinz' Wünsche vom 22./23.10., noch nicht begonnen:** Kart-Menü modernisieren (Lumo unverändert, aber echt in 3D und drehend wie früher, kein ausgeschnittenes Bild; moderne Menüleisten; eigene Kart-Rennmusik ohne fremde Marken), Deutsch ausbauen, die 2–3 Seiten im alten Layout modernisieren, Nachhilfe-Tipps kindgerecht für Klasse 1–4 in allen Fächern neu schreiben.
 
 ## 8. Exakter nächster Schritt
 
-1. Den Unified-Lauf für den Push-Stand prüfen. Erwartet: Die Tour findet jetzt START und fährt das Rennen. Falls nicht, zeigen die neuen Log-Vorschauen `21_lumo_kart_20s` und `21_kart_premium_start`, was der Emulator sah.
-2. Auf einem Rechner mit Android-SDK (oder Docker-Host):
-   ```bash
-   bash scripts/portable-android.sh doctor
-   bash scripts/portable-android.sh preview-apk
-   ```
-   Danach die Kandidaten-APK aus `dist/candidates/` auf Emulator bzw. Samsung-Gerät installieren und die Tour `.github/probes/modernization_android_tour.py` ausführen.
-3. Erst danach: Render-Dienst nach Heinz' Freigabe. Priorität 2 fortsetzen: Themenliste eines Fachs, Belohnungen und Startbildschirm nach Vorgabe `docs/design_targets/2026-10-04/`; Integration von Schreibtrainer und Journal ohne Verlust.
+1. **Release 0.12.85+1997 ist veröffentlicht** (Prerelease, Test-Schlüssel, nicht auf echtem Samsung/Fold geprüft):
+   - Direkter Download: `https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.85-1997/Lumo-Lernen-0.12.85-1997-ARM64.apk`
+   - Paket `dev.ullmann.lumo.lumo_lernen.coachpreview`, versionName 0.12.85, versionCode 1997
+   - APK-SHA-256 `0c17989d36931363716b0b8bc693ba379773ef5d07ff2c29b9a226ad82371ea8`
+   - Zertifikat-SHA-256 `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702`
+   - Flutter `136f486ac3bdc4aabbd3b990e6629d2d6640c7d4`, Godot `3a3142608f6b150ee251373ba81e6face2eed4b3`, Lauf 39755153883
+   - Rückfallstand bleibt 0.12.84+1996 (`dea695e2`).
+2. Gegner-Branch `claude/kart-rival-race-craft-20261022` prüfen (`tools/validate_project.sh`, Rennsimulation) und als neuen Pin mit eigener Build-Nummer 0.12.86+1998 einbinden: `config/godot-source.json`, `APPROVED[1998]` in `scripts/verify_legacy_release_pin.py`, Allowlist in `scripts/export_embedded_game.py`, Publish-Job.
+3. Danach Heinz' Wünsche vom 22./23.10. (Punkt 7): Kart-Menü mit drehendem 3D-Lumo, Menüleisten und Rennmusik; Strecke Sonnenhafen mit Brücken, Schanzen, Hindernissen, Landschaft und Items; gleich starke Gegner; Deutsch, alte Seiten und Nachhilfe-Tipps in der Lern-App.
+4. Ohne Android-SDK hier nicht möglich: `bash scripts/portable-android.sh preview-apk` auf einem Rechner mit SDK oder Docker-Host. Der Docker-Build (`tools/portable-android/Dockerfile`) ist **nie gebaut oder getestet** worden.
