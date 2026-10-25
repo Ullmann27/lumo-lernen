@@ -28,8 +28,8 @@ Wrong APK/source pairing; an empty profile mistaken for meaningful persistence; 
 
 **Interfaces:** Accept the original 1997 and c60bff1 1999 APK/provenance pairs. Produce `update-result.json`, screenshots, XML, unchanged installation identity and nonempty saved learning evidence. Reuse strict Kart helpers from `modernization_android_tour.py`.
 
-- [ ] Write failing tests for UID/time/version validation and meaningful learning/reward preservation, including negative cases.
-- [ ] Run tests, implement guards, run focused Python regression.
+- [x] Write failing tests for UID/time/version validation and meaningful learning/reward preservation, including negative cases (missing module RED, five checks GREEN).
+- [x] Run tests, implement guards, run focused Python regression: 5 update + 15 native evidence + 10 existing tour identity tests passed locally.
 - [ ] Install 1997, onboard through live UI, solve the real learning journey, install candidate with `-r`, verify offline/restart/Fold persistence and repeat native Kart tour.
 - [ ] Inspect CI logs and actual images. Publish the verified ARM64 bytes only after all required checks pass; verify public download size/hash.
 - [ ] Commit and push evidence/status; no merge into main.
