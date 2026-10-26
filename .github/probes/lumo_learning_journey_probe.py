@@ -195,7 +195,7 @@ def main() -> int:
             # Require these real controls; never skip the learning exercise.
             wait_for('Was möchtest du lernen?', '02-learning-hub')
             result['captures'].append(creative.capture(out, '02-learning-hub'))
-            tap_prefix('Mathematik\\n', '04-math')
+            tap_prefix('Mathematik\n', '04-math')
             wait_for('Wähle ein Thema.', '04-math-topics')
         else:
             daily_before, _ = wait_for(DAILY, '02-daily-before')
