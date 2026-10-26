@@ -217,6 +217,14 @@ def main() -> int:
         answer_label = str(answer) if args.learning_hub else f'Antwort {answer}'
         creative.flutter_tap(out, answer_label, '07-answer')
         result['captures'].append(creative.capture(out, '07-feedback'))
+        if args.learning_hub:
+            # 1997 adaptive renderer auto-advances but preserves the scroll
+            # position near the answer crystals. CI screenshot/XML proved the
+            # correct answer earned 6 stars / 37 XP, while the next heading was
+            # above the viewport. Scroll up like a real user before requiring
+            # the NEXT lesson task, without weakening the assertion.
+            time.sleep(2)
+            scroll_to_top('08-next-task-scroll', swipes=4)
         wait_for(f'Aufgabe 2 / {task_count}', '08-next-task')
         wallet_after = creative.wallet(out, '08-wallet')
         delta = {key: int(wallet_after.get(key, 0)) - int(wallet_before.get(key, 0))
