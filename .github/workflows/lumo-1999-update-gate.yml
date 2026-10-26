@@ -4,6 +4,7 @@ on:
     paths:
       - '.github/workflows/lumo-1999-update-gate.yml'
       - '.github/probes/candidate_update_android_probe.py'
+      - '.github/probes/lumo_learning_journey_probe.py'
       - 'tools/android_qa/update_preservation.py'
       - 'tools/android_qa/tests/test_update_preservation.py'
   workflow_dispatch:
