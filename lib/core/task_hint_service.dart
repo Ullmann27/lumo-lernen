@@ -5,6 +5,39 @@ class TaskHintService {
   const TaskHintService();
 
   String explain(LumoTask task, {int level = 1}) {
+    if (task.subject == 'Mathematik') {
+      final gap = RegExp(r'^\s*(\d+)\s*([+−-])\s*\?\s*=\s*(\d+)\s*$')
+          .firstMatch(task.prompt);
+      if (gap != null) {
+        final start = int.parse(gap.group(1)!);
+        final target = int.parse(gap.group(3)!);
+        if (gap.group(2) == '+') {
+          if (level <= 1) {
+            return 'Die Lücke ist die Menge, die noch dazukommt. '
+                'Wie viele Schritte fehlen von der ersten Zahl bis zur Zahl '
+                'rechts vom Gleichheitszeichen?';
+          }
+          return level == 2
+              ? 'Starte bei $start. Zähle weiter bis $target. '
+                  'Wie viele Schritte machst du? Die Startzahl zählt nicht als Schritt.'
+              : 'Teile den Weg von $start bis $target in kleine Schritte, '
+                  'zum Beispiel am nächsten Zehner. Zähle die Schritte zusammen. '
+                  'Prüfe: $start plus deine fehlende Menge muss $target ergeben.';
+        }
+        if (level <= 1) {
+          return 'Die Lücke sagt, wie viel weggenommen wird. '
+              'Zähle von der ersten Zahl zurück bis zur Zahl rechts vom '
+              'Gleichheitszeichen. Wie viele Schritte gehst du zurück?';
+        }
+        return level == 2
+            ? 'Starte bei $start. Zähle rückwärts bis $target. '
+                'Wie viele Schritte gehst du? Die Startzahl zählt nicht als Schritt.'
+            : 'Teile den Rückweg von $start bis $target in kleine Schritte. '
+                'Zähle die zurückgegangenen Schritte zusammen. '
+                'Prüfe durch Dazuzählen: $target plus deine weggenommene Menge '
+                'muss wieder $start ergeben.';
+      }
+    }
     if (level >= 2) return _guidedHint(task, level);
     final unit = task.unit.toLowerCase();
     final prompt = task.prompt.toLowerCase();

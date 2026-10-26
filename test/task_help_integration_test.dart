@@ -53,7 +53,10 @@ void main() {
         expect(find.text('Lumo, hilf mir'), findsNothing);
       } else {
         expect(find.text('Lumo erklärt'), findsOneWidget);
-        expect(find.textContaining('Beginne mit der ersten Menge'),
+        final isGap = before.prompt.contains('? =');
+        expect(
+            find.textContaining(
+                isGap ? 'Lücke' : 'Beginne mit der ersten Menge'),
             findsOneWidget);
         expect(find.text('Lumo, hilf mir'), findsOneWidget);
         requests.requestTaskHelp();
@@ -64,7 +67,11 @@ void main() {
         requests.requestTaskHelp();
         await tester.pump();
         expect(find.textContaining('Teile'), findsOneWidget);
-        expect(find.textContaining('Prüfe durch Zurückzählen'), findsOneWidget);
+        expect(
+            find.textContaining(isGap
+                ? 'plus deine fehlende Menge'
+                : 'Prüfe durch Zurückzählen'),
+            findsOneWidget);
       }
       final after = tester
           .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))

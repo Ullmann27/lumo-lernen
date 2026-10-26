@@ -67,6 +67,30 @@ void main() {
     final text = hints.explain(arithmetic('Rechne 1/4 + 3/4.'), level: 2);
     expect(text, isNot(contains('Starte bei 4')));
   });
+  test('missing addend help counts the gap rather than adding the result', () {
+    final task = arithmetic('543 + ? = 713');
+    expect(hints.explain(task), contains('Lücke'));
+    expect(hints.explain(task, level: 2), contains('Starte bei 543'));
+    expect(hints.explain(task, level: 2), contains('bis 713'));
+    expect(hints.explain(task, level: 3), contains('Teile den Weg'));
+    expect(hints.explain(task, level: 3), contains('Prüfe'));
+    for (var level = 1; level <= 3; level++) {
+      expect(hints.explain(task, level: level), isNot(contains('170')));
+      expect(hints.explain(task, level: level), isNot(contains('1256')));
+    }
+  });
+  test('missing subtrahend help counts backward to the visible result', () {
+    final task = arithmetic('15 − ? = 9');
+    expect(hints.explain(task), contains('weggenommen'));
+    expect(hints.explain(task, level: 2), contains('Starte bei 15'));
+    expect(hints.explain(task, level: 2), contains('rückwärts bis 9'));
+    expect(hints.explain(task, level: 3), contains('Teile den Rückweg'));
+    expect(hints.explain(task, level: 3), contains('Prüfe'));
+    for (var level = 1; level <= 3; level++) {
+      expect(hints.explain(task, level: level), isNot(contains('6')));
+    }
+  });
+
   test('a new module-specific explanation is retained', () {
     final reply = const LumoCompanionEngine().answer(
       input: 'Hilf mir',
