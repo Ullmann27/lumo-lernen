@@ -7,6 +7,11 @@ on:
       - 'tools/android_qa/update_preservation.py'
       - 'tools/android_qa/tests/test_update_preservation.py'
   workflow_dispatch:
+    inputs:
+      inspect_failure:
+        description: Read original failing UI evidence without starting an emulator
+        type: boolean
+        default: false
 permissions:
   contents: read
   actions: read
@@ -14,7 +19,34 @@ concurrency:
   group: lumo-1999-update-${{ github.ref }}
   cancel-in-progress: false
 jobs:
+  inspect-original-failure:
+    if: ${{ inputs.inspect_failure }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-1999-actual-update-proof
+          path: original-proof/
+          run-id: 40201707838
+          github-token: ${{ github.token }}
+      - name: Read original failing UI and screenshot bytes
+        run: |
+          python3 - <<'PYCODE'
+          import base64, hashlib, json
+          from pathlib import Path
+          root = Path('original-proof')
+          print('ORIGINAL-FILES', json.dumps([str(p.relative_to(root)) for p in root.rglob('*') if p.is_file()]))
+          for pattern in ('**/learning-journey-result.json', '**/02-daily-before-0.xml', '**/02-daily-before-missing.xml', '**/02-daily-before-missing.png'):
+              for p in root.glob(pattern):
+                  print('EVIDENCE-BEGIN', str(p.relative_to(root)), hashlib.sha256(p.read_bytes()).hexdigest())
+                  data = base64.b64encode(p.read_bytes()).decode()
+                  for offset in range(0, len(data), 3000):
+                      print('EVIDENCE-DATA', data[offset:offset+3000])
+                  print('EVIDENCE-END')
+          PYCODE
   update-and-tour:
+    if: ${{ !inputs.inspect_failure }}
     runs-on: ubuntu-latest
     timeout-minutes: 50
     steps:
