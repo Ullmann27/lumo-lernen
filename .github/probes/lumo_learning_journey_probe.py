@@ -203,14 +203,21 @@ def main() -> int:
             result['captures'].append(creative.capture(out, '02-learning-menu'))
             tap_prefix('Mathe. ', '04-math')
             tap_prefix('Plus bis 10', '05-topic')
-        wait_for('Aufgabe 1 / 30', '06-task')
+        # The 1997 subject-first hub launches the adaptive 10-question
+        # lesson, while the historic academy probe runs the dedicated
+        # 30-question PlusBis10Screen. Both must solve real UI tasks.
+        task_count = 10 if args.learning_hub else 30
+        wait_for(f'Aufgabe 1 / {task_count}', '06-task')
         prompt, _ = wait_for(PROMPT, '06-prompt')
         answer = int(prompt.group(1)) + int(prompt.group(2))
         result['task'] = {'prompt': prompt.group(0), 'answer': answer}
         result['captures'].append(creative.capture(out, '06-math-task'))
-        creative.flutter_tap(out, f'Antwort {answer}', '07-answer')
+        # AdaptiveTaskRenderer exposes the number itself on its crystal.
+        # Dedicated PlusBis10Screen exposes "Antwort N" instead.
+        answer_label = str(answer) if args.learning_hub else f'Antwort {answer}'
+        creative.flutter_tap(out, answer_label, '07-answer')
         result['captures'].append(creative.capture(out, '07-feedback'))
-        wait_for('Aufgabe 2 / 30', '08-next-task')
+        wait_for(f'Aufgabe 2 / {task_count}', '08-next-task')
         wallet_after = creative.wallet(out, '08-wallet')
         delta = {key: int(wallet_after.get(key, 0)) - int(wallet_before.get(key, 0))
                  for key in ('stars', 'xp')}
