@@ -44,7 +44,7 @@ jobs:
       - name: Verify SHA256, source provenance, package, ARM64, signing certificate and Godot pin
         run: |
           set -euo pipefail
-          (cd dist && sha256sum -c APK-SHA256.txt)
+          sha256sum -c dist/APK-SHA256.txt
           python3 - <<'PY'
           import hashlib
           import json
