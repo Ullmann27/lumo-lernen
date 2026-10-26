@@ -18,6 +18,16 @@ concurrency:
 
 jobs:
   capture-games:
+    # This is the frozen 1989 -> 1990 visual comparison, not a generic
+    # latest-build QA. Never compare a later app version to the 1990
+    # contract or rewrite the original source/version evidence.
+    if: >-
+      (github.event_name == 'pull_request' &&
+      (github.event.pull_request.head.ref == 'chatgpt/lumo-1990-ui-unified-polish-2026-10-19' ||
+       github.event.pull_request.head.ref == 'chatgpt/lumo-1990-integration-hardening-2026-10-19')) ||
+      (github.event_name == 'workflow_dispatch' &&
+      (github.ref_name == 'chatgpt/lumo-1990-ui-unified-polish-2026-10-19' ||
+       github.ref_name == 'chatgpt/lumo-1990-integration-hardening-2026-10-19'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
