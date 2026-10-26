@@ -1,0 +1,93 @@
+name: Lumo 1999 direct Chrome release from already-green APK
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-1999-chrome-direct-release.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  publish-verified-1999:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'repair/lumo-1999-update-learning-hub-20261026'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      SOURCE_SHA: 7b0019fa1932a970ad4e9d6acd75271030e066da
+      VERIFIED_BUILD_RUN: '40342852831'
+      VERIFIED_UPDATE_RUN: '40342852735'
+      GODOT_SHA: 4d0fd40fdf188be6ca86057596c7b51f41701fa3
+    steps:
+      - name: Require independently passed 1997-to-1999 update and full build on the exact immutable source
+        run: |
+          set -euo pipefail
+          for id in "$VERIFIED_BUILD_RUN" "$VERIFIED_UPDATE_RUN"; do
+            actual="$(gh api "repos/Ullmann27/lumo-lernen/actions/runs/$id" --jq '[.head_sha, .conclusion] | join(" ")')"
+            echo "run $id -> $actual"
+            if [ "$actual" != "$SOURCE_SHA success" ]; then
+              echo "Refusing untested / different APK source or unsuccessful upgrade gate."
+              exit 1
+            fi
+          done
+      - name: Download exact already tested and signed ARM64 artifact
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          gh run download "$VERIFIED_BUILD_RUN" --repo Ullmann27/lumo-lernen --name lumo-unified-arm64-verified --dir dist
+      - name: Verify SHA256, source provenance, package, ARM64, signing certificate and Godot pin
+        run: |
+          set -euo pipefail
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+          dist = Path('dist')
+          apk = dist / 'Lumo-Lernen-Neu.apk'
+          digest = hashlib.sha256(apk.read_bytes()).hexdigest()
+          proof = json.loads((dist / 'BUILD-PROVENANCE.json').read_text())
+          verified = json.loads((dist / 'APK-VERIFICATION.json').read_text())
+          godot = json.loads((dist / 'GODOT-SOURCE.json').read_text())
+          assert proof['flutter_source_commit'] == os.environ['SOURCE_SHA'], 'Wrong source revision'
+          assert proof['tracked_source_clean'] is True, 'Dirty tracked source'
+          assert proof['godot']['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot source'
+          assert godot['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot pin'
+          assert (dist / 'APP-VERSION.txt').read_text().strip() == 'version: 0.12.87+1999'
+          for record in (proof, verified):
+              assert record['versionCode'] == 1999 and record['versionName'] == '0.12.87', 'Wrong app version'
+          assert verified['sha256'] == digest, 'APK hash not verified'
+          assert verified['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview', 'Not the installed Lumo app'
+          assert verified['signingCertificateSha256'].lower() == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702', 'Cannot update the previous APK'
+          assert 'arm64-v8a' in verified['abis'], 'ARM64 APK missing'
+          assert digest == (dist / 'APK-SHA256.txt').read_text().split()[0], 'Unverified APK bytes'
+          print('VERIFIED', digest, apk.stat().st_size, 'bytes')
+          PY
+      - name: Publish unchanged APK via Chrome HTTPS and verify public release
+        run: |
+          set -euo pipefail
+          tag="lumo-0.12.87-1999"
+          filename="Lumo-Lernen-0.12.87-1999-ARM64.apk"
+          if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "This immutable 1999 release already exists. Never overwrite."
+            exit 1
+          fi
+          cp dist/Lumo-Lernen-Neu.apk "dist/$filename"
+          (cd dist && sha256sum "$filename" > "$filename.sha256")
+          gh release create "$tag" "dist/$filename" "dist/$filename.sha256" \
+            dist/BUILD-PROVENANCE.json dist/APK-VERIFICATION.json dist/GODOT-SOURCE.json \
+            --repo Ullmann27/lumo-lernen --target "$SOURCE_SHA" \
+            --title "Lumo Lernen + Lumo Kart 0.12.87 (1999) Android ARM64" \
+            --notes "Direct Chrome APK download. Exact source $SOURCE_SHA. Real Android 1997 to 1999 in-place update, profile and rewards persistence, Flutter analysis/tests, and native Kart Android tour passed in independently checked GitHub runs $VERIFIED_UPDATE_RUN and $VERIFIED_BUILD_RUN. Existing 1997 APK and main branch unchanged. Testing key, not a Play Store release; no physical Fold or 60 FPS performance claim." \
+            --prerelease
+          gh release view "$tag" --repo Ullmann27/lumo-lernen \
+            --json tagName,isDraft,assets \
+            --jq '{tag: .tagName, draft: .isDraft, files: [.assets[].name]}'
+          echo "DOWNLOAD https://github.com/Ullmann27/lumo-lernen/releases/download/$tag/$filename"

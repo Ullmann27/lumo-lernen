@@ -43,6 +43,9 @@ def load_creative():
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--out', type=Path, required=True)
+    parser.add_argument(
+        '--learning-hub', action='store_true',
+        help='Use the verified 1997 subject-first learning hub instead of the older academy')
     args = parser.parse_args()
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
@@ -54,7 +57,7 @@ def main() -> int:
               'not_tested': ['physisches Gerät oder Fold-Scharnier', 'Bildrate', 'Sprachausgabe',
                              'falsche Antworten und Tipps auf Android (nur Flutter-Test)',
                              'andere Fächer und Klassen'],
-              'captures': []}
+              'captures': [], 'learning_hub': args.learning_hub}
 
     def text(tag: str) -> str:
         nodes = live.live_nodes(out, tag)
@@ -184,19 +187,45 @@ def main() -> int:
         base.display(1080, 2340, 440)
         base.launch(out, '01-launch')
         creative.flutter_tap(out, LEARN_TILE, '02-learn')
-        daily_before, _ = wait_for(DAILY, '02-daily-before')
-        result['captures'].append(creative.capture(out, '02-learning-menu'))
-        # Das Profil ist 1. Klasse; die Akademie öffnet mit der Profilklasse.
-        tap_prefix('Mathe. ', '04-math')
-        tap_prefix('Plus bis 10', '05-topic')
-        wait_for('Aufgabe 1 / 30', '06-task')
+        if args.learning_hub:
+            # The actual 0.12.85+1997 APK (run 40201707838) shows the
+            # subject-first learning hub. Its live accessibility tree says
+            # "Was möchtest du lernen?" and "Mathematik\\nRechnen & Knobeln",
+            # not the former academy daily-goal label or "Mathe. " card.
+            # Require these real controls; never skip the learning exercise.
+            wait_for('Was möchtest du lernen?', '02-learning-hub')
+            result['captures'].append(creative.capture(out, '02-learning-hub'))
+            creative.flutter_tap(out, 'Mathematik', '04-math', min_visible_height_px=40)
+            wait_for('Wähle ein Thema.', '04-math-topics')
+            creative.flutter_tap(out, 'Plus bis 10', '05-topic', min_visible_height_px=40)
+        else:
+            daily_before, _ = wait_for(DAILY, '02-daily-before')
+            result['captures'].append(creative.capture(out, '02-learning-menu'))
+            tap_prefix('Mathe. ', '04-math')
+            tap_prefix('Plus bis 10', '05-topic')
+        # The 1997 subject-first hub launches the adaptive 10-question
+        # lesson, while the historic academy probe runs the dedicated
+        # 30-question PlusBis10Screen. Both must solve real UI tasks.
+        task_count = 10 if args.learning_hub else 30
+        wait_for(f'Aufgabe 1 / {task_count}', '06-task')
         prompt, _ = wait_for(PROMPT, '06-prompt')
         answer = int(prompt.group(1)) + int(prompt.group(2))
         result['task'] = {'prompt': prompt.group(0), 'answer': answer}
         result['captures'].append(creative.capture(out, '06-math-task'))
-        creative.flutter_tap(out, f'Antwort {answer}', '07-answer')
+        # AdaptiveTaskRenderer exposes the number itself on its crystal.
+        # Dedicated PlusBis10Screen exposes "Antwort N" instead.
+        answer_label = str(answer) if args.learning_hub else f'Antwort {answer}'
+        creative.flutter_tap(out, answer_label, '07-answer')
         result['captures'].append(creative.capture(out, '07-feedback'))
-        wait_for('Aufgabe 2 / 30', '08-next-task')
+        if args.learning_hub:
+            # 1997 adaptive renderer auto-advances but preserves the scroll
+            # position near the answer crystals. CI screenshot/XML proved the
+            # correct answer earned 6 stars / 37 XP, while the next heading was
+            # above the viewport. Scroll up like a real user before requiring
+            # the NEXT lesson task, without weakening the assertion.
+            time.sleep(2)
+            scroll_to_top('08-next-task-scroll', swipes=4)
+        wait_for(f'Aufgabe 2 / {task_count}', '08-next-task')
         wallet_after = creative.wallet(out, '08-wallet')
         delta = {key: int(wallet_after.get(key, 0)) - int(wallet_before.get(key, 0))
                  for key in ('stars', 'xp')}
@@ -205,15 +234,34 @@ def main() -> int:
             raise RuntimeError(f'Keine gespeicherte Belohnung für die richtige Antwort: {delta}')
         base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
         time.sleep(2)
-        scroll_to_top('09-scroll-top')
-        daily_after, _ = wait_for(DAILY, '09-daily-after')
-        if int(daily_after.group(1)) != int(daily_before.group(1)) + 1:
-            raise RuntimeError(f'Tagesziel zählt nicht genau eine Aufgabe: '
-                               f'{daily_before.group(0)} -> {daily_after.group(0)}')
+        if not args.learning_hub:
+            scroll_to_top('09-scroll-top')
+            daily_after, _ = wait_for(DAILY, '09-daily-after')
+            if int(daily_after.group(1)) != int(daily_before.group(1)) + 1:
+                raise RuntimeError(f'Tagesziel zählt nicht genau eine Aufgabe: '
+                                   f'{daily_before.group(0)} -> {daily_after.group(0)}')
         result['captures'].append(creative.capture(out, '09-after-lesson'))
         saved = progress('10-before-restart')
         if not any('lumo_progress' in key for key in saved):
             raise RuntimeError('Kein gespeicherter Lernstand gefunden')
+        if args.learning_hub:
+            # On the 1997 hub the old visual daily-goal widget does not exist.
+            # Instead enforce actual saved, positive answers and rewards here;
+            # require_learning_preserved enforces them again across the update.
+            total_correct = 0
+            for key, raw in saved.items():
+                if key.startswith('flutter.lumo_progress_skills'):
+                    records = json.loads(raw)
+                    if not isinstance(records, dict):
+                        raise RuntimeError('Ungültige gespeicherte Lernrecords')
+                    for record in records.values():
+                        count = record.get('correct') if isinstance(record, dict) else None
+                        if type(count) is not int or count < 0:
+                            raise RuntimeError('Ungültige Anzahl richtiger Antworten')
+                        total_correct += count
+            if total_correct < 1:
+                raise RuntimeError('Keine nachweislich gespeicherte richtige Antwort')
+            result['saved_correct_answers'] = total_correct
         base.adb('shell', 'am', 'force-stop', package)
         time.sleep(2)
         base.launch(out, '11-restart')
@@ -222,13 +270,25 @@ def main() -> int:
             changed = sorted(k for k in set(saved) | set(restored) if saved.get(k) != restored.get(k))
             raise RuntimeError(f'Gespeicherter Stand nach Neustart verändert: {changed}')
         creative.flutter_tap(out, LEARN_TILE, '12-learn-after-restart')
-        daily_restored, _ = wait_for(DAILY, '12-daily-restored')
-        if daily_restored.group(0) != daily_after.group(0):
-            raise RuntimeError(f'Sichtbare Tagesanzeige nach Neustart: {daily_restored.group(0)} '
-                               f'statt {daily_after.group(0)}')
+        if args.learning_hub:
+            wait_for('Was möchtest du lernen?', '12-learning-hub-restored')
+            result['hub'] = {
+                'visible_after_restart': True,
+                'saved_correct_answers': result['saved_correct_answers'],
+                'wallet_and_progress_after_restart': 'UNCHANGED',
+            }
+        else:
+            daily_restored, _ = wait_for(DAILY, '12-daily-restored')
+            if daily_restored.group(0) != daily_after.group(0):
+                raise RuntimeError(
+                    f'Sichtbare Tagesanzeige nach Neustart: {daily_restored.group(0)} '
+                    f'statt {daily_after.group(0)}')
+            result['daily'] = {
+                'before': daily_before.group(0),
+                'after': daily_after.group(0),
+                'after_restart': daily_restored.group(0),
+            }
         result['captures'].append(creative.capture(out, '12-restored-learning-menu'))
-        result['daily'] = {'before': daily_before.group(0), 'after': daily_after.group(0),
-                           'after_restart': daily_restored.group(0)}
         result['restart_restore'] = 'PASS'
         result['status'] = 'PASS'
         result['tour'] = tour()
