@@ -195,13 +195,14 @@ def main() -> int:
             # Require these real controls; never skip the learning exercise.
             wait_for('Was möchtest du lernen?', '02-learning-hub')
             result['captures'].append(creative.capture(out, '02-learning-hub'))
-            tap_prefix('Mathematik\n', '04-math')
+            creative.flutter_tap(out, 'Mathematik', '04-math', min_visible_height_px=40)
             wait_for('Wähle ein Thema.', '04-math-topics')
+            creative.flutter_tap(out, 'Plus bis 10', '05-topic', min_visible_height_px=40)
         else:
             daily_before, _ = wait_for(DAILY, '02-daily-before')
             result['captures'].append(creative.capture(out, '02-learning-menu'))
             tap_prefix('Mathe. ', '04-math')
-        tap_prefix('Plus bis 10', '05-topic')
+            tap_prefix('Plus bis 10', '05-topic')
         wait_for('Aufgabe 1 / 30', '06-task')
         prompt, _ = wait_for(PROMPT, '06-prompt')
         answer = int(prompt.group(1)) + int(prompt.group(2))
