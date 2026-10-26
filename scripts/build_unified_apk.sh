@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
 set -euo pipefail
 split_apks="${LUMO_SPLIT_PER_ABI:-0}"
+build_aab="${LUMO_BUILD_AAB:-0}"
+case "$build_aab" in
+  0|1) ;;
+  *) echo 'LUMO_BUILD_AAB must be 0 or 1' >&2; exit 1 ;;
+esac
 case "$split_apks" in
   0|1) ;;
   *) echo 'LUMO_SPLIT_PER_ABI must be 0 or 1' >&2; exit 1 ;;
@@ -9,6 +14,10 @@ require_clean_sources() {
   if ! git diff --quiet HEAD --; then
     echo 'Build rejected: tracked source differs from the candidate commit.' >&2
     git diff HEAD --name-status >&2
+    exit 1
+  fi
+  if [ -n "$(git ls-files --others --exclude-standard -- lib config assets)" ]; then
+    echo 'Build rejected: uncommitted app input would escape candidate provenance.' >&2
     exit 1
   fi
 }
@@ -73,6 +82,8 @@ directory = Path(sys.argv[1])
 info = json.loads((directory / 'APK-VERIFICATION.json').read_text())
 info['flutter_source_commit'] = subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip()
 info['tracked_source_clean'] = not subprocess.check_output(['git', 'status', '--porcelain', '--untracked-files=no'], text=True).strip()
+info['source_trees'] = {name: subprocess.check_output(['git', 'rev-parse', 'HEAD:' + name], text=True).strip()
+                        for name in ('lib', 'config', 'assets', 'tools')}
 if not info['tracked_source_clean']:
     raise RuntimeError('Source changed after build; refuse candidate provenance')
 info['launcher'] = json.loads(Path('dist/LAUNCHER-RESOURCES.json').read_text())
@@ -97,4 +108,16 @@ else
   cp build/app/outputs/flutter-apk/app-release.apk dist/Lumo-Lernen-Neu.apk
   (cd dist && sha256sum Lumo-Lernen-Neu.apk > SHA256SUMS.txt)
   write_provenance dist
+fi
+if [ "$build_aab" = 1 ]; then
+  # Reuse this exact prepared native host, source, PCK, voice and Dart defines.
+  # This public-key-signed bundle is a staging artifact, never a Play upload.
+  flutter build appbundle --no-pub --release --target-platform android-arm64,android-x64 \
+    --build-number "$lumo_build_number" --build-name "$lumo_version_name" \
+    --dart-define=LUMO_BUILD_NUMBER="$lumo_build_number" \
+    --dart-define=LUMO_VERSION_NAME="$lumo_version_name" \
+    --dart-define=LUMO_SIDE_BY_SIDE=true
+  require_clean_sources
+  bash scripts/verify_unified_aab.sh
+  require_clean_sources
 fi
