@@ -116,6 +116,6 @@ jobs:
             --title "Lumo Lernen + Lumo Kart 0.12.88 (2000) Android ARM64" \
             --notes "Signed direct APK for Google Chrome. Real native Sonnenhafen flight, water/lava 3D cave and offline three-method place-value tutoring. Exact Godot source $GODOT_SHA; Flutter source $SOURCE_SHA. Full Flutter tests, Kart Android tour and actual 1999->2000 install-r with preserved profile, rewards and offline Fold views all passed. Release is a device test candidate, NOT proof of Fold 60 FPS or Play Store certification. Previous releases preserved." \
             --prerelease
-          result="$(gh release view "$TAG" --repo Ullmann27/lumo-lernen --json assets --jq --arg file "$FILE" '[.assets[].name] | index($file)')"
-          test "$result" != 'null'
+          gh release view "$TAG" --repo Ullmann27/lumo-lernen --json assets \
+            --jq '.assets[].name' | grep -Fx -- "$FILE"
           echo "HTTPS_APK=https://github.com/Ullmann27/lumo-lernen/releases/download/$TAG/$FILE"
