@@ -39,6 +39,7 @@ on:
       - 'test/parents/parent_school_grade_progression_test.dart'
       - '.github/workflows/lumo-unified-integration-2026.yml'
       - '.github/workflows/lumo-2000-direct-release.yml'
+      - '.github/workflows/lumo-2000-actual-update-gate.yml'
   workflow_dispatch:
 permissions:
   contents: read
