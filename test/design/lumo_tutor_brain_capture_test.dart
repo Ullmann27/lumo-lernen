@@ -51,6 +51,9 @@ void main() {
     ('fold-open', const Size(880, 1000), 1.0),
   ]) {
     testWidgets('real home daily plan opens real task and workshop: $label', (tester) async {
+      final oldError = FlutterError.onError;
+      FlutterError.onError = (d) { File('/tmp/tutor-render-error.txt').writeAsStringSync(d.toString(), mode: FileMode.append); oldError?.call(d); };
+      addTearDown(() => FlutterError.onError = oldError);
       SharedPreferences.setMockInitialValues({});
       LumoVoice.instance.isEnabled = false;
       addTearDown(() => LumoVoice.instance.isEnabled = true);
