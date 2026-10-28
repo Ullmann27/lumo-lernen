@@ -12,6 +12,8 @@ import '../teacher/student_assignments_card.dart';
 import '../../app/app_state.dart';
 import '../../app/app_theme.dart';
 import '../../core/school_exercise_generator.dart';
+import '../../core/lumo_personal_daily_tutor_planner.dart';
+import 'widgets/lumo_personal_daily_plan_card.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -110,6 +112,16 @@ class HomeContent extends StatelessWidget {
               state.settings.calmMode ||
               MediaQuery.disableAnimationsOf(context);
           final recommendation = appState.topLearningRecommendation();
+          final personalSteps = appState.learningProfileLoaded
+              ? const LumoPersonalDailyTutorPlanner().build(
+                  appState.learningSkills(),
+                  isEligible: (record) => Curriculum.unitsForGrade(
+                    record.subject,
+                    state.grade,
+                    currentGradeOnly: true,
+                  ).contains(record.unit),
+                )
+              : const <LumoDailyTutorStep>[];
           return LayoutBuilder(
             builder: (context, constraints) {
               final compact = constraints.maxWidth < 320;
@@ -237,6 +249,14 @@ class HomeContent extends StatelessWidget {
                       unit: recommendation?.unit,
                     ),
                   ),
+                  if (personalSteps.isNotEmpty) ...[
+                    const SizedBox(height: 12),
+                    LumoPersonalDailyPlanCard(
+                      steps: personalSteps,
+                      onStart: (step) =>
+                          _startPractice(step.subject, unit: step.unit),
+                    ),
+                  ],
                   const SizedBox(height: 10),
                   Card(
                     color: LumoVisualTokens.glass,
