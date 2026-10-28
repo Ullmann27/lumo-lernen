@@ -249,8 +249,13 @@ class _PlusBis10ScreenState extends State<PlusBis10Screen>
     });
   }
 
-  void _event(LumoLearningEventKind kind) => LumoCompanionRequests.instance
-      .recordLearningEvent(kind, context: _publishedContext);
+  void _event(LumoLearningEventKind kind) {
+    final evidence = LumoCompanionRequests.instance.recordLearningEvent(kind, context: _publishedContext);
+    if (evidence != null) {
+      unawaited(widget.appState.recordTutorEvidence(subject: 'Mathematik',
+          unit: 'Plus bis 10', evidence: evidence));
+    }
+  }
 
   void _requestTaskHelp() {
     if (!mounted ||

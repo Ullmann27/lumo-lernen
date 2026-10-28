@@ -103,9 +103,13 @@ class LumoCompanionTaskContext {
   final int? profileGeneration;
 
   TutorTaskScope get tutorScope => TutorTaskScope(
-      generation: profileGeneration ?? 0, taskId: taskId,
+      generation: profileGeneration ?? 0,
+      taskId: taskId,
       problemId: TutorTaskScope.problemIdentity(subject, unit, prompt),
-      subject: subject, unit: unit, isExam: isExam, ownerSection: ownerSection);
+      subject: subject,
+      unit: unit,
+      isExam: isExam,
+      ownerSection: ownerSection);
 
   bool belongsTo({required String section, required int generation}) =>
       ownerSection == section &&
@@ -160,8 +164,9 @@ class LumoCompanionRequests {
   LearningEvidence? recordLearningEvent(LumoLearningEventKind kind,
       {LumoCompanionTaskContext? context}) {
     final task = context ?? taskContext.value;
+    if (task != null && !tutor.matches(task.tutorScope)) return null;
     LearningEvidence? evidence;
-    if (task != null && tutor.matches(task.tutorScope)) {
+    if (task != null) {
       switch (kind) {
         case LumoLearningEventKind.hintRequested:
           tutor.requestHelp(level: task.helpLevel);
@@ -169,7 +174,8 @@ class LumoCompanionRequests {
           tutor.declineHelp();
         case LumoLearningEventKind.answerCorrect:
         case LumoLearningEventKind.answerIncorrect:
-          evidence = tutor.answer(attempt: task.attempts,
+          evidence = tutor.answer(
+              attempt: task.attempts,
               correct: kind == LumoLearningEventKind.answerCorrect,
               assisted: task.helpLevel > 0);
         default:

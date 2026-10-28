@@ -7,9 +7,14 @@ import 'learning_journey.dart';
 
 /// Local task scope. Generation is a session token, never a child's name.
 class TutorTaskScope {
-  const TutorTaskScope({required this.generation, required this.taskId,
-    required this.problemId, required this.subject, required this.unit,
-    this.isExam = false, this.ownerSection = 'exercises'});
+  const TutorTaskScope(
+      {required this.generation,
+      required this.taskId,
+      required this.problemId,
+      required this.subject,
+      required this.unit,
+      this.isExam = false,
+      this.ownerSection = 'exercises'});
   final int generation;
   final String taskId;
   final String problemId;
@@ -19,11 +24,23 @@ class TutorTaskScope {
   final String ownerSection;
 
   static String problemIdentity(String subject, String unit, String prompt) =>
-      'problem-${sha256.convert(utf8.encode(jsonEncode([subject, unit, prompt])))}';
+      'problem-${sha256.convert(utf8.encode(jsonEncode([
+            subject,
+            unit,
+            prompt
+          ])))}';
 }
 
-enum TutorEventKind { taskOpened, helpOffered, helpAccepted, helpDeclined,
-  answerIncorrect, assistedSuccess, independentSuccess, transferChecked }
+enum TutorEventKind {
+  taskOpened,
+  helpOffered,
+  helpAccepted,
+  helpDeclined,
+  answerIncorrect,
+  assistedSuccess,
+  independentSuccess,
+  transferChecked
+}
 
 /// Bounded semantic trace only: no answers, prompts, names, audio or touches.
 class TutorEvent {
@@ -48,8 +65,12 @@ class TutorCoordinationEngine {
   TutorTaskScope? get scope => _scope;
   int get mistakes => _mistakes;
   int get helpLevel => _helpLevel;
-  bool get shouldOffer => _scope != null && !_scope!.isExam &&
-      !_solved && !_resolvedOffer && _mistakes >= 2;
+  bool get shouldOffer =>
+      _scope != null &&
+      !_scope!.isExam &&
+      !_solved &&
+      !_resolvedOffer &&
+      _mistakes >= 2;
   List<TutorEvent> get events => List.unmodifiable(_events);
 
   void activateProfile(int generation) {
@@ -69,13 +90,17 @@ class TutorCoordinationEngine {
     _transfers.clear();
   }
 
-  bool matches(TutorTaskScope task) => _scope != null &&
-      _generation == task.generation && _scope!.generation == task.generation &&
-      _scope!.taskId == task.taskId && _scope!.ownerSection == task.ownerSection &&
+  bool matches(TutorTaskScope task) =>
+      _scope != null &&
+      _generation == task.generation &&
+      _scope!.generation == task.generation &&
+      _scope!.taskId == task.taskId &&
+      _scope!.ownerSection == task.ownerSection &&
       _scope!.isExam == task.isExam;
 
   bool enterTask(TutorTaskScope task) {
-    if (task.taskId.trim().isEmpty || task.problemId.trim().isEmpty ||
+    if (task.taskId.trim().isEmpty ||
+        task.problemId.trim().isEmpty ||
         (_generation != null && task.generation != _generation)) return false;
     _generation ??= task.generation;
     if (matches(task)) return true;
@@ -100,34 +125,52 @@ class TutorCoordinationEngine {
     _emit(TutorEventKind.helpDeclined);
   }
 
-  LearningEvidence? answer({required int attempt, required bool correct,
-      bool assisted = false, String? errorTag}) {
+  LearningEvidence? answer(
+      {required int attempt,
+      required bool correct,
+      bool assisted = false,
+      String? errorTag}) {
     final task = _scope;
-    if (task == null || _solved || attempt < 1 || !_attempts.add(attempt)) return null;
+    if (task == null || _solved || attempt < 1 || !_attempts.add(attempt))
+      return null;
     if (assisted && !task.isExam && _helpLevel == 0) _helpLevel = 1;
     if (correct) {
       _solved = true;
-      _emit(_helpLevel > 0 ? TutorEventKind.assistedSuccess : TutorEventKind.independentSuccess);
+      _emit(_helpLevel > 0
+          ? TutorEventKind.assistedSuccess
+          : TutorEventKind.independentSuccess);
     } else {
       _mistakes++;
       _emit(TutorEventKind.answerIncorrect);
       if (shouldOffer && _mistakes == 2) _emit(TutorEventKind.helpOffered);
     }
-    return LearningEvidence(taskId: newLearningAttemptId(), problemId: task.problemId,
-      correct: correct, helpLevel: task.isExam ? 0 : _helpLevel, errorTag: errorTag);
+    return LearningEvidence(
+        taskId: newLearningAttemptId(),
+        problemId: task.problemId,
+        correct: correct,
+        helpLevel: task.isExam ? 0 : _helpLevel,
+        errorTag: errorTag);
   }
 
   /// Only a different, actually assessed construction + comprehension check
   /// qualifies. Counting or viewing the worked example never calls this.
-  LearningEvidence? checkTransfer({required String problemId,
-      required bool correct, required bool independent}) {
+  LearningEvidence? checkTransfer(
+      {required String problemId,
+      required bool correct,
+      required bool independent}) {
     final task = _scope;
-    if (task == null || task.isExam || _helpLevel == 0 ||
-        problemId == task.problemId || !_transfers.add(problemId)) return null;
+    if (task == null ||
+        task.isExam ||
+        _helpLevel == 0 ||
+        problemId == task.problemId ||
+        !_transfers.add(problemId)) return null;
     _emit(TutorEventKind.transferChecked);
-    return LearningEvidence(taskId: newLearningAttemptId(), problemId: problemId,
-      correct: correct, helpLevel: independent ? 0 : 3,
-      transferCheck: independent && correct);
+    return LearningEvidence(
+        taskId: newLearningAttemptId(),
+        problemId: problemId,
+        correct: correct,
+        helpLevel: independent ? 0 : 3,
+        transferCheck: independent && correct);
   }
 
   void _emit(TutorEventKind kind) {

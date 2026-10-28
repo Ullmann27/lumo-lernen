@@ -10,7 +10,9 @@ class _Store extends InMemorySharedPreferencesStore {
   bool rejectJourney = false;
   @override
   Future<bool> setValue(String type, String key, Object value) async =>
-      rejectJourney && key.contains('journey') ? false : super.setValue(type, key, value);
+      rejectJourney && key.contains('journey')
+          ? false
+          : super.setValue(type, key, value);
 }
 
 void main() {
@@ -18,36 +20,54 @@ void main() {
   setUp(() => SharedPreferences.setMockInitialValues({}));
   const subject = 'Mathematik';
   const unit = 'Zehner und Einer';
-  const observation = LearningEvidence(taskId: 'evidence-a', problemId: 'problem-84',
-      correct: true, helpLevel: 3);
+  const observation = LearningEvidence(
+      taskId: 'evidence-a',
+      problemId: 'problem-84',
+      correct: true,
+      helpLevel: 3);
 
-  test('actual assisted evidence survives restart, isolated from sibling', () async {
+  test('actual assisted evidence survives restart, isolated from sibling',
+      () async {
     final app = LumoAppState();
     addTearDown(app.dispose);
     await app.school.setActiveStudent('tutor-child-a');
-    await app.recordTutorEvidence(subject: subject, unit: unit, evidence: observation);
+    await app.recordTutorEvidence(
+        subject: subject, unit: unit, evidence: observation);
     await app.school.setActiveStudent('tutor-child-b');
     await app.loadTutorJourney();
     expect(app.learningJourney(), isEmpty);
-    final restored = await ProgressRepository(studentId: 'tutor-child-a').loadJourney();
+    final restored =
+        await ProgressRepository(studentId: 'tutor-child-a').loadJourney();
     expect(restored.records.values.single.assistedCorrect, 1);
     expect(restored.records.values.single.independentCorrect, 0);
     expect(app.state.stars, 0);
   });
 
-  test('accepted action retains captured owner after selection changes', () async {
+  test('accepted action retains captured owner after selection changes',
+      () async {
     final app = LumoAppState();
     addTearDown(app.dispose);
     await app.school.setActiveStudent('tutor-child-a');
-    final accepted = app.recordTutorEvidence(subject: subject, unit: unit, evidence: observation);
+    final accepted = app.recordTutorEvidence(
+        subject: subject, unit: unit, evidence: observation);
     await app.school.setActiveStudent('tutor-child-b');
     await accepted;
-    expect((await ProgressRepository(studentId: 'tutor-child-a').loadJourney())
-        .records.values.single.assistedCorrect, 1);
-    expect((await ProgressRepository(studentId: 'tutor-child-b').loadJourney()).records, isEmpty);
+    expect(
+        (await ProgressRepository(studentId: 'tutor-child-a').loadJourney())
+            .records
+            .values
+            .single
+            .assistedCorrect,
+        1);
+    expect(
+        (await ProgressRepository(studentId: 'tutor-child-b').loadJourney())
+            .records,
+        isEmpty);
   });
 
-  test('failed write is visible; retry preserves accepted identity exactly once', () async {
+  test(
+      'failed write is visible; retry preserves accepted identity exactly once',
+      () async {
     final store = _Store();
     SharedPreferencesStorePlatform.instance = store;
     final app = LumoAppState();
@@ -55,17 +75,24 @@ void main() {
     await app.school.setActiveStudent('tutor-child-a');
     await app.loadLearningProfile();
     store.rejectJourney = true;
-    await app.recordTutorEvidence(subject: subject, unit: unit, evidence: observation);
+    await app.recordTutorEvidence(
+        subject: subject, unit: unit, evidence: observation);
     expect(app.tutorSaveError, isNotNull);
     store.rejectJourney = false;
     await app.flushTutorEvidence();
-    await app.recordTutorEvidence(subject: subject, unit: unit, evidence: observation);
+    await app.recordTutorEvidence(
+        subject: subject, unit: unit, evidence: observation);
     expect(app.tutorSaveError, isNull);
-    final restored = await ProgressRepository(studentId: 'tutor-child-a').loadJourney();
+    final restored =
+        await ProgressRepository(studentId: 'tutor-child-a').loadJourney();
     expect(restored.records.values.single.attempts, 1);
     expect(restored.records.values.single.assistedCorrect, 1);
     final prefs = await SharedPreferences.getInstance();
-    final journal = prefs.getKeys().where((k) => k.contains('journey')).map(prefs.getString).join();
+    final journal = prefs
+        .getKeys()
+        .where((k) => k.contains('journey'))
+        .map(prefs.getString)
+        .join();
     expect(journal, isNot(contains('prompt')));
     expect(journal, isNot(contains('given')));
   });

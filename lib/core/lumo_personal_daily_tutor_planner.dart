@@ -4,16 +4,22 @@ import 'weakness_detection_engine.dart';
 
 enum LumoDailyTutorStepKind { revise, practice, confidence, check }
 
-enum LumoKnowledgeStatus { insufficient, review, assisted, independent, retained }
+enum LumoKnowledgeStatus {
+  insufficient,
+  review,
+  assisted,
+  independent,
+  retained
+}
 
 extension LumoKnowledgeLabel on LumoKnowledgeStatus {
   String get label => switch (this) {
-    LumoKnowledgeStatus.insufficient => 'Noch nicht ausreichend geprüft',
-    LumoKnowledgeStatus.review => 'Wiederholungsbedarf',
-    LumoKnowledgeStatus.assisted => 'Mit Hilfe gelöst',
-    LumoKnowledgeStatus.independent => 'Selbstständig gelöst',
-    LumoKnowledgeStatus.retained => 'Wiederholt sicher beherrscht',
-  };
+        LumoKnowledgeStatus.insufficient => 'Noch nicht ausreichend geprüft',
+        LumoKnowledgeStatus.review => 'Wiederholungsbedarf',
+        LumoKnowledgeStatus.assisted => 'Mit Hilfe gelöst',
+        LumoKnowledgeStatus.independent => 'Selbstständig gelöst',
+        LumoKnowledgeStatus.retained => 'Wiederholt sicher beherrscht',
+      };
 }
 
 /// One inspectable, profile-grounded action. No inferred personal traits.
@@ -54,33 +60,48 @@ class LumoPersonalDailyTutorPlanner {
 
   LumoKnowledgeStatus knowledge(JourneySkill? record) {
     if (record == null) return LumoKnowledgeStatus.insufficient;
-    if (record.status == JourneyStatus.retained) return LumoKnowledgeStatus.retained;
-    final wrong = record.attempts - record.independentCorrect - record.assistedCorrect;
-    if (record.needsPractice && wrong >= 2 && record.attempts >= 3) return LumoKnowledgeStatus.review;
-    if (!record.needsPractice && record.independentCorrect > 0) return LumoKnowledgeStatus.independent;
+    if (record.status == JourneyStatus.retained)
+      return LumoKnowledgeStatus.retained;
+    final wrong =
+        record.attempts - record.independentCorrect - record.assistedCorrect;
+    if (record.needsPractice && wrong >= 2 && record.attempts >= 3)
+      return LumoKnowledgeStatus.review;
+    if (!record.needsPractice && record.independentCorrect > 0)
+      return LumoKnowledgeStatus.independent;
     if (record.assistedCorrect > 0) return LumoKnowledgeStatus.assisted;
     return LumoKnowledgeStatus.insufficient;
   }
 
   /// Three short, actionable units. A historical aggregate without explicit
   /// assistance/transfer data remains unverified, even when its score is high.
-  List<LumoDailyTutorStep> buildEvidencePlan(Map<String, SkillRecord> records,
-      Map<String, JourneySkill> journey, {DateTime? now,
-      bool Function(SkillRecord record)? isEligible}) {
+  List<LumoDailyTutorStep> buildEvidencePlan(
+      Map<String, SkillRecord> records, Map<String, JourneySkill> journey,
+      {DateTime? now, bool Function(SkillRecord record)? isEligible}) {
     final candidates = <String, SkillRecord>{...records};
     for (final entry in journey.entries) {
-      candidates.putIfAbsent(entry.key, () => SkillRecord(skillId: entry.key,
-        subject: entry.value.subject, unit: entry.value.unit, lastSeen: entry.value.lastSeen));
+      candidates.putIfAbsent(
+          entry.key,
+          () => SkillRecord(
+              skillId: entry.key,
+              subject: entry.value.subject,
+              unit: entry.value.unit,
+              lastSeen: entry.value.lastSeen));
     }
-    final eligible = candidates.values.where((r) => r.subject.trim().isNotEmpty &&
-      r.unit.trim().isNotEmpty && (isEligible?.call(r) ?? true)).toList();
+    final eligible = candidates.values
+        .where((r) =>
+            r.subject.trim().isNotEmpty &&
+            r.unit.trim().isNotEmpty &&
+            (isEligible?.call(r) ?? true))
+        .toList();
     if (eligible.isEmpty) return const [];
     final at = now ?? DateTime.now();
     int priority(SkillRecord r) {
       final evidence = journey[r.skillId];
       final status = knowledge(evidence);
-      return status.index * 2 + (evidence != null && !at.isBefore(evidence.dueAt) ? 0 : 1);
+      return status.index * 2 +
+          (evidence != null && !at.isBefore(evidence.dueAt) ? 0 : 1);
     }
+
     eligible.sort((a, b) {
       final byNeed = priority(a).compareTo(priority(b));
       if (byNeed != 0) return byNeed;
@@ -89,20 +110,41 @@ class LumoPersonalDailyTutorPlanner {
       return bySeen != 0 ? bySeen : a.skillId.compareTo(b.skillId);
     });
     // Repetition/assisted work first; absence of evidence never means weakness.
-    final needs = eligible.where((r) => [LumoKnowledgeStatus.review,
-      LumoKnowledgeStatus.assisted].contains(knowledge(journey[r.skillId]))).toList();
+    final needs = eligible
+        .where((r) => [LumoKnowledgeStatus.review, LumoKnowledgeStatus.assisted]
+            .contains(knowledge(journey[r.skillId])))
+        .toList();
     final first = needs.isNotEmpty ? needs.first : eligible.first;
-    final second = eligible.firstWhere((r) => r.skillId != first.skillId, orElse: () => first);
-    final strengths = eligible.where((r) => [LumoKnowledgeStatus.retained,
-      LumoKnowledgeStatus.independent].contains(knowledge(journey[r.skillId]))).toList();
-    LumoDailyTutorStep step(SkillRecord r, LumoDailyTutorStepKind kind, int minutes) =>
-      LumoDailyTutorStep(kind: kind, subject: r.subject, unit: r.unit, durationMinutes: minutes,
-        reason: knowledge(journey[r.skillId]).label);
+    final second = eligible.firstWhere((r) => r.skillId != first.skillId,
+        orElse: () => first);
+    final strengths = eligible
+        .where((r) => [
+              LumoKnowledgeStatus.retained,
+              LumoKnowledgeStatus.independent
+            ].contains(knowledge(journey[r.skillId])))
+        .toList();
+    LumoDailyTutorStep step(
+            SkillRecord r, LumoDailyTutorStepKind kind, int minutes) =>
+        LumoDailyTutorStep(
+            kind: kind,
+            subject: r.subject,
+            unit: r.unit,
+            durationMinutes: minutes,
+            reason: knowledge(journey[r.skillId]).label);
     return List.unmodifiable([
-      step(first, needs.isNotEmpty ? LumoDailyTutorStepKind.revise : LumoDailyTutorStepKind.practice, 5),
+      step(
+          first,
+          needs.isNotEmpty
+              ? LumoDailyTutorStepKind.revise
+              : LumoDailyTutorStepKind.practice,
+          5),
       step(second, LumoDailyTutorStepKind.practice, 4),
-      step(strengths.isEmpty ? second : strengths.last,
-        strengths.isEmpty ? LumoDailyTutorStepKind.check : LumoDailyTutorStepKind.confidence, 3),
+      step(
+          strengths.isEmpty ? second : strengths.last,
+          strengths.isEmpty
+              ? LumoDailyTutorStepKind.check
+              : LumoDailyTutorStepKind.confidence,
+          3),
     ]);
   }
 
@@ -110,11 +152,13 @@ class LumoPersonalDailyTutorPlanner {
     Map<String, SkillRecord> records, {
     bool Function(SkillRecord record)? isEligible,
   }) {
-    final eligible = records.values.where((r) =>
-        r.attempts >= 3 &&
-        r.subject.trim().isNotEmpty &&
-        r.unit.trim().isNotEmpty &&
-        (isEligible?.call(r) ?? true)).toList(growable: false);
+    final eligible = records.values
+        .where((r) =>
+            r.attempts >= 3 &&
+            r.subject.trim().isNotEmpty &&
+            r.unit.trim().isNotEmpty &&
+            (isEligible?.call(r) ?? true))
+        .toList(growable: false);
     if (eligible.isEmpty) return const [];
 
     const detector = WeaknessDetectionEngine();

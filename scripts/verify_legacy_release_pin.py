@@ -86,6 +86,9 @@ APPROVED = {
     # https://github.com/Ullmann27/lumo-godot/actions/runs/40721498604
     # https://github.com/Ullmann27/lumo-godot/actions/runs/40721498520
     2000: "adcce3093caa42bf3da47262f70bdf03cdefa347",
+    # 2001 is Flutter-only tutoring coordination, workshop and profile evidence.
+    # Retain the exact independently tested 2000 Godot source and old policies.
+    2001: "adcce3093caa42bf3da47262f70bdf03cdefa347",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

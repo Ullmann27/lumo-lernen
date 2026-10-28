@@ -3,10 +3,18 @@ import 'package:lumo_lernen/core/tutor_coordination_engine.dart';
 
 void main() {
   late TutorCoordinationEngine tutor;
-  TutorTaskScope task({int generation = 1, String id = 'task-a', bool exam = false}) =>
-      TutorTaskScope(generation: generation, taskId: id, problemId: 'problem-$id',
-          subject: 'Mathematik', unit: 'Zehner und Einer', isExam: exam);
-  setUp(() { tutor = TutorCoordinationEngine()..activateProfile(1); });
+  TutorTaskScope task(
+          {int generation = 1, String id = 'task-a', bool exam = false}) =>
+      TutorTaskScope(
+          generation: generation,
+          taskId: id,
+          problemId: 'problem-$id',
+          subject: 'Mathematik',
+          unit: 'Zehner und Einer',
+          isExam: exam);
+  setUp(() {
+    tutor = TutorCoordinationEngine()..activateProfile(1);
+  });
 
   test('two errors invite once; declining never inserts or repeats help', () {
     tutor.enterTask(task());
@@ -24,7 +32,8 @@ void main() {
     expect(tutor.shouldOffer, isTrue);
   });
 
-  test('requested methods advance; successful answer keeps assisted evidence', () {
+  test('requested methods advance; successful answer keeps assisted evidence',
+      () {
     tutor.enterTask(task());
     expect(tutor.requestHelp(), 1);
     expect(tutor.requestHelp(), 2);
@@ -36,7 +45,8 @@ void main() {
     expect(tutor.requestHelp(), isNull);
   });
 
-  test('exams reject help and stale generations cannot change current task', () {
+  test('exams reject help and stale generations cannot change current task',
+      () {
     tutor.enterTask(task(exam: true));
     tutor.answer(attempt: 1, correct: false);
     tutor.answer(attempt: 2, correct: false);
@@ -58,16 +68,24 @@ void main() {
     expect(tutor.mistakes, 1);
     expect(first.transferCheck, isFalse);
     tutor.requestHelp();
-    expect(tutor.checkTransfer(problemId: 'problem-task-a', correct: true,
-        independent: true), isNull);
-    final transfer = tutor.checkTransfer(problemId: 'place-value-57',
-        correct: true, independent: true)!;
+    expect(
+        tutor.checkTransfer(
+            problemId: 'problem-task-a', correct: true, independent: true),
+        isNull);
+    final transfer = tutor.checkTransfer(
+        problemId: 'place-value-57', correct: true, independent: true)!;
     expect(transfer.helpLevel, 0);
     expect(transfer.transferCheck, isTrue);
-    expect(tutor.checkTransfer(problemId: 'place-value-57', correct: true,
-        independent: true), isNull);
-    expect(tutor.checkTransfer(problemId: 'place-value-62', correct: true,
-        independent: false)!.transferCheck, isFalse);
+    expect(
+        tutor.checkTransfer(
+            problemId: 'place-value-57', correct: true, independent: true),
+        isNull);
+    expect(
+        tutor
+            .checkTransfer(
+                problemId: 'place-value-62', correct: true, independent: false)!
+            .transferCheck,
+        isFalse);
   });
 
   test('external renderer assistance remains sticky and trace is bounded', () {
