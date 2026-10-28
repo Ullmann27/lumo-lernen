@@ -46,6 +46,9 @@ void main() {
         find.byKey(const ValueKey('lumo-hint-readable-text')));
     expect(text.style!.color, const Color(0xFFF3FAFF));
 
+    final listenSize = tester.getSize(find.byKey(const ValueKey('lumo-hint-listen')));
+    expect(listenSize.height, greaterThanOrEqualTo(48.0),
+        reason: 'The voice-help control must meet child-friendly 48dp touch height');
     await tester.tap(find.byKey(const ValueKey('lumo-hint-listen')));
     await tester.pump();
     expect(spoken, 1);

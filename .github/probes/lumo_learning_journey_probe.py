@@ -46,7 +46,12 @@ def main() -> int:
     parser.add_argument(
         '--learning-hub', action='store_true',
         help='Use the verified 1997 subject-first learning hub instead of the older academy')
+    parser.add_argument(
+        '--dedicated-math-task', action='store_true',
+        help='1999 learning hub opens the 30-task dedicated arithmetic screen with Antwort N buttons')
     args = parser.parse_args()
+    if args.dedicated_math_task and not args.learning_hub:
+        parser.error('--dedicated-math-task requires --learning-hub')
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
     creative = load_creative()
@@ -57,7 +62,8 @@ def main() -> int:
               'not_tested': ['physisches Gerät oder Fold-Scharnier', 'Bildrate', 'Sprachausgabe',
                              'falsche Antworten und Tipps auf Android (nur Flutter-Test)',
                              'andere Fächer und Klassen'],
-              'captures': [], 'learning_hub': args.learning_hub}
+              'captures': [], 'learning_hub': args.learning_hub,
+              'dedicated_math_task': args.dedicated_math_task}
 
     def text(tag: str) -> str:
         nodes = live.live_nodes(out, tag)
@@ -206,7 +212,7 @@ def main() -> int:
         # The 1997 subject-first hub launches the adaptive 10-question
         # lesson, while the historic academy probe runs the dedicated
         # 30-question PlusBis10Screen. Both must solve real UI tasks.
-        task_count = 10 if args.learning_hub else 30
+        task_count = 10 if args.learning_hub and not args.dedicated_math_task else 30
         wait_for(f'Aufgabe 1 / {task_count}', '06-task')
         prompt, _ = wait_for(PROMPT, '06-prompt')
         answer = int(prompt.group(1)) + int(prompt.group(2))
@@ -214,10 +220,10 @@ def main() -> int:
         result['captures'].append(creative.capture(out, '06-math-task'))
         # AdaptiveTaskRenderer exposes the number itself on its crystal.
         # Dedicated PlusBis10Screen exposes "Antwort N" instead.
-        answer_label = str(answer) if args.learning_hub else f'Antwort {answer}'
+        answer_label = str(answer) if args.learning_hub and not args.dedicated_math_task else f'Antwort {answer}'
         creative.flutter_tap(out, answer_label, '07-answer')
         result['captures'].append(creative.capture(out, '07-feedback'))
-        if args.learning_hub:
+        if args.learning_hub and not args.dedicated_math_task:
             # 1997 adaptive renderer auto-advances but preserves the scroll
             # position near the answer crystals. CI screenshot/XML proved the
             # correct answer earned 6 stars / 37 XP, while the next heading was
