@@ -66,6 +66,7 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
                         Icons.lightbulb_rounded,
                       LumoDailyTutorStepKind.confidence =>
                         Icons.star_rounded,
+                      LumoDailyTutorStepKind.check => Icons.extension_rounded,
                     },
                     color: const Color(0xFF66DFFE),
                     size: 24,
@@ -83,6 +84,8 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                             color: Colors.white,
                           )),
+                      if (steps[i].reason.isNotEmpty) Text(steps[i].reason,
+                        style: const TextStyle(color: Color(0xFF8DEBFF), fontSize: 12)),
                       Text(steps[i].description,
                           softWrap: true,
                           style: const TextStyle(

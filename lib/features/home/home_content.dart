@@ -113,8 +113,8 @@ class HomeContent extends StatelessWidget {
               MediaQuery.disableAnimationsOf(context);
           final recommendation = appState.topLearningRecommendation();
           final personalSteps = appState.learningProfileLoaded
-              ? const LumoPersonalDailyTutorPlanner().build(
-                  appState.learningSkills(),
+              ? const LumoPersonalDailyTutorPlanner().buildEvidencePlan(
+                  appState.learningSkills(), appState.learningJourney(),
                   isEligible: (record) => Curriculum.unitsForGrade(
                     record.subject,
                     state.grade,

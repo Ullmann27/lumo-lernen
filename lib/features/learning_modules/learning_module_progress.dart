@@ -6,6 +6,7 @@ import '../../app/app_state.dart';
 import '../../core/discovery_progress.dart';
 import '../../core/learning_journey.dart';
 import '../../core/learning_attempt_id.dart';
+import '../../core/tutor_coordination_engine.dart';
 
 /// Durable answer/reward boundary shared by the direct Akademie modules.
 /// A failed write keeps the accepted answer locked until Retry flushes it.
@@ -83,6 +84,13 @@ class LearningModuleProgress extends ChangeNotifier
     hintUsed = hintUsed || (learningEvidence?.helpLevel ?? 0) > 0;
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
+    // A real assessed prompt supplies stable problem identity. Legacy calls
+    // without a prompt keep their progress without invented transfer evidence.
+    if (learningEvidence == null && discoveryTarget == null && prompt.trim().isNotEmpty) {
+      learningEvidence = LearningEvidence(taskId: newLearningAttemptId(),
+        problemId: TutorTaskScope.problemIdentity(subject, unit, prompt),
+        correct: correct, helpLevel: hintUsed ? 1 : 0);
+    }
     final owner = appState.beginLearningAction();
     final now = DateTime.now();
     final ms = now.difference(_lastAnswerAt).inMilliseconds.clamp(0, 60000);

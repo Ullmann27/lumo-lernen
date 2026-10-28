@@ -739,6 +739,10 @@ class LumoAppState extends ChangeNotifier {
     try {
       lease = await source;
       await _prepareLearningLease(lease);
+      try { await lease.profile.loadJourney(); } catch (_) {
+        lease._session.tutorError = 'Dein Lernweg konnte noch nicht geladen werden.';
+      }
+      if (isCurrentLearningLease(lease)) _safeNotify();
     } catch (_) {
       if (_disposed ||
           (lease != null && lease.generation != _profileGeneration)) {
