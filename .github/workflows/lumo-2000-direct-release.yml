@@ -3,6 +3,7 @@ on:
   pull_request:
     paths:
       - '.github/workflows/lumo-2000-direct-release.yml'
+      - '.github/workflows/lumo-2000-actual-update-gate.yml'
   workflow_dispatch:
 permissions:
   contents: read
