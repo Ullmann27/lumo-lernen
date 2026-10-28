@@ -16,6 +16,8 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/widgets.dart';
+import '../../core/tutor_coordination_engine.dart';
+import '../../core/learning_journey.dart';
 
 enum LumoInteractionKind {
   taskOpened,
@@ -34,6 +36,7 @@ enum LumoLearningEventKind {
   answerIncorrect('answer_incorrect'),
   hintRequested('hint_requested'),
   hintAccepted('hint_accepted'),
+  hintDeclined('hint_declined'),
   taskRepeated('task_repeated'),
   lessonCompleted('lesson_completed'),
   childAskedQuestion('child_asked_question'),
@@ -99,6 +102,11 @@ class LumoCompanionTaskContext {
   final String ownerSection;
   final int? profileGeneration;
 
+  TutorTaskScope get tutorScope => TutorTaskScope(
+      generation: profileGeneration ?? 0, taskId: taskId,
+      problemId: TutorTaskScope.problemIdentity(subject, unit, prompt),
+      subject: subject, unit: unit, isExam: isExam, ownerSection: ownerSection);
+
   bool belongsTo({required String section, required int generation}) =>
       ownerSection == section &&
       (profileGeneration == null || profileGeneration == generation);
@@ -107,6 +115,8 @@ class LumoCompanionTaskContext {
 class LumoCompanionRequests {
   LumoCompanionRequests._();
   static final LumoCompanionRequests instance = LumoCompanionRequests._();
+
+  final TutorCoordinationEngine tutor = TutorCoordinationEngine();
 
   /// Position auf die der Companion hinwandern soll (in GLOBAL coords).
   /// Wenn null = keine aktive Anfrage. Nach Verarbeitung wieder auf null.
@@ -135,6 +145,7 @@ class LumoCompanionRequests {
       ValueNotifier<List<LumoLearningEvent>>([]);
 
   void publishTask(LumoCompanionTaskContext context) {
+    if (!tutor.enterTask(context.tutorScope)) return;
     final previous = taskContext.value;
     final isNew = previous?.taskId != context.taskId ||
         previous?.ownerSection != context.ownerSection ||
@@ -146,9 +157,25 @@ class LumoCompanionRequests {
     }
   }
 
-  void recordLearningEvent(LumoLearningEventKind kind,
+  LearningEvidence? recordLearningEvent(LumoLearningEventKind kind,
       {LumoCompanionTaskContext? context}) {
     final task = context ?? taskContext.value;
+    LearningEvidence? evidence;
+    if (task != null && tutor.matches(task.tutorScope)) {
+      switch (kind) {
+        case LumoLearningEventKind.hintRequested:
+          tutor.requestHelp(level: task.helpLevel);
+        case LumoLearningEventKind.hintDeclined:
+          tutor.declineHelp();
+        case LumoLearningEventKind.answerCorrect:
+        case LumoLearningEventKind.answerIncorrect:
+          evidence = tutor.answer(attempt: task.attempts,
+              correct: kind == LumoLearningEventKind.answerCorrect,
+              assisted: task.helpLevel > 0);
+        default:
+          break;
+      }
+    }
     final event = LumoLearningEvent(
       kind: kind,
       taskId: task?.taskId ?? '',
@@ -160,15 +187,18 @@ class LumoCompanionRequests {
     final next = [...learningEvents.value, event];
     learningEvents.value =
         List.unmodifiable(next.skip(next.length > 24 ? next.length - 24 : 0));
+    return evidence;
   }
 
   void clearTask(LumoCompanionTaskContext? owner) {
     if (owner != null && identical(taskContext.value, owner)) {
       taskContext.value = null;
+      tutor.clearTask();
     }
   }
 
   void clearLearningScope() {
+    tutor.clearTask();
     taskContext.value = null;
     learningEvents.value = const [];
     recentInteractions.value = const [];
