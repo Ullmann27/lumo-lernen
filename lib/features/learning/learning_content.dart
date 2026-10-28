@@ -2701,10 +2701,11 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
       onTap: widget.loading ? null : widget.onTap,
       child: AnimatedScale(
         scale: _pressed ? 0.97 : 1.0,
-        duration: const Duration(milliseconds: 120),
+        duration: MediaQuery.disableAnimationsOf(context) ? Duration.zero : const Duration(milliseconds: 120),
         curve: Curves.easeOutCubic,
         child: Container(
           key: const ValueKey('lumo-help-hologlass-button'),
+          constraints: const BoxConstraints(minHeight: 48),
           padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
           decoration: BoxDecoration(
             gradient: const LinearGradient(
@@ -2743,7 +2744,7 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
                   color: Colors.white,
                 ),
               const SizedBox(width: 8),
-              Text(
+              Flexible(child: Text(
                 widget.loading ? 'Lumo denkt nach…' : 'Lumo, hilf mir',
                 style: const TextStyle(
                   fontFamily: 'Nunito',
@@ -2751,7 +2752,7 @@ class _AiHelpButtonState extends State<_AiHelpButton> {
                   fontWeight: FontWeight.w900,
                   color: Colors.white,
                   letterSpacing: 0.2,
-                ),
+                )),
               ),
             ],
           ),

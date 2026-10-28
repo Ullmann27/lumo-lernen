@@ -167,6 +167,8 @@ Future<void> _stored(WidgetTester tester, String unit,
         reopened.learningSkills()[SkillRecord.makeId('Mathematik', unit)]!;
     expect(record.correct, correct);
     expect(record.wrong, wrong);
+    expect(reopened.learningJourney()[record.skillId]?.attempts, correct + wrong,
+        reason: 'Every actual assessed module answer reaches the shared tutor journal');
     expect(reopened.state.stars, stars);
     expect(reopened.state.xp, xp);
     reopened.dispose();
