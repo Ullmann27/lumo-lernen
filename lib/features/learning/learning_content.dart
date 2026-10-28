@@ -15,7 +15,7 @@ import '../../core/lumo_ai_learning_access.dart';
 import '../../core/lumo_ai_learning_policy_bridge.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
-import '../../core/lumo_tutor_offer_coordinator.dart';
+import '../../core/tutor_coordination_engine.dart';
 import '../../core/math/lumo_rechentricks.dart';
 import '../../core/lumo_visual_aid_service.dart';
 import '../../core/school_exercise_generator.dart';
@@ -75,7 +75,7 @@ class _LearningContentState extends State<LearningContent> {
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   static const RecentTaskRepository _recentRepo = RecentTaskRepository();
   static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();
-  final LumoTutorOfferCoordinator _tutorOfferCoordinator = LumoTutorOfferCoordinator();
+  TutorCoordinationEngine get _tutorCoordinator => LumoCompanionRequests.instance.tutor;
   // Visuelle Hilfe als 4. Eskalations-Stufe (nach 5+ Fehlversuchen).
   // Nutzt nur den lokalen Pfad (kein Cloud-Aufruf, keine Credit-Kosten),
   // weil das fuer Heinz' Toechter im taeglichen Lernen ausreicht.
@@ -391,7 +391,6 @@ class _LearningContentState extends State<LearningContent> {
     _lastFeedback = null;
     _tutorHint = null;
     _requestedHelpLevel = 0;
-    _tutorOfferCoordinator.reset();
     _visualAid = null;
     _aiHelpReply = null;
     _aiHelpLoading = false;
@@ -429,6 +428,7 @@ class _LearningContentState extends State<LearningContent> {
       activity: _task.visual.contains('writ') ? 'writing' : 'learning',
       profileGeneration: widget.appState.profileGeneration,
     );
+    _tutorCoordinator.enterTask(context.tutorScope);
     _publishedTaskContext = context;
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (mounted && identical(_publishedTaskContext, context)) {
@@ -440,9 +440,17 @@ class _LearningContentState extends State<LearningContent> {
   void _requestTaskHelp() {
     if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
-    final hint = _taskHints.explain(_task, level: _requestedHelpLevel);
+    final hint = _requestedHelpLevel == 2
+        ? _buildTutorHint(_lastGivenAnswer ?? '', const []) ?? _taskHints.explain(_task, level: 2)
+        : _taskHints.explain(_task, level: _requestedHelpLevel);
+    if (_requestedHelpLevel >= 3) {
+      if (_task.subject == 'Mathematik') {
+        _rechentricks = const LumoRechentricks().explain(prompt: _task.prompt,
+          correctAnswer: '${_taskInstance.correctAnswer}', grade: widget.appState.state.grade);
+      }
+      unawaited(_loadVisualAid());
+    }
     _lumo.think();
-    _tutorOfferCoordinator.accept();
     setState(() => _tutorHint = hint);
     LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.helpRequested);
     _publishTaskContext();
@@ -859,17 +867,10 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   String? _buildTutorHint(Object answerGiven, List<ErrorType> errorTypes) {
-    if (!_allowHelp || _attemptCount < 3) return null;
-    final helpLevel = _localTutorEngine.decideHelpLevel(
-      attemptCount: _attemptCount,
-      hasRepeatedWeakness: false,
-      premiumEnabled: true,
-    );
-    final mode = _localTutorEngine.decideMode(
-      attemptCount: _attemptCount,
-      hasRepeatedWeakness: false,
-      isTestReview: widget.appState.state.sessionKind == LumoSessionKind.test,
-    );
+    if (!_allowHelp || _requestedHelpLevel == 0) return null;
+    final helpLevel = _requestedHelpLevel >= 3
+        ? LumoTutorHelpLevel.visualExplanation : LumoTutorHelpLevel.guidedStep;
+    const mode = LumoTutorMode.mistakeExplanation;
     final request = LumoTutorRequest(
       mode: mode,
       subject: _tutorSubjectFor(_task.subject),
@@ -893,6 +894,7 @@ class _LearningContentState extends State<LearningContent> {
   /// Kein Cloud-Aufruf, keine Credit-Kosten.
   Future<void> _loadVisualAid() async {
     final taskId = _taskInstance.taskInstanceId;
+    final generation = widget.appState.profileGeneration;
     try {
       final aid = await _visualAidService.buildAid(
         task: _task,
@@ -901,12 +903,13 @@ class _LearningContentState extends State<LearningContent> {
         // settings sind nur fuer den Cloud-Pfad relevant. Wir uebergeben
         // bewusst die aktuellen Settings - shouldUsePaidImage prueft
         // intern ob der Cloud-Pfad freigegeben ist. Default: nein.
-        settings: widget.appState.state.settings,
+        settings: widget.appState.state.settings.copyWith(aiProxyEnabled: false),
         childId: _childId,
         childName: _childFirstName,
         childRequestedImage: false,
       );
       if (!mounted || _taskInstance.taskInstanceId != taskId) return;
+      if (generation != widget.appState.profileGeneration || !_allowHelp || _requestedHelpLevel < 3) return;
       setState(() => _visualAid = aid);
     } catch (_) {
       // Bildhilfe ist optional. Wenn sie nicht laedt, gehts ohne weiter.
@@ -919,6 +922,7 @@ class _LearningContentState extends State<LearningContent> {
     required Object answerGiven,
     double? handwritingScore,
   }) {
+    hintUsed = _allowHelp && (hintUsed || _requestedHelpLevel > 0 || _tutorCoordinator.helpLevel > 0);
     _totalTaskAttempts++;
     _lastGivenAnswer = '$answerGiven';
     _publishTaskContext();
@@ -960,19 +964,10 @@ class _LearningContentState extends State<LearningContent> {
       if (_allowHelp) _attemptCount++;
     }
 
-    // No hint is inserted automatically: only invite after two mistakes
-    // on the same real task, except in tests and schoolwork.
-    _tutorOfferCoordinator.recordAnswer(
-      childId: _childId,
-      taskId: _taskInstance.taskInstanceId,
-      correct: correct,
-      canOfferHelp: _allowHelp,
-    );
-
     // Phase 2 - Lumo Fehlerdetektiv. Erkennt sofort beim 1. Fehler
     // die wahrscheinlichste Fehlerart und gibt kindgerechtes Feedback.
     // Faellt zurueck auf den bestehenden Tutor-Engine wenn Vertrauen niedrig.
-    String? nextTutorHint;
+    final nextTutorHint = _tutorHint;
     if (!correct) {
       final detection = const ErrorDetective().analyze(
         subject: _task.subject,
@@ -981,36 +976,11 @@ class _LearningContentState extends State<LearningContent> {
         givenAnswer: '$answerGiven',
       );
       if (detection.confidence >= 0.65) {
-        nextTutorHint = _allowHelp ? detection.childFriendlyMessage : null;
         // Fehlerart zaehlen + persistieren fuer die DNA-Anzeige in Phase 1.
         final key = detection.pattern.germanShortLabel;
         _errorBreakdown[key] = (_errorBreakdown[key] ?? 0) + 1;
         unawaited(_errorRepo.increment(_childId, key));
-      } else {
-        // Niedrige Konfidenz - generischer Tutor-Hint (nur ab 3 Versuchen).
-        nextTutorHint = _buildTutorHint(answerGiven, errorTypes);
       }
-    }
-    // 2026-06-05 Iter 21: Rechentricks-Mentor (Mildenberger-Stil) bei
-    // attempt >= 2 fuer Math-Aufgaben. Eine der 5 Figuren (Emma, Max,
-    // Hanna, Tim, Mira) zeigt eine Strategie zur aktuellen Aufgabe.
-    RechentricksExplanation? nextRechentricks = _rechentricks;
-    if (!correct &&
-        _allowHelp &&
-        _attemptCount >= 2 &&
-        _task.subject == 'Mathematik' &&
-        nextRechentricks == null) {
-      nextRechentricks = const LumoRechentricks().explain(
-        prompt: _task.prompt,
-        correctAnswer: '${_taskInstance.correctAnswer}',
-        grade: widget.appState.state.grade,
-      );
-    }
-    // 4. Eskalations-Stufe: nach 5+ Fehlversuchen lokale Bildhilfe nachladen.
-    // Asynchron, damit die UI sofort reagiert. Setzt _visualAid via setState
-    // sobald fertig. Cloud-Aufruf ist explizit ausgeschlossen.
-    if (!correct && _allowHelp && _attemptCount >= 5 && _visualAid == null) {
-      unawaited(_loadVisualAid());
     }
     final result = TaskResult(
       taskInstanceId: _taskInstance.taskInstanceId,
@@ -1063,14 +1033,17 @@ class _LearningContentState extends State<LearningContent> {
       _lastSkillState = after;
       _lastFeedback = feedback;
       _tutorHint = nextTutorHint;
-      _rechentricks = nextRechentricks;
     });
     _publishTaskContext();
-    LumoCompanionRequests.instance.recordLearningEvent(
+    final evidence = LumoCompanionRequests.instance.recordLearningEvent(
         correct
             ? LumoLearningEventKind.answerCorrect
             : LumoLearningEventKind.answerIncorrect,
         context: _publishedTaskContext);
+    if (evidence != null) {
+      unawaited(widget.appState.recordTutorEvidence(subject: _task.subject,
+          unit: _task.unit, evidence: evidence));
+    }
 
     if (correct) {
       widget.appState.correctAnswer(_task.unit, stars: rewardDelta.stars, xp: rewardDelta.xp);
@@ -1177,7 +1150,7 @@ class _LearningContentState extends State<LearningContent> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       final requests = LumoCompanionRequests.instance;
       if (identical(requests.taskContext.value, published)) {
-        requests.taskContext.value = null;
+        requests.clearTask(published);
       }
     });
     _autoAdvanceTimer?.cancel();
@@ -1433,16 +1406,23 @@ class _LearningContentState extends State<LearningContent> {
                       ],
                       if (_allowHelp &&
                           !_answered &&
-                          _tutorOfferCoordinator.shouldOffer) ...[
+                          _tutorCoordinator.shouldOffer) ...[
                         const SizedBox(height: 14),
                         LumoTutorOfferCard(
                           reduceMotion: st.settings.reduceAnimations ||
                               st.settings.calmMode,
                           onAccept: _requestTaskHelp,
                           onDecline: () {
-                            setState(_tutorOfferCoordinator.decline);
+                            setState(() => LumoCompanionRequests.instance.recordLearningEvent(
+                                LumoLearningEventKind.hintDeclined, context: _publishedTaskContext));
                           },
                         ),
+                      ],
+                      if (widget.appState.tutorSaveError != null) ...[
+                        Text(widget.appState.tutorSaveError!, style: const TextStyle(color: Colors.white)),
+                        TextButton(onPressed: () => unawaited(widget.appState.flushTutorEvidence()),
+                          style: TextButton.styleFrom(minimumSize: const Size(48, 48)),
+                          child: const Text('Lernschritt erneut speichern')),
                       ],
                       if (_tutorHint != null) ...[
                         const SizedBox(height: 14),
@@ -1465,6 +1445,16 @@ class _LearningContentState extends State<LearningContent> {
                         LumoPlaceValueWorkshop(
                           key: ValueKey('lumo-place-value-${_taskInstance.taskInstanceId}'),
                           number: LumoPlaceValueWorkshop.numberForPrompt(_task.prompt)!,
+                          onTransferChecked: (result) {
+                            if (!_allowHelp || !_tutorCoordinator.matches(_publishedTaskContext!.tutorScope)) return;
+                            final evidence = _tutorCoordinator.checkTransfer(
+                              problemId: 'place-value-${result.number}',
+                              correct: result.correct, independent: result.independent);
+                            if (evidence != null) {
+                              unawaited(widget.appState.recordTutorEvidence(subject: _task.subject,
+                                unit: _task.unit, evidence: evidence));
+                            }
+                          },
                           reduceMotion: st.settings.reduceAnimations ||
                               st.settings.calmMode,
                         ),
