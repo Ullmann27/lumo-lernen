@@ -143,6 +143,7 @@ class _UhrLernenScreenState extends State<UhrLernenScreen>
     });
     final isCorrect = answer == _correctText;
     final saved = await _progress.saveAnswer(
+      problemKey: 'Uhr: $_hour:$_minute',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 8 : 0,

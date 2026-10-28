@@ -196,6 +196,7 @@ class _GeldScreenState extends State<GeldScreen> with TickerProviderStateMixin {
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: _typ == _GeldFrageTyp.zaehlen ? 'Münzen: ${(_muenzenAufTisch.map((m) => m.wert).toList()..sort()).join(",")}' : 'Münze finden: ${_gefragteMuenze.wert}' ,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,

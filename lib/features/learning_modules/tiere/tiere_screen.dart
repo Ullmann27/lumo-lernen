@@ -176,6 +176,7 @@ class _TiereScreenState extends State<TiereScreen>
         : _correctTier.name;
     final isCorrect = answer == correctAnswer;
     final saved = await _progress.saveAnswer(
+      problemKey: '${_round[_taskIdx].kind}:${_round[_taskIdx].animal}',
       cosmosSubjectId: 's1_tiere',
       cosmosIsMath: false,
       correct: isCorrect,

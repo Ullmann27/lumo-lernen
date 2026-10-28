@@ -127,6 +127,7 @@ class _FormenScreenState extends State<FormenScreen>
     });
     final isCorrect = s == _correctShape;
     final saved = await _progress.saveAnswer(
+      problemKey: 'Form: ${_correctShape.name}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 5 : 0,

@@ -171,6 +171,7 @@ class _JahreszeitenScreenState extends State<JahreszeitenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: _deck[_taskIdx].id,
       cosmosSubjectId: 's1_jahreszeiten',
       cosmosIsMath: false,
       correct: isCorrect,

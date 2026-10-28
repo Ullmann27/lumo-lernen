@@ -194,6 +194,7 @@ class _ZeitformenScreenState extends State<ZeitformenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: '${_typ.name}:${_korrektSatz.satz}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,

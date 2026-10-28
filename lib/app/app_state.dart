@@ -198,7 +198,8 @@ class _LearningSession {
   final CosmosWorld cosmos;
   final Queue<_PendingMissionAnswer> pendingMissionAnswers = Queue();
   Future<void>? missionDrain;
-  final Queue<({String subject, String unit, LearningEvidence evidence})> tutorPending = Queue();
+  final Queue<({String subject, String unit, LearningEvidence evidence})>
+      tutorPending = Queue();
   Future<void>? tutorDrain;
   String? tutorError;
   int epoch = 0;
@@ -739,8 +740,11 @@ class LumoAppState extends ChangeNotifier {
     try {
       lease = await source;
       await _prepareLearningLease(lease);
-      try { await lease.profile.loadJourney(); } catch (_) {
-        lease._session.tutorError = 'Dein Lernweg konnte noch nicht geladen werden.';
+      try {
+        await lease.profile.loadJourney();
+      } catch (_) {
+        lease._session.tutorError =
+            'Dein Lernweg konnte noch nicht geladen werden.';
       }
       if (isCurrentLearningLease(lease)) _safeNotify();
     } catch (_) {
@@ -1103,22 +1107,29 @@ class LumoAppState extends ChangeNotifier {
       ? _learningProfile.skills
       : <String, SkillRecord>{};
 
-  Map<String, JourneySkill> learningJourney() => _learningProfileLoaded &&
-      _learningProfile.isJourneyLoaded ? _learningProfile.journey.records : const {};
+  Map<String, JourneySkill> learningJourney() =>
+      _learningProfileLoaded && _learningProfile.isJourneyLoaded
+          ? _learningProfile.journey.records
+          : const {};
 
   String? get tutorSaveError => _activeLearningSession?.tutorError;
 
   /// Capture the owner before asynchronous storage, just like school answers.
   /// Only semantic evidence enters the existing per-child journal; no rewards.
-  Future<void> recordTutorEvidence({required String subject, required String unit,
-      required LearningEvidence evidence, LearningProfileLease? lease}) {
+  Future<void> recordTutorEvidence(
+      {required String subject,
+      required String unit,
+      required LearningEvidence evidence,
+      LearningProfileLease? lease}) {
     evidence.validate();
     if (_disposed || _resetting) return Future.value();
-    final source = lease == null ? captureLearningProfile() : Future.value(lease);
+    final source =
+        lease == null ? captureLearningProfile() : Future.value(lease);
     return _trackLearning(() async {
       final owner = await source;
       if (!canUseLearningLease(owner)) return;
-      owner._session.tutorPending.add((subject: subject, unit: unit, evidence: evidence));
+      owner._session.tutorPending
+          .add((subject: subject, unit: unit, evidence: evidence));
       await _drainTutorEvidence(owner);
     }());
   }
@@ -1138,8 +1149,10 @@ class LumoAppState extends ChangeNotifier {
         await owner.profile.loadJourney();
         while (session.tutorPending.isNotEmpty && canUseLearningLease(owner)) {
           final pending = session.tutorPending.first;
-          await owner.profile.recordJourneyEvidence(subject: pending.subject,
-              unit: pending.unit, evidence: pending.evidence);
+          await owner.profile.recordJourneyEvidence(
+              subject: pending.subject,
+              unit: pending.unit,
+              evidence: pending.evidence);
           session.tutorPending.removeFirst();
         }
         session.tutorError = null;
@@ -1149,24 +1162,29 @@ class LumoAppState extends ChangeNotifier {
       if (isCurrentLearningLease(owner)) _safeNotify();
     }();
     session.tutorDrain = operation;
-    try { await operation; } finally { session.tutorDrain = null; }
+    try {
+      await operation;
+    } finally {
+      session.tutorDrain = null;
+    }
   }
 
   Future<void> flushTutorEvidence() => _trackLearning(() async {
-    final owner = await captureLearningProfile();
-    if (canUseLearningLease(owner)) await _drainTutorEvidence(owner);
-  }());
+        final owner = await captureLearningProfile();
+        if (canUseLearningLease(owner)) await _drainTutorEvidence(owner);
+      }());
 
   Future<void> loadTutorJourney() => _trackLearning(() async {
-    final owner = await captureLearningProfile();
-    try {
-      await _prepareLearningLease(owner);
-      await owner.profile.loadJourney();
-    } catch (_) {
-      owner._session.tutorError = 'Dein Lernweg konnte noch nicht geladen werden.';
-    }
-    if (isCurrentLearningLease(owner)) _safeNotify();
-  }());
+        final owner = await captureLearningProfile();
+        try {
+          await _prepareLearningLease(owner);
+          await owner.profile.loadJourney();
+        } catch (_) {
+          owner._session.tutorError =
+              'Dein Lernweg konnte noch nicht geladen werden.';
+        }
+        if (isCurrentLearningLease(owner)) _safeNotify();
+      }());
 
   /// Heinz 2026-05-21: 'Lumo Cards ist zu langweilig'. Streak-Counter
   /// fuer aufeinanderfolgende Siege gegen Lumo - gibt Bonus-Sterne und

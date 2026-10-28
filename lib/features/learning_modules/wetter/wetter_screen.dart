@@ -230,6 +230,7 @@ class _WetterScreenState extends State<WetterScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: '${_round[_taskIdx].kind}:${_round[_taskIdx].weather}:${_round[_taskIdx].hint}',
       cosmosSubjectId: 's1_wetter',
       cosmosIsMath: false,
       correct: isCorrect,

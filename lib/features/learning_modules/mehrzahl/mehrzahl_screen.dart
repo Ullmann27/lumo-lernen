@@ -148,6 +148,7 @@ class _MehrzahlScreenState extends State<MehrzahlScreen>
     });
     final isCorrect = idx == _correctIdx;
     final saved = await _progress.saveAnswer(
+      problemKey: 'Mehrzahl: ${_korrektWort.singular}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,

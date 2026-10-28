@@ -63,6 +63,7 @@ class LearningModuleProgress extends ChangeNotifier
     String prompt = '',
     String given = '',
     String expected = '',
+    String? problemKey,
     String? cosmosSubjectId,
     bool cosmosIsMath = false,
     bool cosmosIsPerfect = false,
@@ -86,10 +87,16 @@ class LearningModuleProgress extends ChangeNotifier
     if (_pending != null) return _pending!.completion.future;
     // A real assessed prompt supplies stable problem identity. Legacy calls
     // without a prompt keep their progress without invented transfer evidence.
-    if (learningEvidence == null && discoveryTarget == null && prompt.trim().isNotEmpty) {
-      learningEvidence = LearningEvidence(taskId: newLearningAttemptId(),
-        problemId: TutorTaskScope.problemIdentity(subject, unit, prompt),
-        correct: correct, helpLevel: hintUsed ? 1 : 0);
+    if (learningEvidence == null &&
+        discoveryTarget == null &&
+        (prompt.trim().isNotEmpty ||
+            (problemKey?.trim().isNotEmpty ?? false))) {
+      learningEvidence = LearningEvidence(
+          taskId: newLearningAttemptId(),
+          problemId: TutorTaskScope.problemIdentity(
+              subject, unit, problemKey ?? prompt),
+          correct: correct,
+          helpLevel: hintUsed ? 1 : 0);
     }
     final owner = appState.beginLearningAction();
     final now = DateTime.now();

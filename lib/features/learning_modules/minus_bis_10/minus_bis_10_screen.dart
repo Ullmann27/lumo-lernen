@@ -141,6 +141,7 @@ class _MinusBis10ScreenState extends State<MinusBis10Screen>
     });
     final isCorrect = answer == _correct;
     final saved = await _progress.saveAnswer(
+      problemKey: '$_a - $_b',
       cosmosSubjectId: 'm1_minus10',
       cosmosIsMath: true,
       correct: isCorrect,

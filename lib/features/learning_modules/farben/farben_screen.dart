@@ -203,6 +203,7 @@ class _FarbenScreenState extends State<FarbenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: '${_round[_taskIdx].kind}:${_round[_taskIdx].object}:${_round[_taskIdx].color}',
       cosmosSubjectId: 's1_farben',
       cosmosIsMath: false,
       correct: isCorrect,

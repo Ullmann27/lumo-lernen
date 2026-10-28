@@ -115,6 +115,19 @@ jobs:
           retention-days: 30
       - name: Full Flutter regression suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Capture and verify actual 2001 tutor, transfer and daily-plan routes
+        if: hashFiles('test/design/lumo_tutor_brain_capture_test.dart') != ''
+        env:
+          LUMO_TUTOR_BRAIN_CAPTURES: .ci-results/tutor-2001
+        run: flutter test --no-pub --reporter=expanded test/design/lumo_tutor_brain_capture_test.dart
+      - uses: actions/upload-artifact@v4
+        if: always() && hashFiles('.ci-results/tutor-2001/*.png') != ''
+        with:
+          name: lumo-tutor-2001-actual-flutter-captures
+          path: .ci-results/tutor-2001/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
       - name: Capture spatial reading, answer retry and subject cards on phone and Fold
         env:
           LUMO_SPATIAL_CAPTURES: visual-evidence/1988/spatial-reading

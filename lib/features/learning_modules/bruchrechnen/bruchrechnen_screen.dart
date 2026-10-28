@@ -146,6 +146,7 @@ class _BruchrechnenScreenState extends State<BruchrechnenScreen>
     });
     final isCorrect = areEquivalentFractionAnswers(answer, _correctText);
     if (!await _progress.saveAnswer(
+      problemKey: 'Pizza: $_gegessen/$_nenner',
           correct: isCorrect,
           stars: isCorrect ? 1 : 0,
           xp: isCorrect ? 10 : 0,

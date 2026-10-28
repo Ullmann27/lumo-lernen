@@ -220,6 +220,7 @@ class _VerkehrScreenState extends State<VerkehrScreen>
     });
     final isCorrect = idx == _correctIdx;
     final saved = await _progress.saveAnswer(
+      problemKey: _aktuelle.frage,
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 8 : 0,

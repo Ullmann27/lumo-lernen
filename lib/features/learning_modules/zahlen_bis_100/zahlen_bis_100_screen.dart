@@ -175,6 +175,7 @@ class _ZahlenBis100ScreenState extends State<ZahlenBis100Screen>
     });
     final isCorrect = answer == _correctAnswer;
     final saved = await _progress.saveAnswer(
+      problemKey: '${_typ.name}:$_zahl1:${_typ == _Zahl100FrageTyp.vergleich ? _zahl2 : 0}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 6 : 0,

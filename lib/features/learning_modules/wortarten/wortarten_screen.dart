@@ -188,6 +188,7 @@ class _WortartenScreenState extends State<WortartenScreen>
       _answered = true;
     });
     final saved = await _progress.saveAnswer(
+      problemKey: '${_typ.name}:${_korrektWort.wort}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 7 : 0,

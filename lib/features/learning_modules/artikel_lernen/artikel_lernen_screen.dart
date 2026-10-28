@@ -120,6 +120,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
     });
     final isCorrect = answer == _correctArticle;
     final saved = await _progress.saveAnswer(
+      problemKey: 'Artikel: $_word',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 6 : 0,

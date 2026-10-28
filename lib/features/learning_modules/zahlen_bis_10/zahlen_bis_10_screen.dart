@@ -154,6 +154,7 @@ class _ZahlenBis10ScreenState extends State<ZahlenBis10Screen>
     });
     final isCorrect = answer == _correctAnswer;
     final saved = await _progress.saveAnswer(
+      problemKey: '${_typ.name}:$_zahl1:${_typ == _ZahlAufgabenTyp.groesser ? _zahl2 : 0}',
       correct: isCorrect,
       stars: isCorrect ? 1 : 0,
       xp: isCorrect ? 5 : 0,
