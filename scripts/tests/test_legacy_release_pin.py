@@ -192,6 +192,21 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1998), config(candidate))
 
+    def test_2000_bumps_existing_app_and_pins_combined_sonnenhafen_with_tutor(self):
+        previous = module.APPROVED[1999]
+        candidate = module.APPROVED[2000]
+        self.assertEqual(previous, "4d0fd40fdf188be6ca86057596c7b51f41701fa3")
+        self.assertEqual(candidate, "adcce3093caa42bf3da47262f70bdf03cdefa347")
+        self.assertNotEqual(previous, candidate)
+        self.assertEqual(module.verify(pubspec(2000), config(candidate)), (2000, candidate))
+        self.assertEqual(module.verify(pubspec(1999), config(previous)), (1999, previous))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(2000), config(previous))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(1999), config(candidate))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(2001), config(candidate))
+
     def test_preserved_release_1950_to_1952_requires_original_source(self):
         for number in (1950, 1951, 1952):
             with self.subTest(number=number):
