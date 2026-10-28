@@ -125,7 +125,7 @@ def main() -> int:
             raise RuntimeError('Baseline onboarding did not pass')
         learned = out / 'baseline-learning'
         subprocess.run([sys.executable, str(Path(__file__).with_name('lumo_learning_journey_probe.py')),
-                        '--out', str(learned), '--learning-hub'],
+                        '--out', str(learned), '--learning-hub', '--dedicated-math-task'],
                        check=True, timeout=900)
         result['learning_journey'] = json.loads((learned / 'learning-journey-result.json').read_text())
         if result['learning_journey']['status'] != 'PASS':
