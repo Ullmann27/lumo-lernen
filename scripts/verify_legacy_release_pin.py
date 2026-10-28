@@ -80,6 +80,12 @@ APPROVED = {
     # Fresh engine/routing/physics/render evidence: Godot audit 2026-10-23,
     # docs/NEXTGEN_AUDIT_20261023.md at Godot commit 494416b.
     1999: "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+    # 2000: combined physically tested Sonnenhafen panoramic jump and cave water/lava
+    # plus Flutter local place-value tutor. Prior 1999 APK is immutable.
+    # Godot exact combined-source flights and darkride 4.6.3 tests:
+    # https://github.com/Ullmann27/lumo-godot/actions/runs/40721498604
+    # https://github.com/Ullmann27/lumo-godot/actions/runs/40721498520
+    2000: "adcce3093caa42bf3da47262f70bdf03cdefa347",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
