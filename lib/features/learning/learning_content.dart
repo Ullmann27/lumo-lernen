@@ -40,6 +40,7 @@ import 'widgets/rechentricks_mentor_card.dart';
 import 'widgets/lumo_learning_tree_card.dart';
 import 'widgets/lumo_tutor_hint_card.dart';
 import 'widgets/lumo_tutor_offer_card.dart';
+import 'widgets/lumo_place_value_workshop.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -1450,6 +1451,22 @@ class _LearningContentState extends State<LearningContent> {
                           reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
                           onSpeak: () => unawaited(_speakTutorHint(
                             _tutorHint!, explainAvailability: true)),
+                        ),
+                      ],
+                      // After choosing three explicit help steps, let the
+                      // child count actual tens instead of merely rereading
+                      // the explanation. No rewards or automatic answers.
+                      if (_allowHelp &&
+                          !_answered &&
+                          _requestedHelpLevel >= 3 &&
+                          _task.subject == 'Mathematik' &&
+                          LumoPlaceValueWorkshop.numberForPrompt(_task.prompt) != null) ...[
+                        const SizedBox(height: 14),
+                        LumoPlaceValueWorkshop(
+                          key: ValueKey('lumo-place-value-${_taskInstance.taskInstanceId}'),
+                          number: LumoPlaceValueWorkshop.numberForPrompt(_task.prompt)!,
+                          reduceMotion: st.settings.reduceAnimations ||
+                              st.settings.calmMode,
                         ),
                       ],
                       if (_visualAid != null) ...[
