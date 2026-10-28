@@ -15,6 +15,7 @@ import '../../core/lumo_ai_learning_access.dart';
 import '../../core/lumo_ai_learning_policy_bridge.dart';
 import '../../core/lumo_tutor_contracts.dart';
 import '../../core/lumo_tutor_engine.dart';
+import '../../core/lumo_tutor_offer_coordinator.dart';
 import '../../core/math/lumo_rechentricks.dart';
 import '../../core/lumo_visual_aid_service.dart';
 import '../../core/school_exercise_generator.dart';
@@ -38,6 +39,8 @@ import 'renderers/writing_task_renderer.dart';
 import 'widgets/rechentricks_mentor_card.dart';
 import 'widgets/lumo_learning_tree_card.dart';
 import 'widgets/lumo_tutor_hint_card.dart';
+import 'widgets/lumo_tutor_offer_card.dart';
+import 'widgets/lumo_place_value_workshop.dart';
 import '../lumo_welt/lumo_welt_screen.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -72,6 +75,7 @@ class _LearningContentState extends State<LearningContent> {
   static const TaskQualityGuard _taskQualityGuard = TaskQualityGuard();
   static const RecentTaskRepository _recentRepo = RecentTaskRepository();
   static const LumoTutorEngine _localTutorEngine = LumoTutorEngine();
+  final LumoTutorOfferCoordinator _tutorOfferCoordinator = LumoTutorOfferCoordinator();
   // Visuelle Hilfe als 4. Eskalations-Stufe (nach 5+ Fehlversuchen).
   // Nutzt nur den lokalen Pfad (kein Cloud-Aufruf, keine Credit-Kosten),
   // weil das fuer Heinz' Toechter im taeglichen Lernen ausreicht.
@@ -387,6 +391,7 @@ class _LearningContentState extends State<LearningContent> {
     _lastFeedback = null;
     _tutorHint = null;
     _requestedHelpLevel = 0;
+    _tutorOfferCoordinator.reset();
     _visualAid = null;
     _aiHelpReply = null;
     _aiHelpLoading = false;
@@ -437,6 +442,7 @@ class _LearningContentState extends State<LearningContent> {
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
     final hint = _taskHints.explain(_task, level: _requestedHelpLevel);
     _lumo.think();
+    _tutorOfferCoordinator.accept();
     setState(() => _tutorHint = hint);
     LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.helpRequested);
     _publishTaskContext();
@@ -954,6 +960,15 @@ class _LearningContentState extends State<LearningContent> {
       if (_allowHelp) _attemptCount++;
     }
 
+    // No hint is inserted automatically: only invite after two mistakes
+    // on the same real task, except in tests and schoolwork.
+    _tutorOfferCoordinator.recordAnswer(
+      childId: _childId,
+      taskId: _taskInstance.taskInstanceId,
+      correct: correct,
+      canOfferHelp: _allowHelp,
+    );
+
     // Phase 2 - Lumo Fehlerdetektiv. Erkennt sofort beim 1. Fehler
     // die wahrscheinlichste Fehlerart und gibt kindgerechtes Feedback.
     // Faellt zurueck auf den bestehenden Tutor-Engine wenn Vertrauen niedrig.
@@ -1416,6 +1431,19 @@ class _LearningContentState extends State<LearningContent> {
                         const SizedBox(height: 14),
                         RechentricksMentorCard(explanation: _rechentricks!),
                       ],
+                      if (_allowHelp &&
+                          !_answered &&
+                          _tutorOfferCoordinator.shouldOffer) ...[
+                        const SizedBox(height: 14),
+                        LumoTutorOfferCard(
+                          reduceMotion: st.settings.reduceAnimations ||
+                              st.settings.calmMode,
+                          onAccept: _requestTaskHelp,
+                          onDecline: () {
+                            setState(_tutorOfferCoordinator.decline);
+                          },
+                        ),
+                      ],
                       if (_tutorHint != null) ...[
                         const SizedBox(height: 14),
                         LumoTutorHintCard(
@@ -1423,6 +1451,22 @@ class _LearningContentState extends State<LearningContent> {
                           reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
                           onSpeak: () => unawaited(_speakTutorHint(
                             _tutorHint!, explainAvailability: true)),
+                        ),
+                      ],
+                      // After choosing three explicit help steps, let the
+                      // child count actual tens instead of merely rereading
+                      // the explanation. No rewards or automatic answers.
+                      if (_allowHelp &&
+                          !_answered &&
+                          _requestedHelpLevel >= 3 &&
+                          _task.subject == 'Mathematik' &&
+                          LumoPlaceValueWorkshop.numberForPrompt(_task.prompt) != null) ...[
+                        const SizedBox(height: 14),
+                        LumoPlaceValueWorkshop(
+                          key: ValueKey('lumo-place-value-${_taskInstance.taskInstanceId}'),
+                          number: LumoPlaceValueWorkshop.numberForPrompt(_task.prompt)!,
+                          reduceMotion: st.settings.reduceAnimations ||
+                              st.settings.calmMode,
                         ),
                       ],
                       if (_visualAid != null) ...[
