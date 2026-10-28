@@ -15,7 +15,7 @@ permissions:
   actions: read
 concurrency:
   group: lumo-2000-update-${{ github.ref }}
-  cancel-in-progress: false
+  cancel-in-progress: true
 jobs:
   proven-2000-update:
     if: github.event_name == 'pull_request' && github.event.pull_request.head.ref == 'integration/lumo-2000-sonnenhafen-tutor-20261028'
