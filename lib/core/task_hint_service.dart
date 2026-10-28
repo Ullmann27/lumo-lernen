@@ -5,6 +5,9 @@ class TaskHintService {
   const TaskHintService();
 
   String explain(LumoTask task, {int level = 1}) {
+    // Offline-Stellenwerthilfe mit drei verschiedenen Erklärungsformen.
+    final placeValue = _placeValueHint(task, level);
+    if (placeValue != null) return placeValue;
     if (level >= 2) return _guidedHint(task, level);
     final unit = task.unit.toLowerCase();
     final prompt = task.prompt.toLowerCase();
@@ -136,6 +139,41 @@ class TaskHintService {
       return 'Lies den ganzen Satz. Achte auf Wortstellung, Satzanfang und Satzende. Bei wörtlicher Rede wird das Gesprochene mit Anführungszeichen markiert.';
     }
     return 'Sprich das Wort langsam. Achte auf die Stelle, nach der gefragt wird, und vergleiche die Schreibweisen Buchstabe für Buchstabe.';
+  }
+
+  String? _placeValueHint(LumoTask task, int level) {
+    if (task.subject != 'Mathematik') return null;
+    final prompt = task.prompt.toLowerCase();
+    final unit = task.unit.toLowerCase();
+    final wantsTens = prompt.contains('zehner') ||
+        (unit.contains('zehner') && !prompt.contains('einer'));
+    final wantsOnes = prompt.contains('einer');
+    if (!wantsTens && !wantsOnes) return null;
+    final match = RegExp(r'\b(\d{2})\b').firstMatch(prompt);
+    if (match == null) return null;
+    final number = int.parse(match.group(1)!);
+    final tens = number ~/ 10;
+    final ones = number % 10;
+    // Erste Hilfe: die richtige Antwort nicht vorwegnehmen.
+    if (level <= 1) {
+      return wantsOnes
+          ? 'Baue die Zahl mit Zehnerbündeln. Was nach den vollen Bündeln übrig bleibt, sind die Einer. Zähle nur diese einzelnen Dinge.'
+          : 'Stell dir Stifte in Bündeln zu je zehn vor. Wie viele ganze Zehnerbündel kannst du aus dieser Zahl bilden?';
+    }
+    if (level == 2) {
+      return 'Zerlege $number in ${tens * 10} und $ones. '
+          'Denke an volle Päckchen mit je zehn Stiften und an einzelne Stifte. '
+          '${wantsOnes ? "Welche einzelnen Stifte bleiben übrig?" : "Wie viele volle Päckchen sind das?"}';
+    }
+    // Dritter Versuch: ein neuer, gegenständlicher Zugang mit Transferaufgabe.
+    final check = tens * 10 + ((ones + 1) % 10);
+    return wantsOnes
+        ? 'Sieh $number als $tens Zehnerstangen und $ones einzelne Würfel. '
+          'Jede Stange enthält genau zehn Würfel. Die einzelnen $ones Würfel '
+          'sind die Einer. Probiere danach $check: Welche Einer bleiben dort?'
+        : 'Sieh $number als $tens Zehnerstangen und $ones einzelne Würfel. '
+          'Jede Stange enthält genau zehn Würfel. Es sind $tens volle '
+          'Zehnerstangen. Probiere danach $check: Wie viele Zehnerstangen brauchst du?';
   }
 
   String _guidedHint(LumoTask task, int level) {
