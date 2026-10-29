@@ -115,6 +115,7 @@ class HomeContent extends StatelessWidget {
           final personalSteps = appState.learningProfileLoaded
               ? const LumoPersonalDailyTutorPlanner().buildEvidencePlan(
                   appState.learningSkills(), appState.learningJourney(),
+                  grade: state.grade,
                   isEligible: (record) => Curriculum.unitsForGrade(
                     record.subject,
                     state.grade,

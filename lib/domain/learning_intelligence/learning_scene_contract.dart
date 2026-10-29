@@ -17,7 +17,12 @@ class SceneObject {
 }
 
 class SceneRule {
-  const SceneRule({required this.kind, this.expected = const {}});
+  SceneRule({required this.kind, Map<String, Object> expected = const {}})
+      : expected = Map.unmodifiable({for (final entry in expected.entries)
+          entry.key: entry.value is List ? List<Object>.unmodifiable(entry.value as List) : entry.value}) {
+    _validateRule(kind, this.expected);
+  }
+  const SceneRule.observe() : kind = SceneRuleKind.observe, expected = const {};
   final SceneRuleKind kind;
   final Map<String, Object> expected;
   bool accepts(Map<String, Object?> response) {
@@ -93,6 +98,11 @@ LearningSceneStep _parseStep(Object? raw) {
   final kind = SceneRuleKind.values.byName(r['kind'] as String);
   if (r['expected'] is! Map) throw const FormatException();
   final expected = Map<String, Object>.from(r['expected'] as Map);
+  return LearningSceneStep(id: _label(d['id']), goal: _label(d['goal']), instruction: _label(d['instruction']),
+    interaction: SceneInteraction.values.byName(d['interaction'] as String), rule: SceneRule(kind: kind, expected: Map.unmodifiable(expected)),
+    gesture: LumoSceneGesture.values.byName(d['gesture'] as String), alternative: ExplanationMethod.values.byName(d['alternative'] as String));
+}
+void _validateRule(SceneRuleKind kind, Map<String, Object> expected) {
   switch (kind) {
     case SceneRuleKind.observe: if (expected.isNotEmpty) throw const FormatException();
     case SceneRuleKind.composePlaceValue:
@@ -105,9 +115,6 @@ LearningSceneStep _parseStep(Object? raw) {
       if (!_keys(expected, {'tokens'}) || expected['tokens'] is! List || (expected['tokens'] as List).isEmpty || (expected['tokens'] as List).length > 20) throw const FormatException();
       for (final token in expected['tokens'] as List) { _label(token); }
   }
-  return LearningSceneStep(id: _label(d['id']), goal: _label(d['goal']), instruction: _label(d['instruction']),
-    interaction: SceneInteraction.values.byName(d['interaction'] as String), rule: SceneRule(kind: kind, expected: Map.unmodifiable(expected)),
-    gesture: LumoSceneGesture.values.byName(d['gesture'] as String), alternative: ExplanationMethod.values.byName(d['alternative'] as String));
 }
 Map _object(Object? value, Set<String> fields) {
   if (value is! Map || !_keys(value, fields)) throw const FormatException();

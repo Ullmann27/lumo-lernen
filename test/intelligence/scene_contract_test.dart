@@ -21,7 +21,7 @@ void main() {
     }
   });
   test('rules check actual process and result without evaluating arbitrary text', () {
-    const rule = SceneRule(kind: SceneRuleKind.composePlaceValue, expected: {'number': 84});
+    final rule = SceneRule(kind: SceneRuleKind.composePlaceValue, expected: {'number': 84});
     expect(rule.accepts({'tens': 8, 'ones': 4}), isTrue);
     expect(rule.accepts({'tens': 7, 'ones': 14}), isFalse);
     expect(rule.accepts({'tens': 4, 'ones': 8}), isFalse);
@@ -30,12 +30,20 @@ void main() {
     expect(() => engine.placeValue(number: 184, method: ExplanationMethod.verbal), throwsArgumentError);
   });
   test('reading evidence, syllables and sentence order have exact answer conditions', () {
-    const reading = SceneRule(kind: SceneRuleKind.matchTextEvidence,
+    final reading = SceneRule(kind: SceneRuleKind.matchTextEvidence,
       expected: {'statement': 'Mia ist im Garten.', 'evidence': 'Mia gießt die Blumen im Garten.'});
     expect(reading.accepts({'statement': 'Mia ist im Garten.', 'evidence': 'Mia gießt die Blumen im Garten.'}), isTrue);
     expect(reading.accepts({'statement': 'Mia ist im Garten.', 'evidence': 'Die Sonne scheint.'}), isFalse);
-    const syllables = SceneRule(kind: SceneRuleKind.arrangeTokens, expected: {'tokens': ['Ba', 'na', 'ne']});
+    final syllables = SceneRule(kind: SceneRuleKind.arrangeTokens, expected: {'tokens': ['Ba', 'na', 'ne']});
     expect(syllables.accepts({'tokens': ['Ba', 'na', 'ne']}), isTrue);
     expect(syllables.accepts({'tokens': ['Ba', 'ne', 'na']}), isFalse);
   });
+  test('animation consumers cannot change the rule by mutating source data', () {
+    final source = <String, Object>{'number': 84};
+    final rule = SceneRule(kind: SceneRuleKind.composePlaceValue, expected: source);
+    source['number'] = 57;
+    expect(rule.accepts({'tens': 8, 'ones': 4}), isTrue);
+    expect(() => rule.expected['number'] = 57, throwsUnsupportedError);
+  });
+
 }

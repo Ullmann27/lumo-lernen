@@ -12,6 +12,7 @@ import '../../domain/analysis/daily_recommendation_engine.dart';
 import '../../domain/analysis/lumo_analysis_domain.dart';
 import '../../domain/learning/learning_dna_engine.dart';
 import '../parents/lumo_insight_dashboard.dart';
+import '../parents/widgets/lumo_tutor_evidence_card.dart';
 import '../parents/widgets/lumo_ai_policy_selector.dart';
 
 class ParentReportCard extends StatefulWidget {
@@ -202,6 +203,7 @@ class _ParentReportCardState extends State<ParentReportCard> {
               ])),
             ]),
             const SizedBox(height: 12),
+            LumoTutorEvidenceCard(appState: widget.appState),
             Text(report.summary, style: LumoTextStyles.body.copyWith(color: LumoVisualTokens.white)),
             const SizedBox(height: 14),
             Wrap(spacing: 12, runSpacing: 12, children: [

@@ -10,7 +10,7 @@ class LessonSceneEngine {
     final tens = number ~/ 10, ones = number % 10;
     final next = ExplanationMethod.values[(method.index + 1) % 4];
     LearningSceneStep step(String id, String instruction, SceneInteraction action,
-        {SceneRule rule = const SceneRule(kind: SceneRuleKind.observe)}) => LearningSceneStep(
+        {SceneRule rule = const SceneRule.observe()}) => LearningSceneStep(
       id: id, goal: 'Zehnerbündel und einzelne Einer unterscheiden', instruction: instruction,
       interaction: action, rule: rule, gesture: method == ExplanationMethod.verbal
           ? LumoSceneGesture.lookAtMaterial : LumoSceneGesture.point, alternative: next);
