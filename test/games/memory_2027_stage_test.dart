@@ -45,7 +45,10 @@ void main() {
       final card = find.byKey(const ValueKey('memory-card-0'));
       expect(card.hitTestable(), findsOneWidget);
       await tester.tap(card);
-      await tester.pump(const Duration(milliseconds: 50));
+      // The first frame mounts TweenAnimationBuilder's new target; a second
+      // pumped frame advances its clock. One pump only starts the flip.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 550));
       expect(
         find.byKey(const ValueKey('memory-back-0')),
         findsNothing,
