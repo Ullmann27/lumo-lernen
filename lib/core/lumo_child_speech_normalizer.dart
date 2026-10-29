@@ -182,6 +182,16 @@ class LumoChildSpeechNormalizer {
     // Zuerst Emoji-Folgen erkennen und in Wortform umwandeln.
     s = _replaceEmojiSequences(s);
 
+    // Ergaenzen: '7 + ? = 12' -> 'sieben plus wie viel ist zwoelf?'
+    s = s.replaceAllMapped(
+      RegExp(r'(\d+)\s*\+\s*\?\s*=\s*(\d+)'),
+      (m) => '${_speakNumber(m.group(1)!)} plus wie viel ist ${_speakNumber(m.group(2)!)}?',
+    );
+    s = s.replaceAllMapped(
+      RegExp(r'(\d+)\s*[-−]\s*\?\s*=\s*(\d+)'),
+      (m) => '${_speakNumber(m.group(1)!)} minus wie viel ist ${_speakNumber(m.group(2)!)}?',
+    );
+
     // Frueher Spezialfall: '7+5=?' Plus-Aufgabe, kein Leerzeichen
     s = s.replaceAllMapped(
       RegExp(r'(\d+)\s*\+\s*(\d+)\s*=\s*\?'),

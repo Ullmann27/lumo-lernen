@@ -63,6 +63,30 @@ void main() {
     expect(text, contains('3 und 5'));
     expect(text, isNot(contains('105')));
   });
+  test('missing-number tasks get a counting path, never the missing number',
+      () {
+    bool names(String text, int n) => RegExp('\\b$n\\b').hasMatch(text);
+    final first = hints.explain(arithmetic('7 + ? = 12'));
+    expect(first, contains('Hier fehlt eine Zahl'));
+    expect(first, contains('Beginne mit der ersten Menge'));
+    final second = hints.explain(arithmetic('7 + ? = 12'), level: 2);
+    expect(second, startsWith('Starte bei 7. Zähle weiter, bis du bei 12 bist'));
+    final bridge = hints.explain(arithmetic('7 + ? = 12'), level: 3);
+    expect(bridge, contains('Von 7 bis 10 sind es 3 Schritte'));
+    expect(bridge, contains('Prüfe durch Zurückzählen'));
+    final small = hints.explain(arithmetic('3 + ? = 8'), level: 3);
+    expect(small, contains('an den Fingern'));
+    final back = hints.explain(arithmetic('15 - ? = 9'), level: 3);
+    expect(back, contains('Von 15 zurück bis 10 sind es 5 Schritte'));
+    expect(back, contains('Prüfe durch Dazuzählen'));
+    for (final text in [first, second, bridge]) {
+      expect(names(text, 5), isFalse, reason: text);
+    }
+    expect(names(small, 5), isFalse, reason: small);
+    expect(names(back, 6), isFalse, reason: back);
+    expect(hints.explain(arithmetic('15 - ? = 9')),
+        contains('gehe zurück, bis du beim Ergebnis bist'));
+  });
   test('a fraction without equals is not misread as integer addition', () {
     final text = hints.explain(arithmetic('Rechne 1/4 + 3/4.'), level: 2);
     expect(text, isNot(contains('Starte bei 4')));

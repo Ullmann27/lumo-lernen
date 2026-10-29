@@ -86,6 +86,12 @@ class TaskHintService {
       if (prompt.contains(':') || unit.contains('division')) {
         return 'Verteile die Menge in gleich große Gruppen. Prüfe mit der passenden Malaufgabe, ob deine Aufteilung stimmt.';
       }
+      final missing = _MissingNumber.parse(task.prompt);
+      if (missing != null) {
+        return missing.plus
+            ? 'Hier fehlt eine Zahl. Beginne mit der ersten Menge und lege so lange dazu, bis du beim Ergebnis bist. Zähle, wie viel du dazugelegt hast.'
+            : 'Hier fehlt eine Zahl. Beginne bei der ersten Zahl und gehe zurück, bis du beim Ergebnis bist. Zähle, wie viele Schritte du gegangen bist.';
+      }
       if (prompt.contains('-') || prompt.contains('−')) {
         return 'Beginne bei der ersten Zahl und nimm die zweite Menge weg. Bei großen Zahlen hilft es, zuerst Zehner und dann Einer abzuziehen.';
       }
@@ -141,6 +147,8 @@ class TaskHintService {
   String _guidedHint(LumoTask task, int level) {
     final unit = task.unit.toLowerCase();
     if (task.subject == 'Mathematik') {
+      final missing = _MissingNumber.parse(task.prompt);
+      if (missing != null) return missing.hint(level);
       final expression = RegExp(r'(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*=')
               .firstMatch(task.prompt) ??
           RegExp(r'^\s*(?:Rechne\s+)?(\d+)\s*([+−\-×·*:÷])\s*(\d+)\s*[.?]?\s*$',
@@ -213,5 +221,56 @@ class TaskHintService {
     return level == 2
         ? '${explain(task)} Probiere jede Antwort einzeln und begründe, ob sie zur Frage passt.'
         : '${explain(task)} Schließe zuerst eine unpassende Antwort aus. Vergleiche die übrigen noch einmal mit dem entscheidenden Wort in der Frage.';
+  }
+}
+
+/// "7 + ? = 12" or "15 - ? = 9": the child completes up or back to a result.
+/// Hints describe the counting path and the check, never the missing number.
+class _MissingNumber {
+  const _MissingNumber(this.start, this.result, this.plus);
+
+  final int start;
+  final int result;
+  final bool plus;
+
+  static _MissingNumber? parse(String prompt) {
+    final match =
+        RegExp(r'(\d+)\s*([+−\-])\s*\?\s*=\s*(\d+)').firstMatch(prompt);
+    if (match == null) return null;
+    return _MissingNumber(int.parse(match.group(1)!),
+        int.parse(match.group(3)!), match.group(2) == '+');
+  }
+
+  String hint(int level) {
+    if (plus) {
+      if (level < 3) {
+        return 'Starte bei $start. Zähle weiter, bis du bei $result bist, und zähle dabei deine Schritte mit.';
+      }
+      final nextTen = (start ~/ 10 + 1) * 10;
+      const check = 'Prüfe durch Zurückzählen';
+      if (start % 10 != 0 && result > nextTen) {
+        return 'Teile den Weg in zwei Stücke. Von $start bis $nextTen sind es '
+            '${nextTen - start} Schritte. Zähle dann von $nextTen weiter bis '
+            '$result. Wie viele Schritte sind es zusammen? $check: Von $result '
+            'um deine Zahl zurück musst du bei $start landen.';
+      }
+      return 'Teile den Weg in kleine Schritte: Zähle von $start bis $result '
+          'an den Fingern, jeder Finger ist ein Schritt. $check: Von $result '
+          'um deine Zahl zurück musst du bei $start landen.';
+    }
+    if (level < 3) {
+      return 'Starte bei $start. Gehe zurück, bis du bei $result bist, und zähle dabei deine Schritte mit.';
+    }
+    final lowerTen = start - start % 10;
+    const check = 'Prüfe durch Dazuzählen';
+    if (start % 10 != 0 && result < lowerTen) {
+      return 'Teile den Weg in zwei Stücke. Von $start zurück bis $lowerTen '
+          'sind es ${start % 10} Schritte. Gehe dann von $lowerTen weiter '
+          'zurück bis $result. Wie viele Schritte sind es zusammen? $check: '
+          '$result plus deine Zahl muss $start ergeben.';
+    }
+    return 'Teile den Weg in kleine Schritte: Gehe von $start an den Fingern '
+        'zurück bis $result, jeder Finger ist ein Schritt. $check: $result '
+        'plus deine Zahl muss $start ergeben.';
   }
 }

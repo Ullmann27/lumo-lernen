@@ -18,9 +18,13 @@ void main() {
     await tester.pump(const Duration(milliseconds: 400));
     final prompt = tester.widget<Text>(
       find.byKey(const ValueKey('cross-grade-question'))).data!;
-    final match = RegExp(r'(\d+)\s*\+\s*(\d+)\s*=').firstMatch(prompt);
+    // Classic "a + b = ?" or the missing-number form "a + ? = c".
+    final match =
+        RegExp(r'(\d+)\s*\+\s*(\d+|\?)\s*=\s*(\d+|\?)').firstMatch(prompt);
     expect(match, isNotNull, reason: prompt);
-    final answer = int.parse(match!.group(1)!) + int.parse(match.group(2)!);
+    final answer = match!.group(2) == '?'
+        ? int.parse(match.group(3)!) - int.parse(match.group(1)!)
+        : int.parse(match.group(1)!) + int.parse(match.group(2)!);
     final choices = <String>[];
     for (var i = 0; i < 4; i++) {
       final button = tester.widget<OutlinedButton>(
