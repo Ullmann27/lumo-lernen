@@ -47,24 +47,28 @@ class ConstructionCheck {
 /// set competence, change the solution key, or issue an independent receipt.
 class SceneCompletion {
   SceneCompletion._({required this.sourceNumber, required this.number,
-    required this.sourceProblemId, required this.independent, required this.evidence, required this.completedAt});
+    required this.sourceProblemId, required this.independent, required this.evidence, required this.completedAt, required this.generation, required this.sourceTaskId});
   final int sourceNumber;
   final int number;
   final String sourceProblemId;
   final bool independent;
   final LearningEvidence evidence;
   final DateTime completedAt;
+  final int? generation;
+  final String sourceTaskId;
 }
 
 /// The complete reference implementation for "Erklär es Lumo".
 class PlaceValueLessonSession {
   PlaceValueLessonSession({required this.sourceNumber, required this.targetNumber,
-      required this.sourceProblemId, String? sessionId}) : _id = sessionId ?? newLearningAttemptId() {
+      required this.sourceProblemId, this.generation, String? sourceTaskId, String? sessionId}) : _id = sessionId ?? newLearningAttemptId(), sourceTaskId = sourceTaskId ?? sourceProblemId {
     _checkNumber(sourceNumber); _checkNumber(targetNumber);
     if (sourceNumber == targetNumber || sourceProblemId.isEmpty) throw ArgumentError('Transfer requires a different known problem');
   }
   final int sourceNumber, targetNumber;
   final String sourceProblemId, _id;
+  final String sourceTaskId;
+  final int? generation;
   TransferStage _stage = TransferStage.explanation;
   int _constructionAttempts = 0, _explanationAttempts = 0;
   bool _helpDuringTransfer = false;
@@ -94,7 +98,7 @@ class PlaceValueLessonSession {
     final independent = _constructionAttempts == 1 && _explanationAttempts == 1 && !_helpDuringTransfer;
     _stage = TransferStage.completed;
     return _completion = SceneCompletion._(sourceNumber: sourceNumber, number: targetNumber,
-      sourceProblemId: sourceProblemId, independent: independent, completedAt: DateTime.now().toUtc(),
+      sourceProblemId: sourceProblemId, independent: independent, completedAt: DateTime.now().toUtc(), generation: generation, sourceTaskId: sourceTaskId,
       evidence: LearningEvidence(taskId: '$_id-transfer', problemId: 'place-value:$targetNumber',
         correct: true, helpLevel: independent ? 0 : 3, transferCheck: independent));
   }

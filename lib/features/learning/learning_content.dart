@@ -127,6 +127,7 @@ class _LearningContentState extends State<LearningContent> {
   PlaceValueLessonSession? _placeValueLesson;
   ExplanationMethod _sceneMethod = ExplanationMethod.verbal;
   SceneCompletion? _pendingSceneCompletion;
+  ExplanationMethod _pendingSceneMethod = ExplanationMethod.verbal;
   String? _sceneCompletionError;
 
   Future<void> _saveSceneCompletion() async {
@@ -136,7 +137,7 @@ class _LearningContentState extends State<LearningContent> {
     final subject = _task.subject, unit = _task.unit;
     try {
       final saved = await widget.appState.saveLearningSceneCompletion(subject: subject, unit: unit,
-        proof: proof, method: _sceneMethod);
+        proof: proof, method: _pendingSceneMethod);
       if (!mounted || generation != widget.appState.profileGeneration) return;
       if (saved && identical(_pendingSceneCompletion, proof)) setState(() { _pendingSceneCompletion = null; _sceneCompletionError = null; });
     } catch (_) {
@@ -497,7 +498,8 @@ class _LearningContentState extends State<LearningContent> {
     if (_placeValueLesson == null && placeValueNumber != null) {
       final target = const LumoIntelligenceEngine().transferNumber(placeValueNumber, widget.appState.learningProfile.sceneMemory);
       if (target != null) _placeValueLesson = PlaceValueLessonSession(sourceNumber: placeValueNumber,
-        targetNumber: target, sourceProblemId: _publishedTaskContext!.tutorScope.problemId);
+        targetNumber: target, sourceProblemId: _publishedTaskContext!.tutorScope.problemId,
+        sourceTaskId: _taskInstance.taskInstanceId, generation: widget.appState.profileGeneration);
     }
     if (_requestedHelpLevel >= 3) _sceneMethod = ExplanationMethod.interactive;
     final hint = _requestedHelpLevel == 2
@@ -1645,6 +1647,7 @@ class _LearningContentState extends State<LearningContent> {
                             if (!_allowHelp || result.proof == null) return;
                             if (_tutorCoordinator.checkSceneTransfer(result.proof!) == null) return;
                             _pendingSceneCompletion = result.proof;
+                            _pendingSceneMethod = _sceneMethod;
                             unawaited(_saveSceneCompletion());
                           },
                           reduceMotion: st.settings.reduceAnimations ||

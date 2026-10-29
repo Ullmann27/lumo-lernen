@@ -1189,6 +1189,7 @@ class LumoAppState extends ChangeNotifier {
 
   Future<bool> saveLearningSceneCompletion({required String subject, required String unit,
       required SceneCompletion proof, required ExplanationMethod method, LearningProfileLease? lease}) {
+    if (lease == null && proof.generation != _profileGeneration) return Future.value(false);
     final source = lease == null ? captureLearningProfile() : Future.value(lease);
     return _trackLearning(() async {
       final owner = await source;

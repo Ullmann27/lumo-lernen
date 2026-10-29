@@ -18,11 +18,11 @@ void main() {
         understood: false, at: DateTime.utc(2026,10,29)));
     });
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: SingleChildScrollView(child: LumoTutorEvidenceCard(appState: app)))));
-    expect(find.textContaining('anderem Erklärweg'), findsOneWidget);
+    expect(find.textContaining('anderen Erklärweg'), findsOneWidget);
     expect(find.textContaining('noch keine geprüfte Beobachtung'), findsOneWidget);
     expect(find.textContaining('bestätigt beherrscht'), findsNothing);
     await tester.runAsync(() async { await app.school.setActiveStudent('parent-scene-b'); await app.loadLearningProfile(); });
     await tester.pumpWidget(MaterialApp(home: Scaffold(body: LumoTutorEvidenceCard(appState: app))));
-    expect(find.textContaining('anderem Erklärweg'), findsNothing);
+    expect(find.textContaining('anderen Erklärweg'), findsNothing);
   });
 }

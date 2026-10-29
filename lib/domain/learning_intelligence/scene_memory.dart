@@ -1,4 +1,5 @@
 import 'dart:convert';
+import '../../core/learning_journey.dart';
 import 'learning_scene_contract.dart';
 import 'lesson_scene_engine.dart';
 
@@ -78,3 +79,40 @@ String _identity(Object? value) {
   if (value is! String || !RegExp(r'^[a-zA-Z0-9][a-zA-Z0-9_.:/-]{0,127}$').hasMatch(value)) throw const FormatException();
   return value;
 }
+
+/// Durable write-ahead receipt in the same child namespace. It is removed only
+/// after both the existing competence journal and method memory are saved.
+class PendingSceneReceipt {
+  const PendingSceneReceipt._(this.subject, this.unit, this.observation, this.evidence);
+  factory PendingSceneReceipt.completed({required String subject, required String unit,
+      required SceneCompletion proof, required ExplanationMethod method}) =>
+    PendingSceneReceipt.fromJson({'version': 1, 'subject': subject, 'unit': unit,
+      'observation': SceneObservation.completed(proof: proof, method: method, at: proof.completedAt).toJson(),
+      'evidence': _evidenceJson(proof.evidence)});
+  final String subject, unit;
+  final SceneObservation observation;
+  final LearningEvidence evidence;
+  Map<String, Object> toJson() => {'version': 1, 'subject': subject, 'unit': unit,
+    'observation': observation.toJson(), 'evidence': _evidenceJson(evidence)};
+  factory PendingSceneReceipt.fromJson(Object? raw) {
+    try {
+      if (raw is! Map || !_hasKeys(raw, {'version','subject','unit','observation','evidence'}) || raw['version'] != 1) throw const FormatException();
+      String label(Object? value) {
+        if (value is! String || value.trim().isEmpty || value.length > 128 || value.contains('::') || RegExp(r'[\x00-\x1f\x7f]').hasMatch(value)) throw const FormatException();
+        return value;
+      }
+      final observation = SceneObservation.fromJson(raw['observation']);
+      final e = raw['evidence'];
+      if (e is! Map || !_hasKeys(e, {'taskId','problemId','correct','helpLevel','transferCheck'}) || e['correct'] != true || e['helpLevel'] is! int || e['transferCheck'] is! bool) throw const FormatException();
+      final evidence = LearningEvidence(taskId: _identity(e['taskId']), problemId: _identity(e['problemId']),
+        correct: true, helpLevel: e['helpLevel'] as int, transferCheck: e['transferCheck'] as bool);
+      evidence.validate();
+      final independent = observation.outcome == SceneOutcome.independentTransfer;
+      if (observation.transferProblemId == null || observation.id != evidence.taskId || observation.transferProblemId != evidence.problemId ||
+          (evidence.helpLevel == 0) != independent || evidence.transferCheck != independent) throw const FormatException();
+      return PendingSceneReceipt._(label(raw['subject']), label(raw['unit']), observation, evidence);
+    } catch (_) { throw const FormatException('Unsupported pending local scene receipt'); }
+  }
+}
+Map<String, Object> _evidenceJson(LearningEvidence e) => {'taskId': e.taskId,
+  'problemId': e.problemId!, 'correct': e.correct, 'helpLevel': e.helpLevel, 'transferCheck': e.transferCheck};

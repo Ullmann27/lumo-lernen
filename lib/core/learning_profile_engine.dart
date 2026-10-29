@@ -61,16 +61,24 @@ class LearningProfileEngine {
   bool _sceneLoaded = false, _sceneDirty = false;
   Future<void>? _sceneLoading;
   int _sceneRevision = 0;
+  PendingSceneReceipt? _pendingSceneReceipt;
+  bool _pendingSceneSaved = false;
+  Future<void>? _sceneRecovery;
+  Future<void> _sceneCompletionTail = Future<void>.value();
   SceneMemory get sceneMemory => _sceneMemory;
   bool get isSceneMemoryLoaded => _sceneLoaded;
 
   Future<void> loadSceneMemory() {
-    if (_sceneLoaded) return Future.value();
+    if (_sceneLoaded) return _recoverSceneReceipt();
     return _sceneLoading ??= () async {
       try {
         final loaded = await _repo.loadSceneMemory();
+        final pending = await _repo.loadPendingSceneReceipt();
         _sceneMemory = loaded;
+        _pendingSceneReceipt = pending;
+        _pendingSceneSaved = pending != null;
         _sceneLoaded = true;
+        await _recoverSceneReceipt();
       } finally { _sceneLoading = null; }
     }();
   }
@@ -85,13 +93,44 @@ class LearningProfileEngine {
   }
 
   Future<void> recordSceneCompletion({required String subject, required String unit,
-      required SceneCompletion proof, required ExplanationMethod method}) async {
-    // Validate/load both stores before either mutation. A retry keeps the same
-    // immutable receipt in both existing journals, even after a partial write.
-    await loadSceneMemory();
-    await loadJourney();
-    await recordJourneyEvidence(subject: subject, unit: unit, evidence: proof.evidence, now: proof.completedAt);
-    await recordSceneObservation(SceneObservation.completed(proof: proof, method: method, at: proof.completedAt));
+      required SceneCompletion proof, required ExplanationMethod method}) {
+    Future<void> save() async {
+      await loadSceneMemory();
+      await loadJourney();
+      final receipt = PendingSceneReceipt.completed(subject: subject, unit: unit, proof: proof, method: method);
+      // Reject conflicting retries before replacing a durable pending receipt.
+      _sceneMemory.record(receipt.observation);
+      _pendingSceneReceipt = receipt;
+      _pendingSceneSaved = false;
+      await _recoverSceneReceipt();
+    }
+    final operation = _sceneCompletionTail.then((_) => save(), onError: (Object _, StackTrace __) => save());
+    _sceneCompletionTail = operation;
+    return operation;
+  }
+
+  Future<void> _recoverSceneReceipt() {
+    if (_pendingSceneReceipt == null) return Future.value();
+    if (_sceneRecovery != null) return _sceneRecovery!;
+    return _sceneRecovery = () async {
+      try {
+        final receipt = _pendingSceneReceipt!;
+        if (!_pendingSceneSaved) {
+          await _repo.savePendingSceneReceipt(receipt);
+          _pendingSceneSaved = true;
+        }
+        await loadJourney();
+        final nextMemory = _sceneMemory.record(receipt.observation);
+        if (!identical(nextMemory, _sceneMemory)) { _sceneMemory = nextMemory; _sceneRevision++; _sceneDirty = true; }
+        final nextJourney = _journey.recordEvidence(subject: receipt.subject, unit: receipt.unit,
+          evidence: receipt.evidence, now: receipt.observation.at);
+        if (!identical(nextJourney, _journey)) { _journey = nextJourney; _journeyRevision++; _journeyDirty = true; }
+        await _persistJourney();
+        await _persistScenes();
+        await _repo.clearPendingSceneReceipt();
+        _pendingSceneReceipt = null; _pendingSceneSaved = false;
+      } finally { _sceneRecovery = null; }
+    }();
   }
 
   Future<void> _persistScenes() => _enqueueSave(() async {
@@ -102,7 +141,7 @@ class LearningProfileEngine {
   });
 
   Future<String> get studentId => _repo.studentId;
-  bool get hasUnsavedChanges => _dirty || _discoveryDirty || _journeyDirty || _sceneDirty;
+  bool get hasUnsavedChanges => _dirty || _discoveryDirty || _journeyDirty || _sceneDirty || _pendingSceneReceipt != null;
   Future<void> _saveTail = Future<void>.value();
 
   bool get isLoaded => _loaded;
@@ -361,7 +400,8 @@ class LearningProfileEngine {
     if (_loading != null) await _loading;
     if (_discoveryLoading != null) await _discoveryLoading;
     if (_journeyLoading != null) await _journeyLoading;
-    if (_sceneLoading != null) await _sceneLoading;
+    if (_sceneLoading != null) { try { await _sceneLoading; } catch (_) {} }
+    try { await _sceneCompletionTail; } catch (_) {}
     try {
       await _saveTail;
     } catch (_) {}
@@ -381,6 +421,7 @@ class LearningProfileEngine {
     _journeyDirty = false;
     _journeyRevision++;
     _sceneMemory = SceneMemory(); _sceneLoaded = true; _sceneDirty = false; _sceneRevision++;
+    _pendingSceneReceipt = null; _pendingSceneSaved = false;
   }
 
   // ── interne helpers ───────────────────────────────────────
@@ -390,6 +431,7 @@ class LearningProfileEngine {
     await _persistDiscovery();
     await _persistJourney();
     await _persistScenes();
+    await _recoverSceneReceipt();
   }
 
   Future<void> _persist() {
