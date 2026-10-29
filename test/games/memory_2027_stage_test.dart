@@ -47,9 +47,9 @@ void main() {
       await tester.tap(card);
       await tester.pump(const Duration(milliseconds: 50));
       expect(
-        find.bySemanticsLabel(RegExp('Memory Karte 1, .*')),
-        findsWidgets,
-        reason: 'The actual card remains accessible through semantics.',
+        find.byKey(const ValueKey('memory-back-0')),
+        findsNothing,
+        reason: 'Tapping the original card must still reveal its motif.',
       );
       expect(tester.takeException(), isNull);
       await tester.pumpWidget(const SizedBox());
