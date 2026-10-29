@@ -86,5 +86,8 @@ vollständige Sicherheits-/Speichertests, Android-Tour und echtes Update bestehe
 Build 2001 bleibt für den unveränderten vorherigen Branch reserviert.
 
 Der separate Android-2002-Kandidat liegt in [Draft-PR #415](https://github.com/Ullmann27/lumo-lernen/pull/415),
-Quellstand `ff791642a0d28d10f89d98025fd8f5fb2c19c403`. Seine tatsächlichen
-Android-/Update-/Veröffentlichungsgates laufen noch; diese Kernfreigabe ersetzt sie nicht.
+Quellstand `ff791642a0d28d10f89d98025fd8f5fb2c19c403`. Seine [Lernkern-CI](https://github.com/Ullmann27/lumo-lernen/actions/runs/40846950258)
+und [Change-Review](https://github.com/Ullmann27/lumo-lernen/actions/runs/40846950262)
+bestanden ebenfalls am exakten Quellstand (1.952 + 43 Tests).
+Die tatsächlichen Android-/Update-/Veröffentlichungsgates laufen noch;
+diese Kernfreigabe ersetzt sie nicht.

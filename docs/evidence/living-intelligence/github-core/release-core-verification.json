@@ -1,0 +1,23 @@
+{
+  "source_sha": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+  "workflow_run": "https://github.com/Ullmann27/lumo-lernen/actions/runs/40846950258",
+  "change_review_run": "https://github.com/Ullmann27/lumo-lernen/actions/runs/40846950262",
+  "artifact_id": 12885114205,
+  "artifact_zip_sha256": "d01450a273c14d403d6cba12c4ca1083871be58f8f00520bedab39805c08797c",
+  "result": "success",
+  "full_tests_passed": 1952,
+  "full_tests_skipped": 171,
+  "core_tests_passed": 43,
+  "analysis": {
+    "error": 0,
+    "warning": 6,
+    "info": 106
+  },
+  "logs_sha256": {
+    "source-sha.txt": "85c757b41c97ae1425ae816fbdfadfcc5cc188144cbea74df39609a3bed18d77",
+    "analysis.log": "e8cf33e6cbf69aa9d5589873a980301335f906a9a1721d09d7c1ef54f56e117b",
+    "core-tests.log": "09f7ddf660fd1810de3dca3e5af59e20899c02f6541a8fd66952939fe1dce1ce",
+    "full-tests.log": "a848fa878a114cabadc3a3935559e31833430fa29fe5a721afbc290d55da022f"
+  },
+  "android_gates": "Separate and pending; these Flutter results alone do not authorize APK publication."
+}
