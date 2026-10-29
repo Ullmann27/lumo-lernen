@@ -69,6 +69,7 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
   final List<int> _selectOrder = [];
   late LearningSceneRequest _previous;
   Timer? _greeting;
+  Timer? _demoSafety;
   bool _started = false;
 
   /// Kantenlänge eines Würfels in einer Stange, je nach Breite.
@@ -96,6 +97,8 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     });
     _demo.addStatusListener((status) {
       if (status == AnimationStatus.completed && mounted) {
+        _demoSafety?.cancel();
+        _demoSafety = null;
         setState(() {
           _demoFlights = const [];
           _demoHidden = const {};
@@ -138,6 +141,7 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
   @override
   void dispose() {
     _greeting?.cancel();
+    _demoSafety?.cancel();
     widget.director.removeListener(_onScene);
     _transform.dispose();
     _demo.dispose();
@@ -282,6 +286,8 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
 
   void _interrupt() {
     _transform.stop();
+    _demoSafety?.cancel();
+    _demoSafety = null;
     _demo.stop();
     _flights = const [];
     _demoFlights = const [];
@@ -391,6 +397,21 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     _flights = const [];
     _hidden = const {};
     _demoHidden = {for (var k = 0; k < 10; k++) 'loose-$k'};
+    // Falls AnimationStatus.completed bei einem unterbrochenen Frame
+    // nicht zugestellt wird, dürfen Würfel niemals dauerhaft fehlen.
+    // Auch bei langsamer Frameausgabe endet die Vorführung spätestens
+    // kurz nach ihrer vordefinierten, einmaligen Laufzeit.
+    _demoSafety?.cancel();
+    _demoSafety = Timer(
+        LearningSceneMotion.demonstration + const Duration(milliseconds:150),
+        () {
+      if (!mounted) return;
+      _demo.stop();
+      setState(() {
+        _demoFlights = const [];
+        _demoHidden = const {};
+      });
+    });
     _afterLayout(() {
       final cubes = <Rect>[];
       for (var k = 0; k < 10; k++) {
