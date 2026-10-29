@@ -1602,6 +1602,7 @@ class _LearningContentState extends State<LearningContent> {
                           },
                           reduceMotion: st.settings.reduceAnimations ||
                               st.settings.calmMode,
+                          sounds: st.settings.soundEnabled,
                         ),
                       ],
                       if (_visualAid != null) ...[
