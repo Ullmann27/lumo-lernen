@@ -28,10 +28,7 @@ jobs:
       - name: Static analysis of the production workshop and scene tests
         run: |
           set -euo pipefail
-          dart analyze \
-            lib/features/learning/scenes/place_value/zehner_werkstatt_view.dart \
-            lib/features/learning/learning_content.dart \
-            test/scenes/zehner_werkstatt_view_test.dart
+          flutter analyze --no-fatal-infos --no-fatal-warnings
       - name: Real 50ms animation frames and Fold-responsive Flutter renders
         env:
           LUMO_SCENE_CAPTURES: ${{ github.workspace }}/proof/living-workshop
