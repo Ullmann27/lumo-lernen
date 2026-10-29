@@ -3,6 +3,10 @@ on:
   pull_request:
     paths:
       - 'lib/domain/learning_intelligence/**'
+      - 'pubspec.yaml'
+      - 'config/godot-source.json'
+      - 'scripts/verify_legacy_release_pin.py'
+      - '.github/probes/lumo_2002_update_android_probe.py'
       - 'lib/app/app_state.dart'
       - 'lib/core/learning_profile_engine.dart'
       - 'lib/core/progress_repository.dart'
