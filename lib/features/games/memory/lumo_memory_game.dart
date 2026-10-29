@@ -24,6 +24,7 @@ import '../../../domain/games/memory_board.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
+import 'lumo_memory_stage.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
 class LumoMemoryScreen extends StatefulWidget {
@@ -621,8 +622,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
               color: Color(0x88020A24), blurRadius: 14, offset: Offset(0, 8)),
         ],
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(10),
+      child: LumoMemoryStage(
+        child: Padding(
+          padding: const EdgeInsets.all(10),
         child: LayoutBuilder(builder: (context, c) {
           const gap = 8.0;
           const aspect = .74;
@@ -651,6 +653,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
             ]),
           );
         }),
+        ),
       ),
     );
   }
@@ -777,7 +780,13 @@ class _CardBack extends StatelessWidget {
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Color(0xFF3C8CFF), Color(0xFF1B52C8)],
+          colors: [
+            Color(0xFF7FDFFF),
+            Color(0xFF2B75E7),
+            Color(0xFF173A9E),
+            Color(0xFF48AFF1),
+          ],
+          stops: [0, .20, .78, 1],
         ),
         border: Border.all(color: const Color(0xFFBDEBFF), width: 2.2),
         boxShadow: [
