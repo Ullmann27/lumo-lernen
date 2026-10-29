@@ -92,6 +92,13 @@ APPROVED = {
     # 2002 adds the reviewed deterministic learning-scene core in Flutter.
     # Native source is byte-identical to published 2000 and reserved 2001.
     2002: "adcce3093caa42bf3da47262f70bdf03cdefa347",
+    # 2003 retains the exact Godot 4.6.3 source proven by flight, cave,
+    # dynamic-neon, Stage-2, and the signed 2002 native emulator tour.
+    # Flutter-only change: Opus living original Lumo and animation scene
+    # bridged to Sol's proof-scoped, persisted learning engine.
+    # https://github.com/Ullmann27/lumo-godot/actions/runs/40721498468
+    # https://github.com/Ullmann27/lumo-lernen/pull/418
+    2003: "adcce3093caa42bf3da47262f70bdf03cdefa347",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

@@ -63,6 +63,39 @@ void main() {
     expect(text, contains('3 und 5'));
     expect(text, isNot(contains('105')));
   });
+  test('missing-number tutoring changes methods and never states the answer',
+      () {
+    bool containsAnswer(String text, int answer) =>
+        RegExp('\\b$answer\\b').hasMatch(text);
+    final first = hints.explain(arithmetic('7 + ? = 12'));
+    expect(first, contains('Hier fehlt eine Zahl'));
+    expect(first, contains('Beginne mit der ersten Menge'));
+    final second = hints.explain(arithmetic('7 + ? = 12'), level: 2);
+    expect(second, startsWith('Starte bei 7. Zähle weiter, bis du bei 12 bist'));
+    final bridge = hints.explain(arithmetic('7 + ? = 12'), level: 3);
+    expect(bridge, contains('Von 7 bis 10 sind es 3 Schritte'));
+    expect(bridge, contains('Prüfe durch Zurückzählen'));
+    final small = hints.explain(arithmetic('3 + ? = 8'), level: 3);
+    expect(small, contains('an den Fingern'));
+    final subtraction = hints.explain(arithmetic('15 - ? = 9'), level: 3);
+    expect(subtraction, contains('Von 15 zurück bis 10 sind es 5 Schritte'));
+    expect(subtraction, contains('Prüfe durch Dazuzählen'));
+    for (final text in [first, second, bridge, small]) {
+      expect(containsAnswer(text, 5), isFalse, reason: text);
+    }
+    expect(containsAnswer(subtraction, 6), isFalse);
+    expect(hints.explain(arithmetic('15 - ? = 9')),
+        contains('gehe zurück, bis du beim Ergebnis bist'));
+  });
+
+  test('invalid missing-number arithmetic is not treated as valid addition',
+      () {
+    expect(hints.explain(arithmetic('12 + ? = 7')),
+        isNot(contains('Hier fehlt eine Zahl')));
+    expect(hints.explain(arithmetic('7 - ? = 12')),
+        isNot(contains('Hier fehlt eine Zahl')));
+  });
+
   test('a fraction without equals is not misread as integer addition', () {
     final text = hints.explain(arithmetic('Rechne 1/4 + 3/4.'), level: 2);
     expect(text, isNot(contains('Starte bei 4')));

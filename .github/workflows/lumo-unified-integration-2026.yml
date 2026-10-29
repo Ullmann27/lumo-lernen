@@ -40,6 +40,9 @@ on:
       - '.github/workflows/lumo-unified-integration-2026.yml'
       - '.github/workflows/lumo-2000-direct-release.yml'
       - '.github/workflows/lumo-2000-actual-update-gate.yml'
+      - '.github/workflows/lumo-2003-direct-release.yml'
+      - '.github/workflows/lumo-2003-actual-update-gate.yml'
+      - '.github/probes/lumo_2003_update_android_probe.py'
       - '.github/probes/lumo_2000_update_android_probe.py'
   workflow_dispatch:
 permissions:
