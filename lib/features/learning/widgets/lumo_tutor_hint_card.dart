@@ -55,8 +55,8 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
 
   @override
   Widget build(BuildContext context) {
-    final reduceMotion = widget.reduceMotion ||
-        MediaQuery.disableAnimationsOf(context);
+    final reduceMotion =
+        widget.reduceMotion || MediaQuery.disableAnimationsOf(context);
     final card = Container(
       key: const ValueKey('lumo-hologlass-tutor-card'),
       width: double.infinity,
@@ -95,8 +95,7 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
                   size: 74,
                   shadow: false,
                   idleHops: false,
-                  reduceMotion: reduceMotion ||
-                      status != VoiceStatus.speaking,
+                  reduceMotion: reduceMotion || status != VoiceStatus.speaking,
                   controller: _fox,
                   onTap: _speakWithLumoMotion,
                   ambientPoses: const [
@@ -132,8 +131,7 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
                       decoration: BoxDecoration(
                         color: const Color(0x3340D9FF),
                         borderRadius: BorderRadius.circular(30),
-                        border: Border.all(
-                            color: const Color(0x9940D9FF)),
+                        border: Border.all(color: const Color(0x9940D9FF)),
                       ),
                       child: const Text(
                         'TIPP',
@@ -166,15 +164,13 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size(0, 48),
                     foregroundColor: const Color(0xFFE2FAFF),
-                    side: const BorderSide(
-                        color: Color(0xB04EDCFF)),
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 12, vertical: 8),
+                    side: const BorderSide(color: Color(0xB04EDCFF)),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(13)),
                   ),
-                  icon: const Icon(
-                      Icons.volume_up_rounded, size: 18),
+                  icon: const Icon(Icons.volume_up_rounded, size: 18),
                   label: const Text(
                     'Tipp anhören',
                     style: TextStyle(
@@ -192,14 +188,13 @@ class _LumoTutorHintCardState extends State<LumoTutorHintCard>
 
     if (reduceMotion) return card;
     return FadeTransition(
-      opacity: CurvedAnimation(
-          parent: _controller, curve: Curves.easeOut),
+      opacity: CurvedAnimation(parent: _controller, curve: Curves.easeOut),
       child: SlideTransition(
         position: Tween<Offset>(
           begin: const Offset(0, 0.07),
           end: Offset.zero,
-        ).animate(CurvedAnimation(
-            parent: _controller, curve: Curves.easeOutCubic)),
+        ).animate(
+            CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic)),
         child: card,
       ),
     );

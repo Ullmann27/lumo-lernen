@@ -48,7 +48,8 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
       title: 'Eine Meinung begründen',
       prompt: 'Soll es in der Schule täglich mehr Zeit zum freien '
           'Lesen geben? Schreibe deine Meinung und begründe sie.',
-      hint: 'Schreibe deine Position, mindestens zwei Gründe und einen Schluss.',
+      hint:
+          'Schreibe deine Position, mindestens zwei Gründe und einen Schluss.',
     ),
   ];
 
@@ -71,7 +72,8 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
     if (!mounted) return;
     setState(() {
       _promptIndex = (prefs.getInt('$_scope:prompt') ?? 0)
-          .clamp(0, _prompts.length - 1).toInt();
+          .clamp(0, _prompts.length - 1)
+          .toInt();
       _controller.text = prefs.getString('$_scope:draft:$_promptIndex') ?? '';
     });
   }
@@ -89,8 +91,7 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
     if (!mounted) return;
     setState(() {
       _promptIndex = (_promptIndex + 1) % _prompts.length;
-      _controller.text =
-          prefs.getString('$_scope:draft:$_promptIndex') ?? '';
+      _controller.text = prefs.getString('$_scope:draft:$_promptIndex') ?? '';
       _saved = false;
     });
     await prefs.setInt('$_scope:prompt', _promptIndex);
@@ -113,85 +114,87 @@ class _CrossGradeWritingScreenState extends State<CrossGradeWritingScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-            CrossGradeLumoHeader(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-            Text(
-              exercise.title,
-              key: const ValueKey('cross-grade-writing-topic'),
-              style: const TextStyle(
-                color: Colors.white,
-                fontFamily: 'Nunito',
-                fontSize: 23,
-                fontWeight: FontWeight.w900,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(exercise.prompt,
-                style: const TextStyle(color: Colors.white, fontSize: 17)),
-            const SizedBox(height: 12),
-            Text(exercise.hint,
-                style: const TextStyle(
-                  color: Color(0xFF8EE5EC),
-                  fontSize: 15,
-                )),
-            const SizedBox(height: 12),
-                ],
-              ),
-            ),
-            CrossGradeGlassPanel(child: TextField(
-              key: const ValueKey('cross-grade-writing-input'),
-              controller: _controller,
-              onChanged: (_) {
-                if (_saved) setState(() => _saved = false);
-              },
-              maxLines: 9,
-              minLines: 6,
-              maxLength: 5000,
-              style: const TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                labelText: 'Dein eigener Text',
-                labelStyle: const TextStyle(color: Color(0xFFBAEAF3)),
-                filled: true,
-                fillColor: const Color(0xFF16345B),
-                border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(18)),
-              ),
-            )),
-            const Text(
-              'Prüfe: Sind Anfang, Hauptteil und Schluss erkennbar? '
-              'Sind deine Sätze verständlich? Hast du die Schreibweise kontrolliert?',
-              style: TextStyle(color: Colors.white70),
-            ),
-            const SizedBox(height: 14),
-            FilledButton.icon(
-              key: const ValueKey('cross-grade-writing-save'),
-              onPressed: _save,
-              icon: const Icon(Icons.save_outlined),
-              label: const Text('Text auf diesem Gerät speichern'),
-            ),
-            if (_saved)
-              const Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  'Gespeichert – die Profilklasse und regulären Sterne '
-                  'bleiben unverändert.',
-                  key: ValueKey('cross-grade-writing-saved'),
-                  style: TextStyle(color: Color(0xFF77F0B8)),
+              CrossGradeLumoHeader(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      exercise.title,
+                      key: const ValueKey('cross-grade-writing-topic'),
+                      style: const TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Nunito',
+                        fontSize: 23,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Text(exercise.prompt,
+                        style:
+                            const TextStyle(color: Colors.white, fontSize: 17)),
+                    const SizedBox(height: 12),
+                    Text(exercise.hint,
+                        style: const TextStyle(
+                          color: Color(0xFF8EE5EC),
+                          fontSize: 15,
+                        )),
+                    const SizedBox(height: 12),
+                  ],
                 ),
               ),
-            OutlinedButton(
-              key: const ValueKey('cross-grade-writing-next'),
-              onPressed: _nextPrompt,
-              child: const Text('Nächste Schreibidee'),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              'Freies Schreiben zum Vor- oder Wiederholen. '
-              'Dein Schulprofil bleibt in der ${widget.enrolledGrade}. Klasse.',
-              style: const TextStyle(color: Colors.white70),
-            ),
+              CrossGradeGlassPanel(
+                  child: TextField(
+                key: const ValueKey('cross-grade-writing-input'),
+                controller: _controller,
+                onChanged: (_) {
+                  if (_saved) setState(() => _saved = false);
+                },
+                maxLines: 9,
+                minLines: 6,
+                maxLength: 5000,
+                style: const TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                  labelText: 'Dein eigener Text',
+                  labelStyle: const TextStyle(color: Color(0xFFBAEAF3)),
+                  filled: true,
+                  fillColor: const Color(0xFF16345B),
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(18)),
+                ),
+              )),
+              const Text(
+                'Prüfe: Sind Anfang, Hauptteil und Schluss erkennbar? '
+                'Sind deine Sätze verständlich? Hast du die Schreibweise kontrolliert?',
+                style: TextStyle(color: Colors.white70),
+              ),
+              const SizedBox(height: 14),
+              FilledButton.icon(
+                key: const ValueKey('cross-grade-writing-save'),
+                onPressed: _save,
+                icon: const Icon(Icons.save_outlined),
+                label: const Text('Text auf diesem Gerät speichern'),
+              ),
+              if (_saved)
+                const Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Text(
+                    'Gespeichert – die Profilklasse und regulären Sterne '
+                    'bleiben unverändert.',
+                    key: ValueKey('cross-grade-writing-saved'),
+                    style: TextStyle(color: Color(0xFF77F0B8)),
+                  ),
+                ),
+              OutlinedButton(
+                key: const ValueKey('cross-grade-writing-next'),
+                onPressed: _nextPrompt,
+                child: const Text('Nächste Schreibidee'),
+              ),
+              const SizedBox(height: 10),
+              Text(
+                'Freies Schreiben zum Vor- oder Wiederholen. '
+                'Dein Schulprofil bleibt in der ${widget.enrolledGrade}. Klasse.',
+                style: const TextStyle(color: Colors.white70),
+              ),
             ],
           ),
         ),

@@ -94,8 +94,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   Future<void> _answer(String choice) async {
-    if (!_progressLoaded || _loadError != null ||
-        _selected != null || _saving) {
+    if (!_progressLoaded ||
+        _loadError != null ||
+        _selected != null ||
+        _saving) {
       return;
     }
     if (choice == _firstWrongChoice) return;
@@ -146,7 +148,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   Future<void> _retrySave() async {
-    if (_saving || _saveError == null || _selected == null ||
+    if (_saving ||
+        _saveError == null ||
+        _selected == null ||
         !_progressLoaded) {
       return;
     }
@@ -158,7 +162,9 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
   }
 
   void _next() {
-    if (!_progressLoaded || _saving || _saveError != null ||
+    if (!_progressLoaded ||
+        _saving ||
+        _saveError != null ||
         _selected == null) {
       return;
     }
@@ -231,7 +237,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   ),
                   if (_progressLoaded) ...[
                     const SizedBox(height: 10),
-                    CrossGradeProgressRibbon(answered: _answered, correct: _correct),
+                    CrossGradeProgressRibbon(
+                        answered: _answered, correct: _correct),
                   ],
                 ],
               ),
@@ -241,18 +248,20 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               Text(
                 _loadError!,
                 key: const ValueKey('cross-grade-load-error'),
-                style: const TextStyle(color: Color(0xFFFFD58D), fontWeight: FontWeight.w800),
+                style: const TextStyle(
+                    color: Color(0xFFFFD58D), fontWeight: FontWeight.w800),
               ),
             ] else if (!_progressLoaded) ...[
               const Padding(
                 padding: EdgeInsets.only(top: 12),
                 child: Text('Lernfortschritt wird geladen …',
-                  key: ValueKey('cross-grade-loading'),
-                  style: TextStyle(color: Colors.white70)),
+                    key: ValueKey('cross-grade-loading'),
+                    style: TextStyle(color: Colors.white70)),
               ),
             ],
             const SizedBox(height: 22),
-            CrossGradeGlassPanel(child: Text(
+            CrossGradeGlassPanel(
+                child: Text(
               _task.prompt,
               key: const ValueKey('cross-grade-question'),
               style: const TextStyle(
@@ -264,8 +273,7 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             )),
             const SizedBox(height: 16),
             for (var i = 0; i < choices.length; i++) ...[
-              if (widget.subject == 'Mathematik' &&
-                  choices[i].length <= 14)
+              if (widget.subject == 'Mathematik' && choices[i].length <= 14)
                 SizedBox(
                   height: 110,
                   child: LumoAnswerCrystal(
@@ -277,8 +285,10 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                         : choices[i] == _firstWrongChoice
                             ? LumoCrystalState.retry
                             : LumoCrystalState.neutral,
-                    onPressed: _progressLoaded && _loadError == null &&
-                            !_saving && selected == null &&
+                    onPressed: _progressLoaded &&
+                            _loadError == null &&
+                            !_saving &&
+                            selected == null &&
                             choices[i] != _firstWrongChoice
                         ? () => _answer(choices[i])
                         : null,
@@ -287,22 +297,27 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               else
                 OutlinedButton(
                   key: ValueKey('cross-grade-choice-$i'),
-                  onPressed: _progressLoaded && _loadError == null && !_saving && selected == null && choices[i] != _firstWrongChoice
-                      ? () => _answer(choices[i]) : null,
+                  onPressed: _progressLoaded &&
+                          _loadError == null &&
+                          !_saving &&
+                          selected == null &&
+                          choices[i] != _firstWrongChoice
+                      ? () => _answer(choices[i])
+                      : null,
                   style: OutlinedButton.styleFrom(
                     minimumSize: const Size.fromHeight(54),
                     alignment: Alignment.centerLeft,
                     foregroundColor: Colors.white,
                     disabledForegroundColor: Colors.white,
-                    backgroundColor: selected != null &&
-                            choices[i] == _task.answer
-                        ? const Color(0xFF185848)
-                        : selected == choices[i] || choices[i] == _firstWrongChoice
-                            ? const Color(0xFF593643)
-                            : const Color(0xFF123B65),
+                    backgroundColor:
+                        selected != null && choices[i] == _task.answer
+                            ? const Color(0xFF185848)
+                            : selected == choices[i] ||
+                                    choices[i] == _firstWrongChoice
+                                ? const Color(0xFF593643)
+                                : const Color(0xFF123B65),
                     side: BorderSide(
-                      color: selected != null &&
-                              choices[i] == _task.answer
+                      color: selected != null && choices[i] == _task.answer
                           ? const Color(0xFF72F0B0)
                           : accent.withOpacity(.75),
                       width: 1.5,
@@ -320,10 +335,11 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
             if (selected != null || _firstWrongChoice != null) ...[
               const SizedBox(height: 12),
               Text(
-                selected == null ? _secondChanceHint :
-                selected == _task.answer
-                    ? 'Richtig! Gut gemacht!'
-                    : 'Die richtige Antwort ist: ${_task.answer}',
+                selected == null
+                    ? _secondChanceHint
+                    : selected == _task.answer
+                        ? 'Richtig! Gut gemacht!'
+                        : 'Die richtige Antwort ist: ${_task.answer}',
                 key: const ValueKey('cross-grade-feedback'),
                 style: TextStyle(
                   color: selected == _task.answer
@@ -335,17 +351,19 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
               ),
               const SizedBox(height: 8),
               if (selected != null)
-                CrossGradeGlassPanel(child: Text(
-                _task.explanation,
-                key: const ValueKey('cross-grade-explanation'),
-                style: const TextStyle(
-                    color: Colors.white, fontSize: 15, height: 1.4),
-              )),
+                CrossGradeGlassPanel(
+                    child: Text(
+                  _task.explanation,
+                  key: const ValueKey('cross-grade-explanation'),
+                  style: const TextStyle(
+                      color: Colors.white, fontSize: 15, height: 1.4),
+                )),
               if (_saveError != null) ...[
                 const SizedBox(height: 12),
                 Text(_saveError!,
                     key: const ValueKey('cross-grade-save-error'),
-                    style: const TextStyle(color: Color(0xFFFFD58D), fontWeight: FontWeight.w800)),
+                    style: const TextStyle(
+                        color: Color(0xFFFFD58D), fontWeight: FontWeight.w800)),
                 TextButton.icon(
                     key: const ValueKey('cross-grade-save-retry'),
                     onPressed: _saving ? null : _retrySave,
@@ -356,8 +374,8 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                 const Padding(
                   padding: EdgeInsets.only(top: 12),
                   child: Text('Antwort wird gespeichert …',
-                    key: ValueKey('cross-grade-saving'),
-                    style: TextStyle(color: Colors.white70)),
+                      key: ValueKey('cross-grade-saving'),
+                      style: TextStyle(color: Colors.white70)),
                 ),
               const SizedBox(height: 18),
               FilledButton.icon(
@@ -367,10 +385,15 @@ class _CrossGradePracticeScreenState extends State<CrossGradePracticeScreen> {
                   foregroundColor: const Color(0xFF07223C),
                   minimumSize: const Size.fromHeight(54),
                 ),
-                onPressed: _selected == null ? null : (!_saving && _saveError == null && _progressLoaded ? _next : null),
+                onPressed: _selected == null
+                    ? null
+                    : (!_saving && _saveError == null && _progressLoaded
+                        ? _next
+                        : null),
                 icon: const Icon(Icons.arrow_forward_rounded),
                 label: const Text('Nächste Aufgabe',
-                    style: TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
+                    style:
+                        TextStyle(fontSize: 17, fontWeight: FontWeight.w900)),
               ),
             ],
           ],

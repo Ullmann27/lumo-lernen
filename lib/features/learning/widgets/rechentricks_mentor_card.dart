@@ -30,7 +30,8 @@ class RechentricksMentorCard extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: const Color(0xFF56CEFA).withOpacity(0.65), width: 1.5),
+        border: Border.all(
+            color: const Color(0xFF56CEFA).withOpacity(0.65), width: 1.5),
         boxShadow: [
           BoxShadow(
             color: accent.withOpacity(0.18),
