@@ -50,12 +50,12 @@ jobs:
                 *) UPDATE_RUN="$run"; UPDATE_STATE="$state" ;;
               esac
             done
-            if [ "$BUILD_STATE" = 'success' ] && [ "$UPDATE_STATE" = 'success' ] && [ "$CORE_STATE" = 'success' && [ "$VISUAL_STATE" = 'success' ]; then
+            if [ "$BUILD_STATE" = 'success' ] && [ "$UPDATE_STATE" = 'success' ] && [ "$CORE_STATE" = 'success' ] && [ "$VISUAL_STATE" = 'success' ]; then
               echo "BUILD_RUN=$BUILD_RUN" >> "$GITHUB_ENV"
               echo "UPDATE_RUN=$UPDATE_RUN" >> "$GITHUB_ENV"
               break
             fi
-            if [ "$BUILD_STATE" = 'failure' ] || [ "$UPDATE_STATE" = 'failure' ] || [ "$CORE_STATE" = 'failure' ] || [ "$BUILD_STATE" = 'cancelled' ] || [ "$UPDATE_STATE" = 'cancelled' ] || [ "$CORE_STATE" = 'cancelled' || [ "$VISUAL_STATE" = 'failure' ] || [ "$VISUAL_STATE" = 'cancelled' ]; then
+            if [ "$BUILD_STATE" = 'failure' ] || [ "$UPDATE_STATE" = 'failure' ] || [ "$CORE_STATE" = 'failure' ] || [ "$BUILD_STATE" = 'cancelled' ] || [ "$UPDATE_STATE" = 'cancelled' ] || [ "$CORE_STATE" = 'cancelled' ] || [ "$VISUAL_STATE" = 'failure' ] || [ "$VISUAL_STATE" = 'cancelled' ]; then
               echo "Refusing publication after failing Android tour/update gate"
               exit 1
             fi
