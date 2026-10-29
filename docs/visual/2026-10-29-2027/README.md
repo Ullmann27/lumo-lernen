@@ -38,13 +38,41 @@ Alle Zweige sind offen, gepusht und für jede KI weiterführbar. Nichts ist gesp
 - Schularbeits-Planer (`claude/lumo-2027-exam-planner-20261029`). Der Bauplan folgt aus der
   Lernforschung unter `docs/research/2027/`.
 
-## Status
+## Status (gesichert am 29.10.2026, nach Abbruch aller Agenten am Nutzungslimit)
 
-Die Ergebnisse der einzelnen Zweige stehen jeweils in
-`docs/visual/2026-10-29-2027/<modul>/HANDOFF.md` und im Claim
-`docs/audit/2026-10-29/<MODUL>-2027-CLAIM.md` des jeweiligen Zweigs. Diese Übersicht wird
-ergänzt, sobald die Berichte vorliegen. Bis dahin gilt für einen Zweig nur, was dort
-gepusht und belegt ist.
+Alle elf Agenten wurden am Nutzungslimit abgebrochen, bevor sie Produktcode
+geschrieben hatten. Nichts davon ist fertig. Gesichert ist genau das, was in der
+Tabelle steht. Remote-Stand geprüft per `git ls-remote`: Jeder Zweig enthält
+den lokalen Stand, kein Arbeitsverzeichnis hat ungesicherte Änderungen.
+
+| Agent | Zweig | Remote-HEAD | Gesichert | Fertig |
+|---|---|---|---|---|
+| Kart-Strecken + HUD | `claude/kart-2027-track-kit-20261029` (Godot) | `58e064f` | Referenzbilder; Aufnahme-Skript `scripts/tests/kart_track_kit_capture.gd` für alle 12 Strecken (noch nicht ausgeführt; gdlint: eine Zeile > 100 Zeichen, Z. 201) | nein |
+| Kart-Menüfluss | `claude/kart-2027-menu-flow-20261029` (Godot) | `db3bf17` | Referenzbilder | nein |
+| Kart-Physik + Steuerung | `claude/kart-2027-physics-feel-20261029` (Godot) | `929fa3a` | Referenzbilder | nein |
+| Elternbereich | `claude/lumo-2027-parents-20261029` | `baa6d04f` | Claim `docs/audit/2026-10-29/PARENTS-2027-CLAIM.md` | nein |
+| Start + Begleiter | `claude/lumo-2027-home-companion-20261029` | `5457b2ee` | nichts (gleich Basis) | nein |
+| Abenteuer 2.5D | `claude/lumo-2027-adventure-20261029` | `5457b2ee` | nichts (gleich Basis) | nein |
+| KI-Nachhilfe | `claude/lumo-2027-tutor-presence-20261029` | `5457b2ee` | nichts (gleich Basis) | nein |
+| Spielwelt | `claude/lumo-2027-spielwelt-20261029` | `5457b2ee` | nichts (gleich Basis) | nein |
+| Lumo Cards | `claude/lumo-2027-cards-20261029` | `5457b2ee` | nichts (gleich Basis) | nein |
+| Recherche Technik | – | – | kein Bericht geschrieben | nein |
+| Recherche Lernen / Schularbeit | – | – | kein Bericht geschrieben | nein |
+
+Nicht gestartet, Zweig gleich Basis:
+- `claude/lumo-2027-kart-entry-20261029`
+- `claude/lumo-2027-memory-20261029`
+- `claude/lumo-2027-bauwelt-20261029`
+- `claude/lumo-2027-exam-planner-20261029`
+
+Die Godot-Arbeitsbäume enthalten zusätzlich etwa 195 von Godot erzeugte `.uid`-Dateien. Sie
+sind auch upstream nicht versioniert und wurden bewusst nicht committet.
+
+Fertige, geprüfte Arbeit aus dieser Sitzung liegt vor dieser 2027-Runde:
+- `claude/lumo-living-world-visual-20261029` @ `f249fd78`: lebender Original-Lumo, Szenenvertrag
+  und Zehner-Werkstatt; Tests grün. Andere KIs haben das bereits in Release 2003 übernommen.
+- `claude/lumo-android-integration-m0-aloove` @ `c116408a` (PR #331): Hilfe-Hinweise
+  für fehlende Zahlen, Bildvergleich-Fix aus PR #403; CI komplett grün.
 
 ## Weiterarbeiten (für jede KI)
 
