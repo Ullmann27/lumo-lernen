@@ -383,11 +383,22 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
   /// wieder. Nur eine Vorführung; das Kind bündelt danach selbst.
   void _startDemonstration() {
     if (_calm) return;
+    // Auch wenn das Kind mitten beim Öffnen auf Lumos Vorführung tippt:
+    // nur EINE Animation darf die realen Würfel repräsentieren.
+    // Sofort vor dem neuen Layout die alte Fahrt beenden und nur die
+    // zehn Quellwürfel der Vorführung unsichtbar halten.
+    _transform.stop();
+    _flights = const [];
+    _hidden = const {};
+    _demoHidden = {for (var k = 0; k < 10; k++) 'loose-$k'};
     _afterLayout(() {
       final cubes = <Rect>[];
       for (var k = 0; k < 10; k++) {
         final rect = _rectOf('loose-$k');
-        if (rect == null) return;
+        if (rect == null) {
+          setState(() => _demoHidden = const {});
+          return;
+        }
         cubes.add(_cubeArea(rect, _looseCube));
       }
       final center =
