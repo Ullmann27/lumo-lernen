@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart';
 
 import 'learning_attempt_id.dart';
 import 'learning_journey.dart';
+import '../domain/learning_intelligence/lesson_scene_engine.dart';
 
 /// Local task scope. Generation is a session token, never a child's name.
 class TutorTaskScope {
@@ -171,6 +172,15 @@ class TutorCoordinationEngine {
         correct: correct,
         helpLevel: independent ? 0 : 3,
         transferCheck: independent && correct);
+  }
+
+  LearningEvidence? checkSceneTransfer(SceneCompletion proof) {
+    final task = _scope;
+    if (task == null || task.isExam || _helpLevel == 0 ||
+        proof.sourceProblemId != task.problemId || proof.number == proof.sourceNumber ||
+        !_transfers.add(proof.evidence.problemId!)) return null;
+    _emit(TutorEventKind.transferChecked);
+    return proof.evidence;
   }
 
   void _emit(TutorEventKind kind) {

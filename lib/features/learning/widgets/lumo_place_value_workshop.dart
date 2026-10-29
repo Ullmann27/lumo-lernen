@@ -2,13 +2,15 @@ import 'package:flutter/material.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import 'lumo_place_value_blocks.dart';
+import '../../../domain/learning_intelligence/lesson_scene_engine.dart';
 
 class LumoPlaceValueTransfer {
   const LumoPlaceValueTransfer(
-      {required this.number, required this.correct, required this.independent});
+      {required this.number, required this.correct, required this.independent, this.proof});
   final int number;
   final bool correct;
   final bool independent;
+  final SceneCompletion? proof;
 }
 
 enum _Stage { explore, construct, explain, done }
@@ -20,9 +22,10 @@ class LumoPlaceValueWorkshop extends StatefulWidget {
       {super.key,
       required this.number,
       this.reduceMotion = false,
-      this.onTransferChecked})
+      this.onTransferChecked, this.lesson})
       : assert(number >= 10 && number <= 99);
   final int number;
+  final PlaceValueLessonSession? lesson;
   final bool reduceMotion;
   final ValueChanged<LumoPlaceValueTransfer>? onTransferChecked;
 
@@ -50,13 +53,17 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
   int _builtTens = 0;
   int _builtOnes = 0;
   String? _feedback;
-  int get _target =>
-      widget.number > 55 ? widget.number - 27 : widget.number + 27;
+  PlaceValueLessonSession? _localLesson;
+  PlaceValueLessonSession get _lesson => widget.lesson ?? (_localLesson ??= PlaceValueLessonSession(
+    sourceNumber: widget.number, targetNumber: widget.number > 55 ? widget.number - 27 : widget.number + 27,
+    sourceProblemId: 'place-value:${widget.number}'));
+  int get _target => _lesson.targetNumber;
 
   @override
   void didUpdateWidget(covariant LumoPlaceValueWorkshop oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.number != widget.number) {
+      _localLesson = null;
       _counted.clear();
       _selected.clear();
       _stage = _Stage.explore;
@@ -204,7 +211,8 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                       'lumo-place-value-build-next',
                       'Neue Zahl bauen',
                       () => setState(() {
-                            _stage = _Stage.construct;
+                            _lesson.beginTransfer();
+                          _stage = _Stage.construct;
                             _feedback = null;
                           })),
                 ],
@@ -242,7 +250,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 LumoPlaceValueBlocks(
                     tens: _builtTens, ones: _builtOnes, reduceMotion: calm),
                 _button('lumo-build-check', 'Meine Zahl prüfen', () {
-                  if (_builtTens * 10 + _builtOnes == _target) {
+                  if (_lesson.submitConstruction(tens: _builtTens, ones: _builtOnes).processCorrect) {
                     setState(() {
                       _stage = _Stage.explain;
                       _feedback = null;
@@ -264,7 +272,9 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 Wrap(spacing: 8, runSpacing: 8, children: [
                   for (var i = 0; i < 10; i++)
                     _button('lumo-comprehension-$i', '$i', () {
-                      if (i == _target % 10) {
+                      final proof = _lesson.submitComprehension(i);
+                            if (proof != null) {
+                              _independent = proof.independent;
                         setState(() {
                           _stage = _Stage.done;
                           _feedback = null;
@@ -276,7 +286,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                         widget.onTransferChecked?.call(LumoPlaceValueTransfer(
                             number: _target,
                             correct: true,
-                            independent: _independent));
+                            independent: _independent, proof: proof));
                       } else {
                         _fox.think();
                         setState(() {

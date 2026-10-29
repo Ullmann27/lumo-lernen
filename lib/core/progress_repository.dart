@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'discovery_progress.dart';
 import 'learning_journey.dart';
 import 'legacy_learning_data.dart';
+import '../domain/learning_intelligence/scene_memory.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
@@ -71,6 +72,16 @@ class ProgressRepository {
 
   Future<void> saveJourney(LearningJourney value) =>
       _namespace.write(_journeyKey, jsonEncode(value.toJson()));
+
+  Future<SceneMemory> loadSceneMemory() async {
+    final raw = await _namespace.read('lumo_learning_scenes_v1');
+    if (raw == null) return SceneMemory();
+    if (raw.length > 1024 * 1024) throw const FormatException('Unsupported scene memory size');
+    return SceneMemory.fromJson(_readObject(raw));
+  }
+
+  Future<void> saveSceneMemory(SceneMemory memory) =>
+      _namespace.write('lumo_learning_scenes_v1', jsonEncode(memory.toJson()));
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);
@@ -174,6 +185,7 @@ class ProgressRepository {
     await _namespace.write(_lastKey, '{}');
     await saveDiscovery(DiscoveryProgress());
     await saveJourney(LearningJourney());
+    await saveSceneMemory(SceneMemory());
   }
 }
 

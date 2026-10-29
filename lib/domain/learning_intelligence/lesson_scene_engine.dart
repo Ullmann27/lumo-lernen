@@ -47,12 +47,13 @@ class ConstructionCheck {
 /// set competence, change the solution key, or issue an independent receipt.
 class SceneCompletion {
   SceneCompletion._({required this.sourceNumber, required this.number,
-    required this.sourceProblemId, required this.independent, required this.evidence});
+    required this.sourceProblemId, required this.independent, required this.evidence, required this.completedAt});
   final int sourceNumber;
   final int number;
   final String sourceProblemId;
   final bool independent;
   final LearningEvidence evidence;
+  final DateTime completedAt;
 }
 
 /// The complete reference implementation for "Erklär es Lumo".
@@ -93,7 +94,7 @@ class PlaceValueLessonSession {
     final independent = _constructionAttempts == 1 && _explanationAttempts == 1 && !_helpDuringTransfer;
     _stage = TransferStage.completed;
     return _completion = SceneCompletion._(sourceNumber: sourceNumber, number: targetNumber,
-      sourceProblemId: sourceProblemId, independent: independent,
+      sourceProblemId: sourceProblemId, independent: independent, completedAt: DateTime.now().toUtc(),
       evidence: LearningEvidence(taskId: '$_id-transfer', problemId: 'place-value:$targetNumber',
         correct: true, helpLevel: independent ? 0 : 3, transferCheck: independent));
   }
