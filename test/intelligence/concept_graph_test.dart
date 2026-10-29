@@ -3,9 +3,13 @@ import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/domain/learning_intelligence/concept_graph.dart';
 
 void main() {
-  test('every reference concept has at least one reachable real curriculum task', () {
+  test(
+      'every reference concept has at least one reachable real curriculum task',
+      () {
     final graph = LumoConceptGraph.reference();
-    final bindings = [for (var grade = 1; grade <= 4; grade++) ...graph.bindingsForGrade(grade)];
+    final bindings = [
+      for (var grade = 1; grade <= 4; grade++) ...graph.bindingsForGrade(grade)
+    ];
     for (final node in graph.nodes) {
       expect(bindings.any((binding) => binding.conceptId == node.id), isTrue,
           reason: '${node.id} must link to an actual task, not a legacy alias');

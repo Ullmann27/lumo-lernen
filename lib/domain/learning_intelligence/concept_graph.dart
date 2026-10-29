@@ -96,7 +96,9 @@ class LumoConceptGraph {
         LumoConcept(
             id: 'math.bundling',
             subject: 'Mathematik',
-            units: ['Zahlen zerlegen'],
+            // The shipped Zehner/Einer workshop contains the bundling practice.
+            // A practice link alone never confirms the bundling process goal.
+            units: ['Zehner und Einer'],
             prerequisites: ['math.counting'],
             goal: 'Genau zehn Einer zu einem Bündel zusammenfassen'),
         LumoConcept(

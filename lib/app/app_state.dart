@@ -1193,7 +1193,7 @@ class LumoAppState extends ChangeNotifier {
     final source = lease == null ? captureLearningProfile() : Future.value(lease);
     return _trackLearning(() async {
       final owner = await source;
-      if (!canUseLearningLease(owner)) return false;
+      if (!canUseLearningLease(owner) || proof.generation != owner.generation) return false;
       await _prepareLearningLease(owner);
       await owner.profile.loadSceneMemory();
       await owner.profile.loadJourney();

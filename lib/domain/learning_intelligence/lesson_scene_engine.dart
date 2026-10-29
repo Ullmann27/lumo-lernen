@@ -154,7 +154,10 @@ class PlaceValueLessonSession {
   }
 
   void markTransferHelp() {
-    _helpDuringTransfer = true;
+    if (_stage == TransferStage.construction ||
+        _stage == TransferStage.comprehension) {
+      _helpDuringTransfer = true;
+    }
   }
 
   ConstructionCheck submitConstruction({required int tens, required int ones}) {

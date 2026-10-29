@@ -76,7 +76,8 @@ class LumoTutorEvidenceCard extends StatelessWidget {
                 Text(
                     const LumoIntelligenceEngine()
                         .assess(
-                            graph[row.conceptId]!, appState.learningJourney())
+                            graph[row.conceptId]!, appState.learningJourney(),
+                            memory: memory)
                         .reason,
                     style: const TextStyle(color: Color(0xFFBFEFFF))),
               ],

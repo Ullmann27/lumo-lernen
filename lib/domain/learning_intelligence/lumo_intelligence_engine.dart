@@ -84,19 +84,46 @@ class LumoIntelligenceEngine {
             'Wir haben mehrere Wege ausprobiert. Du kannst eine andere Aufgabe wählen oder eine kurze Pause machen.');
   }
 
-  ConceptAssessment assess(
-      LumoConcept node, Map<String, JourneySkill> journey) {
+  ConceptAssessment assess(LumoConcept node, Map<String, JourneySkill> journey,
+      {SceneMemory? memory}) {
     final records = journey.values
         .where((r) => r.subject == node.subject && node.units.contains(r.unit))
         .toList();
     final attempts = records.fold<int>(0, (sum, r) => sum + r.attempts);
-    final certainty = records.any((r) => r.status == JourneyStatus.retained)
-        ? ConceptCertainty.retained
-        : records.any((r) => r.status == JourneyStatus.independentlyChecked)
-            ? ConceptCertainty.transferConfirmed
-            : attempts > 0
-                ? ConceptCertainty.observed
-                : ConceptCertainty.unobserved;
+    // Curriculum bindings are practice links, not validators of every process
+    // named by a concept. The first verified process receipt covers tens/ones
+    // only. Other concepts stay observations until they have their own checks.
+    var certainty =
+        attempts > 0 ? ConceptCertainty.observed : ConceptCertainty.unobserved;
+    if (node.id == 'math.tens_ones' &&
+        node.subject == 'Mathematik' &&
+        memory != null) {
+      final exact = records.where((r) => r.unit == 'Zehner und Einer');
+      for (final record in exact) {
+        if (record.needsPractice || record.status == JourneyStatus.practicing)
+          continue;
+        final receipts = memory.records
+            .where((r) =>
+                r.conceptId == node.id &&
+                r.outcome == SceneOutcome.independentTransfer &&
+                record.recentTaskIds.contains(r.id) &&
+                record.independentProblemIds.contains(r.transferProblemId))
+            .toList();
+        if (receipts.isEmpty) continue;
+        certainty = ConceptCertainty.transferConfirmed;
+        // Later answer-only recall cannot establish retained process knowledge.
+        // Require two different validated transfers at least a day apart, with
+        // the latest observation itself being a process receipt.
+        final latest = receipts.last;
+        if (record.status == JourneyStatus.retained &&
+            latest.at.isAtSameMomentAs(record.lastSeen) &&
+            receipts.any((r) =>
+                r.transferProblemId != latest.transferProblemId &&
+                latest.at.difference(r.at) >= const Duration(days: 1))) {
+          certainty = ConceptCertainty.retained;
+        }
+      }
+    }
     return ConceptAssessment(
         certainty,
         attempts,

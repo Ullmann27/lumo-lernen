@@ -504,7 +504,10 @@ class _LearningContentState extends State<LearningContent> {
         targetNumber: target, sourceProblemId: _publishedTaskContext!.tutorScope.problemId,
         sourceTaskId: _taskInstance.taskInstanceId, generation: widget.appState.profileGeneration);
     }
-    if (_requestedHelpLevel >= 3) _sceneMethod = ExplanationMethod.interactive;
+    // Additional hints during the new task remain assisted, including requests
+    // after all four scene methods have already been tried. Only a displayed
+    // scene may change the method attached to its later completion receipt.
+    _placeValueLesson?.markTransferHelp();
     final hint = _requestedHelpLevel == 2
         ? _buildTutorHint(_lastGivenAnswer ?? '', const []) ??
             _taskHints.explain(_task, level: 2)
@@ -1622,6 +1625,7 @@ class _LearningContentState extends State<LearningContent> {
                           onDifferentTask: () => setState(() => _loadNextTask()),
                           onMethodChosen: (method) {
                             if (!_allowHelp || _answered) return;
+                            _placeValueLesson?.markTransferHelp();
                             setState(() { _sceneMethod = method;
                               _requestedHelpLevel = math.max(_requestedHelpLevel, (method.index + 1).clamp(1,3)); });
                             _publishTaskContext();
