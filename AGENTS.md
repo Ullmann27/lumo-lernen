@@ -1,5 +1,23 @@
 # AGENTS.md – Lumo Lernen · Cloud-Checkpoint-Pflicht
 
+## Aktuelle Wiederaufnahme: Living Intelligence (29.10.2026)
+
+**Vor neuen Änderungen zuerst [CONTINUE.md](CONTINUE.md) und die
+[vollständige Übergabe](docs/audit/2026-10-29/HANDOFF.md) lesen.**
+Der Handoff-Zweig `docs/lumo-living-intelligence-verification-20261029`
+enthält den kompletten 2002-Kandidaten, die geprüfte Tutor-Implementierung,
+echte CI-Bilder und Nachweise. Nichts davon neu erfinden oder durch ältere
+Checkouts ersetzen. Die fachlichen Quellstände von PR #414 und #415 sind
+absichtlich eingefroren; laufende Android-Gates nicht durch Dokumentations-
+Commits abbrechen. Zuerst deren tatsächlichen aktuellen GitHub-Status prüfen.
+
+Letzte Nutzersteuerung: verbleibende Arbeit abschließen, sofort committen/pushen
+und eine in zwei Wochen nutzbare Übergabe mit Regeln, offenen Punkten und den
+nächsten Schritten sichern. Neue große Funktionsblöcke wurden deshalb gestoppt.
+Die ursprüngliche Mission bleibt in der Übergabe dokumentiert. Keine neue
+APK-Freigabe behaupten, bevor echte Android-/Update-/Veröffentlichungsgates
+bestanden sind. Bestehende Regeln darunter gelten weiterhin.
+
 **Geltung:** Alle KI-/Codex-/Astra-/Claude-/Sol-Coding-Aufgaben in diesem Repository.
 **Zweck:** Keine unerreichbaren, ausschließlich im Cloud-Workspace liegenden Implementierungen mehr.
 **Stand:** 2026-10-20. Aktuelle Arbeitsaufträge/PR-Ketten weiterhin vor Änderungen prüfen.
