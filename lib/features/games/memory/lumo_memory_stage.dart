@@ -36,7 +36,9 @@ class _MemoryStagePainter extends CustomPainter {
     final w = size.width;
     final h = size.height;
     final field = Rect.fromLTWH(0, 0, w, h);
-    final radius = Radius.circular((size.shortestSide * .06).clamp(12.0, 26.0));
+    final radius = Radius.circular(
+      (size.shortestSide * .06).clamp(12.0, 26.0).toDouble(),
+    );
     canvas.save();
     canvas.clipRRect(RRect.fromRectAndRadius(field, radius));
 
