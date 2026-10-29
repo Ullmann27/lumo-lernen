@@ -20,8 +20,12 @@ Veröffentlichung erfordert am gleichen Commit:
 5. Nur danach ein neues unveränderliches Release mit einzelner ARM64-APK,
    SHA-256 und Build-Provenienz; kein Überschreiben älterer Releases.
 
-Die Pin-Tests bestehen lokal mit 37 Fällen. Android-Ergebnisse sind noch nicht
-vorhanden und werden erst nach tatsächlicher GitHub-Ausführung eingetragen.
+Lokal bestanden: 37 Pin-Policy-Fälle, 208 Build-/Preservation-Skripttests
+(ein übersprungener Fall) und 656 Android-Probe-/OCR-/Datenerhaltungsfälle.
+Die Belegprüfung ist separat ohne UI-/Emulator-Abhängigkeiten testbar und
+verwirft falschen Commit, Version, Paket, Signatur, Hash, ABI und Native-Pin.
+Dies sind Softwaretests; tatsächliche Android-Ergebnisse sind noch nicht
+vorhanden und werden erst nach GitHub-Ausführung eingetragen.
 Der Tutor-Kern hat separat 1.952 lokale Flutter-Tests und 43 fokussierte Fälle
 bestanden. Seine 13 Flutter-Bilder sind keine Android-Emulatoraufnahmen und
 beweisen weder physische Fold7-Leistung noch lokale Spracheingabe.
