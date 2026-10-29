@@ -1,14 +1,23 @@
 import 'package:flutter/foundation.dart';
 
+import '../../../../domain/learning_intelligence/lesson_scene_engine.dart';
+
 import '../learning_scene_contract.dart';
 
 /// Ergebnis der selbstständigen Transferprüfung in der Zehner-Werkstatt.
 class LumoPlaceValueTransfer {
-  const LumoPlaceValueTransfer(
-      {required this.number, required this.correct, required this.independent});
+  const LumoPlaceValueTransfer({
+    required this.number,
+    required this.correct,
+    required this.independent,
+    this.proof,
+  });
   final int number;
   final bool correct;
   final bool independent;
+
+  /// Only Sol's lesson-session validator may create this independent receipt.
+  final SceneCompletion? proof;
 }
 
 /// Sols didaktische Regeln der Zehner-Werkstatt als Szenen-Engine.
@@ -23,11 +32,25 @@ class LumoPlaceValueTransfer {
 /// eine Animation ohne Wertung und ohne Einfluss auf das Ergebnis.
 class PlaceValueSceneDirector extends ChangeNotifier
     implements LearningSceneDirector {
-  PlaceValueSceneDirector({required this.number, this.onTransferChecked})
-      : assert(number >= 10 && number <= 99),
-        sceneId = 'place-value-$number';
+  PlaceValueSceneDirector({
+    required this.number,
+    this.onTransferChecked,
+    PlaceValueLessonSession? lesson,
+  })  : assert(number >= 10 && number <= 99),
+        lesson = lesson ??
+            PlaceValueLessonSession(
+              sourceNumber: number,
+              targetNumber: number > 55 ? number - 27 : number + 27,
+              sourceProblemId: 'place-value:$number',
+            ),
+        sceneId = 'place-value-$number' {
+    if (this.lesson.sourceNumber != number) {
+      throw ArgumentError('Lesson source number must match visual scene');
+    }
+  }
 
   final int number;
+  final PlaceValueLessonSession lesson;
   final ValueChanged<LumoPlaceValueTransfer>? onTransferChecked;
   @override
   final String sceneId;
@@ -51,7 +74,7 @@ class PlaceValueSceneDirector extends ChangeNotifier
   int get ones => number % 10;
 
   /// Die andere Zahl, die das Kind ohne Lumos Hilfe baut.
-  int get target => number > 55 ? number - 27 : number + 27;
+  int get target => lesson.targetNumber;
   bool get _countComplete => _counted.length == tens;
 
   @override
@@ -111,6 +134,7 @@ class PlaceValueSceneDirector extends ChangeNotifier
         _lumo = LumoPerformanceIntent.approve;
         _lumoFocus = 'ten-${tens - 1}';
       case LearningSceneInput.startConstruction:
+        lesson.beginTransfer();
         _stage = LearningSceneStage.construct;
         _feedback = null;
         _lumo = LumoPerformanceIntent.idea;
@@ -132,7 +156,11 @@ class PlaceValueSceneDirector extends ChangeNotifier
         _lumo = LumoPerformanceIntent.listen;
         _lumoFocus = 'build';
       case LearningSceneInput.submitConstruction:
-        if (_builtTens * 10 + _builtOnes == target) {
+        // Never create a score or independent evidence in the visual layer.
+        // The exact process rule comes only from the profile-scoped Sol session.
+        final check = lesson.submitConstruction(
+            tens: _builtTens, ones: _builtOnes);
+        if (check.processCorrect) {
           _stage = LearningSceneStage.explain;
           _feedback = null;
           _lumo = LumoPerformanceIntent.listen;
@@ -147,15 +175,20 @@ class PlaceValueSceneDirector extends ChangeNotifier
       case LearningSceneInput.answerChoice:
         final value = event.value;
         if (value == null || value < 0 || value > 9) return false;
-        if (value == target % 10) {
+        final proof = lesson.submitComprehension(value);
+        if (proof != null) {
+          _independent = proof.independent;
           _stage = LearningSceneStage.done;
           _feedback = null;
-          _lumo = _independent
+          _lumo = proof.independent
               ? LumoPerformanceIntent.celebrate
               : LumoPerformanceIntent.encourage;
           _lumoFocus = 'child';
           onTransferChecked?.call(LumoPlaceValueTransfer(
-              number: target, correct: true, independent: _independent));
+              number: target,
+              correct: true,
+              independent: proof.independent,
+              proof: proof));
         } else {
           _independent = false;
           _feedback =
