@@ -32,34 +32,35 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ github.event.pull_request.head.sha }}
-      - name: Require exact-head successful Android build and actual 2000-2002 update
+      - name: Require exact-head learning core, Android build and actual 2000-2002 update
         run: |
           set -euo pipefail
           test "$(grep '^version:' pubspec.yaml | cut -d' ' -f2)" = "$VERSION"
           test "$(python3 -c 'import json;print(json.load(open("config/godot-source.json"))["revision"])')" = "$GODOT_SHA"
           for attempt in $(seq 1 117); do
             gh api "repos/Ullmann27/lumo-lernen/actions/runs?head_sha=$SOURCE_SHA&per_page=100" > runs.json
-            for label in "Lumo Lernen Kart unified integration APK" "Lumo 2002 actual 2000 in-place upgrade and native Kart QA"; do
+            for label in "Lumo Lernen Kart unified integration APK" "Lumo 2002 actual 2000 in-place upgrade and native Kart QA" "Lumo living intelligence core"; do
               row="$(jq -r --arg sha "$SOURCE_SHA" --arg label "$label" '[.workflow_runs[] | select(.name==$label and .head_sha==$sha)] | sort_by(.created_at) | reverse | .[0] | if .==null then "waiting waiting" else "\(.id) \(.conclusion // .status)" end' runs.json)"
               read -r run state <<< "$row"
               echo "$label: $run $state (attempt $attempt)"
               case "$label" in
                 "Lumo Lernen Kart unified integration APK") BUILD_RUN="$run"; BUILD_STATE="$state" ;;
+                "Lumo living intelligence core") CORE_RUN="$run"; CORE_STATE="$state" ;;
                 *) UPDATE_RUN="$run"; UPDATE_STATE="$state" ;;
               esac
             done
-            if [ "$BUILD_STATE" = 'success' ] && [ "$UPDATE_STATE" = 'success' ]; then
+            if [ "$BUILD_STATE" = 'success' ] && [ "$UPDATE_STATE" = 'success' ] && [ "$CORE_STATE" = 'success' ]; then
               echo "BUILD_RUN=$BUILD_RUN" >> "$GITHUB_ENV"
               echo "UPDATE_RUN=$UPDATE_RUN" >> "$GITHUB_ENV"
               break
             fi
-            if [ "$BUILD_STATE" = 'failure' ] || [ "$UPDATE_STATE" = 'failure' ] || [ "$BUILD_STATE" = 'cancelled' ] || [ "$UPDATE_STATE" = 'cancelled' ]; then
+            if [ "$BUILD_STATE" = 'failure' ] || [ "$UPDATE_STATE" = 'failure' ] || [ "$CORE_STATE" = 'failure' ] || [ "$BUILD_STATE" = 'cancelled' ] || [ "$UPDATE_STATE" = 'cancelled' ] || [ "$CORE_STATE" = 'cancelled' ]; then
               echo "Refusing publication after failing Android tour/update gate"
               exit 1
             fi
             sleep 60
           done
-          test "$BUILD_STATE" = 'success' && test "$UPDATE_STATE" = 'success'
+          test "$BUILD_STATE" = 'success' && test "$UPDATE_STATE" = 'success' && test "$CORE_STATE" = 'success'
       - name: Fetch only exact verified ARM64 and 2000 update proof
         run: |
           set -euo pipefail
@@ -116,7 +117,7 @@ jobs:
             dist/BUILD-PROVENANCE.json dist/APK-VERIFICATION.json dist/GODOT-SOURCE.json \
             --repo Ullmann27/lumo-lernen --target "$SOURCE_SHA" \
             --title "Lumo Lernen + Lumo Kart 0.12.90 (2002) Android ARM64" \
-            --notes "Signed direct APK for Google Chrome. Local tutor coordination, voluntary explanations, interactive base-ten construction with transfer check, and profile-grounded daily plan. Existing Sonnenhafen native integration preserved. Exact Godot source $GODOT_SHA; Flutter source $SOURCE_SHA. Full Flutter tests, Kart Android tour and actual 2000->2002 install-r with preserved profile, rewards and offline Fold views all passed. Release is a device test candidate, NOT proof of Fold 60 FPS or Play Store certification. Previous releases preserved." \
+            --notes "Signed main-app update for Google Chrome. Deterministic offline explanation alternatives, versioned learning scenes, verified new-number construction plus comprehension, durable child-isolated method receipts and balanced daily plans. The complete reference is tens/ones; broader reading and language workshops remain future work. Existing Sonnenhafen native integration preserved. Exact Godot source $GODOT_SHA; Flutter source $SOURCE_SHA. Learning-core CI, full Flutter tests, Kart Android tour and actual 2000->2002 install-r with preserved profile, rewards and offline Fold views passed. This is a signed device-test candidate, with no physical Fold frame-rate or Play Store certification claim. Previous releases preserved." \
             --prerelease
           gh release view "$TAG" --repo Ullmann27/lumo-lernen --json assets \
             --jq '.assets[].name' | grep -Fx -- "$FILE"

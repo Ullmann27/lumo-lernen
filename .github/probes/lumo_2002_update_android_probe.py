@@ -18,6 +18,7 @@ import traceback
 
 import modernization_android_tour as tour
 from update_preservation import require_in_place_update, require_learning_preserved
+from update_artifact_identity import require_update_artifact
 
 probe, base, live = tour.probe, tour.base, tour.live
 SOURCE = os.environ.get('LUMO_CANDIDATE_SOURCE_SHA', '')
@@ -26,17 +27,8 @@ GODOT = 'adcce3093caa42bf3da47262f70bdf03cdefa347'
 
 
 def artifact(apk: Path, source: str, version: int) -> dict:
-    info = json.loads((apk.parent / 'BUILD-PROVENANCE.json').read_text())
-    expected = {'flutter_source_commit': source, 'tracked_source_clean': True,
-                'versionCode': version, 'package': tour.PACKAGE,
-                'signingCertificateSha256': probe.CERT, 'sha256': probe.digest(apk)}
-    if any(info.get(key) != value for key, value in expected.items()):
-        raise RuntimeError('Artifact provenance does not identify the expected APK')
-    if info['abis'] != ['x86_64']:
-        raise RuntimeError('Update gate requires the actual x86_64 native APK')
-    if version == 2002 and info['godot']['revision'] != GODOT:
-        raise RuntimeError('Candidate Kart source is not the reviewed pin')
-    return info
+    return require_update_artifact(apk, source=source, version=version,
+        package=tour.PACKAGE, certificate=probe.CERT, native_source=GODOT)
 
 
 def wait_profile(out: Path, tag: str) -> None:

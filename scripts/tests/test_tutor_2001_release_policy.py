@@ -15,7 +15,7 @@ class TutorReleasePolicyTest(unittest.TestCase):
         for version in (2000, 2001):
             self.assertEqual(policy.verify(f'version: 0.12.89+{version}\n', config)[0], version)
         with self.assertRaisesRegex(ValueError, 'no reviewed native pin'):
-            policy.verify('version: 0.12.90+2002\n', config)
+            policy.verify('version: 0.12.91+2003\n', config)
         broken = json.loads(config)
         broken['revision'] = policy.APPROVED[1999]
         with self.assertRaisesRegex(ValueError, 'revision mismatch'):
