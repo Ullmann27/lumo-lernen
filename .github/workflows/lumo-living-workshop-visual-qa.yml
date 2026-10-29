@@ -59,7 +59,7 @@ jobs:
           ):
               p = files / name
               payload = p.read_bytes()
-              assert len(payload) >= 10000 and payload[:8] == b"\\x89PNG\\r\\n\\x1a\\n", p
+              assert len(payload) >= 10000 and payload[:8] == b"\x89PNG\r\n\x1a\n", p
               width, height = struct.unpack(">II", payload[16:24])
               assert width >= 350 and height >= 200, (p, width, height)
               print("RENDERED_FLUTTER_FRAME", p, width, height, len(payload))
