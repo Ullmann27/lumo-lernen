@@ -115,10 +115,13 @@ class NumberLineVisual extends StatelessWidget {
   });
 
   final int max;
+
   /// Markierte Hauptposition (Lumo sitzt drauf).
   final int? highlight;
+
   /// Optionaler Sprung-Anfang (gruener Marker).
   final int? from;
+
   /// Optionaler Sprung-Ziel (oranger Marker).
   final int? to;
   final double height;
@@ -131,7 +134,8 @@ class NumberLineVisual extends StatelessWidget {
       decoration: BoxDecoration(
         color: LumoColors.blueSurface,
         borderRadius: BorderRadius.circular(LumoRadius.lg),
-        border: Border.all(color: LumoColors.blue.withOpacity(0.25), width: 1.4),
+        border:
+            Border.all(color: LumoColors.blue.withOpacity(0.25), width: 1.4),
       ),
       child: CustomPaint(
         painter: _NumberLinePainter(
@@ -166,10 +170,14 @@ class _NumberLinePainter extends CustomPainter {
       ..color = LumoColors.blue
       ..strokeWidth = 4
       ..strokeCap = StrokeCap.round;
-    canvas.drawLine(Offset(padL, lineY), Offset(size.width - padR, lineY), linePaint);
+    canvas.drawLine(
+        Offset(padL, lineY), Offset(size.width - padR, lineY), linePaint);
 
     // Ticks + Zahlen
-    final tickPaint = Paint()..color = LumoColors.blue..strokeWidth = 3..strokeCap = StrokeCap.round;
+    final tickPaint = Paint()
+      ..color = LumoColors.blue
+      ..strokeWidth = 3
+      ..strokeCap = StrokeCap.round;
     for (var i = 0; i <= max; i++) {
       final x = padL + step * i;
       canvas.drawLine(Offset(x, lineY - 6), Offset(x, lineY + 6), tickPaint);
@@ -237,7 +245,10 @@ class _NumberLinePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _NumberLinePainter old) =>
-      old.max != max || old.highlight != highlight || old.from != from || old.to != to;
+      old.max != max ||
+      old.highlight != highlight ||
+      old.from != from ||
+      old.to != to;
 }
 
 // ════════════════════════════════════════════════════════
@@ -255,8 +266,10 @@ class MathHouseVisual extends StatelessWidget {
 
   /// Zahl im Dach (Summe).
   final int roof;
+
   /// Linke Kammer (null = ? Platzhalter).
   final int? leftRoom;
+
   /// Rechte Kammer.
   final int? rightRoom;
   final double size;
@@ -267,7 +280,8 @@ class MathHouseVisual extends StatelessWidget {
       width: size,
       height: size,
       child: CustomPaint(
-        painter: _MathHousePainter(roof: roof, left: leftRoom, right: rightRoom),
+        painter:
+            _MathHousePainter(roof: roof, left: leftRoom, right: rightRoom),
       ),
     );
   }
@@ -299,7 +313,8 @@ class _MathHousePainter extends CustomPainter {
     canvas.drawPath(roofPath, borderPaint);
 
     // Zahl im Dach
-    _drawNumber(canvas, '$roof', Offset(size.width * 0.5, size.height * 0.27), 28, Colors.white);
+    _drawNumber(canvas, '$roof', Offset(size.width * 0.5, size.height * 0.27),
+        28, Colors.white);
 
     // Haus-Korpus (Rechteck)
     final bodyRect = Rect.fromLTWH(
@@ -326,15 +341,18 @@ class _MathHousePainter extends CustomPainter {
     // Linke Kammer
     final leftLabel = left == null ? '?' : '$left';
     final leftColor = left == null ? LumoColors.ink400 : LumoColors.ink900;
-    _drawNumber(canvas, leftLabel, Offset(size.width * 0.30, size.height * 0.68), 36, leftColor);
+    _drawNumber(canvas, leftLabel,
+        Offset(size.width * 0.30, size.height * 0.68), 36, leftColor);
 
     // Rechte Kammer
     final rightLabel = right == null ? '?' : '$right';
     final rightColor = right == null ? LumoColors.ink400 : LumoColors.ink900;
-    _drawNumber(canvas, rightLabel, Offset(size.width * 0.70, size.height * 0.68), 36, rightColor);
+    _drawNumber(canvas, rightLabel,
+        Offset(size.width * 0.70, size.height * 0.68), 36, rightColor);
   }
 
-  void _drawNumber(Canvas canvas, String text, Offset center, double size, Color color) {
+  void _drawNumber(
+      Canvas canvas, String text, Offset center, double size, Color color) {
     final tp = TextPainter(
       text: TextSpan(
         text: text,
@@ -347,7 +365,8 @@ class _MathHousePainter extends CustomPainter {
       ),
       textDirection: TextDirection.ltr,
     )..layout();
-    tp.paint(canvas, Offset(center.dx - tp.width / 2, center.dy - tp.height / 2));
+    tp.paint(
+        canvas, Offset(center.dx - tp.width / 2, center.dy - tp.height / 2));
   }
 
   @override
@@ -380,9 +399,19 @@ class PlaceValueVisual extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Expanded(child: _Column(label: 'Z', count: tens, color: LumoColors.teal, isTens: true)),
+          Expanded(
+              child: _Column(
+                  label: 'Z',
+                  count: tens,
+                  color: LumoColors.teal,
+                  isTens: true)),
           const SizedBox(width: 12),
-          Expanded(child: _Column(label: 'E', count: ones, color: LumoColors.orange, isTens: false)),
+          Expanded(
+              child: _Column(
+                  label: 'E',
+                  count: ones,
+                  color: LumoColors.orange,
+                  isTens: false)),
         ],
       ),
     );
@@ -390,7 +419,11 @@ class PlaceValueVisual extends StatelessWidget {
 }
 
 class _Column extends StatelessWidget {
-  const _Column({required this.label, required this.count, required this.color, required this.isTens});
+  const _Column(
+      {required this.label,
+      required this.count,
+      required this.color,
+      required this.isTens});
   final String label;
   final int count;
   final Color color;
@@ -433,8 +466,10 @@ class _Column extends StatelessWidget {
           runSpacing: 4,
           alignment: WrapAlignment.center,
           children: isTens
-              ? List<Widget>.generate(math.min(count, 9), (_) => _TensBar(color: color))
-              : List<Widget>.generate(math.min(count, 9), (_) => _Dot(color: color, size: 14)),
+              ? List<Widget>.generate(
+                  math.min(count, 9), (_) => _TensBar(color: color))
+              : List<Widget>.generate(
+                  math.min(count, 9), (_) => _Dot(color: color, size: 14)),
         ),
       ],
     );

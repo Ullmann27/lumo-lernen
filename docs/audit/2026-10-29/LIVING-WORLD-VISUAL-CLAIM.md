@@ -23,6 +23,14 @@ Es gibt keine zweite Kompetenzdatenbank und keine eigene Bewertungslogik.
 
 ## Geänderte vorhandene Dateien
 
+- `lib/features/learning/widgets/lumo_place_value_blocks.dart`: entfernt
+  (Nachtrag 29.10.).
+  - Nur die alte Werkstatt-Darstellung hatte es benutzt; ohne sie wäre es
+    toter Code (Regel 8).
+  - Ersatz ist `scenes/place_value/place_value_material.dart`.
+  - Die Datei lässt sich aus der Git-Historie zurückholen.
+- `LumoPlaceValueWorkshop` bekommt zusätzlich `sounds` (Standard `false`);
+  die API wird nur erweitert, nichts fällt weg.
 - `lib/features/learning/widgets/lumo_place_value_workshop.dart`:
   - Nur die Darstellung ändert sich.
   - Unverändert bleiben öffentliche API (`number`, `reduceMotion`,

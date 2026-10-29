@@ -312,7 +312,8 @@ class _HoloPanel extends StatelessWidget {
           end: Alignment.bottomRight,
         ),
         borderRadius: BorderRadius.circular(26),
-        border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .5), width: 1.4),
+        border: Border.all(
+            color: LumoVisualTokens.cyan.withValues(alpha: .5), width: 1.4),
         boxShadow: [
           BoxShadow(
             color: LumoVisualTokens.cyan.withValues(alpha: .16),
@@ -345,7 +346,8 @@ class _LetterShowcase extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0xAA092344),
               borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: LumoVisualTokens.cyan.withValues(alpha: .55)),
+              border: Border.all(
+                  color: LumoVisualTokens.cyan.withValues(alpha: .55)),
             ),
             child: child,
           ),
@@ -460,7 +462,8 @@ class _SpellingPanel extends StatelessWidget {
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(16)),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(16),
-              borderSide: BorderSide(color: LumoVisualTokens.cyan.withValues(alpha: .55)),
+              borderSide: BorderSide(
+                  color: LumoVisualTokens.cyan.withValues(alpha: .55)),
             ),
           ),
           style: const TextStyle(
@@ -481,9 +484,12 @@ class _SpellingPanel extends StatelessWidget {
               foregroundColor: const Color(0xFF04203F),
               disabledBackgroundColor: const Color(0xFF1C3A66),
               disabledForegroundColor: LumoVisualTokens.muted,
-              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(18)),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(18)),
               textStyle: const TextStyle(
-                  fontFamily: 'Nunito', fontSize: 17, fontWeight: FontWeight.w900),
+                  fontFamily: 'Nunito',
+                  fontSize: 17,
+                  fontWeight: FontWeight.w900),
             ),
             icon: const Icon(Icons.spellcheck_rounded),
             label: const Text('Rechtschreibung prüfen'),
@@ -548,7 +554,8 @@ class _WordTargetStrip extends StatelessWidget {
                           ),
                           borderRadius: BorderRadius.circular(14),
                           border: Border.all(
-                              color: LumoVisualTokens.cyan.withValues(alpha: .45),
+                              color:
+                                  LumoVisualTokens.cyan.withValues(alpha: .45),
                               width: 1.4),
                         ),
                   child: Text(

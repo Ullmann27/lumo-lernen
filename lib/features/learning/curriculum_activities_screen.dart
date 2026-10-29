@@ -16,8 +16,7 @@ class CurriculumActivitiesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final activities =
-        PrimaryActivityCatalog.forGrade(grade, subject: subject);
+    final activities = PrimaryActivityCatalog.forGrade(grade, subject: subject);
     return Scaffold(
       backgroundColor: LumoVisualTokens.night,
       body: LumoSceneBackground(
@@ -96,8 +95,7 @@ class _InfoCard extends StatelessWidget {
             colors: [Color(0xE6123760), Color(0xE609264B)],
           ),
           borderRadius: BorderRadius.circular(20),
-          border:
-              Border.all(color: LumoVisualTokens.cyan.withOpacity(.38)),
+          border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.38)),
         ),
         child: const Row(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -137,8 +135,7 @@ class _ActivityCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Color.alphaBlend(accent.withOpacity(.18),
-                const Color(0xEF0C315D)),
+            Color.alphaBlend(accent.withOpacity(.18), const Color(0xEF0C315D)),
             const Color(0xEF071D42),
           ],
         ),
@@ -161,8 +158,8 @@ class _ActivityCard extends StatelessWidget {
                 width: 46,
                 height: 46,
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                      colors: [accent, accent.withOpacity(.48)]),
+                  gradient:
+                      LinearGradient(colors: [accent, accent.withOpacity(.48)]),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: Icon(_icon(activity.subject),
@@ -220,8 +217,7 @@ class _ActivityCard extends StatelessWidget {
             decoration: BoxDecoration(
               color: const Color(0x9910355F),
               borderRadius: BorderRadius.circular(14),
-              border:
-                  Border.all(color: LumoVisualTokens.cyan.withOpacity(.22)),
+              border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.22)),
             ),
             child: Text(
               'Nachweis: ${activity.evidence}',

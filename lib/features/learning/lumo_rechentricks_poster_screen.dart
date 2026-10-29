@@ -91,8 +91,10 @@ class _LumoRechentricksPosterScreenState
   Widget build(BuildContext context) {
     final activeEntries = _advanced
         ? _entries
-        : _entries.where((e) => e.mentor.kind.index <=
-            RechentricksKind.bridgeTen.index).toList(growable: false);
+        : _entries
+            .where(
+                (e) => e.mentor.kind.index <= RechentricksKind.bridgeTen.index)
+            .toList(growable: false);
     if (activeEntries.isEmpty) {
       return const Scaffold(
         body: Center(child: Text('Hier entstehen bald neue Rechentricks.')),
@@ -118,9 +120,8 @@ class _LumoRechentricksPosterScreenState
           padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
           child: FilledButton.icon(
             key: const ValueKey('tricks-next'),
-            onPressed: () => _showAnswer
-                ? _nextExample(entry)
-                : _nextStep(exercise),
+            onPressed: () =>
+                _showAnswer ? _nextExample(entry) : _nextStep(exercise),
             icon: Icon(_showAnswer
                 ? Icons.refresh_rounded
                 : Icons.arrow_forward_rounded),
@@ -153,8 +154,10 @@ class _LumoRechentricksPosterScreenState
         title: const Text(
           'Lumos Trick-Werkstatt',
           style: TextStyle(
-            fontFamily: 'Nunito', fontSize: 20,
-            fontWeight: FontWeight.w900, color: Colors.white,
+            fontFamily: 'Nunito',
+            fontSize: 20,
+            fontWeight: FontWeight.w900,
+            color: Colors.white,
           ),
         ),
       ),
@@ -166,8 +169,10 @@ class _LumoRechentricksPosterScreenState
             builder: (context, limits) => SingleChildScrollView(
               key: const ValueKey('tricks-scroll'),
               padding: EdgeInsets.fromLTRB(
-                limits.maxWidth < 350 ? 12 : 20, 12,
-                limits.maxWidth < 350 ? 12 : 20, 36,
+                limits.maxWidth < 350 ? 12 : 20,
+                12,
+                limits.maxWidth < 350 ? 12 : 20,
+                36,
               ),
               child: Center(
                 child: ConstrainedBox(
@@ -180,16 +185,20 @@ class _LumoRechentricksPosterScreenState
                       const Text(
                         'Wer hilft dir heute?',
                         style: TextStyle(
-                          color: Colors.white, fontSize: 22,
-                          fontFamily: 'Nunito', fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          fontSize: 22,
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w900,
                         ),
                       ),
                       const SizedBox(height: 5),
                       const Text(
                         'Tippe auf einen Freund!',
                         style: TextStyle(
-                          color: Color(0xFFE0F2FF), fontSize: 15,
-                          fontFamily: 'Nunito', fontWeight: FontWeight.w700,
+                          color: Color(0xFFE0F2FF),
+                          fontSize: 15,
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w700,
                         ),
                       ),
                       const SizedBox(height: 12),
@@ -230,10 +239,10 @@ class _LumoRechentricksPosterScreenState
                         ),
                       Center(
                         child: TextButton(
-                          onPressed: () => setState(() =>
-                              _showCredits = !_showCredits),
+                          onPressed: () =>
+                              setState(() => _showCredits = !_showCredits),
                           child: const Text('Woher kommen die Ideen?',
-                            style: TextStyle(color: Color(0xFFD8E8FA))),
+                              style: TextStyle(color: Color(0xFFD8E8FA))),
                         ),
                       ),
                       if (_showCredits)
@@ -242,8 +251,10 @@ class _LumoRechentricksPosterScreenState
                           '„Meine Rechentricks“ aus dem Mildenberger-'
                           'Übungsheft Mathematik 1 + 3 entstanden.',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white70,
-                              fontFamily: 'Nunito', fontSize: 12),
+                          style: TextStyle(
+                              color: Colors.white70,
+                              fontFamily: 'Nunito',
+                              fontSize: 12),
                         ),
                     ],
                   ),
@@ -267,10 +278,13 @@ class _LumoRechentricksPosterScreenState
         ),
         borderRadius: BorderRadius.circular(25),
         border: Border.all(color: _cyan.withValues(alpha: .55), width: 1.3),
-        boxShadow: [BoxShadow(
-          color: _cyan.withValues(alpha: .17),
-          blurRadius: 18, offset: const Offset(0, 5),
-        )],
+        boxShadow: [
+          BoxShadow(
+            color: _cyan.withValues(alpha: .17),
+            blurRadius: 18,
+            offset: const Offset(0, 5),
+          )
+        ],
       ),
       padding: const EdgeInsets.fromLTRB(17, 12, 10, 12),
       child: Row(
@@ -280,20 +294,25 @@ class _LumoRechentricksPosterScreenState
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text('Rechnen kann zaubern!',
-                  style: TextStyle(color: Colors.white,
-                    fontFamily: 'Nunito', fontWeight: FontWeight.w900,
-                    fontSize: 22)),
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w900,
+                        fontSize: 22)),
                 SizedBox(height: 4),
                 Text('Wir probieren einen Trick nach dem anderen.',
-                  style: TextStyle(color: Color(0xFFDBF7FF),
-                    fontFamily: 'Nunito', fontWeight: FontWeight.w700,
-                    fontSize: 14)),
+                    style: TextStyle(
+                        color: Color(0xFFDBF7FF),
+                        fontFamily: 'Nunito',
+                        fontWeight: FontWeight.w700,
+                        fontSize: 14)),
               ],
             ),
           ),
           const SizedBox(width: 4),
           const LumoFoxPose(
-            pose: LumoDesignFoxPose.teacherStick, size: 78,
+            pose: LumoDesignFoxPose.teacherStick,
+            size: 78,
           ),
         ],
       ),
@@ -338,11 +357,14 @@ class _LumoRechentricksPosterScreenState
                     _avatar(mentor, 53, accent),
                     const SizedBox(height: 6),
                     Text(mentor.name,
-                      maxLines: 1, overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito', fontWeight: FontWeight.w900,
-                        color: Colors.white, fontSize: 16,
-                      )),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          fontSize: 16,
+                        )),
                   ],
                 ),
               ),
@@ -387,13 +409,17 @@ class _LumoRechentricksPosterScreenState
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text('${mentor.name} zeigt dir:',
-                    style: TextStyle(color: accent,
-                      fontSize: 16, fontFamily: 'Nunito',
-                      fontWeight: FontWeight.w900)),
+                      style: TextStyle(
+                          color: accent,
+                          fontSize: 16,
+                          fontFamily: 'Nunito',
+                          fontWeight: FontWeight.w900)),
                   Text(mentor.catchphrase,
-                    style: const TextStyle(color: Colors.white,
-                      fontFamily: 'Nunito',
-                      fontSize: 17, fontWeight: FontWeight.w900)),
+                      style: const TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Nunito',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w900)),
                 ],
               ),
             ),
@@ -409,16 +435,22 @@ class _LumoRechentricksPosterScreenState
             ),
             child: Column(children: [
               const Text('Unsere Aufgabe',
-                style: TextStyle(fontFamily: 'Nunito', color: Color(0xFFC6EFFF),
-                  fontWeight: FontWeight.w800, fontSize: 14)),
+                  style: TextStyle(
+                      fontFamily: 'Nunito',
+                      color: Color(0xFFC6EFFF),
+                      fontWeight: FontWeight.w800,
+                      fontSize: 14)),
               const SizedBox(height: 4),
               FittedBox(
                 fit: BoxFit.scaleDown,
-                child: Text(exercise.taskText,
+                child: Text(
+                  exercise.taskText,
                   key: const ValueKey('tricks-task'),
-                  style: const TextStyle(color: Colors.white,
-                    fontFamily: 'Nunito', fontWeight: FontWeight.w900,
-                    fontSize: 36),
+                  style: const TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Nunito',
+                      fontWeight: FontWeight.w900,
+                      fontSize: 36),
                 ),
               ),
             ]),
@@ -427,16 +459,19 @@ class _LumoRechentricksPosterScreenState
           _countingDots(exercise.taskText, accent),
           const SizedBox(height: 12),
           Row(children: [
-            const Icon(Icons.auto_awesome_rounded,
-              color: _gold, size: 23),
+            const Icon(Icons.auto_awesome_rounded, color: _gold, size: 23),
             const SizedBox(width: 8),
             Expanded(
-              child: Text(_showAnswer ? 'Super, geschafft!'
-                  : 'Schritt ${progress} von $total',
+              child: Text(
+                _showAnswer
+                    ? 'Super, geschafft!'
+                    : 'Schritt ${progress} von $total',
                 key: const ValueKey('tricks-progress'),
                 style: const TextStyle(
-                  color: Colors.white, fontFamily: 'Nunito',
-                  fontWeight: FontWeight.w900, fontSize: 19,
+                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontWeight: FontWeight.w900,
+                  fontSize: 19,
                 ),
               ),
             ),
@@ -463,12 +498,16 @@ class _LumoRechentricksPosterScreenState
                 borderRadius: BorderRadius.circular(20),
                 border: Border.all(color: accent.withValues(alpha: .54)),
               ),
-              child: Text(steps[_shownStep],
+              child: Text(
+                steps[_shownStep],
                 key: const ValueKey('tricks-step-text'),
                 textAlign: TextAlign.center,
-                style: const TextStyle(color: Colors.white,
-                  fontFamily: 'Nunito', fontWeight: FontWeight.w900,
-                  fontSize: 22, height: 1.3),
+                style: const TextStyle(
+                    color: Colors.white,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.w900,
+                    fontSize: 22,
+                    height: 1.3),
               ),
             ),
           ),
@@ -480,23 +519,24 @@ class _LumoRechentricksPosterScreenState
               width: double.infinity,
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                gradient: const LinearGradient(colors: [
-                  Color(0xFF217A4B), Color(0xFF114B46)]),
+                gradient: const LinearGradient(
+                    colors: [Color(0xFF217A4B), Color(0xFF114B46)]),
                 borderRadius: BorderRadius.circular(18),
-                border: Border.all(color: const Color(0xFF72F0A4),
-                  width: 1.5),
+                border: Border.all(color: const Color(0xFF72F0A4), width: 1.5),
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(Icons.check_circle_rounded,
-                    color: Color(0xFFB5FFD4)),
+                      color: Color(0xFFB5FFD4)),
                   const SizedBox(width: 10),
                   Flexible(
                     child: Text(exercise.resultText,
-                      style: const TextStyle(color: Colors.white,
-                        fontSize: 23, fontFamily: 'Nunito',
-                        fontWeight: FontWeight.w900)),
+                        style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 23,
+                            fontFamily: 'Nunito',
+                            fontWeight: FontWeight.w900)),
                   ),
                 ],
               ),
@@ -539,7 +579,8 @@ class _LumoRechentricksPosterScreenState
         child: Wrap(
           alignment: WrapAlignment.center,
           crossAxisAlignment: WrapCrossAlignment.center,
-          spacing: 5, runSpacing: 7,
+          spacing: 5,
+          runSpacing: 7,
           children: [
             for (var i = 0; i < a; i++) _dot(_cyan),
             const Padding(
@@ -554,20 +595,25 @@ class _LumoRechentricksPosterScreenState
   }
 
   Widget _dot(Color color) => Container(
-    width: 18, height: 18,
-    decoration: BoxDecoration(
-      color: color, shape: BoxShape.circle,
-      boxShadow: [BoxShadow(color: color.withValues(alpha: .5),
-        blurRadius: 7)],
-    ),
-  );
+        width: 18,
+        height: 18,
+        decoration: BoxDecoration(
+          color: color,
+          shape: BoxShape.circle,
+          boxShadow: [
+            BoxShadow(color: color.withValues(alpha: .5), blurRadius: 7)
+          ],
+        ),
+      );
 
   Widget _avatar(RechentricksMentor m, double size, Color accent) {
     return Container(
-      width: size, height: size,
+      width: size,
+      height: size,
       padding: const EdgeInsets.all(3),
       decoration: BoxDecoration(
-        shape: BoxShape.circle, color: const Color(0xFF163454),
+        shape: BoxShape.circle,
+        color: const Color(0xFF163454),
         border: Border.all(color: accent, width: 2),
         boxShadow: [
           BoxShadow(color: accent.withValues(alpha: .35), blurRadius: 10),
@@ -575,13 +621,14 @@ class _LumoRechentricksPosterScreenState
       ),
       child: ClipOval(
         child: m.avatarAsset == null
-            ? Center(child: Text(m.emoji,
-                style: TextStyle(fontSize: size * .55)))
-            : Image.asset(m.avatarAsset!, fit: BoxFit.cover,
+            ? Center(
+                child: Text(m.emoji, style: TextStyle(fontSize: size * .55)))
+            : Image.asset(m.avatarAsset!,
+                fit: BoxFit.cover,
                 errorBuilder: (_, __, ___) => Center(
-                  child: Text(m.emoji,
-                      style: TextStyle(fontSize: size * .55)),
-                )),
+                      child:
+                          Text(m.emoji, style: TextStyle(fontSize: size * .55)),
+                    )),
       ),
     );
   }

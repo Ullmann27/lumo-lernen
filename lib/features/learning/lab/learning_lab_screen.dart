@@ -15,8 +15,8 @@ enum _Phase { example, build, recall, transfer, reflection }
 
 /// Offline learning session, using only existing profile-safe persistence.
 class LearningLabScreen extends StatefulWidget {
-  const LearningLabScreen({super.key, required this.appState,
-      required this.topic, this.seed = 0});
+  const LearningLabScreen(
+      {super.key, required this.appState, required this.topic, this.seed = 0});
   final LumoAppState appState;
   final LabTopic topic;
   final int seed;
@@ -26,7 +26,8 @@ class LearningLabScreen extends StatefulWidget {
 
 class _LearningLabScreenState extends State<LearningLabScreen> {
   late final LearningModuleProgress _progress = LearningModuleProgress(
-      appState: widget.appState, subject: widget.topic.subject,
+      appState: widget.appState,
+      subject: widget.topic.subject,
       unit: widget.topic.unit);
   final _narration = LumoLearningNarration();
   final _fox = LumoCharacterController();
@@ -42,14 +43,20 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
   late final String _sessionId =
       'lab-' + DateTime.now().microsecondsSinceEpoch.toString();
 
-  bool get _reduced => widget.appState.state.settings.reduceAnimations ||
+  bool get _reduced =>
+      widget.appState.state.settings.reduceAnimations ||
       widget.appState.state.settings.calmMode;
-  LabProblem _problem(int index) => widget.topic.problems[
-      (widget.seed + index) % widget.topic.problems.length];
+  LabProblem _problem(int index) => widget
+      .topic.problems[(widget.seed + index) % widget.topic.problems.length];
   LabProblem get _current => _problem(switch (_phase) {
-      _Phase.example => 0, _Phase.build => 1,
-      _Phase.recall => 2, _Phase.transfer || _Phase.reflection => 3});
-  bool get _safe => !_invalid && _lease != null &&
+        _Phase.example => 0,
+        _Phase.build => 1,
+        _Phase.recall => 2,
+        _Phase.transfer || _Phase.reflection => 3
+      });
+  bool get _safe =>
+      !_invalid &&
+      _lease != null &&
       widget.appState.isCurrentLearningLease(_lease!) &&
       widget.appState.state.grade >= widget.topic.minimumGrade;
 
@@ -61,6 +68,7 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
     _narration.addListener(_repaint);
     unawaited(_load());
   }
+
   Future<void> _load() async {
     try {
       final lease = await widget.appState.captureLearningProfile();
@@ -73,9 +81,14 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
         _loading = false;
       });
     } catch (_) {
-      if (mounted) setState(() { _invalid = true; _loading = false; });
+      if (mounted)
+        setState(() {
+          _invalid = true;
+          _loading = false;
+        });
     }
   }
+
   void _checkProfile() {
     if (!mounted || _lease == null || _invalid) return;
     if (!widget.appState.isCurrentLearningLease(_lease!) ||
@@ -87,11 +100,17 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
       setState(() {});
     }
   }
-  void _repaint() { if (mounted) setState(() {}); }
+
+  void _repaint() {
+    if (mounted) setState(() {});
+  }
+
   String _id() => _sessionId + '-' + (++_attempt).toString();
   Future<void> _read(String text, {bool automatic = false}) async {
     final settings = widget.appState.state.settings;
-    if (!_safe || !mounted || !settings.voiceEnabled ||
+    if (!_safe ||
+        !mounted ||
+        !settings.voiceEnabled ||
         (automatic && !settings.autoReadEnabled) ||
         ModalRoute.of(context)?.isCurrent != true) return;
     try {
@@ -105,12 +124,15 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
       // The existing voice player may be unavailable. Text stays readable.
     }
   }
+
   bool _modelValid() => switch (_current.mode) {
-    LabMode.bridge => _moved == _current.modelTarget,
-    LabMode.fraction => _pieces.length == _current.modelTarget,
-    LabMode.word || LabMode.english || LabMode.nature =>
-        _current.modelAccepts(_tokens)
-  };
+        LabMode.bridge => _moved == _current.modelTarget,
+        LabMode.fraction => _pieces.length == _current.modelTarget,
+        LabMode.word ||
+        LabMode.english ||
+        LabMode.nature =>
+          _current.modelAccepts(_tokens)
+      };
   Future<void> _checkModel() async {
     if (!_safe || _busy || _done || _progress.hasPending) return;
     if (!_modelValid()) {
@@ -127,14 +149,19 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
       setState(() {
         _busy = false;
         _done = ok;
-        _feedback = ok ? 'Gut gebaut! Jetzt kommt eine neue Aufgabe.' :
-            'Dein Lernschritt wurde nicht gespeichert.';
+        _feedback = ok
+            ? 'Gut gebaut! Jetzt kommt eine neue Aufgabe.'
+            : 'Dein Lernschritt wurde nicht gespeichert.';
       });
-      if (ok) { _fox.cheer(); unawaited(_read(_feedback, automatic: true)); }
+      if (ok) {
+        _fox.cheer();
+        unawaited(_read(_feedback, automatic: true));
+      }
     } catch (_) {
       if (mounted) setState(() => _busy = false);
     }
   }
+
   Future<void> _checkAnswer() async {
     if (!_safe || _busy || _done || _progress.hasPending) return;
     final text = _answer.text.trim();
@@ -146,116 +173,167 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
     final correct = p.accepts(text);
     final support = _wrongBefore ? (_hint > 0 ? _hint : 1) : _hint;
     final evidence = LearningEvidence(
-        taskId: _id(), problemId: p.id, correct: correct,
-        helpLevel: support, transferCheck: _phase == _Phase.transfer,
+        taskId: _id(),
+        problemId: p.id,
+        correct: correct,
+        helpLevel: support,
+        transferCheck: _phase == _Phase.transfer,
         errorTag: correct ? null : p.errorTag(text));
     setState(() => _busy = true);
     try {
       final ok = await _progress.saveAnswer(
-          correct: correct, hintUsed: support > 0, prompt: p.prompt,
-          given: text, expected: p.expected, learningEvidence: evidence);
+          correct: correct,
+          hintUsed: support > 0,
+          prompt: p.prompt,
+          given: text,
+          expected: p.expected,
+          learningEvidence: evidence);
       if (!mounted || !_safe) return;
       final response = correct
-          ? support == 0 ? 'Richtig! Ganz selbstständig geschafft.' :
-              'Richtig! Diese Antwort war noch mit Hilfe.'
+          ? support == 0
+              ? 'Richtig! Ganz selbstständig geschafft.'
+              : 'Richtig! Diese Antwort war noch mit Hilfe.'
           : p.feedback(text);
       setState(() {
         _busy = false;
         _done = ok && correct;
-        if (ok) { _wrongBefore = !correct; _feedback = response; }
-        else { _invalid = true; _feedback = 'Lernprofil nicht mehr aktiv.'; }
+        if (ok) {
+          _wrongBefore = !correct;
+          _feedback = response;
+        } else {
+          _invalid = true;
+          _feedback = 'Lernprofil nicht mehr aktiv.';
+        }
       });
       if (ok) {
-        if (correct) { _fox.cheer(); } else { _fox.think(); }
+        if (correct) {
+          _fox.cheer();
+        } else {
+          _fox.think();
+        }
         unawaited(_read(response, automatic: true));
       }
     } catch (_) {
       if (mounted) setState(() => _busy = false);
     }
   }
+
   void _next() {
-    if (!_safe || _busy || _progress.hasPending ||
+    if (!_safe ||
+        _busy ||
+        _progress.hasPending ||
         (_phase != _Phase.example && !_done) ||
         _phase == _Phase.reflection) return;
     unawaited(_narration.stop());
     setState(() {
       _phase = _Phase.values[_phase.index + 1];
-      _moved = 0; _pieces = <int>{}; _tokens = <int>[];
-      _hint = 0; _wrongBefore = false; _done = false;
-      _feedback = ''; _answer.clear();
+      _moved = 0;
+      _pieces = <int>{};
+      _tokens = <int>[];
+      _hint = 0;
+      _wrongBefore = false;
+      _done = false;
+      _feedback = '';
+      _answer.clear();
     });
   }
+
   void _help() {
     if (!_safe || _done || _hint >= 5) return;
-    setState(() { _hint++; _feedback = _current.hints[_hint - 1]; });
-    _fox.think(); unawaited(_read(_feedback));
+    setState(() {
+      _hint++;
+      _feedback = _current.hints[_hint - 1];
+    });
+    _fox.think();
+    unawaited(_read(_feedback));
   }
+
   Widget _model(LabProblem p, bool enabled) => switch (p.mode) {
-    LabMode.bridge => QuantityBridgeBoard(
-      start: p.start, addend: p.addend, moved: _moved,
-      onChanged: (n) => setState(() => _moved = n),
-      enabled: enabled, reduceMotion: _reduced, reveal: _hint >= 3),
-    LabMode.fraction => FractionBuildBoard(
-      denominator: p.denominator, selected: _pieces,
-      onChanged: (n) => setState(() => _pieces = n),
-      enabled: enabled, reduceMotion: _reduced),
-    LabMode.word || LabMode.english || LabMode.nature =>
-      LearningTokenWorkbench(tokens: p.tokens, selected: _tokens,
-        onChanged: (n) => setState(() => _tokens = n),
-        enabled: enabled, reduceMotion: _reduced),
-  };
+        LabMode.bridge => QuantityBridgeBoard(
+            start: p.start,
+            addend: p.addend,
+            moved: _moved,
+            onChanged: (n) => setState(() => _moved = n),
+            enabled: enabled,
+            reduceMotion: _reduced,
+            reveal: _hint >= 3),
+        LabMode.fraction => FractionBuildBoard(
+            denominator: p.denominator,
+            selected: _pieces,
+            onChanged: (n) => setState(() => _pieces = n),
+            enabled: enabled,
+            reduceMotion: _reduced),
+        LabMode.word ||
+        LabMode.english ||
+        LabMode.nature =>
+          LearningTokenWorkbench(
+              tokens: p.tokens,
+              selected: _tokens,
+              onChanged: (n) => setState(() => _tokens = n),
+              enabled: enabled,
+              reduceMotion: _reduced),
+      };
   Widget _button(String key, String caption, VoidCallback? onTap) =>
-    FilledButton(
-      key: ValueKey(key), onPressed: onTap,
-      style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(52),
-          backgroundColor: LumoVisualTokens.cyan,
-          foregroundColor: const Color(0xFF071F36)),
-      child: Text(caption, textAlign: TextAlign.center,
-          style: const TextStyle(fontFamily: 'Nunito',
-            fontSize: 17, fontWeight: FontWeight.w900)),
-    );
+      FilledButton(
+        key: ValueKey(key),
+        onPressed: onTap,
+        style: FilledButton.styleFrom(
+            minimumSize: const Size.fromHeight(52),
+            backgroundColor: LumoVisualTokens.cyan,
+            foregroundColor: const Color(0xFF071F36)),
+        child: Text(caption,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 17,
+                fontWeight: FontWeight.w900)),
+      );
+
   /// Playback controls use the existing session-bound narrator; no new
   /// audio service or profile data is created.
   Widget _narrationControls() => Wrap(
-    spacing: 8,
-    runSpacing: 8,
-    children: [
-      OutlinedButton.icon(
-        key: const ValueKey('lab-voice-repeat'),
-        onPressed: _safe ? () => unawaited(_narration.repeat()) : null,
-        icon: const Icon(Icons.replay),
-        label: const Text('Wiederholen'),
-        style: OutlinedButton.styleFrom(
-          minimumSize: const Size(48, 52),
-          foregroundColor: LumoVisualTokens.cyanBright,
-        ),
-      ),
-      if (_narration.isActive)
-        OutlinedButton.icon(
-          key: const ValueKey('lab-voice-pause'),
-          onPressed: _safe ? () => unawaited(_narration.pause()) : null,
-          icon: const Icon(Icons.pause),
-          label: const Text('Pause'),
-          style: OutlinedButton.styleFrom(
-            minimumSize: const Size(48, 52),
-            foregroundColor: LumoVisualTokens.cyanBright,
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          OutlinedButton.icon(
+            key: const ValueKey('lab-voice-repeat'),
+            onPressed: _safe ? () => unawaited(_narration.repeat()) : null,
+            icon: const Icon(Icons.replay),
+            label: const Text('Wiederholen'),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size(48, 52),
+              foregroundColor: LumoVisualTokens.cyanBright,
+            ),
           ),
-        ),
-    ],
-  );
+          if (_narration.isActive)
+            OutlinedButton.icon(
+              key: const ValueKey('lab-voice-pause'),
+              onPressed: _safe ? () => unawaited(_narration.pause()) : null,
+              icon: const Icon(Icons.pause),
+              label: const Text('Pause'),
+              style: OutlinedButton.styleFrom(
+                minimumSize: const Size(48, 52),
+                foregroundColor: LumoVisualTokens.cyanBright,
+              ),
+            ),
+        ],
+      );
 
   Widget _content() {
     final p = _current;
     if (_phase == _Phase.reflection) {
-      final record = _lease!.profile.journey.records[
-          SkillRecord.makeId(widget.topic.subject, widget.topic.unit)];
+      final record = _lease!.profile.journey
+          .records[SkillRecord.makeId(widget.topic.subject, widget.topic.unit)];
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         const Text('Dein Verstehensmoment',
-            style: TextStyle(color: LumoVisualTokens.white,
-                fontSize: 25, fontWeight: FontWeight.w900)),
+            style: TextStyle(
+                color: LumoVisualTokens.white,
+                fontSize: 25,
+                fontWeight: FontWeight.w900)),
         const SizedBox(height: 14),
-        Text(p.reflection, style: const TextStyle(
-            color: LumoVisualTokens.white, fontSize: 18)),
+        Text(p.reflection,
+            style:
+                const TextStyle(color: LumoVisualTokens.white, fontSize: 18)),
         const SizedBox(height: 14),
         Text(record?.explanation ?? 'Wir lernen Schritt für Schritt.',
             style: const TextStyle(color: LumoVisualTokens.muted)),
@@ -266,12 +344,15 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
     }
     if (_phase == _Phase.example) {
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(p.prompt, style: const TextStyle(
-            fontSize: 19, fontWeight: FontWeight.bold,
-            color: LumoVisualTokens.white)),
+        Text(p.prompt,
+            style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+                color: LumoVisualTokens.white)),
         const SizedBox(height: 14),
-        Text(p.workedExample, style: const TextStyle(fontSize: 17,
-            height: 1.5, color: LumoVisualTokens.white)),
+        Text(p.workedExample,
+            style: const TextStyle(
+                fontSize: 17, height: 1.5, color: LumoVisualTokens.white)),
         const SizedBox(height: 12),
         _button('lab-speak', 'Beispiel vorlesen',
             () => unawaited(_read(p.workedExample))),
@@ -281,10 +362,14 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
     }
     if (_phase == _Phase.build) {
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text(p.guidedPrompt, style: const TextStyle(fontSize: 19,
-            fontWeight: FontWeight.w800, color: LumoVisualTokens.white)),
+        Text(p.guidedPrompt,
+            style: const TextStyle(
+                fontSize: 19,
+                fontWeight: FontWeight.w800,
+                color: LumoVisualTokens.white)),
         const SizedBox(height: 12),
-        KeyedSubtree(key: const ValueKey('lab-model'),
+        KeyedSubtree(
+            key: const ValueKey('lab-model'),
             child: _model(p, !_done && !_busy)),
         const SizedBox(height: 14),
         _button('lab-check-model', 'Mein Modell prüfen',
@@ -296,21 +381,28 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
       ]);
     }
     return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-      Text(p.prompt, style: const TextStyle(fontSize: 19,
-          color: LumoVisualTokens.white, fontWeight: FontWeight.w800)),
+      Text(p.prompt,
+          style: const TextStyle(
+              fontSize: 19,
+              color: LumoVisualTokens.white,
+              fontWeight: FontWeight.w800)),
       const SizedBox(height: 12),
-      if (_hint >= 3) KeyedSubtree(
-          key: const ValueKey('lab-model'),
-          child: _model(p, !_done && !_busy)),
+      if (_hint >= 3)
+        KeyedSubtree(
+            key: const ValueKey('lab-model'),
+            child: _model(p, !_done && !_busy)),
       TextField(
-        key: const ValueKey('lab-answer'), controller: _answer,
-        enabled: !_done && !_busy, maxLength: 80,
+        key: const ValueKey('lab-answer'),
+        controller: _answer,
+        enabled: !_done && !_busy,
+        maxLength: 80,
         autocorrect: false,
         style: const TextStyle(color: LumoVisualTokens.white, fontSize: 20),
         decoration: const InputDecoration(
-          labelText: 'Deine Antwort',
-          hintText: 'Hier schreiben',
-          border: OutlineInputBorder(), filled: true),
+            labelText: 'Deine Antwort',
+            hintText: 'Hier schreiben',
+            border: OutlineInputBorder(),
+            filled: true),
       ),
       OutlinedButton.icon(
         key: const ValueKey('lab-help'),
@@ -318,8 +410,8 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
         icon: const Icon(Icons.lightbulb_outline),
         label: Text('Tipp anzeigen ($_hint/5)'),
         style: OutlinedButton.styleFrom(
-          minimumSize: const Size.fromHeight(48),
-          foregroundColor: LumoVisualTokens.cyanBright),
+            minimumSize: const Size.fromHeight(48),
+            foregroundColor: LumoVisualTokens.cyanBright),
       ),
       const SizedBox(height: 12),
       _button('lab-check-answer', 'Antwort prüfen',
@@ -331,93 +423,116 @@ class _LearningLabScreenState extends State<LearningLabScreen> {
       ],
     ]);
   }
+
   @override
   Widget build(BuildContext context) {
-    const captions = ['Beispiel', 'Gemeinsam bauen', 'Freier Abruf',
-      'Neue Aufgabe', 'Rückblick'];
+    const captions = [
+      'Beispiel',
+      'Gemeinsam bauen',
+      'Freier Abruf',
+      'Neue Aufgabe',
+      'Rückblick'
+    ];
     return Scaffold(
       backgroundColor: LumoVisualTokens.night,
       appBar: AppBar(
           title: Text(widget.topic.title),
           backgroundColor: LumoVisualTokens.night,
           foregroundColor: LumoVisualTokens.white),
-      body: SafeArea(child: _loading
-          ? const Center(child: CircularProgressIndicator())
-          : !_safe
-              ? const Center(child: Padding(
-                  padding: EdgeInsets.all(22),
-                  child: Text(
-                    'Kinderprofil wurde gewechselt oder die Lernwelt ist für eine spätere Klasse vorgesehen. Bitte kehre zurück.',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                        color: LumoVisualTokens.white, fontSize: 18))))
-              : ListView(
-                  padding: const EdgeInsets.fromLTRB(14, 12, 14, 32),
-                  children: [
-                    Center(child: ConstrainedBox(
-                      constraints: const BoxConstraints(maxWidth: 620),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          LinearProgressIndicator(
-                            value: (_phase.index + 1) / 5,
-                            minHeight: 7, color: LumoVisualTokens.cyan),
-                          const SizedBox(height: 12),
-                          Text(captions[_phase.index],
-                              style: const TextStyle(
-                                color: LumoVisualTokens.cyanBright,
-                                fontSize: 17, fontWeight: FontWeight.w900)),
-                          Row(children: [
-                            LumoCharacter(
-                              pose: LumoDesignFoxPose.bookWelcome,
-                              size: 78, controller: _fox,
-                              reduceMotion: _reduced),
-                            const SizedBox(width: 8),
-                            Expanded(child: Text(widget.topic.goal,
-                                style: const TextStyle(
-                                    color: LumoVisualTokens.white,
-                                    fontSize: 15))),
-                          ]),
-                          const SizedBox(height: 12),
-                          DecoratedBox(
-                            key: ValueKey('lab-phase-' + _phase.name),
-                            decoration: BoxDecoration(
-                              gradient: const LinearGradient(colors: [
-                                Color(0xFF153D64), Color(0xFF0B2341)]),
-                              borderRadius: BorderRadius.circular(20),
-                              border: Border.all(color: const Color(0xFF3A648A))),
-                            child: Padding(
-                              padding: const EdgeInsets.all(16),
-                              child: _content()),
+      body: SafeArea(
+          child: _loading
+              ? const Center(child: CircularProgressIndicator())
+              : !_safe
+                  ? const Center(
+                      child: Padding(
+                          padding: EdgeInsets.all(22),
+                          child: Text(
+                              'Kinderprofil wurde gewechselt oder die Lernwelt ist für eine spätere Klasse vorgesehen. Bitte kehre zurück.',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  color: LumoVisualTokens.white,
+                                  fontSize: 18))))
+                  : ListView(
+                      padding: const EdgeInsets.fromLTRB(14, 12, 14, 32),
+                      children: [
+                        Center(
+                            child: ConstrainedBox(
+                          constraints: const BoxConstraints(maxWidth: 620),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              LinearProgressIndicator(
+                                  value: (_phase.index + 1) / 5,
+                                  minHeight: 7,
+                                  color: LumoVisualTokens.cyan),
+                              const SizedBox(height: 12),
+                              Text(captions[_phase.index],
+                                  style: const TextStyle(
+                                      color: LumoVisualTokens.cyanBright,
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w900)),
+                              Row(children: [
+                                LumoCharacter(
+                                    pose: LumoDesignFoxPose.bookWelcome,
+                                    size: 78,
+                                    controller: _fox,
+                                    reduceMotion: _reduced),
+                                const SizedBox(width: 8),
+                                Expanded(
+                                    child: Text(widget.topic.goal,
+                                        style: const TextStyle(
+                                            color: LumoVisualTokens.white,
+                                            fontSize: 15))),
+                              ]),
+                              const SizedBox(height: 12),
+                              DecoratedBox(
+                                key: ValueKey('lab-phase-' + _phase.name),
+                                decoration: BoxDecoration(
+                                    gradient: const LinearGradient(colors: [
+                                      Color(0xFF153D64),
+                                      Color(0xFF0B2341)
+                                    ]),
+                                    borderRadius: BorderRadius.circular(20),
+                                    border: Border.all(
+                                        color: const Color(0xFF3A648A))),
+                                child: Padding(
+                                    padding: const EdgeInsets.all(16),
+                                    child: _content()),
+                              ),
+                              if (widget.appState.state.settings.voiceEnabled &&
+                                  _narration.currentText != null) ...[
+                                const SizedBox(height: 8),
+                                _narrationControls(),
+                              ],
+                              if (_feedback.isNotEmpty) ...[
+                                const SizedBox(height: 12),
+                                Semantics(
+                                    liveRegion: true,
+                                    child: Text(_feedback,
+                                        style: const TextStyle(
+                                            fontSize: 16,
+                                            color: LumoVisualTokens.white))),
+                              ],
+                              if (_progress.error != null) ...[
+                                const SizedBox(height: 10),
+                                Text(_progress.error!,
+                                    style: const TextStyle(
+                                        color: Color(0xFFFFC17C))),
+                                _button(
+                                    'lab-retry-save',
+                                    'Speichern wiederholen',
+                                    _progress.saving ? null : _progress.retry),
+                              ],
+                              if (_progress.saving || _busy)
+                                const LinearProgressIndicator(),
+                            ],
                           ),
-                          if (widget.appState.state.settings.voiceEnabled &&
-                              _narration.currentText != null) ...[
-                            const SizedBox(height: 8),
-                            _narrationControls(),
-                          ],
-                          if (_feedback.isNotEmpty) ...[
-                            const SizedBox(height: 12),
-                            Semantics(liveRegion: true,
-                              child: Text(_feedback,
-                                style: const TextStyle(fontSize: 16,
-                                    color: LumoVisualTokens.white))),
-                          ],
-                          if (_progress.error != null) ...[
-                            const SizedBox(height: 10),
-                            Text(_progress.error!,
-                                style: const TextStyle(color: Color(0xFFFFC17C))),
-                            _button('lab-retry-save', 'Speichern wiederholen',
-                                _progress.saving ? null : _progress.retry),
-                          ],
-                          if (_progress.saving || _busy)
-                            const LinearProgressIndicator(),
-                        ],
-                      ),
+                        )),
+                      ],
                     )),
-                  ],
-                )),
     );
   }
+
   @override
   void dispose() {
     widget.appState.removeListener(_checkProfile);

@@ -48,7 +48,6 @@ const List<_LetterEntry> _abc = <_LetterEntry>[
   _LetterEntry(letter: 'Z', exampleWord: 'Zebra', emoji: '🦓'),
 ];
 
-
 class LumoAbcTafelScreen extends StatefulWidget {
   const LumoAbcTafelScreen({super.key});
 
@@ -135,7 +134,11 @@ class _LumoAbcTafelScreenState extends State<LumoAbcTafelScreen> {
                         crossAxisCount: columns,
                         mainAxisSpacing: 12,
                         crossAxisSpacing: 12,
-                        childAspectRatio: columns <= 3 ? 0.70 : columns >= 6 ? 0.88 : 0.78,
+                        childAspectRatio: columns <= 3
+                            ? 0.70
+                            : columns >= 6
+                                ? 0.88
+                                : 0.78,
                       ),
                       delegate: SliverChildBuilderDelegate(
                         (context, index) {
@@ -143,7 +146,8 @@ class _LumoAbcTafelScreenState extends State<LumoAbcTafelScreen> {
                           return _AbcCard(
                             key: ValueKey('abc-letter-${entry.letter}'),
                             entry: entry,
-                            accent: _AbcCard.accents[index % _AbcCard.accents.length],
+                            accent: _AbcCard
+                                .accents[index % _AbcCard.accents.length],
                             selected: entry.letter == _selectedLetter,
                             onTap: () => _onTap(entry),
                           );
@@ -186,7 +190,8 @@ class _AbcHero extends StatelessWidget {
         ),
         border: Border.all(color: const Color(0xBB54E1F8), width: 1.3),
         boxShadow: const [
-          BoxShadow(color: Color(0x3316CFF6), blurRadius: 20, offset: Offset(0, 7)),
+          BoxShadow(
+              color: Color(0x3316CFF6), blurRadius: 20, offset: Offset(0, 7)),
         ],
       ),
       child: LayoutBuilder(
@@ -386,9 +391,8 @@ class _AbcCard extends StatelessWidget {
                 final symbolSize = (space.maxHeight * (compact ? .25 : .28))
                     .clamp(23.0, 46.0)
                     .toDouble();
-                final letterSize = (space.maxHeight * .22)
-                    .clamp(23.0, 39.0)
-                    .toDouble();
+                final letterSize =
+                    (space.maxHeight * .22).clamp(23.0, 39.0).toDouble();
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -396,7 +400,8 @@ class _AbcCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: accent.withValues(alpha: .15),
-                        border: Border.all(color: accent.withValues(alpha: .28)),
+                        border:
+                            Border.all(color: accent.withValues(alpha: .28)),
                       ),
                       padding: const EdgeInsets.all(5),
                       child: ExcludeSemantics(
@@ -427,7 +432,8 @@ class _AbcCard extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(13),
                         color: const Color(0xCC08192F),
-                        border: Border.all(color: accent.withValues(alpha: .48)),
+                        border:
+                            Border.all(color: accent.withValues(alpha: .48)),
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 3),
                       child: FittedBox(

@@ -35,7 +35,8 @@ class LumoTutorOfferCard extends StatelessWidget {
           ),
           borderRadius: BorderRadius.circular(24),
           border: Border.all(
-            color: const Color(0xB04EDCFF), width: 1.4,
+            color: const Color(0xB04EDCFF),
+            width: 1.4,
           ),
           boxShadow: const [
             BoxShadow(
@@ -108,7 +109,8 @@ class LumoTutorOfferCard extends StatelessWidget {
                   icon: const Icon(Icons.lightbulb_outline_rounded, size: 19),
                   label: const Text(
                     'Ja, zeig es mir',
-                    style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w900),
+                    style: TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w900),
                   ),
                 );
                 final decline = OutlinedButton(
@@ -122,7 +124,8 @@ class LumoTutorOfferCard extends StatelessWidget {
                   ),
                   child: const Text(
                     'Ich probiere allein',
-                    style: TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                        fontFamily: 'Nunito', fontWeight: FontWeight.w800),
                   ),
                 );
                 if (narrow) {
