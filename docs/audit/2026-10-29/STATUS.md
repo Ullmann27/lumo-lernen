@@ -91,3 +91,8 @@ und [Change-Review](https://github.com/Ullmann27/lumo-lernen/actions/runs/408469
 bestanden ebenfalls am exakten Quellstand (1.952 + 43 Tests).
 Die tatsächlichen Android-/Update-/Veröffentlichungsgates laufen noch;
 diese Kernfreigabe ersetzt sie nicht.
+
+Übergabestand 29.10., 09:28 UTC: `verify-and-build` des Gesamtworkflows 2002
+ist erfolgreich, signierte ARM64-/x86_64-Haupt-App-Pakete sind gebaut. Die
+echte Android-Tour läuft. [Aktuelle Übergabe](HANDOFF.md),
+[gespeicherte GitHub-Momentaufnahme](../../evidence/living-intelligence/handoff-github-status.json).

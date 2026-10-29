@@ -1,0 +1,111 @@
+{
+  "observed_at": "2026-10-29 09:31:53 UTC",
+  "source_sha": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+  "build_job": {
+    "id": 123356664470,
+    "conclusion": "success"
+  },
+  "note": "Android tour and downstream update/release gates are still running. A metadata-only PR body edit triggered another change review on the unchanged source; the earlier full review and core CI passed.",
+  "workflow_runs": [
+    {
+      "id": 40850306304,
+      "name": "Lumo change review",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_number": 1249,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40850306304/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40850306304/logs",
+      "workflow_id": 374509141
+    },
+    {
+      "id": 40846950656,
+      "name": "Lumo 2002 actual 2000 in-place upgrade and native Kart QA",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_number": 1,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950656/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950656/logs",
+      "workflow_id": 400402629
+    },
+    {
+      "id": 40846950358,
+      "name": "Lumo 2002 direct Chrome APK release after verified 2000 update",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_number": 1,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950358/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950358/logs",
+      "workflow_id": 400402626
+    },
+    {
+      "id": 40846950276,
+      "name": "Lumo 2000 actual 1999 in-place upgrade and native Kart QA",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_number": 12,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950276/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950276/logs",
+      "workflow_id": 399618466
+    },
+    {
+      "id": 40846950296,
+      "name": "Lumo 2001 actual 2000 in-place upgrade and native Kart QA",
+      "status": "completed",
+      "conclusion": "skipped",
+      "run_number": 1,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950296/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950296/logs",
+      "workflow_id": 400402623
+    },
+    {
+      "id": 40846950338,
+      "name": "Lumo 1965 – Reference Cards playable hub",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 287,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950338/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950338/logs",
+      "workflow_id": 387054326
+    },
+    {
+      "id": 40846950298,
+      "name": "Lumo Astra app-script recovery and exact Python test evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 261,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950298/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950298/logs",
+      "workflow_id": 388100979
+    },
+    {
+      "id": 40846950258,
+      "name": "Lumo living intelligence core",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 2,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950258/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950258/logs",
+      "workflow_id": 400396412
+    },
+    {
+      "id": 40846950262,
+      "name": "Lumo change review",
+      "status": "completed",
+      "conclusion": "success",
+      "run_number": 1245,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950262/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950262/logs",
+      "workflow_id": 374509141
+    },
+    {
+      "id": 40846950267,
+      "name": "Lumo Lernen Kart unified integration APK",
+      "status": "in_progress",
+      "conclusion": null,
+      "run_number": 396,
+      "jobs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950267/jobs",
+      "logs_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/40846950267/logs",
+      "workflow_id": 385610539
+    }
+  ]
+}

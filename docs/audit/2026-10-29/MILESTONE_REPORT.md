@@ -88,9 +88,15 @@ physische Fold7-Leistung; native Android-Aufnahmen gehören zum eigenen Gate.
 
 Der neue signierte Haupt-App-Kandidat ist `0.12.90+2002`, getrennt vom
 reservierten 2001. Lernkern-CI und Sicherheits-/Datenerhaltungstests sind
-bestanden. Gesamt-APK-/Android-Tour, tatsächliches 2000→2002-Update und
+bestanden. Der signierte ARM64-/x86_64-Gesamtbuild ist ebenfalls erfolgreich.
+Echte Android-/Kart-Tour, tatsächliches 2000→2002-Update und
 Veröffentlichung laufen noch. Bis zu deren Abschluss besteht keine neue
 APK-Freigabe; Build 2000 bleibt die letzte veröffentlichte Haupt-App.
+
+Die Wiederaufnahme für andere KIs ist in [HANDOFF.md](HANDOFF.md) vollständig
+beschrieben und direkt aus AGENTS.md, CLAUDE.md, CODEX_START.md und der
+root-CONTINUE.md auffindbar. Der Handoff-Zweig enthält beide Arbeitszweige;
+seine Dokumentation verändert die laufende 2002-Quelle nicht.
 
 ## Fachliche Grenzen und Fortsetzung
 

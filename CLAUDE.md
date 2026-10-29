@@ -1,5 +1,13 @@
 # CLAUDE.md – Regeln für Lumo Lernen
 
+**Aktueller Einstieg vom 29.10.2026 für Living Intelligence:** zuerst
+[CONTINUE.md](CONTINUE.md) und [HANDOFF.md](docs/audit/2026-10-29/HANDOFF.md)
+lesen. Dieser Handoff-Zweig enthält den vollständigen geprüften Tutor-Kern
+und den 2002-Kandidaten. Die älteren Oktober-Einstiege darunter sind für
+diese Wiederaufnahme historisch; nicht auf Build 1800 zurückwechseln.
+Laufende Android-Gates und eingefrorene PR-Quellen schützen. Opus kann den
+getesteten Learning Scene Contract v1 nutzen, ohne Kompetenzen zu verändern.
+
 Zuerst `OPUS_NEXT.md` lesen: aktuelle Übergabe und Heinz' direkter Auftrag an Opus 5.5.
 Danach `docs/OPUS_ENTWICKLUNGSAUFTRAG.md` vollständig lesen und an diesem Auftrag
 weiterarbeiten. `CODEX_START.md` enthält die Code-Landkarte und ältere Grundlagen.
