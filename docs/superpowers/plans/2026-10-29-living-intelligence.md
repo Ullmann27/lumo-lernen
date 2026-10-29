@@ -25,28 +25,28 @@ keine Kompetenzmutation aus Animation, Exam-Sperre, 48dp und Reduce Motion.
 
 ### 2. Geprüfter Graph und Szenenvertrag
 Files: lib/domain/learning_intelligence/{concept_graph,learning_scene_contract,lesson_scene_engine}.dart
-- [ ] RED: Graph-Zyklen/fehlende Voraussetzungen, tatsächliche Curriculum-Zuordnungen,
+- [x] RED: Graph-Zyklen/fehlende Voraussetzungen, tatsächliche Curriculum-Zuordnungen,
   Contract-Roundtrip und unbekannte Versionen, vier verschiedene Darstellungen.
-- [ ] GREEN: unveränderliche Daten und prüfbare Bedingungen implementieren.
-- [ ] RED/GREEN: Ergebnis richtig/Prozess falsch, frische Folgeaufgabe, Erraten/Korrektur.
+- [x] GREEN: unveränderliche Daten und prüfbare Bedingungen implementieren.
+- [x] RED/GREEN: Ergebnis richtig/Prozess falsch, frische Folgeaufgabe, Erraten/Korrektur.
 - [ ] Tests und Commit.
 
 ### 3. Lokale Entscheidungen und dauerhaftes Methodengedächtnis
 Files: domain/learning_intelligence/{lumo_intelligence_engine,scene_memory}.dart,
 core/{progress_repository,learning_profile_engine}.dart
-- [ ] RED: gescheiterte Methode -> geeignete Alternative; Denkzeit/Schweigen;
+- [x] RED: gescheiterte Methode -> geeignete Alternative; Denkzeit/Schweigen;
   ursprünglicher Profilbesitzer, Restart, fehlgeschlagener Schreibvorgang, Retry, Versionsschutz.
-- [ ] GREEN: vorhandenes Journal + additive Szenenbelege; keine zweite Profildatenbank.
-- [ ] Synthetische Lernverläufe gegen bisherigen Tutor vergleichen; Unterschiede dokumentieren.
+- [x] GREEN: vorhandenes Journal + additive Szenenbelege; keine zweite Profildatenbank.
+- [x] Synthetische Lernverläufe gegen bisherigen Tutor vergleichen; Unterschiede dokumentieren.
 - [ ] Tests und Commit.
 
 ### 4. Echte Oberfläche, Plan und Elternbegründungen
 Files: existing LearningContent, place-value workshop, daily planner and parent learning report.
-- [ ] RED: Nichtverstehen in realer Aufgabe -> Alternative; nur neue Konstruktion UND
+- [x] RED: Nichtverstehen in realer Aufgabe -> Alternative; nur neue Konstruktion UND
   Rückfrage erzeugen selbstständige Evidenz; kein Reward und keine Testhilfe.
-- [ ] GREEN: originalen Fuchs und Werkstatt verwenden; persistierte nachvollziehbare Gründe.
-- [ ] Abwechslung/Voraussetzungen/Pausen aus tatsächlichem Profil ableiten.
-- [ ] Echte Flutter-Aufnahmen phone/Fold/2x Schrift und Widget-/Navigationstests.
+- [x] GREEN: originalen Fuchs und Werkstatt verwenden; persistierte nachvollziehbare Gründe.
+- [x] Abwechslung/Voraussetzungen/Pausen aus tatsächlichem Profil ableiten.
+- [x] Echte Flutter-Aufnahmen phone/Fold/2x Schrift und Widget-/Navigationstests.
 
 ### 5. Abschluss des überprüften Kern-Meilensteins
 - [ ] Vollanalyse + vollständige Flutter-Suite; relevante Speichertests und Szenario-Testbank.
