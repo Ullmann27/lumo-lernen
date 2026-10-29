@@ -194,6 +194,8 @@ class _LumoLearningSceneCardState extends State<LumoLearningSceneCard> {
                           style: const TextStyle(
                               fontWeight: FontWeight.w900, fontSize: 18)),
                       const SizedBox(height: 8),
+                      Text('Wir betrachten die Zahl ${widget.number}.',
+                          style: const TextStyle(fontWeight: FontWeight.w800)),
                       Text(_reason,
                           style: const TextStyle(color: Color(0xFF9EEAFF))),
                       if (!_allTried) ...[

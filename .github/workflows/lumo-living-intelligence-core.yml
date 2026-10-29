@@ -1,0 +1,67 @@
+name: Lumo living intelligence core
+on:
+  pull_request:
+    paths:
+      - 'lib/domain/learning_intelligence/**'
+      - 'lib/core/learning_profile_engine.dart'
+      - 'lib/core/progress_repository.dart'
+      - 'lib/core/tutor_coordination_engine.dart'
+      - 'lib/core/lumo_personal_daily_tutor_planner.dart'
+      - 'lib/features/learning/**'
+      - 'lib/features/parents/widgets/lumo_tutor_evidence_card.dart'
+      - 'test/intelligence/**'
+      - 'test/support/lumo_intelligence_capture.dart'
+      - '.github/workflows/lumo-living-intelligence-core.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-intelligence-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify-core:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Record tested source and resolve locked dependencies
+        run: |
+          mkdir -p .ci-results/living-intelligence
+          git rev-parse HEAD | tee .ci-results/living-intelligence/source-sha.txt
+          flutter --version | tee .ci-results/living-intelligence/flutter-version.txt
+          flutter pub get --enforce-lockfile
+      - name: Load system emoji for existing render regressions
+        run: |
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+      - name: Full Flutter analysis
+        run: |
+          set -o pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings 2>&1 | tee .ci-results/living-intelligence/analysis.log
+      - name: Actual scene, profile, crash-recovery and route evidence
+        env:
+          LUMO_INTELLIGENCE_EVIDENCE: .ci-results/living-intelligence
+          LUMO_TUTOR_BRAIN_CAPTURES: .ci-results/living-intelligence
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 test/intelligence test/design/lumo_tutor_brain_capture_test.dart 2>&1 | tee .ci-results/living-intelligence/core-tests.log
+      - name: Complete Flutter unit, widget, navigation and storage regression
+        run: |
+          set -o pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 2>&1 | tee .ci-results/living-intelligence/full-tests.log
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-living-intelligence-${{ github.run_id }}
+          path: .ci-results/living-intelligence/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90

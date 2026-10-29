@@ -122,22 +122,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 height: 1.35),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(children: [
-                const Expanded(
-                    child: Text('Lumos Zehner-Werkstatt',
-                        style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.w900))),
-                ExcludeSemantics(
-                    child: LumoCharacter(
-                        pose: _stage == _Stage.done && _independent
-                            ? LumoDesignFoxPose.cheer
-                            : LumoDesignFoxPose.bookPoint,
-                        size: 65,
-                        reduceMotion: calm,
-                        idleHops: false,
-                        intro: false,
-                        controller: _fox)),
-              ]),
+              _header(context, calm),
               const SizedBox(height: 8),
               Text(
                   switch (_stage) {
@@ -318,6 +303,29 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                     ? 'Du hast eine neue Zahl selbst gebaut und Lumo erklärt. Das ist ein zusätzlicher Hinweis auf dein Verständnis.'
                     : 'Mit Übung geschafft! Beim nächsten Mal probieren wir wieder eine neue Zahl selbstständig.'),
             ])));
+  }
+
+  Widget _header(BuildContext context, bool calm) {
+    const title = Text('Lumos Zehner-Werkstatt',
+        style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900));
+    final fox = ExcludeSemantics(
+        child: LumoCharacter(
+            pose: _stage == _Stage.done && _independent
+                ? LumoDesignFoxPose.cheer
+                : LumoDesignFoxPose.bookPoint,
+            size: 65,
+            reduceMotion: calm,
+            idleHops: false,
+            intro: false,
+            controller: _fox));
+    return LayoutBuilder(
+        builder: (context, bounds) => bounds.maxWidth < 260 &&
+                MediaQuery.textScalerOf(context).scale(1) > 1.3
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                title,
+                Align(alignment: Alignment.centerRight, child: fox)
+              ])
+            : Row(children: [const Expanded(child: title), fox]));
   }
 
   Widget _button(String key, String label, VoidCallback? action) =>
