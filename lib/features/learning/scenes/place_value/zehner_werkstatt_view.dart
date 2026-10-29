@@ -64,6 +64,7 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
   List<_Flight> _flights = const [];
   List<_Flight> _demoFlights = const [];
   Set<String> _hidden = const {};
+  Set<String> _demoHidden = const {};
   final List<int> _countOrder = [];
   final List<int> _selectOrder = [];
   late LearningSceneRequest _previous;
@@ -95,7 +96,10 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     });
     _demo.addStatusListener((status) {
       if (status == AnimationStatus.completed && mounted) {
-        setState(() => _demoFlights = const []);
+        setState(() {
+          _demoFlights = const [];
+          _demoHidden = const {};
+        });
       }
     });
   }
@@ -232,10 +236,19 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
               if (o.id.startsWith('loose-') && o.marked) _rectOf(o.id)
           ].whereType<Rect>().toList()
         : const <Rect>[];
-    // Jede neue Handlung beendet eine laufende Verwandlung sofort.
+    // Während das Modell seine Objekte neu baut, werden die transportierten
+    // Originalwürfel sofort unsichtbar. Das verhindert ein sichtbares
+    // Doppelbild im ersten Frame vor dem post-frame Flight-Painter.
     if (input != LearningSceneInput.selectObject &&
         input != LearningSceneInput.replayDemonstration) {
       _interrupt();
+    }
+    if (!_calm && openFrom != null) {
+      _hidden = {
+        for (var i = 0; i < 10; i++) 'loose-${before.fact('ones') + i}',
+      };
+    } else if (!_calm && bundleFrom.length == 10) {
+      _hidden = {'ten-${before.fact('tens') - 1}'};
     }
     final accepted = widget.director.handle(LearningSceneEvent(
       sceneId: before.sceneId,
@@ -244,7 +257,10 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
       objectId: objectId,
       value: value,
     ));
-    if (!accepted) return;
+    if (!accepted) {
+      _hidden = const {};
+      return;
+    }
     switch (input) {
       case LearningSceneInput.bundleTen:
       case LearningSceneInput.replayDemonstration:
@@ -270,6 +286,7 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     _flights = const [];
     _demoFlights = const [];
     _hidden = const {};
+    _demoHidden = const {};
   }
 
   void _afterLayout(VoidCallback action) =>
@@ -328,7 +345,10 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     for (var k = 0; k < 10; k++) {
       final id = 'loose-${ones + k}';
       final to = _rectOf(id);
-      if (to == null) return;
+      if (to == null) {
+        setState(() => _hidden = const {});
+        return;
+      }
       hide.add(id);
       flights.add(_Flight(_rodSlot(rod, 9 - k), _cubeArea(to, _looseCube),
           PlaceValueTone.tens, PlaceValueTone.ones));
@@ -344,7 +364,10 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
   void _startBundling(List<Rect> cubes) {
     final id = 'ten-${_scene.fact('tens') - 1}';
     final rod = _rectOf(id);
-    if (rod == null) return;
+    if (rod == null) {
+      setState(() => _hidden = const {});
+      return;
+    }
     setState(() {
       _flights = [
         for (var k = 0; k < cubes.length; k++)
@@ -370,8 +393,24 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
       final center =
           cubes.fold<Offset>(Offset.zero, (sum, r) => sum + r.center) / 10;
       final size = PlaceValueRod.sizeFor(_cube);
+      final stage = _stageKey.currentContext?.findRenderObject();
+      final stageWidth = stage is RenderBox ? stage.size.width : 0.0;
+      final source = cubes.reduce((a, b) => a.expandToInclude(b));
+      // Wird neben den Würfeln genug Platz frei, erscheint die Zielstange
+      // dort. Auf schmalen Displays schwebt sie innerhalb der Bühne.
+      final right = source.right + size.width + 12 <= stageWidth;
+      final left = source.left >= size.width + 12;
+      final x = right
+          ? source.right + 12 + size.width / 2
+          : left
+              ? source.left - 12 - size.width / 2
+              : center.dx;
+      final safeX = stageWidth > size.width + 16
+          ? x.clamp(size.width / 2 + 8, stageWidth - size.width / 2 - 8)
+          : center.dx;
       final column = Rect.fromCenter(
-          center: center.translate(0, -size.height * .35),
+          center: Offset(safeX.toDouble(),
+              math.max(size.height / 2 + 8, center.dy - size.height * .35)),
           width: size.width,
           height: size.height);
       setState(() {
@@ -380,6 +419,7 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
             _Flight(cubes[k], _rodSlot(column, 9 - k), PlaceValueTone.ones,
                 PlaceValueTone.tens)
         ];
+        _demoHidden = {for (var k = 0; k < 10; k++) 'loose-$k'};
       });
       _demo.forward(from: 0);
     });
@@ -402,13 +442,22 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     Widget view = LayoutBuilder(builder: (context, constraints) {
       final width =
           constraints.maxWidth.isFinite ? constraints.maxWidth : 360.0;
-      final wide = width >= 640;
-      final narrow = width < 330;
-      final lumoSize = wide ? 150.0 : (narrow ? 86.0 : 108.0);
-      _cube = narrow ? 10 : (wide ? 14 : 12);
+      // Nur ab 800dp kann die Werkbank sinnvoll neben der Figur stehen.
+      // Auf dem offenen Fold um 690dp gehört die ganze Werkbank unter Lumo.
+      final wide = width >= 800;
+      final foldInside = width >= 600 && !wide;
+      final narrow = width < 340;
+      final lumoSize = wide
+          ? 164.0
+          : foldInside
+              ? 132.0
+              : narrow
+                  ? 96.0
+                  : 108.0;
+      _cube = narrow ? 10 : (width >= 600 ? 14 : 12);
       final padding = narrow ? 12.0 : 16.0;
       final besideBubble = width - 2 * padding - lumoSize - 8;
-      final stacked = wide || besideBubble / textScale < 150;
+      final stacked = wide || foldInside || besideBubble / textScale < 150;
       final lumo = _lumoAndBubble(scene, lumoSize, stacked: stacked);
       final stage = _stage(scene, calm);
       return Container(
@@ -627,33 +676,47 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
   Widget _rods(LearningSceneRequest scene, {required bool countable}) {
     final rods = scene.objects.where((o) => o.type == 'ten_rod').toList();
     final canCount = countable && scene.allows(LearningSceneInput.countObject);
-    return Wrap(
-      spacing: 6,
-      runSpacing: 10,
-      crossAxisAlignment: WrapCrossAlignment.end,
-      children: [
-        for (var i = 0; i < rods.length; i++)
-          KeyedSubtree(
-            key: _keyFor(rods[i].id),
-            child: PlaceValueRod(
-              cube: _cube,
-              label:
-                  'Zehnerstange ${i + 1}${rods[i].marked ? ', gezählt' : ''}',
-              buttonKey: ValueKey('lumo-tens-block-$i'),
-              counted: rods[i].marked,
-              badge: rods[i].marked
-                  ? '${10 * (_countOrder.indexOf(i) + 1)}'
-                  : null,
-              focus: !countable && scene.lumoFocus == rods[i].id,
-              hidden: _hidden.contains(rods[i].id),
-              onTap: canCount
-                  ? () => _send(LearningSceneInput.countObject,
-                      objectId: rods[i].id)
-                  : null,
-            ),
-          ),
-      ],
-    );
+    return LayoutBuilder(builder: (context, constraints) {
+      // Acht Zehner werden auf Handybreite in zwei vollständigen Reihen
+      // zu je vier angeordnet (statt 5+3). Breite Tablets behalten die
+      // größere Werkbank und zeigen die Einer nach Möglichkeit daneben.
+      final maxWidth = constraints.maxWidth;
+      const gap = 6.0;
+      final rodWidth = PlaceValueRod.sizeFor(_cube).width;
+      final maxColumns = maxWidth < 560 ? 4 : rods.length;
+      final columns = math.min(rods.length, maxColumns);
+      final desired = columns == 0 ? 0.0 : columns * rodWidth + (columns - 1) * gap;
+      return SizedBox(
+        width: math.min(maxWidth, desired),
+        child: Wrap(
+          spacing: gap,
+          runSpacing: 10,
+          crossAxisAlignment: WrapCrossAlignment.end,
+          children: [
+            for (var i = 0; i < rods.length; i++)
+              KeyedSubtree(
+                key: _keyFor(rods[i].id),
+                child: PlaceValueRod(
+                  cube: _cube,
+                  label:
+                      'Zehnerstange ${i + 1}${rods[i].marked ? ', gezählt' : ''}',
+                  buttonKey: ValueKey('lumo-tens-block-$i'),
+                  counted: rods[i].marked,
+                  badge: rods[i].marked
+                      ? '${10 * (_countOrder.indexOf(i) + 1)}'
+                      : null,
+                  focus: !countable && scene.lumoFocus == rods[i].id,
+                  hidden: _hidden.contains(rods[i].id),
+                  onTap: canCount
+                      ? () => _send(LearningSceneInput.countObject,
+                          objectId: rods[i].id)
+                      : null,
+                ),
+              ),
+          ],
+        ),
+      );
+    });
   }
 
   Widget _cubes(List<LearningSceneObject> cubes,
@@ -683,7 +746,8 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
                 selected: cubes[i].marked,
                 badge:
                     cubes[i].marked ? '${_selectOrder.indexOf(i) + 1}' : null,
-                hidden: _hidden.contains(cubes[i].id),
+                hidden: _hidden.contains(cubes[i].id) ||
+                    _demoHidden.contains(cubes[i].id),
                 onTap: tappable
                     ? () => _send(LearningSceneInput.selectObject,
                         objectId: cubes[i].id)
