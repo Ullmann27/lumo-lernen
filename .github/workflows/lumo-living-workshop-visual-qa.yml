@@ -3,6 +3,8 @@ on:
   pull_request:
     paths:
       - '.github/workflows/lumo-living-workshop-visual-qa.yml'
+      - '.github/workflows/lumo-2003-direct-release.yml'
+      - 'pubspec.yaml'
       - 'lib/features/learning/scenes/place_value/**'
       - 'lib/features/learning/learning_content.dart'
       - 'test/scenes/zehner_werkstatt_view_test.dart'
