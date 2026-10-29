@@ -74,8 +74,8 @@ void main() {
         isNull);
     final transfer = tutor.checkTransfer(
         problemId: 'place-value-57', correct: true, independent: true)!;
-    expect(transfer.helpLevel, 0);
-    expect(transfer.transferCheck, isTrue);
+    expect(transfer.helpLevel, 3);
+    expect(transfer.transferCheck, isFalse);
     expect(
         tutor.checkTransfer(
             problemId: 'place-value-57', correct: true, independent: true),

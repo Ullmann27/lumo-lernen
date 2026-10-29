@@ -38,7 +38,7 @@ void main() {
     ));
     await tester.pump();
     expect(find.text('Heute mit Lumo'), findsOneWidget);
-    expect(find.text('Mathematik · Zehner und Einer'), findsOneWidget);
+    expect(find.text('Mathematik · Zehner und Einer · ca. 5 Min.'), findsOneWidget);
     final start = find.byKey(const ValueKey('lumo-daily-plan-start-0'));
     expect(tester.getSize(start).height, greaterThanOrEqualTo(48));
     await tester.tap(start);

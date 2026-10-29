@@ -84,6 +84,7 @@ class LumoPersonalDailyPlanCard extends StatelessWidget {
                             fontWeight: FontWeight.w900,
                             color: Colors.white,
                           )),
+                      if (steps[i].pauseAfter) const Text('Danach ist Zeit für eine freiwillige Pause.', style: TextStyle(color: Color(0xFF9EEAFF), fontSize: 12)),
                       if (steps[i].reason.isNotEmpty) Text(steps[i].reason,
                         style: const TextStyle(color: Color(0xFF8DEBFF), fontSize: 12)),
                       Text(steps[i].description,

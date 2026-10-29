@@ -4,6 +4,7 @@ import 'package:crypto/crypto.dart';
 
 import 'learning_attempt_id.dart';
 import 'learning_journey.dart';
+import '../domain/learning_intelligence/lesson_scene_engine.dart';
 
 /// Local task scope. Generation is a session token, never a child's name.
 class TutorTaskScope {
@@ -154,6 +155,7 @@ class TutorCoordinationEngine {
 
   /// Only a different, actually assessed construction + comprehension check
   /// qualifies. Counting or viewing the worked example never calls this.
+  @Deprecated('Use checkSceneTransfer with a validated scoped receipt')
   LearningEvidence? checkTransfer(
       {required String problemId,
       required bool correct,
@@ -169,8 +171,22 @@ class TutorCoordinationEngine {
         taskId: newLearningAttemptId(),
         problemId: problemId,
         correct: correct,
-        helpLevel: independent ? 0 : 3,
-        transferCheck: independent && correct);
+        helpLevel: 3,
+        transferCheck: false);
+  }
+
+  LearningEvidence? checkSceneTransfer(SceneCompletion proof) {
+    final task = _scope;
+    if (task == null ||
+        task.isExam ||
+        _helpLevel == 0 ||
+        proof.sourceProblemId != task.problemId ||
+        proof.sourceTaskId != task.taskId ||
+        proof.generation != task.generation ||
+        proof.number == proof.sourceNumber ||
+        !_transfers.add(proof.evidence.problemId!)) return null;
+    _emit(TutorEventKind.transferChecked);
+    return proof.evidence;
   }
 
   void _emit(TutorEventKind kind) {

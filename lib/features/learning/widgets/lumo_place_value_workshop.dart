@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import 'lumo_place_value_blocks.dart';
+import '../../../domain/learning_intelligence/lesson_scene_engine.dart';
 
 class LumoPlaceValueTransfer {
   const LumoPlaceValueTransfer(
-      {required this.number, required this.correct, required this.independent});
+      {required this.number,
+      required this.correct,
+      required this.independent,
+      this.proof});
   final int number;
   final bool correct;
   final bool independent;
+  final SceneCompletion? proof;
 }
 
 enum _Stage { explore, construct, explain, done }
@@ -20,9 +25,11 @@ class LumoPlaceValueWorkshop extends StatefulWidget {
       {super.key,
       required this.number,
       this.reduceMotion = false,
-      this.onTransferChecked})
+      this.onTransferChecked,
+      this.lesson})
       : assert(number >= 10 && number <= 99);
   final int number;
+  final PlaceValueLessonSession? lesson;
   final bool reduceMotion;
   final ValueChanged<LumoPlaceValueTransfer>? onTransferChecked;
 
@@ -50,13 +57,21 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
   int _builtTens = 0;
   int _builtOnes = 0;
   String? _feedback;
-  int get _target =>
-      widget.number > 55 ? widget.number - 27 : widget.number + 27;
+  PlaceValueLessonSession? _localLesson;
+  PlaceValueLessonSession get _lesson =>
+      widget.lesson ??
+      (_localLesson ??= PlaceValueLessonSession(
+          sourceNumber: widget.number,
+          targetNumber:
+              widget.number > 55 ? widget.number - 27 : widget.number + 27,
+          sourceProblemId: 'place-value:${widget.number}'));
+  int get _target => _lesson.targetNumber;
 
   @override
   void didUpdateWidget(covariant LumoPlaceValueWorkshop oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.number != widget.number) {
+      _localLesson = null;
       _counted.clear();
       _selected.clear();
       _stage = _Stage.explore;
@@ -107,22 +122,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 height: 1.35),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Row(children: [
-                const Expanded(
-                    child: Text('Lumos Zehner-Werkstatt',
-                        style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.w900))),
-                ExcludeSemantics(
-                    child: LumoCharacter(
-                        pose: _stage == _Stage.done && _independent
-                            ? LumoDesignFoxPose.cheer
-                            : LumoDesignFoxPose.bookPoint,
-                        size: 65,
-                        reduceMotion: calm,
-                        idleHops: false,
-                        intro: false,
-                        controller: _fox)),
-              ]),
+              _header(context, calm),
               const SizedBox(height: 8),
               Text(
                   switch (_stage) {
@@ -204,6 +204,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                       'lumo-place-value-build-next',
                       'Neue Zahl bauen',
                       () => setState(() {
+                            _lesson.beginTransfer();
                             _stage = _Stage.construct;
                             _feedback = null;
                           })),
@@ -242,7 +243,9 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 LumoPlaceValueBlocks(
                     tens: _builtTens, ones: _builtOnes, reduceMotion: calm),
                 _button('lumo-build-check', 'Meine Zahl prüfen', () {
-                  if (_builtTens * 10 + _builtOnes == _target) {
+                  if (_lesson
+                      .submitConstruction(tens: _builtTens, ones: _builtOnes)
+                      .processCorrect) {
                     setState(() {
                       _stage = _Stage.explain;
                       _feedback = null;
@@ -264,7 +267,9 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 Wrap(spacing: 8, runSpacing: 8, children: [
                   for (var i = 0; i < 10; i++)
                     _button('lumo-comprehension-$i', '$i', () {
-                      if (i == _target % 10) {
+                      final proof = _lesson.submitComprehension(i);
+                      if (proof != null) {
+                        _independent = proof.independent;
                         setState(() {
                           _stage = _Stage.done;
                           _feedback = null;
@@ -276,7 +281,8 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                         widget.onTransferChecked?.call(LumoPlaceValueTransfer(
                             number: _target,
                             correct: true,
-                            independent: _independent));
+                            independent: _independent,
+                            proof: proof));
                       } else {
                         _fox.think();
                         setState(() {
@@ -294,9 +300,32 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                     child: Text(_feedback!)),
               if (_stage == _Stage.done)
                 Text(_independent
-                    ? 'Du hast eine neue Zahl selbst gebaut und Lumo erklärt. Das ist ein zusätzlicher Hinweis auf dein Verständnis.'
+                    ? 'Du hast $_target selbst gebaut und mir die Einer gezeigt. Fuchsstark!'
                     : 'Mit Übung geschafft! Beim nächsten Mal probieren wir wieder eine neue Zahl selbstständig.'),
             ])));
+  }
+
+  Widget _header(BuildContext context, bool calm) {
+    const title = Text('Lumos Zehner-Werkstatt',
+        style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900));
+    final fox = ExcludeSemantics(
+        child: LumoCharacter(
+            pose: _stage == _Stage.done && _independent
+                ? LumoDesignFoxPose.cheer
+                : LumoDesignFoxPose.bookPoint,
+            size: 65,
+            reduceMotion: calm,
+            idleHops: false,
+            intro: false,
+            controller: _fox));
+    return LayoutBuilder(
+        builder: (context, bounds) => bounds.maxWidth < 260 &&
+                MediaQuery.textScalerOf(context).scale(1) > 1.3
+            ? Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                title,
+                Align(alignment: Alignment.centerRight, child: fox)
+              ])
+            : Row(children: [const Expanded(child: title), fox]));
   }
 
   Widget _button(String key, String label, VoidCallback? action) =>

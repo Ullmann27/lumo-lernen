@@ -150,10 +150,17 @@ void main() {
       await capture(tester, '$label-transfer-construction');
       await tapKey('lumo-build-check');
       await tapKey('lumo-comprehension-${target % 10}');
-      await tester.runAsync(() => app.flushTutorEvidence());
+      // Let accepted UI writes finish in the event loop where they began.
+      // Awaiting a fake-async write inside runAsync would suspend its owner.
+      for (var frame = 0; frame < 30; frame++) {
+        await tester.pump(const Duration(milliseconds: 16));
+        await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+      }
       expect(app.learningJourney().values.single.transferCorrect, 1);
       expect(app.learningJourney().values.single.independentCorrect, 1);
       expect(app.state.stars, 0);
+      await tester.ensureVisible(find.byKey(const ValueKey('lumo-place-value-workshop')));
+      await tester.pump();
       await capture(tester, '$label-transfer-confirmed');
 
       expect(tester.takeException(), isNull);

@@ -9,6 +9,9 @@ import '../core/app_settings.dart';
 import '../core/daily_mission_repository.dart';
 import '../core/learning_profile_engine.dart';
 import '../core/learning_journey.dart';
+import '../domain/learning_intelligence/scene_memory.dart';
+import '../domain/learning_intelligence/lesson_scene_engine.dart';
+import '../domain/learning_intelligence/learning_scene_contract.dart';
 import '../core/legacy_learning_data.dart';
 import '../core/lumo_cosmos.dart';
 import '../core/progress_repository.dart';
@@ -742,6 +745,7 @@ class LumoAppState extends ChangeNotifier {
       await _prepareLearningLease(lease);
       try {
         await lease.profile.loadJourney();
+        await lease.profile.loadSceneMemory();
       } catch (_) {
         lease._session.tutorError =
             'Dein Lernweg konnte noch nicht geladen werden.';
@@ -1167,6 +1171,37 @@ class LumoAppState extends ChangeNotifier {
     } finally {
       session.tutorDrain = null;
     }
+  }
+
+  Future<bool> saveLearningScene({required SceneObservation observation, LearningProfileLease? lease}) {
+    final source = lease == null ? captureLearningProfile() : Future.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner)) return false;
+      await _prepareLearningLease(owner);
+      await owner.profile.loadSceneMemory();
+      if (!canUseLearningLease(owner)) return false;
+      await owner.profile.recordSceneObservation(observation);
+      if (isCurrentLearningLease(owner)) _safeNotify();
+      return true;
+    }());
+  }
+
+  Future<bool> saveLearningSceneCompletion({required String subject, required String unit,
+      required SceneCompletion proof, required ExplanationMethod method, LearningProfileLease? lease}) {
+    if (lease == null && proof.generation != _profileGeneration) return Future.value(false);
+    final source = lease == null ? captureLearningProfile() : Future.value(lease);
+    return _trackLearning(() async {
+      final owner = await source;
+      if (!canUseLearningLease(owner) || proof.generation != owner.generation) return false;
+      await _prepareLearningLease(owner);
+      await owner.profile.loadSceneMemory();
+      await owner.profile.loadJourney();
+      if (!canUseLearningLease(owner)) return false;
+      await owner.profile.recordSceneCompletion(subject: subject, unit: unit, proof: proof, method: method);
+      if (isCurrentLearningLease(owner)) _safeNotify();
+      return true;
+    }());
   }
 
   Future<void> flushTutorEvidence() => _trackLearning(() async {

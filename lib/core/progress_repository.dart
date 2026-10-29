@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'discovery_progress.dart';
 import 'learning_journey.dart';
 import 'legacy_learning_data.dart';
+import '../domain/learning_intelligence/scene_memory.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
@@ -71,6 +72,32 @@ class ProgressRepository {
 
   Future<void> saveJourney(LearningJourney value) =>
       _namespace.write(_journeyKey, jsonEncode(value.toJson()));
+
+  Future<SceneMemory> loadSceneMemory() async {
+    final raw = await _namespace.read('lumo_learning_scenes_v1');
+    if (raw == null) return SceneMemory();
+    if (raw.length > 1024 * 1024)
+      throw const FormatException('Unsupported scene memory size');
+    return SceneMemory.fromJson(_readObject(raw));
+  }
+
+  Future<void> saveSceneMemory(SceneMemory memory) =>
+      _namespace.write('lumo_learning_scenes_v1', jsonEncode(memory.toJson()));
+
+  Future<PendingSceneReceipt?> loadPendingSceneReceipt() async {
+    final raw = await _namespace.read('lumo_learning_scene_pending_v1');
+    if (raw == null) return null;
+    if (raw.length > 32768)
+      throw const FormatException('Unsupported pending scene size');
+    final decoded = jsonDecode(raw);
+    return decoded == null ? null : PendingSceneReceipt.fromJson(decoded);
+  }
+
+  Future<void> savePendingSceneReceipt(PendingSceneReceipt receipt) =>
+      _namespace.write(
+          'lumo_learning_scene_pending_v1', jsonEncode(receipt.toJson()));
+  Future<void> clearPendingSceneReceipt() =>
+      _namespace.write('lumo_learning_scene_pending_v1', 'null');
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);
@@ -174,6 +201,8 @@ class ProgressRepository {
     await _namespace.write(_lastKey, '{}');
     await saveDiscovery(DiscoveryProgress());
     await saveJourney(LearningJourney());
+    await saveSceneMemory(SceneMemory());
+    await clearPendingSceneReceipt();
   }
 }
 
