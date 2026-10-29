@@ -205,7 +205,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1999), config(candidate))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(2003), config(candidate))
+            module.verify(pubspec(2004), config(candidate))
 
     def test_2002_offline_intelligence_preserves_reserved_2001_and_published_2000(self):
         reviewed = "adcce3093caa42bf3da47262f70bdf03cdefa347"
