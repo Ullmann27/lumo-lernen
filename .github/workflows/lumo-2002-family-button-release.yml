@@ -36,8 +36,10 @@ jobs:
       - name: Verify the existing installed-app updater recognizes this exact release
         run: |
           set -euo pipefail
-          test "$(git merge-base HEAD "$SOURCE_SHA")" = "$SOURCE_SHA"
-          test "$(git diff --name-only "$SOURCE_SHA"..HEAD)" = ".github/workflows/lumo-2002-family-button-release.yml"
+          diff_json="$(gh api "repos/Ullmann27/lumo-lernen/compare/$SOURCE_SHA...$(git rev-parse HEAD)")"
+          test "$(jq -r '.status' <<< "$diff_json")" = "ahead"
+          test "$(jq -r '.files | length' <<< "$diff_json")" = "1"
+          test "$(jq -r '.files[0].filename' <<< "$diff_json")" = ".github/workflows/lumo-2002-family-button-release.yml"
           test "$(grep '^version:' pubspec.yaml | cut -d' ' -f2)" = "0.12.90+2002"
           grep -F -- '--dart-define=LUMO_SIDE_BY_SIDE=true' scripts/build_unified_apk.sh
           grep -F -- "prefix = 'coachpreview-build-'" lib/core/app_update_service.dart
