@@ -1,20 +1,17 @@
 import 'package:flutter/material.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import '../../../widgets/design/lumo_design_system.dart';
+import '../scenes/learning_scene_contract.dart';
+import '../scenes/place_value/place_value_scene_director.dart';
 import 'lumo_place_value_blocks.dart';
 
-class LumoPlaceValueTransfer {
-  const LumoPlaceValueTransfer(
-      {required this.number, required this.correct, required this.independent});
-  final int number;
-  final bool correct;
-  final bool independent;
-}
-
-enum _Stage { explore, construct, explain, done }
+export '../scenes/place_value/place_value_scene_director.dart'
+    show LumoPlaceValueTransfer;
 
 /// Voluntary offline workshop. Exploring the worked example is never a score.
 /// A different number must be built AND explained before emitting evidence.
+/// The rules live in [PlaceValueSceneDirector]; this widget only renders its
+/// requests and reports the child's actions back as scene events.
 class LumoPlaceValueWorkshop extends StatefulWidget {
   const LumoPlaceValueWorkshop(
       {super.key,
@@ -28,8 +25,9 @@ class LumoPlaceValueWorkshop extends StatefulWidget {
 
   static int? numberForPrompt(String prompt) {
     final normalized = prompt.toLowerCase();
-    if (!normalized.contains('zehner') && !normalized.contains('einer'))
+    if (!normalized.contains('zehner') && !normalized.contains('einer')) {
       return null;
+    }
     final matches = RegExp(r'\b\d{2}\b').allMatches(normalized).toList();
     if (matches.length != 1) return null;
     return int.tryParse(matches.single.group(0)!);
@@ -40,47 +38,78 @@ class LumoPlaceValueWorkshop extends StatefulWidget {
 }
 
 class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
-  final Set<int> _counted = {};
-  final Set<int> _selected = {};
   final _fox = LumoCharacterController();
-  _Stage _stage = _Stage.explore;
-  bool _bundleMode = false;
-  bool _bundled = false;
-  bool _independent = true;
-  int _builtTens = 0;
-  int _builtOnes = 0;
-  String? _feedback;
-  int get _target =>
-      widget.number > 55 ? widget.number - 27 : widget.number + 27;
+  late PlaceValueSceneDirector _director = _newDirector();
+
+  PlaceValueSceneDirector _newDirector() => PlaceValueSceneDirector(
+      number: widget.number,
+      onTransferChecked: (result) => widget.onTransferChecked?.call(result))
+    ..addListener(_onScene);
+
+  void _onScene() {
+    switch (_director.request.lumo) {
+      case LumoPerformanceIntent.think:
+      case LumoPerformanceIntent.encourage
+          when _director.request.stage != LearningSceneStage.done:
+        _fox.think();
+      case LumoPerformanceIntent.approve
+          when _director.request.fact('bundled') == 1:
+        _fox.talk();
+      case LumoPerformanceIntent.celebrate:
+        _fox.cheer();
+      case LumoPerformanceIntent.encourage:
+        _fox.comfort();
+      default:
+        break;
+    }
+    setState(() {});
+  }
 
   @override
   void didUpdateWidget(covariant LumoPlaceValueWorkshop oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.number != widget.number) {
-      _counted.clear();
-      _selected.clear();
-      _stage = _Stage.explore;
-      _bundleMode = false;
-      _bundled = false;
-      _independent = true;
-      _builtTens = 0;
-      _builtOnes = 0;
-      _feedback = null;
+      _director.dispose();
+      _director = _newDirector();
     }
   }
 
   @override
   void dispose() {
+    _director.dispose();
     _fox.dispose();
     super.dispose();
   }
 
+  void _send(LearningSceneInput input, {String? objectId, int? value}) {
+    final request = _director.request;
+    _director.handle(LearningSceneEvent(
+        sceneId: request.sceneId,
+        revision: request.revision,
+        input: input,
+        objectId: objectId,
+        value: value));
+  }
+
+  VoidCallback? _action(LearningSceneInput input) =>
+      _director.request.allows(input) ? () => _send(input) : null;
+
   @override
   Widget build(BuildContext context) {
     final calm = widget.reduceMotion || MediaQuery.disableAnimationsOf(context);
-    final tens = widget.number ~/ 10;
-    final ones = widget.number % 10;
-    final complete = _counted.length == tens;
+    final scene = _director.request;
+    final tens = scene.fact('tens');
+    final ones = scene.fact('ones');
+    final counted = scene.fact('counted');
+    final complete = counted == tens;
+    final bundleMode = scene.fact('bundleMode') == 1;
+    final bundled = scene.fact('bundled') == 1;
+    final rods = scene.objects.where((o) => o.type == 'ten_rod').toList();
+    final cubes = scene.objects.where((o) => o.type == 'unit_cube').toList();
+    Set<int> marked(List<LearningSceneObject> objects) => {
+          for (var i = 0; i < objects.length; i++)
+            if (objects[i].marked) i
+        };
     return Container(
         key: const ValueKey('lumo-place-value-workshop'),
         width: double.infinity,
@@ -114,7 +143,8 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                             fontSize: 19, fontWeight: FontWeight.w900))),
                 ExcludeSemantics(
                     child: LumoCharacter(
-                        pose: _stage == _Stage.done && _independent
+                        pose: scene.stage == LearningSceneStage.done &&
+                                scene.fact('independent') == 1
                             ? LumoDesignFoxPose.cheer
                             : LumoDesignFoxPose.bookPoint,
                         size: 65,
@@ -125,177 +155,108 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
               ]),
               const SizedBox(height: 8),
               Text(
-                  switch (_stage) {
-                    _Stage.explore => '1 · Gemeinsam entdecken',
-                    _Stage.construct => '2 · Selbst bauen',
-                    _Stage.explain => '3 · Erklär es Lumo',
-                    _Stage.done => 'Dein Lernschritt'
+                  switch (scene.stage) {
+                    LearningSceneStage.explore => '1 · Gemeinsam entdecken',
+                    LearningSceneStage.construct => '2 · Selbst bauen',
+                    LearningSceneStage.explain => '3 · Erklär es Lumo',
+                    LearningSceneStage.done => 'Dein Lernschritt'
                   },
                   style: const TextStyle(color: Color(0xFF8DEBFF))),
               const SizedBox(height: 12),
-              if (_stage == _Stage.explore) ...[
+              if (scene.stage == LearningSceneStage.explore) ...[
                 Wrap(spacing: 8, runSpacing: 8, children: [
                   _button('lumo-place-value-count-mode', 'Stangen zählen',
-                      () => setState(() => _bundleMode = false)),
-                  _button('lumo-place-value-bundle-mode', 'Selbst bündeln', () {
-                    _fox.think();
-                    setState(() => _bundleMode = true);
-                  }),
+                      _action(LearningSceneInput.startCounting)),
+                  _button('lumo-place-value-bundle-mode', 'Selbst bündeln',
+                      _action(LearningSceneInput.startBundling)),
                 ]),
                 const SizedBox(height: 12),
-                if (!_bundleMode) ...[
-                  Text(
-                      'Wir bauen ${widget.number}. Tippe jede blaue Zehnerstange einmal an und zähle die vollen Zehner.'),
+                if (!bundleMode) ...[
+                  Text(scene.instruction),
                   const SizedBox(height: 14),
                   LumoPlaceValueBlocks(
-                      tens: tens,
-                      ones: ones,
-                      selectedTens: _counted,
+                      tens: rods.length,
+                      ones: cubes.length,
+                      selectedTens: marked(rods),
                       reduceMotion: calm,
-                      onTenTap: (i) => setState(() {
-                            if (!_counted.add(i)) _counted.remove(i);
-                          })),
+                      onTenTap: (i) => _send(LearningSceneInput.countObject,
+                          objectId: rods[i].id)),
                   const SizedBox(height: 14),
                   Text(
                       complete
-                          ? 'Geschafft! Du hast ${_counted.length} volle Zehner und $ones Einer gezählt.'
-                          : 'Du hast ${_counted.length} volle Zehner gezählt. Zähle weiter – in jeder Stange stecken zehn.',
+                          ? 'Geschafft! Du hast $counted volle Zehner und $ones Einer gezählt.'
+                          : 'Du hast $counted volle Zehner gezählt. Zähle weiter – in jeder Stange stecken zehn.',
                       key: const ValueKey('lumo-place-value-feedback')),
-                  if (complete) Text('${widget.number} = ${tens * 10} + $ones'),
-                  if (_counted.isNotEmpty)
+                  if (complete)
+                    Text('${scene.fact('number')} = ${tens * 10} + $ones'),
+                  if (scene.allows(LearningSceneInput.resetCount))
                     _button('lumo-place-value-reset', 'Noch einmal zählen',
-                        () => setState(_counted.clear)),
+                        _action(LearningSceneInput.resetCount)),
                 ] else ...[
-                  Text(_bundled
-                      ? 'Die Zahl bleibt gleich: $tens Zehner und $ones Einer.'
-                      : 'Wir öffnen eine Stange. Wähle genau zehn lose Würfel und bündle sie wieder. Die Zahl bleibt ${widget.number}.'),
+                  Text(scene.instruction),
                   const SizedBox(height: 14),
                   LumoPlaceValueBlocks(
-                      tens: _bundled ? tens : tens - 1,
-                      ones: _bundled ? ones : ones + 10,
-                      selectedOnes: _selected,
+                      tens: rods.length,
+                      ones: cubes.length,
+                      selectedOnes: marked(cubes),
                       reduceMotion: calm,
                       oneKeyPrefix: 'lumo-loose-cube',
-                      onOneTap: _bundled
-                          ? null
-                          : (i) => setState(() {
-                                if (!_selected.add(i)) _selected.remove(i);
-                              })),
-                  if (!_bundled) ...[
-                    Text('${_selected.length} Würfel ausgewählt'),
-                    _button(
-                        'lumo-bundle-ten',
-                        'Zehner bündeln',
-                        _selected.length != 10
-                            ? null
-                            : () {
-                                setState(() {
-                                  _bundled = true;
-                                  _selected.clear();
-                                });
-                                _fox.talk();
-                              }),
+                      onOneTap: scene.allows(LearningSceneInput.selectObject)
+                          ? (i) => _send(LearningSceneInput.selectObject,
+                              objectId: cubes[i].id)
+                          : null),
+                  if (!bundled) ...[
+                    Text('${scene.fact('selected')} Würfel ausgewählt'),
+                    _button('lumo-bundle-ten', 'Zehner bündeln',
+                        _action(LearningSceneInput.bundleTen)),
                   ],
                 ],
-                if (complete || _bundled) ...[
+                if (scene.allows(LearningSceneInput.startConstruction)) ...[
                   const SizedBox(height: 12),
                   const Text('Jetzt eine andere Zahl – ohne Lumos Hilfe.'),
-                  _button(
-                      'lumo-place-value-build-next',
-                      'Neue Zahl bauen',
-                      () => setState(() {
-                            _stage = _Stage.construct;
-                            _feedback = null;
-                          })),
+                  _button('lumo-place-value-build-next', 'Neue Zahl bauen',
+                      _action(LearningSceneInput.startConstruction)),
                 ],
               ],
-              if (_stage == _Stage.construct) ...[
-                Text('Baue $_target mit Zehnerstangen und einzelnen Würfeln.'),
+              if (scene.stage == LearningSceneStage.construct) ...[
+                Text(scene.instruction),
                 const SizedBox(height: 12),
                 Wrap(spacing: 8, runSpacing: 8, children: [
-                  _button(
-                      'lumo-build-add-ten',
-                      '+ Zehner',
-                      _builtTens == 9
-                          ? null
-                          : () => setState(() => _builtTens++)),
-                  _button(
-                      'lumo-build-remove-ten',
-                      '− Zehner',
-                      _builtTens == 0
-                          ? null
-                          : () => setState(() => _builtTens--)),
-                  _button(
-                      'lumo-build-add-one',
-                      '+ Einer',
-                      _builtOnes == 9
-                          ? null
-                          : () => setState(() => _builtOnes++)),
-                  _button(
-                      'lumo-build-remove-one',
-                      '− Einer',
-                      _builtOnes == 0
-                          ? null
-                          : () => setState(() => _builtOnes--)),
+                  _button('lumo-build-add-ten', '+ Zehner',
+                      _action(LearningSceneInput.addTen)),
+                  _button('lumo-build-remove-ten', '− Zehner',
+                      _action(LearningSceneInput.removeTen)),
+                  _button('lumo-build-add-one', '+ Einer',
+                      _action(LearningSceneInput.addOne)),
+                  _button('lumo-build-remove-one', '− Einer',
+                      _action(LearningSceneInput.removeOne)),
                 ]),
                 const SizedBox(height: 12),
                 LumoPlaceValueBlocks(
-                    tens: _builtTens, ones: _builtOnes, reduceMotion: calm),
-                _button('lumo-build-check', 'Meine Zahl prüfen', () {
-                  if (_builtTens * 10 + _builtOnes == _target) {
-                    setState(() {
-                      _stage = _Stage.explain;
-                      _feedback = null;
-                    });
-                  } else {
-                    _fox.think();
-                    setState(() {
-                      _independent = false;
-                      _feedback =
-                          'Schau noch einmal: Jede Stange zählt zehn. Du darfst umbauen.';
-                    });
-                  }
-                }),
+                    tens: scene.fact('builtTens'),
+                    ones: scene.fact('builtOnes'),
+                    reduceMotion: calm),
+                _button('lumo-build-check', 'Meine Zahl prüfen',
+                    _action(LearningSceneInput.submitConstruction)),
               ],
-              if (_stage == _Stage.explain) ...[
-                Text(
-                    'Du hast $_target gebaut. Wie viele Einer bleiben außerhalb der vollen Zehner?'),
+              if (scene.stage == LearningSceneStage.explain) ...[
+                Text(scene.instruction),
                 const SizedBox(height: 12),
                 Wrap(spacing: 8, runSpacing: 8, children: [
-                  for (var i = 0; i < 10; i++)
-                    _button('lumo-comprehension-$i', '$i', () {
-                      if (i == _target % 10) {
-                        setState(() {
-                          _stage = _Stage.done;
-                          _feedback = null;
-                        });
-                        if (_independent)
-                          _fox.cheer();
-                        else
-                          _fox.comfort();
-                        widget.onTransferChecked?.call(LumoPlaceValueTransfer(
-                            number: _target,
-                            correct: true,
-                            independent: _independent));
-                      } else {
-                        _fox.think();
-                        setState(() {
-                          _independent = false;
-                          _feedback =
-                              'Zehner sind volle Bündel. Überlege, was einzeln übrig bleibt.';
-                        });
-                      }
-                    })
+                  for (final choice in scene.choices)
+                    _button(
+                        'lumo-comprehension-$choice',
+                        '$choice',
+                        () => _send(LearningSceneInput.answerChoice,
+                            value: choice))
                 ]),
               ],
-              if (_feedback != null)
+              if (scene.feedback != null)
                 Padding(
                     padding: const EdgeInsets.only(top: 12),
-                    child: Text(_feedback!)),
-              if (_stage == _Stage.done)
-                Text(_independent
-                    ? 'Du hast eine neue Zahl selbst gebaut und Lumo erklärt. Das ist ein zusätzlicher Hinweis auf dein Verständnis.'
-                    : 'Mit Übung geschafft! Beim nächsten Mal probieren wir wieder eine neue Zahl selbstständig.'),
+                    child: Text(scene.feedback!)),
+              if (scene.stage == LearningSceneStage.done)
+                Text(scene.instruction),
             ])));
   }
 
