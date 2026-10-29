@@ -3,11 +3,14 @@ on:
   pull_request:
     paths:
       - 'lib/domain/learning_intelligence/**'
+      - 'lib/app/app_state.dart'
       - 'lib/core/learning_profile_engine.dart'
       - 'lib/core/progress_repository.dart'
       - 'lib/core/tutor_coordination_engine.dart'
       - 'lib/core/lumo_personal_daily_tutor_planner.dart'
       - 'lib/features/learning/**'
+      - 'lib/features/home/**'
+      - 'lib/features/settings/parent_report_card.dart'
       - 'lib/features/parents/widgets/lumo_tutor_evidence_card.dart'
       - 'test/intelligence/**'
       - 'test/support/lumo_intelligence_capture.dart'
