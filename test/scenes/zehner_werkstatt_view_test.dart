@@ -320,12 +320,9 @@ void main() {
     await _settleImages(tester);
     await _frames(tester, 1600);
     await _tap(tester, 'lumo-place-value-bundle-mode');
-    // First let the 950ms opening transformation finish. Otherwise both
-    // concurrent movements deliberately mask their combined source cubes.
-    await _frames(tester, 1250);
-    final afterOpening = tester.widgetList<PlaceValueCube>(
-        find.byType(PlaceValueCube)).where((cube) => cube.hidden).length;
-    expect(afterOpening, 0);
+    // Absichtlich während des Öffnungsflugs: Lumos Demonstration muss
+    // den alten Flug abbrechen und nur ihre eigenen zehn Quellen maskieren.
+    await _frames(tester, 300);
     await _tap(tester, 'lumo-place-value-demo');
     await tester.pump(const Duration(milliseconds: 50));
     // The ten moving pixels represent the actual ten pieces, not a second
