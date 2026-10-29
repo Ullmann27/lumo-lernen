@@ -300,7 +300,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                     child: Text(_feedback!)),
               if (_stage == _Stage.done)
                 Text(_independent
-                    ? 'Du hast eine neue Zahl selbst gebaut und Lumo erklärt. Das ist ein zusätzlicher Hinweis auf dein Verständnis.'
+                    ? 'Du hast $_target selbst gebaut und mir die Einer gezeigt. Fuchsstark!'
                     : 'Mit Übung geschafft! Beim nächsten Mal probieren wir wieder eine neue Zahl selbstständig.'),
             ])));
   }
