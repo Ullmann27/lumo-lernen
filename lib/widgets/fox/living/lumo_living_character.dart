@@ -8,6 +8,7 @@ import 'package:flutter/widgets.dart';
 
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../design/lumo_design_system.dart';
+import '../../design/lumo_motion.dart';
 import 'lumo_fox_mesh.dart';
 import 'lumo_fox_rig.dart';
 
@@ -96,6 +97,14 @@ class LumoLivingCharacter extends StatefulWidget {
   final bool shadow;
   final VoidCallback? onTap;
 
+  /// Ruhelage der zeigenden Hand in einer Figur der Größe [size], zum
+  /// Beispiel als Ursprung eines Lichtstrahls in einer Lernszene.
+  static Offset handOf(LumoLivingState state, double size,
+      {bool faceLeft = false}) {
+    final hand = LumoFoxRig.of(state.pose)?.hand ?? const Offset(.8, .4);
+    return Offset((faceLeft ? 1 - hand.dx : hand.dx) * size, hand.dy * size);
+  }
+
   @override
   State<LumoLivingCharacter> createState() => _LumoLivingCharacterState();
 }
@@ -134,9 +143,7 @@ class _LumoLivingCharacterState extends State<LumoLivingCharacter>
     _syncTicker();
   }
 
-  bool get _calm =>
-      widget.reduceMotion ||
-      MediaQuery.maybeDisableAnimationsOf(context) == true;
+  bool get _calm => widget.reduceMotion || LumoMotion.reduced(context);
 
   void _syncTicker() {
     if (_calm) {
