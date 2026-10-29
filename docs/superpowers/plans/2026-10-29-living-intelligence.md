@@ -21,7 +21,7 @@ keine Kompetenzmutation aus Animation, Exam-Sperre, 48dp und Reduce Motion.
 ### 1. Übernahme und bestehende Regressionen
 - [x] GitHub/Release/Branch prüfen; vorhandene Test-Deadlock-/Text-Erwartung reparieren.
 - [x] Fünf echte Navigations-/Darstellungstests erneut bestanden.
-- [ ] Gesamte Ausgangsregression erneut ausführen und sichern.
+- [x] Gesamte Ausgangsregression erneut ausführen und sichern.
 
 ### 2. Geprüfter Graph und Szenenvertrag
 Files: lib/domain/learning_intelligence/{concept_graph,learning_scene_contract,lesson_scene_engine}.dart
@@ -29,7 +29,7 @@ Files: lib/domain/learning_intelligence/{concept_graph,learning_scene_contract,l
   Contract-Roundtrip und unbekannte Versionen, vier verschiedene Darstellungen.
 - [x] GREEN: unveränderliche Daten und prüfbare Bedingungen implementieren.
 - [x] RED/GREEN: Ergebnis richtig/Prozess falsch, frische Folgeaufgabe, Erraten/Korrektur.
-- [ ] Tests und Commit.
+- [x] Tests und Commit.
 
 ### 3. Lokale Entscheidungen und dauerhaftes Methodengedächtnis
 Files: domain/learning_intelligence/{lumo_intelligence_engine,scene_memory}.dart,
@@ -38,7 +38,7 @@ core/{progress_repository,learning_profile_engine}.dart
   ursprünglicher Profilbesitzer, Restart, fehlgeschlagener Schreibvorgang, Retry, Versionsschutz.
 - [x] GREEN: vorhandenes Journal + additive Szenenbelege; keine zweite Profildatenbank.
 - [x] Synthetische Lernverläufe gegen bisherigen Tutor vergleichen; Unterschiede dokumentieren.
-- [ ] Tests und Commit.
+- [x] Tests und Commit.
 
 ### 4. Echte Oberfläche, Plan und Elternbegründungen
 Files: existing LearningContent, place-value workshop, daily planner and parent learning report.
@@ -49,8 +49,8 @@ Files: existing LearningContent, place-value workshop, daily planner and parent 
 - [x] Echte Flutter-Aufnahmen phone/Fold/2x Schrift und Widget-/Navigationstests.
 
 ### 5. Abschluss des überprüften Kern-Meilensteins
-- [ ] Vollanalyse + vollständige Flutter-Suite; relevante Speichertests und Szenario-Testbank.
-- [ ] Ein frischer unabhängiger Review und überprüfte Korrekturen.
-- [ ] Opus-Contract-Dokumentation mit vollständiger Referenz, Grenzen und JSON-Beispiel.
+- [x] Vollanalyse + vollständige Flutter-Suite; relevante Speichertests und Szenario-Testbank.
+- [x] Ein frischer unabhängiger Review und überprüfte Korrekturen.
+- [x] Opus-Contract-Dokumentation mit vollständiger Referenz, Grenzen und JSON-Beispiel.
 - [ ] Finalen Commit ohne skip-ci pushen, Draft-PR; tatsächliche GitHub-Prüfungen auswerten.
 - [ ] STATUS/CONTINUE mit SHA, Tests, Screenshots, Release-Stand und offenen Missionen sichern.

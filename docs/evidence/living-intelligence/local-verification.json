@@ -1,0 +1,97 @@
+{
+  "synthetic_data_only": true,
+  "recorded_at": "2026-10-29T08:57:55.812110+00:00",
+  "production_source_commit": "6ac7ba9bf1ecef3a61ee91c3567628c519584780",
+  "test_checkpoint": "b20374d6999d0ddbaee76bf7a98b94e146641c10",
+  "flutter": "3.44.9",
+  "core_tests": 43,
+  "full_tests_passed": 1952,
+  "full_tests_skipped": 171,
+  "analysis": {
+    "error": 0,
+    "warning": 6,
+    "info": 106
+  },
+  "full_route": "failed verbal explanation -> alternative -> independent different-number construction -> comprehension -> persisted receipt -> fresh engine reload",
+  "local_provenance_limit": "Local full suite ran while final copy/test/documentation were finalized. Exact final-head verification is delegated to recorded GitHub Actions jobs; no Android result is implied.",
+  "captures": [
+    {
+      "file": "actual-alternative-pictorial-phone.png",
+      "width": 360,
+      "height": 820,
+      "sha256": "0f054400471c82a338d9f94ddd817a8182a1155ac0e31dd1bf9171cf20965c99"
+    },
+    {
+      "file": "fold-open-daily-plan.png",
+      "width": 880,
+      "height": 1000,
+      "sha256": "6c5e0e114b75490be7d1daad6ebfe784203fbfc915bf56afa2f96172bfba2465"
+    },
+    {
+      "file": "fold-open-transfer-confirmed.png",
+      "width": 880,
+      "height": 1000,
+      "sha256": "0a7238107633f3b686569f093a59d1c37b1827ce2a8db6dd8144183aa310e66f"
+    },
+    {
+      "file": "fold-open-transfer-construction.png",
+      "width": 880,
+      "height": 1000,
+      "sha256": "0cd28ebaee6d9fd45613c82e078fedc3b9d9ab41dda16012b93ab3beb09ba00e"
+    },
+    {
+      "file": "fold-open-workshop.png",
+      "width": 880,
+      "height": 1000,
+      "sha256": "ae637f1c765fe2b13797a18a5b33920d8dd6b700f274d311c02d4c1f1c88356d"
+    },
+    {
+      "file": "phone-daily-plan.png",
+      "width": 360,
+      "height": 820,
+      "sha256": "9bce5ee7cae969c517a945f92218b2e6852b2960887fbf648583dd5379fe2325"
+    },
+    {
+      "file": "phone-transfer-confirmed.png",
+      "width": 360,
+      "height": 820,
+      "sha256": "32c84bd6a32a0b124b463674f7a0cf499d11c17a7eab89ea8efbc254d00c21d5"
+    },
+    {
+      "file": "phone-transfer-construction.png",
+      "width": 360,
+      "height": 820,
+      "sha256": "65eb35b1adce27357b73b45d4fef7f2c9c72cc952309d0ccd34485b69ffc1224"
+    },
+    {
+      "file": "phone-workshop.png",
+      "width": 360,
+      "height": 820,
+      "sha256": "8e753c11242dc88ed5a355dc1cf8c0b1f7277c0d0fa33584f729984c1d982814"
+    },
+    {
+      "file": "small-large-text-daily-plan.png",
+      "width": 280,
+      "height": 740,
+      "sha256": "ad252ed206b163a3c7af4dd748d4a2a3bada705a7f8694c1d99852fe31dd2c64"
+    },
+    {
+      "file": "small-large-text-transfer-confirmed.png",
+      "width": 280,
+      "height": 740,
+      "sha256": "4cafc724e139979f32383f88b3851458675ccf62e7e5c9d0661361cbf45e3e1c"
+    },
+    {
+      "file": "small-large-text-transfer-construction.png",
+      "width": 280,
+      "height": 740,
+      "sha256": "e3aa8e0d61677bb30e00eb8bf3e0a0fcf44e81a9eabc722d03087e1a07525394"
+    },
+    {
+      "file": "small-large-text-workshop.png",
+      "width": 280,
+      "height": 740,
+      "sha256": "80a39849ab1b44a5a11d5d2d14035090ebb8321952d21efb81d3caa81e375961"
+    }
+  ]
+}

@@ -32,9 +32,10 @@ konservativ getrennt.
 
 43 fokussierte Unit-, Widget-, Speicher- und echte Routenfälle bestanden.
 Vollanalyse: 0 Fehler, 6 bestehende Warnungen, 106 Hinweise; Warnungen werden
-nicht verschwiegen. Die Vollregression vor den letzten Review-Korrekturen
-bestand mit 1.944 Tests und 171 übersprungenen Fällen; der abschließende
-Gesamtlauf und die GitHub-Prüfungen werden separat dokumentiert.
+nicht verschwiegen. Die abschließende lokale Vollregression bestand mit 1.952 Tests und 171
+übersprungenen Fällen. Die erweiterte durchgehende Alternativ-/Transfer-/
+Neustart-Route bestand zusätzlich. [Lokale Prüfdaten und Bild-Hashes](../../evidence/living-intelligence/local-verification.json).
+Die tatsächlichen GitHub-Prüfungen des finalen PR-Heads stehen noch aus.
 
 Die synthetische Vergleichsbank enthält zehn Fälle gegen die eingefrorene
 9fdf-Tutorlogik: drei geänderte, sieben unveränderte Entscheidungen. Das belegt
