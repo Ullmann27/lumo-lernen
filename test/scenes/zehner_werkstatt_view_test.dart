@@ -330,7 +330,9 @@ void main() {
     final hiddenSource = tester.widgetList<PlaceValueCube>(
         find.byType(PlaceValueCube)).where((cube) => cube.hidden).length;
     expect(hiddenSource, 10);
-    await _frames(tester, 2400);
+    // The bounded 2400ms demonstration includes a 150ms safety timeout.
+    // Verify that source objects return after the whole lifecycle ends.
+    await _frames(tester, 2700);
     final hiddenAfter = tester.widgetList<PlaceValueCube>(
         find.byType(PlaceValueCube)).where((cube) => cube.hidden).length;
     expect(hiddenAfter, 0);
