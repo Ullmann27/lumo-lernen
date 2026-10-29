@@ -1553,19 +1553,36 @@ class _FlightPainter extends CustomPainter {
   }
 
   void _paintCelebration(Canvas canvas, Size size) {
+    // Echte kleine Funken statt Punkte auf einem gleichmäßigen Ring:
+    // zwei unterschiedlich schnelle Fächer; die Funken verblassen
+    // nach diesem EINEN unabhängig bestätigten Lernerfolg.
     final center = Offset(size.width * .5, size.height * .45);
     final spread = Curves.easeOutCubic.transform(celebrate);
-    for (var i = 0; i < 16; i++) {
-      final angle = i / 16 * 2 * math.pi;
-      final radius =
-          size.shortestSide * (.12 + .5 * spread) * (i.isEven ? 1 : .8);
-      canvas.drawCircle(
-          center + Offset(math.cos(angle), math.sin(angle)) * radius,
-          3.5 * (1 - celebrate) + 1,
-          Paint()
-            ..color =
-                (i.isEven ? LumoVisualTokens.gold : LumoVisualTokens.cyanBright)
-                    .withValues(alpha: 1 - celebrate));
+    final fade = (1 - celebrate).clamp(0.0, 1.0);
+    for (var i = 0; i < 18; i++) {
+      final angle = i / 18 * 2 * math.pi + (i.isEven ? .07 : -.09);
+      final direction = Offset(math.cos(angle), math.sin(angle));
+      final distance = size.shortestSide *
+          (i.isEven ? .09 + .48 * spread : .05 + .36 * spread);
+      final centerOfSpark = center + direction * distance;
+      final length = (i % 3 == 0 ? 18.0 : 11.0) * fade + 2.0;
+      final accent = i.isEven
+          ? LumoVisualTokens.gold
+          : LumoVisualTokens.cyanBright;
+      final stroke = Paint()
+        ..color = accent.withValues(alpha: .9 * fade)
+        ..strokeWidth = i.isEven ? 2.5 : 2
+        ..strokeCap = StrokeCap.round;
+      canvas.drawLine(centerOfSpark - direction * length / 2,
+          centerOfSpark + direction * length / 2, stroke);
+      if (i % 3 == 0) {
+        final cross = Offset(-direction.dy, direction.dx) * (length * .26);
+        canvas.drawLine(centerOfSpark - cross, centerOfSpark + cross,
+            Paint()
+              ..color = Colors.white.withValues(alpha: .75 * fade)
+              ..strokeWidth = 1.4
+              ..strokeCap = StrokeCap.round);
+      }
     }
   }
 
