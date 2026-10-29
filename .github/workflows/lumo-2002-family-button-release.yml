@@ -15,7 +15,7 @@ concurrency:
 
 jobs:
   publish-family-button-2002:
-    if: github.repository == 'Ullmann27/lumo-lernen' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'release/lumo-2002-family-button-20261029' && github.event.pull_request.base.ref == 'release/lumo-2002-living-world-20261029'
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'release/lumo-2002-family-button-20261029' && github.event.pull_request.base.ref == 'feat/lumo-living-intelligence-2002-20261029'
     runs-on: ubuntu-latest
     timeout-minutes: 150
     permissions:
