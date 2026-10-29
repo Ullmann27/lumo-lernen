@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/features/learning/widgets/lumo_place_value_workshop.dart';
+import 'package:lumo_lernen/features/learning/scenes/place_value/place_value_material.dart';
 import 'package:lumo_lernen/widgets/fox/living/lumo_living_character.dart';
 
 import '../helpers/lumo_capture.dart';
@@ -264,6 +265,77 @@ void main() {
     await tester.pump(const Duration(seconds: 2));
     expect(tester.binding.hasScheduledFrame, isFalse);
     await _shot(tester, 'fold-cover-calm-demo');
+    expect(tester.takeException(), isNull);
+  });
+
+  for (final size in [const Size(412, 915), const Size(344, 882)]) {
+    testWidgets('eight rods form balanced four plus four rows at ${size.width}dp',
+        (tester) async {
+      await tester.binding.setSurfaceSize(size);
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(_app(size, 1,
+          const LumoPlaceValueWorkshop(number: 84, reduceMotion: true)));
+      await tester.pump();
+      final positions = [
+        for (var i = 0; i < 8; i++)
+          tester.getTopLeft(find.byKey(ValueKey('lumo-tens-block-$i')))
+      ];
+      for (var i = 1; i < 4; i++) {
+        expect(positions[i].dy, closeTo(positions[0].dy, .5));
+      }
+      for (var i = 5; i < 8; i++) {
+        expect(positions[i].dy, closeTo(positions[4].dy, .5));
+      }
+      expect(positions[4].dy, greaterThan(positions[0].dy + 40));
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  for (final (size, expected) in [
+    (const Size(344, 882), 96.0),
+    (const Size(690, 829), 132.0),
+    (const Size(882, 690), 164.0),
+  ]) {
+    testWidgets('original Lumo has responsive ${expected.toInt()}dp presence at ${size.width}dp',
+        (tester) async {
+      await tester.binding.setSurfaceSize(size);
+      addTearDown(() => tester.binding.setSurfaceSize(null));
+      await tester.pumpWidget(_app(size, 1,
+          const LumoPlaceValueWorkshop(number: 84, reduceMotion: true)));
+      await tester.pump();
+      final lumo = find.byType(LumoLivingCharacter);
+      expect(lumo, findsOneWidget);
+      expect(tester.getSize(lumo).width, closeTo(expected, 1));
+      expect(tester.takeException(), isNull);
+    });
+  }
+
+  testWidgets('Lumos moving demonstration hides its ten source cubes',
+      (tester) async {
+    const size = Size(412, 915);
+    await tester.binding.setSurfaceSize(size);
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    await tester.pumpWidget(_app(size, 1,
+        const LumoPlaceValueWorkshop(number: 84)));
+    await _settleImages(tester);
+    await _frames(tester, 1600);
+    await _tap(tester, 'lumo-place-value-bundle-mode');
+    // Absichtlich während des Öffnungsflugs: Lumos Demonstration muss
+    // den alten Flug abbrechen und nur ihre eigenen zehn Quellen maskieren.
+    await _frames(tester, 300);
+    await _tap(tester, 'lumo-place-value-demo');
+    await tester.pump(const Duration(milliseconds: 50));
+    // The ten moving pixels represent the actual ten pieces, not a second
+    // overlapping set of unchanged cubes beneath the animated flight.
+    final hiddenSource = tester.widgetList<PlaceValueCube>(
+        find.byType(PlaceValueCube)).where((cube) => cube.hidden).length;
+    expect(hiddenSource, 10);
+    // The bounded 2400ms demonstration includes a 150ms safety timeout.
+    // Verify that source objects return after the whole lifecycle ends.
+    await _frames(tester, 2700);
+    final hiddenAfter = tester.widgetList<PlaceValueCube>(
+        find.byType(PlaceValueCube)).where((cube) => cube.hidden).length;
+    expect(hiddenAfter, 0);
     expect(tester.takeException(), isNull);
   });
 
