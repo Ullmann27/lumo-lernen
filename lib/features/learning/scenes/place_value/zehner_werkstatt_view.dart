@@ -634,7 +634,9 @@ class _ZehnerWerkstattViewState extends State<ZehnerWerkstattView>
     };
     return Stack(
       key: _stageKey,
-      clipBehavior: Clip.none,
+      // Die Würfelbewegung bleibt immer innerhalb der holografischen Bühne.
+      // Insbesondere dürfen Flieger nicht über die Zahlzerlegung hinausmalen.
+      clipBehavior: Clip.hardEdge,
       children: [
         const Positioned.fill(child: CustomPaint(painter: _HoloFloorPainter())),
         Padding(
