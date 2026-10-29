@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "id": "place-value-84-interactive",
+  "conceptId": "math.tens_ones",
+  "method": "interactive",
+  "objects": [
+    {
+      "kind": "tenRod",
+      "quantity": 7,
+      "label": "Zehnerstangen mit je zehn Einheiten"
+    },
+    {
+      "kind": "unitCube",
+      "quantity": 14,
+      "label": "Einzelne Würfel"
+    }
+  ],
+  "steps": [
+    {
+      "id": "bundle",
+      "goal": "Zehnerbündel und einzelne Einer unterscheiden",
+      "instruction": "Wähle zehn einzelne Würfel und fasse sie zu einer Zehnerstange zusammen. Die Zahl bleibt gleich.",
+      "interaction": "bundleTen",
+      "rule": {
+        "kind": "observe",
+        "expected": {}
+      },
+      "gesture": "point",
+      "alternative": "guided"
+    }
+  ],
+  "mood": "attentive",
+  "reduceMotion": true,
+  "accessibilityLabel": "Zehner und Einer von 84",
+  "animationState": "ready"
+}

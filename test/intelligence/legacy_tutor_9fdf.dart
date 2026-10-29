@@ -1,5 +1,5 @@
 // Frozen comparison implementation from 9fdfc3f17e640ade0912411167d4af2f73be8720.
-// Only package import paths changed; never used by the application.
+// Imports/formatting adapted; control logic preserved. Never used by the application.
 import 'dart:convert';
 
 import 'package:crypto/crypto.dart';

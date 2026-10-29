@@ -76,7 +76,8 @@ class ProgressRepository {
   Future<SceneMemory> loadSceneMemory() async {
     final raw = await _namespace.read('lumo_learning_scenes_v1');
     if (raw == null) return SceneMemory();
-    if (raw.length > 1024 * 1024) throw const FormatException('Unsupported scene memory size');
+    if (raw.length > 1024 * 1024)
+      throw const FormatException('Unsupported scene memory size');
     return SceneMemory.fromJson(_readObject(raw));
   }
 
@@ -86,13 +87,17 @@ class ProgressRepository {
   Future<PendingSceneReceipt?> loadPendingSceneReceipt() async {
     final raw = await _namespace.read('lumo_learning_scene_pending_v1');
     if (raw == null) return null;
-    if (raw.length > 32768) throw const FormatException('Unsupported pending scene size');
+    if (raw.length > 32768)
+      throw const FormatException('Unsupported pending scene size');
     final decoded = jsonDecode(raw);
     return decoded == null ? null : PendingSceneReceipt.fromJson(decoded);
   }
+
   Future<void> savePendingSceneReceipt(PendingSceneReceipt receipt) =>
-      _namespace.write('lumo_learning_scene_pending_v1', jsonEncode(receipt.toJson()));
-  Future<void> clearPendingSceneReceipt() => _namespace.write('lumo_learning_scene_pending_v1', 'null');
+      _namespace.write(
+          'lumo_learning_scene_pending_v1', jsonEncode(receipt.toJson()));
+  Future<void> clearPendingSceneReceipt() =>
+      _namespace.write('lumo_learning_scene_pending_v1', 'null');
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);

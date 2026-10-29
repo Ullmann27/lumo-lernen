@@ -159,6 +159,8 @@ void main() {
       expect(app.learningJourney().values.single.transferCorrect, 1);
       expect(app.learningJourney().values.single.independentCorrect, 1);
       expect(app.state.stars, 0);
+      await tester.ensureVisible(find.byKey(const ValueKey('lumo-place-value-workshop')));
+      await tester.pump();
       await capture(tester, '$label-transfer-confirmed');
 
       expect(tester.takeException(), isNull);

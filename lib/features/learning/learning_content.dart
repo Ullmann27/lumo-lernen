@@ -125,6 +125,7 @@ class _LearningContentState extends State<LearningContent> {
   String? _lastGivenAnswer;
   String? _tutorHint;
   PlaceValueLessonSession? _placeValueLesson;
+  int _sceneRequestSerial = 0;
   ExplanationMethod _sceneMethod = ExplanationMethod.verbal;
   SceneCompletion? _pendingSceneCompletion;
   ExplanationMethod _pendingSceneMethod = ExplanationMethod.verbal;
@@ -441,6 +442,7 @@ class _LearningContentState extends State<LearningContent> {
     _lastFeedback = null;
     _tutorHint = null;
     _placeValueLesson = null;
+    _sceneRequestSerial = 0;
     _pendingSceneCompletion = null;
     _sceneCompletionError = null;
     _sceneMethod = ExplanationMethod.verbal;
@@ -494,6 +496,7 @@ class _LearningContentState extends State<LearningContent> {
   void _requestTaskHelp() {
     if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
+    _sceneRequestSerial++;
     final placeValueNumber = LumoPlaceValueWorkshop.numberForPrompt(_task.prompt);
     if (_placeValueLesson == null && placeValueNumber != null) {
       final target = const LumoIntelligenceEngine().transferNumber(placeValueNumber, widget.appState.learningProfile.sceneMemory);
@@ -1614,6 +1617,7 @@ class _LearningContentState extends State<LearningContent> {
                         LumoLearningSceneCard(key: ValueKey('scene-${_taskInstance.taskInstanceId}'),
                           appState: widget.appState, scope: _publishedTaskContext!.tutorScope,
                           number: _placeValueLesson!.sourceNumber, requestedHelpLevel: _requestedHelpLevel,
+                          requestSerial: _sceneRequestSerial,
                           reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
                           onDifferentTask: () => setState(() => _loadNextTask()),
                           onMethodChosen: (method) {

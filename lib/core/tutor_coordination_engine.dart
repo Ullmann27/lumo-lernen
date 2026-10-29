@@ -177,9 +177,13 @@ class TutorCoordinationEngine {
 
   LearningEvidence? checkSceneTransfer(SceneCompletion proof) {
     final task = _scope;
-    if (task == null || task.isExam || _helpLevel == 0 ||
-        proof.sourceProblemId != task.problemId || proof.sourceTaskId != task.taskId ||
-        proof.generation != task.generation || proof.number == proof.sourceNumber ||
+    if (task == null ||
+        task.isExam ||
+        _helpLevel == 0 ||
+        proof.sourceProblemId != task.problemId ||
+        proof.sourceTaskId != task.taskId ||
+        proof.generation != task.generation ||
+        proof.number == proof.sourceNumber ||
         !_transfers.add(proof.evidence.problemId!)) return null;
     _emit(TutorEventKind.transferChecked);
     return proof.evidence;

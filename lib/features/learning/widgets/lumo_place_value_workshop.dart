@@ -6,7 +6,10 @@ import '../../../domain/learning_intelligence/lesson_scene_engine.dart';
 
 class LumoPlaceValueTransfer {
   const LumoPlaceValueTransfer(
-      {required this.number, required this.correct, required this.independent, this.proof});
+      {required this.number,
+      required this.correct,
+      required this.independent,
+      this.proof});
   final int number;
   final bool correct;
   final bool independent;
@@ -22,7 +25,8 @@ class LumoPlaceValueWorkshop extends StatefulWidget {
       {super.key,
       required this.number,
       this.reduceMotion = false,
-      this.onTransferChecked, this.lesson})
+      this.onTransferChecked,
+      this.lesson})
       : assert(number >= 10 && number <= 99);
   final int number;
   final PlaceValueLessonSession? lesson;
@@ -54,9 +58,13 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
   int _builtOnes = 0;
   String? _feedback;
   PlaceValueLessonSession? _localLesson;
-  PlaceValueLessonSession get _lesson => widget.lesson ?? (_localLesson ??= PlaceValueLessonSession(
-    sourceNumber: widget.number, targetNumber: widget.number > 55 ? widget.number - 27 : widget.number + 27,
-    sourceProblemId: 'place-value:${widget.number}'));
+  PlaceValueLessonSession get _lesson =>
+      widget.lesson ??
+      (_localLesson ??= PlaceValueLessonSession(
+          sourceNumber: widget.number,
+          targetNumber:
+              widget.number > 55 ? widget.number - 27 : widget.number + 27,
+          sourceProblemId: 'place-value:${widget.number}'));
   int get _target => _lesson.targetNumber;
 
   @override
@@ -212,7 +220,7 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                       'Neue Zahl bauen',
                       () => setState(() {
                             _lesson.beginTransfer();
-                          _stage = _Stage.construct;
+                            _stage = _Stage.construct;
                             _feedback = null;
                           })),
                 ],
@@ -250,7 +258,9 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                 LumoPlaceValueBlocks(
                     tens: _builtTens, ones: _builtOnes, reduceMotion: calm),
                 _button('lumo-build-check', 'Meine Zahl prüfen', () {
-                  if (_lesson.submitConstruction(tens: _builtTens, ones: _builtOnes).processCorrect) {
+                  if (_lesson
+                      .submitConstruction(tens: _builtTens, ones: _builtOnes)
+                      .processCorrect) {
                     setState(() {
                       _stage = _Stage.explain;
                       _feedback = null;
@@ -273,8 +283,8 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                   for (var i = 0; i < 10; i++)
                     _button('lumo-comprehension-$i', '$i', () {
                       final proof = _lesson.submitComprehension(i);
-                            if (proof != null) {
-                              _independent = proof.independent;
+                      if (proof != null) {
+                        _independent = proof.independent;
                         setState(() {
                           _stage = _Stage.done;
                           _feedback = null;
@@ -286,7 +296,8 @@ class _LumoPlaceValueWorkshopState extends State<LumoPlaceValueWorkshop> {
                         widget.onTransferChecked?.call(LumoPlaceValueTransfer(
                             number: _target,
                             correct: true,
-                            independent: _independent, proof: proof));
+                            independent: _independent,
+                            proof: proof));
                       } else {
                         _fox.think();
                         setState(() {

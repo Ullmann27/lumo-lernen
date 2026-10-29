@@ -1,0 +1,96 @@
+{
+  "synthetic": true,
+  "cases": [
+    {
+      "case": "correct_total_wrong_place_value_process",
+      "baseline_accepts": true,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "changed",
+      "scope": "Domain-interface synthetic input; original UI normally caps ones at nine. No empirical child-performance claim."
+    },
+    {
+      "case": "same_problem_different_id_spelling",
+      "baseline_accepts": true,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "changed",
+      "scope": "Previously boolean/ID-only API versus validated source/target domain."
+    },
+    {
+      "case": "correct_after_guess",
+      "baseline_accepts": false,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "Both implementations must keep corrected work assisted."
+    },
+    {
+      "case": "new_independent_construction_and_explanation",
+      "baseline_accepts": true,
+      "candidate_accepts": true,
+      "expected": true,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "One observation, not a mastery claim."
+    },
+    {
+      "case": "replayed_receipt",
+      "baseline_accepts": false,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "Duplicate submissions do not add independent evidence."
+    },
+    {
+      "case": "test_mode",
+      "baseline_accepts": false,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "Exams suppress help and transfer workshop."
+    },
+    {
+      "case": "different_method_after_failure",
+      "baseline_accepts": true,
+      "candidate_accepts": true,
+      "expected": true,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "Alternative selection differs; pedagogical superiority is not established."
+    },
+    {
+      "case": "method_receipt_survives_serialization",
+      "baseline_accepts": false,
+      "candidate_accepts": true,
+      "expected": true,
+      "passed": true,
+      "comparison": "changed",
+      "scope": "Old tutor has no durable method receipt; actual filesystem/profile cases run in storage tests."
+    },
+    {
+      "case": "forgotten_after_delay_is_not_retained",
+      "baseline_accepts": false,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "A delayed failure removes retained status without diagnosing a weakness."
+    },
+    {
+      "case": "unknown_sibling_has_no_confirmed_concept",
+      "baseline_accepts": false,
+      "candidate_accepts": false,
+      "expected": false,
+      "passed": true,
+      "comparison": "unchanged",
+      "scope": "Empty sibling map; real namespace separation is covered by separate persistence tests."
+    }
+  ],
+  "limits": "Deterministic software cases, not a scientific validation of learning effectiveness or a diagnosis."
+}

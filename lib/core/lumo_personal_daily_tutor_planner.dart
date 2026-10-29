@@ -81,7 +81,9 @@ class LumoPersonalDailyTutorPlanner {
   /// assistance/transfer data remains unverified, even when its score is high.
   List<LumoDailyTutorStep> buildEvidencePlan(
       Map<String, SkillRecord> records, Map<String, JourneySkill> journey,
-      {DateTime? now, int? grade, bool Function(SkillRecord record)? isEligible}) {
+      {DateTime? now,
+      int? grade,
+      bool Function(SkillRecord record)? isEligible}) {
     final candidates = <String, SkillRecord>{...records};
     for (final entry in journey.entries) {
       candidates.putIfAbsent(
@@ -96,7 +98,11 @@ class LumoPersonalDailyTutorPlanner {
         .where((r) =>
             r.subject.trim().isNotEmpty &&
             r.unit.trim().isNotEmpty &&
-            (isEligible?.call(r) ?? true) && (grade == null || Curriculum.unitsForGrade(r.subject, grade, currentGradeOnly: true).contains(r.unit)))
+            (isEligible?.call(r) ?? true) &&
+            (grade == null ||
+                Curriculum.unitsForGrade(r.subject, grade,
+                        currentGradeOnly: true)
+                    .contains(r.unit)))
         .toList();
     if (eligible.isEmpty) return const [];
     final at = now ?? DateTime.now();
@@ -160,31 +166,80 @@ class LumoPersonalDailyTutorPlanner {
     const intelligence = LumoIntelligenceEngine();
     bool ready(SkillRecord r) {
       final nodes = graph.forTask(r.subject, r.unit);
-      return nodes.isNotEmpty && nodes.every((n) => graph.prerequisitesOf(n.id).every((id) =>
-        [ConceptCertainty.transferConfirmed, ConceptCertainty.retained].contains(intelligence.assess(graph[id]!, journey).certainty)));
+      return nodes.isNotEmpty &&
+          nodes.every((n) => graph.prerequisitesOf(n.id).every((id) => [
+                ConceptCertainty.transferConfirmed,
+                ConceptCertainty.retained
+              ].contains(intelligence.assess(graph[id]!, journey).certainty)));
     }
-    final pool = <SkillRecord>[...known.where((r) => r.skillId != first.skillId)];
-    for (final subject in [first.subject, ...Curriculum.exerciseSubjectsForGrade(grade).where((s) => s != first.subject)]) {
-      for (final unit in Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true)) {
+
+    final pool = <SkillRecord>[
+      ...known.where((r) => r.skillId != first.skillId)
+    ];
+    for (final subject in [
+      first.subject,
+      ...Curriculum.exerciseSubjectsForGrade(grade)
+          .where((s) => s != first.subject)
+    ]) {
+      for (final unit
+          in Curriculum.unitsForGrade(subject, grade, currentGradeOnly: true)) {
         final id = SkillRecord.makeId(subject, unit);
         if (id == first.skillId || pool.any((r) => r.skillId == id)) continue;
         pool.add(SkillRecord(skillId: id, subject: subject, unit: unit));
       }
     }
-    if (pool.isEmpty) return [LumoDailyTutorStep(kind: LumoDailyTutorStepKind.practice,
-      subject: first.subject, unit: first.unit, durationMinutes: 5, reason: knowledge(journey[first.skillId]).label)];
+    if (pool.isEmpty)
+      return [
+        LumoDailyTutorStep(
+            kind: LumoDailyTutorStepKind.practice,
+            subject: first.subject,
+            unit: first.unit,
+            durationMinutes: 5,
+            reason: knowledge(journey[first.skillId]).label)
+      ];
     final second = pool.firstWhere(ready, orElse: () => pool.first);
-    final strengths = known.where((r) => r.skillId != first.skillId && r.skillId != second.skillId &&
-      [JourneyStatus.independentlyChecked, JourneyStatus.retained].contains(journey[r.skillId]?.status)).toList();
-    final third = strengths.isNotEmpty ? strengths.last : pool.firstWhere((r) => r.skillId != second.skillId, orElse: () => second);
-    LumoDailyTutorStep step(SkillRecord r, LumoDailyTutorStepKind kind, int minutes, String reason, {bool pause = false}) =>
-      LumoDailyTutorStep(kind: kind, subject: r.subject, unit: r.unit, durationMinutes: minutes, reason: reason, pauseAfter: pause);
+    final strengths = known
+        .where((r) =>
+            r.skillId != first.skillId &&
+            r.skillId != second.skillId &&
+            [JourneyStatus.independentlyChecked, JourneyStatus.retained]
+                .contains(journey[r.skillId]?.status))
+        .toList();
+    final third = strengths.isNotEmpty
+        ? strengths.last
+        : pool.firstWhere((r) => r.skillId != second.skillId,
+            orElse: () => second);
+    LumoDailyTutorStep step(SkillRecord r, LumoDailyTutorStepKind kind,
+            int minutes, String reason, {bool pause = false}) =>
+        LumoDailyTutorStep(
+            kind: kind,
+            subject: r.subject,
+            unit: r.unit,
+            durationMinutes: minutes,
+            reason: reason,
+            pauseAfter: pause);
     return List.unmodifiable([
-      step(first, LumoDailyTutorStepKind.revise, 5, knowledge(journey[first.skillId]).label),
-      step(second, ready(second) ? LumoDailyTutorStepKind.practice : LumoDailyTutorStepKind.check, 4,
-        ready(second) ? 'Passender Einstieg nach geprüften Voraussetzungen' : 'Kurzer Einstieg: Voraussetzungen noch nicht ausreichend geprüft', pause: true),
-      step(third, strengths.isNotEmpty ? LumoDailyTutorStepKind.confidence : LumoDailyTutorStepKind.check, 3,
-        strengths.isNotEmpty ? 'Bestätigte Übertragung aus deinem Lernweg' : 'Eine andere kurze Selbstprobe, ohne behauptete Stärke'),
+      step(first, LumoDailyTutorStepKind.revise, 5,
+          knowledge(journey[first.skillId]).label),
+      step(
+          second,
+          ready(second)
+              ? LumoDailyTutorStepKind.practice
+              : LumoDailyTutorStepKind.check,
+          4,
+          ready(second)
+              ? 'Passender Einstieg nach geprüften Voraussetzungen'
+              : 'Kurzer Einstieg: Voraussetzungen noch nicht ausreichend geprüft',
+          pause: true),
+      step(
+          third,
+          strengths.isNotEmpty
+              ? LumoDailyTutorStepKind.confidence
+              : LumoDailyTutorStepKind.check,
+          3,
+          strengths.isNotEmpty
+              ? 'Bestätigte Übertragung aus deinem Lernweg'
+              : 'Eine andere kurze Selbstprobe, ohne behauptete Stärke'),
     ]);
   }
 
