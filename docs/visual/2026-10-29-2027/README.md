@@ -87,3 +87,16 @@ Fertige, geprüfte Arbeit aus dieser Sitzung liegt vor dieser 2027-Runde:
 
 Es wurden keine Gerätetests behauptet. Alle Bilder sind Flutter-Test- bzw.
 Godot-xvfb-Renderings.
+
+
+## Fortsetzung nach der Agenten-Rettung (29.10.2026)
+
+Diese Ergänzung wurde nach dem offiziellen Übergabecommit `91116ed8` gesichert und **ändert nicht** den historischen Befund zu den elf gestoppten Agenten.
+
+- Memory besitzt nun **zusätzlich** den eigenständig weiterentwickelten, remote gesicherten Branch `chatgpt/lumo-2027-memory-stage-20261029`, Draft-PR [#423](https://github.com/Ullmann27/lumo-lernen/pull/423), Basis `5457b2ee`. Dort wurden ein tatsächlich angebundenes Flutter-`LumoMemoryStage` (interaktionsneutrale 2.5D-Tischgrafik), die metallisch veredelten vorhandenen Karten und Fold-/Querformat-Tests programmiert.
+- Der zuvor leere Opus-Zweig `claude/lumo-2027-memory-20261029` bleibt unberührt. Vor späterer Zusammenführung die Branches prüfen, nicht blind überschreiben.
+- Neue Tests in #423 scheiterten zunächst wegen unzureichend gepumpter Kartenflip-Animationsframes. Die Korrektur wurde nach Prüfung der GitHub-Logs in Commit `4f4ba1877b1906f76c86126350ce79ff1cfe4995` hochgeladen. Bei Erstellung dieser Notiz lagen **noch keine neuen grünen Flutter-/APK-Gates** vor; Status live in #423 prüfen.
+- Die alte, auf 1989→1990 beschränkte Spielebildprüfung blockierte 2003-PRs fälschlich; #423 enthält den bestehenden bewahrenden Branch-Filter aus `repair/lumo-historical-visual-qa-20261022` und dessen Scope-Test. Das ist keine tatsächliche Memory-Grafik-Abnahme.
+- Build 2003 und Signatur, aktuelle Nutzerinstallation, Gold-/XP-Wallet, Profile sowie Godot-Pin bleiben unverändert. **Keine neue Update-Bereitstellung behaupten**, bevor das vollständige CI-, Android- und Release-Gate bestanden ist.
+
+Bei weiterer Arbeit zuerst diesen aktuellen Remote-Branch/PR zusätzlich zum ursprünglichen elf-Agenten-Bestand prüfen, damit keine fertigen Teilschritte verloren gehen.
