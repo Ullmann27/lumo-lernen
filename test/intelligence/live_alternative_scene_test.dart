@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import '../support/lumo_intelligence_capture.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -17,7 +18,34 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  setUpAll(loadIntelligenceCaptureFonts);
+  setUpAll(() async {
+    // Real production workshop SFX are enabled by the active app settings.
+    // Pure Flutter tests have no native audioplayers transport; stub exactly
+    // the two platform channel endpoints, without mocking the tutor itself.
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(
+        const MethodChannel('xyz.luan/audioplayers.global'), (call) async {
+      if (call.method == 'init' ||
+          call.method == 'setGlobalAudioContext') return null;
+      throw MissingPluginException('Unexpected global audio call: ${call.method}');
+    });
+    messenger.setMockMethodCallHandler(
+        const MethodChannel('xyz.luan/audioplayers.global/events'),
+        (call) async {
+      if (call.method == 'listen' || call.method == 'cancel') return null;
+      throw MissingPluginException('Unexpected audio events call: ${call.method}');
+    });
+    await loadIntelligenceCaptureFonts();
+  });
+  tearDownAll(() {
+    final messenger =
+        TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger;
+    messenger.setMockMethodCallHandler(
+        const MethodChannel('xyz.luan/audioplayers.global'), null);
+    messenger.setMockMethodCallHandler(
+        const MethodChannel('xyz.luan/audioplayers.global/events'), null);
+  });
   testWidgets(
       'failed first scene, actual alternative and fresh independent transfer survive restart',
       (tester) async {

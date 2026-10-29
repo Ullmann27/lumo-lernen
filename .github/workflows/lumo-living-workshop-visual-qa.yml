@@ -1,0 +1,73 @@
+name: Lumo Living workshop responsive and animation proof
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-living-workshop-visual-qa.yml'
+      - 'lib/features/learning/scenes/place_value/**'
+      - 'lib/features/learning/learning_content.dart'
+      - 'test/scenes/zehner_werkstatt_view_test.dart'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  capture-workshop:
+    runs-on: ubuntu-latest
+    timeout-minutes: 32
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Static analysis of the production workshop and scene tests
+        run: |
+          set -euo pipefail
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Real 50ms animation frames and Fold-responsive Flutter renders
+        env:
+          LUMO_SCENE_CAPTURES: ${{ github.workspace }}/proof/living-workshop
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_SCENE_CAPTURES"
+          flutter test --no-pub --reporter=expanded --timeout=120s --concurrency=1 \
+            test/scenes/zehner_werkstatt_view_test.dart \
+            test/scenes/place_value_scene_director_test.dart \
+            test/fox_living/lumo_fox_mesh_test.dart | tee proof/flutter-workshop.log
+          python3 - <<'PY'
+          from pathlib import Path
+          import struct
+          files = Path("proof/living-workshop")
+          for name in (
+              "phone-01-greet.png",
+              "phone-03-counted.png",
+              "phone-04-open-120ms.png",
+              "phone-07-bundle-150ms.png",
+              "phone-12-celebrate-200ms.png",
+              "fold-cover-text2-02-counting.png",
+              "fold-open-03-counted.png",
+              "fold-open-landscape-03-counted.png",
+              "fold-cover-calm-demo.png",
+          ):
+              p = files / name
+              payload = p.read_bytes()
+              assert len(payload) >= 10000 and payload[:8] == b"\x89PNG\r\n\x1a\n", p
+              width, height = struct.unpack(">II", payload[16:24])
+              assert width >= 350 and height >= 200, (p, width, height)
+              print("RENDERED_FLUTTER_FRAME", p, width, height, len(payload))
+          PY
+          git rev-parse HEAD > proof/FLUTTER-SOURCE-COMMIT.txt
+          (cd proof/living-workshop && sha256sum *.png > SHA256SUMS.txt)
+          echo 'These are actual Flutter widget-test frames, not physical Galaxy Z Fold7 device captures.' > proof/CAPTURE-TYPE.txt
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-living-workshop-responsive-visual-${{ github.run_id }}
+          path: proof/
+          if-no-files-found: warn
+          retention-days: 30
