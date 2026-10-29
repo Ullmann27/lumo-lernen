@@ -52,5 +52,5 @@ Files: existing LearningContent, place-value workshop, daily planner and parent 
 - [x] Vollanalyse + vollständige Flutter-Suite; relevante Speichertests und Szenario-Testbank.
 - [x] Ein frischer unabhängiger Review und überprüfte Korrekturen.
 - [x] Opus-Contract-Dokumentation mit vollständiger Referenz, Grenzen und JSON-Beispiel.
-- [ ] Finalen Commit ohne skip-ci pushen, Draft-PR; tatsächliche GitHub-Prüfungen auswerten.
-- [ ] STATUS/CONTINUE mit SHA, Tests, Screenshots, Release-Stand und offenen Missionen sichern.
+- [x] Finalen Commit ohne skip-ci pushen, Draft-PR; tatsächliche GitHub-Prüfungen auswerten.
+- [x] STATUS/CONTINUE mit SHA, Tests, Screenshots, Release-Stand und offenen Missionen sichern.

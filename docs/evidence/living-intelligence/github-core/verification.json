@@ -1,0 +1,28 @@
+{
+  "source_sha": "5d6d7dcd0ebbff48b7c7850b0e392a9086ea1ecc",
+  "workflow_run": "https://github.com/Ullmann27/lumo-lernen/actions/runs/40846028231",
+  "change_review_run": "https://github.com/Ullmann27/lumo-lernen/actions/runs/40846027846",
+  "artifact_id": 12885616852,
+  "artifact_zip_sha256": "6013bb3fd8a59dab377bd27899a7232ce2e031fb680ef3b79317c49d4df9cb5a",
+  "result": "success",
+  "full_tests_passed": 1952,
+  "full_tests_skipped": 171,
+  "core_tests_passed": 43,
+  "analysis": {
+    "error": 0,
+    "warning": 6,
+    "info": 106
+  },
+  "logs_sha256": {
+    "source-sha.txt": "390e48f62e7c72d88c41ff69075b66bd065f1c79fc9541b1e9f12276b423118c",
+    "analysis.log": "768f11915559151d8a40d62b3e74a7df8b6fe69c305e3289b41aa027d46ea3f4",
+    "core-tests.log": "28e8ce8951955dc691519bc78b6b5262f05755331d1c5ee50f28bba790b9c90e",
+    "full-tests.log": "705c797b639e28b25f1b93853c18a0ee5f54d947d60e48fd1a28882a95c1f41f"
+  },
+  "selected_captures_sha256": {
+    "actual-alternative-pictorial-phone.png": "686fb5241d5aebc3b9c829fda12c1d6da50724f24a710f87926d3a46a7500527",
+    "fold-open-workshop.png": "7aa46d85881cd3d6743c26e1ec8c4d4ec53d7fcda95ac3b4d42ad6a96e45abfc",
+    "small-large-text-transfer-confirmed.png": "eda53d2eba92aaabfdfadb23f9b1c9f5a44b1fa39e21122bf034919ee676df5f"
+  },
+  "limits": "Synthetic child data, productive Flutter widget routes. Android runtime gates are separate."
+}

@@ -1,7 +1,9 @@
 # Living Intelligence · geprüfter Tutor-Kern
 
 Ausgangspunkt: `9fdfc3f17e640ade0912411167d4af2f73be8720`.
-Eigener Branch: `feat/lumo-living-intelligence-20261029`.
+Eigener Branch: `feat/lumo-living-intelligence-20261029`, [Draft-PR #414](https://github.com/Ullmann27/lumo-lernen/pull/414).
+Dieser Nachweiszweig ergänzt ausschließlich Dokumentation und echte CI-Aufnahmen;
+die geprüften Quellstände werden nicht verändert.
 Produktionscode nach Review-Korrekturen: `6ac7ba9bf1ecef3a61ee91c3567628c519584780`.
 `main`, die ursprüngliche 2001-Arbeit, PR #411–413 und veröffentlichte APKs
 werden durch diesen Branch nicht verändert.
@@ -35,7 +37,10 @@ Vollanalyse: 0 Fehler, 6 bestehende Warnungen, 106 Hinweise; Warnungen werden
 nicht verschwiegen. Die abschließende lokale Vollregression bestand mit 1.952 Tests und 171
 übersprungenen Fällen. Die erweiterte durchgehende Alternativ-/Transfer-/
 Neustart-Route bestand zusätzlich. [Lokale Prüfdaten und Bild-Hashes](../../evidence/living-intelligence/local-verification.json).
-Die tatsächlichen GitHub-Prüfungen des finalen PR-Heads stehen noch aus.
+GitHub bestätigt exakt `5d6d7dcd0ebbff48b7c7850b0e392a9086ea1ecc`: [Lernkern-CI](https://github.com/Ullmann27/lumo-lernen/actions/runs/40846028231)
+und [vollständige Change-Review-Prüfung](https://github.com/Ullmann27/lumo-lernen/actions/runs/40846027846) erfolgreich.
+Das heruntergeladene Artefakt wurde gegen den von GitHub gelieferten SHA-256 geprüft.
+[Prüfdaten und Log-Hashes](../../evidence/living-intelligence/github-core/verification.json).
 
 Die synthetische Vergleichsbank enthält zehn Fälle gegen die eingefrorene
 9fdf-Tutorlogik: drei geänderte, sieben unveränderte Entscheidungen. Das belegt
@@ -79,3 +84,7 @@ Der Tutor-Kern ist keine neue APK-Veröffentlichung. Ein nächster separater
 Android-Kandidat muss denselben Paketnamen und dieselbe Signatur behalten,
 vollständige Sicherheits-/Speichertests, Android-Tour und echtes Update bestehen.
 Build 2001 bleibt für den unveränderten vorherigen Branch reserviert.
+
+Der separate Android-2002-Kandidat liegt in [Draft-PR #415](https://github.com/Ullmann27/lumo-lernen/pull/415),
+Quellstand `ff791642a0d28d10f89d98025fd8f5fb2c19c403`. Seine tatsächlichen
+Android-/Update-/Veröffentlichungsgates laufen noch; diese Kernfreigabe ersetzt sie nicht.

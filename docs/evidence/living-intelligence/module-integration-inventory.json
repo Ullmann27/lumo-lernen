@@ -1,0 +1,199 @@
+{
+  "source_sha": "5d6d7dcd0ebbff48b7c7850b0e392a9086ea1ecc",
+  "kind": "static_inventory_not_runtime_coverage",
+  "dedicated_screens": [
+    {
+      "file": "lib/features/learning_modules/artikel_lernen/artikel_lernen_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/einmaleins/einmaleins_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": true,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/farben/farben_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": true,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/formen/formen_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/geld/geld_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/jahreszeiten/jahreszeiten_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/mehrzahl/mehrzahl_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart",
+      "shared_progress_boundary": false,
+      "shared_visual_frame": true,
+      "publishes_companion_task": true,
+      "explicit_companion_help": true,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": true,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/tiere/tiere_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/verkehr/verkehr_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/wetter/wetter_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/wort_diktat/wort_diktat_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/wortarten/wortarten_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    },
+    {
+      "file": "lib/features/learning_modules/zeitformen/zeitformen_screen.dart",
+      "shared_progress_boundary": true,
+      "shared_visual_frame": true,
+      "publishes_companion_task": false,
+      "explicit_companion_help": false,
+      "scene_contract": false,
+      "save_answer_mentions_prompt": false,
+      "review_limit": "Static source flags only; a false flag is not proof that indirect integration is absent."
+    }
+  ],
+  "shared_boundary": "lib/features/learning_modules/learning_module_progress.dart creates ordinary assistance-aware LearningEvidence when an assessed prompt/problem key is supplied; it never fabricates transfer evidence.",
+  "complete_reference_route": "lib/features/learning/learning_content.dart with explicit help, four scene methods, construction, comprehension and durable receipt.",
+  "preserved_factory_audit": "docs/evidence/tutor-2001/curriculum-audit.json is existing baseline evidence: 268 rows and 79200 generated tasks, not a fresh official curriculum certification."
+}
