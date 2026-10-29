@@ -215,7 +215,18 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(2002), config(module.APPROVED[1999]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(2003), config(reviewed))
+            module.verify(pubspec(2004), config(reviewed))
+
+    def test_2003_living_original_fox_preserves_verified_2002_native_source(self):
+        reviewed = "adcce3093caa42bf3da47262f70bdf03cdefa347"
+        self.assertEqual(module.APPROVED[2002], reviewed)
+        self.assertEqual(module.APPROVED[2003], reviewed)
+        self.assertEqual(module.verify(pubspec(2003), config(reviewed)),
+                         (2003, reviewed))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(2003), config(module.APPROVED[1999]))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(2004), config(reviewed))
 
     def test_preserved_release_1950_to_1952_requires_original_source(self):
         for number in (1950, 1951, 1952):
