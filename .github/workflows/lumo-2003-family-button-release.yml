@@ -22,7 +22,7 @@ jobs:
       contents: write
       actions: read
     env:
-      GH_TOKEN: \${{ github.token }}
+      GH_TOKEN: ${{ github.token }}
       SOURCE_SHA: '18ced63187c7a264c3bd2b8271ec58647f679d70'
       TAG: 'coachpreview-build-2003'
       EXPECTED_CERT: 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          ref: \${{ github.event.pull_request.head.sha }}
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - name: Verify the existing installed-app updater recognizes this exact release
         run: |
