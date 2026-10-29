@@ -26,7 +26,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../app/app_state.dart';
-import '../../../app/app_theme.dart';
 import '../../../core/lumo_voice.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import '../shared/lumo_board_game_stage.dart';
@@ -319,10 +318,10 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
         children: [
           Row(
             children: [
-              _statusPill('Du', _kindPos, const Color(0xFFFB923C),
+              _statusPill('Du', _kindPos, LumoBoardColors.gold,
                   isActive: _turn == _Player.kind),
               const SizedBox(width: 12),
-              _statusPill('Lumo', _lumoPos, const Color(0xFFB56324),
+              _statusPill('Lumo', _lumoPos, LumoBoardColors.cyan,
                   isActive: _turn == _Player.lumo),
             ],
           ),
@@ -334,7 +333,7 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                     fontFamily: 'Nunito',
                     fontSize: 14,
                     fontWeight: FontWeight.w700,
-                    color: LumoColors.ink700)),
+                    color: Color(0xFFE5F4FF))),
           ],
         ],
       ),
@@ -345,13 +344,15 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
       {required bool isActive}) {
     return Expanded(
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
+        duration: lumoBoardMotionDuration(context,
+            reduceMotion: widget.appState.state.settings.reduceAnimations ||
+                widget.appState.state.settings.calmMode),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
           gradient: LinearGradient(
               colors: isActive
-                  ? [color, Color.lerp(color, const Color(0xFF142A43), .3)!]
-                  : const [Color(0xFAFFFFFF), Color(0xE8EDF3FA)]),
+                  ? const [Color(0xFF1B466D), Color(0xFF102A4C)]
+                  : const [Color(0xFF122D4B), Color(0xFF0B203C)]),
           borderRadius: BorderRadius.circular(18),
           border: Border.all(color: color, width: 2.4),
         ),
@@ -371,7 +372,9 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                         fontFamily: 'Nunito',
                         fontSize: 14,
                         fontWeight: FontWeight.w900,
-                        color: isActive ? Colors.white : color))),
+                        color: isActive
+                            ? Colors.white
+                            : const Color(0xFFBED2E8)))),
           ]),
           const SizedBox(height: 4),
           Text('$pos / $_goal',
@@ -379,7 +382,17 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
                   fontFamily: 'Nunito',
                   fontSize: 14,
                   fontWeight: FontWeight.w900,
-                  color: isActive ? Colors.white : color)),
+                  color: isActive ? Colors.white : const Color(0xFFBED2E8))),
+          const SizedBox(height: 7),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(4),
+            child: LinearProgressIndicator(
+              value: pos / _goal,
+              minHeight: 4,
+              color: color,
+              backgroundColor: const Color(0xFF294665),
+            ),
+          ),
         ]),
       ),
     );
@@ -527,6 +540,8 @@ class _LumoDiceRaceScreenState extends State<LumoDiceRaceScreen>
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF235D78),
                 foregroundColor: Colors.white,
+                disabledBackgroundColor: const Color(0xFF173654),
+                disabledForegroundColor: const Color(0xFFBED2E8),
                 padding: const EdgeInsets.symmetric(vertical: 18),
                 textStyle: const TextStyle(
                     fontFamily: 'Nunito',

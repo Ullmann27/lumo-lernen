@@ -13,6 +13,16 @@ require_clean_sources() {
   fi
 }
 require_clean_sources
+# Maven Central throttles shared CI addresses (HTTP 404 + Retry-After or 429);
+# that broke Flutter's Kotlin plugin resolution in Actions run 38896179742.
+# On CI, resolve Maven Central artifacts through Google's official mirror
+# first. Declared repositories and all versions stay unchanged as fallback.
+if [ "${CI:-}" = true ] || [ "${LUMO_GRADLE_CENTRAL_MIRROR:-0}" = 1 ]; then
+  gradle_init_dir="${GRADLE_USER_HOME:-$HOME/.gradle}/init.d"
+  mkdir -p "$gradle_init_dir"
+  cp scripts/gradle/lumo-maven-central-mirror.init.gradle "$gradle_init_dir/"
+  sha256sum "$gradle_init_dir/lumo-maven-central-mirror.init.gradle"
+fi
 version_values=$(python3 scripts/build_version.py)
 read -r lumo_version_name lumo_build_number <<< "$version_values"
 if [ ! -d android ]; then

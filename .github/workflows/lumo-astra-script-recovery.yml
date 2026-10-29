@@ -1,0 +1,55 @@
+name: Lumo Astra app-script recovery and exact Python test evidence
+on:
+  push:
+    branches:
+      - chatgpt/lumo-astra-app-script-recovery-2026-10-18
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - 'tools/android_qa/**'
+      - '.github/workflows/lumo-astra-script-recovery.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  full-app-script-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install the real prerequisites used by the app-script suite
+        run: |
+          set -euo pipefail
+          sudo apt-get update -qq
+          sudo apt-get install -y ripgrep
+          python3 -m pip install --disable-pip-version-check Pillow==12.3.0
+          rg --version | head -n 1
+          python3 -c 'from PIL import Image; print("Pillow ready")'
+      - name: Record source and installed compiler availability
+        run: |
+          set -euo pipefail
+          git rev-parse HEAD
+          python3 --version
+          command -v gradle || true
+          command -v git
+          command -v java || true
+      - name: Reproduce the whole Astra app-script test inventory
+        shell: bash
+        run: |
+          set -o pipefail
+          mkdir -p artifacts/astra-script-regression
+          python3 -m unittest discover -s scripts/tests -p 'test_*.py' -v \
+            2>&1 | tee artifacts/astra-script-regression/app-script-tests.log
+      - name: Upload full stdout and stderr even on test failures
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-astra-app-script-full-log-${{ github.run_id }}
+          path: artifacts/astra-script-regression/app-script-tests.log
+          if-no-files-found: error
+          retention-days: 14

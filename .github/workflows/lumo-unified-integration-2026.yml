@@ -4,11 +4,35 @@ on:
     branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15]
   pull_request:
     paths:
+      - 'lib/widgets/design/**'
+      - 'test/design/lesson_premium_capture_test.dart'
+      - 'test/design/**'
+      - 'lib/features/games/**'
+      - 'lib/features/story/**'
+      - 'lib/features/tests/**'
+      - 'lib/core/iq/**'
+      - 'lib/core/cognitive_profile_generator.dart'
+      - 'lib/domain/cognitive/**'
+      - 'test/iq/**'
+      - 'test/cognitive_profile*.dart'
+      - 'lib/core/lumo_story_generator.dart'
+      - 'lib/core/lumo_story_library.dart'
+      - 'test/story_*.dart'
+      - 'lib/core/lumo_voice.dart'
+      - 'lib/features/learning_modules/**'
       - 'lib/features/quiz/**'
       - 'lib/features/home/**'
+      - '.github/probes/modernization_android_tour.py'
+      - 'tools/android_qa/kart_android_race.py'
+      - 'tools/android_qa/tests/test_focused_race_hud.py'
       - '.github/probes/kart_complete_android_probe.py'
       - '.github/probes/lumo_learning_journey_probe.py'
       - 'config/godot-source.json'
+      - 'pubspec.yaml'
+      - 'scripts/verify_legacy_release_pin.py'
+      - 'scripts/tests/test_legacy_release_pin.py'
+      - 'lib/core/profile_repository.dart'
+      - 'test/profile_repository_storage_hardening_test.dart'
       - 'lib/app/app_state.dart'
       - 'lib/features/settings/**'
       - 'lib/features/teacher_mode/**'
@@ -30,6 +54,7 @@ jobs:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Save source identity and validate exact Godot integration pin
         run: |
           set -euo pipefail
@@ -55,6 +80,12 @@ jobs:
           flutter-version: '3.44.9'
           channel: stable
           cache: true
+      - name: Install real system emoji for ABC screenshots and Flutter test suite
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
       - name: Resolve immutable Flutter dependencies
         run: flutter pub get --enforce-lockfile
       - name: Flutter static analysis
@@ -67,18 +98,80 @@ jobs:
             test/home_navigation_progress_test.dart \
             test/home_subject_islands_premium_test.dart \
             test/academy_grade_3_4_visible_navigation_test.dart \
+            test/lumo_scene_art_panel_test.dart \
+            test/learning_lab_runtime_test.dart \
             test/parents/parent_school_grade_progression_test.dart
+      - name: Save genuine rendered Quizshow screenshots for reference comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1983-quiz-studio-captures
+          path: .ci-results/quiz-premium-stage/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30
       - name: Full Flutter regression suite
         run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Capture spatial reading, answer retry and subject cards on phone and Fold
+        env:
+          LUMO_SPATIAL_CAPTURES: visual-evidence/1988/spatial-reading
+        run: flutter test --no-pub --reporter=expanded test/design/lumo_spatial_reading_capture_test.dart
+      - name: Install actual app-script verification dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          python3 -m venv .ci-python
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          command -v rg
+          .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
+      - name: Verify all build and preservation contracts
+        run: .ci-python/bin/python -m unittest discover -s scripts/tests -v
       - name: Code-level Android probe regression with verified image dependencies
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
           sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
-          python3 -m venv .ci-python
-          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
           .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+      - name: Reject unreadable Ahem-font captures before issuing visual proof
+        run: |
+          set -euo pipefail
+          .ci-python/bin/python -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
+          .ci-python/bin/python tools/qa/verify_capture_fonts.py visual-evidence
+      - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
+        run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
+      - name: Render actual premium lessons on phone and Fold
+        env:
+          LUMO_LESSON_CAPTURES: visual-evidence/1978/lessons
+        run: flutter test --no-pub --reporter=expanded test/design/lesson_premium_capture_test.dart
+      - name: Render actual app sections on phone and Fold
+        env:
+          LUMO_TOUR_DIR: visual-evidence/1978/tour
+          LUMO_TOUR_CAPTURE_SCALE: '1'
+        run: flutter test --no-pub --reporter=expanded test/design/app_tour_capture_test.dart
+      - name: Render playable Connect Four on five real layout sizes
+        env:
+          LUMO_CONNECT_CAPTURES: visual-evidence/1978/connect_four
+        run: flutter test --no-pub --reporter=expanded test/design/connect_four_visual_test.dart
+      - name: Render genuine offline atelier on phone and Fold
+        env:
+          LUMO_LAB_CAPTURES: visual-evidence/1981/atelier
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s test/design/learning_lab_visual_capture_test.dart
+          for device in phone fold-open fold-cover-large-text; do
+            for phase in example build; do
+              test -s "visual-evidence/1981/atelier/${device}-${phase}.png"
+            done
+          done
+      - name: Archive only verified readable Flutter captures
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1981-real-flutter-captures
+          path: visual-evidence/
+          if-no-files-found: error
+          retention-days: 30
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
       - name: Build unified real Android APK
@@ -91,20 +184,411 @@ jobs:
           sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
           test -s dist/APK-VERIFICATION.json
           test -s dist/BUILD-PROVENANCE.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64
+          sha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt
           grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
       - name: Upload exact candidate (no release or synthetic screenshots)
         if: success()
         uses: actions/upload-artifact@v4
         with:
           name: lumo-lernen-kart-unified-2026-candidate
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Deliver verified ARM64 APK separately for direct download
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
           path: |
             dist/Lumo-Lernen-Neu.apk
+            dist/APK-SHA256.txt
             dist/APK-VERIFICATION.json
             dist/BUILD-PROVENANCE.json
-            dist/APK-SHA256.txt
-            dist/BUILD-SOURCE.txt
             dist/GODOT-SOURCE.json
             dist/APP-VERSION.txt
           if-no-files-found: error
           retention-days: 30
           compression-level: 0
+  android-tour:
+    needs: verify-and-build
+    runs-on: ubuntu-latest
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: candidate/dist/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Install and tour the exact APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-unified-android-tour
+          path: tour/
+          retention-days: 30
+
+  publish-reading-adventure-prerelease:
+    name: Publish verified 1988 spatial reading APK to Releases
+    needs: [verify-and-build, android-tour]
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.ref == 'chatgpt/lumo-fair-cards-buildworld-release-gates-2026-10-19'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      actions: write
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
+          path: dist/
+      - name: Verify delivered native APK identity without rebuilding
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/BUILD-PROVENANCE.json
+          test -s dist/APK-SHA256.txt
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib
+          import json
+          p = Path('dist/Lumo-Lernen-Neu.apk')
+          provenance = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          assert provenance['versionCode'] == 1988
+          assert provenance['versionName'] == '0.12.76'
+          assert provenance['godot']['revision'] == 'ffd2955ca9222daf02e6b602b3f213fd9383204a'
+          assert 'arm64-v8a' in provenance['abis']
+          assert provenance['sha256'] == hashlib.sha256(p.read_bytes()).hexdigest()
+          print('PASS verified 1988 ARM64 APK')
+          PY
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1988-ARM64.apk
+      - name: Publish a mobile-visible prerelease only after Android tour PASS
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          TAG=lumo-v0.12.76-1988-fair-cards
+          FILE=dist/Lumo-Lernen-Kart-1988-ARM64.apk
+          test -s "$FILE"
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo 'Release tag already exists: refusing to overwrite previously published APK'
+            exit 1
+          fi
+          gh release create "$TAG" "$FILE" \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title 'Lumo 1988 – faire Lumo Cards und gemeinsames Premium-Denkprofil' \
+            --notes 'Android-Testversion 0.12.76 (Build 1988). Zusätzlich zu den Premium-Denkprofil-/Knobelverbesserungen: fairer, wechselnder Gegner in Lumo Cards und Bauwelt bis zur visuellen Abnahme als In Entwicklung; Standardtest 24 bleibt bestehen. Separater Godot-Pin mit Grafikprofil-Persistenz und ressourcenschonender Startampel. Nur nach vollständiger Flutter-Suite, Paketprüfung und erfolgreicher Android-Emulatortour veröffentlicht. Keine physische Fold- oder 60-FPS-Messung.' \
+            --prerelease
+          gh release view "$TAG" --repo Ullmann27/lumo-lernen \
+            --json url,isDraft,assets \
+            --jq '{url: .url, draft: .isDraft, assets: [.assets[].name]}'
+      # No cleanup before successful build, emulator tour and release creation.
+      # Preserve all published versions (including 1984 and 1985).
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Remove only reviewed obsolete draft APK releases and aged disposable artifacts
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          python3 scripts/cleanup_obsolete_github_assets.py
+          python3 scripts/cleanup_obsolete_github_assets.py --execute
+
+  publish-1989-android-test-prerelease:
+    name: Publish verified Lumo 1989 ARM64 test APK
+    needs: [verify-and-build, android-tour]
+    if: github.event_name == 'pull_request' && github.repository == 'Ullmann27/lumo-lernen' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.head.ref == 'chatgpt/lumo-1989-premium-learning-cards-2026-10-19'
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
+          path: dist/
+      - name: Verify version and native APK identity without rebuilding
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          from pathlib import Path
+          import hashlib, json
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          evidence = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text(encoding='utf-8'))
+          native = json.loads(Path('dist/GODOT-SOURCE.json').read_text(encoding='utf-8'))
+          assert evidence['versionCode'] == 1989
+          assert evidence['versionName'] == '0.12.77'
+          assert evidence['godot']['revision'] == 'ffd2955ca9222daf02e6b602b3f213fd9383204a'
+          assert native['revision'] == evidence['godot']['revision']
+          assert 'arm64-v8a' in evidence['abis']
+          assert evidence['sha256'] == hashlib.sha256(apk.read_bytes()).hexdigest()
+          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.77+1989'
+          print('PASS: immutable 1989 ARM64 candidate identity')
+          PY
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Kart-1989-ARM64.apk
+          sha256sum dist/Lumo-Lernen-Kart-1989-ARM64.apk > dist/Lumo-Lernen-Kart-1989-ARM64.sha256
+      - name: Publish one safe prerelease for human device testing
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          TAG=lumo-v0.12.77-1989-test
+          FILE=dist/Lumo-Lernen-Kart-1989-ARM64.apk
+          test -s "$FILE"
+          if gh release view "$TAG" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Existing immutable 1989 test release preserved"
+            exit 0
+          fi
+          gh release create "$TAG" "$FILE" dist/Lumo-Lernen-Kart-1989-ARM64.sha256 \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title 'Lumo 1989 – Android ARM64 Testversion' \
+            --notes "APK 0.12.77+1989; source $SOURCE_SHA. Verified complete Flutter suite, signed ARM64 archive and successful x86_64 Android emulator tour. NOT tested on physical Fold; NOT production, Play Store or ministry approved. Build 1988 remains unchanged." \
+            --prerelease
+          gh release view "$TAG" --repo Ullmann27/lumo-lernen --json url,assets \
+            --jq '{url: .url, assets: [.assets[].name]}'
+
+
+  publish-nextgen-20261021:
+    name: Publish independently tested NextGen ARM64 prerelease
+    needs: [verify-and-build, android-tour]
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/lumo-crystal-depth-integration-20261021'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
+          path: dist/
+      - name: Verify complete release evidence, exact Flutter commit and newer Kart
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+          GODOT_SHA: 700baf49828eda693ecce15b415847818b1b56d3
+        run: |
+          set -euo pipefail
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          proof = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          actual_hash = hashlib.sha256(apk.read_bytes()).hexdigest()
+          expected = Path('dist/APK-SHA256.txt').read_text().split()[0]
+          pin = json.loads(Path('dist/GODOT-SOURCE.json').read_text())
+          assert actual_hash == expected, 'APK hash mismatch'
+          assert proof['flutter_source_commit'] == os.environ['SOURCE_SHA'], 'Unexpected Flutter source'
+          assert proof['godot']['revision'] == os.environ['GODOT_SHA'], 'Wrong embedded Kart revision'
+          assert pin['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot pin file'
+          assert proof['tracked_source_clean'] is True, 'Modified tracked sources'
+          assert proof['versionCode'] == 1996, 'Unexpected APK versionCode'
+          assert proof['versionName'] == '0.12.84', 'Unexpected APK versionName'
+          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.84+1996', 'Unexpected app source version'
+          verification = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+          assert verification['versionCode'] == 1996, 'APK verifier build mismatch'
+          assert verification['versionName'] == '0.12.84', 'APK verifier name mismatch'
+          assert verification['sha256'] == actual_hash, 'APK verifier hash mismatch'
+          assert verification['godot']['revision'] == os.environ['GODOT_SHA'], 'APK embedded Kart mismatch'
+          print('PASS candidate and integrated Godot SHA verified')
+          PY
+      - name: Publish unique, immutable test APK without touching existing Releases
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          short_sha="${SOURCE_SHA:0:12}"
+          tag="lumo-nextgen-20261021-${short_sha}"
+          if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Candidate already published; existing release preserved."
+            exit 0
+          fi
+          cat > dist/RELEASE-NOTES.txt <<EOF
+          Lumo Lernen + Lumo Kart 0.12.84 Build 1996 ARM64 with 3D crystal depth.
+          Flutter source commit: $SOURCE_SHA
+          Godot source commit: 700baf49828eda693ecce15b415847818b1b56d3
+          Includes SOL math crystals, verified four-size complete Kart garage.
+          App source passed Flutter tests, actual Android integration build,
+          integrity checks, and x86_64 Android emulator tour before publication.
+          This is an installation test, NOT Google Play approval or a
+          physically verified Samsung/Fold performance claim.
+          Earlier versions/releases and the production main branch are preserved.
+          EOF
+          gh release create "$tag" \
+            "dist/Lumo-Lernen-Neu.apk#Lumo-Lernen-NextGen-ARM64.apk" \
+            "dist/APK-SHA256.txt" \
+            "dist/BUILD-PROVENANCE.json" \
+            "dist/GODOT-SOURCE.json" \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title "Lumo NextGen Android ARM64 • $short_sha" \
+            --notes-file dist/RELEASE-NOTES.txt \
+            --prerelease
+          gh release view "$tag" --repo Ullmann27/lumo-lernen --json url,assets
+
+  publish-0-12-85-1997:
+    name: Publish verified 0.12.85+1997 ARM64 APK as direct HTTPS download
+    needs: [verify-and-build, android-tour]
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'claude/lumo-android-integration-m0-aloove'
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-unified-arm64-verified
+          path: dist/
+      - name: Verify exact build, version, Kart pin and certificate before publishing
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+          GODOT_SHA: 3a3142608f6b150ee251373ba81e6face2eed4b3
+        run: |
+          set -euo pipefail
+          sha256sum -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import hashlib
+          import json
+          import os
+          from pathlib import Path
+
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          proof = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          verification = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+          pin = json.loads(Path('dist/GODOT-SOURCE.json').read_text())
+          digest = hashlib.sha256(apk.read_bytes()).hexdigest()
+          assert digest == Path('dist/APK-SHA256.txt').read_text().split()[0], 'APK hash mismatch'
+          assert proof['flutter_source_commit'] == os.environ['SOURCE_SHA'], 'Unexpected Flutter source'
+          assert proof['tracked_source_clean'] is True, 'Modified tracked sources'
+          assert proof['godot']['revision'] == os.environ['GODOT_SHA'], 'Wrong embedded Kart revision'
+          assert pin['revision'] == os.environ['GODOT_SHA'], 'Wrong Godot pin file'
+          assert Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.12.85+1997'
+          for info in (proof, verification):
+              assert info['versionCode'] == 1997 and info['versionName'] == '0.12.85', info
+          assert verification['sha256'] == digest, 'APK verifier hash mismatch'
+          assert 'arm64-v8a' in verification['abis'], verification['abis']
+          Path('dist/RELEASE-FACTS.txt').write_text(
+              f"package: {verification['package']}\n"
+              f"versionName: {verification['versionName']}\n"
+              f"versionCode: {verification['versionCode']}\n"
+              f"signingCertificateSha256: {verification['signingCertificateSha256']}\n"
+              f"apkSha256: {digest}\n"
+              f"flutterSourceCommit: {os.environ['SOURCE_SHA']}\n"
+              f"godotSourceCommit: {os.environ['GODOT_SHA']}\n")
+          print(Path('dist/RELEASE-FACTS.txt').read_text())
+          PY
+      - name: Publish once per version; never replace an existing release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          tag="lumo-0.12.85-1997"
+          if gh release view "$tag" --repo Ullmann27/lumo-lernen >/dev/null 2>&1; then
+            echo "Release $tag already exists and is preserved; bump the version for a new download."
+            gh release view "$tag" --repo Ullmann27/lumo-lernen --json url,assets
+            exit 0
+          fi
+          cp dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-0.12.85-1997-ARM64.apk
+          (cd dist && sha256sum Lumo-Lernen-0.12.85-1997-ARM64.apk > Lumo-Lernen-0.12.85-1997-ARM64.apk.sha256)
+          {
+            echo "Lumo Lernen + Lumo Kart 0.12.85 (Build 1997), ARM64 test APK."
+            echo
+            cat dist/RELEASE-FACTS.txt
+            echo
+            echo "Before publication: full Flutter suite, build and preservation contracts,"
+            echo "APK verification and the x86_64 Android emulator tour (launch, learning,"
+            echo "Kart race with HUD, driving, pause, return, learning data and restart) passed"
+            echo "in this workflow run."
+            echo "Signed with the public Lumo TEST key: not a Google Play build. Not tested on a"
+            echo "physical Samsung/Fold device; no 60-FPS claim. 0.12.84+1996 stays the fallback."
+          } > dist/RELEASE-NOTES.txt
+          gh release create "$tag" \
+            dist/Lumo-Lernen-0.12.85-1997-ARM64.apk \
+            dist/Lumo-Lernen-0.12.85-1997-ARM64.apk.sha256 \
+            dist/BUILD-PROVENANCE.json \
+            dist/GODOT-SOURCE.json \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title "Lumo 0.12.85 (1997) Android ARM64 Test-APK" \
+            --notes-file dist/RELEASE-NOTES.txt \
+            --prerelease
+          echo "Direct download: https://github.com/Ullmann27/lumo-lernen/releases/download/$tag/Lumo-Lernen-0.12.85-1997-ARM64.apk"
+          gh release view "$tag" --repo Ullmann27/lumo-lernen --json url,assets

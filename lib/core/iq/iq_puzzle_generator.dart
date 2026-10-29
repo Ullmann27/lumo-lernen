@@ -414,8 +414,12 @@ class IqPuzzleGenerator {
         rule = 'Jede Zahl ist um $step kleiner.';
       case 4:
         final a = 1 + _random.nextInt(3);
-        sequence = [for (var i = 0; i < 5; i++) a * (1 << i)];
-        rule = 'Jede Zahl wird verdoppelt.';
+        final factor = _random.nextBool() ? 2 : 3;
+        sequence = [a];
+        for (var i = 1; i < 5; i++) {
+          sequence.add(sequence.last * factor);
+        }
+        rule = 'Jede Zahl wird mit $factor multipliziert.';
       case 5:
         final up = 3 + _random.nextInt(3);
         final down = 1 + _random.nextInt(2);
@@ -427,18 +431,23 @@ class IqPuzzleGenerator {
         rule = 'Abwechselnd kommen $up dazu und $down weg.';
       case 6:
         final a = 1 + _random.nextInt(5);
+        final stepGrowth = 1 + _random.nextInt(2);
         sequence = [a];
         for (var i = 1; i < 6; i++) {
-          sequence.add(sequence.last + i);
+          sequence.add(sequence.last + i * stepGrowth);
         }
-        rule = 'Der Abstand wird jedes Mal um 1 größer: +1, +2, +3 …';
+        rule = 'Die Sprünge wachsen regelmäßig: +$stepGrowth, '
+            '+${2 * stepGrowth}, +${3 * stepGrowth} …';
       case 7:
         final a = 1 + _random.nextInt(3);
         final b = 10 * (1 + _random.nextInt(2));
+        final step = 1 + _random.nextInt(3);
         sequence = [
-          for (var i = 0; i < 7; i++) i.isEven ? a + i ~/ 2 : b * (i ~/ 2 + 1),
+          for (var i = 0; i < 7; i++)
+            i.isEven ? a + (i ~/ 2) * step : b * (i ~/ 2 + 1),
         ];
-        rule = 'Zwei Reihen sind ineinander verschachtelt: Jede zweite Zahl gehört zusammen.';
+        rule = 'Zwei Zahlenreihen sind ineinander verschachtelt: '
+            'Eine wächst um $step, die andere um $b.';
       default:
         if (_random.nextBool()) {
           final starts = [(1, 1), (1, 2), (2, 3), (1, 3)][_random.nextInt(4)];

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/discovery_progress.dart';
+import '../../core/learning_journey.dart';
 
 /// Durable answer/reward boundary shared by the direct Akademie modules.
 /// A failed write keeps the accepted answer locked until Retry flushes it.
@@ -42,9 +43,11 @@ class LearningModuleProgress extends ChangeNotifier
       ? 'Die Entdeckungsfreigabe wird gespeichert…'
       : discoveryTarget != null
           ? 'Dein Entdeckungsweg wird gespeichert…'
-          : _pending?.correct == null
-              ? 'Wir speichern deine Belohnung…'
-              : 'Wir speichern deine Antwort…';
+          : _pending?.learningEvidence != null && _pending?.correct == null
+              ? 'Wir speichern deinen Lernschritt…'
+              : _pending?.correct == null
+                  ? 'Wir speichern deine Belohnung…'
+                  : 'Wir speichern deine Antwort…';
 
   /// Zeitpunkt der letzten Antwort (oder des Starts); daraus ergibt sich die
   /// Bearbeitungszeit der nächsten Aufgabe fürs Aufgabenprotokoll.
@@ -62,7 +65,21 @@ class LearningModuleProgress extends ChangeNotifier
     bool cosmosIsMath = false,
     bool cosmosIsPerfect = false,
     DiscoveryStepKind discoveryStep = DiscoveryStepKind.independent,
+    LearningEvidence? learningEvidence,
   }) {
+    learningEvidence?.validate();
+    if (learningEvidence != null && discoveryTarget != null) {
+      throw StateError('Discovery uses its own existing observation model');
+    }
+    if (learningEvidence != null && learningEvidence.correct != correct) {
+      throw ArgumentError('Answer and learning evidence must agree');
+    }
+    if (learningEvidence != null &&
+        hintUsed &&
+        learningEvidence.helpLevel == 0) {
+      throw ArgumentError('Assisted answers require assisted evidence');
+    }
+    hintUsed = hintUsed || (learningEvidence?.helpLevel ?? 0) > 0;
     if (_disposed || appState.resetting) return Future<bool>.value(false);
     if (_pending != null) return _pending!.completion.future;
     final owner = appState.beginLearningAction();
@@ -83,6 +100,27 @@ class LearningModuleProgress extends ChangeNotifier
       expected: expected,
       durationMs: ms,
       discoveryStep: discoveryStep,
+      learningEvidence: learningEvidence,
+    ));
+  }
+
+  /// Accompanied construction is an observation, never a school answer,
+  /// Daily increment or reward. It uses the same captured owner and retry.
+  Future<bool> saveObservation(LearningEvidence evidence) {
+    evidence.validate();
+    if (evidence.helpLevel == 0) {
+      throw ArgumentError('Accompanied observations require support metadata');
+    }
+    if (discoveryTarget != null) {
+      throw StateError('Discovery uses its own existing observation model');
+    }
+    if (_disposed || appState.resetting) return Future<bool>.value(false);
+    if (_pending != null) return _pending!.completion.future;
+    return _enqueue(_PendingModuleSave(
+      stars: 0,
+      xp: 0,
+      owner: appState.beginLearningAction(),
+      learningEvidence: evidence,
     ));
   }
 
@@ -224,6 +262,15 @@ class LearningModuleProgress extends ChangeNotifier
       }
       // Flags precede writes: both services mutate before persistence and a
       // failure must retry the same queued state instead of awarding/counting.
+      if (pending.learningEvidence != null) {
+        // Loading is fallible before any mutation. Do not mark an observation
+        // recorded until its original owner's bytes are safely available.
+        await owner.profile.loadJourney();
+        if (!appState.canUseLearningLease(owner)) {
+          _complete(pending, false);
+          return;
+        }
+      }
       if (!pending.rewardBooked) {
         pending.rewardBooked = true;
         appState.addRewards(stars: pending.stars, xp: pending.xp);
@@ -279,6 +326,17 @@ class LearningModuleProgress extends ChangeNotifier
         }
       } else if (pending.sessionBonus) {
         _bonusSaved = true;
+      }
+      final evidence = pending.learningEvidence;
+      if (evidence != null) {
+        if (!appState.canUseLearningLease(owner)) {
+          _complete(pending, false);
+          return;
+        }
+        // Re-submit the identical accepted identity: the journal deduplicates
+        // it after mutation, and retries validation/load failures before it.
+        await owner.profile.recordJourneyEvidence(
+            subject: subject, unit: unit, evidence: evidence);
       }
       // Unmount cancels UI continuations, not the accepted storage operation.
       _complete(
@@ -401,6 +459,7 @@ class _PendingModuleSave {
     this.discoveryIntroduction = false,
     this.discoveryStep = DiscoveryStepKind.independent,
     this.discoveryPermission,
+    this.learningEvidence,
   });
 
   final String prompt;
@@ -410,6 +469,7 @@ class _PendingModuleSave {
   final bool discoveryIntroduction;
   final DiscoveryStepKind discoveryStep;
   final ({bool enabled, int maxGrade})? discoveryPermission;
+  final LearningEvidence? learningEvidence;
 
   final bool? correct;
   final bool hintUsed;

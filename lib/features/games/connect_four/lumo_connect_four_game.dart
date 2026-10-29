@@ -37,6 +37,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   bool _rewarded = false;
   bool _twoPlayers = false;
   int _round = 0;
+  int _completedChildMoves = 0;
   String _message = 'Vier in einer Reihe. Du fängst an!';
 
   bool get _reduced =>
@@ -92,6 +93,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       _fallPiece = ConnectPiece.empty;
       _busy = false;
       _rewarded = false;
+      _completedChildMoves = 0;
       _message = 'Neues Spiel. Du fängst an!';
     });
   }
@@ -112,6 +114,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     final piece = _game.turn;
     final position = _game.drop(column);
     if (position == null) return;
+    if (piece == ConnectPiece.child) _completedChildMoves++;
     final round = _round;
     final duration = _reduced
         ? Duration.zero
@@ -152,8 +155,16 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
               ? 'Du bist dran!'
               : 'Gold ist dran!';
         });
-        if (_game.turn == ConnectPiece.child) {
-          unawaited(LumoVoice.instance.speak('Du bist dran!'));
+        // The visual turn label stays live on every move; narration is a
+        // sparse reminder rather than an interruption after every move.
+        if (_game.turn == ConnectPiece.child &&
+            _completedChildMoves > 0 &&
+            _completedChildMoves % 5 == 0) {
+          unawaited(LumoVoice.instance.speak(
+            (_completedChildMoves ~/ 5).isEven
+                ? 'Überleg dir deinen nächsten Zug.'
+                : 'Du bist wieder dran!',
+          ));
         }
       }
     });
@@ -414,17 +425,39 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
           child: Column(mainAxisSize: MainAxisSize.min, children: [
             SizedBox(width: width, height: width * 6 / 7, child: _board()),
             const SizedBox(height: 8),
-            SizedBox(width: width, child: _columnControls(maxWidth: width)),
+            SizedBox(
+                width: width,
+                child: _columnControls(
+                    maxWidth: width,
+                    protectNarrowTouchTargets:
+                        MediaQuery.sizeOf(context).width <= 360 &&
+                        MediaQuery.orientationOf(context) == Orientation.portrait),
+              ),
           ]),
         );
       });
 
-  Widget _columnControls({double maxWidth = 560}) => Center(
-        child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: maxWidth),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12),
-            child: Row(children: [
+  Widget _columnControls(
+          {double maxWidth = 560, bool protectNarrowTouchTargets = false}) =>
+      Center(
+        // On an outer Fold display (or a small phone with large text), seven
+        // minimum 44dp touch targets cannot always fit side-by-side.
+        // Keep every real column control accessible by horizontal scrolling
+        // instead of compressing its hit target or overflowing the viewport.
+        child: SizedBox(
+          width: maxWidth,
+          child: SingleChildScrollView(
+            key: const ValueKey('connect-column-scroll'),
+            scrollDirection: Axis.horizontal,
+            child: SizedBox(
+              width: math.max(
+                  maxWidth,
+                  protectNarrowTouchTargets
+                      ? ConnectFourEngine.columns * 44.0 + 24.0
+                      : maxWidth),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 12),
+                child: Row(children: [
               for (var c = 0; c < ConnectFourEngine.columns; c++)
                 Expanded(
                   child: LumoPressable(
@@ -457,7 +490,9 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                     ),
                   ),
                 ),
-            ]),
+                ]),
+              ),
+            ),
           ),
         ),
       );

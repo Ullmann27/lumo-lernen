@@ -241,12 +241,22 @@ class MathTaskTemplate {
         );
         final right = limit == null ? b : b.clamp(1, limit - a).toInt();
         final answer = a + right;
+        if (_asksMissingNumber(seed)) {
+          // Same numbers as a different, curriculum-typical format: the child
+          // finds the missing addend instead of always computing the sum.
+          return _numberTask('$a + ? = $answer', right, 'Von $a bis $answer fehlen noch $right. Zähle von $a weiter bis $answer.', 'missing_number',
+          );
+        }
         return _numberTask('$a + $right = ?', answer, 'Lege zuerst $a und dann $right dazu. Zusammen sind es $answer.', 'dots',
         );
       case MathTemplateKind.subtraction:
         final minuend = a ;
         final subtrahend = b.clamp(1, minuend).toInt();
         final answer = minuend - subtrahend;
+        if (_asksMissingNumber(seed)) {
+          return _numberTask('$minuend - ? = $answer', subtrahend, 'Von $minuend zurück bis $answer sind es $subtrahend Schritte. So viel wurde weggenommen.', 'missing_number',
+          );
+        }
         return _numberTask('$minuend - $subtrahend = ?', answer, 'Starte bei $minuend und gehe $subtrahend Schritte zurück.', 'line',
         );
       case MathTemplateKind.numberLineMissing:
@@ -688,6 +698,11 @@ enum MathTemplateKind {
 }
 
 // Uses bounded integer operations so the same seed works on mobile and web.
+/// Every fourth plus/minus task (deterministic per seed) asks for the missing
+/// number. Its visual id is deliberately not 'dots'/'line': those renderers
+/// parse "a + b" from the prompt and would draw a wrong picture.
+bool _asksMissingNumber(int seed) => _mixSeed(seed + 97) % 4 == 0;
+
 int _mixSeed(int seed) {
   var value = seed & 0x7fffffff;
   value = ((value ^ (value >> 16)) * 2053) & 0x7fffffff;

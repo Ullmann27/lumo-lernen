@@ -133,6 +133,8 @@ class LumoApp extends StatefulWidget {
 class _LumoAppState extends State<LumoApp> {
   final _voiceRouteObserver = LumoVoiceRouteObserver();
   final _repo = ProfileRepository();
+  final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
+  bool _savingProfile = false;
   bool _loading = true;
   bool _warmedCache = false;
   UserProfile? _profile;
@@ -195,14 +197,28 @@ class _LumoAppState extends State<LumoApp> {
   }
 
   Future<void> _finishOnboarding(UserProfile profile) async {
+    if (_savingProfile) return;
+    _savingProfile = true;
     final cleanProfile = profile.normalized();
     try {
       await _repo.saveProfile(cleanProfile);
+      if (!mounted) return;
+      setState(() => _profile = cleanProfile);
     } catch (_) {
-      // Auch wenn Speichern fehlschlägt, darf das Kind nicht im Onboarding hängen bleiben.
+      if (!mounted) return;
+      // Do not show AppShell or suggest progress is saved after a rejected
+      // Android write. Keep all onboarding fields visible for a real retry.
+      _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
+      _scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
+        content: Text(
+          'Lumo konnte dein Profil noch nicht speichern. '
+          'Bitte tippe erneut auf Weiter. Deine bisherigen Daten bleiben erhalten.',
+        ),
+        duration: Duration(seconds: 8),
+      ));
+    } finally {
+      _savingProfile = false;
     }
-    if (!mounted) return;
-    setState(() => _profile = cleanProfile);
   }
 
   @override
@@ -282,6 +298,7 @@ class _LumoAppState extends State<LumoApp> {
     return MaterialApp(
       title: 'Lumo Lernen',
       debugShowCheckedModeBanner: false,
+      scaffoldMessengerKey: _scaffoldMessengerKey,
       theme: LumoAppTheme.light(),
       navigatorObservers: [_voiceRouteObserver],
       home: home,

@@ -1,0 +1,9 @@
+test_identical_capture_passes_and_inputs_are_immutable (test_lumo_visual_compare.VisualCompareTest.test_identical_capture_passes_and_inputs_are_immutable) ... ok
+test_invalid_regions_are_rejected (test_lumo_visual_compare.VisualCompareTest.test_invalid_regions_are_rejected) ... ok
+test_planted_change_is_localized_and_regression_fails (test_lumo_visual_compare.VisualCompareTest.test_planted_change_is_localized_and_regression_fails) ... ok
+test_resize_requires_explicit_diagnostic_alignment (test_lumo_visual_compare.VisualCompareTest.test_resize_requires_explicit_diagnostic_alignment) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.062s
+
+OK

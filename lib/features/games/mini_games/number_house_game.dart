@@ -184,20 +184,21 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
         clock: _clock,
         onRestart: _restartRound,
         child: Scaffold(
-          backgroundColor: const Color(0xFFFFF7E6),
+          backgroundColor: LumoBoardColors.backdrop,
           appBar: AppBar(
-            backgroundColor: Colors.transparent,
+            backgroundColor: LumoBoardColors.backdrop,
             elevation: 0,
             leading: IconButton(
-              icon: const Icon(Icons.close_rounded, color: LumoColors.ink700),
-              onPressed: () => Navigator.of(context).maybePop(),
+              tooltip: 'Pausieren / Zurück',
+              icon: const Icon(Icons.close_rounded, color: Colors.white),
+              onPressed: _clock.pause,
             ),
             title: Text(
               widget.level.title,
               style: const TextStyle(
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w900,
-                color: LumoColors.ink900,
+                color: Colors.white,
                 fontSize: 18,
               ),
             ),
@@ -210,10 +211,13 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
                   padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
                   child: Column(
                     children: [
-                      _HouseHeader(
+                      LumoBoardRoundProgress(
                           currentIndex: _currentIndex,
                           correct: _correct,
-                          total: _totalTasks),
+                          total: _totalTasks,
+                          reduceMotion:
+                              widget.appState.state.settings.reduceAnimations ||
+                                  widget.appState.state.settings.calmMode),
                       const SizedBox(height: 14),
                       Expanded(child: _buildTaskCard()),
                       const SizedBox(height: 12),
@@ -240,11 +244,7 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
     return SingleChildScrollView(
       child: Container(
         padding: const EdgeInsets.fromLTRB(20, 22, 20, 24),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(LumoRadius.xl),
-          boxShadow: LumoShadow.card,
-        ),
+        decoration: lumoBoardGlass(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -266,7 +266,7 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
                       fontFamily: 'Nunito',
                       fontWeight: FontWeight.w800,
                       fontSize: 13,
-                      color: LumoColors.ink500,
+                      color: LumoBoardColors.mutedInk,
                     ),
                   ),
                 ),
@@ -279,7 +279,7 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w900,
                 fontSize: 25,
-                color: LumoColors.ink900,
+                color: LumoBoardColors.ink,
                 height: 1.25,
               ),
             ),
@@ -290,7 +290,7 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w800,
                 fontSize: 16,
-                color: LumoColors.ink600,
+                color: LumoBoardColors.mutedInk,
               ),
             ),
             const SizedBox(height: 18),
@@ -312,6 +312,9 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
                   selected: _selectedOption == i,
                   correct: task.choices[i] == task.answer,
                   revealed: _revealed,
+                  reduceMotion:
+                      widget.appState.state.settings.reduceAnimations ||
+                          widget.appState.state.settings.calmMode,
                   onTap: () => _selectOption(i),
                 ),
               );
@@ -336,8 +339,10 @@ class _NumberHouseGameState extends State<NumberHouseGame> {
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
           backgroundColor:
-              enabled ? LumoColors.orange : const Color(0xFFE0E0E0),
+              enabled ? LumoBoardColors.action : const Color(0xFFE0E0E0),
           foregroundColor: Colors.white,
+          disabledBackgroundColor: const Color(0xFF173654),
+          disabledForegroundColor: const Color(0xFFBED2E8),
           padding: const EdgeInsets.symmetric(vertical: 16),
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(LumoRadius.pill)),
@@ -361,6 +366,7 @@ class _ChoiceTile extends StatelessWidget {
     required this.selected,
     required this.correct,
     required this.revealed,
+    required this.reduceMotion,
     required this.onTap,
   });
 
@@ -368,13 +374,14 @@ class _ChoiceTile extends StatelessWidget {
   final bool selected;
   final bool correct;
   final bool revealed;
+  final bool reduceMotion;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
     Color bg = Colors.white;
-    Color border = LumoColors.ink100;
-    Color fg = LumoColors.ink900;
+    Color border = const Color(0xFFC9DBE8);
+    Color fg = LumoBoardColors.ink;
     if (revealed) {
       if (correct) {
         bg = const Color(0xFF10B981);
@@ -386,14 +393,14 @@ class _ChoiceTile extends StatelessWidget {
         fg = const Color(0xFF7C2D12);
       }
     } else if (selected) {
-      bg = LumoColors.orange;
-      border = const Color(0xFFD97706);
-      fg = Colors.white;
+      bg = const Color(0xFFD7F5FC);
+      border = LumoBoardColors.action;
+      fg = LumoBoardColors.ink;
     }
     return GestureDetector(
       onTap: revealed ? null : onTap,
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
+        duration: lumoBoardMotionDuration(context, reduceMotion: reduceMotion),
         padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 16),
         decoration: BoxDecoration(
           color: bg,
@@ -429,63 +436,6 @@ class _ChoiceTile extends StatelessWidget {
                   color: Color(0xFF7C2D12), size: 22),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _HouseHeader extends StatelessWidget {
-  const _HouseHeader(
-      {required this.currentIndex, required this.correct, required this.total});
-  final int currentIndex;
-  final int correct;
-  final int total;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(LumoRadius.lg),
-        boxShadow: [
-          BoxShadow(
-            color: LumoColors.orange.withOpacity(0.15),
-            blurRadius: 12,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        children: List<Widget>.generate(total, (i) {
-          final isCurrent = i == currentIndex;
-          final isDone = i < correct;
-          return Expanded(
-            child: Container(
-              height: 36,
-              margin: const EdgeInsets.symmetric(horizontal: 4),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: isDone
-                    ? LumoColors.gold
-                    : (isCurrent ? LumoColors.orange : const Color(0xFFEEEEEE)),
-                borderRadius: BorderRadius.circular(LumoRadius.pill),
-                boxShadow: isCurrent
-                    ? [
-                        BoxShadow(
-                            color: LumoColors.orange.withOpacity(0.45),
-                            blurRadius: 10,
-                            offset: const Offset(0, 3))
-                      ]
-                    : null,
-              ),
-              child: Text(
-                isDone ? '⭐' : (isCurrent ? '🏠' : ''),
-                style: const TextStyle(fontSize: 18),
-              ),
-            ),
-          );
-        }),
       ),
     );
   }
@@ -532,7 +482,7 @@ class _ResultDialog extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w900,
                 fontSize: 24,
-                color: LumoColors.ink900,
+                color: LumoBoardColors.ink,
               ),
             ),
             const SizedBox(height: 6),
@@ -542,7 +492,7 @@ class _ResultDialog extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w700,
                 fontSize: 14,
-                color: LumoColors.ink500,
+                color: LumoBoardColors.mutedInk,
               ),
             ),
             const SizedBox(height: 16),
@@ -567,7 +517,7 @@ class _ResultDialog extends StatelessWidget {
                 fontFamily: 'Nunito',
                 fontWeight: FontWeight.w700,
                 fontSize: 13,
-                color: LumoColors.ink600,
+                color: LumoBoardColors.mutedInk,
               ),
             ),
             const SizedBox(height: 18),

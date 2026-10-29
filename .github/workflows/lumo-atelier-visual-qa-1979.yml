@@ -1,0 +1,60 @@
+name: Lumo 1979 Atelier visual and runtime gate
+on:
+  push:
+    branches: [codex/lumo-learning-lab-2026-10-18]
+    paths:
+      - 'lib/features/learning/lab/**'
+      - 'test/learning_lab_runtime_test.dart'
+      - 'test/design/learning_lab_visual_capture_test.dart'
+      - '.github/workflows/lumo-atelier-visual-qa-1979.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-1979-atelier-visual-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  atelier-visual:
+    runs-on: ubuntu-latest
+    timeout-minutes: 14
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Exact source and dependencies
+        run: |
+          git rev-parse HEAD
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Verify profile-safe real atelier interaction
+        run: flutter test --no-pub --reporter=expanded --timeout=120s test/learning_lab_runtime_test.dart
+      - name: Capture genuine atelier on three device layouts
+        env:
+          LUMO_LAB_CAPTURES: visual-evidence/1979/atelier
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=120s test/design/learning_lab_visual_capture_test.dart
+          for device in phone fold-open fold-cover-large-text; do
+            for phase in example build; do
+              test -s "visual-evidence/1979/atelier/${device}-${phase}.png"
+            done
+          done
+      - name: Preserve actual frames and source identity
+        if: always()
+        run: |
+          mkdir -p .ci-evidence
+          git rev-parse HEAD > .ci-evidence/source-sha.txt
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-1979-atelier-visual-${{ github.run_id }}
+          path: |
+            .ci-evidence/
+            visual-evidence/1979/atelier/
+          if-no-files-found: warn
+          retention-days: 30

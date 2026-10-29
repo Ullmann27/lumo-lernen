@@ -77,6 +77,8 @@ void main() {
         MaterialApp(home: LumoAkademieScreen(appState: state)),
       );
       expect(tester.takeException(), isNull);
+      await tester.tap(find.byKey(const ValueKey('learning-advanced-entry')));
+      await tester.pump(const Duration(milliseconds: 350));
       expect(find.text('1. Klasse'), findsOneWidget);
       expect(find.text('2. Klasse'), findsOneWidget);
       expect(find.text('3. Klasse'), findsOneWidget);

@@ -19,11 +19,13 @@ class IqStartView extends StatelessWidget {
   const IqStartView({
     super.key,
     required this.onStart,
+    this.onStartExtended,
     required this.onBack,
     this.lastPoints,
   });
 
   final VoidCallback onStart;
+  final VoidCallback? onStartExtended;
   final VoidCallback onBack;
 
   /// Denkpunkte des letzten echten Ergebnisses (null: noch keins).
@@ -33,7 +35,7 @@ class IqStartView extends StatelessWidget {
   Widget build(BuildContext context) => LayoutBuilder(builder: (context, c) {
         final wide = _isWide(c);
         final reduced = LumoMotion.reduced(context);
-        final hero = _Hero(reduced: reduced, scale: c.maxWidth >= 600 ? 1.2 : 1);
+        final hero = IqHeroHeader(reduced: reduced, scale: c.maxWidth >= 600 ? 1.2 : 1);
         final details = _Details(lastPoints: lastPoints);
         return Column(
           children: [
@@ -70,12 +72,29 @@ class IqStartView extends StatelessWidget {
               ),
             ),
             IqBottomBar(
-              child: IqPrimaryButton(
-                key: const ValueKey('iq-start-button'),
-                label: 'Test starten',
-                icon: Icons.play_arrow_rounded,
-                height: 62,
-                onPressed: onStart,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  IqPrimaryButton(
+                    key: const ValueKey('iq-start-button'),
+                    label: 'Test starten',
+                    icon: Icons.play_arrow_rounded,
+                    height: 62,
+                    onPressed: onStart,
+                  ),
+                  if (onStartExtended != null) ...[
+                    const SizedBox(height: 8),
+                    IqPrimaryButton(
+                      key: const ValueKey('iq-extended-button'),
+                      label: 'Entdecker-Runde · 36 Rätsel',
+                      icon: Icons.explore_rounded,
+                      height: 52,
+                      outlined: true,
+                      fontSize: 15,
+                      onPressed: onStartExtended,
+                    ),
+                  ],
+                ],
               ),
             ),
           ],
@@ -83,8 +102,18 @@ class IqStartView extends StatelessWidget {
       });
 }
 
-class _Hero extends StatelessWidget {
-  const _Hero({required this.reduced, this.scale = 1});
+/// Identical premium Lumo hero for both Knobeltest and Denkprofil.
+class IqHeroHeader extends StatelessWidget {
+  const IqHeroHeader({
+    super.key,
+    required this.reduced,
+    this.scale = 1,
+    this.title = 'Lumo Knobel-Test',
+    this.subtitle = 'Spielerisches Denk-Abenteuer',
+  });
+
+  final String title;
+  final String subtitle;
 
   final bool reduced;
 
@@ -169,7 +198,7 @@ class _Hero extends StatelessWidget {
             child: FittedBox(
               fit: BoxFit.scaleDown,
               child: Text(
-                'Lumo Knobel-Test',
+                title,
                 style: iqText(
                   34,
                   weight: FontWeight.w900,
@@ -183,7 +212,7 @@ class _Hero extends StatelessWidget {
           ),
           const SizedBox(height: 2),
           Text(
-            'Spielerisches Denk-Abenteuer',
+            subtitle,
             textAlign: TextAlign.center,
             style: iqText(17,
                 color: LumoVisualTokens.cyanBright, shadows: iqScrim),
@@ -282,27 +311,11 @@ class _AreaChip extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final style = iqAreaStyle(area);
-    return Semantics(
-      label: '${area.title}: ${area.skill}',
-      excludeSemantics: true,
-      child: DecoratedBox(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(99),
-          color: style.color.withValues(alpha: .12),
-          border: Border.all(color: style.color.withValues(alpha: .5)),
-        ),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(4, 4, 14, 4),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IqAreaMedallion(area, size: 32, glow: false),
-              const SizedBox(width: 8),
-              Text(area.title, style: iqText(13.5, weight: FontWeight.w900)),
-            ],
-          ),
-        ),
-      ),
+    return IqSkillChip(
+      label: area.title,
+      description: area.skill,
+      icon: style.icon,
+      color: style.color,
     );
   }
 }

@@ -237,7 +237,7 @@ class _LetterFillGameState extends State<LetterFillGame> {
                 tooltip: 'Pausieren / Zurück',
                 onPressed: _clock.pause,
                 icon: const Icon(Icons.arrow_back_rounded)),
-            backgroundColor: LumoColors.purple,
+            backgroundColor: LumoBoardColors.backdrop,
             foregroundColor: Colors.white,
             title: Text(widget.level.title,
                 style: const TextStyle(
@@ -247,24 +247,15 @@ class _LetterFillGameState extends State<LetterFillGame> {
             child: Padding(
               padding: const EdgeInsets.all(20),
               child: Column(children: [
-                // Fortschritt
-                Row(children: [
-                  Text('Wort ${_taskIndex + 1} / ${_roundTasks.length}',
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 16,
-                          fontWeight: FontWeight.w800,
-                          color: Color(0xFF4C1D95))),
-                  const Spacer(),
-                  const Icon(Icons.star_rounded,
-                      color: Color(0xFFFCD34D), size: 24),
-                  Text(' $_correct',
-                      style: const TextStyle(
-                          fontFamily: 'Nunito',
-                          fontSize: 18,
-                          fontWeight: FontWeight.w900,
-                          color: Color(0xFF4C1D95))),
-                ]),
+                LumoBoardRoundProgress(
+                  currentIndex: _taskIndex,
+                  total: _roundTasks.length,
+                  correct: _correct,
+                  label: "Wort",
+                  reduceMotion:
+                      widget.appState.state.settings.reduceAnimations ||
+                          widget.appState.state.settings.calmMode,
+                ),
                 const SizedBox(height: 28),
                 // Hinweis-Emoji
                 Text(_current.hint,
@@ -306,7 +297,10 @@ class _LetterFillGameState extends State<LetterFillGame> {
                       key: ValueKey('letter-choice-$letter'),
                       onTap: () => _pickLetter(letter),
                       child: AnimatedContainer(
-                        duration: const Duration(milliseconds: 220),
+                        duration: lumoBoardMotionDuration(context,
+                            reduceMotion: widget
+                                    .appState.state.settings.reduceAnimations ||
+                                widget.appState.state.settings.calmMode),
                         decoration: BoxDecoration(
                           color: bg,
                           borderRadius: BorderRadius.circular(16),

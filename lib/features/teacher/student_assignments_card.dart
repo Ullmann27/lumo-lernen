@@ -25,31 +25,60 @@ class _Open {
 
 class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
   List<_Open> _open = const [];
+  String? _displayedStudentId;
+  int _loadRevision = 0;
+
+  void _onSchoolChanged() {
+    // The teacher card must never keep showing the previous child's tasks.
+    final selected = widget.appState.school.cachedActiveStudentId;
+    if (_displayedStudentId != selected && _open.isNotEmpty) {
+      setState(() {
+        _open = const [];
+        _displayedStudentId = selected;
+      });
+    }
+    _load();
+  }
 
   @override
   void initState() {
     super.initState();
     widget.appState.addListener(_load);
+    widget.appState.school.addListener(_onSchoolChanged);
     _load();
   }
 
   @override
   void dispose() {
     widget.appState.removeListener(_load);
+    widget.appState.school.removeListener(_onSchoolChanged);
+    _loadRevision++;
     super.dispose();
   }
 
   Future<void> _load() async {
+    final revision = ++_loadRevision;
+    final repo = widget.appState.school;
     try {
-      final repo = widget.appState.school;
       final id = await repo.activeStudentId();
+      if (!mounted || revision != _loadRevision) return;
       if (id == null) {
-        if (mounted && _open.isNotEmpty) setState(() => _open = const []);
+        setState(() {
+          _displayedStudentId = null;
+          _open = const [];
+        });
         return;
       }
       final dir = await repo.load();
       final student = dir.studentById(id);
-      if (student == null) return;
+      if (student == null) {
+        if (!mounted || revision != _loadRevision) return;
+        setState(() {
+          _displayedStudentId = id;
+          _open = const [];
+        });
+        return;
+      }
       final attempts =
           await widget.appState.attemptLog.load(studentId: student.id);
       final open = <_Open>[];
@@ -57,9 +86,36 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
         final p = AssignmentProgress.of(a, attempts);
         if (!p.completed) open.add(_Open(a, p));
       }
-      if (!mounted) return;
-      setState(() => _open = open);
-    } catch (_) {}
+      // ANTON-inspired clarity: the nearest due teacher assignment comes first,
+      // without introducing an account, analytics or a new task repository.
+      open.sort((a, b) {
+        final first = a.assignment.dueAt;
+        final second = b.assignment.dueAt;
+        if (first != null && second != null) {
+          final byDue = first.compareTo(second);
+          if (byDue != 0) return byDue;
+        } else if (first != null) {
+          return -1;
+        } else if (second != null) {
+          return 1;
+        }
+        return a.assignment.createdAt.compareTo(b.assignment.createdAt);
+      });
+      if (!mounted || revision != _loadRevision ||
+          repo.cachedActiveStudentId != id) return;
+      setState(() {
+        _displayedStudentId = id;
+        _open = open;
+      });
+    } catch (_) {
+      // Do not retain another child's tasks when a profile or directory fails.
+      if (mounted && revision == _loadRevision) {
+        setState(() {
+          _displayedStudentId = null;
+          _open = const [];
+        });
+      }
+    }
   }
 
   @override
@@ -106,6 +162,19 @@ class _StudentAssignmentsCardState extends State<StudentAssignmentsCard> {
                             fontSize: 15,
                             fontWeight: FontWeight.w900,
                             color: Colors.white)),
+                    if (o.assignment.dueAt != null) ...[
+                      const SizedBox(height: 3),
+                      Text(
+                        'Fällig bis: ${o.assignment.dueAt!.day}.'
+                        '${o.assignment.dueAt!.month}.'
+                        '${o.assignment.dueAt!.year}',
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 12,
+                            fontWeight: FontWeight.w700,
+                            color: Color(0xFFFFE5A6)),
+                      ),
+                    ],
                     const SizedBox(height: 4),
                     ClipRRect(
                       borderRadius: BorderRadius.circular(99),

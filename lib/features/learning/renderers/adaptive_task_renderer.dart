@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../../app/app_theme.dart';
 import '../../../domain/learning/lumo_learning_domain.dart';
 import '../../../theme/lumo_visual_tokens.dart';
+import '../../../widgets/design/lumo_answer_crystal.dart';
 import '../../shared/widgets/lumo_premium_effects.dart';
 import '../../schoolbook/widgets/schoolbook_task_widgets.dart';
 import 'lumo_premium_visuals.dart';
@@ -669,16 +670,35 @@ class _OptionGrid extends StatelessWidget {
           final isPicked = picked != null && '$picked' == '$payload';
           final isWrongPicked = wrongAnswers.contains('$payload');
           final isCorrect = '$payload' == '${task.correctAnswer}';
+          // The primary Maths practice uses the real crystal controls as
+          // part of the task flow, not merely in an isolated demo module.
+          // Keep long written answers in the readable original cards.
+          final crystalAnswer = task.subject == LearningSubject.mathematik &&
+              option.label.length <= 14;
           return SizedBox(
             width: itemWidth,
-            child: _AnswerButton(
-              label: option.label,
-              isPicked: isPicked,
-              isWrongPicked: isWrongPicked,
-              isCorrect: isCorrect,
-              solved: solved,
-              onTap: () => onPick(option),
-            ),
+            child: crystalAnswer
+                ? LumoAnswerCrystal(
+                    buttonKey: ValueKey('math-crystal-${option.label}'),
+                    label: option.label,
+                    fontSize: option.label.length >= 9 ? 20 : 29,
+                    state: solved && isCorrect
+                        ? LumoCrystalState.correct
+                        : isWrongPicked
+                            ? LumoCrystalState.retry
+                            : LumoCrystalState.neutral,
+                    onPressed: solved || isWrongPicked
+                        ? null
+                        : () => onPick(option),
+                  )
+                : _AnswerButton(
+                    label: option.label,
+                    isPicked: isPicked,
+                    isWrongPicked: isWrongPicked,
+                    isCorrect: isCorrect,
+                    solved: solved,
+                    onTap: () => onPick(option),
+                  ),
           );
         }).toList(),
       );

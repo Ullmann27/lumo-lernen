@@ -67,7 +67,7 @@ class IqTestScreen extends StatefulWidget {
 }
 
 class _IqTestScreenState extends State<IqTestScreen> {
-  late final IqTestSession _session = widget.session ??
+  late IqTestSession _session = widget.session ??
       IqTestSession(grade: widget.appState.state.grade);
   _Phase _phase = _Phase.start;
   IqTestResult? _previous;
@@ -99,6 +99,18 @@ class _IqTestScreenState extends State<IqTestScreen> {
     _startedAt = widget.now();
     setState(() =>
         _phase = _session.atAreaStart ? _Phase.areaIntro : _Phase.puzzle);
+  }
+
+  void _startExtended() {
+    // Keep injected test/recovery sessions unchanged. For the regular user,
+    // build a separate, longer adaptive challenge with six puzzles per area.
+    if (widget.session == null) {
+      _session = IqTestSession(
+        grade: widget.appState.state.grade,
+        itemsPerArea: 6,
+      );
+    }
+    _start();
   }
 
   void _onSubmit(List<int> response, int durationMs) {
@@ -160,6 +172,9 @@ class _IqTestScreenState extends State<IqTestScreen> {
     }
     IqTestResult? previous;
     for (final item in earlier) {
+      // A 24-puzzle score must not be compared with the 36-puzzle variant.
+      if (item.version != result.version ||
+          item.items.length != result.items.length) continue;
       if (previous == null || item.finishedAt.isAfter(previous.finishedAt)) {
         previous = item;
       }
@@ -235,6 +250,7 @@ class _IqTestScreenState extends State<IqTestScreen> {
           key: const ValueKey('iq-page-start'),
           lastPoints: _previous?.thinkingPoints,
           onStart: _start,
+          onStartExtended: widget.session == null ? _startExtended : null,
           onBack: _handleBack,
         );
       case _Phase.areaIntro:

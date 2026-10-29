@@ -69,6 +69,7 @@ class _AppShellState extends State<AppShell>
   Timer? _keepAliveTimer;
   StreamSubscription<LumoAchievement>? _achievementSubscription;
   int _navigationRequest = 0;
+  bool _criticalTileArtWarmupStarted = false;
 
   late final AnimationController _fadeCtrl = AnimationController(
     vsync: this,
@@ -114,6 +115,28 @@ class _AppShellState extends State<AppShell>
     // 2026-06-04: Achievement-Tracker hydrieren + Unlock-Toast-Listener.
     _hydrateAchievements();
     _appState.addListener(_syncAchievementMetrics);
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_criticalTileArtWarmupStarted) return;
+    _criticalTileArtWarmupStarted = true;
+    // The bundled dashboard bitmaps are frequently first decoded only
+    // after onboarding. Warm only the four tiny Bento icons and the home
+    // backdrop; never stall navigation or preload every 3D/game texture.
+    for (final asset in const <String>[
+      'assets/lumo_design/bg/bg_glass_islands.png',
+      'assets/lumo_design/icons/book_open.png',
+      'assets/lumo_design/icons/gamepad.png',
+      'assets/lumo_design/icons/trophy_gold.png',
+      'assets/lumo_design/icons/treasure_chest.png',
+    ]) {
+      unawaited(precacheImage(AssetImage(asset), context,
+          onError: (error, stackTrace) {
+        debugPrint('Lumo home asset cache skipped: $asset');
+      }));
+    }
   }
 
   /// 2026-06-04: Lumo Achievements Live-System. Tracker laed Persistence
@@ -632,11 +655,16 @@ class _AppShellState extends State<AppShell>
                                             child: _buildContent(),
                                           ),
                                         )),
-                                        LumoCompanionHost(
-                                            appState: _appState,
-                                            onSection: _navigateTo,
-                                            compact:
-                                                constraints.maxHeight < 600),
+                                        if (section == LumoSection.home)
+                                          _LumoHelpDock(
+                                              appState: _appState,
+                                              onSection: _navigateTo)
+                                        else
+                                          LumoCompanionHost(
+                                              appState: _appState,
+                                              onSection: _navigateTo,
+                                              compact:
+                                                  constraints.maxHeight < 600),
                                       ]),
                                     ),
                                   ),
