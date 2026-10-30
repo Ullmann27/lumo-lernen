@@ -42,14 +42,18 @@ void main() {
         final expansion = find.byKey(
           const PageStorageKey<String>('learning-other-subjects'),
         );
-        await tester.ensureVisible(expansion);
+        await tester.scrollUntilVisible(expansion, 220,
+            scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+        await tester.pumpAndSettle();
+        expect(expansion.hitTestable(), findsOneWidget);
         await tester.tap(expansion);
         await tester.pumpAndSettle();
 
         for (final subject in practicalSubjects) {
           final tile = find.byKey(ValueKey('learning-extra-$subject'));
-          await tester.ensureVisible(tile);
-          await tester.pump();
+          await tester.scrollUntilVisible(tile, 180,
+              scrollable: find.byType(Scrollable).first, maxScrolls: 30);
+          await tester.pumpAndSettle();
           expect(tile.hitTestable(), findsOneWidget);
           await tester.tap(tile);
           await tester.pump();
