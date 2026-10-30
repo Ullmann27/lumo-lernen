@@ -42,7 +42,16 @@ void main() {
                 reason: '$path: stiller Themenwechsel ist unzulässig');
             expect(task.prompt.trim(), isNotEmpty, reason: path);
             expect(task.answer.trim(), isNotEmpty, reason: path);
-            expect(task.choices, contains(task.answer), reason: path);
+            // Drawing/trace tasks use the real interactive shape renderer,
+            // not multiple-choice buttons. An empty choice bank is valid
+            // only for this explicit non-MCQ mode (or handwriting tasks).
+            if (task.choices.isEmpty) {
+              expect(task.handwriting || task.visual == 'shape_trace', isTrue,
+                  reason: '$path: keine Antwortoptionen ohne Zeichenrenderer');
+              expect(task.answer.trim(), isNotEmpty, reason: path);
+            } else {
+              expect(task.choices, contains(task.answer), reason: path);
+            }
             expect(guard.problems(task), isEmpty,
                 reason: '$path: ${task.prompt} / ${task.choices}');
           }
