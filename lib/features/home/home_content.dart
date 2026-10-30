@@ -268,7 +268,7 @@ class HomeContent extends StatelessWidget {
                               color: LumoVisualTokens.white,
                               fontFamily: 'Nunito',
                               fontWeight: FontWeight.w900)),
-                      subtitle: const Text('Neun Lernwelten und Logik',
+                      subtitle: const Text('Elf Lernwelten und Logik',
                           style: TextStyle(color: LumoVisualTokens.muted)),
                       leading: const Icon(Icons.school_rounded,
                           color: LumoVisualTokens.cyanBright),
@@ -377,6 +377,30 @@ class HomeContent extends StatelessWidget {
                                           CurriculumActivitiesScreen(
                                               grade: grade,
                                               subject: 'Kunst und Gestaltung')),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Bewegung und Sport',
+                                      subtitle: 'Bewegen und fair spielen',
+                                      icon: Icons.sports_gymnastics_rounded,
+                                      color: const Color(0xFF61E69A),
+                                      completed: _correctFor('Bewegung und Sport'),
+                                      onTap: () => _open(
+                                          context,
+                                          CurriculumActivitiesScreen(
+                                              grade: grade,
+                                              subject: 'Bewegung und Sport')),
+                                    ),
+                                    _SubjectCard(
+                                      subject: 'Verkehrs- und Mobilitätsbildung',
+                                      subtitle: 'Sicher unterwegs sein',
+                                      icon: Icons.directions_walk_rounded,
+                                      color: const Color(0xFFFFC65C),
+                                      completed: _correctFor('Verkehrs- und Mobilitätsbildung'),
+                                      onTap: () => _open(
+                                          context,
+                                          CurriculumActivitiesScreen(
+                                              grade: grade,
+                                              subject: 'Verkehrs- und Mobilitätsbildung')),
                                     ),
                                     _SubjectCard(
                                       subject: 'Technik und Design',

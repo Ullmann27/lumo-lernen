@@ -68,6 +68,10 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
         Color(0xFFFF9E9E)),
     _Subject('Technik und Design', 'Erfinden & Bauen', Icons.handyman_rounded,
         Color(0xFF80DCE7)),
+    _Subject('Bewegung und Sport', 'Sicher bewegen',
+        Icons.sports_gymnastics_rounded, Color(0xFF61E69A)),
+    _Subject('Verkehrs- und Mobilitätsbildung', 'Sicher unterwegs',
+        Icons.directions_walk_rounded, Color(0xFFFFC65C)),
   ];
   // Bright corner for art, deep corner behind the text (white >= 5.3:1).
   static const _cardColors = <String, (Color, Color)>{
@@ -122,7 +126,9 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
       widget.onReading();
     } else if (subject.name == 'Musik' ||
         subject.name == 'Kunst und Gestaltung' ||
-        subject.name == 'Technik und Design') {
+        subject.name == 'Technik und Design' ||
+        subject.name == 'Bewegung und Sport' ||
+        subject.name == 'Verkehrs- und Mobilitätsbildung') {
       widget.onPracticalSubject(subject.name);
     } else {
       _navigation.selectSubject(subject.name);
@@ -303,7 +309,7 @@ class _LumoLearningHubState extends State<LumoLearningHub> {
                       fontWeight: FontWeight.w900,
                       color: Colors.white)),
               subtitle: const Text(
-                  'Lesen, Schreiben, Logik, Musik, Kunst und Technik',
+                  'Lesen, Schreiben, Logik, Musik, Kunst, Technik, Sport und Verkehr',
                   style: TextStyle(color: Color(0xFFD4EAF5))),
               leading: const Icon(Icons.widgets_rounded,
                   color: LumoVisualTokens.cyanBright),

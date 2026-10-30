@@ -23,6 +23,42 @@ void main() {
               helpLevel: help,
               transferCheck: transfer));
 
+  test('grade-specific new units receive a check, never fictitious revision', () {
+    final skillId = SkillRecord.makeId('Mathematik', 'Plus bis 10');
+    final initial = SkillRecord(
+      skillId: skillId,
+      subject: 'Mathematik',
+      unit: 'Plus bis 10',
+    );
+    final plan = planner.buildEvidencePlan(
+      {skillId: initial},
+      const {},
+      now: at,
+      grade: 1,
+    );
+    expect(plan, isNotEmpty);
+    expect(plan.first.unit, 'Plus bis 10');
+    expect(plan.first.kind, LumoDailyTutorStepKind.check);
+    expect(plan.first.reason, 'Noch nicht ausreichend geprüft');
+    expect(plan.any((step) =>
+        step.reason == 'Wiederholungsbedarf'), isFalse);
+  });
+
+  test('real repeated mistakes still start with a revision in grade one', () {
+    var journey = add(LearningJourney(), 'wrong-1', correct: false);
+    journey = add(journey, 'wrong-2', correct: false);
+    journey = add(journey, 'wrong-3', correct: false);
+    final plan = planner.buildEvidencePlan(
+      {},
+      journey.records,
+      now: at,
+      grade: 1,
+    );
+    expect(plan, isNotEmpty);
+    expect(plan.first.kind, LumoDailyTutorStepKind.revise);
+    expect(plan.first.reason, 'Wiederholungsbedarf');
+  });
+
   test('one mistake is insufficient evidence; assistance is not a strength',
       () {
     var j = add(LearningJourney(), 'one', correct: false);

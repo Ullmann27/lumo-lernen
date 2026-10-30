@@ -218,9 +218,19 @@ class LumoPersonalDailyTutorPlanner {
             durationMinutes: minutes,
             reason: reason,
             pauseAfter: pause);
+    // A first-time or previously successful unit is not automatically a
+    // weakness. Only independently observed review/assistance evidence may
+    // turn the opening action into an explicit repetition lesson.
+    final firstKnowledge = knowledge(journey[first.skillId]);
+    final firstKind = switch (firstKnowledge) {
+      LumoKnowledgeStatus.review || LumoKnowledgeStatus.assisted =>
+        LumoDailyTutorStepKind.revise,
+      LumoKnowledgeStatus.insufficient => LumoDailyTutorStepKind.check,
+      LumoKnowledgeStatus.independent || LumoKnowledgeStatus.retained =>
+        LumoDailyTutorStepKind.practice,
+    };
     return List.unmodifiable([
-      step(first, LumoDailyTutorStepKind.revise, 5,
-          knowledge(journey[first.skillId]).label),
+      step(first, firstKind, 5, firstKnowledge.label),
       step(
           second,
           ready(second)
