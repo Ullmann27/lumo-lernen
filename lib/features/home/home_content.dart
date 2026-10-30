@@ -929,6 +929,8 @@ class _SubjectCard extends StatelessWidget {
         'Sachunterricht' => 'Sachkunde',
         'Kunst und Gestaltung' => 'Kunst',
         'Technik und Design' => 'Technik',
+        'Bewegung und Sport' => 'Sport',
+        'Verkehrs- und Mobilitätsbildung' => 'Verkehr',
         _ => subject,
       };
 
