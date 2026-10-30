@@ -2,21 +2,24 @@
 
 **Zuerst [HANDOFF.md](docs/audit/2026-10-29/HANDOFF.md) lesen.**
 
-Dieser Zweig enthält alle fertigen Arbeiten einschließlich des separaten
-2002-Android-Kandidaten und der GitHub-Prüfnachweise. Kein Neuaufbau nötig.
+Dieser Zweig enthält den vollständigen Tutor-Kern, den veröffentlichten
+2002-Quellstand und die geprüften Nachweise. Kein Neuaufbau nötig.
 
 - Tutor-Kern: [PR #414](https://github.com/Ullmann27/lumo-lernen/pull/414), `5d6d7dcd`.
-- Android 2002: [PR #415](https://github.com/Ullmann27/lumo-lernen/pull/415), `ff791642`.
-- GitHub: 1.952 Flutter-Tests und 43 fokussierte Fälle auf beiden Quellen
-  bestanden; Analyse ohne Fehler, mit sechs bestehenden Warnungen.
-- Stand 29.10.2026, 09:28 UTC: signierter Gesamt-APK-Build 2002 erfolgreich;
-  tatsächliche Android-Tour läuft, Update-/Release-Gates warten darauf.
-  Das ist eine zeitgebundene Momentaufnahme: vor Weiterarbeit GitHub neu prüfen.
+- Veröffentlichte Android-Haupt-App: [PR #415](https://github.com/Ullmann27/lumo-lernen/pull/415), `ff791642`, Version `0.12.90+2002`.
+- 1.952 Flutter-Tests und 43 fokussierte Fälle auf beiden Quellen bestanden;
+  Analyse ohne Fehler, mit sechs bestehenden Warnungen.
+- Android-/Kart-Tour, echtes 2000→2002-Update und Veröffentlichung erfolgreich.
+  Am 30.10. wurde die tatsächliche ARM64-APK anonym heruntergeladen und erneut
+  einschließlich Prüfsumme, Signatur, Version und eingebetteter Quellen geprüft.
 
-Die laufenden Quellen nicht für Dokumentation verändern. Zuerst Run
-`40846950267`, danach `40846950656` und `40846950358` prüfen. Ein eventuell
-inzwischen veröffentlichtes 2002-Release niemals überschreiben. `main` und
-die ursprünglichen Sol-/Opus-Arbeiten bleiben geschützt.
+[Direkte APK für Chrome](https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.90-2002/Lumo-Lernen-0.12.90-2002-ARM64.apk) ·
+[Release-Prüfbericht](docs/audit/2026-10-30/RELEASE_2002_VERIFICATION.md).
+
+2002 niemals überschreiben oder als neuen Build ausgeben. `main` und die
+ursprünglichen Sol-/Opus-Arbeiten bleiben geschützt. Nächste Facharbeit auf
+einem eigenen Branch: echte Tutor-Kontexte in die eigenständigen Module
+integrieren, danach Lesen-/Silben-/Satzbau-Szenen mit eigenen Prozessprüfungen.
 
 [Entwicklungsbericht mit Bildern](docs/audit/2026-10-29/MILESTONE_REPORT.md) ·
 [offene Modulanschlüsse](docs/audit/2026-10-29/MODULE_INTEGRATION_AUDIT.md) ·
