@@ -99,6 +99,11 @@ APPROVED = {
     # https://github.com/Ullmann27/lumo-godot/actions/runs/40721498468
     # https://github.com/Ullmann27/lumo-lernen/pull/418
     2003: "adcce3093caa42bf3da47262f70bdf03cdefa347",
+    # 2004: real 360-degree loop, safe failure, 28.2 m stunt jump and
+    # native race continuity passed on the exact candidate source in Godot CI
+    # run 41088034976 (full race, 104 lap checks, all required gates).
+    # The already published 2003 package and pin remain immutable.
+    2004: "3689307a6392fd5756bc87ba0e36f3bef9df71e3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
