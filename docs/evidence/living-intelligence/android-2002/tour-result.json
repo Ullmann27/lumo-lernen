@@ -1,0 +1,378 @@
+{
+  "status": "PASS",
+  "apk_sha256": "0f951e7df398f5e0e397ded396ce79306b65a168c456cd855dd40ed19391edd7",
+  "steps": [
+    {
+      "step": "apk-identity",
+      "ok": true,
+      "apk_sha256": "0f951e7df398f5e0e397ded396ce79306b65a168c456cd855dd40ed19391edd7",
+      "flutter_source_commit": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+      "godot_revision": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+      "godot_pck_sha256": "cc5b7574ff31ad6c43b8cc08a8dd6aad7e6681b8c576e1099d08016e92473a30",
+      "versionName": "0.12.90",
+      "versionCode": 2002,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "checks": {
+        "sha256_matches_provenance": true,
+        "sha256_matches_build_sums": true,
+        "flutter_source_is_this_commit": true,
+        "tracked_source_clean": true,
+        "godot_revision_is_pinned": true,
+        "signing_certificate": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      }
+    },
+    {
+      "step": "launch",
+      "ok": true
+    },
+    {
+      "step": "onboarding",
+      "ok": true
+    },
+    {
+      "step": "navigate-start",
+      "ok": true,
+      "label": "Start"
+    },
+    {
+      "step": "atelier-roundtrip",
+      "ok": true,
+      "screen": "Real native-Android Flutter Zehnerbr\u00fccke",
+      "observed": [
+        "Hub",
+        "Worked example",
+        "Interactive ten-frame",
+        "Model check",
+        "Flutter return"
+      ],
+      "screenshots": [
+        "11_atelier_hub.png",
+        "12_atelier_beispiel.png",
+        "13_atelier_zehnerbruecke.png"
+      ]
+    },
+    {
+      "step": "navigate-lernen",
+      "ok": true,
+      "label": "Lernen",
+      "visible_labels": 50
+    },
+    {
+      "step": "navigate-spiele",
+      "ok": true,
+      "label": "Spielen"
+    },
+    {
+      "step": "open-kart",
+      "ok": true,
+      "label": "Lumo Kart. Fahre mit Lumo um die Wette! Spielen"
+    },
+    {
+      "step": "start-kart-race",
+      "ok": true,
+      "touches": [
+        {
+          "step": "premium-start",
+          "button": "START",
+          "tap": [
+            580,
+            858
+          ]
+        }
+      ],
+      "expected_mode": "cup",
+      "expected_track": "sonnenhafen",
+      "garage_replaced": {
+        "changed_fraction": 0.874,
+        "mean_channel_delta": 94.21
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 636,
+            "bright_fraction": 0.936
+          },
+          {
+            "colour_bins": 450,
+            "bright_fraction": 0.934
+          },
+          {
+            "colour_bins": 897,
+            "bright_fraction": 0.951
+          }
+        ]
+      }
+    },
+    {
+      "step": "race-running",
+      "ok": true,
+      "state": {
+        "result_id": "c91342bc-69c3-4c90-9d9f-182b0f9203bc-1793266251674-49668483",
+        "countdown": 0.0,
+        "elapsed": 1.0000000000000013,
+        "distance": 0.07936086918925866,
+        "checkpoint_index": 0
+      }
+    },
+    {
+      "step": "race-hud",
+      "ok": true,
+      "capture": "21_race_hud_0",
+      "race_state": {
+        "round": [
+          1,
+          2
+        ],
+        "place": [
+          3,
+          6
+        ]
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          0.998,
+          0.962,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 951,
+            "bright_fraction": 0.811
+          },
+          {
+            "colour_bins": 1279,
+            "bright_fraction": 0.638
+          },
+          {
+            "colour_bins": 1083,
+            "bright_fraction": 0.853
+          }
+        ]
+      },
+      "hud_lines": [
+        "RUNDE 1/2 PLATZ3/6 Okm/h x0"
+      ],
+      "focused_hud": null
+    },
+    {
+      "step": "race-drive",
+      "ok": true,
+      "gas_touch": [
+        2158,
+        904
+      ],
+      "hold_ms": 9000,
+      "gas_pulses": 3,
+      "world_moved": {
+        "changed_fraction": 0.723,
+        "mean_channel_delta": 61.21
+      },
+      "rendered_frame": {
+        "size": [
+          2400,
+          1080
+        ],
+        "visible_fractions": [
+          1.0,
+          0.997,
+          1.0
+        ],
+        "detail": [
+          {
+            "colour_bins": 957,
+            "bright_fraction": 0.905
+          },
+          {
+            "colour_bins": 1025,
+            "bright_fraction": 0.839
+          },
+          {
+            "colour_bins": 1149,
+            "bright_fraction": 0.82
+          }
+        ]
+      },
+      "native_progress": {
+        "result_id": "c91342bc-69c3-4c90-9d9f-182b0f9203bc-1793266251674-49668483",
+        "distance_gain": 33.11,
+        "elapsed_gain": 5.02,
+        "checkpoint_index": 0
+      }
+    },
+    {
+      "step": "pause-menu",
+      "ok": true,
+      "frozen_while_paused": {
+        "result_id": "c91342bc-69c3-4c90-9d9f-182b0f9203bc-1793266251674-49668483",
+        "distance": 33.19731743395096,
+        "elapsed": 6.16666666666665,
+        "checkpoint_index": 0,
+        "finished": false
+      }
+    },
+    {
+      "step": "return-from-kart",
+      "ok": true,
+      "capture": "23_zurueck_in_flutter.png",
+      "foreground_is_flutter": true
+    },
+    {
+      "step": "learning-state-after-kart",
+      "ok": true,
+      "profile": {
+        "id": "1793266116565435",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-10-29T09:28:36.565435"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    {
+      "step": "lernen-usable-after-kart",
+      "ok": true,
+      "labels_before": 39,
+      "labels_after": 39,
+      "kept_fraction": 1.0
+    },
+    {
+      "step": "profile-after-kart",
+      "ok": true,
+      "profile_name_visible": "LumoTest",
+      "observed_after_scrolls": 4,
+      "source": "live Android accessibility tree"
+    },
+    {
+      "step": "restart-keeps-learning-state",
+      "ok": true,
+      "profile": {
+        "id": "1793266116565435",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-10-29T09:28:36.565435"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    {
+      "step": "display-fold_offen",
+      "ok": true,
+      "size": "1812x2176@420"
+    },
+    {
+      "step": "display-fold_aussen",
+      "ok": true,
+      "size": "904x2316@420"
+    },
+    {
+      "step": "display-quer",
+      "ok": true,
+      "size": "2400x1080@420"
+    }
+  ],
+  "not_tested": [
+    "physical Samsung Fold",
+    "device GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race and reward (kart_complete_android_probe)"
+  ],
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.004,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "restarting adbd as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 1.329,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 1.333,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 1.38,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 1.419
+  },
+  "android_sdk": "35",
+  "installed_package": {
+    "userId": "10209",
+    "firstInstallTime": "2026-10-29 09:27:44",
+    "versionCode": "2002 minSdk=24 targetSdk=36",
+    "versionName": "0.12.90"
+  },
+  "cold_start_seconds_until_foreground": 7.8,
+  "fatal_crashes": 0
+}

@@ -1,0 +1,223 @@
+{
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "versionCode": 2002,
+  "versionName": "0.12.90",
+  "minSdk": 24,
+  "targetSdk": 36,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "elf16KiBAligned": true,
+  "resourcesArscAligned": true,
+  "bytes": 317179546,
+  "sha256": "17483a730bb9a1a13e4bcf5a2d733523a4da07983a0aadc38a980f5d771a9c76",
+  "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "godot": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+    "engine": "4.6.3",
+    "pck_sha256": "cc5b7574ff31ad6c43b8cc08a8dd6aad7e6681b8c576e1099d08016e92473a30",
+    "bytes": 54747992
+  },
+  "offlineVoice": {
+    "profile": "lumo-free-supertonic-de-v1",
+    "preset": "F2",
+    "speakerId": 1,
+    "sampleRate": 44100,
+    "onnxruntimeVersion": "1.23.1",
+    "clipCount": 155,
+    "modelSha256": {
+      "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+      "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+      "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+      "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+      "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+      "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+      "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+    },
+    "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+    "scope": "Actual APK package validation, not audible playback acceptance"
+  },
+  "flutter_source_commit": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+  "tracked_source_clean": true,
+  "launcher": {
+    "source": "assets/lumo_design/fox/fox_avatar.png",
+    "source_sha256": "8211f7347e8be4dc6f37acd3490bb6bc0976285cfef195a430b7480c6e53b53f",
+    "source_size": [
+      512,
+      512
+    ],
+    "pillow_version": "12.3.0",
+    "canvas_dp": 108,
+    "artwork_dp": 60,
+    "background": "#081B43",
+    "files": [
+      {
+        "path": "mipmap-mdpi/ic_lumo.png",
+        "bytes": 3843,
+        "sha256": "5e95fafc9e809afb346e07b768058ed5a12928cc21c54910178479899eb14b2b",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "path": "mipmap-mdpi/ic_lumo_round.png",
+        "bytes": 4113,
+        "sha256": "f3a92a3b8c533d71de1bd9257b5f8f5d69a008c8ae16d48781a9c592d8a25453",
+        "width": 48,
+        "height": 48
+      },
+      {
+        "path": "mipmap-mdpi/lumo_foreground.png",
+        "bytes": 9157,
+        "sha256": "398346110f8817cac9a9abda07dfb7d01201c1d3dc574ac4a88bc8f143d29f0e",
+        "width": 108,
+        "height": 108
+      },
+      {
+        "path": "mipmap-mdpi/lumo_monochrome.png",
+        "bytes": 2372,
+        "sha256": "26a2d463c1f77a69f92139ef855667aa6d8c34f43853bba4f808e8205decf94e",
+        "width": 108,
+        "height": 108
+      },
+      {
+        "path": "mipmap-hdpi/ic_lumo.png",
+        "bytes": 7803,
+        "sha256": "b89d700b144a1ac6144cdb62fb6104dea9d99fb91c4f4af323d307dc6db72281",
+        "width": 72,
+        "height": 72
+      },
+      {
+        "path": "mipmap-hdpi/ic_lumo_round.png",
+        "bytes": 7735,
+        "sha256": "eb52a5827cb86d8ea9b27259e62a17e2825145e7dc32522b45cd175d816f3ced",
+        "width": 72,
+        "height": 72
+      },
+      {
+        "path": "mipmap-hdpi/lumo_foreground.png",
+        "bytes": 18024,
+        "sha256": "7b4cd4abd7c13704d6bf8e4858613e1a415e340b94f0b71845a43dcbc23566fd",
+        "width": 162,
+        "height": 162
+      },
+      {
+        "path": "mipmap-hdpi/lumo_monochrome.png",
+        "bytes": 4123,
+        "sha256": "1ea519d2b0b21860d1ba8ea57908ca7d83248f08ae78828435816d8ce770745d",
+        "width": 162,
+        "height": 162
+      },
+      {
+        "path": "mipmap-xhdpi/ic_lumo.png",
+        "bytes": 12509,
+        "sha256": "b9f4baf7dd999ab517cab29e7744b4e789926997246d94e4b76e230827c7ef64",
+        "width": 96,
+        "height": 96
+      },
+      {
+        "path": "mipmap-xhdpi/ic_lumo_round.png",
+        "bytes": 12358,
+        "sha256": "83cb74d546e2188480d40dc729424f7bab6f1eec7facebb4f903bb62462ea147",
+        "width": 96,
+        "height": 96
+      },
+      {
+        "path": "mipmap-xhdpi/lumo_foreground.png",
+        "bytes": 29585,
+        "sha256": "85b40d37c65a150b5d49e0bbe136f947e0482b7aad2289324139e899769f4020",
+        "width": 216,
+        "height": 216
+      },
+      {
+        "path": "mipmap-xhdpi/lumo_monochrome.png",
+        "bytes": 6082,
+        "sha256": "9ed857cdefabb4f4196a9332189cbeace25031b4dac9a15dfaa079b240a68109",
+        "width": 216,
+        "height": 216
+      },
+      {
+        "path": "mipmap-xxhdpi/ic_lumo.png",
+        "bytes": 24975,
+        "sha256": "2c49f1c5940b6b25ad99bce838a0208a5c70354413c4a5b5a7c9c30b75e5aff6",
+        "width": 144,
+        "height": 144
+      },
+      {
+        "path": "mipmap-xxhdpi/ic_lumo_round.png",
+        "bytes": 24069,
+        "sha256": "d52e8b1ac7b2706182ddf29c7b589e4a98d68b2a6830bf7e1dbec51a6454b69f",
+        "width": 144,
+        "height": 144
+      },
+      {
+        "path": "mipmap-xxhdpi/lumo_foreground.png",
+        "bytes": 59699,
+        "sha256": "071284c29a0a21f1038b81d18b12d7a330a7c5caaa1c966b2e48922ca1118881",
+        "width": 324,
+        "height": 324
+      },
+      {
+        "path": "mipmap-xxhdpi/lumo_monochrome.png",
+        "bytes": 10525,
+        "sha256": "66a42f3aba32c0b3901be224fcb459110a552596749cf492d30e8e2c7a9e4baf",
+        "width": 324,
+        "height": 324
+      },
+      {
+        "path": "mipmap-xxxhdpi/ic_lumo.png",
+        "bytes": 41896,
+        "sha256": "1204f68ffbb0ac10e6e6d322458cf7ca94d2142fcdb699951163fc7077857974",
+        "width": 192,
+        "height": 192
+      },
+      {
+        "path": "mipmap-xxxhdpi/ic_lumo_round.png",
+        "bytes": 38614,
+        "sha256": "5a50dcd6bf1ca5a7507e9283e0e51704633e89ca30dacba5d3973a3b7abb5e25",
+        "width": 192,
+        "height": 192
+      },
+      {
+        "path": "mipmap-xxxhdpi/lumo_foreground.png",
+        "bytes": 99819,
+        "sha256": "7536c353c28cd61c272075c842282abab7501362ab397afeafbdc5144ab9bf7d",
+        "width": 432,
+        "height": 432
+      },
+      {
+        "path": "mipmap-xxxhdpi/lumo_monochrome.png",
+        "bytes": 15588,
+        "sha256": "7a611951973671e9974345c52536d8c3c532a358d9b55f38301ef7ff548408fb",
+        "width": 432,
+        "height": 432
+      },
+      {
+        "path": "values/lumo_launcher_colors.xml",
+        "bytes": 84,
+        "sha256": "acc76a73321417fc9d0b3dd06de352773cec1e1449573adf6d3aedde81ed5db4"
+      },
+      {
+        "path": "mipmap-anydpi-v26/ic_lumo.xml",
+        "bytes": 263,
+        "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+      },
+      {
+        "path": "mipmap-anydpi-v26/ic_lumo_round.xml",
+        "bytes": 263,
+        "sha256": "3902fd806cabafb87a5fc89ee0e695a03b5c7be6d13721c7109fd484565aa843"
+      },
+      {
+        "path": "mipmap-anydpi-v33/ic_lumo.xml",
+        "bytes": 325,
+        "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+      },
+      {
+        "path": "mipmap-anydpi-v33/ic_lumo_round.xml",
+        "bytes": 325,
+        "sha256": "8a8e7105b818d0aba31f160c01959ccf1fc929478d731a66aa3b22ac4475a152"
+      }
+    ],
+    "scope": "Generated resources only; APK and installed launcher must be checked separately"
+  }
+}

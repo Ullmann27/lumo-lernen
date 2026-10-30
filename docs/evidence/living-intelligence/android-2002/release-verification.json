@@ -1,0 +1,159 @@
+{
+  "verified_at": "2026-10-30T02:02:43.069624+00:00",
+  "source_sha": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+  "release": {
+    "tag_name": "lumo-0.12.90-2002",
+    "target_commitish": "ff791642a0d28d10f89d98025fd8f5fb2c19c403",
+    "draft": false,
+    "prerelease": true,
+    "published_at": "2026-10-29T09:48:56Z",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/releases/tag/lumo-0.12.90-2002"
+  },
+  "apk": {
+    "url": "https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.90-2002/Lumo-Lernen-0.12.90-2002-ARM64.apk",
+    "http_status_without_authentication": 200,
+    "bytes": 317179546,
+    "sha256": "17483a730bb9a1a13e4bcf5a2d733523a4da07983a0aadc38a980f5d771a9c76",
+    "versionName": "0.12.90",
+    "versionCode": 2002,
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "certificate_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "godot_revision": "adcce3093caa42bf3da47262f70bdf03cdefa347"
+  },
+  "local_validation": "Downloaded anonymously over HTTPS; SHA256 and signature, package/version, ABI, ELF/PCK, resources and shipped offline voice checked with scripts/verify_unified_apk.py. Output exactly matches published APK-VERIFICATION.json.",
+  "passed_runs": {
+    "core": 40846950258,
+    "flutter_review": 40850306304,
+    "android_build_and_tour": 40846950267,
+    "actual_2000_update": 40846950656,
+    "publication": 40846950358
+  },
+  "evidence_zip_sha256": {
+    "update_proof": "311fd53b1a419324170a859e65e835acf56c13f999c9140efdd0a55b5629aa83",
+    "android_tour": "c499f11d8f411fe4b3b820a1d6bfb3c2d7da5145b5fc3c280f072993f5f31e73"
+  },
+  "android_test_abi": "x86_64",
+  "android_test_apk_sha256": "0f951e7df398f5e0e397ded396ce79306b65a168c456cd855dd40ed19391edd7",
+  "preservation": {
+    "installation": {
+      "before_version": 2000,
+      "after_version": 2002,
+      "userId": "10209",
+      "firstInstallTime": "2026-10-29 09:40:19"
+    },
+    "after_update": {
+      "profile": {
+        "id": "1793266858592744",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-10-29T09:40:58.592744"
+      },
+      "learning_keys_compared": 6,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "after_kart": {
+      "profile": {
+        "id": "1793266858592744",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-10-29T09:40:58.592744"
+      },
+      "learning_keys_compared": 6,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "after_restart": {
+      "profile": {
+        "id": "1793266858592744",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-10-29T09:40:58.592744"
+      },
+      "learning_keys_compared": 6,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 1,
+      "earned_xp": 5
+    },
+    "fold": {
+      "cover": {
+        "profile": {
+          "id": "1793266858592744",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-10-29T09:40:58.592744"
+        },
+        "learning_keys_compared": 6,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "open": {
+        "profile": {
+          "id": "1793266858592744",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-10-29T09:40:58.592744"
+        },
+        "learning_keys_compared": 6,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      },
+      "landscape": {
+        "profile": {
+          "id": "1793266858592744",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-10-29T09:40:58.592744"
+        },
+        "learning_keys_compared": 6,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 1,
+        "earned_xp": 5
+      }
+    },
+    "offline": true,
+    "fatal_crashes": 0
+  },
+  "captures": [
+    {
+      "file": "updated-profile-offline.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "ea41b4a43311c3b60340a2e3bf32a6ddc202d5928e44414e3ead36ade765f594"
+    },
+    {
+      "file": "fold-open.png",
+      "width": 1812,
+      "height": 2176,
+      "sha256": "1c84f13fb5fbd1818205f6bb534059015a1372dd126c57ea21b320879bdb1f51"
+    },
+    {
+      "file": "android-zehnerbruecke.png",
+      "width": 1080,
+      "height": 2400,
+      "sha256": "3b7297c2c7add238bc5223b7511bd520ce27f30d0e6ee0e18d70956488b654ff"
+    }
+  ],
+  "limits": [
+    "physical ARM64 device",
+    "GPU frame times / 60 FPS",
+    "audio output",
+    "complete two-lap race reward"
+  ]
+}

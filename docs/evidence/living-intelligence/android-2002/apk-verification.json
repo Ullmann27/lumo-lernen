@@ -1,0 +1,41 @@
+{
+  "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+  "versionCode": 2002,
+  "versionName": "0.12.90",
+  "minSdk": 24,
+  "targetSdk": 36,
+  "abis": [
+    "arm64-v8a"
+  ],
+  "elf16KiBAligned": true,
+  "resourcesArscAligned": true,
+  "bytes": 317179546,
+  "sha256": "17483a730bb9a1a13e4bcf5a2d733523a4da07983a0aadc38a980f5d771a9c76",
+  "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+  "godot": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "adcce3093caa42bf3da47262f70bdf03cdefa347",
+    "engine": "4.6.3",
+    "pck_sha256": "cc5b7574ff31ad6c43b8cc08a8dd6aad7e6681b8c576e1099d08016e92473a30",
+    "bytes": 54747992
+  },
+  "offlineVoice": {
+    "profile": "lumo-free-supertonic-de-v1",
+    "preset": "F2",
+    "speakerId": 1,
+    "sampleRate": 44100,
+    "onnxruntimeVersion": "1.23.1",
+    "clipCount": 155,
+    "modelSha256": {
+      "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+      "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+      "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+      "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+      "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+      "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+      "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+    },
+    "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+    "scope": "Actual APK package validation, not audible playback acceptance"
+  }
+}
