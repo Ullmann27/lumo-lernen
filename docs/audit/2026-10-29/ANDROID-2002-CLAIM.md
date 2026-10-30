@@ -24,8 +24,9 @@ Lokal bestanden: 37 Pin-Policy-Fälle, 208 Build-/Preservation-Skripttests
 (ein übersprungener Fall) und 656 Android-Probe-/OCR-/Datenerhaltungsfälle.
 Die Belegprüfung ist separat ohne UI-/Emulator-Abhängigkeiten testbar und
 verwirft falschen Commit, Version, Paket, Signatur, Hash, ABI und Native-Pin.
-Dies sind Softwaretests; tatsächliche Android-Ergebnisse sind noch nicht
-vorhanden und werden erst nach GitHub-Ausführung eingetragen.
+Dies sind Softwaretests. Die tatsächlichen Android-Gates sind inzwischen
+ebenfalls erfolgreich; Build 2002 ist veröffentlicht und am 30.10. unabhängig
+nachgeprüft. [Release-Nachweis](../2026-10-30/RELEASE_2002_VERIFICATION.md).
 Der Tutor-Kern hat separat 1.952 lokale Flutter-Tests und 43 fokussierte Fälle
 bestanden. Seine 13 Flutter-Bilder sind keine Android-Emulatoraufnahmen und
 beweisen weder physische Fold7-Leistung noch lokale Spracheingabe.

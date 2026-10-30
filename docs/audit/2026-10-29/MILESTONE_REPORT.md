@@ -86,12 +86,15 @@ physische Fold7-Leistung; native Android-Aufnahmen gehören zum eigenen Gate.
 
 ## Android-Stand
 
-Der neue signierte Haupt-App-Kandidat ist `0.12.90+2002`, getrennt vom
-reservierten 2001. Lernkern-CI und Sicherheits-/Datenerhaltungstests sind
-bestanden. Der signierte ARM64-/x86_64-Gesamtbuild ist ebenfalls erfolgreich.
-Echte Android-/Kart-Tour, tatsächliches 2000→2002-Update und
-Veröffentlichung laufen noch. Bis zu deren Abschluss besteht keine neue
-APK-Freigabe; Build 2000 bleibt die letzte veröffentlichte Haupt-App.
+Die signierte Haupt-App `0.12.90+2002` ist veröffentlicht. Lernkern-CI,
+Gesamtbuild, Android-/Kart-Tour, tatsächliches 2000→2002-Update und Release-Gate
+sind erfolgreich. Der anonyme HTTPS-Download und die vollständige APK-Prüfung
+wurden am 30.10. wiederholt. [Direkte ARM64-APK](https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.90-2002/Lumo-Lernen-0.12.90-2002-ARM64.apk).
+
+Version `0.12.90`, Build `2002`, 317.179.546 Bytes, Quellstand `ff791642`.
+APK-SHA-256: `17483a730bb9a1a13e4bcf5a2d733523a4da07983a0aadc38a980f5d771a9c76`.
+[Signatur, vollständige Quell-SHAs und Android-Nachweise](../2026-10-30/RELEASE_2002_VERIFICATION.md).
+Build 2000 bleibt als unveränderte Vorgängerversion erhalten.
 
 Die Wiederaufnahme für andere KIs ist in [HANDOFF.md](HANDOFF.md) vollständig
 beschrieben und direkt aus AGENTS.md, CLAUDE.md, CODEX_START.md und der

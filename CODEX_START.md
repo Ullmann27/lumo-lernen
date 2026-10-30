@@ -1,10 +1,11 @@
 # Lumo – Einstieg (für jede KI zuerst lesen)
 
-**Aktuelle Wiederaufnahme vom 29.10.2026:** zuerst
+**Aktuelle Wiederaufnahme vom 30.10.2026:** zuerst
 [CONTINUE.md](CONTINUE.md) und [HANDOFF.md](docs/audit/2026-10-29/HANDOFF.md)
 lesen. Vollständiger Handoff: `docs/lumo-living-intelligence-verification-20261029`.
-Tutor-Kern #414 und Android-2002-Kandidat #415 sind gesichert; Quellstände und
-laufende Gates stehen in der Übergabe. Die darunter genannten alten Branches,
+Tutor-Kern #414 und Android 2002 #415 sind gesichert; alle Gates sind erfolgreich,
+2002 ist veröffentlicht und am 30.10. unabhängig erneut geprüft. Quellstände und
+offene fachliche Schritte stehen in der Übergabe. Die darunter genannten alten Branches,
 Builds und Rollen sind für diesen Arbeitsstand historisch. Nichts neu aufbauen
 oder ältere Checkouts über die vorhandene Arbeit schreiben.
 

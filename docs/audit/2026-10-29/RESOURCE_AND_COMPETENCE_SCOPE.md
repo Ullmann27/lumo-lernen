@@ -35,4 +35,6 @@ Dies ist keine Wirksamkeitsstudie mit Kindern und keine klinische Validierung.
 Die gerenderten Aufnahmen stammen aus produktiven Flutter-Widgets mit echten
 Eingaben und lokal gespeicherter synthetischer Evidenz. Sie sind keine Mockups;
 sie belegen weder physische Fold7-Bildrate noch lokale Spracheingabe auf dem
-Zielgerät. Build 2000 bleibt die veröffentlichte, unveränderte Android-Haupt-App.
+Zielgerät. Build 2000 bleibt unverändert erhalten; Build 2002 wurde nach
+bestandener Android-Tour und echtem 2000-Update veröffentlicht. Siehe den
+[aktuellen Nachweis](../2026-10-30/RELEASE_2002_VERIFICATION.md).

@@ -1,7 +1,8 @@
 # Verbindliche Übergabe für die nächste Weiterarbeitungs-KI
 
-Stand: 29.10.2026, 09:28 UTC. Für eine Wiederaufnahme etwa am 12.11.2026
-gedacht; GitHub-Status und Release-Existenz dann immer frisch prüfen.
+Aktualisiert am 30.10.2026: Build 2002 ist veröffentlicht und unabhängig
+nachgeprüft. Auch bei späterer Wiederaufnahme zuerst GitHub-Status und
+Release-Existenz frisch prüfen.
 
 ## Nutzerauftrag und letzte Steuerung
 
@@ -11,10 +12,11 @@ nachvollziehbar prüfen. Grundbetrieb offline ohne bezahlte KI-API. Original-
 Lumo erhalten, Profile strikt trennen, Testmodus ohne unzulässige Hilfe,
 Schreibtrainer/Journal/Wallet/Kart und veröffentlichte APKs schützen.
 
-Die letzte Nutzersteuerung war ausdrücklich: nur noch ungefähr 20 Prozent
+Am 29.10. lautete die Nutzersteuerung: nur noch ungefähr 20 Prozent
 Restbudget; fertigmachen, committen, pushen und eine belastbare Übergabe mit
-Regeln, offenen Punkten und nächsten Schritten sichern. Deshalb keine neuen
-großen Funktionsblöcke beginnen und keine laufenden Release-Gates abbrechen.
+Regeln, offenen Punkten und nächsten Schritten sichern. Daraufhin wurde der gesamte Stand gesichert. Am 30.10. hat der Nutzer mit
+„Weiter“ die Fortsetzung beauftragt. Neue Funktionsblöcke sind wieder möglich,
+aber ausschließlich auf eigenem Branch unter Schutz des veröffentlichten 2002.
 
 ## Welche Zweige und Quellen existieren?
 
@@ -80,11 +82,13 @@ kleinere Befunde. Alle fünf wurden korrigiert; 19 gezielte Regressionstests und
 die vollständigen GitHub-Läufe bestätigen die Korrekturen. Die Einzelbefunde
 und Entscheidungen stehen in `STATUS.md`; keinen zweiten Review erfinden.
 
-## Zuerst Android-Auslieferung abschließen
+## Android-Auslieferung abgeschlossen
 
-Stand 09:28 UTC: `verify-and-build` des 2002-Kandidaten **erfolgreich**,
-signierte ARM64- und x86_64-Pakete gebaut. Die echte Android-Tour läuft noch.
-Die nachgelagerten Gates laufen automatisch weiter, auch nach Ende des Chats:
+Alle nachfolgenden Gates sind **erfolgreich**. Die ARM64-Haupt-App wurde am
+29.10.2026 um 09:48:56 UTC unveränderlich veröffentlicht. Am 30.10. wurden
+anonymer HTTPS-Download, Dateigröße, SHA-256 und alle Prüfungen aus
+`scripts/verify_unified_apk.py` unabhängig erneut bestätigt.
+[Release-Bericht](../2026-10-30/RELEASE_2002_VERIFICATION.md).
 
 | Lauf | Zweck |
 |---|---|
@@ -105,12 +109,17 @@ Release-Identität: Version `0.12.90`, versionCode `2002`, Paket
 Godot `adcce3093caa42bf3da47262f70bdf03cdefa347`, Engine 4.6.3.
 Das ist dieselbe installierte Haupt-App-Testserie wie Build 2000, keine Demo.
 
-Erwarteter neuer Dateiname erst nach tatsächlicher Veröffentlichung:
-`Lumo-Lernen-0.12.90-2002-ARM64.apk` im Tag `lumo-0.12.90-2002`.
-Vor Weitergabe öffentliches HTTPS-Asset, Größe, SHA-256, Paket, Signatur,
-Quellstand und `update-result.json == PASS` nachprüfen. Keine URL als
-vorhanden behaupten, solange sie nicht existiert. Neueste sicher bestätigte
-Veröffentlichung bei Übergabe: `lumo-0.12.88-2000`, 317.118.938 Bytes.
+Veröffentlichte Datei:
+[Lumo-Lernen-0.12.90-2002-ARM64.apk](https://github.com/Ullmann27/lumo-lernen/releases/download/lumo-0.12.90-2002/Lumo-Lernen-0.12.90-2002-ARM64.apk),
+317.179.546 Bytes; SHA-256
+`17483a730bb9a1a13e4bcf5a2d733523a4da07983a0aadc38a980f5d771a9c76`.
+`update-result.json` und `tour-result.json` sind PASS; Offline-Update mit
+identischer Installations-ID, erhaltenem Testprofil, Lernstand und Rewards,
+Neustart und drei Fold-Geometrien; null fatale Abstürze. Raw-Belege und
+Original-Screenshots stehen unter `docs/evidence/living-intelligence/android-2002/`.
+Die Android-Tour nutzte das x86_64-Paket desselben Quellstands; die öffentliche
+ARM64-APK wurde paket- und signaturseitig geprüft. Keine physische ARM64- oder
+Fold7-Bildratenmessung behaupten; dies ist die signierte Haupt-App-Testserie.
 
 Falls ein Gate fehlschlägt: tatsächliche Joblogs und Artefakte untersuchen,
 keine Prüfungen entfernen. Infrastrukturfehler können am identischen Commit
@@ -128,8 +137,8 @@ gelieferten Datei-Verweis laden und den Digest prüfen. Keine Zugangsdaten logge
 
 ## Was ich danach als Nächstes gemacht hätte
 
-1. Release-/Android-Nachweise vollständig in den Bericht übernehmen, echten
-   direkten ARM64-Link erst nach Prüfung ausgeben. Source-SHAs nicht verschieben.
+1. Release-Abschluss ist erledigt. Die veröffentlichten Source-SHAs, Tags und
+   Assets nicht verschieben. Für neue Facharbeit einen eigenen Branch anlegen.
 2. Gemeinsamen echten Aufgaben-/Hilfekontext in die eigenständigen Module
    integrieren. Alle 19 Screens besitzen schon den visuellen Rahmen; neue
    Szenen sind dort noch nicht allgemein angebunden. Die statische Modulkarte

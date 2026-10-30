@@ -89,10 +89,10 @@ Der separate Android-2002-Kandidat liegt in [Draft-PR #415](https://github.com/U
 Quellstand `ff791642a0d28d10f89d98025fd8f5fb2c19c403`. Seine [Lernkern-CI](https://github.com/Ullmann27/lumo-lernen/actions/runs/40846950258)
 und [Change-Review](https://github.com/Ullmann27/lumo-lernen/actions/runs/40846950262)
 bestanden ebenfalls am exakten Quellstand (1.952 + 43 Tests).
-Die tatsächlichen Android-/Update-/Veröffentlichungsgates laufen noch;
-diese Kernfreigabe ersetzt sie nicht.
-
-Übergabestand 29.10., 09:28 UTC: `verify-and-build` des Gesamtworkflows 2002
-ist erfolgreich, signierte ARM64-/x86_64-Haupt-App-Pakete sind gebaut. Die
-echte Android-Tour läuft. [Aktuelle Übergabe](HANDOFF.md),
-[gespeicherte GitHub-Momentaufnahme](../../evidence/living-intelligence/handoff-github-status.json).
+Alle Android-/Update-/Veröffentlichungsgates sind inzwischen erfolgreich.
+Build 2002 wurde am 29.10.2026 um 09:48:56 UTC veröffentlicht; am 30.10.
+anonym heruntergeladen und unabhängig erneut mit dem vollständigen APK-
+Prüfskript verifiziert. [Aktueller Release-Bericht](../2026-10-30/RELEASE_2002_VERIFICATION.md).
+Die Momentaufnahme `handoff-github-status.json` dokumentiert bewusst den
+historischen Zwischenstand vom 29.10.; die aktuelle Freigabe steht in
+`android-2002/release-verification.json`.
