@@ -205,7 +205,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(1999), config(candidate))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(2004), config(candidate))
+            module.verify(pubspec(2005), config(candidate))
 
     def test_2002_offline_intelligence_preserves_reserved_2001_and_published_2000(self):
         reviewed = "adcce3093caa42bf3da47262f70bdf03cdefa347"
@@ -215,7 +215,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(2002), config(module.APPROVED[1999]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(2004), config(reviewed))
+            module.verify(pubspec(2005), config(reviewed))
 
     def test_2003_living_original_fox_preserves_verified_2002_native_source(self):
         reviewed = "adcce3093caa42bf3da47262f70bdf03cdefa347"
@@ -226,7 +226,26 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             module.verify(pubspec(2003), config(module.APPROVED[1999]))
         with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-            module.verify(pubspec(2004), config(reviewed))
+            module.verify(pubspec(2005), config(reviewed))
+
+    def test_2004_integrates_green_stunts_without_changing_signed_2003(self):
+        baseline = "adcce3093caa42bf3da47262f70bdf03cdefa347"
+        kart = "3689307a6392fd5756bc87ba0e36f3bef9df71e3"
+        self.assertEqual(module.APPROVED[2003], baseline)
+        self.assertEqual(module.APPROVED[2004], kart)
+        self.assertNotEqual(kart, baseline)
+        self.assertEqual(module.verify(pubspec(2004), config(kart)), (2004, kart))
+        self.assertEqual(module.verify(pubspec(2003), config(baseline)), (2003, baseline))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(2004), config(baseline))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            module.verify(pubspec(2003), config(kart))
+        with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+            module.verify(pubspec(2005), config(kart))
+        with self.assertRaisesRegex(ValueError, "origin"):
+            module.verify(pubspec(2004), config(kart, origin="https://example.org"))
+        with self.assertRaisesRegex(ValueError, "engine"):
+            module.verify(pubspec(2004), config(kart, engine="4.7"))
 
     def test_preserved_release_1950_to_1952_requires_original_source(self):
         for number in (1950, 1951, 1952):
