@@ -187,7 +187,12 @@ class MathTaskTemplates {
         : templatesForGrade(grade, unit: unit);
     // Auswahl und Wiederholungsquote dürfen nicht denselben Modulo nutzen:
     // Bei 16 Templates wären sonst ganze Familien nie erreichbar.
-    final template = pool[_positive(_mixSeed(seed + 101), pool.length)];
+    // An explicitly selected topic outranks any legacy alias (e.g. grade-4
+    // 'Vergleichen' must not silently turn into 'Mengenvergleich').
+    // Keep the old fallback when no exact topic exists, including 'Alle'.
+    final exact = pool.where((item) => item.unit == unit).toList();
+    final selected = exact.isNotEmpty ? exact : pool;
+    final template = selected[_positive(_mixSeed(seed + 101), selected.length)];
     return template.concretize(_mixSeed(seed + 809));
   }
 

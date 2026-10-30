@@ -14,11 +14,17 @@ class TutorReleasePolicyTest(unittest.TestCase):
                              'revision': 'adcce3093caa42bf3da47262f70bdf03cdefa347', 'engine': '4.6.3'})
         for version in (2000, 2001):
             self.assertEqual(policy.verify(f'version: 0.12.89+{version}\n', config)[0], version)
-        # The newest approved main-app is 2003. The *following* version
-        # stays prohibited until another independent pin/source review.
+        # Previously approved published source remains version-bound.
         self.assertEqual(policy.verify('version: 0.12.91+2003\n', config)[0], 2003)
-        with self.assertRaisesRegex(ValueError, 'no reviewed native pin'):
+        # 2004 has a newly reviewed independent native pin. The 2003 source
+        # must never be silently reused for this new APK.
+        with self.assertRaisesRegex(ValueError, 'revision mismatch'):
             policy.verify('version: 0.12.92+2004\n', config)
+        candidate = json.loads(config)
+        candidate['revision'] = policy.APPROVED[2004]
+        self.assertEqual(policy.verify('version: 0.12.92+2004\n', json.dumps(candidate))[0], 2004)
+        with self.assertRaisesRegex(ValueError, 'no reviewed native pin'):
+            policy.verify('version: 0.12.93+2005\n', json.dumps(candidate))
         broken = json.loads(config)
         broken['revision'] = policy.APPROVED[1999]
         with self.assertRaisesRegex(ValueError, 'revision mismatch'):
