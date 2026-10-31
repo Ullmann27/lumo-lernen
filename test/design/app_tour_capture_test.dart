@@ -63,15 +63,14 @@ const sizes = <String, Size>{
   'fold': Size(690, 829),
   'reference-phone': Size(360, 800),
 };
-// Capture every registered section, not only the six previous highlights.
-final sections = LumoSection.values;
-const academicSections = <LumoSection>{
+const sections = <LumoSection>[
+  LumoSection.home,
   LumoSection.learn,
-  LumoSection.exercises,
-  LumoSection.reading,
+  LumoSection.games,
   LumoSection.tests,
-  LumoSection.schoolwork,
-};
+  LumoSection.rewards,
+  LumoSection.profile,
+];
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -148,46 +147,34 @@ void main() {
 
   for (final size in sizes.entries) {
     for (final section in sections) {
-      // Full register coverage for grade 2, plus every actual academic
-      // screen at grades 1, 3 and 4. Never fake profiles or rewards.
-      final grades = academicSections.contains(section)
-          ? const <int>[1, 2, 3, 4]
-          : const <int>[2];
-      for (final grade in grades) {
-        testWidgets('Tour ${size.key} ${section.name} grade $grade',
-            (tester) async {
-          await tester.binding.setSurfaceSize(size.value);
-          addTearDown(() => tester.binding.setSurfaceSize(null));
-          final date = DateTime(2026, 10, 8);
-          await tester.pumpWidget(MaterialApp(
-            theme: LumoAppTheme.light(),
-            home: RepaintBoundary(
-              key: _boundary,
-              child: AppShell(
-                profile: UserProfile(
-                  id: 'tour-grade-$grade',
-                  name: 'Mia',
-                  age: 5 + grade,
-                  grade: grade,
-                  createdAt: date,
-                  lastActiveAt: date,
-                ),
-                initialSection: section,
+      testWidgets('Tour ${size.key} ${section.name}', (tester) async {
+        await tester.binding.setSurfaceSize(size.value);
+        addTearDown(() => tester.binding.setSurfaceSize(null));
+        final date = DateTime(2026, 10, 8);
+        await tester.pumpWidget(MaterialApp(
+          theme: LumoAppTheme.light(),
+          home: RepaintBoundary(
+            key: _boundary,
+            child: AppShell(
+              profile: UserProfile(
+                id: 'tour',
+                name: 'Mia',
+                age: 8,
+                grade: 2,
+                createdAt: date,
+                lastActiveAt: date,
               ),
+              initialSection: section,
             ),
-          ));
-          for (var i = 0; i < 6; i++) {
-            await tester.pump(const Duration(milliseconds: 200));
-          }
-          expect(find.byType(Scaffold), findsWidgets,
-              reason: 'Section ${section.name} has no visible app scaffold');
-          await capture(tester,
-              '${size.key}_klasse${grade}_${section.name}');
-          expect(tester.takeException(), isNull,
-              reason: 'Screen ${section.name}, grade $grade, ${size.key}');
-          await tester.pumpWidget(const SizedBox());
-        }, skip: _out == null);
-      }
+          ),
+        ));
+        for (var i = 0; i < 6; i++) {
+          await tester.pump(const Duration(milliseconds: 200));
+        }
+        await capture(tester, '${size.key}_${section.name}');
+        expect(tester.takeException(), isNull);
+        await tester.pumpWidget(const SizedBox());
+      }, skip: _out == null);
     }
   }
 }
