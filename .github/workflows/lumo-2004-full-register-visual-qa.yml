@@ -1,0 +1,72 @@
+name: Lumo 2004 all registers actual phone and Fold screen proof
+on:
+  pull_request:
+    paths:
+      - test/design/app_full_register_tour_capture_test.dart
+      - .github/workflows/lumo-2004-full-register-visual-qa.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  check-full-registers:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Lock dependencies and analyze the independent screen test
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          dart analyze test/design/app_full_register_tour_capture_test.dart
+      - name: Render all 87 actual AppShell screens on three display sizes
+        env:
+          LUMO_FULL_REGISTER_TOUR_DIR: ${{ github.workspace }}/proof/all-registers
+          LUMO_TOUR_CAPTURE_SCALE: '1'
+        run: |
+          set -euo pipefail
+          mkdir -p "$LUMO_FULL_REGISTER_TOUR_DIR"
+          flutter test --no-pub --reporter=expanded --timeout=90s \
+            test/design/app_full_register_tour_capture_test.dart
+          python3 - <<'PY'
+          import os, struct
+          from pathlib import Path
+          output = Path(os.environ['LUMO_FULL_REGISTER_TOUR_DIR'])
+          all_sections = ('home','learn','exercises','reading','games','tests',
+                          'schoolwork','scanner','missions','progress','rewards',
+                          'agent','profile','settings')
+          academic = {'learn','exercises','reading','tests','schoolwork'}
+          sizes = {'phone': (412,915),'fold': (690,829),'reference-phone': (360,800)}
+          expected = {f'{viewport}_klasse{grade}_{section}.png': (width,height)
+                      for viewport,(width,height) in sizes.items()
+                      for section in all_sections
+                      for grade in ((1,2,3,4) if section in academic else (2,))}
+          actual = {f.name for f in output.glob('*.png')}
+          assert len(expected) == 87
+          assert actual == set(expected), {
+              'missing': sorted(set(expected)-actual),
+              'unexpected': sorted(actual-set(expected))}
+          for filename, dimensions in expected.items():
+              path = output / filename
+              assert path.stat().st_size > 5000, filename
+              with path.open('rb') as f:
+                  header = f.read(24)
+              assert header[:8] == b'\x89PNG\r\n\x1a\n', filename
+              assert struct.unpack('>II', header[16:24]) == dimensions, filename
+          print(f'PASS: {len(actual)} independently rendered full register/class PNGs')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2004-all-registers-87-screens
+          path: proof/all-registers/
+          if-no-files-found: warn
+          retention-days: 45
