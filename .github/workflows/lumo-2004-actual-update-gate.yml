@@ -1,0 +1,157 @@
+name: Lumo 2004 actual 2003 in-place upgrade and native Kart QA
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/lumo-2004-actual-update-gate.yml'
+      - '.github/workflows/lumo-2004-direct-release.yml'
+      - '.github/probes/lumo_2004_update_android_probe.py'
+      - 'pubspec.yaml'
+      - 'config/godot-source.json'
+      - 'scripts/verify_legacy_release_pin.py'
+      - 'scripts/tests/test_legacy_release_pin.py'
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-2004-update-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  proven-2004-update:
+    if: github.event_name == 'pull_request' && github.event.pull_request.head.repo.full_name == github.repository && github.event.pull_request.base.ref == 'integration/lumo-2004-full-learning-stunts-20261030' && github.event.pull_request.head.ref == 'qa/lumo-2004-real-upgrade-20261031'
+    runs-on: ubuntu-latest
+    timeout-minutes: 100
+    # QA only: original release 2003 and tested 2004 artifacts are immutable.
+    env:
+      GH_TOKEN: ${{ github.token }}
+      SOURCE_SHA: '1f99665c6b2b44f0e88a94264621652c0a9c34e8'
+      BASELINE_RUN: '40867990650'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Verify immutable published 2003 build and await exact-head 2004 full APK tour
+        run: |
+          set -euo pipefail
+          mkdir -p update-proof
+          gh api "repos/Ullmann27/lumo-lernen/actions/runs/$BASELINE_RUN" > update-proof/baseline-run.json
+          python3 - <<'PY'
+          import json
+          d=json.load(open('update-proof/baseline-run.json'))
+          assert d['head_sha']=='18ced63187c7a264c3bd2b8271ec58647f679d70'
+          assert d['conclusion']=='success' and d['status']=='completed'
+          assert d['repository']['full_name']=='Ullmann27/lumo-lernen'
+          PY
+          for attempt in $(seq 1 80); do
+            gh api "repos/Ullmann27/lumo-lernen/actions/runs?head_sha=$SOURCE_SHA&per_page=100" > update-proof/latest-runs.json
+            row="$(jq -r --arg sha "$SOURCE_SHA" '[.workflow_runs[] | select(.name == "Lumo Lernen Kart unified integration APK" and .head_sha == $sha)] | sort_by(.created_at) | reverse | .[0] | if . == null then "waiting waiting" else "\(.id) \(.conclusion // .status)" end' update-proof/latest-runs.json)"
+            read -r run_id result <<< "$row"
+            echo "Candidate attempt $attempt: $run_id $result"
+            if [ "$result" = 'success' ]; then
+              echo "CANDIDATE_RUN=$run_id" >> "$GITHUB_ENV"
+              break
+            fi
+            if [ "$result" = 'failure' ] || [ "$result" = 'cancelled' ]; then
+              echo "Full candidate tour failed; refuse to publish or update"
+              exit 1
+            fi
+            sleep 45
+          done
+          test "${result:-}" = "success"
+      - name: Download original immutable 2003 and exact-head 2004 two-ABI artifacts
+        run: |
+          set -euo pipefail
+          mkdir -p baseline/dist candidate/dist
+          gh run download "$BASELINE_RUN" --repo Ullmann27/lumo-lernen \
+            --name lumo-lernen-kart-unified-2026-candidate --dir baseline/dist
+          gh run download "$CANDIDATE_RUN" --repo Ullmann27/lumo-lernen \
+            --name lumo-lernen-kart-unified-2026-candidate --dir candidate/dist
+      - name: Reject untrusted signatures, changed application IDs or unknown Godot source
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_unified_apk.py candidate/dist/Lumo-Lernen-Neu.apk \
+            --abi arm64-v8a > update-proof/arm64-verification.json
+          python3 scripts/verify_unified_apk.py candidate/dist/x86_64/Lumo-Lernen-Neu.apk \
+            --abi x86_64 > update-proof/x86-verification.json
+          python3 scripts/verify_android_apk.py baseline/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/2003-signature.txt
+          sha256sum baseline/dist/x86_64/Lumo-Lernen-Neu.apk \
+            candidate/dist/Lumo-Lernen-Neu.apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk > update-proof/apk-sha256.txt
+          python3 - <<'PY'
+          import json,os
+          from pathlib import Path
+          expect = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          for abi in ('arm64','x86'):
+            data=json.loads(Path(f'update-proof/{abi}-verification.json').read_text())
+            assert data['package']=='dev.ullmann.lumo.lumo_lernen.coachpreview'
+            assert data['versionCode']==2004 and data['versionName']=='0.12.92'
+            assert data['signingCertificateSha256'].lower()==expect
+            assert data['godot']['revision']=='3689307a6392fd5756bc87ba0e36f3bef9df71e3'
+          for key in ('candidate','baseline'):
+            path=Path(key)/'dist/x86_64/BUILD-PROVENANCE.json'
+            item=json.loads(path.read_text())
+            assert item['versionCode']==(2004 if key=='candidate' else 2003)
+            assert item['flutter_source_commit']==(os.environ['SOURCE_SHA'] if key=='candidate' else '18ced63187c7a264c3bd2b8271ec58647f679d70')
+          PY
+      - name: Install independent live Android probe dependencies and strict persistence tests
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          python3 -m venv .update-python
+          .update-python/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+          .update-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_kart_tour_evidence.py -v
+      - name: Enable KVM acceleration on disposable emulator
+        run: |
+          set -euo pipefail
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Prepare software GPU for actual native kart rendering
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > update-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > update-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 1
+          done
+          grep -i 'OpenGL renderer string' update-proof/mesa-renderer.txt
+      - name: Real 2003 progress, install -r 2004, offline Godot race, restart and Fold geometry
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_CANDIDATE_SOURCE_SHA: '1f99665c6b2b44f0e88a94264621652c0a9c34e8'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .update-python/bin/python .github/probes/lumo_2004_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out update-proof
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2004-actual-2003-update-proof
+          path: update-proof/
+          if-no-files-found: warn
+          retention-days: 90
