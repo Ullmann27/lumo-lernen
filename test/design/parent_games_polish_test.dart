@@ -308,6 +308,17 @@ void main() {
     // The previous matching-card screen remains tested separately.
     expect(find.byType(LumoStarTrailScreen), findsOneWidget);
     expect(find.text('Gemeinsam über die Wolken!'), findsOneWidget);
+    // The choice area is below the 3D-style island board in a lazy ListView.
+    // Reach it with a real user scroll instead of assuming it is built above
+    // the fold; do not weaken the navigation or card-choice assertions.
+    await tester.scrollUntilVisible(
+      find.text('WÄHLE DEINE NÄCHSTE KARTE'),
+      240,
+      scrollable: find.descendant(
+        of: find.byType(LumoStarTrailScreen),
+        matching: find.byType(Scrollable),
+      ).first,
+    );
     expect(find.text('WÄHLE DEINE NÄCHSTE KARTE'), findsOneWidget);
     Navigator.of(tester.element(find.byType(LumoStarTrailScreen))).pop();
     await tester.pump();
