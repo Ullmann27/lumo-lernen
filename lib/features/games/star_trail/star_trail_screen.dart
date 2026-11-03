@@ -44,8 +44,8 @@ class _LumoStarTrailScreenState extends State<LumoStarTrailScreen> {
     // an immediate restart. The familiar LumoAppState owns all profile data.
     if (next.won && !_rewardGiven && widget.appState != null) {
       _rewardGiven = true;
-      widget.appState!.addStars(5);
-      widget.appState!.addXp(40);
+      // Atomic wallet operation: child-safe stars and XP in one transaction.
+      widget.appState!.addRewards(stars: 5, xp: 40);
     }
   }
 
