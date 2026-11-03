@@ -6,6 +6,23 @@ import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
 import 'package:lumo_lernen/features/games/star_trail/star_trail_rules.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
 
+// The island board deliberately precedes the cards in a lazily built ListView.
+// Exercise the actual scroll interaction instead of expecting offscreen widgets
+// to be eagerly constructed in the Flutter test environment.
+Future<void> revealStarTrail(WidgetTester tester, String label) async {
+  await tester.scrollUntilVisible(
+    find.text(label),
+    240,
+    scrollable: find.descendant(
+      of: find.byType(LumoStarTrailScreen),
+      matching: find.byType(Scrollable),
+    ).first,
+    maxScrolls: 16,
+  );
+  await tester.pump(const Duration(milliseconds: 350));
+  expect(find.text(label), findsOneWidget);
+}
+
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
@@ -22,13 +39,16 @@ void main() {
       await tester.pump(const Duration(milliseconds: 550));
       expect(find.byType(LumoCharacter), findsOneWidget);
       expect(find.text('Gemeinsam über die Wolken!'), findsOneWidget);
-      expect(find.text('WÄHLE DEINE NÄCHSTE KARTE'), findsOneWidget);
-      expect(find.text('Sternlaterne'), findsOneWidget);
+      await revealStarTrail(tester, 'WÄHLE DEINE NÄCHSTE KARTE');
+      await revealStarTrail(tester, 'Sternlaterne');
       expect(tester.takeException(), isNull);
       final lantern = find.text('Sternlaterne');
       await tester.ensureVisible(lantern);
       await tester.pump();
       await tester.tap(lantern);
+      await tester.pump(const Duration(milliseconds: 400));
+      // Return to the visible progress counter after playing the card.
+      await tester.drag(find.byType(ListView), const Offset(0, 1400));
       await tester.pump(const Duration(milliseconds: 400));
       expect(find.text('1/12'), findsOneWidget);
       expect(tester.takeException(), isNull);
@@ -48,21 +68,22 @@ void main() {
     ));
     await tester.pump(const Duration(milliseconds: 300));
     for (var i = 0; i < StarTrailState.goalDistance; i++) {
+      await revealStarTrail(tester, 'Sternlaterne');
       final lantern = find.text('Sternlaterne');
-      expect(lantern, findsOneWidget);
       await tester.ensureVisible(lantern);
       await tester.pump();
       await tester.tap(lantern);
       await tester.pump(const Duration(milliseconds: 350));
     }
     expect(app.state.stars, starsBefore + 5);
-    expect(find.text('Noch eine Sternenreise'), findsOneWidget);
+    await revealStarTrail(tester, 'Noch eine Sternenreise');
     final restart = find.text('Noch eine Sternenreise');
     await tester.ensureVisible(restart);
     await tester.tap(restart);
     await tester.pump(const Duration(milliseconds: 300));
     // Restart does not reset the per-screen award guard.
     for (var i = 0; i < StarTrailState.goalDistance; i++) {
+      await revealStarTrail(tester, 'Sternlaterne');
       final lantern = find.text('Sternlaterne');
       await tester.ensureVisible(lantern);
       await tester.tap(lantern);
