@@ -131,7 +131,7 @@ class StarTrailState {
         min(goalDistance, distance + card.distance);
     final nextStars = stars + card.stars;
     final nextLight =
-        (light - card.lightCost + card.lightGain).clamp(0, maxLight);
+        (light - card.lightCost + card.lightGain).clamp(0, maxLight).toInt();
     final success =
         nextDistance >= goalDistance && nextStars >= goalStars;
     final over = success || nextTurn >= maxTurns;
