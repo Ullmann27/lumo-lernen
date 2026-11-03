@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'star_trail_rules.dart';
+import '../../../widgets/fox/lumo_character.dart';
+import '../../../widgets/design/lumo_design_system.dart' show LumoDesignFoxPose;
 
 /// Lumo Sternenpfad: cooperative original route-building card game.
 /// Supports phone, Fold and tablet layouts without network calls.
@@ -144,7 +146,13 @@ class _LumoStarTrailScreenState extends State<LumoStarTrailScreen> {
         ),
         child: const Row(
           children: [
-            Text('🦊', style: TextStyle(fontSize: 42)),
+            LumoCharacter(
+              pose: LumoDesignFoxPose.spielweltCards,
+              size: 90,
+              reduceMotion: true,
+              intro: false,
+              idleHops: false,
+            ),
             SizedBox(width: 12),
             Expanded(
               child: Column(
