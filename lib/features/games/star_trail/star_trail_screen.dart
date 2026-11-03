@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'star_trail_rules.dart';
+import '../../../app/app_state.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import '../../../widgets/design/lumo_design_system.dart' show LumoDesignFoxPose, LumoScene, LumoSceneBackground;
 
 /// Lumo Sternenpfad: cooperative original route-building card game.
 /// Supports phone, Fold and tablet layouts without network calls.
 class LumoStarTrailScreen extends StatefulWidget {
-  const LumoStarTrailScreen({super.key});
+  const LumoStarTrailScreen({super.key, this.appState});
+
+  final LumoAppState? appState;
 
   @override
   State<LumoStarTrailScreen> createState() => _LumoStarTrailScreenState();
@@ -19,6 +22,7 @@ class _LumoStarTrailScreenState extends State<LumoStarTrailScreen> {
   static const cyan = Color(0xFF66E7F7);
   static const gold = Color(0xFFFFD981);
   late StarTrailState state;
+  bool _rewardGiven = false;
 
   @override
   void initState() {
@@ -34,7 +38,15 @@ class _LumoStarTrailScreenState extends State<LumoStarTrailScreen> {
   void _choose(int index) {
     if (!state.canPlay(index)) return;
     HapticFeedback.selectionClick();
-    setState(() => state = state.play(index));
+    final next = state.play(index);
+    setState(() => state = next);
+    // Reward this completed child-session exactly once, including after
+    // an immediate restart. The familiar LumoAppState owns all profile data.
+    if (next.won && !_rewardGiven && widget.appState != null) {
+      _rewardGiven = true;
+      widget.appState!.addStars(5);
+      widget.appState!.addXp(40);
+    }
   }
 
   @override
