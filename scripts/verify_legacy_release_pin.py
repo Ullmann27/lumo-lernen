@@ -104,6 +104,8 @@ APPROVED = {
     # run 41088034976 (full race, 104 lap checks, all required gates).
     # The already published 2003 package and pin remain immutable.
     2004: "3689307a6392fd5756bc87ba0e36f3bef9df71e3",
+    # Isolated 2005 candidate: combined real Godot Kart/Jump/creative QA; never rewrite 2004.
+    2005: "da1132b6366e79beed77b19e3855b69e86b07d9e",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
