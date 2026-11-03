@@ -90,6 +90,56 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  testWidgets('an explicit tap cheer keeps its requested pose', (tester) async {
+    final controller = LumoCharacterController();
+    addTearDown(controller.dispose);
+    await tester.pumpWidget(MaterialApp(home: Center(child: LumoCharacter(
+      pose: LumoDesignFoxPose.armsOpen,
+      controller: controller,
+      onTap: controller.cheer,
+    ))));
+    await tester.pump(const Duration(milliseconds: 700));
+    await tester.tap(find.byType(LumoCharacter));
+    await tester.pump(const Duration(milliseconds: 350));
+    expect(shownPoses(tester), contains('fox_cheer'));
+    await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('system reduced motion stops a running character and star burst',
+      (tester) async {
+    final controller = LumoCharacterController();
+    addTearDown(controller.dispose);
+    Widget scene(bool reduced) => MaterialApp(home: MediaQuery(
+      data: MediaQueryData(disableAnimations: reduced),
+      child: Center(child: LumoCharacter(
+        pose: LumoDesignFoxPose.thumbWink,
+        controller: controller,
+      )),
+    ));
+    await tester.pumpWidget(scene(false));
+    await tester.pump(const Duration(milliseconds: 800));
+    controller.cheer();
+    await tester.pump(const Duration(milliseconds: 200));
+    await tester.pumpWidget(scene(true));
+    await tester.pump(const Duration(milliseconds: 250));
+    final still = figureTransform(tester).clone();
+    expect(tester.binding.transientCallbackCount, 0);
+    controller.cheer();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(figureTransform(tester), equals(still));
+    expect(find.descendant(of: find.byType(LumoCharacter),
+        matching: find.byType(CustomPaint)), findsNothing,
+        reason: 'Reduced motion keeps joy without moving star particles');
+    await tester.pump(const Duration(seconds: 1));
+    expect(tester.binding.transientCallbackCount, 0);
+    await tester.pumpWidget(scene(false));
+    await tester.pump(const Duration(milliseconds: 800));
+    final resumed = figureTransform(tester).clone();
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(figureTransform(tester), isNot(equals(resumed)));
+    await tester.pumpWidget(const SizedBox());
+  });
+
   testWidgets('mit „Animationen reduzieren“ steht Lumo still', (tester) async {
     final controller = await pumpLumo(tester, reduceMotion: true);
     await tester.pump(const Duration(milliseconds: 100));

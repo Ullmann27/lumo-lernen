@@ -1338,9 +1338,10 @@ class _LearningContentState extends State<LearningContent> {
             LumoCharacter(
               pose: LumoDesignFoxPose.cheer,
               size: 112,
+              controller: _lumo,
               reduceMotion:
                   st.settings.reduceAnimations || st.settings.calmMode,
-              onTap: () {},
+              onTap: _lumo.cheer,
             ),
             const SizedBox(width: 6),
             const Expanded(

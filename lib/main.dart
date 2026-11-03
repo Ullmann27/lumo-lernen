@@ -102,7 +102,10 @@ class _LumoFallbackErrorWidget extends StatelessWidget {
               if (isDebug) ...[
                 const SizedBox(height: 16),
                 ConstrainedBox(
-                  constraints: const BoxConstraints(maxWidth: 480, maxHeight: 220),
+                  constraints: const BoxConstraints(
+                    maxWidth: 480,
+                    maxHeight: 220,
+                  ),
                   child: SingleChildScrollView(
                     child: Text(
                       details.exceptionAsString(),
@@ -130,7 +133,7 @@ class LumoApp extends StatefulWidget {
   State<LumoApp> createState() => _LumoAppState();
 }
 
-class _LumoAppState extends State<LumoApp> {
+class _LumoAppState extends State<LumoApp> with WidgetsBindingObserver {
   final _voiceRouteObserver = LumoVoiceRouteObserver();
   final _repo = ProfileRepository();
   final _scaffoldMessengerKey = GlobalKey<ScaffoldMessengerState>();
@@ -143,10 +146,12 @@ class _LumoAppState extends State<LumoApp> {
   /// defaultRouteName ausgelesen (Bridge vom Godot-Hub - lumolernen://).
   /// Bleibt null wenn die App normal gestartet wurde.
   LumoSection? _initialSection;
+  int _deepLinkRequestId = 0;
 
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addObserver(this);
     // Deep-Link auswerten BEVOR der Shell gebaut wird. defaultRouteName
     // setzt Android beim Intent-Start auf die Deep-Link-URI.
     _initialSection = DeepLinkRouter.parseInitialSection(
@@ -157,6 +162,29 @@ class _LumoAppState extends State<LumoApp> {
     // Wenn das Kind ins Spiel geht sind die Bilder schon im Bild-Cache
     // -> kein Hitch beim ersten Render, weicher Uebergang.
     WidgetsBinding.instance.addPostFrameCallback((_) => _warmAssetCache());
+  }
+
+  @override
+  Future<bool> didPushRouteInformation(
+    RouteInformation routeInformation,
+  ) async {
+    final section = DeepLinkRouter.parseInitialSection(
+      routeInformation.uri.toString(),
+    );
+    if (!mounted) return false;
+    // An unknown Lumo destination is a no-op, not a named Navigator route.
+    if (section == null) return routeInformation.uri.scheme == 'lumolernen';
+    setState(() {
+      _initialSection = section;
+      _deepLinkRequestId++;
+    });
+    return true;
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   Future<void> _warmAssetCache() async {
@@ -209,13 +237,15 @@ class _LumoAppState extends State<LumoApp> {
       // Do not show AppShell or suggest progress is saved after a rejected
       // Android write. Keep all onboarding fields visible for a real retry.
       _scaffoldMessengerKey.currentState?.hideCurrentSnackBar();
-      _scaffoldMessengerKey.currentState?.showSnackBar(const SnackBar(
-        content: Text(
-          'Lumo konnte dein Profil noch nicht speichern. '
-          'Bitte tippe erneut auf Weiter. Deine bisherigen Daten bleiben erhalten.',
+      _scaffoldMessengerKey.currentState?.showSnackBar(
+        const SnackBar(
+          content: Text(
+            'Lumo konnte dein Profil noch nicht speichern. '
+            'Bitte tippe erneut auf Weiter. Deine bisherigen Daten bleiben erhalten.',
+          ),
+          duration: Duration(seconds: 8),
         ),
-        duration: Duration(seconds: 8),
-      ));
+      );
     } finally {
       _savingProfile = false;
     }
@@ -252,10 +282,7 @@ class _LumoAppState extends State<LumoApp> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: const [
-                LumoLottie(
-                  asset: LumoAssetPaths.lottieLoading,
-                  size: 150,
-                ),
+                LumoLottie(asset: LumoAssetPaths.lottieLoading, size: 150),
                 SizedBox(height: 18),
                 Text(
                   'Lumo Lernen',
@@ -292,7 +319,11 @@ class _LumoAppState extends State<LumoApp> {
     } else if (_profile == null) {
       home = LumoOnboardingScreen(onFinished: _finishOnboarding);
     } else {
-      home = AppShell(profile: _profile, initialSection: _initialSection);
+      home = AppShell(
+        profile: _profile,
+        initialSection: _initialSection,
+        deepLinkRequestId: _deepLinkRequestId,
+      );
     }
 
     return MaterialApp(
@@ -301,6 +332,9 @@ class _LumoAppState extends State<LumoApp> {
       scaffoldMessengerKey: _scaffoldMessengerKey,
       theme: LumoAppTheme.light(),
       navigatorObservers: [_voiceRouteObserver],
+      // The URI has already been mapped to an app section above. Letting the
+      // Navigator also interpret it would create a second, unknown route.
+      initialRoute: '/',
       home: home,
     );
   }

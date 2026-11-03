@@ -25,14 +25,14 @@ enum LumoDesignFoxPose {
   thumbWink('fox_thumb_wink', 'Lumo zwinkert und zeigt Daumen hoch'),
   teacherStick('fox_teacher_stick', 'Lumo erklärt mit dem Zeigestab'),
   cheer('fox_cheer', 'Lumo jubelt'),
-  spielweltCards('fox_spielwelt_cards',
+  // Keep established pose identifiers while every game and reaction shows
+  // the original Lumo with blue goggles, navy jacket and L badge.
+  spielweltCards('fox_cards_welcome',
       'Lumo hält seine Karten und freut sich aufs Spiel'),
-  spielweltDance('fox_spielwelt_dance',
-      'Lumo tanzt mit Kopfhörern, Halstuch und Rucksack'),
-  spielweltJump(
-      'fox_spielwelt_jump', 'Lumo springt fröhlich mit Halstuch und Rucksack'),
-  spielweltWave('fox_spielwelt_wave',
-      'Lumo mit Halstuch und Rucksack winkt dich in die Spielwelt'),
+  spielweltDance('fox_cheer', 'Lumo bewegt sich fröhlich zur Musik'),
+  spielweltJump('fox_cheer', 'Lumo freut sich über deinen Sprung'),
+  spielweltWave('fox_arms_open',
+      'Lumo mit blauer Brille und Jacke begrüßt dich in der Spielwelt'),
   avatar('fox_avatar', 'Lumo, dein Profilbild');
 
   const LumoDesignFoxPose(this.assetName, this.semanticLabel);

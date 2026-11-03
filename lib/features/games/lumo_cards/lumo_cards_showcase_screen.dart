@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-/// Interactive entry to Lumo Cards built on the ORIGINAL approved key artwork.
-/// The artwork is shown without recolouring or replacing the animal cast.
+/// Interactive Cards entry with the original goggled, jacketed Lumo.
+/// Every title and action is a native widget; the character art is decoration.
 /// Gameplay stays in LumoCardsScreen and retains its real card rules and data.
 class LumoCardsShowcaseScreen extends StatelessWidget {
   const LumoCardsShowcaseScreen({
@@ -14,8 +14,7 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
   final VoidCallback onSolo;
   final VoidCallback onLocal;
 
-  static const referenceArt =
-      'docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp';
+  static const referenceArt = 'assets/lumo_design/fox/fox_cards_welcome.png';
 
   @override
   Widget build(BuildContext context) {
@@ -28,77 +27,40 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
           return Stack(
             fit: StackFit.expand,
             children: [
-              // This asset was already part of the approved production
-              // reference board; include it in Flutter's asset manifest,
-              // rather than shipping an unrelated approximate illustration.
+              const DecoratedBox(
+                decoration: BoxDecoration(
+                  gradient: RadialGradient(
+                    center: Alignment(0, -.25),
+                    radius: 1.1,
+                    colors: [
+                      Color(0xFF155A80),
+                      Color(0xFF082C53),
+                      Color(0xFF031329),
+                    ],
+                  ),
+                ),
+              ),
               RepaintBoundary(
-                child: Image.asset(
-                  referenceArt,
-                  key: const ValueKey('cards-approved-reference-art'),
-                  fit: BoxFit.contain,
-                  alignment: Alignment.center,
-                  filterQuality: FilterQuality.high,
-                  // Cold-start WebP decoding is asynchronous, even for a
-                  // bundled original asset. Never show an empty navy panel.
-                  // Keep the approved artwork unchanged once its first
-                  // decoded frame becomes available.
-                  frameBuilder: (context, image, frame, syncLoaded) {
-                    if (syncLoaded || frame != null) return image;
-                    return const DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          begin: Alignment.topLeft,
-                          end: Alignment.bottomRight,
-                          colors: [
-                            Color(0xFF092A57),
-                            Color(0xFF124B75),
-                            Color(0xFF081C3C),
-                          ],
-                        ),
-                      ),
-                      child: Center(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Icon(Icons.style_rounded,
-                                color: Color(0xFFFFCB62), size: 76),
-                            SizedBox(height: 12),
-                            Text(
-                              'LUMO CARDS',
-                              style: TextStyle(
-                                fontFamily: 'Nunito',
-                                color: Colors.white,
-                                fontSize: 26,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 1.1,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                  semanticLabel:
-                      'Lumo Cards: Lumo und seine Tierfreunde an einem magisch beleuchteten Kartentisch',
-                  errorBuilder: (_, __, ___) => Container(
-                    decoration: const BoxDecoration(
-                      gradient: LinearGradient(
-                        colors: [
-                          Color(0xFF061D4A),
-                          Color(0xFF064C80),
-                          Color(0xFF061832),
-                        ],
-                        begin: Alignment.topCenter,
-                        end: Alignment.bottomCenter,
-                      ),
-                    ),
-                    child: Center(
-                      child: Image.asset(
-                        'assets/lumo_design/fox/fox_cards_welcome.png',
-                        width: 200,
-                        errorBuilder: (_, __, ___) =>
-                            const Icon(Icons.style_rounded,
-                                size: 100, color: Color(0xFF78EBFF)),
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(
+                    24,
+                    76,
+                    24,
+                    landscape ? 92 : 150,
+                  ),
+                  child: Image.asset(
+                    referenceArt,
+                    key: const ValueKey('cards-approved-reference-art'),
+                    fit: BoxFit.contain,
+                    alignment: Alignment.center,
+                    filterQuality: FilterQuality.high,
+                    semanticLabel:
+                        'Original-Lumo mit blauer Brille, Jacke und Spielkarten',
+                    errorBuilder: (_, __, ___) => const Center(
+                      child: Icon(
+                        Icons.style_rounded,
+                        size: 100,
+                        color: Color(0xFF78EBFF),
                       ),
                     ),
                   ),
@@ -128,6 +90,22 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
               SafeArea(
                 child: Stack(
                   children: [
+                    const Positioned(
+                      top: 18,
+                      left: 76,
+                      right: 20,
+                      child: Text(
+                        'LUMO CARDS',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          color: Color(0xFFFFD174),
+                          fontSize: 26,
+                          fontWeight: FontWeight.w900,
+                          letterSpacing: 1.1,
+                        ),
+                      ),
+                    ),
                     Positioned(
                       top: 8,
                       left: 12,
@@ -140,8 +118,10 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                           key: const ValueKey('cards-hub-back'),
                           tooltip: 'Zur Spielwelt zurück',
                           onPressed: () => Navigator.of(context).pop(),
-                          icon: const Icon(Icons.arrow_back_rounded,
-                              color: Colors.white),
+                          icon: const Icon(
+                            Icons.arrow_back_rounded,
+                            color: Colors.white,
+                          ),
                           constraints: const BoxConstraints(
                             minHeight: 48,
                             minWidth: 48,
@@ -174,10 +154,7 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w900,
                                   letterSpacing: 1.0,
                                   shadows: [
-                                    Shadow(
-                                      color: Colors.black,
-                                      blurRadius: 7,
-                                    ),
+                                    Shadow(color: Colors.black, blurRadius: 7),
                                   ],
                                 ),
                               ),
@@ -293,17 +270,21 @@ class _StartButtonState extends State<_StartButton> {
               child: ConstrainedBox(
                 constraints: const BoxConstraints(minHeight: 58),
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 12,
+                  ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(widget.icon,
-                          size: 23,
-                          color: widget.primary
-                              ? const Color(0xFF3C220A)
-                              : Colors.white),
+                      Icon(
+                        widget.icon,
+                        size: 23,
+                        color: widget.primary
+                            ? const Color(0xFF3C220A)
+                            : Colors.white,
+                      ),
                       const SizedBox(width: 4),
                       Flexible(
                         child: Text(

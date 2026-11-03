@@ -36,7 +36,12 @@ import '../widgets/design/lumo_motion.dart';
 import '../theme/lumo_visual_tokens.dart';
 
 class AppShell extends StatefulWidget {
-  const AppShell({super.key, this.profile, this.initialSection});
+  const AppShell({
+    super.key,
+    this.profile,
+    this.initialSection,
+    this.deepLinkRequestId = 0,
+  });
 
   final UserProfile? profile;
 
@@ -45,6 +50,10 @@ class AppShell extends StatefulWidget {
   /// hier z.B. LumoSection.learn - der Shell oeffnet dann direkt den
   /// Lern-Bereich statt das Home.
   final LumoSection? initialSection;
+
+  /// Changes for every platform navigation event, including repeated links to
+  /// the same section after the child has navigated elsewhere.
+  final int deepLinkRequestId;
 
   @override
   State<AppShell> createState() => _AppShellState();
@@ -120,6 +129,20 @@ class _AppShellState extends State<AppShell>
     _appState.addListener(_syncAchievementMetrics);
     _browsingProfileGeneration = _appState.profileGeneration;
     _appState.addListener(_syncLearningProfile);
+  }
+
+  @override
+  void didUpdateWidget(covariant AppShell oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.deepLinkRequestId == widget.deepLinkRequestId) return;
+    final target = widget.initialSection;
+    if (target == null) return;
+    final request = widget.deepLinkRequestId;
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (!mounted || request != widget.deepLinkRequestId) return;
+      Navigator.of(context).popUntil((route) => route.isFirst);
+      unawaited(_navigateTo(target));
+    });
   }
 
   @override
@@ -392,10 +415,13 @@ class _AppShellState extends State<AppShell>
   }
 
   Future<void> _navigateTo(LumoSection section) async {
-    if (_appState.state.section == section) return;
     // A faster second tap wins; stale animation callbacks cannot navigate
     // to an outdated page or play its sound.
     final request = ++_navigationRequest;
+    if (_appState.state.section == section) {
+      unawaited(_fadeCtrl.forward());
+      return;
+    }
     if (_requiresLoadedSettings(section)) {
       await _appState.ensureSettingsLoaded();
       if (!mounted ||

@@ -7,9 +7,10 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
+import 'helpers/lumo_capture.dart';
 
 /// Fail closed on the original 390x844 screenshot regression: the WebP
-/// key art was missing despite a nonempty PNG and active menu buttons.
+/// character art was missing despite a nonempty PNG and active menu buttons.
 bool _hasVisibleCardsArtwork(Uint8List rgba, int width, int height) {
   if (width <= 0 || height <= 0 || rgba.length < width * height * 4) {
     return false;
@@ -27,41 +28,52 @@ bool _hasVisibleCardsArtwork(Uint8List rgba, int width, int height) {
 }
 
 void main() {
-  test('original blank dark Cards hero fixture cannot pass screenshot gate', () {
-    final pixels = Uint8List(60 * 90 * 4);
-    for (var i = 0; i < pixels.length; i += 4) {
-      pixels[i] = 3;
-      pixels[i + 1] = 19;
-      pixels[i + 2] = 41;
-      pixels[i + 3] = 255;
-    }
-    expect(_hasVisibleCardsArtwork(pixels, 60, 90), isFalse);
-  });
+  test(
+    'original blank dark Cards hero fixture cannot pass screenshot gate',
+    () {
+      final pixels = Uint8List(60 * 90 * 4);
+      for (var i = 0; i < pixels.length; i += 4) {
+        pixels[i] = 3;
+        pixels[i + 1] = 19;
+        pixels[i + 2] = 41;
+        pixels[i + 3] = 255;
+      }
+      expect(_hasVisibleCardsArtwork(pixels, 60, 90), isFalse);
+    },
+  );
 
   TestWidgetsFlutterBinding.ensureInitialized();
+  setUpAll(loadLumoCaptureFonts);
 
-  test('approved concept key art is packaged into the real Flutter bundle',
-      () async {
-    final bytes = await rootBundle.load(LumoCardsShowcaseScreen.referenceArt);
-    final header = bytes.buffer.asUint8List(0, 12);
-    expect(String.fromCharCodes(header.take(4)), 'RIFF');
-    expect(String.fromCharCodes(header.skip(8).take(4)), 'WEBP');
-    expect(bytes.lengthInBytes, greaterThan(10000));
-  });
+  test(
+    'original Lumo character art is packaged into the real Flutter bundle',
+    () async {
+      final bytes = await rootBundle.load(LumoCardsShowcaseScreen.referenceArt);
+      final header = bytes.buffer.asUint8List(0, 8);
+      expect(header, [137, 80, 78, 71, 13, 10, 26, 10]);
+      expect(bytes.lengthInBytes, greaterThan(10000));
+    },
+  );
 
-  testWidgets('solo and local modes are wired to distinct real callbacks',
-      (tester) async {
+  testWidgets('solo and local modes are wired to distinct real callbacks', (
+    tester,
+  ) async {
     var solo = 0;
     var local = 0;
-    await tester.pumpWidget(MaterialApp(
-      home: LumoCardsShowcaseScreen(
-        onSolo: () => solo++,
-        onLocal: () => local++,
+    await tester.pumpWidget(
+      MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: LumoCardsShowcaseScreen(
+          onSolo: () => solo++,
+          onLocal: () => local++,
+        ),
       ),
-    ));
+    );
     await tester.pump(const Duration(milliseconds: 150));
-    expect(find.byKey(const ValueKey('cards-approved-reference-art')),
-        findsOneWidget);
+    expect(
+      find.byKey(const ValueKey('cards-approved-reference-art')),
+      findsOneWidget,
+    );
     await tester.tap(find.byKey(const ValueKey('cards-hub-solo')));
     await tester.pump(const Duration(milliseconds: 150));
     expect(solo, 1);
@@ -73,8 +85,9 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('image and both action buttons fit phone, Fold and landscape',
-      (tester) async {
+  testWidgets('image and both action buttons fit phone, Fold and landscape', (
+    tester,
+  ) async {
     final folder = Directory('visual-evidence')..createSync(recursive: true);
     const viewports = <(String, Size)>[
       ('phone_390x844', Size(390, 844)),
@@ -86,19 +99,19 @@ void main() {
     for (final (name, size) in viewports) {
       await tester.binding.setSurfaceSize(size);
       final key = GlobalKey();
-      await tester.pumpWidget(RepaintBoundary(
-        key: key,
-        child: MaterialApp(
-          home: LumoCardsShowcaseScreen(
-            onSolo: () {},
-            onLocal: () {},
+      await tester.pumpWidget(
+        RepaintBoundary(
+          key: key,
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: LumoCardsShowcaseScreen(onSolo: () {}, onLocal: () {}),
           ),
         ),
-      ));
+      );
       await tester.pump(const Duration(milliseconds: 250));
       // PNG dimensions/byte sizes alone let the first cold 390x844 frame
       // pass even though the central hero was entirely dark. Decode and
-      // paint the actual bundled ORIGINAL approved WebP before capture.
+      // paint the actual bundled original Lumo PNG before capture.
       await tester.runAsync(() async {
         await precacheImage(
           const AssetImage(LumoCardsShowcaseScreen.referenceArt),
@@ -122,7 +135,9 @@ void main() {
       await tester.runAsync(() async {
         final image = await boundary.toImage(pixelRatio: 1.5);
         try {
-          final rgba = await image.toByteData(format: ui.ImageByteFormat.rawRgba);
+          final rgba = await image.toByteData(
+            format: ui.ImageByteFormat.rawRgba,
+          );
           expect(rgba, isNotNull);
           expect(
             _hasVisibleCardsArtwork(
@@ -131,13 +146,15 @@ void main() {
               image.height,
             ),
             isTrue,
-            reason: 'Original Lumo Cards artwork was absent at $name; '
+            reason:
+                'Original Lumo Cards artwork was absent at $name; '
                 'a nonblank PNG with buttons is not adequate proof.',
           );
           final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
           expect(bytes, isNotNull);
-          await File('${folder.path}/cards_hub_$name.png')
-              .writeAsBytes(bytes!.buffer.asUint8List(), flush: true);
+          await File(
+            '${folder.path}/cards_hub_$name.png',
+          ).writeAsBytes(bytes!.buffer.asUint8List(), flush: true);
         } finally {
           image.dispose();
         }

@@ -107,16 +107,25 @@ class _LumoCharacterState extends State<LumoCharacter>
     with TickerProviderStateMixin {
   // Atmen: 2,6 s hin und her.
   late final AnimationController _breath = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 2600));
+    vsync: this,
+    duration: const Duration(milliseconds: 2600),
+  );
   // Langer Leerlauf-Zyklus: Schwanken und ein Hüpfer gegen Ende.
   late final AnimationController _cycle = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 7400));
+    vsync: this,
+    duration: const Duration(milliseconds: 7400),
+  );
   late final AnimationController _action = AnimationController(vsync: this);
   late final AnimationController _intro = AnimationController(
-      vsync: this, duration: const Duration(milliseconds: 650));
+    vsync: this,
+    duration: const Duration(milliseconds: 650),
+  );
 
   LumoCharacterAction? _current;
   int _seenSerial = 0;
+  bool _systemReduceMotion = false;
+
+  bool get _reduceMotion => widget.reduceMotion || _systemReduceMotion;
 
   @override
   void initState() {
@@ -132,7 +141,7 @@ class _LumoCharacterState extends State<LumoCharacter>
   }
 
   void _startLoops() {
-    if (widget.reduceMotion) {
+    if (_reduceMotion) {
       _breath.value = 0;
       _cycle.value = 0;
       _intro.value = 1;
@@ -148,6 +157,27 @@ class _LumoCharacterState extends State<LumoCharacter>
   }
 
   @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final systemReduceMotion =
+        MediaQuery.maybeOf(context)?.disableAnimations ?? false;
+    if (_systemReduceMotion == systemReduceMotion) return;
+    _systemReduceMotion = systemReduceMotion;
+    _restartMotion();
+  }
+
+  void _restartMotion() {
+    _breath.stop();
+    _cycle.stop();
+    _intro.stop();
+    if (_reduceMotion) {
+      _action.stop();
+      _current = null;
+    }
+    _startLoops();
+  }
+
+  @override
   void didUpdateWidget(covariant LumoCharacter oldWidget) {
     super.didUpdateWidget(oldWidget);
     if (oldWidget.controller != widget.controller) {
@@ -156,9 +186,7 @@ class _LumoCharacterState extends State<LumoCharacter>
       _seenSerial = widget.controller?.serial ?? 0;
     }
     if (oldWidget.reduceMotion != widget.reduceMotion) {
-      _breath.stop();
-      _cycle.stop();
-      _startLoops();
+      _restartMotion();
     }
   }
 
@@ -172,7 +200,7 @@ class _LumoCharacterState extends State<LumoCharacter>
 
   void _play(LumoCharacterAction action) {
     if (!mounted) return;
-    if (widget.reduceMotion) {
+    if (_reduceMotion) {
       // Ohne Bewegung zeigt Lumo die Freude kurz über die Jubel-Pose.
       if (action == LumoCharacterAction.cheer) {
         setState(() => _current = action);
@@ -195,8 +223,13 @@ class _LumoCharacterState extends State<LumoCharacter>
   }
 
   void _handleTap() {
+    final previousAction = widget.controller?.serial;
     widget.onTap?.call();
-    _play(LumoCharacterAction.wiggle);
+    // A purposeful reaction (for example cheering at lesson completion) must
+    // not be overwritten by the default tap wiggle in the same frame.
+    if (widget.controller?.serial == previousAction) {
+      _play(LumoCharacterAction.wiggle);
+    }
   }
 
   @override
@@ -236,9 +269,10 @@ class _LumoCharacterState extends State<LumoCharacter>
   Widget _frame(double size) {
     final m = _motion(size);
     final displayPose = _displayPose();
-    final figure = widget.child ??
+    final figure =
+        widget.child ??
         AnimatedSwitcher(
-          duration: widget.reduceMotion
+          duration: _reduceMotion
               ? Duration.zero
               : const Duration(milliseconds: 220),
           switchInCurve: Curves.easeOutCubic,
@@ -246,10 +280,8 @@ class _LumoCharacterState extends State<LumoCharacter>
           // Keep pose transitions transform-free. The outer character Transform is the
           // single source of movement/rotation, which keeps hit testing and animation
           // regression measurements stable while poses cross-fade.
-          transitionBuilder: (child, animation) => FadeTransition(
-            opacity: animation,
-            child: child,
-          ),
+          transitionBuilder: (child, animation) =>
+              FadeTransition(opacity: animation, child: child),
           child: LumoFoxPose(
             key: ValueKey(displayPose.assetName),
             pose: displayPose,
@@ -257,46 +289,46 @@ class _LumoCharacterState extends State<LumoCharacter>
           ),
         );
     return Stack(
-        clipBehavior: Clip.none,
-        alignment: Alignment.bottomCenter,
-        children: [
-          if (widget.shadow)
-            Positioned(
-              bottom: size * .02,
-              child: Opacity(
-                opacity: (.32 * m.shadow).clamp(0, 1).toDouble(),
-                child: Container(
-                  width: size * .5 * m.shadow,
-                  height: size * .07 * m.shadow,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(size),
-                    gradient: const RadialGradient(colors: [
-                      Color(0xFF000814),
-                      Color(0x00000814),
-                    ]),
+      clipBehavior: Clip.none,
+      alignment: Alignment.bottomCenter,
+      children: [
+        if (widget.shadow)
+          Positioned(
+            bottom: size * .02,
+            child: Opacity(
+              opacity: (.32 * m.shadow).clamp(0, 1).toDouble(),
+              child: Container(
+                width: size * .5 * m.shadow,
+                height: size * .07 * m.shadow,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(size),
+                  gradient: const RadialGradient(
+                    colors: [Color(0xFF000814), Color(0x00000814)],
                   ),
                 ),
               ),
             ),
-          if (_current == LumoCharacterAction.cheer)
-            Positioned.fill(
-              child: IgnorePointer(
-                child: CustomPaint(
-                  painter: _StarBurstPainter(progress: _action.value),
-                ),
+          ),
+        if (_current == LumoCharacterAction.cheer && !_reduceMotion)
+          Positioned.fill(
+            child: IgnorePointer(
+              child: CustomPaint(
+                painter: _StarBurstPainter(progress: _action.value),
               ),
             ),
-          Transform.translate(
-            offset: Offset(m.dx, m.dy),
-            child: Transform(
-              alignment: Alignment.bottomCenter,
-              transform: Matrix4.identity()
-                ..rotateZ(m.rotation)
-                ..scale(m.scaleX, m.scaleY),
-              child: figure,
-            ),
           ),
-        ]);
+        Transform.translate(
+          offset: Offset(m.dx, m.dy),
+          child: Transform(
+            alignment: Alignment.bottomCenter,
+            transform: Matrix4.identity()
+              ..rotateZ(m.rotation)
+              ..scale(m.scaleX, m.scaleY),
+            child: figure,
+          ),
+        ),
+      ],
+    );
   }
 
   LumoDesignFoxPose _displayPose() {
@@ -320,7 +352,7 @@ class _LumoCharacterState extends State<LumoCharacter>
       case null:
         break;
     }
-    if (widget.reduceMotion || widget.ambientPoses.isEmpty) {
+    if (_reduceMotion || widget.ambientPoses.isEmpty) {
       return widget.pose;
     }
     final cycle = _cycle.value;
@@ -349,7 +381,7 @@ class _LumoCharacterState extends State<LumoCharacter>
       scaleY *= .55 + .45 * pop;
     }
 
-    if (!widget.reduceMotion) {
+    if (!_reduceMotion) {
       // Atmen: Strecken nach oben, dabei etwas schmaler (Volumen bleibt).
       final b = math.sin(_breath.value * 2 * math.pi);
       scaleY *= 1 + .018 * b;
@@ -372,7 +404,7 @@ class _LumoCharacterState extends State<LumoCharacter>
     final t = _action.value;
     switch (_current) {
       case LumoCharacterAction.cheer:
-        if (widget.reduceMotion) break;
+        if (_reduceMotion) break;
         final jump = _jump(t, height: size * .2);
         dy += jump.dy;
         scaleX *= jump.sx;
@@ -382,7 +414,8 @@ class _LumoCharacterState extends State<LumoCharacter>
         rotation += .12 * math.sin(t * 2 * math.pi) * (1 - t);
       case LumoCharacterAction.comfort:
         // Zur Seite neigen, einsinken, dann sanft „macht nichts“ schütteln.
-        final lean = math.sin(math.min(t / .3, 1) * math.pi / 2) *
+        final lean =
+            math.sin(math.min(t / .3, 1) * math.pi / 2) *
             (t < .7 ? 1 : 1 - (t - .7) / .3);
         rotation += -.09 * lean;
         dy += 5 * lean;
@@ -451,7 +484,13 @@ class _LumoCharacterState extends State<LumoCharacter>
 
 class _Motion {
   const _Motion(
-      this.dx, this.dy, this.rotation, this.scaleX, this.scaleY, this.shadow);
+    this.dx,
+    this.dy,
+    this.rotation,
+    this.scaleX,
+    this.scaleY,
+    this.shadow,
+  );
   final double dx, dy, rotation, scaleX, scaleY, shadow;
 }
 

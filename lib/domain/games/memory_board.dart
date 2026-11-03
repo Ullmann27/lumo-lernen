@@ -8,7 +8,7 @@ import 'package:flutter/painting.dart';
 enum MemoryMotif {
   panda('Panda', 'face_panda', false, Color(0xFF3FA8F5), Color(0xFF8FD3FF)),
   giraffe('Giraffe', 'face_giraffe', false, Color(0xFF58C985), Color(0xFFB4F0C8)),
-  lumo('Lumo', 'face_fox', false, Color(0xFF2E9BEA), Color(0xFF7CCBFF)),
+  lumo('Lumo', 'fox_avatar', true, Color(0xFF2E9BEA), Color(0xFF7CCBFF)),
   hase('Hase', 'face_bunny', false, Color(0xFFB45CF0), Color(0xFFE2A8FF)),
   pinguin('Pinguin', 'face_penguin', false, Color(0xFF45B0F0), Color(0xFF9EDCFF)),
   stern('Sternchen', 'sticker_star', true, Color(0xFF2B6FE0), Color(0xFF7FB6FF)),
@@ -30,7 +30,9 @@ enum MemoryMotif {
   final Color tintDark;
   final Color tintLight;
 
-  String get path => 'assets/lumo_design/memory/$asset.png';
+  String get path => this == MemoryMotif.lumo
+      ? 'assets/lumo_design/fox/$asset.png'
+      : 'assets/lumo_design/memory/$asset.png';
 }
 
 /// Schwierigkeitsstufen. [cols]×[rows] ist die Spielfeldgröße im Querformat;
