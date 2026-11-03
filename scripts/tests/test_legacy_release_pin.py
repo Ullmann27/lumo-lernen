@@ -252,7 +252,7 @@ class VersionBoundGodotSourceTests(unittest.TestCase):
         previous = module.APPROVED[2004]
         candidate = module.APPROVED[2005]
         self.assertEqual(previous, "3689307a6392fd5756bc87ba0e36f3bef9df71e3")
-        self.assertEqual(candidate, "2a066da7ce607e674e6036fd709f2ce6c6d66b90")
+        self.assertEqual(candidate, "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41")
         self.assertNotEqual(candidate, previous)
         self.assertEqual(module.verify(pubspec(2005), config(candidate)), (2005, candidate))
         with self.assertRaisesRegex(ValueError, "revision mismatch"):

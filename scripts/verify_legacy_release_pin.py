@@ -105,7 +105,7 @@ APPROVED = {
     # The already published 2003 package and pin remain immutable.
     2004: "3689307a6392fd5756bc87ba0e36f3bef9df71e3",
     # Isolated 2005 candidate: combined real Godot Kart/Jump/creative QA; never rewrite 2004.
-    2005: "2a066da7ce607e674e6036fd709f2ce6c6d66b90",
+    2005: "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
