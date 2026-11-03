@@ -241,7 +241,7 @@ class _GamesContentState extends State<GamesContent> {
     try {
       await Navigator.of(context).push<void>(
         MaterialPageRoute<void>(
-          builder: (_) => const LumoStarTrailScreen(),
+          builder: (_) => LumoStarTrailScreen(appState: widget.appState),
         ),
       );
       if (mounted) await _load();
