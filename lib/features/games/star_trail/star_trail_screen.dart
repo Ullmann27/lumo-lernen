@@ -151,17 +151,19 @@ class _LumoStarTrailScreenState extends State<LumoStarTrailScreen> {
             BoxShadow(color: Color(0x6646DFF4), blurRadius: 24),
           ],
         ),
-        child: const Row(
+        child: Row(
           children: [
             LumoCharacter(
               pose: LumoDesignFoxPose.spielweltCards,
               size: 90,
-              reduceMotion: true,
-              intro: false,
-              idleHops: false,
+              reduceMotion: MediaQuery.disableAnimationsOf(context) ||
+                  (widget.appState?.state.settings.reduceAnimations ?? false) ||
+                  (widget.appState?.state.settings.calmMode ?? false),
+              intro: true,
+              idleHops: true,
             ),
-            SizedBox(width: 12),
-            Expanded(
+            const SizedBox(width: 12),
+            const Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
