@@ -23,8 +23,13 @@ class TutorReleasePolicyTest(unittest.TestCase):
         candidate = json.loads(config)
         candidate['revision'] = policy.APPROVED[2004]
         self.assertEqual(policy.verify('version: 0.12.92+2004\n', json.dumps(candidate))[0], 2004)
-        with self.assertRaisesRegex(ValueError, 'no reviewed native pin'):
+        with self.assertRaisesRegex(ValueError, 'revision mismatch'):
             policy.verify('version: 0.12.93+2005\n', json.dumps(candidate))
+        # The next version has its own exact, explicit, reviewed native source.
+        candidate['revision'] = policy.APPROVED[2005]
+        self.assertEqual(policy.verify('version: 0.12.93+2005\n', json.dumps(candidate))[0], 2005)
+        with self.assertRaisesRegex(ValueError, 'no reviewed native pin'):
+            policy.verify('version: 0.12.93+2999\n', json.dumps(candidate))
         broken = json.loads(config)
         broken['revision'] = policy.APPROVED[1999]
         with self.assertRaisesRegex(ValueError, 'revision mismatch'):
