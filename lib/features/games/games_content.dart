@@ -231,8 +231,8 @@ class _GamesContentState extends State<GamesContent> {
     if (mounted) await _load();
   }
 
-  /// Original cooperative card adventure; the earlier matching-card game
-  /// remains in the codebase while family testing verifies the new rules.
+  /// Original cooperative card adventure. Classic Lumo Cards remains
+  /// available separately with its solo and local multiplayer rules.
   Future<void> _launchStarTrail() async {
     if (!await _allowLaunch() || !mounted) return;
     if (_launchingGame) return;
@@ -510,8 +510,8 @@ class _GamesContentState extends State<GamesContent> {
                           widget.onSection?.call(LumoSection.settings),
                     ),
                   ),
-                  // Non-primary legacy modes stay reachable without duplicating
-                  // Kart, Quiz, Cards or the big promotional panels above the hub.
+                  // Retain the original card game, local games and the Flame
+                  // adventure alongside the primary 3D and Star Trail portals.
                   SliverToBoxAdapter(
                     child: LumoNightScope(
                       child: ExpansionTile(
@@ -520,7 +520,7 @@ class _GamesContentState extends State<GamesContent> {
                             color: LumoVisualTokens.cyanBright),
                         title: const Text('Zusätzliche Spielmodi'),
                         subtitle: const Text(
-                            'Vier gewinnt, Würfel und Level-Abenteuer'),
+                            'Cards Klassik, Vier gewinnt, Würfel und Abenteuer'),
                         children: [
                           // Place the retained playable Flame adventure first:
                           // it must remain reachable without scrolling past other
@@ -529,6 +529,8 @@ class _GamesContentState extends State<GamesContent> {
                           Padding(
                             padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                             child: _GameGrid(
+                              onClassicCards: () =>
+                                  _openGame(GameId.cards, _launchLumoCards),
                               onConnectFour: _launchConnectFour,
                               onDiceRace: _launchDiceRace,
                             ),
@@ -708,16 +710,29 @@ class _ComingSoonSheet extends StatelessWidget {
 
 class _GameGrid extends StatelessWidget {
   const _GameGrid({
+    required this.onClassicCards,
     required this.onConnectFour,
     required this.onDiceRace,
   });
 
+  final VoidCallback onClassicCards;
   final VoidCallback onConnectFour;
   final VoidCallback onDiceRace;
 
   @override
   Widget build(BuildContext context) {
     final tiles = [
+      _GameTile(
+        key: const ValueKey('games-classic-cards'),
+        title: 'Lumo Cards · Klassik',
+        subtitle: 'Solo oder mit Freunden · mit Denkpausen',
+        art: Image.asset(
+          LumoCardsShowcaseScreen.referenceArt,
+          fit: BoxFit.cover,
+          excludeFromSemantics: true,
+        ),
+        onPlay: onClassicCards,
+      ),
       _GameTile(
         title: 'Vier gewinnt',
         subtitle: 'Baue zuerst eine Reihe aus 4!',
@@ -746,6 +761,7 @@ class _GameGrid extends StatelessWidget {
 
 class _GameTile extends StatelessWidget {
   const _GameTile({
+    super.key,
     required this.title,
     required this.subtitle,
     required this.art,

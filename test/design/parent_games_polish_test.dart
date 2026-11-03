@@ -17,6 +17,8 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_shop_repository.dart';
 import 'package:lumo_lernen/core/settings_repository.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
 import 'package:lumo_lernen/features/settings/settings_content.dart';
 import 'package:lumo_lernen/features/settings/writing_report_card.dart';
@@ -328,6 +330,80 @@ void main() {
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
   });
+
+  for (final mode in <(String, bool)>[
+    ('solo', true),
+    ('local', false),
+  ]) {
+    testWidgets(
+        'classic Cards ${mode.$1} remains reachable beside Star Trail and returns safely',
+        (tester) async {
+      final app = await stateFor(tester);
+      final starsBefore = app.state.stars;
+      final gradeBefore = app.state.grade;
+      await mount(tester, GamesContent(appState: app));
+      final gamesScroll = find.descendant(
+        of: find.byType(GamesContent),
+        matching: find.byType(Scrollable),
+      ).first;
+      final extraModes =
+          find.byKey(const PageStorageKey('games-extra-modes'));
+      await tester.scrollUntilVisible(
+        extraModes,
+        280,
+        scrollable: gamesScroll,
+      );
+      await tester.tap(find.text('Zusätzliche Spielmodi'));
+      await tester.pump(const Duration(milliseconds: 350));
+
+      final classic = find.byKey(const ValueKey('games-classic-cards'));
+      await tester.ensureVisible(classic);
+      await tester.pump();
+      expect(classic.hitTestable(), findsOneWidget);
+      final tileSize = tester.getSize(classic);
+      expect(tileSize.width, greaterThanOrEqualTo(48));
+      expect(tileSize.height, greaterThanOrEqualTo(48));
+      await tester.tap(classic);
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 550));
+
+      expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
+      expect(find.byType(LumoStarTrailScreen), findsNothing);
+      await tester.tap(find.byKey(ValueKey('cards-hub-${mode.$1}')));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 550));
+      await settleData(tester);
+
+      final gameFinder = find.byType(LumoCardsScreen);
+      expect(gameFinder, findsOneWidget);
+      final game = tester.widget<LumoCardsScreen>(gameFinder);
+      expect(game.vsBot, mode.$2);
+      expect(game.appState, same(app));
+      expect(game.skipIntro, isTrue);
+      expect(app.state.grade, gradeBefore);
+      expect(tester.takeException(), isNull);
+
+      await tester.tap(find.byTooltip('Pausieren / Zurück'));
+      await tester.pump();
+      expect(find.text('Spiel pausiert'), findsOneWidget);
+      await tester.tap(find.text('Zur Spieleauswahl'));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 550));
+      expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
+      await tester.tap(find.byKey(const ValueKey('cards-hub-back')));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 550));
+      await settleData(tester);
+      expect(find.byType(LumoCardsScreen), findsNothing);
+      expect(find.byType(LumoCardsShowcaseScreen), findsNothing);
+      expect(find.byType(GamesContent), findsOneWidget);
+      expect(app.state.stars, starsBefore);
+      expect(app.state.childName, 'Probe');
+      expect(app.state.grade, gradeBefore);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox.shrink());
+    });
+  }
 
   testWidgets('Jump & Run Spielwelt portal launches actual Godot 3D scene once',
       (tester) async {
