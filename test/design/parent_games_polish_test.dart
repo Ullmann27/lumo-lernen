@@ -17,8 +17,7 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/reward_shop_repository.dart';
 import 'package:lumo_lernen/core/settings_repository.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_screen.dart';
-import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
+import 'package:lumo_lernen/features/games/star_trail/star_trail_screen.dart';
 import 'package:lumo_lernen/features/settings/settings_content.dart';
 import 'package:lumo_lernen/features/settings/writing_report_card.dart';
 import 'package:lumo_lernen/features/rewards/test_photo_entry_card.dart';
@@ -305,22 +304,52 @@ void main() {
     await tester.pump();
     await tester.pump(const Duration(seconds: 1));
     expect(observer.count - before, 1);
-    expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget);
-    expect(find.byKey(const ValueKey('cards-hub-solo')), findsOneWidget);
-    await tester.tap(find.byKey(const ValueKey('cards-hub-solo')));
-    await tester.pump();
-    await tester.pump(const Duration(seconds: 1));
-    expect(find.byType(LumoCardsScreen), findsOneWidget);
-    Navigator.of(tester.element(find.byType(LumoCardsScreen))).pop();
-    await tester.pump();
-    await tester.pump(const Duration(milliseconds: 550));
-    Navigator.of(tester.element(find.byType(LumoCardsShowcaseScreen))).pop();
+    // The Cards portal now opens the cooperative Star Trail directly.
+    // The previous matching-card screen remains tested separately.
+    expect(find.byType(LumoStarTrailScreen), findsOneWidget);
+    expect(find.text('Gemeinsam über die Wolken!'), findsOneWidget);
+    expect(find.text('WÄHLE DEINE NÄCHSTE KARTE'), findsOneWidget);
+    Navigator.of(tester.element(find.byType(LumoStarTrailScreen))).pop();
     await tester.pump();
     await tester.pump(const Duration(milliseconds: 550));
     await settleData(tester);
-    expect(find.byType(LumoCardsShowcaseScreen), findsNothing);
+    expect(find.byType(LumoStarTrailScreen), findsNothing);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox());
+  });
+
+  testWidgets('Jump & Run Spielwelt portal launches actual Godot 3D scene once',
+      (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    try {
+      final app = await stateFor(tester);
+      final returned = Completer<Map<String, Object?>>();
+      final calls = <MethodCall>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(bridge, (call) {
+        calls.add(call);
+        return returned.future;
+      });
+      await mount(tester, GamesContent(appState: app));
+      final card = find.byKey(const ValueKey('spielwelt-portal-jumpRun'));
+      expect(card, findsOneWidget);
+      final detector = find.descendant(
+          of: card, matching: find.byType(GestureDetector)).first;
+      final tap = tester.widget<GestureDetector>(detector).onTap!;
+      tap();
+      tap();
+      await settleData(tester);
+      expect(calls, hasLength(1),
+          reason: 'Only one native game may start per double tap');
+      expect(calls.single.method, 'launch3D');
+      expect((calls.single.arguments as Map)['scene'], 'jump');
+      returned.complete({'destination': 'games'});
+      await settleData(tester);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    } finally {
+      debugDefaultTargetPlatformOverride = null;
+    }
   });
 
   testWidgets('Kart spotlight uses the existing native launcher and unlocks after return',

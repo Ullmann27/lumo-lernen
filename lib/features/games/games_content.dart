@@ -27,6 +27,7 @@ import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
 import 'lumo_cards/lumo_cards_screen.dart';
+import 'star_trail/star_trail_screen.dart';
 import 'lumo_cards/lumo_cards_showcase_screen.dart';
 import 'memory/lumo_memory_game.dart';
 import 'mini_games/color_boxes_game.dart';
@@ -230,6 +231,25 @@ class _GamesContentState extends State<GamesContent> {
     if (mounted) await _load();
   }
 
+  /// Original cooperative card adventure; the earlier matching-card game
+  /// remains in the codebase while family testing verifies the new rules.
+  Future<void> _launchStarTrail() async {
+    if (!await _allowLaunch() || !mounted) return;
+    if (_launchingGame) return;
+    setState(() => _launchingGame = true);
+    HapticFeedback.mediumImpact();
+    try {
+      await Navigator.of(context).push<void>(
+        MaterialPageRoute<void>(
+          builder: (_) => LumoStarTrailScreen(appState: widget.appState),
+        ),
+      );
+      if (mounted) await _load();
+    } finally {
+      if (mounted) setState(() => _launchingGame = false);
+    }
+  }
+
   Future<void> _launchLumoCards() async {
     if (!await _allowLaunch() || !mounted) return;
     if (_launchingGame) return;
@@ -403,8 +423,10 @@ class _GamesContentState extends State<GamesContent> {
     VoidCallback? launcher(GameId id) => switch (id) {
           GameId.kart => () => _launch3D('kart'),
           GameId.memory => _launchMemory,
-          GameId.cards => _launchLumoCards,
-          GameId.jumpRun => _launchAdventure,
+          GameId.cards => _launchStarTrail,
+          // The main Spielwelt portal enters the actual native 3D Wolkeninseln.
+          // The original Flame adventure remains available as a separate card.
+          GameId.jumpRun => () => _launch3D('jump'),
           GameId.puzzle => () => _launch3D('puzzle'),
           GameId.build => () => _launch3D('build'),
           GameId.rhythm => () => _launch3D('rhythm'),
