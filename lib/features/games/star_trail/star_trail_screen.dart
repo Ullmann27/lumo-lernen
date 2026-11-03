@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 import 'star_trail_rules.dart';
 import '../../../widgets/fox/lumo_character.dart';
-import '../../../widgets/design/lumo_design_system.dart' show LumoDesignFoxPose;
+import '../../../widgets/design/lumo_design_system.dart' show LumoDesignFoxPose, LumoScene, LumoSceneBackground;
 
 /// Lumo Sternenpfad: cooperative original route-building card game.
 /// Supports phone, Fold and tablet layouts without network calls.
@@ -55,14 +55,9 @@ class _LumoStarTrailScreenState extends State<LumoStarTrailScreen> {
           ),
         ],
       ),
-      body: DecoratedBox(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [night, Color(0xFF114471), Color(0xFF272057)],
-          ),
-        ),
+      body: LumoSceneBackground(
+        scene: LumoScene.games,
+        dimmed: true,
         child: SafeArea(
           top: false,
           child: Center(
