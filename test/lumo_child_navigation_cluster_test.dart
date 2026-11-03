@@ -4,7 +4,7 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/widgets/shell/left_navigation.dart';
 
 void main() {
-  testWidgets('every existing secondary route remains one tap from Explore', (tester) async {
+  testWidgets('every secondary destination is directly available in a single continuous scroll', (tester) async {
     await tester.binding.setSurfaceSize(const Size(430, 1120));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final appState = LumoAppState();
@@ -16,7 +16,7 @@ void main() {
         const Expanded(child: SizedBox.shrink()),
       ]),
     )));
-    await tester.tap(find.byKey(const ValueKey('lumo-nav-explore')));
+    expect(find.byKey(const ValueKey('lumo-nav-explore')), findsNothing);
     await tester.pump();
     expect(find.text('Lernen & Üben'), findsOneWidget);
     expect(find.text('Meine Erfolge'), findsOneWidget);
@@ -38,7 +38,7 @@ void main() {
     expect(tester.takeException(), isNull);
   });
 
-  testWidgets('compact 90dp navigation keeps Discover reachable', (tester) async {
+  testWidgets('compact 90dp rail exposes all routes without Discover', (tester) async {
     await tester.binding.setSurfaceSize(const Size(300, 700));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final appState = LumoAppState();
@@ -47,9 +47,10 @@ void main() {
       LeftNavigation(appState: appState, width: 90, onSelect: (_) {}),
       const Expanded(child: SizedBox.shrink()),
     ]))));
-    await tester.tap(find.byKey(const ValueKey('lumo-nav-explore')));
+    expect(find.byKey(const ValueKey('lumo-nav-explore')), findsNothing);
     await tester.pump();
     expect(find.byKey(const ValueKey('lumo-nav-reading'), skipOffstage: false), findsOneWidget);
+    expect(find.byKey(const ValueKey('lumo-nav-settings'), skipOffstage: false), findsOneWidget);
     expect(tester.takeException(), isNull);
   });
 }
