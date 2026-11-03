@@ -318,6 +318,40 @@ void main() {
     await tester.pumpWidget(const SizedBox());
   });
 
+  testWidgets('Jump & Run Spielwelt portal launches actual Godot 3D scene once',
+      (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    try {
+      final app = await stateFor(tester);
+      final returned = Completer<Map<String, Object?>>();
+      final calls = <MethodCall>[];
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(bridge, (call) {
+        calls.add(call);
+        return returned.future;
+      });
+      await mount(tester, GamesContent(appState: app));
+      final card = find.byKey(const ValueKey('spielwelt-portal-jumpRun'));
+      expect(card, findsOneWidget);
+      final detector = find.descendant(
+          of: card, matching: find.byType(GestureDetector)).first;
+      final tap = tester.widget<GestureDetector>(detector).onTap!;
+      tap();
+      tap();
+      await settleData(tester);
+      expect(calls, hasLength(1),
+          reason: 'Only one native game may start per double tap');
+      expect(calls.single.method, 'launch3D');
+      expect((calls.single.arguments as Map)['scene'], 'jump');
+      returned.complete({'destination': 'games'});
+      await settleData(tester);
+      expect(tester.takeException(), isNull);
+      await tester.pumpWidget(const SizedBox());
+    } finally {
+      debugDefaultTargetPlatformOverride = null;
+    }
+  });
+
   testWidgets('Kart spotlight uses the existing native launcher and unlocks after return',
       (tester) async {
     debugDefaultTargetPlatformOverride = TargetPlatform.android;
