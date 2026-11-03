@@ -404,7 +404,9 @@ class _GamesContentState extends State<GamesContent> {
           GameId.kart => () => _launch3D('kart'),
           GameId.memory => _launchMemory,
           GameId.cards => _launchLumoCards,
-          GameId.jumpRun => _launchAdventure,
+          // The main Spielwelt portal enters the actual native 3D Wolkeninseln.
+          // The original Flame adventure remains available as a separate card.
+          GameId.jumpRun => () => _launch3D('jump'),
           GameId.puzzle => () => _launch3D('puzzle'),
           GameId.build => () => _launch3D('build'),
           GameId.rhythm => () => _launch3D('rhythm'),
