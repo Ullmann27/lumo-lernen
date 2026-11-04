@@ -41,12 +41,32 @@ Future<LumoFlameJumpGame> _menuAndCollect(
       MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
   await tester.pump();
   await tester.pump();
-  final card = find.text('Lumos Jump Adventure · 2D');
-  // Die Spielewelt baut Karten unterhalb der Spielkarten erst beim Scrollen.
-  await tester.scrollUntilVisible(card, 300,
+  // The main game hub now opens directly into the illustrated Spielwelt.
+  // The original Flame adventure still exists under extra game modes.
+  final extras = find.text('Zusätzliche Spielmodi');
+  await tester.scrollUntilVisible(extras, 250,
       scrollable: find.byType(Scrollable).first);
-  await tester.ensureVisible(card);
+  await tester.ensureVisible(extras);
   await tester.pump();
+  // The SliverToBoxAdapter initially positions the expansion header at the
+  // bottom edge (y≈910 on a 900px test surface). Scroll it fully into
+  // the actual hit-testable viewport before tapping; do not change the game
+  // or skip the joystick/collision/persistence assertions.
+  await tester.drag(find.byType(CustomScrollView),
+      const Offset(0, -220));
+  await tester.pump();
+  expect(extras.hitTestable(), findsOneWidget);
+  await tester.tap(extras);
+  await tester.pump(const Duration(milliseconds: 450));
+  // The real 2D adventure is now first in the expanded extra modes.
+  // Do not use scrollUntilVisible here: with an animated ExpansionTile
+  // inside a SliverToBoxAdapter, that search can dispose the target sliver
+  // while scrolling. Keep the route genuinely tappable in the viewport.
+  final card = find.text('Lumos Jump Adventure · 2D');
+  expect(card, findsOneWidget);
+  await tester.drag(find.byType(CustomScrollView), const Offset(0, -110));
+  await tester.pump();
+  expect(card.hitTestable(), findsOneWidget);
   await tester.tap(card);
   await _frames(tester);
   expect(find.byType(LumoJumpFlameScreen), findsOneWidget);

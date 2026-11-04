@@ -4,6 +4,15 @@
 **Zweck:** Keine unerreichbaren, ausschließlich im Cloud-Workspace liegenden Implementierungen mehr.
 **Stand:** 2026-10-20. Aktuelle Arbeitsaufträge/PR-Ketten weiterhin vor Änderungen prüfen.
 
+## Verbindliche Auslieferungsregel: Android-APK direkt für Google Chrome
+
+**Ausdrücklicher dauerhafter Auftrag des Projektinhabers vom 22.10.2026.**
+Wenn ein Entwickler oder KI-Modell Änderungen an Lumo Lernen/Lumo Kart erhält, gehören **ohne gesonderte Nutzer-Nachfrage** die vollständigen Schritte zur Lieferung: Quellcode integrieren, relevante Tests korrigieren/ausführen, vollständige signierte ARM64-Test-APK bauen, APK-Provenienz und -SHA-256 prüfen, echte Android-Emulator-Tour durchlaufen und **eine unveränderliche neue .apk per öffentlich erreichbarem direkten HTTPS-Link** bereitstellen. Ausnahmen/Blockaden unverzüglich exakt dokumentieren; nie eine alte APK als neuen Stand ausgeben oder bestandene Tests vortäuschen.
+
+**Auslieferung ausschließlich für den Anwender per Chrome:** Bevorzugter Download ist ein öffentliches GitHub-Release-Asset `https://github.com/Ullmann27/lumo-lernen/releases/download/<version-tag>/<dateiname>.apk`, ausdrücklich eine einzelne `.apk` ohne ZIP, GitHub-Actions-Anmeldung, ChatGPT-Sandbox oder Python-Interpreter. Vor Link-Ausgabe prüfen, dass Release, Asset und Datei-Größe tatsächlich existieren. Die Version muss inkrementiert sein; ältere Releases unverändert lassen. Versionsname, versionCode, Commit, Godot-Revision, Signaturfingerprint und SHA-256 mitliefern. Keine unbestätigte öffentlich erreichbare URL erfinden.
+
+**Keine halbfertige Entwicklerantwort als Abschluss:** Die Beschreibung „wir brauchen noch einen Build“ ersetzt nicht den automatischen Buildversuch. Arbeite weiter bis zur verifizierten APK und zum direkten Link, sofern technisch/zeitlich verfügbar; wenn ein Systemlimit die Ausführung stoppt, hinterlasse einen gepushten reproduzierbaren Wiederaufnahmezustand. Keine Kostenauslösung ohne Freigabe. Installierte Kinderprofile und Daten erhalten; Debug/Preview-Signaturen niemals mit Play-Produktionssignierung verwechseln.
+
 ## ZUERST: Zugang und Wiederaufnahme (vor umfangreicher Entwicklung)
 1. \`git status --short --branch\`, \`git branch --show-current\`, \`git log -1 --oneline\`, \`git remote -v\` prüfen. Bevor eine ältere Checkout-Version aktualisiert oder ein Branch gewechselt wird, ALLE eventuell vorhandenen lokalen Änderungen sichern. **Niemals \`git reset --hard\`, \`git clean -fd\` oder Force-Push als "Reparatur".**
 2. Bei fortgesetzten Cloud-Tasks zuerst die aktuell vorhandenen uncommitteten Dateien prüfen (z. B. \`lumo_home_hero.dart\`, \`lumo_materials.dart\`, \`lumo_scene_atmosphere.dart\`, \`lumo_design_system.dart\`). Falls sie noch im Workspace vorhanden sind, sind das priorisierte Rettungsobjekte! Nicht durch altes GitHub-Checkout überschreiben.
