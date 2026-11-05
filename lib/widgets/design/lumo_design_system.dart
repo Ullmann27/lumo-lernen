@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
+import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/progress_repository.dart';
 import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -898,7 +900,15 @@ class LumoFoxPose extends StatelessWidget {
           fit: BoxFit.contain,
           cacheWidth: (size * 2).round(),
           cacheHeight: (size * 2).round(),
-          errorBuilder: (context, error, stackTrace) => SizedBox(
+          errorBuilder: (context, error, stackTrace) {
+            reportLumoAssetError(pose.assetPath, error);
+            if (stackTrace != null) {
+              debugPrintStack(
+                label: 'LUMO_ASSET_STACK asset=${pose.assetPath}',
+                stackTrace: stackTrace,
+              );
+            }
+            return SizedBox(
             width: size,
             height: size,
             child: DecoratedBox(
@@ -920,7 +930,8 @@ class LumoFoxPose extends StatelessWidget {
                 ),
               ),
             ),
-          ),
+          );
+          },
         ),
       );
 }
