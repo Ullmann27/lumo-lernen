@@ -909,28 +909,28 @@ class LumoFoxPose extends StatelessWidget {
               );
             }
             return SizedBox(
-            width: size,
-            height: size,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: LumoVisualTokens.glass,
-                border: Border.all(color: LumoVisualTokens.cyan),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  'POSE FEHLT\n${pose.assetName}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: LumoVisualTokens.cyanBright,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w800,
+              width: size,
+              height: size,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: LumoVisualTokens.glass,
+                  border: Border.all(color: LumoVisualTokens.cyan),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Text(
+                    'POSE FEHLT\n${pose.assetName}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.cyanBright,
+                      fontSize: 8,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
               ),
-            ),
-          );
+            );
           },
         ),
       );
