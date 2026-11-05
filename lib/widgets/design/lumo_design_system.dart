@@ -1,7 +1,9 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
+import '../../core/lumo_asset_diagnostics.dart';
 import '../../core/progress_repository.dart';
 import '../../features/shared/widgets/lumo_premium_effects.dart';
 import '../../theme/lumo_visual_tokens.dart';
@@ -898,29 +900,38 @@ class LumoFoxPose extends StatelessWidget {
           fit: BoxFit.contain,
           cacheWidth: (size * 2).round(),
           cacheHeight: (size * 2).round(),
-          errorBuilder: (context, error, stackTrace) => SizedBox(
-            width: size,
-            height: size,
-            child: DecoratedBox(
-              decoration: BoxDecoration(
-                color: LumoVisualTokens.glass,
-                border: Border.all(color: LumoVisualTokens.cyan),
-                borderRadius: BorderRadius.circular(12),
-              ),
-              child: Center(
-                child: Text(
-                  'POSE FEHLT\n${pose.assetName}',
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                    fontFamily: 'Nunito',
-                    color: LumoVisualTokens.cyanBright,
-                    fontSize: 8,
-                    fontWeight: FontWeight.w800,
+          errorBuilder: (context, error, stackTrace) {
+            reportLumoAssetError(pose.assetPath, error);
+            if (stackTrace != null) {
+              debugPrintStack(
+                label: 'LUMO_ASSET_STACK asset=${pose.assetPath}',
+                stackTrace: stackTrace,
+              );
+            }
+            return SizedBox(
+              width: size,
+              height: size,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: LumoVisualTokens.glass,
+                  border: Border.all(color: LumoVisualTokens.cyan),
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                child: Center(
+                  child: Text(
+                    'POSE FEHLT\n${pose.assetName}',
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      color: LumoVisualTokens.cyanBright,
+                      fontSize: 8,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
               ),
-            ),
-          ),
+            );
+          },
         ),
       );
 }

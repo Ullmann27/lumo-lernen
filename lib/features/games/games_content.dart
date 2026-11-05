@@ -514,7 +514,9 @@ class _GamesContentState extends State<GamesContent> {
                   // adventure alongside the primary 3D and Star Trail portals.
                   SliverToBoxAdapter(
                     child: LumoNightScope(
-                      child: ExpansionTile(
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: ExpansionTile(
                         key: const PageStorageKey('games-extra-modes'),
                         leading: const Icon(Icons.extension_rounded,
                             color: LumoVisualTokens.cyanBright),
@@ -522,9 +524,7 @@ class _GamesContentState extends State<GamesContent> {
                         subtitle: const Text(
                             'Cards Klassik, Vier gewinnt, Würfel und Abenteuer'),
                         children: [
-                          // Place the retained playable Flame adventure first:
-                          // it must remain reachable without scrolling past other
-                          // optional settings inside the expansion.
+                          // Preserve the existing Flame adventure-first order.
                           _AdventureCard(onPlay: _launchAdventure),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
@@ -536,7 +536,9 @@ class _GamesContentState extends State<GamesContent> {
                             ),
                           ),
                           LumoNightScope(
-                              child: ExpansionTile(
+                              child: Material(
+                                type: MaterialType.transparency,
+                                child: ExpansionTile(
                             leading: const Icon(Icons.tune_rounded,
                                 color: LumoVisualTokens.cyanBright),
                             title: const Text('3D-Profiloptionen'),
@@ -548,7 +550,9 @@ class _GamesContentState extends State<GamesContent> {
                                 child: _kartOptions(),
                               )
                             ],
-                          )),
+                            ),
+                          ),
+                          ),
                           _VsLumoCard(
                             title: 'Wolkeninseln · 3D-Jump',
                             subtitle: 'Springe mit Lumo von Insel zu Insel',
@@ -567,6 +571,7 @@ class _GamesContentState extends State<GamesContent> {
                           ),
                           _LevelMap(runtime: runtime, onTap: _onLevelTap),
                         ],
+                      ),
                       ),
                     ),
                   ),
