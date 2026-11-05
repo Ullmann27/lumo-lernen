@@ -524,7 +524,8 @@ class _GamesContentState extends State<GamesContent> {
                         subtitle: const Text(
                             'Cards Klassik, Vier gewinnt, Würfel und Abenteuer'),
                         children: [
-                          // Keep classic Cards visible as soon as extra modes open.
+                          // Preserve the existing Flame adventure-first order.
+                          _AdventureCard(onPlay: _launchAdventure),
                           Padding(
                             padding: const EdgeInsets.fromLTRB(12, 0, 12, 10),
                             child: _GameGrid(
@@ -534,7 +535,6 @@ class _GamesContentState extends State<GamesContent> {
                               onDiceRace: _launchDiceRace,
                             ),
                           ),
-                          _AdventureCard(onPlay: _launchAdventure),
                           LumoNightScope(
                               child: Material(
                                 type: MaterialType.transparency,
