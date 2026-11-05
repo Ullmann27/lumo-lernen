@@ -354,11 +354,20 @@ void main() {
         scrollable: gamesScroll,
       );
       await tester.tap(find.text('Zusätzliche Spielmodi'));
-      await tester.pump(const Duration(milliseconds: 350));
+      // First start the ExpansionTile animation, then advance to its end.
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 450));
 
       final classic = find.byKey(const ValueKey('games-classic-cards'));
-      await tester.ensureVisible(classic);
-      await tester.pump();
+      // Reproduce user scrolls: ensureVisible alone can leave the animated
+      // sliver's button outside the hit-testable viewport.
+      for (var attempt = 0;
+          attempt < 8 && classic.hitTestable().evaluate().isEmpty;
+          attempt++) {
+        await tester.drag(
+            find.byType(CustomScrollView), const Offset(0, -150));
+        await tester.pump();
+      }
       expect(classic.hitTestable(), findsOneWidget);
       final tileSize = tester.getSize(classic);
       expect(tileSize.width, greaterThanOrEqualTo(48));
