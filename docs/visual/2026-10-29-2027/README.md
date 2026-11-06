@@ -115,6 +115,8 @@ Bei weiterer Arbeit zuerst diesen aktuellen Remote-Branch/PR zusätzlich zum urs
   weiterentwickelt (Looping 180 m vor dem Tunnel, Präzisionssprung über echte Lücke).
 - `claude/kart-2027-stunt-on-2006-20261106` @ `0abe693`: 2006-Stand plus nur die Ballons.
   Stunt- und Dunkelfahrt-Tests grün.
-- **Offen:** `kart_sonnenhafen_obstruction_regression` schlägt auf dem 2006-Stand selbst fehl:
-  Felswand `Decor_rock_(-6, -4)` aus `c5bb85e` (Schlucht), Zentrum 9,78 m, Radius 7,78 m.
-  Nicht aus diesem Zweig; noch nicht behoben.
+- **Behoben** auf `claude/kart-2027-stunt-on-2006-20261106`:
+  - `kart_sonnenhafen_obstruction_regression` schlug auf dem 2006-Stand fehl: Die
+    Schlucht-Felswände aus `c5bb85e` reichten bis auf Kart-Höhe.
+  - Fix: Die Wände sitzen jetzt 9,1 m statt 5,4 m unter der Straße.
+  - Hindernis- und Stunt-Test sind grün.
