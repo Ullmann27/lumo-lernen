@@ -106,6 +106,10 @@ APPROVED = {
     2004: "3689307a6392fd5756bc87ba0e36f3bef9df71e3",
     # Isolated 2005 candidate: combined real Godot Kart/Jump/creative QA; never rewrite 2004.
     2005: "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41",
+    # Separate integration candidate after installed 2008 and reserved 2009/2010.
+    # Public Godot PR #129, exact head tested by native CI; not the private
+    # 2010 graphics bundle. Source identity approval is not release approval.
+    2011: "a81ddf12d594cc252caef7503162e89c6b26e1c7",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
