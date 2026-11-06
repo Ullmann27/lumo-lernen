@@ -100,3 +100,21 @@ Diese Ergänzung wurde nach dem offiziellen Übergabecommit `91116ed8` gesichert
 - Build 2003 und Signatur, aktuelle Nutzerinstallation, Gold-/XP-Wallet, Profile sowie Godot-Pin bleiben unverändert. **Keine neue Update-Bereitstellung behaupten**, bevor das vollständige CI-, Android- und Release-Gate bestanden ist.
 
 Bei weiterer Arbeit zuerst diesen aktuellen Remote-Branch/PR zusätzlich zum ursprünglichen elf-Agenten-Bestand prüfen, damit keine fertigen Teilschritte verloren gehen.
+
+## Nachtrag 06.11.2026 – Sonnenhafen-Stuntsequenz (Godot)
+
+- `claude/kart-2027-track-kit-20261029` @ `dcce2a2`:
+  - echtes 360°-Looping auf eigener Spur mit Boost-Feld und 7 Sternen auf der Fahrlinie;
+  - zu langsame Karts werden sicher auf die Hauptspur zurückgesetzt;
+  - Panorama-Schanze an Position B (80 m vor dem Tunnel) mit Sternbogen;
+  - Tunnelportal „LUMO KART“, blauer Sommerhimmel;
+  - Heißluftballons mit Original-Lumo-Emblem.
+  - Tests: `kart_sonnenhafen_stunt_regression` (echte Fahrt) und alle Sonnenhafen-Regressionen grün.
+  - Bilder: `docs/visual/2026-10-29-2027/kart-stunt/`.
+- Andere KIs haben das bis `0225d00` in `integration/lumo-2006-native-20261103` übernommen und
+  weiterentwickelt (Looping 180 m vor dem Tunnel, Präzisionssprung über echte Lücke).
+- `claude/kart-2027-stunt-on-2006-20261106` @ `0abe693`: 2006-Stand plus nur die Ballons.
+  Stunt- und Dunkelfahrt-Tests grün.
+- **Offen:** `kart_sonnenhafen_obstruction_regression` schlägt auf dem 2006-Stand selbst fehl:
+  Felswand `Decor_rock_(-6, -4)` aus `c5bb85e` (Schlucht), Zentrum 9,78 m, Radius 7,78 m.
+  Nicht aus diesem Zweig; noch nicht behoben.
