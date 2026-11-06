@@ -1,0 +1,75 @@
+name: Lumo one-shot public source prerequisite recovery
+
+"on":
+  push:
+    branches:
+      - recovery/lumo-public-bases-20261106
+    paths:
+      - .github/workflows/lumo-public-source-recovery.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-public-source-recovery-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  export-public-bases:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      max-parallel: 2
+      matrix:
+        repo: [lumo-lernen, lumo-godot]
+    env:
+      GIT_TERMINAL_PROMPT: '0'
+      SOURCE_REPO: ${{ matrix.repo }}
+    steps:
+      - name: Fetch exact public source bases without credentials or private inputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p out
+          git init --bare --quiet source.git
+          case "$SOURCE_REPO" in
+            lumo-lernen)
+              refs=(
+                f889de99f0e66ab73139422db602ae97baf66198
+                0ef9c2731071af66884dde55b408ecb43ff95fff
+                9f5b47b3973d6c4f3ff180f269624603c1698ecd
+              )
+              ;;
+            lumo-godot)
+              refs=(a81ddf12d594cc252caef7503162e89c6b26e1c7)
+              ;;
+            *) echo 'Unapproved repository' >&2; exit 1 ;;
+          esac
+          for sha in "${refs[@]}"; do
+            git -C source.git fetch --quiet --no-tags \
+              "https://github.com/Ullmann27/${SOURCE_REPO}.git" "$sha"
+            actual="$(git -C source.git rev-parse FETCH_HEAD)"
+            test "$actual" = "$sha"
+            git -C source.git update-ref "refs/heads/source-${sha}" "$sha"
+          done
+          git -C source.git fsck --full --no-reflogs
+          bundle="$PWD/out/${SOURCE_REPO}-public-prerequisites.bundle"
+          git -C source.git bundle create "$bundle" --branches
+          git -C source.git bundle verify "$bundle" 2>&1 | tee out/bundle-verification.txt
+          git -C source.git show-ref --heads > out/source-refs.txt
+          (cd out && sha256sum *.bundle > SHA256SUMS.txt)
+          printf '%s\n' \
+            'Scope: exact public Git sources only; no private 2010 bundles, no merge, no build, no release.' \
+            'Transport for local restoration of owner-provided thin bundles.' \
+            'No Actions secrets, user data, repository write token, signing operation, or publication API was used.' \
+            > out/SCOPE.txt
+      - name: Return verified immutable source prerequisites
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-public-prerequisites-${{ matrix.repo }}-${{ github.run_id }}
+          path: out/
+          if-no-files-found: error
+          retention-days: 1
+          compression-level: 0
