@@ -110,6 +110,10 @@ APPROVED = {
     # Public Godot PR #129, exact head tested by native CI; not the private
     # 2010 graphics bundle. Source identity approval is not release approval.
     2011: "a81ddf12d594cc252caef7503162e89c6b26e1c7",
+    # 2012: reviewed combined Godot PR #135 (Kart #134, Design #133,
+    # eleven-track handoff #136 and Fold menu fix); source identity only.
+    # Android APK and Fold7 acceptance remain separate gates.
+    2012: "9947346ecc526512904adecec1815312020beb62",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
