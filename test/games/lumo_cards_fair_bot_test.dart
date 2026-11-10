@@ -102,9 +102,9 @@ void main() {
       expect(LumoCardsBotPolicy.answerProbability(4), lessThan(1.0));
     });
 
-    test('Unfinished Bauwelt stays visible but not playable; other games remain', () {
+    test('Bauwelt is a first-class playable 3D game; other games remain', () {
       expect(GameCatalog.byId(GameId.build).availability,
-          GameAvailability.comingSoon);
+          GameAvailability.playable);
       expect(GameCatalog.byId(GameId.cards).availability,
           GameAvailability.playable);
       expect(GameCatalog.byId(GameId.kart).availability,
