@@ -147,3 +147,17 @@ bleibt eine Abweichung vom Nutzerbeispiel und ist nicht implementiert.
 Nach dieser Integration bestanden 13 Wiedergabe-/Sprachkanal-Vertragstests,
 31 bediente Lektions-/Sprach-/Naturabläufe sowie die Analyse aller fünf
 betroffenen Dart-Dateien ohne Befund. Zuvor bestanden 59 Mengen-/Wiedergabetests.
+
+## Reviewkorrekturen
+
+Ein neu hinzugefügter Test reproduzierte nach bestätigtem Tutor-Reset einen
+leeren Companion-Aufgabenkontext für das unverändert ausgewählte Kind. Der Reset
+synchronisiert nun neben der Profilgeneration auch die Tutor-Koordination und
+verwirft den alten Kontext. Derselbe Test besteht danach und bedient sofort eine
+neue richtige Aufgabe; Schulantwort und unabhängiger Transferbeleg werden
+gespeichert, ohne Profilwechsel oder Neustart. Zehn zugehörige Eltern-/Speicher-
+Tests bestehen vollständig. Außerdem erhalten richtige Erstversuche bei
+Voraussetzungs-/geführten Fragen einen neutralen Text; nur tatsächlich begleitete
+Antworten nennen gemeinsame Schritte. Nach dem letzten Check wird keine weitere
+Aufgabe versprochen. Alle 26 bedienten Lektionsabläufe und die gezielte Analyse
+der vier betroffenen Dateien bestehen.

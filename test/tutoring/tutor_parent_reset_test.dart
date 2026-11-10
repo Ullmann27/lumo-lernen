@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/learning_journey.dart';
 import 'package:lumo_lernen/core/learning_profile_engine.dart';
 import 'package:lumo_lernen/core/legacy_learning_data.dart';
@@ -11,6 +12,8 @@ import 'package:lumo_lernen/domain/learning_intelligence/scene_memory.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_evidence.dart';
 import 'package:lumo_lernen/features/parents/widgets/lumo_tutor_evidence_card.dart';
+import 'package:lumo_lernen/features/tutoring/guided_lesson_screen.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 import 'package:lumo_lernen/features/journal/journal_repository.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:shared_preferences_platform_interface/shared_preferences_platform_interface.dart';
@@ -268,4 +271,52 @@ void main() {
       expect(tester.takeException(), isNull);
     });
   }
+
+  testWidgets('confirmed reset immediately accepts and saves a new lesson on the same child', (tester) async {
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await tester.runAsync(() async {
+      await _seed(app, 'reset-a');
+      app.updateSettings(const AppSettings(voiceEnabled: false, reduceAnimations: true));
+    });
+    await tester.pumpWidget(MaterialApp(home: Scaffold(body: SingleChildScrollView(
+        child: LumoTutorEvidenceCard(appState: app)))));
+    final reset = find.byKey(const ValueKey('parent-reset-tutor-evidence'));
+    await tester.ensureVisible(reset);
+    await tester.tap(reset);
+    await _frames(tester);
+    await tester.tap(find.byType(CheckboxListTile));
+    await _frames(tester);
+    await tester.tap(find.byKey(const ValueKey('parent-confirm-tutor-reset')));
+    await _frames(tester);
+    expect(find.textContaining('Lerneinschätzungen zurückgesetzt.'), findsOneWidget);
+    final lesson = GuidedLesson(id: 'after-reset-check', title: 'Über den Zehner',
+        description: '', grade: 1, schoolUnit: 'Plus bis 20',
+        concept: GuidedLessonConcept.bridgeTen,
+        steps: GuidedLessonCatalog.bridgeTen.steps.sublist(6));
+    await tester.pumpWidget(MaterialApp(home: GuidedLessonScreen(
+        appState: app, lesson: lesson, discovery: false)));
+    await _frames(tester);
+    final requests = LumoCompanionRequests.instance;
+    expect(requests.taskContext.value?.profileGeneration, app.profileGeneration);
+    expect(requests.tutor.matches(requests.taskContext.value!.tutorScope), isTrue);
+    final answer = find.byKey(ValueKey('guided-answer-${lesson.steps.first.expected}'));
+    await tester.ensureVisible(answer);
+    await tester.tap(answer);
+    await _frames(tester);
+    expect(requests.taskContext.value!.lastCorrect, isTrue);
+    expect(requests.learningEvents.value.any((event) => event.kind == LumoLearningEventKind.answerCorrect), isTrue);
+    await tester.runAsync(() async {
+      final saved = ProgressRepository(studentId: 'reset-a');
+      expect((await saved.loadSkills()).values.single.correct, 2);
+      final evidence = (await saved.loadJourney()).records.values.single;
+      expect(evidence.independentCorrect, 1);
+      expect(evidence.assistedCorrect, 0);
+      expect(evidence.transferCorrect, 1);
+      expect(await app.school.activeStudentId(), 'reset-a');
+    });
+    await tester.pumpWidget(const SizedBox.shrink());
+    await tester.pump();
+    expect(tester.takeException(), isNull);
+  });
 }

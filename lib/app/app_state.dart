@@ -1256,6 +1256,9 @@ class LumoAppState extends ChangeNotifier {
       // Old lesson actions cannot repopulate the cleared assessments.
       if (identical(_activeLearningSession, lease._session)) {
         _profileGeneration++;
+        final requests = LumoCompanionRequests.instance;
+        requests.tutor.activateProfile(_profileGeneration);
+        requests.clearLearningScope();
       }
       _safeNotify();
     }

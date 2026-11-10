@@ -287,8 +287,9 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
             ? widget.lesson.subject == 'Mathematik'
                 ? 'Du hast selbst gerechnet. Gut gemacht!'
                 : 'Das hast du selbst herausgefunden. Gut gemacht!'
-            : 'Das passt! Mit den gemeinsamen Schritten hast du es geschafft. '
-                'Danach probieren wir eine neue Aufgabe.';
+            : !independent
+                ? 'Das passt! Mit den gemeinsamen Schritten hast du es geschafft.'
+                : 'Das passt! Weiter geht es in deinem Tempo.';
       } else {
         _feedback = _attempts == 1
             ? 'Fast! Probiere es noch einmal. Wenn du magst, hilft dir ein Tipp.'
