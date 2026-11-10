@@ -114,6 +114,10 @@ APPROVED = {
     # eleven-track handoff #136 and Fold menu fix); source identity only.
     # Android APK and Fold7 acceptance remain separate gates.
     2012: "9947346ecc526512904adecec1815312020beb62",
+    # 2013: Flutter 2013 collector with verified Spielewelt hub and the
+    # repaired Godot integration collector. Source identity only; APK/device
+    # acceptance remains gated by the unified Android workflow.
+    2013: "47bef06db45d61d50ecd06d0b0cd0a69b9a25917",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

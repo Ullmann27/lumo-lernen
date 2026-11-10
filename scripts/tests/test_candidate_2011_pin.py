@@ -35,7 +35,7 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2012, "9947346ecc526512904adecec1815312020beb62"))
+        self.assertEqual((build, revision), (2013, "47bef06db45d61d50ecd06d0b0cd0a69b9a25917"))
         self.assertGreater(build, 2011)
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
@@ -43,8 +43,24 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), config()), (2011, CANDIDATE_REVISION)
         )
 
+    def test_2012_and_2013_keep_distinct_reviewed_native_identities(self):
+        self.assertEqual(
+            POLICY.verify(
+                version(2012),
+                config("9947346ecc526512904adecec1815312020beb62"),
+            ),
+            (2012, "9947346ecc526512904adecec1815312020beb62"),
+        )
+        self.assertEqual(
+            POLICY.verify(
+                version(2013),
+                config("47bef06db45d61d50ecd06d0b0cd0a69b9a25917"),
+            ),
+            (2013, "47bef06db45d61d50ecd06d0b0cd0a69b9a25917"),
+        )
+
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012)}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -81,7 +97,7 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 2013, 9999):
+        for build in (2006, 2007, 2008, 2009, 2010, 9999):
             with self.subTest(build=build):
                 with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
                     POLICY.verify(version(build), config())
