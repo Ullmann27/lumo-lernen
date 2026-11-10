@@ -16,25 +16,47 @@ class SpielweltPortal {
     required this.state,
     required this.onOpen,
     this.semanticTitle,
+    this.specialId,
   });
 
   /// The quiz is a genuine route, never an alias for GameId.kart.
   const SpielweltPortal.quizShow({required this.onOpen})
       : game = null,
         state = const GameUnlockState(unlocked: true),
-        semanticTitle = null;
+        semanticTitle = null,
+        specialId = 'quizShow';
+
+  /// Vier Gewinnt is a first-class game in the hub reference, not a hidden
+  /// extra-mode tile. It keeps its existing Flutter game/session intact.
+  const SpielweltPortal.connectFour({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo 4 Gewinnt',
+        specialId = 'connectFour';
 
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
+  final String? specialId;
 
-  String get identity => game?.id.name ?? 'quizShow';
-  String get title => game?.title ?? 'Wer wird Lumo-Meister?';
-  String get tagline => game?.tagline ?? '20 Fragen · 3 Joker · bis 5.000 Sterne';
-  bool get playable => game == null ||
-      game!.availability == GameAvailability.playable;
-  IconData get icon =>
-      game == null ? Icons.emoji_events_rounded : _iconFor(game!.id);
+  String get identity => game?.id.name ?? specialId ?? 'special';
+  String get title => switch (specialId) {
+        'connectFour' => '4 Gewinnt',
+        'quizShow' => 'Wer wird Lumo-Meister?',
+        _ => game?.title ?? 'Lumo Spiel',
+      };
+  String get tagline => switch (specialId) {
+        'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
+        'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
+        _ => game?.tagline ?? '',
+      };
+  bool get playable =>
+      specialId != null || game?.availability == GameAvailability.playable;
+  IconData get icon => switch (specialId) {
+        'connectFour' => Icons.grid_4x4_rounded,
+        'quizShow' => Icons.emoji_events_rounded,
+        _ => _iconFor(game!.id),
+      };
 
   /// Vorleser- und Prüftext, falls er vom sichtbaren Titel abweicht.
   final String? semanticTitle;
@@ -47,6 +69,9 @@ class SpielweltHub extends StatefulWidget {
     super.key,
     required this.portals,
     required this.onAdventure,
+    required this.onHome,
+    required this.onLearn,
+    required this.onTests,
     required this.onParents,
     required this.onProgress,
     required this.onSettings,
@@ -55,6 +80,9 @@ class SpielweltHub extends StatefulWidget {
 
   final List<SpielweltPortal> portals;
   final VoidCallback onAdventure;
+  final VoidCallback onHome;
+  final VoidCallback onLearn;
+  final VoidCallback onTests;
   final VoidCallback onParents;
   final VoidCallback onProgress;
   final VoidCallback onSettings;
@@ -72,14 +100,19 @@ class _Frac {
 
 const double _refAspect = 1672 / 941;
 
-const Map<GameId, _Frac> _wideSlots = {
-  GameId.memory: _Frac(.048, .250, .175, .271),
-  GameId.cards: _Frac(.242, .260, .159, .260),
-  GameId.puzzle: _Frac(.585, .260, .164, .266),
-  GameId.jumpRun: _Frac(.773, .260, .181, .266),
-  GameId.rhythm: _Frac(.118, .531, .200, .276),
-  GameId.treasure: _Frac(.541, .542, .187, .266),
-  GameId.build: _Frac(.734, .542, .178, .271),
+const Map<String, _Frac> _wideSlots = {
+  // Reference page 34: seven world portals around Lumo, Kart on the right,
+  // 4 Gewinnt + Quizshow below the centre. The left rail stays separate.
+  'memory': _Frac(.105, .285, .150, .235),
+  'cards': _Frac(.265, .185, .145, .230),
+  'puzzle': _Frac(.425, .125, .145, .230),
+  'jumpRun': _Frac(.585, .185, .145, .230),
+  'rhythm': _Frac(.745, .285, .150, .235),
+  'treasure': _Frac(.145, .555, .155, .235),
+  'build': _Frac(.700, .555, .155, .235),
+  'kart': _Frac(.835, .600, .150, .265),
+  'connectFour': _Frac(.355, .715, .135, .165),
+  'quizShow': _Frac(.510, .715, .135, .165),
 };
 
 class _SpielweltHubState extends State<SpielweltHub>
@@ -144,14 +177,14 @@ class _SpielweltHubState extends State<SpielweltHub>
       final width = constraints.maxWidth;
       final viewHeight = MediaQuery.sizeOf(context).height;
       final wide = width >= 720 && width / math.max(viewHeight, 1) >= 1.15;
-      // Nine cards need the full-width responsive grid, not the fixed
-      // seven-slot landscape illustration, where they would overlap.
-      return wide && widget.portals.length <= 7
-          ? _buildWide(width) : _buildNarrow(width);
+      // The reference hub is specifically a wide/Fold composition with all
+      // ten game entries. Never fall back to the phone grid merely because
+      // Kart, Connect Four and Quizshow are present.
+      return wide ? _buildWide(width) : _buildNarrow(width);
     });
   }
 
-  // Quer (Fold offen quer, Tablet, Handy quer): Anordnung wie Bild 01.
+  // Quer (Fold offen quer, Tablet, Handy quer): zehn echte Zugänge wie Referenz 24.
   Widget _buildWide(double width) {
     final height = width / _refAspect;
     Widget at(_Frac f, Widget child) => Positioned(
@@ -161,42 +194,46 @@ class _SpielweltHubState extends State<SpielweltHub>
           height: f.height * height,
           child: child,
         );
-    final byId = {
-      for (final p in widget.portals)
-        if (p.game != null) p.game!.id: p,
-    };
+    final byId = {for (final p in widget.portals) p.identity: p};
     return SizedBox(
+      key: const ValueKey('spielwelt-wide-reference-hub'),
       width: width,
       height: height,
       child: Stack(clipBehavior: Clip.none, children: [
         Positioned.fill(child: _Sparkles(clock: _clock)),
-        at(const _Frac(.011, .085, .078, .125),
-            const _WoodSign(text: 'Neugier\nmacht die Welt\nbunter!')),
-        at(const _Frac(.021, .610, .078, .150),
-            const _WoodSign(text: 'Heute\nein bisschen\nmutiger\nals gestern!')),
-        at(const _Frac(.918, .680, .072, .135),
-            const _WoodSign(text: 'Spielend\neine bessere\nWelt\nentdecken!')),
-        at(const _Frac(.930, .016, .062, .118),
-            const _PaperBanner(text: 'Fantasie\nFreunde\nFür immer')),
-        at(const _Frac(.700, .045, .095, .140), const _HandNote()),
-        at(const _Frac(.310, .000, .380, .245),
+        at(
+          const _Frac(.012, .085, .078, .790),
+          _HubSideRail(
+            onHome: widget.onHome,
+            onLearn: widget.onLearn,
+            onTests: widget.onTests,
+            onProfile: widget.onProgress,
+          ),
+        ),
+        at(const _Frac(.315, .015, .370, .185),
             _HubLogo(clock: _clock, compact: false)),
-        // Fels-Bühne unter Lumo.
-        at(const _Frac(.330, .740, .300, .110), const _StoneStage()),
-        at(const _Frac(.329, .262, .281, .545),
-            Center(child: _fox(.545 * height))),
-        for (final entry in _wideSlots.entries)
-          if (byId[entry.key] != null)
-            at(entry.value,
-                _portal(byId[entry.key]!, entry.key.index, width: entry.value.width * width)),
-        at(const _Frac(.383, .815, .234, .075),
+        // Central island/stage and Lumo are deliberately kept clear of portals.
+        at(const _Frac(.365, .500, .270, .115), const _StoneStage()),
+        at(const _Frac(.385, .285, .230, .385),
+            Center(child: _fox(.385 * height))),
+        for (var i = 0; i < _wideSlots.entries.length; i++)
+          if (byId[_wideSlots.entries.elementAt(i).key] != null)
+            at(
+              _wideSlots.entries.elementAt(i).value,
+              _portal(
+                byId[_wideSlots.entries.elementAt(i).key]!,
+                i,
+                width: _wideSlots.entries.elementAt(i).value.width * width,
+              ),
+            ),
+        at(const _Frac(.365, .625, .270, .070),
             _AdventureButton(clock: _clock, onTap: widget.onAdventure)),
-        at(const _Frac(.015, .900, .970, .090),
+        at(const _Frac(.105, .900, .870, .080),
             _HubBar(
               onParents: widget.onParents,
               onProgress: widget.onProgress,
               onSettings: widget.onSettings,
-              showSlogans: true,
+              showSlogans: false,
             )),
       ]),
     );
