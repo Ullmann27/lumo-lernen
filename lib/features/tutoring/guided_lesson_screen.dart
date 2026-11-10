@@ -322,7 +322,11 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     requests.recordLearningEvent(LumoLearningEventKind.hintRequested);
     setState(() {
       _helpLevel = (_helpLevel + 1).clamp(1, 3);
-      _previousHelp = _step.help(level: _helpLevel);
+      _previousHelp = (_helpLevel == 1
+              ? GuidedLessonEvidence.hintForAnswer(
+                  lesson: widget.lesson, step: _step, answer: _lastAnswer)
+              : null) ??
+          _step.help(level: _helpLevel);
     });
     _publish();
     requests.recordLearningEvent(LumoLearningEventKind.hintAccepted);

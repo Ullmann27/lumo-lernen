@@ -42,7 +42,7 @@ void main() {
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
           await tester.pump(const Duration(milliseconds: 700));
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
-          await tester.pump(const Duration(milliseconds: 1600));
+          await tester.pump(const Duration(seconds: 9));
           expect(find.byType(LumoQuantityArt), findsNWidgets(count));
           expect(tester.takeException(), isNull);
           if (lesson.concept == GuidedLessonConcept.bridgeTen && step.b > 0) {
@@ -98,10 +98,10 @@ void main() {
       ),
     ));
     await tester.pump();
-    expect(find.byType(LumoQuantityArt), findsNWidgets(12));
+    expect(find.byType(LumoQuantityArt), findsNWidgets(13));
     final moved = tester.widget<Positioned>(
-        find.byKey(const ValueKey('guided-bridge-apple-7')));
-    expect(moved.left, (moved.width! + 3) * 2);
+        find.byKey(const ValueKey('guided-bridge-apple-8')));
+    expect(moved.left, (moved.width! + 3) * 3);
     expect(moved.top, moved.width! + 3);
     expect(tester.takeException(), isNull);
     await tester.pumpWidget(const SizedBox.shrink());
