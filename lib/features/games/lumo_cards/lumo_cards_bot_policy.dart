@@ -15,7 +15,8 @@ extension LumoCardsDifficultyLabel on LumoCardsDifficulty {
   };
 
   String get description => switch (this) {
-    LumoCardsDifficulty.relaxed => 'Lumo probiert verschiedene passende Karten.',
+    LumoCardsDifficulty.relaxed =>
+      'Lumo probiert verschiedene passende Karten.',
     LumoCardsDifficulty.clever => 'Lumo plant Farben und besondere Karten.',
     LumoCardsDifficulty.expert => 'Lumo plant auch mehrere Sprünge voraus.',
   };
@@ -30,7 +31,8 @@ extension LumoCardsStyleLabel on LumoCardsStyle {
 
   String get description => switch (this) {
     LumoCardsStyle.planner => 'Hebt Farbzauber auf und plant den nächsten Zug.',
-    LumoCardsStyle.adventurous => 'Setzt Sternenregen und Wirbelwind früher ein.',
+    LumoCardsStyle.adventurous =>
+      'Setzt Sternenregen und Wirbelwind früher ein.',
     LumoCardsStyle.collector => 'Spielt gern längere Reihen derselben Farbe.',
   };
 }
@@ -54,7 +56,9 @@ class LumoCardsBotPolicy {
     final playable = [
       for (final card in ownHand)
         if (LumoCardsRules.isPlayable(
-          card: card, topCard: topCard, selectedColor: selectedColor,
+          card: card,
+          topCard: topCard,
+          selectedColor: selectedColor,
         ))
           card,
     ];
@@ -82,7 +86,9 @@ class LumoCardsBotPolicy {
       LumoCardsDifficulty.clever => 10.0,
       LumoCardsDifficulty.expert => 0.001,
     };
-    final candidates = playable.where((c) => best - scores[c]! <= slack).toList();
+    final candidates = playable
+        .where((c) => best - scores[c]! <= slack)
+        .toList();
     return candidates[rng.nextInt(candidates.length)];
   }
 
@@ -99,10 +105,18 @@ class LumoCardsBotPolicy {
     final offensive = style == LumoCardsStyle.adventurous;
     final collector = style == LumoCardsStyle.collector;
     final color = card.isWild ? _strongestColor(remaining) : card.color;
-    final colorCount = remaining.where((c) => !c.isWild && c.color == color).length;
-    final followUps = remaining.where((c) => LumoCardsRules.isPlayable(
-      card: c, topCard: card, selectedColor: color,
-    )).toList();
+    final colorCount = remaining
+        .where((c) => !c.isWild && c.color == color)
+        .length;
+    final followUps = remaining
+        .where(
+          (c) => LumoCardsRules.isPlayable(
+            card: c,
+            topCard: card,
+            selectedColor: color,
+          ),
+        )
+        .toList();
     // Keeping a connected hand is a possibility for the next turn, not a
     // prediction of hidden opponent cards. Only Skip guarantees another turn.
     var score = 20.0 + colorCount * (collector ? 13 : 5) + followUps.length * 3;
@@ -116,11 +130,16 @@ class LumoCardsBotPolicy {
       LumoCardType.superRain => danger ? 105 : (offensive ? 42 : -30),
     };
     if (followUps.isEmpty) score -= 30;
-    if (card.type == LumoCardType.lumoJump && depth > 0 && followUps.isNotEmpty) {
+    if (card.type == LumoCardType.lumoJump &&
+        depth > 0 &&
+        followUps.isNotEmpty) {
       // In this game's actual two-player rules only Lumo-Sprung keeps the
       // turn. StarRain and Whirlwind do not; do not assume UNO rules here.
-      final continuation = followUps.map((next) =>
-        _score(next, remaining, opponentCount, style, depth - 1)).reduce(max);
+      final continuation = followUps
+          .map(
+            (next) => _score(next, remaining, opponentCount, style, depth - 1),
+          )
+          .reduce(max);
       score += continuation >= 10000 ? 10000 : 35 + continuation * .65;
     }
     return score;
@@ -130,7 +149,9 @@ class LumoCardsBotPolicy {
     var best = LumoCardColor.values.first;
     var bestCount = -1;
     for (final color in LumoCardColor.values) {
-      final count = hand.where((card) => !card.isWild && card.color == color).length;
+      final count = hand
+          .where((card) => !card.isWild && card.color == color)
+          .length;
       if (count > bestCount) {
         best = color;
         bestCount = count;
@@ -145,7 +166,9 @@ class LumoCardsBotPolicy {
   }) {
     final counts = {
       for (final color in LumoCardColor.values)
-        color: ownHand.where((card) => !card.isWild && card.color == color).length,
+        color: ownHand
+            .where((card) => !card.isWild && card.color == color)
+            .length,
     };
     final highest = counts.values.reduce(max);
     final tied = [
