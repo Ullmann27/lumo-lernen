@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/features/games/games_content.dart';
+import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_showcase_screen.dart';
 
 /// Spielewelt nach Bild 06: nur echte Spiele, Android-Prüftexte bleiben.
 void main() {
@@ -48,6 +49,47 @@ void main() {
 
     expect(tester.takeException(), isNull);
     handle.dispose();
+  });
+
+  testWidgets('Fold landscape uses ten-game reference hub and Cards opens Cards', (tester) async {
+    await tester.binding.setSurfaceSize(const Size(1200, 900));
+    addTearDown(() => tester.binding.setSurfaceSize(null));
+    final app = LumoAppState();
+    addTearDown(app.dispose);
+    await tester.pumpWidget(
+        MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
+    await tester.runAsync(
+        () => Future<void>.delayed(const Duration(milliseconds: 300)));
+    await tester.pump(const Duration(milliseconds: 700));
+
+    expect(find.byKey(const ValueKey('spielwelt-wide-reference-hub')),
+        findsOneWidget);
+    for (final identity in const [
+      'memory',
+      'cards',
+      'puzzle',
+      'jumpRun',
+      'rhythm',
+      'treasure',
+      'build',
+      'kart',
+      'connectFour',
+      'quizShow',
+    ]) {
+      expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
+          reason: identity);
+    }
+    for (final rail in const ['start', 'lernen', 'spielen', 'tests', 'profil']) {
+      expect(find.byKey(ValueKey('spielwelt-rail-$rail')), findsOneWidget,
+          reason: rail);
+    }
+
+    final cards = find.byKey(const ValueKey('spielwelt-portal-cards'));
+    await tester.tap(cards);
+    await tester.pump(const Duration(milliseconds: 600));
+    expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget,
+        reason: 'Main Cards portal must never open Sternenpfad');
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('Rhythm Party opens the real native rhythm scene', (tester) async {
