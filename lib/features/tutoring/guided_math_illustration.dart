@@ -9,6 +9,7 @@ import '../../widgets/design/lumo_learning_module_frame.dart';
 import '../../widgets/design/lumo_quantity_art.dart';
 import 'guided_language_nature_illustration.dart';
 import 'guided_advanced_math_illustration.dart';
+import 'guided_ten_frame_animation.dart';
 
 /// Actual countable original assets. Moving apples remain single widgets:
 /// no duplicated "animation" objects that could falsify a quantity.
@@ -85,7 +86,10 @@ class GuidedMathIllustration extends StatelessWidget {
     }
     return switch (lesson.concept) {
       GuidedLessonConcept.equalGroups => _groups(),
-      GuidedLessonConcept.bridgeTen => _tenFrame(context),
+      GuidedLessonConcept.bridgeTen => step.type == TutoringStepType.showExample
+          ? GuidedTenFrameAnimation(
+              left: step.a, right: step.b, reduceMotion: reduceMotion)
+          : _tenFrame(context),
       GuidedLessonConcept.subtractTen => _subtraction(),
       _ =>
         throw StateError('Non-mathematical lesson routed to math illustration'),

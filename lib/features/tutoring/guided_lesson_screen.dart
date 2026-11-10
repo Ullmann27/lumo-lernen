@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/learning_attempt_id.dart';
 import '../../domain/tutoring/guided_lesson_catalog.dart';
+import '../../domain/tutoring/guided_lesson_evidence.dart';
 import '../../domain/tutoring/tutoring_session_planner.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -238,16 +240,27 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     _publish();
     LumoCompanionRequests.instance
         .recordLearningEvent(LumoLearningEventKind.answerSubmitted);
+    final independent = GuidedLessonEvidence.isIndependent(
+        attempts: _attempts, helpLevel: _helpLevel);
     // Only independent school answers count as school skills/Daily.
     // Prerequisite and accompanied examples are not fabricated mastery.
     final saved = widget.discovery || step.isIndependent
         ? await _progress.saveAnswer(
             correct: correct,
-            hintUsed: _helpLevel > 0,
+            hintUsed: !independent,
             prompt: step.instruction,
             given: answer,
             expected: step.expected,
             discoveryStep: step.observation!,
+            learningEvidence: widget.discovery
+                ? null
+                : GuidedLessonEvidence.observation(
+                    lesson: widget.lesson,
+                    step: step,
+                    attemptId: newLearningAttemptId(),
+                    answer: answer,
+                    attempts: _attempts,
+                    helpLevel: _helpLevel),
           )
         : true;
     if (!_current || serial != _serial) return;
@@ -262,12 +275,13 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       _passed = correct;
       if (correct) {
         _solved++;
-        if (step.isIndependent) _independentSolved++;
-        _feedback = step.isIndependent
+        if (step.isIndependent && independent) _independentSolved++;
+        _feedback = step.isIndependent && independent
             ? widget.lesson.subject == 'Mathematik'
                 ? 'Du hast selbst gerechnet. Gut gemacht!'
                 : 'Das hast du selbst herausgefunden. Gut gemacht!'
-            : 'Das passt! Weiter geht es in deinem Tempo.';
+            : 'Das passt! Mit den gemeinsamen Schritten hast du es geschafft. '
+                'Danach probieren wir eine neue Aufgabe.';
       } else {
         _feedback = _attempts == 1
             ? 'Fast! Probiere es noch einmal. Wenn du magst, hilft dir ein Tipp.'
