@@ -51,8 +51,11 @@ void main() {
     }
 
     expect(portal, findsOneWidget);
-    expect(find.text('Wer wird\nLumo-Meister?'), findsOneWidget);
-    expect(find.text('20 Fragen · 3 Joker · bis 5.000 Sterne'), findsOneWidget);
+    expect(find.text('Wer wird Lumo-Meister?'), findsOneWidget);
+    expect(
+      tester.getSemantics(portal).label,
+      contains('Wer wird Lumo-Meister?'),
+    );
 
     await tester.tap(portal);
     await tester.pump();

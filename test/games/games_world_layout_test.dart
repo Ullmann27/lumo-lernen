@@ -42,7 +42,8 @@ void main() {
     }
     expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
     expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
-    expect(find.text('Wer wird\nLumo-Meister?'), findsOneWidget);
+    expect(find.text('Wer wird Lumo-Meister?'), findsOneWidget);
+    expect(find.text('4 Gewinnt'), findsOneWidget);
     expect(find.text('Zusätzliche Spielmodi'), findsOneWidget);
     expect(find.text('Wortjagd'), findsNothing,
         reason: 'kein Spiel anzeigen, das es nicht gibt');
@@ -85,11 +86,41 @@ void main() {
     }
 
     final cards = find.byKey(const ValueKey('spielwelt-portal-cards'));
+    await tester.ensureVisible(cards);
     await tester.tap(cards);
-    await tester.pump(const Duration(milliseconds: 600));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 800));
     expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget,
         reason: 'Main Cards portal must never open Sternenpfad');
+    expect(find.text('LUMO CARDS'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+
+  testWidgets('Fold7 open portrait and tablet keep the ten-game reference hub', (tester) async {
+    for (final size in const [Size(690, 829), Size(768, 1024), Size(1024, 768)]) {
+      await tester.binding.setSurfaceSize(size);
+      final app = LumoAppState();
+      addTearDown(app.dispose);
+      await tester.pumpWidget(
+          MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
+      await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 300)));
+      await tester.pump(const Duration(milliseconds: 700));
+      expect(find.byKey(const ValueKey('spielwelt-reference-hub')), findsOneWidget,
+          reason: '$size');
+      expect(find.byKey(const ValueKey('spielwelt-narrow-hub')), findsNothing,
+          reason: '$size must not fall back to the phone grid');
+      for (final identity in const [
+        'memory', 'cards', 'puzzle', 'jumpRun', 'rhythm',
+        'treasure', 'build', 'kart', 'connectFour', 'quizShow',
+      ]) {
+        expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
+            reason: '$size $identity');
+      }
+      await tester.pumpWidget(const SizedBox());
+    }
+    await tester.binding.setSurfaceSize(null);
   });
 
   testWidgets('Rhythm Party opens the real native rhythm scene', (tester) async {
