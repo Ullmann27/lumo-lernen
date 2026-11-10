@@ -496,33 +496,32 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                   ),
                                 ),
                               ),
-                              // Tierfreunde am Tisch (Bild 03), nur Deko.
-                              if (!compact) ...[
-                                Positioned(
-                                  left: -8,
-                                  bottom: 0,
-                                  height: 120,
-                                  child: IgnorePointer(
-                                    child: Image.asset(
-                                      'assets/lumo_design/cards_game/friend_panda.png',
-                                      fit: BoxFit.contain,
-                                      filterQuality: FilterQuality.medium,
-                                    ),
+                              // Tierfreunde am Tisch, nur Deko — sichtbar
+                              // auch auf dem Handy, kleiner bei wenig Höhe.
+                              Positioned(
+                                left: compact ? -4 : -8,
+                                bottom: compact ? 4 : 8,
+                                height: compact ? 72 : 128,
+                                child: IgnorePointer(
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards_game/friend_panda.png',
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.medium,
                                   ),
                                 ),
-                                Positioned(
-                                  right: -6,
-                                  bottom: 0,
-                                  height: 150,
-                                  child: IgnorePointer(
-                                    child: Image.asset(
-                                      'assets/lumo_design/cards_game/friend_giraffe.png',
-                                      fit: BoxFit.contain,
-                                      filterQuality: FilterQuality.medium,
-                                    ),
+                              ),
+                              Positioned(
+                                right: compact ? -4 : -6,
+                                bottom: compact ? 4 : 8,
+                                height: compact ? 88 : 158,
+                                child: IgnorePointer(
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards_game/friend_giraffe.png',
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.medium,
                                   ),
                                 ),
-                              ],
+                              ),
                               Positioned.fill(
                                 child: ClipRect(
                                   child: Center(

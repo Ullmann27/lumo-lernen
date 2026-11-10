@@ -25,6 +25,7 @@ import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import 'lumo_memory_stage.dart';
+import 'lumo_memory_garden.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
 class LumoMemoryScreen extends StatefulWidget {
@@ -382,18 +383,20 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
       clock: _clock,
       onRestart: () => _restart(),
       child: Scaffold(
-        backgroundColor: LumoVisualTokens.night,
-        body: LumoSceneBackground(
-          scene: LumoScene.games,
-          dimmed: true,
-          child: SafeArea(
-            child: LayoutBuilder(builder: (context, c) {
-              final landscape = c.maxWidth >= c.maxHeight * 1.12;
-              return landscape
-                  ? _buildLandscape(c.maxWidth, c.maxHeight)
-                  : _buildPortrait(c.maxWidth, c.maxHeight);
-            }),
-          ),
+        backgroundColor: const Color(0xFF3E6A3A),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            const LumoMemoryGarden(),
+            SafeArea(
+              child: LayoutBuilder(builder: (context, c) {
+                final landscape = c.maxWidth >= c.maxHeight * 1.12;
+                return landscape
+                    ? _buildLandscape(c.maxWidth, c.maxHeight)
+                    : _buildPortrait(c.maxWidth, c.maxHeight);
+              }),
+            ),
+          ],
         ),
       ),
     );

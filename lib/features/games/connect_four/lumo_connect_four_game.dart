@@ -9,6 +9,7 @@ import '../../../core/lumo_voice.dart';
 import '../../../widgets/design/lumo_motion.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import 'connect_four_engine.dart';
+import 'lumo_connect_four_stage.dart';
 
 const _cyan = Color(0xFF53DDFD);
 const _gold = Color(0xFFFFD166);
@@ -253,9 +254,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         child: Scaffold(
           backgroundColor: _ink,
           body: Stack(fit: StackFit.expand, children: [
-            Image.asset('assets/lumo_design/bg/bg_glass_islands.png',
-                fit: BoxFit.cover),
-            const ColoredBox(color: Color(0x6603193F)),
+            const LumoConnectFourRoom(),
             SafeArea(
               child: LayoutBuilder(builder: (context, constraints) {
                 final wide = constraints.maxWidth > constraints.maxHeight;
@@ -302,7 +301,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
             ),
           ),
           const Expanded(
-            child: Text('LUMO 4 GEWINNT',
+            child: Text('LUMO • 4 GEWINNT',
                 textAlign: TextAlign.center,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
@@ -408,7 +407,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       });
     }
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      fox(80),
+      fox(112),
       const SizedBox(width: 12),
       const Flexible(
         child: Text(
@@ -426,13 +425,14 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
             SizedBox(width: width, height: width * 6 / 7, child: _board()),
             const SizedBox(height: 8),
             SizedBox(
-                width: width,
-                child: _columnControls(
-                    maxWidth: width,
-                    protectNarrowTouchTargets:
-                        MediaQuery.sizeOf(context).width <= 360 &&
-                        MediaQuery.orientationOf(context) == Orientation.portrait),
-              ),
+              width: width,
+              child: _columnControls(
+                  maxWidth: width,
+                  protectNarrowTouchTargets:
+                      MediaQuery.sizeOf(context).width <= 360 &&
+                          MediaQuery.orientationOf(context) ==
+                              Orientation.portrait),
+            ),
           ]),
         );
       });
@@ -458,38 +458,39 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 12),
                 child: Row(children: [
-              for (var c = 0; c < ConnectFourEngine.columns; c++)
-                Expanded(
-                  child: LumoPressable(
-                    enabled: !_busy && !_clock.value,
-                    radius: 12,
-                    child: IconButton(
-                      key: ValueKey('connect-column-$c'),
-                      tooltip: 'Stein in Spalte ${c + 1}',
-                      style: IconButton.styleFrom(
-                        backgroundColor: _panel,
-                        minimumSize: const Size(44, 48),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                          side: BorderSide(color: _cyan.withValues(alpha: .5)),
+                  for (var c = 0; c < ConnectFourEngine.columns; c++)
+                    Expanded(
+                      child: LumoPressable(
+                        enabled: !_busy && !_clock.value,
+                        radius: 12,
+                        child: IconButton(
+                          key: ValueKey('connect-column-$c'),
+                          tooltip: 'Stein in Spalte ${c + 1}',
+                          style: IconButton.styleFrom(
+                            backgroundColor: _panel,
+                            minimumSize: const Size(44, 48),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                              side: BorderSide(
+                                  color: _cyan.withValues(alpha: .5)),
+                            ),
+                          ),
+                          onPressed: !_busy &&
+                                  !_clock.value &&
+                                  _game.phase == ConnectPhase.playing &&
+                                  _game.validColumns.contains(c)
+                              ? () => _tapColumn(c)
+                              : null,
+                          icon: Icon(Icons.arrow_downward_rounded,
+                              size: 24,
+                              color: _busy
+                                  ? Colors.white24
+                                  : _game.turn == ConnectPiece.child
+                                      ? _cyan
+                                      : _gold),
                         ),
                       ),
-                      onPressed: !_busy &&
-                              !_clock.value &&
-                              _game.phase == ConnectPhase.playing &&
-                              _game.validColumns.contains(c)
-                          ? () => _tapColumn(c)
-                          : null,
-                      icon: Icon(Icons.arrow_downward_rounded,
-                          size: 24,
-                          color: _busy
-                              ? Colors.white24
-                              : _game.turn == ConnectPiece.child
-                                  ? _cyan
-                                  : _gold),
                     ),
-                  ),
-                ),
                 ]),
               ),
             ),
@@ -504,11 +505,12 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
             child: Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: const Color(0xEF153E78),
-                borderRadius: BorderRadius.circular(24),
-                border: Border.all(color: _cyan, width: 2),
+                color: const Color(0xE0081636),
+                borderRadius: BorderRadius.circular(26),
+                border: Border.all(color: const Color(0xFF8AF0FF), width: 2.4),
                 boxShadow: const [
-                  BoxShadow(color: Color(0x7053DDFD), blurRadius: 24),
+                  BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
+                  BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
                   BoxShadow(
                       color: Color(0x90051633),
                       blurRadius: 14,
@@ -565,6 +567,17 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                           );
                         },
                       ),
+                    const Positioned.fill(
+                      child: IgnorePointer(
+                        child: CustomPaint(
+                          painter: LumoConnectFourGlassPlate(
+                            columns: ConnectFourEngine.columns,
+                            rows: ConnectFourEngine.rows,
+                            diameterFactor: .80,
+                          ),
+                        ),
+                      ),
+                    ),
                   ]),
                 );
               }),
@@ -579,30 +592,35 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     return DecoratedBox(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
-        color: empty ? const Color(0xFF081F4A) : null,
+        color: empty ? const Color(0xFF061028) : null,
         gradient: empty
-            ? null
-            : RadialGradient(center: const Alignment(-.4, -.5), colors: [
-                Color.lerp(color, Colors.white, .7)!,
+            ? const RadialGradient(
+                center: Alignment(0, 0.35),
+                colors: [Color(0xFF030814), Color(0xFF102044)],
+              )
+            : RadialGradient(center: const Alignment(-.35, -.42), colors: [
+                Color.lerp(color, Colors.white, .78)!,
+                Color.lerp(color, Colors.white, .22)!,
                 color,
-                Color.lerp(color, _ink, .35)!,
+                Color.lerp(color, _ink, .28)!,
               ], stops: const [
                 0,
-                .45,
+                .28,
+                .68,
                 1
               ]),
         border: Border.all(
             color: winner
                 ? Colors.white
                 : empty
-                    ? const Color(0xFF5387BA)
-                    : color,
-            width: winner ? 3 : 1.5),
+                    ? const Color(0x665387BA)
+                    : Color.lerp(color, Colors.white, .35)!,
+            width: winner ? 3 : 1.8),
         boxShadow: [
           if (!empty)
             BoxShadow(
-                color: color.withValues(alpha: winner ? .8 : .35),
-                blurRadius: winner ? 16 : 5),
+                color: color.withValues(alpha: winner ? .85 : .45),
+                blurRadius: winner ? 18 : 8),
         ],
       ),
       child: empty

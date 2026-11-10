@@ -34,33 +34,36 @@ class _QuizStudioPainter extends CustomPainter {
 
     canvas.drawRect(
       bounds,
-      Paint()..shader = const LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [
-          Color(0xFF06102E),
-          Color(0xFF102963),
-          Color(0xFF05235A),
-          Color(0xFF030B22),
-        ],
-        stops: [0, .32, .73, 1],
-      ).createShader(bounds),
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [
+            Color(0xFF06102E),
+            Color(0xFF102963),
+            Color(0xFF05235A),
+            Color(0xFF030B22),
+          ],
+          stops: [0, .32, .73, 1],
+        ).createShader(bounds),
     );
 
     final halo = Rect.fromCenter(
       center: Offset(w * .5, h * .39),
-      width: w * .88, height: h * .78,
+      width: w * .88,
+      height: h * .78,
     );
     canvas.drawOval(
       halo,
-      Paint()..shader = const RadialGradient(
-        colors: [
-          Color(0x885ACBFF),
-          Color(0x441C68CD),
-          Color(0x00001850),
-        ],
-        stops: [0, .45, 1],
-      ).createShader(halo),
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [
+            Color(0x885ACBFF),
+            Color(0x441C68CD),
+            Color(0x00001850),
+          ],
+          stops: [0, .45, 1],
+        ).createShader(halo),
     );
 
     // Ceiling tubes and moving-stage-light cones have real translucency;
@@ -76,20 +79,24 @@ class _QuizStudioPainter extends CustomPainter {
         ..close();
       canvas.drawPath(
         beam,
-        Paint()..shader = LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [
-            i.isEven ? const Color(0x663BD6FF) : const Color(0x55FFD678),
-            const Color(0x002EBFFF),
-          ],
-        ).createShader(bounds),
+        Paint()
+          ..shader = LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              i.isEven ? const Color(0x663BD6FF) : const Color(0x55FFD678),
+              const Color(0x002EBFFF),
+            ],
+          ).createShader(bounds),
       );
       canvas.drawCircle(
-        Offset(left, 7), math.max(2.4, w * .010),
+        Offset(left, 7),
+        math.max(2.4, w * .010),
         Paint()..color = i.isEven ? _cyan : _gold,
       );
       canvas.drawCircle(
-        Offset(left, 7), math.max(5.0, w * .025),
+        Offset(left, 7),
+        math.max(5.0, w * .025),
         Paint()
           ..color = (i.isEven ? _cyan : _gold).withOpacity(.48)
           ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 12),
@@ -103,17 +110,17 @@ class _QuizStudioPainter extends CustomPainter {
         final x = w * ((i + .35 + (row.isEven ? .25 : 0)) / 15);
         final r = math.max(2.2, w * (.011 + .003 * row));
         canvas.drawOval(
-          Rect.fromCenter(center: Offset(x, y), width: r * 2,
-              height: r * 2.25),
-          Paint()..color = Color.lerp(
-            const Color(0xFF0D2254), const Color(0xFF091437),
-            row / 2)!,
+          Rect.fromCenter(center: Offset(x, y), width: r * 2, height: r * 2.25),
+          Paint()
+            ..color = Color.lerp(
+                const Color(0xFF0D2254), const Color(0xFF091437), row / 2)!,
         );
         canvas.drawRRect(
           RRect.fromRectAndRadius(
             Rect.fromCenter(
               center: Offset(x, y + r * 2),
-              width: r * 3.1, height: r * 2.9,
+              width: r * 3.1,
+              height: r * 2.9,
             ),
             Radius.circular(r),
           ),
@@ -146,15 +153,76 @@ class _QuizStudioPainter extends CustomPainter {
       );
     }
 
+    // Side banners like the reference show title boards.
+    for (final side in <double>[0.08, 0.92]) {
+      final banner = RRect.fromRectAndRadius(
+        Rect.fromCenter(
+          center: Offset(w * side, h * .18),
+          width: w * .09,
+          height: h * .22,
+        ),
+        const Radius.circular(8),
+      );
+      canvas.drawRRect(banner, Paint()..color = const Color(0xFF1A4A9A));
+      canvas.drawRRect(
+        banner,
+        Paint()
+          ..style = PaintingStyle.stroke
+          ..strokeWidth = 2
+          ..color = _gold,
+      );
+    }
+
+    // Gold book-pulpit under the moderator (the fox widget sits above this).
+    final pulpit = RRect.fromRectAndRadius(
+      Rect.fromCenter(
+        center: Offset(w * .5, h * .78),
+        width: w * .28,
+        height: h * .11,
+      ),
+      const Radius.circular(10),
+    );
+    canvas.drawRRect(
+      pulpit,
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFFFFE08A), Color(0xFFC48A28), Color(0xFF8A5A12)],
+        ).createShader(pulpit.outerRect),
+    );
+    canvas.drawRRect(
+      pulpit.deflate(5),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2
+        ..color = const Color(0xFFFFF3C4),
+    );
+    canvas.drawCircle(
+      Offset(w * .5, h * .775),
+      math.max(8.0, w * .028),
+      Paint()..color = const Color(0xFF0A2A6A),
+    );
+    canvas.drawCircle(
+      Offset(w * .5, h * .775),
+      math.max(5.0, w * .018),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.6
+        ..color = _gold,
+    );
+
     final stage = Rect.fromCenter(
       center: Offset(w * .5, h * .835),
-      width: w * .93, height: h * .20,
+      width: w * .93,
+      height: h * .20,
     );
     canvas.drawOval(
       stage.shift(Offset(0, h * .025)),
-      Paint()..shader = const RadialGradient(
-        colors: [Color(0xFF1B7FDB), Color(0xFF071A52), _navy],
-      ).createShader(stage),
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [Color(0xFF1B7FDB), Color(0xFF071A52), _navy],
+        ).createShader(stage),
     );
     canvas.drawOval(
       stage,
@@ -174,7 +242,8 @@ class _QuizStudioPainter extends CustomPainter {
     canvas.drawOval(
       Rect.fromCenter(
         center: Offset(w * .5, h * .824),
-        width: w * .60, height: h * .10,
+        width: w * .60,
+        height: h * .10,
       ),
       Paint()
         ..style = PaintingStyle.stroke
@@ -185,15 +254,18 @@ class _QuizStudioPainter extends CustomPainter {
     final floor = Rect.fromLTWH(0, h * .85, w, h * .15);
     canvas.drawRect(
       floor,
-      Paint()..shader = const LinearGradient(
-        colors: [Color(0xAA026AC2), Color(0xBB071542)],
-        begin: Alignment.topCenter, end: Alignment.bottomCenter,
-      ).createShader(floor),
+      Paint()
+        ..shader = const LinearGradient(
+          colors: [Color(0xAA026AC2), Color(0xBB071542)],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ).createShader(floor),
     );
     for (var i = 0; i <= 4; i++) {
       final xx = w * (i / 4);
       canvas.drawLine(
-        Offset(w * .5, h * .83), Offset(xx, h),
+        Offset(w * .5, h * .83),
+        Offset(xx, h),
         Paint()
           ..strokeWidth = .75
           ..color = _cyan.withOpacity(.32),

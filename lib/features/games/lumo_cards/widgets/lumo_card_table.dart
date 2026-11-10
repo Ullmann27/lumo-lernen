@@ -13,7 +13,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/design/lumo_design_system.dart';
+import 'lumo_cards_parlor.dart';
 
 class LumoCardTable extends StatefulWidget {
   const LumoCardTable({
@@ -73,88 +73,93 @@ class _LumoCardTableState extends State<LumoCardTable>
   Widget build(BuildContext context) {
     // Nachtwelt wie in der Referenz: Szene im Hintergrund, darüber ein runder
     // Holztisch in der Mitte.
-    return LumoSceneBackground(
-      scene: LumoScene.games,
-      dimmed: true,
-      child: Stack(
-        children: [
-          // ── Layer 2: Vignette an den Raendern ──
-          // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
-          Positioned.fill(
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.18),
-                      Colors.black.withOpacity(0.32),
-                    ],
-                    stops: const [0.55, 0.85, 1.0],
-                    radius: 1.2,
-                    center: Alignment.center,
-                  ),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              key: ValueKey('cards-parlor-backdrop'),
+              painter: LumoCardsParlorPainter(),
+            ),
+          ),
+        ),
+        // ── Layer 2: Vignette an den Raendern ──
+        // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.18),
+                    Colors.black.withOpacity(0.32),
+                  ],
+                  stops: const [0.55, 0.85, 1.0],
+                  radius: 1.2,
+                  center: Alignment.center,
                 ),
               ),
             ),
           ),
+        ),
 
-          // ── Layer 3: Animierte Lichtpartikel (Dust) ──
-          // Langsam schwebende warme Punkte - wie Sonnenstaub im Licht.
-          // RepaintBoundary (Tier 1 Foundation 2026-05-23) isoliert die
-          // permanente Repaint-Loop vom Rest des Tischs.
-          Positioned.fill(
-            child: IgnorePointer(
-              child: RepaintBoundary(
-                child: AnimatedBuilder(
-                  animation: _dustCtrl,
-                  builder: (_, __) {
-                    return CustomPaint(
-                      painter: _LightDustPainter(_dustCtrl.value),
-                    );
-                  },
+        // ── Layer 3: Animierte Lichtpartikel (Dust) ──
+        // Langsam schwebende warme Punkte - wie Sonnenstaub im Licht.
+        // RepaintBoundary (Tier 1 Foundation 2026-05-23) isoliert die
+        // permanente Repaint-Loop vom Rest des Tischs.
+        Positioned.fill(
+          child: IgnorePointer(
+            child: RepaintBoundary(
+              child: AnimatedBuilder(
+                animation: _dustCtrl,
+                builder: (_, __) {
+                  return CustomPaint(
+                    painter: _LightDustPainter(_dustCtrl.value),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+
+        // ── Layer 4: Deterministisches Sterne-Muster (statisch) ──
+        Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _StaticSparklesPainter(),
+            ),
+          ),
+        ),
+
+        // ── Layer 5: Spotlight um die Tisch-Mitte (Tier 4 3D-Optik) ──
+        // Statisches warmes Glow das Draw + Discard aus dem dunkleren
+        // Tisch heraushebt - macht das Spielfeld zur 'Buehne'. Reine
+        // BoxDecoration mit RadialGradient, keine Animation, kein
+        // CustomPainter -> null Performance-Kosten.
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    const Color(0xFFFFE08A).withOpacity(0.22),
+                    const Color(0xFFE8C45A).withOpacity(0.08),
+                    const Color(0xFFE8C45A).withOpacity(0.0),
+                  ],
+                  stops: const [0.0, 0.25, 0.55],
+                  radius: 0.42,
+                  center: const Alignment(0, -0.05),
                 ),
               ),
             ),
           ),
+        ),
 
-          // ── Layer 4: Deterministisches Sterne-Muster (statisch) ──
-          Positioned.fill(
-            child: IgnorePointer(
-              child: CustomPaint(
-                painter: _StaticSparklesPainter(),
-              ),
-            ),
-          ),
-
-          // ── Layer 5: Spotlight um die Tisch-Mitte (Tier 4 3D-Optik) ──
-          // Statisches warmes Glow das Draw + Discard aus dem dunkleren
-          // Tisch heraushebt - macht das Spielfeld zur 'Buehne'. Reine
-          // BoxDecoration mit RadialGradient, keine Animation, kein
-          // CustomPainter -> null Performance-Kosten.
-          Positioned.fill(
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [
-                      const Color(0xFFFFE08A).withOpacity(0.22),
-                      const Color(0xFFE8C45A).withOpacity(0.08),
-                      const Color(0xFFE8C45A).withOpacity(0.0),
-                    ],
-                    stops: const [0.0, 0.25, 0.55],
-                    radius: 0.42,
-                    center: const Alignment(0, -0.05),
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // ── Content ──
-          widget.child,
-        ],
-      ),
+        // ── Content ──
+        widget.child,
+      ],
     );
   }
 }
@@ -182,10 +187,10 @@ class LumoRoundTablePainter extends CustomPainter {
             center: Alignment(-0.18, -0.32),
             radius: 1.05,
             colors: [
-              Color(0xFFE8C49A),
-              Color(0xFFC4A06A),
-              Color(0xFF9A7040),
-              Color(0xFF6E4A28),
+              Color(0xFF8A5A32),
+              Color(0xFF6A3E22),
+              Color(0xFF4A2814),
+              Color(0xFF2A160C),
             ],
             stops: [0, .42, .78, 1],
           ).createShader(rect));
@@ -197,7 +202,7 @@ class LumoRoundTablePainter extends CustomPainter {
         ),
         Paint()
           ..shader = const RadialGradient(
-            colors: [Color(0x66FFF3C4), Color(0x00E8C49A)],
+            colors: [Color(0x55FFD27A), Color(0x004A2814)],
           ).createShader(rect));
     final ring = Paint()
       ..style = PaintingStyle.stroke
@@ -211,7 +216,7 @@ class LumoRoundTablePainter extends CustomPainter {
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = 8
-          ..color = const Color(0xFF5A3818));
+          ..color = const Color(0xFF2A160C));
     canvas.drawOval(
         rect.deflate(4),
         Paint()
