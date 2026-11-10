@@ -7,17 +7,25 @@ import 'package:flutter/painting.dart';
 /// Figuren, die auf einem Farbverlauf der Karte sitzen.
 enum MemoryMotif {
   panda('Panda', 'face_panda', false, Color(0xFF3FA8F5), Color(0xFF8FD3FF)),
-  giraffe('Giraffe', 'face_giraffe', false, Color(0xFF58C985), Color(0xFFB4F0C8)),
+  giraffe(
+      'Giraffe', 'face_giraffe', false, Color(0xFF58C985), Color(0xFFB4F0C8)),
   lumo('Lumo', 'fox_avatar', true, Color(0xFF2E9BEA), Color(0xFF7CCBFF)),
   hase('Hase', 'face_bunny', false, Color(0xFFB45CF0), Color(0xFFE2A8FF)),
-  pinguin('Pinguin', 'face_penguin', false, Color(0xFF45B0F0), Color(0xFF9EDCFF)),
-  stern('Sternchen', 'sticker_star', true, Color(0xFF2B6FE0), Color(0xFF7FB6FF)),
-  laterne('Laterne', 'sticker_lantern', true, Color(0xFF3A4FC0), Color(0xFF8D9CF5)),
-  truhe('Schatztruhe', 'sticker_chest', true, Color(0xFF2E8E9E), Color(0xFF8FE0E8)),
-  note('Notenfreund', 'sticker_note', true, Color(0xFF8C4FE0), Color(0xFFD0A8FF)),
-  fahne('Sternenfahne', 'sticker_flag', true, Color(0xFF2A7FE8), Color(0xFF9CCBFF)),
+  pinguin(
+      'Pinguin', 'face_penguin', false, Color(0xFF45B0F0), Color(0xFF9EDCFF)),
+  stern(
+      'Sternchen', 'sticker_star', true, Color(0xFF2B6FE0), Color(0xFF7FB6FF)),
+  laterne(
+      'Laterne', 'sticker_lantern', true, Color(0xFF3A4FC0), Color(0xFF8D9CF5)),
+  truhe('Schatztruhe', 'sticker_chest', true, Color(0xFF2E8E9E),
+      Color(0xFF8FE0E8)),
+  note('Notenfreund', 'sticker_note', true, Color(0xFF8C4FE0),
+      Color(0xFFD0A8FF)),
+  fahne('Sternenfahne', 'sticker_flag', true, Color(0xFF2A7FE8),
+      Color(0xFF9CCBFF)),
   pilz('Pilz', 'sticker_mushroom', true, Color(0xFF4FAE6A), Color(0xFFA8E8B8)),
-  stein('Stachelstein', 'sticker_rock', true, Color(0xFF5A6FA0), Color(0xFFAEBBE0));
+  stein('Stachelstein', 'sticker_rock', true, Color(0xFF5A6FA0),
+      Color(0xFFAEBBE0));
 
   const MemoryMotif(
       this.label, this.asset, this.sticker, this.tintDark, this.tintLight);
@@ -68,10 +76,62 @@ class MemoryGrid {
   final int rows;
 }
 
+/// Themed card packs. "Alle" keeps the historical shuffle of every motif.
+/// Tiere / Weltall / Garten prefer matching art; leftover pairs are filled
+/// from the remaining motifs so every difficulty still deals unique pairs.
+enum MemoryThemePack {
+  alle('Alle'),
+  tiere('Tiere'),
+  weltall('Weltall'),
+  garten('Garten');
+
+  const MemoryThemePack(this.label);
+  final String label;
+
+  List<MemoryMotif> get motifs => switch (this) {
+        MemoryThemePack.alle => MemoryMotif.values,
+        MemoryThemePack.tiere => const [
+            MemoryMotif.panda,
+            MemoryMotif.giraffe,
+            MemoryMotif.lumo,
+            MemoryMotif.hase,
+            MemoryMotif.pinguin,
+          ],
+        MemoryThemePack.weltall => const [
+            MemoryMotif.stern,
+            MemoryMotif.laterne,
+            MemoryMotif.fahne,
+            MemoryMotif.note,
+            MemoryMotif.lumo,
+          ],
+        MemoryThemePack.garten => const [
+            MemoryMotif.pilz,
+            MemoryMotif.stein,
+            MemoryMotif.truhe,
+            MemoryMotif.laterne,
+            MemoryMotif.note,
+          ],
+      };
+}
+
 /// Mischt ein Brett: jedes gewählte Motiv genau zweimal.
 class MemoryBoard {
-  static List<MemoryMotif> deal(MemoryDifficulty difficulty, math.Random rng) {
-    final motifs = [...MemoryMotif.values]..shuffle(rng);
+  static List<MemoryMotif> deal(
+    MemoryDifficulty difficulty,
+    math.Random rng, {
+    MemoryThemePack pack = MemoryThemePack.alle,
+  }) {
+    final List<MemoryMotif> motifs;
+    if (pack == MemoryThemePack.alle) {
+      motifs = [...MemoryMotif.values]..shuffle(rng);
+    } else {
+      final preferred = [...pack.motifs]..shuffle(rng);
+      final extra = [
+        for (final motif in MemoryMotif.values)
+          if (!preferred.contains(motif)) motif
+      ]..shuffle(rng);
+      motifs = [...preferred, ...extra];
+    }
     final chosen = motifs.take(difficulty.pairs).toList();
     return [...chosen, ...chosen]..shuffle(rng);
   }

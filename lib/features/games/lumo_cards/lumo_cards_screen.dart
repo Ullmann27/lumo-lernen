@@ -31,6 +31,7 @@ import 'lumo_cards_models.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_card_burst.dart';
+import 'widgets/lumo_jump_celebration.dart';
 import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
@@ -87,6 +88,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Wird via onDone-Callback nach ca. 900 ms automatisch geleert.
   LumoBurstStyle? _activeBurst;
   int _burstKey = 0;
+  bool _showJumpFx = false;
+  int _jumpFxKey = 0;
 
   /// Tier 6 Karten-Polish 2026-05-25: aktiver Karten-Flug von Hand zu
   /// Discard. Wenn gesetzt, rendert der Screen oben ein LumoCardFly mit
@@ -258,6 +261,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       } else if (top.type == LumoCardType.superRain) {
         _activeBurst = LumoBurstStyle.thunder;
         _burstKey += 1;
+      } else if (top.type == LumoCardType.lumoJump) {
+        _showJumpFx = true;
+        _jumpFxKey += 1;
       }
     }
 
@@ -702,6 +708,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               // Pile sitzt). Partikel spawnen von der Mitte des Positioned-
               // Bereichs aus, daher die ungleichmaessigen Insets - die Mitte
               // soll genau ueber dem Discard liegen.
+              if (_showJumpFx)
+                Positioned.fill(
+                  key: const ValueKey('cards-lumo-jump-fx'),
+                  child: IgnorePointer(
+                    child: Center(
+                      child: LumoJumpCelebration(
+                        key: ValueKey('cards-lumo-jump-fx-$_jumpFxKey'),
+                        onDone: () {
+                          if (mounted) setState(() => _showJumpFx = false);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               if (_activeBurst != null)
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.30,

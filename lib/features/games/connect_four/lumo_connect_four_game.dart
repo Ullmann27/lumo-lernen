@@ -37,6 +37,8 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   bool _busy = false;
   bool _rewarded = false;
   bool _twoPlayers = false;
+  ConnectLumoLevel _lumoLevel = ConnectLumoLevel.mittel;
+  int? _winReplayIndex;
   int _round = 0;
   int _completedChildMoves = 0;
   String _message = 'Vier in einer Reihe. Du fängst an!';
@@ -95,6 +97,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
       _busy = false;
       _rewarded = false;
       _completedChildMoves = 0;
+      _winReplayIndex = null;
       _message = 'Neues Spiel. Du fängst an!';
     });
   }
@@ -146,7 +149,7 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         setState(() => _message = 'Lumo denkt nach …');
         _clock.schedule(const Duration(milliseconds: 540), () {
           if (!mounted || round != _round) return;
-          final next = _game.chooseLumoColumn(_random);
+          final next = _game.chooseLumoColumn(_random, level: _lumoLevel);
           if (next != null) _place(next);
         });
       } else {
@@ -195,6 +198,32 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
     });
     unawaited(LumoVoice.instance.speak(_message,
         style: childWon || drawn ? VoiceStyle.celebrate : VoiceStyle.comfort));
+    final line = _game.winningLine;
+    if (line.isEmpty) {
+      _showResultDialog(stars);
+      return;
+    }
+    _runWinReplay(line, stars, 0);
+  }
+
+  void _runWinReplay(List<ConnectPosition> line, int stars, int index) {
+    if (!mounted) return;
+    setState(() => _winReplayIndex = index);
+    if (index + 1 < line.length) {
+      _clock.schedule(const Duration(milliseconds: 220), () {
+        _runWinReplay(line, stars, index + 1);
+      });
+      return;
+    }
+    _clock.schedule(const Duration(milliseconds: 480), () {
+      if (!mounted) return;
+      setState(() => _winReplayIndex = null);
+      _showResultDialog(stars);
+    });
+  }
+
+  void _showResultDialog(int stars) {
+    if (!mounted) return;
     showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -335,6 +364,38 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
   Widget _modes({bool compact = false}) => Padding(
         padding: const EdgeInsets.only(top: 8),
         child: Wrap(alignment: WrapAlignment.center, runSpacing: 8, children: [
+          if (!_twoPlayers)
+            for (final level in ConnectLumoLevel.values)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4),
+                child: LumoPressable(
+                  glowColor: _lumoLevel == level ? _gold : _cyan,
+                  child: FilledButton(
+                    key: ValueKey('connect-level-${level.name}'),
+                    style: FilledButton.styleFrom(
+                      minimumSize: Size(compact ? 88 : 100, 48),
+                      textStyle: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 15,
+                          fontWeight: FontWeight.w900),
+                      padding:
+                          EdgeInsets.symmetric(horizontal: compact ? 10 : 14),
+                      backgroundColor: _lumoLevel == level ? _gold : _panel,
+                      foregroundColor:
+                          _lumoLevel == level ? _ink : Colors.white,
+                    ),
+                    onPressed: () {
+                      if (_lumoLevel == level) return;
+                      setState(() => _lumoLevel = level);
+                    },
+                    child: Text(switch (level) {
+                      ConnectLumoLevel.leicht => 'Leicht',
+                      ConnectLumoLevel.mittel => 'Mittel',
+                      ConnectLumoLevel.schlau => 'Schlau',
+                    }),
+                  ),
+                ),
+              ),
           for (final mode in [(false, 'Mit Lumo'), (true, 'Zu zweit')])
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 4),
@@ -765,6 +826,11 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                                       : _game.at(r, c),
                                   winner: _game.winningLine
                                       .contains((row: r, column: c)),
+                                  replayFocus: _winReplayIndex != null &&
+                                      _winReplayIndex! <
+                                          _game.winningLine.length &&
+                                      _game.winningLine[_winReplayIndex!] ==
+                                          (row: r, column: c),
                                 ),
                               ),
                             ),
@@ -809,10 +875,11 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         ),
       );
 
-  Widget _disc(ConnectPiece piece, {bool winner = false}) {
+  Widget _disc(ConnectPiece piece,
+      {bool winner = false, bool replayFocus = false}) {
     final empty = piece == ConnectPiece.empty;
     final color = piece == ConnectPiece.child ? _cyan : _gold;
-    return DecoratedBox(
+    final disc = DecoratedBox(
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         color: empty ? const Color(0xFF061028) : null,
@@ -893,6 +960,11 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                 ),
               ),
             ]),
+    );
+    return AnimatedScale(
+      scale: replayFocus ? 1.18 : 1.0,
+      duration: const Duration(milliseconds: 180),
+      child: disc,
     );
   }
 }

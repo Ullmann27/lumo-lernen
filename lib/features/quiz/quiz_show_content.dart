@@ -37,6 +37,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   late QuizShowMusic _music;
   Timer? _lockTimer;
   bool _locking = false;
+  String? _preferSubject;
 
   @override
   void initState() {
@@ -69,6 +70,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
       grade: widget.appState.state.grade,
       random: math.Random(
           widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
+      preferSubject: _preferSubject,
     );
     _state = _engine.start(questions: questions);
   }
@@ -193,6 +195,65 @@ class _QuizShowContentState extends State<QuizShowContent> {
             child: Icon(Icons.star_rounded, color: Color(0xFFFFDA77), size: 27),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(58),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+            child: Row(
+              children: [
+                for (final entry in const [
+                  (null, 'Alle', 'alle'),
+                  ('Deutsch', 'Deutsch', 'Deutsch'),
+                  ('Mathe', 'Mathe', 'Mathe'),
+                  ('Sachunterricht', 'Sachkunde', 'Sachunterricht'),
+                ]) ...[
+                  if (entry.$3 != 'alle') const SizedBox(width: 6),
+                  Expanded(
+                    child: Semantics(
+                      button: true,
+                      selected: _preferSubject == entry.$1,
+                      label: 'Kategorie ${entry.$2}',
+                      child: GestureDetector(
+                        key: ValueKey('quiz-category-${entry.$3}'),
+                        onTap: () {
+                          if (_preferSubject == entry.$1) return;
+                          setState(() {
+                            _preferSubject = entry.$1;
+                            _startNewGame();
+                          });
+                          unawaited(_music.start());
+                        },
+                        child: Container(
+                          constraints: const BoxConstraints(minHeight: 48),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: _preferSubject == entry.$1
+                                ? const Color(0xFF1FA0C8)
+                                : const Color(0xB30B2A5C),
+                            border: Border.all(
+                              color: _preferSubject == entry.$1
+                                  ? const Color(0xFF8AF0FF)
+                                  : const Color(0x66E8C45A),
+                            ),
+                          ),
+                          child: Text(entry.$2,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
       ),
       body: LumoSceneBackground(
         scene: LumoScene.tests,
@@ -1066,61 +1127,69 @@ class _JokerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: used ? .50 : 1,
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 80, minWidth: 48),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFE08A),
-              Color(0xFFC48A28),
-              Color(0xFF0A2A6A),
-              Color(0xFF071D56),
-            ],
-            stops: [0, .18, .42, 1],
+    return TweenAnimationBuilder<double>(
+      key: ValueKey('quiz-joker-fx-$label-$used'),
+      tween: Tween(begin: used ? 1.16 : 1.0, end: 1.0),
+      duration: Duration(milliseconds: used ? 420 : 0),
+      curve: Curves.easeOutBack,
+      builder: (context, scale, child) =>
+          Transform.scale(scale: scale, child: child),
+      child: Opacity(
+        opacity: used ? .50 : 1,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 80, minWidth: 48),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18),
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFFFE08A),
+                Color(0xFFC48A28),
+                Color(0xFF0A2A6A),
+                Color(0xFF071D56),
+              ],
+              stops: [0, .18, .42, 1],
+            ),
+            border: Border.all(
+                color: used ? const Color(0xFF69809F) : const Color(0xFFFFE08A),
+                width: 2.1),
+            boxShadow: used
+                ? null
+                : const [
+                    BoxShadow(color: Color(0xAAFFD26F), blurRadius: 14),
+                    BoxShadow(color: Color(0x8800C7FF), blurRadius: 18),
+                  ],
           ),
-          border: Border.all(
-              color: used ? const Color(0xFF69809F) : const Color(0xFFFFE08A),
-              width: 2.1),
-          boxShadow: used
-              ? null
-              : const [
-                  BoxShadow(color: Color(0xAAFFD26F), blurRadius: 14),
-                  BoxShadow(color: Color(0x8800C7FF), blurRadius: 18),
-                ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(17),
-            onTap: used ? null : onTap,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(icon,
-                      size: 27,
-                      color: used ? Colors.white54 : const Color(0xFFFFD978)),
-                  const SizedBox(height: 5),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(label,
-                          maxLines: 1,
-                          style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white)),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(17),
+              onTap: used ? null : onTap,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(icon,
+                        size: 27,
+                        color: used ? Colors.white54 : const Color(0xFFFFD978)),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(label,
+                            maxLines: 1,
+                            style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white)),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),
