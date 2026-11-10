@@ -12,6 +12,7 @@ import 'lumo_premium_visuals.dart';
 import 'shape_trace_task_renderer.dart';
 import 'writing_task_renderer.dart';
 import 'reading_passage_card.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 
 class AdaptiveTaskAnswer {
   const AdaptiveTaskAnswer({
@@ -107,14 +108,19 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
           border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.50), width: 1.3),
           boxShadow: [
             BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(0.26),
-              blurRadius: 24,
+              color: LumoVisualTokens.cyan.withOpacity(0.30),
+              blurRadius: 26,
               offset: const Offset(0, 10),
             ),
             const BoxShadow(
               color: Color(0x66000000),
               blurRadius: 22,
               offset: Offset(0, 12),
+            ),
+            BoxShadow(
+              color: Colors.white.withOpacity(0.16),
+              blurRadius: 10,
+              offset: const Offset(0, -2),
             ),
           ],
         ),
@@ -180,7 +186,11 @@ class _AdaptiveTaskRendererState extends State<AdaptiveTaskRenderer> {
                       task.prompt.contains('\n'))
                     ReadingPassageCard(prompt: task.prompt)
                   else Text(
-                    task.prompt,
+                    LumoTaskObjectArt.matchWordImage(
+                          prompt: task.prompt,
+                          answer: task.correctAnswer,
+                        )?.displayPrompt ??
+                        task.prompt,
                     // Kurze Rechnungen groß, lange Geschichten gut lesbar
                     // ohne dass die Antworten aus dem Bild rutschen.
                     textAlign: task.subject == LearningSubject.mathematik &&
@@ -937,7 +947,7 @@ class _AdaptiveVisual extends StatelessWidget {
       VisualType.simpleBarChart => SimpleBarChartVisual(task: task),
       // 2026-06-05 Iter 19/B3:
       VisualType.storyStage => StoryStageVisual(task: task),
-      _ => _SchoolbookFallbackVisual(task: task),
+      _ => _wordPictureVisual(task) ?? _SchoolbookFallbackVisual(task: task),
     };
   }
 }
@@ -1159,7 +1169,7 @@ class _ObjectGroup extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 border: Border.all(color: LumoVisualTokens.cyan.withOpacity(.55)),
               ),
-              child: Text(emoji, style: const TextStyle(fontSize: 22)),
+              child: LumoTaskObjectArt(emoji: emoji, size: 26),
             ),
           ),
           if (isCrossed)
@@ -1609,6 +1619,27 @@ String _operationFromTask(TaskInstance task) {
     return 'subtraction';
   }
   return 'addition';
+}
+
+
+Widget? _wordPictureVisual(TaskInstance task) {
+  final cue = LumoTaskObjectArt.matchWordImage(
+    prompt: task.prompt,
+    answer: task.correctAnswer,
+  );
+  if (cue == null) return null;
+  return Padding(
+    padding: const EdgeInsets.only(top: 4),
+    child: Center(
+      child: LumoTaskHeroCard(
+        child: LumoTaskObjectArt(
+          name: cue.name,
+          emoji: cue.emoji,
+          size: 168,
+        ),
+      ),
+    ),
+  );
 }
 
 String? _emojiForPrompt(String prompt) {

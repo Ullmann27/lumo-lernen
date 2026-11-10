@@ -7,6 +7,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -292,7 +293,7 @@ class _ArtikelLernenScreenState extends State<ArtikelLernenScreen>
           ],
         ),
         child: Column(children: [
-          Text(_emoji, style: const TextStyle(fontSize: 80)),
+          LumoTaskObjectArt(name: _word, emoji: _emoji, size: 96),
           const SizedBox(height: 8),
           Text(_word,
               style: TextStyle(
