@@ -829,9 +829,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                 LumoResultDialog(
                   winnerName: s.players[s.winnerIndex ?? 0].name,
                   kindWon: s.winnerIndex == 0,
-                  reward: _rewardForStreak(s.winnerIndex == 0
-                      ? widget.appState.lumoCardsWinStreak
-                      : 0),
+                  reward: s.winnerIndex == 0
+                      ? _rewardForStreak(widget.appState.lumoCardsWinStreak)
+                      : 1,
                   streak: widget.appState.lumoCardsWinStreak,
                   onRestart: () {
                     LumoSound.instance.play(SoundEffect.click);
