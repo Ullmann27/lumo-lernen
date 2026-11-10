@@ -31,6 +31,7 @@ import 'lumo_cards_models.dart';
 import '../shared/lumo_game_pause_scope.dart';
 import 'widgets/lumo_avatar_picker.dart';
 import 'widgets/lumo_card_burst.dart';
+import 'widgets/lumo_jump_celebration.dart';
 import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
@@ -87,6 +88,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
   /// Wird via onDone-Callback nach ca. 900 ms automatisch geleert.
   LumoBurstStyle? _activeBurst;
   int _burstKey = 0;
+  bool _showJumpFx = false;
+  int _jumpFxKey = 0;
 
   /// Tier 6 Karten-Polish 2026-05-25: aktiver Karten-Flug von Hand zu
   /// Discard. Wenn gesetzt, rendert der Screen oben ein LumoCardFly mit
@@ -258,6 +261,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       } else if (top.type == LumoCardType.superRain) {
         _activeBurst = LumoBurstStyle.thunder;
         _burstKey += 1;
+      } else if (top.type == LumoCardType.lumoJump) {
+        _showJumpFx = true;
+        _jumpFxKey += 1;
       }
     }
 
@@ -496,33 +502,32 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                                   ),
                                 ),
                               ),
-                              // Tierfreunde am Tisch (Bild 03), nur Deko.
-                              if (!compact) ...[
-                                Positioned(
-                                  left: -8,
-                                  bottom: 0,
-                                  height: 120,
-                                  child: IgnorePointer(
-                                    child: Image.asset(
-                                      'assets/lumo_design/cards_game/friend_panda.png',
-                                      fit: BoxFit.contain,
-                                      filterQuality: FilterQuality.medium,
-                                    ),
+                              // Tierfreunde am Tisch, nur Deko — sichtbar
+                              // auch auf dem Handy, kleiner bei wenig Höhe.
+                              Positioned(
+                                left: compact ? -4 : -8,
+                                bottom: compact ? 4 : 8,
+                                height: compact ? 72 : 128,
+                                child: IgnorePointer(
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards_game/friend_panda.png',
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.medium,
                                   ),
                                 ),
-                                Positioned(
-                                  right: -6,
-                                  bottom: 0,
-                                  height: 150,
-                                  child: IgnorePointer(
-                                    child: Image.asset(
-                                      'assets/lumo_design/cards_game/friend_giraffe.png',
-                                      fit: BoxFit.contain,
-                                      filterQuality: FilterQuality.medium,
-                                    ),
+                              ),
+                              Positioned(
+                                right: compact ? -4 : -6,
+                                bottom: compact ? 4 : 8,
+                                height: compact ? 88 : 158,
+                                child: IgnorePointer(
+                                  child: Image.asset(
+                                    'assets/lumo_design/cards_game/friend_giraffe.png',
+                                    fit: BoxFit.contain,
+                                    filterQuality: FilterQuality.medium,
                                   ),
                                 ),
-                              ],
+                              ),
                               Positioned.fill(
                                 child: ClipRect(
                                   child: Center(
@@ -703,6 +708,20 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
               // Pile sitzt). Partikel spawnen von der Mitte des Positioned-
               // Bereichs aus, daher die ungleichmaessigen Insets - die Mitte
               // soll genau ueber dem Discard liegen.
+              if (_showJumpFx)
+                Positioned.fill(
+                  key: const ValueKey('cards-lumo-jump-fx'),
+                  child: IgnorePointer(
+                    child: Center(
+                      child: LumoJumpCelebration(
+                        key: ValueKey('cards-lumo-jump-fx-$_jumpFxKey'),
+                        onDone: () {
+                          if (mounted) setState(() => _showJumpFx = false);
+                        },
+                      ),
+                    ),
+                  ),
+                ),
               if (_activeBurst != null)
                 Positioned(
                   top: MediaQuery.of(context).size.height * 0.30,

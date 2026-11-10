@@ -13,7 +13,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
-import '../../../../widgets/design/lumo_design_system.dart';
+import 'lumo_cards_parlor.dart';
 
 class LumoCardTable extends StatefulWidget {
   const LumoCardTable({
@@ -73,88 +73,93 @@ class _LumoCardTableState extends State<LumoCardTable>
   Widget build(BuildContext context) {
     // Nachtwelt wie in der Referenz: Szene im Hintergrund, darüber ein runder
     // Holztisch in der Mitte.
-    return LumoSceneBackground(
-      scene: LumoScene.games,
-      dimmed: true,
-      child: Stack(
-        children: [
-          // ── Layer 2: Vignette an den Raendern ──
-          // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
-          Positioned.fill(
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [
-                      Colors.transparent,
-                      Colors.black.withOpacity(0.18),
-                      Colors.black.withOpacity(0.32),
-                    ],
-                    stops: const [0.55, 0.85, 1.0],
-                    radius: 1.2,
-                    center: Alignment.center,
-                  ),
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              key: ValueKey('cards-parlor-backdrop'),
+              painter: LumoCardsParlorPainter(),
+            ),
+          ),
+        ),
+        // ── Layer 2: Vignette an den Raendern ──
+        // Dunkler werden zu den Ecken hin - macht den Tisch zur "Buehne".
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    Colors.transparent,
+                    Colors.black.withOpacity(0.18),
+                    Colors.black.withOpacity(0.32),
+                  ],
+                  stops: const [0.55, 0.85, 1.0],
+                  radius: 1.2,
+                  center: Alignment.center,
                 ),
               ),
             ),
           ),
+        ),
 
-          // ── Layer 3: Animierte Lichtpartikel (Dust) ──
-          // Langsam schwebende warme Punkte - wie Sonnenstaub im Licht.
-          // RepaintBoundary (Tier 1 Foundation 2026-05-23) isoliert die
-          // permanente Repaint-Loop vom Rest des Tischs.
-          Positioned.fill(
-            child: IgnorePointer(
-              child: RepaintBoundary(
-                child: AnimatedBuilder(
-                  animation: _dustCtrl,
-                  builder: (_, __) {
-                    return CustomPaint(
-                      painter: _LightDustPainter(_dustCtrl.value),
-                    );
-                  },
+        // ── Layer 3: Animierte Lichtpartikel (Dust) ──
+        // Langsam schwebende warme Punkte - wie Sonnenstaub im Licht.
+        // RepaintBoundary (Tier 1 Foundation 2026-05-23) isoliert die
+        // permanente Repaint-Loop vom Rest des Tischs.
+        Positioned.fill(
+          child: IgnorePointer(
+            child: RepaintBoundary(
+              child: AnimatedBuilder(
+                animation: _dustCtrl,
+                builder: (_, __) {
+                  return CustomPaint(
+                    painter: _LightDustPainter(_dustCtrl.value),
+                  );
+                },
+              ),
+            ),
+          ),
+        ),
+
+        // ── Layer 4: Deterministisches Sterne-Muster (statisch) ──
+        Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _StaticSparklesPainter(),
+            ),
+          ),
+        ),
+
+        // ── Layer 5: Spotlight um die Tisch-Mitte (Tier 4 3D-Optik) ──
+        // Statisches warmes Glow das Draw + Discard aus dem dunkleren
+        // Tisch heraushebt - macht das Spielfeld zur 'Buehne'. Reine
+        // BoxDecoration mit RadialGradient, keine Animation, kein
+        // CustomPainter -> null Performance-Kosten.
+        Positioned.fill(
+          child: IgnorePointer(
+            child: DecoratedBox(
+              decoration: BoxDecoration(
+                gradient: RadialGradient(
+                  colors: [
+                    const Color(0xFFFFE08A).withOpacity(0.22),
+                    const Color(0xFFE8C45A).withOpacity(0.08),
+                    const Color(0xFFE8C45A).withOpacity(0.0),
+                  ],
+                  stops: const [0.0, 0.25, 0.55],
+                  radius: 0.42,
+                  center: const Alignment(0, -0.05),
                 ),
               ),
             ),
           ),
+        ),
 
-          // ── Layer 4: Deterministisches Sterne-Muster (statisch) ──
-          Positioned.fill(
-            child: IgnorePointer(
-              child: CustomPaint(
-                painter: _StaticSparklesPainter(),
-              ),
-            ),
-          ),
-
-          // ── Layer 5: Spotlight um die Tisch-Mitte (Tier 4 3D-Optik) ──
-          // Statisches warmes Glow das Draw + Discard aus dem dunkleren
-          // Tisch heraushebt - macht das Spielfeld zur 'Buehne'. Reine
-          // BoxDecoration mit RadialGradient, keine Animation, kein
-          // CustomPainter -> null Performance-Kosten.
-          Positioned.fill(
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: RadialGradient(
-                    colors: [
-                      const Color(0xFFFFE08A).withOpacity(0.22),
-                      const Color(0xFFE8C45A).withOpacity(0.08),
-                      const Color(0xFFE8C45A).withOpacity(0.0),
-                    ],
-                    stops: const [0.0, 0.25, 0.55],
-                    radius: 0.42,
-                    center: const Alignment(0, -0.05),
-                  ),
-                ),
-              ),
-            ),
-          ),
-
-          // ── Content ──
-          widget.child,
-        ],
-      ),
+        // ── Content ──
+        widget.child,
+      ],
     );
   }
 }
@@ -164,66 +169,115 @@ class _LumoCardTableState extends State<LumoCardTable>
 class LumoRoundTablePainter extends CustomPainter {
   const LumoRoundTablePainter();
 
+  Path _top(
+      Offset center, double nearW, double farW, double topY, double botY) {
+    return Path()
+      ..moveTo(center.dx - farW / 2, topY)
+      ..quadraticBezierTo(center.dx, topY - 10, center.dx + farW / 2, topY)
+      ..cubicTo(
+        center.dx + farW / 2 + 6,
+        (topY + botY) / 2,
+        center.dx + nearW / 2 + 4,
+        botY - 8,
+        center.dx + nearW / 2,
+        botY,
+      )
+      ..quadraticBezierTo(center.dx, botY + 16, center.dx - nearW / 2, botY)
+      ..cubicTo(
+        center.dx - nearW / 2 - 4,
+        botY - 8,
+        center.dx - farW / 2 - 6,
+        (topY + botY) / 2,
+        center.dx - farW / 2,
+        topY,
+      )
+      ..close();
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
-    final center = Offset(size.width / 2, size.height * .5);
-    // Oval passt in die Tischfläche, egal ob hoch oder quer.
-    final w = math.min(math.min(size.width * .98, 620.0), size.height * 1.5);
-    final rect = Rect.fromCenter(center: center, width: w, height: w * .62);
-    canvas.drawOval(
-        rect.shift(const Offset(0, 14)),
-        Paint()
-          ..color = const Color(0x99020A24)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18));
-    canvas.drawOval(
-        rect,
-        Paint()
-          ..shader = const RadialGradient(
-            center: Alignment(-0.18, -0.32),
-            radius: 1.05,
-            colors: [
-              Color(0xFFE8C49A),
-              Color(0xFFC4A06A),
-              Color(0xFF9A7040),
-              Color(0xFF6E4A28),
-            ],
-            stops: [0, .42, .78, 1],
-          ).createShader(rect));
-    canvas.drawOval(
-        Rect.fromCenter(
-          center: Offset(center.dx, center.dy - rect.height * .12),
-          width: rect.width * .72,
-          height: rect.height * .55,
-        ),
-        Paint()
-          ..shader = const RadialGradient(
-            colors: [Color(0x66FFF3C4), Color(0x00E8C49A)],
-          ).createShader(rect));
+    if (size.isEmpty) return;
+    final center = Offset(size.width / 2, size.height * .52);
+    final nearW =
+        math.min(math.min(size.width * .98, 640.0), size.height * 1.7);
+    final farW = nearW * 0.70;
+    final topY = center.dy - nearW * 0.16;
+    final botY = center.dy + nearW * 0.22;
+    final top = _top(center, nearW, farW, topY, botY);
+    final rim = _top(
+      center.translate(0, 16),
+      nearW * 1.02,
+      farW * 1.01,
+      topY + 8,
+      botY + 18,
+    );
+
+    canvas.drawPath(
+      rim,
+      Paint()
+        ..color = const Color(0x99020A24)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18),
+    );
+    canvas.drawPath(rim, Paint()..color = const Color(0xFF2A160C));
+    canvas.drawPath(
+      top,
+      Paint()
+        ..shader = RadialGradient(
+          center: const Alignment(-0.12, -0.45),
+          radius: 1.05,
+          colors: const [
+            Color(0xFF8A5A32),
+            Color(0xFF6A3E22),
+            Color(0xFF4A2814),
+            Color(0xFF2A160C),
+          ],
+          stops: const [0, .42, .78, 1],
+        ).createShader(Rect.fromLTRB(
+          center.dx - nearW / 2,
+          topY - 12,
+          center.dx + nearW / 2,
+          botY + 18,
+        )),
+    );
+    canvas.drawPath(
+      top,
+      Paint()
+        ..shader = RadialGradient(
+          center: const Alignment(0, -0.35),
+          radius: 0.55,
+          colors: const [Color(0x55FFD27A), Color(0x004A2814)],
+        ).createShader(Rect.fromLTRB(
+          center.dx - farW / 2,
+          topY,
+          center.dx + farW / 2,
+          botY,
+        )),
+    );
     final ring = Paint()
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1.4
       ..color = const Color(0x668A5A28);
-    for (final inset in <double>[18, 36, 56, w * .16]) {
-      canvas.drawOval(rect.deflate(inset), ring);
+    for (final scale in <double>[.86, .70, .52, .34]) {
+      canvas.drawPath(
+        _top(center, nearW * scale, farW * scale, topY + (1 - scale) * 10,
+            botY - (1 - scale) * 12),
+        ring,
+      );
     }
-    canvas.drawOval(
-        rect,
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 8
-          ..color = const Color(0xFF5A3818));
-    canvas.drawOval(
-        rect.deflate(4),
-        Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 2.2
-          ..shader = const LinearGradient(
-            colors: [
-              Color(0xFFF0DCA8),
-              Color(0xFFC4963C),
-              Color(0xFFF0DCA8),
-            ],
-          ).createShader(Rect.fromLTWH(rect.left, rect.top, rect.width, 1)));
+    canvas.drawPath(
+      top,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 7
+        ..color = const Color(0xFF2A160C),
+    );
+    canvas.drawPath(
+      top,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.2
+        ..color = const Color(0xE6C4963C),
+    );
   }
 
   @override

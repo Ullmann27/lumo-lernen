@@ -93,6 +93,10 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1));
       await tester.pump();
     }
+    expect(find.byType(AlertDialog), findsNothing,
+        reason: 'Win replay highlights the line before the result dialog');
+    expect(app.state.stars, 5);
+    await tester.pump(const Duration(milliseconds: 2500));
     expect(find.byType(AlertDialog), findsOneWidget);
     expect(app.state.stars, 5);
     await tester.tap(find.text('Nochmal!'));
