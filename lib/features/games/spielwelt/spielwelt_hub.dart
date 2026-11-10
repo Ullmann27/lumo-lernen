@@ -492,63 +492,61 @@ class _GlassPortalState extends State<_GlassPortal> {
       button: true,
       label: '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',
       excludeSemantics: true,
-      child: FocusableActionDetector(
-        onShowHoverHighlight: (v) => setState(() => _hovered = v),
-        onShowFocusHighlight: (v) => setState(() => _focused = v),
-        child: TweenAnimationBuilder<double>(
-          tween: Tween(begin: 0, end: _pressed ? 1 : 0),
-          duration: widget.reduceMotion
-              ? Duration.zero
-              : const Duration(milliseconds: 120),
-          curve: Curves.easeOut,
-          builder: (context, press, child) {
+      child: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: _pressed ? 1 : 0),
+        duration: widget.reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 120),
+        curve: Curves.easeOut,
+        builder: (context, press, child) {
+          return Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.0013)
+              ..rotateX(0.055 * press)
+              ..translate(0.0, 5.0 * press)
+              ..scale(1 - 0.02 * press),
+            child: child,
+          );
+        },
+        child: AnimatedBuilder(
+          animation: widget.clock,
+          builder: (context, child) {
+            if (widget.reduceMotion) return child!;
+            final wave =
+                math.sin((widget.clock.value + widget.phase) * 2 * math.pi);
             return Transform(
               alignment: Alignment.center,
               transform: Matrix4.identity()
-                ..setEntry(3, 2, 0.0013)
-                ..rotateX(0.055 * press)
-                ..translate(0.0, 5.0 * press)
-                ..scale(1 - 0.02 * press),
+                ..setEntry(3, 2, 0.0008)
+                ..rotateY(wave * 0.025)
+                ..translate(0.0, wave * 1.6),
               child: child,
             );
           },
-          child: AnimatedBuilder(
-            animation: widget.clock,
-            builder: (context, child) {
-              if (widget.reduceMotion) return child!;
-              final wave =
-                  math.sin((widget.clock.value + widget.phase) * 2 * math.pi);
-              return Transform(
-                alignment: Alignment.center,
-                transform: Matrix4.identity()
-                  ..setEntry(3, 2, 0.0008)
-                  ..rotateY(wave * 0.025)
-                  ..translate(0.0, wave * 1.6),
-                child: child,
-              );
-            },
-            child: _PortalChromeBox(
-              chrome: widget.chrome,
+          child: _PortalChromeBox(
+            chrome: widget.chrome,
+            portal: portal,
+            pressed: _pressed,
+            highlighted: _hovered || _focused,
+            preview: _LivePreview(
               portal: portal,
-              pressed: _pressed,
-              highlighted: _hovered || _focused,
-              preview: _LivePreview(
-                portal: portal,
-                clock: widget.clock,
-                phase: widget.phase,
-              ),
-              lockedChip: (!open || !playable)
-                  ? _StatusChip(
-                      locked: !open,
-                      text: playable ? 'Gesperrt' : 'Bald',
-                    )
-                  : null,
-              onHighlightChanged: (v) => setState(() => _pressed = v),
-              onTap: () {
-                HapticFeedback.selectionClick();
-                widget.onTap();
-              },
+              clock: widget.clock,
+              phase: widget.phase,
             ),
+            lockedChip: (!open || !playable)
+                ? _StatusChip(
+                    locked: !open,
+                    text: playable ? 'Gesperrt' : 'Bald',
+                  )
+                : null,
+            onHoverChanged: (v) => setState(() => _hovered = v),
+            onFocusChanged: (v) => setState(() => _focused = v),
+            onHighlightChanged: (v) => setState(() => _pressed = v),
+            onTap: () {
+              HapticFeedback.selectionClick();
+              widget.onTap();
+            },
           ),
         ),
       ),
@@ -564,6 +562,8 @@ class _PortalChromeBox extends StatelessWidget {
     required this.preview,
     required this.pressed,
     required this.highlighted,
+    required this.onHoverChanged,
+    required this.onFocusChanged,
     required this.onHighlightChanged,
     required this.onTap,
     this.lockedChip,
@@ -574,6 +574,8 @@ class _PortalChromeBox extends StatelessWidget {
   final Widget preview;
   final bool pressed;
   final bool highlighted;
+  final ValueChanged<bool> onHoverChanged;
+  final ValueChanged<bool> onFocusChanged;
   final ValueChanged<bool> onHighlightChanged;
   final VoidCallback onTap;
   final Widget? lockedChip;
@@ -655,6 +657,8 @@ class _PortalChromeBox extends StatelessWidget {
               borderRadius: BorderRadius.circular(radius),
               splashColor: const Color(0x88FFFFFF),
               highlightColor: const Color(0x3353DDFD),
+              onHover: onHoverChanged,
+              onFocusChange: onFocusChanged,
               onHighlightChanged: onHighlightChanged,
               onTap: onTap,
             ),
