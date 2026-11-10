@@ -68,14 +68,18 @@ class LumoCardsBotPolicy {
     // School year belongs to the learning questions. Playing strength is an
     // explicit choice and never changes the deal or the opponent's cards.
     final explore = switch (difficulty) {
-      LumoCardsDifficulty.relaxed => .40,
+      LumoCardsDifficulty.relaxed => .65,
       LumoCardsDifficulty.clever => .12,
       LumoCardsDifficulty.expert => .0,
     };
     if (rng.nextDouble() < explore) {
       return playable[rng.nextInt(playable.length)];
     }
-    final depth = difficulty == LumoCardsDifficulty.expert ? 3 : 1;
+    final depth = switch (difficulty) {
+      LumoCardsDifficulty.relaxed => 0,
+      LumoCardsDifficulty.clever => 1,
+      LumoCardsDifficulty.expert => 3,
+    };
     final scores = {
       for (final card in playable)
         card: _score(card, ownHand, opponentCardCount, style, depth),
