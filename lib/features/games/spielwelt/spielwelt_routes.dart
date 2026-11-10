@@ -84,7 +84,7 @@ class SpielweltRoutes {
       title: 'Puzzle',
       semanticTitle: 'Puzzle',
       tagline: 'Stück für Stück die Welt entdecken!',
-      coverAsset: 'assets/lumo_design/spielwelt/cover_puzzle.jpg',
+      coverAsset: 'assets/lumo_design/spielwelt/portal_puzzle.png',
       kind: SpielweltTargetKind.nativeScene,
       target: 'puzzle',
       targetDescription: 'Godot Puzzle-Atelier (launch3D scene=puzzle)',
@@ -103,7 +103,7 @@ class SpielweltRoutes {
     ),
     SpielweltRoute(
       identity: 'rhythm',
-      title: 'Rhythm Party',
+      title: 'Rhythm',
       semanticTitle: 'Rhythm Party',
       tagline: 'Fühl den Beat!',
       coverAsset: 'assets/lumo_design/spielwelt/cover_rhythm.jpg',
@@ -157,7 +157,7 @@ class SpielweltRoutes {
     ),
     SpielweltRoute(
       identity: 'quizShow',
-      title: 'Wer wird Lumo-Meister?',
+      title: 'Quizshow',
       semanticTitle: 'Wer wird Lumo-Meister?',
       tagline: '20 Fragen · 3 Joker · bis 5.000 Sterne',
       coverAsset: 'assets/lumo_design/fox/fox_quiz_host_1982.webp',

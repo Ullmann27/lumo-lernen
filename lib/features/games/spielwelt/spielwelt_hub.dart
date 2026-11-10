@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/games/game_world.dart';
+import 'spielwelt_portal_art.dart';
 import 'spielwelt_routes.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
@@ -41,11 +42,24 @@ class SpielweltPortal {
   final String? specialId;
 
   String get identity => game?.id.name ?? specialId ?? 'special';
-  String get title => switch (specialId) {
-        'connectFour' => '4 Gewinnt',
-        'quizShow' => 'Wer wird Lumo-Meister?',
-        _ => game?.title ?? 'Lumo Spiel',
-      };
+  /// Visible hub-tile label. Product names stay on [semanticTitle].
+  String get title {
+    switch (identity) {
+      case 'quizShow':
+        return 'Quizshow';
+      case 'connectFour':
+        return '4 Gewinnt';
+      case 'rhythm':
+        return 'Rhythm';
+      default:
+        break;
+    }
+    try {
+      return SpielweltRoutes.byIdentity(identity).title;
+    } catch (_) {
+      return game?.title ?? 'Lumo Spiel';
+    }
+  }
   String get tagline => switch (specialId) {
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
@@ -131,16 +145,15 @@ const Map<String, _Frac> _portraitSlots = {
   'kart': _Frac(.635, .655, .240, .165),
 };
 
-enum _PortalChrome { card, medallion, featured }
+enum _PortalChrome { card, arch, featured, ramp }
 
 _PortalChrome _chromeFor(String identity, {required bool reference}) {
   if (!reference) return _PortalChrome.card;
-  if (identity == 'kart' ||
-      identity == 'connectFour' ||
-      identity == 'quizShow') {
+  if (identity == 'kart') return _PortalChrome.ramp;
+  if (identity == 'connectFour' || identity == 'quizShow') {
     return _PortalChrome.featured;
   }
-  return _PortalChrome.medallion;
+  return _PortalChrome.arch;
 }
 
 class _SpielweltHubState extends State<SpielweltHub>
@@ -255,6 +268,7 @@ class _SpielweltHubState extends State<SpielweltHub>
         height: height,
         child: Stack(clipBehavior: Clip.none, children: [
           Positioned.fill(child: _Sparkles(clock: _clock)),
+          Positioned.fill(child: SpielweltGround(portrait: portrait)),
           at(
             portrait
                 ? const _Frac(.012, .070, .078, .600)
@@ -588,6 +602,9 @@ IconData _iconFor(GameId id) => switch (id) {
     };
 
 String _artFor(SpielweltPortal portal) {
+  if (portal.identity == 'puzzle') {
+    return 'assets/lumo_design/spielwelt/portal_puzzle.png';
+  }
   final cover = SpielweltRoutes.coverFor(portal.identity);
   if (cover.isNotEmpty) return cover;
   return switch (portal.game?.id) {
@@ -702,51 +719,60 @@ class _PortalChromeBox extends StatelessWidget {
   Widget build(BuildContext context) {
     final title = _PortalCaption(title: portal.title, icon: portal.icon);
     return switch (chrome) {
-      _PortalChrome.medallion => _medallion(title),
+      _PortalChrome.arch => _arch(title),
       _PortalChrome.featured => _featured(title),
+      _PortalChrome.ramp => _ramp(title),
       _PortalChrome.card => _card(),
     };
   }
 
-  Widget _medallion(Widget title) {
+  Widget _arch(Widget title) {
     return Column(children: [
       Expanded(
         flex: 5,
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(6, 2, 6, 0),
-          child: DecoratedBox(
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              boxShadow: [
-                BoxShadow(
-                  color: LumoVisualTokens.gold.withOpacity(.35),
-                  blurRadius: 16,
-                  spreadRadius: 1,
-                ),
-                const BoxShadow(
-                  color: Color(0x88020A24),
-                  blurRadius: 12,
-                  offset: Offset(0, 8),
-                ),
-              ],
-            ),
-            child: Container(
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                border: Border.all(color: const Color(0xFFFFD86B), width: 3.4),
-                gradient: const LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [Color(0xFFFFE9A6), Color(0xFFB8860B)],
-                ),
+          padding: const EdgeInsets.fromLTRB(2, 0, 2, 0),
+          child: Stack(fit: StackFit.expand, children: [
+            SpielweltPortalArch(identity: portal.identity),
+            if (lockedChip != null)
+              Positioned(top: 6, right: 6, child: lockedChip!),
+          ]),
+        ),
+      ),
+      title,
+    ]);
+  }
+
+  Widget _ramp(Widget title) {
+    return Column(children: [
+      Expanded(
+        flex: 5,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(22),
+            boxShadow: [
+              BoxShadow(
+                color: LumoVisualTokens.gold.withOpacity(.28),
+                blurRadius: 16,
               ),
-              padding: const EdgeInsets.all(3.5),
-              child: Stack(fit: StackFit.expand, children: [
-                ClipOval(child: preview),
-                if (lockedChip != null)
-                  Positioned(top: 8, right: 8, child: lockedChip!),
-              ]),
+            ],
+          ),
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(22),
+              border: Border.all(color: const Color(0xFFFFD86B), width: 3),
+              gradient: const LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [Color(0xFF123A72), Color(0xFF071433)],
+              ),
             ),
+            clipBehavior: Clip.antiAlias,
+            child: Stack(fit: StackFit.expand, children: [
+              const SpielweltKartRamp(),
+              if (lockedChip != null)
+                Positioned(top: 8, right: 8, child: lockedChip!),
+            ]),
           ),
         ),
       ),
@@ -780,7 +806,10 @@ class _PortalChromeBox extends StatelessWidget {
             ),
             clipBehavior: Clip.antiAlias,
             child: Stack(fit: StackFit.expand, children: [
-              preview,
+              if (portal.identity == 'quizShow')
+                const SpielweltQuizBuzzer()
+              else
+                preview,
               if (lockedChip != null)
                 Positioned(top: 8, right: 8, child: lockedChip!),
             ]),
@@ -845,20 +874,23 @@ class _PortalCaption extends StatelessWidget {
         border: Border.all(color: const Color(0xAAFFD86B)),
       ),
       child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        Icon(icon, color: const Color(0xFFFFE08A), size: 16),
-        const SizedBox(width: 6),
+        Icon(icon, color: const Color(0xFFFFE08A), size: 14),
+        const SizedBox(width: 4),
         Flexible(
-          child: Text(
-            title,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontFamily: 'Nunito',
-              fontSize: 14,
-              fontWeight: FontWeight.w900,
-              color: LumoVisualTokens.white,
-              shadows: [Shadow(color: Color(0xAA000000), blurRadius: 4)],
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Text(
+              title,
+              maxLines: 1,
+              softWrap: false,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontSize: 13,
+                fontWeight: FontWeight.w900,
+                color: LumoVisualTokens.white,
+                shadows: [Shadow(color: Color(0xAA000000), blurRadius: 4)],
+              ),
             ),
           ),
         ),
@@ -1122,20 +1154,23 @@ class _PortalLabel extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                  portal.title,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: (portal.game == null ? 17 : 22) * scale,
-                    height: 1.02,
-                    fontWeight: FontWeight.w900,
-                    color: LumoVisualTokens.white,
-                    shadows: const [
-                      Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
-                    ],
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(
+                    portal.title,
+                    maxLines: 1,
+                    softWrap: false,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 18 * scale,
+                      height: 1.02,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                      shadows: const [
+                        Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
+                      ],
+                    ),
                   ),
                 ),
                 Text(

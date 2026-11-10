@@ -41,8 +41,10 @@ void main() {
     expect(covers.any((cover) => cover.contains('cards/game_kart')), isFalse);
     expect(SpielweltRoutes.byIdentity('cards').target, 'LumoCardsShowcaseScreen');
     expect(SpielweltRoutes.byIdentity('cards').targetDescription, contains('nie Sternenpfad'));
-    expect(SpielweltRoutes.byIdentity('quizShow').title, 'Wer wird Lumo-Meister?');
+    expect(SpielweltRoutes.byIdentity('quizShow').title, 'Quizshow');
     expect(SpielweltRoutes.byIdentity('quizShow').semanticTitle, 'Wer wird Lumo-Meister?');
+    expect(SpielweltRoutes.byIdentity('rhythm').title, 'Rhythm');
+    expect(SpielweltRoutes.byIdentity('rhythm').semanticTitle, 'Rhythm Party');
     expect(SpielweltRoutes.coverFor('connectFour'), isEmpty);
   });
 

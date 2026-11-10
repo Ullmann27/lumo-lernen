@@ -67,6 +67,21 @@ void main() {
             reason: '${entry.key} $identity height');
       }
 
+      for (final title in const [
+        'Memory',
+        'Cards',
+        'Puzzle',
+        'Jump & Run',
+        'Rhythm',
+        'Schatzsuche',
+        'Bauwelt',
+        'Lumo Kart',
+        '4 Gewinnt',
+        'Quizshow',
+      ]) {
+        expect(find.text(title), findsWidgets, reason: '${entry.key} $title');
+      }
+
       final out = Platform.environment['LUMO_HUB_CAPTURES'];
       if (out != null && out.isNotEmpty) {
         await captureLumoBoundary(tester, boundary, '$out/${entry.key}.png');

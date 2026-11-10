@@ -33,7 +33,7 @@ void main() {
       'Cards',
       'Puzzle',
       'Jump & Run',
-      'Rhythm Party',
+      'Rhythm',
       'Schatzsuche',
       'Bauwelt',
       'Lumo Kart',
@@ -42,7 +42,8 @@ void main() {
     }
     expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
     expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
-    expect(find.text('Wer wird Lumo-Meister?'), findsOneWidget);
+    expect(find.text('Quizshow'), findsOneWidget);
+    expect(find.text('Wer wird Lumo-Meister?'), findsNothing);
     expect(find.text('4 Gewinnt'), findsOneWidget);
     expect(find.text('Zusätzliche Spielmodi'), findsOneWidget);
     expect(find.text('Wortjagd'), findsNothing,

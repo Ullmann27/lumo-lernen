@@ -51,7 +51,7 @@ void main() {
     }
 
     expect(portal, findsOneWidget);
-    expect(find.text('Wer wird Lumo-Meister?'), findsOneWidget);
+    expect(find.text('Quizshow'), findsOneWidget);
     expect(
       tester.getSemantics(portal).label,
       contains('Wer wird Lumo-Meister?'),
