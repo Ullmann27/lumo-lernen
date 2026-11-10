@@ -18,7 +18,10 @@ const _boundary = ValueKey('cards-opponent-capture');
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  setUpAll(loadLumoCaptureFonts);
+  setUpAll(() async {
+    await loadLumoCaptureFonts();
+    await loadLumoCaptureEmojiFont();
+  });
   setUp(() {
     SharedPreferences.setMockInitialValues({});
     LumoSound.instance.muted = true;
