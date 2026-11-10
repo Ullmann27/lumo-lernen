@@ -10,6 +10,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/learning_modules/zahlen_bis_100/zahlen_bis_100_screen.dart';
 import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
+import '../helpers/native_storage_fixture.dart';
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -71,7 +72,7 @@ void main() {
       await tester.binding.setSurfaceSize(size);
       addTearDown(() => tester.binding.setSurfaceSize(null));
 
-      final app = LumoAppState();
+      final app = await nativeStorageFixture(tester, LumoAppState.new);
       addTearDown(app.dispose);
       await tester.runAsync(() async {
         await app.hydrateFromWallet();
