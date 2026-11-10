@@ -13,6 +13,9 @@ from verify_android_apk import verify_apk, find_apksigner
 
 ROOT = Path(__file__).resolve().parents[1]
 SUPPORTED_ABIS = {'arm64-v8a', 'x86_64'}
+EXPECTED_SIGNING_CERT_SHA256 = (
+    'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+)
 
 
 def validate_abis(actual: set[str], expected: set[str] | None = None) -> None:
@@ -77,6 +80,11 @@ def validate_offline_voice(archive: zipfile.ZipFile, abis: set[str],
 
 def verify(path: Path, expected_abis: set[str] | None = None):
     certificate = verify_apk(path)
+    if certificate.lower() != EXPECTED_SIGNING_CERT_SHA256:
+        raise RuntimeError(
+            'Signing certificate SHA-256 does not match the installed family app '
+            f'({EXPECTED_SIGNING_CERT_SHA256})'
+        )
     tools = Path(find_apksigner()).parent
     badging = subprocess.check_output([str(tools / 'aapt'), 'dump', 'badging', str(path)], text=True)
     package = re.search(r"package: name='([^']+)' versionCode='([^']+)' versionName='([^']+)'", badging)
