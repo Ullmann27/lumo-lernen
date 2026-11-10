@@ -14,6 +14,8 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
 
+import '../helpers/native_storage_fixture.dart';
+
 class _BlockedWallet extends RewardWalletRepository {
   bool reject = false;
   Completer<void>? gate;
@@ -54,10 +56,13 @@ Future<void> _frames(WidgetTester tester, [int count = 90]) async {
 
 Future<void> _open(WidgetTester tester, LumoAppState app) async {
   await tester.binding.setSurfaceSize(const Size(480, 800));
-  await tester.runAsync(() async {
-    await app.hydrateFromWallet();
-    await app.loadLearningProfile();
+  final ready = await tester.runAsync(() async {
+    await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+    await app.loadLearningProfile().timeout(const Duration(seconds: 15));
+    return true;
   });
+  expect(ready, isTrue,
+      reason: 'The real wallet and learning profile must load');
   await tester.pumpWidget(MaterialApp(home: LumoAkademieScreen(appState: app)));
   await _frames(tester);
   expect(find.text('Was möchtest du lernen?'), findsOneWidget);
@@ -171,8 +176,9 @@ void main() {
   testWidgets(
       'actual Akademie grade1 topic gives local help then saves a single answer and reward',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     expect(find.byType(LumoAnswerCrystal), findsNWidgets(4),
         reason: 'The actual Akademie route must use the shared crystals');
@@ -213,8 +219,9 @@ void main() {
   testWidgets(
       'wallet failure blocks next task and Back then retries one atomic reward',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     wallet.reject = true;
     final correct = _answer(tester);
@@ -246,11 +253,13 @@ void main() {
   testWidgets(
       'profile failure retries existing counters without double-counting answer or reward',
       (tester) async {
-    final repository = _BlockedProgress();
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(
-        walletRepository: wallet,
-        learningProfile: LearningProfileEngine(repository: repository));
+    final repository = await nativeStorageFixture(tester, _BlockedProgress.new);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+            walletRepository: wallet,
+            learningProfile: LearningProfileEngine(repository: repository)));
     await _open(tester, app);
     repository.reject = true;
     await _tap(tester, _answer(tester));
@@ -274,8 +283,9 @@ void main() {
   testWidgets(
       'accepted answer continues durable saving after external unmount and background',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     wallet.gate = Completer<void>();
     await _tap(tester, _answer(tester), frames: 1);
@@ -296,11 +306,13 @@ void main() {
   testWidgets(
       'a pending wrong answer cannot accept a new answer before profile saving',
       (tester) async {
-    final repository = _BlockedProgress();
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(
-        walletRepository: wallet,
-        learningProfile: LearningProfileEngine(repository: repository));
+    final repository = await nativeStorageFixture(tester, _BlockedProgress.new);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+            walletRepository: wallet,
+            learningProfile: LearningProfileEngine(repository: repository)));
     await _open(tester, app);
     repository.gate = Completer<void>();
     final correct = _answer(tester);
@@ -323,7 +335,8 @@ void main() {
   testWidgets(
       'saved correct feedback waits for foreground before advancing the real task',
       (tester) async {
-    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: RewardWalletRepository()));
     await _open(tester, app);
     await _tap(tester, _answer(tester), frames: 1);
     tester.binding.handleAppLifecycleStateChanged(AppLifecycleState.paused);
@@ -373,8 +386,9 @@ void main() {
   testWidgets(
       'thirty real visible sums complete the module and restart without farming saved bonus',
       (tester) async {
-    final wallet = _BlockedWallet();
-    final app = LumoAppState(walletRepository: wallet);
+    final wallet = await nativeStorageFixture(tester, _BlockedWallet.new);
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: wallet));
     await _open(tester, app);
     for (var task = 1; task <= 30; task++) {
       expect(find.text('Aufgabe $task / 30'), findsOneWidget);

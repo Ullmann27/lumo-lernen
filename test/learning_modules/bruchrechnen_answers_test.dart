@@ -14,6 +14,8 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/bruchrechnen/bruchrechnen_screen.dart';
 import 'package:lumo_lernen/features/teacher_mode/lumo_akademie_screen.dart';
 
+import '../helpers/native_storage_fixture.dart';
+
 class _RejectWallet extends RewardWalletRepository {
   bool reject = true;
   int attempts = 0;
@@ -145,7 +147,8 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(480, 800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    final app = await nativeStorageFixture(
+        tester, () => LumoAppState(walletRepository: RewardWalletRepository()));
     app.update(app.state.copyWith(grade: 4));
     app.updateSettings(const AppSettings(voiceEnabled: false));
     await tester.runAsync(() => app.hydrateFromWallet());
@@ -209,17 +212,22 @@ void main() {
       (tester) async {
     await tester.binding.setSurfaceSize(const Size(480, 800));
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    final wallet = _RejectWallet();
-    final progress = _RejectProgress();
-    final app = LumoAppState(
-      walletRepository: wallet,
-      learningProfile: LearningProfileEngine(repository: progress),
-    );
+    final wallet = await nativeStorageFixture(tester, _RejectWallet.new);
+    final progress = await nativeStorageFixture(tester, _RejectProgress.new);
+    final app = await nativeStorageFixture(
+        tester,
+        () => LumoAppState(
+              walletRepository: wallet,
+              learningProfile: LearningProfileEngine(repository: progress),
+            ));
     app.updateSettings(const AppSettings(voiceEnabled: false));
-    await tester.runAsync(() async {
-      await app.hydrateFromWallet();
-      await app.loadLearningProfile();
+    final ready = await tester.runAsync(() async {
+      await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+      await app.loadLearningProfile().timeout(const Duration(seconds: 15));
+      return true;
     });
+    expect(ready, isTrue,
+        reason: 'The real wallet and learning profile must load');
     await tester
         .pumpWidget(MaterialApp(home: BruchrechnenScreen(appState: app)));
     await _frames(tester);

@@ -11,6 +11,8 @@ import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/learning_modules/uhr_lernen/uhr_lernen_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/zahlen_bis_10/zahlen_bis_10_screen.dart';
 
+import '../helpers/native_storage_fixture.dart';
+
 // Select the successor exercise and the upper endpoint of its number range.
 class _LastSuccessorRandom implements math.Random {
   final _fallback = math.Random(24);
@@ -46,12 +48,16 @@ Future<void> _open(
     WidgetTester tester, Widget Function(LumoAppState) screen) async {
   await tester.binding.setSurfaceSize(const Size(480, 1000));
   addTearDown(() => tester.binding.setSurfaceSize(null));
-  final app = LumoAppState(walletRepository: RewardWalletRepository());
+  final app = await nativeStorageFixture(
+      tester, () => LumoAppState(walletRepository: RewardWalletRepository()));
   addTearDown(app.dispose);
-  await tester.runAsync(() async {
-    await app.hydrateFromWallet();
-    await app.loadLearningProfile();
+  final ready = await tester.runAsync(() async {
+    await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+    await app.loadLearningProfile().timeout(const Duration(seconds: 15));
+    return true;
   });
+  expect(ready, isTrue,
+      reason: 'The real wallet and learning profile must load');
   await tester.pumpWidget(MaterialApp(home: screen(app)));
   await tester.pump(const Duration(milliseconds: 700));
 }

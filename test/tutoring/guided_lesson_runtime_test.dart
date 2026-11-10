@@ -391,8 +391,11 @@ void main() {
         final easier = lesson.easierPractice;
         await _tap(tester, find.byKey(ValueKey('guided-answer-${easier.expected}')));
         await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+        expect(find.text('Tipp'), findsOneWidget);
+        expect(LumoCompanionRequests.instance.taskContext.value!.helpLevel, 0);
         await _tap(tester, find.byKey(ValueKey('guided-answer-${step.expected}')));
         expect(find.textContaining('Mit den gemeinsamen Schritten'), findsOneWidget);
+        expect(LumoCompanionRequests.instance.taskContext.value!.helpLevel, 1);
         final journey = await tester.runAsync(() =>
             ProgressRepository(studentId: 'learning-test-a').loadJourney());
         expect(journey!.records.values.single.independentCorrect, 0);
@@ -404,6 +407,42 @@ void main() {
       }
       await _tap(tester, find.byKey(const ValueKey('guided-continue')));
     }
+    await _close(tester, app);
+  });
+
+  testWidgets('first tip after easier practice keeps level one and actual assisted evidence', (tester) async {
+    final app = await _app(tester);
+    final lesson = GuidedLesson(id: 'remediation-first-tip', title: 'Über den Zehner',
+        description: '', grade: 1, schoolUnit: 'Plus bis 20',
+        concept: GuidedLessonConcept.bridgeTen,
+        steps: GuidedLessonCatalog.bridgeTen.steps.sublist(6));
+    await tester.pumpWidget(MaterialApp(home: GuidedLessonScreen(
+        appState: app, lesson: lesson, discovery: false)));
+    await _frames(tester);
+    await _tap(tester, find.text('Leichter üben'));
+    await _tap(tester, find.byKey(ValueKey('guided-answer-${lesson.easierPractice.expected}')));
+    await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+    expect(find.text('Tipp'), findsOneWidget);
+    expect(find.text('Anderer Tipp'), findsNothing);
+    expect(find.byKey(const ValueKey('guided-actual-hint')), findsNothing);
+    expect(LumoCompanionRequests.instance.taskContext.value!.helpLevel, 0);
+    // Six plus five offers ten as a real selectable mistake.
+    await _tap(tester, find.byKey(const ValueKey('guided-answer-10')));
+    await _tap(tester, find.text('Tipp'));
+    final hint = tester.widget<Text>(find.byKey(const ValueKey('guided-actual-hint'))).data;
+    expect(hint, 'Der Zehner ist voll. Prüfe jetzt die Äpfel daneben: Sind von den 5 noch welche übrig?');
+    expect(find.text('Anderer Tipp'), findsOneWidget);
+    expect(LumoCompanionRequests.instance.taskContext.value!.helpLevel, 1);
+    await _tap(tester, find.byKey(ValueKey('guided-answer-${lesson.steps.first.expected}')));
+    expect(find.textContaining('Mit den gemeinsamen Schritten'), findsOneWidget);
+    final journey = await tester.runAsync(() =>
+        ProgressRepository(studentId: 'learning-test-a').loadJourney());
+    final record = journey!.records.values.single;
+    expect(record.assistedCorrect, 1);
+    expect(record.independentCorrect, 0);
+    expect(record.transferCorrect, 0);
+    expect(record.errorCounts['answer_stops_at_ten'], 1);
+    expect(record.status, JourneyStatus.practicing);
     await _close(tester, app);
   });
 
