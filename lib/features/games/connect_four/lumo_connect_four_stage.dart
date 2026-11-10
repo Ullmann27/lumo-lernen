@@ -145,29 +145,30 @@ class LumoConnectFourRoomPainter extends CustomPainter {
         ..strokeWidth = 4,
     );
 
-    // Floor and warm rug under the board.
+    // Wooden stage floor so the board and trays stand on something.
     canvas.drawRect(
-      Rect.fromLTWH(0, h * .78, w, h * .22),
+      Rect.fromLTWH(0, h * .58, w, h * .42),
       Paint()
         ..shader = const LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
-          colors: [Color(0xFF14102A), Color(0xFF0A0818)],
-        ).createShader(Rect.fromLTWH(0, h * .78, w, h * .22)),
+          colors: [Color(0xFF2A1A10), Color(0xFF5A3A22), Color(0xFF1A1008)],
+          stops: [0, .18, 1],
+        ).createShader(Rect.fromLTWH(0, h * .58, w, h * .42)),
     );
     canvas.drawOval(
       Rect.fromCenter(
-        center: Offset(w * .5, h * .92),
-        width: w * .82,
-        height: h * .14,
+        center: Offset(w * .5, h * .88),
+        width: w * .9,
+        height: h * .2,
       ),
       Paint()
         ..shader = const RadialGradient(
-          colors: [Color(0x883A2460), Color(0x00080818)],
+          colors: [Color(0x6648D0F0), Color(0x33FFD166), Color(0x00080818)],
         ).createShader(Rect.fromCenter(
-          center: Offset(w * .5, h * .92),
-          width: w * .82,
-          height: h * .14,
+          center: Offset(w * .5, h * .88),
+          width: w * .9,
+          height: h * .2,
         )),
     );
 
@@ -303,4 +304,65 @@ class LumoConnectFourGlassPlate extends CustomPainter {
       oldDelegate.columns != columns ||
       oldDelegate.rows != rows ||
       oldDelegate.diameterFactor != diameterFactor;
+}
+
+/// Wooden table the glass board stands on — visible apron and oval top.
+class LumoConnectFourTablePedestal extends CustomPainter {
+  const LumoConnectFourTablePedestal();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    final w = size.width;
+    final h = size.height;
+    final top = Rect.fromCenter(
+      center: Offset(w / 2, h * 0.36),
+      width: w,
+      height: h * 0.46,
+    );
+    canvas.drawOval(
+      top,
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [Color(0xFFA06A38), Color(0xFF6A421C), Color(0xFF2A160A)],
+        ).createShader(top),
+    );
+    canvas.drawOval(
+      top.deflate(10),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2
+        ..color = const Color(0x66E8C48A),
+    );
+    final apron = Path()
+      ..moveTo(w * 0.10, h * 0.48)
+      ..lineTo(w * 0.90, h * 0.48)
+      ..lineTo(w * 0.84, h * 0.96)
+      ..lineTo(w * 0.16, h * 0.96)
+      ..close();
+    canvas.drawPath(
+      apron,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: const [
+            Color(0xFF7A4A20),
+            Color(0xFF3A220E),
+            Color(0xFF140A04)
+          ],
+        ).createShader(Offset.zero & size),
+    );
+    canvas.drawLine(
+      Offset(w * 0.10, h * 0.48),
+      Offset(w * 0.90, h * 0.48),
+      Paint()
+        ..color = const Color(0xCCE8C48A)
+        ..strokeWidth = 2.2,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant LumoConnectFourTablePedestal oldDelegate) =>
+      false;
 }

@@ -202,25 +202,24 @@ class LumoMemoryGardenFramePainter extends CustomPainter {
       canvas.restore();
     }
 
-    // Corner foliage frames the table but stays out of the score chips.
+    // Side-only foliage in the middle band. Top close/restart (~56dp) and
+    // bottom difficulty chips (~56dp) stay completely clear of decor.
+    const topClear = 72.0;
+    const bottomClear = 72.0;
     for (var i = 0; i < 5; i++) {
-      leaf(Offset(10 + i * 5.0, 12 + i * 6.0), 1.15 + i * .06, -.7 + i * .1,
+      final y = h * 0.30 + i * (h * 0.075);
+      if (y < topClear || y > h - bottomClear) continue;
+      leaf(Offset(10, y), 0.95, -.55,
           Color.lerp(const Color(0xFF245A30), const Color(0xFF4C8A46), i / 4)!);
-      leaf(Offset(w - 10 - i * 5.0, 14 + i * 6.0), 1.15 + i * .06, .7 - i * .1,
+      leaf(Offset(w - 10, y), 0.95, .55,
           Color.lerp(const Color(0xFF245A30), const Color(0xFF4C8A46), i / 4)!);
-      leaf(Offset(12 + i * 7.0, h - 14 - i * 6.0), 1.35, .85,
-          const Color(0xCC2F6A38));
-      leaf(Offset(w - 12 - i * 7.0, h - 12 - i * 5.0), 1.35, -.85,
-          const Color(0xCC2F6A38));
     }
 
     const flowers = <(double, double, Color)>[
-      (.06, .90, Color(0xFFE878C0)),
-      (.12, .94, Color(0xFFFFE08A)),
-      (.88, .93, Color(0xFFE878C0)),
-      (.94, .89, Color(0xFF7EA4E8)),
-      (.08, .84, Color(0xFF7EA4E8)),
-      (.92, .84, Color(0xFFFFE08A)),
+      (.025, .38, Color(0xFFE878C0)),
+      (.030, .52, Color(0xFFFFE08A)),
+      (.975, .40, Color(0xFFE878C0)),
+      (.970, .56, Color(0xFF7EA4E8)),
     ];
     for (final (ux, uy, color) in flowers) {
       final p = Offset(w * ux, h * uy);

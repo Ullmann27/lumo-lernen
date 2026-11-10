@@ -271,13 +271,23 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
                               const SizedBox(width: 20),
                               Expanded(flex: 2, child: _companion(wide: true)),
                             ])
-                          : Column(children: [
-                              _turnLabel(),
-                              const SizedBox(height: 12),
-                              Expanded(child: _playArea()),
-                              const SizedBox(height: 8),
-                              _companion(wide: false),
-                            ]),
+                          : Builder(builder: (context) {
+                              final companionH = math.min(
+                                  222.0,
+                                  math.max(
+                                      152.0, constraints.maxHeight * 0.24));
+                              return Column(children: [
+                                _turnLabel(),
+                                const SizedBox(height: 8),
+                                Expanded(child: _playArea()),
+                                const SizedBox(height: 6),
+                                SizedBox(
+                                  height: companionH,
+                                  child: _companion(
+                                      wide: false, height: companionH),
+                                ),
+                              ]);
+                            }),
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -379,24 +389,24 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         ),
       );
 
-  Widget _companion({required bool wide}) {
-    Widget fox(double height) => RepaintBoundary(
+  Widget _companion({required bool wide, double height = 160}) {
+    Widget fox(double foxHeight) => RepaintBoundary(
           child: SizedBox(
-            height: height,
-            width: height * 1.12,
+            height: foxHeight,
+            width: foxHeight * 1.12,
             child: Stack(
               clipBehavior: Clip.none,
               alignment: Alignment.center,
               children: [
                 Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
                     key: const ValueKey('connect-companion-fox'),
-                    height: height,
+                    height: foxHeight,
                     fit: BoxFit.contain),
                 Positioned(
-                  right: height * 0.02,
-                  bottom: height * 0.16,
-                  width: height * 0.30,
-                  height: height * 0.30,
+                  right: foxHeight * 0.02,
+                  bottom: foxHeight * 0.16,
+                  width: foxHeight * 0.30,
+                  height: foxHeight * 0.30,
                   child: const IgnorePointer(
                     child: DecoratedBox(
                       decoration: BoxDecoration(
@@ -435,6 +445,16 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
             _turnLabel(),
             const SizedBox(height: 8),
             fox(compact ? 64 : 210),
+            if (!compact) ...[
+              const SizedBox(height: 10),
+              Row(children: [
+                Expanded(
+                    child: _discTray(piece: ConnectPiece.child, label: 'Du')),
+                const SizedBox(width: 8),
+                Expanded(
+                    child: _discTray(piece: ConnectPiece.lumo, label: 'Lumo')),
+              ]),
+            ],
             const SizedBox(height: 4),
             const Text('Waagrecht, senkrecht oder diagonal.',
                 textAlign: TextAlign.center,
@@ -443,23 +463,144 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         );
       });
     }
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      fox(112),
-      const SizedBox(width: 12),
-      const Flexible(
-        child: Text(
-            'Vier Steine. Eine Reihe.\nJeder Zug ist ein neuer Versuch!',
-            style: TextStyle(color: Colors.white, fontSize: 14)),
-      ),
-    ]);
+    final foxH = math.min(height * 0.90, 188.0);
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Expanded(child: _discTray(piece: ConnectPiece.child, label: 'Du')),
+        const SizedBox(width: 6),
+        Stack(
+          alignment: Alignment.bottomCenter,
+          clipBehavior: Clip.none,
+          children: [
+            Positioned(
+              left: 10,
+              right: 10,
+              bottom: 0,
+              height: foxH * 0.26,
+              child: const IgnorePointer(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius:
+                        BorderRadius.vertical(top: Radius.circular(16)),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0xFF8A6238), Color(0xFF4A3018)],
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                          color: Color(0x66000000),
+                          blurRadius: 8,
+                          offset: Offset(0, 3)),
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(bottom: foxH * 0.08),
+              child: fox(foxH),
+            ),
+          ],
+        ),
+        const SizedBox(width: 6),
+        Expanded(child: _discTray(piece: ConnectPiece.lumo, label: 'Lumo')),
+      ],
+    );
+  }
+
+  Widget _discTray({required ConnectPiece piece, required String label}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Text(label,
+            style: const TextStyle(
+                fontFamily: 'Nunito',
+                fontWeight: FontWeight.w900,
+                color: Colors.white,
+                fontSize: 13)),
+        const SizedBox(height: 4),
+        SizedBox(
+          height: 74,
+          child: Stack(
+            alignment: Alignment.bottomCenter,
+            children: [
+              Positioned(
+                left: 2,
+                right: 2,
+                bottom: 0,
+                height: 28,
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.bottomCenter,
+                      colors: [Color(0xFF8A5A28), Color(0xFF3A220E)],
+                    ),
+                    border: Border.all(color: const Color(0xFFD4B07A)),
+                    boxShadow: const [
+                      BoxShadow(
+                          color: Color(0x66000000),
+                          blurRadius: 6,
+                          offset: Offset(0, 3)),
+                    ],
+                  ),
+                ),
+              ),
+              for (var i = 0; i < 4; i++)
+                Positioned(
+                  bottom: 12 + i * 8.0,
+                  child: SizedBox(
+                    width: 30,
+                    height: 30,
+                    child: _disc(piece),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ],
+    );
   }
 
   Widget _playArea() => LayoutBuilder(builder: (context, constraints) {
-        final availableHeight = math.max(0.0, constraints.maxHeight - 56);
+        const tableExtra = 28.0;
+        final availableHeight =
+            math.max(0.0, constraints.maxHeight - 56 - tableExtra);
         final width = math.min(constraints.maxWidth, availableHeight * 7 / 6);
-        return Center(
+        return Align(
+          alignment: Alignment.topCenter,
           child: Column(mainAxisSize: MainAxisSize.min, children: [
-            SizedBox(width: width, height: width * 6 / 7, child: _board()),
+            SizedBox(
+              width: width,
+              height: width * 6 / 7 + tableExtra,
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    left: -18,
+                    right: -18,
+                    bottom: 0,
+                    height: width * 6 / 7 * 0.42 + tableExtra,
+                    child: const IgnorePointer(
+                      child: CustomPaint(
+                        painter: LumoConnectFourTablePedestal(),
+                        child: SizedBox.expand(),
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: width * 6 / 7,
+                    child: _board(),
+                  ),
+                ],
+              ),
+            ),
             const SizedBox(height: 8),
             SizedBox(
               width: width,
@@ -539,85 +680,130 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         child: AspectRatio(
           aspectRatio: 7 / 6,
           child: RepaintBoundary(
-            child: Container(
-              padding: const EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                color: const Color(0xE0081636),
-                borderRadius: BorderRadius.circular(26),
-                border: Border.all(color: const Color(0xFF8AF0FF), width: 2.4),
-                boxShadow: const [
-                  BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
-                  BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
-                  BoxShadow(
-                      color: Color(0x90051633),
-                      blurRadius: 14,
-                      offset: Offset(0, 8)),
-                ],
-              ),
-              child: LayoutBuilder(builder: (context, constraints) {
-                final w = constraints.maxWidth / 7;
-                final h = constraints.maxHeight / 6;
-                final diameter = math.min(w, h) * .80;
-                return GestureDetector(
-                  key: const ValueKey('connect-board-tap-area'),
-                  behavior: HitTestBehavior.opaque,
-                  onTapUp: (details) =>
-                      _tapColumn((details.localPosition.dx / w).floor()),
-                  child: Stack(clipBehavior: Clip.none, children: [
-                    for (var r = 0; r < 6; r++)
-                      for (var c = 0; c < 7; c++)
-                        Positioned(
-                          left: c * w + (w - diameter) / 2,
-                          top: r * h + (h - diameter) / 2,
-                          width: diameter,
-                          height: diameter,
-                          child: Semantics(
-                            key: ValueKey('connect-cell-$r-$c'),
-                            label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
-                                '${_game.at(r, c).name}',
-                            child: _disc(
-                              _fallPosition == (row: r, column: c)
-                                  ? ConnectPiece.empty
-                                  : _game.at(r, c),
-                              winner: _game.winningLine
-                                  .contains((row: r, column: c)),
-                            ),
-                          ),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Positioned(
+                  top: 16,
+                  right: -12,
+                  bottom: -10,
+                  width: 16,
+                  child: IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.horizontal(
+                            right: Radius.circular(10)),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xFF0A4A86), Color(0xFF041226)],
                         ),
-                    if (_fallPosition case final position?)
-                      AnimatedBuilder(
-                        animation: _fall,
-                        builder: (context, _) {
-                          final progress = Curves.bounceOut
-                              .transform(_fall.value.clamp(0, 1));
-                          final top = -diameter +
-                              (position.row * h +
-                                      (h - diameter) / 2 +
-                                      diameter) *
-                                  progress;
-                          return Positioned(
-                            left: position.column * w + (w - diameter) / 2,
-                            top: top,
-                            width: diameter,
-                            height: diameter,
-                            child: _disc(_fallPiece),
-                          );
-                        },
+                        border: Border.all(color: const Color(0x6648D0F0)),
                       ),
-                    const Positioned.fill(
-                      child: IgnorePointer(
-                        child: CustomPaint(
-                          painter: LumoConnectFourGlassPlate(
-                            columns: ConnectFourEngine.columns,
-                            rows: ConnectFourEngine.rows,
-                            diameterFactor: .80,
-                          ),
+                    ),
+                  ),
+                ),
+                Positioned(
+                  left: 12,
+                  right: -8,
+                  bottom: -14,
+                  height: 16,
+                  child: IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius:
+                            BorderRadius.vertical(bottom: Radius.circular(12)),
+                        gradient: const LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0xFF0C3A6A), Color(0xFF030A18)],
                         ),
                       ),
                     ),
-                  ]),
-                );
-              }),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: const Color(0xE0081636),
+                    borderRadius: BorderRadius.circular(26),
+                    border:
+                        Border.all(color: const Color(0xFF8AF0FF), width: 2.4),
+                    boxShadow: const [
+                      BoxShadow(color: Color(0x8853DDFD), blurRadius: 28),
+                      BoxShadow(color: Color(0x66FFD166), blurRadius: 18),
+                      BoxShadow(
+                          color: Color(0x90051633),
+                          blurRadius: 14,
+                          offset: Offset(0, 8)),
+                    ],
+                  ),
+                  child: LayoutBuilder(builder: (context, constraints) {
+                    final w = constraints.maxWidth / 7;
+                    final h = constraints.maxHeight / 6;
+                    final diameter = math.min(w, h) * .80;
+                    return GestureDetector(
+                      key: const ValueKey('connect-board-tap-area'),
+                      behavior: HitTestBehavior.opaque,
+                      onTapUp: (details) =>
+                          _tapColumn((details.localPosition.dx / w).floor()),
+                      child: Stack(clipBehavior: Clip.none, children: [
+                        for (var r = 0; r < 6; r++)
+                          for (var c = 0; c < 7; c++)
+                            Positioned(
+                              left: c * w + (w - diameter) / 2,
+                              top: r * h + (h - diameter) / 2,
+                              width: diameter,
+                              height: diameter,
+                              child: Semantics(
+                                key: ValueKey('connect-cell-$r-$c'),
+                                label: 'Reihe ${r + 1}, Spalte ${c + 1}: '
+                                    '${_game.at(r, c).name}',
+                                child: _disc(
+                                  _fallPosition == (row: r, column: c)
+                                      ? ConnectPiece.empty
+                                      : _game.at(r, c),
+                                  winner: _game.winningLine
+                                      .contains((row: r, column: c)),
+                                ),
+                              ),
+                            ),
+                        if (_fallPosition case final position?)
+                          AnimatedBuilder(
+                            animation: _fall,
+                            builder: (context, _) {
+                              final progress = Curves.bounceOut
+                                  .transform(_fall.value.clamp(0, 1));
+                              final top = -diameter +
+                                  (position.row * h +
+                                          (h - diameter) / 2 +
+                                          diameter) *
+                                      progress;
+                              return Positioned(
+                                left: position.column * w + (w - diameter) / 2,
+                                top: top,
+                                width: diameter,
+                                height: diameter,
+                                child: _disc(_fallPiece),
+                              );
+                            },
+                          ),
+                        const Positioned.fill(
+                          child: IgnorePointer(
+                            child: CustomPaint(
+                              painter: LumoConnectFourGlassPlate(
+                                columns: ConnectFourEngine.columns,
+                                rows: ConnectFourEngine.rows,
+                                diameterFactor: .80,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ]),
+                    );
+                  }),
+                ),
+              ],
             ),
           ),
         ),

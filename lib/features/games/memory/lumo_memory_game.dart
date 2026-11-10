@@ -388,6 +388,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
           fit: StackFit.expand,
           children: [
             const LumoMemoryGarden(),
+            const LumoMemoryGardenFrame(),
             SafeArea(
               child: LayoutBuilder(builder: (context, c) {
                 final landscape = c.maxWidth >= c.maxHeight * 1.12;
@@ -396,7 +397,6 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
                     : _buildPortrait(c.maxWidth, c.maxHeight);
               }),
             ),
-            const LumoMemoryGardenFrame(),
           ],
         ),
       ),
@@ -408,6 +408,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
       height: math.max(56.0, logoHeight + 4),
       child: Row(children: [
         _RoundIconButton(
+          key: const ValueKey('memory-close'),
           icon: Icons.close_rounded,
           tooltip: 'Pausieren / Zurück',
           onTap: _clock.pause,
@@ -428,6 +429,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
           ),
         ),
         _RoundIconButton(
+          key: const ValueKey('memory-restart'),
           icon: Icons.refresh_rounded,
           tooltip: 'Neu starten',
           onTap: _clock.pause,
@@ -947,7 +949,10 @@ class _SparklePainter extends CustomPainter {
 
 class _RoundIconButton extends StatelessWidget {
   const _RoundIconButton(
-      {required this.icon, required this.tooltip, required this.onTap});
+      {super.key,
+      required this.icon,
+      required this.tooltip,
+      required this.onTap});
   final IconData icon;
   final String tooltip;
   final VoidCallback onTap;
