@@ -73,6 +73,12 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   LumoCompanionTaskContext? _published;
 
   GuidedLessonStep get _step => _easier ?? widget.lesson.steps[_index];
+  // Remediation is real support, but it is not a tip already shown on return.
+  // Keep the visible hint ladder separate from the evidence of accompaniment.
+  int get _evidenceHelpLevel =>
+      _easier == null && _accompaniedSteps.contains(_index)
+          ? math.max(1, _helpLevel)
+          : _helpLevel;
   bool get _current =>
       mounted &&
       !_stale &&
@@ -176,7 +182,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
           ? (_step.choices..shuffle(math.Random(_session * 31 + _serial)))
           : [];
       _attempts = 0;
-      _helpLevel = _easier == null && _accompaniedSteps.contains(_index) ? 1 : 0;
+      _helpLevel = 0;
       _passed = !_step.isQuestion;
       _lastAnswer = null;
       _lastCorrect = null;
@@ -215,7 +221,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       answering:
           _step.isQuestion && !_passed && !_busy && !_progress.hasPending,
       attempts: _attempts,
-      helpLevel: _helpLevel,
+      helpLevel: _lastCorrect == true ? _evidenceHelpLevel : _helpLevel,
       lastAnswer: _lastAnswer,
       lastCorrect: _lastCorrect,
       localHelp: _step.isQuestion ? _step.help(level: _helpLevel + 1) : null,
@@ -246,8 +252,9 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     _publish();
     LumoCompanionRequests.instance
         .recordLearningEvent(LumoLearningEventKind.answerSubmitted);
+    final evidenceHelpLevel = _evidenceHelpLevel;
     final independent = GuidedLessonEvidence.isIndependent(
-        attempts: _attempts, helpLevel: _helpLevel);
+        attempts: _attempts, helpLevel: evidenceHelpLevel);
     if (!correct) _accompaniedSteps.add(_index);
     // Only independent school answers count as school skills/Daily.
     // Prerequisite and accompanied examples are not fabricated mastery.
@@ -267,7 +274,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                     attemptId: newLearningAttemptId(),
                     answer: answer,
                     attempts: _attempts,
-                    helpLevel: _helpLevel),
+                    helpLevel: evidenceHelpLevel),
           )
         : true;
     if (!_current || serial != _serial) return;
