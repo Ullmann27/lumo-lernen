@@ -54,7 +54,6 @@ class LumoCardsRound {
         'phase': state.phase.name,
         'color': state.selectedColor.name,
         'winner': state.winnerIndex,
-        'message': state.lastActionMessage,
         'players': [
           for (final p in state.players)
             {
@@ -192,8 +191,8 @@ class LumoCardsRound {
         return null;
       }
       if (phase == GamePhase.chooseColor && !discard.last.isWild) return null;
-      final message = j['message'] as String?;
-      if ((message?.length ?? 0) > 1000) return null;
+      final color = LumoCardColor.values.byName(j['color'] as String);
+      if (!discard.last.isWild && color != discard.last.color) return null;
       return LumoCardsRound(
           id: j['id'] as String,
           grade: grade,
@@ -209,11 +208,11 @@ class LumoCardsRound {
               currentPlayerIndex: current,
               drawPile: draw,
               discardPile: discard,
-              selectedColor: LumoCardColor.values.byName(j['color'] as String),
+              selectedColor: color,
               phase: phase,
               direction: direction as int,
               winnerIndex: winner as int?,
-              lastActionMessage: message,
+              lastActionMessage: 'Deine gespeicherte Runde ist wieder da.',
               pendingLearningQuestion: question));
     } catch (_) {
       return null;

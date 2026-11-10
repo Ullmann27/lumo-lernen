@@ -75,12 +75,21 @@ class LumoCardsGameController extends ChangeNotifier {
   late String _roundId;
   String get roundId => _roundId;
 
-  LumoCardsRound snapshot({bool callRewarded = false,
-      int rewardedLearningStars = 0, bool callRewardSettled = false}) =>
-    LumoCardsRound(id: _roundId, state: _state, grade: grade,
-      vsBot: vsBot, difficulty: _difficulty, style: _style,
-      callRewarded: callRewarded, rewardedLearningStars: rewardedLearningStars,
-      callRewardSettled: callRewardSettled);
+  LumoCardsRound snapshot({
+    bool callRewarded = false,
+    int rewardedLearningStars = 0,
+    bool callRewardSettled = false,
+  }) => LumoCardsRound(
+    id: _roundId,
+    state: _state,
+    grade: grade,
+    vsBot: vsBot,
+    difficulty: _difficulty,
+    style: _style,
+    callRewarded: callRewarded,
+    rewardedLearningStars: rewardedLearningStars,
+    callRewardSettled: callRewardSettled,
+  );
 
   /// Restoring never auto-plays behind a loading screen or on Android resume.
   void restoreRound(LumoCardsRound round) {
@@ -94,6 +103,7 @@ class LumoCardsGameController extends ChangeNotifier {
     notifyListeners();
     _maybeRunBotTurn();
   }
+
   LumoCardsGameState get state => _state;
 
   /// Bot-Timer (cancelled on dispose).

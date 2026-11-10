@@ -221,7 +221,10 @@ class RewardWalletRepository {
       });
 
   /// Cards reward, win sequence, and XP either all persist or all remain pending.
-  Future<RewardWallet> awardLumoCardsResult({required bool won, String? resultId}) =>
+  Future<RewardWallet> awardLumoCardsResult({
+    required bool won,
+    String? resultId,
+  }) =>
       _transaction((current) async {
         if (resultId != null) {
           if (resultId.isEmpty || resultId.length > 160) {
@@ -240,7 +243,8 @@ class RewardWalletRepository {
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
           lumoCardsWinStreak: nextStreak,
-          gameResultIds: resultId == null ? current.gameResultIds
+          gameResultIds: resultId == null
+              ? current.gameResultIds
               : [...current.gameResultIds, resultId],
         ));
       });

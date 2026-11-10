@@ -47,7 +47,12 @@ enum LumoSection {
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
 class _PendingRewardWrite {
-  const _PendingRewardWrite({this.stars = 0, this.xp = 0, this.cardsWon, this.resultId});
+  const _PendingRewardWrite({
+    this.stars = 0,
+    this.xp = 0,
+    this.cardsWon,
+    this.resultId,
+  });
   final int stars;
   final int xp;
   final bool? cardsWon;

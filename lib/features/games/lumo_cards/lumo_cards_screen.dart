@@ -182,7 +182,10 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         studentId: owner.studentId, grade: _controller.grade, vsBot: widget.vsBot);
       final round = await sessions.load(
         player1Name: widget.player1Name, player2Name: widget.player2Name);
-      if (!mounted || !widget.appState.canUseLearningLease(owner)) return;
+      if (!mounted) return;
+      if (!widget.appState.canUseLearningLease(owner)) {
+        throw StateError('Cards profile changed while loading');
+      }
       _sessionOwner = owner;
       _sessions = sessions;
       if (round == null) {
@@ -190,6 +193,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         await sessions.save(_controller.snapshot(),
             canWrite: () => widget.appState.canUseLearningLease(owner));
         if (!mounted) return;
+        if (!widget.appState.canUseLearningLease(owner)) {
+          throw StateError('Cards profile changed while saving');
+        }
       }
       if (round != null) {
         _showIntro = false;
@@ -202,7 +208,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
         _controller.restoreRound(round);
       }
       _sessionLoading = false;
-      _onStateChanged();
+      if (round != null) _onStateChanged();
       setState(() {});
     } catch (_) {
       if (!mounted) return;
@@ -223,7 +229,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     try {
       await sessions.save(round,
           canWrite: () => widget.appState.canUseLearningLease(owner));
-      if (mounted && _sessionSaveFailed) setState(() => _sessionSaveFailed = false);
+      if (mounted && _sessionSaveFailed && widget.appState.rewardSaveError == null) {
+        setState(() => _sessionSaveFailed = false);
+      }
     } catch (_) {
       if (mounted) setState(() => _sessionSaveFailed = true);
     }
@@ -588,7 +596,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           isActive: oppActive,
                           compact: true,
                           avatarAssetPath: widget.vsBot
-                              ? null
+                              ? LumoDesignFoxPose.avatar.assetPath
                               : LumoCardsAssets.avatarRedGirl,
                           ringColor: const Color(0xFF8B5CF6),
                         ),
