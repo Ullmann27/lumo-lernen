@@ -147,10 +147,8 @@ class GameCatalog {
     GameDefinition(
       id: GameId.build,
       title: 'Bauwelt',
-      tagline: 'In Entwicklung – wir bauen diese Welt gerade schöner!',
-      // Temporarily non-launchable until visual/interaction QA passes.
-      // The child's existing saved build progress is not deleted.
-      availability: GameAvailability.comingSoon,
+      tagline: 'Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt!',
+      availability: GameAvailability.playable,
       rule: GameUnlockRule(requires: GameId.cards),
     ),
     GameDefinition(

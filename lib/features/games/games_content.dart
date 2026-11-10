@@ -423,7 +423,8 @@ class _GamesContentState extends State<GamesContent> {
     VoidCallback? launcher(GameId id) => switch (id) {
           GameId.kart => () => _launch3D('kart'),
           GameId.memory => _launchMemory,
-          GameId.cards => _launchStarTrail,
+          // Main Cards portal must open Lumo Cards itself, never Sternenpfad.
+          GameId.cards => _launchLumoCards,
           // The main Spielwelt portal enters the actual native 3D Wolkeninseln.
           // The original Flame adventure remains available as a separate card.
           GameId.jumpRun => () => _launch3D('jump'),
@@ -438,6 +439,7 @@ class _GamesContentState extends State<GamesContent> {
         state: _unlockOf(GameId.kart),
         onOpen: () => _openGame(GameId.kart, () => _launch3D('kart')),
       ),
+      SpielweltPortal.connectFour(onOpen: _launchConnectFour),
       SpielweltPortal.quizShow(onOpen: _launchLumoMeister),
       for (final id in const [
         GameId.memory,
@@ -502,6 +504,12 @@ class _GamesContentState extends State<GamesContent> {
                       reduceMotion: _reduceMotion,
                       onAdventure: () =>
                           _openGame(GameId.memory, _launchMemory),
+                      onHome: () =>
+                          widget.onSection?.call(LumoSection.home),
+                      onLearn: () =>
+                          widget.onSection?.call(LumoSection.learn),
+                      onTests: () =>
+                          widget.onSection?.call(LumoSection.tests),
                       onParents: () =>
                           widget.onSection?.call(LumoSection.settings),
                       onProgress: () =>
@@ -522,7 +530,7 @@ class _GamesContentState extends State<GamesContent> {
                             color: LumoVisualTokens.cyanBright),
                         title: const Text('Zusätzliche Spielmodi'),
                         subtitle: const Text(
-                            'Cards Klassik, Vier gewinnt, Würfel und Abenteuer'),
+                            'Sternenpfad, Cards lokal, Würfel und Abenteuer'),
                         children: [
                           // Preserve the existing Flame adventure-first order.
                           _AdventureCard(onPlay: _launchAdventure),
@@ -552,6 +560,16 @@ class _GamesContentState extends State<GamesContent> {
                             ],
                             ),
                           ),
+                          ),
+                          _VsLumoCard(
+                            title: 'Sternenpfad · Kartenabenteuer',
+                            subtitle: 'Kooperatives Kartenabenteuer mit Lumo',
+                            emoji: '⭐',
+                            gradient: const [
+                              Color(0xFF6D4BC3),
+                              Color(0xFF2C68B8)
+                            ],
+                            onPlay: _launchStarTrail,
                           ),
                           _VsLumoCard(
                             title: 'Wolkeninseln · 3D-Jump',

@@ -16,25 +16,47 @@ class SpielweltPortal {
     required this.state,
     required this.onOpen,
     this.semanticTitle,
+    this.specialId,
   });
 
   /// The quiz is a genuine route, never an alias for GameId.kart.
   const SpielweltPortal.quizShow({required this.onOpen})
       : game = null,
         state = const GameUnlockState(unlocked: true),
-        semanticTitle = null;
+        semanticTitle = null,
+        specialId = 'quizShow';
+
+  /// Vier Gewinnt is a first-class game in the hub reference, not a hidden
+  /// extra-mode tile. It keeps its existing Flutter game/session intact.
+  const SpielweltPortal.connectFour({required this.onOpen})
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo 4 Gewinnt',
+        specialId = 'connectFour';
 
   final GameDefinition? game;
   final GameUnlockState state;
   final VoidCallback onOpen;
+  final String? specialId;
 
-  String get identity => game?.id.name ?? 'quizShow';
-  String get title => game?.title ?? 'Wer wird Lumo-Meister?';
-  String get tagline => game?.tagline ?? '20 Fragen · 3 Joker · bis 5.000 Sterne';
-  bool get playable => game == null ||
-      game!.availability == GameAvailability.playable;
-  IconData get icon =>
-      game == null ? Icons.emoji_events_rounded : _iconFor(game!.id);
+  String get identity => game?.id.name ?? specialId ?? 'special';
+  String get title => switch (specialId) {
+        'connectFour' => '4 Gewinnt',
+        'quizShow' => 'Wer wird Lumo-Meister?',
+        _ => game?.title ?? 'Lumo Spiel',
+      };
+  String get tagline => switch (specialId) {
+        'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
+        'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
+        _ => game?.tagline ?? '',
+      };
+  bool get playable =>
+      specialId != null || game?.availability == GameAvailability.playable;
+  IconData get icon => switch (specialId) {
+        'connectFour' => Icons.grid_4x4_rounded,
+        'quizShow' => Icons.emoji_events_rounded,
+        _ => _iconFor(game!.id),
+      };
 
   /// Vorleser- und Prüftext, falls er vom sichtbaren Titel abweicht.
   final String? semanticTitle;
@@ -47,6 +69,9 @@ class SpielweltHub extends StatefulWidget {
     super.key,
     required this.portals,
     required this.onAdventure,
+    required this.onHome,
+    required this.onLearn,
+    required this.onTests,
     required this.onParents,
     required this.onProgress,
     required this.onSettings,
@@ -55,6 +80,9 @@ class SpielweltHub extends StatefulWidget {
 
   final List<SpielweltPortal> portals;
   final VoidCallback onAdventure;
+  final VoidCallback onHome;
+  final VoidCallback onLearn;
+  final VoidCallback onTests;
   final VoidCallback onParents;
   final VoidCallback onProgress;
   final VoidCallback onSettings;
@@ -72,14 +100,19 @@ class _Frac {
 
 const double _refAspect = 1672 / 941;
 
-const Map<GameId, _Frac> _wideSlots = {
-  GameId.memory: _Frac(.048, .250, .175, .271),
-  GameId.cards: _Frac(.242, .260, .159, .260),
-  GameId.puzzle: _Frac(.585, .260, .164, .266),
-  GameId.jumpRun: _Frac(.773, .260, .181, .266),
-  GameId.rhythm: _Frac(.118, .531, .200, .276),
-  GameId.treasure: _Frac(.541, .542, .187, .266),
-  GameId.build: _Frac(.734, .542, .178, .271),
+const Map<String, _Frac> _wideSlots = {
+  // Reference page 34: seven world portals around Lumo, Kart on the right,
+  // 4 Gewinnt + Quizshow below the centre. The left rail stays separate.
+  'memory': _Frac(.105, .285, .150, .235),
+  'cards': _Frac(.265, .185, .145, .230),
+  'puzzle': _Frac(.425, .125, .145, .230),
+  'jumpRun': _Frac(.585, .185, .145, .230),
+  'rhythm': _Frac(.745, .285, .150, .235),
+  'treasure': _Frac(.145, .555, .155, .235),
+  'build': _Frac(.700, .555, .155, .235),
+  'kart': _Frac(.835, .600, .150, .265),
+  'connectFour': _Frac(.355, .715, .135, .165),
+  'quizShow': _Frac(.510, .715, .135, .165),
 };
 
 class _SpielweltHubState extends State<SpielweltHub>
@@ -144,14 +177,14 @@ class _SpielweltHubState extends State<SpielweltHub>
       final width = constraints.maxWidth;
       final viewHeight = MediaQuery.sizeOf(context).height;
       final wide = width >= 720 && width / math.max(viewHeight, 1) >= 1.15;
-      // Nine cards need the full-width responsive grid, not the fixed
-      // seven-slot landscape illustration, where they would overlap.
-      return wide && widget.portals.length <= 7
-          ? _buildWide(width) : _buildNarrow(width);
+      // The reference hub is specifically a wide/Fold composition with all
+      // ten game entries. Never fall back to the phone grid merely because
+      // Kart, Connect Four and Quizshow are present.
+      return wide ? _buildWide(width) : _buildNarrow(width);
     });
   }
 
-  // Quer (Fold offen quer, Tablet, Handy quer): Anordnung wie Bild 01.
+  // Quer (Fold offen quer, Tablet, Handy quer): zehn echte Zugänge wie Referenz 24.
   Widget _buildWide(double width) {
     final height = width / _refAspect;
     Widget at(_Frac f, Widget child) => Positioned(
@@ -161,42 +194,46 @@ class _SpielweltHubState extends State<SpielweltHub>
           height: f.height * height,
           child: child,
         );
-    final byId = {
-      for (final p in widget.portals)
-        if (p.game != null) p.game!.id: p,
-    };
+    final byId = {for (final p in widget.portals) p.identity: p};
     return SizedBox(
+      key: const ValueKey('spielwelt-wide-reference-hub'),
       width: width,
       height: height,
       child: Stack(clipBehavior: Clip.none, children: [
         Positioned.fill(child: _Sparkles(clock: _clock)),
-        at(const _Frac(.011, .085, .078, .125),
-            const _WoodSign(text: 'Neugier\nmacht die Welt\nbunter!')),
-        at(const _Frac(.021, .610, .078, .150),
-            const _WoodSign(text: 'Heute\nein bisschen\nmutiger\nals gestern!')),
-        at(const _Frac(.918, .680, .072, .135),
-            const _WoodSign(text: 'Spielend\neine bessere\nWelt\nentdecken!')),
-        at(const _Frac(.930, .016, .062, .118),
-            const _PaperBanner(text: 'Fantasie\nFreunde\nFür immer')),
-        at(const _Frac(.700, .045, .095, .140), const _HandNote()),
-        at(const _Frac(.310, .000, .380, .245),
+        at(
+          const _Frac(.012, .085, .078, .790),
+          _HubSideRail(
+            onHome: widget.onHome,
+            onLearn: widget.onLearn,
+            onTests: widget.onTests,
+            onProfile: widget.onProgress,
+          ),
+        ),
+        at(const _Frac(.315, .015, .370, .185),
             _HubLogo(clock: _clock, compact: false)),
-        // Fels-Bühne unter Lumo.
-        at(const _Frac(.330, .740, .300, .110), const _StoneStage()),
-        at(const _Frac(.329, .262, .281, .545),
-            Center(child: _fox(.545 * height))),
-        for (final entry in _wideSlots.entries)
-          if (byId[entry.key] != null)
-            at(entry.value,
-                _portal(byId[entry.key]!, entry.key.index, width: entry.value.width * width)),
-        at(const _Frac(.383, .815, .234, .075),
+        // Central island/stage and Lumo are deliberately kept clear of portals.
+        at(const _Frac(.365, .500, .270, .115), const _StoneStage()),
+        at(const _Frac(.385, .285, .230, .385),
+            Center(child: _fox(.385 * height))),
+        for (var i = 0; i < _wideSlots.entries.length; i++)
+          if (byId[_wideSlots.entries.elementAt(i).key] != null)
+            at(
+              _wideSlots.entries.elementAt(i).value,
+              _portal(
+                byId[_wideSlots.entries.elementAt(i).key]!,
+                i,
+                width: _wideSlots.entries.elementAt(i).value.width * width,
+              ),
+            ),
+        at(const _Frac(.365, .625, .270, .070),
             _AdventureButton(clock: _clock, onTap: widget.onAdventure)),
-        at(const _Frac(.015, .900, .970, .090),
+        at(const _Frac(.105, .900, .870, .080),
             _HubBar(
               onParents: widget.onParents,
               onProgress: widget.onProgress,
               onSettings: widget.onSettings,
-              showSlogans: true,
+              showSlogans: false,
             )),
       ]),
     );
@@ -252,6 +289,99 @@ class _SpielweltHubState extends State<SpielweltHub>
           showSlogans: width >= 360,
         ),
       ]),
+    );
+  }
+}
+
+class _HubSideRail extends StatelessWidget {
+  const _HubSideRail({
+    required this.onHome,
+    required this.onLearn,
+    required this.onTests,
+    required this.onProfile,
+  });
+
+  final VoidCallback onHome;
+  final VoidCallback onLearn;
+  final VoidCallback onTests;
+  final VoidCallback onProfile;
+
+  @override
+  Widget build(BuildContext context) {
+    final entries = <(IconData, String, VoidCallback?, bool)>[
+      (Icons.home_rounded, 'Start', onHome, false),
+      (Icons.school_rounded, 'Lernen', onLearn, false),
+      (Icons.sports_esports_rounded, 'Spielen', null, true),
+      (Icons.fact_check_rounded, 'Tests', onTests, false),
+      (Icons.person_rounded, 'Profil', onProfile, false),
+    ];
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xE60A2A58),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: const Color(0x9953DDFD)),
+        boxShadow: const [
+          BoxShadow(color: Color(0x66020A24), blurRadius: 20, offset: Offset(0, 8)),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            for (final entry in entries)
+              Semantics(
+                button: entry.$3 != null,
+                selected: entry.$4,
+                label: entry.$2,
+                child: InkWell(
+                  key: ValueKey('spielwelt-rail-${entry.$2.toLowerCase()}'),
+                  onTap: entry.$3,
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+                    decoration: entry.$4
+                        ? BoxDecoration(
+                            color: const Color(0xFF21BCE8),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: const [
+                              BoxShadow(color: Color(0x8853DDFD), blurRadius: 12),
+                            ],
+                          )
+                        : null,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(entry.$1,
+                            size: 23,
+                            color: entry.$4
+                                ? const Color(0xFF061A3D)
+                                : LumoVisualTokens.white),
+                        const SizedBox(height: 2),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            entry.$2,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w900,
+                              color: entry.$4
+                                  ? const Color(0xFF061A3D)
+                                  : LumoVisualTokens.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
     );
   }
 }
@@ -486,7 +616,7 @@ class _GlassPortalState extends State<_GlassPortal> {
                   child: AspectRatio(
                     aspectRatio: 1.62,
                     child: _LivePreview(
-                      game: game?.id,
+                      portal: portal,
                       clock: widget.clock,
                       phase: widget.phase,
                     ),
@@ -518,48 +648,54 @@ class _GlassPortalState extends State<_GlassPortal> {
 /// Lebende Vorschau: jede Welt bewegt sich auf ihre Art.
 class _LivePreview extends StatelessWidget {
   const _LivePreview(
-      {required this.game, required this.clock, required this.phase});
-  final GameId? game;
+      {required this.portal, required this.clock, required this.phase});
+  final SpielweltPortal portal;
   final Animation<double> clock;
   final double phase;
 
+  GameId? get game => portal.game?.id;
+
   @override
   Widget build(BuildContext context) {
-    // Lumo's original quiz host appears on a matching holographic stage.
-    final Widget image = game == null
-        ? Stack(fit: StackFit.expand, children: [
-            const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF187EC3), Color(0xFF45278D), Color(0xFF061A48),
-                  ],
-                ),
-              ),
+    final Widget image;
+    if (portal.specialId == 'connectFour') {
+      image = const _ConnectFourPreview();
+    } else if (portal.specialId == 'quizShow') {
+      image = Stack(fit: StackFit.expand, children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF187EC3), Color(0xFF45278D), Color(0xFF061A48),
+              ],
             ),
-            const Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Icon(Icons.auto_awesome_rounded,
-                  size: 38, color: Color(0xFFFFDF8E)),
-              ),
-            ),
-            Image.asset(
-              'assets/lumo_design/fox/fox_quiz_host_1982.webp',
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
-              filterQuality: FilterQuality.high,
-            ),
-          ])
-        : Image.asset(
-            _artFor(game!),
-            fit: BoxFit.cover,
-            filterQuality: FilterQuality.medium,
-            gaplessPlayback: true,
-          );
+          ),
+        ),
+        const Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Icon(Icons.auto_awesome_rounded,
+              size: 38, color: Color(0xFFFFDF8E)),
+          ),
+        ),
+        Image.asset(
+          'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+          filterQuality: FilterQuality.high,
+        ),
+      ]);
+    } else {
+      image = Image.asset(
+        _artFor(game!),
+        fit: BoxFit.cover,
+        filterQuality: FilterQuality.medium,
+        gaplessPlayback: true,
+      );
+    }
     return RepaintBoundary(
       child: AnimatedBuilder(
         animation: clock,
@@ -598,7 +734,9 @@ class _LivePreview extends StatelessWidget {
               transform: m,
               child: child,
             ),
-            if (game == null || game == GameId.treasure || game == GameId.rhythm)
+            if (portal.specialId == 'quizShow' ||
+                game == GameId.treasure ||
+                game == GameId.rhythm)
               CustomPaint(
                 painter: _GlitterPainter(
                   t: t,
@@ -623,6 +761,69 @@ class _LivePreview extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ConnectFourPreview extends StatelessWidget {
+  const _ConnectFourPreview();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF183E87), Color(0xFF071A3D)],
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
+        child: LayoutBuilder(builder: (context, c) {
+          const columns = 7;
+          const rows = 6;
+          final cell = math.min(c.maxWidth / columns, c.maxHeight / rows);
+          return Center(
+            child: SizedBox(
+              width: cell * columns,
+              height: cell * rows,
+              child: CustomPaint(painter: _ConnectFourBoardPainter()),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class _ConnectFourBoardPainter extends CustomPainter {
+  const _ConnectFourBoardPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const cols = 7;
+    const rows = 6;
+    final cell = math.min(size.width / cols, size.height / rows);
+    final board = Paint()..color = const Color(0xFF1661B8);
+    final hole = Paint()..color = const Color(0xFF08224C);
+    final cyan = Paint()..color = const Color(0xFF53DDFD);
+    final gold = Paint()..color = const Color(0xFFFFD166);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(cell * .18)),
+      board,
+    );
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        final center = Offset((col + .5) * cell, (row + .5) * cell);
+        var paint = hole;
+        if ((row == 5 && col.isEven) || (row == 4 && col == 3)) paint = cyan;
+        if ((row == 5 && col.isOdd) || (row == 4 && col == 2)) paint = gold;
+        canvas.drawCircle(center, cell * .34, paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_ConnectFourBoardPainter oldDelegate) => false;
 }
 
 class _GlitterPainter extends CustomPainter {
