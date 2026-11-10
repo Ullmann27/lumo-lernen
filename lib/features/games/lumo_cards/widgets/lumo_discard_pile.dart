@@ -83,14 +83,9 @@ class LumoDiscardPile extends StatelessWidget {
         Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: 14,
-              height: 14,
-              decoration: BoxDecoration(
-                color: _colorOf(selectedColor),
-                shape: BoxShape.circle,
-                border: Border.all(color: Colors.white, width: 2),
-              ),
+            CustomPaint(
+              size: const Size(16, 16),
+              painter: _ActiveColorMarkPainter(selectedColor),
             ),
             const SizedBox(width: 6),
             Text(
@@ -120,5 +115,43 @@ class LumoDiscardPile extends StatelessWidget {
         return const Color(0xFF35C759); // Gruen
     }
   }
+}
 
+class _ActiveColorMarkPainter extends CustomPainter {
+  const _ActiveColorMarkPainter(this.color);
+  final LumoCardColor color;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    final path = switch (color) {
+      LumoCardColor.orange => Path()
+        ..moveTo(rect.center.dx, rect.top)
+        ..lineTo(rect.right, rect.center.dy)
+        ..lineTo(rect.center.dx, rect.bottom)
+        ..lineTo(rect.left, rect.center.dy)
+        ..close(),
+      LumoCardColor.purple => Path()
+        ..moveTo(rect.center.dx, rect.top)
+        ..lineTo(rect.right, rect.bottom)
+        ..lineTo(rect.left, rect.bottom)
+        ..close(),
+      LumoCardColor.blue => Path()..addOval(rect.deflate(1)),
+      LumoCardColor.green => Path()
+        ..addRRect(RRect.fromRectAndRadius(
+            rect.deflate(1.5), const Radius.circular(3))),
+    };
+    canvas.drawPath(path, Paint()..color = LumoDiscardPile._colorOf(color));
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.4
+        ..color = const Color(0xFFE8C45A),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _ActiveColorMarkPainter oldDelegate) =>
+      oldDelegate.color != color;
 }

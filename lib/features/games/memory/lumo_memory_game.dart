@@ -603,28 +603,11 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
 
   Widget _board() {
     final reduce = _reduceMotion;
-    // Steinplatte: kühles Schiefergrau mit Cyan-Schimmer am Rand, darunter
-    // ein weicher Schatten für Tiefe (Zielbild: Karten liegen auf Stein).
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(26),
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xF0394866), Color(0xF2222C45), Color(0xF5141B30)],
-          stops: [0, .55, 1],
-        ),
-        border: Border.all(color: const Color(0xAA37D2FD), width: 1.6),
-        boxShadow: [
-          BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.25), blurRadius: 18),
-          const BoxShadow(
-              color: Color(0x88020A24), blurRadius: 14, offset: Offset(0, 8)),
-        ],
-      ),
-      child: LumoMemoryStage(
-        child: Padding(
-          padding: const EdgeInsets.all(10),
+    // Runder Sandsteintisch wie auf der Referenz (p4-16): die Karten liegen
+    // auf der gemalten Platte; Gesten bleiben beim Raster.
+    return LumoMemoryStage(
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(18, 20, 18, 18),
         child: LayoutBuilder(builder: (context, c) {
           const gap = 8.0;
           const aspect = .74;
@@ -653,7 +636,6 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
             ]),
           );
         }),
-        ),
       ),
     );
   }
@@ -776,44 +758,58 @@ class _CardBack extends StatelessWidget {
     return DecoratedBox(
       key: ValueKey('memory-back-$index'),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
         gradient: const LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF7FDFFF),
-            Color(0xFF2B75E7),
-            Color(0xFF173A9E),
-            Color(0xFF48AFF1),
+            Color(0xFF1C4BB0),
+            Color(0xFF123A8C),
+            Color(0xFF0B2468),
+            Color(0xFF163E96),
           ],
-          stops: [0, .20, .78, 1],
+          stops: [0, .28, .78, 1],
         ),
-        border: Border.all(color: const Color(0xFFBDEBFF), width: 2.2),
-        boxShadow: [
+        border: Border.all(color: const Color(0xFFE8C45A), width: 2.7),
+        boxShadow: const [
+          BoxShadow(color: Color(0x99C9A227), blurRadius: 11),
           BoxShadow(
-              color: LumoVisualTokens.cyan.withOpacity(.55), blurRadius: 12),
-          const BoxShadow(
               color: Color(0x66020A24), blurRadius: 6, offset: Offset(0, 4)),
         ],
       ),
       child: Stack(fit: StackFit.expand, children: [
-        // Innerer Rahmen wie auf der Kartenrückseite des Zielbilds.
         Padding(
           padding: const EdgeInsets.all(5),
           child: DecoratedBox(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: const Color(0x66FFFFFF), width: 1),
+              borderRadius: BorderRadius.circular(11),
+              border: Border.all(color: const Color(0xCCFFE7A0), width: 1.2),
             ),
           ),
         ),
         const Center(
           child: FractionallySizedBox(
             widthFactor: .62,
+            heightFactor: .74,
             child: FittedBox(
-              child: Icon(Icons.star_rounded,
-                  color: Color(0xFF9FE4FF),
-                  shadows: [Shadow(color: Color(0xAAFFFFFF), blurRadius: 12)]),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(Icons.star_rounded,
+                      color: Color(0xFFFFD24A),
+                      size: 72,
+                      shadows: [
+                        Shadow(color: Color(0xAAFFE08A), blurRadius: 16)
+                      ]),
+                  SizedBox(height: 2),
+                  Icon(Icons.pets_rounded,
+                      color: Color(0xFFE8C45A),
+                      size: 22,
+                      shadows: [
+                        Shadow(color: Color(0x66FFE08A), blurRadius: 8)
+                      ]),
+                ],
+              ),
             ),
           ),
         ),
@@ -829,41 +825,59 @@ class _CardFront extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final glow = matched ? const Color(0xFFFFD86B) : const Color(0xFF7FE3FF);
+    final glow = matched ? const Color(0xFFFFD86B) : const Color(0xFFE8C45A);
     return DecoratedBox(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(14),
+        borderRadius: BorderRadius.circular(16),
+        color: const Color(0xFF1A2A58),
         border: Border.all(
-            color: matched ? const Color(0xFFFFE9A6) : const Color(0xFFD9F6FF),
-            width: 3),
+            color: matched ? const Color(0xFFFFE9A6) : const Color(0xFFE4B84A),
+            width: 2.8),
         boxShadow: [
           BoxShadow(
-              color: glow.withOpacity(matched ? .85 : .55),
-              blurRadius: matched ? 18 : 12,
+              color: glow.withOpacity(matched ? .85 : .42),
+              blurRadius: matched ? 18 : 10,
               spreadRadius: matched ? 2 : 0),
         ],
       ),
       child: Stack(fit: StackFit.expand, children: [
-        ClipRRect(
-          borderRadius: BorderRadius.circular(11),
-          child: motif.sticker
-              ? DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [motif.tintLight, motif.tintDark],
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(11),
+            child: motif.sticker
+                ? DecoratedBox(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Color.lerp(
+                              const Color(0xFFFFF6DC), motif.tintLight, .22)!,
+                          Color.lerp(
+                              const Color(0xFFE8C97A), motif.tintDark, .18)!,
+                        ],
+                      ),
                     ),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: Image.asset(motif.path,
-                        fit: BoxFit.contain,
-                        filterQuality: FilterQuality.medium),
-                  ),
-                )
-              : Image.asset(motif.path,
-                  fit: BoxFit.cover, filterQuality: FilterQuality.medium),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8),
+                      child: Image.asset(motif.path,
+                          fit: BoxFit.contain,
+                          filterQuality: FilterQuality.medium),
+                    ),
+                  )
+                : Image.asset(motif.path,
+                    fit: BoxFit.cover, filterQuality: FilterQuality.medium),
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(5),
+          child: DecoratedBox(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(11),
+              border: Border.all(color: const Color(0x99FFF3C4), width: 1.1),
+            ),
+          ),
         ),
         if (matched)
           Positioned(
@@ -942,7 +956,7 @@ class _RoundIconButton extends StatelessWidget {
         constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
         style: IconButton.styleFrom(
           backgroundColor: const Color(0xCC0B2A5C),
-          side: const BorderSide(color: Color(0xAA37D2FD)),
+          side: const BorderSide(color: Color(0xAAE8C45A)),
         ),
       );
 }
@@ -973,7 +987,7 @@ class _ScorePill extends StatelessWidget {
           color: active ? const Color(0xF20E3A7A) : const Color(0xB30B2A5C),
           borderRadius: BorderRadius.circular(20),
           border: Border.all(
-              color: active ? color : const Color(0x6637D2FD),
+              color: active ? color : const Color(0x99E8C45A),
               width: active ? 2.4 : 1.2),
           boxShadow: active
               ? [BoxShadow(color: color.withOpacity(.55), blurRadius: 14)]
@@ -1030,7 +1044,7 @@ class _SpeechBubble extends StatelessWidget {
         decoration: BoxDecoration(
           color: const Color(0xD90B2A5C),
           borderRadius: BorderRadius.circular(18),
-          border: Border.all(color: const Color(0x9937D2FD)),
+          border: Border.all(color: const Color(0xCCE8C45A)),
         ),
         child: Text(
           text,
@@ -1101,19 +1115,17 @@ class _DifficultyChips extends StatelessWidget {
                         ? const LinearGradient(
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
-                            colors: [Color(0xFF63E4FF), Color(0xFF1E7FE0)])
+                            colors: [Color(0xFFFFE7A0), Color(0xFFD4A024)])
                         : null,
                     color: d == selected ? null : const Color(0xB30B2A5C),
                     border: Border.all(
                         color: d == selected
-                            ? const Color(0xFFBDF4FF)
-                            : const Color(0x6637D2FD),
+                            ? const Color(0xFFFFF3C4)
+                            : const Color(0x99E8C45A),
                         width: 1.6),
                     boxShadow: d == selected
-                        ? [
-                            BoxShadow(
-                                color: LumoVisualTokens.cyan.withOpacity(.55),
-                                blurRadius: 12)
+                        ? const [
+                            BoxShadow(color: Color(0x8CE8C45A), blurRadius: 12)
                           ]
                         : null,
                   ),
@@ -1122,11 +1134,13 @@ class _DifficultyChips extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 4),
                       child: Text(d.label,
-                          style: const TextStyle(
+                          style: TextStyle(
                               fontFamily: 'Nunito',
                               fontSize: 16,
                               fontWeight: FontWeight.w900,
-                              color: Colors.white)),
+                              color: d == selected
+                                  ? const Color(0xFF2A1A08)
+                                  : Colors.white)),
                     ),
                   ),
                 ),
@@ -1187,10 +1201,9 @@ class _ResultCard extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [Color(0xF2123F86), Color(0xF2071A3E)],
           ),
-          border: Border.all(color: const Color(0xCC53DDFD), width: 2),
-          boxShadow: [
-            BoxShadow(
-                color: LumoVisualTokens.cyan.withOpacity(.4), blurRadius: 24),
+          border: Border.all(color: const Color(0xCCE8C45A), width: 2),
+          boxShadow: const [
+            BoxShadow(color: Color(0x66E8C45A), blurRadius: 24),
           ],
         ),
         child: SingleChildScrollView(
@@ -1254,7 +1267,7 @@ class _ResultCard extends StatelessWidget {
                 style: FilledButton.styleFrom(
                   backgroundColor: const Color(0xFF1E9BE8),
                   shape: const StadiumBorder(
-                      side: BorderSide(color: Color(0xFFBDF4FF), width: 2)),
+                      side: BorderSide(color: Color(0xFFE8C45A), width: 2)),
                 ),
                 child: const Text('Nochmal!',
                     style: TextStyle(

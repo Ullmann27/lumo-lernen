@@ -1,6 +1,8 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
-/// Static premium 2.5D tabletop behind the existing, playable Memory cards.
+/// Static premium tabletop behind the existing, playable Memory cards.
 ///
 /// No animation ticker, textures, network access or new dependencies. The
 /// board still owns the card layout and gestures; this layer never receives
@@ -30,91 +32,160 @@ class LumoMemoryStage extends StatelessWidget {
 class _MemoryStagePainter extends CustomPainter {
   const _MemoryStagePainter();
 
+  static const _starMarks = <(double, double)>[
+    (0.18, 0.20),
+    (0.82, 0.18),
+    (0.12, 0.48),
+    (0.88, 0.52),
+    (0.22, 0.80),
+    (0.78, 0.84),
+    (0.50, 0.12),
+    (0.50, 0.90),
+    (0.34, 0.16),
+    (0.66, 0.14),
+  ];
+
+  static const _moss = <(double, double, double)>[
+    (0.16, 0.22, 0.055),
+    (0.86, 0.26, 0.05),
+    (0.12, 0.72, 0.06),
+    (0.90, 0.70, 0.048),
+    (0.28, 0.90, 0.045),
+    (0.74, 0.92, 0.05),
+  ];
+
   @override
   void paint(Canvas canvas, Size size) {
     if (size.isEmpty) return;
     final w = size.width;
     final h = size.height;
-    final field = Rect.fromLTWH(0, 0, w, h);
-    final radius = Radius.circular(
-      (size.shortestSide * .06).clamp(12.0, 26.0).toDouble(),
-    );
-    canvas.save();
-    canvas.clipRRect(RRect.fromRectAndRadius(field, radius));
+    final center = Offset(w * .5, h * .51);
+    final rx = w * .485;
+    final ry = h * .465;
+    final table =
+        Rect.fromCenter(center: center, width: rx * 2, height: ry * 2);
 
-    // Understated table reflection: luminous near the upper lip, dark beneath
-    // the cards so their artwork and readable symbols remain dominant.
-    canvas.drawRect(
-      field,
+    canvas.drawOval(
+      table.shift(const Offset(0, 7)).inflate(4),
       Paint()
-        ..shader = const LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            Color(0x3639D9FF),
-            Color(0x060A274E),
-            Color(0x233D6DA6),
-            Color(0x08031429),
-          ],
-          stops: [0.0, .24, .62, 1.0],
-        ).createShader(field),
+        ..color = const Color(0x73000000)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 18),
     );
 
-    final perspective = Paint()
-      ..color = const Color(0x1738CAFF)
+    canvas.drawOval(
+      table,
+      Paint()
+        ..shader = RadialGradient(
+          center: const Alignment(-0.18, -0.38),
+          radius: 1.08,
+          colors: const [
+            Color(0xFFF3E4C4),
+            Color(0xFFDCC28C),
+            Color(0xFFC4A66C),
+            Color(0xFFA07C48),
+          ],
+          stops: const [0.0, .42, .76, 1.0],
+        ).createShader(table),
+    );
+
+    // Soft light band across the upper half, like sun on sandstone.
+    canvas.drawOval(
+      Rect.fromCenter(
+        center: Offset(center.dx, center.dy - ry * .18),
+        width: rx * 1.55,
+        height: ry * 1.05,
+      ),
+      Paint()
+        ..shader = const RadialGradient(
+          colors: [Color(0x55FFF6DC), Color(0x00F3E4C4)],
+        ).createShader(table),
+    );
+
+    final ring = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1;
-    // Receding engraved lines lend depth without a realtime GPU shader.
-    for (var i = 0; i <= 6; i++) {
-      final x = w * (i / 6);
-      canvas.drawLine(
-        Offset(w * .5 + (x - w * .5) * .12, h * .08),
-        Offset(x, h * .97),
-        perspective,
+      ..strokeWidth = 1.35
+      ..color = const Color(0x59A67C3A);
+    for (final scale in <double>[.93, .80, .64, .46]) {
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: center,
+          width: rx * 2 * scale,
+          height: ry * 2 * scale,
+        ),
+        ring,
       );
     }
-    for (final y in [.18, .34, .57, .86]) {
-      final inset = (1 - y) * w * .105;
-      canvas.drawLine(Offset(inset, h * y), Offset(w - inset, h * y),
-          perspective);
+
+    canvas.drawOval(
+      table,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 8
+        ..color = const Color(0xFF7A5A30),
+    );
+    canvas.drawOval(
+      table.deflate(3.2),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.3
+        ..shader = const LinearGradient(
+          colors: [
+            Color(0xFFF0DCA8),
+            Color(0xFFC4963C),
+            Color(0xFFF0DCA8),
+          ],
+        ).createShader(Rect.fromLTWH(table.left, table.top, table.width, 1)),
+    );
+
+    final mossPaint = Paint()..color = const Color(0x665E7A3A);
+    for (final (ux, uy, ur) in _moss) {
+      canvas.drawOval(
+        Rect.fromCenter(
+          center: Offset(
+              table.left + ux * table.width, table.top + uy * table.height),
+          width: table.width * ur * 2.1,
+          height: table.height * ur,
+        ),
+        mossPaint,
+      );
     }
 
-    // Raised metallic tabletop edges are intentionally behind the card grid.
-    final lip = Paint()
-      ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.4
-      ..shader = const LinearGradient(
-        colors: [Color(0xCCB7F7FF), Color(0x5637D2FD), Color(0xB8FFDA81)],
-      ).createShader(Rect.fromLTWH(0, 0, w, 1));
-    final outline = Path()
-      ..moveTo(w * .08, h * .045)
-      ..lineTo(w * .92, h * .045)
-      ..lineTo(w * .976, h * .92)
-      ..quadraticBezierTo(w * .978, h * .966, w * .92, h * .966)
-      ..lineTo(w * .08, h * .966)
-      ..quadraticBezierTo(w * .022, h * .966, w * .024, h * .92)
-      ..close();
-    canvas.drawPath(outline, lip);
+    const flower = Color(0xAA7EA4E8);
+    const flowerCore = Color(0xDDE8D48A);
+    for (final (ux, uy, _) in _moss) {
+      final p = Offset(
+        table.left + ux * table.width,
+        table.top + uy * table.height,
+      );
+      canvas.drawCircle(p, 2.4, Paint()..color = flower);
+      canvas.drawCircle(p, 1.0, Paint()..color = flowerCore);
+    }
 
-    // Four small inlaid lights; no flashing or moving effects for children
-    // who choose reduced-motion / calm mode.
-    for (final dx in [.075, .925]) {
-      for (final dy in [.072, .928]) {
-        final center = Offset(w * dx, h * dy);
-        canvas.drawCircle(
-          center,
-          4.7,
-          Paint()..color = const Color(0x3FFFDA84),
-        );
-        canvas.drawCircle(
-          center,
-          2,
-          Paint()..color = const Color(0xFFE7F9FF),
-        );
+    for (final (ux, uy) in _starMarks) {
+      _drawStar(
+        canvas,
+        Offset(table.left + ux * table.width, table.top + uy * table.height),
+        math.min(rx, ry) * .034,
+        const Color(0x99E6C25A),
+      );
+    }
+  }
+
+  void _drawStar(Canvas canvas, Offset center, double radius, Color color) {
+    if (radius <= 0) return;
+    final path = Path();
+    for (var i = 0; i < 10; i++) {
+      final a = -math.pi / 2 + i * math.pi / 5;
+      final r = i.isEven ? radius : radius * .42;
+      final p = center + Offset(math.cos(a), math.sin(a)) * r;
+      if (i == 0) {
+        path.moveTo(p.dx, p.dy);
+      } else {
+        path.lineTo(p.dx, p.dy);
       }
     }
-
-    canvas.restore();
+    path.close();
+    canvas.drawPath(path, Paint()..color = color);
   }
 
   @override
