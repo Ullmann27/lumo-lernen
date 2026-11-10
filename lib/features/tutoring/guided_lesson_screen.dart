@@ -195,10 +195,15 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     final settings = widget.appState.state.settings;
     if (settings.voiceEnabled &&
         settings.autoReadEnabled &&
-        !settings.calmMode) {
+        !settings.calmMode &&
+        !_tenFrameExample) {
       unawaited(_read(_step.instruction));
     }
   }
+
+  bool get _tenFrameExample =>
+      widget.lesson.concept == GuidedLessonConcept.bridgeTen &&
+      _step.type == TutoringStepType.showExample;
 
   void _publish() {
     if (!_current || !_ready || _blocked != null) return;
@@ -553,6 +558,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     }
     final step = _step;
     final size = MediaQuery.sizeOf(context);
+    final illustrationSerial = _serial;
+    final settings = widget.appState.state.settings;
     final fixedContinue = size.width < 600 && size.height >= 480;
     return PopScope(
       canPop: !_progress.hasPending,
@@ -616,6 +623,19 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                 key: ValueKey('guided-illustration-$_serial-$_replay'),
                 lesson: widget.lesson,
                 step: step,
+                autoNarrate: settings.voiceEnabled &&
+                    settings.autoReadEnabled && !settings.calmMode,
+                onNarratePhase: settings.voiceEnabled
+                    ? (text) async {
+                        if (_serial == illustrationSerial && _tenFrameExample) {
+                          await _read(text);
+                        }
+                      }
+                    : null,
+                onStopNarration: () {
+                  // Disposing the old example must not stop the next task.
+                  if (_serial == illustrationSerial) _stopOwnedVoice();
+                },
                 reduceMotion: _quiet),
             if (step.type == TutoringStepType.showExample) ...[
               const SizedBox(height: 12),
@@ -695,13 +715,13 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
               ]),
             if (_passed && !fixedContinue) _continueButton(),
             const SizedBox(height: 16),
-            if (widget.appState.state.settings.voiceEnabled)
+            if (settings.voiceEnabled && !_tenFrameExample)
               LumoSpeechControls(
                 onRead: () => unawaited(
                     _read(_previousHelp ?? _feedback ?? step.instruction)),
                 showStopWhenIdle: true,
               )
-            else
+            else if (!settings.voiceEnabled)
               const Text(
                   'Die Stimme ist ausgeschaltet. '
                   'Du kannst die Erklärung hier lesen.',

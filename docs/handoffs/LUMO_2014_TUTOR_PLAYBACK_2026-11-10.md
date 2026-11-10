@@ -13,7 +13,7 @@ maßgeblich. Vorhandene Apfelgrafiken werden weiterverwendet.
 | Bereich | Alter Iststand | Neuer Iststand | Offenes Soll |
 | --- | --- | --- | --- |
 | Zehner-Beispiel | 1,6-Sekunden-Tween ohne eigene Wiedergabesteuerung; Ergebnis sofort sichtbar | 8+5 mit sechs nachvollziehbaren Phasen; zwei Äpfel einzeln in freie Plätze, dann drei übrige umordnen; Ergebnis erst am Schluss | Weitere Rechenoperationen auf dieselbe steuerbare Architektur übertragen |
-| Bedienung | Nur gesamtes Beispiel neu starten | Pause/Abspielen, halbes Tempo, Schritt vor/zurück, Neustart; mindestens 48dp; reduzierte Bewegung als manuelle Zustände; App-Hintergrund pausiert | Stimme exakt mit jedem Animationsschritt synchronisieren |
+| Bedienung | Nur gesamtes Beispiel neu starten | Pause/Abspielen, halbes Tempo, Schritt vor/zurück, Neustart; mindestens 48dp; reduzierte Bewegung als manuelle Zustände; App-Hintergrund pausiert; Phasentext mit bestehender Stimme verbunden | Hörbare Abnahme auf Android und Sternen-Objektvariante |
 | Lernbeobachtung | Aufgabenart konnte trotz Tipp als selbstständig gelobt/gezählt werden; finale Probe erzeugte keinen Transfermarker | Tipps und Versuche nach Feedback bleiben begleitet; echte erste Antwort ohne Hilfe kann Transferprobe werden; Wiederholungsplan nutzt vorhandene lokale Journey | Kein neues umfassendes Diagnosemodell behauptet |
 | Hilfewahl | Gleicher allgemeiner Hinweis unabhängig von der Antwort | Bei Zehner-Summen konkrete Hinweise für Antwort gleich Rest, Ergänzung oder zehn; nur beobachtete Beziehungen, keine behaupteten Ursachen | Weitere fachlich geprüfte Fehlermuster und Voraussetzungstests |
 | Rückkehr aus leichter Übung | Hilfehistorie derselben Aufgabe wurde zurückgesetzt | Begleitete Vorgeschichte bleibt für diesen Schritt erhalten | Vorhandene Discovery-Speichersemantik bleibt unverändert |
@@ -112,7 +112,38 @@ gelöste Aufgabe und einen begleiteten Erfolg berichtigt und bestehen vollständ
 
 Android-Emulator, echte Fold7-Hardware, gesamte App-Regression und signierte
 APK sind Aufgabe des Integrationsstands und hier nicht nachgewiesen.
-Die vorhandene Sprachausgabe bleibt erhalten; es gibt noch keine neue exakt
-schrittgebundene Sprachsynchronisation. Weitere Themenanimationen und eine
+Die schrittgebundene Sprachsteuerung wird unten beschrieben; eine tatsächliche
+hörbare Geräteprüfung steht aus. Weitere Themenanimationen und eine
 vollständige persönliche Nachhilfe für alle Lerngebiete sind mit diesem
 gezielten Patch nicht abgeschlossen.
+
+## Ergänzung: Phasentext und bestehende Sprachausgabe
+
+`GuidedLessonScreen` reicht den sichtbaren Phasentext über die vorhandene,
+abbrechbare `LumoVoice.speak`-Kette weiter. Der gesamte Beispielabsatz wird nicht
+zusätzlich automatisch oder über einen zweiten Vorleseknopf gestartet. Bei
+aktiviertem automatischen Vorlesen bleibt eine Phase stehen, bis ihr Sprachaufruf
+beendet ist; danach bewegt sich die vorhandene Menge zur nächsten Phase. Pause,
+Schritt vor/zurück, Wiederholen, Tempoänderung, Stummschalten, App-Hintergrund und
+Verlassen stoppen die eigene alte Narration. Eine verspätete Sprachbeendigung
+kann weder die Animation wieder starten noch einen alten Satz nachschieben.
+Das Entsorgen der alten Animation stoppt keine Ansage der nächsten Lernaufgabe.
+
+`voiceEnabled`, `autoReadEnabled` und `calmMode` bleiben maßgeblich. Ohne
+automatisches Vorlesen gibt es bei eingeschalteter Stimme den ausdrücklichen
+Knopf „Schritt anhören“; reduzierte Bewegung startet dadurch keinen Lauf.
+Ohne Stimme bleibt die vollständige Bildsteuerung verfügbar. Es wird weder eine
+neue TTS-Abhängigkeit noch eine neue Sprachfreigabe eingeführt. Die vorhandene
+Stimmidentität, lokale Lizenz-/Onlinefreigaben und Meldungen für fehlendes Audio
+werden nicht umgangen. Die lokale Kanalkette ist mit deaktivierter Cloud geprüft.
+
+Neue Vertragstests prüfen laufende/langsame Sprache, deren Abbruch und alte
+Abschlüsse sowie die echte Kette Screen → LumoVoice → lokaler Sprachkanal für
+automatisch, manuell, Ruhemodus und stumm. Der native Syntheseaufruf wird dabei
+kontrolliert simuliert; das ist kein hörbarer Android-Nachweis. Darstellung und
+Ansage sagen konsistent „Äpfel“. Die ausdrücklich gewünschte Sternenvariante
+bleibt eine Abweichung vom Nutzerbeispiel und ist nicht implementiert.
+
+Nach dieser Integration bestanden 13 Wiedergabe-/Sprachkanal-Vertragstests,
+31 bediente Lektions-/Sprach-/Naturabläufe sowie die Analyse aller fünf
+betroffenen Dart-Dateien ohne Befund. Zuvor bestanden 59 Mengen-/Wiedergabetests.
