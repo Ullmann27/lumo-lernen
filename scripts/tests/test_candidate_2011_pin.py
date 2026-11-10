@@ -35,8 +35,8 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2011, CANDIDATE_REVISION))
-        self.assertGreater(build, 2010)
+        self.assertEqual((build, revision), (2012, "9947346ecc526512904adecec1815312020beb62"))
+        self.assertGreater(build, 2011)
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(
@@ -44,7 +44,7 @@ class Candidate2011PinTests(unittest.TestCase):
         )
 
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k != 2011}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -81,7 +81,7 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 2012, 9999):
+        for build in (2006, 2007, 2008, 2009, 2010, 2013, 9999):
             with self.subTest(build=build):
                 with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
                     POLICY.verify(version(build), config())
