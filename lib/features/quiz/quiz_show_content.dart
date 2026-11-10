@@ -36,6 +36,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
   late QuizShowState _state;
   late QuizShowMusic _music;
   Timer? _lockTimer;
+  int _roundGeneration = 0;
   bool _locking = false;
   String? _preferSubject;
 
@@ -53,7 +54,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
 
   @override
   void dispose() {
-    _lockTimer?.cancel();
+    _cancelLockIn();
     unawaited(_music.dispose());
     super.dispose();
   }
@@ -65,7 +66,17 @@ class _QuizShowContentState extends State<QuizShowContent> {
     unawaited(LumoSound.instance.play(effect));
   }
 
+  void _cancelLockIn() {
+    _lockTimer?.cancel();
+    _lockTimer = null;
+    _locking = false;
+    _roundGeneration++;
+  }
+
   void _startNewGame() {
+    // Category changes and restarts both replace the entire question set.
+    // Its previous answer animation must not lock or resolve this new round.
+    _cancelLockIn();
     final questions = _bank.generateGameQuestions(
       grade: widget.appState.state.grade,
       random: math.Random(
@@ -93,9 +104,11 @@ class _QuizShowContentState extends State<QuizShowContent> {
     _playEffect(SoundEffect.click);
     unawaited(_music.pauseForLockIn());
     _lockTimer?.cancel();
+    final generation = _roundGeneration;
     final reduced = MediaQuery.disableAnimationsOf(context);
     _lockTimer = Timer(Duration(milliseconds: reduced ? 750 : 1600), () {
-      if (!mounted || !_locking) return;
+      if (!mounted || !_locking || generation != _roundGeneration) return;
+      _lockTimer = null;
       setState(() => _locking = false);
       _resolveAnswer();
     });
@@ -104,8 +117,8 @@ class _QuizShowContentState extends State<QuizShowContent> {
   void _resolveAnswer() {
     final before = _state;
     final selected = before.selectedOption;
-    final correct =
-        selected != null && selected == before.currentQuestion.correctIndex;
+    if (selected == null || before.revealed || before.gameOver) return;
+    final correct = selected == before.currentQuestion.correctIndex;
 
     setState(() {
       final wasGameOver = _state.gameOver;
@@ -145,8 +158,6 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _restart() {
-    _lockTimer?.cancel();
-    _locking = false;
     _playEffect(SoundEffect.click);
     setState(_startNewGame);
     unawaited(_music.start());
