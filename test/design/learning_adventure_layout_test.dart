@@ -19,6 +19,7 @@ import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'package:lumo_lernen/widgets/design/lumo_learning_module_frame.dart';
 import 'package:lumo_lernen/widgets/design/lumo_quantity_art.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_character.dart';
+import '../helpers/native_storage_fixture.dart';
 
 class _GatedWallet extends RewardWalletRepository {
   final gate = Completer<void>();
@@ -45,7 +46,8 @@ Future<LumoAppState> _open(
   int? minusSeed,
   int? numberSeed,
 }) async {
-  final app = LumoAppState(walletRepository: wallet);
+  final app = await nativeStorageFixture(
+      tester, () => LumoAppState(walletRepository: wallet));
   addTearDown(app.dispose);
   await tester.runAsync(() async {
     await app.hydrateFromWallet();
@@ -394,7 +396,7 @@ void main() {
   testWidgets('real success reacts only after durable saving completes',
       (tester) async {
     await _viewport(tester, const Size(360, 800));
-    final wallet = _GatedWallet();
+    final wallet = await nativeStorageFixture(tester, _GatedWallet.new);
     final app = await _open(tester, 'm1_minus10', wallet: wallet);
     final fox = tester.widget<LumoCharacter>(
         find.byKey(const ValueKey('learning-module-lumo')));

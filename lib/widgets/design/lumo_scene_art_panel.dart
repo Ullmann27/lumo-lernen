@@ -34,14 +34,14 @@ extension LumoSceneArtAssets on LumoSceneArt {
       case LumoSceneArt.storyStarMap:
         return 'assets/lumo_design/fox/lumo_story_starmap_cutout.png';
       case LumoSceneArt.seasons:
-        return 'assets/lumo_design/fox/lumo_seasons_cutout.png';
+        return 'assets/lumo_design/fox/fox_teacher_stick.png';
       case LumoSceneArt.mathematics:
         return 'assets/lumo_design/fox/lumo_math_cutout.png';
     }
   }
 
   /// Existing approved Lumo character art shown until story-specific cutouts
-  /// are supplied. Keep the intended assetPath above unchanged.
+  /// are supplied. Seasons already uses its bundled teacher as primary art.
   String get fallbackAssetPath => switch (this) {
     LumoSceneArt.storyLibrary =>
       'assets/lumo_design/fox/fox_book_welcome.png',
@@ -67,8 +67,8 @@ extension LumoSceneArtAssets on LumoSceneArt {
   }
 }
 
-/// Real artwork is optional at runtime until the four transparent PNG assets
-/// are uploaded. Existing Lumo fox artwork is used as a safe fallback.
+/// Story-specific artwork is optional at runtime. Seasons uses its bundled
+/// teacher directly; existing Lumo fox artwork safely covers other fallbacks.
 /// This panel has no gesture handlers and never covers actionable UI.
 class LumoSceneArtPanel extends StatelessWidget {
   const LumoSceneArtPanel({

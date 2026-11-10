@@ -13,6 +13,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -388,14 +389,24 @@ class _TiereScreenState extends State<TiereScreen>
           boxShadow: [
             BoxShadow(
               color: colors[1].withOpacity(.45),
-              blurRadius: 24,
-              offset: const Offset(0, 10),
+              blurRadius: 26,
+              offset: const Offset(0, 12),
               spreadRadius: -2,
+            ),
+            BoxShadow(
+              color: Colors.white.withOpacity(.28),
+              blurRadius: 8,
+              offset: const Offset(0, -2),
             ),
           ],
         ),
-        child: Text(hideAnswer ? '🔊' : _correctTier.emoji,
-            style: const TextStyle(fontSize: 140, height: 1.0)),
+        child: hideAnswer
+            ? const Text('🔊', style: TextStyle(fontSize: 140, height: 1.0))
+            : LumoTaskObjectArt(
+                name: _correctTier.name,
+                emoji: _correctTier.emoji,
+                size: 168,
+              ),
       ),
     );
   }

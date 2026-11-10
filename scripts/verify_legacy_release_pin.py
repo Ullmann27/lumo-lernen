@@ -118,6 +118,10 @@ APPROVED = {
     # repaired Godot integration collector. Source identity only; APK/device
     # acceptance remains gated by the unified Android workflow.
     2013: "47bef06db45d61d50ecd06d0b0cd0a69b9a25917",
+    # 2014: reviewed integration source for physical Kart, rivals and world art.
+    # Identity approval only: full native gameplay, APK and in-place Android
+    # update acceptance remain mandatory in the unified candidate workflow.
+    2014: "207bfbc5377c0f3e8be800854c83ddf2110ac3f6",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

@@ -26,9 +26,9 @@ BASE_SOURCE = 'ff791642a0d28d10f89d98025fd8f5fb2c19c403'
 GODOT = 'adcce3093caa42bf3da47262f70bdf03cdefa347'
 
 
-def artifact(apk: Path, source: str, version: int) -> dict:
+def artifact(apk: Path, source: str, version: int, native_source: str = GODOT) -> dict:
     return require_update_artifact(apk, source=source, version=version,
-        package=tour.PACKAGE, certificate=probe.CERT, native_source=GODOT)
+        package=tour.PACKAGE, certificate=probe.CERT, native_source=native_source)
 
 
 def wait_profile(out: Path, tag: str) -> None:
@@ -89,7 +89,9 @@ def native_tour(out: Path) -> dict:
     return {'race': race, 'hud': hud, 'drive': drive, 'pause': frozen, 'return': returned}
 
 
-def main() -> int:
+def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
+         candidate_version: int = 2003, baseline_native: str = GODOT,
+         candidate_native: str = GODOT) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, required=True)
@@ -98,12 +100,12 @@ def main() -> int:
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
     result = {'status': 'RUNNING', 'candidate_source': SOURCE,
-              'scope': 'Actual 2002 learning -> install -r 2003 -> offline Kart -> restart/fold',
+              'scope': f'Actual {baseline_version} learning -> install -r {candidate_version} -> offline Kart -> restart/fold',
               'not_tested': ['physical ARM64 device', 'GPU frame times / 60 FPS',
                              'audio output', 'complete two-lap race reward']}
     try:
-        result['baseline'] = artifact(args.baseline, BASE_SOURCE, 2002)
-        result['candidate'] = artifact(args.candidate, SOURCE, 2003)
+        result['baseline'] = artifact(args.baseline, baseline_source, baseline_version, baseline_native)
+        result['candidate'] = artifact(args.candidate, SOURCE, candidate_version, candidate_native)
         result['emulator'] = probe.ensure_rooted_emulator(base.adb, out)
         base.adb('logcat', '-c')
         base.display(1080, 2400, 420)
@@ -126,14 +128,14 @@ def main() -> int:
         before = probe.prefs(out, 'before-update')
         require_learning_preserved(before, before)
         old_identity = probe.package_identity(out, 'baseline')
-        if int(old_identity['versionCode'].split()[0]) != 2002:
-            raise RuntimeError('Installed baseline version is not 2002')
+        if int(old_identity['versionCode'].split()[0]) != baseline_version:
+            raise RuntimeError(f'Installed baseline version is not {baseline_version}')
         installed = base.adb('install', '-r', '--no-streaming', str(args.candidate), timeout=300)
         (out / 'update-install.txt').write_text(installed)
         if 'Success' not in installed:
             raise RuntimeError('Candidate in-place installation failed')
         result['installation'] = require_in_place_update(
-            old_identity, probe.package_identity(out, 'updated'), 2003)
+            old_identity, probe.package_identity(out, 'updated'), candidate_version)
         base.adb('shell', 'svc', 'wifi', 'disable')
         base.adb('shell', 'svc', 'data', 'disable')
         base.adb('shell', 'cmd', 'connectivity', 'airplane-mode', 'enable')

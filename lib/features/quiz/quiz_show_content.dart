@@ -36,7 +36,9 @@ class _QuizShowContentState extends State<QuizShowContent> {
   late QuizShowState _state;
   late QuizShowMusic _music;
   Timer? _lockTimer;
+  int _roundGeneration = 0;
   bool _locking = false;
+  String? _preferSubject;
 
   @override
   void initState() {
@@ -52,7 +54,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
 
   @override
   void dispose() {
-    _lockTimer?.cancel();
+    _cancelLockIn();
     unawaited(_music.dispose());
     super.dispose();
   }
@@ -64,11 +66,22 @@ class _QuizShowContentState extends State<QuizShowContent> {
     unawaited(LumoSound.instance.play(effect));
   }
 
+  void _cancelLockIn() {
+    _lockTimer?.cancel();
+    _lockTimer = null;
+    _locking = false;
+    _roundGeneration++;
+  }
+
   void _startNewGame() {
+    // Category changes and restarts both replace the entire question set.
+    // Its previous answer animation must not lock or resolve this new round.
+    _cancelLockIn();
     final questions = _bank.generateGameQuestions(
       grade: widget.appState.state.grade,
       random: math.Random(
           widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
+      preferSubject: _preferSubject,
     );
     _state = _engine.start(questions: questions);
   }
@@ -86,14 +99,18 @@ class _QuizShowContentState extends State<QuizShowContent> {
     if (_locking ||
         _state.revealed ||
         _state.gameOver ||
-        _state.selectedOption == null) return;
+        _state.selectedOption == null) {
+      return;
+    }
     setState(() => _locking = true);
     _playEffect(SoundEffect.click);
     unawaited(_music.pauseForLockIn());
     _lockTimer?.cancel();
+    final generation = _roundGeneration;
     final reduced = MediaQuery.disableAnimationsOf(context);
     _lockTimer = Timer(Duration(milliseconds: reduced ? 750 : 1600), () {
-      if (!mounted || !_locking) return;
+      if (!mounted || !_locking || generation != _roundGeneration) return;
+      _lockTimer = null;
       setState(() => _locking = false);
       _resolveAnswer();
     });
@@ -102,8 +119,8 @@ class _QuizShowContentState extends State<QuizShowContent> {
   void _resolveAnswer() {
     final before = _state;
     final selected = before.selectedOption;
-    final correct =
-        selected != null && selected == before.currentQuestion.correctIndex;
+    if (selected == null || before.revealed || before.gameOver) return;
+    final correct = selected == before.currentQuestion.correctIndex;
 
     setState(() {
       final wasGameOver = _state.gameOver;
@@ -143,8 +160,6 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _restart() {
-    _lockTimer?.cancel();
-    _locking = false;
     _playEffect(SoundEffect.click);
     setState(_startNewGame);
     unawaited(_music.start());
@@ -193,6 +208,65 @@ class _QuizShowContentState extends State<QuizShowContent> {
             child: Icon(Icons.star_rounded, color: Color(0xFFFFDA77), size: 27),
           ),
         ],
+        bottom: PreferredSize(
+          preferredSize: const Size.fromHeight(58),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 0, 12, 8),
+            child: Row(
+              children: [
+                for (final entry in const [
+                  (null, 'Alle', 'alle'),
+                  ('Deutsch', 'Deutsch', 'Deutsch'),
+                  ('Mathe', 'Mathe', 'Mathe'),
+                  ('Sachunterricht', 'Sachkunde', 'Sachunterricht'),
+                ]) ...[
+                  if (entry.$3 != 'alle') const SizedBox(width: 6),
+                  Expanded(
+                    child: Semantics(
+                      button: true,
+                      selected: _preferSubject == entry.$1,
+                      label: 'Kategorie ${entry.$2}',
+                      child: GestureDetector(
+                        key: ValueKey('quiz-category-${entry.$3}'),
+                        onTap: () {
+                          if (_preferSubject == entry.$1) return;
+                          setState(() {
+                            _preferSubject = entry.$1;
+                            _startNewGame();
+                          });
+                          unawaited(_music.start());
+                        },
+                        child: Container(
+                          constraints: const BoxConstraints(minHeight: 48),
+                          alignment: Alignment.center,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(14),
+                            color: _preferSubject == entry.$1
+                                ? const Color(0xFF1FA0C8)
+                                : const Color(0xB30B2A5C),
+                            border: Border.all(
+                              color: _preferSubject == entry.$1
+                                  ? const Color(0xFF8AF0FF)
+                                  : const Color(0x66E8C45A),
+                            ),
+                          ),
+                          child: Text(entry.$2,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(
+                                  fontFamily: 'Nunito',
+                                  fontSize: 13,
+                                  fontWeight: FontWeight.w900,
+                                  color: Colors.white)),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ],
+            ),
+          ),
+        ),
       ),
       body: LumoSceneBackground(
         scene: LumoScene.tests,
@@ -540,7 +614,7 @@ class _QuizStage extends StatelessWidget {
                                             horizontal: 10, vertical: 4),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
-                                          children: const [
+                                          children: [
                                             Icon(Icons.star_rounded,
                                                 color: Color(0xFFFFD978),
                                                 size: 12),
@@ -1066,61 +1140,69 @@ class _JokerButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Opacity(
-      opacity: used ? .50 : 1,
-      child: Container(
-        constraints: const BoxConstraints(minHeight: 80, minWidth: 48),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(18),
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFE08A),
-              Color(0xFFC48A28),
-              Color(0xFF0A2A6A),
-              Color(0xFF071D56),
-            ],
-            stops: [0, .18, .42, 1],
+    return TweenAnimationBuilder<double>(
+      key: ValueKey('quiz-joker-fx-$label-$used'),
+      tween: Tween(begin: used ? 1.16 : 1.0, end: 1.0),
+      duration: Duration(milliseconds: used ? 420 : 0),
+      curve: Curves.easeOutBack,
+      builder: (context, scale, child) =>
+          Transform.scale(scale: scale, child: child),
+      child: Opacity(
+        opacity: used ? .50 : 1,
+        child: Container(
+          constraints: const BoxConstraints(minHeight: 80, minWidth: 48),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(18),
+            gradient: const LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                Color(0xFFFFE08A),
+                Color(0xFFC48A28),
+                Color(0xFF0A2A6A),
+                Color(0xFF071D56),
+              ],
+              stops: [0, .18, .42, 1],
+            ),
+            border: Border.all(
+                color: used ? const Color(0xFF69809F) : const Color(0xFFFFE08A),
+                width: 2.1),
+            boxShadow: used
+                ? null
+                : const [
+                    BoxShadow(color: Color(0xAAFFD26F), blurRadius: 14),
+                    BoxShadow(color: Color(0x8800C7FF), blurRadius: 18),
+                  ],
           ),
-          border: Border.all(
-              color: used ? const Color(0xFF69809F) : const Color(0xFFFFE08A),
-              width: 2.1),
-          boxShadow: used
-              ? null
-              : const [
-                  BoxShadow(color: Color(0xAAFFD26F), blurRadius: 14),
-                  BoxShadow(color: Color(0x8800C7FF), blurRadius: 18),
-                ],
-        ),
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(17),
-            onTap: used ? null : onTap,
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(icon,
-                      size: 27,
-                      color: used ? Colors.white54 : const Color(0xFFFFD978)),
-                  const SizedBox(height: 5),
-                  SizedBox(
-                    width: double.infinity,
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(label,
-                          maxLines: 1,
-                          style: const TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 12,
-                              fontWeight: FontWeight.w900,
-                              color: Colors.white)),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              borderRadius: BorderRadius.circular(17),
+              onTap: used ? null : onTap,
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 2, vertical: 7),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(icon,
+                        size: 27,
+                        color: used ? Colors.white54 : const Color(0xFFFFD978)),
+                    const SizedBox(height: 5),
+                    SizedBox(
+                      width: double.infinity,
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(label,
+                            maxLines: 1,
+                            style: const TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 12,
+                                fontWeight: FontWeight.w900,
+                                color: Colors.white)),
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

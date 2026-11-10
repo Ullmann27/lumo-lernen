@@ -8,6 +8,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -389,6 +390,7 @@ class _FarbenScreenState extends State<FarbenScreen>
     // Kind sah immer nur 🎨-Palette als Fallback. Jetzt verlaesslich:
     // farbiger Hintergrund + echtes Emoji des Objekts.
     return _EmojiBubble(
+      name: _objekt.name,
       emoji: _objekt.emoji,
       color: farbe.color,
       size: 220,
@@ -408,6 +410,7 @@ class _FarbenScreenState extends State<FarbenScreen>
         final isCorrect = i == _correctImageIdx;
         final isSelected = _selectedIdx == i;
         return _ColoredEmojiOption(
+          name: _objekt.name,
           emoji: _objekt.emoji,
           color: farbe.color,
           isSelected: isSelected,
@@ -485,10 +488,12 @@ class _FarbenScreenState extends State<FarbenScreen>
 /// Internet-Bild noetig.
 class _EmojiBubble extends StatelessWidget {
   const _EmojiBubble({
+    required this.name,
     required this.emoji,
     required this.color,
     required this.size,
   });
+  final String name;
   final String emoji;
   final Color color;
   final double size;
@@ -516,7 +521,7 @@ class _EmojiBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: Text(emoji, style: TextStyle(fontSize: size * 0.5)),
+      child: LumoTaskObjectArt(name: name, emoji: emoji, size: size * 0.62),
     );
   }
 }
@@ -536,6 +541,7 @@ Color _shadeOf(Color base, double factor) {
 /// reine lokale Render-Logik mit garantiert unterschiedlichen Farben.
 class _ColoredEmojiOption extends StatelessWidget {
   const _ColoredEmojiOption({
+    required this.name,
     required this.emoji,
     required this.color,
     required this.isSelected,
@@ -544,6 +550,7 @@ class _ColoredEmojiOption extends StatelessWidget {
     required this.bounceCtrl,
     required this.onTap,
   });
+  final String name;
   final String emoji;
   final Color color;
   final bool isSelected;
@@ -591,7 +598,7 @@ class _ColoredEmojiOption extends StatelessWidget {
             ],
           ),
           alignment: Alignment.center,
-          child: Text(emoji, style: const TextStyle(fontSize: 70, height: 1.0)),
+          child: LumoTaskObjectArt(name: name, emoji: emoji, size: 78),
         ),
       ),
     );

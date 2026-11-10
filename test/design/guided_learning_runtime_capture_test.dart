@@ -186,15 +186,31 @@ void main() {
         await _frames(tester, 110);
         await _capture(tester, '$name-actual-${lesson.id}-example');
         if (lesson.id == 'bridge_ten' && name == 'fold-target') {
-          // The video consists only of frames captured from the actual running
-          // TweenAnimationBuilder after the child's real Replay button tap.
-          await _tap(tester, find.text('Beispiel noch einmal'), frames: 1);
-          for (var frame = 0; frame < 64; frame++) {
+          // The local ten-frame player now pauses when the child rewinds.
+          // Use both real controls and capture the whole eight-second lesson.
+          await _tap(tester, find.byKey(const ValueKey('ten-frame-replay')),
+              frames: 1);
+          expect(find.text('Schritt 1 von 6'), findsOneWidget);
+          expect(find.text('Abspielen'), findsOneWidget);
+          final captions = <String>{};
+          await _tap(tester, find.byKey(const ValueKey('ten-frame-play')),
+              frames: 1);
+          expect(find.text('Pause'), findsOneWidget);
+          for (var frame = 0; frame < 161; frame++) {
+            captions.add(tester
+                .widget<Text>(find.byKey(const ValueKey('ten-frame-caption')))
+                .data!);
             await _capture(tester,
                 'bridge-frames/frame-${frame.toString().padLeft(4, "0")}');
             await tester.pump(const Duration(milliseconds: 50));
             expect(tester.takeException(), isNull);
           }
+          expect(captions.length, greaterThan(1),
+              reason:
+                  'Replay must advance the actual explanation, not film a paused frame.');
+          expect(find.text('Schritt 6 von 6'), findsOneWidget);
+          expect(find.textContaining('8 + 2 + 3 = 13.'), findsOneWidget);
+          expect(find.text('Abspielen'), findsOneWidget);
         }
         // Genuine return from course to its hub, not a final-screen mock.
         await _tap(tester, find.byKey(const ValueKey('learning-module-back')));

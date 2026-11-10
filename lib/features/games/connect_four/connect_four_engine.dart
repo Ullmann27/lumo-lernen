@@ -4,6 +4,9 @@ enum ConnectPiece { empty, child, lumo }
 
 enum ConnectPhase { playing, won, draw }
 
+/// Kid-friendly Lumo strengths. [mittel] is the historical beginner bot.
+enum ConnectLumoLevel { leicht, mittel, schlau }
+
 typedef ConnectPosition = ({int row, int column});
 
 /// Rules only: no widgets, timers, plugins, wallet or mutable search moves.
@@ -78,28 +81,83 @@ class ConnectFourEngine {
 
   /// Fair beginner bot. Simulations use copies, so suggestions never mutate
   /// real state and cannot erase a piece after an interrupted turn.
-  int? chooseLumoColumn(Random random) {
+  ///
+  /// [level] defaults to [ConnectLumoLevel.mittel], the historical behaviour
+  /// (always take a win, always block, 30 % random otherwise).
+  int? chooseLumoColumn(
+    Random random, {
+    ConnectLumoLevel level = ConnectLumoLevel.mittel,
+  }) {
     if (phase != ConnectPhase.playing || turn != ConnectPiece.lumo) return null;
     final valid = validColumns;
     if (valid.isEmpty) return null;
-    for (final who in [ConnectPiece.lumo, ConnectPiece.child]) {
-      for (final c in valid) {
-        final board = _simulation(c, who);
-        if (findWinningLine(board, who).isNotEmpty) return c;
+    for (final c in valid) {
+      if (findWinningLine(_simulation(c, ConnectPiece.lumo), ConnectPiece.lumo)
+          .isNotEmpty) {
+        return c;
       }
     }
-    if (random.nextDouble() < .30) return valid[random.nextInt(valid.length)];
+    final blockChance = switch (level) {
+      ConnectLumoLevel.leicht => 0.35,
+      ConnectLumoLevel.mittel || ConnectLumoLevel.schlau => 1.0,
+    };
+    if (random.nextDouble() < blockChance) {
+      for (final c in valid) {
+        if (findWinningLine(
+                _simulation(c, ConnectPiece.child), ConnectPiece.child)
+            .isNotEmpty) {
+          return c;
+        }
+      }
+    }
+    final wander = switch (level) {
+      ConnectLumoLevel.leicht => 0.65,
+      ConnectLumoLevel.mittel => 0.30,
+      ConnectLumoLevel.schlau => 0.0,
+    };
+    if (wander > 0 && random.nextDouble() < wander) {
+      return valid[random.nextInt(valid.length)];
+    }
     var best = valid.first;
     var bestScore = -100000;
     for (final c in valid) {
-      final score = _potential(_simulation(c, ConnectPiece.lumo)) -
+      var score = _potential(_simulation(c, ConnectPiece.lumo)) -
           (c - columns ~/ 2).abs() * 2;
+      if (level == ConnectLumoLevel.schlau) {
+        final after = _simulation(c, ConnectPiece.lumo);
+        // Penalize moves that leave an immediate child win.
+        for (final reply in _validColumnsOn(after)) {
+          if (findWinningLine(
+                  _apply(after, reply, ConnectPiece.child), ConnectPiece.child)
+              .isNotEmpty) {
+            score -= 80;
+            break;
+          }
+        }
+      }
       if (score > bestScore) {
         best = c;
         bestScore = score;
       }
     }
     return best;
+  }
+
+  List<int> _validColumnsOn(List<List<ConnectPiece>> board) => [
+        for (var c = 0; c < columns; c++)
+          if (board[0][c] == ConnectPiece.empty) c,
+      ];
+
+  List<List<ConnectPiece>> _apply(
+      List<List<ConnectPiece>> board, int column, ConnectPiece who) {
+    final copy = board.map((row) => row.toList()).toList();
+    for (var r = rows - 1; r >= 0; r--) {
+      if (copy[r][column] == ConnectPiece.empty) {
+        copy[r][column] = who;
+        break;
+      }
+    }
+    return copy;
   }
 
   List<List<ConnectPiece>> _simulation(int c, ConnectPiece who) {

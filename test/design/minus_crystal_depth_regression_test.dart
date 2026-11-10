@@ -13,6 +13,7 @@ import 'package:lumo_lernen/widgets/design/lumo_answer_crystal.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../helpers/lumo_capture.dart';
+import '../helpers/native_storage_fixture.dart';
 
 Future<void> _frames(WidgetTester tester, [int count = 24]) async {
   for (var i = 0; i < count; i++) {
@@ -34,7 +35,7 @@ void main() {
       tester.view.physicalSize = const Size(360, 800);
       addTearDown(tester.view.resetPhysicalSize);
       addTearDown(tester.view.resetDevicePixelRatio);
-      final app = LumoAppState();
+      final app = await nativeStorageFixture(tester, LumoAppState.new);
       addTearDown(app.dispose);
       final previousVoice = LumoVoice.instance.isEnabled;
       LumoVoice.instance.isEnabled = false;

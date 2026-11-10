@@ -47,15 +47,23 @@ enum LumoSection {
 enum LumoMood { greet, point, celebrate, comfort, think, wave, idle }
 
 class _PendingRewardWrite {
-  const _PendingRewardWrite({this.stars = 0, this.xp = 0, this.cardsWon});
+  const _PendingRewardWrite({
+    this.stars = 0,
+    this.xp = 0,
+    this.cardsWon,
+    this.resultId,
+  });
   final int stars;
   final int xp;
   final bool? cardsWon;
+  final String? resultId;
 
   Future<RewardWallet> persist(RewardWalletRepository wallet) =>
-      cardsWon == null
-          ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
-          : wallet.awardLumoCardsResult(won: cardsWon!);
+      cardsWon != null
+          ? wallet.awardLumoCardsResult(won: cardsWon!, resultId: resultId)
+          : resultId == null
+              ? wallet.applyRewardDelta(starsDelta: stars, xpDelta: xp)
+              : wallet.awardGameResult(resultId: resultId!, stars: stars, xp: xp);
 }
 
 enum LumoSessionKind { quickPractice, exerciseSet, test, schoolwork, tutoring }
@@ -1230,10 +1238,46 @@ class LumoAppState extends ChangeNotifier {
   /// Wird nach einem Lumo-Cards-Spiel aufgerufen. Bei Sieg: Streak +1,
   /// Bonus-Sterne nach Streak-Hoehe. Bei Niederlage: Streak auf 0,
   /// kleiner Trost-Stern.
-  Future<void> recordLumoCardsResult({required bool won}) {
+  Future<void> recordLumoCardsResult({required bool won, String? resultId}) {
     if (_disposed || _resetting) return Future<void>.value();
-    _rewardWrites.add(_PendingRewardWrite(cardsWon: won));
+    _rewardWrites.add(_PendingRewardWrite(cardsWon: won, resultId: resultId));
     return _beginRewardDrain();
+  }
+
+  /// A resumed Cards question/call can replay its pending star safely.
+  Future<void> recordLumoCardsBonus({required String resultId}) {
+    if (_disposed || _resetting) return Future<void>.value();
+    _rewardWrites.add(_PendingRewardWrite(stars: 1, resultId: resultId));
+    return _beginRewardDrain();
+  }
+
+  /// Parents may discard tutor assessments without changing real answers,
+  /// rewards, discovery, writing or profile identity. Confirm the captured child.
+  Future<bool> resetTutorObservations(
+      {required LearningProfileLease lease}) async {
+    if (!isCurrentLearningLease(lease)) return false;
+    final id = lease.studentId;
+    if (!_resolvingLegacy.add(id)) return false;
+    lease._session.epoch++;
+    try {
+      await _drainLearningOperations();
+      lease._session.tutorPending.clear();
+      lease._session.tutorError = null;
+      await lease.profile.resetTutorObservations();
+      await lease.profile.loadJourney();
+      await lease.profile.loadSceneMemory();
+    } finally {
+      _resolvingLegacy.remove(id);
+      // Old lesson actions cannot repopulate the cleared assessments.
+      if (identical(_activeLearningSession, lease._session)) {
+        _profileGeneration++;
+        final requests = LumoCompanionRequests.instance;
+        requests.tutor.activateProfile(_profileGeneration);
+        requests.clearLearningScope();
+      }
+      _safeNotify();
+    }
+    return true;
   }
 
   Future<void> resetLearningProfile() async {

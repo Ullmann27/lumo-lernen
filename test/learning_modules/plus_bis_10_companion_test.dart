@@ -10,6 +10,8 @@ import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/plus_bis_10/plus_bis_10_screen.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
+import '../helpers/native_storage_fixture.dart';
+
 Future<void> _frames(WidgetTester tester, [int count = 90]) async {
   for (var i = 0; i < count; i++) {
     await tester.pump(const Duration(milliseconds: 16));
@@ -32,14 +34,18 @@ Finder _answer(int value) =>
 
 Future<LumoAppState> _open(WidgetTester tester) async {
   await tester.binding.setSurfaceSize(const Size(480, 1100));
-  final app = LumoAppState(walletRepository: RewardWalletRepository());
+  final app = await nativeStorageFixture(
+      tester, () => LumoAppState(walletRepository: RewardWalletRepository()));
   app.setSection(LumoSection.learn);
   app.updateSettings(
       const AppSettings(voiceEnabled: false, reduceAnimations: true));
-  await tester.runAsync(() async {
-    await app.hydrateFromWallet();
-    await app.loadLearningProfile();
+  final ready = await tester.runAsync(() async {
+    await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+    await app.loadLearningProfile().timeout(const Duration(seconds: 15));
+    return true;
   });
+  expect(ready, isTrue,
+      reason: 'The real wallet and learning profile must load');
   await tester.pumpWidget(MaterialApp(home: PlusBis10Screen(appState: app)));
   await _frames(tester);
   return app;

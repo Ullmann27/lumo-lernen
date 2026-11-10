@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 
 import '../../app/app_state.dart';
 import '../../core/lumo_voice.dart';
+import '../../core/learning_attempt_id.dart';
 import '../../domain/tutoring/guided_lesson_catalog.dart';
+import '../../domain/tutoring/guided_lesson_evidence.dart';
 import '../../domain/tutoring/tutoring_session_planner.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -51,6 +53,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   int _helpLevel = 0;
   int _solved = 0;
   int _independentSolved = 0;
+  final Set<int> _accompaniedSteps = {};
   int _replay = 0;
   bool _ready = false;
   bool _busy = false;
@@ -70,6 +73,12 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
   LumoCompanionTaskContext? _published;
 
   GuidedLessonStep get _step => _easier ?? widget.lesson.steps[_index];
+  // Remediation is real support, but it is not a tip already shown on return.
+  // Keep the visible hint ladder separate from the evidence of accompaniment.
+  int get _evidenceHelpLevel =>
+      _easier == null && _accompaniedSteps.contains(_index)
+          ? math.max(1, _helpLevel)
+          : _helpLevel;
   bool get _current =>
       mounted &&
       !_stale &&
@@ -192,10 +201,15 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     final settings = widget.appState.state.settings;
     if (settings.voiceEnabled &&
         settings.autoReadEnabled &&
-        !settings.calmMode) {
+        !settings.calmMode &&
+        !_tenFrameExample) {
       unawaited(_read(_step.instruction));
     }
   }
+
+  bool get _tenFrameExample =>
+      widget.lesson.concept == GuidedLessonConcept.bridgeTen &&
+      _step.type == TutoringStepType.showExample;
 
   void _publish() {
     if (!_current || !_ready || _blocked != null) return;
@@ -207,7 +221,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       answering:
           _step.isQuestion && !_passed && !_busy && !_progress.hasPending,
       attempts: _attempts,
-      helpLevel: _helpLevel,
+      helpLevel: _lastCorrect == true ? _evidenceHelpLevel : _helpLevel,
       lastAnswer: _lastAnswer,
       lastCorrect: _lastCorrect,
       localHelp: _step.isQuestion ? _step.help(level: _helpLevel + 1) : null,
@@ -238,16 +252,29 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     _publish();
     LumoCompanionRequests.instance
         .recordLearningEvent(LumoLearningEventKind.answerSubmitted);
+    final evidenceHelpLevel = _evidenceHelpLevel;
+    final independent = GuidedLessonEvidence.isIndependent(
+        attempts: _attempts, helpLevel: evidenceHelpLevel);
+    if (!correct) _accompaniedSteps.add(_index);
     // Only independent school answers count as school skills/Daily.
     // Prerequisite and accompanied examples are not fabricated mastery.
     final saved = widget.discovery || step.isIndependent
         ? await _progress.saveAnswer(
             correct: correct,
-            hintUsed: _helpLevel > 0,
+            hintUsed: !independent,
             prompt: step.instruction,
             given: answer,
             expected: step.expected,
             discoveryStep: step.observation!,
+            learningEvidence: widget.discovery
+                ? null
+                : GuidedLessonEvidence.observation(
+                    lesson: widget.lesson,
+                    step: step,
+                    attemptId: newLearningAttemptId(),
+                    answer: answer,
+                    attempts: _attempts,
+                    helpLevel: evidenceHelpLevel),
           )
         : true;
     if (!_current || serial != _serial) return;
@@ -262,12 +289,14 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
       _passed = correct;
       if (correct) {
         _solved++;
-        if (step.isIndependent) _independentSolved++;
-        _feedback = step.isIndependent
+        if (step.isIndependent && independent) _independentSolved++;
+        _feedback = step.isIndependent && independent
             ? widget.lesson.subject == 'Mathematik'
                 ? 'Du hast selbst gerechnet. Gut gemacht!'
                 : 'Das hast du selbst herausgefunden. Gut gemacht!'
-            : 'Das passt! Weiter geht es in deinem Tempo.';
+            : !independent
+                ? 'Das passt! Mit den gemeinsamen Schritten hast du es geschafft.'
+                : 'Das passt! Weiter geht es in deinem Tempo.';
       } else {
         _feedback = _attempts == 1
             ? 'Fast! Probiere es noch einmal. Wenn du magst, hilft dir ein Tipp.'
@@ -307,8 +336,13 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     final requests = LumoCompanionRequests.instance;
     requests.recordLearningEvent(LumoLearningEventKind.hintRequested);
     setState(() {
+      _accompaniedSteps.add(_index);
       _helpLevel = (_helpLevel + 1).clamp(1, 3);
-      _previousHelp = _step.help(level: _helpLevel);
+      _previousHelp = (_helpLevel == 1
+              ? GuidedLessonEvidence.hintForAnswer(
+                  lesson: widget.lesson, step: _step, answer: _lastAnswer)
+              : null) ??
+          _step.help(level: _helpLevel);
     });
     _publish();
     requests.recordLearningEvent(LumoLearningEventKind.hintAccepted);
@@ -324,7 +358,10 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     if (!_current || _busy || _progress.hasPending || _easier != null) return;
     LumoCompanionRequests.instance
         .recordLearningEvent(LumoLearningEventKind.taskRepeated);
-    setState(() => _easier = widget.lesson.easierPractice);
+    setState(() {
+      _accompaniedSteps.add(_index);
+      _easier = widget.lesson.easierPractice;
+    });
     _startStep();
   }
 
@@ -529,6 +566,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
     }
     final step = _step;
     final size = MediaQuery.sizeOf(context);
+    final illustrationSerial = _serial;
+    final settings = widget.appState.state.settings;
     final fixedContinue = size.width < 600 && size.height >= 480;
     return PopScope(
       canPop: !_progress.hasPending,
@@ -592,11 +631,25 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                 key: ValueKey('guided-illustration-$_serial-$_replay'),
                 lesson: widget.lesson,
                 step: step,
+                autoNarrate: settings.voiceEnabled &&
+                    settings.autoReadEnabled && !settings.calmMode,
+                onNarratePhase: settings.voiceEnabled
+                    ? (text) async {
+                        if (_serial == illustrationSerial && _tenFrameExample) {
+                          await _read(text);
+                        }
+                      }
+                    : null,
+                onStopNarration: () {
+                  // Disposing the old example must not stop the next task.
+                  if (_serial == illustrationSerial) _stopOwnedVoice();
+                },
                 reduceMotion: _quiet),
             if (step.type == TutoringStepType.showExample) ...[
               const SizedBox(height: 12),
               Wrap(spacing: 10, runSpacing: 8, children: [
-                OutlinedButton.icon(
+                if (widget.lesson.concept != GuidedLessonConcept.bridgeTen)
+                  OutlinedButton.icon(
                   onPressed: _replayExample,
                   icon: const Icon(Icons.replay_rounded),
                   label: const Text('Beispiel noch einmal'),
@@ -652,8 +705,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
             if (step.type == TutoringStepType.recap) ...[
               const SizedBox(height: 12),
               Text(
-                  '$_independentSolved neue Aufgaben selbst gelöst. '
-                  '${widget.discovery ? "Der Schulfortschritt bleibt getrennt." : "Nur selbstständige Antworten zählen im Schulfortschritt."}',
+                  '$_independentSolved ${_independentSolved == 1 ? "neue Aufgabe" : "neue Aufgaben"} selbst gelöst. '
+                  '${widget.discovery ? "Der Schulfortschritt bleibt getrennt." : "Hilfen und selbstständige Antworten werden getrennt erfasst."}',
                   style: _body),
             ],
             const SizedBox(height: 16),
@@ -670,13 +723,13 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
               ]),
             if (_passed && !fixedContinue) _continueButton(),
             const SizedBox(height: 16),
-            if (widget.appState.state.settings.voiceEnabled)
+            if (settings.voiceEnabled && !_tenFrameExample)
               LumoSpeechControls(
                 onRead: () => unawaited(
                     _read(_previousHelp ?? _feedback ?? step.instruction)),
                 showStopWhenIdle: true,
               )
-            else
+            else if (!settings.voiceEnabled)
               const Text(
                   'Die Stimme ist ausgeschaltet. '
                   'Du kannst die Erklärung hier lesen.',

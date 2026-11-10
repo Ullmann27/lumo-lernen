@@ -9,6 +9,7 @@
 // ════════════════════════════════════════════════════════════════════════
 
 import '../../../widgets/design/lumo_learning_module_frame.dart';
+import '../../../widgets/design/lumo_task_object_art.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import 'dart:math' as math;
 
@@ -417,6 +418,7 @@ class _WetterScreenState extends State<WetterScreen>
         // Stattdessen: grosser Wetter-Emoji auf himmelartigem RadialGradient,
         // pro Wetter eigene Stimmung.
         return _WetterBubble(
+          name: _correctWetter.name,
           icon: _correctWetter.icon,
           colors: _himmelGradient(_correctWetter.name),
           size: 220,
@@ -425,6 +427,7 @@ class _WetterScreenState extends State<WetterScreen>
         );
       case _WetterFrageTyp.kleidungWaehlen:
         return _WetterBubble(
+          name: _correctWetter.name,
           icon: _correctWetter.icon,
           colors: _himmelGradient(_correctWetter.name),
           size: 180,
@@ -601,12 +604,14 @@ class _WetterScreenState extends State<WetterScreen>
 /// RadialGradient, mit optionaler Atem-Animation.
 class _WetterBubble extends StatelessWidget {
   const _WetterBubble({
+    this.name,
     required this.icon,
     required this.colors,
     required this.size,
     required this.bouncing,
     required this.bounceCtrl,
   });
+  final String? name;
   final String icon;
   final List<Color> colors;
   final double size;
@@ -635,7 +640,7 @@ class _WetterBubble extends StatelessWidget {
           ),
         ],
       ),
-      child: Text(icon, style: TextStyle(fontSize: size * 0.55, height: 1.0)),
+      child: LumoTaskObjectArt(name: name, emoji: icon, size: size * 0.68),
     );
     if (!bouncing) return card;
     return AnimatedBuilder(

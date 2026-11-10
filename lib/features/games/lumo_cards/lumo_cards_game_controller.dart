@@ -21,6 +21,7 @@ import 'learning_question_repository.dart';
 import 'lumo_cards_deck.dart';
 import 'lumo_cards_bot_policy.dart';
 import 'lumo_cards_models.dart';
+import 'lumo_cards_session.dart';
 import 'lumo_cards_rules.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
@@ -31,8 +32,12 @@ class LumoCardsGameController extends ChangeNotifier {
     this.vsBot = true,
     this.enableVoice = true,
     this.grade = 1,
+    LumoCardsDifficulty difficulty = LumoCardsDifficulty.clever,
+    LumoCardsStyle style = LumoCardsStyle.planner,
     int? seed,
-  })  : _rng = seed == null ? Random() : Random(seed),
+  })  : _difficulty = difficulty,
+        _style = style,
+        _rng = seed == null ? Random() : Random(seed),
         _player1Name = player1Name,
         _player2Name = player2Name {
     _startNewGame();
@@ -48,10 +53,57 @@ class LumoCardsGameController extends ChangeNotifier {
   /// Sprachausgabe an/aus.
   final bool enableVoice;
   final int grade;
+  LumoCardsDifficulty _difficulty;
+  LumoCardsStyle _style;
+  LumoCardsDifficulty get difficulty => _difficulty;
+  LumoCardsStyle get style => _style;
+
+  /// Apply to the next bot decision without redealing or changing the board.
+  void configureOpponent({
+    required LumoCardsDifficulty difficulty,
+    required LumoCardsStyle style,
+  }) {
+    if (_disposed || !vsBot) return;
+    _difficulty = difficulty;
+    _style = style;
+    notifyListeners();
+  }
 
   static const int _initialHandSize = 7;
 
   late LumoCardsGameState _state;
+  late String _roundId;
+  String get roundId => _roundId;
+
+  LumoCardsRound snapshot({
+    bool callRewarded = false,
+    int rewardedLearningStars = 0,
+    bool callRewardSettled = false,
+  }) => LumoCardsRound(
+    id: _roundId,
+    state: _state,
+    grade: grade,
+    vsBot: vsBot,
+    difficulty: _difficulty,
+    style: _style,
+    callRewarded: callRewarded,
+    rewardedLearningStars: rewardedLearningStars,
+    callRewardSettled: callRewardSettled,
+  );
+
+  /// Restoring never auto-plays behind a loading screen or on Android resume.
+  void restoreRound(LumoCardsRound round) {
+    if (_disposed || round.grade != grade || round.vsBot != vsBot) return;
+    turnClock.cancel();
+    turnClock.pause();
+    _roundId = round.id;
+    _state = round.state;
+    _difficulty = round.difficulty;
+    _style = round.style;
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
+
   LumoCardsGameState get state => _state;
 
   /// Bot-Timer (cancelled on dispose).
@@ -70,6 +122,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Startet eine neue Runde mit frischem Deck.
   void _startNewGame() {
+    _roundId = LumoCardsRound.newId();
     final deck = LumoCardsDeck.buildDeck(rng: _rng);
     // 7 Karten pro Spieler.
     final (hand1, rest1) = LumoCardsDeck.draw(deck, _initialHandSize);
@@ -378,13 +431,15 @@ class LumoCardsGameController extends ChangeNotifier {
   }
 
   /// Lumo sees only its own hand and public opponent card count.
-  /// Each turn uses randomized, grade-appropriate legal tactics.
+  /// Playing strength is independent of the school year used for questions.
   LumoCard? _chooseBestPlay(LumoCardsGameState s, LumoCard topCard) =>
       LumoCardsBotPolicy.select(
         ownHand: s.currentPlayer.hand,
         topCard: topCard,
         selectedColor: s.selectedColor,
         opponentCardCount: s.otherPlayer.hand.length,
+        difficulty: _difficulty,
+        style: _style,
         grade: grade,
         rng: _rng,
       );

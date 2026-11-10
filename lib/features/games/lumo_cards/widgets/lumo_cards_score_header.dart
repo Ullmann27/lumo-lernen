@@ -10,6 +10,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
     this.onEmoji,
     this.onSettings,
     this.onAudioSettings,
+    this.onOpponentSettings,
   });
 
   final int round;
@@ -19,11 +20,12 @@ class LumoCardsScoreHeader extends StatelessWidget {
   final VoidCallback? onEmoji;
   final VoidCallback? onSettings;
   final VoidCallback? onAudioSettings;
+  final VoidCallback? onOpponentSettings;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final narrow = constraints.maxWidth < 320;
+      final narrow = constraints.maxWidth < (onOpponentSettings == null ? 320 : 350);
       final titleRow = Row(children: [
         IconButton(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -59,6 +61,14 @@ class LumoCardsScoreHeader extends StatelessWidget {
   }
 
   List<Widget> get actions => [
+        if (onOpponentSettings != null)
+          IconButton(
+              key: const ValueKey('cards-opponent-settings'),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+              visualDensity: VisualDensity.standard,
+              tooltip: 'Lumos Spielstärke',
+              onPressed: onOpponentSettings,
+              icon: const Icon(Icons.psychology_rounded)),
         if (onEmoji != null)
           IconButton(
               constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
