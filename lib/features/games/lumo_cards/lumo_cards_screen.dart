@@ -35,6 +35,7 @@ import 'widgets/lumo_jump_celebration.dart';
 import 'widgets/lumo_card_fly.dart';
 import 'widgets/lumo_card_table.dart';
 import 'widgets/lumo_cards_score_header.dart';
+import 'widgets/lumo_cards_opponent_settings.dart';
 import 'widgets/lumo_color_arrows.dart';
 import 'widgets/lumo_color_picker.dart';
 import 'widgets/lumo_confetti.dart';
@@ -369,6 +370,31 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     );
   }
 
+  Future<void> _openOpponentSettings() async {
+    if (!mounted || !widget.vsBot) return;
+    _controller.turnClock.pause();
+    await showModalBottomSheet<void>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      backgroundColor: const Color(0xFF071B3B),
+      builder: (context) => ConstrainedBox(
+        constraints: BoxConstraints(
+          maxHeight: MediaQuery.sizeOf(context).height * .90,
+        ),
+        child: LumoCardsOpponentSettings(
+          difficulty: _controller.difficulty,
+          style: _controller.style,
+          onChanged: (difficulty, style) => _controller.configureOpponent(
+            difficulty: difficulty,
+            style: style,
+          ),
+        ),
+      ),
+    );
+    // An Android lifecycle pause remains in force; resume is explicit.
+  }
+
   @override
   Widget build(BuildContext context) {
     final s = _controller.state;
@@ -423,6 +449,8 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                           padding: EdgeInsets.zero,
                           tintColor: const Color(0xFF0B2A5C),
                           child: LumoCardsScoreHeader(
+                            onOpponentSettings:
+                                widget.vsBot ? _openOpponentSettings : null,
                             round: 1,
                             totalRounds: 1,
                             targetPoints: widget.appState.state.stars,

@@ -146,6 +146,18 @@ void main() {
       await tester.pump(const Duration(milliseconds: 1000));
       await tester.pump(const Duration(milliseconds: 600));
       await tester.pump(const Duration(milliseconds: 400));
+      // A completed game now highlights all four winning stones before
+      // opening its result. During that finite replay no column is playable.
+      // Advance actual UI time until the next turn or result, with a hard
+      // deadline so a stuck animation still fails this complete-game test.
+      for (var frame = 0; frame < 30; frame++) {
+        if (find.byType(AlertDialog).evaluate().isNotEmpty ||
+            buttons.any((f) =>
+                tester.widget<IconButton>(f).onPressed != null)) {
+          break;
+        }
+        await tester.pump(const Duration(milliseconds: 100));
+      }
       turns++;
     }
     expect(find.byType(AlertDialog), findsOneWidget);
