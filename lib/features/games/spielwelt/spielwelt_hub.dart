@@ -293,6 +293,99 @@ class _SpielweltHubState extends State<SpielweltHub>
   }
 }
 
+class _HubSideRail extends StatelessWidget {
+  const _HubSideRail({
+    required this.onHome,
+    required this.onLearn,
+    required this.onTests,
+    required this.onProfile,
+  });
+
+  final VoidCallback onHome;
+  final VoidCallback onLearn;
+  final VoidCallback onTests;
+  final VoidCallback onProfile;
+
+  @override
+  Widget build(BuildContext context) {
+    final entries = <(IconData, String, VoidCallback?, bool)>[
+      (Icons.home_rounded, 'Start', onHome, false),
+      (Icons.school_rounded, 'Lernen', onLearn, false),
+      (Icons.sports_esports_rounded, 'Spielen', null, true),
+      (Icons.fact_check_rounded, 'Tests', onTests, false),
+      (Icons.person_rounded, 'Profil', onProfile, false),
+    ];
+    return DecoratedBox(
+      decoration: BoxDecoration(
+        color: const Color(0xE60A2A58),
+        borderRadius: BorderRadius.circular(22),
+        border: Border.all(color: const Color(0x9953DDFD)),
+        boxShadow: const [
+          BoxShadow(color: Color(0x66020A24), blurRadius: 20, offset: Offset(0, 8)),
+        ],
+      ),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            for (final entry in entries)
+              Semantics(
+                button: entry.$3 != null,
+                selected: entry.$4,
+                label: entry.$2,
+                child: InkWell(
+                  key: ValueKey('spielwelt-rail-${entry.$2.toLowerCase()}'),
+                  onTap: entry.$3,
+                  borderRadius: BorderRadius.circular(16),
+                  child: Container(
+                    constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
+                    decoration: entry.$4
+                        ? BoxDecoration(
+                            color: const Color(0xFF21BCE8),
+                            borderRadius: BorderRadius.circular(16),
+                            boxShadow: const [
+                              BoxShadow(color: Color(0x8853DDFD), blurRadius: 12),
+                            ],
+                          )
+                        : null,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Icon(entry.$1,
+                            size: 23,
+                            color: entry.$4
+                                ? const Color(0xFF061A3D)
+                                : LumoVisualTokens.white),
+                        const SizedBox(height: 2),
+                        FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(
+                            entry.$2,
+                            maxLines: 1,
+                            style: TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w900,
+                              color: entry.$4
+                                  ? const Color(0xFF061A3D)
+                                  : LumoVisualTokens.white,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
 // ───────────────────────────── Logo ─────────────────────────────
 
 class _HubLogo extends StatelessWidget {
@@ -523,7 +616,7 @@ class _GlassPortalState extends State<_GlassPortal> {
                   child: AspectRatio(
                     aspectRatio: 1.62,
                     child: _LivePreview(
-                      game: game?.id,
+                      portal: portal,
                       clock: widget.clock,
                       phase: widget.phase,
                     ),
@@ -555,48 +648,54 @@ class _GlassPortalState extends State<_GlassPortal> {
 /// Lebende Vorschau: jede Welt bewegt sich auf ihre Art.
 class _LivePreview extends StatelessWidget {
   const _LivePreview(
-      {required this.game, required this.clock, required this.phase});
-  final GameId? game;
+      {required this.portal, required this.clock, required this.phase});
+  final SpielweltPortal portal;
   final Animation<double> clock;
   final double phase;
 
+  GameId? get game => portal.game?.id;
+
   @override
   Widget build(BuildContext context) {
-    // Lumo's original quiz host appears on a matching holographic stage.
-    final Widget image = game == null
-        ? Stack(fit: StackFit.expand, children: [
-            const DecoratedBox(
-              decoration: BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                  colors: [
-                    Color(0xFF187EC3), Color(0xFF45278D), Color(0xFF061A48),
-                  ],
-                ),
-              ),
+    final Widget image;
+    if (portal.specialId == 'connectFour') {
+      image = const _ConnectFourPreview();
+    } else if (portal.specialId == 'quizShow') {
+      image = Stack(fit: StackFit.expand, children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Color(0xFF187EC3), Color(0xFF45278D), Color(0xFF061A48),
+              ],
             ),
-            const Align(
-              alignment: Alignment.topRight,
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Icon(Icons.auto_awesome_rounded,
-                  size: 38, color: Color(0xFFFFDF8E)),
-              ),
-            ),
-            Image.asset(
-              'assets/lumo_design/fox/fox_quiz_host_1982.webp',
-              fit: BoxFit.contain,
-              alignment: Alignment.center,
-              filterQuality: FilterQuality.high,
-            ),
-          ])
-        : Image.asset(
-            _artFor(game!),
-            fit: BoxFit.cover,
-            filterQuality: FilterQuality.medium,
-            gaplessPlayback: true,
-          );
+          ),
+        ),
+        const Align(
+          alignment: Alignment.topRight,
+          child: Padding(
+            padding: EdgeInsets.all(10),
+            child: Icon(Icons.auto_awesome_rounded,
+              size: 38, color: Color(0xFFFFDF8E)),
+          ),
+        ),
+        Image.asset(
+          'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+          fit: BoxFit.contain,
+          alignment: Alignment.center,
+          filterQuality: FilterQuality.high,
+        ),
+      ]);
+    } else {
+      image = Image.asset(
+        _artFor(game!),
+        fit: BoxFit.cover,
+        filterQuality: FilterQuality.medium,
+        gaplessPlayback: true,
+      );
+    }
     return RepaintBoundary(
       child: AnimatedBuilder(
         animation: clock,
@@ -635,7 +734,9 @@ class _LivePreview extends StatelessWidget {
               transform: m,
               child: child,
             ),
-            if (game == null || game == GameId.treasure || game == GameId.rhythm)
+            if (portal.specialId == 'quizShow' ||
+                game == GameId.treasure ||
+                game == GameId.rhythm)
               CustomPaint(
                 painter: _GlitterPainter(
                   t: t,
@@ -660,6 +761,69 @@ class _LivePreview extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ConnectFourPreview extends StatelessWidget {
+  const _ConnectFourPreview();
+
+  @override
+  Widget build(BuildContext context) {
+    return DecoratedBox(
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0xFF183E87), Color(0xFF071A3D)],
+        ),
+      ),
+      child: Padding(
+        padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
+        child: LayoutBuilder(builder: (context, c) {
+          const columns = 7;
+          const rows = 6;
+          final cell = math.min(c.maxWidth / columns, c.maxHeight / rows);
+          return Center(
+            child: SizedBox(
+              width: cell * columns,
+              height: cell * rows,
+              child: CustomPaint(painter: _ConnectFourBoardPainter()),
+            ),
+          );
+        }),
+      ),
+    );
+  }
+}
+
+class _ConnectFourBoardPainter extends CustomPainter {
+  const _ConnectFourBoardPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    const cols = 7;
+    const rows = 6;
+    final cell = math.min(size.width / cols, size.height / rows);
+    final board = Paint()..color = const Color(0xFF1661B8);
+    final hole = Paint()..color = const Color(0xFF08224C);
+    final cyan = Paint()..color = const Color(0xFF53DDFD);
+    final gold = Paint()..color = const Color(0xFFFFD166);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(cell * .18)),
+      board,
+    );
+    for (var row = 0; row < rows; row++) {
+      for (var col = 0; col < cols; col++) {
+        final center = Offset((col + .5) * cell, (row + .5) * cell);
+        var paint = hole;
+        if ((row == 5 && col.isEven) || (row == 4 && col == 3)) paint = cyan;
+        if ((row == 5 && col.isOdd) || (row == 4 && col == 2)) paint = gold;
+        canvas.drawCircle(center, cell * .34, paint);
+      }
+    }
+  }
+
+  @override
+  bool shouldRepaint(_ConnectFourBoardPainter oldDelegate) => false;
 }
 
 class _GlitterPainter extends CustomPainter {
