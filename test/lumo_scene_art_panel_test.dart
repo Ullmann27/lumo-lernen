@@ -3,11 +3,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/widgets/design/lumo_scene_art_panel.dart';
 
 void main() {
-  test('each scene declares its distinct cutout and accessible description', () {
+  test('each scene declares distinct artwork and an accessible description', () {
     final paths = LumoSceneArt.values.map((scene) => scene.assetPath).toSet();
     expect(paths, hasLength(LumoSceneArt.values.length));
     for (final scene in LumoSceneArt.values) {
-      expect(scene.assetPath, endsWith('_cutout.png'));
+      expect(
+        scene.assetPath,
+        scene == LumoSceneArt.seasons
+            ? equals('assets/lumo_design/fox/fox_teacher_stick.png')
+            : endsWith('_cutout.png'),
+      );
       expect(scene.description.trim(), isNotEmpty);
     }
   });

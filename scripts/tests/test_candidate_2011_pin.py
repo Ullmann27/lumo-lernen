@@ -17,6 +17,7 @@ POLICY = importlib.util.module_from_spec(SPEC)
 SPEC.loader.exec_module(POLICY)
 ORIGIN = "https://github.com/Ullmann27/lumo-godot.git"
 CANDIDATE_REVISION = "a81ddf12d594cc252caef7503162e89c6b26e1c7"
+INTEGRATION_2014_REVISION = "207bfbc5377c0f3e8be800854c83ddf2110ac3f6"
 PREVIOUS_REVISION = "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41"
 HISTORICAL_POLICY_SHA256 = "be2e5714396b81f4797051394fb8ebbbc484f65a5deb1b71cc234f17ba3ae1de"
 
@@ -35,8 +36,8 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2013, "47bef06db45d61d50ecd06d0b0cd0a69b9a25917"))
-        self.assertGreater(build, 2011)
+        self.assertEqual((build, revision), (2014, INTEGRATION_2014_REVISION))
+        self.assertGreater(build, 2013)
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(
@@ -59,8 +60,37 @@ class Candidate2011PinTests(unittest.TestCase):
             (2013, "47bef06db45d61d50ecd06d0b0cd0a69b9a25917"),
         )
 
+    def test_2014_only_accepts_its_exact_reviewed_native_identity(self):
+        self.assertEqual(
+            POLICY.verify(version(2014), config(INTEGRATION_2014_REVISION)),
+            (2014, INTEGRATION_2014_REVISION),
+        )
+        old_revisions = {sha for build, sha in POLICY.APPROVED.items() if build < 2014}
+        invalid = old_revisions | {"0" * 40, "", INTEGRATION_2014_REVISION[:8]}
+        for revision in sorted(invalid):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(2014), config(revision))
+        # A new integration must never silently replace any historical build.
+        for build in sorted(k for k in POLICY.APPROVED if k < 2014):
+            with self.subTest(historical_build=build):
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(build), config(INTEGRATION_2014_REVISION))
+
+    def test_2014_still_rejects_foreign_origin_engine_and_extra_keys(self):
+        for field, value, message in (
+            ("repository", "https://example.invalid/game.git", "origin"),
+            ("engine", "4.7", "engine"),
+            ("skip_verification", True, "config keys"),
+        ):
+            with self.subTest(field=field):
+                data = json.loads(config(INTEGRATION_2014_REVISION))
+                data[field] = value
+                with self.assertRaisesRegex(ValueError, message):
+                    POLICY.verify(version(2014), json.dumps(data))
+
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013)}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -97,7 +127,7 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 9999):
+        for build in (2006, 2007, 2008, 2009, 2010, 2015, 9999):
             with self.subTest(build=build):
                 with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
                     POLICY.verify(version(build), config())

@@ -121,7 +121,7 @@ jobs:
           retention-days: 30
       - name: Full Flutter regression suite including all 2014 captures
         env:
-          REQUIRE_ALL_TESTS: ${{ github.head_ref == 'lumo-2014/integration-20261110' }}
+          REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110') }}
         run: |
           set -euo pipefail
           if [ "$REQUIRE_ALL_TESTS" = true ]; then
@@ -130,7 +130,7 @@ jobs:
             flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
           fi
       - uses: actions/upload-artifact@v4
-        if: always() && github.head_ref == 'lumo-2014/integration-20261110'
+        if: always() && (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
         with:
           name: lumo-2014-all-flutter-tests-and-captures
           path: .ci-results/full-2014/
@@ -163,8 +163,25 @@ jobs:
           .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           command -v rg
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
+      - name: Install verified Gradle for the real build-contract probe
+        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
+          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 "$RUNNER_TEMP/lumo-gradle.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-gradle.zip" -d "$RUNNER_TEMP/lumo-verified-gradle"
+          echo "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/bin" >> "$GITHUB_PATH"
       - name: Verify all build and preservation contracts
-        run: .ci-python/bin/python -m unittest discover -s scripts/tests -v
+        env:
+          REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110') }}
+        run: |
+          set -euo pipefail
+          mkdir -p .ci-results
+          .ci-python/bin/python -m unittest discover -s scripts/tests -v 2>&1 | tee .ci-results/build-contracts.log
+          if [ "$REQUIRE_ALL_TESTS" = true ] && grep -Eq '^OK \(skipped=|^FAILED.*skipped=' .ci-results/build-contracts.log; then
+            echo 'Build acceptance rejects skipped contract tests.' >&2
+            exit 1
+          fi
       - name: Code-level Android probe regression with verified image dependencies
         run: |
           set -euo pipefail
@@ -213,7 +230,7 @@ jobs:
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
       - name: Require actual gameplay gates on the exact 2014 native source
-        if: github.head_ref == 'lumo-2014/integration-20261110'
+        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
         run: |
@@ -239,7 +256,7 @@ jobs:
           bash tools/validate_project.sh 2>&1 | tee "$native_logs/legacy-gameplay.log"
           LUMO_2014_LOG_DIR="$native_logs/2014" bash tools/validate_2014.sh
       - uses: actions/upload-artifact@v4
-        if: always() && github.head_ref == 'lumo-2014/integration-20261110'
+        if: always() && (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
         with:
           name: lumo-2014-pinned-native-gameplay
           path: acceptance-native/
@@ -358,7 +375,7 @@ jobs:
 
   update-from-2013:
     needs: [verify-and-build, android-tour]
-    if: github.head_ref == 'lumo-2014/integration-20261110'
+    if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
     permissions:
       contents: read
       actions: read
