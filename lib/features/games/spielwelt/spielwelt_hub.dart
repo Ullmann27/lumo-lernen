@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../../domain/games/game_world.dart';
+import 'spielwelt_routes.dart';
 import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
@@ -23,7 +24,7 @@ class SpielweltPortal {
   const SpielweltPortal.quizShow({required this.onOpen})
       : game = null,
         state = const GameUnlockState(unlocked: true),
-        semanticTitle = null,
+        semanticTitle = 'Wer wird Lumo-Meister?',
         specialId = 'quizShow';
 
   /// Vier Gewinnt is a first-class game in the hub reference, not a hidden
@@ -40,11 +41,24 @@ class SpielweltPortal {
   final String? specialId;
 
   String get identity => game?.id.name ?? specialId ?? 'special';
-  String get title => switch (specialId) {
-        'connectFour' => '4 Gewinnt',
-        'quizShow' => 'Wer wird Lumo-Meister?',
-        _ => game?.title ?? 'Lumo Spiel',
-      };
+  /// Visible hub-tile label. Product names stay on [semanticTitle].
+  String get title {
+    switch (identity) {
+      case 'quizShow':
+        return 'Quizshow';
+      case 'connectFour':
+        return '4 Gewinnt';
+      case 'rhythm':
+        return 'Rhythm';
+      default:
+        break;
+    }
+    try {
+      return SpielweltRoutes.byIdentity(identity).title;
+    } catch (_) {
+      return game?.title ?? 'Lumo Spiel';
+    }
+  }
   String get tagline => switch (specialId) {
         'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
         'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
@@ -92,29 +106,6 @@ class SpielweltHub extends StatefulWidget {
   State<SpielweltHub> createState() => _SpielweltHubState();
 }
 
-/// Lage der Elemente im Bild 01 (1672 × 941) als Anteile von Breite/Höhe.
-class _Frac {
-  const _Frac(this.left, this.top, this.width, this.height);
-  final double left, top, width, height;
-}
-
-const double _refAspect = 1672 / 941;
-
-const Map<String, _Frac> _wideSlots = {
-  // Reference page 34: seven world portals around Lumo, Kart on the right,
-  // 4 Gewinnt + Quizshow below the centre. The left rail stays separate.
-  'memory': _Frac(.105, .285, .150, .235),
-  'cards': _Frac(.265, .185, .145, .230),
-  'puzzle': _Frac(.425, .125, .145, .230),
-  'jumpRun': _Frac(.585, .185, .145, .230),
-  'rhythm': _Frac(.745, .285, .150, .235),
-  'treasure': _Frac(.145, .555, .155, .235),
-  'build': _Frac(.700, .555, .155, .235),
-  'kart': _Frac(.835, .600, .150, .265),
-  'connectFour': _Frac(.355, .715, .135, .165),
-  'quizShow': _Frac(.510, .715, .135, .165),
-};
-
 class _SpielweltHubState extends State<SpielweltHub>
     with SingleTickerProviderStateMixin {
   // Ein gemeinsamer Takt für Glühen, Funkeln und lebende Vorschauen.
@@ -145,12 +136,19 @@ class _SpielweltHubState extends State<SpielweltHub>
     super.dispose();
   }
 
-  Widget _portal(SpielweltPortal portal, int index, {double? width}) =>
+  Widget _portal(
+    SpielweltPortal portal,
+    int index, {
+    double? width,
+    _PortalChrome chrome = _PortalChrome.card,
+  }) =>
       _GlassPortal(
         key: ValueKey('spielwelt-portal-${portal.identity}'),
         portal: portal,
         clock: _clock,
         phase: index / math.max(1, widget.portals.length),
+        chrome: chrome,
+        reduceMotion: widget.reduceMotion,
         onTap: () {
           if (portal.state.unlocked &&
               portal.playable) {
@@ -175,218 +173,139 @@ class _SpielweltHubState extends State<SpielweltHub>
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final width = constraints.maxWidth;
-      final viewHeight = MediaQuery.sizeOf(context).height;
-      final wide = width >= 720 && width / math.max(viewHeight, 1) >= 1.15;
-      // The reference hub is specifically a wide/Fold composition with all
-      // ten game entries. Never fall back to the phone grid merely because
-      // Kart, Connect Four and Quizshow are present.
-      return wide ? _buildWide(width) : _buildNarrow(width);
+      final height = MediaQuery.sizeOf(context).height;
+      return _buildTiles(width, height);
     });
   }
 
-  // Quer (Fold offen quer, Tablet, Handy quer): zehn echte Zugänge wie Referenz 24.
-  Widget _buildWide(double width) {
-    final height = width / _refAspect;
-    Widget at(_Frac f, Widget child) => Positioned(
-          left: f.left * width,
-          top: f.top * height,
-          width: f.width * width,
-          height: f.height * height,
-          child: child,
-        );
-    final byId = {for (final p in widget.portals) p.identity: p};
-    return SizedBox(
-      key: const ValueKey('spielwelt-wide-reference-hub'),
-      width: width,
-      height: height,
-      child: Stack(clipBehavior: Clip.none, children: [
-        Positioned.fill(child: _Sparkles(clock: _clock)),
-        at(
-          const _Frac(.012, .085, .078, .790),
-          _HubSideRail(
-            onHome: widget.onHome,
-            onLearn: widget.onLearn,
-            onTests: widget.onTests,
-            onProfile: widget.onProgress,
-          ),
-        ),
-        at(const _Frac(.315, .015, .370, .185),
-            _HubLogo(clock: _clock, compact: false)),
-        // Central island/stage and Lumo are deliberately kept clear of portals.
-        at(const _Frac(.365, .500, .270, .115), const _StoneStage()),
-        at(const _Frac(.385, .285, .230, .385),
-            Center(child: _fox(.385 * height))),
-        for (var i = 0; i < _wideSlots.entries.length; i++)
-          if (byId[_wideSlots.entries.elementAt(i).key] != null)
-            at(
-              _wideSlots.entries.elementAt(i).value,
-              _portal(
-                byId[_wideSlots.entries.elementAt(i).key]!,
-                i,
-                width: _wideSlots.entries.elementAt(i).value.width * width,
-              ),
-            ),
-        at(const _Frac(.365, .625, .270, .070),
-            _AdventureButton(clock: _clock, onTap: widget.onAdventure)),
-        at(const _Frac(.105, .900, .870, .080),
-            _HubBar(
-              onParents: widget.onParents,
-              onProgress: widget.onProgress,
-              onSettings: widget.onSettings,
-              showSlogans: false,
-            )),
-      ]),
-    );
-  }
-
   // Hochformat (Handy, Fold zu): Logo, Lumo mit Knopf, Portale in Spalten.
-  Widget _buildNarrow(double width) {
-    final columns = width >= 560 ? 3 : 2;
+  Widget _buildTiles(double width, double viewportHeight) {
+    final columns = SpielweltLayout.tileColumns(width);
     const gap = 12.0;
     final tileWidth = (width - 24 - gap * (columns - 1)) / columns;
-    final tileHeight = tileWidth * 0.86;
-    final foxSize = math.min(width * .62, 300.0);
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
-      child: Column(mainAxisSize: MainAxisSize.min, children: [
-        SizedBox(
-          height: math.min(width * .42, 190),
-          child: _HubLogo(clock: _clock, compact: true),
-        ),
-        SizedBox(
-          height: foxSize * 1.02,
-          child: Stack(alignment: Alignment.bottomCenter, children: [
-            Positioned.fill(child: _Sparkles(clock: _clock)),
-            Positioned(
-              bottom: 0,
-              width: foxSize * 1.1,
-              height: foxSize * .22,
-              child: const _StoneStage(),
-            ),
-            Positioned(bottom: foxSize * .06, child: _fox(foxSize * .92)),
-          ]),
-        ),
-        const SizedBox(height: 10),
-        SizedBox(
-          height: 60,
-          width: math.min(width - 24, 380),
-          child: _AdventureButton(clock: _clock, onTap: widget.onAdventure),
-        ),
-        const SizedBox(height: 16),
-        Wrap(spacing: gap, runSpacing: gap, children: [
-          for (var i = 0; i < widget.portals.length; i++)
-            SizedBox(
-              width: tileWidth,
-              height: tileHeight,
-              child: _portal(widget.portals[i], i, width: tileWidth),
-            ),
-        ]),
-        const SizedBox(height: 14),
-        _HubBar(
-          onParents: widget.onParents,
-          onProgress: widget.onProgress,
-          onSettings: widget.onSettings,
-          showSlogans: width >= 360,
-        ),
-      ]),
-    );
-  }
-}
-
-class _HubSideRail extends StatelessWidget {
-  const _HubSideRail({
-    required this.onHome,
-    required this.onLearn,
-    required this.onTests,
-    required this.onProfile,
-  });
-
-  final VoidCallback onHome;
-  final VoidCallback onLearn;
-  final VoidCallback onTests;
-  final VoidCallback onProfile;
-
-  @override
-  Widget build(BuildContext context) {
-    final entries = <(IconData, String, VoidCallback?, bool)>[
-      (Icons.home_rounded, 'Start', onHome, false),
-      (Icons.school_rounded, 'Lernen', onLearn, false),
-      (Icons.sports_esports_rounded, 'Spielen', null, true),
-      (Icons.fact_check_rounded, 'Tests', onTests, false),
-      (Icons.person_rounded, 'Profil', onProfile, false),
-    ];
-    return DecoratedBox(
-      decoration: BoxDecoration(
-        color: const Color(0xE60A2A58),
-        borderRadius: BorderRadius.circular(22),
-        border: Border.all(color: const Color(0x9953DDFD)),
-        boxShadow: const [
-          BoxShadow(color: Color(0x66020A24), blurRadius: 20, offset: Offset(0, 8)),
-        ],
+    final tileHeight = tileWidth * 0.92;
+    var foxSize = math.min(width * .62, 300.0);
+    var logoHeight = math.min(width * .42, 190.0);
+    // Leave a strip of the first tile row visible on short / landscape
+    // canvases (Fold open landscape is only 560 dp tall).
+    final peek = math.min(tileHeight * 0.62, viewportHeight * 0.32);
+    const chrome = 10 + 60 + 16 + 28;
+    final budget = viewportHeight - peek - chrome;
+    final natural = logoHeight + foxSize * 1.08;
+    if (viewportHeight.isFinite &&
+        viewportHeight > 0 &&
+        budget > 160 &&
+        natural > budget) {
+      final scale = (budget / natural).clamp(0.52, 1.0);
+      logoHeight *= scale;
+      foxSize *= scale;
+    }
+    final reduce = widget.reduceMotion;
+    final content = Column(mainAxisSize: MainAxisSize.min, children: [
+      SizedBox(
+        height: logoHeight,
+        child: _HubLogo(clock: _clock, compact: true),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 5),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            for (final entry in entries)
-              Semantics(
-                button: entry.$3 != null,
-                selected: entry.$4,
-                label: entry.$2,
-                child: InkWell(
-                  key: ValueKey('spielwelt-rail-${entry.$2.toLowerCase()}'),
-                  onTap: entry.$3,
-                  borderRadius: BorderRadius.circular(16),
-                  child: Container(
-                    constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
-                    padding: const EdgeInsets.symmetric(vertical: 6, horizontal: 3),
-                    decoration: entry.$4
-                        ? BoxDecoration(
-                            color: const Color(0xFF21BCE8),
-                            borderRadius: BorderRadius.circular(16),
-                            boxShadow: const [
-                              BoxShadow(color: Color(0x8853DDFD), blurRadius: 12),
-                            ],
-                          )
-                        : null,
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Icon(entry.$1,
-                            size: 23,
-                            color: entry.$4
-                                ? const Color(0xFF061A3D)
-                                : LumoVisualTokens.white),
-                        const SizedBox(height: 2),
-                        FittedBox(
-                          fit: BoxFit.scaleDown,
-                          child: Text(
-                            entry.$2,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontFamily: 'Nunito',
-                              fontSize: 10,
-                              fontWeight: FontWeight.w900,
-                              color: entry.$4
-                                  ? const Color(0xFF061A3D)
-                                  : LumoVisualTokens.white,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
+      SizedBox(
+        height: foxSize * 1.08,
+        child: Stack(alignment: Alignment.bottomCenter, children: [
+          // Soft contact shadow + rim light sit behind Lumo, no blur stack.
+          Positioned(
+            bottom: foxSize * .02,
+            child: IgnorePointer(
+              child: Container(
+                width: foxSize * 1.18,
+                height: foxSize * .20,
+                decoration: const BoxDecoration(
+                  gradient: RadialGradient(colors: [
+                    Color(0x99010A22),
+                    Color(0x00010A22),
+                  ]),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: foxSize * .10,
+            child: IgnorePointer(
+              child: Container(
+                width: foxSize * 0.98,
+                height: foxSize * 1.02,
+                decoration: const BoxDecoration(
+                  shape: BoxShape.circle,
+                  gradient: RadialGradient(
+                    colors: [
+                      Color(0x8853DDFD),
+                      Color(0x33FFD86B),
+                      Color(0x00000000),
+                    ],
+                    stops: [0.32, 0.62, 1],
                   ),
                 ),
               ),
-          ],
-        ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            width: foxSize * 1.1,
+            height: foxSize * .22,
+            child: const _StoneStage(),
+          ),
+          Positioned(bottom: foxSize * .06, child: _fox(foxSize * .92)),
+        ]),
       ),
+      const SizedBox(height: 10),
+      SizedBox(
+        height: 60,
+        width: math.min(width - 24, 380),
+        child: _AdventureButton(clock: _clock, onTap: widget.onAdventure),
+      ),
+      const SizedBox(height: 16),
+      Wrap(spacing: gap, runSpacing: gap, children: [
+        for (var i = 0; i < widget.portals.length; i++)
+          SizedBox(
+            width: tileWidth,
+            height: tileHeight,
+            child: _portal(widget.portals[i], i, width: tileWidth),
+          ),
+      ]),
+      const SizedBox(height: 14),
+      _HubBar(
+        onParents: widget.onParents,
+        onProgress: widget.onProgress,
+        onSettings: widget.onSettings,
+        showSlogans: width >= 360,
+      ),
+    ]);
+    return Padding(
+      key: const ValueKey('spielwelt-narrow-hub'),
+      padding: const EdgeInsets.fromLTRB(12, 4, 12, 12),
+      child: Stack(children: [
+        Positioned.fill(
+          child: IgnorePointer(
+            child: RepaintBoundary(
+              child: reduce
+                  ? const CustomPaint(
+                      painter: _DepthLayerPainter(t: 0),
+                      child: SizedBox.expand(),
+                    )
+                  : AnimatedBuilder(
+                      animation: _clock,
+                      builder: (context, _) => CustomPaint(
+                        painter: _DepthLayerPainter(t: _clock.value),
+                        child: const SizedBox.expand(),
+                      ),
+                    ),
+            ),
+          ),
+        ),
+        if (!reduce)
+          Positioned.fill(child: _Sparkles(clock: _clock)),
+        content,
+      ]),
     );
   }
 }
-
-// ───────────────────────────── Logo ─────────────────────────────
 
 class _HubLogo extends StatelessWidget {
   const _HubLogo({required this.clock, required this.compact});
@@ -511,16 +430,26 @@ IconData _iconFor(GameId id) => switch (id) {
       GameId.kart => Icons.sports_motorsports_rounded,
     };
 
-String _artFor(GameId id) => switch (id) {
-      GameId.memory => 'assets/lumo_design/spielwelt/portal_memory.png',
-      GameId.cards => 'assets/lumo_design/spielwelt/portal_cards.png',
-      GameId.puzzle => 'assets/lumo_design/spielwelt/portal_puzzle.png',
-      GameId.jumpRun => 'assets/lumo_design/spielwelt/portal_jump_run.png',
-      GameId.rhythm => 'assets/lumo_design/spielwelt/portal_rhythm.png',
-      GameId.treasure => 'assets/lumo_design/spielwelt/portal_schatzsuche.png',
-      GameId.build => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
-      GameId.kart => 'assets/lumo_design/cards/game_kart.png',
-    };
+String _artFor(SpielweltPortal portal) {
+  if (portal.identity == 'puzzle') {
+    return 'assets/lumo_design/spielwelt/portal_puzzle.png';
+  }
+  final cover = SpielweltRoutes.coverFor(portal.identity);
+  if (cover.isNotEmpty) return cover;
+  return switch (portal.game?.id) {
+    GameId.memory => 'assets/lumo_design/spielwelt/portal_memory.png',
+    GameId.cards => 'assets/lumo_design/spielwelt/portal_cards.png',
+    GameId.puzzle => 'assets/lumo_design/spielwelt/portal_puzzle.png',
+    GameId.jumpRun => 'assets/lumo_design/spielwelt/portal_jump_run.png',
+    GameId.rhythm => 'assets/lumo_design/spielwelt/portal_rhythm.png',
+    GameId.treasure => 'assets/lumo_design/spielwelt/portal_schatzsuche.png',
+    GameId.build => 'assets/lumo_design/spielwelt/portal_bauwelt.png',
+    GameId.kart => 'assets/lumo_design/gameplay/kart_sonnenhafen_preview.webp',
+    _ => 'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+  };
+}
+
+enum _PortalChrome { card }
 
 class _GlassPortal extends StatefulWidget {
   const _GlassPortal({
@@ -529,12 +458,16 @@ class _GlassPortal extends StatefulWidget {
     required this.clock,
     required this.phase,
     required this.onTap,
+    this.chrome = _PortalChrome.card,
+    this.reduceMotion = false,
   });
 
   final SpielweltPortal portal;
   final Animation<double> clock;
   final double phase;
   final VoidCallback onTap;
+  final _PortalChrome chrome;
+  final bool reduceMotion;
 
   @override
   State<_GlassPortal> createState() => _GlassPortalState();
@@ -542,11 +475,12 @@ class _GlassPortal extends StatefulWidget {
 
 class _GlassPortalState extends State<_GlassPortal> {
   bool _pressed = false;
+  bool _hovered = false;
+  bool _focused = false;
 
   @override
   Widget build(BuildContext context) {
     final portal = widget.portal;
-    final game = portal.game;
     final open = portal.state.unlocked;
     final playable = portal.playable;
     final status = !playable
@@ -558,88 +492,178 @@ class _GlassPortalState extends State<_GlassPortal> {
       button: true,
       label: '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',
       excludeSemantics: true,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onTapDown: (_) => setState(() => _pressed = true),
-        onTapCancel: () => setState(() => _pressed = false),
-        onTapUp: (_) => setState(() => _pressed = false),
-        onTap: () {
-          HapticFeedback.selectionClick();
-          widget.onTap();
+      child: TweenAnimationBuilder<double>(
+        tween: Tween(begin: 0, end: _pressed ? 1 : 0),
+        duration: widget.reduceMotion
+            ? Duration.zero
+            : const Duration(milliseconds: 120),
+        curve: Curves.easeOut,
+        builder: (context, press, child) {
+          return Transform(
+            alignment: Alignment.center,
+            transform: Matrix4.identity()
+              ..setEntry(3, 2, 0.0013)
+              ..rotateX(0.055 * press)
+              ..translate(0.0, 5.0 * press)
+              ..scale(1 - 0.02 * press),
+            child: child,
+          );
         },
-        child: AnimatedScale(
-          scale: _pressed ? .96 : 1,
-          duration: const Duration(milliseconds: 120),
-          child: AnimatedBuilder(
-            animation: widget.clock,
-            builder: (context, child) {
-              final wave =
-                  math.sin((widget.clock.value + widget.phase) * 2 * math.pi);
-              return Transform.translate(
-                offset: Offset(0, wave * 2.5),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(26),
-                    boxShadow: [
-                      BoxShadow(
-                        color: LumoVisualTokens.cyan
-                            .withOpacity(.30 + .14 * wave),
-                        blurRadius: 18 + 6 * wave,
-                        spreadRadius: 1,
-                      ),
-                      const BoxShadow(
-                        color: Color(0x88020A24),
-                        blurRadius: 16,
-                        offset: Offset(0, 10),
-                      ),
-                    ],
-                  ),
-                  child: child,
-                ),
-              );
-            },
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(26),
-              child: Stack(fit: StackFit.expand, children: [
-                // Glaskörper mit Cyan-Kante und innerem Licht.
-                const DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topLeft,
-                      end: Alignment.bottomRight,
-                      colors: [Color(0xCC1A5AA8), Color(0xE00A2A66)],
-                    ),
-                  ),
-                ),
-                Positioned.fill(
-                  bottom: null,
-                  child: AspectRatio(
-                    aspectRatio: 1.62,
-                    child: _LivePreview(
-                      portal: portal,
-                      clock: widget.clock,
-                      phase: widget.phase,
-                    ),
-                  ),
-                ),
-                Align(
-                  alignment: Alignment.bottomCenter,
-                  child: _PortalLabel(portal: portal),
-                ),
-                const _GlassRim(),
-                if (!open || !playable)
-                  Positioned(
-                    top: 8,
-                    right: 8,
-                    child: _StatusChip(
-                      locked: !open,
-                      text: playable ? 'Gesperrt' : 'Bald',
-                    ),
-                  ),
-              ]),
+        child: AnimatedBuilder(
+          animation: widget.clock,
+          builder: (context, child) {
+            if (widget.reduceMotion) return child!;
+            final wave =
+                math.sin((widget.clock.value + widget.phase) * 2 * math.pi);
+            return Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.0008)
+                ..rotateY(wave * 0.025)
+                ..translate(0.0, wave * 1.6),
+              child: child,
+            );
+          },
+          child: _PortalChromeBox(
+            chrome: widget.chrome,
+            portal: portal,
+            pressed: _pressed,
+            highlighted: _hovered || _focused,
+            preview: _LivePreview(
+              portal: portal,
+              clock: widget.clock,
+              phase: widget.phase,
             ),
+            lockedChip: (!open || !playable)
+                ? _StatusChip(
+                    locked: !open,
+                    text: playable ? 'Gesperrt' : 'Bald',
+                  )
+                : null,
+            onHoverChanged: (v) => setState(() => _hovered = v),
+            onFocusChanged: (v) => setState(() => _focused = v),
+            onHighlightChanged: (v) => setState(() => _pressed = v),
+            onTap: () {
+              HapticFeedback.selectionClick();
+              widget.onTap();
+            },
           ),
         ),
+      ),
+    );
+  }
+}
+
+
+class _PortalChromeBox extends StatelessWidget {
+  const _PortalChromeBox({
+    required this.chrome,
+    required this.portal,
+    required this.preview,
+    required this.pressed,
+    required this.highlighted,
+    required this.onHoverChanged,
+    required this.onFocusChanged,
+    required this.onHighlightChanged,
+    required this.onTap,
+    this.lockedChip,
+  });
+
+  final _PortalChrome chrome;
+  final SpielweltPortal portal;
+  final Widget preview;
+  final bool pressed;
+  final bool highlighted;
+  final ValueChanged<bool> onHoverChanged;
+  final ValueChanged<bool> onFocusChanged;
+  final ValueChanged<bool> onHighlightChanged;
+  final VoidCallback onTap;
+  final Widget? lockedChip;
+
+  @override
+  Widget build(BuildContext context) {
+    return _card();
+  }
+
+  Widget _card() {
+    const radius = 26.0;
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 120),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        gradient: const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color(0xFF3A8AE0),
+            Color(0xFF134A9C),
+            Color(0xFF071E52),
+          ],
+          stops: [0, 0.46, 1],
+        ),
+        border: Border.all(
+          color: highlighted ? const Color(0xFFF5FDFF) : const Color(0xCC8EE9FF),
+          width: highlighted ? 2.6 : 2.0,
+        ),
+        boxShadow: [
+          BoxShadow(
+            color: const Color(0x99010A22),
+            blurRadius: pressed ? 6 : 18,
+            offset: Offset(0, pressed ? 3 : 11),
+          ),
+          BoxShadow(
+            color: highlighted
+                ? const Color(0xCC53DDFD)
+                : const Color(0x6637D2FD),
+            blurRadius: highlighted ? 22 : (pressed ? 8 : 14),
+            offset: Offset(0, pressed ? 2 : 6),
+          ),
+        ],
+      ),
+      child: Material(
+        color: Colors.transparent,
+        borderRadius: BorderRadius.circular(radius),
+        clipBehavior: Clip.antiAlias,
+        child: Stack(fit: StackFit.expand, children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(8, 8, 8, 7),
+            child: Column(children: [
+              Expanded(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(16),
+                    border: Border.all(
+                      color: const Color(0x99010A22),
+                      width: 1.4,
+                    ),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(15),
+                    child: Stack(fit: StackFit.expand, children: [
+                      preview,
+                      if (lockedChip != null)
+                        Positioned(top: 6, right: 6, child: lockedChip!),
+                    ]),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 7),
+              _PortalLabel(portal: portal),
+            ]),
+          ),
+          const _GlassRim(),
+          Positioned.fill(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(radius),
+              splashColor: const Color(0x88FFFFFF),
+              highlightColor: const Color(0x3353DDFD),
+              onHover: onHoverChanged,
+              onFocusChange: onFocusChanged,
+              onHighlightChanged: onHighlightChanged,
+              onTap: onTap,
+            ),
+          ),
+        ]),
       ),
     );
   }
@@ -657,45 +681,12 @@ class _LivePreview extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Widget image;
-    if (portal.specialId == 'connectFour') {
-      image = const _ConnectFourPreview();
-    } else if (portal.specialId == 'quizShow') {
-      image = Stack(fit: StackFit.expand, children: [
-        const DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-              colors: [
-                Color(0xFF187EC3), Color(0xFF45278D), Color(0xFF061A48),
-              ],
-            ),
-          ),
-        ),
-        const Align(
-          alignment: Alignment.topRight,
-          child: Padding(
-            padding: EdgeInsets.all(10),
-            child: Icon(Icons.auto_awesome_rounded,
-              size: 38, color: Color(0xFFFFDF8E)),
-          ),
-        ),
-        Image.asset(
-          'assets/lumo_design/fox/fox_quiz_host_1982.webp',
-          fit: BoxFit.contain,
-          alignment: Alignment.center,
-          filterQuality: FilterQuality.high,
-        ),
-      ]);
-    } else {
-      image = Image.asset(
-        _artFor(game!),
-        fit: BoxFit.cover,
-        filterQuality: FilterQuality.medium,
-        gaplessPlayback: true,
-      );
-    }
+    final Widget image = Image.asset(
+      _artFor(portal),
+      fit: BoxFit.cover,
+      filterQuality: FilterQuality.medium,
+      gaplessPlayback: true,
+    );
     return RepaintBoundary(
       child: AnimatedBuilder(
         animation: clock,
@@ -763,69 +754,6 @@ class _LivePreview extends StatelessWidget {
   }
 }
 
-class _ConnectFourPreview extends StatelessWidget {
-  const _ConnectFourPreview();
-
-  @override
-  Widget build(BuildContext context) {
-    return DecoratedBox(
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [Color(0xFF183E87), Color(0xFF071A3D)],
-        ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.fromLTRB(12, 12, 12, 8),
-        child: LayoutBuilder(builder: (context, c) {
-          const columns = 7;
-          const rows = 6;
-          final cell = math.min(c.maxWidth / columns, c.maxHeight / rows);
-          return Center(
-            child: SizedBox(
-              width: cell * columns,
-              height: cell * rows,
-              child: CustomPaint(painter: _ConnectFourBoardPainter()),
-            ),
-          );
-        }),
-      ),
-    );
-  }
-}
-
-class _ConnectFourBoardPainter extends CustomPainter {
-  const _ConnectFourBoardPainter();
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    const cols = 7;
-    const rows = 6;
-    final cell = math.min(size.width / cols, size.height / rows);
-    final board = Paint()..color = const Color(0xFF1661B8);
-    final hole = Paint()..color = const Color(0xFF08224C);
-    final cyan = Paint()..color = const Color(0xFF53DDFD);
-    final gold = Paint()..color = const Color(0xFFFFD166);
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(Offset.zero & size, Radius.circular(cell * .18)),
-      board,
-    );
-    for (var row = 0; row < rows; row++) {
-      for (var col = 0; col < cols; col++) {
-        final center = Offset((col + .5) * cell, (row + .5) * cell);
-        var paint = hole;
-        if ((row == 5 && col.isEven) || (row == 4 && col == 3)) paint = cyan;
-        if ((row == 5 && col.isOdd) || (row == 4 && col == 2)) paint = gold;
-        canvas.drawCircle(center, cell * .34, paint);
-      }
-    }
-  }
-
-  @override
-  bool shouldRepaint(_ConnectFourBoardPainter oldDelegate) => false;
-}
-
 class _GlitterPainter extends CustomPainter {
   _GlitterPainter({required this.t, required this.color});
   final double t;
@@ -867,14 +795,25 @@ class _PortalLabel extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, c) {
       final scale = (c.maxWidth / 260).clamp(.62, 1.15);
-      final disc = 50 * scale;
+      final disc = 40 * scale;
+      final play = 34 * scale;
       return Container(
-        margin: EdgeInsets.fromLTRB(8 * scale, 0, 8 * scale, 8 * scale),
-        padding: EdgeInsets.fromLTRB(6 * scale, 5 * scale, 10 * scale, 5 * scale),
+        padding: EdgeInsets.fromLTRB(5 * scale, 5 * scale, 5 * scale, 5 * scale),
         decoration: BoxDecoration(
-          color: const Color(0xCC082455),
-          borderRadius: BorderRadius.circular(22 * scale),
-          border: Border.all(color: const Color(0x6637D2FD)),
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF1A62C0), Color(0xFF082455)],
+          ),
+          borderRadius: BorderRadius.circular(16 * scale),
+          border: Border.all(color: const Color(0xAA8EE9FF), width: 1.4),
+          boxShadow: [
+            BoxShadow(
+              color: const Color(0x66010A22),
+              blurRadius: 4 * scale,
+              offset: Offset(0, 2 * scale),
+            ),
+          ],
         ),
         child: Row(children: [
           Container(
@@ -884,55 +823,87 @@ class _PortalLabel extends StatelessWidget {
               shape: BoxShape.circle,
               color: const Color(0xFF0B3A7E),
               border: Border.all(
-                  color: LumoVisualTokens.cyanBright, width: 2.2 * scale),
+                  color: LumoVisualTokens.cyanBright, width: 2.0 * scale),
               boxShadow: [
                 BoxShadow(
-                    color: LumoVisualTokens.cyan.withOpacity(.6),
-                    blurRadius: 10 * scale),
+                    color: LumoVisualTokens.cyan.withOpacity(.55),
+                    blurRadius: 8 * scale),
               ],
             ),
             child: Icon(portal.icon,
                 color: LumoVisualTokens.white, size: disc * .56),
           ),
-          SizedBox(width: 8 * scale),
+          SizedBox(width: 7 * scale),
           Expanded(
             child: Column(
               mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  portal.game == null ? 'Wer wird\nLumo-Meister?' : portal.title,
-                  maxLines: portal.game == null ? 2 : 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: (portal.game == null ? 17 : 22) * scale,
-                    height: 1.02,
-                    fontWeight: FontWeight.w900,
-                    color: LumoVisualTokens.white,
-                    shadows: const [
-                      Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
-                    ],
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    portal.title,
+                    maxLines: 1,
+                    softWrap: false,
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 17 * scale,
+                      height: 1.02,
+                      fontWeight: FontWeight.w900,
+                      color: LumoVisualTokens.white,
+                      shadows: const [
+                        Shadow(color: Color(0xAA37D2FD), blurRadius: 8),
+                      ],
+                    ),
                   ),
                 ),
-                Text(
-                  portal.tagline,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.center,
-                  textScaler: MediaQuery.textScalerOf(context)
-                      .clamp(maxScaleFactor: 1.2),
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: 11.5 * scale,
-                    height: 1.15,
-                    fontWeight: FontWeight.w700,
-                    color: const Color(0xFFE6F4FF),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    portal.tagline,
+                    maxLines: 1,
+                    softWrap: false,
+                    textAlign: TextAlign.left,
+                    textScaler: MediaQuery.textScalerOf(context)
+                        .clamp(maxScaleFactor: 1.2),
+                    style: TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 11 * scale,
+                      height: 1.15,
+                      fontWeight: FontWeight.w700,
+                      color: const Color(0xFFE6F4FF),
+                    ),
                   ),
                 ),
               ],
             ),
+          ),
+          SizedBox(width: 6 * scale),
+          Container(
+            width: play,
+            height: play,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0xFF7BEBFF), Color(0xFF1578D0)],
+              ),
+              border: Border.all(
+                  color: const Color(0xEEFFFFFF), width: 1.4 * scale),
+              boxShadow: [
+                BoxShadow(
+                  color: LumoVisualTokens.cyan.withOpacity(.5),
+                  blurRadius: 7 * scale,
+                  offset: Offset(0, 2 * scale),
+                ),
+              ],
+            ),
+            child: Icon(Icons.play_arrow_rounded,
+                color: LumoVisualTokens.white, size: play * .68),
           ),
         ]),
       );
@@ -944,19 +915,61 @@ class _GlassRim extends StatelessWidget {
   const _GlassRim();
 
   @override
-  Widget build(BuildContext context) => IgnorePointer(
-        child: DecoratedBox(
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(26),
-            border: Border.all(color: const Color(0xCC53DDFD), width: 2),
-            gradient: const LinearGradient(
-              begin: Alignment.topLeft,
-              end: Alignment.center,
-              colors: [Color(0x33FFFFFF), Color(0x00FFFFFF)],
-            ),
-          ),
+  Widget build(BuildContext context) => const IgnorePointer(
+        child: CustomPaint(
+          painter: _GlassBevelPainter(),
+          child: SizedBox.expand(),
         ),
       );
+}
+
+class _GlassBevelPainter extends CustomPainter {
+  const _GlassBevelPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final outer = RRect.fromRectAndRadius(
+        Offset.zero & size, const Radius.circular(26));
+    canvas.drawRRect(
+      outer,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 3.2
+        ..shader = const LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [Color(0xF7FFFFFF), Color(0xCC53DDFD), Color(0x99010A22)],
+          stops: [0, 0.42, 1],
+        ).createShader(Offset.zero & size),
+    );
+    canvas.drawRRect(
+      outer.deflate(2.6),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.2
+        ..shader = const LinearGradient(
+          begin: Alignment.bottomRight,
+          end: Alignment.topLeft,
+          colors: [Color(0x66FFFFFF), Color(0x22010A22)],
+        ).createShader(Offset.zero & size),
+    );
+    canvas.save();
+    canvas.clipRRect(outer);
+    final sheen = Rect.fromLTWH(3, 2, size.width - 6, size.height * 0.36);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(sheen, const Radius.circular(22)),
+      Paint()
+        ..shader = const LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [Color(0x55FFFFFF), Color(0x00FFFFFF)],
+        ).createShader(sheen),
+    );
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
 class _StatusChip extends StatelessWidget {
@@ -1049,32 +1062,46 @@ class _AdventureButtonState extends State<_AdventureButton> {
                 child: child,
               );
             },
-            child: LayoutBuilder(builder: (context, c) {
-              final h = c.maxHeight.isFinite ? c.maxHeight : 56.0;
-              return Padding(
-                padding: EdgeInsets.symmetric(horizontal: h * .4),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Row(mainAxisSize: MainAxisSize.min, children: [
-                    Icon(Icons.play_arrow_rounded,
-                        color: Colors.white, size: h * .78),
-                    SizedBox(width: h * .12),
-                    Text(
-                      'Auf ins Abenteuer!',
-                      style: TextStyle(
-                        fontFamily: 'Nunito',
-                        fontSize: h * .4,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white,
-                        shadows: const [
-                          Shadow(color: Color(0x88083A80), blurRadius: 4),
-                        ],
-                      ),
+            child: Stack(fit: StackFit.expand, children: [
+              const IgnorePointer(
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.all(Radius.circular(99)),
+                    gradient: LinearGradient(
+                      begin: Alignment.topCenter,
+                      end: Alignment.center,
+                      colors: [Color(0x66FFFFFF), Color(0x00FFFFFF)],
                     ),
-                  ]),
+                  ),
                 ),
-              );
-            }),
+              ),
+              LayoutBuilder(builder: (context, c) {
+                final h = c.maxHeight.isFinite ? c.maxHeight : 56.0;
+                return Padding(
+                  padding: EdgeInsets.symmetric(horizontal: h * .4),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Row(mainAxisSize: MainAxisSize.min, children: [
+                      Icon(Icons.play_arrow_rounded,
+                          color: Colors.white, size: h * .78),
+                      SizedBox(width: h * .12),
+                      Text(
+                        'Auf ins Abenteuer!',
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: h * .4,
+                          fontWeight: FontWeight.w900,
+                          color: Colors.white,
+                          shadows: const [
+                            Shadow(color: Color(0x88083A80), blurRadius: 4),
+                          ],
+                        ),
+                      ),
+                    ]),
+                  ),
+                );
+              }),
+            ]),
           ),
         ),
       ),
@@ -1173,14 +1200,17 @@ class _HubBar extends StatelessWidget {
             FittedBox(fit: BoxFit.scaleDown, child: actions),
           ]);
         }
-        return Column(mainAxisSize: MainAxisSize.min, children: [
-          if (showSlogans)
-            Padding(
-              padding: const EdgeInsets.only(top: 6),
-              child: FittedBox(fit: BoxFit.scaleDown, child: slogans),
-            ),
-          FittedBox(fit: BoxFit.scaleDown, child: actions),
-        ]);
+        return FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Column(mainAxisSize: MainAxisSize.min, children: [
+            if (showSlogans)
+              Padding(
+                padding: const EdgeInsets.only(top: 6),
+                child: slogans,
+              ),
+            actions,
+          ]),
+        );
       }),
     );
   }
@@ -1234,6 +1264,49 @@ class _StagePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_StagePainter oldDelegate) => false;
+}
+
+/// Far/mid orbs that drift slower than the sparkles (cheap radial fills,
+/// no BackdropFilter and no stacked blur).
+class _DepthLayerPainter extends CustomPainter {
+  const _DepthLayerPainter({required this.t});
+  final double t;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final sway = t * 2 * math.pi;
+    void orb(Offset c, double r, List<Color> colors) {
+      canvas.drawCircle(
+        c,
+        r,
+        Paint()
+          ..shader = RadialGradient(colors: colors).createShader(
+            Rect.fromCircle(center: c, radius: r),
+          ),
+      );
+    }
+    orb(
+      Offset(size.width * (0.16 + 0.03 * math.sin(sway * 0.6)),
+          size.height * 0.20),
+      size.width * 0.34,
+      const [Color(0x3348B4F0), Color(0x00000000)],
+    );
+    orb(
+      Offset(size.width * (0.86 + 0.02 * math.cos(sway * 0.45)),
+          size.height * 0.16),
+      size.width * 0.24,
+      const [Color(0x28FFD86B), Color(0x00000000)],
+    );
+    orb(
+      Offset(size.width * 0.72,
+          size.height * (0.58 + 0.025 * math.sin(sway * 0.35))),
+      size.width * 0.40,
+      const [Color(0x241050C0), Color(0x00000000)],
+    );
+  }
+
+  @override
+  bool shouldRepaint(_DepthLayerPainter old) => old.t != t;
 }
 
 /// Funkelnde Sterne über der Szene.

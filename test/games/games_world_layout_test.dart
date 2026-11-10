@@ -33,7 +33,7 @@ void main() {
       'Cards',
       'Puzzle',
       'Jump & Run',
-      'Rhythm Party',
+      'Rhythm',
       'Schatzsuche',
       'Bauwelt',
       'Lumo Kart',
@@ -42,7 +42,9 @@ void main() {
     }
     expect(find.byKey(const ValueKey('spielwelt-lumo')), findsOneWidget);
     expect(find.byKey(const ValueKey('spielwelt-adventure')), findsOneWidget);
-    expect(find.text('Wer wird\nLumo-Meister?'), findsOneWidget);
+    expect(find.text('Quizshow'), findsOneWidget);
+    expect(find.text('Wer wird Lumo-Meister?'), findsNothing);
+    expect(find.text('4 Gewinnt'), findsOneWidget);
     expect(find.text('Zusätzliche Spielmodi'), findsOneWidget);
     expect(find.text('Wortjagd'), findsNothing,
         reason: 'kein Spiel anzeigen, das es nicht gibt');
@@ -51,7 +53,7 @@ void main() {
     handle.dispose();
   });
 
-  testWidgets('Fold landscape uses ten-game reference hub and Cards opens Cards', (tester) async {
+  testWidgets('Fold landscape uses the tile hub and Cards opens Cards', (tester) async {
     await tester.binding.setSurfaceSize(const Size(1200, 900));
     addTearDown(() => tester.binding.setSurfaceSize(null));
     final app = LumoAppState();
@@ -62,8 +64,9 @@ void main() {
         () => Future<void>.delayed(const Duration(milliseconds: 300)));
     await tester.pump(const Duration(milliseconds: 700));
 
-    expect(find.byKey(const ValueKey('spielwelt-wide-reference-hub')),
-        findsOneWidget);
+    expect(find.byKey(const ValueKey('spielwelt-narrow-hub')), findsOneWidget);
+    expect(find.byKey(const ValueKey('spielwelt-reference-hub')), findsNothing);
+    expect(find.text('Auf ins Abenteuer!'), findsOneWidget);
     for (final identity in const [
       'memory',
       'cards',
@@ -79,17 +82,43 @@ void main() {
       expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
           reason: identity);
     }
-    for (final rail in const ['start', 'lernen', 'spielen', 'tests', 'profil']) {
-      expect(find.byKey(ValueKey('spielwelt-rail-$rail')), findsOneWidget,
-          reason: rail);
-    }
-
     final cards = find.byKey(const ValueKey('spielwelt-portal-cards'));
+    await tester.ensureVisible(cards);
     await tester.tap(cards);
-    await tester.pump(const Duration(milliseconds: 600));
+    await tester.pump();
+    await tester.pump(const Duration(milliseconds: 800));
     expect(find.byType(LumoCardsShowcaseScreen), findsOneWidget,
         reason: 'Main Cards portal must never open Sternenpfad');
+    expect(find.text('LUMO CARDS'), findsOneWidget);
     expect(tester.takeException(), isNull);
+  });
+
+
+  testWidgets('Fold7 open portrait and tablet keep the tile hub with all ten games', (tester) async {
+    for (final size in const [Size(690, 829), Size(768, 1024), Size(1024, 768)]) {
+      await tester.binding.setSurfaceSize(size);
+      final app = LumoAppState();
+      addTearDown(app.dispose);
+      await tester.pumpWidget(
+          MaterialApp(home: Scaffold(body: GamesContent(appState: app))));
+      await tester.runAsync(
+          () => Future<void>.delayed(const Duration(milliseconds: 300)));
+      await tester.pump(const Duration(milliseconds: 700));
+      expect(find.byKey(const ValueKey('spielwelt-narrow-hub')), findsOneWidget,
+          reason: '$size');
+      expect(find.byKey(const ValueKey('spielwelt-reference-hub')), findsNothing,
+          reason: '$size uses the image-tile menu, not the arch hub');
+      expect(find.text('Auf ins Abenteuer!'), findsOneWidget, reason: '$size');
+      for (final identity in const [
+        'memory', 'cards', 'puzzle', 'jumpRun', 'rhythm',
+        'treasure', 'build', 'kart', 'connectFour', 'quizShow',
+      ]) {
+        expect(find.byKey(ValueKey('spielwelt-portal-$identity')), findsOneWidget,
+            reason: '$size $identity');
+      }
+      await tester.pumpWidget(const SizedBox());
+    }
+    await tester.binding.setSurfaceSize(null);
   });
 
   testWidgets('Rhythm Party opens the real native rhythm scene', (tester) async {
