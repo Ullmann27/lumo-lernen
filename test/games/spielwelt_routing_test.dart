@@ -45,18 +45,21 @@ void main() {
     expect(SpielweltRoutes.byIdentity('quizShow').semanticTitle, 'Wer wird Lumo-Meister?');
     expect(SpielweltRoutes.byIdentity('rhythm').title, 'Rhythm');
     expect(SpielweltRoutes.byIdentity('rhythm').semanticTitle, 'Rhythm Party');
-    expect(SpielweltRoutes.coverFor('connectFour'), isEmpty);
+    expect(SpielweltRoutes.coverFor('connectFour'), contains('cover_connect'));
+    expect(SpielweltRoutes.coverFor('quizShow'), contains('cover_quiz'));
   });
 
-  test('Fold7 open and tablet never fall back to the phone grid', () {
+  test('every viewport uses the image-tile hub with extra columns when wide', () {
     expect(SpielweltLayout.useReferenceHub(412, 915), isFalse);
-    expect(SpielweltLayout.useReferenceHub(344, 882), isFalse);
-    expect(SpielweltLayout.useReferenceHub(690, 829), isTrue);
-    expect(SpielweltLayout.isPortraitReference(690, 829), isTrue);
-    expect(SpielweltLayout.useReferenceHub(840, 560), isTrue);
-    expect(SpielweltLayout.isPortraitReference(840, 560), isFalse);
-    expect(SpielweltLayout.useReferenceHub(768, 1024), isTrue);
-    expect(SpielweltLayout.useReferenceHub(1024, 768), isTrue);
+    expect(SpielweltLayout.useReferenceHub(690, 829), isFalse);
+    expect(SpielweltLayout.useReferenceHub(840, 560), isFalse);
+    expect(SpielweltLayout.useReferenceHub(768, 1024), isFalse);
+    expect(SpielweltLayout.useReferenceHub(1024, 768), isFalse);
+    expect(SpielweltLayout.tileColumns(412), 2);
+    expect(SpielweltLayout.tileColumns(690), 3);
+    expect(SpielweltLayout.tileColumns(768), 3);
+    expect(SpielweltLayout.tileColumns(840), 4);
+    expect(SpielweltLayout.tileColumns(1024), 4);
   });
 
   testWidgets('every visible portal opens its own target scene', (tester) async {
@@ -79,7 +82,12 @@ void main() {
       expect(portal, findsOneWidget, reason: route.identity);
       expect(find.text(route.title), findsWidgets, reason: route.title);
 
-      await tester.ensureVisible(portal);
+      await tester.scrollUntilVisible(
+        portal,
+        280,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.pump();
       await tester.tap(portal);
       await tester.pump();
       await tester.pump(const Duration(milliseconds: 800));

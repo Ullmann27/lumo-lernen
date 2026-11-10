@@ -46,7 +46,7 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                     24,
                     76,
                     24,
-                    landscape ? 92 : 150,
+                    landscape ? 108 : 236,
                   ),
                   child: Image.asset(
                     referenceArt,
@@ -158,37 +158,97 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                                   ],
                                 ),
                               ),
-                              SizedBox(height: landscape ? 7 : 12),
-                              Row(
-                                children: [
-                                  Expanded(
-                                    child: _StartButton(
-                                      key: const ValueKey('cards-hub-solo'),
-                                      label: 'Solo spielen',
-                                      icon: Icons.play_arrow_rounded,
-                                      onPressed: () {
-                                        HapticFeedback.mediumImpact();
-                                        onSolo();
-                                      },
-                                      primary: true,
-                                      reduceMotion: reduceMotion,
-                                    ),
+                              SizedBox(height: landscape ? 7 : 10),
+                              DecoratedBox(
+                                decoration: BoxDecoration(
+                                  color: const Color(0xE0082455),
+                                  borderRadius: BorderRadius.circular(26),
+                                  border: Border.all(
+                                    color: const Color(0xAA53DDFD),
+                                    width: 1.6,
                                   ),
-                                  const SizedBox(width: 12),
-                                  Expanded(
-                                    child: _StartButton(
-                                      key: const ValueKey('cards-hub-local'),
-                                      label: 'Mit Freunden',
-                                      icon: Icons.groups_rounded,
-                                      onPressed: () {
-                                        HapticFeedback.mediumImpact();
-                                        onLocal();
-                                      },
-                                      primary: false,
-                                      reduceMotion: reduceMotion,
+                                  boxShadow: const [
+                                    BoxShadow(
+                                      color: Color(0x99010A22),
+                                      blurRadius: 18,
+                                      offset: Offset(0, 8),
                                     ),
-                                  ),
-                                ],
+                                  ],
+                                ),
+                                child: Padding(
+                                  padding: EdgeInsets.all(landscape ? 10 : 12),
+                                  child: landscape
+                                      ? Row(
+                                          children: [
+                                            Expanded(
+                                              child: _StartButton(
+                                                key: const ValueKey(
+                                                    'cards-hub-solo'),
+                                                label: 'Solo spielen',
+                                                icon: Icons.play_arrow_rounded,
+                                                onPressed: () {
+                                                  HapticFeedback.mediumImpact();
+                                                  onSolo();
+                                                },
+                                                primary: true,
+                                                reduceMotion: reduceMotion,
+                                                compact: true,
+                                              ),
+                                            ),
+                                            const SizedBox(width: 12),
+                                            Expanded(
+                                              child: _StartButton(
+                                                key: const ValueKey(
+                                                    'cards-hub-local'),
+                                                label: 'Mit Freunden',
+                                                icon: Icons.groups_rounded,
+                                                onPressed: () {
+                                                  HapticFeedback.mediumImpact();
+                                                  onLocal();
+                                                },
+                                                primary: false,
+                                                reduceMotion: reduceMotion,
+                                                compact: true,
+                                              ),
+                                            ),
+                                          ],
+                                        )
+                                      : Column(
+                                          children: [
+                                            SizedBox(
+                                              width: double.infinity,
+                                              child: _StartButton(
+                                              key: const ValueKey(
+                                                  'cards-hub-solo'),
+                                              label: 'Solo spielen',
+                                              icon: Icons.play_arrow_rounded,
+                                              onPressed: () {
+                                                HapticFeedback.mediumImpact();
+                                                onSolo();
+                                              },
+                                              primary: true,
+                                              reduceMotion: reduceMotion,
+                                            ),
+                                            ),
+                                            const SizedBox(height: 10),
+                                            SizedBox(
+                                              width: double.infinity,
+                                              child: _StartButton(
+                                              key: const ValueKey(
+                                                  'cards-hub-local'),
+                                              label: 'Mit Freunden',
+                                              icon: Icons.groups_rounded,
+                                              onPressed: () {
+                                                HapticFeedback.mediumImpact();
+                                                onLocal();
+                                              },
+                                              primary: false,
+                                              reduceMotion: reduceMotion,
+                                            ),
+                                            ),
+                                          ],
+                                        ),
+                                ),
                               ),
                             ],
                           ),
@@ -214,12 +274,14 @@ class _StartButton extends StatefulWidget {
     required this.onPressed,
     required this.primary,
     required this.reduceMotion,
+    this.compact = false,
   });
   final String label;
   final IconData icon;
   final VoidCallback onPressed;
   final bool primary;
   final bool reduceMotion;
+  final bool compact;
 
   @override
   State<_StartButton> createState() => _StartButtonState();
@@ -231,80 +293,117 @@ class _StartButtonState extends State<_StartButton> {
   @override
   Widget build(BuildContext context) {
     final accent = widget.primary
-        ? const Color(0xFFFFC35C)
-        : const Color(0xFF6FECFF);
+        ? const Color(0xFFFFE08A)
+        : const Color(0xFF9AF2FF);
+    final ink = widget.primary
+        ? const Color(0xFF3C220A)
+        : Colors.white;
+    final minH = widget.compact ? 60.0 : 66.0;
     return Semantics(
       button: true,
       label: widget.label,
-      child: AnimatedScale(
+      child: AnimatedContainer(
         duration: widget.reduceMotion
             ? Duration.zero
             : const Duration(milliseconds: 120),
-        scale: _pressed ? .97 : 1.0,
-        child: Material(
-          color: Colors.transparent,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(18),
-            onTapDown: (_) => setState(() => _pressed = true),
-            onTapCancel: () => setState(() => _pressed = false),
-            onTap: () {
-              setState(() => _pressed = false);
-              widget.onPressed();
-            },
-            child: Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(18),
-                gradient: LinearGradient(
-                  colors: widget.primary
-                      ? const [Color(0xFFFFCF64), Color(0xFFFF922D)]
-                      : const [Color(0xFF0B609A), Color(0xFF07345D)],
-                ),
-                border: Border.all(color: accent, width: 1.7),
-                boxShadow: [
+        transform: Matrix4.translationValues(0, _pressed ? 4 : 0, 0),
+        transformAlignment: Alignment.center,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: widget.primary
+                ? const [Color(0xFFFFE08A), Color(0xFFFFC35C), Color(0xFFFF8A1F)]
+                : const [Color(0xFF1A8AD0), Color(0xFF0B609A), Color(0xFF062845)],
+          ),
+          border: Border.all(color: accent, width: 2),
+          boxShadow: _pressed
+              ? const [
                   BoxShadow(
-                    color: accent.withValues(alpha: .32),
-                    blurRadius: 17,
+                    color: Color(0x66010A22),
+                    blurRadius: 4,
+                    offset: Offset(0, 2),
+                  ),
+                ]
+              : [
+                  const BoxShadow(
+                    color: Color(0x99010A22),
+                    blurRadius: 16,
+                    offset: Offset(0, 8),
+                  ),
+                  BoxShadow(
+                    color: accent.withValues(alpha: .42),
+                    blurRadius: 14,
+                    offset: const Offset(0, 4),
                   ),
                 ],
-              ),
-              child: ConstrainedBox(
-                constraints: const BoxConstraints(minHeight: 58),
-                child: Padding(
+        ),
+        child: Material(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(20),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            borderRadius: BorderRadius.circular(20),
+            splashColor: const Color(0x88FFFFFF),
+            highlightColor: const Color(0x33FFFFFF),
+            onHighlightChanged: (v) => setState(() => _pressed = v),
+            onTap: widget.onPressed,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: minH),
+              child: Stack(alignment: Alignment.center, children: [
+                const Positioned(
+                  top: 0,
+                  left: 8,
+                  right: 8,
+                  height: 20,
+                  child: IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.vertical(
+                          top: Radius.circular(18),
+                        ),
+                        gradient: LinearGradient(
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                          colors: [Color(0x66FFFFFF), Color(0x00FFFFFF)],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
                   padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
+                    horizontal: 14,
                     vertical: 12,
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Icon(
-                        widget.icon,
-                        size: 23,
-                        color: widget.primary
-                            ? const Color(0xFF3C220A)
-                            : Colors.white,
-                      ),
-                      const SizedBox(width: 4),
+                      Icon(widget.icon, size: widget.compact ? 24 : 28, color: ink),
+                      const SizedBox(width: 8),
                       Flexible(
                         child: Text(
                           widget.label,
-                          maxLines: 2,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             fontFamily: 'Nunito',
-                            fontSize: 15,
+                            fontSize: widget.compact ? 16 : 18,
                             fontWeight: FontWeight.w900,
-                            color: widget.primary
-                                ? const Color(0xFF3C220A)
-                                : Colors.white,
+                            color: ink,
                           ),
                         ),
                       ),
+                      if (!widget.compact) ...[
+                        const SizedBox(width: 8),
+                        Icon(Icons.play_arrow_rounded, size: 26, color: ink),
+                      ],
                     ],
                   ),
                 ),
-              ),
+              ]),
             ),
           ),
         ),

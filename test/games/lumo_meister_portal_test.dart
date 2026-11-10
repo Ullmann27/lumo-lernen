@@ -42,13 +42,12 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
 
     final portal = find.byKey(const ValueKey('spielwelt-portal-quizShow'));
-    if (portal.evaluate().isEmpty) {
-      await tester.scrollUntilVisible(
-        portal,
-        300,
-        scrollable: find.byType(Scrollable).first,
-      );
-    }
+    await tester.scrollUntilVisible(
+      portal,
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pump();
 
     expect(portal, findsOneWidget);
     expect(find.text('Quizshow'), findsOneWidget);

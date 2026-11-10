@@ -36,19 +36,25 @@ class SpielweltRoute {
   bool get isNative => kind == SpielweltTargetKind.nativeScene;
 }
 
-/// Layout breakpoint for the page-34 reference hub.
+/// Tile-menu layout used on every size.
 ///
-/// Fold7 open (690×829 logical in this app), tablets and phone landscape
-/// must use the reference composition. Only true phone / cover-screen
-/// widths fall back to the compact grid.
+/// Heinz prefers the original image-tile hub (Lumo hero, adventure
+/// button, glass cards) over the page-34 arch/plaza composition.
+/// Wider canvases keep that design and add columns instead.
 class SpielweltLayout {
-  static const double referenceMinWidth = 600;
+  static const double threeColumnMinWidth = 560;
+  static const double fourColumnMinWidth = 820;
 
-  static bool useReferenceHub(double width, [double height = 0]) =>
-      width >= referenceMinWidth;
+  /// The arch/plaza reference hub is retired.
+  static bool useReferenceHub(double width, [double height = 0]) => false;
 
-  static bool isPortraitReference(double width, double height) =>
-      useReferenceHub(width) && height > width * 1.05;
+  static bool isPortraitReference(double width, double height) => false;
+
+  static int tileColumns(double width) {
+    if (width >= fourColumnMinWidth) return 4;
+    if (width >= threeColumnMinWidth) return 3;
+    return 2;
+  }
 }
 
 /// Canonical ten-game Spielwelt. Order is the phone-grid hierarchy and
@@ -150,7 +156,7 @@ class SpielweltRoutes {
       title: '4 Gewinnt',
       semanticTitle: 'Lumo 4 Gewinnt',
       tagline: 'Vier in einer Reihe · gegen Lumo oder zu zweit',
-      coverAsset: '',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_connect.jpg',
       kind: SpielweltTargetKind.flutterScreen,
       target: 'LumoConnectFourScreen',
       targetDescription: 'Flutter 4 Gewinnt',
@@ -160,7 +166,7 @@ class SpielweltRoutes {
       title: 'Quizshow',
       semanticTitle: 'Wer wird Lumo-Meister?',
       tagline: '20 Fragen · 3 Joker · bis 5.000 Sterne',
-      coverAsset: 'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+      coverAsset: 'assets/lumo_design/spielwelt/cover_quiz.jpg',
       kind: SpielweltTargetKind.flutterScreen,
       target: 'QuizShowContent',
       targetDescription: 'Flutter Wer wird Lumo-Meister?',
@@ -183,9 +189,6 @@ class SpielweltRoutes {
   static SpielweltRoute byIdentity(String identity) =>
       all.firstWhere((route) => route.identity == identity);
 
-  static String coverFor(String identity) {
-    // Connect Four uses a painted 7×6 board, not another game's bitmap.
-    if (identity == 'connectFour') return '';
-    return byIdentity(identity).coverAsset;
-  }
+  static String coverFor(String identity) =>
+      byIdentity(identity).coverAsset;
 }
