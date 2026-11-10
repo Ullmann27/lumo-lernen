@@ -425,6 +425,38 @@ class LearningProfileEngine {
   Map<String, List<String>> weaknessesBySubject() =>
       _detector.weaknessesBySubject(_skills);
 
+  /// Clears tutor assessments only, after the owner has confirmed deletion.
+  Future<void> resetTutorObservations() async {
+    for (final operation in [
+      _journeyLoading,
+      _sceneLoading,
+      _sceneCompletionTail,
+      _saveTail,
+    ]) {
+      try {
+        await operation;
+      } catch (_) {
+        // Confirmed deletion supersedes retry of these tutor observations.
+      }
+    }
+    try {
+      await _repo.resetTutorObservations();
+    } finally {
+      // Never let a stale retry restore observations after a confirmed reset.
+      // On storage failure, loading completes the durable reset marker first.
+      _journey = LearningJourney();
+      _journeyLoaded = false;
+      _journeyDirty = false;
+      _journeyRevision++;
+      _sceneMemory = SceneMemory();
+      _sceneLoaded = false;
+      _sceneDirty = false;
+      _sceneRevision++;
+      _pendingSceneReceipt = null;
+      _pendingSceneSaved = false;
+    }
+  }
+
   /// Setzt alle Lerndaten zurück. Vorher ausdrücklich bestätigen lassen.
   Future<void> reset() async {
     if (_loading != null) await _loading;

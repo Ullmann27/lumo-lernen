@@ -1236,6 +1236,35 @@ class LumoAppState extends ChangeNotifier {
     return _beginRewardDrain();
   }
 
+  /// Parents may discard tutor assessments without changing real answers,
+  /// rewards, discovery, writing or profile identity. Confirm the captured child.
+  Future<bool> resetTutorObservations(
+      {required LearningProfileLease lease}) async {
+    if (!isCurrentLearningLease(lease)) return false;
+    final id = lease.studentId;
+    if (!_resolvingLegacy.add(id)) return false;
+    lease._session.epoch++;
+    try {
+      await _drainLearningOperations();
+      lease._session.tutorPending.clear();
+      lease._session.tutorError = null;
+      await lease.profile.resetTutorObservations();
+      await lease.profile.loadJourney();
+      await lease.profile.loadSceneMemory();
+    } finally {
+      _resolvingLegacy.remove(id);
+      // Old lesson actions cannot repopulate the cleared assessments.
+      if (identical(_activeLearningSession, lease._session)) {
+        _profileGeneration++;
+        final requests = LumoCompanionRequests.instance;
+        requests.tutor.activateProfile(_profileGeneration);
+        requests.clearLearningScope();
+      }
+      _safeNotify();
+    }
+    return true;
+  }
+
   Future<void> resetLearningProfile() async {
     if (_disposed || _resetting) return;
     final owner = await captureLearningProfile();

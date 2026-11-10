@@ -19,6 +19,37 @@ class ProgressRepository {
   static const _lastKey = 'lumo_progress_last';
   static const _discoveryKey = 'lumo_progress_discovery_v1';
   static const _journeyKey = 'lumo_progress_journey_v1';
+  static const _tutorResetKey = 'lumo_tutor_reset_pending_v1';
+  Future<void> _tutorTail = Future<void>.value();
+
+  // Keep a confirmed deletion durable across a failed write or process exit.
+  // Only these three tutor fields are affected; real school answers remain.
+  Future<void> _finishTutorReset() async {
+    if (await _namespace.read(_tutorResetKey) != '1') return;
+    await _namespace.write('lumo_learning_scene_pending_v1', 'null');
+    await _namespace.write(_journeyKey, jsonEncode(LearningJourney().toJson()));
+    await _namespace.write(
+        'lumo_learning_scenes_v1', jsonEncode(SceneMemory().toJson()));
+    await _namespace.write(_tutorResetKey, '0');
+  }
+
+  Future<T> _tutorStorage<T>(Future<T> Function() action) {
+    Future<T> run() async {
+      await _finishTutorReset();
+      return action();
+    }
+
+    final operation = _tutorTail.then((_) => run(),
+        onError: (Object _, StackTrace __) => run());
+    _tutorTail =
+        operation.then<void>((_) {}, onError: (Object _, StackTrace __) {});
+    return operation;
+  }
+
+  Future<void> resetTutorObservations() => _tutorStorage(() async {
+        await _namespace.write(_tutorResetKey, '1');
+        await _finishTutorReset();
+      });
   static const _skillFields = {
     'skillId',
     'subject',
@@ -60,44 +91,47 @@ class ProgressRepository {
       _namespace.write(_discoveryKey, jsonEncode(value.toJson()));
 
   /// Additive, per-child evidence. A read never rewrites bad or newer bytes.
-  Future<LearningJourney> loadJourney() async {
-    final raw = await _namespace.read(_journeyKey);
-    if (raw == null) return LearningJourney();
-    // Bound parsing as well as the decoded collections.
-    if (raw.length > 20 * 1024 * 1024) {
-      throw const FormatException('Unsupported learning journey size');
-    }
-    return LearningJourney.fromJson(_readObject(raw));
-  }
+  Future<LearningJourney> loadJourney() => _tutorStorage(() async {
+        final raw = await _namespace.read(_journeyKey);
+        if (raw == null) return LearningJourney();
+        // Bound parsing as well as the decoded collections.
+        if (raw.length > 20 * 1024 * 1024) {
+          throw const FormatException('Unsupported learning journey size');
+        }
+        return LearningJourney.fromJson(_readObject(raw));
+      });
 
-  Future<void> saveJourney(LearningJourney value) =>
-      _namespace.write(_journeyKey, jsonEncode(value.toJson()));
+  Future<void> saveJourney(LearningJourney value) => _tutorStorage(
+      () => _namespace.write(_journeyKey, jsonEncode(value.toJson())));
 
-  Future<SceneMemory> loadSceneMemory() async {
-    final raw = await _namespace.read('lumo_learning_scenes_v1');
-    if (raw == null) return SceneMemory();
-    if (raw.length > 1024 * 1024)
-      throw const FormatException('Unsupported scene memory size');
-    return SceneMemory.fromJson(_readObject(raw));
-  }
+  Future<SceneMemory> loadSceneMemory() => _tutorStorage(() async {
+        final raw = await _namespace.read('lumo_learning_scenes_v1');
+        if (raw == null) return SceneMemory();
+        if (raw.length > 1024 * 1024) {
+          throw const FormatException('Unsupported scene memory size');
+        }
+        return SceneMemory.fromJson(_readObject(raw));
+      });
 
-  Future<void> saveSceneMemory(SceneMemory memory) =>
-      _namespace.write('lumo_learning_scenes_v1', jsonEncode(memory.toJson()));
+  Future<void> saveSceneMemory(SceneMemory memory) => _tutorStorage(() =>
+      _namespace.write('lumo_learning_scenes_v1', jsonEncode(memory.toJson())));
 
-  Future<PendingSceneReceipt?> loadPendingSceneReceipt() async {
-    final raw = await _namespace.read('lumo_learning_scene_pending_v1');
-    if (raw == null) return null;
-    if (raw.length > 32768)
-      throw const FormatException('Unsupported pending scene size');
-    final decoded = jsonDecode(raw);
-    return decoded == null ? null : PendingSceneReceipt.fromJson(decoded);
-  }
+  Future<PendingSceneReceipt?> loadPendingSceneReceipt() =>
+      _tutorStorage(() async {
+        final raw = await _namespace.read('lumo_learning_scene_pending_v1');
+        if (raw == null) return null;
+        if (raw.length > 32768) {
+          throw const FormatException('Unsupported pending scene size');
+        }
+        final decoded = jsonDecode(raw);
+        return decoded == null ? null : PendingSceneReceipt.fromJson(decoded);
+      });
 
   Future<void> savePendingSceneReceipt(PendingSceneReceipt receipt) =>
-      _namespace.write(
-          'lumo_learning_scene_pending_v1', jsonEncode(receipt.toJson()));
-  Future<void> clearPendingSceneReceipt() =>
-      _namespace.write('lumo_learning_scene_pending_v1', 'null');
+      _tutorStorage(() => _namespace.write(
+          'lumo_learning_scene_pending_v1', jsonEncode(receipt.toJson())));
+  Future<void> clearPendingSceneReceipt() => _tutorStorage(
+      () => _namespace.write('lumo_learning_scene_pending_v1', 'null'));
 
   Future<Map<String, SkillRecord>> loadSkills() async {
     final raw = await _namespace.read(_skillsKey);

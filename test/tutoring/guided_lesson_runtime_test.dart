@@ -13,6 +13,7 @@ import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/discovery_progress.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/legacy_learning_data.dart';
+import 'package:lumo_lernen/core/learning_journey.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
@@ -152,6 +153,15 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
           tester, find.byKey(ValueKey('guided-answer-${step.expected}')));
       expect(
           LumoCompanionRequests.instance.taskContext.value!.lastCorrect, true);
+      if (!step.isIndependent) {
+        expect(find.text('Das passt! Weiter geht es in deinem Tempo.'), findsOneWidget);
+        expect(find.textContaining('Mit den gemeinsamen Schritten'), findsNothing);
+      }
+      if (wrongIndependent &&
+          step.observation == DiscoveryStepKind.independent) {
+        expect(find.textContaining('Mit den gemeinsamen Schritten'), findsOneWidget);
+        expect(find.text('Du hast selbst gerechnet. Gut gemacht!'), findsNothing);
+      }
     } else if (step.type == TutoringStepType.showExample) {
       if (lesson.concept == GuidedLessonConcept.subtractTen) {
         expect(
@@ -206,7 +216,9 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
       expect(find.text(step.instruction), findsOneWidget);
       await _tap(tester, find.text('Erklärung einklappen'));
       expect(find.text(step.instruction), findsNothing);
-      await _tap(tester, find.text('Beispiel noch einmal'));
+      await _tap(tester, lesson.concept == GuidedLessonConcept.bridgeTen
+          ? find.byKey(const ValueKey('ten-frame-replay'))
+          : find.text('Beispiel noch einmal'));
       requireIllustration();
     }
     if (checkTargets &&
@@ -366,6 +378,35 @@ void main() {
     }
   }
 
+  testWidgets('easier practice cannot turn the same question into independent proof',
+      (tester) async {
+    final app = await _app(tester);
+    const lesson = GuidedLessonCatalog.bridgeTen;
+    await tester.pumpWidget(MaterialApp(
+        home: GuidedLessonScreen(appState: app, lesson: lesson, discovery: false)));
+    await _frames(tester);
+    for (final step in lesson.steps) {
+      if (step.isIndependent) {
+        await _tap(tester, find.text('Leichter üben'));
+        final easier = lesson.easierPractice;
+        await _tap(tester, find.byKey(ValueKey('guided-answer-${easier.expected}')));
+        await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+        await _tap(tester, find.byKey(ValueKey('guided-answer-${step.expected}')));
+        expect(find.textContaining('Mit den gemeinsamen Schritten'), findsOneWidget);
+        final journey = await tester.runAsync(() =>
+            ProgressRepository(studentId: 'learning-test-a').loadJourney());
+        expect(journey!.records.values.single.independentCorrect, 0);
+        expect(journey.records.values.single.assistedCorrect, 1);
+        break;
+      }
+      if (step.isQuestion) {
+        await _tap(tester, find.byKey(ValueKey('guided-answer-${step.expected}')));
+      }
+      await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+    }
+    await _close(tester, app);
+  });
+
   testWidgets(
       'pending second wrong answer cannot consume offered help',
       (tester) => withClock(tester.binding.clock, () async {
@@ -438,6 +479,14 @@ void main() {
       expect(record.correct, 2);
       expect(record.wrong, 1);
       expect(record.hintCount, 1);
+      final journey = await tester.runAsync(() =>
+          ProgressRepository(studentId: 'learning-test-a').loadJourney());
+      final evidence = journey!.records.values.single;
+      expect(evidence.assistedCorrect, 1);
+      expect(evidence.independentCorrect, 1);
+      expect(evidence.transferCorrect, 1);
+      expect(evidence.status, JourneyStatus.practicing,
+          reason: 'A hinted answer plus one independent check is not mastery');
       expect(LumoCompanionRequests.instance.learningEvents.value.last.kind,
           LumoLearningEventKind.lessonCompleted);
       expect(
@@ -678,6 +727,24 @@ void main() {
       await _close(tester, app);
     });
   }
+
+  testWidgets('assisted final check does not promise another question', (tester) async {
+    final app = await _app(tester);
+    final lesson = GuidedLesson(
+        id: 'last-check-feedback', title: 'Über den Zehner', description: '',
+        grade: 1, schoolUnit: 'Plus bis 20', concept: GuidedLessonConcept.bridgeTen,
+        steps: GuidedLessonCatalog.bridgeTen.steps.sublist(6));
+    await tester.pumpWidget(MaterialApp(home: GuidedLessonScreen(
+        appState: app, lesson: lesson, discovery: false)));
+    await _frames(tester);
+    await _tap(tester, find.text('Tipp'));
+    await _tap(tester, find.byKey(ValueKey('guided-answer-${lesson.steps.first.expected}')));
+    expect(find.text('Das passt! Mit den gemeinsamen Schritten hast du es geschafft.'), findsOneWidget);
+    expect(find.textContaining('Danach probieren wir eine neue Aufgabe.'), findsNothing);
+    await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+    expect(find.text('Du hast selbst gerechnet'), findsOneWidget);
+    await _close(tester, app);
+  });
 
   testWidgets('adult confirmation remains usable on a small large-type phone',
       (tester) async {
