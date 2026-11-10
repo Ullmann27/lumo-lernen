@@ -74,7 +74,41 @@ wurde ausschließlich der reguläre Testeingabeparameter auf 8+5 gesetzt.
 Es sind tatsächliche Flutter-Widget-Rendererbilder, keine Android-Aufnahmen
 und keine generierten Gestaltungsbilder.
 
-## Abnahmegrenzen
+## Ergänzung: Elternentscheidung und dauerhafte Lernkette
+
+Die bestehende Elternkarte zeigt nun auch gespeicherte Journey-Belege mit
+getrennter Hilfe-/Selbstständig-Zählung. „Lerneinschätzungen zurücksetzen“ öffnet
+eine Erklärung des genauen Umfangs, eine ausdrückliche Erwachsenenbestätigung
+und eine abschließende Löschschaltfläche. Das entspricht der bestehenden lokalen
+Elternfreigabe; es ist keine verifizierte Erwachsenenidentität oder PIN-Sperre.
+Ein Profilwechsel während des Dialogs bricht die Löschwirkung ab.
+
+Gelöscht werden ausschließlich Journey-Beobachtungen, Methodenrückmeldungen und
+ausstehende Tutorbelege des erfassten Kindes. Ein dauerhafter, profilspezifischer
+Reset-Marker beendet einen unterbrochenen Löschvorgang vor dem nächsten Tutorlesen.
+Alte Lesson-Leases werden ungültig, damit verzögerte Aktionen nichts wiederherstellen.
+Reale Schulantworten, Tagesfortschritt, Profile, Wallet, Spiele, Schreibtrainer und
+Journal bleiben erhalten. Eine manuelle Kompetenzkorrektur mit Herkunftsnachweis
+ist damit ausdrücklich noch nicht implementiert; die Eltern können eine unpassende
+Tutor-Einschätzung verwerfen und durch neue Aufgaben prüfen lassen.
+
+`test/tutoring/tutor_parent_reset_test.dart` prüft die tatsächlichen Speicherpfade:
+drei beobachtete Zehnerfehler, passende Hilfe, begleitete Korrektur, verschiedene
+unabhängige Aufgaben und Übertragung, danach verspätete Wiederholung an Tag 3
+und Tag 7. Der vorhandene Abstandsplan setzt dann Tag 6 bzw. Tag 14 als nächste
+Fälligkeit. Jeder Schritt wird neu aus der Persistenz geladen. Ein unbeobachtetes
+anderes Kind bleibt ohne erfundene Kompetenz. Zusätzlich werden Abbrechen,
+Erwachsenenbestätigung, Profilwechsel, unterbrochene Speicherung, alte Aktionen und
+unveränderte andere Speicherfelder inklusive echter Schreib-/Journal-/Spiel-Wallet-
+Testeinträge geprüft. Es werden ausschließlich fiktive Testprofile verwendet.
+
+Gezielte Abnahme: neun Tests für Reset/Elternkarte/Tutorpersistenz bestanden;
+36 Tests für Reset/Szenenpersistenz/Profiltrennung/Legacy-Daten bestanden.
+Die Analyse der fünf neuen bzw. geänderten Dart-Dateien meldet keine Befunde.
+Die sechs Sprach-/Natur-Widgettests wurden auf eine tatsächlich selbstständig
+gelöste Aufgabe und einen begleiteten Erfolg berichtigt und bestehen vollständig.
+
+## Noch nicht auf Android nachgewiesen
 
 Android-Emulator, echte Fold7-Hardware, gesamte App-Regression und signierte
 APK sind Aufgabe des Integrationsstands und hier nicht nachgewiesen.
