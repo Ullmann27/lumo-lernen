@@ -27,11 +27,14 @@ LumoGameTurnClock _clock(WidgetTester tester) =>
     tester.widget<LumoGamePauseScope>(find.byType(LumoGamePauseScope)).clock;
 
 List<Object> _board(WidgetTester tester) => [
-  tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
-  tester.widget<LumoDrawPile>(find.byType(LumoDrawPile)).cardsLeft,
-  // Solo mode renders Lumo himself instead of the old opponent fan.
-  tester.widgetList<LumoPlayerHud>(find.byType(LumoPlayerHud)).first.cardCount,
-];
+      tester.widget<LumoDiscardPile>(find.byType(LumoDiscardPile)).topCard.id,
+      tester.widget<LumoDrawPile>(find.byType(LumoDrawPile)).cardsLeft,
+      // Solo mode renders Lumo himself instead of the old opponent fan.
+      tester
+          .widgetList<LumoPlayerHud>(find.byType(LumoPlayerHud))
+          .first
+          .cardCount,
+    ];
 
 Future<void> _open(
   WidgetTester tester, {
@@ -108,27 +111,30 @@ void main() {
       final settings = find.byKey(const ValueKey('cards-opponent-settings'));
       expect(tester.getSize(settings).shortestSide, greaterThanOrEqualTo(48));
       await tester.tap(settings);
-      await tester.pump(const Duration(milliseconds: 350));
+      await tester.pumpAndSettle();
       expect(_clock(tester).value, isTrue);
       final expert = find.byKey(const ValueKey('cards-level-expert'));
       await tester.ensureVisible(expert);
+      await tester.pumpAndSettle();
       await tester.tap(expert);
       await tester.pump();
       final collector = find.byKey(const ValueKey('cards-style-collector'));
       await tester.ensureVisible(collector);
+      await tester.pumpAndSettle();
       expect(tester.getSize(collector).height, greaterThanOrEqualTo(48));
       await tester.tap(collector);
       await tester.pump();
       final apply = find.byKey(const ValueKey('cards-opponent-apply'));
       await tester.ensureVisible(apply);
+      await tester.pumpAndSettle();
       await tester.tap(apply);
-      await tester.pump(const Duration(milliseconds: 350));
+      await tester.pumpAndSettle();
       expect(_board(tester), before);
       expect(_clock(tester).value, isTrue);
       await tester.tap(find.text('Fortsetzen'));
       await tester.pump();
       await tester.tap(settings);
-      await tester.pump(const Duration(milliseconds: 350));
+      await tester.pumpAndSettle();
       final saved = tester.widget<LumoCardsOpponentSettings>(
         find.byType(LumoCardsOpponentSettings),
       );

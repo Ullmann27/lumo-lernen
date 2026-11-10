@@ -371,7 +371,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       context: context,
       showDragHandle: true,
       isScrollControlled: true,
-      backgroundColor: const Color(0xFFFFF6EE),
+      backgroundColor: const Color(0xFF071B3B),
       builder: (context) => ConstrainedBox(
         constraints: BoxConstraints(
           maxHeight: MediaQuery.sizeOf(context).height * .90,

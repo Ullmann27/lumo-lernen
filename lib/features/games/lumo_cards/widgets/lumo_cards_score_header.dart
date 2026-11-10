@@ -25,7 +25,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final narrow = constraints.maxWidth < (onOpponentSettings == null ? 320 : 390);
+      final narrow = constraints.maxWidth < (onOpponentSettings == null ? 320 : 350);
       final titleRow = Row(children: [
         IconButton(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
