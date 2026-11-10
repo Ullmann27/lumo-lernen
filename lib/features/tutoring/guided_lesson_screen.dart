@@ -677,7 +677,7 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
             if (step.type == TutoringStepType.recap) ...[
               const SizedBox(height: 12),
               Text(
-                  '$_independentSolved neue Aufgaben selbst gelöst. '
+                  '$_independentSolved ${_independentSolved == 1 ? "neue Aufgabe" : "neue Aufgaben"} selbst gelöst. '
                   '${widget.discovery ? "Der Schulfortschritt bleibt getrennt." : "Hilfen und selbstständige Antworten werden getrennt erfasst."}',
                   style: _body),
             ],
