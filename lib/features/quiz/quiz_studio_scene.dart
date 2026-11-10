@@ -103,7 +103,25 @@ class _QuizStudioPainter extends CustomPainter {
       );
     }
 
+    // Center follow-spot on the moderator.
+    canvas.drawCircle(
+      Offset(w * .5, h * .52),
+      math.min(w, h) * .28,
+      Paint()
+        ..shader = RadialGradient(
+          colors: const [
+            Color(0x55FFE08A),
+            Color(0x223BD6FF),
+            Color(0x00040C27),
+          ],
+        ).createShader(Rect.fromCircle(
+          center: Offset(w * .5, h * .52),
+          radius: math.min(w, h) * .28,
+        )),
+    );
+
     // The audience is abstract scenery and never pretends to be interactive.
+
     for (var row = 0; row < 3; row++) {
       final y = h * (.48 + row * .095);
       for (var i = 0; i < 15; i++) {

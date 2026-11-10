@@ -396,6 +396,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
                     : _buildPortrait(c.maxWidth, c.maxHeight);
               }),
             ),
+            const LumoMemoryGardenFrame(),
           ],
         ),
       ),
@@ -766,10 +767,10 @@ class _CardBack extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF1C4BB0),
-            Color(0xFF123A8C),
-            Color(0xFF0B2468),
-            Color(0xFF163E96),
+            Color(0xFF3E8A4A),
+            Color(0xFF2A6A38),
+            Color(0xFF1A4A28),
+            Color(0xFF2F7340),
           ],
           stops: [0, .28, .78, 1],
         ),
@@ -798,11 +799,11 @@ class _CardBack extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.star_rounded,
-                      color: Color(0xFFFFD24A),
+                  Icon(Icons.eco_rounded,
+                      color: Color(0xFFD8F0A8),
                       size: 72,
                       shadows: [
-                        Shadow(color: Color(0xAAFFE08A), blurRadius: 16)
+                        Shadow(color: Color(0xAA8FE08A), blurRadius: 16)
                       ]),
                   SizedBox(height: 2),
                   Icon(Icons.pets_rounded,

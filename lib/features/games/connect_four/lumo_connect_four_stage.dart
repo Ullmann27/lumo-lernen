@@ -248,35 +248,52 @@ class LumoConnectFourGlassPlate extends CustomPainter {
         ).createShader(Offset.zero & size),
     );
 
+    canvas.save();
+    canvas.clipPath(plate);
+    canvas.drawRect(
+      Rect.fromLTWH(0, 0, size.width, 14),
+      Paint()..color = const Color(0x66B8F6FF),
+    );
+    canvas.drawRect(
+      Rect.fromLTWH(0, size.height - 18, size.width, 18),
+      Paint()..color = const Color(0x66000A20),
+    );
+    canvas.restore();
+
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(18)),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 5.5
+        ..color = const Color(0xAA7AECFF)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 7),
+    );
     canvas.drawRRect(
       RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(18)),
       Paint()
         ..style = PaintingStyle.stroke
         ..strokeWidth = 3.2
-        ..color = const Color(0xFF7AECFF)
-        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 6),
-    );
-    canvas.drawRRect(
-      RRect.fromRectAndRadius(Offset.zero & size, const Radius.circular(18)),
-      Paint()
-        ..style = PaintingStyle.stroke
-        ..strokeWidth = 2
         ..color = const Color(0xFFB8F6FF),
     );
 
     final rim = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 2.1
-      ..color = const Color(0xCC8AF0FF);
-    final innerRim = Paint()
+      ..strokeWidth = 3.2
+      ..color = const Color(0xDD8AF0FF);
+    final innerShade = Paint()
       ..style = PaintingStyle.stroke
-      ..strokeWidth = 1.2
-      ..color = const Color(0x66101840);
+      ..strokeWidth = 2.4
+      ..color = const Color(0xAA000A20);
+    final innerLight = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.6
+      ..color = const Color(0x66FFFFFF);
     for (var r = 0; r < rows; r++) {
       for (var c = 0; c < columns; c++) {
         final center = Offset(c * cellW + cellW / 2, r * cellH + cellH / 2);
-        canvas.drawCircle(center, radius + 1.1, rim);
-        canvas.drawCircle(center, radius - 0.6, innerRim);
+        canvas.drawCircle(center, radius + 1.6, rim);
+        canvas.drawCircle(center.translate(0, -1.1), radius + 0.4, innerShade);
+        canvas.drawCircle(center.translate(0, 1.4), radius + 0.2, innerLight);
       }
     }
   }

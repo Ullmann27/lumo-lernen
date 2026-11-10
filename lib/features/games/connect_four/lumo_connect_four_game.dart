@@ -381,10 +381,47 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
 
   Widget _companion({required bool wide}) {
     Widget fox(double height) => RepaintBoundary(
-          child: Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
-              key: const ValueKey('connect-companion-fox'),
-              height: height,
-              fit: BoxFit.contain),
+          child: SizedBox(
+            height: height,
+            width: height * 1.12,
+            child: Stack(
+              clipBehavior: Clip.none,
+              alignment: Alignment.center,
+              children: [
+                Image.asset('assets/lumo_design/fox/fox_thumb_wink.png',
+                    key: const ValueKey('connect-companion-fox'),
+                    height: height,
+                    fit: BoxFit.contain),
+                Positioned(
+                  right: height * 0.02,
+                  bottom: height * 0.16,
+                  width: height * 0.30,
+                  height: height * 0.30,
+                  child: const IgnorePointer(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        gradient: RadialGradient(
+                          center: Alignment(-0.35, -0.42),
+                          colors: [
+                            Color(0xFFFFF6D0),
+                            Color(0xFFFFD166),
+                            Color(0xFFC48A20),
+                          ],
+                        ),
+                        border: Border.fromBorderSide(
+                          BorderSide(color: Color(0xFFFFF3C4), width: 1.5),
+                        ),
+                        boxShadow: [
+                          BoxShadow(color: Color(0xAAFFD166), blurRadius: 8),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
         );
     if (wide) {
       return LayoutBuilder(builder: (context, constraints) {
@@ -619,26 +656,57 @@ class _LumoConnectFourScreenState extends State<LumoConnectFourScreen>
         boxShadow: [
           if (!empty)
             BoxShadow(
-                color: color.withValues(alpha: winner ? .85 : .45),
-                blurRadius: winner ? 18 : 8),
+                color: color.withValues(alpha: winner ? .95 : .5),
+                blurRadius: winner ? 24 : 9,
+                spreadRadius: winner ? 3 : 0),
+          if (winner)
+            BoxShadow(
+                color: Colors.white.withValues(alpha: .55), blurRadius: 10),
         ],
       ),
       child: empty
           ? null
-          : Center(
-              child: FractionallySizedBox(
-                widthFactor: .42,
-                heightFactor: .42,
-                child: FittedBox(
-                  child: Icon(
-                    piece == ConnectPiece.child
-                        ? Icons.auto_awesome_rounded
-                        : Icons.circle_outlined,
-                    color: _ink.withValues(alpha: .35),
+          : Stack(fit: StackFit.expand, children: [
+              Padding(
+                padding: const EdgeInsets.all(3.2),
+                child: DecoratedBox(
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: Color.lerp(color, Colors.white, .55)!,
+                      width: 1.6,
+                    ),
                   ),
                 ),
               ),
-            ),
+              Align(
+                alignment: const Alignment(-0.35, -0.42),
+                child: FractionallySizedBox(
+                  widthFactor: .34,
+                  heightFactor: .22,
+                  child: DecoratedBox(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white.withValues(alpha: .55),
+                    ),
+                  ),
+                ),
+              ),
+              Center(
+                child: FractionallySizedBox(
+                  widthFactor: .42,
+                  heightFactor: .42,
+                  child: FittedBox(
+                    child: Icon(
+                      piece == ConnectPiece.child
+                          ? Icons.auto_awesome_rounded
+                          : Icons.circle_outlined,
+                      color: _ink.withValues(alpha: .35),
+                    ),
+                  ),
+                ),
+              ),
+            ]),
     );
   }
 }

@@ -314,30 +314,22 @@ class _QuizCard extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 18),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 22),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [
-                Color(0xFF061935),
-                Color(0xFF103A70),
-                Color(0xFF061A39),
-              ]),
-              borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: const Color(0xFFFFD873), width: 1.5),
-              boxShadow: const [
-                BoxShadow(color: Color(0x5545C7FC), blurRadius: 20),
-              ],
-            ),
-            child: Text(
-              question.prompt,
-              textAlign: TextAlign.center,
-              style: LumoTextStyles.heading1.copyWith(
-                fontSize: finale ? 30 : 28,
-                color: Colors.white,
-                fontWeight: FontWeight.w900,
-                shadows: const [
-                  Shadow(color: Color(0xAA000000), blurRadius: 10),
-                ],
+          CustomPaint(
+            painter: _HexQuestionPainter(finale: finale),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(28, 26, 28, 26),
+              child: Text(
+                question.prompt,
+                textAlign: TextAlign.center,
+                style: LumoTextStyles.heading1.copyWith(
+                  fontSize: finale ? 30 : 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  shadows: const [
+                    Shadow(color: Color(0xAA000000), blurRadius: 10),
+                    Shadow(color: Color(0x6645C7FC), blurRadius: 16),
+                  ],
+                ),
               ),
             ),
           ),
@@ -1077,22 +1069,28 @@ class _JokerButton extends StatelessWidget {
     return Opacity(
       opacity: used ? .50 : 1,
       child: Container(
-        height: 80,
+        constraints: const BoxConstraints(minHeight: 80, minWidth: 48),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(17),
+          borderRadius: BorderRadius.circular(18),
           gradient: const LinearGradient(
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-            colors: [Color(0xFF0A69C8), Color(0xFF071D56), Color(0xFF0745A3)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFFFE08A),
+              Color(0xFFC48A28),
+              Color(0xFF0A2A6A),
+              Color(0xFF071D56),
+            ],
+            stops: [0, .18, .42, 1],
           ),
           border: Border.all(
-              color: used ? const Color(0xFF69809F) : const Color(0xFF61E6FF),
-              width: 1.8),
+              color: used ? const Color(0xFF69809F) : const Color(0xFFFFE08A),
+              width: 2.1),
           boxShadow: used
               ? null
               : const [
-                  BoxShadow(color: Color(0xBB00C7FF), blurRadius: 13),
-                  BoxShadow(color: Color(0x5502A9FF), blurRadius: 22),
+                  BoxShadow(color: Color(0xAAFFD26F), blurRadius: 14),
+                  BoxShadow(color: Color(0x8800C7FF), blurRadius: 18),
                 ],
         ),
         child: Material(
@@ -1294,4 +1292,54 @@ class _QuizPodiumPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant _QuizPodiumPainter oldDelegate) => false;
+}
+
+class _HexQuestionPainter extends CustomPainter {
+  const _HexQuestionPainter({required this.finale});
+  final bool finale;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    final inset = size.height * 0.08;
+    final path = Path()
+      ..moveTo(size.width * 0.12, inset)
+      ..lineTo(size.width * 0.88, inset)
+      ..lineTo(size.width - 4, size.height / 2)
+      ..lineTo(size.width * 0.88, size.height - inset)
+      ..lineTo(size.width * 0.12, size.height - inset)
+      ..lineTo(4, size.height / 2)
+      ..close();
+    canvas.drawPath(
+      path,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: finale
+              ? const [Color(0xFF3A1868), Color(0xFF102868), Color(0xFF071430)]
+              : const [Color(0xFF0A2A68), Color(0xFF123A80), Color(0xFF061428)],
+        ).createShader(Offset.zero & size),
+    );
+    final glow = finale ? const Color(0xFFFFD873) : const Color(0xFF45C7FC);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 5
+        ..color = glow.withOpacity(.55)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+    );
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.2
+        ..color = glow,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _HexQuestionPainter oldDelegate) =>
+      oldDelegate.finale != finale;
 }
