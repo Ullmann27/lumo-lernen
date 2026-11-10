@@ -53,9 +53,7 @@ class LumoPlayingCard extends StatefulWidget {
   /// Describes only the rendered face, never the identity of a covered card.
   String get semanticLabel {
     if (faceDown) return 'Verdeckt';
-    final visibleColor = card.isWild
-        ? 'Vier Farben'
-        : card.color.displayName;
+    final visibleColor = card.isWild ? 'Vier Farben' : card.color.displayName;
     final visibleType = switch (card.type) {
       LumoCardType.number => 'Zahl ${card.number}',
       LumoCardType.lumoJump => 'Lumo-Sprung',
@@ -251,7 +249,7 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
             child: Container(
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: Colors.white, width: 2.6),
+                border: Border.all(color: const Color(0xFFE8C45A), width: 2.6),
               ),
             ),
           ),
@@ -343,7 +341,8 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: Colors.white.withOpacity(0.90), width: 2.4),
+                    color: const Color(0xFFE8C45A).withOpacity(0.95),
+                    width: 2.4),
               ),
             ),
           ),
@@ -466,7 +465,7 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
       case LumoCardType.starRain: // Draw Two
         return _bigNumber('+2', size: size);
       case LumoCardType.thinkPause: // Lumo USP - Lernfrage
-        return Icon(Icons.help_rounded, size: size, color: color);
+        return Icon(Icons.menu_book_rounded, size: size, color: color);
       case LumoCardType.colorMagic:
       case LumoCardType.superRain:
       case LumoCardType.number:
@@ -528,7 +527,7 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
     return Container(
       decoration: const BoxDecoration(
         gradient: LinearGradient(
-          colors: [Color(0xFF3B2A6B), Color(0xFF241947), Color(0xFF14102B)],
+          colors: [Color(0xFF1C4BB0), Color(0xFF123A8C), Color(0xFF0B2468)],
           stops: [0.0, 0.55, 1.0],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
@@ -548,40 +547,32 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                    color: Colors.white.withOpacity(0.30), width: 1.8),
+                    color: const Color(0xFFE8C45A).withOpacity(0.90),
+                    width: 2.2),
               ),
             ),
           ),
-          // Leuchtender Stern (zentral)
           Container(
-            width: widget.width * 0.42,
-            height: widget.width * 0.42,
+            width: widget.width * 0.48,
+            height: widget.width * 0.48,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: const RadialGradient(
-                colors: [Color(0xFFFFE9A8), Color(0x00FFE9A8)],
+                colors: [Color(0x66FFE9A8), Color(0x00FFE9A8)],
               ),
-              boxShadow: [
-                BoxShadow(
-                  color: const Color(0xFFFFD45A).withOpacity(0.6),
-                  blurRadius: 14,
-                  spreadRadius: 1,
-                ),
-              ],
             ),
             alignment: Alignment.center,
-            child: Text('✦',
+            child: Text('L',
                 style: TextStyle(
-                  fontSize: widget.width * 0.34,
-                  color: Colors.white,
+                  fontFamily: 'Nunito',
+                  fontSize: widget.width * 0.36,
+                  fontWeight: FontWeight.w900,
+                  color: const Color(0xFFFFD24A),
                   height: 1.0,
+                  shadows: const [
+                    Shadow(color: Color(0xAAFFE08A), blurRadius: 12),
+                  ],
                 )),
-          ),
-          // Kleiner Fuchs unten
-          Positioned(
-            bottom: 8,
-            child: Text('🦊',
-                style: TextStyle(fontSize: widget.width * 0.16, height: 1.0)),
           ),
         ],
       ),

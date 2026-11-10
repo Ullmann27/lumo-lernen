@@ -487,7 +487,7 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
                         child: Stack(
                             key: const ValueKey('cards-arena'),
                             children: [
-                              // Runder Steintisch mit Cyan-Ring unter den Stapeln.
+                              // Runder Holztisch unter den Stapeln.
                               const Positioned.fill(
                                 child: IgnorePointer(
                                   child: RepaintBoundary(

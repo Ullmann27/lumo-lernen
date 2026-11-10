@@ -71,8 +71,8 @@ class _LumoCardTableState extends State<LumoCardTable>
 
   @override
   Widget build(BuildContext context) {
-    // Nachtwelt wie Bild 03: Szene im Hintergrund, darüber ein runder,
-    // cyan leuchtender Steintisch in der Mitte.
+    // Nachtwelt wie in der Referenz: Szene im Hintergrund, darüber ein runder
+    // Holztisch in der Mitte.
     return LumoSceneBackground(
       scene: LumoScene.games,
       dimmed: true,
@@ -138,9 +138,9 @@ class _LumoCardTableState extends State<LumoCardTable>
                 decoration: BoxDecoration(
                   gradient: RadialGradient(
                     colors: [
-                      const Color(0xFF7FE3FF).withOpacity(0.20),
-                      const Color(0xFF7FE3FF).withOpacity(0.07),
-                      const Color(0xFF7FE3FF).withOpacity(0.0),
+                      const Color(0xFFFFE08A).withOpacity(0.22),
+                      const Color(0xFFE8C45A).withOpacity(0.08),
+                      const Color(0xFFE8C45A).withOpacity(0.0),
                     ],
                     stops: const [0.0, 0.25, 0.55],
                     radius: 0.42,
@@ -159,7 +159,7 @@ class _LumoCardTableState extends State<LumoCardTable>
   }
 }
 
-/// Runder Steintisch (Draufsicht leicht schräg) mit leuchtendem Cyan-Ring,
+/// Runder Holztisch (Draufsicht leicht schräg) mit warmen Holzringen,
 /// auf dem Nachzieh- und Ablagestapel liegen.
 class LumoRoundTablePainter extends CustomPainter {
   const LumoRoundTablePainter();
@@ -179,28 +179,51 @@ class LumoRoundTablePainter extends CustomPainter {
         rect,
         Paint()
           ..shader = const RadialGradient(
-            colors: [Color(0xFF2E3D5E), Color(0xFF1B2643), Color(0xFF111833)],
-            stops: [0, .7, 1],
+            center: Alignment(-0.18, -0.32),
+            radius: 1.05,
+            colors: [
+              Color(0xFFE8C49A),
+              Color(0xFFC4A06A),
+              Color(0xFF9A7040),
+              Color(0xFF6E4A28),
+            ],
+            stops: [0, .42, .78, 1],
           ).createShader(rect));
     canvas.drawOval(
-        rect.deflate(10),
+        Rect.fromCenter(
+          center: Offset(center.dx, center.dy - rect.height * .12),
+          width: rect.width * .72,
+          height: rect.height * .55,
+        ),
         Paint()
-          ..style = PaintingStyle.stroke
-          ..strokeWidth = 3
-          ..color = const Color(0xCC53DDFD)
-          ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 4));
+          ..shader = const RadialGradient(
+            colors: [Color(0x66FFF3C4), Color(0x00E8C49A)],
+          ).createShader(rect));
+    final ring = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1.4
+      ..color = const Color(0x668A5A28);
+    for (final inset in <double>[18, 36, 56, w * .16]) {
+      canvas.drawOval(rect.deflate(inset), ring);
+    }
     canvas.drawOval(
-        rect.deflate(10),
+        rect,
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1.2
-          ..color = const Color(0xFFBDF4FF));
+          ..strokeWidth = 8
+          ..color = const Color(0xFF5A3818));
     canvas.drawOval(
-        rect.deflate(w * .16),
+        rect.deflate(4),
         Paint()
           ..style = PaintingStyle.stroke
-          ..strokeWidth = 1
-          ..color = const Color(0x5537D2FD));
+          ..strokeWidth = 2.2
+          ..shader = const LinearGradient(
+            colors: [
+              Color(0xFFF0DCA8),
+              Color(0xFFC4963C),
+              Color(0xFFF0DCA8),
+            ],
+          ).createShader(Rect.fromLTWH(rect.left, rect.top, rect.width, 1)));
   }
 
   @override
