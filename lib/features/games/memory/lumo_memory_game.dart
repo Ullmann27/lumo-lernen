@@ -25,6 +25,7 @@ import '../../../theme/lumo_visual_tokens.dart';
 import '../../../widgets/design/lumo_design_system.dart';
 import '../../../widgets/fox/lumo_character.dart';
 import 'lumo_memory_stage.dart';
+import 'lumo_memory_garden.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
 class LumoMemoryScreen extends StatefulWidget {
@@ -382,18 +383,21 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
       clock: _clock,
       onRestart: () => _restart(),
       child: Scaffold(
-        backgroundColor: LumoVisualTokens.night,
-        body: LumoSceneBackground(
-          scene: LumoScene.games,
-          dimmed: true,
-          child: SafeArea(
-            child: LayoutBuilder(builder: (context, c) {
-              final landscape = c.maxWidth >= c.maxHeight * 1.12;
-              return landscape
-                  ? _buildLandscape(c.maxWidth, c.maxHeight)
-                  : _buildPortrait(c.maxWidth, c.maxHeight);
-            }),
-          ),
+        backgroundColor: const Color(0xFF3E6A3A),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            const LumoMemoryGarden(),
+            const LumoMemoryGardenFrame(),
+            SafeArea(
+              child: LayoutBuilder(builder: (context, c) {
+                final landscape = c.maxWidth >= c.maxHeight * 1.12;
+                return landscape
+                    ? _buildLandscape(c.maxWidth, c.maxHeight)
+                    : _buildPortrait(c.maxWidth, c.maxHeight);
+              }),
+            ),
+          ],
         ),
       ),
     );
@@ -404,6 +408,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
       height: math.max(56.0, logoHeight + 4),
       child: Row(children: [
         _RoundIconButton(
+          key: const ValueKey('memory-close'),
           icon: Icons.close_rounded,
           tooltip: 'Pausieren / Zurück',
           onTap: _clock.pause,
@@ -424,6 +429,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
           ),
         ),
         _RoundIconButton(
+          key: const ValueKey('memory-restart'),
           icon: Icons.refresh_rounded,
           tooltip: 'Neu starten',
           onTap: _clock.pause,
@@ -763,10 +769,10 @@ class _CardBack extends StatelessWidget {
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
           colors: [
-            Color(0xFF1C4BB0),
-            Color(0xFF123A8C),
-            Color(0xFF0B2468),
-            Color(0xFF163E96),
+            Color(0xFF3E8A4A),
+            Color(0xFF2A6A38),
+            Color(0xFF1A4A28),
+            Color(0xFF2F7340),
           ],
           stops: [0, .28, .78, 1],
         ),
@@ -795,11 +801,11 @@ class _CardBack extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.star_rounded,
-                      color: Color(0xFFFFD24A),
+                  Icon(Icons.eco_rounded,
+                      color: Color(0xFFD8F0A8),
                       size: 72,
                       shadows: [
-                        Shadow(color: Color(0xAAFFE08A), blurRadius: 16)
+                        Shadow(color: Color(0xAA8FE08A), blurRadius: 16)
                       ]),
                   SizedBox(height: 2),
                   Icon(Icons.pets_rounded,
@@ -943,7 +949,10 @@ class _SparklePainter extends CustomPainter {
 
 class _RoundIconButton extends StatelessWidget {
   const _RoundIconButton(
-      {required this.icon, required this.tooltip, required this.onTap});
+      {super.key,
+      required this.icon,
+      required this.tooltip,
+      required this.onTap});
   final IconData icon;
   final String tooltip;
   final VoidCallback onTap;

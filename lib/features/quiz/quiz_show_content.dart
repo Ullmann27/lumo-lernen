@@ -12,7 +12,6 @@ import '../../domain/quiz/quiz_question_bank.dart';
 import '../../domain/quiz/quiz_show.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
-import '../../widgets/fox/lumo_character.dart';
 
 class QuizShowContent extends StatefulWidget {
   const QuizShowContent({
@@ -45,7 +44,8 @@ class _QuizShowContentState extends State<QuizShowContent> {
     if (widget.appState.state.settings.soundEnabled) {
       unawaited(LumoSound.instance.init());
     }
-    _music = QuizShowMusic(enabled: widget.appState.state.settings.soundEnabled);
+    _music =
+        QuizShowMusic(enabled: widget.appState.state.settings.soundEnabled);
     _startNewGame();
     unawaited(_music.start());
   }
@@ -68,7 +68,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
     final questions = _bank.generateGameQuestions(
       grade: widget.appState.state.grade,
       random: math.Random(
-        widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
+          widget.previewQuestionSeed ?? DateTime.now().millisecondsSinceEpoch),
     );
     _state = _engine.start(questions: questions);
   }
@@ -83,7 +83,9 @@ class _QuizShowContentState extends State<QuizShowContent> {
   }
 
   void _reveal() {
-    if (_locking || _state.revealed || _state.gameOver ||
+    if (_locking ||
+        _state.revealed ||
+        _state.gameOver ||
         _state.selectedOption == null) return;
     setState(() => _locking = true);
     _playEffect(SoundEffect.click);
@@ -100,8 +102,8 @@ class _QuizShowContentState extends State<QuizShowContent> {
   void _resolveAnswer() {
     final before = _state;
     final selected = before.selectedOption;
-    final correct = selected != null &&
-        selected == before.currentQuestion.correctIndex;
+    final correct =
+        selected != null && selected == before.currentQuestion.correctIndex;
 
     setState(() {
       final wasGameOver = _state.gameOver;
@@ -178,8 +180,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
             gradient: LinearGradient(
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
-              colors: [Color(0xFF092A67), Color(0xFF04102C),
-                Color(0xFF12285C)],
+              colors: [Color(0xFF092A67), Color(0xFF04102C), Color(0xFF12285C)],
             ),
             border: Border(
               bottom: BorderSide(color: Color(0xFF2BCAFF), width: 1.2),
@@ -189,8 +190,7 @@ class _QuizShowContentState extends State<QuizShowContent> {
         actions: const [
           Padding(
             padding: EdgeInsets.only(right: 13),
-            child: Icon(Icons.star_rounded,
-              color: Color(0xFFFFDA77), size: 27),
+            child: Icon(Icons.star_rounded, color: Color(0xFFFFDA77), size: 27),
           ),
         ],
       ),
@@ -202,10 +202,14 @@ class _QuizShowContentState extends State<QuizShowContent> {
           child: LayoutBuilder(
             builder: (context, constraints) {
               final card = _QuizCard(
-                state: _state, question: q,
-                onSelect: _select, onReveal: _reveal, onNext: _next,
-                onRestart: _restart, onJoker: _joker,
-                 locking: _locking,
+                state: _state,
+                question: q,
+                onSelect: _select,
+                onReveal: _reveal,
+                onNext: _next,
+                onRestart: _restart,
+                onJoker: _joker,
+                locking: _locking,
               );
               return SingleChildScrollView(
                 padding: EdgeInsets.all(constraints.maxWidth < 400 ? 10 : 18),
@@ -255,7 +259,8 @@ class _QuizCard extends StatelessWidget {
     final tension = state.displayQuestionNumber >= 15;
 
     return Container(
-      padding: EdgeInsets.all(MediaQuery.sizeOf(context).width <= 360 ? 10 : 20),
+      padding:
+          EdgeInsets.all(MediaQuery.sizeOf(context).width <= 360 ? 10 : 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topLeft,
@@ -273,10 +278,9 @@ class _QuizCard extends StatelessWidget {
         ),
         boxShadow: [
           BoxShadow(
-            color: (finale
-                    ? const Color(0xFFFFC94A)
-                    : LumoVisualTokens.cyanBright)
-                .withOpacity(tension ? .30 : .16),
+            color:
+                (finale ? const Color(0xFFFFC94A) : LumoVisualTokens.cyanBright)
+                    .withOpacity(tension ? .30 : .16),
             blurRadius: tension ? 32 : 22,
             spreadRadius: tension ? 3 : 0,
           ),
@@ -288,7 +292,8 @@ class _QuizCard extends StatelessWidget {
           _QuizStage(state: state, onJoker: onJoker),
           const SizedBox(height: 10),
           Row(children: [
-            _Pill('Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
+            _Pill(
+                'Frage ${state.displayQuestionNumber} / ${state.questions.length}'),
             const Spacer(),
             Flexible(
               child: FittedBox(
@@ -309,27 +314,22 @@ class _QuizCard extends StatelessWidget {
             ),
           ]),
           const SizedBox(height: 18),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 22),
-            decoration: BoxDecoration(
-              gradient: const LinearGradient(colors: [
-                Color(0xFF061935), Color(0xFF103A70), Color(0xFF061A39),
-              ]),
-              borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: const Color(0xFFFFD873), width: 1.5),
-              boxShadow: const [
-                BoxShadow(color: Color(0x5545C7FC), blurRadius: 20),
-              ],
-            ),
-            child: Text(
-              question.prompt,
-              textAlign: TextAlign.center,
-              style: LumoTextStyles.heading1.copyWith(
-                fontSize: finale ? 30 : 28, color: Colors.white,
-                fontWeight: FontWeight.w900,
-                shadows: const [
-                  Shadow(color: Color(0xAA000000), blurRadius: 10),
-                ],
+          CustomPaint(
+            painter: _HexQuestionPainter(finale: finale),
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(28, 26, 28, 26),
+              child: Text(
+                question.prompt,
+                textAlign: TextAlign.center,
+                style: LumoTextStyles.heading1.copyWith(
+                  fontSize: finale ? 30 : 28,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w900,
+                  shadows: const [
+                    Shadow(color: Color(0xAA000000), blurRadius: 10),
+                    Shadow(color: Color(0x6645C7FC), blurRadius: 16),
+                  ],
+                ),
               ),
             ),
           ),
@@ -350,15 +350,18 @@ class _QuizCard extends StatelessWidget {
                   MediaQuery.textScalerOf(context).scale(1) <= 1.3;
               final width = two ? (bounds.maxWidth - gap) / 2 : bounds.maxWidth;
               return Wrap(
-                spacing: gap, runSpacing: 10,
+                spacing: gap,
+                runSpacing: 10,
                 children: [
                   for (var i = 0; i < question.options.length; i++)
                     SizedBox(
                       width: width,
                       child: _AnswerButton(
-                        label: question.options[i], index: i,
+                        label: question.options[i],
+                        index: i,
                         hidden: state.fiftyFiftyHiddenOptions.contains(i),
-                        selected: selected == i, revealed: answered,
+                        selected: selected == i,
+                        revealed: answered,
                         correct: question.correctIndex == i,
                         onTap: locking ? null : () => onSelect(i),
                       ),
@@ -372,7 +375,9 @@ class _QuizCard extends StatelessWidget {
             FilledButton.icon(
               onPressed: onRestart,
               icon: const Icon(Icons.refresh_rounded),
-              label: Text(state.won ? 'Nochmal Lumo-Meister werden' : 'Neue Quizrunde starten'),
+              label: Text(state.won
+                  ? 'Nochmal Lumo-Meister werden'
+                  : 'Neue Quizrunde starten'),
             )
           else if (!answered)
             _LockInButton(
@@ -389,13 +394,13 @@ class _QuizCard extends StatelessWidget {
                 backgroundColor: const Color(0xFF064DAB),
                 foregroundColor: Colors.white,
                 minimumSize: const Size.fromHeight(53),
-                side: const BorderSide(
-                  color: Color(0xFFFFD777), width: 1.6),
+                side: const BorderSide(color: Color(0xFFFFD777), width: 1.6),
                 shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(25)),
+                    borderRadius: BorderRadius.circular(25)),
                 textStyle: const TextStyle(
-                  fontFamily: 'Nunito', fontSize: 17,
-                  fontWeight: FontWeight.w900),
+                    fontFamily: 'Nunito',
+                    fontSize: 17,
+                    fontWeight: FontWeight.w900),
               ),
             ),
           if (answered) ...[
@@ -414,7 +419,6 @@ class _QuizCard extends StatelessWidget {
   }
 }
 
-
 /// The three real jokers and the 20-step ladder flank a lit TV-show set.
 /// Each control remains inside its own hitbox on phones and unfolded Fold.
 class _QuizStage extends StatelessWidget {
@@ -424,202 +428,255 @@ class _QuizStage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-    builder: (context, c) {
-      final compact = c.maxWidth < 400;
-      final tablet = c.maxWidth >= 700;
-      final leftWidth = tablet ? 106.0
-          : compact ? math.max(44.0, c.maxWidth * .17) : 84.0;
-      final rightWidth = tablet ? 170.0
-          : compact ? math.max(80.0, c.maxWidth * .29) : 130.0;
-      final gap = tablet ? 14.0 : compact ? 4.0 : 6.0;
-      final usable = math.max(
-        38.0, c.maxWidth - leftWidth - rightWidth - gap * 2,
-      );
-      final foxSize = math.min(
-        tablet ? 330.0 : (compact ? 208.0 : 262.0),
-        math.max(38.0, usable - 4),
-      );
-      final current = state.displayQuestionNumber;
-      final finale = current == state.questions.length;
-      final caption = state.won ? 'LUMO-MEISTER!'
-          : finale ? 'MEISTERFRAGE!'
-          : current >= 15 ? 'DU SCHAFFST DAS!'
-          : 'LUMO LIVE';
-      final scale = math.max(1.0, MediaQuery.textScalerOf(context).scale(1));
+        builder: (context, c) {
+          final compact = c.maxWidth < 400;
+          final tablet = c.maxWidth >= 700;
+          final leftWidth = tablet
+              ? 106.0
+              : compact
+                  ? math.max(44.0, c.maxWidth * .17)
+                  : 84.0;
+          final rightWidth = tablet
+              ? 170.0
+              : compact
+                  ? math.max(80.0, c.maxWidth * .29)
+                  : 130.0;
+          final gap = tablet
+              ? 14.0
+              : compact
+                  ? 4.0
+                  : 6.0;
+          final usable = math.max(
+            38.0,
+            c.maxWidth - leftWidth - rightWidth - gap * 2,
+          );
+          final foxSize = math.min(
+            tablet ? 330.0 : (compact ? 208.0 : 262.0),
+            math.max(38.0, usable - 4),
+          );
+          final current = state.displayQuestionNumber;
+          final finale = current == state.questions.length;
+          final caption = state.won
+              ? 'LUMO-MEISTER!'
+              : finale
+                  ? 'MEISTERFRAGE!'
+                  : current >= 15
+                      ? 'DU SCHAFFST DAS!'
+                      : 'LUMO LIVE';
+          final scale =
+              math.max(1.0, MediaQuery.textScalerOf(context).scale(1));
 
-      return ClipRRect(
-        borderRadius: BorderRadius.circular(21),
-        child: SizedBox(
-          key: const ValueKey('lumo-meister-stage'),
-          height: (compact ? 414.0 : tablet ? 510.0 : 455.0) * scale,
-          child: Stack(
-            children: [
-              const Positioned.fill(
-                child: IgnorePointer(child: QuizStudioScene()),
-              ),
-              Positioned.fill(
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-                      key: const ValueKey('lumo-meister-joker-rail'),
-                      width: leftWidth,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          _JokerButton(
-                            label: '50:50',
-                            icon: Icons.filter_2_rounded,
-                            used: state.usedJokers.contains(QuizJoker.fiftyFifty),
-                            onTap: () => onJoker(QuizJoker.fiftyFifty),
-                          ),
-                          const SizedBox(height: 9),
-                          _JokerButton(
-                            label: 'Publikum',
-                            icon: Icons.groups_rounded,
-                            used: state.usedJokers.contains(QuizJoker.audience),
-                            onTap: () => onJoker(QuizJoker.audience),
-                          ),
-                          const SizedBox(height: 9),
-                          _JokerButton(
-                            label: 'Lumo-Tipp',
-                            icon: Icons.lightbulb_rounded,
-                            used: state.usedJokers.contains(QuizJoker.callLumo),
-                            onTap: () => onJoker(QuizJoker.callLumo),
-                          ),
-                        ],
-                      ),
-                    ),
-                    SizedBox(width: gap),
-                    Expanded(
-                      child: ClipRect(
-                        child: Stack(
-                          fit: StackFit.expand,
-                          children: [
-                            Positioned(
-                              left: 0, right: 0, top: 7,
-                              child: Center(
-                                child: DecoratedBox(
-                                  decoration: BoxDecoration(
-                                    color: const Color(0xC905204B),
-                                    borderRadius: BorderRadius.circular(18),
-                                    border: Border.all(
-                                      color: const Color(0xAA56E7FF)),
-                                  ),
-                                  child: const Padding(
-                                    padding: EdgeInsets.symmetric(
-                                      horizontal: 10, vertical: 4),
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: const [
-                                        Icon(Icons.star_rounded,
-                                          color: Color(0xFFFFD978), size: 12),
-                                        SizedBox(width: 3),
-                                        Text('LIVE',
-                                          maxLines: 1,
-                                          style: TextStyle(
-                                            color: Color(0xFFFFE3A0),
-                                            fontFamily: 'Nunito',
-                                            fontWeight: FontWeight.w900,
-                                            fontSize: 11)),
-                                        SizedBox(width: 3),
-                                        Icon(Icons.star_rounded,
-                                          color: Color(0xFFFFD978), size: 12),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+          return ClipRRect(
+            borderRadius: BorderRadius.circular(21),
+            child: SizedBox(
+              key: const ValueKey('lumo-meister-stage'),
+              height: (compact
+                      ? 414.0
+                      : tablet
+                          ? 510.0
+                          : 455.0) *
+                  scale,
+              child: Stack(
+                children: [
+                  const Positioned.fill(
+                    child: IgnorePointer(child: QuizStudioScene()),
+                  ),
+                  Positioned.fill(
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        SizedBox(
+                          key: const ValueKey('lumo-meister-joker-rail'),
+                          width: leftWidth,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              _JokerButton(
+                                label: '50:50',
+                                icon: Icons.filter_2_rounded,
+                                used: state.usedJokers
+                                    .contains(QuizJoker.fiftyFifty),
+                                onTap: () => onJoker(QuizJoker.fiftyFifty),
                               ),
-                            ),
-                            Positioned(
-                              left: 0, right: 0, bottom: 45,
-                              child: Center(
-                                child: SizedBox(
-                                  key: const ValueKey('lumo-meister-fox-slot'),
-                                  width: foxSize, height: foxSize * 1.12,
-                                  child: Image.asset(
-                                    'assets/lumo_design/fox/fox_quiz_host_1982.webp',
-                                    key: const ValueKey('lumo-meister-fox'),
-                                    width: foxSize, height: foxSize * 1.12,
-                                    fit: BoxFit.contain,
-                                    filterQuality: FilterQuality.high,
-                                    semanticLabel:
-                                      'Lumo moderiert die Quizshow mit Fliege, Mikrofon und Sternkarte',
-                                  ),
-                                ),
+                              const SizedBox(height: 9),
+                              _JokerButton(
+                                label: 'Publikum',
+                                icon: Icons.groups_rounded,
+                                used: state.usedJokers
+                                    .contains(QuizJoker.audience),
+                                onTap: () => onJoker(QuizJoker.audience),
                               ),
-                            ),
-                            Positioned(
-                              bottom: 6, left: 0, right: 0,
-                              child: IgnorePointer(
-                                child: Container(
-                                  height: 39,
-                                  decoration: BoxDecoration(
-                                    gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFF06143A),
-                                        Color(0xFF1549A0),
-                                        Color(0xFF071637),
-                                      ],
-                                    ),
-                                    border: Border.all(
-                                      color: const Color(0xFFFFD26F),
-                                      width: 1.8),
-                                    borderRadius: BorderRadius.circular(13),
-                                    boxShadow: const [
-                                      BoxShadow(
-                                        color: Color(0xB3FFB83A),
-                                        blurRadius: 15),
-                                      BoxShadow(
-                                        color: Color(0x8034E5FF),
-                                        blurRadius: 20),
-                                    ],
-                                  ),
-                                  alignment: Alignment.center,
-                                  child: FittedBox(
-                                    fit: BoxFit.scaleDown,
-                                    child: Row(
-                                      mainAxisSize: MainAxisSize.min,
-                                      children: [
-                                        const Icon(Icons.star_rounded,
-                                          color: Color(0xFFFFD978), size: 19),
-                                        const SizedBox(width: 7),
-                                        Text(caption,
-                                          maxLines: 1,
-                                          style: const TextStyle(
-                                            color: Color(0xFFFFD978),
-                                            fontSize: 18,
-                                            fontFamily: 'Nunito',
-                                            fontWeight: FontWeight.w900,
-                                            letterSpacing: 1.1)),
-                                        const SizedBox(width: 7),
-                                        const Icon(Icons.star_rounded,
-                                          color: Color(0xFFFFD978), size: 19),
-                                      ],
-                                    ),
-                                  ),
-                                ),
+                              const SizedBox(height: 9),
+                              _JokerButton(
+                                label: 'Lumo-Tipp',
+                                icon: Icons.lightbulb_rounded,
+                                used: state.usedJokers
+                                    .contains(QuizJoker.callLumo),
+                                onTap: () => onJoker(QuizJoker.callLumo),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
+                        SizedBox(width: gap),
+                        Expanded(
+                          child: ClipRect(
+                            child: Stack(
+                              fit: StackFit.expand,
+                              children: [
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  top: 7,
+                                  child: Center(
+                                    child: DecoratedBox(
+                                      decoration: BoxDecoration(
+                                        color: const Color(0xC905204B),
+                                        borderRadius: BorderRadius.circular(18),
+                                        border: Border.all(
+                                            color: const Color(0xAA56E7FF)),
+                                      ),
+                                      child: const Padding(
+                                        padding: EdgeInsets.symmetric(
+                                            horizontal: 10, vertical: 4),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: const [
+                                            Icon(Icons.star_rounded,
+                                                color: Color(0xFFFFD978),
+                                                size: 12),
+                                            SizedBox(width: 3),
+                                            Text('LIVE',
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                    color: Color(0xFFFFE3A0),
+                                                    fontFamily: 'Nunito',
+                                                    fontWeight: FontWeight.w900,
+                                                    fontSize: 11)),
+                                            SizedBox(width: 3),
+                                            Icon(Icons.star_rounded,
+                                                color: Color(0xFFFFD978),
+                                                size: 12),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  left: 0,
+                                  right: 0,
+                                  bottom: 45,
+                                  child: Center(
+                                    child: SizedBox(
+                                      key: const ValueKey(
+                                          'lumo-meister-fox-slot'),
+                                      width: foxSize,
+                                      height: foxSize * 1.12,
+                                      child: Stack(
+                                        alignment: Alignment.bottomCenter,
+                                        children: [
+                                          Positioned(
+                                            bottom: 2,
+                                            child: IgnorePointer(
+                                              child: CustomPaint(
+                                                size: Size(foxSize * .72,
+                                                    foxSize * .18),
+                                                painter:
+                                                    const _QuizPodiumPainter(),
+                                              ),
+                                            ),
+                                          ),
+                                          Image.asset(
+                                            'assets/lumo_design/fox/fox_quiz_host_1982.webp',
+                                            key: const ValueKey(
+                                                'lumo-meister-fox'),
+                                            width: foxSize,
+                                            height: foxSize * 1.12,
+                                            fit: BoxFit.contain,
+                                            filterQuality: FilterQuality.high,
+                                            semanticLabel:
+                                                'Lumo moderiert die Quizshow mit Fliege, Mikrofon und Sternkarte',
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Positioned(
+                                  bottom: 6,
+                                  left: 0,
+                                  right: 0,
+                                  child: IgnorePointer(
+                                    child: Container(
+                                      height: 39,
+                                      decoration: BoxDecoration(
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            Color(0xFF06143A),
+                                            Color(0xFF1549A0),
+                                            Color(0xFF071637),
+                                          ],
+                                        ),
+                                        border: Border.all(
+                                            color: const Color(0xFFFFD26F),
+                                            width: 1.8),
+                                        borderRadius: BorderRadius.circular(13),
+                                        boxShadow: const [
+                                          BoxShadow(
+                                              color: Color(0xB3FFB83A),
+                                              blurRadius: 15),
+                                          BoxShadow(
+                                              color: Color(0x8034E5FF),
+                                              blurRadius: 20),
+                                        ],
+                                      ),
+                                      alignment: Alignment.center,
+                                      child: FittedBox(
+                                        fit: BoxFit.scaleDown,
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            const Icon(Icons.star_rounded,
+                                                color: Color(0xFFFFD978),
+                                                size: 19),
+                                            const SizedBox(width: 7),
+                                            Text(caption,
+                                                maxLines: 1,
+                                                style: const TextStyle(
+                                                    color: Color(0xFFFFD978),
+                                                    fontSize: 18,
+                                                    fontFamily: 'Nunito',
+                                                    fontWeight: FontWeight.w900,
+                                                    letterSpacing: 1.1)),
+                                            const SizedBox(width: 7),
+                                            const Icon(Icons.star_rounded,
+                                                color: Color(0xFFFFD978),
+                                                size: 19),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        SizedBox(width: gap),
+                        SizedBox(
+                          key: const ValueKey('lumo-meister-prize-rail'),
+                          width: rightWidth,
+                          child: _QuizPrizeRail(state: state),
+                        ),
+                      ],
                     ),
-                    SizedBox(width: gap),
-                    SizedBox(
-                      key: const ValueKey('lumo-meister-prize-rail'),
-                      width: rightWidth,
-                      child: _QuizPrizeRail(state: state),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-          ),
-        ),
+            ),
+          );
+        },
       );
-    },
-  );
 }
 
 /// All 20 rows are visual progress, not independent wallet grants.
@@ -628,8 +685,27 @@ class _QuizPrizeRail extends StatelessWidget {
   const _QuizPrizeRail({required this.state});
   final QuizShowState state;
   static const amounts = <int>[
-    0, 10, 20, 30, 40, 50, 80, 90, 100, 150, 200,
-    400, 450, 500, 600, 800, 2000, 2500, 3000, 4000, 5000,
+    0,
+    10,
+    20,
+    30,
+    40,
+    50,
+    80,
+    90,
+    100,
+    150,
+    200,
+    400,
+    450,
+    500,
+    600,
+    800,
+    2000,
+    2500,
+    3000,
+    4000,
+    5000,
   ];
 
   @override
@@ -639,8 +715,9 @@ class _QuizPrizeRail extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
       decoration: BoxDecoration(
         gradient: const LinearGradient(
-          begin: Alignment.topCenter, end: Alignment.bottomCenter,
-          colors: [Color(0xFF15356D), Color(0xFF071735)]),
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFF15356D), Color(0xFF071735)]),
         borderRadius: BorderRadius.circular(17),
         border: Border.all(color: const Color(0xFFFFC94A), width: 2),
         boxShadow: const [
@@ -657,46 +734,56 @@ class _QuizPrizeRail extends StatelessWidget {
                   key: ValueKey('lumo-meister-prize-step-$step'),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(6),
-                    gradient: LinearGradient(colors: step == current
-                      ? const [Color(0xFF00BDF4), Color(0xFF0649A1)]
-                      : const [Color(0xFF112F5E), Color(0xFF081831)]),
+                    gradient: LinearGradient(
+                        colors: step == current
+                            ? const [Color(0xFF00BDF4), Color(0xFF0649A1)]
+                            : const [Color(0xFF112F5E), Color(0xFF081831)]),
                     border: Border.all(
-                      color: step == current
-                        ? const Color(0xFF55EEFF)
-                        : const Color(0x664C8DCE),
-                      width: step == current ? 1.4 : 0.6),
+                        color: step == current
+                            ? const Color(0xFF55EEFF)
+                            : const Color(0x664C8DCE),
+                        width: step == current ? 1.4 : 0.6),
                     boxShadow: step == current
-                      ? const [BoxShadow(
-                          color: Color(0x9955EFFF), blurRadius: 9)]
-                      : null,
+                        ? const [
+                            BoxShadow(color: Color(0x9955EFFF), blurRadius: 9)
+                          ]
+                        : null,
                   ),
                   child: Row(children: [
                     SizedBox(
                       width: 22,
                       child: Text(step.toString(),
-                        maxLines: 1, textAlign: TextAlign.center,
-                        style: TextStyle(
-                          color: const Color(0xFFFFDF79),
-                          fontSize: 11,
-                          fontWeight: step % 5 == 0
-                            ? FontWeight.w900 : FontWeight.w700,
-                        )),
+                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                            color: const Color(0xFFFFDF79),
+                            fontSize: 11,
+                            fontWeight: step % 5 == 0
+                                ? FontWeight.w900
+                                : FontWeight.w700,
+                          )),
                     ),
-                    const Expanded(child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Icon(Icons.star_rounded,
-                        color: Color(0xFFFFD45C), size: 13))),
-                    SizedBox(width: 42, child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text(_amount(step),
-                        style: TextStyle(
-                          fontFamily: 'Nunito', fontSize: 12,
-                          fontWeight: step % 5 == 0
-                            ? FontWeight.w900 : FontWeight.w700,
-                          color: step == current || step % 5 == 0
-                            ? const Color(0xFFFFE59E) : Colors.white,
+                    const Expanded(
+                        child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Icon(Icons.star_rounded,
+                                color: Color(0xFFFFD45C), size: 13))),
+                    SizedBox(
+                        width: 42,
+                        child: FittedBox(
+                          fit: BoxFit.scaleDown,
+                          child: Text(_amount(step),
+                              style: TextStyle(
+                                fontFamily: 'Nunito',
+                                fontSize: 12,
+                                fontWeight: step % 5 == 0
+                                    ? FontWeight.w900
+                                    : FontWeight.w700,
+                                color: step == current || step % 5 == 0
+                                    ? const Color(0xFFFFE59E)
+                                    : Colors.white,
+                              )),
                         )),
-                    )),
                   ]),
                 ),
               ),
@@ -715,7 +802,9 @@ class _QuizPrizeRail extends StatelessWidget {
 
 class _LockInButton extends StatelessWidget {
   const _LockInButton({
-    required this.enabled, required this.locking, required this.onTap,
+    required this.enabled,
+    required this.locking,
+    required this.onTap,
   });
   final bool enabled;
   final bool locking;
@@ -730,17 +819,23 @@ class _LockInButton extends StatelessWidget {
         key: const ValueKey('lumo-meister-lock-bar'),
         duration: const Duration(milliseconds: 180),
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: enabled || locking
-            ? const [Color(0xFF064EAA), Color(0xFF12275A), Color(0xFF05418C)]
-            : const [Color(0xFF293C60), Color(0xFF162B4C)]),
+          gradient: LinearGradient(
+              colors: enabled || locking
+                  ? const [
+                      Color(0xFF064EAA),
+                      Color(0xFF12275A),
+                      Color(0xFF05418C)
+                    ]
+                  : const [Color(0xFF293C60), Color(0xFF162B4C)]),
           borderRadius: BorderRadius.circular(30),
           border: Border.all(
-            color: locking || enabled
-              ? const Color(0xFFFFCD62) : const Color(0xFF557AA6),
-            width: 1.7),
+              color: locking || enabled
+                  ? const Color(0xFFFFCD62)
+                  : const Color(0xFF557AA6),
+              width: 1.7),
           boxShadow: locking
-            ? const [BoxShadow(color: Color(0x88FFD66B), blurRadius: 19)]
-            : const [BoxShadow(color: Color(0x6638CAFF), blurRadius: 12)],
+              ? const [BoxShadow(color: Color(0x88FFD66B), blurRadius: 19)]
+              : const [BoxShadow(color: Color(0x6638CAFF), blurRadius: 12)],
         ),
         child: Material(
           color: Colors.transparent,
@@ -748,22 +843,26 @@ class _LockInButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(30),
             onTap: enabled ? onTap : null,
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 12, vertical: 13),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 13),
               child: Column(children: [
                 Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  Icon(locking ? Icons.hourglass_top_rounded
-                      : Icons.check_circle_outline_rounded,
+                  Icon(
+                      locking
+                          ? Icons.hourglass_top_rounded
+                          : Icons.check_circle_outline_rounded,
                       color: const Color(0xFFFFD873)),
                   const SizedBox(width: 8),
-                  Flexible(child: Text(
-                    locking ? 'Lumo prüft deine Antwort …'
+                  Flexible(
+                      child: Text(
+                    locking
+                        ? 'Lumo prüft deine Antwort …'
                         : 'Antwort einloggen',
-                    maxLines: 2, textAlign: TextAlign.center,
+                    maxLines: 2,
+                    textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: enabled || locking
-                        ? Colors.white : Colors.white60,
-                      fontFamily: 'Nunito', fontSize: 17,
+                      color: enabled || locking ? Colors.white : Colors.white60,
+                      fontFamily: 'Nunito',
+                      fontSize: 17,
                       fontWeight: FontWeight.w900,
                     ),
                   )),
@@ -772,15 +871,14 @@ class _LockInButton extends StatelessWidget {
                   const SizedBox(height: 10),
                   TweenAnimationBuilder<double>(
                     tween: Tween(begin: 0, end: 1),
-                    duration: Duration(
-                      milliseconds: reduceMotion ? 750 : 1600),
-                    builder: (context, progress, _) =>
-                      LinearProgressIndicator(
-                        value: progress, minHeight: 5,
-                        backgroundColor: const Color(0xFF11295A),
-                        valueColor: const AlwaysStoppedAnimation<Color>(
+                    duration: Duration(milliseconds: reduceMotion ? 750 : 1600),
+                    builder: (context, progress, _) => LinearProgressIndicator(
+                      value: progress,
+                      minHeight: 5,
+                      backgroundColor: const Color(0xFF11295A),
+                      valueColor: const AlwaysStoppedAnimation<Color>(
                           Color(0xFFFFD76A)),
-                      ),
+                    ),
                   ),
                 ],
               ]),
@@ -844,19 +942,23 @@ class _AnswerButton extends StatelessWidget {
     final showCorrect = revealed && correct;
     final showError = revealed && selected && !correct;
     final colors = showCorrect
-      ? const [Color(0xFF034D3A), Color(0xFF139D73)]
-      : showError
-        ? const [Color(0xFF51152F), Color(0xFFB73A55)]
-        : selected
-          ? const [Color(0xFF673E0D), Color(0xFFCE8B1C)]
-          : const [Color(0xFF061637), Color(0xFF0547A4), Color(0xFF042B79)];
+        ? const [Color(0xFF034D3A), Color(0xFF139D73)]
+        : showError
+            ? const [Color(0xFF51152F), Color(0xFFB73A55)]
+            : selected
+                ? const [Color(0xFF673E0D), Color(0xFFCE8B1C)]
+                : const [
+                    Color(0xFF061637),
+                    Color(0xFF0547A4),
+                    Color(0xFF042B79)
+                  ];
     final border = showCorrect
-      ? const Color(0xFF7BFFC6)
-      : showError
-        ? const Color(0xFFFF92A2)
-        : selected
-          ? const Color(0xFFFFE69C)
-          : const Color(0xFF48E4FF);
+        ? const Color(0xFF7BFFC6)
+        : showError
+            ? const Color(0xFFFF92A2)
+            : selected
+                ? const Color(0xFFFFE69C)
+                : const Color(0xFF48E4FF);
     return Opacity(
       opacity: hidden ? .27 : 1,
       child: Semantics(
@@ -893,7 +995,8 @@ class _AnswerButton extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 7),
                 child: Row(children: [
                   Container(
-                    width: 41, height: 41,
+                    width: 41,
+                    height: 41,
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       gradient: const LinearGradient(
@@ -902,29 +1005,42 @@ class _AnswerButton extends StatelessWidget {
                         colors: [Color(0xFF0F4B94), Color(0xFF06122C)],
                       ),
                       border: Border.all(
-                        color: const Color(0xFF6CCBFF), width: 1.8),
+                          color: const Color(0xFF6CCBFF), width: 1.8),
                       boxShadow: const [
-                        BoxShadow(
-                          color: Color(0x664CE5FF), blurRadius: 9),
+                        BoxShadow(color: Color(0x664CE5FF), blurRadius: 9),
                       ],
                     ),
                     alignment: Alignment.center,
                     child: Text(letter,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito', fontSize: 24,
-                        color: Color(0xFFFFD978),
-                        fontWeight: FontWeight.w900)),
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 24,
+                            color: Color(0xFFFFD978),
+                            fontWeight: FontWeight.w900)),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: 6),
+                  Icon(
+                    const [
+                      Icons.circle_outlined,
+                      Icons.change_history_rounded,
+                      Icons.crop_square_rounded,
+                      Icons.star_rounded,
+                    ][index.clamp(0, 3)],
+                    size: 16,
+                    color: const Color(0xFF8AF0FF),
+                  ),
+                  const SizedBox(width: 6),
                   Expanded(
                     child: Text(hidden ? '—' : label,
-                      key: ValueKey('lumo-meister-answer-text-$index'),
-                      maxLines: 2, overflow: TextOverflow.ellipsis,
-                      textAlign: TextAlign.start,
-                      style: const TextStyle(
-                        fontFamily: 'Nunito', fontSize: 17,
-                        fontWeight: FontWeight.w900,
-                        color: Colors.white)),
+                        key: ValueKey('lumo-meister-answer-text-$index'),
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.start,
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 17,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white)),
                   ),
                 ]),
               ),
@@ -938,8 +1054,10 @@ class _AnswerButton extends StatelessWidget {
 
 class _JokerButton extends StatelessWidget {
   const _JokerButton({
-    required this.label, required this.icon,
-    required this.used, required this.onTap,
+    required this.label,
+    required this.icon,
+    required this.used,
+    required this.onTap,
   });
   final String label;
   final IconData icon;
@@ -951,22 +1069,29 @@ class _JokerButton extends StatelessWidget {
     return Opacity(
       opacity: used ? .50 : 1,
       child: Container(
-        height: 80,
+        constraints: const BoxConstraints(minHeight: 80, minWidth: 48),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(17),
+          borderRadius: BorderRadius.circular(18),
           gradient: const LinearGradient(
-            begin: Alignment.topLeft, end: Alignment.bottomRight,
-            colors: [Color(0xFF0A69C8), Color(0xFF071D56),
-              Color(0xFF0745A3)],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [
+              Color(0xFFFFE08A),
+              Color(0xFFC48A28),
+              Color(0xFF0A2A6A),
+              Color(0xFF071D56),
+            ],
+            stops: [0, .18, .42, 1],
           ),
           border: Border.all(
-            color: used ? const Color(0xFF69809F)
-                : const Color(0xFF61E6FF),
-            width: 1.8),
-          boxShadow: used ? null : const [
-            BoxShadow(color: Color(0xBB00C7FF), blurRadius: 13),
-            BoxShadow(color: Color(0x5502A9FF), blurRadius: 22),
-          ],
+              color: used ? const Color(0xFF69809F) : const Color(0xFFFFE08A),
+              width: 2.1),
+          boxShadow: used
+              ? null
+              : const [
+                  BoxShadow(color: Color(0xAAFFD26F), blurRadius: 14),
+                  BoxShadow(color: Color(0x8800C7FF), blurRadius: 18),
+                ],
         ),
         child: Material(
           color: Colors.transparent,
@@ -978,20 +1103,21 @@ class _JokerButton extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(icon, size: 27,
-                    color: used ? Colors.white54
-                      : const Color(0xFFFFD978)),
+                  Icon(icon,
+                      size: 27,
+                      color: used ? Colors.white54 : const Color(0xFFFFD978)),
                   const SizedBox(height: 5),
                   SizedBox(
                     width: double.infinity,
                     child: FittedBox(
                       fit: BoxFit.scaleDown,
                       child: Text(label,
-                        maxLines: 1,
-                        style: const TextStyle(
-                          fontFamily: 'Nunito', fontSize: 12,
-                          fontWeight: FontWeight.w900,
-                          color: Colors.white)),
+                          maxLines: 1,
+                          style: const TextStyle(
+                              fontFamily: 'Nunito',
+                              fontSize: 12,
+                              fontWeight: FontWeight.w900,
+                              color: Colors.white)),
                     ),
                   ),
                 ],
@@ -1012,7 +1138,9 @@ class _HintBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(14),
-      decoration: BoxDecoration(color: const Color(0xFFF3E8FF), borderRadius: BorderRadius.circular(LumoRadius.lg)),
+      decoration: BoxDecoration(
+          color: const Color(0xFFF3E8FF),
+          borderRadius: BorderRadius.circular(LumoRadius.lg)),
       child: Text('🦊 $text', style: LumoTextStyles.body),
     );
   }
@@ -1029,7 +1157,10 @@ class _AudienceVotes extends StatelessWidget {
         return Padding(
           padding: const EdgeInsets.only(bottom: 6),
           child: Row(children: [
-            SizedBox(width: 28, child: Text(String.fromCharCode(65 + i), style: LumoTextStyles.label)),
+            SizedBox(
+                width: 28,
+                child: Text(String.fromCharCode(65 + i),
+                    style: LumoTextStyles.label)),
             Expanded(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(99),
@@ -1042,7 +1173,10 @@ class _AudienceVotes extends StatelessWidget {
               ),
             ),
             const SizedBox(width: 8),
-            SizedBox(width: 42, child: Text('${votes[i]}%', textAlign: TextAlign.right, style: LumoTextStyles.caption)),
+            SizedBox(
+                width: 42,
+                child: Text('${votes[i]}%',
+                    textAlign: TextAlign.right, style: LumoTextStyles.caption)),
           ]),
         );
       }),
@@ -1086,11 +1220,15 @@ class _ResultPanel extends StatelessWidget {
       ),
       child: Row(
         children: [
-          Icon(won ? Icons.emoji_events_rounded
-              : correct ? Icons.check_circle_rounded
-              : Icons.lightbulb_rounded,
-            color: correct ? const Color(0xFF87FFBE)
-                : const Color(0xFFFFD776), size: 26),
+          Icon(
+              won
+                  ? Icons.emoji_events_rounded
+                  : correct
+                      ? Icons.check_circle_rounded
+                      : Icons.lightbulb_rounded,
+              color:
+                  correct ? const Color(0xFF87FFBE) : const Color(0xFFFFD776),
+              size: 26),
           const SizedBox(width: 9),
           Expanded(
             child: Text(
@@ -1107,3 +1245,101 @@ class _ResultPanel extends StatelessWidget {
   }
 }
 
+class _QuizPodiumPainter extends CustomPainter {
+  const _QuizPodiumPainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    final top = RRect.fromRectAndRadius(
+      Rect.fromLTWH(size.width * .08, 0, size.width * .84, size.height * .42),
+      const Radius.circular(6),
+    );
+    final body = RRect.fromRectAndRadius(
+      Rect.fromLTWH(size.width * .18, size.height * .32, size.width * .64,
+          size.height * .68),
+      const Radius.circular(8),
+    );
+    final gold = Paint()
+      ..shader = LinearGradient(
+        begin: Alignment.topCenter,
+        end: Alignment.bottomCenter,
+        colors: const [Color(0xFFFFE08A), Color(0xFFC48A28), Color(0xFF8A5A12)],
+      ).createShader(Offset.zero & size);
+    canvas.drawRRect(body, gold);
+    canvas.drawRRect(top, gold);
+    canvas.drawRRect(
+      top,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.6
+        ..color = const Color(0xFFFFF3C4),
+    );
+    canvas.drawCircle(
+      Offset(size.width / 2, size.height * .55),
+      size.shortestSide * .18,
+      Paint()..color = const Color(0xFF0A2A6A),
+    );
+    canvas.drawCircle(
+      Offset(size.width / 2, size.height * .55),
+      size.shortestSide * .12,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.4
+        ..color = const Color(0xFFFFD26F),
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _QuizPodiumPainter oldDelegate) => false;
+}
+
+class _HexQuestionPainter extends CustomPainter {
+  const _HexQuestionPainter({required this.finale});
+  final bool finale;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    final inset = size.height * 0.08;
+    final path = Path()
+      ..moveTo(size.width * 0.12, inset)
+      ..lineTo(size.width * 0.88, inset)
+      ..lineTo(size.width - 4, size.height / 2)
+      ..lineTo(size.width * 0.88, size.height - inset)
+      ..lineTo(size.width * 0.12, size.height - inset)
+      ..lineTo(4, size.height / 2)
+      ..close();
+    canvas.drawPath(
+      path,
+      Paint()
+        ..shader = LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: finale
+              ? const [Color(0xFF3A1868), Color(0xFF102868), Color(0xFF071430)]
+              : const [Color(0xFF0A2A68), Color(0xFF123A80), Color(0xFF061428)],
+        ).createShader(Offset.zero & size),
+    );
+    final glow = finale ? const Color(0xFFFFD873) : const Color(0xFF45C7FC);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 5
+        ..color = glow.withOpacity(.55)
+        ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8),
+    );
+    canvas.drawPath(
+      path,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.2
+        ..color = glow,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _HexQuestionPainter oldDelegate) =>
+      oldDelegate.finale != finale;
+}
