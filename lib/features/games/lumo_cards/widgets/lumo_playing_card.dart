@@ -23,12 +23,13 @@ import 'package:flutter/material.dart';
 import '../lumo_cards_assets.dart';
 import '../lumo_cards_models.dart';
 
-// ── LUMO CARDS Farbpalette (aus den Mockups) ──
-const _kRed = Color(0xFFFF4D4F);
-const _kYellow = Color(0xFFFFC83D);
-const _kGreen = Color(0xFF35C759);
-const _kBlue = Color(0xFF2D7BFF);
-const _kWildBlack = Color(0xFF14161A);
+// Original LUMO suits: rose/star, gold/moon, indigo/crystal, teal/leaf.
+// Not the flat primary palette of a well-known commercial shedding game.
+const _kRose = Color(0xFFD44A6A);
+const _kGold = Color(0xFFE0A83A);
+const _kIndigo = Color(0xFF4A58E0);
+const _kTeal = Color(0xFF1E9A78);
+const _kCream = Color(0xFFFFF4D6);
 
 class LumoPlayingCard extends StatefulWidget {
   const LumoPlayingCard({
@@ -140,30 +141,24 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
       width: widget.width,
       height: widget.height,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
         boxShadow: _buildShadows(base),
       ),
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(16),
+      child: ClipPath(
+        clipper: const _LumoCrestClipper(),
         child: Stack(
           children: [
             widget.faceDown ? _buildBack() : _buildFront(base),
-
-            // Statischer Playable-Border (kein Pulse mehr - viel weniger
-            // Memory-Pressure als der vorherige AnimatedBuilder).
             if (widget.playable && !widget.faceDown)
-              IgnorePointer(
-                child: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(
-                      color: const Color(0xFFFFE08A),
-                      width: 3,
+              const Positioned.fill(
+                child: IgnorePointer(
+                  child: CustomPaint(
+                    painter: _LumoCrestBorderPainter(
+                      color: Color(0xFFFFE08A),
+                      stroke: 3,
                     ),
                   ),
                 ),
               ),
-
             if (dimColor != null)
               IgnorePointer(child: Container(color: dimColor)),
           ],
@@ -194,210 +189,127 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
   // FRONT
   // ════════════════════════════════════════════════════════
   Widget _buildFront(Color base) {
-    // Heinz 2026-05-22: hat sowohl Zahlenkarten als auch Spezialkarten
-    // (Skip/Reverse/Draw 2 + Wild/Wild Draw 4) als PNG geliefert. Spezial-
-    // karten wurden per Hue-Rotation in alle 4 Farben generiert. Wenn das
-    // PNG existiert, rendern wir es; sonst Fallback auf gezeichnete Variante.
-    final assetPath = LumoCardsAssets.assetFor(widget.card);
-    if (assetPath != null) {
-      // Heinz Crash 2026-05-22 Build 181: '_dependents.isEmpty: is not true'.
-      // Vorher hatte ich hier MediaQuery.maybeOf(context) BEDINGT
-      // aufgerufen (nur wenn assetPath != null). Conditional Inherited-
-      // Widget-Subscriptions sind ein Flutter-Anti-Pattern - die
-      // Dependency-Liste wird inkonsistent und die Assertion beim
-      // Unmount feuert. Loesung: konstanten Cache-Wert nehmen.
-      // 3x reicht fuer fast alle Handys (DPR 2.5-3.0), groesser waere
-      // nur Memory-Verschwendung.
-      const cw = 264; // 88 px display * 3
-      return Image.asset(
-        assetPath,
-        width: widget.width,
-        height: widget.height,
-        fit: BoxFit.cover,
-        gaplessPlayback: true,
-        // Nur die Breite vorgeben: so bleibt das Seitenverhältnis der PNGs
-        // erhalten (vorher wurden sie auf 264×384 gestaucht).
-        cacheWidth: cw,
-        errorBuilder: (_, __, ___) =>
-            widget.card.isWild ? _buildWildFront() : _buildColorFront(base),
-      );
-    }
+    // Painted original LUMO faces only. Historical PNG faces reused a
+    // primary-color + number + circle-slash language and are not shown.
+    // Asset paths stay available via LumoCardsAssets.assetFor for tests.
     if (widget.card.isWild) return _buildWildFront();
     return _buildColorFront(base);
   }
 
-  /// Farbige Karte (Zahl ODER farbiges Spezial-Icon).
+  /// Night-sky tablet with a colored suit, not a flat primary-color face.
   Widget _buildColorFront(Color base) {
     final isSpec = widget.card.isSpecial;
-
-    return Container(
-      decoration: BoxDecoration(
-        // Glossy: hell oben -> satt -> leicht dunkel unten
-        gradient: LinearGradient(
-          colors: [_lighten(base, 0.10), base, _darken(base, 0.07)],
-          stops: const [0.0, 0.5, 1.0],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [
+                const Color(0xFF241830),
+                Color.lerp(const Color(0xFF141028), base, 0.38)!,
+                const Color(0xFF0A0818),
+              ],
+            ),
+          ),
         ),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Weisser Rahmen
-          Padding(
-            padding: const EdgeInsets.all(4),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFFE8C45A), width: 2.6),
+        Align(
+          alignment: Alignment.topCenter,
+          child: Container(
+            height: widget.height * 0.18,
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [_lighten(base, 0.16), base, _darken(base, 0.12)],
               ),
             ),
           ),
-          // Glanz oben (diagonal)
-          IgnorePointer(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                height: widget.height * 0.42,
-                margin: const EdgeInsets.fromLTRB(6, 6, 6, 0),
-                decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(11)),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white.withOpacity(0.30),
-                      Colors.white.withOpacity(0.0),
-                    ],
-                  ),
-                ),
+        ),
+        Center(
+          child: Opacity(
+            opacity: 0.20,
+            child: Icon(
+              _suitIcon(widget.card.color),
+              size: widget.width * 0.82,
+              color: base,
+            ),
+          ),
+        ),
+        Center(
+          child: isSpec
+              ? _specialIcon(widget.card.type, widget.width * 0.44, _kCream)
+              : _bigNumber('${widget.card.number}'),
+        ),
+        Positioned(
+          top: widget.height * 0.20,
+          left: 8,
+          child: _cornerIndex(isSpec, base),
+        ),
+        Positioned(
+          bottom: 8,
+          right: 8,
+          child: Transform.rotate(
+            angle: math.pi,
+            child: _cornerIndex(isSpec, base),
+          ),
+        ),
+        const Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _LumoCrestBorderPainter(
+                color: Color(0xFFE8C45A),
+                stroke: 2.4,
               ),
             ),
           ),
-          // Fainter ovaler Glow hinter der Zahl
-          Center(
-            child: Transform.rotate(
-              angle: -0.5,
-              child: Container(
-                width: widget.width * 0.50,
-                height: widget.height * 0.72,
-                decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.16),
-                  borderRadius: BorderRadius.circular(widget.width * 0.30),
-                ),
-              ),
-            ),
-          ),
-          // Center: Zahl oder Spezial-Icon (weiss)
-          Center(
-            child: isSpec
-                ? _specialIcon(
-                    widget.card.type, widget.width * 0.46, Colors.white)
-                : _bigNumber('${widget.card.number}'),
-          ),
-          // Eck-Indizes
-          Positioned(
-            top: 6,
-            left: 7,
-            child: _cornerIndex(isSpec),
-          ),
-          Positioned(
-            bottom: 6,
-            right: 7,
-            child: Transform.rotate(
-              angle: math.pi,
-              child: _cornerIndex(isSpec),
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  /// Schwarze Wild-Karte mit 4-Farben-Diamant.
+  /// Wild card: four LUMO suits, not a four-color commercial diamond.
   Widget _buildWildFront() {
     final isDrawFour = widget.card.type == LumoCardType.superRain;
-    return Container(
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            _lighten(_kWildBlack, 0.08),
-            _kWildBlack,
-            Colors.black,
-          ],
-          stops: const [0.0, 0.5, 1.0],
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topCenter,
+              end: Alignment.bottomCenter,
+              colors: [Color(0xFF2A2038), Color(0xFF14161A), Color(0xFF07060C)],
+            ),
+          ),
         ),
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          // Weisser Rahmen
-          Padding(
-            padding: const EdgeInsets.all(4),
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                    color: const Color(0xFFE8C45A).withOpacity(0.95),
-                    width: 2.4),
+        Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              _suitFlower(widget.width * (isDrawFour ? 0.46 : 0.56)),
+              if (isDrawFour) ...[
+                const SizedBox(height: 4),
+                Icon(Icons.auto_awesome_rounded,
+                    size: widget.width * 0.22, color: _kCream),
+              ],
+            ],
+          ),
+        ),
+        const Positioned.fill(
+          child: IgnorePointer(
+            child: CustomPaint(
+              painter: _LumoCrestBorderPainter(
+                color: Color(0xFFE8C45A),
+                stroke: 2.4,
               ),
             ),
           ),
-          // Glanz oben
-          IgnorePointer(
-            child: Align(
-              alignment: Alignment.topCenter,
-              child: Container(
-                height: widget.height * 0.40,
-                margin: const EdgeInsets.fromLTRB(6, 6, 6, 0),
-                decoration: BoxDecoration(
-                  borderRadius:
-                      const BorderRadius.vertical(top: Radius.circular(11)),
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                      Colors.white.withOpacity(0.12),
-                      Colors.white.withOpacity(0.0),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-          ),
-          // 4-Farben-Diamant in der Mitte
-          Center(
-            child: isDrawFour
-                ? Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      _colorDiamond(widget.width * 0.42),
-                      const SizedBox(height: 4),
-                      _bigNumber('+4', size: widget.width * 0.40),
-                    ],
-                  )
-                : _colorDiamond(widget.width * 0.56),
-          ),
-          // Eck-Diamanten (klein)
-          Positioned(
-            top: 7,
-            left: 8,
-            child: _colorDiamond(widget.width * 0.18),
-          ),
-          Positioned(
-            bottom: 7,
-            right: 8,
-            child: _colorDiamond(widget.width * 0.18),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
-  /// Grosse weisse Zahl mit Schatten (Mockup-Style).
   Widget _bigNumber(String text, {double? size}) {
     return FittedBox(
       fit: BoxFit.scaleDown,
@@ -408,11 +320,11 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
           fontFamily: 'Nunito',
           fontSize: size ?? 52,
           fontWeight: FontWeight.w900,
-          color: Colors.white,
+          color: _kCream,
           height: 1.0,
           shadows: [
             Shadow(
-              color: Colors.black.withOpacity(0.30),
+              color: Colors.black.withOpacity(0.35),
               offset: const Offset(0, 2),
               blurRadius: 4,
             ),
@@ -422,49 +334,43 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
     );
   }
 
-  /// Eck-Index: kleine weisse Zahl/Icon + winziger Stern.
-  Widget _cornerIndex(bool isSpec) {
-    final label = isSpec ? '' : '${widget.card.number}';
+  Widget _cornerIndex(bool isSpec, Color base) {
     return Column(
       mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         if (isSpec)
-          _specialIcon(widget.card.type, 16, Colors.white)
+          _specialIcon(widget.card.type, 15, _kCream)
         else
           Text(
-            label,
-            style: TextStyle(
+            '${widget.card.number}',
+            style: const TextStyle(
               fontFamily: 'Nunito',
-              fontSize: 15,
+              fontSize: 14,
               fontWeight: FontWeight.w900,
-              color: Colors.white,
+              color: _kCream,
               height: 1.0,
-              shadows: [
-                Shadow(
-                  color: Colors.black.withOpacity(0.28),
-                  offset: const Offset(0, 1),
-                  blurRadius: 2,
-                ),
-              ],
             ),
           ),
-        const Text('✦',
-            style: TextStyle(fontSize: 7, color: Colors.white, height: 1.2)),
+        Icon(_suitIcon(widget.card.color), size: 11, color: base),
       ],
     );
   }
 
-  /// Spezial-Icon (weiss): Skip / Reverse / Draw Two / Think.
   Widget _specialIcon(LumoCardType t, double size, Color color) {
     switch (t) {
-      case LumoCardType.lumoJump: // Skip
-        return Icon(Icons.block_rounded, size: size, color: color);
-      case LumoCardType.whirlwind: // Reverse
-        return Icon(Icons.sync_rounded, size: size, color: color);
-      case LumoCardType.starRain: // Draw Two
-        return _bigNumber('+2', size: size);
-      case LumoCardType.thinkPause: // Lumo USP - Lernfrage
+      case LumoCardType.lumoJump:
+        return Icon(Icons.auto_awesome_rounded, size: size, color: color);
+      case LumoCardType.whirlwind:
+        return Icon(Icons.cyclone_rounded, size: size, color: color);
+      case LumoCardType.starRain:
+        return Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Icon(Icons.star_rounded, size: size * 0.62, color: color),
+            Icon(Icons.star_rounded, size: size * 0.62, color: color),
+          ],
+        );
+      case LumoCardType.thinkPause:
         return Icon(Icons.menu_book_rounded, size: size, color: color);
       case LumoCardType.colorMagic:
       case LumoCardType.superRain:
@@ -473,38 +379,54 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
     }
   }
 
-  /// 4-Farben-Diamant (rot/gelb/gruen/blau, 45-rotiert) fuer Wild.
-  Widget _colorDiamond(double size) {
-    return Transform.rotate(
-      angle: 0.785, // 45 Grad
-      child: Container(
-        width: size * 0.72,
-        height: size * 0.72,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(4),
-          border: Border.all(color: Colors.white.withOpacity(0.85), width: 1.5),
-        ),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(3),
-          child: Column(
-            children: [
+  Widget _suitFlower(double size) {
+    const suits = <(IconData, Color)>[
+      (Icons.star_rounded, _kRose),
+      (Icons.nightlight_round, _kGold),
+      (Icons.diamond_rounded, _kIndigo),
+      (Icons.eco_rounded, _kTeal),
+    ];
+    return SizedBox(
+      width: size,
+      height: size,
+      child: Column(
+        children: [
+          Expanded(
+            child: Row(children: [
               Expanded(
-                child: Row(children: [
-                  Expanded(child: Container(color: _kRed)),
-                  Expanded(child: Container(color: _kYellow)),
-                ]),
-              ),
+                  child:
+                      Icon(suits[0].$1, color: suits[0].$2, size: size * 0.38)),
               Expanded(
-                child: Row(children: [
-                  Expanded(child: Container(color: _kBlue)),
-                  Expanded(child: Container(color: _kGreen)),
-                ]),
-              ),
-            ],
+                  child:
+                      Icon(suits[1].$1, color: suits[1].$2, size: size * 0.38)),
+            ]),
           ),
-        ),
+          Expanded(
+            child: Row(children: [
+              Expanded(
+                  child:
+                      Icon(suits[2].$1, color: suits[2].$2, size: size * 0.38)),
+              Expanded(
+                  child:
+                      Icon(suits[3].$1, color: suits[3].$2, size: size * 0.38)),
+            ]),
+          ),
+        ],
       ),
     );
+  }
+
+  static IconData _suitIcon(LumoCardColor c) {
+    switch (c) {
+      case LumoCardColor.orange:
+        return Icons.star_rounded;
+      case LumoCardColor.purple:
+        return Icons.nightlight_round;
+      case LumoCardColor.blue:
+        return Icons.diamond_rounded;
+      case LumoCardColor.green:
+        return Icons.eco_rounded;
+    }
   }
 
   // ════════════════════════════════════════════════════════
@@ -583,13 +505,13 @@ class _LumoPlayingCardState extends State<LumoPlayingCard> {
   static Color _baseColor(LumoCardColor c) {
     switch (c) {
       case LumoCardColor.orange:
-        return _kRed; // Rot
+        return _kRose;
       case LumoCardColor.purple:
-        return _kYellow; // Gelb
+        return _kGold;
       case LumoCardColor.blue:
-        return _kBlue; // Blau
+        return _kIndigo;
       case LumoCardColor.green:
-        return _kGreen; // Gruen
+        return _kTeal;
     }
   }
 
@@ -621,4 +543,53 @@ class _StarDustPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_StarDustPainter old) => false;
+}
+
+Path _lumoCrestPath(Size size) {
+  final w = size.width;
+  final h = size.height;
+  final peak = h * 0.085;
+  return Path()
+    ..moveTo(w * 0.5, 1)
+    ..quadraticBezierTo(w * 0.84, 1, w - 1.6, peak)
+    ..lineTo(w - 1.6, h - 16)
+    ..quadraticBezierTo(w - 1.6, h - 1.6, w - 16, h - 1.6)
+    ..lineTo(16, h - 1.6)
+    ..quadraticBezierTo(1.6, h - 1.6, 1.6, h - 16)
+    ..lineTo(1.6, peak)
+    ..quadraticBezierTo(w * 0.16, 1, w * 0.5, 1)
+    ..close();
+}
+
+class _LumoCrestClipper extends CustomClipper<Path> {
+  const _LumoCrestClipper();
+
+  @override
+  Path getClip(Size size) => _lumoCrestPath(size);
+
+  @override
+  bool shouldReclip(covariant _LumoCrestClipper oldClipper) => false;
+}
+
+class _LumoCrestBorderPainter extends CustomPainter {
+  const _LumoCrestBorderPainter({required this.color, required this.stroke});
+
+  final Color color;
+  final double stroke;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (size.isEmpty) return;
+    canvas.drawPath(
+      _lumoCrestPath(size),
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = stroke
+        ..color = color,
+    );
+  }
+
+  @override
+  bool shouldRepaint(covariant _LumoCrestBorderPainter oldDelegate) =>
+      oldDelegate.color != color || oldDelegate.stroke != stroke;
 }
