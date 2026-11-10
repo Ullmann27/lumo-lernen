@@ -21,6 +21,7 @@ import 'learning_question_repository.dart';
 import 'lumo_cards_deck.dart';
 import 'lumo_cards_bot_policy.dart';
 import 'lumo_cards_models.dart';
+import 'lumo_cards_session.dart';
 import 'lumo_cards_rules.dart';
 import '../shared/lumo_game_pause_scope.dart';
 
@@ -71,6 +72,28 @@ class LumoCardsGameController extends ChangeNotifier {
   static const int _initialHandSize = 7;
 
   late LumoCardsGameState _state;
+  late String _roundId;
+  String get roundId => _roundId;
+
+  LumoCardsRound snapshot({bool callRewarded = false,
+      int rewardedLearningStars = 0, bool callRewardSettled = false}) =>
+    LumoCardsRound(id: _roundId, state: _state, grade: grade,
+      vsBot: vsBot, difficulty: _difficulty, style: _style,
+      callRewarded: callRewarded, rewardedLearningStars: rewardedLearningStars,
+      callRewardSettled: callRewardSettled);
+
+  /// Restoring never auto-plays behind a loading screen or on Android resume.
+  void restoreRound(LumoCardsRound round) {
+    if (_disposed || round.grade != grade || round.vsBot != vsBot) return;
+    turnClock.cancel();
+    turnClock.pause();
+    _roundId = round.id;
+    _state = round.state;
+    _difficulty = round.difficulty;
+    _style = round.style;
+    notifyListeners();
+    _maybeRunBotTurn();
+  }
   LumoCardsGameState get state => _state;
 
   /// Bot-Timer (cancelled on dispose).
@@ -89,6 +112,7 @@ class LumoCardsGameController extends ChangeNotifier {
 
   /// Startet eine neue Runde mit frischem Deck.
   void _startNewGame() {
+    _roundId = LumoCardsRound.newId();
     final deck = LumoCardsDeck.buildDeck(rng: _rng);
     // 7 Karten pro Spieler.
     final (hand1, rest1) = LumoCardsDeck.draw(deck, _initialHandSize);

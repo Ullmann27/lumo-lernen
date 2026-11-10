@@ -221,8 +221,14 @@ class RewardWalletRepository {
       });
 
   /// Cards reward, win sequence, and XP either all persist or all remain pending.
-  Future<RewardWallet> awardLumoCardsResult({required bool won}) =>
+  Future<RewardWallet> awardLumoCardsResult({required bool won, String? resultId}) =>
       _transaction((current) async {
+        if (resultId != null) {
+          if (resultId.isEmpty || resultId.length > 160) {
+            throw ArgumentError('Ungültiges Kartenergebnis');
+          }
+          if (current.gameResultIds.contains(resultId)) return current;
+        }
         final nextStreak =
             won ? (current.lumoCardsWinStreak + 1).clamp(0, 999999) : 0;
         final stars = won ? (2 + nextStreak).clamp(3, 6) : 1;
@@ -234,6 +240,8 @@ class RewardWalletRepository {
           xp: nextXp,
           level: 1 + nextXp ~/ 400,
           lumoCardsWinStreak: nextStreak,
+          gameResultIds: resultId == null ? current.gameResultIds
+              : [...current.gameResultIds, resultId],
         ));
       });
 
