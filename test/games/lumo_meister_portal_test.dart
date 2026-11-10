@@ -42,17 +42,19 @@ void main() {
     await tester.pump(const Duration(milliseconds: 100));
 
     final portal = find.byKey(const ValueKey('spielwelt-portal-quizShow'));
-    if (portal.evaluate().isEmpty) {
-      await tester.scrollUntilVisible(
-        portal,
-        300,
-        scrollable: find.byType(Scrollable).first,
-      );
-    }
+    await tester.scrollUntilVisible(
+      portal,
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
+    await tester.pump();
 
     expect(portal, findsOneWidget);
-    expect(find.text('Wer wird\nLumo-Meister?'), findsOneWidget);
-    expect(find.text('20 Fragen · 3 Joker · bis 5.000 Sterne'), findsOneWidget);
+    expect(find.text('Quizshow'), findsOneWidget);
+    expect(
+      tester.getSemantics(portal).label,
+      contains('Wer wird Lumo-Meister?'),
+    );
 
     await tester.tap(portal);
     await tester.pump();

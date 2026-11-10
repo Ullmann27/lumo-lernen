@@ -15,6 +15,7 @@ import '../../widgets/fox/lumo_character.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/lumo_voice.dart';
 import 'spielwelt/spielwelt_hub.dart';
+import 'spielwelt/spielwelt_routes.dart';
 import '../../widgets/design/lumo_night_scope.dart';
 import '../../domain/games/game_level_catalog.dart';
 import '../../domain/games/game_level_model.dart';
@@ -419,42 +420,34 @@ class _GamesContentState extends State<GamesContent> {
     launch();
   }
 
+  VoidCallback _launcherFor(SpielweltRoute route) {
+    if (route.isNative) {
+      return () => _launch3D(route.target);
+    }
+    return switch (route.identity) {
+      'memory' => _launchMemory,
+      // Main Cards portal must open Lumo Cards itself, never Sternenpfad.
+      'cards' => _launchLumoCards,
+      'connectFour' => _launchConnectFour,
+      'quizShow' => _launchLumoMeister,
+      _ => () {},
+    };
+  }
+
   List<SpielweltPortal> _portals() {
-    VoidCallback? launcher(GameId id) => switch (id) {
-          GameId.kart => () => _launch3D('kart'),
-          GameId.memory => _launchMemory,
-          // Main Cards portal must open Lumo Cards itself, never Sternenpfad.
-          GameId.cards => _launchLumoCards,
-          // The main Spielwelt portal enters the actual native 3D Wolkeninseln.
-          // The original Flame adventure remains available as a separate card.
-          GameId.jumpRun => () => _launch3D('jump'),
-          GameId.puzzle => () => _launch3D('puzzle'),
-          GameId.build => () => _launch3D('build'),
-          GameId.rhythm => () => _launch3D('rhythm'),
-          GameId.treasure => () => _launch3D('treasure'),
-        };
     return [
-      SpielweltPortal(
-        game: GameCatalog.byId(GameId.kart),
-        state: _unlockOf(GameId.kart),
-        onOpen: () => _openGame(GameId.kart, () => _launch3D('kart')),
-      ),
-      SpielweltPortal.connectFour(onOpen: _launchConnectFour),
-      SpielweltPortal.quizShow(onOpen: _launchLumoMeister),
-      for (final id in const [
-        GameId.memory,
-        GameId.cards,
-        GameId.puzzle,
-        GameId.jumpRun,
-        GameId.rhythm,
-        GameId.treasure,
-        GameId.build,
-      ])
-        SpielweltPortal(
-          game: GameCatalog.byId(id),
-          state: _unlockOf(id),
-          onOpen: () => _openGame(id, launcher(id) ?? () {}),
-        ),
+      for (final route in SpielweltRoutes.all)
+        if (route.identity == 'connectFour')
+          SpielweltPortal.connectFour(onOpen: _launchConnectFour)
+        else if (route.identity == 'quizShow')
+          SpielweltPortal.quizShow(onOpen: _launchLumoMeister)
+        else
+          SpielweltPortal(
+            game: GameCatalog.byId(route.gameId!),
+            state: _unlockOf(route.gameId!),
+            semanticTitle: route.semanticTitle,
+            onOpen: () => _openGame(route.gameId!, _launcherFor(route)),
+          ),
     ];
   }
 
@@ -502,8 +495,10 @@ class _GamesContentState extends State<GamesContent> {
                     child: SpielweltHub(
                       portals: _portals(),
                       reduceMotion: _reduceMotion,
-                      onAdventure: () =>
-                          _openGame(GameId.memory, _launchMemory),
+                      onAdventure: () => _openGame(
+                        GameId.jumpRun,
+                        () => _launch3D('jump'),
+                      ),
                       onHome: () =>
                           widget.onSection?.call(LumoSection.home),
                       onLearn: () =>
