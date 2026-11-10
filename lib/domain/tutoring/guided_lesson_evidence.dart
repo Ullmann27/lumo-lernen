@@ -15,8 +15,9 @@ abstract final class GuidedLessonEvidence {
   }) {
     if (lesson.concept != GuidedLessonConcept.bridgeTen ||
         step.answerKind != GuidedAnswerKind.sum ||
-        answer == null)
+        answer == null) {
       return null;
+    }
     final value = int.tryParse(answer.trim());
     if (value == step.a + step.b - 10) {
       return 'Diese Zahl passt zu den Äpfeln neben dem vollen Zehnerfeld. '

@@ -250,6 +250,8 @@ class _GuidedTenFrameAnimationState extends State<GuidedTenFrameAnimation>
     style: OutlinedButton.styleFrom(
       minimumSize: const Size(48, 48),
       foregroundColor: LumoVisualTokens.white,
+          disabledForegroundColor: LumoVisualTokens.white.withValues(alpha: .5),
+          textStyle: const TextStyle(fontFamily: 'Nunito', fontWeight: FontWeight.w800),
       side: const BorderSide(color: LumoVisualTokens.cyan),
     ),
     icon: Icon(icon, size: 20),

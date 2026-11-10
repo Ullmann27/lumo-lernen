@@ -14,6 +14,8 @@ void main() {
     await (FontLoader(
       'Nunito',
     )..addFont(rootBundle.load('assets/fonts/Nunito-Bold.ttf'))).load();
+    await (FontLoader('MaterialIcons')
+          ..addFont(rootBundle.load('fonts/MaterialIcons-Regular.otf'))).load();
   });
 
   Future<void> show(
@@ -63,6 +65,30 @@ void main() {
     await tester.pumpWidget(const SizedBox.shrink());
     await tester.pump();
   }
+
+  testWidgets('child can run and inspect each explanation step', (tester) async {
+    await show(tester);
+    await tap(tester, 'ten-frame-replay');
+    for (var step = 0; step < 6; step++) {
+      if (step > 0) await tap(tester, 'ten-frame-next');
+      await tester.pump(const Duration(milliseconds: 250));
+      expect(inside(tester), step < 3 ? 8 : 10);
+      expect(find.text('Schritt ${step + 1} von 6'), findsOneWidget);
+      final capture = Platform.environment['LUMO_TEN_FRAME_CAPTURES'];
+      if (capture != null) {
+        await tester.runAsync(() async {
+          final image = await tester.renderObject<RenderRepaintBoundary>(
+              find.byKey(const ValueKey('ten-frame-capture'))).toImage(pixelRatio: 2);
+          final data = await image.toByteData(format: ui.ImageByteFormat.png);
+          await Directory(capture).create(recursive: true);
+          await File('$capture/ten-frame-step-${step + 1}.png')
+              .writeAsBytes(data!.buffer.asUint8List());
+          image.dispose();
+        });
+      }
+    }
+    await close(tester);
+  });
 
   testWidgets('pause, slow, back, replay and manual steps preserve 8+5', (
     tester,
