@@ -34,6 +34,7 @@ class LumoMemoryScreen extends StatefulWidget {
     required this.appState,
     this.seed,
     this.difficulty,
+    this.pack,
   });
 
   final int? seed;
@@ -41,6 +42,9 @@ class LumoMemoryScreen extends StatefulWidget {
 
   /// Feste Stufe (Tests). Ohne Angabe gilt die zuletzt gespielte Stufe.
   final MemoryDifficulty? difficulty;
+
+  /// Optional themed pack (tests). Default is every motif.
+  final MemoryThemePack? pack;
 
   @override
   State<LumoMemoryScreen> createState() => _LumoMemoryScreenState();
@@ -62,7 +66,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   int _kindPairs = 0;
   int _lumoPairs = 0;
   int _kindMoves = 0;
+  int _kindStreak = 0;
   int _generation = 0;
+  MemoryThemePack _pack = MemoryThemePack.alle;
   String _lumoLine = 'Lass uns Memory spielen! Du fängst an.';
 
   /// Beste Zugzahl je Stufe (Name der Stufe -> Züge), gespeichert.
@@ -88,6 +94,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     super.initState();
     _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
     _difficulty = widget.difficulty ?? MemoryDifficulty.schwer;
+    _pack = widget.pack ?? MemoryThemePack.alle;
     _setupBoard();
     if (widget.difficulty == null) _loadStats();
     WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -148,7 +155,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     _clock.cancel();
     _rewardGiven = false;
     _generation++;
-    _cards = MemoryBoard.deal(_difficulty, _rng);
+    _cards = MemoryBoard.deal(_difficulty, _rng, pack: _pack);
     _matched = List<bool>.filled(_total, false);
     _faceUp = List<bool>.filled(_total, false);
     _firstPickIdx = null;
@@ -157,12 +164,14 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
     _kindPairs = 0;
     _lumoPairs = 0;
     _kindMoves = 0;
+    _kindStreak = 0;
     _lumoMemory.clear();
   }
 
-  void _restart({MemoryDifficulty? difficulty}) {
+  void _restart({MemoryDifficulty? difficulty, MemoryThemePack? pack}) {
     setState(() {
       if (difficulty != null) _difficulty = difficulty;
+      if (pack != null) _pack = pack;
       _setupBoard();
       _lumoLine = 'Neue Runde! Du fängst an.';
     });
@@ -199,12 +208,14 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
           _matched[secondIdx] = true;
           if (_turn == _Player.kind) {
             _kindPairs++;
+            _kindStreak++;
           } else {
             _lumoPairs++;
           }
         } else {
           _faceUp[firstIdx] = false;
           _faceUp[secondIdx] = false;
+          if (_turn == _Player.kind) _kindStreak = 0;
         }
         _firstPickIdx = null;
         _busy = false;
@@ -217,7 +228,9 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
         HapticFeedback.mediumImpact();
         if (_turn == _Player.kind) {
           _lumo.cheer();
-          _say('Super, ein Paar! Du bist nochmal dran.');
+          _say(_kindStreak >= 2
+              ? 'Combo x$_kindStreak! Super gemacht!'
+              : 'Super, ein Paar! Du bist nochmal dran.');
         } else {
           _lumo.wiggle();
           _say('Ein Paar! Ich bin nochmal dran.');
@@ -440,7 +453,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
 
   Widget _lumoFigure(double size) => LumoCharacter(
         key: const ValueKey('memory-lumo'),
-        pose: LumoDesignFoxPose.spielweltWave,
+        pose: LumoDesignFoxPose.cheer,
         celebratePose: LumoDesignFoxPose.spielweltJump,
         size: size,
         shadow: false,
@@ -477,10 +490,48 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
       ? (_busy ? 'Lass die Karten kurz...' : 'Du bist dran! Tipp 2 Karten.')
       : (_busy ? 'Lumo denkt nach...' : 'Lumo ist dran!');
 
-  Widget _chips() => _DifficultyChips(
-        selected: _difficulty,
-        best: _best,
-        onSelect: (d) => d == _difficulty ? null : _restart(difficulty: d),
+  Widget _comboBanner() => Padding(
+        padding: const EdgeInsets.only(top: 6),
+        child: DecoratedBox(
+          key: const ValueKey('memory-combo-banner'),
+          decoration: BoxDecoration(
+            color: const Color(0xE8FFF3C4),
+            borderRadius: BorderRadius.circular(18),
+            border: Border.all(color: const Color(0xFFE8C45A), width: 1.6),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+            child: Text(
+              'Combo x$_kindStreak!',
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                  fontFamily: 'Nunito',
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  color: Color(0xFF7A4A10)),
+            ),
+          ),
+        ),
+      );
+
+  Widget _chips() => Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          _ThemePackChips(
+            selected: _pack,
+            onSelect: (pack) {
+              if (pack != _pack) _restart(pack: pack);
+            },
+          ),
+          const SizedBox(height: 6),
+          _DifficultyChips(
+            selected: _difficulty,
+            best: _best,
+            onSelect: (d) {
+              if (d != _difficulty) _restart(difficulty: d);
+            },
+          ),
+        ],
       );
 
   Widget _buildPortrait(double w, double h) {
@@ -496,6 +547,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
       child: Column(children: [
         _topBar(logoHeight: roomy ? math.min(96, h * .11) : 46),
         _scores(),
+        if (_kindStreak >= 2) _comboBanner(),
         const SizedBox(height: 4),
         if (lumoSize > 0)
           SizedBox(
@@ -1091,6 +1143,61 @@ class _TurnText extends StatelessWidget {
       );
 }
 
+class _ThemePackChips extends StatelessWidget {
+  const _ThemePackChips({required this.selected, required this.onSelect});
+  final MemoryThemePack selected;
+  final ValueChanged<MemoryThemePack> onSelect;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(children: [
+      for (final pack in MemoryThemePack.values) ...[
+        if (pack != MemoryThemePack.values.first) const SizedBox(width: 6),
+        Expanded(
+          child: Semantics(
+            button: true,
+            selected: pack == selected,
+            label: 'Kartenpack ${pack.label}',
+            excludeSemantics: true,
+            child: GestureDetector(
+              key: ValueKey('memory-pack-${pack.name}'),
+              onTap: () => onSelect(pack),
+              child: AnimatedContainer(
+                duration: const Duration(milliseconds: 180),
+                constraints: const BoxConstraints(minHeight: 48),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16),
+                  color: pack == selected
+                      ? const Color(0xFF3E8A4A)
+                      : const Color(0xB30B2A5C),
+                  border: Border.all(
+                      color: pack == selected
+                          ? const Color(0xFFB8F0A8)
+                          : const Color(0x99E8C45A),
+                      width: 1.6),
+                ),
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 4),
+                    child: Text(pack.label,
+                        style: const TextStyle(
+                            fontFamily: 'Nunito',
+                            fontSize: 15,
+                            fontWeight: FontWeight.w900,
+                            color: Colors.white)),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ],
+    ]);
+  }
+}
+
 class _DifficultyChips extends StatelessWidget {
   const _DifficultyChips(
       {required this.selected, required this.best, required this.onSelect});
@@ -1220,7 +1327,7 @@ class _ResultCard extends StatelessWidget {
             LumoCharacter(
               pose: won
                   ? LumoDesignFoxPose.spielweltJump
-                  : LumoDesignFoxPose.spielweltWave,
+                  : LumoDesignFoxPose.cheer,
               size: 120,
               shadow: false,
               reduceMotion: reduceMotion,
