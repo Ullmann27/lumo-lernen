@@ -153,6 +153,10 @@ Future<void> _finish(WidgetTester tester, GuidedLesson lesson,
           tester, find.byKey(ValueKey('guided-answer-${step.expected}')));
       expect(
           LumoCompanionRequests.instance.taskContext.value!.lastCorrect, true);
+      if (!step.isIndependent) {
+        expect(find.text('Das passt! Weiter geht es in deinem Tempo.'), findsOneWidget);
+        expect(find.textContaining('Mit den gemeinsamen Schritten'), findsNothing);
+      }
       if (wrongIndependent &&
           step.observation == DiscoveryStepKind.independent) {
         expect(find.textContaining('Mit den gemeinsamen Schritten'), findsOneWidget);
@@ -723,6 +727,24 @@ void main() {
       await _close(tester, app);
     });
   }
+
+  testWidgets('assisted final check does not promise another question', (tester) async {
+    final app = await _app(tester);
+    final lesson = GuidedLesson(
+        id: 'last-check-feedback', title: 'Über den Zehner', description: '',
+        grade: 1, schoolUnit: 'Plus bis 20', concept: GuidedLessonConcept.bridgeTen,
+        steps: GuidedLessonCatalog.bridgeTen.steps.sublist(6));
+    await tester.pumpWidget(MaterialApp(home: GuidedLessonScreen(
+        appState: app, lesson: lesson, discovery: false)));
+    await _frames(tester);
+    await _tap(tester, find.text('Tipp'));
+    await _tap(tester, find.byKey(ValueKey('guided-answer-${lesson.steps.first.expected}')));
+    expect(find.text('Das passt! Mit den gemeinsamen Schritten hast du es geschafft.'), findsOneWidget);
+    expect(find.textContaining('Danach probieren wir eine neue Aufgabe.'), findsNothing);
+    await _tap(tester, find.byKey(const ValueKey('guided-continue')));
+    expect(find.text('Du hast selbst gerechnet'), findsOneWidget);
+    await _close(tester, app);
+  });
 
   testWidgets('adult confirmation remains usable on a small large-type phone',
       (tester) async {

@@ -1,11 +1,12 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
+import 'package:lumo_lernen/core/task_quality_guard.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 
 /// Tests fuer die _visualData Parser im LegacyLumoTaskAdapter.
 ///
-/// Schwerpunkt: Die in ChatGPT-5.5's Templates verwendeten Visual-Strings
+/// Schwerpunkt: Die von den Lernaufgaben verwendeten Visual-Strings
 /// muessen sinnvolle Payload-Daten erzeugen, damit die Premium-Visuals
 /// nicht auf Default-Werte zurueckfallen (z.B. Uhr 12:00, Pizza 1/2).
 void main() {
@@ -17,18 +18,26 @@ void main() {
     required String prompt,
     String answer = '5',
     String unit = 'Test',
+    String subject = 'Mathematik',
+    List<String> choices = const <String>['a', 'b', 'c'],
+    bool requireValidTask = false,
   }) {
     final task = LumoTask(
       id: 'test-id',
       grade: 1,
-      subject: 'Mathematik',
+      subject: subject,
       unit: unit,
       prompt: prompt,
-      choices: const <String>['a', 'b', 'c'],
+      choices: choices,
       answer: answer,
       explanation: 'Erklaerung',
       visual: visual,
     );
+    if (requireValidTask) {
+      // Test the parser, not a replacement task from the quality guard.
+      expect(const TaskQualityGuard().problems(task), isEmpty);
+      expect(adapter.qualityCheckedTask(task), same(task));
+    }
     final instance = adapter.toTaskInstance(
       task: task,
       childId: 'child',
@@ -166,15 +175,25 @@ void main() {
       final data = dataFor(
         visual: 'rhyme_bubble',
         prompt: 'Was reimt sich auf Haus?',
+        subject: 'Deutsch',
+        unit: 'Reime',
+        answer: 'Maus',
+        choices: const ['Maus', 'Rose', 'Buch'],
+        requireValidTask: true,
       );
       expect(data['word'], equals('Haus'));
-    }, skip: true);
+    });
 
     test('extrahiert NICHT bei "auf das Bild schauen"', () {
       // B3-Fix: Greedy "auf"-Match war ein Bug. Jetzt nur "reimt sich auf" matcht.
       final data = dataFor(
         visual: 'rhyme_bubble',
         prompt: 'Schaue auf das Bild und finde den Reim.',
+        subject: 'Deutsch',
+        unit: 'Reime',
+        answer: 'Maus',
+        choices: const ['Maus', 'Rose', 'Buch'],
+        requireValidTask: true,
       );
       expect(data, isEmpty);
     });
@@ -182,14 +201,18 @@ void main() {
 
   group('syllable_clap parser', () {
     test('extrahiert Wort + Silben aus DB', () {
-      // 'Banane' sollte in PrimarySchoolWordData syllables haben.
       final data = dataFor(
         visual: 'syllable_clap',
         prompt: 'Wie viele Silben hat Banane?',
+        subject: 'Deutsch',
+        unit: 'Silben',
+        answer: '3',
+        choices: const ['2', '3', '4'],
+        requireValidTask: true,
       );
       expect(data['word'], equals('Banane'));
-      // syllables koennte oder koennte nicht in DB sein; nur pruefen dass Wort da ist
-    }, skip: true);
+      expect(data['syllables'], equals(const ['Ba', 'na', 'ne']));
+    });
   });
 
   group('word_family_tree parser', () {

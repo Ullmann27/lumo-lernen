@@ -13,6 +13,7 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/app/app_theme.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/learning_modules/formen/formen_screen.dart';
 import 'package:lumo_lernen/features/learning_modules/learning_module_registry.dart';
 import 'package:lumo_lernen/features/learning_modules/minus_bis_10/minus_bis_10_screen.dart';
@@ -92,12 +93,16 @@ void main() {
         addTearDown(tester.view.resetPhysicalSize);
         await tester.binding.setSurfaceSize(size.value);
         addTearDown(() => tester.binding.setSurfaceSize(null));
-        final app = LumoAppState();
-        addTearDown(app.dispose);
+        late LumoAppState app;
         await tester.runAsync(() async {
-          await app.hydrateFromWallet();
-          await app.loadLearningProfile();
+          // Profile queues create initial Futures in their construction zone.
+          // Construct and await them together in the native async zone; a
+          // FakeAsync queue tail cannot complete while runAsync is waiting.
+          app = LumoAppState(walletRepository: RewardWalletRepository());
+          await app.hydrateFromWallet().timeout(const Duration(seconds: 15));
+          await app.loadLearningProfile().timeout(const Duration(seconds: 15));
         });
+        addTearDown(app.dispose);
         // A test profile, never an edit to a child's real data.
         app.state.settings = app.state.settings.copyWith(
           voiceEnabled: false,

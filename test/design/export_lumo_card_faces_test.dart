@@ -10,17 +10,20 @@ import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_playing_card.
 
 import '../helpers/lumo_capture.dart';
 
-/// Overwrites bundled color-folder PNGs with painted LUMO crest faces.
-/// Run with LUMO_EXPORT_CARD_FACES=1; skipped otherwise so CI stays fast.
+/// Exports rendered LUMO faces as evidence without changing bundled assets.
+/// Enable with LUMO_EXPORT_CARD_FACES=1 and LUMO_CARD_FACE_EXPORT_DIR=<dir>.
 void main() {
   final enabled = Platform.environment['LUMO_EXPORT_CARD_FACES'] == '1';
+  final directory = Platform.environment['LUMO_CARD_FACE_EXPORT_DIR'];
 
   setUpAll(() async {
     if (enabled) await loadLumoCaptureFonts();
   });
 
-  testWidgets('export painted LUMO crest faces over commercial PNGs',
+  testWidgets('export rendered LUMO faces without replacing bundled artwork',
       (tester) async {
+    expect(directory, isNotNull);
+    expect(directory, isNotEmpty);
     const key = ValueKey('export-card-face');
     Future<void> export(LumoCard card) async {
       final path = LumoCardsAssets.assetFor(card);
@@ -48,7 +51,8 @@ void main() {
       await tester.runAsync(() async {
         final image = await render.toImage(pixelRatio: 1.5);
         final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-        final file = File(path!);
+        expect(bytes, isNotNull);
+        final file = File('$directory/$path');
         await file.parent.create(recursive: true);
         await file.writeAsBytes(bytes!.buffer.asUint8List());
         image.dispose();

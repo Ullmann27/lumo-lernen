@@ -20,11 +20,17 @@ class GuidedMathIllustration extends StatelessWidget {
     required this.lesson,
     required this.step,
     required this.reduceMotion,
+    this.onNarratePhase,
+    this.onStopNarration,
+    this.autoNarrate = false,
   });
 
   final GuidedLesson lesson;
   final GuidedLessonStep step;
   final bool reduceMotion;
+  final Future<void> Function(String text)? onNarratePhase;
+  final VoidCallback? onStopNarration;
+  final bool autoNarrate;
 
   static const _text = TextStyle(
       color: LumoVisualTokens.white,
@@ -88,7 +94,10 @@ class GuidedMathIllustration extends StatelessWidget {
       GuidedLessonConcept.equalGroups => _groups(),
       GuidedLessonConcept.bridgeTen => step.type == TutoringStepType.showExample
           ? GuidedTenFrameAnimation(
-              left: step.a, right: step.b, reduceMotion: reduceMotion)
+              left: step.a, right: step.b, reduceMotion: reduceMotion,
+              onNarratePhase: onNarratePhase,
+              onStopNarration: onStopNarration,
+              autoNarrate: autoNarrate)
           : _tenFrame(context),
       GuidedLessonConcept.subtractTen => _subtraction(),
       _ =>
