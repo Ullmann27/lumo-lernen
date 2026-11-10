@@ -99,7 +99,9 @@ class _QuizShowContentState extends State<QuizShowContent> {
     if (_locking ||
         _state.revealed ||
         _state.gameOver ||
-        _state.selectedOption == null) return;
+        _state.selectedOption == null) {
+      return;
+    }
     setState(() => _locking = true);
     _playEffect(SoundEffect.click);
     unawaited(_music.pauseForLockIn());
@@ -612,7 +614,7 @@ class _QuizStage extends StatelessWidget {
                                             horizontal: 10, vertical: 4),
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
-                                          children: const [
+                                          children: [
                                             Icon(Icons.star_rounded,
                                                 color: Color(0xFFFFD978),
                                                 size: 12),
