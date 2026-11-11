@@ -77,6 +77,10 @@ jobs:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          # v3 defaults to the retired SDK "tools" package. Only the actual
+          # ADB platform tools are needed; build-tools is pinned below.
+          packages: platform-tools
       - name: Install APK inspection tools only
         run: sdkmanager 'build-tools;36.0.0'
       - name: Install the existing OCR and real Android input helpers

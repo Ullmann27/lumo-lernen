@@ -80,3 +80,9 @@ Implementation and local guard tests are reviewable in this QA branch. Android
 acceptance is pending until the actual workflow artifact reports PASS. The draft
 PR targets `chatgpt/lumo-technical-art-host-20261111`; it neither merges main nor
 rebuilds, signs or releases an APK.
+
+The initial runtime attempt `43030964099` passed the source/artifact/APK-byte
+guards but stopped before emulator execution because setup-android v3 requested
+the retired SDK package `tools`. The workflow now explicitly requests only
+`platform-tools`; APK inspection still uses pinned build-tools 36.0.0. No runtime
+PASS is inferred from that failed infrastructure attempt.
