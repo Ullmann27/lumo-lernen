@@ -1,0 +1,70 @@
+# Supplemental Android Garage acceptance of the existing 2015 APK
+
+This branch adds only a workflow, probe, negative guard tests and this document.
+It does not change app or game code, existing QA helpers, baseline gates, package
+identity, version or signature. It builds no APK and publishes no release.
+
+## Immutable subject
+
+| Field | Fixed value |
+| --- | --- |
+| Built Flutter source | `2718f405e69c193d0121c6f6447fe53769d7c803` |
+| Embedded Godot source | `b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1` |
+| Build run | `43024454590` |
+| Artifact | `lumo-lernen-kart-unified-2026-candidate`, ID `13858046311` |
+| Artifact archive digest | `sha256:f45fbeee373a339654d35d395065055aa9f1c2e4156697f9926a1f4706625d2a` |
+| APK SHA-256, x86_64 | `b863bc25bc07a7ca3fb78ad4fd56a6f816d091f821c5b9af27bfb0a7aecbcb4e` |
+| App | `dev.ullmann.lumo.lumo_lernen.coachpreview`, `0.13.3+2015` |
+| Signing certificate SHA-256 | `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702` |
+
+The job checks the real run/event/workflow/head, latest successful build job and
+the original artifact ID/digest before downloading. Existing tour and update
+jobs remain independent required evidence. The original source is checked out
+separately from the supplemental QA branch. Its unmodified signature/package/
+embedded-PCK verifier runs before installation. The helpers' source identity
+therefore remains the source that actually produced the APK.
+
+## Mandatory runtime claims
+
+| Case | Evidence required |
+| --- | --- |
+| Phone native Garage | Actual premium-menu `Garage` touch and rendered selection title |
+| Cancel/back | Select Gecko; `Weiter` to world; visible `Zurück` to Kart; Android Back through driver/mode to landing; no new world-ready marker |
+| Comet selection/confirmation | Actual Comet touch, world/tempo confirmation, race start; new race ID with `selected_kart=comet`, original fox, Cup/Sonnenhafen, rendered running HUD |
+| First drive | Original real GAS-hold helper; unchanged minimum 8 m/2.5 s, same native race ID and changing rendered world |
+| Pause/continue | Visible pause, native session unchanged while paused; actual `Weiterfahren` touch; running HUD and another 8 m/2.5 s measured from the paused state in the same race |
+| Pause/Android Back | Second real pause then Back returns to a fresh Flutter frame |
+| Gecko selection/confirmation | Second real Garage journey and distinct race ID with `selected_kart=gecko_velo`; actual drive, then visible `Rennen abbrechen` returns to Flutter |
+| Fold cover/open | Real `wm size` and density changes; open actual native Garage, both free car captions visible, selected-car confirmation, visible/Android back and Flutter return; screenshot dimensions and foreground activity recorded |
+| Preservation | Original profile/learning comparison and no fatal native/host crash |
+
+Comet and Gecko Velo are original `unlock=0` cars. No stars, unlocks, configuration,
+pose, session or profile are injected. The fictional profile is created through
+the normal onboarding UI. Only app-generated native sessions and preferences
+are read. All actions use real current accessibility/OCR bounds. OCR glyph bounds
+are not asserted to be 48 dp hit areas.
+
+The test step has a 35-minute limit, including emulator startup; the probe has a
+28-minute internal deadline. Setup and evidence upload have a separate job limit.
+The `lumo-2015-existing-apk-garage-android-proof` artifact retains actual PNGs,
+native saves, touch readiness/OCR records, API metadata, verification, logs and
+`runtime/garage-result.json`, including failure evidence. A missing or failing
+phone/Fold step cannot produce overall PASS.
+
+## Deliberate limits and current status
+
+This additional test does not prove full Android laps/loops/ramps, real Fold
+hardware, audio/haptics, GPU frame times, temperatures, memory usage or 60 FPS.
+Fold coverage here is the native Garage and navigation; the two actual races
+run on the phone layout. Existing complete-route native gates remain unchanged.
+
+Local validation command:
+
+```sh
+python3 -m unittest discover -v -s scripts/tests -p test_lumo_2015_garage_android_probe.py
+```
+
+Implementation and local guard tests are reviewable in this QA branch. Android
+acceptance is pending until the actual workflow artifact reports PASS. The draft
+PR targets `chatgpt/lumo-technical-art-host-20261111`; it neither merges main nor
+rebuilds, signs or releases an APK.
