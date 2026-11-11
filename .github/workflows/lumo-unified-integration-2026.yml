@@ -1,7 +1,7 @@
 name: Lumo Lernen Kart unified integration APK
 on:
   push:
-    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15]
+    branches: [chatgpt/lumo-lernen-kart-unified-2026-10-15, chatgpt/lumo-parent-grade-and-subject-icons-2026-10-15, chatgpt/lumo-technical-art-host-20261111]
   pull_request:
     paths:
       - 'lib/widgets/design/**'
@@ -24,6 +24,7 @@ on:
       - 'lib/features/home/**'
       - '.github/probes/modernization_android_tour.py'
       - '.github/probes/lumo_2014_update_android_probe.py'
+      - '.github/probes/lumo_2015_update_android_probe.py'
       - 'tools/android_qa/kart_android_race.py'
       - 'tools/android_qa/tests/test_focused_race_hud.py'
       - '.github/probes/kart_complete_android_probe.py'
@@ -119,21 +120,21 @@ jobs:
           include-hidden-files: true
           if-no-files-found: warn
           retention-days: 30
-      - name: Full Flutter regression suite including all 2014 captures
+      - name: Full Flutter regression suite including every capture
         env:
-          REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110') }}
+          REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111') }}
         run: |
           set -euo pipefail
           if [ "$REQUIRE_ALL_TESTS" = true ]; then
-            python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-2014
+            python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance
           else
             flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
           fi
       - uses: actions/upload-artifact@v4
-        if: always() && (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
+        if: always() && (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111')
         with:
-          name: lumo-2014-all-flutter-tests-and-captures
-          path: .ci-results/full-2014/
+          name: lumo-candidate-all-flutter-tests-and-captures
+          path: .ci-results/full-acceptance/
           include-hidden-files: true
           if-no-files-found: warn
           retention-days: 30
@@ -164,7 +165,7 @@ jobs:
           command -v rg
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
       - name: Install verified Gradle for the real build-contract probe
-        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
+        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111')
         run: |
           set -euo pipefail
           curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
@@ -173,7 +174,7 @@ jobs:
           echo "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/bin" >> "$GITHUB_PATH"
       - name: Verify all build and preservation contracts
         env:
-          REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110') }}
+          REQUIRE_ALL_TESTS: ${{ (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111') }}
         run: |
           set -euo pipefail
           mkdir -p .ci-results
@@ -229,10 +230,11 @@ jobs:
           retention-days: 30
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
-      - name: Require actual gameplay gates on the exact 2014 native source
-        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
+      - name: Require actual gameplay gates on the exact pinned native source
+        if: (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111')
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
+          REQUIRE_TECHNICAL_ART: ${{ (github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111') }}
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
@@ -255,10 +257,13 @@ jobs:
           python3 tools/validate_project.py 2>&1 | tee "$native_logs/project.log"
           bash tools/validate_project.sh 2>&1 | tee "$native_logs/legacy-gameplay.log"
           LUMO_2014_LOG_DIR="$native_logs/2014" bash tools/validate_2014.sh
+          if [ "$REQUIRE_TECHNICAL_ART" = true ]; then
+            LUMO_ART_LOG_DIR="$native_logs/technical-art" bash tools/validate_technical_art.sh
+          fi
       - uses: actions/upload-artifact@v4
-        if: always() && (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110')
+        if: always() && (github.head_ref == 'lumo-2014/integration-20261110' || github.ref_name == 'lumo-2014/integration-20261110' || github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111')
         with:
-          name: lumo-2014-pinned-native-gameplay
+          name: lumo-candidate-pinned-native-gameplay
           path: acceptance-native/
           if-no-files-found: warn
           retention-days: 30
@@ -456,6 +461,92 @@ jobs:
         if: always()
         with:
           name: lumo-2014-in-place-update-proof
+          path: tour/
+          retention-days: 30
+
+  update-from-2014:
+    needs: [verify-and-build, android-tour]
+    if: (github.head_ref == 'chatgpt/lumo-technical-art-host-20261111' || github.ref_name == 'chatgpt/lumo-technical-art-host-20261111')
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: candidate/dist/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-lernen-kart-unified-2026-candidate
+          path: baseline/dist/
+          run-id: 42900144742
+          github-token: ${{ github.token }}
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/lumo_2003_update_android_probe.py .github/probes/lumo_2015_update_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Preserve actual 2014 learning through an in-place 2015 upgrade
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_CANDIDATE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_2015_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2015-in-place-update-proof
           path: tour/
           retention-days: 30
 
