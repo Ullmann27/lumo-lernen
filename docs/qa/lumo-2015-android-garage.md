@@ -55,6 +55,17 @@ logcat command and archive that exact read; a transport error is a hard failure.
 The pause samples prove the stored values did not change in their observation
 window; they are not a continuous trace of frozen physics. The post-continue
 distance/time and changing-world gates independently require actual new driving.
+Each drive/pause keeps its own original screenshot/session directory. The second
+pause cannot overwrite the first. The mode page accepts the two source-defined
+responsive titles `Dein Abenteuer` and `Dein nächstes Abenteuer`, while requiring
+the same actual Kart → driver → mode → landing navigation sequence.
+At the final tempo step, the source-defined captions `Rennen starten` and
+`Losfahren` identify the same start action. Premium `START` and saved-race resume
+are excluded from this selection journey. During the second world build, the
+old Comet save may remain on disk until Godot writes the new Gecko race. The
+bounded wait therefore requires the expected kart, a new result ID and a running
+clock together. Reversion to the old ID after observing the new one, another new
+ID, or the wrong car in a new race remains a hard failure.
 
 The test step has a 35-minute limit, including emulator startup; the probe has a
 28-minute internal deadline. Setup and evidence upload have a separate job limit.

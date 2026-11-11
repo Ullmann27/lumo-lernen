@@ -135,6 +135,19 @@ def require_resumed_progress(paused: dict, resumed: dict, kart: str) -> dict:
             'distance_gain_after_continue': distance, 'elapsed_gain_after_continue': elapsed}
 
 
+def selected_race_readiness(state: dict, kart: str, previous_id: str | None,
+                            observed_new_id: str | None) -> tuple[str | None, bool]:
+    """Only the old save before the first new snapshot is a loading observation."""
+    identity = state.get('result_id')
+    if previous_id is not None and identity == previous_id:
+        demand(observed_new_id is None, 'Native session reverted to the previous race after a new identity')
+        return None, False
+    require_selected_race(state, kart, previous_id=previous_id)
+    demand(observed_new_id is None or identity == observed_new_id,
+           'Confirmed race identity changed while awaiting its countdown')
+    return identity, state['countdown'] <= 0 and state['elapsed'] >= 1.0
+
+
 def require_complete(steps: list[dict], races: list[dict]) -> None:
     names = [item.get('step') for item in steps]
     demand(len(names) == len(set(names)), 'Duplicate acceptance steps')
@@ -248,24 +261,29 @@ class GarageQA:
         path.mkdir(parents=True, exist_ok=True)
         return path
 
-    def expect(self, out: Path, label: str, tag: str, *, exact: bool = False,
+    def expect(self, out: Path, label: str | tuple[str, ...], tag: str, *, exact: bool = False,
                timeout: float = 90) -> dict:
         deadline, attempt = time.monotonic() + timeout, 0
-        wanted = self.probe.normalized(label)
+        labels = (label,) if isinstance(label, str) else label
+        wanted = [self.probe.normalized(item) for item in labels]
         while time.monotonic() < deadline:
             snapshot = self.probe.capture(out, f'{tag}-{attempt}', timeout=max(1, deadline-time.monotonic()))
             source = out / snapshot['file']
-            lines = self.probe.image_lines(out, f'{tag}-{attempt}', wanted,
+            lines = self.probe.image_lines(out, f'{tag}-{attempt}', wanted[0],
                                           source_path=source, exact=exact,
                                           timeout=max(1, deadline-time.monotonic()))
-            matches = [line for line in lines if
-                       (self.probe.normalized(line['text']) == wanted if exact else
-                        wanted in self.probe.normalized(line['text']))]
+            matches = [line for line in lines if any(
+                       self.probe.normalized(line['text']) == caption if exact else
+                       caption in self.probe.normalized(line['text']) for caption in wanted)]
             if matches:
-                return {'capture': snapshot, 'caption': label, 'observed': matches}
+                actual = next(item for item in labels if any(
+                    self.probe.normalized(line['text']) == self.probe.normalized(item) if exact else
+                    self.probe.normalized(item) in self.probe.normalized(line['text']) for line in matches))
+                return {'capture': snapshot, 'caption': actual,
+                        'allowed_source_captions': labels, 'observed': matches}
             attempt += 1
             time.sleep(1)
-        raise TimeoutError('Actual native screenshot lacks ' + label)
+        raise TimeoutError('Actual native screenshot lacks ' + ' / '.join(labels))
 
     def tap(self, out: Path, label: str, tag: str, *, exact: bool = True) -> dict:
         actual_tag = tag
@@ -367,7 +385,10 @@ class GarageQA:
         self.back()
         driver = self.expect(out, 'Wer fährt mit?', 'cancel-back-driver')
         self.back()
-        mode = self.expect(out, 'Dein nächstes Abenteuer', 'cancel-back-mode')
+        # b357 uses the short title on short landscapes and balanced Fold
+        # surfaces below 1100 dp. Both titles name this same actual mode page.
+        mode = self.expect(out, ('Dein Abenteuer', 'Dein nächstes Abenteuer'),
+                           'cancel-back-mode', exact=True)
         self.back()
         landing = self.expect(out, 'Garage', 'cancel-back-landing', exact=True)
         demand(self.marker_count() == before, 'Cancel/back unexpectedly launched a race')
@@ -385,11 +406,14 @@ class GarageQA:
         self.expect(out, 'Finde dein Tempo', 'tempo-title')
         final = self.probe.capture(out, 'garage-final-confirmation')
         markers = self.marker_count()
-        self.tap(out, 'Rennen starten', 'start-confirmed-race')
+        # Both are real step-4 captions in b357; the short variant is used
+        # below 520 dp. Neither premium START nor saved-race Resume is accepted.
+        start_caption = self.expect(out, ('Rennen starten', 'Losfahren'),
+                                    'final-start-caption', exact=True)
+        self.tap(out, start_caption['caption'], 'start-confirmed-race')
         session = self.tour.RaceSession(out, expected_mode='cup', expected_track='sonnenhafen')
-        state = self.tour.wait_race_running(session)
         previous = self.races[-1]['result_id'] if self.races else None
-        require_selected_race(state, kart, previous_id=previous)
+        state = self.wait_selected_race(session, kart, previous)
         hud = self.tour.wait_race_hud(out)
         demand(self.marker_count() > markers, 'No new native world-ready marker after confirmation')
         replaced = self.evidence.garage_replaced(
@@ -401,7 +425,39 @@ class GarageQA:
                          'selection_capture': selected_capture, 'hud': hud,
                          'garage_replaced': replaced}
 
+    def wait_selected_race(self, session, kart: str, previous_id: str | None,
+                           timeout: float = 150) -> dict:
+        # _begin_race saves only after synchronous _build_world. A previous
+        # running Comet save is still readable during a new Gecko world build.
+        deadline, observed_new_id = time.monotonic()+timeout, None
+        observations, attempt = [], 0
+        while time.monotonic() < deadline:
+            demand(self.tour.godot_alive(), 'Godot quit while awaiting the newly confirmed race')
+            try:
+                state = session.read(f'new-selected-race-{attempt}')
+            except RuntimeError as error:
+                # Before the first new save the app may not have a session file.
+                # Once the new race has been seen, losing it is a real failure.
+                if observed_new_id is not None:
+                    raise
+                observations.append({'attempt': attempt, 'pending_read': str(error)})
+            else:
+                observed_new_id, ready = selected_race_readiness(
+                    state, kart, previous_id, observed_new_id)
+                observations.append({'attempt': attempt, 'result_id': state['result_id'],
+                                     'selected_kart': state['selected_kart'],
+                                     'countdown': state['countdown'], 'elapsed': state['elapsed'],
+                                     'new_identity_seen': observed_new_id, 'ready': ready})
+                write_json(session.out / 'new-selected-race-wait.json', observations)
+                if ready:
+                    return state
+            write_json(session.out / 'new-selected-race-wait.json', observations)
+            attempt += 1
+            time.sleep(2)
+        raise TimeoutError('The newly selected vehicle never reached a new running race identity')
+
     def drive(self, out: Path, session, kart: str, start: dict | None = None) -> dict:
+        session = self.phase_session(session, out)
         state = start if start is not None else session.read('drive-start')
         require_selected_race(state, kart)
         hud = self.tour.wait_race_hud(out)
@@ -412,6 +468,7 @@ class GarageQA:
         return {'start': state, 'after': after, 'movement': movement}
 
     def pause(self, out: Path, session, kart: str) -> dict:
+        session = self.phase_session(session, out)
         before = session.read('before-pause')
         self.back()
         title = self.expect(out, 'Eine kleine Pause', 'pause-title')
@@ -424,6 +481,14 @@ class GarageQA:
         frozen = self.evidence.paused_unchanged(paused, second, mode='cup', track='sonnenhafen')
         return {'title': title, 'state': second, 'frozen': frozen,
                 'scope': 'Visible pause and unchanged app-persisted samples over 3 wall seconds; not a continuous physics trace'}
+
+    def phase_session(self, session, out: Path):
+        # Preserve every original save read alongside its own screenshot phase;
+        # the second pause/drive must not overwrite the first observation.
+        local = self.tour.RaceSession(out, expected_mode=session.expected_mode,
+                                      expected_track=session.expected_track)
+        local.path = session.path
+        return local
 
     def return_flutter(self, out: Path, tag: str) -> dict:
         snapshot = self.probe.flutter_return_capture(out, tag)
@@ -489,7 +554,8 @@ class GarageQA:
         self.step('phone-comet-selection-confirm-start', start_comet)
         session = selected['session']
         self.step('phone-comet-drive', lambda: self.drive(self.folder('phone-comet/first-drive'), session, 'comet'))
-        paused = self.step('phone-comet-pause-freeze', lambda: self.pause(comet_out, session, 'comet'))
+        paused = self.step('phone-comet-pause-freeze', lambda: self.pause(
+            self.folder('phone-comet/first-pause'), session, 'comet'))
         def resume():
             touch = self.tap(comet_out, 'Weiterfahren', 'actual-continue')
             drive = self.drive(self.folder('phone-comet/after-continue'), session, 'comet', paused['state'])
@@ -497,7 +563,7 @@ class GarageQA:
             return {'touch': touch, 'drive': drive, 'progress': progress}
         self.step('phone-comet-continue-and-drive', resume)
         def pause_back():
-            proof = self.pause(comet_out, session, 'comet')
+            proof = self.pause(self.folder('phone-comet/second-pause'), session, 'comet')
             self.back()
             return {'pause': proof, 'return': self.return_flutter(comet_out, 'android-back-to-flutter')}
         self.step('phone-comet-pause-android-back', pause_back)
@@ -511,7 +577,7 @@ class GarageQA:
         session = selected['session']
         self.step('phone-gecko-drive', lambda: self.drive(self.folder('phone-gecko/drive'), session, 'gecko_velo'))
         def abandon():
-            proof = self.pause(gecko_out, session, 'gecko_velo')
+            proof = self.pause(self.folder('phone-gecko/abandon-pause'), session, 'gecko_velo')
             touch = self.tap(gecko_out, 'Rennen abbrechen', 'actual-abandon')
             return {'pause': proof, 'touch': touch,
                     'return': self.return_flutter(gecko_out, 'abandon-to-flutter')}

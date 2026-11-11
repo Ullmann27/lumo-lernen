@@ -106,6 +106,27 @@ class ActualSelectionTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(RuntimeError):
                 qa.require_resumed_progress(state(), state(**change), 'comet')
 
+    def test_second_car_waits_for_new_identity_then_running_clock(self):
+        identity, ready = qa.selected_race_readiness(state(), 'gecko_velo', 'real-race-a', None)
+        self.assertIsNone(identity)
+        self.assertFalse(ready)
+        gecko = state(selected_kart='gecko_velo', result_id='real-race-b', countdown=3, elapsed=0)
+        identity, ready = qa.selected_race_readiness(gecko, 'gecko_velo', 'real-race-a', identity)
+        self.assertEqual(identity, 'real-race-b')
+        self.assertFalse(ready)
+        _, ready = qa.selected_race_readiness({**gecko, 'countdown': 0, 'elapsed': 1},
+                                              'gecko_velo', 'real-race-a', identity)
+        self.assertTrue(ready)
+
+    def test_new_wrong_car_or_reverted_identity_is_never_a_loading_success(self):
+        with self.assertRaises(RuntimeError):
+            qa.selected_race_readiness(state(result_id='real-race-b'), 'gecko_velo', 'real-race-a', None)
+        with self.assertRaises(RuntimeError):
+            qa.selected_race_readiness(state(), 'gecko_velo', 'real-race-a', 'real-race-b')
+        with self.assertRaises(RuntimeError):
+            qa.selected_race_readiness(state(result_id='real-race-c', selected_kart='gecko_velo'),
+                                       'gecko_velo', 'real-race-a', 'real-race-b')
+
     def test_no_partial_missing_fold_or_duplicate_step_can_report_pass(self):
         steps = [{'step': name, 'status': 'PASS'} for name in qa.REQUIRED_STEPS]
         races = [state(), state(result_id='real-race-b', selected_kart='gecko_velo')]
