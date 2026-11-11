@@ -8,7 +8,7 @@ Der zusammenhängende Sonnenhafen-/Garage-/Lumo-Stand ist implementiert und als 
 |---|---|
 | APK-Quellcommit Flutter | `2718f405e69c193d0121c6f6447fe53769d7c803` |
 | Enthaltener Godot-Produktcommit | `b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1` |
-| Godot-Nachweiscommit, gleiche Produktdateien | `f3247b58e07ef65b6b4c7c1aba4e7caeea430b84` |
+| Godot-Nachweiscommit, gleiche Produktdateien | `a66093107fdc86fbebc94f6cf9b36250bc3a0954` |
 | Engine / Flutter-CI | Godot 4.6.3 / Flutter 3.44.9 |
 | ARM64-APK | 318708477 Bytes |
 | ARM64 SHA-256 | `3bb833935d47fca64efeceb753a48f663d48d3d43b3f02f3e9c798ba9538a4cb` |
@@ -21,16 +21,16 @@ Die APK wurde aus dem unveränderten Quellstand 2718 gebaut. Spätere reine Stat
 
 ## Abnahme
 
-- **Godot:** Jeweils alle zwölf Workflows auf b357 und dem Nachweiscommit f324 erfolgreich. Native Projektprüfung, 18 bestehende 2014-Prüfprogramme und sieben ergänzende Artprogramme bestanden. Spieler zwei Runden, zwei Loopings, vier Sprünge/Landungen, keine Rücksetzungen; 30 vollständige KI-Fahrten.
+- **Godot:** Jeweils alle zwölf Workflows auf b357 und dem Nachweiscommit f324 erfolgreich. Native Projektprüfung, 18 bestehende 2014-Prüfprogramme und sieben ergänzende Artprogramme bestanden. Spieler zwei Runden in GL Compatibility, zwei Loopings, vier Sprünge/Landungen, keine Rücksetzungen; 30 vollständige KI-Zweirundenfahrten ohne Bildausgabe. Ergänzende GL-Szenarioprüfungen für KI-Looping-Anfahrten sowie Rampenflüge/Landungen sind gesondert bestanden.
 - **Flutter/Build:** [Run 43024454590](https://github.com/Ullmann27/lumo-lernen/actions/runs/43024454590) ist erfolgreich: vollständige Flutter-Suite, Vertragsprüfungen, native Gates, APK-Bau und Paketverifikation.
 - **Android-Tour:** Job 130547247521 erfolgreich, 21 Schritte, API 35/x86_64. Tatsächlicher Rennstart, 26,78 m zusätzlicher Weg, Pause und Rückkehr zu Flutter. Der Test ist keine vollständige Android-Rundfahrt.
 - **Update 2014 → 2015:** Job 130553327493 erfolgreich. Installation per `install -r` behält Android-userId und firstInstallTime. Sieben Lernschlüssel, Testprofil, eine richtige Antwort, ein Stern und fünf XP bleiben nach Update, Offline-Kart, Neustart und simulierten Fold-Formaten erhalten.
-- **Zusätzliche native Garage auf Android:** [PR456](https://github.com/Ullmann27/lumo-lernen/pull/456) prüft am vorhandenen Paket Fahrzeugwechsel, Bestätigung, Rückwege und Weiterfahren. Bei diesem Checkpoint noch nicht abgeschlossen. Ein SDK-Setupfehler und beobachtungsbezogene Probe-Annahmen werden ausschließlich im separaten Prüfzweig korrigiert; kein neues APK wird dafür erzeugt.
+- **Zusätzliche native Garage auf Android:** [PR456](https://github.com/Ullmann27/lumo-lernen/pull/456) prüft am vorhandenen Paket Fahrzeugwechsel, Bestätigung, Rückwege und Weiterfahren. Aktueller Lauf [43034616066](https://github.com/Ullmann27/lumo-lernen/actions/runs/43034616066) auf Prüfcode `a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095` ist noch nicht abgeschlossen. Der vorherige Lauf 43032732151 scheiterte vor dem Emulator an Ubuntu-Mirror-DNS und APT-Timeout; er ist kein UI-Nachweis. Der Folgecommit ändert nur Paketquellenbehandlung und Doku, weder UI-Probe noch Assertions oder APK.
 - **Echte Hardware:** Nicht geprüft. Keine gemessenen ARM64-/Fold-FPS, Temperatur-, Energie- oder RAM-Werte. Audio-/Haptikempfinden nicht abgenommen.
 
 ## Umfang und Belege
 
-Die Fassadenaufwertung betrifft die ersten ungefähr 150 m Sonnenhafen. Garage und Original-Lumo sind gemeinsam integriert. Original-GLB, Fahrzeuge, Freischaltungen, Fahrwege, Loopings und Rampen bleiben erhalten. Sichtbare Verbesserungen, echte Vergleichsbilder, Clips, Messbereiche und bekannte Mängel sind im [Godot-Bericht](https://github.com/Ullmann27/lumo-godot/blob/f3247b58e07ef65b6b4c7c1aba4e7caeea430b84/docs/TECHNICAL_ART_20261111.md) dokumentiert. Der Bericht wird nach den Androidnachweisen ergänzt.
+Die Fassadenaufwertung betrifft die ersten ungefähr 150 m Sonnenhafen. Garage und Original-Lumo sind gemeinsam integriert. Original-GLB, Fahrzeuge, Freischaltungen, Fahrwege, Loopings und Rampen bleiben erhalten. Sichtbare Verbesserungen, echte Vergleichsbilder, Clips, Messbereiche und bekannte Mängel sind im [Godot-Bericht](https://github.com/Ullmann27/lumo-godot/blob/a66093107fdc86fbebc94f6cf9b36250bc3a0954/docs/TECHNICAL_ART_20261111.md) dokumentiert. Der Bericht wird nach dem ergänzenden Androidnachweis aktualisiert.
 
 Offen: vorbestehendes Gecko-Schuhclipping, kleine Statistik-/Dekortexte, weitere Hafenabschnitte und echte Hardwareabnahme. Kein Blinzeln implementiert: Das Originalrig besitzt keine Lider-/Augenknochen oder Morph Targets.
 
