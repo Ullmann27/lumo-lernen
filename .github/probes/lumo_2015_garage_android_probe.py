@@ -20,6 +20,7 @@ import subprocess
 import sys
 import time
 import traceback
+import unicodedata
 
 REPOSITORY = 'Ullmann27/lumo-lernen'
 REPOSITORY_ID = 1222433959
@@ -144,6 +145,55 @@ def require_complete(steps: list[dict], races: list[dict]) -> None:
     demand(len({item.get('result_id') for item in races}) == 2, 'Two distinct races are required')
 
 
+def normalize(text: str) -> str:
+    text = unicodedata.normalize('NFKD', text.lower())
+    return ''.join(char for char in text if char.isalnum())
+
+
+def garage_scroll_observation(frame: dict, lines: list[dict]) -> dict:
+    """Derive a list drag from actual header, footer and card glyph bounds.
+
+    Godot's shipped landscape Garage puts its vehicle list left of the 3D
+    preview. No hardcoded input coordinate, offscreen target or saved selection
+    is used. The final desired card must still be read and pressed normally.
+    """
+    demand(frame.get('acceptable_for_target_sampling') is True,
+           'Cannot scroll an incomplete native surface')
+    width, height = frame['pixels']
+    headers = [row for row in lines if normalize(row['text']) == 'deinkartdeinstil']
+    footers = [row for row in lines if normalize(row['text']) in ('weiter', 'zuruck')]
+    demand(headers and footers, 'Actual Garage title/footer required before list scrolling')
+    header_bottom = min(row['bounds'][3] for row in headers)
+    footer_top = max(row['bounds'][1] for row in footers)
+    cards = [row for row in lines if normalize(row['text']) in
+             ('comet', 'geckovelo', 'borurally', 'glider', 'nalacomet', 'noatide') and
+             0 < row['bounds'][0] < row['bounds'][2] < width * .50 and
+             header_bottom < row['bounds'][1] < row['bounds'][3] < footer_top]
+    demand(cards, 'No currently visible vehicle card in the actual left list')
+    # The highest visible original card cannot be confused with the selected
+    # summary below the right-hand preview; start inside its own observed text.
+    card = min(cards, key=lambda row: row['bounds'][1])
+    x0, y0, x1, y1 = card['bounds']
+    x, start = round((x0+x1)/2), round((y0+y1)/2)
+    end = round(max(header_bottom + 8, start - max(40, (y1-y0)*5)))
+    demand(0 <= x < width and header_bottom < end < start < footer_top < height and
+           start-end >= 15, 'Observed vehicle-list span is too small for a controlled drag')
+    return {'gesture': [x, start, x, end], 'card': card,
+            'header_bottom': header_bottom, 'footer_top': footer_top,
+            'scope': 'Scroll gesture only; target caption and real selection remain mandatory'}
+
+
+def fatal_events(log: str) -> list[str]:
+    """Same fatal-event criteria as the original tour, on a required successful read."""
+    lines, found = log.splitlines(), []
+    for index, line in enumerate(lines):
+        if 'FATAL EXCEPTION' in line or 'Fatal signal' in line:
+            window = '\n'.join(lines[index:index+6])
+            if PACKAGE in window or 'lumo' in window.lower():
+                found.append(window)
+    return found
+
+
 class GarageQA:
     def __init__(self, source: Path, out: Path):
         self.source, self.out = source.resolve(), out.resolve()
@@ -161,6 +211,7 @@ class GarageQA:
         self.base = self.tour.base
         self.evidence = self.tour.evidence
         self.races: list[dict] = []
+        self.log_reads = 0
         self.result = {'status': 'RUNNING', 'source': SOURCE, 'godot_source': NATIVE,
                        'source_run': SOURCE_RUN, 'apk_sha256': APK_SHA256, 'steps': [],
                        'races': self.races, 'not_tested': [
@@ -217,11 +268,44 @@ class GarageQA:
         raise TimeoutError('Actual native screenshot lacks ' + label)
 
     def tap(self, out: Path, label: str, tag: str, *, exact: bool = True) -> dict:
-        self.probe.native_tap(out, label, tag, timeout=120, exact=exact)
-        report = json.loads((out / (tag + '-surface-readiness.json')).read_text())
+        actual_tag = tag
+        if label == 'Rennen abbrechen':
+            # The shipped pause panel scrolls. Reuse its existing guarded,
+            # real-caption modal scrolling rather than requiring an offscreen row.
+            navigation = importlib.import_module('lumo_1939_pause_navigation')
+            navigation.tap_pause_setting(out, label, tag, scroll='down')
+            actual_tag += '-stable-action'
+        else:
+            recovery = self.card_scroll_recovery() if label in KARTS.values() else None
+            self.probe.native_tap(out, label, tag, timeout=150, exact=exact,
+                                  missing_caption=recovery)
+        report = json.loads((out / (actual_tag + '-surface-readiness.json')).read_text())
         demand(report.get('status') == 'TOUCH_SENT', 'No actual observed native touch was sent')
-        return {'readiness': str((out / (tag + '-surface-readiness.json')).relative_to(self.out)),
+        return {'readiness': str((out / (actual_tag + '-surface-readiness.json')).relative_to(self.out)),
                 'label': label, 'touch': report['touch']}
+
+    def card_scroll_recovery(self):
+        previous, swipes = None, 0
+        def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+            nonlocal previous, swipes
+            current = garage_scroll_observation(frame, lines)
+            stable = (previous is not None and previous_missing_frame is not None and
+                      previous_missing_frame.get('pixels') == frame['pixels'] and
+                      max(abs(a-b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
+            previous = current
+            if not stable:
+                return {'status': 'WAITING_FOR_SECOND_LIST_FRAME', **current}
+            demand(swipes < 5, 'Vehicle card remained offscreen after five observed list gestures')
+            demand(self.probe.digest(source) == frame['source_sha256'],
+                   'Observed vehicle-list screenshot changed before gesture')
+            remaining = deadline-time.monotonic()
+            demand(remaining > 0, 'Vehicle list scrolling exceeded its bounded deadline')
+            self.base.adb('shell', 'input', 'swipe', *map(str, current['gesture']), '650',
+                          timeout=min(15, remaining))
+            swipes += 1
+            previous = None
+            return {'status': 'SWIPE_SENT', 'swipe_number': swipes, **current}
+        return recovery
 
     def back(self) -> None:
         self.base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK')
@@ -261,8 +345,16 @@ class GarageQA:
         title = self.expect(out, 'Dein Kart. Dein Stil.', 'garage-title')
         return {'touch': touch, 'title': title}
 
+    def read_required_logcat(self, tag: str) -> str:
+        # A transport/ADB failure must never mean "zero crashes/zero markers".
+        log = self.base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=True)
+        self.log_reads += 1
+        (self.out / f'{tag}-{self.log_reads}.log').write_text(log)
+        demand(bool(log.strip()), 'Required logcat observation returned an empty log')
+        return log
+
     def marker_count(self) -> int:
-        log = self.base.adb('logcat', '-d', '-v', 'brief', timeout=60, check=False)
+        log = self.read_required_logcat('required-race-markers')
         return len(re.findall(r'\[Kart\] race_world_ready:', log))
 
     def cancel_to_landing(self, out: Path) -> dict:
@@ -330,7 +422,8 @@ class GarageQA:
         time.sleep(3)
         second = session.read('paused-second')
         frozen = self.evidence.paused_unchanged(paused, second, mode='cup', track='sonnenhafen')
-        return {'title': title, 'state': second, 'frozen': frozen}
+        return {'title': title, 'state': second, 'frozen': frozen,
+                'scope': 'Visible pause and unchanged app-persisted samples over 3 wall seconds; not a continuous physics trace'}
 
     def return_flutter(self, out: Path, tag: str) -> dict:
         snapshot = self.probe.flutter_return_capture(out, tag)
@@ -346,13 +439,14 @@ class GarageQA:
         self.open_native(out)
         garage = self.open_garage(out)
         comet = self.expect(out, 'Comet', 'visible-comet', exact=True)
+        gecko_touch = self.tap(out, 'Gecko Velo', 'reveal-and-select-gecko')
         gecko = self.expect(out, 'Gecko Velo', 'visible-gecko', exact=True)
         screen = self.rendered_layout(out, name, 'actual-native-garage')
         navigation = self.cancel_to_landing(out)
         self.back()
         returned = self.return_flutter(out, 'flutter-after-garage')
         return {'scope': 'Native Garage, both free cards visible, selection touch, confirmation and back; no Fold race',
-                'garage': garage, 'comet': comet, 'gecko': gecko, 'screen': screen,
+                'garage': garage, 'comet': comet, 'gecko': gecko, 'gecko_touch': gecko_touch, 'screen': screen,
                 'navigation': navigation, 'returned': returned}
 
     def verify_apk(self, apk: Path, provenance: Path, sums: Path) -> dict:
@@ -428,7 +522,7 @@ class GarageQA:
         self.step('profile-learning-preserved', lambda: self.evidence.learning_preserved(
             before, self.probe.prefs(self.out, 'after-all-garage-cases')))
         def no_crash():
-            fatal = self.tour.logcat_fatal()
+            fatal = fatal_events(self.read_required_logcat('required-fatal-observation'))
             demand(not fatal, 'A native/host fatal crash occurred: ' + repr(fatal))
             return {'fatal_events': fatal}
         self.step('no-native-crash', no_crash)

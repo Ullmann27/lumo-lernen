@@ -32,10 +32,10 @@ therefore remains the source that actually produced the APK.
 | Cancel/back | Select Gecko; `Weiter` to world; visible `Zurück` to Kart; Android Back through driver/mode to landing; no new world-ready marker |
 | Comet selection/confirmation | Actual Comet touch, world/tempo confirmation, race start; new race ID with `selected_kart=comet`, original fox, Cup/Sonnenhafen, rendered running HUD |
 | First drive | Original real GAS-hold helper; unchanged minimum 8 m/2.5 s, same native race ID and changing rendered world |
-| Pause/continue | Visible pause, native session unchanged while paused; actual `Weiterfahren` touch; running HUD and another 8 m/2.5 s measured from the paused state in the same race |
+| Pause/continue | Visible pause, two unchanged app-persisted samples 3 wall seconds apart; actual `Weiterfahren` touch; running HUD and another 8 m/2.5 s measured from the paused state in the same race |
 | Pause/Android Back | Second real pause then Back returns to a fresh Flutter frame |
 | Gecko selection/confirmation | Second real Garage journey and distinct race ID with `selected_kart=gecko_velo`; actual drive, then visible `Rennen abbrechen` returns to Flutter |
-| Fold cover/open | Real `wm size` and density changes; open actual native Garage, both free car captions visible, selected-car confirmation, visible/Android back and Flutter return; screenshot dimensions and foreground activity recorded |
+| Fold cover/open | Real `wm size` and density changes; open actual native Garage, observe Comet and reveal/select Gecko with guarded list scrolling when needed, confirm selection, visible/Android back and Flutter return; screenshot dimensions and foreground activity recorded |
 | Preservation | Original profile/learning comparison and no fatal native/host crash |
 
 Comet and Gecko Velo are original `unlock=0` cars. No stars, unlocks, configuration,
@@ -43,6 +43,18 @@ pose, session or profile are injected. The fictional profile is created through
 the normal onboarding UI. Only app-generated native sessions and preferences
 are read. All actions use real current accessibility/OCR bounds. OCR glyph bounds
 are not asserted to be 48 dp hit areas.
+
+Compact landscapes may require scrolling to Gecko. The probe derives a bounded
+drag from the current Garage title/footer and a visible card's own glyph bounds,
+requires a second matching surface and only then gestures inside the left vehicle
+list. The desired caption and final two-frame touch gate remain mandatory.
+The original guarded pause-modal scrolling reveals `Rennen abbrechen` when it is
+offscreen. Race-marker and fatal-event reads require a successful, nonempty ADB
+logcat command and archive that exact read; a transport error is a hard failure.
+
+The pause samples prove the stored values did not change in their observation
+window; they are not a continuous trace of frozen physics. The post-continue
+distance/time and changing-world gates independently require actual new driving.
 
 The test step has a 35-minute limit, including emulator startup; the probe has a
 28-minute internal deadline. Setup and evidence upload have a separate job limit.
