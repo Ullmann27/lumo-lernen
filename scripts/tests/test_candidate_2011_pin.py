@@ -19,6 +19,7 @@ ORIGIN = "https://github.com/Ullmann27/lumo-godot.git"
 CANDIDATE_REVISION = "a81ddf12d594cc252caef7503162e89c6b26e1c7"
 INTEGRATION_2014_REVISION = "207bfbc5377c0f3e8be800854c83ddf2110ac3f6"
 TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
+GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 PREVIOUS_REVISION = "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41"
 HISTORICAL_POLICY_SHA256 = "be2e5714396b81f4797051394fb8ebbbc484f65a5deb1b71cc234f17ba3ae1de"
 
@@ -37,9 +38,9 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2015, TECHNICAL_ART_2015_REVISION))
-        self.assertGreater(build, 2014)
-        self.assertIn("version: 0.13.3+2015\n", pubspec)
+        self.assertEqual((build, revision), (2016, GAMEPLAY_2016_REVISION))
+        self.assertGreater(build, 2015)
+        self.assertIn("version: 0.13.4+2016\n", pubspec)
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(
@@ -92,7 +93,7 @@ class Candidate2011PinTests(unittest.TestCase):
                     POLICY.verify(version(2014), json.dumps(data))
 
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015)}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -148,6 +149,38 @@ class Candidate2011PinTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "revision mismatch"):
             probe.reviewed_candidate_native(version(2015), config(INTEGRATION_2014_REVISION))
 
+    def test_2016_only_accepts_its_exact_reviewed_native_identity(self):
+        self.assertEqual(
+            POLICY.verify(version(2016), config(GAMEPLAY_2016_REVISION)),
+            (2016, GAMEPLAY_2016_REVISION),
+        )
+        previous = {sha for build, sha in POLICY.APPROVED.items() if build < 2016}
+        for revision in sorted(previous | {"0" * 40, "", GAMEPLAY_2016_REVISION[:8]}):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(2016), config(revision))
+        for build, revision in POLICY.APPROVED.items():
+            if build < 2016:
+                self.assertEqual(POLICY.verify(version(build), config(revision)), (build, revision))
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(build), config(GAMEPLAY_2016_REVISION))
+
+    def test_2016_update_wrapper_requires_exact_source(self):
+        spec = importlib.util.spec_from_file_location(
+            "lumo_2016_update_probe",
+            ROOT / ".github/probes/lumo_2016_update_android_probe.py",
+        )
+        wrapped = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(wrapped)
+        self.assertEqual(
+            wrapped.reviewed_candidate_native(version(2016), config(GAMEPLAY_2016_REVISION)),
+            GAMEPLAY_2016_REVISION,
+        )
+        with self.assertRaisesRegex(ValueError, "requires candidate version 2016"):
+            wrapped.reviewed_candidate_native(version(2015), config(TECHNICAL_ART_2015_REVISION))
+        with self.assertRaisesRegex(ValueError, "revision mismatch"):
+            wrapped.reviewed_candidate_native(version(2016), config(TECHNICAL_ART_2015_REVISION))
+
     def test_2005_keeps_its_original_revision(self):
         self.assertEqual(POLICY.verify(version(2005), config(PREVIOUS_REVISION)),
                          (2005, PREVIOUS_REVISION))
@@ -175,7 +208,7 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 2016, 9999):
+        for build in (2006, 2007, 2008, 2009, 2010, 2017, 9999):
             with self.subTest(build=build):
                 with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
                     POLICY.verify(version(build), config())

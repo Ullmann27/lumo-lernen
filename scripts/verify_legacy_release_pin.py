@@ -126,6 +126,8 @@ APPROVED = {
     # Source identity only: the exact pinned source must pass all legacy,
     # 2014 and technical-art gates before APK build, then Android/update acceptance.
     2015: "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1",
+    # 2016: isolated Kart effects source, acceptance and update tests are independent.
+    2016: "b4ccf593d7833e8c259ff0f963494b00d245d03d",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
