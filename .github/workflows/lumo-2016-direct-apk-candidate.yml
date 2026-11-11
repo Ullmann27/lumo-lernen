@@ -1,0 +1,101 @@
+name: LUMO 2016 direct signed APK candidate
+
+on:
+  push:
+    branches:
+      - chatgpt/lumo-2016-direct-apk-candidate-20261111
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-2016-direct-candidate-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  signed-arm64:
+    runs-on: ubuntu-latest
+    timeout-minutes: 70
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Preserve exact 2016 source and historical APK identities
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_legacy_release_pin.py
+          python3 -m unittest discover -s scripts/tests -p 'test_candidate_2011_pin.py' -v
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          manifest = json.loads(Path('config/godot-source.json').read_text())
+          assert manifest['revision'] == 'b4ccf593d7833e8c259ff0f963494b00d245d03d'
+          assert manifest['engine'] == '4.6.3'
+          assert 'version: 0.13.4+2016' in Path('pubspec.yaml').read_text()
+          print('PASS immutable reviewed Godot 2016 source')
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install pinned Godot engine for the native pack
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build signed Android packages using unchanged production pipeline
+        run: bash scripts/build_unified_apk.sh
+      - name: Verify both APKs and original update signing certificate
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          test -s dist/x86_64/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          expected = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
+          for folder in [Path('dist'), Path('dist/x86_64')]:
+              apk = folder/'Lumo-Lernen-Neu.apk'
+              verification = json.loads((folder/'APK-VERIFICATION.json').read_text())
+              proof = json.loads((folder/'BUILD-PROVENANCE.json').read_text())
+              digest = hashlib.sha256(apk.read_bytes()).hexdigest()
+              assert verification['sha256'] == digest == proof['sha256']
+              assert verification['versionCode'] == 2016
+              assert verification['versionName'] == '0.13.4'
+              assert verification['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+              assert verification['signingCertificateSha256'] == expected
+              assert verification['godot']['revision'] == 'b4ccf593d7833e8c259ff0f963494b00d245d03d'
+              print('PASS',folder,'bytes',apk.stat().st_size,'sha256',digest)
+          PY
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
+          git rev-parse HEAD | tee dist/BUILD-SOURCE.txt
+      - uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: lumo-2016-arm64-signed-apk-candidate
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-SHA256.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/BUILD-SOURCE.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lumo-2016-direct-build-diagnostics
+          path: |
+            dist/
+            build/app/outputs/logs/
+          if-no-files-found: warn
+          retention-days: 10
