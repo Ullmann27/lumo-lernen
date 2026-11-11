@@ -30,6 +30,9 @@ jobs:
       SOURCE_RUN: '43024454590'
       SOURCE_WORKFLOW_ID: '385610539'
       SOURCE_WORKFLOW: .github/workflows/lumo-unified-integration-2026.yml
+      GARAGE_QA_RUN: '43034616066'
+      GARAGE_QA_SOURCE: a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095
+      GARAGE_QA_ATTEMPT: '2'
       GODOT_SHA: b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1
       CERT_SHA256: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
       TAG: coachpreview-build-2015
@@ -45,6 +48,18 @@ jobs:
           test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
           git diff --exit-code HEAD --
           python3 scripts/verify_legacy_release_pin.py
+      - name: Check out supplemental delivery guards separately from the APK source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: delivery-guard
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            scripts/verify_lumo_2015_garage_delivery.py
+            scripts/tests/test_lumo_2015_garage_delivery.py
+      - name: Check the supplemental delivery guards with negative fixtures
+        run: python3 -m unittest discover -v -s delivery-guard/scripts/tests -p test_lumo_2015_garage_delivery.py
       - name: Require the exact completed build, Android tour and 2014 update
         uses: actions/github-script@v7
         with:
@@ -88,6 +103,29 @@ jobs:
             fs.writeFileSync('release-proof/source-jobs.json', JSON.stringify(jobs, null, 2));
             fs.writeFileSync('release-proof/source-artifacts.json', JSON.stringify(selected, null, 2));
             fs.writeFileSync('release-proof/releases.json', JSON.stringify(releases));
+      - name: Read the exact supplemental Garage run, job and original artifact
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const p = {owner: 'Ullmann27', repo: 'lumo-lernen', run_id: Number(process.env.GARAGE_QA_RUN)};
+            const run = (await github.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}', p)).data;
+            const jobs = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs', {...p, filter: 'latest', per_page: 100});
+            const artifacts = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {...p, per_page: 100});
+            for (const [name, value] of [['run', run], ['jobs', jobs], ['artifacts', artifacts]]) {
+              fs.writeFileSync(`release-proof/garage-${name}.json`, JSON.stringify(value, null, 2));
+            }
+      - name: Reject pending, failed, foreign or replaced supplemental Garage evidence
+        id: garage_identity
+        run: |
+          set -euo pipefail
+          python3 delivery-guard/scripts/verify_lumo_2015_garage_delivery.py \
+            --metadata release-proof --output release-proof/garage-binding.json
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json
+          from pathlib import Path
+          print('artifact_id=' + str(json.loads(Path('release-proof/garage-binding.json').read_text())['artifact_id']))
+          PY
       - name: Check the documented release-target permission boundary before any mutation
         uses: actions/github-script@v7
         with:
@@ -120,11 +158,22 @@ jobs:
           gh run download "$SOURCE_RUN" --repo "$REPOSITORY" --name lumo-unified-arm64-verified --dir dist
           gh run download "$SOURCE_RUN" --repo "$REPOSITORY" --name lumo-unified-android-tour --dir tour-proof
           gh run download "$SOURCE_RUN" --repo "$REPOSITORY" --name lumo-2015-in-place-update-proof --dir update-proof
+      - name: Download only the original artifact of the fixed successful Garage run
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: Ullmann27/lumo-lernen
+          run-id: 43034616066
+          artifact-ids: ${{ steps.garage_identity.outputs.artifact_id }}
+          merge-multiple: true
+          path: garage-proof
       - uses: actions/setup-java@v4
         with:
           distribution: temurin
           java-version: '17'
       - uses: android-actions/setup-android@v3
+        with:
+          packages: platform-tools
       - name: Install APK inspection tools only
         run: sdkmanager 'build-tools;36.0.0'
       - name: Verify the real APK signature without accessing a signing key
@@ -144,6 +193,8 @@ jobs:
           from pathlib import Path
           sys.path.insert(0, 'scripts')
           import release_pipeline_gates as family
+          sys.path.insert(0, 'delivery-guard/scripts')
+          import verify_lumo_2015_garage_delivery as garage
 
           def demand(ok, message):
               if not ok:
@@ -220,16 +271,28 @@ jobs:
           for phase in ('installation', 'after_update', 'native_tour', 'after_kart', 'after_restart'):
               demand(bool(update[phase]), f'Missing actual update phase: {phase}')
           demand(set(update['fold']) == {'cover', 'open', 'landscape'} and all(update['fold'].values()), 'Missing Fold update proof')
+          garage_binding = garage.metadata_directory(Path('release-proof'))
+          demand(garage_binding == garage.load_json(Path('release-proof/garage-binding.json')), 'Garage metadata changed after download')
+          garage_proof = garage.validate_proof(
+              Path('garage-proof'), garage_binding, embedded['pck_sha256'],
+              identity['apk_sha256'], update['candidate']['sha256'])
+          Path('release-proof/garage-validation.json').write_text(json.dumps(garage_proof, indent=2) + '\n')
+          # Preserve exact original bytes, never regenerate the runtime result.
+          Path('release-proof/garage-result.json').write_bytes(Path('garage-proof/runtime/garage-result.json').read_bytes())
           family.write_sha256_sidecar(apk)
           report = {**channel, 'sha256': digest, 'bytes': apk.stat().st_size, 'flutter_source_commit': source,
                     'godot_revision': native, 'source_run': int(os.environ['SOURCE_RUN']), 'signingCertificateSha256': family.EXPECTED_CERT_SHA256,
-                    'android_tour': 'PASS', 'in_place_2014_update': 'PASS', 'physical_hardware_performance_tested': False}
+                    'android_tour': 'PASS', 'in_place_2014_update': 'PASS', 'garage_android': garage_proof,
+                    'physical_hardware_performance_tested': False}
           Path('release-proof/delivery.json').write_text(json.dumps(report, indent=2) + '\n')
           notes = f"""Lumo Lernen + Lumo Kart 0.13.3+2015 – verifiziertes Familien-Prerelease.
 
           Enthält Sonnenhafen-Fassaden, Garagenpräsentation und Bewegung der Originalfigur.
           Das vorhandene ARM64-Artefakt aus Unified-Run {os.environ['SOURCE_RUN']} wird unverändert ausgeliefert.
           Vollständige Build-/native Gates, Androidtour und tatsächliches Offline-Update von 2014 auf 2015 sind bestanden.
+          Der zusätzliche Android-Garagenlauf {garage.QA_RUN} auf QA-Quelle {garage.QA_SOURCE} ist bestanden:
+          getrennte Comet-/Gecko-Rennstarts, Weiterfahren mit neuem Fahrfortschritt und native Fold-Garagenbedienung.
+          Originaler Garagen-Ergebnisdigest: {garage_proof['original_result_sha256']}.
           Paket: {family.PACKAGE_ID}. Ohne Deinstallation als Update installieren, um Profile und Lernstände zu erhalten.
           Flutter: {source}. Godot 4.6.3: {native}.
           Signatur SHA-256: {family.EXPECTED_CERT_SHA256}.
@@ -239,7 +302,7 @@ jobs:
           Path('release-proof/RELEASE-NOTES.md').write_text(notes, encoding='utf-8')
           print('VERIFIED_EXISTING_APK', digest, apk.stat().st_size, source)
           PY
-      - name: Recheck that the successful source attempt has not changed
+      - name: Recheck the successful source and supplemental Garage attempts
         uses: actions/github-script@v7
         with:
           script: |
@@ -253,6 +316,19 @@ jobs:
             const releases = await github.paginate('GET /repos/{owner}/{repo}/releases', {owner: p.owner, repo: p.repo, per_page: 100});
             if (releases.some(release => release.tag_name === process.env.TAG)) throw new Error('Existing release is immutable');
             fs.writeFileSync('release-proof/releases-before-publication.json', JSON.stringify(releases));
+            const garage = {owner: p.owner, repo: p.repo, run_id: Number(process.env.GARAGE_QA_RUN)};
+            const qaRun = (await github.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}', garage)).data;
+            const qaJobs = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs', {...garage, filter: 'latest', per_page: 100});
+            const qaArtifacts = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {...garage, per_page: 100});
+            for (const [name, value] of [['run', qaRun], ['jobs', qaJobs], ['artifacts', qaArtifacts]]) {
+              fs.writeFileSync(`release-proof/garage-final-${name}.json`, JSON.stringify(value, null, 2));
+            }
+      - name: Reject a changed Garage attempt or original proof before any tag creation
+        run: |
+          set -euo pipefail
+          python3 delivery-guard/scripts/verify_lumo_2015_garage_delivery.py \
+            --metadata release-proof --prefix garage-final \
+            --compare release-proof/garage-binding.json --output release-proof/garage-final-binding.json
       - name: Publish the exact verified APK under a new immutable family tag
         run: |
           set -euo pipefail

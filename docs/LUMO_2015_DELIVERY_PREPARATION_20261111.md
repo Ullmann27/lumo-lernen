@@ -21,11 +21,93 @@ und keine APK veröffentlicht. Der frühe Berechtigungs-Guard bleibt blockierend
 | Zertifikat SHA-256 | `a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702` |
 | Lokaler Workflow-Vorbereitungscommit | `1f1d102736b936125df66dc39a96acff34fc1e07` |
 
-API-Stand **2026-11-11, 13:25:06 UTC**: `verify-and-build` ist erfolgreich
-abgeschlossen; `android-tour` läuft. Für `update-from-2014` liegt zu diesem
-Zeitpunkt noch kein erfolgreicher Jobnachweis vor. Alle sichtbaren Jobs gehören
-zum genannten Quellstand und Run-Versuch 1. Dies ist eine Momentaufnahme,
-keine spätere Android- oder Update-Freigabe.
+API-Stand **2026-11-11, 14:10:11 UTC**: Unified-Run `43024454590` ist
+`completed/success`. Seine drei Pflichtjobs `verify-and-build`, `android-tour`
+und `update-from-2014` sind im Versuch 1 auf exakt `2718f405…` erfolgreich.
+Die zusätzliche Android-Garagenprüfung ist weiterhin **nicht bestanden**;
+ihre konkrete Bindung und die beobachtete Sperre stehen im folgenden Abschnitt.
+
+## Zusätzlich verpflichtende Originalnachweise der Android-Garage
+
+| Zuordnung | Fest gebundener Wert |
+| --- | --- |
+| Zusätzlicher QA-Run | [43034616066](https://github.com/Ullmann27/lumo-lernen/actions/runs/43034616066) |
+| QA-Quellstand | `a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095` |
+| Erforderlicher Versuch | `2` |
+| QA-Workflow | ID `414716713`, `.github/workflows/lumo-2015-android-garage-qa.yml`, `pull_request` |
+| QA-Job | `existing-apk-garage`; im beobachteten Versuch ID `130572125063` |
+| Originalartefakt | `lumo-2015-existing-apk-garage-android-proof` |
+| Tatsächlich getestete APK | x86_64, SHA-256 `b863bc25bc07a7ca3fb78ad4fd56a6f816d091f821c5b9af27bfb0a7aecbcb4e` |
+| Verlangtes Originalergebnis | `runtime/garage-result.json` im Originalartefakt |
+
+Der QA-Commit ist ausdrücklich **kein APK-Quellstand**. Die App bleibt auf
+Flutter `2718f405…` und Godot `b357b2f…` gebunden. Der zusätzliche Validator
+wird aus einem eigenen, getrennten `delivery-guard`-Checkout geladen; die
+ursprünglichen Build-, Tour-, Update-, Signatur- und Familienkanalregeln bleiben
+im unveränderten APK-Source-Checkout.
+
+Der [neue Validator](../scripts/verify_lumo_2015_garage_delivery.py) verlangt
+den exakt gebundenen, erfolgreichen Run und Job sowie ein eindeutiges Artefakt
+innerhalb der Zeitspanne dieses Jobversuchs. GitHub behält gleichnamige
+Artefakte älterer Versuche: Diese werden anhand ihrer Erstellzeit ausgeschlossen,
+nicht überschrieben oder als neuer Nachweis verwendet. Der ausgewählte
+Artefakt-ID wird heruntergeladen. ID, Archivdigest, Größe, Zeitstempel, Job und
+Versuch müssen beim erneuten API-Abruf vor jeder vorgesehenen Tag-Anlage
+unverändert sein. Laufende, fehlgeschlagene, übersprungene oder fremde Ergebnisse
+brechen ab.
+
+Ein erfolgreicher Jobstatus reicht nicht. Der Validator liest das Original-JSON
+am festen Pfad, lehnt doppelte Ergebnisdateien, doppelte JSON-Schlüssel und
+nicht endliche Zahlen ab und prüft alle 15 Pflichtschritte einschließlich ihrer
+konkreten Nachweise:
+
+- Comet und Gecko Velo müssen zwei verschiedene tatsächliche Rennen mit
+  Originalfahrer `fox`, Modus `cup` und Strecke `sonnenhafen` begonnen haben.
+  Ausgewähltes Fahrzeug, Renn-ID, beendeter Countdown und gestartete Rennzeit
+  müssen mit dem jeweiligen Auswahl- und Startnachweis übereinstimmen.
+- Die ursprünglichen Touch-Readiness-Dateien müssen wirklich gesendete,
+  eindeutig beschriftete Eingaben aus zwei stabilen Beobachtungen enthalten.
+  Die zugehörigen PNGs werden anhand ihrer ursprünglichen SHA-256-Werte und
+  Abmessungen geprüft. Ersetzte oder fehlende Aufnahmen brechen ab.
+- Beide Fahrten benötigen mindestens 8 Meter und 2,5 Sekunden Fortschritt,
+  denselben Rennkontext sowie die unveränderten Kriterien für eine sichtbar
+  bewegte, vollständig gerenderte Spielwelt.
+- Für die Pause werden die beiden ursprünglichen `paused-*-session.cfg`
+  zusätzlich mit den JSON-Werten verglichen. Nach `Weiterfahren` müssen erneut
+  mindestens 8 Meter und 2,5 Sekunden in derselben Comet-Fahrt entstehen.
+  Die Pausebeobachtung bleibt ausdrücklich auf zwei gespeicherte Proben über
+  drei Wall-Sekunden begrenzt, ohne Behauptung einer kontinuierlichen Physikspur.
+- Fold-Außen- und Innenlayout benötigen die native `LumoGameActivity`, die
+  originalen Displaydaten und PNG-Abmessungen, die tatsächliche Garagenüberschrift,
+  beide Fahrzeugbeschriftungen, Auswahlbestätigung und Rückkehr zu Flutter.
+- Originale Paket-/Versions-/Zertifikats-/Provenance-Prüfungen müssen vollständig
+  sein. Das x86-APK muss mit Tour und Update identisch sein; sein PCK-Digest muss
+  mit dem tatsächlich ausgelieferten ARM64-PCK übereinstimmen. Lernstandserhaltung
+  und ein vorhandener, erfolgreicher originaler Fatal-Logcat-Nachweis sind Pflicht.
+
+Das Original-JSON wird nicht neu erzeugt oder zu einem Erfolg umgeschrieben.
+Sein SHA-256 wird im Auslieferungsnachweis festgehalten; erst nach vollständig
+bestandenen Prüfungen wäre eine byteidentische Kopie im Release-Prüfartefakt
+vorgesehen.
+
+### Tatsächlich beobachtete aktuelle Blockade
+
+Der letzte autorisierte Versuch 2 endete **`completed/failure`**. Die
+Paket-/OCR-Vorbereitung schlug fehl, der Emulator-/Garagentest wurde `skipped`.
+Die vom QA-Autor ausgewerteten Originaljoblogs benennen die DNS-Auflösung der
+offiziellen Ubuntu-Paketquellen als Ursache; es wurden keine UI-Assertions
+ausgeführt oder abgeschwächt. Es ist kein weiterer Wiederanlauf ausgelöst worden.
+
+Die eigene API-Abfrage und die tatsächliche lokale Auswertung dieses
+Fehlerstands durch den neuen Validator sind im
+[Blockadeprotokoll](qa/lumo_2015_delivery_guard_blocker_20261111.json) festgehalten.
+Der Validator lehnte den Stand ausdrücklich wegen `conclusion` ab.
+Artefakt `13861309860`, erstellt am 2026-11-11 um 14:07:09 UTC, gehört zum
+fehlgeschlagenen Versuch 2; sein Archivdigest lautet
+`sha256:8a59b7d5538b490ec42bb565866df056b0c15e12633d6d660b0df998ea116514`.
+Das ältere Artefakt `13862712473` gehört zeitlich zu Versuch 1 und zählt nicht
+als Nachweis für Versuch 2. **Keines davon wird als bestandene Android-Garage
+oder als Veröffentlichungsfreigabe bezeichnet.**
 
 ## Konkrete Berechtigungsgrenze
 
@@ -63,7 +145,7 @@ nicht bereit.
   geprüft. Der vorhandene Java-Verifier benötigt dafür nur den bekannten
   öffentlichen Zertifikatsfingerprint, keinen Signierschlüssel.
 - Das tatsächlich eingebettete PCK muss byteidentisch zu den PCK-Digests der
-  Androidtour und des Update-Kandidaten sein. Die tatsächlichen Ergebnisdateien
+  Androidtour, des Update-Kandidaten und der zusätzlichen Garage sein. Die tatsächlichen Ergebnisdateien
   müssen erfolgreiche Lernstandserhaltung, Offline-Kart, Neustart und Fold-Zustände
   nachweisen.
 - Die vorhandenen Familienkanal-Regeln bleiben erhalten. Der aktuelle
@@ -83,13 +165,33 @@ diese Offlineprüfungen sind keine tatsächliche APK- oder Publikationsfreigabe.
 Der unabhängige Review führte zu zusätzlicher PCK-Bindung, erneuter Prüfung des
 Versionsstands und dem dokumentierten Berechtigungs-Guard.
 
+Die zusätzliche Garagenbindung wurde anschließend mit **30 lokalen
+Guardtests** geprüft, darunter fehlgeschlagene/laufende Runs, falsche Quellen,
+frühere Artefaktversuche, fehlende Fold-Daten, identische Renn-IDs, fehlender
+Fahrfortschritt, manipulierte Originaldateien, Fatalmeldungen und ein geändertes
+Artefakt beim finalen CLI-Recheck. Alle 30 Tests und die erneut ausgeführten
+**9 bestehenden Familienkanaltests** sind bestanden. Die Fixtures sind
+ausdrücklich synthetisch und enthalten keine echten Android-Erfolgsergebnisse.
+YAML, alle 10 Shellblöcke, 4 JavaScriptblöcke und 3 eingebettete Pythonblöcke
+wurden auf Syntax geprüft. Der QA-Autor hat die verwendeten Ergebnisfelder
+und Originalpfade unabhängig mit dem unveränderten Probe-Schema verglichen.
+
+Reproduzierbare lokale Befehle:
+
+```sh
+python3 -m unittest discover -v -s scripts/tests -p test_lumo_2015_garage_delivery.py
+python3 -m unittest discover -v -s scripts/tests -p test_release_pipeline_gates.py
+```
+
 ## Wiederaufnahme
 
 1. Den exakten Unified-Run erneut einlesen und alle drei erfolgreichen Jobs
    sowie die zugehörigen Artefakte bestätigen.
-2. Die separate zusätzliche APK-Prüfung für Garagenauswahl und Wiederaufnahme
-   auswerten. Sie ist noch nicht als bestandener Nachweis oder Publisher-Gate
-   aufgenommen und darf erst nach ihrem tatsächlichen Erfolg berücksichtigt werden.
+2. Für die separate Garagenprüfung einen tatsächlich erfolgreichen, ausdrücklich
+   geprüften Lauf samt unverändertem Originalartefakt erhalten. Der derzeit fest
+   gebundene Versuch 2 ist fehlgeschlagen und blockiert. Ein zukünftiger Run oder
+   Versuch benötigt eine nachvollziehbar geprüfte neue feste Bindung; kein
+   automatischer Wechsel auf irgendeinen grünen Lauf.
 3. Einen tatsächlich berechtigten Veröffentlichungsweg bereitstellen und
    prüfen, ohne den festen Source oder bestehende Tags zu verändern.
 4. Erst nach diesen Nachweisen die konkrete Auslieferung erneut freigeben.

@@ -1,0 +1,66 @@
+{
+  "observed_at_utc": "2026-11-11T14:10:11Z",
+  "scope": "Read-only GitHub API snapshot and actual local guard evaluation; no Android or publication run",
+  "guard_result": "REJECTED",
+  "reason": "Supplemental Garage run is not the fixed successful run: conclusion",
+  "main_integration": {
+    "id": 43024454590,
+    "head_sha": "2718f405e69c193d0121c6f6447fe53769d7c803",
+    "status": "completed",
+    "conclusion": "success",
+    "run_attempt": 1
+  },
+  "garage_run": {
+    "id": 43034616066,
+    "head_sha": "a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095",
+    "workflow_id": 414716713,
+    "path": ".github/workflows/lumo-2015-android-garage-qa.yml",
+    "event": "pull_request",
+    "head_branch": "chatgpt/lumo-2015-android-garage-qa-20261111",
+    "run_attempt": 2,
+    "status": "completed",
+    "conclusion": "failure",
+    "run_started_at": "2026-11-11T14:05:59Z"
+  },
+  "garage_job": {
+    "id": 130572125063,
+    "name": "existing-apk-garage",
+    "run_id": 43034616066,
+    "head_sha": "a1d581f0b0b392e0bc4ad7d90fd38d14f8d74095",
+    "run_attempt": 2,
+    "status": "completed",
+    "conclusion": "failure",
+    "started_at": "2026-11-11T14:06:04Z",
+    "completed_at": "2026-11-11T14:07:12Z"
+  },
+  "relevant_steps": [
+    {
+      "name": "Install the existing OCR and real Android input helpers",
+      "status": "completed",
+      "conclusion": "failure"
+    },
+    {
+      "name": "Verify signature then actually select, confirm, drive, pause and continue",
+      "status": "completed",
+      "conclusion": "skipped"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": 13862712473,
+      "name": "lumo-2015-existing-apk-garage-android-proof",
+      "digest": "sha256:67a077ce0147c2e811383a47063d07fc33b9b50a9c113b85853a304b2590a475",
+      "created_at": "2026-11-11T14:03:25Z",
+      "updated_at": "2026-11-11T14:03:25Z"
+    },
+    {
+      "id": 13861309860,
+      "name": "lumo-2015-existing-apk-garage-android-proof",
+      "digest": "sha256:8a59b7d5538b490ec42bb565866df056b0c15e12633d6d660b0df998ea116514",
+      "created_at": "2026-11-11T14:07:09Z",
+      "updated_at": "2026-11-11T14:07:09Z"
+    }
+  ],
+  "runtime_acceptance_confirmed": false,
+  "publisher_activated": false
+}
