@@ -122,6 +122,10 @@ APPROVED = {
     # Identity approval only: full native gameplay, APK and in-place Android
     # update acceptance remain mandatory in the unified candidate workflow.
     2014: "207bfbc5377c0f3e8be800854c83ddf2110ac3f6",
+    # 2015: reviewed Sonnenhafen, garage and original Lumo integration (Godot PR #152).
+    # Source identity only: the exact pinned source must pass all legacy,
+    # 2014 and technical-art gates before APK build, then Android/update acceptance.
+    2015: "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
