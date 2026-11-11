@@ -97,3 +97,18 @@ guards but stopped before emulator execution because setup-android v3 requested
 the retired SDK package `tools`. The workflow now explicitly requests only
 `platform-tools`; APK inspection still uses pinned build-tools 36.0.0. No runtime
 PASS is inferred from that failed infrastructure attempt.
+
+Run `43032732151`, job `130563709345`, later passed source/artifact/APK-byte and
+SDK setup but failed before emulator startup. The original job log at
+`2026-11-11T13:54:11Z` reports `Temporary failure resolving
+'azure.archive.ubuntu.com'` for all Ubuntu pockets. The subsequent required
+package downloads did not resolve that host; the setup step reached its existing
+8-minute limit at `13:59:17Z`. Its failure artifact is `13862217221`.
+
+The setup now checks that particular Azure mirror's DNS first. Only if that
+resolution fails, it verifies resolution of the official `archive.ubuntu.com`
+and changes the Azure mirror URL to `https://archive.ubuntu.com/ubuntu` on the
+disposable CI runner. Existing Ubuntu signing keys, normal APT signature checks,
+package requirements, test deadlines and all runtime assertions remain intact.
+The actual DNS result and changed source filenames are archived. The new test
+must still execute; this infrastructure correction is not a gameplay PASS.

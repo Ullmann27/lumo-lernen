@@ -87,8 +87,37 @@ jobs:
         timeout-minutes: 8
         run: |
           set -euo pipefail
-          sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          # Run43032732151 could not resolve the runner's Azure Ubuntu mirror.
+          # Change only that mirror hostname on this disposable runner, and
+          # retain Ubuntu's existing signing keys and normal APT verification.
+          if ! timeout 15s getent ahosts azure.archive.ubuntu.com > garage-proof/azure-mirror-dns.txt; then
+            timeout 15s getent ahosts archive.ubuntu.com > garage-proof/ubuntu-archive-dns.txt
+            sudo python3 - <<'PY' | tee garage-proof/apt-mirror-fallback.txt
+          from pathlib import Path
+          sources = list(Path('/etc/apt').glob('apt-mirrors*.txt'))
+          sources += list(Path('/etc/apt/sources.list.d').glob('*.list'))
+          sources += list(Path('/etc/apt/sources.list.d').glob('*.sources'))
+          sources.append(Path('/etc/apt/sources.list'))
+          changed = []
+          for path in sources:
+              if not path.is_file():
+                  continue
+              original = path.read_text()
+              updated = original.replace('http://azure.archive.ubuntu.com/ubuntu',
+                                         'https://archive.ubuntu.com/ubuntu')
+              updated = updated.replace('https://azure.archive.ubuntu.com/ubuntu',
+                                        'https://archive.ubuntu.com/ubuntu')
+              if updated != original:
+                  path.write_text(updated)
+                  changed.append(str(path))
+          if not changed:
+              raise RuntimeError('Azure DNS failed but its known Ubuntu mirror entry was not found')
+          print('Official Ubuntu archive fallback; existing signing configuration preserved:')
+          print('\n'.join(changed))
+          PY
+          fi
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
           tesseract --list-langs 2>&1 | tee garage-proof/tesseract-languages.txt
           grep -Fxq 'deu' garage-proof/tesseract-languages.txt
           grep -Fxq 'eng' garage-proof/tesseract-languages.txt
