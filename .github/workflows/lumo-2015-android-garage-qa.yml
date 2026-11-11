@@ -1,0 +1,175 @@
+name: Lumo 2015 existing APK Garage Android QA
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [chatgpt/lumo-technical-art-host-20261111]
+    paths:
+      - '.github/workflows/lumo-2015-android-garage-qa.yml'
+      - '.github/probes/lumo_2015_garage_android_probe.py'
+      - 'scripts/tests/test_lumo_2015_garage_android_probe.py'
+      - 'docs/qa/lumo-2015-android-garage.md'
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-2015-garage-qa-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  existing-apk-garage:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/lumo-2015-android-garage-qa-20261111'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Check out the immutable APK source and its unchanged QA helpers
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 2718f405e69c193d0121c6f6447fe53769d7c803
+          path: source
+      - name: Check out only the supplemental QA source separately
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+          path: qa
+      - name: Check supplemental evidence guards with negative fixtures
+        run: |
+          set -euo pipefail
+          mkdir -p garage-proof
+          git -C source rev-parse HEAD > garage-proof/apk-source-sha.txt
+          git -C qa rev-parse HEAD > garage-proof/qa-source-sha.txt
+          test "$(cat garage-proof/apk-source-sha.txt)" = '2718f405e69c193d0121c6f6447fe53769d7c803'
+          python3 -m unittest discover -v -s qa/scripts/tests -p test_lumo_2015_garage_android_probe.py 2>&1 | tee garage-proof/guard-tests.txt
+          python3 -m py_compile qa/.github/probes/lumo_2015_garage_android_probe.py
+      - name: Read the fixed source build and original artifact identity
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const p = {owner: 'Ullmann27', repo: 'lumo-lernen', run_id: 43024454590};
+            const run = (await github.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}', p)).data;
+            const jobs = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs', {...p, filter: 'latest', per_page: 100});
+            const artifacts = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {...p, per_page: 100});
+            for (const [name, data] of [['source-run', run], ['source-jobs', jobs], ['source-artifacts', artifacts]]) {
+              fs.writeFileSync(`garage-proof/${name}.json`, JSON.stringify(data, null, 2));
+            }
+      - name: Require the exact successful build and unreplaced artifact before download
+        run: python3 qa/.github/probes/lumo_2015_garage_android_probe.py guard --metadata garage-proof
+      - name: Download the existing candidate without building another APK
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          repository: Ullmann27/lumo-lernen
+          run-id: 43024454590
+          artifact-ids: 13858046311
+          merge-multiple: true
+          path: candidate/dist
+      - name: Verify immutable x86 APK bytes before any installation
+        run: |
+          set -euo pipefail
+          printf '%s  %s\n' 'b863bc25bc07a7ca3fb78ad4fd56a6f816d091f821c5b9af27bfb0a7aecbcb4e' 'candidate/dist/x86_64/Lumo-Lernen-Neu.apk' > garage-proof/required-apk-sha256.txt
+          sha256sum --strict -c garage-proof/required-apk-sha256.txt
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+        with:
+          # v3 defaults to the retired SDK "tools" package. Only the actual
+          # ADB platform tools are needed; build-tools is pinned below.
+          packages: platform-tools
+      - name: Install APK inspection tools only
+        run: sdkmanager 'build-tools;36.0.0'
+      - name: Install the existing OCR and real Android input helpers
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          # Run43032732151 could not resolve the runner's Azure Ubuntu mirror.
+          # Change only that mirror hostname on this disposable runner, and
+          # retain Ubuntu's existing signing keys and normal APT verification.
+          if ! timeout 15s getent ahosts azure.archive.ubuntu.com > garage-proof/azure-mirror-dns.txt; then
+            timeout 15s getent ahosts archive.ubuntu.com > garage-proof/ubuntu-archive-dns.txt
+            sudo python3 - <<'PY' | tee garage-proof/apt-mirror-fallback.txt
+          from pathlib import Path
+          sources = list(Path('/etc/apt').glob('apt-mirrors*.txt'))
+          sources += list(Path('/etc/apt/sources.list.d').glob('*.list'))
+          sources += list(Path('/etc/apt/sources.list.d').glob('*.sources'))
+          sources.append(Path('/etc/apt/sources.list'))
+          changed = []
+          for path in sources:
+              if not path.is_file():
+                  continue
+              original = path.read_text()
+              updated = original.replace('http://azure.archive.ubuntu.com/ubuntu',
+                                         'https://archive.ubuntu.com/ubuntu')
+              updated = updated.replace('https://azure.archive.ubuntu.com/ubuntu',
+                                        'https://archive.ubuntu.com/ubuntu')
+              if updated != original:
+                  path.write_text(updated)
+                  changed.append(str(path))
+          if not changed:
+              raise RuntimeError('Azure DNS failed but its known Ubuntu mirror entry was not found')
+          print('Official Ubuntu archive fallback; existing signing configuration preserved:')
+          print('\n'.join(changed))
+          PY
+          fi
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 update -qq
+          sudo apt-get -o Acquire::Retries=2 -o Acquire::http::Timeout=20 -o Acquire::https::Timeout=20 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          tesseract --list-langs 2>&1 | tee garage-proof/tesseract-languages.txt
+          grep -Fxq 'deu' garage-proof/tesseract-languages.txt
+          grep -Fxq 'eng' garage-proof/tesseract-languages.txt
+          python3 -m venv .garage-venv
+          .garage-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+      - name: Enable the disposable accelerated emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start and identify the software OpenGL display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > garage-proof/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > garage-proof/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' garage-proof/mesa-renderer.txt
+      - name: Verify signature then actually select, confirm, drive, pause and continue
+        timeout-minutes: 35
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .garage-venv/bin/python qa/.github/probes/lumo_2015_garage_android_probe.py run --source-root source --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out garage-proof/runtime
+      - name: Preserve successful or failing original Android evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2015-existing-apk-garage-android-proof
+          path: garage-proof/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6
