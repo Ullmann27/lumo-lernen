@@ -1,0 +1,299 @@
+name: Lumo 2015 verified Chrome APK delivery
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, ready_for_review]
+    paths: ['.github/workflows/lumo-2015-verified-release.yml']
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-coachpreview-build-2015-publication
+  cancel-in-progress: false
+
+jobs:
+  publish-verified-2015:
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/lumo-2015-verified-apk-delivery-20261111' &&
+      github.event.pull_request.draft == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    permissions:
+      contents: write
+      actions: read
+    env:
+      GH_TOKEN: ${{ github.token }}
+      REPOSITORY: Ullmann27/lumo-lernen
+      SOURCE_SHA: 2718f405e69c193d0121c6f6447fe53769d7c803
+      SOURCE_RUN: '43024454590'
+      SOURCE_WORKFLOW_ID: '385610539'
+      SOURCE_WORKFLOW: .github/workflows/lumo-unified-integration-2026.yml
+      GODOT_SHA: b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1
+      CERT_SHA256: a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702
+      TAG: coachpreview-build-2015
+    steps:
+      - name: Check out only the immutable APK source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 2718f405e69c193d0121c6f6447fe53769d7c803
+      - name: Confirm unchanged source and reviewed native identity
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          git diff --exit-code HEAD --
+          python3 scripts/verify_legacy_release_pin.py
+      - name: Require the exact completed build, Android tour and 2014 update
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const p = {owner: 'Ullmann27', repo: 'lumo-lernen', run_id: Number(process.env.SOURCE_RUN)};
+            const demand = (ok, message) => { if (!ok) throw new Error(message); };
+            const run = (await github.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}', p)).data;
+            demand(run.id === p.run_id && run.head_sha === process.env.SOURCE_SHA, 'Unexpected source run/head');
+            demand(run.workflow_id === Number(process.env.SOURCE_WORKFLOW_ID) && run.path === process.env.SOURCE_WORKFLOW, 'Unexpected workflow identity');
+            demand(run.name === 'Lumo Lernen Kart unified integration APK' && run.event === 'pull_request', 'Unexpected workflow/event');
+            demand(run.repository.full_name === process.env.REPOSITORY && run.head_repository.full_name === process.env.REPOSITORY, 'Foreign source repository');
+            demand(run.head_branch === 'chatgpt/lumo-technical-art-host-20261111', 'Unexpected integration branch');
+            demand(run.status === 'completed' && run.conclusion === 'success', 'The exact source run has not passed');
+            demand(Number.isSafeInteger(run.run_attempt) && run.run_attempt >= 1, 'Invalid run attempt');
+            const jobs = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs', {...p, filter: 'latest', per_page: 100});
+            for (const name of ['verify-and-build', 'android-tour', 'update-from-2014']) {
+              const matching = jobs.filter(job => job.name === name);
+              demand(matching.length === 1, `Missing or ambiguous required job: ${name}`);
+              const job = matching[0];
+              demand(job.run_id === p.run_id && job.run_attempt === run.run_attempt && job.head_sha === process.env.SOURCE_SHA, `Wrong job identity: ${name}`);
+              demand(job.status === 'completed' && job.conclusion === 'success', `Required job did not pass: ${name}`);
+            }
+            const artifacts = await github.paginate('GET /repos/{owner}/{repo}/actions/runs/{run_id}/artifacts', {...p, per_page: 100});
+            const selected = [];
+            for (const name of ['lumo-unified-arm64-verified', 'lumo-unified-android-tour', 'lumo-2015-in-place-update-proof']) {
+              const matching = artifacts.filter(artifact => artifact.name === name);
+              demand(matching.length === 1, `Missing or ambiguous artifact: ${name}`);
+              const artifact = matching[0];
+              demand(artifact.expired === false && artifact.size_in_bytes > 0, `Unavailable artifact: ${name}`);
+              demand(artifact.workflow_run.id === p.run_id && artifact.workflow_run.head_sha === process.env.SOURCE_SHA, `Foreign artifact: ${name}`);
+              demand(artifact.workflow_run.repository_id === run.repository.id && artifact.workflow_run.head_repository_id === run.repository.id, `Foreign artifact repository: ${name}`);
+              selected.push(artifact);
+            }
+            const releases = await github.paginate('GET /repos/{owner}/{repo}/releases', {owner: p.owner, repo: p.repo, per_page: 100});
+            const refs = (await github.request('GET /repos/{owner}/{repo}/git/matching-refs/{ref}', {owner: p.owner, repo: p.repo, ref: `tags/${process.env.TAG}`})).data;
+            demand(!releases.some(release => release.tag_name === process.env.TAG), 'Existing release is immutable');
+            demand(!refs.some(ref => ref.ref === `refs/tags/${process.env.TAG}`), 'Existing tag is immutable');
+            fs.mkdirSync('release-proof', {recursive: true});
+            fs.writeFileSync('release-proof/source-run.json', JSON.stringify(run, null, 2));
+            fs.writeFileSync('release-proof/source-jobs.json', JSON.stringify(jobs, null, 2));
+            fs.writeFileSync('release-proof/source-artifacts.json', JSON.stringify(selected, null, 2));
+            fs.writeFileSync('release-proof/releases.json', JSON.stringify(releases));
+      - name: Check the documented release-target permission boundary before any mutation
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const p = {owner: 'Ullmann27', repo: 'lumo-lernen'};
+            const repository = (await github.request('GET /repos/{owner}/{repo}', p)).data;
+            async function workflowFiles(ref) {
+              const commit = (await github.request('GET /repos/{owner}/{repo}/commits/{ref}', {...p, ref})).data;
+              const tree = (await github.request('GET /repos/{owner}/{repo}/git/trees/{tree_sha}', {...p, tree_sha: commit.commit.tree.sha, recursive: '1'})).data;
+              if (tree.truncated) throw new Error('Cannot establish complete workflow-file identity');
+              return new Map(tree.tree.filter(entry => entry.type === 'blob' && entry.path.startsWith('.github/workflows/')).map(entry => [entry.path, `${entry.mode}:${entry.sha}`]));
+            }
+            const target = await workflowFiles(process.env.SOURCE_SHA);
+            const baseline = await workflowFiles(repository.default_branch);
+            if (!target.size) throw new Error('Expected source workflows are missing');
+            const modified = [...target].filter(([path, identity]) => baseline.get(path) !== identity).map(([path]) => path);
+            fs.writeFileSync('release-proof/token-capability.json', JSON.stringify({
+              source_sha: process.env.SOURCE_SHA, default_branch: repository.default_branch,
+              workflow_files_requiring_write_permission: modified,
+              github_token_can_supply_workflows_write: false,
+              documentation: 'https://docs.github.com/en/rest/releases/releases#create-a-release'
+            }, null, 2));
+            if (modified.length) throw new Error(
+              'GitHub requires Workflows:write for this immutable target, which GITHUB_TOKEN cannot supply. ' +
+              'A separately authorized publisher is required; do not substitute another target SHA. Files: ' + modified.join(', '));
+      - name: Download the existing ARM64 APK and its successful runtime proofs
+        run: |
+          set -euo pipefail
+          gh run download "$SOURCE_RUN" --repo "$REPOSITORY" --name lumo-unified-arm64-verified --dir dist
+          gh run download "$SOURCE_RUN" --repo "$REPOSITORY" --name lumo-unified-android-tour --dir tour-proof
+          gh run download "$SOURCE_RUN" --repo "$REPOSITORY" --name lumo-2015-in-place-update-proof --dir update-proof
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v3
+      - name: Install APK inspection tools only
+        run: sdkmanager 'build-tools;36.0.0'
+      - name: Verify the real APK signature without accessing a signing key
+        run: |
+          set -euo pipefail
+          java -cp "$ANDROID_HOME/build-tools/36.0.0/lib/apksigner.jar" \
+            scripts/LumoApkCertificateVerifier.java dist/Lumo-Lernen-Neu.apk "$CERT_SHA256" \
+            | tee release-proof/signature.txt
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump badging dist/Lumo-Lernen-Neu.apk > release-proof/badging.txt
+          "$ANDROID_HOME/build-tools/36.0.0/aapt" dump xmltree dist/Lumo-Lernen-Neu.apk AndroidManifest.xml > release-proof/manifest.txt
+      - name: Bind APK bytes, package, native pack and emulator proofs to 2015
+        run: |
+          set -euo pipefail
+          sha256sum --strict -c dist/APK-SHA256.txt
+          python3 - <<'PY'
+          import hashlib, json, os, re, sys, zipfile
+          from pathlib import Path
+          sys.path.insert(0, 'scripts')
+          import release_pipeline_gates as family
+
+          def demand(ok, message):
+              if not ok:
+                  raise RuntimeError(message)
+
+          def one_json(folder, name):
+              paths = list(Path(folder).rglob(name))
+              demand(len(paths) == 1, f'Missing or ambiguous evidence: {name}')
+              return json.loads(paths[0].read_text())
+
+          source, native = os.environ['SOURCE_SHA'], os.environ['GODOT_SHA']
+          apk = Path('dist/Lumo-Lernen-Neu.apk')
+          digest = family.sha256_file(apk)
+          pin = json.loads(Path('config/godot-source.json').read_text())
+          demand(pin == {'repository': 'https://github.com/Ullmann27/lumo-godot.git', 'revision': native, 'engine': '4.6.3'}, 'Unexpected native pin')
+          demand(json.loads(Path('dist/GODOT-SOURCE.json').read_text()) == pin, 'Artifact native pin differs from source')
+          demand(Path('dist/APP-VERSION.txt').read_text().strip() == 'version: 0.13.3+2015', 'Wrong declared artifact version')
+          demand(Path('dist/APK-SHA256.txt').read_text().split() == [digest, 'dist/Lumo-Lernen-Neu.apk'], 'Unexpected APK checksum record')
+          releases = json.loads(Path('release-proof/releases.json').read_text())
+          channel = family.evaluate_source(pubspec_text=Path('pubspec.yaml').read_text(), last_published=family.newest_published_family_build(releases))
+          demand(channel['tag'] == os.environ['TAG'] and channel['versionName'] == '0.13.3' and channel['versionCode'] == 2015, 'Wrong release channel/version')
+          verification = json.loads(Path('dist/APK-VERIFICATION.json').read_text())
+          provenance = json.loads(Path('dist/BUILD-PROVENANCE.json').read_text())
+          for record in (verification, provenance):
+              family.evaluate_verification(record, version_name='0.13.3', version_code=2015)
+              demand(record['sha256'] == digest and record['bytes'] == apk.stat().st_size, 'APK bytes differ from verification')
+              demand(record['abis'] == ['arm64-v8a'], 'Delivery must be the existing ARM64 artifact')
+              demand(record['godot']['revision'] == native and record['godot']['engine'] == '4.6.3' and record['godot']['repository'] == pin['repository'], 'Wrong embedded native identity')
+          demand(provenance['flutter_source_commit'] == source and provenance['tracked_source_clean'] is True, 'APK source differs from the verified commit')
+          badging = Path('release-proof/badging.txt').read_text()
+          package = re.search(r"package: name='([^']+)' versionCode='([^']+)' versionName='([^']+)'", badging)
+          demand(package is not None and package.groups() == (family.PACKAGE_ID, '2015', '0.13.3'), 'Actual APK package/version mismatch')
+          demand("sdkVersion:'24'" in badging and "targetSdkVersion:'36'" in badging, 'Unexpected Android SDK declarations')
+          manifest = Path('release-proof/manifest.txt').read_text()
+          demand('LumoGameActivity' in manifest and ':lumo_game' in manifest, 'Embedded game activity missing')
+          demand(re.search(r'android:debuggable[^\n]*0xffffffff', manifest) is None, 'APK is debuggable')
+          demand(Path('release-proof/signature.txt').read_text().strip() == f"Verified stable APK signing certificate (SHA-256): {family.EXPECTED_CERT_SHA256}", 'Signature verification missing')
+          with zipfile.ZipFile(apk) as archive:
+              demand(archive.testzip() is None, 'APK ZIP integrity failed')
+              names = archive.namelist()
+              for name in ('assets/lumo_game_source.json', 'assets/lumo_game.pck'):
+                  demand(names.count(name) == 1, f'Missing or duplicate native payload: {name}')
+              embedded = json.loads(archive.read('assets/lumo_game_source.json'))
+              demand(embedded == provenance['godot'] == verification['godot'], 'Embedded provenance differs from verified artifact')
+              demand(embedded['bytes'] == archive.getinfo('assets/lumo_game.pck').file_size, 'Native PCK size mismatch')
+              with archive.open('assets/lumo_game.pck') as pack:
+                  demand(hashlib.file_digest(pack, 'sha256').hexdigest() == embedded['pck_sha256'], 'Native PCK digest mismatch')
+              abis = {name.split('/')[1] for name in names if name.startswith('lib/') and name.endswith('.so')}
+              demand(abis == {'arm64-v8a'}, 'Actual native APK ABI mismatch')
+              for library in ('libflutter.so', 'libapp.so', 'libgodot_android.so'):
+                  demand(f'lib/arm64-v8a/{library}' in names, f'Missing native library: {library}')
+          tour = one_json('tour-proof', 'tour-result.json')
+          demand(tour['status'] == 'PASS' and tour['fatal_crashes'] == 0, 'Android tour did not pass')
+          identities = [step for step in tour['steps'] if step['step'] == 'apk-identity']
+          demand(len(identities) == 1, 'Missing Android APK identity proof')
+          identity = identities[0]
+          demand(identity['ok'] is True and identity['checks'] and all(value is True for value in identity['checks'].values()), 'Android artifact checks failed')
+          demand(identity['flutter_source_commit'] == source and identity['godot_revision'] == native, 'Android tour used another source')
+          demand(identity['godot_pck_sha256'] == embedded['pck_sha256'], 'Android tour used another native pack')
+          demand(identity['versionCode'] == 2015 and identity['versionName'] == '0.13.3' and identity['signingCertificateSha256'] == family.EXPECTED_CERT_SHA256, 'Android tour used another version/signature')
+          demand(tour['apk_sha256'] == identity['apk_sha256'], 'Android tour APK identity mismatch')
+          update = one_json('update-proof', 'update-result.json')
+          demand(update['status'] == 'PASS' and update['offline'] is True and update['fatal_crashes'] == 0, 'In-place update did not pass')
+          demand(update['candidate_source'] == source and update['learning_journey']['status'] == 'PASS', 'Missing actual 2014 learning preservation')
+          for record, expected_source, version, expected_native in (
+              (update['baseline'], '696db258693465acfc27d051c9c0874710ac9046', 2014, '207bfbc5377c0f3e8be800854c83ddf2110ac3f6'),
+              (update['candidate'], source, 2015, native),
+          ):
+              demand(record['flutter_source_commit'] == expected_source and record['versionCode'] == version, 'Wrong update artifact source/version')
+              demand(record['package'] == family.PACKAGE_ID and record['signingCertificateSha256'] == family.EXPECTED_CERT_SHA256 and record['abis'] == ['x86_64'], 'Wrong update package/signature/ABI')
+              demand(record['tracked_source_clean'] is True and record['godot']['revision'] == expected_native, 'Wrong update native source')
+          demand(update['candidate']['sha256'] == identity['apk_sha256'], 'Tour and update tested different candidate APKs')
+          demand(update['candidate']['godot']['pck_sha256'] == embedded['pck_sha256'], 'Update proof used another native pack')
+          for phase in ('installation', 'after_update', 'native_tour', 'after_kart', 'after_restart'):
+              demand(bool(update[phase]), f'Missing actual update phase: {phase}')
+          demand(set(update['fold']) == {'cover', 'open', 'landscape'} and all(update['fold'].values()), 'Missing Fold update proof')
+          family.write_sha256_sidecar(apk)
+          report = {**channel, 'sha256': digest, 'bytes': apk.stat().st_size, 'flutter_source_commit': source,
+                    'godot_revision': native, 'source_run': int(os.environ['SOURCE_RUN']), 'signingCertificateSha256': family.EXPECTED_CERT_SHA256,
+                    'android_tour': 'PASS', 'in_place_2014_update': 'PASS', 'physical_hardware_performance_tested': False}
+          Path('release-proof/delivery.json').write_text(json.dumps(report, indent=2) + '\n')
+          notes = f"""Lumo Lernen + Lumo Kart 0.13.3+2015 – verifiziertes Familien-Prerelease.
+
+          Enthält Sonnenhafen-Fassaden, Garagenpräsentation und Bewegung der Originalfigur.
+          Das vorhandene ARM64-Artefakt aus Unified-Run {os.environ['SOURCE_RUN']} wird unverändert ausgeliefert.
+          Vollständige Build-/native Gates, Androidtour und tatsächliches Offline-Update von 2014 auf 2015 sind bestanden.
+          Paket: {family.PACKAGE_ID}. Ohne Deinstallation als Update installieren, um Profile und Lernstände zu erhalten.
+          Flutter: {source}. Godot 4.6.3: {native}.
+          Signatur SHA-256: {family.EXPECTED_CERT_SHA256}.
+          APK SHA-256: {digest}.
+          Keine Aussage zu 60 FPS, Temperatur oder RAM auf physischer Android-/Fold-Hardware.
+          """
+          Path('release-proof/RELEASE-NOTES.md').write_text(notes, encoding='utf-8')
+          print('VERIFIED_EXISTING_APK', digest, apk.stat().st_size, source)
+          PY
+      - name: Recheck that the successful source attempt has not changed
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const before = JSON.parse(fs.readFileSync('release-proof/source-run.json', 'utf8'));
+            const p = {owner: 'Ullmann27', repo: 'lumo-lernen', run_id: Number(process.env.SOURCE_RUN)};
+            const run = (await github.request('GET /repos/{owner}/{repo}/actions/runs/{run_id}', p)).data;
+            for (const key of ['id', 'head_sha', 'workflow_id', 'path', 'event', 'run_attempt', 'status', 'conclusion']) {
+              if (run[key] !== before[key]) throw new Error(`Source run changed before publication: ${key}`);
+            }
+            const releases = await github.paginate('GET /repos/{owner}/{repo}/releases', {owner: p.owner, repo: p.repo, per_page: 100});
+            if (releases.some(release => release.tag_name === process.env.TAG)) throw new Error('Existing release is immutable');
+            fs.writeFileSync('release-proof/releases-before-publication.json', JSON.stringify(releases));
+      - name: Publish the exact verified APK under a new immutable family tag
+        run: |
+          set -euo pipefail
+          python3 scripts/release_pipeline_gates.py --pubspec pubspec.yaml \
+            --releases-json release-proof/releases-before-publication.json > /dev/null
+          # Atomic create fails if any tag already exists. Never update/delete a ref.
+          gh api --method POST "repos/$REPOSITORY/git/refs" \
+            -f "ref=refs/tags/$TAG" -f "sha=$SOURCE_SHA" > release-proof/created-tag.json
+          gh release create "$TAG" dist/Lumo-Lernen-Neu.apk dist/Lumo-Lernen-Neu.apk.sha256 \
+            dist/BUILD-PROVENANCE.json dist/APK-VERIFICATION.json dist/GODOT-SOURCE.json \
+            release-proof/delivery.json \
+            --repo "$REPOSITORY" --verify-tag --target "$SOURCE_SHA" --prerelease --latest=false \
+            --title 'Lumo Lernen + Lumo Kart 0.13.3+2015 – Familienupdate' \
+            --notes-file release-proof/RELEASE-NOTES.md
+      - name: Confirm the public single-APK download and its bytes
+        run: |
+          set -euo pipefail
+          PUBLIC_APK_URL="https://github.com/$REPOSITORY/releases/download/$TAG/Lumo-Lernen-Neu.apk"
+          gh api "repos/$REPOSITORY/releases/tags/$TAG" > release-proof/published-release.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+          release = json.loads(Path('release-proof/published-release.json').read_text())
+          proof = json.loads(Path('release-proof/delivery.json').read_text())
+          expected_url = f"https://github.com/{os.environ['REPOSITORY']}/releases/download/{os.environ['TAG']}/Lumo-Lernen-Neu.apk"
+          assets = [asset for asset in release['assets'] if asset['name'].endswith('.apk')]
+          if (release['tag_name'] != os.environ['TAG'] or release['draft'] is not False or release['prerelease'] is not True
+                  or release['target_commitish'] != os.environ['SOURCE_SHA'] or len(assets) != 1
+                  or assets[0]['name'] != 'Lumo-Lernen-Neu.apk' or assets[0]['state'] != 'uploaded'
+                  or assets[0]['size'] != proof['bytes'] or assets[0]['browser_download_url'] != expected_url):
+              raise RuntimeError('Published APK identity or public URL is incorrect')
+          PY
+          # No token/header: this must also work for a normal Chrome download.
+          curl --disable --fail --location --retry 3 --max-time 300 --proto '=https' --proto-redir '=https' \
+            "$PUBLIC_APK_URL" -o public-download.apk
+          test "$(sha256sum public-download.apk | cut -d' ' -f1)" = "$(python3 -c 'import json; print(json.load(open("release-proof/delivery.json"))["sha256"])')"
+          printf 'Verified direct APK: %s\n' "$PUBLIC_APK_URL" >> "$GITHUB_STEP_SUMMARY"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2015-release-delivery-proof
+          path: release-proof/
+          if-no-files-found: warn
+          retention-days: 30
