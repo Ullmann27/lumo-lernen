@@ -5,8 +5,8 @@ Updated: 2026-11-12. Branch: `chatgpt/lumo-spielewelt-stage-20261112`.
 ## Source identity
 
 - Flutter version: **0.13.5+2017**.
-- Godot 4.6.3 source: **b496fdddf47171a1cf62d78d8081a256de22e5ac** in [native PR #156](https://github.com/Ullmann27/lumo-godot/pull/156).
-- The native GitData commit was checked against tree `60c782cf6ac7cf35627bdbd29df3aea702ff394b` before this pin. Older version policies, including 2011–2016, remain unchanged. Earlier unpublished 2017 candidates are explicitly rejected.
+- Godot 4.6.3 source: **0aa89cdea3a07d0c2bc0a31a153737a1fee41454** in [native PR #156](https://github.com/Ullmann27/lumo-godot/pull/156).
+- The native GitData commit was checked against tree `f721fd75095d7244c1152c43cd83dcd8a88d5985` before this pin. Older version policies, including 2011–2016, remain unchanged. Earlier unpublished 2017 candidates, including `b496fdd`, are explicitly rejected by the source policy.
 - The installed-family package and public test certificate remain unchanged. This is not a Google Play signing claim.
 
 ## Included work and development evidence
@@ -19,13 +19,15 @@ The first active-snapshot engine probe now navigates the real section tabs and t
 
 Earlier native portrait-labelled captures were found to contain landscape pixels because desktop startup reset the requested size. The integrated capture gate now resizes after startup, verifies the saved raster dimensions and checks rendered content. The earlier images are not evidence for portrait rendering. Exact-final-source native CI is still required.
 
-Review of genuine portrait images then exposed magnified, blurred landing labels. The final pin uses physical font and layout dimensions instead of scaling the whole landing Control. Its 354 headless font/layout checks passed; actual renderer CI on this exact source remains in progress. The two earlier workflow success-marker mismatches were corrected without changing game scripts or assets.
+Review of genuine portrait images then exposed magnified, blurred landing labels. The runtime now uses physical font and layout dimensions instead of scaling the whole landing Control. After 354 headless font/layout checks, actual X11 rendering on `b496fdd` passed **386 production UI checks** and saved correctly sized landing, garage and track images for all four surfaces. The two earlier workflow success-marker mismatches were corrected without changing game scripts or assets.
+
+The current `0aa89cd` native pin differs from `b496fdd` only in two test scripts, their raw logs and a handoff; production scripts and assets are identical. The revised pointer probe passed **27 conditions** covering current native navigation and all retained legacy ray checks. Its negative control disabled the actual track tab and correctly failed the native touch/mouse conditions without printing PASS. MenuDepth passed all **41 conditions** after completed teardown, and the unchanged GaragePresentation probe passed **66 conditions**. Those last three behavioral probes ran headlessly; they do not replace actual rendering. The new exact-source CI and Android acceptance remain pending.
 
 ## Android delivery is pending
 
 The host also includes the reviewed formatted-constructor guard correction: the actual multiline `AppShell(profile: _profile)` connection is accepted, while wrong direct arguments, quoted/commented lookalikes and nested arguments are rejected. The existing application-state checks and failed-scan handling remain enforced.
 
-The complete host Python build-contract suite passed **269 tests with no skips**, including the real Gradle contract probe and the twelve added constructor tests. All **13 Android-tour contract tests** passed, and the workflow YAML plus its eight added shell steps parsed cleanly. The metadata mutation tests use explicitly synthetic fixtures; they validate rejection logic and do not substitute for a built APK or emulator run.
+On the preceding combined host candidate, the complete Python build-contract suite passed **269 tests with no skips**, including the real Gradle contract probe and the twelve constructor tests; all **13 Android-tour contract tests** also passed. The current pin-only update passed **68 targeted pin, historical-policy and delivery-contract tests**, with the historical 1950–2016 policy digest unchanged. The workflow and build scripts are unchanged from their previously checked state. The metadata mutation tests use explicitly synthetic fixtures; they validate rejection logic and do not substitute for a built APK or emulator run.
 
 The unified workflow now requires the existing full Flutter, legacy-native, 2014 and technical-art gates plus `validate_action_stage.sh` on the exact pin. The real Android tour touches Grand Prix, Garage, Fahrer and START. A separate real 2015→2017 install-in-place job must preserve learning and profile state through offline Kart, restart and simulated Fold changes.
 

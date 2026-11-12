@@ -131,7 +131,7 @@ APPROVED = {
     # 2017: reviewed native stage, doubled physical pace and bounded roadside action.
     # Source identity only; exact-source native, Android and in-place update gates
     # must pass before the immutable ARM64 test APK can be published.
-    2017: "b496fdddf47171a1cf62d78d8081a256de22e5ac",
+    2017: "0aa89cdea3a07d0c2bc0a31a153737a1fee41454",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
