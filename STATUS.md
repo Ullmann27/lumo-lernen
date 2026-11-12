@@ -2,6 +2,10 @@
 
 Updated: 2026-11-12. Branch: `chatgpt/lumo-spielewelt-stage-20261112`.
 
+## Android visual release hold
+
+The actual Android tour on host `c0ff902552e94856ea1dcda3cfb1f07e9e2044ed` passed its 21 functional checks, and the ARM64 APK was independently verified. Visual review of artifact `13940128981` nevertheless found overlapping header/tab geometry and excessive landing model occlusion at 2400x1080. Native revision `0aa89cdea3a07d0c2bc0a31a153737a1fee41454` is therefore explicitly blocked in the build workflow. The new synchronized run cancels the obsolete delivery through the existing concurrency group. Do not publish this candidate or describe its native menus as visually accepted. A scoped native layout correction and fresh exact-source Android evidence are required.
+
 ## Source identity
 
 - Flutter version: **0.13.5+2017**.
