@@ -14,12 +14,13 @@ class UnifiedArtifactNamingTests(unittest.TestCase):
     def test_generic_name_is_identical_for_arm64_upload_and_release_download(self):
         source = WORKFLOW.read_text(encoding="utf-8")
         # One upload plus the preserved historical release consumers and
-        # the additional independent 1999 consumer. All seven paths must use
+        # the independent 1999 and 2017 consumers. All eight paths must use
         # the identical post-build verified APK artifact without rebuilding.
-        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 7)
+        self.assertEqual(source.count("name: lumo-unified-arm64-verified"), 8)
         self.assertIn("publish-nextgen-20261021:", source)
         self.assertIn("head.ref == 'chatgpt/lumo-crystal-depth-integration-20261021'", source)
-        self.assertEqual(source.count("name: lumo-unified-android-tour"), 1)
+        # The 2017 publisher reads the successful tour's exact evidence too.
+        self.assertEqual(source.count("name: lumo-unified-android-tour"), 2)
         self.assertNotIn("lumo-1988-arm64-verified", source)
         self.assertNotIn("lumo-1988-android-tour", source)
         self.assertIn("dist/APP-VERSION.txt", source)
