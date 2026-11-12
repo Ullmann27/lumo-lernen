@@ -11,12 +11,12 @@ class SpielweltGameIcon extends StatelessWidget {
   final String identity;
 
   static String? assetFor(String identity) => switch (identity) {
-    'kart' => 'assets/lumo_design/characters/kart_side.webp',
-    'treasure' => 'assets/lumo_design/icons/treasure_chest.png',
-    'quizShow' => 'assets/lumo_design/icons/trophy_gold.png',
-    'jumpRun' => 'assets/lumo_design/characters/fox_trophy_jump.webp',
-    _ => null,
-  };
+        'kart' => 'assets/lumo_design/characters/kart_side.webp',
+        'treasure' => 'assets/lumo_design/icons/treasure_chest.png',
+        'quizShow' => 'assets/lumo_design/icons/trophy_gold.png',
+        'jumpRun' => 'assets/lumo_design/characters/fox_trophy_jump.webp',
+        _ => null,
+      };
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,26 @@ class SpielweltGameIcon extends StatelessWidget {
               child: SizedBox(
                 width: size * 1.16,
                 height: size,
-                child: CustomPaint(painter: _ToyIconPainter(identity)),
+                child: Stack(fit: StackFit.expand, children: [
+                  CustomPaint(painter: _ToyIconPainter(identity)),
+                  if (identity == 'memory')
+                    Positioned(
+                      left: size * 1.16 * .5,
+                      top: size * 38 / 140,
+                      width: size * 1.16 * 50 / 160,
+                      height: size * 74 / 140,
+                      child: Transform.rotate(
+                        angle: .16,
+                        child: Padding(
+                          padding: const EdgeInsets.all(2),
+                          child: Image.asset(
+                              'assets/lumo_design/fox/fox_avatar.png',
+                              fit: BoxFit.contain,
+                              filterQuality: FilterQuality.medium),
+                        ),
+                      ),
+                    ),
+                ]),
               ),
             );
           },
@@ -85,12 +104,11 @@ class _ToyIconPainter extends CustomPainter {
     double depth = 5,
     Color? edge,
   }) {
-    canvas.drawShadow(
-      path.shift(Offset(0, depth)),
-      const Color(0xAA000716),
-      8,
-      false,
-    );
+    // A translated silhouette is stable at every raster scale. The card
+    // already casts its own soft shadow; no concave shadow tessellation is
+    // needed for the tiny toy symbol inside it.
+    canvas.drawPath(path.shift(Offset(1, depth + 2)),
+        Paint()..color = const Color(0x55000716));
     canvas.drawPath(
       path.shift(Offset(0, depth)),
       Paint()..color = edge ?? Color.lerp(bottom, Colors.black, .35)!,
@@ -220,43 +238,6 @@ class _ToyIconPainter extends CustomPainter {
     );
     final inset = _rounded(const Rect.fromLTWH(-25, -37, 50, 74), 7);
     canvas.drawPath(inset, Paint()..color = const Color(0xFF255299));
-    final head = Path()
-      ..moveTo(-22, -21)
-      ..lineTo(-19, -38)
-      ..lineTo(-5, -25)
-      ..quadraticBezierTo(0, -28, 7, -25)
-      ..lineTo(22, -37)
-      ..lineTo(21, -18)
-      ..quadraticBezierTo(29, 4, 11, 18)
-      ..quadraticBezierTo(0, 25, -11, 18)
-      ..quadraticBezierTo(-28, 5, -22, -21)
-      ..close();
-    _surface(
-      canvas,
-      head,
-      const Color(0xFFFFC15F),
-      const Color(0xFFE97524),
-      depth: 2,
-    );
-    final mask = Path()
-      ..moveTo(-21, 0)
-      ..quadraticBezierTo(-9, 1, 0, 13)
-      ..quadraticBezierTo(10, 0, 22, 0)
-      ..quadraticBezierTo(17, 20, 0, 20)
-      ..quadraticBezierTo(-17, 20, -21, 0)
-      ..close();
-    canvas.drawPath(mask, Paint()..color = const Color(0xFFFFF0D9));
-    for (final x in [-10.0, 10.0]) {
-      canvas.drawOval(
-        Rect.fromCenter(center: Offset(x, -3), width: 7, height: 10),
-        Paint()..color = const Color(0xFF19243B),
-      );
-      canvas.drawCircle(Offset(x + 1, -5), 1.5, Paint()..color = Colors.white);
-    }
-    canvas.drawOval(
-      const Rect.fromLTWH(-4, 9, 8, 5),
-      Paint()..color = const Color(0xFF19243B),
-    );
     canvas.restore();
   }
 

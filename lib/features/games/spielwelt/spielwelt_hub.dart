@@ -22,18 +22,18 @@ class SpielweltPortal {
 
   /// The quiz is a genuine route, never an alias for GameId.kart.
   const SpielweltPortal.quizShow({required this.onOpen})
-    : game = null,
-      state = const GameUnlockState(unlocked: true),
-      semanticTitle = 'Wer wird Lumo-Meister?',
-      specialId = 'quizShow';
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Wer wird Lumo-Meister?',
+        specialId = 'quizShow';
 
   /// Vier Gewinnt is a first-class game in the hub reference, not a hidden
   /// extra-mode tile. It keeps its existing Flutter game/session intact.
   const SpielweltPortal.connectFour({required this.onOpen})
-    : game = null,
-      state = const GameUnlockState(unlocked: true),
-      semanticTitle = 'Lumo 4 Gewinnt',
-      specialId = 'connectFour';
+      : game = null,
+        state = const GameUnlockState(unlocked: true),
+        semanticTitle = 'Lumo 4 Gewinnt',
+        specialId = 'connectFour';
 
   final GameDefinition? game;
   final GameUnlockState state;
@@ -62,10 +62,10 @@ class SpielweltPortal {
   }
 
   String get tagline => switch (specialId) {
-    'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
-    'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
-    _ => game?.tagline ?? '',
-  };
+        'connectFour' => 'Vier in einer Reihe · gegen Lumo oder zu zweit',
+        'quizShow' => '20 Fragen · 3 Joker · bis 5.000 Sterne',
+        _ => game?.tagline ?? '',
+      };
   bool get playable =>
       specialId != null || game?.availability == GameAvailability.playable;
 
@@ -124,14 +124,14 @@ class _SpielweltHubState extends State<SpielweltHub> {
   }
 
   List<SpielweltPortal> get _featured => [
-    for (final identity in _featuredOrder)
-      ...widget.portals.where((portal) => portal.identity == identity),
-  ];
+        for (final identity in _featuredOrder)
+          ...widget.portals.where((portal) => portal.identity == identity),
+      ];
 
   List<SpielweltPortal> get _other => [
-    for (final portal in widget.portals)
-      if (!_featuredOrder.contains(portal.identity)) portal,
-  ];
+        for (final portal in widget.portals)
+          if (!_featuredOrder.contains(portal.identity)) portal,
+      ];
 
   Widget _grid(List<SpielweltPortal> portals, double width, int columns) {
     const gap = 12.0;
@@ -162,17 +162,17 @@ class _SpielweltHubState extends State<SpielweltHub> {
   }
 
   Widget _fox(double size) => LumoCharacter(
-    key: const ValueKey('spielwelt-lumo'),
-    pose: LumoDesignFoxPose.spielweltWave,
-    celebratePose: LumoDesignFoxPose.spielweltJump,
-    size: size,
-    shadow: false,
-    idleHops: false,
-    intro: false,
-    reduceMotion: widget.reduceMotion,
-    controller: _lumo,
-    onTap: _lumo.wave,
-  );
+        key: const ValueKey('spielwelt-lumo'),
+        pose: LumoDesignFoxPose.spielweltWave,
+        celebratePose: LumoDesignFoxPose.spielweltJump,
+        size: size,
+        shadow: false,
+        idleHops: false,
+        intro: false,
+        reduceMotion: widget.reduceMotion,
+        controller: _lumo,
+        onTap: _lumo.wave,
+      );
 
   Widget _companion(double width, {required bool sideBySide}) {
     if (sideBySide) {
@@ -246,78 +246,81 @@ class _SpielweltHubState extends State<SpielweltHub> {
 
   @override
   Widget build(BuildContext context) => LayoutBuilder(
-    builder: (context, constraints) {
-      final width = math.min(constraints.maxWidth, 1360.0);
-      const padding = 16.0;
-      final innerWidth = width - padding * 2;
-      final wide =
-          width >= 640 && MediaQuery.textScalerOf(context).scale(1) < 1.6;
-      final heroWidth = wide ? (innerWidth * .29).clamp(178.0, 285.0) : 0.0;
-      final gridWidth = wide ? innerWidth - heroWidth - 22 : innerWidth;
-      final columns = wide
-          ? (gridWidth >= 680 ? 4 : 3)
-          : SpielweltLayout.tileColumns(width);
-      return Align(
-        alignment: Alignment.topCenter,
-        child: SizedBox(
-          width: width,
-          child: Padding(
-            // Keep the established key so the existing routing/capture
-            // contract continues to identify the familiar tile hub.
-            key: const ValueKey('spielwelt-narrow-hub'),
-            padding: const EdgeInsets.fromLTRB(padding, 8, padding, 16),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _HubHeader(stars: widget.stars),
-                const SizedBox(height: 12),
-                if (wide)
-                  Row(
-                    key: const ValueKey('spielwelt-wide-stage'),
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      SizedBox(
-                        width: gridWidth,
-                        child: _grid(_featured, gridWidth, columns),
-                      ),
-                      const SizedBox(width: 22),
-                      SizedBox(
-                        width: heroWidth,
-                        child: _companion(heroWidth, sideBySide: true),
-                      ),
+        builder: (context, constraints) {
+          final width = math.min(constraints.maxWidth, 1360.0);
+          const padding = 16.0;
+          final innerWidth = width - padding * 2;
+          final wide =
+              width >= 640 && MediaQuery.textScalerOf(context).scale(1) < 1.6;
+          final heroWidth = wide ? (innerWidth * .29).clamp(178.0, 285.0) : 0.0;
+          final gridWidth = wide ? innerWidth - heroWidth - 22 : innerWidth;
+          final columns = wide ? 3 : SpielweltLayout.tileColumns(width);
+          return Align(
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              width: width,
+              child: Padding(
+                // Keep the established key so the existing routing/capture
+                // contract continues to identify the familiar tile hub.
+                key: const ValueKey('spielwelt-narrow-hub'),
+                padding: const EdgeInsets.fromLTRB(padding, 8, padding, 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    _HubHeader(stars: widget.stars),
+                    const SizedBox(height: 12),
+                    if (wide)
+                      Row(
+                        key: const ValueKey('spielwelt-wide-stage'),
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          SizedBox(
+                            width: gridWidth,
+                            child: _grid(_featured, gridWidth, columns),
+                          ),
+                          const SizedBox(width: 22),
+                          SizedBox(
+                            width: heroWidth,
+                            child: _companion(heroWidth, sideBySide: true),
+                          ),
+                        ],
+                      )
+                    else ...[
+                      _companion(innerWidth, sideBySide: false),
+                      _grid(_featured, gridWidth, columns),
                     ],
-                  )
-                else ...[
-                  _companion(innerWidth, sideBySide: false),
-                  _grid(_featured, gridWidth, columns),
-                ],
-                if (_other.isNotEmpty) ...[
-                  const SizedBox(height: 23),
-                  const Text(
-                    'Noch mehr Abenteuer',
-                    style: TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 17,
-                      fontWeight: FontWeight.w800,
-                      color: Color(0xFFD7EAFF),
+                    if (_other.isNotEmpty) ...[
+                      const SizedBox(height: 23),
+                      const Text(
+                        'Noch mehr Abenteuer',
+                        style: TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 17,
+                          fontWeight: FontWeight.w800,
+                          color: Color(0xFFD7EAFF),
+                        ),
+                      ),
+                      const SizedBox(height: 11),
+                      _grid(
+                          _other,
+                          innerWidth,
+                          wide
+                              ? math.min(4, _other.length)
+                              : SpielweltLayout.tileColumns(width)),
+                    ],
+                    const SizedBox(height: 19),
+                    _HubActions(
+                      onParents: widget.onParents,
+                      onProgress: widget.onProgress,
+                      onSettings: widget.onSettings,
                     ),
-                  ),
-                  const SizedBox(height: 11),
-                  _grid(_other, innerWidth, SpielweltLayout.tileColumns(width)),
-                ],
-                const SizedBox(height: 19),
-                _HubActions(
-                  onParents: widget.onParents,
-                  onProgress: widget.onProgress,
-                  onSettings: widget.onSettings,
+                  ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
+          );
+        },
       );
-    },
-  );
 }
 
 /// Used by both the games page and its shell edges. No decorative landscape
@@ -328,28 +331,28 @@ class SpielweltBackdrop extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
-    decoration: const BoxDecoration(
-      gradient: LinearGradient(
-        begin: Alignment.topLeft,
-        end: Alignment.bottomRight,
-        colors: [Color(0xFF0B2851), Color(0xFF07152F), Color(0xFF102C51)],
-        stops: [0, .55, 1],
-      ),
-    ),
-    child: Stack(
-      fit: StackFit.expand,
-      children: [
-        const Positioned.fill(
-          child: IgnorePointer(
-            child: RepaintBoundary(
-              child: CustomPaint(painter: _StageBackdropPainter()),
-            ),
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [Color(0xFF0B2851), Color(0xFF07152F), Color(0xFF102C51)],
+            stops: [0, .55, 1],
           ),
         ),
-        if (child != null) child!,
-      ],
-    ),
-  );
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            const Positioned.fill(
+              child: IgnorePointer(
+                child: RepaintBoundary(
+                  child: CustomPaint(painter: _StageBackdropPainter()),
+                ),
+              ),
+            ),
+            if (child != null) child!,
+          ],
+        ),
+      );
 }
 
 class _HubHeader extends StatelessWidget {
@@ -358,76 +361,77 @@ class _HubHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-    children: [
-      Expanded(
-        child: Semantics(
-          label: 'Lumo Spielewelt',
-          header: true,
-          excludeSemantics: true,
-          child: Row(
-            children: [
-              Image.asset(
-                'assets/lumo_design/logo/logo_lumo.png',
-                width: 91,
-                height: 54,
-                fit: BoxFit.contain,
-                filterQuality: FilterQuality.medium,
-              ),
-              const SizedBox(width: 10),
-              Expanded(
-                child: Text(
-                  'Spielewelt',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: TextStyle(
-                    fontFamily: 'Nunito',
-                    fontSize: MediaQuery.sizeOf(context).width < 380 ? 20 : 25,
-                    fontWeight: FontWeight.w900,
-                    color: Colors.white,
+        children: [
+          Expanded(
+            child: Semantics(
+              label: 'Lumo Spielewelt',
+              header: true,
+              excludeSemantics: true,
+              child: Row(
+                children: [
+                  Image.asset(
+                    'assets/lumo_design/logo/logo_lumo.png',
+                    width: 91,
+                    height: 54,
+                    fit: BoxFit.contain,
+                    filterQuality: FilterQuality.medium,
                   ),
-                ),
+                  const SizedBox(width: 10),
+                  Expanded(
+                    child: Text(
+                      'Spielewelt',
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(
+                        fontFamily: 'Nunito',
+                        fontSize:
+                            MediaQuery.sizeOf(context).width < 380 ? 20 : 25,
+                        fontWeight: FontWeight.w900,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-      const SizedBox(width: 10),
-      Semantics(
-        label: '$stars Sterne',
-        excludeSemantics: true,
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
-          decoration: BoxDecoration(
-            color: const Color(0xFF07182F),
-            borderRadius: BorderRadius.circular(16),
-            border: Border.all(color: const Color(0xFF3B729F)),
-          ),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Image.asset(
-                'assets/lumo_design/icons/star_gold.png',
-                width: 24,
-                height: 24,
-                fit: BoxFit.contain,
+          const SizedBox(width: 10),
+          Semantics(
+            label: '$stars Sterne',
+            excludeSemantics: true,
+            child: Container(
+              padding: const EdgeInsets.symmetric(horizontal: 11, vertical: 9),
+              decoration: BoxDecoration(
+                color: const Color(0xFF07182F),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: const Color(0xFF3B729F)),
               ),
-              const SizedBox(width: 5),
-              Text(
-                '$stars',
-                key: const ValueKey('spielwelt-stars'),
-                style: const TextStyle(
-                  fontFamily: 'Nunito',
-                  fontSize: 17,
-                  fontWeight: FontWeight.w900,
-                  color: Color(0xFFFFE7A0),
-                ),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Image.asset(
+                    'assets/lumo_design/icons/star_gold.png',
+                    width: 24,
+                    height: 24,
+                    fit: BoxFit.contain,
+                  ),
+                  const SizedBox(width: 5),
+                  Text(
+                    '$stars',
+                    key: const ValueKey('spielwelt-stars'),
+                    style: const TextStyle(
+                      fontFamily: 'Nunito',
+                      fontSize: 17,
+                      fontWeight: FontWeight.w900,
+                      color: Color(0xFFFFE7A0),
+                    ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
-        ),
-      ),
-    ],
-  );
+        ],
+      );
 }
 
 class _GameTile extends StatefulWidget {
@@ -458,11 +462,10 @@ class _GameTileState extends State<_GameTile> {
     final status = !portal.playable
         ? 'Kommt bald'
         : portal.state.unlocked
-        ? 'Spielen'
-        : 'Noch gesperrt';
-    final duration = widget.reduceMotion
-        ? Duration.zero
-        : const Duration(milliseconds: 140);
+            ? 'Spielen'
+            : 'Noch gesperrt';
+    final duration =
+        widget.reduceMotion ? Duration.zero : const Duration(milliseconds: 140);
     return Semantics(
       button: true,
       label:
@@ -619,62 +622,62 @@ class _AdventureButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => DecoratedBox(
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(20),
-      gradient: const LinearGradient(
-        begin: Alignment.topCenter,
-        end: Alignment.bottomCenter,
-        colors: [Color(0xFFFFEA8B), Color(0xFFFFC841), Color(0xFFF4AD25)],
-        stops: [0, .5, 1],
-      ),
-      border: Border.all(color: const Color(0xFFFFF3BC), width: 1.6),
-      boxShadow: const [
-        BoxShadow(
-          color: Color(0x44F9B52F),
-          blurRadius: 17,
-          offset: Offset(0, 5),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          gradient: const LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [Color(0xFFFFEA8B), Color(0xFFFFC841), Color(0xFFF4AD25)],
+            stops: [0, .5, 1],
+          ),
+          border: Border.all(color: const Color(0xFFFFF3BC), width: 1.6),
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x44F9B52F),
+              blurRadius: 17,
+              offset: Offset(0, 5),
+            ),
+          ],
         ),
-      ],
-    ),
-    child: Material(
-      color: Colors.transparent,
-      child: InkWell(
-        key: const ValueKey('spielwelt-adventure'),
-        borderRadius: BorderRadius.circular(20),
-        onTap: onTap,
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(minHeight: 52, minWidth: 48),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.play_arrow_rounded,
-                  size: 26,
-                  color: Color(0xFF152647),
-                ),
-                const SizedBox(width: 5),
-                Flexible(
-                  child: Text(
-                    'Auf ins Abenteuer!',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontFamily: 'Nunito',
-                      fontSize: 16,
-                      height: 1.1,
-                      fontWeight: FontWeight.w900,
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+            key: const ValueKey('spielwelt-adventure'),
+            borderRadius: BorderRadius.circular(20),
+            onTap: onTap,
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(minHeight: 52, minWidth: 48),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 9),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const Icon(
+                      Icons.play_arrow_rounded,
+                      size: 26,
                       color: Color(0xFF152647),
                     ),
-                  ),
+                    const SizedBox(width: 5),
+                    Flexible(
+                      child: Text(
+                        'Auf ins Abenteuer!',
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                          fontFamily: 'Nunito',
+                          fontSize: 16,
+                          height: 1.1,
+                          fontWeight: FontWeight.w900,
+                          color: Color(0xFF152647),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
+              ),
             ),
           ),
         ),
-      ),
-    ),
-  );
+      );
 }
 
 class _HubActions extends StatelessWidget {
@@ -694,33 +697,34 @@ class _HubActions extends StatelessWidget {
       IconData icon,
       String label,
       VoidCallback callback,
-    ) => Expanded(
-      child: TextButton(
-        key: ValueKey(id),
-        onPressed: callback,
-        style: TextButton.styleFrom(
-          foregroundColor: const Color(0xFFCADEEF),
-          minimumSize: const Size(48, 56),
-          padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
-        ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Icon(icon, size: 22, color: const Color(0xFF7CDCF1)),
-            const SizedBox(height: 3),
-            Text(
-              label,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontFamily: 'Nunito',
-                fontSize: 12,
-                fontWeight: FontWeight.w800,
-              ),
+    ) =>
+        Expanded(
+          child: TextButton(
+            key: ValueKey(id),
+            onPressed: callback,
+            style: TextButton.styleFrom(
+              foregroundColor: const Color(0xFFCADEEF),
+              minimumSize: const Size(48, 56),
+              padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 8),
             ),
-          ],
-        ),
-      ),
-    );
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Icon(icon, size: 22, color: const Color(0xFF7CDCF1)),
+                const SizedBox(height: 3),
+                Text(
+                  label,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontFamily: 'Nunito',
+                    fontSize: 12,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
     return DecoratedBox(
       decoration: BoxDecoration(
         color: const Color(0xB307142C),

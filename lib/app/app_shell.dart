@@ -655,11 +655,13 @@ class _AppShellState extends State<AppShell>
                               ),
                             );
                             return Column(children: [
-                              _MobileLumoHeader(
-                                  appState: _appState,
-                                  onFoxTap: () => showLumoConversation(context,
-                                      appState: _appState,
-                                      onSection: _navigateTo)),
+                              if (section != LumoSection.games)
+                                _MobileLumoHeader(
+                                    appState: _appState,
+                                    onFoxTap: () => showLumoConversation(
+                                        context,
+                                        appState: _appState,
+                                        onSection: _navigateTo)),
                               Expanded(
                                   child: fullBleed
                                       // Zielbild-Seiten: Lumo steht als kleiner
@@ -711,25 +713,26 @@ class _AppShellState extends State<AppShell>
                                         ),
                                       ),
                                       child: Column(children: [
-                                        Padding(
-                                          padding: const EdgeInsets.fromLTRB(
-                                              16, 10, 16, 6),
-                                          child: LumoTopBar(
-                                            appState: _appState,
-                                            onTapStatus: () =>
-                                                showLumoConversation(
-                                              context,
+                                        if (section != LumoSection.games)
+                                          Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                16, 10, 16, 6),
+                                            child: LumoTopBar(
                                               appState: _appState,
-                                              onSection: _navigateTo,
-                                            ),
-                                            onTapFox: () =>
-                                                showLumoConversation(
-                                              context,
-                                              appState: _appState,
-                                              onSection: _navigateTo,
+                                              onTapStatus: () =>
+                                                  showLumoConversation(
+                                                context,
+                                                appState: _appState,
+                                                onSection: _navigateTo,
+                                              ),
+                                              onTapFox: () =>
+                                                  showLumoConversation(
+                                                context,
+                                                appState: _appState,
+                                                onSection: _navigateTo,
+                                              ),
                                             ),
                                           ),
-                                        ),
                                         Expanded(
                                             child: FadeTransition(
                                           opacity: _fadeCtrl,
@@ -739,7 +742,8 @@ class _AppShellState extends State<AppShell>
                                             child: _buildContent(),
                                           ),
                                         )),
-                                        if (section == LumoSection.home)
+                                        if (section == LumoSection.home ||
+                                            section == LumoSection.games)
                                           _LumoHelpDock(
                                               appState: _appState,
                                               onSection: _navigateTo)
