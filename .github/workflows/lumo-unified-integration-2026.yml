@@ -80,12 +80,14 @@ jobs:
           assert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"
           assert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"
           assert config["engine"]=="4.6.3", "Unexpected Godot engine"
-          # Actual Android screenshots exposed overlapping native menu geometry.
-          # This workflow revision rejects the measured candidate on every run.
+          # Actual rendered review exposed native menu geometry defects.
+          # This workflow revision rejects the measured candidates on every run.
           # It cannot alter historical workflow revisions used by older runs.
           rejected_android_layout_sources = {
               "0aa89cdea3a07d0c2bc0a31a153737a1fee41454":
                   "Android 2400x1080: header/tab overlap and landing model occlusion",
+              "f04e580ec0d7d8f70e8be269523fabedd15b0766":
+                  "Android 2400x1080: selected kart card exceeds visible scroll viewport",
           }
           assert config["revision"] not in rejected_android_layout_sources, (
               "Rejected Android menu layout: " + rejected_android_layout_sources.get(config["revision"], "")

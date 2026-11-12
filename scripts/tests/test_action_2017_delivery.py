@@ -78,11 +78,18 @@ class Action2017InitialPincheckTests(unittest.TestCase):
                 capture_output=True, text=True, check=False)
 
     def test_actual_initial_pincheck_rejects_measured_android_layout_failure(self):
-        result = self.run_pincheck('0aa89cdea3a07d0c2bc0a31a153737a1fee41454')
-        self.assertNotEqual(result.returncode, 0)
-        self.assertIn(
-            'Rejected Android menu layout: Android 2400x1080: '
-            'header/tab overlap and landing model occlusion', result.stderr)
+        for revision, reason in (
+            ('0aa89cdea3a07d0c2bc0a31a153737a1fee41454',
+             'header/tab overlap and landing model occlusion'),
+            ('f04e580ec0d7d8f70e8be269523fabedd15b0766',
+             'selected kart card exceeds visible scroll viewport'),
+        ):
+            with self.subTest(revision=revision):
+                result = self.run_pincheck(revision)
+                self.assertNotEqual(result.returncode, 0)
+                self.assertIn(
+                    'Rejected Android menu layout: Android 2400x1080: ' + reason,
+                    result.stderr)
 
     def test_actual_initial_pincheck_accepts_the_current_reviewed_pin(self):
         result = self.run_pincheck(POLICY.APPROVED[2017])
