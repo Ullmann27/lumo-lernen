@@ -11,6 +11,7 @@ import '../helpers/lumo_capture.dart';
 
 const _devices = <String, Size>{
   'phone': Size(412, 915),
+  'fold7-cover': Size(344, 882),
   'phone-full': Size(412, 2400),
   'fold7-open-portrait': Size(690, 829),
   'fold7-open-landscape': Size(840, 560),
@@ -65,7 +66,18 @@ void main() {
             reason: '${entry.key} $identity width');
         expect(box.height, greaterThanOrEqualTo(48 - .001),
             reason: '${entry.key} $identity height');
+        if (entry.key == 'fold7-open-portrait') {
+          expect(box.top, greaterThanOrEqualTo(0),
+              reason: 'All ten games start inside the open Fold viewport');
+          expect(box.bottom, lessThanOrEqualTo(entry.value.height),
+              reason: 'The compact stage must not push $identity off screen');
+        }
       }
+
+      final kart =
+          tester.getRect(find.byKey(const ValueKey('spielwelt-portal-kart')));
+      expect(kart.bottom, lessThanOrEqualTo(entry.value.height),
+          reason: 'The complete Kart launch tile is visible immediately');
 
       for (final title in const [
         'Memory',

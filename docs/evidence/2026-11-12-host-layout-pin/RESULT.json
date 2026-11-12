@@ -1,0 +1,49 @@
+{
+  "scope": "Host source identity and delivery rejection contracts; not APK or renderer evidence",
+  "host_base_commit": "92e838e547c51303bb6a877d90edafc636e3c89f",
+  "version": "0.13.5+2017",
+  "native_revision": "f04e580ec0d7d8f70e8be269523fabedd15b0766",
+  "native_tree": "54c54c9d652d9908a5bf7d12ee2de0c338553a0c",
+  "rejected_native_revision": "0aa89cdea3a07d0c2bc0a31a153737a1fee41454",
+  "historical_1950_through_2016_policy_sha256": "6577810bda4d3811422fc9df47733f1d2e698ede56206d9c11f850dc6150b0db",
+  "commands": {
+    "pin-delivery-tests": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "scripts.tests.test_candidate_2011_pin",
+        "scripts.tests.test_legacy_release_pin",
+        "scripts.tests.test_action_2017_delivery",
+        "scripts.tests.test_unified_workflow_artifact_names",
+        "tools.android_qa.tests.test_modernization_tour_identity",
+        "-v"
+      ],
+      "exit": 0,
+      "log_sha256": "af165815dc446c5fe213bb78a10aa34f1d3ea6815f69ff2b6709633deebb3b54",
+      "tests": 89
+    },
+    "strict-pin-check": {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "scripts/verify_legacy_release_pin.py"
+      ],
+      "exit": 0,
+      "log_sha256": "efbbee8bc33511ed66d99f315a5e9b2f2c58ceb094cd8035eb495f160a0cae6c"
+    }
+  },
+  "source_sha256": {
+    "config/godot-source.json": "03cf3f9d78a58e9a1b8112cd7a6bbe57e86846ca15adb1bf753e2fbfea6b9a56",
+    "pubspec.yaml": "49c622d000cc0984b1561836fcf9efe0316a9b03d53a44213b66129ff21fc2f3",
+    "scripts/verify_legacy_release_pin.py": "1557f419535e885ea0491229b25f3321dc2bca16c76abc20d9c678f84460ef29",
+    "scripts/tests/test_candidate_2011_pin.py": "1de62424a5c85626d86aa0d4553fe3cd8f373ae1681770c7380cda452cd29cae",
+    "scripts/tests/test_action_2017_delivery.py": "03c7947ee519e9ff9acf6de1dc712a62de28c563a426a42a47af6f8aaccca5a2",
+    ".github/workflows/lumo-unified-integration-2026.yml": "773d759294ef00fce4d3ec3dba5961b1a3ac783b59af5cd28ee680b3a54ddaee"
+  },
+  "pending": [
+    "Exact-source native CI renderer acceptance",
+    "New exact-source Android APK and visual review",
+    "Successful 2015-to-2017 in-place update",
+    "Public release receipt"
+  ]
+}

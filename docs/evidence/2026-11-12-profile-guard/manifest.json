@@ -1,0 +1,15 @@
+{
+  "base_host_commit": "78669c05985ffda68c89f4dd5f23ebfd6a930918",
+  "test_count": 19,
+  "guard_exit_code": 0,
+  "analyzer_errors": 0,
+  "analyzer_warnings": 5,
+  "files": {
+    "docs/evidence/2026-11-12-profile-guard/before.log": "3678434312232b5ae02aedd4d64d9cea88d157df4eaebfd02b979ad72584fd32",
+    "docs/evidence/2026-11-12-profile-guard/after.log": "0fbaf15a0001e0b2cd3052439110475419027ea806bb607c67719e55ce7eb20b",
+    "docs/evidence/2026-11-12-profile-guard/constructor-tests.log": "cfd7d45592c6f5cdef45de9313d5315c1a915e66198c393bb47877f3e8c8b61c",
+    "docs/evidence/2026-11-12-profile-guard/README.md": "c528b215e21a3a2c1008a66622094a66f9f3825fa9ce9170da87a1082ae08352",
+    "scripts/lumo_repair_guard.sh": "d0ddb632fe43fbb711a6d81a32b3a282efa2bc9600a6df5fe2055803535b55e5",
+    "scripts/tests/test_lumo_repair_guard_constructor.py": "eb0d054706718678b4633c20e59c325353877900629eb23424942549015104a9"
+  }
+}

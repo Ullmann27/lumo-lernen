@@ -3,7 +3,7 @@
 
 Installs the APK, starts it, creates a fictional profile through the real
 onboarding and walks the path a child takes: start, learning, games, Lumo Kart
-(native Godot), the five garage steps, an actual race, pause, the return to
+(native Godot), its live menu or legacy garage steps, an actual race, pause, the return to
 Flutter, the learning state afterwards, an app restart and the Fold sizes.
 
 Flutter controls come from the live accessibility tree, native Godot controls
@@ -335,11 +335,52 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
     return None
 
 
+def _inspect_spatial_kart_menu(out: Path) -> dict:
+    """Use the 2017 mode and direct sections through their actual rendered labels."""
+    probe.native_text(out, 'Grand Prix', '21_stage_mode_cup', tap=True, exact=True)
+    sections = []
+    for key, label in (('garage', 'Garage'), ('driver', 'Fahrer')):
+        tag = '21_stage_' + key
+        probe.native_text(out, label, tag + '-open', tap=True, exact=True)
+        # Karts is a direct-section tab; it is absent from the landing. This
+        # also works on compact layouts where the large section title hides.
+        probe.native_text(out, 'Karts', tag + '-section-visible', exact=True)
+        for attempt in range(8):
+            screen = _screencap()
+            (out / f'{tag}-return-{attempt}.png').write_bytes(screen)
+            point = None
+            caption = ''
+            for candidate in ('Kart-Menü', 'Menü'):
+                point = _read_garage_footer(screen, candidate)
+                if point is not None:
+                    caption = candidate
+                    break
+            if point is not None:
+                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
+                time.sleep(2)
+                break
+            time.sleep(1)
+        else:
+            raise RuntimeError('Spatial Kart section has no visible return footer: ' + label)
+        probe.native_text(out, 'Grand Prix', tag + '-landing-restored', exact=True)
+        sections.append({'section': key, 'visible_label': label,
+                         'return_caption': caption, 'return_touch': point,
+                         'touch_evidence': tag + '-open-surface-readiness.json'})
+    report = {'status': 'PASS', 'selected_mode': 'cup', 'sections': sections,
+              'mode_touch_evidence': '21_stage_mode_cup-surface-readiness.json',
+              'scope': 'Live Android OCR touches; no injected Godot selection or coordinates'}
+    (out / '21_stage_navigation.json').write_text(json.dumps(report, indent=2) + '\n')
+    return report
+
+
 def _start_actual_embedded_race(out: Path) -> dict:
     if not godot_alive():
         raise RuntimeError('Native Godot game process is not alive')
     evidence_taps = []
     garage_fifth = None
+    spatial_navigation = None
+    if os.environ.get('LUMO_NATIVE_STAGE_MENU') == '1':
+        spatial_navigation = _inspect_spatial_kart_menu(out)
     # NextGen Android opens the real illustrated landing before the preserved
     # five-step garage. The real golden START starts the race directly.
     # Recognise its text from an actual screenshot; do not inject an
@@ -410,6 +451,8 @@ def _start_actual_embedded_race(out: Path) -> dict:
                           'expected_mode': expected_mode, 'expected_track': expected_track,
                           'garage_replaced': evidence.garage_replaced(garage_fifth, screen),
                           'rendered_frame': evidence.rendered_race_frame(screen)}
+                if spatial_navigation is not None:
+                    report['spatial_menu_navigation'] = spatial_navigation
                 (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
                 return report
             except RuntimeError as error:

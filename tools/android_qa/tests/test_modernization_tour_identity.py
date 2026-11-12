@@ -212,5 +212,77 @@ class TourRaceModeTests(unittest.TestCase):
             self.assertEqual(TOUR_MODULE.wait_race_running(session, timeout=1), state)
 
 
+class TourSpatialMenuTests(unittest.TestCase):
+    """Synthetic reader responses exercise fail-closed navigation, not Android proof."""
+
+    def test_mode_garage_and_driver_use_observed_labels_and_return_coordinates(self):
+        with tempfile.TemporaryDirectory() as folder, \
+                patch.object(TOUR_MODULE.probe, 'native_text') as reader, \
+                patch.object(TOUR_MODULE, '_screencap', return_value=b'synthetic reader frame'), \
+                patch.object(TOUR_MODULE, '_read_garage_footer', return_value=(137, 241)), \
+                patch.object(TOUR_MODULE.base, 'adb') as adb, \
+                patch.object(TOUR_MODULE.time, 'sleep'):
+            report = TOUR_MODULE._inspect_spatial_kart_menu(Path(folder))
+        touches = [(call.args[1], call.kwargs.get('tap', False))
+                   for call in reader.call_args_list]
+        self.assertEqual(touches, [
+            ('Grand Prix', True), ('Garage', True), ('Karts', False),
+            ('Grand Prix', False), ('Fahrer', True), ('Karts', False),
+            ('Grand Prix', False),
+        ])
+        self.assertTrue(all(call.kwargs['exact'] for call in reader.call_args_list))
+        self.assertEqual([call.args for call in adb.call_args_list], [
+            ('shell', 'input', 'tap', '137', '241'),
+            ('shell', 'input', 'tap', '137', '241'),
+        ])
+        self.assertEqual([section['section'] for section in report['sections']],
+                         ['garage', 'driver'])
+        self.assertEqual(report['selected_mode'], 'cup')
+
+    def test_missing_section_or_return_does_not_fall_back_to_unverified_touches(self):
+        with tempfile.TemporaryDirectory() as folder, \
+                patch.object(TOUR_MODULE.probe, 'native_text'), \
+                patch.object(TOUR_MODULE, '_screencap', return_value=b'synthetic reader frame'), \
+                patch.object(TOUR_MODULE, '_read_garage_footer', return_value=None), \
+                patch.object(TOUR_MODULE.base, 'adb') as adb, \
+                patch.object(TOUR_MODULE.time, 'sleep'):
+            with self.assertRaisesRegex(RuntimeError, 'no visible return footer'):
+                TOUR_MODULE._inspect_spatial_kart_menu(Path(folder))
+            adb.assert_not_called()
+            self.assertFalse((Path(folder) / '21_stage_navigation.json').exists())
+
+        def missing_section(_out, caption, *_args, **_kwargs):
+            if caption == 'Karts':
+                raise RuntimeError('Current native screenshot lacks Karts')
+
+        with tempfile.TemporaryDirectory() as folder, \
+                patch.object(TOUR_MODULE.probe, 'native_text', side_effect=missing_section), \
+                patch.object(TOUR_MODULE.base, 'adb') as adb:
+            with self.assertRaisesRegex(RuntimeError, 'lacks Karts'):
+                TOUR_MODULE._inspect_spatial_kart_menu(Path(folder))
+            adb.assert_not_called()
+
+    def test_2017_start_keeps_the_real_race_gates_and_records_native_navigation(self):
+        navigation = {'status': 'PASS', 'selected_mode': 'cup',
+                      'sections': [{'section': 'garage'}, {'section': 'driver'}]}
+        with tempfile.TemporaryDirectory() as folder, \
+                patch.dict(os.environ, {'LUMO_NATIVE_STAGE_MENU': '1'}), \
+                patch.object(TOUR_MODULE, '_inspect_spatial_kart_menu', return_value=navigation) as inspect, \
+                patch.object(TOUR_MODULE, 'godot_alive', return_value=True), \
+                patch.object(TOUR_MODULE, '_screencap', return_value=b'synthetic reader frame'), \
+                patch.object(TOUR_MODULE, '_read_garage_footer', return_value=(20, 30)), \
+                patch.object(TOUR_MODULE.time, 'sleep'), \
+                patch.object(TOUR_MODULE.base, 'adb', return_value=
+                             '[Kart] race_world_ready: sonnenhafen mode=cup'), \
+                patch.object(TOUR_MODULE.evidence, 'garage_replaced', return_value={}) as changed, \
+                patch.object(TOUR_MODULE.evidence, 'rendered_race_frame', return_value={}) as rendered:
+            report = TOUR_MODULE._start_actual_embedded_race(Path(folder))
+            inspect.assert_called_once_with(Path(folder))
+            changed.assert_called_once()
+            rendered.assert_called_once()
+        self.assertEqual(report['expected_mode'], 'cup')
+        self.assertEqual(report['spatial_menu_navigation'], navigation)
+
+
 if __name__ == '__main__':
     unittest.main()
