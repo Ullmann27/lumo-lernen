@@ -128,6 +128,10 @@ APPROVED = {
     2015: "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1",
     # 2016: isolated Kart effects source, acceptance and update tests are independent.
     2016: "b4ccf593d7833e8c259ff0f963494b00d245d03d",
+    # 2017: reviewed native stage, doubled physical pace and bounded roadside action.
+    # Source identity only; exact-source native, Android and in-place update gates
+    # must pass before the immutable ARM64 test APK can be published.
+    2017: "460c94b10df6adae11def608068d72e99c0950db",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
