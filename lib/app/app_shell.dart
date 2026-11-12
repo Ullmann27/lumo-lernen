@@ -11,6 +11,7 @@ import '../core/lumo_asset_paths.dart';
 import '../features/companion/lumo_lottie.dart';
 import '../features/agent/lumo_agent_content.dart';
 import '../features/games/games_content.dart';
+import '../features/games/spielwelt/spielwelt_hub.dart';
 import '../features/home/home_content.dart';
 import '../features/teacher_mode/lumo_akademie_screen.dart';
 import '../features/tests/lumo_tests_screen.dart';
@@ -625,11 +626,13 @@ class _AppShellState extends State<AppShell>
                   return Stack(children: [
                     if (fullBleedScene != null)
                       Positioned.fill(
-                        child: LumoSceneBackground(
-                          scene: fullBleedScene,
-                          showPlaceholderLabel: false,
-                          dimmed: true,
-                        ),
+                        child: section == LumoSection.games
+                            ? const SpielweltBackdrop()
+                            : LumoSceneBackground(
+                                scene: fullBleedScene,
+                                showPlaceholderLabel: false,
+                                dimmed: true,
+                              ),
                       ),
                     SafeArea(
                       child: LayoutBuilder(

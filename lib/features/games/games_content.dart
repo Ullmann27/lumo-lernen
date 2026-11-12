@@ -488,12 +488,12 @@ class _GamesContentState extends State<GamesContent> {
               ])
             : CustomScrollView(
                 slivers: [
-                  // Enter the real Lumo Spielwelt immediately: preserve its
-                  // illustrated fox, logo, glass-card animations and all seven
-                  // previous portals, with Kart + Lumo-Meister beside them.
+                  // One familiar game grid: all ten existing routes remain
+                  // available, with original Lumo artwork and clear toy icons.
                   SliverToBoxAdapter(
                     child: SpielweltHub(
                       portals: _portals(),
+                      stars: widget.appState.state.stars,
                       reduceMotion: _reduceMotion,
                       onAdventure: () => _openGame(
                         GameId.jumpRun,
@@ -591,12 +591,7 @@ class _GamesContentState extends State<GamesContent> {
                 ],
               );
     return widget.drawBackground
-        ? LumoSceneBackground(
-            scene: LumoScene.games,
-            showPlaceholderLabel: false,
-            dimmed: true,
-            child: content,
-          )
+        ? SpielweltBackdrop(child: content)
         : content;
   }
 
