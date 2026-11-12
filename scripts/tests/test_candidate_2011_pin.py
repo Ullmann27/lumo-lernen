@@ -20,7 +20,11 @@ CANDIDATE_REVISION = "a81ddf12d594cc252caef7503162e89c6b26e1c7"
 INTEGRATION_2014_REVISION = "207bfbc5377c0f3e8be800854c83ddf2110ac3f6"
 TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
 GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
-ACTION_STAGE_2017_REVISION = "460c94b10df6adae11def608068d72e99c0950db"
+ACTION_STAGE_2017_REVISION = "b496fdddf47171a1cf62d78d8081a256de22e5ac"
+SUPERSEDED_2017_CANDIDATES = {
+    "460c94b10df6adae11def608068d72e99c0950db",
+    "a16a4fc6791c3c7a594273f4544458382cc2c884",
+}
 PREVIOUS_REVISION = "91b8cdba48d539ba48836bfac5f6b62c0d6cfa41"
 HISTORICAL_POLICY_SHA256 = "be2e5714396b81f4797051394fb8ebbbc484f65a5deb1b71cc234f17ba3ae1de"
 
@@ -188,7 +192,9 @@ class Candidate2011PinTests(unittest.TestCase):
             (2017, ACTION_STAGE_2017_REVISION),
         )
         previous = {build: sha for build, sha in POLICY.APPROVED.items() if build < 2017}
-        invalid = set(previous.values()) | {"0" * 40, "", ACTION_STAGE_2017_REVISION[:8]}
+        invalid = set(previous.values()) | SUPERSEDED_2017_CANDIDATES | {
+            "0" * 40, "", ACTION_STAGE_2017_REVISION[:8]
+        }
         for revision in sorted(invalid):
             with self.subTest(revision=revision):
                 with self.assertRaisesRegex(ValueError, "revision mismatch"):

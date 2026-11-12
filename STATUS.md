@@ -5,8 +5,8 @@ Updated: 2026-11-12. Branch: `chatgpt/lumo-spielewelt-stage-20261112`.
 ## Source identity
 
 - Flutter version: **0.13.5+2017**.
-- Godot 4.6.3 source: **460c94b10df6adae11def608068d72e99c0950db** in [native PR #156](https://github.com/Ullmann27/lumo-godot/pull/156).
-- The native GitData commit was checked against tree `4e38d61dbef4ed21a5e6b3b23ccab03c15101fef` before this pin. Older version policies, including 2011–2016, remain unchanged.
+- Godot 4.6.3 source: **b496fdddf47171a1cf62d78d8081a256de22e5ac** in [native PR #156](https://github.com/Ullmann27/lumo-godot/pull/156).
+- The native GitData commit was checked against tree `60c782cf6ac7cf35627bdbd29df3aea702ff394b` before this pin. Older version policies, including 2011–2016, remain unchanged. Earlier unpublished 2017 candidates are explicitly rejected.
 - The installed-family package and public test certificate remain unchanged. This is not a Google Play signing claim.
 
 ## Included work and development evidence
@@ -19,9 +19,13 @@ The first active-snapshot engine probe now navigates the real section tabs and t
 
 Earlier native portrait-labelled captures were found to contain landscape pixels because desktop startup reset the requested size. The integrated capture gate now resizes after startup, verifies the saved raster dimensions and checks rendered content. The earlier images are not evidence for portrait rendering. Exact-final-source native CI is still required.
 
+Review of genuine portrait images then exposed magnified, blurred landing labels. The final pin uses physical font and layout dimensions instead of scaling the whole landing Control. Its 354 headless font/layout checks passed; actual renderer CI on this exact source remains in progress. The two earlier workflow success-marker mismatches were corrected without changing game scripts or assets.
+
 ## Android delivery is pending
 
-The complete host Python build-contract suite passed **257 tests with no skips**, including the real Gradle contract probe. All **13 Android-tour contract tests** passed, and the workflow YAML plus its eight added shell steps parsed cleanly. The metadata mutation tests use explicitly synthetic fixtures; they validate rejection logic and do not substitute for a built APK or emulator run.
+The host also includes the reviewed formatted-constructor guard correction: the actual multiline `AppShell(profile: _profile)` connection is accepted, while wrong direct arguments, quoted/commented lookalikes and nested arguments are rejected. The existing application-state checks and failed-scan handling remain enforced.
+
+The complete host Python build-contract suite passed **269 tests with no skips**, including the real Gradle contract probe and the twelve added constructor tests. All **13 Android-tour contract tests** passed, and the workflow YAML plus its eight added shell steps parsed cleanly. The metadata mutation tests use explicitly synthetic fixtures; they validate rejection logic and do not substitute for a built APK or emulator run.
 
 The unified workflow now requires the existing full Flutter, legacy-native, 2014 and technical-art gates plus `validate_action_stage.sh` on the exact pin. The real Android tour touches Grand Prix, Garage, Fahrer and START. A separate real 2015→2017 install-in-place job must preserve learning and profile state through offline Kart, restart and simulated Fold changes.
 
