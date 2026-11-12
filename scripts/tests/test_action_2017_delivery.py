@@ -2,7 +2,8 @@
 
 The workflow separately reruns the real APK signature/manifest/PCK verifier and
 uses Android emulator artifacts. These unit tests mutate those binding records
-and execute the actual publication checks without a network or release write.
+and execute the actual initial source and publication checks without a network
+or release write.
 """
 from __future__ import annotations
 
@@ -15,6 +16,7 @@ import json
 import os
 from pathlib import Path
 import re
+import subprocess
 import sys
 import tempfile
 import textwrap
@@ -47,9 +49,44 @@ def workflow_python(step_name: str) -> str:
     return textwrap.dedent(match[1])
 
 
+def initial_pincheck_python() -> str:
+    section = WORKFLOW.read_text().split('  verify-and-build:\n', 1)[1]
+    section = section.split(
+        '      - name: Save source identity and validate exact Godot integration pin\n', 1)[1]
+    section = section.split('      - uses:', 1)[0]
+    match = re.search(r"<<'PY'\n(.*?)\n          PY(?:\n|$)", section, re.S)
+    if match is None:
+        raise AssertionError('Initial workflow pincheck is not present')
+    return textwrap.dedent(match[1])
+
+
 BUNDLE_STEP = 'Reverify actual ARM64 bytes and bind all successful proofs to build 2017'
 IMMUTABLE_STEP = 'Preserve existing releases and select create-or-verify'
 RECEIPT_STEP = 'Verify the published release, immutable tag and unauthenticated Chrome APK bytes'
+
+
+class Action2017InitialPincheckTests(unittest.TestCase):
+    def run_pincheck(self, revision):
+        source = json.loads((ROOT / 'config/godot-source.json').read_text())
+        source['revision'] = revision
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            root.joinpath('config').mkdir()
+            root.joinpath('config/godot-source.json').write_text(json.dumps(source))
+            return subprocess.run(
+                [sys.executable, '-c', initial_pincheck_python()], cwd=root,
+                capture_output=True, text=True, check=False)
+
+    def test_actual_initial_pincheck_rejects_measured_android_layout_failure(self):
+        result = self.run_pincheck('0aa89cdea3a07d0c2bc0a31a153737a1fee41454')
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn(
+            'Rejected Android menu layout: Android 2400x1080: '
+            'header/tab overlap and landing model occlusion', result.stderr)
+
+    def test_actual_initial_pincheck_accepts_the_current_reviewed_pin(self):
+        result = self.run_pincheck(POLICY.APPROVED[2017])
+        self.assertEqual(result.returncode, 0, result.stderr)
 
 
 class Action2017PinTests(unittest.TestCase):
