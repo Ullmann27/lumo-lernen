@@ -1,4 +1,83 @@
-# Continue LUMO Next Generation / candidate 2018
+# Continue combined LUMO integration / candidate 2019
+
+This checkout is the integration branch `integration/lumo-connections-20261113`,
+host PR #465 paired with native PR #160. The producer-specific handoff below is
+preserved as upstream history; its branch, pin and publication instructions do
+not describe this combined checkout.
+
+The combined host includes the published Studio touch contract and the Cards
+Android edge-to-edge lifecycle connection. Its completed source checkpoint is
+`dc1e2bc66b7ac0736ddf51d8cb50839dd69cd11e`. Published graphics host followup
+`abeee5fff4663e894f64e8afe0d5902504481fee` contributes the original failed-import
+diagnostics. The three combined source-identity files are deliberately retained
+until the repaired combined native source passes its own acceptance; the
+producer-only native pin `25e3a118` is not this integration's approved source.
+
+Native PR #160 currently checks `cf039ad8c834522f355b858e3bee1e201e397da4`.
+Its current graphics gates produced actual images, but the Worlds comparison
+failed during the old baseline import. The new Build touch renderer probe also
+failed one subsequent-scene input case. These are recorded failures, not full
+acceptance. Published native workflow correction `25e3a118` is now merged into
+the local combined native branch; the Build touch cause is being repaired.
+Fresh complete native evidence and explicit current-image reviews remain
+mandatory before atomically binding the host's three identity files.
+
+The integration workflow verifies the final candidate independently. Its
+publisher remains restricted to the separate producer graphics branch. Preserve
+the 2018 receipts, historical source pins, main and all concurrent worktrees.
+There is no scheduled task or claim of unattended execution after this session.
+
+## Published graphics producer handoff
+
+The current isolated host branch is `chatgpt/lumo-kart-graphics-apk-20261113`,
+based on PR #461 recovery `8eab228433f124c1e2332e3d3c2ecf462ec8b136`.
+Native changes are in PR #159, `chatgpt/lumo-graphics-expansion-20261113`, based
+on PR #157 source `ada5ed81ad62339f15289da62670c0a4f9f7f2b9`.
+The historical 2018 notes below are retained as history, not current delivery
+approval. Main and previous releases remain untouched.
+
+1. Check the actual branch/PR heads and dirty workspaces before continuing.
+   Existing concurrent worktrees are not disposal candidates. Save through the
+   authorized GitHub connector with exact-tree checks and expected-SHA leases;
+   do not reset, force push or depend on an unavailable authenticated CLI push.
+2. Read `docs/KART_GRAPHICS_2019_QA.md` and
+   `docs/KART_GRAPHICS_2019_DELIVERY.md`. The final native candidate is
+   `25e3a1187234860414fa69822e7b301e75880c82`, tree
+   `71b52d8ab5b14a36cb50c4dc1164ee347bd7d9b8`, graphics run `43445815461`.
+   Its product files are byte-identical to `ea72b244`: only editor-import
+   invocation in the graphics workflow changed. On the previous run
+   `43441307548`, Worlds and Feedback succeeded; Root and their module agents opened all six
+   current images in each area. Their verified original bytes are preserved in
+   `docs/evidence/kart-graphics-2019-reviewed/`. The current Home capture and all
+   seven new/preserved Home gates passed, but attempt 1's old-source importer
+   segfaulted (exit 139). Its failure excerpt is preserved. The exact failed
+   Home job failed a second time on the same old-source import. Both excerpts
+   and two successful isolated full local imports are preserved. The new CI
+   invocation isolates XDG before import and uses the complete --import exit
+   instead of --quit. This is not a proven native crash diagnosis. The entire
+   new run must pass; preserved ea72 evidence cannot approve the new source.
+   No final visual receipt or 2019 APK is approved.
+3. Native corrections include physical menu preview resolution, ground-connected
+   winter stations with exact obstruction checks, live vehicle-effect rebinding,
+   and the actual Cards header safe-area defect found in the 2018 Android tour.
+   The 2018 tour's repeated Pause OCR rejection must not be hidden by relaxing
+   OCR, card-face pixel, same-revision, two-frame or timeout gates.
+4. Version, native config, the additive `APPROVED[2019]` entry and current-candidate
+   tests now bind 0.13.7+2019 to the exact native candidate. The 24 pin-policy
+   tests pass. This source identity decision follows actual current-image review
+   and does not replace full workflow acceptance. After the retry and all three
+   final native jobs succeed, create the dated receipt with original
+   logs/PNGs/API metadata. Preserve every historical pin and the 2018 workflow,
+   receipt and publisher. Recheck PR #461 for concurrent recovery before the
+   final host PR. The dedicated 2019 internal PR workflow builds fresh signed
+   ARM64/x86 APKs and performs the full Android tour and real 2017-to-2019 update.
+5. Complete actual Android acceptance and immutable public publication. Verify
+   the direct HTTPS APK bytes, signature, source identity, size and SHA-256
+   before returning a link. An earlier APK or desktop image review cannot stand
+   in for this candidate. Physical Fold7/Android17 performance, thermal behavior,
+   audible speech and input latency remain outside emulator proof.
+
+## Historical Next Generation / candidate 2018 handoff
 
 Current work is on `chatgpt/lumo-nextgen-20261113`, host PR #461 and native PR #157. Do not switch back to the previous 2017 branch or replace the current dirty workspace. Main remains unchanged.
 

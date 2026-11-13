@@ -1,0 +1,380 @@
+{
+  "schema": 1,
+  "date": "2026-11-13",
+  "reviewer": "Agent C / games_worlds",
+  "status": "Lokale Implementierung und Input-Gates bestanden; neue Rendererbilder und Gesamtintegration ausstehend. Keine Android-/Fold7- oder Gesamtfreigabe.",
+  "scope": "Enger Bauwelt-Dialog-, Touchweitergabe- und Kurzformat-Kamerareihenfix. Bau-/Lern-/Speicherdatenstruktur und Spielregeln unverändert.",
+  "source_files": {
+    "scripts/creative/build_world.gd": {
+      "sha256": "2b686db2e4a31e2487fc4fcc0bc28610bf4704250ffee13e299d73076b3f098d",
+      "bytes": 52667
+    },
+    "scripts/tests/build_dialog_density_regression.gd": {
+      "sha256": "7eb920392b1c057652f691030a5c12e85fbc1f1b346f2fd90dd68694a462f846",
+      "bytes": 16101
+    }
+  },
+  "baseline": {
+    "local_checkout_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "build_world_sha256": "da534c0320275eb6e362fc69a71db9030a156b7d0e9e9c05fd616c0ce3e6b021",
+    "build_world_git_blob": "eefaec3216f1c9602d346a46904d4cf5a827a544",
+    "note": "Der lokale Checkout bleibt auf der Ausgangs-Commitbasis. Root bindet den geprüften Arbeitsstand an den neuen GitHub-Freeze; dies behauptet keinen bereits erstellten neuen Commit."
+  },
+  "confirmed_before": [
+    {
+      "finding": "Nicht scrollbare Vorlagenliste überschreitet die 411dp hohe Produktionsansicht. In der expliziten Dichtefixture sind Hafen-Parzelle, Insel-Parzelle, Leere Insel und Abbrechen unterhalb des Displays. Welten/Bauziele schneiden Abbrechen teilweise ab.",
+      "surface": [
+        2400,
+        1080
+      ],
+      "density": 2.625,
+      "source": "scripts/creative/build_world.gd::_choice_dialog",
+      "raw_measurement_file": "/tmp/lumo-creative-density-review.json",
+      "raw_measurement_sha256": "a3f52859eacdb730239eb6b1c9a336c4a4b9648bab878ee90a58554201f3f1d7"
+    },
+    {
+      "finding": "Separater Headless-Backend-Befund: eingebettetes Window war 1×1, tatsächlicher Welt-2-Touch kam nicht an. Dies ist ausdrücklich KEIN nachgewiesenes Android-Geräteverhalten.",
+      "configuration": "root.gui_embed_subwindows=true vor unveränderter Produktionsszene; Touchposition über popup-eigenen get_screen_transform * global_transform_with_canvas.",
+      "probe": {
+        "path": "/tmp/lumo_build_dialog_before.gd",
+        "sha256": "f21fd77ae40f4c182c5ec363de5542a658b67fff0959217cb400c21bc0c8059f",
+        "bytes": 2060,
+        "output": "extends SceneTree\n\nfunc _initialize() -> void:\n\tcall_deferred(\"_run\")\n\nfunc _frames() -> void:\n\tfor frame in range(8):\n\t\tawait process_frame\n\nfunc _button(node: Node, text: String) -> Button:\n\tif node is Button and node.text == text:\n\t\treturn node\n\tfor child in node.get_children():\n\t\tvar found := _button(child, text)\n\t\tif found != null:\n\t\t\treturn found\n\treturn null\n\nfunc _tap(control: Control) -> void:\n\tvar point: Vector2 = control.get_viewport().get_screen_transform() * control.get_global_transform_with_canvas() * (control.size * 0.5)\n\tfor pressed in [true, false]:\n\t\tvar event := InputEventScreenTouch.new()\n\t\tevent.index = 4\n\t\tevent.position = point\n\t\tevent.pressed = pressed\n\t\tInput.parse_input_event(event)\n\t\tInput.flush_buffered_events()\n\t\tawait process_frame\n\tawait _frames()\n\nfunc _run() -> void:\n\troot.size = Vector2i(2400, 1080)\n\troot.gui_embed_subwindows = true\n\troot.get_node(\"HostBridge\")._options = {\"displayDensity\": 2.625, \"reduceAnimations\": true, \"soundEnabled\": false}\n\troot.get_node(\"SceneRouter\").launch_options = {\"childKey\": \"build_dialog_before_unique\", \"buildSlot\": 1}\n\tvar game = load(\"res://scenes/creative/build_world.tscn\").instantiate()\n\troot.add_child(game)\n\tcurrent_scene = game\n\tawait _frames()\n\tvar open := _button(game, \"Welten (6)\")\n\tvar parent := open.get_parent()\n\twhile parent != null:\n\t\tif parent is ScrollContainer:\n\t\t\tparent.ensure_control_visible(open)\n\t\tparent = parent.get_parent()\n\tawait _frames()\n\tawait _tap(open)\n\tvar dialog: Window\n\tfor child in game.get_children():\n\t\tif child is Window:\n\t\t\tdialog = child\n\tprint(\"[BuildDialogBefore] opened_by_real_touch=\", is_instance_valid(dialog), \" slot=\", game.slot)\n\tif is_instance_valid(dialog):\n\t\tprint(\"[BuildDialogBefore] size=\", dialog.size, \" viewport=\", dialog.get_visible_rect(), \" min=\", dialog.min_size, \" position=\", dialog.position)\n\t\tawait _tap(_button(dialog, \"Welt 2 · neue Insel\"))\n\t\tprint(\"[BuildDialogBefore] selected_by_real_touch=\", game.slot == 2, \" remaining_dialog=\", is_instance_valid(dialog))\n\tgame.queue_free()\n\tawait _frames()\n\tquit()\n"
+      },
+      "log": {
+        "path": "/tmp/lumo-build-dialog-before.log",
+        "sha256": "cd5949ef1688cbcfd7f505f6d3c7b99c2eeb1ddd0e27029b3a17dfc8666d6086",
+        "bytes": 792,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build_dialog_before_unique_1.json\n[Perf] quality_profile:medium\n[BuildDialogBefore] opened_by_real_touch=true slot=1\n[BuildDialogBefore] size=(1, 1) viewport=[P: (0.0, 0.0), S: (1.0, 1.0)] min=(0, 0) position=(262, 12)\n[BuildDialogBefore] selected_by_real_touch=false remaining_dialog=true\n"
+      }
+    },
+    {
+      "finding": "Echter Toolbar-Touch traf im 640×320-Layout die darüberliegende Kameraaktion Mitte anstelle Vorlagen.",
+      "surface": [
+        640,
+        320
+      ],
+      "density": 1,
+      "vorlagen_rect": [
+        535,
+        88,
+        93,
+        48
+      ],
+      "mitte_rect": [
+        544,
+        92,
+        66,
+        48
+      ],
+      "probe": {
+        "path": "/tmp/lumo_build_short_toolbar_probe.gd",
+        "sha256": "2860cf807e0e6053c0f9e6315bef945c57c755a2338bd4cab9b4887e67f87e94",
+        "bytes": 1372,
+        "output": "extends \"/tmp/lumo_build_dialog_before.gd\"\n\nfunc _hits(node: Node, point: Vector2) -> void:\n\tif node is Button and node.is_visible_in_tree():\n\t\tvar caption: String = node.text\n\t\tnode.pressed.connect(func(): print(\"[ShortToolbar] actual_pressed=\", caption))\n\t\tif node.get_global_rect().has_point(point):\n\t\t\tprint(\"[ShortToolbar] rectangle_overlap=\", caption, \" rect=\", node.get_global_rect(), \" path=\", node.get_path())\n\tfor child in node.get_children():\n\t\t_hits(child, point)\n\nfunc _run() -> void:\n\troot.size = Vector2i(640, 320)\n\tInput.emulate_touch_from_mouse = true\n\troot.get_node(\"HostBridge\")._options = {\"displayDensity\": 1.0, \"reduceAnimations\": true, \"soundEnabled\": false}\n\troot.get_node(\"SceneRouter\").launch_options = {\"childKey\": \"short_toolbar_probe\"}\n\tvar game = load(\"res://scenes/creative/build_world.tscn\").instantiate()\n\troot.add_child(game)\n\tawait _frames()\n\tvar button := _button(game, \"Vorlagen\")\n\tvar parent := button.get_parent()\n\twhile parent != null:\n\t\tif parent is ScrollContainer:\n\t\t\tparent.ensure_control_visible(button)\n\t\tparent = parent.get_parent()\n\tawait _frames()\n\t_hits(game, button.get_global_rect().get_center())\n\tprint(\"[ShortToolbar] intended=Vorlagen actual_rect=\", button.get_global_rect())\n\tawait _tap(button)\n\tprint(\"[ShortToolbar] dialog_open=\", is_instance_valid(game.choice_window))\n\tgame.queue_free()\n\tawait _frames()\n\tquit()\n"
+      },
+      "before_log": {
+        "path": "/tmp/lumo-short-toolbar-probe.log",
+        "sha256": "21c0c4ab6ff093941fc2ea79f1c6d6ff850a187a20f9f961261300982c9d52f2",
+        "bytes": 1108,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_short_toolbar_probe_1.json\n[Perf] quality_profile:medium\n[ShortToolbar] rectangle_overlap=Vorlagen rect=[P: (535.0, 88.0), S: (93.0, 48.0)] path=/root/LumoBauwelt/@CanvasLayer@14/@Control@15/@MarginContainer@16/@VBoxContainer@17/@HBoxContainer@23/@ScrollContainer@26/@HBoxContainer@27/@Button@42\n[ShortToolbar] rectangle_overlap=Mitte rect=[P: (544.0, 92.0), S: (66.0, 48.0)] path=/root/LumoBauwelt/@CanvasLayer@14/@Control@15/@HBoxContainer@80/@Button@83\n[ShortToolbar] intended=Vorlagen actual_rect=[P: (535.0, 88.0), S: (93.0, 48.0)]\n[ShortToolbar] actual_pressed=Mitte\n[ShortToolbar] dialog_open=false\n"
+      },
+      "after_log": {
+        "path": "/tmp/lumo-short-toolbar-probe-fixed.log",
+        "sha256": "d3e4968116c34a3f767d7a797d4d826c8bf86721962c49e2daa81c3f587911ab",
+        "bytes": 950,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_short_toolbar_probe_1.json\n[Perf] quality_profile:medium\n[ShortToolbar] rectangle_overlap=Vorlagen rect=[P: (535.0, 88.0), S: (93.0, 48.0)] path=/root/LumoBauwelt/@CanvasLayer@14/@Control@15/@MarginContainer@16/@VBoxContainer@17/@HBoxContainer@23/@ScrollContainer@26/@HBoxContainer@27/@Button@42\n[ShortToolbar] intended=Vorlagen actual_rect=[P: (535.0, 88.0), S: (93.0, 48.0)]\n[ShortToolbar] actual_pressed=Vorlagen\n[ShortToolbar] dialog_open=true\n"
+      }
+    }
+  ],
+  "implementation": [
+    "Begrenztes eingebettetes Auswahlfenster mit korrekt gesetzter tatsächlicher Window-Größe und Minimum; vorherige Embedding-Einstellung wird bei Szenenaustritt wiederhergestellt.",
+    "Originale zehn Vorlagen, sechs Welten und sechs Bauziele verbleiben in ihrer ursprünglichen Reihenfolge. Die Auswahl scrollt; Abbrechen bleibt außerhalb des Scrollbereichs sichtbar.",
+    "Auswahl- und Werkzeugbuttons geben Drag-Ereignisse gezielt an ihren ScrollContainer weiter; der Regressionstest nutzt echte ScreenTouch/ScreenDrag-Ereignisse ohne ensure_control_visible.",
+    "Kameraaktionen werden nur bei drohender Überdeckung der tatsächlichen Toolbar-Unterkante in die bestehende horizontale Werkzeugleiste verschoben. Bei ausreichender Höhe bleibt die schwebende Anordnung.",
+    "Offene Dialoge passen Größe und Position bei Layout-/Dichtewechsel an. Abbrechen und Szenenaustritt bewahren vorhandene Daten und geben den Input für Folgeszenen frei."
+  ],
+  "local_tests": [
+    {
+      "marker": "BuildDialogDensity",
+      "checks": 1637,
+      "exit_code": 0,
+      "backend": "Godot 4.6.3 headless",
+      "log": {
+        "path": "/tmp/lumo-build-dialog-density-full-input.log",
+        "sha256": "eff4e5a9f17fd320ccdc7a8047cdd0b157d00441aa47e88a74186ab2117a4a91",
+        "bytes": 1418,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-0_1.json\n[Perf] quality_profile:medium\n[BuildDialogDensity] CASE [(2400, 1080), 2.625] checks=331 failures=0\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-1_1.json\n[BuildDialogDensity] CASE [(1080, 2400), 2.625] checks=645 failures=0\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-2_1.json\n[BuildDialogDensity] CASE [(2176, 1812), 2.25] checks=959 failures=0\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-3_1.json\n[BuildDialogDensity] CASE [(640, 360), 1.0] checks=1298 failures=0\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_build-dialog-density-5-4_1.json\n[BuildDialogDensity] CASE [(640, 320), 1.0] checks=1637 failures=0\n[BuildDialogDensity] PASS 1637 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore\n"
+      }
+    },
+    {
+      "marker": "BuildNextgen",
+      "checks": 62,
+      "exit_code": 0,
+      "backend": "Godot 4.6.3 headless",
+      "log": {
+        "path": "/tmp/lumo-build_nextgen_play_regression-dialog-final.log",
+        "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c",
+        "bytes": 685,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_nextgen_build_play_regression_1.json\n[Perf] quality_profile:medium\n[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout\n"
+      }
+    },
+    {
+      "marker": "SettlementPlay",
+      "checks": 127,
+      "exit_code": 0,
+      "backend": "Godot 4.6.3 headless",
+      "log": {
+        "path": "/tmp/lumo-build_settlement_play_regression-dialog-final.log",
+        "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+        "bytes": 2067,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json\n[Perf] quality_profile:medium\n[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)\n[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json\n[Router] goto:build (res://scenes/creative/build_world.tscn)\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json\n[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)\n[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json\n[Router] goto:build (res://scenes/creative/build_world.tscn)\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_3.json\n[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)\n[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_3_rival.json\n[Router] goto:settlement (res://scenes/creative/build_settlement_world.tscn)\n[SettlementWorld] ready mode=rival save=user://lumo_settlement_4f4f7f6e26a68db7beb56349c4fbba7a32184e143835b0f365ab181580658745_4_rival.json\n[Router] goto:build (res://scenes/creative/build_world.tscn)\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_settlement_production_regression_4.json\n[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts\n"
+      }
+    },
+    {
+      "marker": "CreativeTouchLayout",
+      "checks": 300,
+      "exit_code": 0,
+      "backend": "Godot 4.6.3 headless",
+      "log": {
+        "path": "/tmp/lumo-creative_touch_layout_regression-dialog-final.log",
+        "sha256": "32927d7dbe265fe4250448ce600e600abd65d20e9b115b1e088fbcfb1f25f87d",
+        "bytes": 933,
+        "output": "Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org\n\n[EventBus] online - signals registered\n[Settings] no settings.cfg yet, defaults used\n[Perf] platform_detected:Linux\n[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]\n[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio\n[Audio] manager ready (muted:false)\n[Progress] no save file (first run) - starting fresh\n[Perf] quality_profile:medium\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_touch_layout_regression_1.json\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_touch_layout_regression_1.json\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_touch_layout_regression_1.json\n[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_touch_layout_regression_1.json\n[CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density\n"
+      }
+    }
+  ],
+  "input_coverage": {
+    "profiles": [
+      {
+        "surface": [
+          2400,
+          1080
+        ],
+        "density": 2.625
+      },
+      {
+        "surface": [
+          1080,
+          2400
+        ],
+        "density": 2.625
+      },
+      {
+        "surface": [
+          2176,
+          1812
+        ],
+        "density": 2.25
+      },
+      {
+        "surface": [
+          640,
+          360
+        ],
+        "density": 1
+      },
+      {
+        "surface": [
+          640,
+          320
+        ],
+        "density": 1
+      }
+    ],
+    "method": "Input.parse_input_event(ScreenTouch/ScreenDrag), Fenster-eigene Transformationsmatrix, echte Control-Hitflächen, physische Bounds / density, Prüfungen gegen Popup, Display und Scroll-Clipping. Touch-Emulation nur im Desktop-Test aktiviert und wiederhergestellt.",
+    "checks_include": [
+      "Toolbar per echten horizontalen Wischereignissen erreichen",
+      "Letzte Auswahl nach echten vertikalen Wischereignissen anwählen",
+      "Abbrechen auch am Rand des 48dp-Ziels",
+      "Abbrechen erhält Modell, Ziel, Slot und gespeicherte Bytes",
+      "Alle ursprünglichen Einträge und IDs erhalten",
+      "Echter Kamera-Touch auf alle drei Aktionen",
+      "Offenen Dialog während Größen-/Dichtewechsel weiterbedienen",
+      "Szenenaustritt mit offenem Modal und tatsächlicher Touch in Folgeszene"
+    ]
+  },
+  "pending_renderer": {
+    "interface": "godot --script res://scripts/tests/build_dialog_density_regression.gd -- --capture",
+    "environment": "LUMO_CAPTURE_DIR",
+    "required_marker": "[BuildDialogDensity] PASS",
+    "expected_png_count": 8,
+    "filenames": [
+      "build-dialog-2400x1080-templates-top.png",
+      "build-dialog-2400x1080-templates-bottom.png",
+      "build-dialog-1080x2400-templates-top.png",
+      "build-dialog-1080x2400-templates-bottom.png",
+      "build-dialog-2176x1812-templates-top.png",
+      "build-dialog-2176x1812-templates-bottom.png",
+      "build-dialog-640x360-templates-top.png",
+      "build-dialog-640x360-templates-bottom.png"
+    ],
+    "extra_320dp_case": "Zusätzliche Inputprüfung; keine weitere PNG vorgesehen.",
+    "headless_capture_rejected": true,
+    "visual_review_status": "Noch keine Bilder dieses finalen Patches gesehen."
+  },
+  "independent_read_only_density_review": {
+    "surface": [
+      2400,
+      1080
+    ],
+    "density": 2.625,
+    "method": "Physical bounds = viewport.get_screen_transform() * control.get_global_transform_with_canvas() * actual local rectangle; dp = physical bounds / 2.625. Headless, Android-density layout simulation with embedded subwindows, production content scaling unchanged. Buttons invoke their connected production signals to open actual scenes/dialogs; not a device touch test.",
+    "normal_controls": {
+      "build_editor": {
+        "measured_controls": 45,
+        "min_width_dp": 48.015007019043,
+        "min_height_dp": 48.050048828125
+      },
+      "build_walk": {
+        "measured_controls": 6,
+        "min_width_dp": 52.0162773132324,
+        "min_height_dp": 48.0500564575195
+      },
+      "build_pause": {
+        "measured_controls": 48,
+        "min_width_dp": 48.015007019043,
+        "min_height_dp": 48.050048828125
+      },
+      "settlement_editor": {
+        "measured_controls": 16,
+        "min_width_dp": 48.0149726867676,
+        "min_height_dp": 48.0500564575195
+      },
+      "settlement_walk": {
+        "measured_controls": 5,
+        "min_width_dp": 48.0149726867676,
+        "min_height_dp": 48.0500564575195
+      },
+      "settlement_pause": {
+        "measured_controls": 19,
+        "min_width_dp": 48.0149726867676,
+        "min_height_dp": 48.050048828125
+      },
+      "settlement_trade": {
+        "measured_controls": 23,
+        "min_width_dp": 48.0149726867676,
+        "min_height_dp": 48.0500373840332
+      },
+      "puzzle_selection": {
+        "measured_controls": 14,
+        "min_width_dp": 52.0162773132324,
+        "min_height_dp": 48.050048828125
+      },
+      "puzzle_play": {
+        "measured_controls": 10,
+        "min_width_dp": 52.0162773132324,
+        "min_height_dp": 48.0500564575195
+      },
+      "puzzle_pause": {
+        "measured_controls": 13,
+        "min_width_dp": 52.0162773132324,
+        "min_height_dp": 48.050048828125
+      }
+    },
+    "relocation_actions": [
+      {
+        "canvas_global": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (10.0, 328.0)]",
+        "clipped_dp": [
+          400.125,
+          48.0500602722168
+        ],
+        "disabled": false,
+        "dp": [
+          400.125,
+          48.0500602722168
+        ],
+        "inside_surface": true,
+        "local_size": [
+          400.0,
+          48.0
+        ],
+        "meets_48dp": true,
+        "node": "/root/LumoSettlement/@Window@691/@PanelContainer@692/@ScrollContainer@695/@VBoxContainer@696/@Button@699",
+        "physical_px": [
+          1050.328125,
+          126.131408691406
+        ],
+        "root_size": [
+          2400.0,
+          1080.0
+        ],
+        "root_visible": [
+          914.0,
+          411.0
+        ],
+        "scope": "settlement_relocation_revealed",
+        "screen_position": [
+          674.835876464844,
+          893.4306640625
+        ],
+        "script": "",
+        "scroll_parent": true,
+        "text": "Ja, umbauen",
+        "touch_shape": "actual Control rectangle; includes its full hit area, not just painted icon",
+        "viewport_screen": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (648.5777, 31.53285)]",
+        "window_embedded": true,
+        "window_size": [
+          420.0,
+          387.0
+        ]
+      },
+      {
+        "canvas_global": "[X: (1.0, 0.0), Y: (0.0, 1.0), O: (10.0, 268.0)]",
+        "clipped_dp": [
+          400.125,
+          48.0500602722168
+        ],
+        "disabled": false,
+        "dp": [
+          400.125,
+          48.0500602722168
+        ],
+        "inside_surface": true,
+        "local_size": [
+          400.0,
+          48.0
+        ],
+        "meets_48dp": true,
+        "node": "/root/LumoSettlement/@Window@691/@PanelContainer@692/@ScrollContainer@695/@VBoxContainer@696/@Button@698",
+        "physical_px": [
+          1050.328125,
+          126.131408691406
+        ],
+        "root_size": [
+          2400.0,
+          1080.0
+        ],
+        "root_visible": [
+          914.0,
+          411.0
+        ],
+        "scope": "settlement_relocation_revealed",
+        "screen_position": [
+          674.835876464844,
+          735.766418457031
+        ],
+        "script": "",
+        "scroll_parent": true,
+        "text": "Haus behalten",
+        "touch_shape": "actual Control rectangle; includes its full hit area, not just painted icon",
+        "viewport_screen": "[X: (2.625821, 0.0), Y: (0.0, 2.627737), O: (648.5777, 31.53285)]",
+        "window_embedded": true,
+        "window_size": [
+          420.0,
+          387.0
+        ]
+      }
+    ],
+    "relocation_result": "Normale Kauf-/Demolition-APIs öffnen tatsächlichen Umzugsdialog; beide Aktionen vollständig sichtbar nach Scroll-Reveal. Echter ScreenTouch auf Haus behalten schließt Dialog; snapshot exakt unverändert. Scroll-Reveal dieser unabhängigen Siedlungsprobe war programmgesteuert, kein Nachweis eines echten Wischpfads. Keine Siedlungsdatei verändert.",
+    "log_sha256": "ee392c6adbbbaf5f89fd14db11cd1c73903c74143ac18eeb3c62bb1d2aea484e",
+    "measurements_sha256": "f50da05d12b768d8faaed9de012cbd236fd03487818ab5872d08c8c1682620a9"
+  },
+  "limitations": [
+    "Kein physisches Android-17-/Fold7-Gerät geprüft.",
+    "Kein Leistungs-, Thermik-, 60-FPS- oder realer Eingabelatenznachweis.",
+    "1×1-Window-Befund bleibt auf den explizit eingebetteten Headless-Test begrenzt.",
+    "Frische echte Rendererbilder und nachfolgende Integration werden zentral von Root geprüft.",
+    "Kein Commit, Ref, Tree oder PR durch diesen Agenten geändert."
+  ]
+}

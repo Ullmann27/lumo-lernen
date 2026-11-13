@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "scope": "Targeted working-tree runtime validation, not new renderer or Android approval",
+  "status": "RUNTIME_PASS_FRESH_RENDER_REVIEW_REQUIRED",
+  "validated_at": "2026-11-13T13:11:34.592906+00:00",
+  "rejected_native_revision": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "repository": "Ullmann27/lumo-godot",
+  "source_sha256": {
+    "scripts/creative/puzzle_world.gd": "016b93b1a934f2ccf5d13972f431d2d098274009d33ef72f270385c6e20ea2af",
+    "scripts/tests/puzzle_rotation_regression.gd": "4b02e343cc1bf0faad44b99f03c99c5d4dedfc5b76c8454fd37a17c2754a4e30"
+  },
+  "fix": "Perspective camera bounds the actual board/piece mesh envelope inside the screen area between the real HUD and toolbar. Existing fitting cameras remain unchanged. Raised-piece envelope is reserved.",
+  "tests": [
+    {
+      "script": "scripts/tests/puzzle_rotation_regression.gd",
+      "result": "PASS",
+      "checks": 4558,
+      "log": "puzzle-working-tree-regression.log"
+    },
+    {
+      "script": "scripts/tests/puzzle_expansion_regression.gd",
+      "result": "PASS",
+      "checks": 1103,
+      "log": "puzzle-existing-expansion.log"
+    }
+  ],
+  "input_proof": {
+    "before": "At 640x360, actual ScreenTouch on pieces0 and3 at y139.713 produced dragging=-1; the visible piece1 accepted input.",
+    "after": "Actual ScreenTouch reaches all six initial pieces; actual drag/release locks piece0 into the formerly hidden upper target. Upper targets now project to y210.704 outside header ending at164.",
+    "before_log": "puzzle-9eb25fcb-obstruction.log",
+    "after_log": "puzzle-working-tree-touch-after-fix.log",
+    "held_resize": "A real selected piece retains its touch owner across1280x720 to640x360; all start pieces and targets remain outside the HUD even while the tray relayout is deferred."
+  },
+  "layout_coverage": {
+    "sizes": [
+      [
+        1280,
+        720
+      ],
+      [
+        640,
+        360
+      ],
+      [
+        412,
+        915
+      ],
+      [
+        840,
+        760
+      ]
+    ],
+    "compact_counts": [
+      6,
+      12,
+      24,
+      48,
+      96
+    ],
+    "compact_motifs": [
+      0,
+      3
+    ]
+  },
+  "logs_sha256": {
+    "puzzle-9eb25fcb-obstruction.log": "7c7734f72f52f88e786ed3d78c93107ac7fd5a7c74e051e03881b2684cfae35e",
+    "puzzle-existing-expansion.log": "807ad192bfd87603d0c3d5c838563720db4ca57b0b446117eaada424ab285e0d",
+    "puzzle-held-resize-after-guard.log": "ca064a66685e95bcec580850dfa3fff79dcb05ad7c4ad114a1e4b18cfeffb5df",
+    "puzzle-held-resize-before-guard.log": "bc591e5ee343dcfa534272a83eb2c565964278f566d9b01da525592e984ef527",
+    "puzzle-working-tree-regression.log": "8c5c620d8ebd9eb7166169edc510956e532414f1d4c77cbfb0b5ec1aeb207e8b",
+    "puzzle-working-tree-touch-after-fix.log": "5ff9c1bef33d1b5056c4344d8592a52d6fd4944e7e5c78dc4b33f93cf0dc3a97"
+  }
+}

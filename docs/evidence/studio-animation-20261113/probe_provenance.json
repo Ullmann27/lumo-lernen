@@ -1,0 +1,84 @@
+{
+  "kind": "offline_original_lumo_studio_animation",
+  "native_candidate": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "input_sha256": {
+    "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "docs/evidence/studio-character-20261113/Lumo-Studio-Actions.blend": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e",
+    "tools/lumo_animation/author_platform_clips.py": "cbb0823ac359ac45d323a9037f6cc7c10a903e44dff6c374689ba84a3ec429c3"
+  },
+  "blender": "4.3.2",
+  "render_engine": "CYCLES",
+  "device": "CPU",
+  "resolution": [
+    512,
+    512
+  ],
+  "samples": 24,
+  "denoising": false,
+  "adaptive_sampling": false,
+  "max_bounces": 4,
+  "threads": 8,
+  "color_transform": "AgX",
+  "media_fps": 25,
+  "source_action_timebase_fps": 60,
+  "available_actions": [
+    "studio_brake",
+    "studio_jump_fall",
+    "studio_jump_rise",
+    "studio_land",
+    "studio_sprint",
+    "studio_walk"
+  ],
+  "clips": [
+    {
+      "action": "studio_walk",
+      "source_frame_range": [
+        0,
+        60
+      ],
+      "duration_seconds": 1.0,
+      "rendered_frames": 25
+    },
+    {
+      "action": "studio_sprint",
+      "source_frame_range": [
+        0,
+        36
+      ],
+      "duration_seconds": 0.6,
+      "rendered_frames": 15
+    }
+  ],
+  "geometry_modified": false,
+  "face_modified": false,
+  "source_assets_written": false,
+  "root_motion": "in_place_authored_actions",
+  "gameplay_capture": false,
+  "device_performance_measurement": false,
+  "frames": [
+    {
+      "file": "studio_walk/0000.png",
+      "action": "studio_walk",
+      "source_frame": 0.0,
+      "media_time_seconds": 0.0,
+      "render_seconds": 2.1055284489993937,
+      "sha256": "c4f2c53e09c93ab077eefdf9f746f81467fb14fb6db23d2080db22c944082fbc",
+      "foot_heads_world": {
+        "L": [
+          0.1759766936302185,
+          -0.33144819736480713,
+          0.03652312979102135
+        ],
+        "R": [
+          -0.16933590173721313,
+          0.05855163559317589,
+          0.03652367368340492
+        ]
+      }
+    }
+  ],
+  "render_wall_seconds": 2.1080534189968603,
+  "source_unchanged_after_render": true,
+  "probe_only": true,
+  "renderer_script_sha256": "89254dda6d692d360f66fc731bd39d679cf20e42fc51f28479eb73d5e166a08d"
+}

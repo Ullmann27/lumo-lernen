@@ -1,0 +1,33 @@
+{
+  "scope": "Source and synthetically tested proof gates only; no actual API37 emulator acceptance has completed at this checkpoint.",
+  "reviewer": "Agent learning_worlds; independently reviewed root workflow/probe integration and repaired original-tour SDK binding.",
+  "required_runtime": [
+    35,
+    37
+  ],
+  "actual_probe_measurements": [
+    "sdk",
+    "release",
+    "fingerprint",
+    "model"
+  ],
+  "original_tour_field": "android_sdk (unmodified adb string, exact 35 or37 required)",
+  "artifact_paths": [
+    "proofs/tour",
+    "proofs/android17"
+  ],
+  "source_binding": "Both original tours and surface probes use one immutable x86_64 APK and PCK; the full existing delivery verifier runs independently twice.",
+  "tests": {
+    "delivery": 32,
+    "actual_studio_surface_probe": 6,
+    "result": "PASS",
+    "ast_parity": "PASS"
+  },
+  "actual_android_run": "pending",
+  "files": {
+    "scripts/verify_studio_delivery.py": "96eb7080b4804a910bc72a1f54556dc6c88364efa41d53566ade70003967fce6",
+    "scripts/tests/test_studio_delivery.py": "df8f398b97be1357457e610a769c57d68ed0f7b3a764693afb280efe2903018f",
+    ".github/probes/lumo_studio_surfaces_android_probe.py": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c",
+    ".github/workflows/lumo-studio-2019.yml": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98"
+  }
+}

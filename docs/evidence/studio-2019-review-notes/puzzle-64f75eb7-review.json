@@ -1,0 +1,176 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T13:25:20.398511+00:00",
+  "reviewer": "games_worlds independent visual review after learning_worlds camera/input correction",
+  "scope": "Fresh seven Puzzle renderer captures plus their recorded regression evidence; no whole-release approval.",
+  "status": "PUZZLE_VISUAL_SCOPE_PASS_AFTER_CAMERA_FIX",
+  "release_approval": false,
+  "repository": "Ullmann27/lumo-godot",
+  "native_revision": "64f75eb7725ebef898d0f259049bddef7021532f",
+  "artifact_id": 14039579366,
+  "archive_sha256": "c20c2f575bf9690b6a7f70487a22509d2e9a737058d00a40599a3e37b7cb8c56",
+  "archive_sha256_independently_recomputed": true,
+  "source_tree": "e7e5bb4a3252123c867b99badb25d81eec810a9a",
+  "source_dirty_file_empty": true,
+  "prior_rejected_revision": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "resolved_blocker": "In the old 640x360 view, upper target centres and start pieces were under the progress/header area and real ScreenTouch was swallowed. In the fresh render the play region is clear; the associated new regression dispatches real input events through the UI and checks all six initial selections and the formerly hidden upper target.",
+  "files": [
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "c0869bcf20c19b118b9e5d40c8952a803212d1e234ae0ced1782f83500de9fd9",
+      "dimensions_px": [
+        640,
+        360
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "Die sichtbaren Puzzleteile, das zentrale Brett und die Zielregionen liegen jetzt im freien Spielfeld unterhalb des oberen HUD und oberhalb der unteren Werkzeugleiste. Die zuvor beobachtete ProgressBar-Ueberdeckung ist in diesem frischen Bild nicht vorhanden.",
+        "Drehaktion, Teilewechsel, Randteile, Bild ansehen und Tipp sind getrennt lesbar. Weitere Werkzeuge bleiben ueber die bestehende horizontale Werkzeugleiste erreichbar; dieser Screenshot allein beweist den Scrollvorgang nicht."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_412x915.png",
+      "sha256": "a53143d6d928e0c17a42342a96d025b3b9bf58ec6f76fe06c34ef255bb8fa3bb",
+      "dimensions_px": [
+        412,
+        915
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "Hochkant: Hilfetext umbricht lesbar; Brett, eingesetztes Teil und die drei angebotenen Teile liegen frei zwischen HUD und Werkzeugleiste.",
+        "Der lange Titel wird gekuerzt. Die aeusseren Ablagetische sind seitlich angeschnitten, die angebotenen Teile im aktiven Bereich sind sichtbar. Die horizontale Werkzeugleiste zeigt ihren Scrollbalken; kein daraus abgeleiteter Touch- oder FPS-Nachweis."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_840x760.png",
+      "sha256": "cc2f1c9db1f436cf97c779351365abe6ceb08f3bf7823b57a3a33182ad761da7",
+      "dimensions_px": [
+        840,
+        760
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "Fold-Format: Brett, Zielregionen, eingesetztes Teil und die drei angebotenen Teile sind nicht von HUD oder Werkzeugleiste ueberdeckt.",
+        "Die untere Reihe ist klar getrennt; die rechts angeschnittene Aktion Neues Puzzle liegt in der bestehenden horizontal scrollbaren Leiste."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_compact_menu.png",
+      "sha256": "b7f6cdce3ec357f397beac2ce3c6744afd57e46ea990fcbb3cab05677a823a2f",
+      "dimensions_px": [
+        640,
+        360
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "Das Auswahlmenue bleibt innerhalb von 640 x 360. Modus, Neues Puzzle beginnen, Gespeichertes Puzzle fortsetzen und Zur Spielewelt sind voll lesbar und getrennt.",
+        "Der Test scrollt das Menue vor der Aufnahme ausdruecklich an das untere Ende. Der obere angeschnittene Eintrag dokumentiert diesen Scrollzustand; die letzte Aktion ist vollstaendig sichtbar. Es ist kein Screenshot aller Menueintraege gleichzeitig."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_table.png",
+      "sha256": "98549ca0d1293b62311bc9ebad93eef60d1fb4f35bee5e16ed6e614a16232f20",
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "1280 x 720: Echte perspektivische Ablagen, sichtbare Puzzleteile mit Staerke/Schatten und das leere Brett sind frei von der Bedienoberflaeche. Anleitung und Werkzeugleiste sind lesbar.",
+        "Die Teile liegen auf den seitlichen Ablagen teilweise uebereinander. Die aufgezeichnete Eingabepruefung prueft die Auswahl separat; das Standbild allein beweist keine Auswahl."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_hint.png",
+      "sha256": "56a240ab05e93506deb170047b1ef80d677ad4b7cd84853ecb9f275d308396b6",
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "Das am richtigen Ort noch falsch gedrehte Teil ist auf dem Brett klar sichtbar. Der Text fordert nachvollziehbar zum Drehen auf; die Drehaktion ist aktiv und lesbar.",
+        "Kein sichtbarer Clipping-, HUD-Ueberdeckungs- oder Platzierungsblocker in diesem Hilfeschritt."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "matches_original_archive_entry": true,
+      "actually_opened_individually": true,
+      "view_method": "tools.view_image with explicit image output",
+      "verdict": "NO_CONCRETE_VISUAL_BLOCKER_OBSERVED",
+      "observations": [
+        "Das korrekt gedrehte Teil liegt im oberen mittleren Brettbereich. 1 / 6 Teile, Erfolgsrueckmeldung und Fortschrittsanzeige stimmen sichtbar mit einem eingesetzten Teil ueberein.",
+        "Brett und verbleibende Teile bleiben frei; keine neue sichtbare Ueberdeckung nach erfolgreicher Platzierung."
+      ]
+    }
+  ],
+  "recorded_tests": [
+    {
+      "artifact_entry": "puzzle_rotation_regression-headless.log",
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "result": "PASS",
+      "checks": 4558,
+      "marker": "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume",
+      "execution": "Recorded in this CI artifact; independently read for this review, not rerun by reviewer."
+    },
+    {
+      "artifact_entry": "puzzle_rotation_regression-rendered.log",
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "result": "PASS",
+      "checks": 4565,
+      "marker": "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume",
+      "execution": "Recorded in this CI artifact; independently read for this review, not rerun by reviewer."
+    }
+  ],
+  "regression_interpretation": {
+    "reviewed_local_script": "scripts/tests/puzzle_rotation_regression.gd",
+    "reviewed_local_script_sha256": "4b02e343cc1bf0faad44b99f03c99c5d4dedfc5b76c8454fd37a17c2754a4e30",
+    "scope": [
+      "All projected target centres and visible piece centres must lie inside the viewport and between actual HUD/footer bounds.",
+      "640x360 dispatches InputEventScreenTouch for each of the six initial parts and requires the corresponding drag owner.",
+      "Actual ScreenDrag/ScreenTouch release must lock piece 0 into the formerly hidden upper slot.",
+      "Resize from 1280x720 to 640x360 while a piece is held retains the touch owner and checks unobscured targets.",
+      "Compact bounds checks cover counts 6, 12, 24, 48, 96 and motifs 0 and 3.",
+      "Mode menu is deliberately scrolled to the bottom before its compact screenshot and the final action must remain within the viewport."
+    ],
+    "rendered_check_delta": "The seven additional rendered checks correspond to successful writes of the seven fresh screenshots; the headless run performs 4558 checks."
+  },
+  "studio_results": {
+    "artifact_entry": "results.tsv",
+    "sha256": "e9000f75f90eb97fb9325b2a672b5573bf0b066ff818d220e3457897289ecf11",
+    "recorded_pass_rows": 9,
+    "interpretation": "The table has nine PASS rows. Only the Puzzle visual scope is independently approved by this note."
+  },
+  "renderer": "Godot 4.6.3, Linux OpenGL Compatibility, Mesa llvmpipe; read from the rendered log.",
+  "limits": [
+    "The screenshots are real Godot renderer output from the named archive, not Android device captures.",
+    "Stills do not establish animation smoothness, hardware input latency, Android density, temperature, or 60 FPS.",
+    "Visual inspection covers the seven captured states; the input and additional count/motif coverage are attributed to the recorded regression, not to an independent local rerun.",
+    "The earlier 9eb25fcb rejection remains historical. Full native, host, Android and release acceptance remain the parent integration gates."
+  ],
+  "code_changes_by_reviewer": []
+}
