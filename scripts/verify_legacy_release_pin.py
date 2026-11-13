@@ -142,7 +142,7 @@ APPROVED = {
     # and Kart-home heads and the Bauwelt living village, so no 2019 host builds
     # against an older or partial native pin. Source identity only: the complete
     # native workflow, fresh APKs and real Android/update gates still decide.
-    2019: "76d498662314da8cc9a2e1f1b8f0a6b45ef6fedd",
+    2019: "027c2535d2d69fc56fc19d8d96490f7de5be9c37",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
