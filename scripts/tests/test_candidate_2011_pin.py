@@ -22,7 +22,7 @@ TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
 GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
-GRAPHICS_2019_REVISION = "25e3a1187234860414fa69822e7b301e75880c82"
+COMBINED_2019_REVISION = "76d498662314da8cc9a2e1f1b8f0a6b45ef6fedd"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -48,7 +48,7 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2019, GRAPHICS_2019_REVISION))
+        self.assertEqual((build, revision), (2019, COMBINED_2019_REVISION))
         self.assertGreater(build, 2018)
         self.assertIn("version: 0.13.7+2019\n", pubspec)
 
@@ -259,15 +259,18 @@ class Candidate2011PinTests(unittest.TestCase):
 
     def test_2019_only_accepts_its_exact_reviewed_native_identity(self):
         self.assertEqual(
-            POLICY.verify(version(2019), config(GRAPHICS_2019_REVISION)),
-            (2019, GRAPHICS_2019_REVISION),
+            POLICY.verify(version(2019), config(COMBINED_2019_REVISION)),
+            (2019, COMBINED_2019_REVISION),
         )
         previous = {build: sha for build, sha in POLICY.APPROVED.items() if build < 2019}
         invalid = set(previous.values()) | {
-            "0" * 40, "", GRAPHICS_2019_REVISION[:8],
+            "0" * 40, "", COMBINED_2019_REVISION[:8],
             "01cf063a7c11681b0060430cdb72c16d56a0b061",
             "b83437ce50b6fc395f56bdcb698aab17e80818f7",
             "ea72b244cd279057255476a1f6103d29520a6ec5",
+            # Partial 2019 lines superseded by the combined native source.
+            "25e3a1187234860414fa69822e7b301e75880c82",
+            "24fb85800dfb58ec11dd409449e276299aa72b06",
         }
         for revision in sorted(invalid):
             with self.subTest(revision=revision):
@@ -277,7 +280,7 @@ class Candidate2011PinTests(unittest.TestCase):
             with self.subTest(historical_build=build):
                 self.assertEqual(POLICY.verify(version(build), config(revision)), (build, revision))
                 with self.assertRaisesRegex(ValueError, "revision mismatch"):
-                    POLICY.verify(version(build), config(GRAPHICS_2019_REVISION))
+                    POLICY.verify(version(build), config(COMBINED_2019_REVISION))
 
     def test_2019_rejects_foreign_origin_engine_and_extra_keys(self):
         for field, value, message in (
@@ -286,7 +289,7 @@ class Candidate2011PinTests(unittest.TestCase):
             ("skip_verification", True, "config keys"),
         ):
             with self.subTest(field=field):
-                data = json.loads(config(GRAPHICS_2019_REVISION))
+                data = json.loads(config(COMBINED_2019_REVISION))
                 data[field] = value
                 with self.assertRaisesRegex(ValueError, message):
                     POLICY.verify(version(2019), json.dumps(data))

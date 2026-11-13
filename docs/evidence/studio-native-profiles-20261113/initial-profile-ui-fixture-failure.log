@@ -1,0 +1,38 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart
+00:00 +0: (setUpAll)
+00:00 +0: real same-name students keep distinct launcher keys through grade, name and app restart
+00:01 +1: actual solo upgrade launcher retains 2017 key and original native filenames
+00:02 +2: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following StateError was thrown running a test:
+Bad state: No element
+
+When the exception was thrown, this was the stack:
+#0      Iterable.single (dart:core/iterable.dart:694:25)
+#1      WidgetController.element (package:flutter_test/src/controller.dart:888:30)
+#2      WidgetController.ensureVisible (package:flutter_test/src/controller.dart:2389:32)
+#3      tap (file:///workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart:85:16)
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart:253:13)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+The test description was:
+  actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:05 +2 -1: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout [E]
+  Test failed. See exception logs above.
+  The test description was: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+  
+00:05 +2 -1: profile switch during adult dialog cancels assignment
+00:06 +3 -1: rejected adult assignment leaves old key unclaimed and shows retry
+00:10 +4 -1: captured lease changed before launch never opens another child save
+00:11 +5 -1: (tearDownAll)
+00:11 +5 -1: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout

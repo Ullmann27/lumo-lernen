@@ -1,0 +1,81 @@
+{
+  "kind": "independent_touch_ci_contract_review",
+  "status": "no_additional_concrete_contract_error_found",
+  "production_or_test_code_modified_by_reviewer": false,
+  "engine_or_gameplay_tests_rerun_for_this_review": false,
+  "source_sha256": {
+    "native/.github/workflows/lumo-studio-2019.yml": "0bc31553055d2788ec1239fd79e89eae8a55062b7f09f48162ad346abca2a342",
+    "native/tools/validate_studio_touch.sh": "006adc0ab87a731fb39e5203359d7e25ee399e756b133596d4699492557cde9d",
+    "native/tools/run_godot_probe.py": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+    "native/scripts/tests/treasure_density_regression.gd": "b3be76fa9caa6da23490fb2de684397f21afac7c21b02e65a3a137c16d655f70",
+    "host/scripts/verify_studio_delivery.py": "25376c29c729506ef591e936fac21f82f106f249df2fe67b3e1254151192fccb"
+  },
+  "completed_syntax_checks": {
+    "native_workflow_yaml": "parsed",
+    "workflow_shell_blocks": 18,
+    "workflow_shell_syntax": "bash -n passed for all18 run blocks with GitHub expressions replaced by a non-executable placeholder",
+    "touch_runner_shell_syntax": "bash -n passed"
+  },
+  "semantic_findings": [
+    "The three matrix scopes are workshop, treasure and build, with explicit job names touch-workshop, touch-treasure and touch-build. All match the host acceptance job names.",
+    "bundle-evidence waits for new-worlds and the complete touch-density matrix; fail-fast=false preserves independent touch results. archive-evidence also requires the earlier learning/gameplay/studio jobs and the bundle.",
+    "Each touch upload uses touch-evidence/ as its root, preserving its scope subdirectory. The bundle downloads and merges those contents into native-evidence/touch-evidence/. Thus distinct scopes cannot overwrite each other.",
+    "The worlds upload preserves studio-evidence/ and nextgen-evidence/ under their common root. Download into native-evidence/ and final upload of that directory preserve exactly the five prefixes expected by the host verifier.",
+    "The host checks eight required job names: seven actual QA jobs plus bundle-evidence. Its original-artifact digest and exact-source acceptance checks remain in force.",
+    "The touch runner passes --capture only in rendered mode, supplies the correct LUMO_CAPTURE_DIR, isolates user-data per mode and fails on engine errors, nonzero exit, missing marker or missing PNG roster.",
+    "The touch job permits40minutes; configured headless/rendered probe limits sum to30minutes, leaving10minutes for setup/import/upload. This is a consistency check, not a guarantee about future runner speed.",
+    "The Treasure capture branches and call sites imply exactly14 distinct PNG names. The640x320 cases meet the320pixel threshold used by both touch collection and the host PNG verifier."
+  ],
+  "required_source_stamp_count": 5,
+  "required_source_stamp_prefixes": [
+    "nextgen-evidence/nextgen",
+    "studio-evidence",
+    "touch-evidence/build",
+    "touch-evidence/treasure",
+    "touch-evidence/workshop"
+  ],
+  "required_acceptance_job_count": 8,
+  "required_acceptance_jobs": [
+    "bundle-evidence",
+    "gameplay",
+    "learning-preview",
+    "new-worlds",
+    "studio",
+    "touch-build",
+    "touch-treasure",
+    "touch-workshop"
+  ],
+  "required_touch_capture_prefixes": [
+    "touch-evidence/build/captures/build_dialog_density_regression",
+    "touch-evidence/treasure/captures/treasure_density_regression",
+    "touch-evidence/workshop/captures/kart_workshop_density_regression"
+  ],
+  "treasure_png_count": 14,
+  "treasure_png_names": [
+    "treasure-2176x1812-play.png",
+    "treasure-2176x1812-complete.png",
+    "treasure-2400x1080-play.png",
+    "treasure-2400x1080-question.png",
+    "treasure-2400x1080-complete.png",
+    "treasure-2400x1080-inventory.png",
+    "treasure-1080x2400-play.png",
+    "treasure-1080x2400-question.png",
+    "treasure-1080x2400-complete.png",
+    "treasure-1080x2400-inventory.png",
+    "treasure-640x320-play.png",
+    "treasure-640x320-question.png",
+    "treasure-640x320-complete.png",
+    "treasure-640x320-inventory.png"
+  ],
+  "minimum_capture_dimension_pixels": 320,
+  "primary_action_contract_sources": [
+    "https://github.com/actions/upload-artifact",
+    "https://github.com/actions/download-artifact/blob/main/action.yml",
+    "https://github.com/actions/download-artifact/releases"
+  ],
+  "limits": [
+    "No new CI execution or fresh renderer image was claimed by this semantic review.",
+    "The resulting artifact still needs an actual successful run, original-ZIP verification and fresh visual review.",
+    "No guarantee of physical Android performance or final delivery acceptance."
+  ]
+}

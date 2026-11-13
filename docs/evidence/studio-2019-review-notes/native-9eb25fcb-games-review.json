@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "review_kind": "Independent original renderer image inspection; not a publication receipt",
+  "native_revision": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "source_dirty": "",
+  "reviewed_by": "Agent A / learning_worlds, independent of games author",
+  "reviewed_at": "2026-11-13T13:08:54.560737+00:00",
+  "method": "All ten original PNG files opened individually using view_image; compact obstruction additionally reproduced with production scene projection and actual InputEventScreenTouch dispatch.",
+  "status": "REJECTED_PUZZLE_COMPACT_LAYOUT",
+  "images": [
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_412x915.png",
+      "sha256": "ea2e9b40410c35c45f0cf50133eb44fc81e24ae4b0c46a51c8889453a532cca9",
+      "dimensions": [
+        412,
+        915
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "Portrait: Spieltisch, eingesetztes Teil und drei aktuell angebotene Teile sind sichtbar. Status erklärt den Tipp. Die Werkzeugleiste ist horizontal scrollbar; der lange Titel ist erkennbar gekürzt, ohne die Bedienelemente zu überlagern."
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "500ae746f8ab583ae8b9fcd180f7f3202f92256ee643bf9345320a24b5a4d6b4",
+      "dimensions": [
+        640,
+        360
+      ],
+      "verdict": "BLOCKING_UI_OCCLUSION",
+      "findings": "Obere Brettreihe und obere Ablageteile liegen unter dem 164px hohen HUD. Unabhängige Produktionsprobe: Zielzentren 0/1/2 liegen bei y154.762 innerhalb ProgressBar y136..163; Startstücke 0/3 bei y139.713. Tatsächliche ScreenTouch-Ereignisse wählen 0/3 nicht aus (dragging=-1), während Stück1 unterhalb des HUD anwählbar ist. Kandidat nicht für visuelle Freigabe geeignet."
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_840x760.png",
+      "sha256": "1a852be7e0fb640a6d61fbf2ca62eba77f8598eb7ae5e6a577894435f3e67e10",
+      "dimensions": [
+        840,
+        760
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "Falt-/Tabletformat: Brett, eingesetztes Teil und die drei vorderen Ablageteile bleiben sichtbar und getrennt von der Werkzeugleiste. Lange Menüleiste ist horizontal scrollbar; rechts sichtbare Textkürzung ist kein verdecktes Pflichtziel."
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_compact_menu.png",
+      "sha256": "c7a9a3935999671f8f38975ef6e2a1381fcc053fa07b74ec820db59faa960824",
+      "dimensions": [
+        640,
+        360
+      ],
+      "verdict": "NO_ADDITIONAL_BLOCKER_OBSERVED",
+      "findings": "Das 640x360-Auswahlmenü liegt vollständig im Fenster; nach Scrollen sind Drehpuzzle-Modus, Neustart, Fortsetzen und Rückkehr erreichbar. Der am oberen Scrollrand angeschnittene Inhalt ist absichtlicher Scrollausschnitt. Der dahinterliegende Puzzle-Blocker bleibt separat bestehen."
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_hint.png",
+      "sha256": "56a240ab05e93506deb170047b1ef80d677ad4b7cd84853ecb9f275d308396b6",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "1280x720: Falsch gedrehtes Teil liegt sichtbar am Ziel; der Status fordert ausdrücklich eine Drehung. Drehknopf, Hilfen und übrige Teile sind getrennt erkennbar. Aus dem Einzelbild allein wird keine Bewegung behauptet."
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "1280x720: Ein korrekt ausgerichtetes Teil sitzt auf dem Brett; Anzeige 1/6 und Fortschrittsbalken passen zum sichtbaren Zustand. Beide Ablagen und die gesamte Werkzeugleiste bleiben sichtbar."
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_table.png",
+      "sha256": "98549ca0d1293b62311bc9ebad93eef60d1fb4f35bee5e16ed6e614a16232f20",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "1280x720 Ausgangslage: Leeres Brett, sechs plastische Bildteile auf zwei Ablagen, Dreh-/Ziehanweisung und alle Werkzeugaktionen sichtbar. Seitliche Teilüberlappung entspricht der Ablageanordnung; kein HUD-verdeckter Teilmittelpunkt in dieser Größe festgestellt."
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "b5c5841c49acb556853eff5a0e71789c707c6f207e344bee166d23cf5dc7d1e9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "Originalfuchs in räumlicher Insel-/Schlossumgebung sichtbar. Routenwahl Kristallwächter oder Mondgarten und die Anforderung beider Funde sind lesbar. Stick, Springen, Ansehen, Rucksack und Pause sind getrennt sichtbar. Die Zählerzeile bricht 0/3 um; sie bleibt vollständig lesbar."
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "sha256": "56ff8ec31beee9510813cda1e569b77852e2cd9322d9a523b86fc3124981d512",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "Originalfuchs und Blumenfund sichtbar, Hinweisfortschritt 4/7 sowie nächstes Ziel verständlich. Fundmeldung nennt Mondblüte. Die getrennten Bewegungs-/Interaktionsaktionen und der Rucksack bleiben sichtbar."
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_route_complete.png",
+      "sha256": "e4445c7c465fac34f938a1d99baf20a6856174638d761683f7905a53501aa940",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_BLOCKER_OBSERVED",
+      "findings": "Abschlussdialog nennt sieben gelöste Hinweise, drei Sterne und 48 Erfahrungspunkte. Alle drei Aktionen Weitererkunden, neues Abenteuer und Rückkehr sind vollständig lesbar. Der Dialog überdeckt bewusst die Welt; daraus wird kein Fehler der Weltkamera abgeleitet."
+    }
+  ],
+  "limits": [
+    "No Android/device FPS claim",
+    "No final approved visual-review receipt",
+    "Fix requires a new native SHA, fresh full renderer CI and review of fresh PNGs"
+  ],
+  "followup": "Parent authorized a narrowly scoped camera/content-area fix in puzzle_world.gd and regression coverage. The original 9eb25fcb PNGs remain rejected and unmodified."
+}

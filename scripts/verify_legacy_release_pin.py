@@ -137,10 +137,12 @@ APPROVED = {
     # APK, Android surfaces, preserved 2017 upgrade and review receipt
     # remain independent mandatory gates before immutable publication.
     2018: "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
-    # 2019: original Kart home/world/effects source after actual image review.
-    # Source identity only: the complete native workflow, dated original-image
-    # receipt, fresh APKs and real Android/update gates still control publication.
-    2019: "25e3a1187234860414fa69822e7b301e75880c82",
+    # 2019: combined next-gen native line. It contains the reviewed Kart graphics
+    # source (25e3a118), the Studio touch repairs (24fb8580), the winter, creative
+    # and Kart-home heads and the Bauwelt living village, so no 2019 host builds
+    # against an older or partial native pin. Source identity only: the complete
+    # native workflow, fresh APKs and real Android/update gates still decide.
+    2019: "76d498662314da8cc9a2e1f1b8f0a6b45ef6fedd",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

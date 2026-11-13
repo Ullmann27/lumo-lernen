@@ -1,0 +1,380 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T13:44:02.401125+00:00",
+  "reviewed_by": "learning_worlds agent; independent original-image inspection",
+  "status": "NINETEEN_LISTED_LEARNING_FRAMES_VISUALLY_REVIEWED_NO_BLOCKER_OBSERVED",
+  "scope_visual_approval": true,
+  "release_approval": false,
+  "full_delivery_receipt": false,
+  "native_revision": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "native_artifact_id": 14044026458,
+  "native_workflow_run_id": 43434198014,
+  "archive_filename": "studio-learning-b5bc6e7c.zip",
+  "archive_sha256": "0d83c728669782efea12aa089042c93e3d6903d789a877d5759b2ca00ebd5a9d",
+  "archive_bytes": 13129874,
+  "archive_source_stamp": {
+    "entry": "source-sha.txt",
+    "value": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928"
+  },
+  "source_dirty_stamp_present": false,
+  "source_cleanliness_scope": "This learning-preview ZIP contains no source-dirty.txt. This note verifies its source SHA and original bytes, but does not independently infer a clean tracked working tree from a missing dirty stamp. Full native acceptance uses its separately required source/dirty stamps.",
+  "byte_binding": "All nineteen individually opened PNGs match their original ZIP members byte-for-byte; the complete original ZIP SHA-256 was recomputed.",
+  "metadata_scope": "Workflow and artifact IDs identify the coordinator-provided preview archive; this image-only review does not re-fetch GitHub acceptance-job metadata.",
+  "inspection_method": "Each of the nineteen selected original PNG files was opened separately with view_image. No image was replaced by a montage, recreation, generated asset or retouch.",
+  "scope": "Equal groups, fractions, 8+5 through ten on three layouts, subtraction, syllables and plant parts. Approval applies only to visual readability and presentation in these nineteen enumerated frames.",
+  "excluded_frames": [
+    "bridge_hundred-complete-2400x1080.png",
+    "bridge_hundred-complete-412x915.png",
+    "bridge_hundred-complete.png",
+    "bridge_hundred-start-2400x1080.png",
+    "bridge_hundred-start-412x915.png",
+    "bridge_hundred-start.png"
+  ],
+  "excluded_scope": "The six bridge_hundred frames are reserved for the coordinator review and were not visually approved in this note.",
+  "shared_observations": [
+    "The original Lumo is visible throughout the nineteen reviewed frames; no missing character/material texture or malformed geometry was observed.",
+    "No required learning object, group/part target or return/restart button is visibly hidden behind the head/footer UI in the reviewed frames."
+  ],
+  "limits": [
+    "Still images do not prove touch accuracy, object hitbox size, temporal animation transitions, speech synchronization or learning-profile persistence.",
+    "These desktop-renderer images do not prove Android lifecycle behavior, actual Android 17 execution, physical Galaxy Z Fold7 FPS or temperature.",
+    "All remaining native product reviews, complete runtime gates, original archive acceptance metadata and actual Android proof runs remain separate release requirements."
+  ],
+  "images": [
+    {
+      "filename": "equal_groups-complete.png",
+      "archive_entry": "images/equal_groups-complete.png",
+      "sha256": "693e6d6443b55091ea64ce4a0a5431ef0f71015404890ed4d12653eafc9d67c5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "equal_groups",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Alle drei Teller zeigen je vier einzeln erkennbare Würfel und den Zähler 4. Die Erklärung 3 mal 4 ist 12 stimmt mit den sichtbaren Gruppen überein.",
+        "Es bleiben keine Ausgangswürfel übrig. Der Einordnenknopf ist deaktiviert; Neustart und Rückkehr bleiben vollständig lesbar."
+      ]
+    },
+    {
+      "filename": "equal_groups-start.png",
+      "archive_entry": "images/equal_groups-start.png",
+      "sha256": "f87b424fa3b5773f144d533a24344d99817c145da218cd0ba7341f3e8d8bbea1",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "equal_groups",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Die vollständig lesbare Aufgabe 3 × 4 verlangt drei Gruppen mit je vier Würfeln; drei leere Teller mit Zähler 0 und alle zwölf Ausgangswürfel sind sichtbar.",
+        "Gruppenziele und Ausgangswürfel liegen außerhalb von Kopf- und Fußbereich; Einordnen, Neustart und Rückkehr sind vollständig sichtbar."
+      ]
+    },
+    {
+      "filename": "fraction_parts-complete.png",
+      "archive_entry": "images/fraction_parts-complete.png",
+      "sha256": "bec647a0a84f5fc9f10f08fe2a04038e72f39d1dda13aa91102fec986b2da692",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "fraction_parts",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Ein blauer und zwei gelbe Teile füllen drei der vier gleich großen Plätze; der vierte bleibt grau.",
+        "3/4 und die Erklärung zur unveränderten Teilgröße sind vollständig lesbar. Kein Bruchteil wird durch das UI verdeckt; Neustart und Rückkehr sind sichtbar."
+      ]
+    },
+    {
+      "filename": "fraction_parts-start.png",
+      "archive_entry": "images/fraction_parts-start.png",
+      "sha256": "dae35db7fadfdbe3415146cc4a99f61b771b9d68f6d7a338deb413889e95b29e",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "fraction_parts",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das Feld besteht aus vier gleich breiten Teilen: ein blauer Teil und drei leere graue Plätze; zwei gelbe Teile liegen darunter bereit.",
+        "Die körperliche Beschriftung 1/4 und die Anweisung, zwei Teile dazuzulegen, sind lesbar. Beide Ausgangsteile und alle Zielplätze sind frei sichtbar."
+      ]
+    },
+    {
+      "filename": "math-complete-1280x720.png",
+      "archive_entry": "images/math-complete-1280x720.png",
+      "sha256": "1d461553c8fc3dfead784a18fcd5fa348f7c7bc089e56b80a4a47d01dee90d8e",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld enthält zehn Würfel, das zweite drei; das Ausgangstablett ist leer.",
+        "Die Erklärung 8 + 5 = 10 + 3 = 13 entspricht der sichtbaren Zerlegung. Der Hilfeschrittknopf ist deaktiviert; Neustart und Rückkehr sind lesbar.",
+        "Beide Zehnerfelder und das rechte Ausgangstablett liegen vollständig zwischen Kopf- und Fußbereich; Lumo und alle drei Fußknöpfe sind sichtbar."
+      ]
+    },
+    {
+      "filename": "math-complete-2400x1080.png",
+      "archive_entry": "images/math-complete-2400x1080.png",
+      "sha256": "e969d77a7a1286732ff7d65465b1ff122e9caa615b8b019f6d17f52429a30b0b",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld enthält zehn Würfel, das zweite drei; das Ausgangstablett ist leer.",
+        "Die Erklärung 8 + 5 = 10 + 3 = 13 entspricht der sichtbaren Zerlegung. Der Hilfeschrittknopf ist deaktiviert; Neustart und Rückkehr sind lesbar.",
+        "Die vergrößerten Kopf- und Fußbereiche lassen beide Zehnerfelder und das rechte Ausgangstablett frei; die großen Textzeilen sind vollständig lesbar."
+      ]
+    },
+    {
+      "filename": "math-complete-412x915.png",
+      "archive_entry": "images/math-complete-412x915.png",
+      "sha256": "c3f8e0527ff768531c9ff2b32e82c190f812d8ac2eccff31dac76b909a848ac1",
+      "dimensions": [
+        412,
+        915
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld enthält zehn Würfel, das zweite drei; das Ausgangstablett ist leer.",
+        "Die Erklärung 8 + 5 = 10 + 3 = 13 entspricht der sichtbaren Zerlegung. Der Hilfeschrittknopf ist deaktiviert; Neustart und Rückkehr sind lesbar.",
+        "Im schmalen Hochformat stehen beide Zehnerfelder und das Ausgangstablett untereinander, außerhalb der UI-Überdeckung. Erklärtext und Abschluss-/Fortschrittstext umbrechen lesbar; alle drei Fußknöpfe sind vollständig sichtbar."
+      ]
+    },
+    {
+      "filename": "math-start-1280x720.png",
+      "archive_entry": "images/math-start-1280x720.png",
+      "sha256": "6bdbeb76a691f0bcef8e8ab39511da5b5e16c94deddf950a87ab67d9c352286e",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld enthält acht blaue Würfel und zwei freie Plätze; fünf gelbe Ausgangswürfel sind vollständig sichtbar.",
+        "Die lesbare Anweisung verlangt zuerst das Auffüllen bis zehn; der Fortschritt lautet 0 / 5.",
+        "Beide Zehnerfelder und das rechte Ausgangstablett liegen vollständig zwischen Kopf- und Fußbereich; Lumo und alle drei Fußknöpfe sind sichtbar."
+      ]
+    },
+    {
+      "filename": "math-start-2400x1080.png",
+      "archive_entry": "images/math-start-2400x1080.png",
+      "sha256": "1ac999494b8a1ccb1ef9f8fcf7f46e7aa77d78de88cd4047cc2ffa6c63337bf7",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld enthält acht blaue Würfel und zwei freie Plätze; fünf gelbe Ausgangswürfel sind vollständig sichtbar.",
+        "Die lesbare Anweisung verlangt zuerst das Auffüllen bis zehn; der Fortschritt lautet 0 / 5.",
+        "Die vergrößerten Kopf- und Fußbereiche lassen beide Zehnerfelder und das rechte Ausgangstablett frei; die großen Textzeilen sind vollständig lesbar."
+      ]
+    },
+    {
+      "filename": "math-start-412x915.png",
+      "archive_entry": "images/math-start-412x915.png",
+      "sha256": "5f4f430fc7ba90b9223562087d92e73eccd98d5459c414f97cee77f89aad19e0",
+      "dimensions": [
+        412,
+        915
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld enthält acht blaue Würfel und zwei freie Plätze; fünf gelbe Ausgangswürfel sind vollständig sichtbar.",
+        "Die lesbare Anweisung verlangt zuerst das Auffüllen bis zehn; der Fortschritt lautet 0 / 5.",
+        "Im schmalen Hochformat stehen beide Zehnerfelder und das Ausgangstablett untereinander, außerhalb der UI-Überdeckung. Erklärtext und Abschluss-/Fortschrittstext umbrechen lesbar; alle drei Fußknöpfe sind vollständig sichtbar."
+      ]
+    },
+    {
+      "filename": "math-ten-1280x720.png",
+      "archive_entry": "images/math-ten-1280x720.png",
+      "sha256": "4bc327656b40ce16795e08a5427f8c6bf541115ae8b2126763237dda0b533ae0",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld ist mit acht blauen und zwei gelben Würfeln gefüllt; drei gelbe Ausgangswürfel bleiben sichtbar.",
+        "Die Erklärung nennt die volle Zehn und die drei verbleibenden Würfel; der Fortschritt 2 / 5 stimmt mit dieser Zwischenstufe überein.",
+        "Beide Zehnerfelder und das rechte Ausgangstablett liegen vollständig zwischen Kopf- und Fußbereich; Lumo und alle drei Fußknöpfe sind sichtbar."
+      ]
+    },
+    {
+      "filename": "math-ten-2400x1080.png",
+      "archive_entry": "images/math-ten-2400x1080.png",
+      "sha256": "4795caf4663c9b51167cb21243608d8c7ed354d4bf07fd6cb9293e95dde30db9",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld ist mit acht blauen und zwei gelben Würfeln gefüllt; drei gelbe Ausgangswürfel bleiben sichtbar.",
+        "Die Erklärung nennt die volle Zehn und die drei verbleibenden Würfel; der Fortschritt 2 / 5 stimmt mit dieser Zwischenstufe überein.",
+        "Die vergrößerten Kopf- und Fußbereiche lassen beide Zehnerfelder und das rechte Ausgangstablett frei; die großen Textzeilen sind vollständig lesbar."
+      ]
+    },
+    {
+      "filename": "math-ten-412x915.png",
+      "archive_entry": "images/math-ten-412x915.png",
+      "sha256": "5b55c28fffbe66904672af973af520312066def2ff43f8ea8471c989f22ec341",
+      "dimensions": [
+        412,
+        915
+      ],
+      "module": "learning",
+      "activity": "bridge_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das erste Zehnerfeld ist mit acht blauen und zwei gelben Würfeln gefüllt; drei gelbe Ausgangswürfel bleiben sichtbar.",
+        "Die Erklärung nennt die volle Zehn und die drei verbleibenden Würfel; der Fortschritt 2 / 5 stimmt mit dieser Zwischenstufe überein.",
+        "Im schmalen Hochformat stehen beide Zehnerfelder und das Ausgangstablett untereinander, außerhalb der UI-Überdeckung. Erklärtext und Abschluss-/Fortschrittstext umbrechen lesbar; alle drei Fußknöpfe sind vollständig sichtbar."
+      ]
+    },
+    {
+      "filename": "plant_parts-complete.png",
+      "archive_entry": "images/plant_parts-complete.png",
+      "sha256": "ae81e7c0cd33a0d13a912d7340e5976641ac70fd7c673a0232119c01ea34fca2",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "plant_parts",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Das Pflanzenmodell zeigt einen größeren Stängel, Blätter und Blüte; sämtliche vier Pflanzenteile bleiben außerhalb der UI-Überdeckung sichtbar.",
+        "Der Blütenhinweis zu Fortpflanzung, Früchten und Samen ist vollständig lesbar. Der Abschlusszustand deaktiviert Wasser/Sonne; Teilknöpfe, Neustart und Rückkehr bleiben sichtbar.",
+        "Der dekorative Sonnenkörper ist am oberen Bildrand teilweise durch den Kopfbereich verdeckt; keine erforderliche Teilbeschriftung oder Buttonsteuerung wird dadurch unlesbar."
+      ]
+    },
+    {
+      "filename": "plant_parts-start.png",
+      "archive_entry": "images/plant_parts-start.png",
+      "sha256": "0013fd54ec89d2cca1829bf1d13bf331c75c1defcc800f12b8540bc292913779",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "plant_parts",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Wurzeln, Stängel, Blätter und Blüte sind als getrennte, erkennbare Teile des zentralen räumlichen Pflanzenmodells sichtbar.",
+        "Die Anweisung, Wasser und Sonne einzusetzen sowie die vier Teile anzutippen, ist vollständig lesbar. Alle vier Teilknöpfe, Wasser-/Sonnenknöpfe, Neustart und Rückkehr sind vollständig sichtbar.",
+        "Das UI verdeckt keines der vier abgefragten Pflanzenteile. Der dekorative Sonnen-/Wetterkörper am oberen Bildrand ist nur teilweise sichtbar; die zugehörige Buttonsteuerung bleibt vollständig sichtbar."
+      ]
+    },
+    {
+      "filename": "subtract_ten-complete.png",
+      "archive_entry": "images/subtract_ten-complete.png",
+      "sha256": "412b0990f744720991fe483e4c87d2cf442fabca9be0b4df273dc326eb4086d5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "subtract_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Im oberen Zehnerfeld bleiben acht Würfel; das zweite Feld ist leer. Fünf weggenommene Würfel liegen getrennt im rechten Behälter.",
+        "Die Erklärung 13 minus 5 ist 8 entspricht der sichtbaren Menge. Der Wegnahmeknopf ist deaktiviert; Neustart und Rückkehr sind vollständig lesbar."
+      ]
+    },
+    {
+      "filename": "subtract_ten-start.png",
+      "archive_entry": "images/subtract_ten-start.png",
+      "sha256": "268e8c2d671205894611bc6435aeeceb2ab0ce0d9d28ead0bd065b853135a7c1",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "subtract_ten",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Für 13 − 5 zeigen die Felder vollständig zehn plus drei blaue Würfel; der separate Wegnahmebehälter ist leer.",
+        "Die Erklärung, zuerst drei Würfel bis zur Zehn wegzunehmen, ist lesbar. Beide Felder, Wegnahmeziel und die drei Fußknöpfe sind frei sichtbar."
+      ]
+    },
+    {
+      "filename": "syllables-complete.png",
+      "archive_entry": "images/syllables-complete.png",
+      "sha256": "11cebd9159f7b0098f6a861257dec87aac3ae0298e9646d11c38bb8d6db72917",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "syllables",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Die drei Silbenblöcke stehen in der korrekten Reihenfolge Ba – na – ne auf ihren Zielplätzen; das vollständige Wort Banane bleibt lesbar.",
+        "Die Erklärung nennt drei Silben. Fortschrittsabschluss sowie Neustart und Rückkehr sind sichtbar; keine erforderliche Buchstabenbeschriftung wird verdeckt."
+      ]
+    },
+    {
+      "filename": "syllables-start.png",
+      "archive_entry": "images/syllables-start.png",
+      "sha256": "cd90ac66dd49f90c2ac876a6828f25cee5c90dddd32c4e4aac1ee859204b508b",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "module": "learning",
+      "activity": "syllables",
+      "opened_individually": true,
+      "verdict": "NO_BLOCKING_VISUAL_DEFECT_OBSERVED",
+      "findings": [
+        "Banane ist oberhalb der drei leeren Zielplätze lesbar. Die einzelnen körperlichen Silbenblöcke ne, na und Ba liegen getrennt darunter.",
+        "Die Anweisung nennt Ba als nächste Silbe. Alle Blöcke, Zielplätze und Fußknöpfe bleiben ohne UI-Überdeckung sichtbar."
+      ]
+    }
+  ],
+  "blocking_findings": []
+}
