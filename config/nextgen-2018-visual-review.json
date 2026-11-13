@@ -1,13 +1,212 @@
 {
   "schema": 1,
-  "status": "pending",
+  "status": "approved",
   "versionCode": 2018,
-  "native_revision": null,
-  "native_workflow_run_id": null,
-  "native_artifact_id": null,
-  "native_artifact_sha256": null,
-  "reviewed_by": null,
-  "reviewed_at": null,
-  "images": [],
-  "notes": "Publication is blocked until the final rendered production scenes have been inspected and their exact source and original PNG hashes recorded."
+  "native_revision": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+  "native_workflow_run_id": 43365141980,
+  "native_artifact_id": 14010558382,
+  "native_artifact_sha256": "84a71c209c7f01015b2dd1735d27087c40b2ed37fb022c406b959128d5e0bb4c",
+  "reviewed_by": "Codex agents: Root, Learning, Character/Jump, Kart, Creative Games, Cards, Integration QA",
+  "reviewed_at": "2026-11-13T04:48:29.879295+00:00",
+  "notes": "Original X11 software-renderer images from the exact successful production source were inspected as documented in metadata/reviews. Selected current originals and explicitly recorded byte-identical comparisons cover every changed module, both corrected plant stages, and phone/landscape layouts. This approves the observed scene presentation and legibility; it is not an AAA certification, physical Fold7/Android17/FPS/thermal/touch-latency measurement or acoustic/lip-sync acceptance. Signed APK, actual Android surfaces and preserved2017 upgrade remain independent mandatory publication gates.",
+  "images": [
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/01-learning-math-complete-412x915.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/math-complete-412x915.png",
+      "sha256": "8f0e89d6bafe8bb4aba5a42ea0fad0803972109652ff48f016c91fbcbead1e8e",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "All 13 counters remain individually visible in the portrait lesson; text and action targets do not overlap. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/02-learning-syllables-start.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/syllables-start.png",
+      "sha256": "6a337e1646429100ce146ace212ffc4e34dc421683d384117a44807a17da5886",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Complete raised syllable glyphs remain visible above their 3D blocks. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/03-learning-fraction_parts-complete.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/fraction_parts-complete.png",
+      "sha256": "05c03fba06d11e1afadb4ac6c68fd5d29de3fbea4333ee3aac83e5afe7a545c5",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "The assembled fraction and its reactive numeric label agree; source pieces remain above the footer. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/04-learning-bridge_hundred-complete.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete.png",
+      "sha256": "1a8d6b1c5fb69637c7c8dc131cb6c46b99ef610f8e2db1f84672eca76f63e67b",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Hundreds and tens are explicitly labelled and the shown place-value decomposition matches the animated objects. Reviewed by Team A and Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/05-learning-plant_parts-start.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/plant_parts-start.png",
+      "sha256": "e73c623b40b6a3b753c96fba9b24b23973f042b38983e785d6fd3912fde97a3d",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "The initial plant lesson has a neutral Pflanzen entdecken title and a general water/sun/four-parts instruction. Root and Integration QA opened this exact 51fb preview image; no unrelated part is named in the heading."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/06-learning-plant_parts-complete.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/plant_parts-complete.png",
+      "sha256": "ae5bd329ac1e3b1242e5d7c0657607ad2d9c0dfa3a0ece8ef9bdec26bc27858f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "The final title explicitly names Blüte and agrees with the selected flower explanation. Root and Integration QA opened this exact 51fb preview image; the earlier cc6 Blatt/Blüte mismatch is visibly corrected."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/07-jump-jump_412x915_touch_ascent.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_touch_ascent.png",
+      "sha256": "fd68b356b92da0eb0c2465e1f8e91078b09d572915a8bf036a123df5e0608136",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Portrait stick and jump target are complete and separated; the original rig is coherently posed during ascent. Reviewed by Team B."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/08-jump-jump_1280x720_landed.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_1280x720_landed.png",
+      "sha256": "f8b6692ad31eb08ba6ae18ee99678441f23f7dcfb40aa7a02d27f9fe29a9bea8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Original Lumo has plausible settled ground contact and no visible twisted limbs; this frame is settled idle, not a separate proof of the impact frame. Reviewed by Team B."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/09-build-02_build_moved.png",
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "sha256": "f491833356b48fb399d9c2452d74bc9c3935a8bedd323746893e0be3d58b06f3",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "The moved bridge and 90-degree rotation are visibly distinct from the initial placement, with free touch controls. Reviewed by Team D."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/10-build-03_build_walking.png",
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "sha256": "9824843382c813e831cf3456fc6e56ec85de0abcb8096e4b31e8f9ea04060666",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Original Lumo walks inside the editable 3D world; the build and movement controls remain unobstructed. Reviewed by Team D."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/11-settlement-03_settlement_rival_day.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/03_settlement_rival_day.png",
+      "sha256": "568e2966ae03f0f45f2157447b20a3b35bc2d426533c04317e29ad740b6e0f8e",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "The current hover/pressed action text is dark and legible on mint. The visible day, resources and opponent expansion are consistent. Teams C and D reviewed the final settlement scope; Integration QA independently opened the identical-source contrast correction."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/12-settlement-06_settlement_relocation.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "dimensions": [
+        388,
+        390
+      ],
+      "findings": "The complete portrait relocation dialog and both explicit decision actions are inside the viewport. Reviewed by Teams C and D; this image covers the dialog, not a complete portrait city overview."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/13-garage-garage-1280x720.png",
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "The visible workshop wheel and original fox head occupy separated projected regions; vehicle, navigation and actions are readable. Reviewed by Team C."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/14-garage-garage-412x915.png",
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+      "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Portrait garage preserves readable controls, selected vehicle and the original character without the earlier head/wheel overlap. Reviewed by Team C."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/15-cards-cards-table-1280x720.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Table, opponent, discard and player hand remain separated; title, current turn, pause and draw are legible. Matte wood detail is quieter than the earlier render. Reviewed by Integration QA and Root."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/16-cards-cards-table-412x915.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "All three visible hand cards, paging and draw remain fully visible on the narrow portrait viewport. Disabled play action is intentional. Reviewed by Integration QA."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/17-rhythm-01_rhythm_tour_map.png",
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/01_rhythm_tour_map.png",
+      "sha256": "265f589f5b54f3e5427d32c5a9eeeb94d0741983829aa3f6452292bda070c8f6",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Tour choices and progress labels are legible against the staged 3D scene. Reviewed by Team D."
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/18-rhythm-02_rhythm_slide.png",
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "3a0abe98f83be1cbcf6c75ad482d1d1ce870d2b104394595d0a2d272fc925364",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Four rhythm lanes, slide cue, score and dark-backed feedback remain visible and legible. Reviewed by Team D."
+    }
+  ]
 }

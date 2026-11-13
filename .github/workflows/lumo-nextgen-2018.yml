@@ -481,9 +481,8 @@ jobs:
   publish-reviewed-2018:
     name: Publish visually reviewed Build 2018 ARM64 APK for direct Chrome download
     needs: [verify-and-build, android-host-compile, android-tour, update-2018-from-2017]
-    # Explicitly disabled until the final images and immutable native pin are approved.
+    # Exact reviewed native images and all independent live proofs remain mandatory.
     if: >-
-      false &&
       github.event_name == 'pull_request' &&
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event.pull_request.head.repo.full_name == github.repository &&

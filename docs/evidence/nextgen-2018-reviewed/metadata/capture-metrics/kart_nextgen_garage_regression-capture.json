@@ -1,0 +1,122 @@
+[
+	{
+		"draw_calls": 224,
+		"height": 720,
+		"host_behavior": "greeting_wave",
+		"name": "garage-1280x720",
+		"renderer": "gl_compatibility",
+		"selected_kart": "comet",
+		"width": 1280,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 221,
+		"height": 720,
+		"host_behavior": "point_portal",
+		"name": "selection-1280x720",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 1280,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 194,
+		"height": 720,
+		"host_behavior": "point_portal",
+		"name": "zoom-1280x720",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 1280,
+		"zoom": 0.8
+	},
+	{
+		"draw_calls": 677,
+		"height": 720,
+		"host_behavior": "greeting_wave",
+		"name": "track-goals-1280x720",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 1280,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 176,
+		"height": 915,
+		"host_behavior": "greeting_wave",
+		"name": "garage-412x915",
+		"renderer": "gl_compatibility",
+		"selected_kart": "comet",
+		"width": 412,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 173,
+		"height": 915,
+		"host_behavior": "point_portal",
+		"name": "selection-412x915",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 412,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 175,
+		"height": 915,
+		"host_behavior": "point_portal",
+		"name": "zoom-412x915",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 412,
+		"zoom": 0.799999782017299
+	},
+	{
+		"draw_calls": 640,
+		"height": 915,
+		"host_behavior": "greeting_wave",
+		"name": "track-goals-412x915",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 412,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 226,
+		"height": 1080,
+		"host_behavior": "greeting_wave",
+		"name": "garage-2400x1080",
+		"renderer": "gl_compatibility",
+		"selected_kart": "comet",
+		"width": 2400,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 223,
+		"height": 1080,
+		"host_behavior": "point_portal",
+		"name": "selection-2400x1080",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 2400,
+		"zoom": 1.0
+	},
+	{
+		"draw_calls": 194,
+		"height": 1080,
+		"host_behavior": "point_portal",
+		"name": "zoom-2400x1080",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 2400,
+		"zoom": 0.7999999031188
+	},
+	{
+		"draw_calls": 647,
+		"height": 1080,
+		"host_behavior": "greeting_wave",
+		"name": "track-goals-2400x1080",
+		"renderer": "gl_compatibility",
+		"selected_kart": "gecko_velo",
+		"width": 2400,
+		"zoom": 1.0
+	}
+]

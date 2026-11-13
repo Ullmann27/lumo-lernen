@@ -1,0 +1,214 @@
+{
+  "reviewer": "Team C /root/kart",
+  "source_sha": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+  "scope": "Read-only visual review of all 12 Kart garage and 6 settlement original CI renderer captures; corresponding two rendered probe logs and capture metrics inspected.",
+  "result": "PASS_WITH_NONBLOCKING_LIMITATIONS",
+  "blocking_findings": [],
+  "verified": [
+    "Garage and selected original Lumo actor, original kart, balancing machine and menu are visible in all three base layouts; wheel and fox head remain clearly separated.",
+    "Selection images visibly show Gecko Velo and a changed original-actor gesture; capture telemetry records point_portal after actual selection.",
+    "Garage navigation and start/back controls remain legible; partial list cards are contained inside scroll regions.",
+    "Track goal captions show 0/3 and 2 Runden ins Ziel in all three formats; aggregate 0/36 is shown in layouts with the list heading.",
+    "Settlement cost cards, resources, progression requirements, neighbor state and end-of-round feedback remain legible.",
+    "Previously reported white-on-mint Next Day and Planen labels are now dark and legible in the actual active-state images 03 and 04.",
+    "Settlement result image identifies Mira as first to the goal, states the building plan is preserved, and shows Neue Runde.",
+    "Relocation dialog fits its 388x390 rendered viewport; exact one departing/two remaining residents, static refund, growth and undo explanation, Haus behalten and Ja, umbauen are completely visible."
+  ],
+  "nonblocking_limitations": [
+    "Intentional 0.8 close zoom in 412x915 clips the decorative balancing-wheel outer edge at the right of the image. Kart, original Lumo and controls remain visible; base and selection framing preserve the complete wheel.",
+    "The settlement capture set includes five landscape full scenes and one portrait-sized dialog viewport. Complete portrait settlement screens were not visually captured in this set; the passed production regression includes layout rectangle and minimum-target checks.",
+    "High-density landscape mode uses a scroll list without the aggregate heading; next goal text remains visible per track.",
+    "These are Linux Mesa llvmpipe OpenGL Compatibility renderer results, not Android Fold7 FPS, thermal or input-latency measurements."
+  ],
+  "metrics": {
+    "garage_render_checks": 118,
+    "settlement_render_checks": 139,
+    "visually_reviewed_png_count": 18,
+    "garage_draw_calls_min": 173,
+    "garage_draw_calls_max": 226,
+    "track_goal_view_draw_calls_min": 640,
+    "track_goal_view_draw_calls_max": 677,
+    "renderer": "Godot 4.6.3 gl_compatibility; Mesa llvmpipe LLVM 20.1.2",
+    "android_fps_measured": false
+  },
+  "render_log_notes": "Both inspected logs finish with PASS and contain no ERROR, leaked or resources-still-in-use lines. Driver capability warnings for VSync, screen-space AA and volumetric fog are present.",
+  "logs": {
+    "kart_nextgen_garage_regression": {
+      "path": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "pass_marker_present": true,
+      "error_lines": []
+    },
+    "build_settlement_play_regression": {
+      "path": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "pass_marker_present": true,
+      "error_lines": []
+    }
+  },
+  "images": [
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "sha256": "633f8330997b0b748e897a43385aaad1bec4961561e01b5c81b3e5befec97a48",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+      "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b",
+      "dimensions": [
+        412,
+        915
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-1280x720.png",
+      "sha256": "01f56f1f34f922d4b3d11dd9949efa7912f874ed0d3cb22b2a43b22cf39ec06f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-2400x1080.png",
+      "sha256": "cbeb1578dc2166d2b518c99bff80383f2ebabd45e997d9fa6716bbeeb251be3d",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-412x915.png",
+      "sha256": "7332be0f869a8ce07d42c871853f76aaf2d705f3bb36bfb8716eae43d184eb65",
+      "dimensions": [
+        412,
+        915
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-1280x720.png",
+      "sha256": "6442cefc5feb3b38f69a5a9025772f178b9ae96a4267e12595992afc54e83ae8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-2400x1080.png",
+      "sha256": "cf887c1a0be8a3798bf8861aa84b361c65629baf6731a6e73b4391c86953555b",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-412x915.png",
+      "sha256": "55e3cb2a7dace8caa2108bf702edb32ff0d7cf7331738512c9f82c72079ad606",
+      "dimensions": [
+        412,
+        915
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-1280x720.png",
+      "sha256": "0903fbc28591dccfe53703e6663f45ccdd9ca60dfa58a42209c819dafd862033",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-2400x1080.png",
+      "sha256": "7cd2fd08d7aa0127b39897529a5ff186f7068fddcefb0928ddb8eeef577e0647",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-412x915.png",
+      "sha256": "f890ee169501a69ea3f9c3cf7dac6e49d746aa08dd12b96e73037ddb7593c58e",
+      "dimensions": [
+        412,
+        915
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/01_settlement_start.png",
+      "sha256": "555a61623a6c2462de99b25f0cb77ae9cfcd13e3cf35865ff92e19e918cd9bfb",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/02_settlement_purchases.png",
+      "sha256": "b0b1bf35bfa7632814419ec668a4f9271d0f02aeb3f979ab28b5baabb7f4b4fc",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/03_settlement_rival_day.png",
+      "sha256": "568e2966ae03f0f45f2157447b20a3b35bc2d426533c04317e29ad740b6e0f8e",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "sha256": "20acd7d0e5059d1b27e84670604c11270df40bec031bbd8d1a3fb128b7a111db",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/05_settlement_result.png",
+      "sha256": "57929feb14a99429faf4282a715abf157f8591458e67f09b5094616de42b845f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visually_opened_and_reviewed": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "dimensions": [
+        388,
+        390
+      ],
+      "visually_opened_and_reviewed": true
+    }
+  ],
+  "source_files_changed": []
+}

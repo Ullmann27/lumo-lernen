@@ -133,6 +133,10 @@ APPROVED = {
     # Source identity only; exact-source native, Android and in-place update gates
     # must pass before the immutable ARM64 test APK can be published.
     2017: "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57",
+    # 2018: exact Nextgen source after full native and visual review.
+    # APK, Android surfaces, preserved 2017 upgrade and review receipt
+    # remain independent mandatory gates before immutable publication.
+    2018: "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
