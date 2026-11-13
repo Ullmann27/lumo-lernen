@@ -1,4 +1,48 @@
-# Continue LUMO Next Generation / candidate 2018
+# Continue original LUMO Kart graphics / candidate 2019
+
+The current isolated host branch is `chatgpt/lumo-kart-graphics-apk-20261113`,
+based on PR #461 recovery `8eab228433f124c1e2332e3d3c2ecf462ec8b136`.
+Native changes are in PR #159, `chatgpt/lumo-graphics-expansion-20261113`, based
+on PR #157 source `ada5ed81ad62339f15289da62670c0a4f9f7f2b9`.
+The historical 2018 notes below are retained as history, not current delivery
+approval. Main and previous releases remain untouched.
+
+1. Check the actual branch/PR heads and dirty workspaces before continuing.
+   Existing concurrent worktrees are not disposal candidates. Save through the
+   authorized GitHub connector with exact-tree checks and expected-SHA leases;
+   do not reset, force push or depend on an unavailable authenticated CLI push.
+2. Read `docs/KART_GRAPHICS_2019_QA.md` and
+   `docs/KART_GRAPHICS_2019_DELIVERY.md`. The final native candidate is
+   `ea72b244cd279057255476a1f6103d29520a6ec5`, tree
+   `3b5eaabe2e8488eec646c6b949efee08b8c75252`, graphics run `43441307548`.
+   Worlds and Feedback succeeded; Root and their module agents opened all six
+   current images in each area. Their verified original bytes are preserved in
+   `docs/evidence/kart-graphics-2019-reviewed/`. The current Home capture and all
+   seven new/preserved Home gates passed, but attempt 1's old-source importer
+   segfaulted (exit 139). Its failure excerpt is preserved. The exact failed
+   Home job was retried with unchanged code; complete run acceptance is still
+   pending. No final visual receipt or 2019 APK is approved.
+3. Native corrections include physical menu preview resolution, ground-connected
+   winter stations with exact obstruction checks, live vehicle-effect rebinding,
+   and the actual Cards header safe-area defect found in the 2018 Android tour.
+   The 2018 tour's repeated Pause OCR rejection must not be hidden by relaxing
+   OCR, card-face pixel, same-revision, two-frame or timeout gates.
+4. Version, native config, the additive `APPROVED[2019]` entry and current-candidate
+   tests now bind 0.13.7+2019 to the exact native candidate. The 24 pin-policy
+   tests pass. This source identity decision follows actual current-image review
+   and does not replace full workflow acceptance. After the retry and all three
+   final native jobs succeed, create the dated receipt with original
+   logs/PNGs/API metadata. Preserve every historical pin and the 2018 workflow,
+   receipt and publisher. Recheck PR #461 for concurrent recovery before the
+   final host PR. The dedicated 2019 internal PR workflow builds fresh signed
+   ARM64/x86 APKs and performs the full Android tour and real 2017-to-2019 update.
+5. Complete actual Android acceptance and immutable public publication. Verify
+   the direct HTTPS APK bytes, signature, source identity, size and SHA-256
+   before returning a link. An earlier APK or desktop image review cannot stand
+   in for this candidate. Physical Fold7/Android17 performance, thermal behavior,
+   audible speech and input latency remain outside emulator proof.
+
+## Historical Next Generation / candidate 2018 handoff
 
 Current work is on `chatgpt/lumo-nextgen-20261113`, host PR #461 and native PR #157. Do not switch back to the previous 2017 branch or replace the current dirty workspace. Main remains unchanged.
 

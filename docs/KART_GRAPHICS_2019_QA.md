@@ -108,8 +108,20 @@ actual submitted station parts; a foreign 10-cm obstruction is a permanent
 negative case. Its local lifecycle passes 50 geometry checks and completes
 audio teardown without errors. These geometry results do not replace images.
 
-No final visual receipt is approved at this checkpoint. Final images must be
-opened and accepted after all three actual jobs complete successfully.
+Attempt 1 completed the new Home capture (324 checks in all four formats),
+Home 251, preview resolution 52, Cards 295, promenade 11, Spatial 554 and
+Garage 93. Worlds completed 72 rendered checks / 6072 triangles plus the
+50-check visibility lifecycle; feedback completed 61 rendered checks.
+However, the unmodified prior source's separate headless editor import
+segfaulted at CSV reimport, exit 139. The complete attempt therefore failed.
+The old source had passed its previous comparison run; no new product defect
+has been identified from this native importer crash. Root retried the exact
+failed Home job on unchanged source. The original failure excerpt is retained
+under `docs/evidence/kart-graphics-2019-reviewed/diagnostics/`.
+
+No final visual receipt is approved at this checkpoint. The retry and complete
+run must succeed. Original final artifact identities and PNGs must be checked
+again before approval; successful partial outputs do not bypass this boundary.
 
 ## Final acceptance boundary
 
