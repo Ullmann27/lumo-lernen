@@ -1,0 +1,588 @@
+{
+  "schema": "lumo-evidence-upload-manifest-v1",
+  "source_commit": "f63618670359af93a25f84a69cbfab4c583b6c53",
+  "run_id": 43496485216,
+  "artifact_id": 14073627515,
+  "original_zip_sha256": "abb001a6def3358aceccd276472a8f032bb53bbfe1265c355b12de01a9ae5ce3",
+  "file_count_excluding_manifest": 58,
+  "total_bytes_excluding_manifest": 10924310,
+  "files": [
+    {
+      "path": "original/framework-start/framework-readiness.json",
+      "bytes": 32970,
+      "sha256": "eea9453d1054d6a6b6e2a0a3e744308e95a40f1ac29d3f04ceba4b8c054d8086",
+      "git_blob": "dc45cbddecce033578ca2ab1dd57429c3457a445",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/framework-readiness.json",
+      "original_zip_member": "framework-start/framework-readiness.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/monitor-finished.json",
+      "bytes": 1072,
+      "sha256": "d5559a98da57d293861bdf52b308aa17f1f30428b93a07313a294151a4eeabde",
+      "git_blob": "ba3c4e731381393b9f740ada7fe7bf37182bcce4",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/monitor-finished.json",
+      "original_zip_member": "framework-start/monitor-finished.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/action-patch-manifest.json",
+      "bytes": 3510,
+      "sha256": "b75b6995cc6b326587c70015cb83b27e919d29d6dd01e05bbd4046058a8ad6f0",
+      "git_blob": "b633ca1b999846d4766c794824916f5d1d41a4d7",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/action-patch-manifest.json",
+      "original_zip_member": "framework-start/action-patch-manifest.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/prepared.json",
+      "bytes": 48082,
+      "sha256": "aef4f50b6b0c5e9e1bb557dc815bf31efba1f26b892930cf4c14e7be3a6fdf73",
+      "git_blob": "bee8a2d6d27ff8708abdd047646844888411867b",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/prepared.json",
+      "original_zip_member": "framework-start/cli22/prepared.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/verified-guard.json",
+      "bytes": 38200,
+      "sha256": "be943323e0eef9deb775a4c75c14bd115804bc35f93a34c6e7791bdf0ed5d805",
+      "git_blob": "b68846bccb78799f0207568e563a2fff7e1e7340",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/verified-guard.json",
+      "original_zip_member": "framework-start/cli22/verified-guard.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/commands/0001-data-filesystem.stdout",
+      "bytes": 120,
+      "sha256": "e7e0eded06de5ee57da52d97eb36f2450b5e5eb4ee817bfad11c0d6543f15f79",
+      "git_blob": "0768a8d28035e12b33620c02685a86fd9dee9cb2",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/commands/0001-data-filesystem.stdout",
+      "original_zip_member": "framework-start/commands/0001-data-filesystem.stdout",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/recheck/before.json",
+      "bytes": 2346,
+      "sha256": "8d8aae3fb4f67105a5552a8eb9edddf9538ed428d14a4e854c9157fb5c5b8f16",
+      "git_blob": "752f6b0744e9729523e72547907a6a5a4f661950",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/recheck/before.json",
+      "original_zip_member": "recheck/before.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/tour-result.json",
+      "bytes": 9752,
+      "sha256": "e098948a40b01d9bc82f6e2969c15b3a7eeac537bf4141863198c3c6f7be9625",
+      "git_blob": "110b35508a0cfff49548d1049f50084e19fcd8d2",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/tour-result.json",
+      "original_zip_member": "tour-result.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/native-surfaces-result.json",
+      "bytes": 8111,
+      "sha256": "5e0f143d60ec58234d1a0389d345cf57f8d39a73815a3e9d8cb532d3f87f090d",
+      "git_blob": "36435f283895f474973682d396bc9c3d92fb042c",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/native-surfaces-result.json",
+      "original_zip_member": "nextgen/native-surfaces-result.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/cards-initial-readiness.json",
+      "bytes": 40669,
+      "sha256": "a557e1f0156e7bb211dedfb1f33d871ccce7fb228dbf1ba6f7a3cdf069d9760a",
+      "git_blob": "819a6bc48fb50b20e50989bb8e876c730ce346ea",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/cards-initial-readiness.json",
+      "original_zip_member": "nextgen/cards-initial-readiness.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/learning-movement-logcat.txt",
+      "bytes": 2303,
+      "sha256": "0ef52afa98fe637554bbd09d56632e15ea9f0e90c7f524a60a226b9159849dab",
+      "git_blob": "053668abde7ef7d80061d41ea276f0448334e985",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/learning-movement-logcat.txt",
+      "original_zip_member": "nextgen/learning-movement-logcat.txt",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/learning-speech-logcat.txt",
+      "bytes": 2426,
+      "sha256": "6d65fb954f4c6f667b49b28ef399353e84e9f8bf03f0598edda915e60fcd2381",
+      "git_blob": "1e44d7a4416f9e4c3e2a425ffd98275de7e2f822",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/learning-speech-logcat.txt",
+      "original_zip_member": "nextgen/learning-speech-logcat.txt",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/05_learning_same_flutter_lesson-0.xml",
+      "bytes": 24928,
+      "sha256": "807aed17f6e9dd48790e1c69bff199a2c8d03356f0886bfa85eadfc2e2069367",
+      "git_blob": "edab9e3577b3a2bd075df74867e9ec91220a715a",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/05_learning_same_flutter_lesson-0.xml",
+      "original_zip_member": "nextgen/05_learning_same_flutter_lesson-0.xml",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/05_learning_same_flutter_lesson-render-readiness.json",
+      "bytes": 572,
+      "sha256": "e558b59e1f4e9a41a1c60286cdb0394d0761334a8999761bc06e9eefbcaf55e3",
+      "git_blob": "a8083df949d74d45f376cf0e11f92acbd1dd8c7f",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/05_learning_same_flutter_lesson-render-readiness.json",
+      "original_zip_member": "nextgen/05_learning_same_flutter_lesson-render-readiness.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-original/snapshot.json",
+      "bytes": 5852,
+      "sha256": "eca9459db68db19357e7aafc46758b4ece78fa7073d24c737967dfef49b622cc",
+      "git_blob": "eb20e812d1ca9099cee323418b52b8c4d8890720",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-original/snapshot.json",
+      "original_zip_member": "framework-start/cli22/avd-original/snapshot.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-original/avd.ini",
+      "bytes": 137,
+      "sha256": "7e212db19fb6a0a3bfec716fb358f30472c5a55e775db9738d228b271d33bdd5",
+      "git_blob": "383ee943ba0cdda2b5fe47d609368c9fe509a716",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-original/avd.ini",
+      "original_zip_member": "framework-start/cli22/avd-original/avd.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-original/configuration/config.ini",
+      "bytes": 3555,
+      "sha256": "858e0f30354c358913cc64907cd0c4acec70468851bc2882227c8ae50305d22a",
+      "git_blob": "5e1cd7c2ef9a0b38dc6352d42be26de59d1db820",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-original/configuration/config.ini",
+      "original_zip_member": "framework-start/cli22/avd-original/configuration/config.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-before-boot/snapshot.json",
+      "bytes": 5782,
+      "sha256": "7c3f23e2dc11e7df2e803eb538404daac5fcaeacb96f70ce8292a54eeb2a0068",
+      "git_blob": "6688587ef2b32f079e8c35b1b0f744f344d3c904",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-before-boot/snapshot.json",
+      "original_zip_member": "framework-start/cli22/avd-before-boot/snapshot.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-before-boot/avd.ini",
+      "bytes": 83,
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd",
+      "git_blob": "c1333a0fd9e32a1c183b15ee59c71abca2821642",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-before-boot/avd.ini",
+      "original_zip_member": "framework-start/cli22/avd-before-boot/avd.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-before-boot/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe",
+      "git_blob": "f0b4704a0154673300ecd5be9b30b928ee400315",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-before-boot/configuration/config.ini",
+      "original_zip_member": "framework-start/cli22/avd-before-boot/configuration/config.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-guard/snapshot.json",
+      "bytes": 9524,
+      "sha256": "31bb8763f7cc4854eafb80c9390c7afbf5c7c924ebda7caaeeb7cbbfbfd93478",
+      "git_blob": "1ed8155fd52be8e7da1effb84c81b6eed3ba4e71",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-guard/snapshot.json",
+      "original_zip_member": "framework-start/cli22/avd-guard/snapshot.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-guard/avd.ini",
+      "bytes": 83,
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd",
+      "git_blob": "c1333a0fd9e32a1c183b15ee59c71abca2821642",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-guard/avd.ini",
+      "original_zip_member": "framework-start/cli22/avd-guard/avd.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-guard/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe",
+      "git_blob": "f0b4704a0154673300ecd5be9b30b928ee400315",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-guard/configuration/config.ini",
+      "original_zip_member": "framework-start/cli22/avd-guard/configuration/config.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-after-action/snapshot.json",
+      "bytes": 9636,
+      "sha256": "5110a2d56611bd59ed0dfd458b58e4773dcba4a35c47703c96bf62dfe9fdf8d7",
+      "git_blob": "33b07a07661f458f1d550b66cdc2c80accf4c253",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-after-action/snapshot.json",
+      "original_zip_member": "framework-start/cli22/avd-after-action/snapshot.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-after-action/avd.ini",
+      "bytes": 83,
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd",
+      "git_blob": "c1333a0fd9e32a1c183b15ee59c71abca2821642",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-after-action/avd.ini",
+      "original_zip_member": "framework-start/cli22/avd-after-action/avd.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-after-action/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe",
+      "git_blob": "f0b4704a0154673300ecd5be9b30b928ee400315",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-after-action/configuration/config.ini",
+      "original_zip_member": "framework-start/cli22/avd-after-action/configuration/config.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "bytes": 4148,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a",
+      "git_blob": "a72f3745e09d842e4f15cd25a58ecb332fe1d3d3",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "original_zip_member": "framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/01-original-cli-version/stdout",
+      "bytes": 6,
+      "sha256": "73d0675fb2da2b7916637864fccdfd1e19a3d28c2cf31f1e4901a92f887c19e1",
+      "git_blob": "63c13a93c094ae8188f9800ffe73933a54674f44",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/01-original-cli-version/stdout",
+      "original_zip_member": "framework-start/cli22/commands/01-original-cli-version/stdout",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/01-original-cli-version/result.json",
+      "bytes": 296,
+      "sha256": "79f39103efcbb5cbb1b6cfd90b1ed3ebe4fb1613bdc9a26562c3c33a63b65331",
+      "git_blob": "6a2b6290d46278e0a2aec80bd5daeab01ea892f0",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/01-original-cli-version/result.json",
+      "original_zip_member": "framework-start/cli22/commands/01-original-cli-version/result.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/03-original-emulator-version/stdout",
+      "bytes": 655,
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54",
+      "git_blob": "4a81c58fdd463de2048113935a96239cddc35cd0",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/03-original-emulator-version/stdout",
+      "original_zip_member": "framework-start/cli22/commands/03-original-emulator-version/stdout",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "bytes": 278,
+      "sha256": "c4b035971c7d4414115c27e5289db0cf7512bafda839537106490b839be1685a",
+      "git_blob": "e975e961d7e3e9f0647edc0bc5a87ce7c4f57ebb",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "original_zip_member": "framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/04-original-real-avd/stdout",
+      "bytes": 761,
+      "sha256": "fd615d050159982f0f61722557303236a891ac11460cb8388cf3ee7414ff780e",
+      "git_blob": "2c03aa60b50099e4e0b183bba27cec856ab895da",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/04-original-real-avd/stdout",
+      "original_zip_member": "framework-start/cli22/commands/04-original-real-avd/stdout",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/04-original-real-avd/result.json",
+      "bytes": 1090,
+      "sha256": "2a78330322a357870293cf783b8742e521ee1fbd1e1d9e2957b6e8379e4629a8",
+      "git_blob": "e49d9620f1bdc1cebf6f92c561b9a80f407a67af",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/04-original-real-avd/result.json",
+      "original_zip_member": "framework-start/cli22/commands/04-original-real-avd/result.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/06-installed-cli22-version/stdout",
+      "bytes": 6,
+      "sha256": "39f79f7a6ad9a4128eeda6c3caeafd5ebda63edb99d50e35cd870cbe1196c821",
+      "git_blob": "eda137176796ab0b924482909bd43ad770d3d183",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/06-installed-cli22-version/stdout",
+      "original_zip_member": "framework-start/cli22/commands/06-installed-cli22-version/stdout",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "bytes": 297,
+      "sha256": "57550be372ba5e7e292a41890705a0a943fb616b5f176e2df40eba6a7d05811d",
+      "git_blob": "144df57db9294c8cb31d20d7e8a556770207283b",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "original_zip_member": "framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/packages-original/platform/source.properties",
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f",
+      "git_blob": "bfd390ac207be6e52f8647518148874cdc301396",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/packages-original/platform/source.properties",
+      "original_zip_member": "framework-start/cli22/packages-original/platform/source.properties",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/packages-original/platform/package.xml",
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609",
+      "git_blob": "5cf6c1795fc93bea8bc01ccbd5c210cc91e8fd5d",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/packages-original/platform/package.xml",
+      "original_zip_member": "framework-start/cli22/packages-original/platform/package.xml",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/packages-original/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "git_blob": "8e0a9ce9cb7af106a9e8f55c06e83bfccbb67085",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/packages-original/image/source.properties",
+      "original_zip_member": "framework-start/cli22/packages-original/image/source.properties",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/packages-original/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "git_blob": "c4178b5a3ef0ba6a49d990d4225f82813553402c",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/packages-original/image/package.xml",
+      "original_zip_member": "framework-start/cli22/packages-original/image/package.xml",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/packages-original/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7",
+      "git_blob": "690f978972d0b965716631dd78b1392174049886",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/packages-original/emulator/source.properties",
+      "original_zip_member": "framework-start/cli22/packages-original/emulator/source.properties",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/framework-start/cli22/packages-original/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a",
+      "git_blob": "b43beee7a6d66a1841ddebb841a663c23b1162b7",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/framework-start/cli22/packages-original/emulator/package.xml",
+      "original_zip_member": "framework-start/cli22/packages-original/emulator/package.xml",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/00a_voice_local_model_assent.png",
+      "bytes": 579004,
+      "sha256": "53d9863850ba42b670172cb8cb1f211e18cfe8452c1b5fcb79d307cdb5bfc34b",
+      "git_blob": "5fd8dd02e19619a3ab2ec089412be2affbd724c6",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/00a_voice_local_model_assent.png",
+      "original_zip_member": "nextgen/00a_voice_local_model_assent.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/00b_voice_local_model_enabled.png",
+      "bytes": 1324396,
+      "sha256": "816a75e14a2e874126af15783578a771329cd06e0195253044cdacaa8aa89982",
+      "git_blob": "d03723d37cdbe9402f6f61bf60a0e6939fc51723",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/00b_voice_local_model_enabled.png",
+      "original_zip_member": "nextgen/00b_voice_local_model_enabled.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/01_learning_flutter_before.png",
+      "bytes": 1906486,
+      "sha256": "ad66c29c92e2f25d64da7b9b1769a6f2e4af981fb09ab278eb1198ac1551913a",
+      "git_blob": "b4a9746549afc30024989fcf0ab7802abcd7da65",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/01_learning_flutter_before.png",
+      "original_zip_member": "nextgen/01_learning_flutter_before.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/02_learning_native_eight_plus_five.png",
+      "bytes": 568190,
+      "sha256": "5219965af65a9dea78f95d84b699c6877d66ae5be493ca864dff77e379aee8f6",
+      "git_blob": "b5fbf7b8a20cdcb328d99888cf49ffe6719a1e90",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/02_learning_native_eight_plus_five.png",
+      "original_zip_member": "nextgen/02_learning_native_eight_plus_five.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/03_learning_native_ten_and_three.png",
+      "bytes": 585935,
+      "sha256": "a887ff00a7b630da84ea46ea1994df2ef40628d49838a03fb0865a41759736c7",
+      "git_blob": "4c5a90c8f52936d580f8618321179e5dd587668e",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/03_learning_native_ten_and_three.png",
+      "original_zip_member": "nextgen/03_learning_native_ten_and_three.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/04_learning_native_thirteen.png",
+      "bytes": 585298,
+      "sha256": "722cd7cf287014431db8f51f4c936110d33f77f3f50ef08e8618cc9cf5c90d95",
+      "git_blob": "569a56c67a32a5eeeb1a6e1787876d9714bb43de",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/04_learning_native_thirteen.png",
+      "original_zip_member": "nextgen/04_learning_native_thirteen.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 581624,
+      "sha256": "df441f30f00364a695578c8f9ed8de9052959f83c07f20a17490a7b33c8dd7e2",
+      "git_blob": "5176154123ec06067a2ed51ad5171f93c5e5cba8",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/05_learning_same_flutter_lesson.png",
+      "original_zip_member": "nextgen/05_learning_same_flutter_lesson.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/10_cards_flutter_round.png",
+      "bytes": 1598981,
+      "sha256": "379df52722498f1eed7b0af6ee26c7d4757f7d777ec63686fab4a8bda3e82ea3",
+      "git_blob": "1d50e8007161b879963eae7cf104258098b30331",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/10_cards_flutter_round.png",
+      "original_zip_member": "nextgen/10_cards_flutter_round.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/cards-native-resume-00.png",
+      "bytes": 822471,
+      "sha256": "79f8f9249c541401c5922e5773196c74fd7804241c6f4f8e58db5de101a0e885",
+      "git_blob": "6af5a282a3e8cd1dee0a1cf4065cd473f577e9a6",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/cards-native-resume-00.png",
+      "original_zip_member": "nextgen/cards-native-resume-00.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "original/nextgen/99_nextgen_failure.png",
+      "bytes": 179126,
+      "sha256": "8d22c2ddf285a31874432fc067b0df1f71f4eb8c0e83e55bdc931b9dda065114",
+      "git_blob": "7837484e4a9b328ca8af9cfbb2d1e13184246a8e",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact/nextgen/99_nextgen_failure.png",
+      "original_zip_member": "nextgen/99_nextgen_failure.png",
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "metadata/run-final.json",
+      "bytes": 15245,
+      "sha256": "9d03a726d028abc04ced3cef36f22704a82c13a935e899b82f47e3181a7e66e4",
+      "git_blob": "b679fc8c6866423bc05ae2dc01ffa9e1f2fda785",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/run-final.json",
+      "original_zip_member": null,
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "metadata/jobs-final.json",
+      "bytes": 7801,
+      "sha256": "6ea84d28625551a973db71a409d6aefce9aff8ec18f11ddc907084b8f290fa05",
+      "git_blob": "729b7ed91c2b8181c38f7d2c86c82a96420406e5",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/jobs-final.json",
+      "original_zip_member": null,
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "metadata/artifacts.json",
+      "bytes": 896,
+      "sha256": "199ae5dbf66b35dc319315e69891963e33858396db95d1627fb71fd48ccd782c",
+      "git_blob": "247937d5fd58f90b0b46d995ea5843008b2d445c",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/artifacts.json",
+      "original_zip_member": null,
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "metadata/archive-inventory.json",
+      "bytes": 289686,
+      "sha256": "dbb71468f27d4f1cf930abcdfd3caad5534ac0307c7e4f8adde5b417bead9f94",
+      "git_blob": "22884bf8c548a078ccb0a494c76450d9daeddb6f",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/archive-inventory.json",
+      "original_zip_member": null,
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "metadata/original-job.log",
+      "bytes": 1531521,
+      "sha256": "acf287ec23a6466a5c2c20181aca8ed929838f6f80180360cfc4174ee5461565",
+      "git_blob": "669e6031060ce74b81dbda57330e6fbe79213160",
+      "mode": "100644",
+      "source_local_path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-job.log",
+      "original_zip_member": null,
+      "byte_equal_to_source": true
+    },
+    {
+      "path": "startup-log-scan.json",
+      "bytes": 1137,
+      "sha256": "e46e7e6eb2e6d79d17564e584b801ba6ca6719e99d20fb27206981bc2f22cac8",
+      "git_blob": "61890208f0b930b1d45d01bafb20da5f27fab4a2",
+      "mode": "100644",
+      "kind": "derived_review_no_original_bytes_modified"
+    },
+    {
+      "path": "review.json",
+      "bytes": 21974,
+      "sha256": "7dd4bae01a897a15bd6149ac0cf47a8c3af6170fc19cca6f2f15aa2a4751a05a",
+      "git_blob": "4f59d7e97fa792b42beef4312e4dc7102d71cb98",
+      "mode": "100644",
+      "kind": "derived_review_no_original_bytes_modified"
+    }
+  ],
+  "scope": "Documentation only; not permission to commit or mutate a branch."
+}

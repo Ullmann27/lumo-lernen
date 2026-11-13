@@ -1,0 +1,31 @@
+{
+  "source_zip_member": "framework-start/logcat-all.stdout",
+  "bytes": 5336952,
+  "sha256": "1051d4993f00b90bba9afe1676e77453a3b554ff1a1742d64a5dfd3262be9f7d",
+  "line_count": 35881,
+  "first_timestamped_line": "11-13 19:56:21.331   266   266 I lowmemorykiller: Wakeup counter is reset from 0 to 0",
+  "last_line": "11-13 19:57:30.938   627   685 I commit_sys_config_file: [package-user-0,744]",
+  "literal_case_sensitive_scan": {
+    "dma_assertion": {
+      "pattern": "hasReadColorBufferDma",
+      "matching_lines": 0
+    },
+    "no_space": {
+      "pattern": "No space left on device",
+      "matching_lines": 0
+    },
+    "fatal_exception": {
+      "pattern": "FATAL EXCEPTION",
+      "matching_lines": 0
+    },
+    "fatal_signal": {
+      "pattern": "Fatal signal",
+      "matching_lines": 0
+    },
+    "watchdog": {
+      "pattern": "WATCHDOG KILLING SYSTEM PROCESS",
+      "matching_lines": 0
+    }
+  },
+  "scope": "Original startup logcat only, before the app tour. Zero matches do not certify an entire Android session or physical device. Full raw file remains unchanged in the original artifact and local QA extraction."
+}
