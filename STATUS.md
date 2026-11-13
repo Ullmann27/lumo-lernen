@@ -1,35 +1,31 @@
 # Combined LUMO integration / candidate 2019
 
-Updated: 2026-11-13, 18:43 UTC. Active drafts: Native PR160 and Host PR465.
-The current Native integration source is `90d34181409c15d1b1ad3a6a9643539453155c1d`,
-Tree `9b407d61633a6421dc47b6858e6a6fb3fa60bea5`. Its own complete CI is running.
-The preceding cce checkpoint reported GitHub SUCCESS for all fifteen workflows;
-those originals retain their cce source identities. The current auxiliary-log
-review found that the new Kart geometry job reports SUCCESS despite GDScript
-parse/compile failures. Its PASS marker cannot establish a valid gate in the
-presence of these errors. The hand-copied fixture omits two existing pose
-dependencies; the bounded fixture/error-handling repair is being isolated.
+Updated: 2026-11-13, 19:37 UTC. Active drafts: Native PR160 and Host PR465.
+This checkpoint adds source-bound original evidence and current handoff notes.
+Its executable Host code is unchanged from published 5d44b479 / tree 609c710f.
+Version, all three provisional Native pins and existing receipts are unchanged.
 
-This Host checkpoint adds the source-reviewed final-scroll observation,
-API37 SDK-package selection and Native Python-environment repairs. The five
-changed files passed 157 focused methods without errors or skips; two changed
-workflows passed actionlint. Full original producer diagnostics, counterchecks,
-frozen source hashes and the independent review are preserved under
-[Android readiness evidence](docs/evidence/integration-20261113/host-2019-readiness/README.md).
+Current Native 993c1453 / tree f13dd5fc has thirteen clean auxiliary workflows
+and three clean Graphics jobs. The previously false-success geometry gate
+is genuinely clean in new CI: five counterchecks plus actual import/geometry
+execution, with complete original logs and exact checkout/source binding.
+Root opened all five current Graphics selections; current Nextgen module
+execution and the complete 22-image review remain in progress.
 
-The preceding public Host checkpoint is `2fa3b3d346c9d53930782bf6b9f0ad035ada7ac0`,
-Tree `99f25c730a9a062d9529fea1979f3196e5831692`. Its 434 full Script and 794 full
-Android-QA test results retain that earlier source scope. This checkpoint does
-not change version, native pins, visual receipts or publication conditions.
-Host PR465 remains at `e5c8d6f931647b56368daefab5b924070a02f11f` until current
-Native evidence has passed and its original images have been reviewed.
+Complete current auxiliary and Graphics metadata/log packs are retained under
+`docs/evidence/integration-20261113/native-993c-auxiliary/` and
+`native-993c-graphics/`. The separate completed prior 90d Nextgen proof is kept
+under `native-90d-checkpoint/`, with its exact 43-contract source and original
+logs. Its geometry failure prevents global approval of 90d and is explicitly
+retained; no predecessor result is relabelled as 993c proof.
 
-Next: complete the exact 90d Native/Graphics evidence, review current original
-images, record both source-bound receipts and update all three 2019 Native
-identities together. Then publish the Host integration tree to its existing
-draft and observe actual ARM64/x86, API35/API37 and 2017-to-2019 update gates.
-The integration branch does not publish an APK. Main, PR461 and producer
-worktrees remain protected. See [CONTINUE.md](CONTINUE.md) for the handoff.
+Host PR465 stays at E5 until final Native acceptance. After the original current
+images are reviewed and bound to the final bundle, record both receipts, change
+the three 2019 pins together and publish the exact Host tree. Complete real
+ARM64/x86, API35/API37 and 2017-to-2019 update gates on that Host source.
+Main, PR461 and producer worktrees remain protected; this integration branch
+does not publish an APK. See [CONTINUE.md](CONTINUE.md) for exact identities,
+original evidence and the scoped 434/794 and 157 Host test results.
 
 ## Earlier candidate-2017 history
 

@@ -1,104 +1,117 @@
 # Continue combined LUMO integration / candidate 2019
 
-The active drafts are Native PR160 and Host PR465. The current Native PR160
-head is `90d34181409c15d1b1ad3a6a9643539453155c1d`, Tree
-`9b407d61633a6421dc47b6858e6a6fb3fa60bea5`. Its first CI attempt is running:
-Nextgen run `43483977169`, Graphics run `43483977529`, plus thirteen auxiliary
-workflows. The published Host integration ref remains
-`e5c8d6f931647b56368daefab5b924070a02f11f` until the exact final Native source
-and both reviewed evidence sets are ready. The previous public Host checkpoint
-is `2fa3b3d346c9d53930782bf6b9f0ad035ada7ac0`, Tree
-`99f25c730a9a062d9529fea1979f3196e5831692` (local `851554036f1e78ca5123fcede92bab88ab9458fc`).
-Root publishes exact-tree checkpoints with expected-SHA leases. Main, live
-Host PR461 and producer dirty worktrees remain protected.
+Active drafts: Native PR160 and Host PR465. The executable Host code is the
+published checkpoint `5d44b479c2e73a5a5977777f0f94394c084c0e8d`, Tree
+`609c710fde1298f5503784ca6615b895c138b081` (local twin 7095479c). This following
+checkpoint adds original evidence and handoff documents only. Version,
+Native pins, current receipts and product/helper/test/workflow files remain
+unchanged. Host PR465 still points to
+`e5c8d6f931647b56368daefab5b924070a02f11f` until the complete accepted Native
+source and current reviewed receipts are ready.
 
-## Current Native and Host contracts
+## Current Native source and finished gates
 
-The combined source connects the published Loop, Village, Puzzle PR165 and
-standalone Studio PR158 followups while preserving the existing build-goal
-and HUD repairs. The shared Native/Host acceptance requires 43 Core pairs,
-24 Studio PNGs, four Village PNGs, six Puzzle-menu PNGs and six Touch pairs
-with 32 Touch PNGs. The Host fully decodes the fixed frames; the Native
-Puzzle/Village gates require their own current fixed-size original frames.
-A current Puzzle-menu image and a Village image must each be explicitly
-reviewed in addition to the nine module families and three Touch surfaces.
-Puzzle menu sizes are 960x540 and 640x360, across rotation menu, rotation play
-and classic play. The standalone Studio runner now has eleven mode pairs;
-its affected contracts pass 18 methods. No local renderer result is inferred.
+Native PR160 and its integration ref now point to
+`993c145304c3e5f8aa947e1c7a949a8ef8685415`, Tree
+`f13dd5fc5540ecb7705c5f18bf3cf8ba6e79d7a6`. Root's local Native twin is
+`3497fc3cf9c3100ceb05f86c834f1668422d2dd8`.
 
-Native cce / Tree8409 reported GitHub SUCCESS for all fifteen workflows. Its
-original Nextgen bundle is artifact `14064293493`, SHA256
-`4e2eb984edc779175d85bea77555a42146d9c39a443654fd2d6a5dbc573b780d`.
-Those full original checkpoints, including all logs, archive/image indices,
-release bindings and the frozen 41-pair Host verifier, are preserved in the
-current Native tree. Root reviewed five original Graphics images and all four
-Village originals from that source. These historical cce proofs cannot approve
-the new 90d source or its additional Puzzle contract.
+All thirteen auxiliary workflows and all fourteen original job logs are now
+clean on this exact source. The 158 successful steps and two expected
+complementary Lifecycle-matrix skips are recorded separately. The repaired
+Geometry run 43489950863 / job 132108137506 passed all five workflow counterchecks
+and genuine import/geometry execution. Its original log ZIP 14069312290 has
+SHA256 `e0719fa627076fe6034d7e902e5cadf28a9328341ec1df893619cde5843e18b7`.
+Direct Head and PR-merge checkout 80f93e52 have the same exact source tree.
+Original logs, metadata, source bytes and the actual new result are preserved
+under `docs/evidence/integration-20261113/native-993c-auxiliary/`.
 
-## Concrete Native CI blocker found in original job logs
+Graphics run 43489950655 completed all three jobs successfully. Three new
+original archives, 62 fully decoded PNGs (36 current, 26 baseline), 40 clean
+artifact logs and their source/ZIP/image bindings are preserved under
+`docs/evidence/integration-20261113/native-993c-graphics/`. Root directly
+opened the five current required originals, including wide/portrait Home.
+The final review SHA256 is
+`2c383d58a58fed9b97c857ff88bf6f97c32ceda55baa6f9606b5a62fe503f293`;
+the prepared selection is
+`8d2ab7a70941b1567a4f946e4c7395fffd69d4e4b73a34daf1368737544f9e90`.
+No old 90d image review was transferred and no Host receipt has yet been written.
 
-Current Kart geometry run `43483977367`, job `132087436119`, reports GitHub
-SUCCESS and a PASS marker, but contains GDScript parse/compile failures for
-Lumo platform and teacher pose dependencies. Both files exist in the complete
-90d tree; the hand-copied temporary fixture omits them. The negated grep does
-not enforce the intended failure under shell errexit. This is not a valid
-geometry pass. The owning agent is isolating the exact fixture and strict
-runner correction; 90d remains frozen while its other evidence is collected.
-The earlier cce original job log is being checked for the same defect,
-without rerunning or reinterpreting its source identity.
+The current Nextgen run 43489950659 is still executing its remaining modules.
+Preview, Gameplay, Build Touch and Treasure Touch have completed cleanly with
+new original artifacts. The final 22-image selection covers nine distinct
+production families, three Touch groups, all four Village frames and all six
+Puzzle-menu frames. Actual image views are being recorded against each new
+component and must later match the same original bytes in the complete bundle.
+A current-source final 43-contract bundle/release check remains mandatory.
 
-## Current Host source repairs
+## Geometry defect and historical correction
 
-The published Host302 followup contains original API35 scroll and API37 package
-failure evidence. Its exact final-scroll patch is connected: after N gestures,
-the helper makes the final live observation without issuing an extra gesture.
-Both 2019 workflows select SDK package37.0 for numeric API37 and preserve the
-strict actual-device API37/Android17 check. Both export the absolute existing
-Python Venv before entering Native and import Pillow there before the gates.
-The real Action implementation and original stable SDK catalogs are archived.
+The prior 90d and cce original geometry jobs reported success and a positive
+marker despite eleven real Parse/Compile errors. Their manually copied fixture
+omitted four existing transitive source files; a nonterminal inverted grep
+failed to stop the shell before the later positive marker. Historical green
+API states are not reinterpreted as clean geometry proof.
 
-The five final source files passed six Scroll, 25 Workflow/platform and 126
-Android-neighbour methods, with no errors or skips. Both workflows pass
-actionlint. All 1,853 bound paths stayed unchanged during testing. The original
-red cases and independent frozen-source review are preserved under
-`docs/evidence/integration-20261113/host-2019-readiness/`. No new Android boot,
-APK or image receipt is claimed. Version, pins and existing receipts remain.
+The published 993c fix adds the complete unchanged 15-file dependency closure
+and runs both genuine engine phases through the unchanged strict runner, with
+original 120-second limits and success marker. The actual local old fixture
+faithfully reproduces Exit 0 plus the marker despite eleven errors; the repaired
+fixture runs cleanly in 9.697 seconds. Five synthetic counterchecks, actionlint
+and an independent 18-source review support the narrow fix. The final trigger
+change preserves the actually executed engine block byte-for-byte. The new
+published CI confirmation above is a separate, genuine success.
 
-The previous Host checkpoint already connects the source-bound historical
-APK verifier and the additive 2017-to-2020 update wrapper. Historical inputs
-come from four exact Git blobs with replacement objects disabled; current
-verification code still enforces package, signature, ABI, voice and PCK.
-Conflicting version overrides fail. The historical1999 workflow retains its
-fixed c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf source and internal guards.
-The allow_2020 option is strictly typed and mutually exclusive; existing
-2018/2019 paths remain. The actual 2020 release pin remains unapproved.
-The whole PR468 collector was not adopted because it would discard stronger
-Village gates and remove a helper still used by existing 2019 tests.
+The fully completed prior 90d Nextgen run 43483977169 retains its own exact
+43 Core / 24 Studio / 4 Village / 6 Puzzle / 6 Touch pairs + 32 Touch-PNG contract.
+Original bundle 14069131343 has 176,564,239 bytes and SHA256
+`744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800`.
+All eight full job logs, frozen Host 2fa parser, complete indices, release/tag
+bindings, all non-ZIP metadata and 268 original artifact-log members are now
+preserved losslessly in `native-90d-checkpoint/`. Its original 146 PNGs include
+136 current and 10 baseline frames. Root opened six Puzzle originals at that
+source, explicitly documenting compact scrolling. That predecessor proof does
+not approve 993c; its separate geometry defect still prevents overall acceptance.
 
-## Validation boundaries
+## Host code repairs and scoped validation
 
-The previous 2fa/851554 Host checkpoint passed the complete 434 Script and
-794 Android-QA suites without errors or skips. All 1,246 bound paths stayed
-unchanged. The first Script invocation lacked Gradle on PATH and had two
-setup errors and one skip; that original diagnostic remains. The corrected
-installed Gradle/Java PATH produced the complete pass without source changes.
-Existing inherited APK-hash ResourceWarnings remain visible in original logs.
-These are contract and Kotlin execution tests, not emulator tours. The new
-five-file readiness patch has the separate focused 157-method evidence above.
-Earlier 55 Flutter runtime checks apply only to the unchanged lib/test/assets
-and Pubspec sources. The handwriting trainer, journal and saved data remain.
+The published Host 5d44 source connects the exact final-scroll observation,
+SDK37.0 package selector for numeric API37 and absolute Native Python Venv.
+The actual API37/Android17 measurement, version, identities and publish guards
+remain. Six Scroll, 25 workflow/platform and 126 Android-neighbour methods pass:
+157 disjoint focused methods, no errors or skips; both workflows pass actionlint.
+All 1,853 bound paths stayed unchanged during the tests. Original producer
+failures, stable SDK catalogs, Action implementation, local red/green logs and
+independent source review remain under `host-2019-readiness/`.
 
-## Finish the exact-source Android pipeline
+The prior 2fa/851554 checkpoint retains its full 434 Script and 794 Android-QA
+results with 1,246 unchanged bound paths. Original missing-Gradle diagnostics
+and inherited ResourceWarnings remain preserved. No full-suite rerun or
+Android execution is inferred from the current documentation/evidence update.
+The original handwriting trainer, journal, child saves and game product paths
+remain. The unchanged Flutter runtime retains its earlier scoped 55 checks.
 
-Keep 90d source fixed while collecting its own complete Nextgen, Graphics and
-auxiliary CI. Use the frozen Host2fa parser snapshot for its 43-pair contract.
-Review the actual current original images before generating both receipts.
-Set config/godot-source.json, APPROVED[2019] and the candidate-2019 test constant
-atomically to the final accepted Native SHA. Publish the exact Host tree to
-its draft with expected E5 lease. Then observe actual ARM64/x86 compilation,
-API35/API37, APK/PCK/signing identities and the real 2017-to-2019 update.
-The integration branch does not publish an APK. No unattended automation is
-running after this active session. Old branch notes below remain historical.
+Historical APK expectations remain bound to four explicit immutable Git blobs
+with replacement objects disabled, while current signature/ABI/voice/PCK checks
+stay enforced. The additive 2017-to-2020 wrapper retains strictly typed exclusive
+opt-in; existing 2018/2019 behavior remains and the actual 2020 release pin stays
+unapproved. No whole older Collector branch is substituted for stronger gates.
+
+## Complete the actual Android connection
+
+Keep 993c fixed while its remaining Nextgen acceptance and final image review
+complete. Use the frozen Host 2fa 43 parser snapshot for the original source.
+Then record both actual current reviews with the existing recorders and update
+config/godot-source.json, APPROVED[2019] and the candidate 2019 test constant
+atomically to the accepted Native SHA. Publish the exact final Host tree to
+PR465 using the expected E5 lease. Actual ARM64/x86 builds, API35/API37 tours,
+APK/PCK/signature binding and 2017-to-2019 install-in-place preservation remain
+required independent gates. This integration branch does not publish an APK.
+
+Main, live Host PR461 and producer dirty worktrees stay protected. Root alone
+stages/commits and moves its own refs. No unattended automation is enabled.
+The one-time 19:30:58 UTC Producer check found no new heads in Native 158/165 and
+Host 466/468/469; newer metadata timestamps were not treated as new source work.
 
 ## Published graphics producer handoff
 
