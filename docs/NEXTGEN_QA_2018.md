@@ -66,7 +66,7 @@ Capture-Marker ersetzt weder diese Sichtprüfung noch die notwendige Korrektur.
 
 Die neue Host-Pipeline erhält die historischen 2017-Releasegates und ergänzt:
 
-1. Eigenständige echte Hostkompilierung einschließlich `CardsAuthorityService.class`.
+1. Eigenständige echte Hostkompilierung mit neun Pflichtklassen einschließlich `CardsAuthorityService.class` und `CardsAuthorityRegistry.class`. Der Compile-Job führt davor die Produktionsregistry in fünf tatsächlichen JVM-Szenarien sowie den Android-Installervertrag aus; auch deren Log wird archiviert.
 2. Alle Fluttertests und optionalen Capturetests, ohne übersprungene Tests.
 3. Vollständige alte Native-Gates sowie die neuen Produktionsszenen; unabhängige
    Prüfungen sammeln bei einem Fehler weiter Bilder, die Gesamtabnahme bleibt `FAIL`.

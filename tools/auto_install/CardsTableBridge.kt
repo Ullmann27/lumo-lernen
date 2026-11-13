@@ -11,9 +11,9 @@ import org.json.JSONObject
  * Only the Dart Cards controller owns rules, hidden cards, persistence and rewards.
  */
 object CardsTableBridge {
-    @Volatile private var attached = false
-    fun isAttached(): Boolean = attached
-    fun detach() { attached = false }
+    private val authority = CardsAuthorityRegistry()
+    fun hasAuthority(token: String): Boolean = authority.hasAuthority(token)
+    fun detach() { authority.detach() }
     private const val MAX_BYTES = 262144
     private val tokenPattern = Regex("[a-f0-9]{32}")
 
@@ -48,7 +48,7 @@ object CardsTableBridge {
     }
 
     fun attach(messenger: BinaryMessenger, root: File) {
-        attached = true
+        authority.attach()
         MethodChannel(messenger, "lumo_lernen/cards_table").setMethodCallHandler { call, result ->
             try {
                 val token = call.argument<String>("token") ?: ""
@@ -60,9 +60,11 @@ object CardsTableBridge {
                             val state = JSONObject(call.argument<String>("state") ?: "{}")
                             require(state.optString("token") == token)
                             write(File(dir, "state.json"), state)
+                            authority.open(token)
                             result.success(true)
                         }
                         "publish" -> {
+                            check(hasAuthority(token)) { "Cards controller is detached" }
                             check(File(dir, "state.json").isFile) { "Cards table closed" }
                             val state = JSONObject(call.argument<String>("state") ?: "{}")
                             require(state.optString("token") == token)
@@ -70,6 +72,7 @@ object CardsTableBridge {
                             result.success(true)
                         }
                         "poll" -> {
+                            check(hasAuthority(token)) { "Cards controller is detached" }
                             check(File(dir, "state.json").isFile) { "Cards table closed" }
                             val reply = JSONObject()
                             reply.put("request", read(File(dir, "request.json")))
@@ -77,6 +80,7 @@ object CardsTableBridge {
                             result.success(reply.toString())
                         }
                         "close" -> {
+                            authority.close(token)
                             // Delete only this generated session's known temporary files.
                             for (name in listOf("state.json", "request.json", "lifecycle.json")) {
                                 for (suffix in listOf("", ".tmp")) {

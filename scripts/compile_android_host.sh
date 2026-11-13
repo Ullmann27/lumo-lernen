@@ -10,6 +10,8 @@ fi
 proof="$PWD/host-compile-evidence"
 mkdir -p "$proof"
 git rev-parse HEAD > "$proof/source-sha.txt"
+python3 -m unittest scripts.tests.test_cards_authority_registry scripts.tests.test_embedded_android -v \
+  2>&1 | tee "$proof/cards-authority-registry.log"
 flutter --version > "$proof/flutter-version.txt"
 flutter pub get --enforce-lockfile
 if [[ ! -d android ]]; then
@@ -42,6 +44,7 @@ from pathlib import Path
 import subprocess
 
 required = ('MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge', 'CardsAuthorityService',
+            'CardsAuthorityRegistry',
             'LumoLearningSpeech', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine')
 classes = {}
 for name in required:

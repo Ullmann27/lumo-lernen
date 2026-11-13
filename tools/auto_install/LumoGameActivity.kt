@@ -24,9 +24,20 @@ class LumoGameActivity : GodotActivity() {
     private fun cardsToken(): String = try { org.json.JSONObject(launchOptions).optString("cardsToken", "") } catch (_: Exception) { "" }
     @Volatile private var cardsAuthority: IBinder? = null
     private var cardsBindingRequested = false
+    private val cardsBindingHandler = Handler(Looper.getMainLooper())
+    private val cardsBindingTimeout = Runnable {
+        // Older supported Android releases do not deliver onNullBinding.
+        // A dead/unavailable host must return to Flutter instead of trapping
+        // the child on a table whose authoritative rules cannot answer.
+        if (cardsBindingRequested && cardsAuthority == null) {
+            releaseCardsAuthority()
+            returnToLearningApp("games")
+        }
+    }
     private val cardsConnection = object : ServiceConnection {
         override fun onServiceConnected(name: ComponentName, service: IBinder) {
             if (!cardsBindingRequested) return
+            cardsBindingHandler.removeCallbacks(cardsBindingTimeout)
             cardsAuthority = service
             cardsPulse()
         }
@@ -46,7 +57,7 @@ class LumoGameActivity : GodotActivity() {
     }
 
     fun cardsPulse(): Boolean {
-        val available = CardsAuthorityService.available(cardsAuthority)
+        val available = CardsAuthorityService.available(cardsAuthority, cardsToken())
         val written = CardsTableBridge.pulse(filesDir, cardsToken(), cardsActive && available)
         if (cardsAuthority != null && !available) returnToLearningApp("games")
         return written && available
@@ -64,10 +75,13 @@ class LumoGameActivity : GodotActivity() {
         if (!accepted) {
             releaseCardsAuthority()
             returnToLearningApp("games")
+        } else if (cardsBindingRequested && cardsAuthority == null) {
+            cardsBindingHandler.postDelayed(cardsBindingTimeout, 5000)
         }
     }
 
     private fun releaseCardsAuthority() {
+        cardsBindingHandler.removeCallbacks(cardsBindingTimeout)
         cardsAuthority = null
         cardsPulse()
         if (cardsBindingRequested) {

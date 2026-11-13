@@ -23,7 +23,7 @@ BASELINE_SOURCE = '47889f74a651b073965def70743417cf320b1eb9'
 BASELINE_NATIVE = '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'
 REVIEW_MODULES = {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 'rhythm'}
 COMPILED_CLASSES = {'MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge',
-                    'CardsAuthorityService', 'LumoLearningSpeech', 'LumoOfflineSpeechBridge',
+                    'CardsAuthorityService', 'CardsAuthorityRegistry', 'LumoLearningSpeech', 'LumoOfflineSpeechBridge',
                     'LumoOfflineSpeechEngine'}
 
 

@@ -86,7 +86,7 @@ class NextgenDeliveryTests(unittest.TestCase):
     def test_old_tour_unbound_authority_and_missing_lifecycle_proof_fail(self):
         for mutation in ('old-tour', 'wrong-baseline', 'surface-failed', 'mastery-awarded',
                          'old-surface-source', 'draw-not-persisted', 'short-idle', 'authority-restart',
-                         'different-child', 'host-old-source', 'service-not-compiled'):
+                         'different-child', 'host-old-source', 'service-not-compiled', 'registry-not-compiled'):
             args = self.proof_fixture()
             update, tour, surfaces, host = args[8:]
             if mutation == 'old-tour': tour['apk_sha256'] = '0' * 64
@@ -100,6 +100,7 @@ class NextgenDeliveryTests(unittest.TestCase):
             if mutation == 'different-child': surfaces['cards']['draw_after_visible_idle']['owner'] = '0' * 64
             if mutation == 'host-old-source': host['flutter_source_commit'] = '0' * 40
             if mutation == 'service-not-compiled': del host['classes']['CardsAuthorityService']
+            if mutation == 'registry-not-compiled': del host['classes']['CardsAuthorityRegistry']
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 delivery.verify_proofs(*args)
 

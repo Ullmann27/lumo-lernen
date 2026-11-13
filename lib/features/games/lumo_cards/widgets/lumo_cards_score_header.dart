@@ -27,8 +27,8 @@ class LumoCardsScoreHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final narrow =
-          constraints.maxWidth < (onOpponentSettings == null ? 320 : 350);
+      final buttons = actions;
+      final narrow = constraints.maxWidth < 176 + buttons.length * 48;
       final titleRow = Row(children: [
         IconButton(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -42,7 +42,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis)),
-        if (!narrow) ...actions,
+        if (!narrow) ...buttons,
       ]);
       final score = Text(
         narrow
@@ -55,7 +55,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
         child: Column(children: [
           titleRow,
           if (narrow)
-            Row(children: [Expanded(child: score), ...actions])
+            Row(children: [Expanded(child: score), ...buttons])
           else
             score,
         ]),
@@ -95,7 +95,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
               tooltip: 'Ton einstellen',
               onPressed: onAudioSettings,
               icon: const Icon(Icons.volume_up_rounded)),
-        if (onSettings != null && onNativeTable == null)
+        if (onSettings != null)
           IconButton(
               constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
               visualDensity: VisualDensity.standard,

@@ -146,6 +146,11 @@ def prepare(root: Path):
     for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt'):
         source = (root / 'tools/auto_install' / filename).read_text()
         (target / filename).write_text(re.sub(r'^package [^\n]+', f'package {namespace}', source, count=1))
+    java_target = main / 'java' / Path(*namespace.split('.'))
+    java_target.mkdir(parents=True, exist_ok=True)
+    source = (root / 'tools/auto_install/CardsAuthorityRegistry.java').read_text()
+    (java_target / 'CardsAuthorityRegistry.java').write_text(
+        re.sub(r'^package [^\n]+', f'package {namespace};', source, count=1))
     resources = main / 'res/values'
     resources.mkdir(parents=True, exist_ok=True)
     (resources / 'lumo_game_styles.xml').write_text('''<resources>

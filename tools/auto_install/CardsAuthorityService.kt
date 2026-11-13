@@ -15,8 +15,9 @@ class CardsAuthorityService : Service() {
         override fun onTransact(code: Int, data: Parcel, reply: Parcel?, flags: Int): Boolean {
             if (code == STATUS) {
                 data.enforceInterface(DESCRIPTOR)
+                val token = data.readString() ?: ""
                 reply?.writeNoException()
-                reply?.writeInt(if (CardsTableBridge.isAttached()) 1 else 0)
+                reply?.writeInt(if (CardsTableBridge.hasAuthority(token)) 1 else 0)
                 return true
             }
             return super.onTransact(code, data, reply, flags)
@@ -25,7 +26,7 @@ class CardsAuthorityService : Service() {
 
     override fun onBind(intent: Intent?): IBinder? {
         val token = intent?.getStringExtra("cardsToken") ?: return null
-        if (!Regex("[a-f0-9]{32}").matches(token) || !CardsTableBridge.isAttached()) return null
+        if (!Regex("[a-f0-9]{32}").matches(token) || !CardsTableBridge.hasAuthority(token)) return null
         if (CardsTableBridge.state(filesDir, token) == "{}") return null
         return status
     }
@@ -34,12 +35,13 @@ class CardsAuthorityService : Service() {
         private const val DESCRIPTOR = "dev.ullmann.lumo.CardsAuthority"
         private const val STATUS = IBinder.FIRST_CALL_TRANSACTION
 
-        fun available(remote: IBinder?): Boolean {
+        fun available(remote: IBinder?, token: String): Boolean {
             if (remote == null) return false
             val request = Parcel.obtain()
             val reply = Parcel.obtain()
             return try {
                 request.writeInterfaceToken(DESCRIPTOR)
+                request.writeString(token)
                 if (!remote.transact(STATUS, request, reply, 0)) {
                     false
                 } else {
