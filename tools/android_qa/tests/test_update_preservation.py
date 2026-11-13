@@ -343,7 +343,7 @@ class Build2019IndependentEvidenceMigrationTests(Build2018IndependentEvidenceMig
     versions = (2017, 2019)
 
 
-class StudioUpdateWrapperExecutionTests(unittest.TestCase):
+class Nextgen2020UpdateWrapperExecutionTests(unittest.TestCase):
     """Execute the real wrapper and identity gates; stop before Android I/O."""
     source = 'a' * 40
     baseline_source = '47889f74a651b073965def70743417cf320b1eb9'
@@ -360,7 +360,7 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
         self.paths = {}
         for label, version, source, native in (
             ('baseline', 2017, self.baseline_source, self.baseline_native),
-            ('candidate', 2019, self.source, self.native),
+            ('candidate', 2020, self.source, self.native),
         ):
             folder = self.directory / label
             folder.mkdir()
@@ -392,7 +392,7 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
             name, _ROOT / '.github/probes/lumo_2003_update_android_probe.py')
         module = importlib.util.module_from_spec(spec)
         output = self.directory / 'result'
-        arguments = ['lumo_2019_update_android_probe.py',
+        arguments = ['lumo_2020_update_android_probe.py',
                      '--baseline', str(self.paths['baseline']),
                      '--candidate', str(self.paths['candidate']), '--out', str(output)]
         with mock.patch.dict(sys.modules, {'modernization_android_tour': tour, name: module}), \
@@ -401,7 +401,7 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
                 contextlib.redirect_stdout(io.StringIO()):
             spec.loader.exec_module(module)
             with self.assertRaises(SystemExit) as stopped:
-                runpy.run_path(str(_ROOT / '.github/probes/lumo_2019_update_android_probe.py'),
+                runpy.run_path(str(_ROOT / '.github/probes/lumo_2020_update_android_probe.py'),
                                run_name='__main__')
         # This unit probe deliberately cannot issue Android PASS.
         self.assertEqual(stopped.exception.code, 1)
@@ -410,11 +410,11 @@ class StudioUpdateWrapperExecutionTests(unittest.TestCase):
         self.assertEqual(report['status'], 'FAIL')
         return report, tour.probe.ensure_rooted_emulator
 
-    def test_actual_2019_wrapper_validates_both_artifacts_before_device_boundary(self):
+    def test_actual_2020_wrapper_validates_both_artifacts_before_device_boundary(self):
         report, boundary = self.run_wrapper()
         self.assertEqual(report['error'], self.boundary)
         self.assertEqual(report['baseline']['versionCode'], 2017)
-        self.assertEqual(report['candidate']['versionCode'], 2019)
+        self.assertEqual(report['candidate']['versionCode'], 2020)
         self.assertEqual(report['candidate_source'], self.source)
         boundary.assert_called_once()
 
