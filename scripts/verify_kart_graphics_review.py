@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Verify a human-reviewed 2019 receipt against transferred original CI evidence.
+"""Verify an explicit 2019 review against transferred original CI evidence.
 
 This code never grants visual approval. It checks an explicit committed review
 against the actual workflow, public archive digests, source identity and PNGs.
