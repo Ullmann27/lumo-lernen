@@ -1,0 +1,40 @@
+{
+  "status": "LOCAL_STATIC_INTEGRATION_PASS_NOT_ANDROID_EXECUTION",
+  "baseline_diagnostic": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+  "unchanged_studio_jobs": [
+    "android-host-compile",
+    "verify-and-build",
+    "update-2019-from-2017",
+    "publish-reviewed-2019"
+  ],
+  "api35_action_byte_equivalent_structure": true,
+  "api37_runtime_and_tour_inputs_unchanged_except_additive_prelaunch_observation": true,
+  "original_guard_poll_and_identity_rejection_unchanged": true,
+  "original_observe_monitor_and_cleanup_unchanged": true,
+  "shared_helpers_equal": [
+    "scripts/prepare_android37_cli22.py",
+    "scripts/tests/test_android37_cli22.py",
+    "scripts/android_framework_ready.py",
+    "scripts/prepare_android37_emulator_action.py"
+  ],
+  "bash": [
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/.github/workflows/lumo-android37-cli22-recheck.yml",
+      "shell_blocks": 14,
+      "bash_syntax": "PASS"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/workflows/lumo-studio-2019.yml",
+      "shell_blocks": 45,
+      "bash_syntax": "PASS"
+    }
+  ],
+  "actionlint": {
+    "diagnostic_exit": 0,
+    "studio_exit": 0
+  },
+  "notes": [
+    "No SDK or emulator was installed/executed locally.",
+    "Original pre-launch hook catches its own error; mandatory CLI/AVD recheck is inside the strict guard before keyevent and app tour."
+  ]
+}

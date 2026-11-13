@@ -30,7 +30,7 @@ ORIGINAL_HASHES = {
 MODIFIED_PATHS = ("src/emulator-manager.ts", "lib/emulator-manager.js")
 GUARD_LINES = (
     "// LUMO modification: bounded framework readiness; original boot/keyevent/settings/cleanup remain unchanged.",
-    "await exec.exec('python3', [`${process.env.GITHUB_WORKSPACE}/scripts/android_framework_ready.py`, 'wait', '--serial', `emulator-${port}`, '--out', `${process.env.GITHUB_WORKSPACE}/tour/framework-start`, '--timeout', '120', '--stable-seconds', '10', '--minimum-samples', '3']);",
+    "await exec.exec('python3', [`${process.env.GITHUB_WORKSPACE}/scripts/android_framework_ready.py`, 'wait', '--serial', `emulator-${port}`, '--out', `${process.env.GITHUB_WORKSPACE}/tour/framework-start`, '--timeout', '120', '--stable-seconds', '10', '--minimum-samples', '3', '--cli22-proof', `${process.env.GITHUB_WORKSPACE}/tour/framework-start/cli22`]);",
 )
 
 
@@ -107,6 +107,8 @@ def prepare(action_dir: Path, out: Path, probe_root: Path, probe_source: str, wo
         "scripts/android_framework_ready.py",
         "scripts/prepare_android37_emulator_action.py",
         "scripts/tests/test_android_framework_ready.py",
+        "scripts/prepare_android37_cli22.py",
+        "scripts/tests/test_android37_cli22.py",
     )
     manifest = {
         "schema": 1,

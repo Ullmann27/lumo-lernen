@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-13T19:36:26.672215+00:00",
+  "status": "LOCAL_COUNTEREXAMPLES_AND_STATIC_INTEGRATION_PASS_REAL_ANDROID_PENDING",
+  "diagnostic_base": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+  "branch": "chatgpt/lumo-android17-cli22-recheck-20261113",
+  "sources": [
+    {
+      "path": ".github/workflows/lumo-android37-cli22-recheck.yml",
+      "bytes": 9525,
+      "sha256": "c3d70c98771aaf1ef9d6856cf11d84df0d48ef008f0220396c48f6ca362a7fd7",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "bytes": 18986,
+      "sha256": "2cbf5f613f329c1ab6a1e1bab1b60cbc09e44ae680f55dac6a3a73b1838f38ff",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_android37_cli22.py",
+      "bytes": 8176,
+      "sha256": "d0d7d4de13e4e70ee8e2e063773d5f1bb3a769bd90313fe1b84bc2db1b11ad53",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "bytes": 8434,
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa",
+      "mode": "100644"
+    }
+  ],
+  "final_studio_sources": [
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "bytes": 18986,
+      "sha256": "2cbf5f613f329c1ab6a1e1bab1b60cbc09e44ae680f55dac6a3a73b1838f38ff",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_android37_cli22.py",
+      "bytes": 8176,
+      "sha256": "d0d7d4de13e4e70ee8e2e063773d5f1bb3a769bd90313fe1b84bc2db1b11ad53",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "bytes": 8434,
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa",
+      "mode": "100644"
+    }
+  ],
+  "tests": {
+    "new_cli_avd_cases": {
+      "passed": 8,
+      "skipped": 0,
+      "seconds": 0.037,
+      "log": "cli22-contracts.log",
+      "exit_code": 0
+    },
+    "existing_framework_action_cases": {
+      "passed": 8,
+      "skipped": 0,
+      "seconds": 0.405,
+      "log": "framework-contracts.tool-output.log",
+      "exit_code": 0,
+      "capture_origin": "Exact text from actual tools.exec_command output chunk7ec560; no second execution and no claim of pre-decoding byte preservation."
+    }
+  },
+  "actionlint": {
+    "diagnostic_exit": 0,
+    "studio_exit": 0
+  },
+  "comparison_scope": "One real original-tools unbooted AVD and the unchanged action-generated CLI22 AVD. No GPU/disk/image/API matrix and no app/proof guard relaxation.",
+  "strict_boundary": "Existing upstream pre-hook can only mark failure; the mandatory CLI22/actual AVD/source check is executed again inside the strict framework guard before original keyevent and any app tour.",
+  "resources": "One read-only df -k /data, /proc/meminfo and /proc/mounts capture within the original120-second guard budget. Full actual AVD configuration/hardware files and disk allocation metadata preserved before/after the action.",
+  "limits": [
+    "No SDK installation or Android emulator execution occurred locally in this task.",
+    "The observed prior SurfaceFlinger crash and ENOSPC do not establish our AVD target or CLI version; the upcoming real comparison must measure them.",
+    "SDK tool ZIP uses previously actually verified official fixed bytes; no unverified latest resolution.",
+    "Diagnostic APK remains original e3d/76980; final Studio uses its new actual host SHA and Native796b dynamically."
+  ]
+}

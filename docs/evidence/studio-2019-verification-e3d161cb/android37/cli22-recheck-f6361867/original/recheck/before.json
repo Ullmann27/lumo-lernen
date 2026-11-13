@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "phase": "before",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "probe_source": {
+    "revision": "f63618670359af93a25f84a69cbfab4c583b6c53",
+    "tree": "aab1da10907815dca4f491d94db2d556797be3ce",
+    "tracked_source_clean": true
+  },
+  "apk_source": {
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+    "tracked_source_clean": true
+  },
+  "original_apk": {
+    "apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "native_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "apk_bytes": 325277610,
+    "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+    "pck_bytes": 66217416,
+    "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+    "versionCode": 2019,
+    "versionName": "0.13.7",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signature_from_original_verified_provenance": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "scope": "Exact original APK/PCK byte identity; no new APK build or new signing claim."
+  },
+  "requested_api": 37,
+  "emulator_action_package_suffix": "37.0",
+  "execution_boundary": "Absolute probe paths from probe_source execute with the immutable APK source checkout as cwd. Original tour identity guards remain unchanged and read its real git HEAD/config.",
+  "probe_file_sha256": {
+    ".github/probes/creative_android_probe.py": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+    ".github/probes/modernization_android_tour.py": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+    ".github/probes/lumo_studio_surfaces_android_probe.py": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c",
+    "scripts/verify_studio_delivery.py": "25376c29c729506ef591e936fac21f82f106f249df2fe67b3e1254151192fccb",
+    "scripts/verify_android_recheck_identity.py": "ca5a2cf289cd43a486ed8fbec4c6557802a4a67437330009c6989d40ffccbf41",
+    "scripts/run_android_recheck_tour.sh": "312c8e4b83f7135f89cd7746ea55b04fa3ba4dc08531b899ff63f7ae5a3dc65a",
+    ".github/workflows/lumo-android-recheck-2019.yml": "e9680fe33ff9e8470361da385aa4c9c9634ec12fc358eae129f2d1cfba7e1d62"
+  }
+}

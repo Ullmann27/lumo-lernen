@@ -1,0 +1,19 @@
+{
+  "argv": [
+    "node",
+    "-e",
+    "const m=require(process.argv[1]);m.createAvd(\"x86_64\",\"lumo_original_cli\",\"2\",\"\",false,true,\"512M\",\"pixel_5\",\"4096M\",\"\",\"37.0\",\"google_apis\").catch(e=>{console.error(e);process.exit(1)});",
+    "/home/runner/work/lumo-lernen/lumo-lernen/runner-actions/android-emulator-runner/lib/emulator-manager.js"
+  ],
+  "environment_overrides": {
+    "ANDROID_HOME": "/usr/local/lib/android/sdk",
+    "ANDROID_SDK_ROOT": "/usr/local/lib/android/sdk",
+    "ANDROID_AVD_HOME": "/home/runner/work/_temp/lumo-cli-avd-comparison-zmb4p8qo/original-avd",
+    "PATH": "/usr/local/lib/android/sdk/cmdline-tools/latest/bin:/snap/bin:/home/runner/.local/bin:/opt/pipx_bin:/home/runner/.cargo/bin:/home/runner/.config/composer/vendor/bin:/usr/local/.ghcup/bin:/home/runner/.dotnet/tools:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+  },
+  "timeout_seconds": 180,
+  "started_at": "2026-11-13T19:56:01.652756+00:00",
+  "returncode": 0,
+  "timed_out": false,
+  "elapsed_seconds": 1.3703976599999805
+}

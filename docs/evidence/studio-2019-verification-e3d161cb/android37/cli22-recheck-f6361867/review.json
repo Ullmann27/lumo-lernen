@@ -1,0 +1,543 @@
+{
+  "schema": "lumo-android37-cli22-diagnostic-review-v1",
+  "reviewed_at": "2026-11-13T20:32:28.057780+00:00",
+  "reviewer": "/root/character_animation",
+  "overall_result": "FAIL_OLD_APK_CARDS_RESUME_AFTER_FRAMEWORK_AND_LEARNING",
+  "source": {
+    "diagnostic_commit": "f63618670359af93a25f84a69cbfab4c583b6c53",
+    "diagnostic_tree": "aab1da10907815dca4f491d94db2d556797be3ce",
+    "apk_host_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "native_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "diagnostic_and_apk_clean_at_execution": true
+  },
+  "github": {
+    "repository": "Ullmann27/lumo-lernen",
+    "run_id": 43496485216,
+    "attempt": 1,
+    "run_conclusion": "failure",
+    "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43496485216",
+    "job_id": 132130816831,
+    "job_name": "Unchanged e3d APK diagnostic on API 37",
+    "job_conclusion": "failure",
+    "job_completed_at": "2026-11-13T20:18:22Z",
+    "artifact_id": 14073627515
+  },
+  "original_archive": {
+    "path": "/workspace/scratch/5987865ae883/qa/android37-cli22-f636-diagnostic/original-artifact.zip",
+    "bytes": 100729068,
+    "sha256": "abb001a6def3358aceccd276472a8f032bb53bbfe1265c355b12de01a9ae5ce3",
+    "github_digest_matches": true,
+    "crc_all_members": "PASS",
+    "file_count": 1352,
+    "all_extracted_files_byte_equal_to_zip": true,
+    "inventory": "metadata/archive-inventory.json",
+    "curation_scope": "Selected original members and complete API/job metadata are copied byte-for-byte here. The complete 100729068-byte original ZIP and all 1352 extracted originals remain in QA; this directory is not represented as the complete original artifact."
+  },
+  "cli_avd": {
+    "original_sdkmanager_version": "12.0",
+    "new_sdkmanager_version": "22.0",
+    "emulator_version": "37.2.13.0",
+    "emulator_build": "16740729",
+    "official_cli22_zip_sha256": "4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583",
+    "actual_target_and_partition": {
+      "avd-original": {
+        "target": "android-0",
+        "data_partition_size": "800M",
+        "image_directory": "system-images/android-37.0/google_apis/x86_64/"
+      },
+      "avd-before-boot": {
+        "target": "android-37.0",
+        "data_partition_size": "10G",
+        "image_directory": "system-images/android-37.0/google_apis/x86_64/"
+      },
+      "avd-guard": {
+        "target": "android-37.0",
+        "data_partition_size": "10G",
+        "image_directory": "system-images/android-37.0/google_apis/x86_64/"
+      },
+      "avd-after-action": {
+        "target": "android-37.0",
+        "data_partition_size": "10G",
+        "image_directory": "system-images/android-37.0/google_apis/x86_64/"
+      }
+    },
+    "all_actual_generated_config_differences": {
+      "disk.dataPartition.size": {
+        "cli12": "800M",
+        "cli22": "10G"
+      },
+      "hw.device.hash2": {
+        "cli12": "MD5:3274126e0242a0d86339850416b0ce34",
+        "cli22": "MD5:12ab7fcb681cafc1697d019f385bf3b9"
+      },
+      "tag.displaynames": {
+        "cli12": null,
+        "cli22": "Google APIs"
+      },
+      "tag.ids": {
+        "cli12": null,
+        "cli22": "google_apis"
+      },
+      "target": {
+        "cli12": null,
+        "cli22": "android-37.0"
+      },
+      "vm.heapSize": {
+        "cli12": "228M",
+        "cli22": "256M"
+      }
+    },
+    "package_identities": {
+      "platform": {
+        "installed_package": {
+          "path": "platforms;android-37.0",
+          "revision": {
+            "major": 2,
+            "minor": 0,
+            "micro": 0,
+            "preview": 0
+          }
+        },
+        "embedded_properties": {
+          "Pkg.Desc": "Android SDK Platform 17",
+          "Pkg.UserSrc": "false",
+          "Platform.Version": "17",
+          "Platform.CodeName": "",
+          "Pkg.Revision": "2",
+          "AndroidVersion.ApiLevel": "37.0",
+          "AndroidVersion.CodeName": "",
+          "AndroidVersion.ExtensionLevel": "22",
+          "AndroidVersion.IsBaseSdk": "true",
+          "AndroidVersion.PreviewSdkInt": "0",
+          "AndroidVersion.BetaVersion": "",
+          "Layoutlib.Api": "15",
+          "Layoutlib.Revision": "1",
+          "Platform.MinToolsRev": "22"
+        }
+      },
+      "image": {
+        "installed_package": {
+          "path": "system-images;android-37.0;google_apis;x86_64",
+          "revision": {
+            "major": 8,
+            "minor": 0,
+            "micro": 0,
+            "preview": 0
+          }
+        },
+        "embedded_properties": {
+          "Pkg.Desc": "System Image x86_64 with Google APIs.",
+          "Pkg.Revision": "7",
+          "Pkg.Dependencies": "emulator#37.2.11",
+          "AndroidVersion.ApiLevel": "37.0",
+          "AndroidVersion.ExtensionLevel": "22",
+          "AndroidVersion.IsBaseSdk": "true",
+          "SystemImage.Abi": "x86_64",
+          "SystemImage.TagId": "google_apis",
+          "SystemImage.TagDisplay": "Google APIs",
+          "SystemImage.GpuSupport": "true",
+          "Addon.VendorId": "google",
+          "Addon.VendorDisplay": "Google Inc."
+        }
+      },
+      "emulator": {
+        "installed_package": {
+          "path": "emulator",
+          "revision": {
+            "major": 37,
+            "minor": 2,
+            "micro": 13,
+            "preview": 0
+          }
+        },
+        "embedded_properties": {
+          "Pkg.UserSrc": "false",
+          "Pkg.Revision": "37.2.13",
+          "Pkg.Path": "emulator",
+          "Pkg.Desc": "Android Emulator",
+          "Pkg.BuildId": "16740729"
+        }
+      },
+      "platform-tools": {
+        "installed_package": {
+          "path": "platform-tools",
+          "revision": {
+            "major": 37,
+            "minor": 0,
+            "micro": 1,
+            "preview": 0
+          }
+        },
+        "embedded_properties": {
+          "Pkg.UserSrc": "false",
+          "Pkg.Revision": "37.0.1"
+        }
+      }
+    },
+    "actual_avd_binding_status": "ACTUAL_CLI22_AVD_BINDING_VERIFIED",
+    "scope_de": "Die CLI12-AVD wurde in diesem Lauf real erzeugt, aber nicht gebootet. Die CLI22-AVD wurde real erzeugt und gebootet. Es wurden keine Ziel-/Partitionswerte umgeschrieben. Neben target und Partition ändern sich weitere generierte Defaults, die vollständig aufgeführt sind; dieser Lauf isoliert daher keine einzelne AVD-Eigenschaft als alleinige Ursache des früheren Absturzes. Explizite GPU-/RAM-/Geräteparameter blieben unverändert."
+  },
+  "framework": {
+    "status": "PASS",
+    "reason": "required_framework_services_observed_stable",
+    "elapsed_seconds": 15.891679937999982,
+    "required_stable_seconds": 10.0,
+    "required_minimum_samples": 3,
+    "consecutive_ready_samples": 4,
+    "stable_observed_seconds": 11.867130825000004,
+    "samples": [
+      {
+        "observed_at": "2026-11-13T19:57:16.443393+00:00",
+        "ready": true,
+        "pid": "627",
+        "start_count": "1",
+        "services": {
+          "input": "Service input: found",
+          "settings": "Service settings: found",
+          "activity": "Service activity: found",
+          "package": "Service package: found",
+          "window": "Service window: found"
+        },
+        "settings_boot_count": "1"
+      },
+      {
+        "observed_at": "2026-11-13T19:57:20.120448+00:00",
+        "ready": true,
+        "pid": "627",
+        "start_count": "1",
+        "services": {
+          "input": "Service input: found",
+          "settings": "Service settings: found",
+          "activity": "Service activity: found",
+          "package": "Service package: found",
+          "window": "Service window: found"
+        },
+        "settings_boot_count": "1"
+      },
+      {
+        "observed_at": "2026-11-13T19:57:24.384517+00:00",
+        "ready": true,
+        "pid": "627",
+        "start_count": "1",
+        "services": {
+          "input": "Service input: found",
+          "settings": "Service settings: found",
+          "activity": "Service activity: found",
+          "package": "Service package: found",
+          "window": "Service window: found"
+        },
+        "settings_boot_count": "1"
+      },
+      {
+        "observed_at": "2026-11-13T19:57:28.310534+00:00",
+        "ready": true,
+        "pid": "627",
+        "start_count": "1",
+        "services": {
+          "input": "Service input: found",
+          "settings": "Service settings: found",
+          "activity": "Service activity: found",
+          "package": "Service package: found",
+          "window": "Service window: found"
+        },
+        "settings_boot_count": "1"
+      }
+    ],
+    "first_original_unlock_command_at": "2026-11-13T19:57:28.3365522Z",
+    "original_global_animation_settings_writes_at": [
+      "2026-11-13T19:57:30.4685969Z",
+      "2026-11-13T19:57:31.1395679Z",
+      "2026-11-13T19:57:31.2366080Z"
+    ],
+    "original_tour_script_started_at": "2026-11-13T19:57:32.0479273Z",
+    "runtime": {
+      "sdk": 37,
+      "release": "17",
+      "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+      "model": "sdk_gphone64_x86_64"
+    },
+    "startup_log_scan": "startup-log-scan.json"
+  },
+  "apk_identity": {
+    "apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "native_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "apk_bytes": 325277610,
+    "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+    "pck_bytes": 66217416,
+    "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+    "versionCode": 2019,
+    "versionName": "0.13.7",
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "signature_from_original_verified_provenance": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "scope": "Exact original APK/PCK byte identity; no new APK build or new signing claim.",
+    "measurement_scope": "Actual original CI identity verifier output; no local x86 APK download or independently measured local x86 APK hash is claimed by this review."
+  },
+  "original_tour": {
+    "status": "PASS",
+    "passed_steps": 21,
+    "step_names": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "atelier-roundtrip",
+      "navigate-lernen",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state",
+      "display-fold_offen",
+      "display-fold_aussen",
+      "display-quer"
+    ],
+    "fatal_crashes_reported": 0,
+    "not_tested": [
+      "physical Samsung Fold",
+      "device GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race and reward (kart_complete_android_probe)"
+    ],
+    "original_report": "original/tour-result.json"
+  },
+  "studio_learning": {
+    "offline": true,
+    "local_voice_permission": {
+      "local_model_assent": true,
+      "voice_enabled": true,
+      "auto_read": true,
+      "unrelated_permissions_unchanged": true,
+      "no_audio_emulator": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "result": {
+      "moves": {
+        "moved_objects": 5,
+        "ten_filled_after": 2,
+        "remainder": 3,
+        "target_indices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "preservation": {
+        "profile": {
+          "id": "1794599919651727",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-13T19:58:39.651727"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      "same_lesson_after_return": true,
+      "speech": {
+        "initial": {
+          "native_process_pid": 7377,
+          "completed_utterance_ids": [
+            3
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "result": {
+          "native_process_pid": 7377,
+          "completed_utterance_ids": [
+            18
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "native_process_gone_on_return": true,
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "illustration_did_not_award_mastery": true
+    },
+    "visual_return_limit": "05_learning_same_flutter_lesson.png still depicts native completion. Actual Flutter accessibility XML, MainActivity/process exit gates, and preserved learning data support semantic return, but this PNG cannot serve as a visual Flutter-return proof. Its generic entropy gate passed without verifying screen identity."
+  },
+  "old_cards_first_failure": {
+    "status": "FAIL",
+    "phase": "Initial native Cards resume before drawing a card",
+    "elapsed_seconds": 90.271876,
+    "touch": [
+      538,
+      1210
+    ],
+    "resume_request": {
+      "action": "resume",
+      "revision": 4,
+      "sequence": 1,
+      "token": "d12edf263d871bb05315088bc5e237c0"
+    },
+    "observations": 136,
+    "first_state": {
+      "token": "d12edf263d871bb05315088bc5e237c0",
+      "roundId": "cards-ed4dc5f6573fa36d8494c6dc8ca48c81",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 4,
+      "ack": 0
+    },
+    "last_state": {
+      "token": "d12edf263d871bb05315088bc5e237c0",
+      "roundId": "cards-ed4dc5f6573fa36d8494c6dc8ca48c81",
+      "viewer": 0,
+      "current": 0,
+      "phase": "playing",
+      "paused": true,
+      "canDraw": false,
+      "revision": 5,
+      "ack": 1
+    },
+    "all_observed_states_paused": true,
+    "all_observed_states_can_draw_false": true,
+    "precise_result_de": "Die gleiche Runde quittiert Resume (ack 0→1, revision 4→5), bleibt aber in allen 136 Beobachtungen paused=true / canDraw=false. Nach 90,272 Sekunden endet die unveränderte Prüfung mit RuntimeError. Kartenziehen und native Rückkehr wurden nicht erreicht. Keine Übertragung dieses Fehlers auf die neue Cards-Activity des separat gebauten Host31883868.",
+    "exception": "RuntimeError: Same Cards round acknowledged native resume not observed before deadline"
+  },
+  "visual_review": [
+    {
+      "original_zip_member": "nextgen/00a_voice_local_model_assent.png",
+      "curated_path": "original/nextgen/00a_voice_local_model_assent.png",
+      "sha256": "53d9863850ba42b670172cb8cb1f211e18cfe8452c1b5fcb79d307cdb5bfc34b",
+      "bytes": 579004,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_ASSENT_DIALOG",
+      "findings_de": "Erwachsenenfreigabe für die lokale Stimme, markierte Zustimmung sowie Abbrechen/Freigeben sind sichtbar und lesbar. Die Aufnahme allein beweist keine Netzwerkfreiheit; diese ist separat im Laufbericht ausgewiesen."
+    },
+    {
+      "original_zip_member": "nextgen/00b_voice_local_model_enabled.png",
+      "curated_path": "original/nextgen/00b_voice_local_model_enabled.png",
+      "sha256": "816a75e14a2e874126af15783578a771329cd06e0195253044cdacaa8aa89982",
+      "bytes": 1324396,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_LOCAL_VOICE_ENABLED",
+      "findings_de": "Die Offline-Sprachfunktion ist eingeschaltet; lokale Verarbeitung, Test-/Erklär-/Stoppbedienung und unveränderte Originalaufnahmen werden sichtbar erläutert. Audioqualität lässt sich aus diesem Bild nicht beurteilen."
+    },
+    {
+      "original_zip_member": "nextgen/01_learning_flutter_before.png",
+      "curated_path": "original/nextgen/01_learning_flutter_before.png",
+      "sha256": "ad66c29c92e2f25d64da7b9b1769a6f2e4af981fb09ab278eb1198ac1551913a",
+      "bytes": 1906486,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_FLUTTER_LESSON_BEFORE_NATIVE",
+      "findings_de": "Die Flutter-Lektion Acht und fünf zeigt bereits ihren Erklärschritt 6 von 6, einen vollen Zehner und drei weitere Äpfel mit 8 + 2 + 3 = 13. Dies ist die Ausgangslektion vor dem zusätzlichen nativen Ausprobieren."
+    },
+    {
+      "original_zip_member": "nextgen/02_learning_native_eight_plus_five.png",
+      "curated_path": "original/nextgen/02_learning_native_eight_plus_five.png",
+      "sha256": "5219965af65a9dea78f95d84b699c6877d66ae5be493ca864dff77e379aee8f6",
+      "bytes": 568190,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_NATIVE_EIGHT_PLUS_FIVE",
+      "findings_de": "Acht türkisfarbene Körper besetzen das erste Zehnerfeld; zwei Plätze sind frei. Fünf gelbe Körper liegen getrennt auf dem Vorratstablett. Original-Lumo, räumliche Schatten und die drei Bedienaktionen sind sichtbar. Texte sind lesbar, die Emulatoraufnahme wirkt rasterweich."
+    },
+    {
+      "original_zip_member": "nextgen/03_learning_native_ten_and_three.png",
+      "curated_path": "original/nextgen/03_learning_native_ten_and_three.png",
+      "sha256": "a887ff00a7b630da84ea46ea1994df2ef40628d49838a03fb0865a41759736c7",
+      "bytes": 585935,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_NATIVE_TEN_AND_THREE",
+      "findings_de": "Zwei gelbe Körper vervollständigen den Zehner; drei liegen noch im Vorrat. Anzeige 2 / 5 bewegt und Erklärung Zehn sind voll stimmen mit der Menge überein."
+    },
+    {
+      "original_zip_member": "nextgen/04_learning_native_thirteen.png",
+      "curated_path": "original/nextgen/04_learning_native_thirteen.png",
+      "sha256": "722cd7cf287014431db8f51f4c936110d33f77f3f50ef08e8618cc9cf5c90d95",
+      "bytes": 585298,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_NATIVE_THIRTEEN",
+      "findings_de": "Das erste Feld enthält acht türkise plus zwei gelbe Körper, das zweite drei gelbe Körper; Vorrat leer. Gleichung 8 + 5 = 10 + 3 = 13 und Abschlussbedienung stimmen sichtbar überein; Lumo hebt beide Arme."
+    },
+    {
+      "original_zip_member": "nextgen/05_learning_same_flutter_lesson.png",
+      "curated_path": "original/nextgen/05_learning_same_flutter_lesson.png",
+      "sha256": "df441f30f00364a695578c8f9ed8de9052959f83c07f20a17490a7b33c8dd7e2",
+      "bytes": 581624,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "RETURN_CAPTURE_NOT_VISUAL_FLUTTER_EVIDENCE",
+      "findings_de": "Trotz Dateiname zeigt dieses Original-PNG weiterhin die native Abschlussansicht mit 13 Körpern und Zur Aufgabe. Es belegt die sichtbare Flutter-Rückkehr nicht. Der getrennte XML-/Prozessnachweis meldet die gleiche Flutter-Lektion; der Bild-Guard prüfte lediglich Entropie und akzeptierte dieses inhaltlich falsche Rückkehrbild."
+    },
+    {
+      "original_zip_member": "nextgen/10_cards_flutter_round.png",
+      "curated_path": "original/nextgen/10_cards_flutter_round.png",
+      "sha256": "379df52722498f1eed7b0af6ee26c7d4757f7d777ec63686fab4a8bda3e82ea3",
+      "bytes": 1598981,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_OLD_FLUTTER_CARDS_ROUND",
+      "findings_de": "Die alte Flutter-Kartenrunde zeigt je sieben Karten, einen blauen Einser als Ablage, 97 Karten im Stapel sowie den 3D-Einstieg. Dies ist die Ansicht vor dem anschließend fehlgeschlagenen nativen Resume."
+    },
+    {
+      "original_zip_member": "nextgen/cards-native-resume-00.png",
+      "curated_path": "original/nextgen/cards-native-resume-00.png",
+      "sha256": "79f8f9249c541401c5922e5773196c74fd7804241c6f4f8e58db5de101a0e885",
+      "bytes": 822471,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_OLD_NATIVE_CARDS_PAUSED",
+      "findings_de": "Echter räumlicher Kartentisch und Original-Lumo sind sichtbar, darüber der Pausendialog Dein Zug wartet auf dich / Weiterspielen. Karte legen und Ziehen sind ausgegraut. Android-Statussymbole überlagern die alten oberen Zurück/Weiter-Flächen; kein Nachweis ungestörter Fortsetzung."
+    },
+    {
+      "original_zip_member": "nextgen/99_nextgen_failure.png",
+      "curated_path": "original/nextgen/99_nextgen_failure.png",
+      "sha256": "8d22c2ddf285a31874432fc067b0df1f71f4eb8c0e83e55bdc931b9dda065114",
+      "bytes": 179126,
+      "width": 1080,
+      "height": 2400,
+      "viewed_individually_with_view_image": true,
+      "result": "VISIBLE_OLD_NATIVE_CARDS_FAILURE",
+      "findings_de": "Die Pause bleibt sichtbar. Ihre dunkle Fläche nimmt nun fast die ganze Bildschirmhöhe ein und verdeckt den Tisch. Dies ist ein tatsächlich sichtbarer alter e3d/76980-Fehlerzustand, keine Freigabe des separaten neuen Kandidaten."
+    }
+  ],
+  "limits": [
+    "Overall GitHub job and native surfaces result remain FAIL; framework and legacy tour PASS do not certify the complete app.",
+    "Diagnostic source f636 executes the original e3d/76980 APK; no result is attributed to the separate Host31883868 or Native796b candidate.",
+    "No physical Fold7, Android hardware latency, 60 FPS, thermal, battery, audible voice quality, or lip synchronization acceptance.",
+    "Original evidence was not edited or recaptured; screenshots and stored report filenames are not relabeled as newer source."
+  ],
+  "mutations": {
+    "product": false,
+    "workflow": false,
+    "branch_or_pr": false,
+    "run_retry": false,
+    "local_evidence_curation_only": true
+  }
+}
