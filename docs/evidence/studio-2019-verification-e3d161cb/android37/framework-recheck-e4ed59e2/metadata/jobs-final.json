@@ -1,0 +1,194 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 132105094062,
+      "run_id": 43489065730,
+      "workflow_name": "LUMO 2019 unchanged APK Android 17 framework recheck",
+      "head_branch": "chatgpt/lumo-android17-framework-recheck-20261113",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43489065730",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAewhPDrg",
+      "head_sha": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132105094062",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43489065730/job/132105094062",
+      "status": "completed",
+      "conclusion": "failure",
+      "created_at": "2026-11-13T19:06:43Z",
+      "started_at": "2026-11-13T19:06:45Z",
+      "completed_at": "2026-11-13T19:11:25Z",
+      "name": "Unchanged e3d APK diagnostic on API 37",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-13T19:06:46Z",
+          "completed_at": "2026-11-13T19:06:47Z"
+        },
+        {
+          "name": "Checkout the actual diagnostic probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-13T19:06:47Z",
+          "completed_at": "2026-11-13T19:07:07Z"
+        },
+        {
+          "name": "Checkout exact original emulator action with dependencies and license",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-13T19:07:07Z",
+          "completed_at": "2026-11-13T19:07:08Z"
+        },
+        {
+          "name": "Require bounded framework readiness and preserved upstream calls",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-13T19:07:08Z",
+          "completed_at": "2026-11-13T19:07:10Z"
+        },
+        {
+          "name": "Verify all six bounded-scroll contracts before emulator setup",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-13T19:07:10Z",
+          "completed_at": "2026-11-13T19:07:11Z"
+        },
+        {
+          "name": "Checkout immutable original app identity without replacing probe code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-13T19:07:11Z",
+          "completed_at": "2026-11-13T19:07:11Z"
+        },
+        {
+          "name": "Record original candidate and completed build metadata",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-13T19:07:11Z",
+          "completed_at": "2026-11-13T19:07:15Z"
+        },
+        {
+          "name": "Download only the original e3d candidate artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 8,
+          "started_at": "2026-11-13T19:07:15Z",
+          "completed_at": "2026-11-13T19:07:23Z"
+        },
+        {
+          "name": "Require original APK PCK source version and GitHub identities",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 9,
+          "started_at": "2026-11-13T19:07:23Z",
+          "completed_at": "2026-11-13T19:07:24Z"
+        },
+        {
+          "name": "Live UI reader and unchanged Studio contracts",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 10,
+          "started_at": "2026-11-13T19:07:24Z",
+          "completed_at": "2026-11-13T19:08:00Z"
+        },
+        {
+          "name": "Enable accelerated disposable emulator",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 11,
+          "started_at": "2026-11-13T19:08:00Z",
+          "completed_at": "2026-11-13T19:08:01Z"
+        },
+        {
+          "name": "Software display",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 12,
+          "started_at": "2026-11-13T19:08:01Z",
+          "completed_at": "2026-11-13T19:08:01Z"
+        },
+        {
+          "name": "Prepare only the reviewed additive action guard",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 13,
+          "started_at": "2026-11-13T19:08:01Z",
+          "completed_at": "2026-11-13T19:08:02Z"
+        },
+        {
+          "name": "Complete original tour followed by Studio learning and Cards",
+          "status": "completed",
+          "conclusion": "failure",
+          "number": 14,
+          "started_at": "2026-11-13T19:08:02Z",
+          "completed_at": "2026-11-13T19:11:22Z"
+        },
+        {
+          "name": "Close and preserve startup diagnostics even after action failure",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 15,
+          "started_at": "2026-11-13T19:11:22Z",
+          "completed_at": "2026-11-13T19:11:22Z"
+        },
+        {
+          "name": "Preserve diagnostic evidence without publishing any APK",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 16,
+          "started_at": "2026-11-13T19:11:22Z",
+          "completed_at": "2026-11-13T19:11:23Z"
+        },
+        {
+          "name": "Post Checkout immutable original app identity without replacing probe code",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 30,
+          "started_at": "2026-11-13T19:11:23Z",
+          "completed_at": "2026-11-13T19:11:23Z"
+        },
+        {
+          "name": "Post Checkout exact original emulator action with dependencies and license",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 31,
+          "started_at": "2026-11-13T19:11:23Z",
+          "completed_at": "2026-11-13T19:11:23Z"
+        },
+        {
+          "name": "Post Checkout the actual diagnostic probe source",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 32,
+          "started_at": "2026-11-13T19:11:23Z",
+          "completed_at": "2026-11-13T19:11:24Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 33,
+          "started_at": "2026-11-13T19:11:24Z",
+          "completed_at": "2026-11-13T19:11:24Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132105094062",
+      "labels": [
+        "ubuntu-latest"
+      ],
+      "runner_id": 1000016731,
+      "runner_name": "GitHub Actions 1000016731",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}
+
