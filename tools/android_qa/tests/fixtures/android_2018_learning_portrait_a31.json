@@ -1,0 +1,55 @@
+{
+  "scope": "Unchanged actual failed-run frames for offline probe regression; no Android acceptance PASS.",
+  "workflow_run": 43381440720,
+  "android_tour_job": 131762099939,
+  "apk_identity": {
+    "apk_sha256": "768364f33ac3280f39da74db8f75f9d77fca0986050f2da6a0b831508266cf50",
+    "flutter_source_commit": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+    "godot_revision": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+    "godot_pck_sha256": "e1bb847cb2410a8ce81fbcc319520ec823e27c38690aad123dff5513e329b2b2",
+    "versionName": "0.13.6",
+    "versionCode": 2018,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "original_readiness_error": "Current native surface/target did not settle before touch: Ein Objekt zeigen",
+  "frames": [
+    {
+      "fixture": "android_2018_learning_portrait_a31_00.png",
+      "original": "nextgen/learning-move-1-0.png",
+      "sha256": "6e81c02b44eb4361deec4aba145886544981ee751eb70cb40369b7b25c5fa000",
+      "bytes": 566872,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "original_blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      }
+    },
+    {
+      "fixture": "android_2018_learning_portrait_a31_36.png",
+      "original": "nextgen/learning-move-1-36.png",
+      "sha256": "bf1d6854a60de936d46f34024684570cf7fc1e800aa13a32c267c2f3158be5d2",
+      "bytes": 569584,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "original_blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      }
+    }
+  ]
+}
