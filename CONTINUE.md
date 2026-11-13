@@ -13,15 +13,21 @@ approval. Main and previous releases remain untouched.
    do not reset, force push or depend on an unavailable authenticated CLI push.
 2. Read `docs/KART_GRAPHICS_2019_QA.md` and
    `docs/KART_GRAPHICS_2019_DELIVERY.md`. The final native candidate is
-   `ea72b244cd279057255476a1f6103d29520a6ec5`, tree
-   `3b5eaabe2e8488eec646c6b949efee08b8c75252`, graphics run `43441307548`.
-   Worlds and Feedback succeeded; Root and their module agents opened all six
+   `25e3a1187234860414fa69822e7b301e75880c82`, tree
+   `71b52d8ab5b14a36cb50c4dc1164ee347bd7d9b8`, graphics run `43445815461`.
+   Its product files are byte-identical to `ea72b244`: only editor-import
+   invocation in the graphics workflow changed. On the previous run
+   `43441307548`, Worlds and Feedback succeeded; Root and their module agents opened all six
    current images in each area. Their verified original bytes are preserved in
    `docs/evidence/kart-graphics-2019-reviewed/`. The current Home capture and all
    seven new/preserved Home gates passed, but attempt 1's old-source importer
    segfaulted (exit 139). Its failure excerpt is preserved. The exact failed
-   Home job was retried with unchanged code; complete run acceptance is still
-   pending. No final visual receipt or 2019 APK is approved.
+   Home job failed a second time on the same old-source import. Both excerpts
+   and two successful isolated full local imports are preserved. The new CI
+   invocation isolates XDG before import and uses the complete --import exit
+   instead of --quit. This is not a proven native crash diagnosis. The entire
+   new run must pass; preserved ea72 evidence cannot approve the new source.
+   No final visual receipt or 2019 APK is approved.
 3. Native corrections include physical menu preview resolution, ground-connected
    winter stations with exact obstruction checks, live vehicle-effect rebinding,
    and the actual Cards header safe-area defect found in the 2018 Android tour.

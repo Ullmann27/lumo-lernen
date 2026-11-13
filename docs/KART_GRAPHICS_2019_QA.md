@@ -144,6 +144,29 @@ No final visual receipt is approved at this checkpoint. The retry and complete
 run must succeed. Original final artifact identities and PNGs must be checked
 again before approval; successful partial outputs do not bypass this boundary.
 
+The exact-source Home retry also exited 139 in the old baseline import. Both
+attempts completed all current-source Home gates first, and 20/24 current PNGs
+are byte-identical across attempts, including all 16 inspected Home/mode/garage/
+return images. The four race-start images differ; no visual conclusion is made
+from that difference alone. The second raw failure excerpt is preserved too.
+
+The current candidate is now `25e3a1187234860414fa69822e7b301e75880c82`, tree
+`71b52d8ab5b14a36cb50c4dc1164ee347bd7d9b8`, native run `43445815461`.
+Only the graphics workflow changed: it isolates data/config/cache paths before
+editor import, invokes the baseline from its own directory, and uses --import's
+documented completion-and-exit behavior without --quit's first-iteration exit.
+All product files, copied comparison harnesses and acceptance checks are
+unchanged. No resource or CSV is excluded and no crash is ignored.
+
+Two isolated local imports of the exact ada baseline, each with empty generated
+caches and the exact two Home harness files, completed all 597 assets with exit
+0 and no tracked baseline changes. One used the old invocation and one the new
+invocation. Their raw logs are `diagnostics/baseline-run-01-import.log` and
+`diagnostics/baseline-run-02-import.log`. The remote failure was not reproduced
+locally, so these results establish complete import behavior, not the exact
+cause of the remote crash. The new full CI run remains mandatory. The 24 strict
+pin tests pass for 25e3a118; the earlier 335-suite result keeps its recorded tree.
+
 ## Final acceptance boundary
 
 Final publication requires the final exact native source, three successful

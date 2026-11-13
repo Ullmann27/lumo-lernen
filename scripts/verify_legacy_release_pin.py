@@ -140,7 +140,7 @@ APPROVED = {
     # 2019: original Kart home/world/effects source after actual image review.
     # Source identity only: the complete native workflow, dated original-image
     # receipt, fresh APKs and real Android/update gates still control publication.
-    2019: "ea72b244cd279057255476a1f6103d29520a6ec5",
+    2019: "25e3a1187234860414fa69822e7b301e75880c82",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
