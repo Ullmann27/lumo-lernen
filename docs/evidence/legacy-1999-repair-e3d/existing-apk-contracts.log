@@ -1,0 +1,14 @@
+test_empty_or_unknown_expectations_are_rejected (test_unified_apk_abis.UnifiedApkAbiTest.test_empty_or_unknown_expectations_are_rejected) ... ok
+test_explicit_single_variant_is_exact (test_unified_apk_abis.UnifiedApkAbiTest.test_explicit_single_variant_is_exact) ... ok
+test_family_signing_certificate_is_pinned (test_unified_apk_abis.UnifiedApkAbiTest.test_family_signing_certificate_is_pinned) ... ok
+test_unexpected_library_architecture_is_rejected (test_unified_apk_abis.UnifiedApkAbiTest.test_unexpected_library_architecture_is_rejected) ... ok
+test_universal_still_requires_both_architectures (test_unified_apk_abis.UnifiedApkAbiTest.test_universal_still_requires_both_architectures) ... ok
+test_changed_model_or_clip_is_rejected (test_unified_apk_voice.UnifiedApkVoiceTest.test_changed_model_or_clip_is_rejected) ... ok
+test_changed_voice_preset_in_manifest_is_rejected (test_unified_apk_voice.UnifiedApkVoiceTest.test_changed_voice_preset_in_manifest_is_rejected) ... ok
+test_complete_digest_pinned_fixture_is_accepted (test_unified_apk_voice.UnifiedApkVoiceTest.test_complete_digest_pinned_fixture_is_accepted) ... ok
+test_missing_native_library_or_license_is_rejected (test_unified_apk_voice.UnifiedApkVoiceTest.test_missing_native_library_or_license_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.017s
+
+OK

@@ -1,0 +1,42 @@
+{
+  "actionlint_version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for linux/amd64\n",
+  "actionlint_exit_code": 0,
+  "bash_blocks": [
+    {
+      "step": "Verify the immutable candidate and baseline workflow identities",
+      "kind": "run",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Install independent live UI and image readers",
+      "kind": "run",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Independently verify both candidate ABIs and baseline signature",
+      "kind": "run",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Enable accelerated disposable emulator",
+      "kind": "run",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Software display",
+      "kind": "run",
+      "exit_code": 0,
+      "stderr": ""
+    },
+    {
+      "step": "Actual 1997 learning, in-place update, offline Kart and preserved progress",
+      "kind": "emulator_script",
+      "exit_code": 0,
+      "stderr": ""
+    }
+  ]
+}

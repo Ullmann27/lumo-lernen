@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_historical_apk_expectations.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.5098128559984616,
+  "scope": "Synthetic contract tests; no Android execution"
+}
