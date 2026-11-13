@@ -84,9 +84,32 @@ capture budget. The original archive digest is
 
 Root and two module reviewers opened these originals. The card fronts were
 visible; the header lacked the native Android safe-area placement used elsewhere
-in the project. A minimal product correction is being integrated. The existing
+in the project. The native correction now positions only the header from mobile
+and actual display insets, refreshing on resize, focus/resume and the existing
+0.20-second poll. The unchanged table and footer keep their geometry. Its
+295-check runtime regression passes, including physical 1080x2400 / 2.625-density
+touch bounds and actual pause/resume/return actions. The final Home artifact
+must preserve the original `cards-header.log`. The existing
 OCR, pixel, same-revision and two-frame checks remain mandatory. Extra timeout
 or weaker acceptance would not fix this actual interface overlap.
+
+The old Android log contains only MobileRuntime's 32/48-pixel fallback. It did
+not record the additional DisplayServer safe-area return; the new APK's actual
+Android tour must confirm the corrected header and readable Pause caption.
+
+## Final native verification in progress
+
+The combined source is `ea72b244cd279057255476a1f6103d29520a6ec5`, exact tree
+`3b5eaabe2e8488eec646c6b949efee08b8c75252`. Native graphics run `43441307548`
+repeats all real home/world/feedback captures on this source. It additionally
+requires the physical preview-resolution gate, the Cards header regression,
+and the winter visibility/lifecycle check. Visibility exceptions now bind to
+actual submitted station parts; a foreign 10-cm obstruction is a permanent
+negative case. Its local lifecycle passes 50 geometry checks and completes
+audio teardown without errors. These geometry results do not replace images.
+
+No final visual receipt is approved at this checkpoint. Final images must be
+opened and accepted after all three actual jobs complete successfully.
 
 ## Final acceptance boundary
 

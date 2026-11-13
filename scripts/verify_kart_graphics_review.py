@@ -33,6 +33,7 @@ REQUIRED_LOGS = {
     'home': {
         'regression.log': '[KartHomeExperience] PASS',
         'preview-resolution.log': '[KartPreviewResolution] PASS',
+        'cards-header.log': 'CARDS_TABLE_RUNTIME_PASS',
         'home-promenade.log': '[KartHomePromenade] PASS',
         'preserved-spatial-menu.log': '[SpatialMenu] PASS',
         'preserved-garage.log': '[NextGenGarage] PASS',
