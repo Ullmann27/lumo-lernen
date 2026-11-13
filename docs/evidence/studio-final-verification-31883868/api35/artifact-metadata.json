@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14076728771,
+      "name": "lumo-studio-2019-android-tour",
+      "size_in_bytes": 107187990,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14076728771",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14076728771/zip",
+      "expired": false,
+      "created_at": "2026-11-13T21:13:00Z",
+      "expires_at": "2026-12-13T21:12:56Z",
+      "updated_at": "2026-11-13T21:13:00Z",
+      "digest": "sha256:39c8f985983890b4c0f6f72e64cabaf466533e14c8c22053d230ddc63c88ddde",
+      "workflow_run": {
+        "id": 43496928833,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-studio-20261113",
+        "head_sha": "31883868bac56699dbf3b3d60a7cdb7afc496a8b"
+      }
+    }
+  ]
+}

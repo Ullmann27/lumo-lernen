@@ -1,0 +1,340 @@
+{
+  "method": "Independent read-only parsing/comparison of original retained ZIP members; no app or test rerun",
+  "parser_note": "Actual Android dumpsys uses appId=10209; separate package-uid reports independently give uid:10209. Initial local review parser expected userId and was corrected before this result; no original evidence changed.",
+  "installation": {
+    "baseline": {
+      "versionCode": "2017 minSdk=24 targetSdk=36",
+      "versionName": "0.13.5",
+      "firstInstallTime": "2026-11-13 20:55:14",
+      "lastUpdateTime": "2026-11-13 20:55:14",
+      "appId": "10209",
+      "uid": "10209"
+    },
+    "updated": {
+      "versionCode": "2019 minSdk=24 targetSdk=36",
+      "versionName": "0.13.7",
+      "firstInstallTime": "2026-11-13 20:55:14",
+      "lastUpdateTime": "2026-11-13 20:58:24",
+      "appId": "10209",
+      "uid": "10209"
+    }
+  },
+  "protected_keys": [
+    "flutter.lumo_attempt_log_v1",
+    "flutter.lumo_learning_local_student_id_v1",
+    "flutter.lumo_progress_daily::local-6e1ea2c9c6376a1857215024219db30d",
+    "flutter.lumo_progress_journey_v1::local-6e1ea2c9c6376a1857215024219db30d",
+    "flutter.lumo_progress_last::local-6e1ea2c9c6376a1857215024219db30d",
+    "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d",
+    "flutter.lumo_reward_wallet_v1"
+  ],
+  "skill_membership": [
+    "mathematik::plus bis 10"
+  ],
+  "ten_original_skill_fields": {
+    "skillId": {
+      "before": "mathematik::plus bis 10",
+      "after": "mathematik::plus bis 10",
+      "same_type": true,
+      "equal": true
+    },
+    "subject": {
+      "before": "Mathematik",
+      "after": "Mathematik",
+      "same_type": true,
+      "equal": true
+    },
+    "unit": {
+      "before": "Plus bis 10",
+      "after": "Plus bis 10",
+      "same_type": true,
+      "equal": true
+    },
+    "correct": {
+      "before": 1,
+      "after": 1,
+      "same_type": true,
+      "equal": true
+    },
+    "wrong": {
+      "before": 0,
+      "after": 0,
+      "same_type": true,
+      "equal": true
+    },
+    "hintCount": {
+      "before": 0,
+      "after": 0,
+      "same_type": true,
+      "equal": true
+    },
+    "currentStreak": {
+      "before": 1,
+      "after": 1,
+      "same_type": true,
+      "equal": true
+    },
+    "currentMisses": {
+      "before": 0,
+      "after": 0,
+      "same_type": true,
+      "equal": true
+    },
+    "difficulty": {
+      "before": 1,
+      "after": 1,
+      "same_type": true,
+      "equal": true
+    },
+    "lastSeen": {
+      "before": "2026-11-13T20:56:42.064207",
+      "after": "2026-11-13T20:56:42.064207",
+      "same_type": true,
+      "equal": true
+    }
+  },
+  "only_added_skill_field": {
+    "independentEvidence": {
+      "version": 1,
+      "correct": 1,
+      "wrong": 0,
+      "correctStreak": 1,
+      "wrongStreak": 0
+    }
+  },
+  "phases": {
+    "before-update": {
+      "preference_count": 15,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [],
+      "protected_changed_from_after_update": null,
+      "new_keys": [],
+      "missing_keys": []
+    },
+    "after-update": {
+      "preference_count": 15,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [
+        "flutter.lumo_daily_mission_v1::local-6e1ea2c9c6376a1857215024219db30d",
+        "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d"
+      ],
+      "protected_changed_from_after_update": [],
+      "new_keys": [],
+      "missing_keys": []
+    },
+    "after-kart": {
+      "preference_count": 17,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1",
+        "flutter.lumo_daily_mission_v1::local-6e1ea2c9c6376a1857215024219db30d",
+        "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d"
+      ],
+      "protected_changed_from_after_update": [],
+      "new_keys": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "missing_keys": []
+    },
+    "after-restart": {
+      "preference_count": 17,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1",
+        "flutter.lumo_daily_mission_v1::local-6e1ea2c9c6376a1857215024219db30d",
+        "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d"
+      ],
+      "protected_changed_from_after_update": [],
+      "new_keys": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "missing_keys": []
+    },
+    "fold-cover": {
+      "preference_count": 17,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1",
+        "flutter.lumo_daily_mission_v1::local-6e1ea2c9c6376a1857215024219db30d",
+        "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d"
+      ],
+      "protected_changed_from_after_update": [],
+      "new_keys": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "missing_keys": []
+    },
+    "fold-open": {
+      "preference_count": 17,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1",
+        "flutter.lumo_daily_mission_v1::local-6e1ea2c9c6376a1857215024219db30d",
+        "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d"
+      ],
+      "protected_changed_from_after_update": [],
+      "new_keys": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "missing_keys": []
+    },
+    "fold-landscape": {
+      "preference_count": 17,
+      "profile": {
+        "id": "1794603360400773",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:56:00.400773",
+        "lastActiveAt": "2026-11-13T20:56:00.400833"
+      },
+      "local_owner": "local-6e1ea2c9c6376a1857215024219db30d",
+      "wallet": {
+        "stars": 1,
+        "xp": 5,
+        "level": 1,
+        "streak": 0,
+        "totalEarnedStars": 1,
+        "lastDailyKey": "",
+        "gameResultIds": [],
+        "lumoCardsWinStreak": 0
+      },
+      "changed_keys_from_2017": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1",
+        "flutter.lumo_daily_mission_v1::local-6e1ea2c9c6376a1857215024219db30d",
+        "flutter.lumo_progress_skills::local-6e1ea2c9c6376a1857215024219db30d"
+      ],
+      "protected_changed_from_after_update": [],
+      "new_keys": [
+        "flutter.lumo_3d_profile_keys_v1",
+        "flutter.lumo_3d_save_salt_v1"
+      ],
+      "missing_keys": []
+    }
+  },
+  "no_data_loss_detected_in_observed_single_profile": true,
+  "scope_limits": [
+    "One actual fictional test profile and one correct addition problem",
+    "No observed wrong/hint-heavy legacy skill migration in this run",
+    "No populated journal/writing/story/reading-session migration in this fixture",
+    "No populated second-child or native pre-2017 save migration",
+    "Daily mission lastSeenAt is outside the protected prefix set and advances; this is not a whole-preference-file byte equality claim"
+  ]
+}

@@ -1,0 +1,31 @@
+--------- beginning of main
+I/godot   ( 6740): Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+E/godot   ( 6740): WARNING: Failed to load cached shader, recompiling.
+E/godot   ( 6740):    at: _load_from_cache (drivers/gles3/shader_gles3.cpp:612)
+I/godot   ( 6740): OpenGL API OpenGL ES 3.1 (4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4) - Compatibility - Using Device: Google (Mesa) - Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))
+I/godot   ( 6740): 
+I/godot   ( 6740): [EventBus] online - signals registered
+I/godot   ( 6740): [Settings] no settings.cfg yet, defaults used
+I/godot   ( 6740): [Perf] platform_detected:Android
+I/godot   ( 6740): [Mobile] runtime ready screen:(1080, 2400) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+I/godot   ( 6740): [AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+I/godot   ( 6740): [Audio] manager ready (muted:false)
+I/godot   ( 6740): [Progress] loaded stars:0 streak:0 letters:0
+I/godot   ( 6740): [Progress] host wallet synchronized: 0 (lifetime 0)
+I/godot   ( 6740): [Perf] quality_profile:medium
+I/godot   ( 6740): [Router] loaded:learning (res://scenes/learning/learning_world.tscn)
+I/LumoLearningSpeech( 6740): started id=3 profile=lumo-free-supertonic-de-v1
+I/LumoLearningSpeech( 6740): completed id=3
+I/godot   ( 6740): [LearningWorld] move kind=bridge_ten token=0 target=8 placed=1 complete=false
+I/LumoLearningSpeech( 6740): started id=6 profile=lumo-free-supertonic-de-v1
+I/LumoLearningSpeech( 6740): completed id=6
+I/godot   ( 6740): [LearningWorld] move kind=bridge_ten token=1 target=9 placed=2 complete=false
+I/LumoLearningSpeech( 6740): started id=9 profile=lumo-free-supertonic-de-v1
+I/LumoLearningSpeech( 6740): completed id=9
+I/godot   ( 6740): [LearningWorld] move kind=bridge_ten token=2 target=10 placed=3 complete=false
+I/LumoLearningSpeech( 6740): started id=12 profile=lumo-free-supertonic-de-v1
+I/LumoLearningSpeech( 6740): completed id=12
+I/godot   ( 6740): [LearningWorld] move kind=bridge_ten token=3 target=11 placed=4 complete=false
+I/LumoLearningSpeech( 6740): started id=15 profile=lumo-free-supertonic-de-v1
+I/LumoLearningSpeech( 6740): completed id=15
+I/godot   ( 6740): [LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true

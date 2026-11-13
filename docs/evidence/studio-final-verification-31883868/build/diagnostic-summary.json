@@ -1,0 +1,76 @@
+{
+  "source_log_sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+  "resource_exit_error_lines": [
+    {
+      "line": 6218,
+      "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "line": 6249,
+      "message": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "line": 6304,
+      "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "line": 6629,
+      "message": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+    },
+    {
+      "line": 6806,
+      "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+    }
+  ],
+  "other_build_action_diagnostics": [
+    {
+      "line": 222,
+      "message": "##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5."
+    },
+    {
+      "line": 5442,
+      "message": "cannot connect to daemon at tcp:5037: Connection refused"
+    },
+    {
+      "line": 10922,
+      "message": "cannot connect to daemon at tcp:5037: Connection refused"
+    },
+    {
+      "line": 12310,
+      "message": "cannot connect to daemon at tcp:5037: Connection refused"
+    },
+    {
+      "line": 12363,
+      "message": "WARNING: Unsupported Kotlin plugin version."
+    },
+    {
+      "line": 12364,
+      "message": "The `embedded-kotlin` and `kotlin-dsl` plugins rely on features of Kotlin `2.2.0` that might work differently than in the requested version `2.2.20`."
+    },
+    {
+      "line": 12377,
+      "message": "WARNING: The option setting 'android.builtInKotlin=false' is deprecated."
+    },
+    {
+      "line": 12380,
+      "message": "WARNING: The option setting 'android.newDsl=false' is deprecated."
+    },
+    {
+      "line": 12486,
+      "message": "WARNING: API 'ApkVariantOutput.getVersionCodeOverride()' is obsolete and has been replaced with 'VariantOutput.versionCode()'."
+    },
+    {
+      "line": 12517,
+      "message": "Caught exception: Already watching path: /home/runner/work/lumo-lernen/lumo-lernen/android"
+    },
+    {
+      "line": 12915,
+      "message": "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+    }
+  ],
+  "intentional_negative_framework_guard_output": {
+    "original_line": 1302,
+    "passed_test_marker_original_line": 969,
+    "classification": "Expected negative test output for actual_cli22_avd_binding_not_verified; not an actual emulator run."
+  }
+}

@@ -1,0 +1,175 @@
+{
+  "status": "FAIL",
+  "host_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "probe_source": "2fdd038d00ed7706971786400e3e1a42f5290c88",
+  "build_run": 43496928833,
+  "games": {
+    "jump": {
+      "status": "FAIL",
+      "error": "Current live hub tile not available: Jump & Run",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 906, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 748, in jump\n    self.enter('Jump & Run', 'Halten = höher springen')\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 525, in enter\n    self.portal(title)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 522, in portal\n    raise RuntimeError('Current live hub tile not available: ' + title)\nRuntimeError: Current live hub tile not available: Jump & Run\n"
+    },
+    "build": {
+      "status": "FAIL",
+      "error": "Current live hub tile not available: Bauwelt",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 906, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 613, in build\n    self.enter('Bauwelt', 'LUMO BAUWELT')\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 525, in enter\n    self.portal(title)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 522, in portal\n    raise RuntimeError('Current live hub tile not available: ' + title)\nRuntimeError: Current live hub tile not available: Bauwelt\n"
+    },
+    "puzzle": {
+      "status": "FAIL",
+      "error": "Current live hub tile not available: Puzzle",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 906, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 655, in puzzle\n    self.enter('Puzzle', 'LUMOS PUZZLE')\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 525, in enter\n    self.portal(title)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 522, in portal\n    raise RuntimeError('Current live hub tile not available: ' + title)\nRuntimeError: Current live hub tile not available: Puzzle\n"
+    },
+    "treasure": {
+      "status": "FAIL",
+      "error": "Current live hub tile not available: Schatzsuche",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 906, in run\n    result['games'][name] = getattr(self, name)()\n                            ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 694, in treasure\n    self.enter('Schatzsuche', 'LUMOS STERNENSCHATZ')\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 525, in enter\n    self.portal(title)\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 522, in portal\n    raise RuntimeError('Current live hub tile not available: ' + title)\nRuntimeError: Current live hub tile not available: Schatzsuche\n"
+    }
+  },
+  "scope": "Additional disposable API35 real-input probe of the same unchanged candidate APK",
+  "not_tested": [
+    "Samsung Fold7 hardware",
+    "Android17",
+    "thermal/latency/FPS",
+    "production child data",
+    "full game completion"
+  ],
+  "apk_identity": {
+    "apk_sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+    "flutter_source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+    "godot_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "godot_pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "direct_apk_pck_read": {
+    "sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+    "bytes": 66217496
+  },
+  "root": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.003,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "restarting adbd as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 1.311,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 1.314,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 1.381,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 1.41
+  },
+  "runtime": {
+    "sdk": "35",
+    "release": "15",
+    "model": "sdk_gphone64_x86_64",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys"
+  },
+  "installed": {
+    "userId": "10209",
+    "firstInstallTime": "2026-11-13 21:17:38",
+    "versionCode": "2019 minSdk=24 targetSdk=36",
+    "versionName": "0.13.7"
+  },
+  "onboarding": {
+    "status": "PASS",
+    "profile_name": "LumoTest",
+    "captures": [
+      {
+        "file": "07_home_after_onboarding.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "c04b2c79280afaa299e252d9d8f477325fa0f88cf76de95e9b8841a9b0b66f3d",
+        "render_readiness": {
+          "width": 1080,
+          "height": 1920,
+          "content_entropy_bits": 5.29,
+          "threshold_bits": 3.0,
+          "visually_ready": true,
+          "scope": "Rendered content readiness, not an accessibility or gameplay check"
+        }
+      },
+      {
+        "file": "08_games_after_navigation.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8f319eaf5d098b849c6d5ff62dafcb2dc9174748acfbf685eb738038ca7d8ff6"
+      }
+    ],
+    "games_label": "Spiele"
+  },
+  "error": "At least one required genuine-input game contract failed; original evidence retained",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 929, in run\n    require(all(row.get('status') in ('PASS', 'INPUTS_RECORDED_SAVE_RESUMED')\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/qa-source/.github/probes/studio_creative_android_probe.py\", line 58, in require\n    raise RuntimeError(message)\nRuntimeError: At least one required genuine-input game contract failed; original evidence retained\n",
+  "elapsed_seconds": 1025.40483401
+}

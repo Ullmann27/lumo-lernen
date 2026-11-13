@@ -1,0 +1,75 @@
+{
+  "build-contracts": {
+    "file": "build-contracts-job-excerpt.log",
+    "source_log_sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+    "first_original_line": 934,
+    "last_original_line": 1488,
+    "bytes": 98565,
+    "sha256": "58f2fa4d69372e54b546b738b68067159151f1e2a7074133e1be25558d069d7f",
+    "scope": "Unmodified timestamped lines from the complete original job log; not a separately uploaded test log.",
+    "tests": {
+      "run": 402,
+      "passed": 402,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 72.848
+    }
+  },
+  "android-probe-contracts": {
+    "file": "android-probe-contracts-job-excerpt.log",
+    "source_log_sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+    "first_original_line": 1489,
+    "last_original_line": 2571,
+    "bytes": 187826,
+    "sha256": "58714dbd7eae93363dc27df81082e6cdcde68005a2ba6524c44c8302eb782c4b",
+    "scope": "Unmodified timestamped lines from the complete original job log; not a separately uploaded test log.",
+    "tests": {
+      "run": 764,
+      "passed": 764,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 40.77
+    }
+  },
+  "font-contracts": {
+    "file": "font-contracts-job-excerpt.log",
+    "source_log_sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+    "first_original_line": 2572,
+    "last_original_line": 2598,
+    "bytes": 3089,
+    "sha256": "1d8b1c96e201e464b5fe016547da04a40b98cb7604207f4961c062b54b43deeb",
+    "scope": "Unmodified timestamped lines from the complete original job log; not a separately uploaded test log.",
+    "tests": {
+      "run": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.07
+    }
+  },
+  "pin-export-contracts": {
+    "file": "pin-export-contracts-job-excerpt.log",
+    "source_log_sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+    "first_original_line": 2599,
+    "last_original_line": 2674,
+    "bytes": 11182,
+    "sha256": "e0d63adf070770cf80c66f8d42f7961109222e131c474f48ad0c48bca0f5f8cc",
+    "scope": "Unmodified timestamped lines from the complete original job log; not a separately uploaded test log.",
+    "tests": {
+      "run": 23,
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.496
+    }
+  },
+  "final-apk-verification": {
+    "file": "final-apk-verification-job-excerpt.log",
+    "source_log_sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+    "first_original_line": 12603,
+    "last_original_line": 12704,
+    "bytes": 7564,
+    "sha256": "d51ed0a2c1ef74a17f657aadcb7289fe8969ac490d00585675fc6d329227acd8",
+    "scope": "Unmodified timestamped lines from the complete original job log; not a separately uploaded test log."
+  }
+}

@@ -1,0 +1,188 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T20:28:44.521922+00:00",
+  "status": "PASS_FRESH_FLUTTER_SUITE_WITH_RECORDED_INPUT_AND_PLUGIN_LIMITS",
+  "source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "run_id": 43496928833,
+  "run_attempt": 1,
+  "job_id": 132132346118,
+  "artifact_id": 14072992446,
+  "github_reported_archive_sha256": "3cd080ccb1968c984cc6fd0f2181901251aecbe76b7185fe4aa81652d14a4bfd",
+  "retrieval": {
+    "whole_zip_downloaded": false,
+    "whole_zip_sha256_recomputed": false,
+    "selected_original_members_crc_checked": true,
+    "transferred_bytes": 201522,
+    "explanation": "Only HTTP206 ZIP ranges for the central directory and two original report members were read. The published full-archive digest is metadata, not a newly computed digest."
+  },
+  "actual_results": {
+    "passed_visible_tests": 2510,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": 0,
+    "test_start_events_including_hidden_loader_setup": 3064,
+    "test_done_events_including_hidden_loader_setup": 3064,
+    "suite_events": 374,
+    "runner_done_success": true,
+    "runner_time_ms": 526524,
+    "flutter_exit_code": 0,
+    "capture_error_files": [],
+    "png_entries_in_original_archive": 546,
+    "png_files_downloaded_or_opened_in_this_review": 0
+  },
+  "diagnostics": [
+    {
+      "kind": "One actual missed-label hit-test warning",
+      "count": 1,
+      "test": "actual shell stays usable while resizing from phone to Fold and narrow phone",
+      "file": "test/lumo_shell_layout_test.dart",
+      "line": 198,
+      "finder": "find.text('Lernen').last",
+      "observed_offset": [
+        234.8,
+        551.4
+      ],
+      "scope": "The freshly observed hit stack and unchanged sources identify the Home learning-card overlay. The test asserts the learning destination, but does not uniquely prove the permanent sidebar input or per-iteration before/after causality. Actual Android navigation remains required.",
+      "production_blocker_confirmed": false,
+      "blanket_harmlessness_claim": false
+    },
+    {
+      "kind": "Intentional storage exception injection",
+      "count": 5,
+      "scope": "Current test sources explicitly throw PlatformException(storage) in mocked acknowledgement paths. Fresh completion events for these cases are successful; this is retry/replay evidence, not a real-device storage failure."
+    },
+    {
+      "kind": "Unavailable audio plugin in Flutter widget harness",
+      "count": 20,
+      "click_messages": 19,
+      "win_messages": 1,
+      "scope": "MissingPluginException messages are retained. These widget tests do not demonstrate actual Android sound playback. No skipped testDone event occurred."
+    },
+    {
+      "kind": "Explicit failed-ack replay debug summaries",
+      "count": 2,
+      "scope": "resultBeforeResume=true/false cases log failedAck=1 with replayedOnce=true and originCurrent=true."
+    }
+  ],
+  "source_scope_read": [
+    {
+      "path": "test/lumo_shell_layout_test.dart",
+      "bytes": 8846,
+      "sha256": "2165a3aacba4148e5eb0cf99316d0be34aac56b6b70dad9390955da5cdd9f575",
+      "git_blob": "fa32f7fb0a928edab32bda9dc69621adf09b5f48",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/app/app_shell.dart",
+      "bytes": 37822,
+      "sha256": "02087dfed14848d84c52877c7bf8d7756bd265a31f06544230cda41b74bb3cbb",
+      "git_blob": "db141faa7f922d136a822cfd6c49b4153d904a9a",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "bytes": 47310,
+      "sha256": "37c66dc5ddd7ab70210f275bc624e32100c25b6214dfe979fd0e5026e203affa",
+      "git_blob": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/widgets/design/lumo_design_system.dart",
+      "bytes": 58867,
+      "sha256": "2ecd5be524b6f833197e12af0c3ccb453d5b8af4377e7b02eff9dcd2c190ad7a",
+      "git_blob": "79175b2dac6f52c73bd2f8737e9a94f7bddfa16b",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/widgets/design/lumo_adventure_card.dart",
+      "bytes": 5180,
+      "sha256": "e70c6ee7f00f973e79fc9627aacdc6dc0cde40e6d7871961f7d8acd93ca8b16d",
+      "git_blob": "8b5094784ede6969422e1db58de0fad9cb47828d",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/widgets/shell/left_navigation.dart",
+      "bytes": 15227,
+      "sha256": "d2857c7bdcc063a3e75a1b77a5ce2a7ce626b32022f2731ee84f5a48f0f00678",
+      "git_blob": "9aca522a5c6901c62fb1e6eb371cc6e5e0925419",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/features/shared/widgets/lumo_section_transition.dart",
+      "bytes": 2568,
+      "sha256": "791ad92d9744214d1d399ab42e33408211377a53e643abc27ad2578d5b7d7dc6",
+      "git_blob": "e29d362b5134ae9efdcd3c63a0079b3ee24735a3",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/app/app_theme.dart",
+      "bytes": 11506,
+      "sha256": "c0f00bdcf125967b7188a3af350938d58597626b39c7938fe2a0def199688833",
+      "git_blob": "fbca41aca3bf0f5e199175fe7285aec5a2e84db9",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "lib/app/app_state.dart",
+      "bytes": 53380,
+      "sha256": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f",
+      "git_blob": "b8de55e3037e1b224e5c9ab4e563a19f4260006a",
+      "equals_previously_reviewed_e3d_bytes": true
+    },
+    {
+      "path": "test/lumo_native_origin_return_test.dart",
+      "bytes": 23960,
+      "sha256": "f9c374d802472408fe6f86f2cf4efa0bc64c1fffc0e8f6b374fdf3cac8d34f09",
+      "git_blob": "34b00c7203c9d33c6918fb258bdfc890644648f0",
+      "review_scope": "Explicit storage PlatformException injection in mock acknowledgement handler and corresponding retry test cases."
+    },
+    {
+      "path": "test/embedded_game_service_test.dart",
+      "bytes": 7320,
+      "sha256": "dd3529cbf8823ab642a6ce7669493b86062beff5d62f81e4c9a7eb8bd974fe06",
+      "git_blob": "dc3e298d051a0e284502023a9e32d665aa92393f",
+      "review_scope": "Explicit storage PlatformException injection in mock acknowledgement handler and corresponding retry test cases."
+    }
+  ],
+  "prior_scope_analysis_reference": {
+    "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/hit-test-scope-review.json",
+    "sha256": "ae64e5944d1dd4b7d6908680189ebd7e7fd7abc65c63bd7e3a50709fea2bcf51",
+    "use": "Only source semantics were reused after current byte comparison; all run counts, warning events and report bytes above come from the new318 artifact."
+  },
+  "evidence": [
+    {
+      "path": "acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "63d01ce2a53bde277e2fa545f98b573a0fa286f6b7917ad44541d1c9de27e451"
+    },
+    {
+      "path": "event-analysis.json",
+      "bytes": 17037,
+      "sha256": "ba2f40eb5363639b9e9b740b9ecd4a8512799011b1e99f0e9d9f30d58e426068"
+    },
+    {
+      "path": "flutter-machine.jsonl",
+      "bytes": 1585159,
+      "sha256": "7e95f07d12df2a5a5eb749be86618fa96be9644b46d6b0a63b73b35b1ae23ce3"
+    },
+    {
+      "path": "github-artifact-metadata.json",
+      "bytes": 776,
+      "sha256": "9d002eb992a4c6f121c0a2e5151c513dc069dd3fb362250c4daf1ebc3b93e350"
+    },
+    {
+      "path": "original-central-directory.json",
+      "bytes": 79413,
+      "sha256": "e67db27d99aac85f6db9ec6e471e3f54eaa79ed5c34ff7fc9aff08822a004a95"
+    },
+    {
+      "path": "selected-member-provenance.json",
+      "bytes": 1965,
+      "sha256": "99864320e33e1b330b1d29e895d601bd1cb1d2ca7c1ec8a5d094af54294b6867"
+    }
+  ],
+  "limits": [
+    "No blanket visual approval of546PNG; none were downloaded or opened for this report.",
+    "No Android emulator, release APK, physical Fold7, performance or sound result follows from Flutter unit/widget acceptance.",
+    "Fresh Python contract and native gameplay totals remain pending the complete original build log/artifact."
+  ]
+}

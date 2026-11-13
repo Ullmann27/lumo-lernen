@@ -1,0 +1,960 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-13T21:48:23.649744+00:00",
+  "reason": "GitHub connector rejected the original 29.9MB ZIP base64 request because it exceeds the 16MiB MCP request limit; each part is a standalone verified ZIP below8MiB. No product/source alteration.",
+  "original_archive": {
+    "name": "studio-31883868-build-and-update-evidence.zip",
+    "bytes": 29936080,
+    "sha256": "097c0180cf6ed0f478d996bace00002cc69e076b4d70fe1ce5b3645fb946674b",
+    "retained_locally": true,
+    "uploaded": false
+  },
+  "scope": "Exact180 source archive members distributed once across valid standalone ZIPs; all bytes independently reread and compared",
+  "parts": [
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/compact-handoff/studio-31883868-build-update-part-01.zip",
+      "bytes": 7345523,
+      "sha256": "151d6e81b34f35c619ba5188f6d15ff316f06db7b35f4401bffa0dff8fe95554",
+      "git_blob": "49ce353371e83f0220c2e4b7cfb30cbb4c4c80b0",
+      "mode": "100644",
+      "members": [
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/android-probe-contracts-job-excerpt.log",
+          "bytes": 187826,
+          "sha256": "58714dbd7eae93363dc27df81082e6cdcde68005a2ba6524c44c8302eb782c4b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/build-contracts-job-excerpt.log",
+          "bytes": 98565,
+          "sha256": "58f2fa4d69372e54b546b738b68067159151f1e2a7074133e1be25558d069d7f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/ci-apk-verification-arm64-v8a.json",
+          "bytes": 1938,
+          "sha256": "2baeab3671fba1c1f6da722c689bd3fa2be3e851a92fc489493dce85806a2ee0"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/ci-apk-verification-x86_64.json",
+          "bytes": 1935,
+          "sha256": "270bc89c90440e6dab719a28e05692e4757f87e523e03fe6208253e455f87447"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/diagnostic-summary.json",
+          "bytes": 2783,
+          "sha256": "e49a13f82b5f4284254a5e5015f723ff8a2fcb6cb9f80d4a87f0bed5e5b4273f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/files-manifest.json",
+          "bytes": 2540,
+          "sha256": "f8f41dfde0e6848523977b7f8388f662467502a7e7c440c067fde40536bc7945"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/final-apk-verification-job-excerpt.log",
+          "bytes": 7564,
+          "sha256": "d51ed0a2c1ef74a17f657aadcb7289fe8969ac490d00585675fc6d329227acd8"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/flutter-static-analysis-issues.json",
+          "bytes": 31840,
+          "sha256": "d959144db7c08f138d9da60281e49c257469db51c8be32cc002aa352ede8e3cc"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/font-contracts-job-excerpt.log",
+          "bytes": 3089,
+          "sha256": "1d8b1c96e201e464b5fe016547da04a40b98cb7604207f4961c062b54b43deeb"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/original-artifact-metadata.json",
+          "bytes": 6755,
+          "sha256": "bbd3f88a90efeee57331c7d12d7c3c8386fc12b6732a8d651055e4df266c49ba"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/original-job-completion.json",
+          "bytes": 5931,
+          "sha256": "511bf4a19c3ca08e0ed03509daa4eaf5ae0485f467f2b0b515a12f592ac93755"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/original-job.log",
+          "bytes": 1534271,
+          "sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/original-run.json",
+          "bytes": 13867,
+          "sha256": "9ab43e3ad479d40072fa4fd0db8119218ac10b84dbbe0768bf3bb9a0be00c930"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/pin-export-contracts-job-excerpt.log",
+          "bytes": 11182,
+          "sha256": "e0d63adf070770cf80c66f8d42f7961109222e131c474f48ad0c48bca0f5f8cc"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/review.json",
+          "bytes": 9803,
+          "sha256": "a63cd70d6483915374fbe8741466d983a75c280e8c3514f630ac8ba164dcf3b2"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/build/section-provenance.json",
+          "bytes": 2782,
+          "sha256": "a8a954ca04e7c4364011659e3c279bb87711533dadbfaf139407f997d9715a7d"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/acceptance-summary.json",
+          "bytes": 2118,
+          "sha256": "63d01ce2a53bde277e2fa545f98b573a0fa286f6b7917ad44541d1c9de27e451"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/event-analysis.json",
+          "bytes": 17037,
+          "sha256": "ba2f40eb5363639b9e9b740b9ecd4a8512799011b1e99f0e9d9f30d58e426068"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/flutter-machine.jsonl",
+          "bytes": 1585159,
+          "sha256": "7e95f07d12df2a5a5eb749be86618fa96be9644b46d6b0a63b73b35b1ae23ce3"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/github-artifact-metadata.json",
+          "bytes": 776,
+          "sha256": "9d002eb992a4c6f121c0a2e5151c513dc069dd3fb362250c4daf1ebc3b93e350"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/original-central-directory.json",
+          "bytes": 79413,
+          "sha256": "e67db27d99aac85f6db9ec6e471e3f54eaa79ed5c34ff7fc9aff08822a004a95"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/review.json",
+          "bytes": 7958,
+          "sha256": "f9d846b9f97ef32fa61a495b3a51b976180db315e343563653b5f0ad1f9b5629"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/flutter/selected-member-provenance.json",
+          "bytes": 1965,
+          "sha256": "99864320e33e1b330b1d29e895d601bd1cb1d2ca7c1ec8a5d094af54294b6867"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/archive-inventory.json",
+          "bytes": 898,
+          "sha256": "4d8d9787da1756c7522cd8701f90eea12146eeb91948d4dda01a660a539d3024"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/cards-authority-registry.log",
+          "bytes": 1325,
+          "sha256": "9e3f26740a97e87db13b77cd8497755fb8b1d06614ed92f120d711b9526bd979"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/compile.log",
+          "bytes": 33778,
+          "sha256": "4fb9798c30f969c4afb82b606a2e691ef05ccd6ab5f8eab4824195de2a5a9107"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/flutter-version.txt",
+          "bytes": 321,
+          "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/github-artifact.json",
+          "bytes": 763,
+          "sha256": "9e0ebc693aded82c2a907ed4364e27dd1ebd17bf900a32484518c26a34c56eee"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/job-completion.json",
+          "bytes": 1743,
+          "sha256": "9f88d09f8506d7ee670da66147ebeb1ed66445a5791dcab52c9198005bb180d4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/original-job.log",
+          "bytes": 237182,
+          "sha256": "c24214626d7129c31b01bbc0f3183e60cfe5fd4489f314f807deabd7c745c988"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/result.json",
+          "bytes": 2769,
+          "sha256": "88e8ca26b9c1eff1bbc6e98f66dae21604be7e46c09d488a322e4cae348dc4c4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/review.json",
+          "bytes": 6681,
+          "sha256": "d2fbe37ee20dcf6c2b287aa0cc23da27ebccc231757c57554650f952be0e28fc"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/host-compile/source-sha.txt",
+          "bytes": 41,
+          "sha256": "ae7adb86ea3c929b0202b9938023652dfffa1f07b21b8ddbf81a290c93aec61c"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/files-manifest.json",
+          "bytes": 16791,
+          "sha256": "e5769e2289a72dde24c1211bb6afb9eb122b947909276a0dbcdf998e34f409a2"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/github-artifact-metadata.json",
+          "bytes": 869,
+          "sha256": "1b7eb10e58254fb92ece6418c0ae49a4709c9bd8a768a7ec1f2797565bf0d2a9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/jobs-native-stage-success.json",
+          "bytes": 8733,
+          "sha256": "06f351f9c5a7232019a99d5e10a2a9eaccbca94945b028326456a9b0594ebb81"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-central-directory.json",
+          "bytes": 878009,
+          "sha256": "80c71340d3653c9c16ca840bc659595feb3c06da430eddd70bbdf0167567fff1"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/build_sandbox_tools_regression.log",
+          "bytes": 539,
+          "sha256": "62b94cf9adcc2b65a0b81c0e5780af8152e2f33d92a9beee28b1658f4caa055e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/build_sandbox_ui_regression.log",
+          "bytes": 1269,
+          "sha256": "df12e6cd24264f30e4b81b215caff309e233d3e0c2cf4c42e70bfe9f65070c82"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/creative_touch_layout_regression.log",
+          "bytes": 1574,
+          "sha256": "453eb1bb426577852ed112022cd9949220728cc89643a3fa1cafb280993e18e9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/jump_extras_regression.log",
+          "bytes": 724,
+          "sha256": "c24e8b88950e144ef708de303cdef87c1097715c8a7e9e38f2838780840055e4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_full_field_regression.log",
+          "bytes": 83651,
+          "sha256": "c36216292a763b3330c722569018f292383cc087a15bf33f4643db19e6e3167e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_garage_3d_touch_regression.log",
+          "bytes": 1258,
+          "sha256": "adeb83e795ccb602c9f4b1d2b4147d5c490c9f4b1bc4c3ede4763ff9c16fbd9e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_harbor_attraction_regression.log",
+          "bytes": 1656,
+          "sha256": "00a5c14f0534e154c87619cb3ad1c4427dad6ceb531e290f2ef00e70d5dd9bd3"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_harbor_race_hook_regression.log",
+          "bytes": 1557,
+          "sha256": "8f6628ca97fc52c0af0e8ad2facb34cf8028cab83fa612630ebdad8dcf5e3df1"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_loop_contact_regression.log",
+          "bytes": 672,
+          "sha256": "408a8cf775584f33c18813904806183e6565b54d5d931b2f72ff2cd4f46677fd"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_menu_depth_2013_regression.log",
+          "bytes": 1242,
+          "sha256": "2baaeaf7ea0626ab2aea84ddae6b1ab727f4001b14803619c9fe449b67d57611"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_player_full_route_regression.log",
+          "bytes": 21641,
+          "sha256": "e81a96beaa46ba89d795c2a12eaf3bd463d8adf4301c3bfa5c14eb3767a6c989"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_racecraft_regression.log",
+          "bytes": 980,
+          "sha256": "a8052177816b24e88e9bd4c21049da8bdec15c5e5a350e451cdb526ee39ae008"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_rival_drift_items_regression.log",
+          "bytes": 743,
+          "sha256": "fc27dd163212a5dc2d079660d242cf25ed92bd1789a27bf28673abe40de09708"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_rival_flight_regression.log",
+          "bytes": 1779,
+          "sha256": "812ac50b1731f00047e2d0c1498782e2d45d2acf9f604200b015663ff95aec27"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_sonnenhafen_generation_regression.log",
+          "bytes": 550,
+          "sha256": "9c807752c572e15d411562104cea5ae42470c5381fa122672d7af7015a384aad"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_stunt_continuity_regression.log",
+          "bytes": 1645,
+          "sha256": "47810688cee982ffc2339e3fa7bb650e9eac48cf948618220f9ef587ff122ca6"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/kart_zauberwald_library_regression.log",
+          "bytes": 1320,
+          "sha256": "83bb911a70a054f7cd068868a401a911b2a16308b0cf6915c23e8e2c2e4ad50d"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/2014/puzzle_expansion_regression.log",
+          "bytes": 1191,
+          "sha256": "15e66dba4f57135ff127300eff8f6457f9a837ebe383a2528b3d3a32ce5075f4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/kart_lasso_production_regression.log",
+          "bytes": 1031,
+          "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/kart_lasso_regression.log",
+          "bytes": 560,
+          "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/kart_menu_flow_regression.log",
+          "bytes": 3675,
+          "sha256": "b2c789a4f2d251a056ece8698005830de32934d0cd4ac9869ed693154dc1c58b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/kart_roadside_action_regression.log",
+          "bytes": 1798,
+          "sha256": "e582b58303683f6228689e133b1306e2d56bd35138051cce6c81e9ff91a9d57f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/kart_spatial_menu_regression.log",
+          "bytes": 5531,
+          "sha256": "76045010a8a78d516310b8dcf5c98e637c21e6ee5ca770870b5cea5409d3042b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/action-stage/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/legacy-gameplay.log",
+          "bytes": 214490,
+          "sha256": "1afd9276f2bc47f957d621f776b1c05cf7e59c2da72b812e38737dc740daa710"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/build_nextgen_play_regression-headless.log",
+          "bytes": 685,
+          "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/build_nextgen_play_regression-rendered.log",
+          "bytes": 1334,
+          "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/build_settlement_play_regression-headless.log",
+          "bytes": 2067,
+          "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/build_settlement_play_regression-rendered.log",
+          "bytes": 2716,
+          "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/build_settlement_regression-headless.log",
+          "bytes": 535,
+          "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/build_transform_regression-headless.log",
+          "bytes": 563,
+          "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/cards_table_capture-rendered.log",
+          "bytes": 1162,
+          "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/cards_table_regression-headless.log",
+          "bytes": 556,
+          "sha256": "2f8bfa4354789504aa3ee902f3a83ca7bf7a55cdcb4645159caa9db04c63ab9e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/creative_nextgen_environment_regression-headless.log",
+          "bytes": 590,
+          "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/creative_nextgen_environment_regression-rendered.log",
+          "bytes": 1239,
+          "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/jump_expeditions_regression-headless.log",
+          "bytes": 2758,
+          "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/jump_nextgen_capture-rendered.log",
+          "bytes": 1727,
+          "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/jump_nextgen_regression-headless.log",
+          "bytes": 1995,
+          "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/kart_nextgen_garage_regression-headless.log",
+          "bytes": 732,
+          "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/kart_nextgen_garage_regression-rendered.log",
+          "bytes": 1383,
+          "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/kart_player_full_route_regression-rendered.log",
+          "bytes": 21641,
+          "sha256": "e81a96beaa46ba89d795c2a12eaf3bd463d8adf4301c3bfa5c14eb3767a6c989"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/kart_track_pass_regression-headless.log",
+          "bytes": 1074,
+          "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/learning_world_capture-rendered.log",
+          "bytes": 8466,
+          "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/learning_world_regression-headless.log",
+          "bytes": 10597,
+          "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/lumo_65bone_walk_gait_regression-headless.log",
+          "bytes": 570,
+          "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/lumo_original_jump_visual_regression-headless.log",
+          "bytes": 689,
+          "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/lumo_teacher_pose_regression-headless.log",
+          "bytes": 587,
+          "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/rhythm_tour_play_regression-headless.log",
+          "bytes": 598,
+          "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/rhythm_tour_play_regression-rendered.log",
+          "bytes": 1247,
+          "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/rhythm_tour_regression-headless.log",
+          "bytes": 580,
+          "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/nextgen/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/project.log",
+          "bytes": 6131,
+          "sha256": "2d6b03148c37199f78d2a55916dfa91b1f73a2362123270cc9e54b23622afe75"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/learning_sharing_capture-rendered.log",
+          "bytes": 3506,
+          "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/learning_sharing_regression-headless.log",
+          "bytes": 1480,
+          "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/learning_studio_regression-headless.log",
+          "bytes": 1799,
+          "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/lumo_studio_motion_capture-rendered.log",
+          "bytes": 1202,
+          "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/lumo_studio_motion_regression-headless.log",
+          "bytes": 601,
+          "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/puzzle_menu_lifecycle_regression-headless.log",
+          "bytes": 3082,
+          "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/puzzle_menu_lifecycle_regression-rendered.log",
+          "bytes": 3733,
+          "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/puzzle_rotation_regression-headless.log",
+          "bytes": 569,
+          "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/puzzle_rotation_regression-rendered.log",
+          "bytes": 1218,
+          "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/source-tree.txt",
+          "bytes": 41,
+          "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/treasure_exploration_regression-headless.log",
+          "bytes": 587,
+          "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/studio/treasure_exploration_regression-rendered.log",
+          "bytes": 1236,
+          "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/kart_air_trick_regression.log",
+          "bytes": 494,
+          "sha256": "65af3dd144ebf0e2404429f8c8ab85c17894b293d8eb34abc596c636fc76ebc4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/kart_garage_presentation_regression.log",
+          "bytes": 1502,
+          "sha256": "ba5e0cdba9674ea37191b8f44d513df91fc5c53f7cf85fd5af6716e68ae36f7a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/kart_harbor_race_hook_regression.log",
+          "bytes": 1329,
+          "sha256": "b80d9ee2cea36de13d2645acbeb64efbaddb63e26a0d2d83874d4a61228eb656"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/kart_sonnenhafen_streetfronts_regression.log",
+          "bytes": 1661,
+          "sha256": "d36e9e933970ad56bb374bfd132e0d0571a0e23e1f302e4c483fbc2abadae749"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+          "bytes": 1147,
+          "sha256": "50cbfbb16c1e6b786eaf620b0a7121caacf4e66b71fb4c2f2216877008392cc4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/lumo_attention_landing_regression.log",
+          "bytes": 837,
+          "sha256": "237ed83a00e02270f0176c02a4e0d7df638fc691754a50c0bdceadb84fdf4bc9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/lumo_gesture_contact_regression.log",
+          "bytes": 1212,
+          "sha256": "05d3601c425098ce8a93753cc17c2875eb7bfd7808bcc102a3c46a4ba6acc867"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/lumo_kart_tick_cadence_regression.log",
+          "bytes": 2097,
+          "sha256": "a6e31559d2e5dbb33f509ec7751f1979272660e4425994c5aaad6dbd9b541e77"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/original-reports/technical-art/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/primary-log-results.json",
+          "bytes": 34350,
+          "sha256": "05f12680c0dafb15516a03fa5637d69a2968e7577beb7d6bff3a1153f0cf09d5"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/review.json",
+          "bytes": 7366,
+          "sha256": "c579339ca984f99f335b752283986d3b3d77e8e0c44c14f7e6a0b0a2125253fa"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/native/selected-member-provenance.json",
+          "bytes": 77653,
+          "sha256": "d4207bef39c98240cc857dfafc542cf56b951a7ccf278e14ad5c56254568018f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/completion-and-artifact-metadata.json",
+          "bytes": 2776,
+          "sha256": "dcd0f483d1a03bbbd50d5dc956254613b8ce20bcc580b785776bdad38806fb17"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/evidence-manifest.json",
+          "bytes": 20228,
+          "sha256": "465eb57d44c1e89bf99f9d031158e9327c82750dc7b702d1cb7046aa35eb863f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/independent-data-comparison.json",
+          "bytes": 10187,
+          "sha256": "5cdbb368f24a6d29aa17bc2389312bc2dd81222767d1ddfd4cd71188f92e2430"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/log-review.json",
+          "bytes": 4669,
+          "sha256": "f81d8b9ed30f53380d37d7b8b8311a7456a8bfe3d3f09c3dceba62eba9d98616"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-archive-byte-verification.json",
+          "bytes": 104364,
+          "sha256": "7bf2ed4d9aa19971710aff011587ddcc628ad1fd4651e203d707ee6ce581dd7e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-job.log",
+          "bytes": 297474,
+          "sha256": "aafecd48a74258d0d4ddd85c1a5b2d02bc93dc10a4d962450f1de8e3948c1c2b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_kart_race_frame_check.json",
+          "bytes": 1475,
+          "sha256": "c3a1453b52bd0f1bd287ed0ed5b0a3c94e2681ec7908bdd3cb3473952290e481"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_kart_real_touches.json",
+          "bytes": 104,
+          "sha256": "5841be539c8677cbf768737b1fa7ad9f7f3fc746c8492c4d8e98cb0c6338dacd"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_lumo_kart_pause.png",
+          "bytes": 818318,
+          "sha256": "4a9ca1bd60728d45db5092342b584082df5962ad1f78eb8ead50ae914eaedfa7"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_lumo_kart_real_race.png",
+          "bytes": 1787114,
+          "sha256": "e78ee037fae83af6397e59b23a3b3394520f9494797c6034fe78538b25d3c3b8"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_pause_first-session.cfg",
+          "bytes": 2017,
+          "sha256": "cd7636aa7e8b85c41b0e8d69432c6112a10d1a1c8e347dee492b9a2541b0d785"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_pause_second-session.cfg",
+          "bytes": 2017,
+          "sha256": "cd7636aa7e8b85c41b0e8d69432c6112a10d1a1c8e347dee492b9a2541b0d785"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_race_before_gas.png",
+          "bytes": 1977105,
+          "sha256": "b5e1bbf8b06efadc99c23556dd02578ef9ecebb2aa34bd4f9a1c88a3e2b741e4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_race_drive_telemetry.json",
+          "bytes": 976,
+          "sha256": "4592e91eae22ad8e5e32a5a9153f292b8b9cf7036b62d337bde6e09abf7a2fca"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_race_driving_late_2.png",
+          "bytes": 1852880,
+          "sha256": "b49f76144433d0f0eea573545e879b697d3929c55f869f48a4201a25e220a754"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_race_running_0-session.cfg",
+          "bytes": 1876,
+          "sha256": "85bfb1eb81e424b6df0b3c6661a8195b3ba79bd1eb5388d5da74492b1e4aa328"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_race_running_40-session.cfg",
+          "bytes": 1876,
+          "sha256": "85bfb1eb81e424b6df0b3c6661a8195b3ba79bd1eb5388d5da74492b1e4aa328"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/21_stage_navigation.json",
+          "bytes": 707,
+          "sha256": "febdc02240382944d3594343dc190c1c6d609ee13503a3371f6abd1a04be548c"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/23_zurueck_in_flutter-flutter-return.json",
+          "bytes": 468,
+          "sha256": "3507e1498cf3aa956cab4fe6aeb93e755d3fa01379585d6688d91ef266bfb396"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/compact-handoff/studio-31883868-build-update-part-02.zip",
+      "bytes": 7795791,
+      "sha256": "fb01df84346a5c73434871782daa282ee546b2c149fe8446fb5efa0a90ac9908",
+      "git_blob": "2c59c8173c49e2cd0feffcbac75e16a58a4cf239",
+      "mode": "100644",
+      "members": [
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/23_zurueck_in_flutter.png",
+          "bytes": 1965644,
+          "sha256": "499a801e305514ba398937e86e20caacff550b626ad35a215f7589948eeab148"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/after-kart-preferences.xml",
+          "bytes": 4886,
+          "sha256": "86b6082c7d81e3e8989a1eb8500cbc353b1b744419224a2e6993ccc82439e16b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/after-restart-preferences.xml",
+          "bytes": 4886,
+          "sha256": "fc710dfdeb70cce4feebc5e454633b48039d5bd5bd06e73f3a96fea272ed0ebf"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/after-update-preferences.xml",
+          "bytes": 4521,
+          "sha256": "24223e161a5e94659e1abfce7621c733ca32231f3dad09942b5a4c89dee6f1f8"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-install.txt",
+          "bytes": 138,
+          "sha256": "a9530519603c4bb770aeea24c44992a7b54c6caeaec0e733ba887c89ac9fe86e"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/00-initial-preferences.xml",
+          "bytes": 1652,
+          "sha256": "1352cff17dbf58a5b722a9e0ce44336f3ef964b3520ea128d7fca98a85aa8e7d"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/06-math-task.png",
+          "bytes": 1925835,
+          "sha256": "da6acfd252266a25f0931b9cb0fd84be8aeff76c3c3fec3ce489e00570dd393a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/07-feedback.png",
+          "bytes": 1915670,
+          "sha256": "1f99a1e57236c7b8ed5275fe77417b086ce2de16bb491ed4f722e800483cc205"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/08-wallet-preferences.xml",
+          "bytes": 4156,
+          "sha256": "5ce8ae55276152673aa1fb71340e3b03031aa699b32defd703618ebc3840e135"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/10-before-restart-preferences.xml",
+          "bytes": 4156,
+          "sha256": "5ce8ae55276152673aa1fb71340e3b03031aa699b32defd703618ebc3840e135"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/11-after-restart-preferences.xml",
+          "bytes": 4156,
+          "sha256": "5add5540e19227c6d9b88c0f8960e9dbe5ca2ad1ed77ae6173f4d77d3c7de42b"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/learning-journey-result.json",
+          "bytes": 4215,
+          "sha256": "a61e42a0a73803f8c161db33a52522713f87df5b7958a2907452cf9ef1f2c3b4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-learning/t1-deutsch-missing.png",
+          "bytes": 1970713,
+          "sha256": "ae16c068b2378c3eba1b55d317f9d09417df00710a11addb0e683dec09febbe4"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-package-uid.txt",
+          "bytes": 59,
+          "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/baseline-package.txt",
+          "bytes": 10035,
+          "sha256": "fda54109a029ebff7ccc707d9699299597cd71db3f50b9227ecb6e7efc24aeae"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/before-update-preferences.xml",
+          "bytes": 4369,
+          "sha256": "027e7369b130f684f9483e1fc089738d116c0bc0ff47f9f13c9a7cce237ddaf2"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fatal-logcat.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-cover-0.xml",
+          "bytes": 28849,
+          "sha256": "d2519f2662e548f63994ffb8512da90731eb0b94b0377bc7f04bed77f03259e9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-cover-preferences.xml",
+          "bytes": 4886,
+          "sha256": "fc710dfdeb70cce4feebc5e454633b48039d5bd5bd06e73f3a96fea272ed0ebf"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/compact-handoff/studio-31883868-build-update-part-03.zip",
+      "bytes": 4345844,
+      "sha256": "32803e7c8d03351ae0c82115333bb7a2ac0394c16a39d3e68f2210a0f308a771",
+      "git_blob": "9a6869c72b17289ce378ea661c822a01fcd0cfdb",
+      "mode": "100644",
+      "members": [
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-cover.png",
+          "bytes": 2569451,
+          "sha256": "a4b53a0bd0581c860b4b293d784756886d35f1e38080a16482f8a655adbd25ba"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-landscape-0.xml",
+          "bytes": 30452,
+          "sha256": "7fa13182a9be2ff77acba756502cd8e01300e497b3b751297babf9f0aca98704"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-landscape-preferences.xml",
+          "bytes": 4886,
+          "sha256": "fc710dfdeb70cce4feebc5e454633b48039d5bd5bd06e73f3a96fea272ed0ebf"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-landscape.png",
+          "bytes": 1772153,
+          "sha256": "28ca5aa845ee1821cdc09c9555485371b581f6ffbf966965eb5c6e9e24775800"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-open-0.xml",
+          "bytes": 27556,
+          "sha256": "3366393406b9d877cc66ba91120fc761f21f9b510e1541a7857bb4bb592b7f23"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-open-preferences.xml",
+          "bytes": 4886,
+          "sha256": "fc710dfdeb70cce4feebc5e454633b48039d5bd5bd06e73f3a96fea272ed0ebf"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/compact-handoff/studio-31883868-build-update-part-04.zip",
+      "bytes": 7406393,
+      "sha256": "36045787444a41c2665a6c802af5974863010dd7f60c252f79f213296c81a88e",
+      "git_blob": "e8d174c4cf5824057438c5a083f42cf9ea733c37",
+      "mode": "100644",
+      "members": [
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/fold-open.png",
+          "bytes": 4336070,
+          "sha256": "ea9f8666f56366e6dc88950cc26aaa2c88b69ca342f80d74533dfd412af018b6"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/mesa-renderer.txt",
+          "bytes": 1745,
+          "sha256": "d1264a31f62c2da97433bb89762d12bca7b30924d7ed94260024ba74a5009311"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/restart-profile-offline-0.xml",
+          "bytes": 29386,
+          "sha256": "b3aa6f20a212d2e24db5a76c4578f5b59db07c84b4d38f52733c3f0329a6d153"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/restart-profile-offline.png",
+          "bytes": 3056644,
+          "sha256": "3e137214ede375a8f4fdde5c01974a8a50abc79fb0b1a5fb9a5a21b46b720870"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/rooted-emulator.json",
+          "bytes": 1544,
+          "sha256": "2973e9cf5f9f8b770f4b313833d5bc3fccc59e7e3ef226a6263c3f4c34bd2111"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/tested-apk-sha256.txt",
+          "bytes": 108,
+          "sha256": "7b31873f2fc701978a0efefdf9a4038af8650cb9a889a96922f6f94e0d40a526"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/update-install.txt",
+          "bytes": 139,
+          "sha256": "88992a16bfda8414a21d0730a0a6960523c27aaf6cd3c5977920d12264c8fc3f"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/update-result.json",
+          "bytes": 39987,
+          "sha256": "94e0d55c27f69c8c8530f9fae5de01c3239098af0499d61eeb49c70e9fc45333"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/updated-package-uid.txt",
+          "bytes": 59,
+          "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/updated-package.txt",
+          "bytes": 9406,
+          "sha256": "6f3f7fa7132af8460326f6bce8162eb9297d7196e106fe79eb32fed831c91c2d"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/updated-profile-offline-0.xml",
+          "bytes": 29386,
+          "sha256": "11f6afcf47d2a4af8b0ee2c5c093bbd5045457b4421c5b98a564727bd61b7265"
+        }
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-31883868/compact-handoff/studio-31883868-build-update-part-05.zip",
+      "bytes": 3063775,
+      "sha256": "6dc1921c2f1d8e9062845726a84dedd456324dca4b3f3c07e8d11a604958c8c8",
+      "git_blob": "e31f94a4a2b63ed75f673715d95b6c497a5e2d18",
+      "mode": "100644",
+      "members": [
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/original-reports/updated-profile-offline.png",
+          "bytes": 3056713,
+          "sha256": "07879cefbbecdd984c58223a81f8a6abe08ebb4d0ec0a5a41ed8a0ad653b26f9"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/review.json",
+          "bytes": 6636,
+          "sha256": "040c88c708872c91c7662eb2269b841dcd31fda8a68b0cba039a9337a7a042c1"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/selected-visual-review.json",
+          "bytes": 7713,
+          "sha256": "5b4aa77fd578aa77ca07b96bc6b7dcd05df4301f4fb545d8338fa9fb6a42a90d"
+        },
+        {
+          "path": "docs/evidence/studio-final-verification-31883868/update/source-binding.json",
+          "bytes": 5480,
+          "sha256": "0b4c1f554177a38216f874c5ae62c198948fc822212eaaab2f4ca3d11dff9b4e"
+        }
+      ]
+    }
+  ]
+}

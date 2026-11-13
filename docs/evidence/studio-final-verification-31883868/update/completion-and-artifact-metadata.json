@@ -1,0 +1,100 @@
+{
+  "observed_at": "2026-11-13T21:08:22.673Z",
+  "host_sha": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "run_id": 43496928833,
+  "job": {
+    "id": 132161617636,
+    "name": "update-2019-from-2017",
+    "status": "completed",
+    "conclusion": "success",
+    "run_id": 43496928833,
+    "logs_url": null,
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3
+      },
+      {
+        "name": "Run actions/download-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4
+      },
+      {
+        "name": "Live UI reader",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5
+      },
+      {
+        "name": "Enable accelerated disposable emulator",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 6
+      },
+      {
+        "name": "Software display",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 7
+      },
+      {
+        "name": "Preserve actual 2017 learning through an in-place 2019 upgrade",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 8
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 9
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 18
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 19
+      }
+    ]
+  },
+  "artifact": {
+    "id": 14076237433,
+    "name": "lumo-2019-in-place-update-proof",
+    "size_in_bytes": 100077748,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14076237433",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14076237433/zip",
+    "expired": false,
+    "created_at": "2026-11-13T21:07:27Z",
+    "expires_at": "2026-12-13T21:07:23Z",
+    "updated_at": "2026-11-13T21:07:27Z",
+    "digest": "sha256:e057bb050ba8ae6874acfeb9c172b7d3467f6f511308405abba28f3275643293",
+    "workflow_run": {
+      "id": 43496928833,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "31883868bac56699dbf3b3d60a7cdb7afc496a8b"
+    }
+  }
+}

@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-13T21:36:33.485030+00:00",
+  "reviewer": "Agent C /root/games_worlds",
+  "status": "READ_ONLY_SOURCE_REVIEW",
+  "tested_host_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "tested_native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "scope": "Godot4.6.3-Android-Safe-Area, öffentliche Java-Anbindung und Zuordnung zur Renderfläche; keine Produktänderung und keine neue Androidausführung.",
+  "original_failure": {
+    "run": 43496928833,
+    "job": 132161617695,
+    "artifact": 14076728771,
+    "zip_sha256": "39c8f985983890b4c0f6f72e64cabaf466533e14c8c22053d230ddc63c88ddde",
+    "frozen_review": "docs/evidence/studio-final-verification-31883868/api35/api35-cards-failure-review.json",
+    "frozen_review_sha256": "a51298abbc46a40669fdd27ccdb4159e1e11d511f1d31f1568c705ba58c38769"
+  },
+  "primary_source_files": [
+    {
+      "path": "platform/android/display_server_android.cpp",
+      "git_blob": "bae7817e2f1615a2145691a37ffb97f810f1aebf",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/display_server_android.cpp",
+      "bytes": 33149,
+      "sha256": "9564abd54f2227775e47ec7a8a09eaebe7a767456a4c025c04fd09566cfc6894",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java_godot_io_wrapper.cpp",
+      "git_blob": "1d0f6dac7203eb9a7453891aed140b0edeb40ce2",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java_godot_io_wrapper.cpp",
+      "bytes": 11463,
+      "sha256": "e842269306a362d0de13226aee759d7a39066e42d0fe5e67b7ae7c11f1d2888a",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java/lib/src/main/java/org/godotengine/godot/GodotIO.java",
+      "git_blob": "dc68a84c3e0109d7f4fe2df1fd45247f95f02f0c",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/GodotIO.java",
+      "bytes": 14436,
+      "sha256": "da47258a4b53b51f6e41d8d697fb3ea5af70a153acd4a2bcfbccc4f51228c7a6",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java/lib/src/main/java/org/godotengine/godot/Godot.kt",
+      "git_blob": "fc3e233b24f6ac9fbc8c94c8c8b062f51ec51a14",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/Godot.kt",
+      "bytes": 45037,
+      "sha256": "2389f5ba827debe2b5338085a81b15039c2e71ebe3ba44a0cd94f3352b2e2ef7",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java/lib/src/main/java/org/godotengine/godot/GodotActivity.kt",
+      "git_blob": "e2fc0c5426ac5050ee44d6e562cc0cd51f71bd2f",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/GodotActivity.kt",
+      "bytes": 9845,
+      "sha256": "60631f5f3035b2abb1cd3f35983f9a23a5425e3d301b7d1401e31ba96b17256e",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java/lib/src/main/java/org/godotengine/godot/GodotRenderView.java",
+      "git_blob": "2220a28904f4dc8d0b6fc414b2a1521427a02851",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/GodotRenderView.java",
+      "bytes": 3050,
+      "sha256": "9fe7732a11e7b92d07eee793fc936452c2d734261b9e29fd35fded9e309db64f",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java/lib/src/main/java/org/godotengine/godot/plugin/AndroidRuntimePlugin.kt",
+      "git_blob": "4394d5140411fdfa7baa425b97e04a161181bbfc",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/plugin/AndroidRuntimePlugin.kt",
+      "bytes": 4391,
+      "sha256": "ca9ea389d6937c43d979e92ecc4a7bca83b0b856fb83fcc9bcb2b13a6e04e870",
+      "git_blob_verified": true
+    },
+    {
+      "path": "platform/android/java_class_wrapper.cpp",
+      "git_blob": "051775f0439117ad93fac1aed78582a2953babe3",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java_class_wrapper.cpp",
+      "bytes": 53985,
+      "sha256": "2dffe38e66b718184ca9364e3b3acfe9810415b2e1557f0d829082e0ea7f0825",
+      "git_blob_verified": true
+    }
+  ],
+  "source_cache": "qa/godot-463-android-safe-area-sources/",
+  "source_cache_git_blobs_verified": true,
+  "findings": [
+    {
+      "id": "engine_safe_area",
+      "files": [
+        "platform/android/display_server_android.cpp:248-251",
+        "platform/android/java_godot_io_wrapper.cpp:208-218",
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/GodotIO.java:216-252"
+      ],
+      "finding": "DisplayServer leitet über JNI zu GodotIO.getDisplaySafeArea. Normalmodus fragt systemBars UND displayCutout ab; Immersive fragt nur displayCutout. Die Breite/Höhe entstehen aus realer Top-View-Größe minus Insetkanten. Bei internem Edge-to-edge oder Immersive werden linke/obere Insets als Ursprung ausgegeben. Andernfalls wird Ursprung0 angenommen, weil laut Quelle Root-Padding bereits wirken soll."
+    },
+    {
+      "id": "usable_rect",
+      "files": [
+        "platform/android/display_server_android.cpp:321-327"
+      ],
+      "finding": "screen_get_usable_rect liefert auf Android die gesamte Displaygröße und keine verlässliche Status-/Navigationsleistenkorrektur. Der bestehende MobileRuntime-Fallback32/48 ist deshalb kein Messnachweis der tatsächlichen Leisten."
+    },
+    {
+      "id": "no_window_flag_fix",
+      "files": [
+        "platform/android/display_server_android.cpp:575-603"
+      ],
+      "finding": "window_set_flag ist auf Android nicht unterstützt; window_get_flag unterstützt nur Transparenz. window_set_mode(FULLSCREEN) schaltet Immersive und damit die Sichtbarkeit der Systemleisten. Ein solcher Moduswechsel ist für den vereinbarten lesenden Cards-Fix nicht erforderlich."
+    },
+    {
+      "id": "mode_getters",
+      "files": [
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/GodotActivity.kt:246-247",
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/Godot.kt:206-207,274-278,380-487"
+      ],
+      "finding": "GodotActivity.getGodot ist öffentlich. Godot stellt isInEdgeToEdgeMode/isInImmersiveMode und enableEdgeToEdge bereit. Der Setter verlangt UI-Thread und ändert Root-Padding/Fensterpolitik; er wird im vorgeschlagenen lesenden Anschluss nicht verwendet."
+    },
+    {
+      "id": "public_runtime_path",
+      "files": [
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/plugin/AndroidRuntimePlugin.kt:48-68",
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/Godot.kt:213,594-602",
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/GodotRenderView.java:38",
+        "platform/android/java_class_wrapper.cpp:857-899"
+      ],
+      "finding": "AndroidRuntime.getActivity liefert die tatsächliche Activity. JavaObject sucht öffentliche Methoden auch in Superklassen. getWindow/getDecorView sowie GodotActivity.getGodot sind deshalb über diesen vorhandenen Anschluss erreichbar. Die öffentliche Kotlin-renderView-Property stellt getRenderView bereit; GodotRenderView.getView liefert die tatsächliche SurfaceView. Godot legt diese im Container mit MATCH_PARENT an."
+    },
+    {
+      "id": "instance_field_access",
+      "files": [
+        "platform/android/java_class_wrapper.cpp:722-729,1653-1685"
+      ],
+      "finding": "Der Wrapper bindet öffentliche statische Felder, aber keine direkten Java-Instanzfelder. insets.top oder rect.left sind daher kein gültig belegter direkter Propertypfad. Öffentliche int-Felder können stattdessen über object.getClass().getField(name).getInt(object) gelesen werden; kein setAccessible und keine versteckten APIs erforderlich."
+    },
+    {
+      "id": "ui_thread_and_errors",
+      "files": [
+        "platform/android/java/lib/src/main/java/org/godotengine/godot/plugin/AndroidRuntimePlugin.kt:65-68",
+        "platform/android/java_class_wrapper.cpp:705-714"
+      ],
+      "finding": "Der verifizierte Aufruf ist activity.runOnUiThread(android_runtime.createRunnableFromGodotCallable(callback)). Das Callback liest gebündelt Javaobjekte und gibt nur numerische Resultate per call_deferred an den Godotthread zurück. JavaClassWrapper.get_exception() gehört zum Singleton und muss unmittelbar nach kritischen Javaaufrufen geprüft werden, weil spätere Aufrufe den letzten Fehler ersetzen."
+    }
+  ],
+  "recommended_read_only_measurement": {
+    "types": "WindowInsets.Type.systemBars() | WindowInsets.Type.displayCutout(); typisierte Plattform-getInsets ist ab API30 verfügbar.",
+    "raw_insets": "activity.getWindow().getDecorView().getRootWindowInsets().getInsets(typeMask)",
+    "render_view": "activity.getGodot().getRenderView().getView()",
+    "coordinate_path": "Java-Rect(0,0,renderView.getWidth(),renderView.getHeight()) durch decor.offsetDescendantRectToMyCoords(renderView, rect) in Dekorkoordinaten verschieben. Alle Geometriewerte im selben UI-Callback lesen.",
+    "projection": "Bei Dekorgröße(Dw,Dh), Renderrect(x,y,w,h) und rohen Insets(L,T,R,B): links=clamp(L-x,0,w), oben=clamp(T-y,0,h), rechts=clamp(x+w-(Dw-R),0,w), unten=clamp(y+h-(Dh-B),0,h). Erst danach in tatsächliche Godot-Viewportkoordinaten übertragen. Bereits gepaddete Renderflächen erzeugen keinen doppelten Abstand.",
+    "validity": "Null, unattached, fehlender Getter, Javaexception oder ungültige/nichtpositive Geometrie ist keine erfolgreiche Nullinset-Messung. Später erneut messen; Resize-/Orientierungsänderungen berücksichtigen. Vorhandener Nicht-Android-/älterer-Androidpfad bleibt separat.",
+    "ownership": "A implementiert den engen Cards-Adapter und UI-Fit. C hat keine Produktdatei geändert."
+  },
+  "current_run_observations": [
+    {
+      "source": "qa/studio-final-31883868/api35/selected-originals/nextgen/logcat.txt:8723",
+      "observation": "Cards InitEngine 21:11:16.132/PID7483 enthält nur --main-pack,res://lumo_game.pck,--rendering-method,gl_compatibility. Keine --fullscreen/--edge_to_edge-Startparameter in dieser Zeile."
+    },
+    {
+      "source": "qa/studio-final-31883868/api35/selected-originals/nextgen/logcat.txt:9460",
+      "observation": "Cards MobileRuntime meldet21:11:20.618 screen1080×2400 und Fallbackposition(0,32)/Kanten(0,48). Das ist kein protokollierter raw-WindowInsets-Wert."
+    },
+    {
+      "source": "qa/studio-final-31883868/api35/selected-originals/nextgen/logcat.txt:1109",
+      "observation": "DisplayController protokolliert früher beim Learning-Wechsel21:06:32.202 Insets oben136/unten63 für1080×2400. Ein früherer Übergang nennt145/63. Diese Werte stammen nicht aus dem finalen Cards-Capturezeitpunkt."
+    },
+    {
+      "source": "lumo-studio-final-e3d/scripts/prepare_embedded_games.py:164-176",
+      "observation": "Die vorhandene Hostvorbereitung erhält sämtliche org.godotengine.godot-Klassen und Mitglieder per bestehender R8-Keep-Regel. Keine neue Obfuscationausnahme vorgeschlagen."
+    }
+  ],
+  "official_documentation": [
+    {
+      "url": "https://docs.godotengine.org/en/4.6/tutorials/platform/android/javaclasswrapper_and_androidruntimeplugin.html",
+      "supports": "AndroidRuntime, JavaClassWrapper, Callable→Runnable→runOnUiThread"
+    },
+    {
+      "url": "https://docs.godotengine.org/en/4.6/classes/class_javaobject.html",
+      "supports": "JavaObject und has_java_method"
+    },
+    {
+      "url": "https://docs.godotengine.org/en/4.6/classes/class_javaclasswrapper.html",
+      "supports": "Wrapper-Singleton, verschachtelte Klassennamen und get_exception"
+    },
+    {
+      "url": "https://developer.android.com/reference/android/view/WindowInsets#getInsets(int)",
+      "supports": "Öffentliche typisierte Insetabfrage ab API30"
+    },
+    {
+      "url": "https://developer.android.com/reference/android/view/ViewGroup#offsetDescendantRectToMyCoords(android.view.View,%20android.graphics.Rect)",
+      "supports": "Öffentliche Koordinatenabbildung des Nachfahren ab API1"
+    },
+    {
+      "url": "https://developer.android.com/reference/android/graphics/Insets",
+      "supports": "Öffentliche vier int-Instanzfelder"
+    },
+    {
+      "url": "https://developer.android.com/reference/java/lang/reflect/Field#getInt(java.lang.Object)",
+      "supports": "Öffentlicher lesender Zugriff auf int-Instanzfelder"
+    }
+  ],
+  "limits": [
+    "Die tatsächlichen Godot-internen Edge-/Immersive-Flags und die raw-Insets zum Cards-Capturezeitpunkt wurden in diesem Originalartefakt nicht gespeichert. Die unzutreffende origin0-/Paddingannahme ist ein quellenbasierter möglicher Fehlerpfad; kein erfundener Laufzeitmesswert.",
+    "Der neue JavaClassWrapper-Insetadapter wurde von C nicht auf Android ausgeführt. Seine reale Ausführung und seine protokollierten Werte müssen im neuen Kandidatenlauf nachgewiesen werden.",
+    "Kein Cards-Pause-/Draw-/Save-/TaskReturn-PASS und keine Gesamtfreigabe aus dieser Quellenprüfung."
+  ]
+}

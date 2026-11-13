@@ -1,0 +1,167 @@
+{
+  "status": "FAIL",
+  "physical_fold7_performance_measured": false,
+  "apk_identity": {
+    "apk_sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+    "flutter_source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+    "godot_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "godot_pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "android_runtime": {
+    "sdk": 35,
+    "release": "15",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.002,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "adbd is already running as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 0.007,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 0.009,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 0.021,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 0.03
+  },
+  "offline": true,
+  "local_voice_permission": {
+    "local_model_assent": true,
+    "voice_enabled": true,
+    "auto_read": true,
+    "unrelated_permissions_unchanged": true,
+    "no_audio_emulator": true,
+    "audible_quality_verified": false,
+    "lip_sync_verified": false
+  },
+  "learning": {
+    "moves": {
+      "moved_objects": 5,
+      "ten_filled_after": 2,
+      "remainder": 3,
+      "target_indices": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "preservation": {
+      "profile": {
+        "id": "1794603334905395",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T20:55:34.905395"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    "same_lesson_after_return": true,
+    "speech": {
+      "initial": {
+        "native_process_pid": 6740,
+        "completed_utterance_ids": [
+          3
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "result": {
+        "native_process_pid": 6740,
+        "completed_utterance_ids": [
+          18
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "native_process_gone_on_return": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "illustration_did_not_award_mastery": true
+  },
+  "error": "TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 1.1972953040001357 seconds",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 704, in main\n    result['cards'] = cards_roundtrip(out)\n                      ^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 560, in cards_roundtrip\n    before, faces_before = capture_cards_faces(out, box, '11_cards_real_table_before_draw', before, density)\n                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 490, in capture_cards_faces\n    shot = probe.capture(out, name, timeout=deadline - time.monotonic())\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 74, in capture\n    data = subprocess.run(['adb', 'exec-out', 'screencap', '-p'],\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 550, in run\n    stdout, stderr = process.communicate(input, timeout=timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 1209, in communicate\n    stdout, stderr = self._communicate(input, endtime, timeout)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/lib/python3.12/subprocess.py\", line 2116, in _communicate\n    self._check_timeout(endtime, orig_timeout, stdout, stderr)\n  File \"/usr/lib/python3.12/subprocess.py\", line 1253, in _check_timeout\n    raise TimeoutExpired(\nsubprocess.TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 1.1972953040001357 seconds\n"
+}

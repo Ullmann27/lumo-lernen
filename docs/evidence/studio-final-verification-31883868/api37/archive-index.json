@@ -1,0 +1,1833 @@
+{
+  "archive": "original-observations.zip",
+  "bytes": 6565838,
+  "sha256": "fb0a31e7a0219dbd8f26c2256aee495ca74ff3dc758c85f96a072408bcae618f",
+  "member_count": 304,
+  "all_members_reopened_crc_sha256_verified": true,
+  "members": [
+    {
+      "path": "fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "framework-start/framework-readiness.json",
+      "bytes": 32970,
+      "sha256": "99683dd2a2d6f8e73d764233072b4b0f216d05bc4820a974fa610f1aee149171",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/05_learning_same_flutter_lesson-render-readiness.json",
+      "bytes": 572,
+      "sha256": "9d47b4ae2c59cfd8ebef5a0abbe47b3864745afe77d5b269025d083a1494fa6b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 582222,
+      "sha256": "0778858862aa6f56eab57f03b4574ffb7a9f65178d30133ad64498659bf1dd1e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "bytes": 17127,
+      "sha256": "47a06688fa9a7bf5409ed9dc215e9ddb6fc4f4ae600395fba3a15c921e66bec9",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 977167,
+      "sha256": "1c6c9c0033ab5ba2bcb6772563e823b39e46bafcb75e6b1e52efa0da48479a04",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "bytes": 20369,
+      "sha256": "3c4a81cc7dd1175bd61c9c44ba498fdd9c85268c6b60a6b335d00c99d28b8733",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 964838,
+      "sha256": "b1925717c0953e63d170f4db5b53f6bfcaebc3f1205b01090a5b7cc85ce52d5f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/12a_cards_real_table_before_late_draw-face-evidence.json",
+      "bytes": 17724,
+      "sha256": "361f93356b5b2f9af7321c99e392ebffa197ec804b8cc3e488bbb40b1d486984",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/12a_cards_real_table_before_late_draw.png",
+      "bytes": 964334,
+      "sha256": "e2c2e031e73bbf37515647b30ec77e764b6c9bc2f82d2881b19f43b5cf4a4240",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/12b_cards_persisted_draw_after_visible_idle-face-evidence.json",
+      "bytes": 18477,
+      "sha256": "080b72dc4de931a4fec6f8dbd8f1405b245d31be0d7ac28a75d5f783cfeb32dd",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 953252,
+      "sha256": "cf5a5ce370fa12a84f122f15fff995ab8322bd256ae40037fa5842a5bf1c11c7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-actual-display-density.txt",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-initial-readiness.json",
+      "bytes": 493,
+      "sha256": "30ad95f9c9ca274694537b2e4627b53c069561b587edb45700b1e0e3d8a21baa",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-001.json",
+      "bytes": 629,
+      "sha256": "314fcb60c8114e52a228b15202cb6c0b55fe57b347be644bd31ee3a9936c1d00",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-001.txt",
+      "bytes": 80,
+      "sha256": "b840420fc34aec9271c2f41dada9b9e90149a1414e06b92ee3b70ccc4fed30cd",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-002.json",
+      "bytes": 629,
+      "sha256": "1f782e7fa993ced177a9a36ffd154869300a7dc33ccc708141ad236698f6e376",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-002.txt",
+      "bytes": 80,
+      "sha256": "3f15e3bd1eb4a6f7eb378c388d1a7c75db9207efc2367924021fefae12743818",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-003.json",
+      "bytes": 626,
+      "sha256": "1c6e952a0af60743de44ab85876e6b54376e495fc5c060e9c699048014538f10",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-003.txt",
+      "bytes": 80,
+      "sha256": "81e8f1fea7756820b77ea04ad29507fd88cf1b723294e896320ca61b6c9f8ffe",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-004.json",
+      "bytes": 629,
+      "sha256": "943a8c896d96d0ee9a1f35462291f56bc7e4f318731025695e048e6e8b2b184b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-004.txt",
+      "bytes": 80,
+      "sha256": "77502afed76fb87eb797e1bc733729c348470b2b97fd4e23b0c6e9ed39feeba0",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-005.json",
+      "bytes": 626,
+      "sha256": "c5f312fbe0b378f36e70b64c6a805c89d8ad2a6a3096b0fca4461e4f3880c98e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-005.txt",
+      "bytes": 80,
+      "sha256": "ec55182ae828d0b8eba64f4a6f87182e7e3c80fb0ae67dd380759e0319282d78",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-006.json",
+      "bytes": 628,
+      "sha256": "39d445eba3c131ec039d4848776346b8d8a10a465977612727a61a27040c5b6b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-006.txt",
+      "bytes": 80,
+      "sha256": "4554f97922b0cdb4f908340696146187ce05c725e6450cf8daeed359b3236b2d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-007.json",
+      "bytes": 629,
+      "sha256": "0b1255f652f0cf07640b77f6661dbb3b36728cac43ed19429006abbe7993041d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-007.txt",
+      "bytes": 80,
+      "sha256": "3e609adadd5d39336795fcc09049542de8831544e7ddc987a020b5e2f86d3b98",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-008.json",
+      "bytes": 629,
+      "sha256": "9e5c5aa2ee851b2b5e13b012a74d3198b597a120fcf21f88e4fa616a733db998",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-008.txt",
+      "bytes": 80,
+      "sha256": "a63d2f3c7919fd57c1d5bfe7482787fb9062e42b616961b76acad0409ee95522",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-009.json",
+      "bytes": 629,
+      "sha256": "b7986e762792b480577810986a2cb0a1544c784eb3e311446b499f92eefa04d5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-009.txt",
+      "bytes": 80,
+      "sha256": "f5b5c4cd51722c99fb09fb3ef659de5b9c768245717253dbb741cb2cc6599b5e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-010.json",
+      "bytes": 629,
+      "sha256": "2b07754930f7441189819c76d7726a00fd1921632ab2e3e08cd90872cddea88b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-010.txt",
+      "bytes": 80,
+      "sha256": "8511952b66cfc9ab8a2d0dc16f4d9c13b6dcf4d94def35ebb9a3d31a9f8c632a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-011.json",
+      "bytes": 627,
+      "sha256": "bcbd161f6649d424a9126a4fc6b28cf64cf3bd7d27c685a3fb739f5d1bdc3e15",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-011.txt",
+      "bytes": 80,
+      "sha256": "99e0192ff6783bb761aae89971120c098676b74bf1906c822fc19f7d385c82a6",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-012.json",
+      "bytes": 629,
+      "sha256": "2ff64620e70b903a4a916f882820edf7b023e8953fad45338f2d1d3f74416284",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-012.txt",
+      "bytes": 80,
+      "sha256": "1b221a289008a02f77c557200bdb43880ceec9c8a22532445d9a99d91620ed2a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-013.json",
+      "bytes": 629,
+      "sha256": "08e2978f6a5bb95fb0c8c6e2bdb5f3573365dbe1357db7458b3647a74629307f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-013.txt",
+      "bytes": 80,
+      "sha256": "4d42a847c116275554034cca38e5a7149d44e3c96780f84f79e3a805f1dfed8e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-014.json",
+      "bytes": 629,
+      "sha256": "696b8b24bd4dfe353c64efac42f8a0ea29a1f09439b84191aa8d43736aa39f9d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-014.txt",
+      "bytes": 80,
+      "sha256": "8bd1fbee9186adc6081e8971a49ad4d2589cb54bb917c30edb1f32bf4af0ddf1",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-015.json",
+      "bytes": 627,
+      "sha256": "23135f0e5b170dadc966a94bc6f5880f6882ac3ef90e512b0dac5b91a1d3109a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-015.txt",
+      "bytes": 80,
+      "sha256": "9776e195894a26facabf1a9a34667322ff2a8535955e8b1cc1001106468439d7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-016.json",
+      "bytes": 629,
+      "sha256": "ff9e1bfbc9dbb899ab7a3ce96e91cff56ff4bad5fa9d5af4f3e87bfa86aabc03",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-016.txt",
+      "bytes": 80,
+      "sha256": "74177bd544cea9cb68a650160fc00346d4df6c6b9fbcf0d7c8f6a829ba9282c4",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-017.json",
+      "bytes": 626,
+      "sha256": "9f4e8a37c8f39bc4366d391e2a1d02c1f541eba8320999e041ae64eff301a7e7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-017.txt",
+      "bytes": 80,
+      "sha256": "5bb1ef99f5c26cb9fbdcf5764714e86788fd4422a87110c7229c7c8c8114dd7f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-018.json",
+      "bytes": 629,
+      "sha256": "db076799a404f95792017e5ec7acf460c5824e10129337c6f956a9cf1f29ef0b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-018.txt",
+      "bytes": 80,
+      "sha256": "0b2df3839bad51428cd55b1e5b28dac783d71ac17bc0f189baf8f3260dd07943",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-019.json",
+      "bytes": 626,
+      "sha256": "24663460d1e0675a4bbc4ed9083d396c4e5e7c29df732eefa9add4443f538180",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-019.txt",
+      "bytes": 80,
+      "sha256": "9b9a2a3a7ff9cf81f79b07ade89efb1d6dcee49d90b04e4be255800c4e12d436",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-020.json",
+      "bytes": 629,
+      "sha256": "181f19617a29f8a4796f5fdcf73205a20e87af40eb38b2d873d6d8c6d5eed88f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-020.txt",
+      "bytes": 80,
+      "sha256": "5bc79e0baedaea20c48d26db1500ff22a1f7efb48ba9a2e75d23654d04126c6d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-021.json",
+      "bytes": 629,
+      "sha256": "b366b03a217a3f6795d6f4fdc836a3aea2f02978518ce0bc3ba710be50827d30",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-021.txt",
+      "bytes": 80,
+      "sha256": "35506c2ef72ba7cf44b9158d2c1fe016047fd4c65f297b1d1d92678a2502c364",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-022.json",
+      "bytes": 629,
+      "sha256": "18743f3b2783f1decae12d3ba95bebb4b6b9fe0aa9500fe32a743f846dc9208c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-022.txt",
+      "bytes": 80,
+      "sha256": "8922a18d97df08f647b7827f6f885f94abca5ac470ba98d2eb0ea13357aead24",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-023.json",
+      "bytes": 628,
+      "sha256": "0c134f7019f2faf2c877c6fa40d55407c5e2e4f7e74d4189c7ceee2b30dc86d4",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-023.txt",
+      "bytes": 80,
+      "sha256": "aac33675253ff07fa4bbdc83e549af1c6ec2a8892856fa724878de01cdc609b6",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-024.json",
+      "bytes": 629,
+      "sha256": "1f5e5e077d4cf9776e655afc227905f143a480f391256056d78cc89c6536ca15",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-024.txt",
+      "bytes": 80,
+      "sha256": "178ebdf65335ef9731e49787a7df012edb23266f56660a69bae6fb27edd78635",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-025.json",
+      "bytes": 629,
+      "sha256": "352715a4516d8567b7b978bb063d001bd374a727dae02faa3bcdcd555ae2963d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-025.txt",
+      "bytes": 80,
+      "sha256": "fe225d6268a06cf7eafe1b828f2eba0d86a38a6406824b4631bfd1a508dbe28e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-026.json",
+      "bytes": 629,
+      "sha256": "4fece8342987dcba44f8002bf13f310a501b5f0a60271a5682df21d8ddd36187",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-026.txt",
+      "bytes": 80,
+      "sha256": "3912b010b153a9ad97fe15c5b280202b53e348c5d045c8af6c761c025032ed4c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-027.json",
+      "bytes": 629,
+      "sha256": "43b3e2da69aa264c995b168f5f886cfd0a88fc0f1c7ebd215925c5cce40b850c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-027.txt",
+      "bytes": 80,
+      "sha256": "7ccb4fa3ab4709fdeb1a26784acfe33a35b3ebb6a761931813daba30ade7786e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-028.json",
+      "bytes": 629,
+      "sha256": "a52326b6efb98f6b707a295ad35db90bf2cd425bcff986dad3139d673901fc23",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-028.txt",
+      "bytes": 80,
+      "sha256": "905e5142a8d4089bf28da0705285fb8f49e63b62357b7631c6d4fe89645f7bdb",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-029.json",
+      "bytes": 627,
+      "sha256": "331baa7aac875f06a195882b1965663e1f9e5520a57259dbc41f67e21c56b8a0",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-029.txt",
+      "bytes": 80,
+      "sha256": "e53e41c3ddfe28f8016f39dab225ed4b3226e6cc8661b2c58933845151f4049d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-030.json",
+      "bytes": 628,
+      "sha256": "76a2f83e80fcdb77e021be23189a6965ba8d19e6d8da22b2c37c697b0819d9bd",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-030.txt",
+      "bytes": 80,
+      "sha256": "8ddf73513001b330ded078b71482d2b4aa69ec598193b8fda6910af9f9d0bb26",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-031.json",
+      "bytes": 628,
+      "sha256": "f4f33d9c7381f02e4a87727b4c62b9dc463149ff0275229137bd0d6e614f7c3e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-031.txt",
+      "bytes": 80,
+      "sha256": "24e91442374c4d3858db73ace09bdb1d1d0f0a588ccb6d5663a09892c9a245cf",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-032.json",
+      "bytes": 629,
+      "sha256": "76c7d166a635098394df3baa476feedad7773c2c2a6c6abc7a214930ee465ad4",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-032.txt",
+      "bytes": 80,
+      "sha256": "657cc14c473d54b86b1c4e0012bb30207312eff871c3931166a094a9d4a7103a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-033.json",
+      "bytes": 628,
+      "sha256": "c8189faf811b0dc305c0cdda7961e7bed4a69a966c4addcc58fac9f12c160bc7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-033.txt",
+      "bytes": 80,
+      "sha256": "b23c7c4cd1bb33b71b6cb5477ea680691f5c344b51be16a30483d6ccc6130861",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-034.json",
+      "bytes": 628,
+      "sha256": "992b8f4faa93ce482fef3d493a240dfcdb0fb3ac24f85c7935d0117412b27340",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-034.txt",
+      "bytes": 80,
+      "sha256": "2452c624af08cea575369ffb3f571b9d3babbbf6ab4073a6e5896459d0c948d9",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-035.json",
+      "bytes": 629,
+      "sha256": "0cc6c5f8fdcced7cb7ea1cef9cde78cd2c2d110dbd83a7462fbaba46f0a94e2e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-035.txt",
+      "bytes": 80,
+      "sha256": "c947eac50e78b4395f70e71b34b1d77b0b51c6ab7a9bd930facedddcdfe5b288",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-036.json",
+      "bytes": 629,
+      "sha256": "01aa8cb63f90746133acf0815c7217209e1c30e1daf4abe30a559349d3aa510a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-036.txt",
+      "bytes": 80,
+      "sha256": "eaef9ca0a449d147bb1a3f95981c598691fdb08e8f0f2e74853be1634695f113",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-037.json",
+      "bytes": 629,
+      "sha256": "a3187da2024a67cd1bc96e70543313818597011bf99610ed93a681e84c6af0eb",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-037.txt",
+      "bytes": 80,
+      "sha256": "781a176cdfb783b21e644633717172aae48c098e9f5e47dd962e1b3304ea8756",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-038.json",
+      "bytes": 626,
+      "sha256": "c81dca10a0b0af37c8828f7f1596cc76417186e10d6875620003486fb885a00c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-038.txt",
+      "bytes": 80,
+      "sha256": "dc974b1833e10f6067b06f94b183aba3bdde157ac6b065bb6c9b57303b732914",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-039.json",
+      "bytes": 629,
+      "sha256": "b18c2b4bc5e8401d07e678bdffdded611e3fc8527551b031f3a06feadda7efe6",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-039.txt",
+      "bytes": 80,
+      "sha256": "1257b74e700f362998cdf47e7daef7d76c09233f8844dd9a2dd34c251a17f6f1",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-040.json",
+      "bytes": 629,
+      "sha256": "0380b6cdb53c6de868645895dc79214f710c611c97b685c05c9fe66460616328",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-040.txt",
+      "bytes": 80,
+      "sha256": "cb02a87dc949c24e7a3289e885824f6b26ea1171636369b92708d774fdaace55",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-041.json",
+      "bytes": 629,
+      "sha256": "ca286fac9468da70414f8ecb0ba2c5d1dd81a4a87538a64af8e1c20f24c34d57",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-041.txt",
+      "bytes": 80,
+      "sha256": "3be4ed66a7af652392abb03b752d4fd7683235c894ddff3e05db5e0c9f450b9e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-042.json",
+      "bytes": 629,
+      "sha256": "18aaecf80ee05b8e1857108524765865bb99a23de1edc1d63d8a88627a555105",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-042.txt",
+      "bytes": 80,
+      "sha256": "b97e0ebe5d57c0c437c50eb8fee5cb9cf4c999d0d076b54eeecbc1ea69cf02f3",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-043.json",
+      "bytes": 629,
+      "sha256": "cad55eb4ae0c746c7b1a055e703730697d4730c7fa159b5466beb0b271d64d28",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-043.txt",
+      "bytes": 80,
+      "sha256": "d178d31d2abe48b039f6604c12fb1bf991fccdb0e7d66f084376246e0dcd5735",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-044.json",
+      "bytes": 629,
+      "sha256": "a1ae0a6624612982447ed2b5d3aac24971497db5b0dc1b2a3c5347499c192780",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-044.txt",
+      "bytes": 80,
+      "sha256": "8295f83875aef8f4b7d2db0b47d82eb6022155e2c0a9dfaeacbea09ae33327ba",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-045.json",
+      "bytes": 628,
+      "sha256": "b121c2fa0f54a30bbe7aa4b05803a6cd631690c85a09987087af8e6097aa78f8",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-045.txt",
+      "bytes": 80,
+      "sha256": "d547bee51afddf517f4a5a6237097faa81c770b4404fae70e6c64fece3b18f04",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-046.json",
+      "bytes": 629,
+      "sha256": "2436d72d5748cf4c984e82477413e8331b419c1abb33215fc33cd597a329f4f6",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-046.txt",
+      "bytes": 80,
+      "sha256": "e284dc7929343a544e7bb24539d6c585394e18f7e0cb1c233f031295e1766ceb",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-047.json",
+      "bytes": 626,
+      "sha256": "326ed54aae1810ea692f1836efaa56681888bae3a005bfd7915cd8f54441cb84",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-047.txt",
+      "bytes": 80,
+      "sha256": "7afa6ff137c669789e21002229e449d67abe2a80654883cf4ee605b8ad8e4278",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-048.json",
+      "bytes": 628,
+      "sha256": "b0e003f26990450622ed4fc6bc3c41db405805b6c0182c39ba2ed751227ec70f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-048.txt",
+      "bytes": 80,
+      "sha256": "454ca26200e40def6b5c05cdefd676c6fac958722ca204862efdebfc9cb082f0",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-049.json",
+      "bytes": 629,
+      "sha256": "36f26999144965b516723235e6106356b9d845f97c7b1a962b91c710d40ecfa1",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-049.txt",
+      "bytes": 80,
+      "sha256": "149457a128d7919950bb344f0871ca704ec0b80062a4f6d01de20312f72780e0",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-050.json",
+      "bytes": 629,
+      "sha256": "2f3abf293521df862c91d3795549fc31c821cf6eb65e399ef6a658e12fdddc2e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-050.txt",
+      "bytes": 80,
+      "sha256": "5bc359507d0d28f00e61f2ed58732640531942dd4d0b8dda1efd9578b1430d26",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-051.json",
+      "bytes": 629,
+      "sha256": "201be7830e59dcdb11c0d8ccec99fa3bf73d83e34bc0861810d82ece69a7bd5d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-051.txt",
+      "bytes": 80,
+      "sha256": "f2c862f40c9e6775ea009858628158a8261e99dd25a4119510b2fb37cb039c97",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-052.json",
+      "bytes": 629,
+      "sha256": "6ac392a311293f3859fa3eac99afa1e5dae6d19832881b56c3bb61a0427ca477",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-052.txt",
+      "bytes": 80,
+      "sha256": "b9c43fd5ba9496f18d64ee6baf0ace3ad59a1a1feec02f5f9bc8c2b7b2a402d1",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-053.json",
+      "bytes": 626,
+      "sha256": "ed3c2390afe95d420f7cb772d55e0a9251087f6c1d8638ed01c36f5c387cf749",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-053.txt",
+      "bytes": 80,
+      "sha256": "c4f7d6c23237522040b7fe32bad420791f7d643e6acc2d4160c54f6c7ff67882",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-054.json",
+      "bytes": 629,
+      "sha256": "a23b801aab198ad1228f3e63537aefc3a684c9572b58f3737311ac0a96886ea5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-054.txt",
+      "bytes": 80,
+      "sha256": "0607f65687f7a28266cf0a361aa4aaf0839e5882fb1a5e1ff9f63f92288b684f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-055.json",
+      "bytes": 629,
+      "sha256": "35d160fd749309fe83b4a3e56d7ee9a24ef3f115d2179023c3595131d7bbaf45",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-055.txt",
+      "bytes": 80,
+      "sha256": "eb6c8ea837453ba1a586a3bcb29e13a986b26fc9424bf06eca45f1cd02618d4b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-056.json",
+      "bytes": 626,
+      "sha256": "eb3e686ea5547046adb6bcc44f749f6e55115a5360a06a8a2e6b3f0aaba0516b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-056.txt",
+      "bytes": 80,
+      "sha256": "5f6bfa6e54bffcfc471952e6ba8ad7ef619f8f4a7ec7a342d87bf88c8acc535a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-057.json",
+      "bytes": 628,
+      "sha256": "8924fb4e64a6ed840849493026a16c77fc686619a9e0ceabd02526d7d9a7c53c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-057.txt",
+      "bytes": 80,
+      "sha256": "30670fb6b08507a6c7206d5878d765c870ed818dee03dd0334f444573d639d2a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-058.json",
+      "bytes": 629,
+      "sha256": "60f2011c7f768689f062a95b9db3d8499bd745eba4931e273b040a5aaab28f15",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-058.txt",
+      "bytes": 80,
+      "sha256": "90fbb4a6954dd20bb0dd7b68d941725a44322577ad1578dbe0ec0e2a24fd2318",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-059.json",
+      "bytes": 629,
+      "sha256": "188227c17b2e6744d832f13bf3be74d48428f62cac04fcc11678e44227b9cf31",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-059.txt",
+      "bytes": 80,
+      "sha256": "9ca0854b48be5278e718adbfa1a94a15321b97c67a7eb752270efab107bc2d9b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-060.json",
+      "bytes": 629,
+      "sha256": "59eb9be6a79bea626c776beb58b0f87e42e22cd6327bdbce5d7434fa1a1fbbfd",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-060.txt",
+      "bytes": 80,
+      "sha256": "3336fff31e37a9f41f5a0f328cbccd25be72d05cd70b9783b5ed2d630dcb70b0",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-061.json",
+      "bytes": 629,
+      "sha256": "123e457374be046932ddf35b7480075466c5b854a63345806c491ac5aed93073",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-061.txt",
+      "bytes": 80,
+      "sha256": "28fc30531342b6442628a372a076000ce51d4701821a823a9a659beba59e6174",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-062.json",
+      "bytes": 629,
+      "sha256": "3be6289157f73adffbe1544cb4a8e1564059d508f06233e396323871f40f11a0",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-062.txt",
+      "bytes": 80,
+      "sha256": "bff48d3e17f41173b77560f6ac985f57428347a12e47bbeae4e2a784b68cfbc9",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-063.json",
+      "bytes": 629,
+      "sha256": "17cb47f54d610b6379710b09ef1b2e135c356a8875753fd4753c9568bb787dbb",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-063.txt",
+      "bytes": 80,
+      "sha256": "dcc28c03b98ed776c79944eaa0ebe3925cbb680c9617dbbdc0a3b14e19af507e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-064.json",
+      "bytes": 629,
+      "sha256": "4b5772853a474460c30d0bcbbf73d70087ea0128063bcd7c8465d25ea3ed2339",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-064.txt",
+      "bytes": 80,
+      "sha256": "7387b34ca2bd461a9bfe1bc727f18b1a9fb2bc6e926623d2e1c643fec9499294",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-065.json",
+      "bytes": 629,
+      "sha256": "1d3b7ea51d63d77e9157e51cd451dac87232a4cf541effc4514e348d0d2fdf61",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-065.txt",
+      "bytes": 80,
+      "sha256": "44733d1d5768f515a82f3243440e6acaa48741c52317c1cf8aaa27b94a38dcac",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-066.json",
+      "bytes": 629,
+      "sha256": "dd21600ee7f5c3fac0cba59e1ca7e638edc8c08d7fb4e2d4763dac7296865b02",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-066.txt",
+      "bytes": 80,
+      "sha256": "a11bbadd8f572127072e379f3f787b928de1f766ba8bd7447849d12d1e6fd6b8",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-067.json",
+      "bytes": 629,
+      "sha256": "87990dc44f766d7f99717bed2f8173b278db965a58f5c04b5593561005a75b50",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-067.txt",
+      "bytes": 80,
+      "sha256": "c545f6ed8e2663665f793d59dc479d6c8125904e4b5320f946d07506dfd55c93",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-068.json",
+      "bytes": 629,
+      "sha256": "f80cb573fba50fc4654c65348fef93975220771714596f74d8902d9f124019f2",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-068.txt",
+      "bytes": 80,
+      "sha256": "d2fa6cee228b5f314cfc963b330eb660e757bfd863c5569fa6b0c620d0041f38",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-069.json",
+      "bytes": 628,
+      "sha256": "a3044413ead804bbf8a239a7488e3431de8af669151bef485fd5b5cbc6f17207",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-069.txt",
+      "bytes": 80,
+      "sha256": "0020c95798f88816e1feec7978b760eabdbb582b8a9b475d22eb7846bde99708",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-070.json",
+      "bytes": 628,
+      "sha256": "81f8d926d6a785f2b6a05e003a6bfda2e60ea057e706ae560dfd123fda9344ac",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-070.txt",
+      "bytes": 80,
+      "sha256": "a80b5687402b32e6ce8869f47962457f02ef482fefe2bdd216f1f07c6aa611e1",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-071.json",
+      "bytes": 629,
+      "sha256": "d8e8ca13b4924ece3953c74ffcd013a5c8ca96f39b934878d85b7abc349fa131",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-071.txt",
+      "bytes": 80,
+      "sha256": "d5e91db42b684b321d11daf480b678bb97b70f8f40827371e5b46d6a43de7a6f",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-072.json",
+      "bytes": 629,
+      "sha256": "79f77239ebaaad2b35009e1853ddf4f2b474ee6f37c96f1384295ebbb6c4f06e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-072.txt",
+      "bytes": 80,
+      "sha256": "38ff8a83592ea428b0b6715957c2c49b51f9263c9d498579fb47db798cfbff9c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-073.json",
+      "bytes": 627,
+      "sha256": "fde529281688186fb3d896054db0176707d99bc8fb8ab0d819c42eeb3306add6",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-073.txt",
+      "bytes": 80,
+      "sha256": "951f248f2bb4ae1849ad933fb0d62dee26fd4840ef042464b7da7bdbbd4006a7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-074.json",
+      "bytes": 629,
+      "sha256": "618100cab00aebf127071907a5f0811425e6767af2fff104a12d823cc793d9a8",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-074.txt",
+      "bytes": 80,
+      "sha256": "b15f1acfd7d7639a6a119b2600d3513e9aba05478dac42704231ac084770658b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-075.json",
+      "bytes": 629,
+      "sha256": "af5d45881637111bd3102787403a1dc459174ebfa030442d7b70003f13646c10",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-075.txt",
+      "bytes": 80,
+      "sha256": "5f2a3d35f6b4c7f54de0c65a5ebbc93177bc128ca6941eecc9075a6b1453af98",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-076.json",
+      "bytes": 629,
+      "sha256": "3e6391947aa5aa460a2513e6df07144cffb83a1c8d686a7480cd61b8f3f52b9e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-076.txt",
+      "bytes": 80,
+      "sha256": "cad2bf2fbb0dc071039728e92b70bd1edff4345fd443470bd1465338702db336",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-077.json",
+      "bytes": 629,
+      "sha256": "4c28022048de242a8f4bd566954f09117f7494e1e11088b9c4b0a4ba5d4c305b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-077.txt",
+      "bytes": 80,
+      "sha256": "a40d6e9a699c11f1fa6ef0ec6cf52548ae2618a46f66d19ab5bbb3fd2a5af2f3",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-078.json",
+      "bytes": 629,
+      "sha256": "04061947e5d855a4357b6bcca70576cdf10a4a8add4dc9d3a499afdea9bac599",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-078.txt",
+      "bytes": 80,
+      "sha256": "0b30c91deea93d33189ced46f904b184a47b58a11cd9a3cdfcf1b363163a2f2c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-079.json",
+      "bytes": 627,
+      "sha256": "715829ba90224336f45d4b60164c891823a76de78692aef0a776ac4e2baf1664",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-079.txt",
+      "bytes": 80,
+      "sha256": "fe08e60b1e4d644bde536cacb1531c1c4ec611bcb13376c855338b29861a2848",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-080.json",
+      "bytes": 629,
+      "sha256": "b0453706782338d9fb333c5306fb2fbcb507ca3c0dbd7cc987bcc87dccab08f2",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-080.txt",
+      "bytes": 80,
+      "sha256": "6880288e08ea672be060e810f22af679616d923429810ac71851c53fa24b14aa",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-081.json",
+      "bytes": 629,
+      "sha256": "16576f1850d2c542a0facdf02e9e35b2213bb96d30c86465c339fcba52b5f806",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-081.txt",
+      "bytes": 80,
+      "sha256": "d8fe3d389baf1b6f4ce42bdff0ae0f3cef17fb7eb000cd55f46ac17c9b8dad08",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-082.json",
+      "bytes": 629,
+      "sha256": "7cc3ff289d733e5ffc1bbbde4e158ab91c4fd65b202c28c084e501b9932a243e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-082.txt",
+      "bytes": 80,
+      "sha256": "60d135c650258722bed534dd4ad901436f2c9235c76c5d9a32dd9704a558eeaa",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-083.json",
+      "bytes": 629,
+      "sha256": "266f62ba9db59e0b7466008fe04d1a72a821561abb6b7875507161ee53696fca",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-083.txt",
+      "bytes": 80,
+      "sha256": "4e0806078cfb3b534b706727160ff912bdd3bb04836de8526b15eb132833d1b7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-084.json",
+      "bytes": 629,
+      "sha256": "7ac6c4f59ee71dca714460bb04179df7503ce86920c2bcbb776523e4ef28a377",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-084.txt",
+      "bytes": 80,
+      "sha256": "75dd2dbd9ded5f9588d1f734aafd64976ec5e097a9df73d41075c375f809f1d5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-085.json",
+      "bytes": 629,
+      "sha256": "01eca972f6bfb1428729eeeae048184b95bb9678aad7d9dc2708885db9156b91",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-085.txt",
+      "bytes": 80,
+      "sha256": "82a1077b81ffe72afab1ea4a09799e7373cfce377595f8131c020830cda6a49c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-086.json",
+      "bytes": 626,
+      "sha256": "66b78009b211b944a510b1d2a6b2b8266d6c1c697df127a8c40fef61ba0e834e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-086.txt",
+      "bytes": 80,
+      "sha256": "ab173f5fb7326ac199ce092d318c8f8ccdd4c16480c81fa6c060c0b295b3ce18",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-087.json",
+      "bytes": 629,
+      "sha256": "94f4e1e8cd9bdf32f15d07232a931c4a5e21be8ace753bf2ebc4f81dac811106",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-087.txt",
+      "bytes": 80,
+      "sha256": "b8d91040e09c70e2e7c57e46221e0215e20c2960fa87f413cace69e555f5d785",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-088.json",
+      "bytes": 629,
+      "sha256": "5f618f11dd21488c674ef8ce65d3266ae98a04cc818a08719ec597cf0b36c49a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-088.txt",
+      "bytes": 80,
+      "sha256": "395620f07547ebea25ba2eb9bb1f5f21210dce709ab3a09ec6d1cf547a14b785",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-089.json",
+      "bytes": 629,
+      "sha256": "c091a8d2192cb3ce03280ad7a0924a5a5019f1feb028d4f791d86beda8d98170",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-lifecycle-089.txt",
+      "bytes": 80,
+      "sha256": "29312097026bcc61a0fc4020ff0df08e9727a7def8c662e7b68bf1ce6055a08c",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-001-state.json",
+      "bytes": 1657,
+      "sha256": "62c00599f93a85b8c6bebae2d22c58fd5d014793b925ef44ff6160b3a9732e78",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-002-state.json",
+      "bytes": 1657,
+      "sha256": "62c00599f93a85b8c6bebae2d22c58fd5d014793b925ef44ff6160b3a9732e78",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-003-state.json",
+      "bytes": 1657,
+      "sha256": "62c00599f93a85b8c6bebae2d22c58fd5d014793b925ef44ff6160b3a9732e78",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-004-state.json",
+      "bytes": 1657,
+      "sha256": "62c00599f93a85b8c6bebae2d22c58fd5d014793b925ef44ff6160b3a9732e78",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-005-state.json",
+      "bytes": 1657,
+      "sha256": "62c00599f93a85b8c6bebae2d22c58fd5d014793b925ef44ff6160b3a9732e78",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-006-request.json",
+      "bytes": 103,
+      "sha256": "0b579657f413046f34996d084f9f8671bd85d5fac90f3696df5c1f18b57279bb",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-007-state.json",
+      "bytes": 1768,
+      "sha256": "616866852785b921a013f7f5a5f0acf3814449e26e087ee24441fe416666ab6d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-008-state.json",
+      "bytes": 1768,
+      "sha256": "616866852785b921a013f7f5a5f0acf3814449e26e087ee24441fe416666ab6d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-009-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-010-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-011-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-012-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-013-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-014-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-015-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-016-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-017-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-018-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-019-state.json",
+      "bytes": 1757,
+      "sha256": "6cd704dce8dc95bd850238b1132311affdbb48b625916a917e10db4918a2b607",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-020-request.json",
+      "bytes": 103,
+      "sha256": "3c500ae2d0d9c148281e53f75c889ab5c588ee335cf3ab0810d2bb9f9f3883e8",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-021-state.json",
+      "bytes": 1897,
+      "sha256": "a612bc469f8adf164857c0b27917253625be51890e76f677bfe503e85cbff0fe",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-022-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-023-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-024-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-025-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-026-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-027-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-028-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-029-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-030-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-031-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-032-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-033-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-034-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-035-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-036-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-037-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-038-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-039-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-040-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-041-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-042-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-043-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-044-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-045-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-046-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-047-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-048-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-049-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-050-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-051-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-052-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-053-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-054-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-055-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-056-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-057-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-058-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-059-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-060-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-061-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-062-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-063-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-064-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-065-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-066-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-067-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-068-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-069-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-070-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-071-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-072-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-073-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-074-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-075-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-076-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-077-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-078-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-079-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-080-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-081-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-082-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-083-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-084-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-085-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-086-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-087-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-088-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-089-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-090-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-mailbox-091-state.json",
+      "bytes": 1894,
+      "sha256": "f48cb1540f68c6e5d91089e86ec9a63f5340178d3f46f3789d0a98fb3790b5c5",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-native-draw-surface-readiness.json",
+      "bytes": 2758,
+      "sha256": "1a6bf9df723b89608222562401e04b6669b307dc888899160f165137b902e28b",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-native-late-draw-surface-readiness.json",
+      "bytes": 2769,
+      "sha256": "4f65f833a79c7e9900d21a816b18268e706065e8b1ea3a513698a8be62546689",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-native-pause-1.png",
+      "bytes": 953252,
+      "sha256": "cf5a5ce370fa12a84f122f15fff995ab8322bd256ae40037fa5842a5bf1c11c7",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-native-pause-surface-readiness.json",
+      "bytes": 2752,
+      "sha256": "a77edcdcbd9ccde5839d657378585d5e55649ecd356eeb7d40d79bcfa8f0e089",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-save-005-preferences.xml",
+      "bytes": 5986,
+      "sha256": "5ec2dbf93980545af2e3d8540aaab5872f06b37334e5981e6ca272a93fc9599d",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-save-014-preferences.xml",
+      "bytes": 5986,
+      "sha256": "4a4694bb29dc369a0a5cc1f4cfa7058a978df240d5c5139b400de67a08e93145",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-save-019-preferences.xml",
+      "bytes": 5986,
+      "sha256": "4a4694bb29dc369a0a5cc1f4cfa7058a978df240d5c5139b400de67a08e93145",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/cards-save-026-preferences.xml",
+      "bytes": 5986,
+      "sha256": "c2c8c213d8e895528b92364ba9c3e671489343490a875ef405c7712409482817",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-after-native-preferences.xml",
+      "bytes": 2763,
+      "sha256": "57cf593cf8615e8198fc7b6935013e56eb911c1e0e39baaf9811172be9a175ad",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-before-native-preferences.xml",
+      "bytes": 2763,
+      "sha256": "57cf593cf8615e8198fc7b6935013e56eb911c1e0e39baaf9811172be9a175ad",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-movement-logcat.txt",
+      "bytes": 2303,
+      "sha256": "cf36062de67d110ef72eb8708e9295836eea9643333a626cc084867d8b7bc0a2",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-return-academy.xml",
+      "bytes": 28899,
+      "sha256": "2fec2b10a23b8f3fd95e52311ae521562c91c1f4bd580bc764d9c79a6456d93e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-return-hub.xml",
+      "bytes": 20049,
+      "sha256": "147134281b5d58117b24198d7ffaab8f7ad81f2699c3e67e512910e027e9ff18",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-return-navigation.xml",
+      "bytes": 28899,
+      "sha256": "2fec2b10a23b8f3fd95e52311ae521562c91c1f4bd580bc764d9c79a6456d93e",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/learning-speech-logcat.txt",
+      "bytes": 2426,
+      "sha256": "128dbd8e79e01e801d796622616c15b4e9cbdb59a1f8580538a2e54b74c74a0a",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/logcat.txt",
+      "bytes": 1552543,
+      "sha256": "9f1aea0f97e250ab2dfa246cef3e81b8e83e5f6b4feb995289146e7325e5c1c1",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "nextgen/native-surfaces-result.json",
+      "bytes": 8132,
+      "sha256": "44d432ce30e47cd40dcd8320cc9c82a5f08b5f6b0b71ffaccc85c003c2a2b157",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "tour-result.json",
+      "bytes": 9753,
+      "sha256": "cc896d49ed6d8673ddfa910509fa23e35d20dbd9d43b8a9673e9770b6b10dc05",
+      "origin": "artifact14077079013 exact member"
+    },
+    {
+      "path": "original-job.log",
+      "bytes": 1556321,
+      "sha256": "8670d1cd18cc5ab3b38ea43fd807642d7d0068a2786260b71aac11764ba2120d",
+      "origin": "decoded original GitHub job log"
+    },
+    {
+      "path": "original-job-log-metadata.json",
+      "bytes": 174,
+      "sha256": "adfb543e988ba349f8c850d360c311e0c2b1df48cbd2638b329c6db29f04e6ee",
+      "origin": "local verification metadata"
+    },
+    {
+      "path": "archive-verification.json",
+      "bytes": 312,
+      "sha256": "4d947dcc469fc4555c285b88bf811b4ab9898b8599c07c229e9ee5ef29828f1f",
+      "origin": "local verification metadata"
+    }
+  ]
+}

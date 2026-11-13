@@ -1,0 +1,41 @@
+{
+  "artifact_id": 14075184774,
+  "run_id": 43496928833,
+  "head_sha": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "zip_bytes": 322134018,
+  "zip_sha256": "ff5e391df4d647fd2ec30da91ddad5e4497398516d9d675965055b17460ed9d4",
+  "all_zip_crc_valid": true,
+  "entries": [
+    {
+      "path": "APK-VERIFICATION.json",
+      "bytes": 1779,
+      "crc32": 3696184043
+    },
+    {
+      "path": "Lumo-Lernen-Neu.apk",
+      "bytes": 322123605,
+      "crc32": 865413257
+    },
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "crc32": 281421907
+    },
+    {
+      "path": "APK-SHA256.txt",
+      "bytes": 91,
+      "crc32": 3864937990
+    },
+    {
+      "path": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "crc32": 1820723778
+    },
+    {
+      "path": "APP-VERSION.txt",
+      "bytes": 21,
+      "crc32": 686531720
+    }
+  ],
+  "elapsed_seconds": 8.205
+}

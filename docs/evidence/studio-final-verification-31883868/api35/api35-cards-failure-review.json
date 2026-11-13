@@ -1,0 +1,356 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-13T21:22:34.089773+00:00",
+  "reviewer": "Agent C /root/games_worlds",
+  "status": "BLOCKIERT: Cards-Bildnachweis vor erster Ziehaktion fehlgeschlagen",
+  "identity": {
+    "repository": "Ullmann27/lumo-lernen",
+    "run_id": 43496928833,
+    "attempt": 1,
+    "job_id": 132161617695,
+    "job_conclusion": "failure",
+    "host_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+    "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "artifact_id": 14076728771,
+    "zip_bytes": 107187990,
+    "zip_sha256": "39c8f985983890b4c0f6f72e64cabaf466533e14c8c22053d230ddc63c88ddde",
+    "zip_crc": "PASS",
+    "original_zip_path": "/workspace/scratch/5987865ae883/qa/studio-final-31883868/api35/original-artifact.zip",
+    "members": 987,
+    "apk_identity_from_actual_emulator_probe": {
+      "apk_sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+      "flutter_source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+      "godot_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "godot_pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+      "versionName": "0.13.7",
+      "versionCode": 2019,
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "checks": {
+        "sha256_matches_provenance": true,
+        "sha256_matches_build_sums": true,
+        "flutter_source_is_this_commit": true,
+        "tracked_source_clean": true,
+        "godot_revision_is_pinned": true,
+        "signing_certificate": true,
+        "version_matches_pubspec": true,
+        "x86_64_native_code": true
+      }
+    },
+    "runtime": {
+      "sdk": 35,
+      "release": "15",
+      "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+      "model": "sdk_gphone64_x86_64"
+    },
+    "apk_identity_independently_matched_to_fresh_build_log": true,
+    "local_x86_apk_binary_verified": false
+  },
+  "original_log": {
+    "path": "original-job.log",
+    "bytes": 1518937,
+    "sha256": "e935a2bb9f00462caa6aa80c75caac6f532703cb5f8ab4dc40ca5aba6f995b18",
+    "kind": "Vollständiges vom GitHub-Connector dekodiertes Abschlussjoblog, unverändert gesichert"
+  },
+  "completed_scope": {
+    "main_tour_status": "PASS",
+    "main_tour_steps": 21,
+    "main_tour_all_steps_ok": true,
+    "main_tour_scope": "Die tatsächlichen 21 ursprünglichen Tourprüfungen, getrennt vom später gescheiterten Lern-/Cards-Zusatzlauf. Keine zusätzliche neue Bauwelt-/Drehpuzzle-/Treasure-Interaktion hieraus abgeleitet.",
+    "learning": {
+      "moves": {
+        "moved_objects": 5,
+        "ten_filled_after": 2,
+        "remainder": 3,
+        "target_indices": [
+          8,
+          9,
+          10,
+          11,
+          12
+        ],
+        "complete": true
+      },
+      "preservation": {
+        "profile": {
+          "id": "1794603334905395",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-13T20:55:34.905395"
+        },
+        "learning_keys_compared": 2,
+        "learning_keys_added": []
+      },
+      "same_lesson_after_return": true,
+      "speech": {
+        "initial": {
+          "native_process_pid": 6740,
+          "completed_utterance_ids": [
+            3
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "result": {
+          "native_process_pid": 6740,
+          "completed_utterance_ids": [
+            18
+          ],
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "audible_quality_verified": false,
+          "lip_sync_verified": false
+        },
+        "native_process_gone_on_return": true,
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "illustration_did_not_award_mastery": true
+    },
+    "learning_image_and_xml_return": "Aktuelles Originalbild und aktuelles XML zeigen dieselbe Flutter-Lektion Acht und fünf; ausdrücklich selbst gesehen.",
+    "speech_scope": "Tatsächliche lokale Utterance-Abschlüsse im nativen Prozess; hörbare Sprachqualität und Lip-Sync nicht verifiziert."
+  },
+  "cards_failure": {
+    "stage": "capture_cards_faces / 11_cards_real_table_before_draw",
+    "initial_readiness": {
+      "status": "READY",
+      "states": [
+        {
+          "token": "fc361075c71e2667a2308e70975544a8",
+          "roundId": "cards-bc3b2c9d4e78110c5570f7b9e259e38c",
+          "viewer": 0,
+          "current": 0,
+          "phase": "playing",
+          "paused": false,
+          "canDraw": true,
+          "revision": 3,
+          "ack": 0
+        }
+      ],
+      "frames": [],
+      "touch": null,
+      "scope": "Actual initial Cards state and, only if needed, native resume",
+      "mode": "active_without_resume_touch",
+      "elapsed_seconds": 0.084218
+    },
+    "terminal_error": "TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 1.1972953040001357 seconds",
+    "capture_elapsed_seconds": 60.002828,
+    "frame_rejections": [
+      {
+        "source": "11_cards_real_table_before_draw-face-check-00.png",
+        "sha256": "059a25aad43399ffcb73809af6a8bbb1ada8fd309c7742cb9bdc49415fbae265",
+        "revision": 3,
+        "status": "REJECTED",
+        "error": "Current Cards frame still has a paused/modal transition",
+        "public_after_recorded": false
+      },
+      {
+        "source": "11_cards_real_table_before_draw-face-check-01.png",
+        "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+        "revision": 3,
+        "status": "REJECTED",
+        "error": "Current Cards frame still has a paused/modal transition",
+        "public_after_recorded": false
+      },
+      {
+        "source": "11_cards_real_table_before_draw-face-check-02.png",
+        "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+        "revision": 3,
+        "status": "REJECTED",
+        "error": "Current Cards frame still has a paused/modal transition",
+        "public_after_recorded": false
+      }
+    ],
+    "guard_site": ".github/probes/lumo_studio_surfaces_android_probe.py: fehlendes exaktes OCR-Wort Pause vor Seiten-/Pixel-/Folgezustandsprüfung",
+    "observed_trigger": "Alle drei gespeicherten Frames sind sichtbar aktiv; die Android-Statusleiste überlagert Pause/Zurück im oberen HUD. Der bestehende OCR-Output enthält oben rechts pay D./pad/pay statt eines exakten Pause. Die Endexception entsteht beim nächsten screencap mit nur noch 1,197295s Restbudget der unveränderten 60s-Grenze.",
+    "interpretation": "Die konkrete fehlgeschlagene Bedingung ist der sichtbare UI-/OCR-Nachweis, nicht nachgewiesene leere Karten und nicht ein beobachteter Heartbeat-Verfall. Der genaue WindowInsets-/Szenenlayout-Reparaturort ist vor einer Produktänderung zu bestimmen.",
+    "not_reached": [
+      "automatischer Projektions-/Kartenvorderseiten-Pixel-PASS",
+      "erstes Ziehen",
+      "zweites Ziehen nach mindestens35s sichtbarer Idle-Zeit",
+      "Pause mit Saveinvarianz",
+      "Rückkehr zu derselben Flutter-Partie",
+      "Wiederaufnahme mit neuem Mailboxtoken",
+      "abschließender TaskReturn"
+    ]
+  },
+  "lifecycle_observations": {
+    "count": 5,
+    "all_observed": true,
+    "observed_span_ms": 58804,
+    "all_active": true,
+    "pause_epochs": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    "stamp_age_range_ms": [
+      59,
+      527
+    ],
+    "all_public_unpaused_can_draw": true,
+    "all_public_revision": [
+      3
+    ],
+    "all_public_ack": [
+      0
+    ],
+    "samples": [
+      {
+        "file": "originals/nextgen/cards-lifecycle-001.json",
+        "status": "OBSERVED",
+        "sampled_after_state_read": true,
+        "state_file": "cards-mailbox-001-state.json",
+        "state_read_error": null,
+        "state_revision": 3,
+        "state_ack": 0,
+        "state_paused": false,
+        "scope": "Observed device clock and lifecycle only; no game-state writes or automatic resume",
+        "lifecycle": {
+          "active": true,
+          "pauseEpoch": 0,
+          "stamp": 1794604310837
+        },
+        "device_before_ms": 1794604311332,
+        "device_after_ms": 1794604311364,
+        "device_clock_ordered": true,
+        "stamp_age_lower_ms": 495,
+        "stamp_age_upper_ms": 527,
+        "raw_source": "cards-lifecycle-001.txt",
+        "elapsed_seconds": 0.058456
+      },
+      {
+        "file": "originals/nextgen/cards-lifecycle-002.json",
+        "status": "OBSERVED",
+        "sampled_after_state_read": true,
+        "state_file": "cards-mailbox-002-state.json",
+        "state_read_error": null,
+        "state_revision": 3,
+        "state_ack": 0,
+        "state_paused": false,
+        "scope": "Observed device clock and lifecycle only; no game-state writes or automatic resume",
+        "lifecycle": {
+          "active": true,
+          "pauseEpoch": 0,
+          "stamp": 1794604311346
+        },
+        "device_before_ms": 1794604311405,
+        "device_after_ms": 1794604311430,
+        "device_clock_ordered": true,
+        "stamp_age_lower_ms": 59,
+        "stamp_age_upper_ms": 84,
+        "raw_source": "cards-lifecycle-002.txt",
+        "elapsed_seconds": 0.045645
+      },
+      {
+        "file": "originals/nextgen/cards-lifecycle-003.json",
+        "status": "OBSERVED",
+        "sampled_after_state_read": true,
+        "state_file": "cards-mailbox-003-state.json",
+        "state_read_error": null,
+        "state_revision": 3,
+        "state_ack": 0,
+        "state_paused": false,
+        "scope": "Observed device clock and lifecycle only; no game-state writes or automatic resume",
+        "lifecycle": {
+          "active": true,
+          "pauseEpoch": 0,
+          "stamp": 1794604328244
+        },
+        "device_before_ms": 1794604328571,
+        "device_after_ms": 1794604328633,
+        "device_clock_ordered": true,
+        "stamp_age_lower_ms": 327,
+        "stamp_age_upper_ms": 389,
+        "raw_source": "cards-lifecycle-003.txt",
+        "elapsed_seconds": 0.102418
+      },
+      {
+        "file": "originals/nextgen/cards-lifecycle-004.json",
+        "status": "OBSERVED",
+        "sampled_after_state_read": true,
+        "state_file": "cards-mailbox-004-state.json",
+        "state_read_error": null,
+        "state_revision": 3,
+        "state_ack": 0,
+        "state_paused": false,
+        "scope": "Observed device clock and lifecycle only; no game-state writes or automatic resume",
+        "lifecycle": {
+          "active": true,
+          "pauseEpoch": 0,
+          "stamp": 1794604347917
+        },
+        "device_before_ms": 1794604348303,
+        "device_after_ms": 1794604348354,
+        "device_clock_ordered": true,
+        "stamp_age_lower_ms": 386,
+        "stamp_age_upper_ms": 437,
+        "raw_source": "cards-lifecycle-004.txt",
+        "elapsed_seconds": 0.094383
+      },
+      {
+        "file": "originals/nextgen/cards-lifecycle-005.json",
+        "status": "OBSERVED",
+        "sampled_after_state_read": true,
+        "state_file": "cards-mailbox-005-state.json",
+        "state_read_error": null,
+        "state_revision": 3,
+        "state_ack": 0,
+        "state_paused": false,
+        "scope": "Observed device clock and lifecycle only; no game-state writes or automatic resume",
+        "lifecycle": {
+          "active": true,
+          "pauseEpoch": 0,
+          "stamp": 1794604369798
+        },
+        "device_before_ms": 1794604370136,
+        "device_after_ms": 1794604370166,
+        "device_clock_ordered": true,
+        "stamp_age_lower_ms": 338,
+        "stamp_age_upper_ms": 368,
+        "raw_source": "cards-lifecycle-005.txt",
+        "elapsed_seconds": 0.055014
+      }
+    ],
+    "scope": "Fünf tatsächlich beobachtete, nicht atomare Zustands-/Lifecycle-Lesungen über58,804s. Belegt hier aktuellen aktiven Heartbeat; keine kontinuierliche lückenlose Messung, kein bereits ausgeführter Pause/Stop/Destroy-Gegenfall auf Android."
+  },
+  "images_opened": [
+    {
+      "file": "originals/nextgen/05_learning_same_flutter_lesson.png",
+      "sha256": "d59786fbcbd8f4219f46c4fc0d52ed5c93c147d0c0eaa78a1e3b82cc7f9e8438",
+      "actually_opened": true,
+      "review": "Tatsächliche Flutter-Lektion Acht und fünf mit 13 Äpfeln, passender Erklärung und erneutem 3D-Einstieg; kein verbliebener nativer Abschlussframe."
+    },
+    {
+      "file": "originals/nextgen/11_cards_real_table_before_draw-face-check-00.png",
+      "sha256": "059a25aad43399ffcb73809af6a8bbb1ada8fd309c7742cb9bdc49415fbae265",
+      "actually_opened": true,
+      "review": "Aktiver räumlicher Kartentisch, sichtbarer Originalfuchs und Kartenvorderseiten 1/0/5; Seite 1/3, Ziehen und Pause sichtbar, keine Pausenmodalität. Android-Statusleistenicons überlagern oben die Pause-Beschriftung. Dies ist eine Sichtprüfung, keine bestandene automatische Kartenidentitäts-/Interaktionsprüfung."
+    },
+    {
+      "file": "originals/nextgen/11_cards_real_table_before_draw-face-check-01.png",
+      "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+      "actually_opened": true,
+      "review": "Aktiver räumlicher Kartentisch, sichtbarer Originalfuchs und Kartenvorderseiten 1/0/5; Seite 1/3, Ziehen und Pause sichtbar, keine Pausenmodalität. Android-Statusleistenicons überlagern oben die Pause-Beschriftung. Dies ist eine Sichtprüfung, keine bestandene automatische Kartenidentitäts-/Interaktionsprüfung."
+    },
+    {
+      "file": "originals/nextgen/11_cards_real_table_before_draw-face-check-02.png",
+      "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+      "actually_opened": true,
+      "review": "Aktiver räumlicher Kartentisch, sichtbarer Originalfuchs und Kartenvorderseiten 1/0/5; Seite 1/3, Ziehen und Pause sichtbar, keine Pausenmodalität. Android-Statusleistenicons überlagern oben die Pause-Beschriftung. Dies ist eine Sichtprüfung, keine bestandene automatische Kartenidentitäts-/Interaktionsprüfung."
+    }
+  ],
+  "limitations": [
+    "Der API35-Job bleibt fehlgeschlagen; kein Gesamt- oder Cards-Gameplay-PASS.",
+    "Es wurde kein Retry ausgelöst und keine Quelle geändert.",
+    "Ein einziger frischer synthetischer LumoTest-Kinderstand; keine vollständige Mehrkind-/Produktivdatenfreigabe.",
+    "Nicht mit älteren e3d-Ergebnissen oder dem getrennten Update-PASS vermischt.",
+    "Kein physisches Samsung Galaxy Z Fold7, keine Geräte-FPS-/Temperatur-/Latenzmessung.",
+    "API37 wird separat vom Integrator betreut."
+  ],
+  "curation": "Eine Original-ZIP bleibt ausschließlich im QA-Ordner. Hier liegen gezielte unveränderte Originalreports/Logs/XML und vier tatsächlich geöffnete PNGs. Abgeleitete OCR-Kachelbilder sind keine neuen Rendererbilder und werden nicht als solche gezählt."
+}

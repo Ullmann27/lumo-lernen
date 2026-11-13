@@ -1,0 +1,139 @@
+{
+  "reviewed_at_utc": "2026-11-13T21:43:20.785150+00:00",
+  "status": "BLOCKED_BEFORE_ALL_FOUR_NATIVE_SCENES",
+  "run": 43508752443,
+  "attempt": 1,
+  "job": 132173159467,
+  "probe_source": "2fdd038d00ed7706971786400e3e1a42f5290c88",
+  "host_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "artifact": {
+    "id": 14078303270,
+    "bytes": 275172531,
+    "sha256": "c4e05c98850b14e53db4303ab4b5babcd412e2ecf7784c3970faf631dff72f0b",
+    "complete_original_local_path": "/workspace/scratch/5987865ae883/qa/studio-creative-api35-2fdd038d/original-artifact.zip",
+    "crc_all_322_members": "PASS (original download verification, preserved in zip-verification.json)"
+  },
+  "runtime": {
+    "sdk": "35",
+    "release": "15",
+    "model": "sdk_gphone64_x86_64",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys"
+  },
+  "apk_identity": {
+    "apk_sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+    "flutter_source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+    "godot_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    "godot_pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "direct_apk_pck_read": {
+    "sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+    "bytes": 66217496
+  },
+  "games": {
+    "jump": {
+      "status": "NOT_REACHED",
+      "original_error": "Current live hub tile not available: Jump & Run",
+      "gameplay_or_save_evidence": false
+    },
+    "build": {
+      "status": "NOT_REACHED",
+      "original_error": "Current live hub tile not available: Bauwelt",
+      "gameplay_or_save_evidence": false
+    },
+    "puzzle": {
+      "status": "NOT_REACHED",
+      "original_error": "Current live hub tile not available: Puzzle",
+      "gameplay_or_save_evidence": false
+    },
+    "treasure": {
+      "status": "NOT_REACHED",
+      "original_error": "Current live hub tile not available: Schatzsuche",
+      "gameplay_or_save_evidence": false
+    }
+  },
+  "hub_observations": {
+    "xml_count": 88,
+    "target_nodes": 352,
+    "clickable": {
+      "false": 352
+    },
+    "enabled": {
+      "true": 352
+    },
+    "visible_to_user": {
+      "true": 352
+    }
+  },
+  "source_before": {
+    "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+    "bytes": 28376,
+    "sha256": "387199fa020b74d7494da66b431c4e1cc2648a006b005de3b438fed742d92e02",
+    "git_blob": "ef1b96ee3b0f082281283d1db3751a6c4488fa81",
+    "exact_match_to_actual_candidate_manifest": true
+  },
+  "cause": "The outer game-tile Semantics declares button:true and excludeSemantics:true, but has no onTap. The existing inner InkWell tap is excluded from the accessibility tree; the strict QA selector therefore rejects every observed requested tile as non-clickable.",
+  "images": [
+    {
+      "path": "0008-hub-before-choice.png",
+      "bytes": 1522239,
+      "sha256": "4d8cdf1538b354769cf00c31158c6dd10a718d02dd358737790015f1fb415fd5",
+      "git_blob": "c5bd909e26323a0528241c4d3876aab875e9ed76",
+      "game": "jump",
+      "original_member": "tour/0008-hub-before-choice.png",
+      "actually_opened": true,
+      "finding": "All four requested game tiles are visibly present, readable and unobstructed. This is the Flutter hub, not native gameplay."
+    },
+    {
+      "path": "0078-hub-before-choice.png",
+      "bytes": 1523444,
+      "sha256": "d967113ae8960a9646806ead76074a90b9a1fc3e9b5163abba521efcc7045d3f",
+      "git_blob": "617e1c41c73c301f049fb8056a7641fa1361db2c",
+      "game": "build",
+      "original_member": "tour/0078-hub-before-choice.png",
+      "actually_opened": true,
+      "finding": "All four requested game tiles are visibly present, readable and unobstructed. This is the Flutter hub, not native gameplay."
+    },
+    {
+      "path": "0147-hub-before-choice.png",
+      "bytes": 1524325,
+      "sha256": "3ee49f7bf8fc9a952cba61dc94c4a2e8911907fba6f8b076a595d7a1a83a4680",
+      "git_blob": "906972bd53e9ccf6b7d329f616dd95c9cc1d96c6",
+      "game": "puzzle",
+      "original_member": "tour/0147-hub-before-choice.png",
+      "actually_opened": true,
+      "finding": "All four requested game tiles are visibly present, readable and unobstructed. This is the Flutter hub, not native gameplay."
+    },
+    {
+      "path": "0216-hub-before-choice.png",
+      "bytes": 1523476,
+      "sha256": "ce2e4f1b2ad43ac56304dc6e405ad241cc448ea4b707023fa2f9f5698d72994b",
+      "git_blob": "9d7914d3316db8e4634870d322d81e42c2a62a36",
+      "game": "treasure",
+      "original_member": "tour/0216-hub-before-choice.png",
+      "actually_opened": true,
+      "finding": "All four requested game tiles are visibly present, readable and unobstructed. This is the Flutter hub, not native gameplay."
+    }
+  ],
+  "limits": [
+    "No native Jump/Build/Puzzle/Treasure scene was reached.",
+    "No Jump screenrecord was created.",
+    "No Android gameplay, save/undo/rotation, physics or FPS acceptance follows from this run.",
+    "API35 emulator evidence does not establish Android17 or physical Fold7 behavior.",
+    "The unchanged failing run is preserved; no QA selector relaxation or retry was applied."
+  ],
+  "subset_note": "hub-xml-originals.zip is a derived compact archive of the 88 byte-identical original XML members, not the GitHub artifact ZIP."
+}

@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T20:56:42.886585+00:00",
+  "status": "PASS_FRESH_VERIFY_BUILD_JOB_ANDROID_RUNTIME_GATES_SEPARATE",
+  "source_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "source_tree": "5ca2eeee9ea3af3f67acbee83f19934942c1c5d5",
+  "native_source_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "run_id": 43496928833,
+  "run_attempt": 1,
+  "job_id": 132132346118,
+  "job_conclusion": "success",
+  "original_log": {
+    "path": "original-job.log",
+    "bytes": 1534271,
+    "sha256": "a011dea20a01c4dc886ca0e0a982a75a34b6b1f115cd1390c871d07e8bd82d4a",
+    "complete_decoded_tool_content_saved": true,
+    "chunks_written": 64
+  },
+  "actual_test_results": {
+    "build-contracts": {
+      "run": 402,
+      "passed": 402,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 72.848
+    },
+    "android-probe-contracts": {
+      "run": 764,
+      "passed": 764,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 40.77
+    },
+    "font-contracts": {
+      "run": 3,
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.07
+    },
+    "pin-export-contracts": {
+      "run": 23,
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.496
+    }
+  },
+  "additional_actual_checks": {
+    "full_flutter": {
+      "passed": 2510,
+      "failed": 0,
+      "skipped": 0,
+      "evidence": "../flutter/review.json"
+    },
+    "focused_premium_widgets": 31,
+    "font_screenshot_checks": {
+      "images": 6,
+      "continuous_solid_bar_rows": 0,
+      "scope": "Automated Ahem-pattern check, not a manual visual review."
+    },
+    "launcher_contracts": {
+      "run": 8,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 2.426
+    },
+    "native": "../native/review.json",
+    "cards_heartbeat_contracts_within402": 13,
+    "bounded_scroll_cases_within764": 6,
+    "new_package_descriptor_cases_within402": 12
+  },
+  "static_analysis": {
+    "command": "flutter analyze --no-fatal-infos --no-fatal-warnings",
+    "infos": 103,
+    "warnings": 5,
+    "errors": 0,
+    "warning_details": [
+      {
+        "line": 542,
+        "message": "warning \u2022 The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' \u2022 lib/features/live/lumo_live_pro_screen.dart:343:16 \u2022 unused_element",
+        "severity": "warning"
+      },
+      {
+        "line": 543,
+        "message": "warning \u2022 Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive \u2022 lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 \u2022 unused_import",
+        "severity": "warning"
+      },
+      {
+        "line": 552,
+        "message": "warning \u2022 The value of the field '_ink' isn't used. Try removing the field, or using it \u2022 lib/features/story/widgets/lumo_story_scene.dart:150:16 \u2022 unused_field",
+        "severity": "warning"
+      },
+      {
+        "line": 561,
+        "message": "warning \u2022 Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive \u2022 test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 \u2022 unused_import",
+        "severity": "warning"
+      },
+      {
+        "line": 569,
+        "message": "warning \u2022 Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive \u2022 test/iq/iq_extended_adventure_test.dart:5:8 \u2022 unused_import",
+        "severity": "warning"
+      }
+    ],
+    "qualification": "Workflow success does not mean the analyzer emitted no issues. No warning suppression or source change was made during this review."
+  },
+  "actual_packaging": {
+    "release_command": "Flutter assembleRelease",
+    "assemble_release_seconds": 192.1,
+    "android_abis": [
+      "arm64-v8a",
+      "x86_64"
+    ],
+    "verifier_results": {
+      "arm64-v8a": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2019,
+        "versionName": "0.13.7",
+        "minSdk": 24,
+        "targetSdk": 36,
+        "abis": [
+          "arm64-v8a"
+        ],
+        "elf16KiBAligned": true,
+        "resourcesArscAligned": true,
+        "bytes": 322123605,
+        "sha256": "2288a64ccd84cc6c39d2a0502d8a225d603649f15aafc4e1499d82d1b3717b42",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+          "engine": "4.6.3",
+          "pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+          "bytes": 66217496
+        },
+        "offlineVoice": {
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "speakerId": 1,
+          "sampleRate": 44100,
+          "onnxruntimeVersion": "1.23.1",
+          "clipCount": 155,
+          "modelSha256": {
+            "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+            "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+            "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+            "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+            "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+            "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+            "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+          },
+          "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+          "scope": "Actual APK package validation, not audible playback acceptance"
+        }
+      },
+      "x86_64": {
+        "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+        "versionCode": 2019,
+        "versionName": "0.13.7",
+        "minSdk": 24,
+        "targetSdk": 36,
+        "abis": [
+          "x86_64"
+        ],
+        "elf16KiBAligned": true,
+        "resourcesArscAligned": true,
+        "bytes": 325278174,
+        "sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+        "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+        "godot": {
+          "repository": "https://github.com/Ullmann27/lumo-godot.git",
+          "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+          "engine": "4.6.3",
+          "pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+          "bytes": 66217496
+        },
+        "offlineVoice": {
+          "profile": "lumo-free-supertonic-de-v1",
+          "preset": "F2",
+          "speakerId": 1,
+          "sampleRate": 44100,
+          "onnxruntimeVersion": "1.23.1",
+          "clipCount": 155,
+          "modelSha256": {
+            "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+            "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+            "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+            "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+            "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+            "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+            "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+          },
+          "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+          "scope": "Actual APK package validation, not audible playback acceptance"
+        }
+      }
+    },
+    "each_abi_verified_twice_in_log": true,
+    "native_export": {
+      "repository": "https://github.com/Ullmann27/lumo-godot.git",
+      "revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "engine": "4.6.3",
+      "pck_sha256": "13f87bd1b72526d187584a35f50c67961dc88ca67af6d703472b439bc07a523b",
+      "bytes": 66217496
+    },
+    "provenance_file_existence_checked": true,
+    "apk_verification_file_existence_checked": true
+  },
+  "warnings_and_diagnostics": {
+    "native_resource_exit_errors": 5,
+    "native_details": "../native/review.json",
+    "build_details": "diagnostic-summary.json",
+    "retained_build_messages": [
+      "Kotlin2.2.0/2.2.20 plugin mismatch warning",
+      "AGP/legacy DSL and Gradle10 deprecations",
+      "Node20/action deprecations",
+      "Caught exception: Already watching path during assembleRelease",
+      "adb daemon connection refused after native export"
+    ],
+    "qualification": "Both APKs were subsequently produced and verified by CI. These diagnostic lines remain evidence; this review does not turn successful packaging into a runtime or absence-of-leaks claim."
+  },
+  "artifact_ids": {
+    "candidate": 14076081664,
+    "arm64": 14075184774,
+    "native": 14075601738,
+    "flutter": 14072992446,
+    "host_compile": 14072441845
+  },
+  "limits": [
+    "The six test-suite numbers are separate executed gates; overlapping suites are not summed into a new total.",
+    "APK binary download and independent archive verification belong to Root; this review reads actual original CI verifier outputs only.",
+    "The API35 tour, API37 tour and2017-to2019 update were still separate running jobs at build completion. Publication and final Android approval are not established here.",
+    "No new local tests, source/branch edits, workflow reruns or image approvals were performed."
+  ]
+}

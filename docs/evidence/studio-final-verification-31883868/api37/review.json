@@ -1,0 +1,204 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T21:41:12.484297+00:00",
+  "reviewer": "root",
+  "status": "ANDROID_GATE_FAILED_APK_NOT_RELEASED",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "run": 43496928833,
+  "attempt": 1,
+  "job": 132161617997,
+  "artifact": {
+    "id": 14077079013,
+    "bytes": 122859338,
+    "sha256": "c87683980bcaca2ca34053bdf871884377fa0c94d47a44401eaf3601f8f783cf",
+    "all_original_members_fully_read_crc_and_sha256_verified": 1540
+  },
+  "apk_sha256": "a9813af17f45eb3ce0db16c6bef13f5e776831e8e76a3f2e6466c8a8a5b8ee5f",
+  "framework": {
+    "status": "PASS",
+    "actual_sdk": 37,
+    "actual_release": "17",
+    "stable_observed_seconds": 12.746683698000027,
+    "total_seconds": 16.565372932999992,
+    "samples": 4
+  },
+  "normal_tour": {
+    "passed": 21,
+    "failed": 0
+  },
+  "learning": {
+    "native_object_motion": true,
+    "returned_same_lesson_in_later_xml": true,
+    "same_lesson_png": "STILL_NATIVE_NOT_VISUAL_RETURN_EVIDENCE",
+    "local_speech_completion_ids": [
+      3,
+      18
+    ],
+    "audible_or_lipsync_verified": false,
+    "same_2_learning_keys_before_after": true,
+    "no_mastery_awarded": true
+  },
+  "cards": {
+    "four_face_oracle_stages": "PASS",
+    "actual_draw_requests": [
+      {
+        "sequence": 1,
+        "revision": 3
+      },
+      {
+        "sequence": 2,
+        "revision": 5
+      }
+    ],
+    "states": [
+      {
+        "revision": 3,
+        "ack": 0,
+        "hand": 7,
+        "bot_hand": 7,
+        "draw_count": 97
+      },
+      {
+        "revision": 4,
+        "ack": 1,
+        "hand": 8,
+        "bot_hand": 7,
+        "draw_count": 96
+      },
+      {
+        "revision": 5,
+        "ack": 1,
+        "hand": 8,
+        "bot_hand": 6,
+        "draw_count": 96
+      },
+      {
+        "revision": 6,
+        "ack": 2,
+        "hand": 9,
+        "bot_hand": 6,
+        "draw_count": 95
+      },
+      {
+        "revision": 7,
+        "ack": 2,
+        "hand": 9,
+        "bot_hand": 5,
+        "draw_count": 95
+      }
+    ],
+    "visible_idle_seconds_requested": 35,
+    "lifecycle": {
+      "samples": 89,
+      "window_seconds": 259.6,
+      "all_active": true,
+      "pause_epoch_values": [
+        0
+      ],
+      "min_stamp_age_ms": 1,
+      "max_stamp_age_ms": 546,
+      "all_device_clock_brackets_ordered": true,
+      "scope": "Only sampled observation window; not continuous scheduling/performance proof"
+    },
+    "pause": {
+      "status": "FAIL",
+      "actual_touch": [
+        949,
+        87
+      ],
+      "stable_ocr_bounds": [
+        875,
+        51,
+        1023,
+        123
+      ],
+      "source_png_sha256": "cf5a5ce370fa12a84f122f15fff995ab8322bd256ae40037fa5842a5bf1c11c7",
+      "image_size": [
+        1080,
+        2400
+      ],
+      "observation": "Android clock and flight/battery indicators overlap the Back/Pause header; the actual pause target is inside that visibly overlaid region. After input, state remained unpaused revision7/ack2.",
+      "causal_limit": "System-bar input interception is inferred from actual overlap/input/state, not a separate Android input-dispatch trace.",
+      "not_reached": [
+        "successful pause",
+        "resume from native pause",
+        "reopen after pause",
+        "Cards return-to-Flutter end gate"
+      ]
+    },
+    "original_saved_snapshots": [
+      {
+        "member": "nextgen/cards-save-005-preferences.xml",
+        "cards_keys": [
+          {
+            "key": "flutter.lumo.cards.round.v1.fa6757e289a67cc5d6d7c07e218529a6b1a5bb2d55aefad9dab3ea92c24eafdc.1.solo",
+            "bytes": 1574,
+            "sha256": "54dd6bb58a239656a49e35f5bf4005b666e106028bc2b837e20d328d17133a94"
+          }
+        ]
+      },
+      {
+        "member": "nextgen/cards-save-014-preferences.xml",
+        "cards_keys": [
+          {
+            "key": "flutter.lumo.cards.round.v1.fa6757e289a67cc5d6d7c07e218529a6b1a5bb2d55aefad9dab3ea92c24eafdc.1.solo",
+            "bytes": 1574,
+            "sha256": "f577a22599983a94b1118c31be4e43e8e26e84e5ec9af54ac04cf43ad69f2c3b"
+          }
+        ]
+      },
+      {
+        "member": "nextgen/cards-save-019-preferences.xml",
+        "cards_keys": [
+          {
+            "key": "flutter.lumo.cards.round.v1.fa6757e289a67cc5d6d7c07e218529a6b1a5bb2d55aefad9dab3ea92c24eafdc.1.solo",
+            "bytes": 1574,
+            "sha256": "f577a22599983a94b1118c31be4e43e8e26e84e5ec9af54ac04cf43ad69f2c3b"
+          }
+        ]
+      },
+      {
+        "member": "nextgen/cards-save-026-preferences.xml",
+        "cards_keys": [
+          {
+            "key": "flutter.lumo.cards.round.v1.fa6757e289a67cc5d6d7c07e218529a6b1a5bb2d55aefad9dab3ea92c24eafdc.1.solo",
+            "bytes": 1574,
+            "sha256": "b3ad7a793fc11a33398135c0648b3ed436615a5ea18640df5ed9992403b62cab"
+          }
+        ]
+      }
+    ]
+  },
+  "original_visual_review": {
+    "unique_images_opened_by_root": 2,
+    "images": [
+      {
+        "path": "cards-pause-system-bar-overlap.png",
+        "finding": "Original fox and real 3D cards visible; header covered by Android status bar; lower action area near gesture navigation."
+      },
+      {
+        "path": "learning-return-capture-still-native.png",
+        "finding": "Thirteen-object native learning scene with Zur Aufgabe; must not be called a Flutter-return screenshot."
+      }
+    ]
+  },
+  "native_log_actual_insets": {
+    "pid": 8454,
+    "nextgen_logcat_line": 7307,
+    "screen": [
+      1080,
+      2400
+    ],
+    "fallback_top_pixels": 32,
+    "fallback_bottom_pixels": 48,
+    "scope": "Actual logged MobileRuntime fallback, not actual measured Android WindowInsets"
+  },
+  "limitations": [
+    "No physical Galaxy Z Fold7",
+    "No physical 60FPS/thermals/touch latency measured",
+    "No complete Cards acceptance",
+    "Original failure retained; no timeout or pixel threshold relaxed"
+  ]
+}

@@ -1,0 +1,103 @@
+{
+  "raw_job_log": {
+    "file": "original-job.log",
+    "bytes": 297474,
+    "sha256": "aafecd48a74258d0d4ddd85c1a5b2d02bc93dc10a4d962450f1de8e3948c1c2b"
+  },
+  "job_warning_error_lines": [
+    {
+      "line": 643,
+      "text": "2026-11-13T20:54:00.1735146Z ##                        WARNING - ACTION REQUIRED                         ##"
+    },
+    {
+      "line": 656,
+      "text": "2026-11-13T20:54:00.1745313Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 658,
+      "text": "2026-11-13T20:54:00.1746900Z ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+    },
+    {
+      "line": 661,
+      "text": "2026-11-13T20:54:00.1748915Z WARNING      | Could not detect GPU properly for Vulkan emulation. Please try updating your GPU Drivers."
+    },
+    {
+      "line": 669,
+      "text": "2026-11-13T20:54:00.1753436Z ERROR        | Unable to connect to adb daemon on port: 5037"
+    },
+    {
+      "line": 679,
+      "text": "2026-11-13T20:54:00.1795797Z WARNING      | Could not open libX11.so, try libX11.so.6"
+    },
+    {
+      "line": 690,
+      "text": "2026-11-13T20:54:00.1803649Z WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+    },
+    {
+      "line": 790,
+      "text": "2026-11-13T20:54:00.5115827Z WARNING: cannnot unmap ptr 0x7f47e3e01000 as it is in the protected range from 0x7f4763e00000 to 0x7f47e4000000"
+    },
+    {
+      "line": 795,
+      "text": "2026-11-13T20:54:00.5753082Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 796,
+      "text": "2026-11-13T20:54:00.7509390Z WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+    },
+    {
+      "line": 1198,
+      "text": "2026-11-13T20:54:40.8237920Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell cmd overlay enable-exclusive --user current --category com.android.internal.emulation.pixel_5 ' failed: 'adb: no emulators found'"
+    },
+    {
+      "line": 1199,
+      "text": "2026-11-13T20:54:40.9159758Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell cmd overlay enable-exclusive --user 0 --category com.android.internal.emulation.pixel_5 ' failed: 'adb: no emulators found'"
+    },
+    {
+      "line": 1200,
+      "text": "2026-11-13T20:54:41.0009419Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell cmd overlay enable-exclusive --user current --category com.android.systemui.emulation.pixel_5 ' failed: 'adb: no emulators found'"
+    },
+    {
+      "line": 1201,
+      "text": "2026-11-13T20:54:41.0707867Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell cmd overlay enable-exclusive --user 0 --category com.android.systemui.emulation.pixel_5 ' failed: 'adb: no emulators found'"
+    },
+    {
+      "line": 1202,
+      "text": "2026-11-13T20:54:41.1461466Z WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell am broadcast -a com.android.emulator.multidisplay.START -n com.android.emulator.multidisplay/.MultiDisplayServiceReceiver --user 0 ' failed: 'adb: no emulators found'"
+    },
+    {
+      "line": 3143,
+      "text": "2026-11-13T21:07:21.8043013Z ERROR        | stop: Not implemented"
+    },
+    {
+      "line": 3144,
+      "text": "2026-11-13T21:07:21.8043700Z WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+    }
+  ],
+  "raw_logcat_zip_member": {
+    "file": "logcat.txt",
+    "bytes": 10600289,
+    "compressed_bytes": 1393328,
+    "crc32": "05fb272b",
+    "sha256": "8b139b8fb8a430dba4141dfac9d1a3066abe16a894ac870307cb29a6975afcc7"
+  },
+  "logcat_scan": {
+    "FATAL EXCEPTION": 0,
+    "SCRIPT ERROR": 0,
+    "\\b(?:Godot|godot)\\b.*\\bERROR": 0,
+    "Fatal signal": 0
+  },
+  "fatal_logcat_original_bytes": 0,
+  "meaning": "17 original job lines carry ERROR/WARNING markers, including Vulkan/ADB startup and emulator teardown diagnostics; completed real update PASS does not make the log warning-free. No listed app/Godot fatal patterns were found in the retained original 10,600,289-byte logcat.",
+  "fresh_test_execution": {
+    "suite": "tools/android_qa/tests/test_update_preservation.py",
+    "run": 43496928833,
+    "job": 132161617636,
+    "tests": 35,
+    "passed": 35,
+    "failed": 0,
+    "skipped": 0,
+    "duration_seconds": 0.068,
+    "not_additive_to_full_764_suite": true
+  }
+}

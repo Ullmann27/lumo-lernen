@@ -1,0 +1,4097 @@
+[
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "540",
+      "1078",
+      "540",
+      "1078",
+      "120"
+    ],
+    "monotonic_seconds": 337.91515622,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-welcome--1-0.xml",
+        "uiautomator-config.json",
+        "rooted-emulator.json",
+        "actual-source-files.json"
+      ]
+    },
+    "capture": {
+      "file": "0001-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "bc2cc9022e711c2e01a8159ed0bc54afa20292f9d281402beee8a959a6d961e2"
+    },
+    "points": [
+      [
+        540.0,
+        1078.0
+      ],
+      [
+        540.0,
+        1078.0
+      ]
+    ],
+    "dispatch_monotonic": 339.504837666
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "837"
+    ],
+    "monotonic_seconds": 342.401205901,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-name.xml",
+        "real-input-events.json",
+        "onboard-welcome--1-0.xml",
+        "uiautomator-config.json"
+      ]
+    },
+    "capture": {
+      "file": "0002-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "104c4fda0ea64a207076e5826006831b270aa1d056424b694c66c10f302aa749"
+    },
+    "points": [
+      [
+        540.0,
+        837.0
+      ]
+    ],
+    "dispatch_monotonic": 344.100629037
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "L"
+    ],
+    "monotonic_seconds": 347.300905035,
+    "context": {},
+    "dispatch_monotonic": 347.300908908
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "u"
+    ],
+    "monotonic_seconds": 351.235869049,
+    "context": {},
+    "dispatch_monotonic": 351.235872101
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "m"
+    ],
+    "monotonic_seconds": 352.300752281,
+    "context": {},
+    "dispatch_monotonic": 352.300755174
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "o"
+    ],
+    "monotonic_seconds": 353.827707114,
+    "context": {},
+    "dispatch_monotonic": 353.827710099
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "T"
+    ],
+    "monotonic_seconds": 354.693238813,
+    "context": {},
+    "dispatch_monotonic": 354.693243223
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "e"
+    ],
+    "monotonic_seconds": 355.693164922,
+    "context": {},
+    "dispatch_monotonic": 355.693168776
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "s"
+    ],
+    "monotonic_seconds": 356.189412193,
+    "context": {},
+    "dispatch_monotonic": 356.189416501
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "text",
+      "t"
+    ],
+    "monotonic_seconds": 356.745661825,
+    "context": {},
+    "dispatch_monotonic": 356.745665071
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "keyevent",
+      "KEYCODE_BACK"
+    ],
+    "monotonic_seconds": 359.08891332,
+    "context": {},
+    "dispatch_monotonic": 359.088917058
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "954"
+    ],
+    "monotonic_seconds": 360.259339368,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-name-next-0.xml",
+        "real-input-events.json",
+        "onboard-ime-before-dismiss.xml",
+        "onboard-name-written-8-0.xml"
+      ]
+    },
+    "capture": {
+      "file": "0003-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "207b77616c23d6e52ed128f4be4c5ccdca056ecda266cbbc60d09958482e25f1"
+    },
+    "points": [
+      [
+        540.0,
+        954.0
+      ]
+    ],
+    "dispatch_monotonic": 362.330208431
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "839"
+    ],
+    "monotonic_seconds": 364.93026619,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-age-next-0.xml",
+        "real-input-events.json",
+        "onboard-name-next-0.xml",
+        "onboard-ime-before-dismiss.xml"
+      ]
+    },
+    "capture": {
+      "file": "0004-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "0f6d182a017422bda64f26a4aed3e1b7d64bf893e5c505c64087a099b9be76de"
+    },
+    "points": [
+      [
+        540.0,
+        839.0
+      ]
+    ],
+    "dispatch_monotonic": 366.083505371
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "540",
+      "967"
+    ],
+    "monotonic_seconds": 368.559347218,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "onboard-grade-save-0.xml",
+        "real-input-events.json",
+        "onboard-age-next-0.xml",
+        "onboard-name-next-0.xml"
+      ]
+    },
+    "capture": {
+      "file": "0005-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "a8889acdb5cd6045f20454949a5e91305029ae7d318a5db88894da3a752c657e"
+    },
+    "points": [
+      [
+        540.0,
+        967.0
+      ]
+    ],
+    "dispatch_monotonic": 370.39150054
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "tap",
+      "125",
+      "466"
+    ],
+    "monotonic_seconds": 379.233182001,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "home-to-games-0.xml",
+        "07_home_after_onboarding-render-readiness.json",
+        "onboard-home-0.xml",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0006-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "c1f6231c8b92b48031681ae31fc6ef3946b3fabfccd9ca98536ba13de1008ed5"
+    },
+    "points": [
+      [
+        125.0,
+        466.0
+      ]
+    ],
+    "dispatch_monotonic": 383.528237948
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 403.736601059,
+    "context": {
+      "capture": {
+        "file": "0008-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "4d8cdf1538b354769cf00c31158c6dd10a718d02dd358737790015f1fb415fd5"
+      },
+      "hierarchy": "0007-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0009-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "2d156ac44108694e0a64cdbfd727a80547e3d8b6c4430ba69f55d4f078791e00"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 409.149778434
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 415.254490344,
+    "context": {
+      "capture": {
+        "file": "0011-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "875b78a3f3c930018b9147791dee3141cd5efdd829b82e0c3d02db761f697833"
+      },
+      "hierarchy": "0010-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0012-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "6cdace2561a2c9c555f5a273a6bc71d77dacc63e710ea9d93b8dd321949f8b31"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 421.052066293
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 427.34285833,
+    "context": {
+      "capture": {
+        "file": "0014-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "7ed8ec1e0081301cd38855a32617a56db3c1ef31d290f9ec4ef7db3c039d0d31"
+      },
+      "hierarchy": "0013-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0015-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "b520cd15924c2834a17c5a8f7de1d7e156573c6ec5aab3237426b88e6158cda9"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 431.879424126
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 437.098368027,
+    "context": {
+      "capture": {
+        "file": "0017-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "64a76daaedc52e634907c00804b9dc0115271b912710d3b47e2e5036f551c8f7"
+      },
+      "hierarchy": "0016-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0018-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "56f33e931630303743f9850ebad9c577080b967b7b3f87fe8ddfb71c3a4c1279"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 440.999969663
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 447.264775313,
+    "context": {
+      "capture": {
+        "file": "0020-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "14be08ec812aa6cca6d7f160b75bfccaf90e3ce5b70eb24590653ace8fb2c3ae"
+      },
+      "hierarchy": "0019-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0021-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "dba2904bb4447777fd34e454ec42e4f0542419f66bbd9381771e2ca08b2a320b"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 451.983776157
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 458.529016958,
+    "context": {
+      "capture": {
+        "file": "0023-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8b573be9cb29aab5b45687beec85dd7e380ebb03686b662fb2c34374cfe5207b"
+      },
+      "hierarchy": "0022-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0024-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f7f370d9d141439619d7075722f0ffd6e1fabafef11c480c4837226c35f6d181"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 462.427534166
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 468.485706868,
+    "context": {
+      "capture": {
+        "file": "0026-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "fc2e678ef37b54f1f52d604242e541305944cdb55bab21d96e43cd6e925ea359"
+      },
+      "hierarchy": "0025-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0027-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "0847625b596ba7002b6795a325eeadbbf219359b832701af04c78e1574e2ba31"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 473.543719407
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 479.933834965,
+    "context": {
+      "capture": {
+        "file": "0029-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "e43d265ba1e9c252cb6f33eded82e202a1a0ee0bab4c405b204a0d8b897cccda"
+      },
+      "hierarchy": "0028-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0030-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "c123bd1deda43b90267e9befebabe3ba79a61b31a0db919de09e63aa907c6f56"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 484.809772002
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 492.348533188,
+    "context": {
+      "capture": {
+        "file": "0032-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "0847625b596ba7002b6795a325eeadbbf219359b832701af04c78e1574e2ba31"
+      },
+      "hierarchy": "0031-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0033-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e29a7bffc5d9cc45c5e2a93b7c0f6e51dd5f9f2ff8f2835e3e9f2683028eb3d4"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 496.461261411
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 503.558582927,
+    "context": {
+      "capture": {
+        "file": "0035-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "32a454119abc0875af7bbdc8ab686b19040252eeceefa5c70bf16cba3b561281"
+      },
+      "hierarchy": "0034-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0036-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "226c6cd202def8d31b93f221aa2bdaf4d5b73a79f58cd2c34ad472613482b9a2"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 508.519305407
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 519.390601719,
+    "context": {
+      "capture": {
+        "file": "0040-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "2a9c228ef654ff54486a47594460640ba36266746dae12107ad33da1020e5f0f"
+      },
+      "hierarchy": "0039-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0041-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "20c59ef6f3db93a98e9cb7dbfae9f1c43005bf7128edea3ab063ac43d0c9fbfd"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 523.404557607
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 529.240328834,
+    "context": {
+      "capture": {
+        "file": "0043-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "b68db83ad4892675c6e59783d4de9e935f36f95659f0028f9e4842fc0515cc5e"
+      },
+      "hierarchy": "0042-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0044-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "d58b29121f3c78bae3dd8b576f152764badae007c99d5cde8fcac64e37e5fac4"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 533.154374983
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 538.73792108,
+    "context": {
+      "capture": {
+        "file": "0046-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "6dfd7f1893e28a989734d93fd68d8a705aa8f65467229f66619deb26f718dcc5"
+      },
+      "hierarchy": "0045-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0047-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "b68db83ad4892675c6e59783d4de9e935f36f95659f0028f9e4842fc0515cc5e"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 542.492732166
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 549.41641196,
+    "context": {
+      "capture": {
+        "file": "0049-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "e10f190bf2e29dc342374cd20286f0a96bd9cdcb438eb423fb573023d1a149c4"
+      },
+      "hierarchy": "0048-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0050-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "41a2df220f8fdce6062835931188a571ca3549cfa3bd299857456c7336ebf49d"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 554.881239152
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 560.396472707,
+    "context": {
+      "capture": {
+        "file": "0052-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "83e3748e77a634d267ea8d7814ffe7d101f41e8660bbafc13b43daa4f5ba1aaf"
+      },
+      "hierarchy": "0051-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0053-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "07fac780f9a3ab11edf689c3cbf87418e5415f90c2fabd512bd64a4b98e8ccc9"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 565.402760193
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 570.884516095,
+    "context": {
+      "capture": {
+        "file": "0055-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "fa678ca6cf7250e21a765208614b8e29b3356f5bf52e427e386114cc90b25381"
+      },
+      "hierarchy": "0054-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0056-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ad1b26920915b58b848333845bbea3aee794137add09248f4d5072bdb4708143"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 574.755632603
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 580.916842083,
+    "context": {
+      "capture": {
+        "file": "0058-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "20413b4138e78ec8c81559475dbcf5cd57eefcfea15a85a600479075765a201c"
+      },
+      "hierarchy": "0057-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0059-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "944311733e3fd480add673fde806928921fef8aa107f0aeb5146718a0d664adc"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 585.510549407
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 591.598534543,
+    "context": {
+      "capture": {
+        "file": "0061-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "a0b88d6fdeeab8b04fd7e4686684c7fdf63d680a4246dc3a68355596b06e6572"
+      },
+      "hierarchy": "0060-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0062-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "63664ec41e66ee191384f4bda1f52988bb65289ce76f19cd7d401fc986ccc000"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 596.503296552
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 603.883362756,
+    "context": {
+      "capture": {
+        "file": "0064-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "cab74fdc574d969cee4d81b59d4f6f77cca509474df5ee34ad632527ecf95592"
+      },
+      "hierarchy": "0063-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0065-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f94e5cbfef3108eddfd229e2a92c0f16d7c4856cab0ae95777200939d3139f79"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 607.862296033
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 613.725886798,
+    "context": {
+      "capture": {
+        "file": "0067-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "221ab1b1bd8d329deeb6155ce02bfc93adb8ce93992c4fa24949ba45a7d0e3a8"
+      },
+      "hierarchy": "0066-hub-jumprun",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0068-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "181a22cbe1847718c9bd3b8680e05a603532c4d4c2eb81474e0b5f8ff76c2ad4"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 618.234264183
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "125",
+      "466",
+      "125",
+      "466",
+      "120"
+    ],
+    "monotonic_seconds": 637.615616504,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0074-recover-games--1-0.xml",
+        "0073-recovered-profile-preferences.xml",
+        "0069-hub-jumprun.xml",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0075-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "3f7f21e9ffe90ecc9ace10ff03acf0eb48b23b14d134942d05f6bafc6fc879e2"
+    },
+    "points": [
+      [
+        125.0,
+        466.0
+      ],
+      [
+        125.0,
+        466.0
+      ]
+    ],
+    "dispatch_monotonic": 642.381605029
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 648.645092205,
+    "context": {
+      "capture": {
+        "file": "0078-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "d967113ae8960a9646806ead76074a90b9a1fc3e9b5163abba521efcc7045d3f"
+      },
+      "hierarchy": "0077-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0079-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "6b8d9aa05dc7c7d17b57759c94472d4a2944c959bf201f08c2dd970aa75e1e6c"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 652.583464493
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 658.134669477,
+    "context": {
+      "capture": {
+        "file": "0081-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "6b8d9aa05dc7c7d17b57759c94472d4a2944c959bf201f08c2dd970aa75e1e6c"
+      },
+      "hierarchy": "0080-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0082-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "505cc133b9911e66643592e1254472f6e8765a0b3577a1d171039ca4e1012ea2"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 662.660270749
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 669.22146518,
+    "context": {
+      "capture": {
+        "file": "0084-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "50a9c51e2324d51b08156a40b86c261d2719f9c7f7ccca8d555f74547f76dce8"
+      },
+      "hierarchy": "0083-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0085-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "4f468fab6beac0919874d0da98ce9e7084968fee0cb8d2563c66e4b7689cb992"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 672.57127086
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 678.838026373,
+    "context": {
+      "capture": {
+        "file": "0087-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8a89e6cc86dcd076e4eae70139086c19091328d59bae8d831de181f9c2c29453"
+      },
+      "hierarchy": "0086-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0088-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "d67139217b31cf14b9c3e3e4fff69aba882745334c86f9903b772551f2dd8a3c"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 682.964448273
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 689.613957356,
+    "context": {
+      "capture": {
+        "file": "0090-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "52c49000d0a3ac27d4557102b2f8c5b83f4d78d0c25163a00ac9f70eaa45316a"
+      },
+      "hierarchy": "0089-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0091-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "d05a40c93484d6d69e850ae5c6f7323421ceca5030c6bcaa1ad6a75f773e1a32"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 694.189194072
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 700.059096459,
+    "context": {
+      "capture": {
+        "file": "0093-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "98500b1e3a9cfa89a19f369d4f12abd48d0cb2bfd8358e716d4dfb9c1befc8c3"
+      },
+      "hierarchy": "0092-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0094-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f8e9fab21cc94b6165d9d0cb70b7a1e23c936f1cfffa049af308c17d685e641d"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 704.208161827
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 709.827452166,
+    "context": {
+      "capture": {
+        "file": "0096-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "0040d758e7b35465c3e737ebf0dffd7283904a9fe709431a4d0da33b2c049c96"
+      },
+      "hierarchy": "0095-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0097-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "9d342c4c3a835109cb39a430aa869f3655c1aa895953b213e10ea72eabee6dbf"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 714.308414207
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 720.608387403,
+    "context": {
+      "capture": {
+        "file": "0099-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "04855faa01759c36bd58a72402cdd4fe029ad7cd83562e85393f161ab50ddc7f"
+      },
+      "hierarchy": "0098-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0100-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e4f83d8406775d1bbfa2decccc0be2bd1818bd0a3c8f6e44db881f1ec0941588"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 724.723025186
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 730.660111747,
+    "context": {
+      "capture": {
+        "file": "0102-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8d8fd023d4f9e0229d44703d48f9790361693d4c5856d71ac05a2364ec89c9b6"
+      },
+      "hierarchy": "0101-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0103-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f04193c9504a47e0fbe81463900b6c5d015392585b4cd6d0ddea8a8fb5af74ca"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 734.307263035
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 739.681114123,
+    "context": {
+      "capture": {
+        "file": "0105-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "54ab55eb7f495b87619fba6ed4da5207bcec1d027b8ce4c2fcaa4346574b6250"
+      },
+      "hierarchy": "0104-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0106-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "a5109ed927ccac5d03f2edb930bee276b561ed9a706522929c87512885ae820e"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 743.763912365
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 752.939414399,
+    "context": {
+      "capture": {
+        "file": "0110-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "3804c5ecc9b8ec8df8fac7035359f6582533f146e14baad5fe6b7805af09be51"
+      },
+      "hierarchy": "0109-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0111-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "7c8c053985612eeeea36455c0fe531bb52132793d12d66c8df4adecca1d8b918"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 757.167851507
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 762.480622107,
+    "context": {
+      "capture": {
+        "file": "0113-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "61c95b86518d08e727831db08cef53f0446e6f276097f63c30d6a7ec7b8f1bf3"
+      },
+      "hierarchy": "0112-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0114-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ad87db8225b5e3261cfc1a6f274ccbc6b3b0cff1b5bb96d750cdaf839be2b6e6"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 766.455694591
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 771.871760485,
+    "context": {
+      "capture": {
+        "file": "0116-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "27884e0b41b96abae53bb591b95c43cfd8ef4ff60df8a3d115ee20e50526b0d1"
+      },
+      "hierarchy": "0115-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0117-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "61e1a69bca906c44d790f1b806b28fb1e923d75b5b90dc7dad8f2b314f4a889f"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 775.480678229
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 780.856529584,
+    "context": {
+      "capture": {
+        "file": "0119-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8921429970d58cd94d902d6b65762de798977d15792ca0d27b4932ab19e96017"
+      },
+      "hierarchy": "0118-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0120-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "97d9b187a504fe90a438934c30108936438a7ee9d2bbca081b32dfa2f73f87bf"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 785.567726184
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 791.048552637,
+    "context": {
+      "capture": {
+        "file": "0122-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "f9fd46299a19354934b6462aae1ced7fe9b42f6bf8210c466fa267db514f8949"
+      },
+      "hierarchy": "0121-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0123-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "016cd7ddc8439b48c8a2053f134325c136f3cdfa14a7d4f3f9fba1aebcbbb020"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 794.728416708
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 801.851835338,
+    "context": {
+      "capture": {
+        "file": "0125-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "cfc410cfbd83966d9bdef56e34befeaecce43885ccbb2de7bd1770654039ef6b"
+      },
+      "hierarchy": "0124-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0126-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "fbd797e21056b0159e6b9d0b45e74d377c1e308660670a4f320d3522d193bce6"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 806.569680231
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 812.270123552,
+    "context": {
+      "capture": {
+        "file": "0128-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "de6dd5ea944560f1177abcc44f9cc9924eafbf5167c10f49fd2b5700c206daa1"
+      },
+      "hierarchy": "0127-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0129-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "8921429970d58cd94d902d6b65762de798977d15792ca0d27b4932ab19e96017"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 816.340781732
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 821.747296442,
+    "context": {
+      "capture": {
+        "file": "0131-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "9176d0670af5c86ea0ae978b044bfe5c487fc2ccd6105c6af408d50203febed9"
+      },
+      "hierarchy": "0130-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0132-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "4c102fc5855a484aac5099d5311895ad77a126e7a61177d6b3e7dc3d3c9dcf4d"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 826.565994645
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 833.055216447,
+    "context": {
+      "capture": {
+        "file": "0134-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "d63144c53f3481af2a5adee68bc8046cd872174f980005ef30b083177d7d091b"
+      },
+      "hierarchy": "0133-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0135-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "d39a16b7e2ec4e5a9223fc3b73216d26ddee743b8d61a2e9dd078878b9c364de"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 837.092448308
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 843.166154936,
+    "context": {
+      "capture": {
+        "file": "0137-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "f148b47c1e7d92d6c19542809d2004bc137e0ec17c823a630715e338114f2806"
+      },
+      "hierarchy": "0136-hub-bauwelt",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0138-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "2a84a109a244b3decbc4d8083dd18368a5f53ffa56395e9d8cf54a6ee56027a2"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 846.260852016
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "125",
+      "466",
+      "125",
+      "466",
+      "120"
+    ],
+    "monotonic_seconds": 864.080246076,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0144-recover-games--1-0.xml",
+        "0143-recovered-profile-preferences.xml",
+        "0139-hub-bauwelt.xml",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0145-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "11fc3f6a054e5a5fbc31ab70e7f383e4a3ec7b2c295d563448034d77bf4383ee"
+    },
+    "points": [
+      [
+        125.0,
+        466.0
+      ],
+      [
+        125.0,
+        466.0
+      ]
+    ],
+    "dispatch_monotonic": 868.970166307
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 875.931090067,
+    "context": {
+      "capture": {
+        "file": "0147-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "3ee49f7bf8fc9a952cba61dc94c4a2e8911907fba6f8b076a595d7a1a83a4680"
+      },
+      "hierarchy": "0146-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0148-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "b3923f5a3b587e0f6fa39ff6cc102f5209ec73f18dbcb89df01b06db062c55b1"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 879.858967211
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 885.043230242,
+    "context": {
+      "capture": {
+        "file": "0150-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "d09a5123efc761117335fb0d6ffb8b1601f9ac22b90e583f1c701c5878f7e750"
+      },
+      "hierarchy": "0149-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0151-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "8e474c896c81312acd4699fef1d6779cfeda69a107d8e855d925d9a0fd01fd47"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 889.746707248
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 895.599188602,
+    "context": {
+      "capture": {
+        "file": "0153-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "86fb1a787fca53e6156333a43936f09507f965cdaa2d78028b56c5197a87f274"
+      },
+      "hierarchy": "0152-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0154-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "7d380e06c0c467125658725ea8b9aeee4786ed2627796d5fc5afcf0595899576"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 900.024531801
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 905.291490539,
+    "context": {
+      "capture": {
+        "file": "0156-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "555cf067c1287d3d92ef389224df89f5f1912e8fc81ab584d5fa7cde8a94bba8"
+      },
+      "hierarchy": "0155-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0157-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "34b9b25ae826bac26486de323559535936b19d1f5de5393d85fef0d6f3271a5b"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 909.268604989
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 915.328761316,
+    "context": {
+      "capture": {
+        "file": "0159-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "dfec2423131054d4c5295d0302a923a8eedb9d91ead89948e7a1e06def07ff56"
+      },
+      "hierarchy": "0158-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0160-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "626736908d943ae05316c3159f81a4e98eaedf1cd55d22fd635a612e1a98d89e"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 920.164286481
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 926.562363206,
+    "context": {
+      "capture": {
+        "file": "0162-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "9c6f586f6146d4471423851659e1e8c49197164157064898728968f0e4c1c159"
+      },
+      "hierarchy": "0161-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0163-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "0d8fece6c1a4f7045e9fbad6b78da48661a508c57f2703bc876441e277a72de7"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 930.992201575
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 936.461426581,
+    "context": {
+      "capture": {
+        "file": "0165-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "555cf067c1287d3d92ef389224df89f5f1912e8fc81ab584d5fa7cde8a94bba8"
+      },
+      "hierarchy": "0164-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0166-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "be8756579baee2571583a983a5e8e53ce8df60f01c9cf98946ef57e016cdc78f"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 941.211917041
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 947.134217586,
+    "context": {
+      "capture": {
+        "file": "0168-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "a7433ca83b90ef0cb5806c33d4aa623915a5189921fb3c27ebbe2ba0d91cc073"
+      },
+      "hierarchy": "0167-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0169-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "49450a081f8be1a06fc3457557c97ae93a9c6c72430dc79faec42e75b499936f"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 951.422650537
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 957.374974947,
+    "context": {
+      "capture": {
+        "file": "0171-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "87b14223687073d6d82d888e08a18d3d36f979d8f789f69dedd338281026126e"
+      },
+      "hierarchy": "0170-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0172-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ad8359cfba528c8dc5b9b444985affb2a773010c269617a48ffd60a596f151a8"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 961.265921338
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 966.708075983,
+    "context": {
+      "capture": {
+        "file": "0174-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "87b9e35363ac9bd727f158a608483b9cdb48d99ebc280ba655bb8783b2514053"
+      },
+      "hierarchy": "0173-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0175-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "507d6921a3cfa07692c01cb19734f5f4aea8827b89fa4779eebe0ff5c25a6b29"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 971.080103779
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 981.083142395,
+    "context": {
+      "capture": {
+        "file": "0179-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "7b12c0cc9150f67cac01e416a3857a80cf61d7e939ad46c45ef0c1fba6a9c4bd"
+      },
+      "hierarchy": "0178-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0180-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ca7f98a91c96a0b1c787be3390b415af224f1f03d1266f69cd7e465037ec3e5c"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 986.331132542
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 992.177113759,
+    "context": {
+      "capture": {
+        "file": "0182-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "b63a5c7ef43dae51a7939da5ab3617d6a6e28d11cb16b92b794d4d324d3fded6"
+      },
+      "hierarchy": "0181-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0183-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "cafe2b83c908321563f652ad5c8bc6e362bab318d4f12772e90517af79330e85"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 997.255426825
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1004.343306335,
+    "context": {
+      "capture": {
+        "file": "0185-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "4225d3e32915a8712ab43446d3327cf64a85be000479a9e92f13fb18623d2130"
+      },
+      "hierarchy": "0184-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0186-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "b7339c74167a8c81a70a25c80128d4efccf9019765fb4e5e9b1ca4e9c788a3df"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1008.863674862
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1015.175817263,
+    "context": {
+      "capture": {
+        "file": "0188-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "529c6cf9aa7b405a2d17065cf2c552e8db6a9f34b250abc22b291b2f11623f2e"
+      },
+      "hierarchy": "0187-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0189-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "15b3ede87de4de6892206f117f6b93ddeed0f637195cdec5fdf9c5773e920deb"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1019.438976483
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1024.917563077,
+    "context": {
+      "capture": {
+        "file": "0191-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "fa3b092bb0bba199efeffa074b0dd7e1a9271a862cf3eb130069bc15b5b1688e"
+      },
+      "hierarchy": "0190-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0192-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "19de74cecab23a15c0a80356a5e4ae78ecbd7102a2dcc8e5ab977df335fa9294"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1028.661837118
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1034.823598833,
+    "context": {
+      "capture": {
+        "file": "0194-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "3f20f55668ad4c8721ee23401d95de705f795dfa243691ac367fa313d59d5b29"
+      },
+      "hierarchy": "0193-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0195-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "1ad77683a2586a6f6bf9effb837a0509b1061a973b6c47b73dab9ddaac42884d"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1040.011807603
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1046.719047155,
+    "context": {
+      "capture": {
+        "file": "0197-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "743ef2de63ec55b6f2847d710e7e130399886e1086fc5b2e69c68d103bc7956b"
+      },
+      "hierarchy": "0196-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0198-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "933fc9e10e34b6cd0e2234bfc8fdbe96d22e53a23b38c7bdb58ea35e678505dd"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1052.408634383
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1059.470686529,
+    "context": {
+      "capture": {
+        "file": "0200-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "4ddb9c41daaf43d86f4db2d2cd3bde709b9a753a84d3749cb4ead16e18e6d87e"
+      },
+      "hierarchy": "0199-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0201-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e327f7d8b8658ad97035edf0aa21dfb0cd7a15cc33ccfedc33a354d05bb16bc1"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1064.16364362
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1070.366981354,
+    "context": {
+      "capture": {
+        "file": "0203-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "520c9d61caeaeb9eb601ea7cfabdc4d1111c6a1e541e36f5dc7eed4808e1f89e"
+      },
+      "hierarchy": "0202-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0204-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "cb678a611e298d0fa42eecd7a185e137e2d27532fbf358418e6a76b4f0783598"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1074.97796111
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1080.873393974,
+    "context": {
+      "capture": {
+        "file": "0206-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "6a30e67e2ddf4589b9a473298838b313659829d6caf7401c0d1db494cda306a7"
+      },
+      "hierarchy": "0205-hub-puzzle",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0207-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "0693ff82766e2db7e90ea066ce352fff0d533403da4c2b761fe0974777a989ca"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1086.066861136
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "125",
+      "466",
+      "125",
+      "466",
+      "120"
+    ],
+    "monotonic_seconds": 1106.236846277,
+    "context": {
+      "basis": "Unchanged candidate live UI/OCR helper",
+      "recent_original_journals": [
+        "0213-recover-games--1-0.xml",
+        "0212-recovered-profile-preferences.xml",
+        "0208-hub-puzzle.xml",
+        "real-input-events.json"
+      ]
+    },
+    "capture": {
+      "file": "0214-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "74a2aceba6bcc4782098355c601f4270d0d0ea3963bb2a51a0b6440e46282cd8"
+    },
+    "points": [
+      [
+        125.0,
+        466.0
+      ],
+      [
+        125.0,
+        466.0
+      ]
+    ],
+    "dispatch_monotonic": 1109.907948113
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1116.916197039,
+    "context": {
+      "capture": {
+        "file": "0216-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "ce2e4f1b2ad43ac56304dc6e405ad241cc448ea4b707023fa2f9f5698d72994b"
+      },
+      "hierarchy": "0215-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0217-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "560642323a7723f81ad0fb67cd2236524037dcf083c1342a89b60a15df0c470b"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1121.24354472
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1126.75685804,
+    "context": {
+      "capture": {
+        "file": "0219-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "16126c368cfdb9e72c5b140f48da528d545265d5100419c61ef49ff0925e8d12"
+      },
+      "hierarchy": "0218-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0220-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "0b7f80ba0e730c8bb5f02d66180d5f66f80dee1644e33d20afab0847df521a26"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1131.438611448
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1136.851399252,
+    "context": {
+      "capture": {
+        "file": "0222-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "6a52826af443ecd90342583f39280daede8ceb0104288155736183f3ff306c17"
+      },
+      "hierarchy": "0221-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0223-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "7d998c531613397cd230bec79ac89033dff66a31c4c16523408916c008787dd6"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1140.79831466
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1147.151873777,
+    "context": {
+      "capture": {
+        "file": "0225-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8f71eafee614669096c229f7d7bee563f5eeb6bdb6cbbe83ac7f12b4719ee9da"
+      },
+      "hierarchy": "0224-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0226-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ec35baf7bfd550ac270699ade80fcc3177d2c228978660871b7792da27268f4f"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1152.002083025
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1157.636158584,
+    "context": {
+      "capture": {
+        "file": "0228-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "538ddbc4d28164019cd3b8f8b7826eb7e12b965f00f2ae01693e803536c0c322"
+      },
+      "hierarchy": "0227-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0229-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "cf632bb59cdb8a95bc8a87c3b24fe3941f404828185de88cead40c941b4e1bcc"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1161.85638531
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1167.840407695,
+    "context": {
+      "capture": {
+        "file": "0231-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "595dd7b903bd7d6e949e3cb523c0f71194835005825fb7ac8c63fa9d72833377"
+      },
+      "hierarchy": "0230-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0232-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "c90dce28b587a8b4b4045053999531cb04258e8f6f2806399f3c36e0a98f615b"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1171.175457556
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1176.341644618,
+    "context": {
+      "capture": {
+        "file": "0234-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "4dee220a0fdb795a4e4ea4f5b1922932b68031d13e9ef54fb97128b2e287c34b"
+      },
+      "hierarchy": "0233-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0235-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "d51a0a78184f4fcb56a311ea8f91919b3e6dfd6ff97b2f3c94607ccaa73ca91f"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1180.137427832
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1185.304332719,
+    "context": {
+      "capture": {
+        "file": "0237-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "29a6913820f88246a80ad4e40a5358f4581a0bb5a12a825c4656258671c59fd7"
+      },
+      "hierarchy": "0236-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0238-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "a225acefff65f8f2fb04b43681bdf8155c25549a6162bf35e34abbd2a8205a61"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1189.535244192
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1194.6187371,
+    "context": {
+      "capture": {
+        "file": "0240-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "a6ffe0c64b66db66a50509ca493cfa3123f1d950adb83c0e684ca6b06ff0e7d9"
+      },
+      "hierarchy": "0239-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0241-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "34820051a19998ff7b22fa4eebf164212d1fafc55fdbc0f0b676734cce97b3c0"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1198.560530865
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "444",
+      "664",
+      "1367",
+      "450"
+    ],
+    "monotonic_seconds": 1203.570681624,
+    "context": {
+      "capture": {
+        "file": "0243-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "4a40f0a5cc1941a6c17fcbfb289055b1e779ee73b0a2fb34c5a9ecc88f74db53"
+      },
+      "hierarchy": "0242-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0244-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "24ec4e7e39f5f780699579cce4d613bef12a9b0cb4d40d6b54b7a085407fe601"
+    },
+    "points": [
+      [
+        664.0,
+        444.0
+      ],
+      [
+        664.0,
+        1367.0
+      ]
+    ],
+    "dispatch_monotonic": 1208.174476627
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1218.759594649,
+    "context": {
+      "capture": {
+        "file": "0248-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "d5978bcc9cdc0cdc7116c82da664c162f6353f5c7c6a923b03f11365b3bb46c3"
+      },
+      "hierarchy": "0247-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0249-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f8e2d3b433686dcf6d5134c5da0f8cbaa4ca50ec62c361e44536d0c76f20a0fe"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1222.532502523
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1228.889034067,
+    "context": {
+      "capture": {
+        "file": "0251-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "92d3d022212bdd60eb2125618fb6908c74ed3c6015de7ea6382723042a613a86"
+      },
+      "hierarchy": "0250-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0252-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "e41ae888830a344d78186af95fc45c09dff02ed0cb11b067c1d8190b0375ba98"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1233.444313592
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1239.952978582,
+    "context": {
+      "capture": {
+        "file": "0254-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "bb943648007a03cdb95207df12868d292e236fd46beec2e9b9b4f59f0b2a84a3"
+      },
+      "hierarchy": "0253-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0255-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "51c664e987ebe886cff29ff87fab0a8a5be1d4965443d571297884abed078f3d"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1244.041402018
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1249.97812113,
+    "context": {
+      "capture": {
+        "file": "0257-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "635e8c06fccbe4a18f50c190ca1bb0e822b3a9128bc92e891dadaa08ad6da553"
+      },
+      "hierarchy": "0256-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0258-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "f73afaac93de14078af9d9610cabad534a488545a46dbb5959b660d254b4b2ef"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1254.218491063
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1259.87040483,
+    "context": {
+      "capture": {
+        "file": "0260-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "7844415f7ba6429c418fd27ea9fe9e9e497ad4bf8dc392b7d137d6d8b7668fac"
+      },
+      "hierarchy": "0259-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0261-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "741ec2e2bae0c7e9584d7b57a6f4a9efcb4ec020e1bb45d8b5826b497c4002f3"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1263.238856363
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1268.803165011,
+    "context": {
+      "capture": {
+        "file": "0263-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "611191b8ba02f31cbe3915392cabbd29f73ff84f631e6e56e6c1c83171a3210f"
+      },
+      "hierarchy": "0262-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0264-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "76a891994d765b356c599243cdf915a7b236da7cd6cba053ff7af574fcd7bf60"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1272.39578693
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1278.467486942,
+    "context": {
+      "capture": {
+        "file": "0266-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "96686fff9b77f04cdd9aca2441865dc007e4930aac28d1297681b02280e5d429"
+      },
+      "hierarchy": "0265-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0267-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "ae49c7d62103a82307e58cebb4bee2cda2a36977d98a94d685b7a65262da58c7"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1282.524466539
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1288.551900862,
+    "context": {
+      "capture": {
+        "file": "0269-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "72c5ba18c2e89c6f1570eb3aa86af2269a029844c368d61faac3a2bb0c675b21"
+      },
+      "hierarchy": "0268-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0270-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "39289046a646812dba03edc1e11fb41e12d6040937df687fbf5375552a8c9e91"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1292.584653463
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1298.158643461,
+    "context": {
+      "capture": {
+        "file": "0272-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "a4fdaceba36ee7b1dc251acceee2a6e5d419500ed48cd166b07a564e73f9ca04"
+      },
+      "hierarchy": "0271-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0273-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "9157a462655dc5cef60e80009ac9827a4fa251fa07530832fb0ac1ddeae1a12a"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1301.978309598
+  },
+  {
+    "arguments": [
+      "shell",
+      "input",
+      "swipe",
+      "664",
+      "1367",
+      "664",
+      "444",
+      "450"
+    ],
+    "monotonic_seconds": 1308.370287275,
+    "context": {
+      "capture": {
+        "file": "0275-hub-before-choice.png",
+        "width": 1080,
+        "height": 1920,
+        "sha256": "8f214312f119ff95e75f492e3d45ccb6bee0126c0ba0112aecc35f8e6f01b173"
+      },
+      "hierarchy": "0274-hub-schatzsuche",
+      "bounds": [
+        264,
+        51,
+        1065,
+        1760
+      ],
+      "basis": "Actual live Flutter scrollable viewport"
+    },
+    "capture": {
+      "file": "0276-before-real-input.png",
+      "width": 1080,
+      "height": 1920,
+      "sha256": "b701f27e4facfa0b6c5ca514b4ca733619d202b24bae46603fcdf23c2f9a10ae"
+    },
+    "points": [
+      [
+        664.0,
+        1367.0
+      ],
+      [
+        664.0,
+        444.0
+      ]
+    ],
+    "dispatch_monotonic": 1312.174462975
+  }
+]
