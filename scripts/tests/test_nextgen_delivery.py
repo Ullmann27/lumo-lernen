@@ -59,6 +59,14 @@ class NextgenDeliveryTests(unittest.TestCase):
                               'visible_idle_seconds': 35, 'android_authority_binding': [binding, binding],
                               'pause_saved_state_unchanged': True, 'reopened_same_round': True,
                               'new_mailbox_token': True}}
+        surfaces['offline'] = True
+        surfaces['local_voice_permission'] = {'local_model_assent': True, 'voice_enabled': True,
+            'auto_read': True, 'unrelated_permissions_unchanged': True}
+        voice = {'native_process_pid': 11, 'completed_utterance_ids': [4],
+                 'profile': 'lumo-free-supertonic-de-v1', 'preset': 'F2',
+                 'audible_quality_verified': False, 'lip_sync_verified': False}
+        surfaces['learning']['speech'] = {'initial': voice,
+            'result': dict(voice, completed_utterance_ids=[16]), 'native_process_gone_on_return': True}
         host = {'status': 'PASS', 'flutter_source_commit': source,
                 'classes': {name: [{'sha256': '1' * 64}] for name in delivery.COMPILED_CLASSES}}
         return [source, native, '0.13.6', digest, 12345, proof, copy.deepcopy(proof),
@@ -86,7 +94,8 @@ class NextgenDeliveryTests(unittest.TestCase):
     def test_old_tour_unbound_authority_and_missing_lifecycle_proof_fail(self):
         for mutation in ('old-tour', 'wrong-baseline', 'surface-failed', 'mastery-awarded',
                          'old-surface-source', 'draw-not-persisted', 'short-idle', 'authority-restart',
-                         'different-child', 'host-old-source', 'service-not-compiled', 'registry-not-compiled'):
+                         'different-child', 'host-old-source', 'service-not-compiled', 'registry-not-compiled',
+                         'no-voice-consent', 'speech-incomplete', 'old-speech-id', 'different-speaker', 'false-audible-claim'):
             args = self.proof_fixture()
             update, tour, surfaces, host = args[8:]
             if mutation == 'old-tour': tour['apk_sha256'] = '0' * 64
@@ -101,6 +110,11 @@ class NextgenDeliveryTests(unittest.TestCase):
             if mutation == 'host-old-source': host['flutter_source_commit'] = '0' * 40
             if mutation == 'service-not-compiled': del host['classes']['CardsAuthorityService']
             if mutation == 'registry-not-compiled': del host['classes']['CardsAuthorityRegistry']
+            if mutation == 'no-voice-consent': surfaces['local_voice_permission']['local_model_assent'] = False
+            if mutation == 'speech-incomplete': surfaces['learning']['speech']['result']['completed_utterance_ids'] = []
+            if mutation == 'old-speech-id': surfaces['learning']['speech']['result']['completed_utterance_ids'] = [4]
+            if mutation == 'different-speaker': surfaces['learning']['speech']['result']['profile'] = 'other-voice'
+            if mutation == 'false-audible-claim': surfaces['learning']['speech']['initial']['audible_quality_verified'] = True
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 delivery.verify_proofs(*args)
 

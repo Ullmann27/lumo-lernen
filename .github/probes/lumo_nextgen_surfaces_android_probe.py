@@ -18,7 +18,7 @@ import traceback
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import modernization_android_tour as tour
 from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
-                             require_public_saved_match, require_saved_round)
+                             require_learning_voice, require_public_saved_match, require_saved_round)
 
 probe, base, live = tour.probe, tour.base, tour.live
 PACKAGE = probe.PACKAGE
@@ -80,6 +80,64 @@ def returned_to_flutter(out: Path, caption: str, tag: str) -> None:
     probe.capture_flutter_ready(out, tag)
 
 
+def local_voice_permission(out: Path) -> dict:
+    """Use the existing assent dialog on this disposable, fictional test profile."""
+    def settings(tag):
+        raw = probe.prefs(out, tag).get('flutter.lumo_app_settings_v1')
+        value = json.loads(raw) if raw else {}
+        if not isinstance(value, dict):
+            raise RuntimeError('Saved settings are not an object')
+        return value
+
+    before = settings('voice-settings-before')
+    tap_flutter(out, ['Spielen', 'Spiele'], 'voice-games-entry')
+    tap_flutter(out, ['Einstellungen'], 'voice-settings-entry')
+    must_see(out, 'Elternbereich', 'voice-settings-open')
+    if before.get('localVoiceLicenseAccepted') is not True:
+        tap_flutter(out, ['Neue Sätze offline vorlesen'], 'voice-license-open')
+        must_see(out, 'Neue Sätze kostenlos vorlesen', 'voice-license-dialog')
+        tap_flutter(out, [
+            'Als erwachsene Person akzeptiere ich für die lokale Sprachfunktion die '
+            'obenstehenden Modellbedingungen einschließlich der Nutzungsbeschränkungen.'
+        ], 'voice-license-checkbox')
+        probe.capture_flutter_ready(out, '00a_voice_local_model_assent')
+        tap_flutter(out, ['Lokale Stimme freigeben'], 'voice-license-confirm')
+    wait_for('Local model assent persisted through its actual dialog',
+             lambda: settings('voice-license-observed'),
+             lambda value: value.get('localVoiceLicenseAccepted') is True)
+    for label, key, wanted in (('Lumo-Stimme', 'voiceEnabled', True),
+                               ('Automatisch vorlesen', 'autoReadEnabled', True),
+                               ('Ruhiger Modus', 'calmMode', False)):
+        current = settings('voice-setting-' + key)
+        if type(current.get(key)) is not bool:
+            raise RuntimeError('Actual voice setting is unavailable: ' + key)
+        if current[key] != wanted:
+            tap_flutter(out, [label], 'voice-switch-' + key)
+            wait_for('Actual setting ' + key, lambda: settings('voice-read-' + key),
+                     lambda value: value.get(key) is wanted)
+    after = settings('voice-settings-after')
+    for key in ('microphoneEnabled', 'scannerEnabled', 'aiProxyEnabled', 'cloudVoiceEnabled'):
+        # Unwritten legacy settings default false in the production AppSettings.
+        if after.get(key) is not before.get(key, False):
+            raise RuntimeError('Local model assent changed an unrelated permission: ' + key)
+    probe.capture_flutter_ready(out, '00b_voice_local_model_enabled')
+    return {'local_model_assent': True, 'voice_enabled': True, 'auto_read': True,
+            'unrelated_permissions_unchanged': True, 'no_audio_emulator': True,
+            'audible_quality_verified': False, 'lip_sync_verified': False}
+
+
+def completed_native_speech(out: Path, *, after_final_move=False) -> dict:
+    def observe():
+        log = base.adb('logcat', '-d', '-v', 'brief', timeout=60)
+        (out / 'learning-speech-logcat.txt').write_text(log)
+        try:
+            return require_learning_voice(log, after_final_move=after_final_move)
+        except RuntimeError:
+            return None
+    return wait_for('Actual original local MediaPlayer start and completion',
+                    observe, lambda evidence: evidence is not None, timeout=180)
+
+
 def learning_roundtrip(out: Path) -> dict:
     tap_flutter(out, ['Lernen'], 'learning-tab')
     tap_flutter(out, ['Lumo erklärt es mir'], 'guided-hub')
@@ -97,6 +155,7 @@ def learning_roundtrip(out: Path) -> dict:
     tap_flutter(out, ['Mit Lumo in 3D ausprobieren'], 'learning-native-entry')
     native_ready(out, 'Zahlen zum Anfassen', 'learning-native-title')
     probe.capture(out, '02_learning_native_eight_plus_five')
+    initial_voice = completed_native_speech(out)
     for index in range(5):
         probe.native_text(out, 'Ein Objekt zeigen', f'learning-move-{index + 1}',
                           tap=True, exact=True, settle=True)
@@ -109,6 +168,10 @@ def learning_roundtrip(out: Path) -> dict:
     movement_log = base.adb('logcat', '-d', '-v', 'brief', timeout=60)
     (out / 'learning-movement-logcat.txt').write_text(movement_log)
     moves = require_learning_bridge_moves(movement_log)
+    final_voice = completed_native_speech(out, after_final_move=True)
+    if (initial_voice['native_process_pid'] != final_voice['native_process_pid'] or
+            min(final_voice['completed_utterance_ids']) <= max(initial_voice['completed_utterance_ids'])):
+        raise RuntimeError('The spoken result was not a new utterance in the same native lesson')
     probe.native_text(out, 'Zur Aufgabe', 'learning-back', tap=True, exact=True, settle=True)
     returned_to_flutter(out, 'Acht und fünf', '05_learning_same_flutter_lesson')
     after = probe.prefs(out, 'learning-after-native')
@@ -121,6 +184,9 @@ def learning_roundtrip(out: Path) -> dict:
         time.sleep(1)
     must_see(out, 'Spielen', 'learning-return-navigation')
     return {'moves': moves, 'preservation': preservation, 'same_lesson_after_return': True,
+            'speech': {'initial': initial_voice, 'result': final_voice,
+                       'native_process_gone_on_return': True,
+                       'audible_quality_verified': False, 'lip_sync_verified': False},
             'illustration_did_not_award_mastery': True}
 
 
@@ -307,6 +373,13 @@ def main() -> int:
         base.display(1080, 2400, 420)
         if not tour.alive() or tour.godot_alive():
             raise RuntimeError('Expected the original tour to leave the installed Flutter app alive')
+        base.adb('shell', 'svc', 'wifi', 'disable')
+        base.adb('shell', 'svc', 'data', 'disable')
+        base.adb('shell', 'cmd', 'connectivity', 'airplane-mode', 'enable')
+        if base.adb('shell', 'settings', 'get', 'global', 'airplane_mode_on').strip() != '1':
+            raise RuntimeError('The new offline native-surface probe could not enable airplane mode')
+        result['offline'] = True
+        result['local_voice_permission'] = local_voice_permission(out)
         result['learning'] = learning_roundtrip(out)
         result['cards'] = cards_roundtrip(out)
         fatal = tour.logcat_fatal()

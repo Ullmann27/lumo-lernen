@@ -6,10 +6,37 @@ import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
+                             require_learning_voice,
                              require_public_saved_match, require_saved_round)
 
 
 class NextgenEvidenceTests(unittest.TestCase):
+    def test_native_speech_requires_local_profile_and_same_process_completion(self):
+        start = 'I/LumoLearningSpeech( 1234): started id=4 profile=lumo-free-supertonic-de-v1\n'
+        done = 'I/LumoLearningSpeech( 1234): completed id=4\n'
+        evidence = require_learning_voice(start + done)
+        self.assertEqual(evidence['completed_utterance_ids'], [4])
+        self.assertEqual(evidence['native_process_pid'], 1234)
+        self.assertFalse(evidence['audible_quality_verified'])
+        self.assertFalse(evidence['lip_sync_verified'])
+        for value in ('', start, done, done + start,
+                      start + done.replace('1234', '1235'),
+                      start + done.replace('id=4', 'id=5'),
+                      start.replace('lumo-free-supertonic-de-v1', 'different-voice') + done,
+                      (start + done).replace('id=4', 'id=0')):
+            with self.subTest(log=value), self.assertRaises(RuntimeError):
+                require_learning_voice(value)
+
+    def test_spoken_result_must_start_and_finish_after_the_actual_last_move(self):
+        event = ('I/LumoLearningSpeech(1234): started id=8 profile=lumo-free-supertonic-de-v1\n'
+                 'I/LumoLearningSpeech(1234): completed id=8\n')
+        move = 'I/godot(1234): [LearningWorld] move kind=bridge_ten token=4 target=12 placed=5 complete=true\n'
+        self.assertEqual(require_learning_voice(move + event, after_final_move=True)
+                         ['completed_utterance_ids'], [8])
+        for value in (event, event + move, move.replace('complete=true', 'complete=false') + event):
+            with self.subTest(log=value), self.assertRaises(RuntimeError):
+                require_learning_voice(value, after_final_move=True)
+
     def test_android_binding_requires_the_distinct_real_main_and_native_processes(self):
         package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
         component = package + '/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService'

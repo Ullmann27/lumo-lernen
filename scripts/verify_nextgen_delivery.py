@@ -164,6 +164,25 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             learning['moves'].get('moved_objects') == 5 and learning.get('same_lesson_after_return') is True and
             learning.get('illustration_did_not_award_mastery') is True,
             'Actual learning object movement and unchanged learning state not proven')
+    permission = surfaces.get('local_voice_permission', {})
+    require(surfaces.get('offline') is True and permission.get('local_model_assent') is True and
+            permission.get('voice_enabled') is True and permission.get('auto_read') is True and
+            permission.get('unrelated_permissions_unchanged') is True,
+            'Actual offline speech permission route was not verified')
+    speech = learning.get('speech', {})
+    initial_voice, result_voice = speech.get('initial', {}), speech.get('result', {})
+    for observed in (initial_voice, result_voice):
+        ids = observed.get('completed_utterance_ids')
+        require(observed.get('profile') == 'lumo-free-supertonic-de-v1' and
+                observed.get('preset') == 'F2' and isinstance(ids, list) and bool(ids) and
+                all(type(value) is int and value > 0 for value in ids) and
+                type(observed.get('native_process_pid')) is int and observed['native_process_pid'] > 0 and
+                observed.get('audible_quality_verified') is False and observed.get('lip_sync_verified') is False,
+                'Actual original local playback start/completion was not verified')
+    require(initial_voice['native_process_pid'] == result_voice['native_process_pid'] and
+            max(initial_voice['completed_utterance_ids']) < min(result_voice['completed_utterance_ids']) and
+            speech.get('native_process_gone_on_return') is True,
+            'Speech belongs to another native lesson or its process remained alive')
     for key in ('pause_saved_state_unchanged', 'reopened_same_round', 'new_mailbox_token'):
         require(cards.get(key) is True, 'Cards lifecycle/persistence gate failed: ' + key)
     for key in ('draw', 'draw_after_visible_idle'):
@@ -184,6 +203,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'signingCertificateSha256': EXPECTED_CERT_SHA256, 'apkSha256': digest, 'apkBytes': size,
             'androidTourApkSha256': candidate['sha256'],
             'signingScope': 'Public Lumo test key; not Google Play signing',
+            'voiceScope': 'Actual local playback callbacks in a -noaudio emulator; audible quality and lip synchronization not verified',
             'deviceScope': 'x86_64 Android emulator acceptance; physical Fold7/Android17/FPS not measured'}
 
 

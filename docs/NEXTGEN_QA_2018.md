@@ -26,6 +26,8 @@ sind während der visuellen Nachbesserung noch nicht freigegeben.
 | Flutter `c9e05e24db94e4d366acca0255925ef7c46a6f7a` | [Run 43353261145](https://github.com/Ullmann27/lumo-lernen/actions/runs/43353261145), Job `131649128007`: erneut echte Kotlin-/Java-Kompilierung, `BUILD SUCCESSFUL in 3m 26s`, 107 Tasks. Neuer CardsAuthorityService und aktuelle Lebenszyklusänderungen enthalten. Keine APK oder Android-Laufzeitfreigabe daraus ableiten. |
 | Flutter `8a228c53c342675fd89b6ab9b662d40fb60a8535` | [Run 43357088248](https://github.com/Ullmann27/lumo-lernen/actions/runs/43357088248), Job `131661587570`: `BUILD SUCCESSFUL in 3m 16s`; neun echte Bytecodeklassen einschließlich Registry/Service nachgewiesen. Davor sechs Produktionsregistry-/Installerprüfungen bestanden. APK-Pinprüfung bleibt bis zur 2018-Freigabe gesperrt, Android-Tour/Upgrade/Veröffentlichung wurden nicht ausgeführt. |
 | Godot `096c9d20a3a1b92605e0a4f648e1afd87f967b9a` | [Run 43354218466](https://github.com/Ullmann27/lumo-godot/actions/runs/43354218466): fokussierter echter Lernrenderer mit 21 PNGs erfolgreich. Neue Gates: 23 PASS, 2 FAIL; alle 75 Originalbilder des Gesamtartefakts heruntergeladen. Settlement-/Umgebungsproben scheitern nach ihren Spielaussagen an geleakten GL-Texturen. Legacy-Action-Job scheitert nach seinen 24 Lasso-Aussagen an vier noch referenzierten Ressourcen beim Prozessende. Diese Fehler werden nicht ausgefiltert. |
+| Godot `c5c71145ffaa9ca90b501c5020967b8d5062c387` | [Run 43358819881](https://github.com/Ullmann27/lumo-godot/actions/runs/43358819881): Lernpreview 21 Bilder bestanden. Voller Job vor Abschluss abgelöst: Settlement-Parsefehler nach Formatierung; Lerncapture im parallelen Gesamtlauf nach 18 Bildern am 420-s-Limit. Unabhängiger echter Environment-Render: 53 PASS, sauberer Exit ohne frühere GL-Texturfehler. Teilarchiv enthält 48 PNGs, keine vollständige Freigabe. |
+| Godot `e181eeca2b33390c15c1c13a8ac6eb5924fb620d` | [Run 43360298305](https://github.com/Ullmann27/lumo-godot/actions/runs/43360298305): korrigierter Settlement-Callback. Lernpreview erneut 21 Bilder bestanden, jedes PNG nach tatsächlichem Hashvergleich byteidentisch mit dem vollständig gesichteten c5-Lernbild. Die übrigen Jobs laufen zum Zeitpunkt dieses Berichts noch; keine Gesamtabnahme daraus ableiten. |
 
 Verifizierte ZIP-Digests:
 
@@ -37,6 +39,9 @@ Verifizierte ZIP-Digests:
 | Host 8a Kompilierung | `14005894311` | `d10c8b64bcb62fc530ac4b13c599011594fea811a9c999f6b6d4d00a06b671cc` |
 | 096 Lernpreview | `14006155015` | `56bf30015a3de03869146941fb167dbc5eb0a0c656a4d0ed07ed38c2bc6f5ac7` |
 | 096 alle neuen Szenen | `14006170582` | `32fa6f43a54bf4940bb7e46b7d6ec86f2a36e585f08860974fa2b2a68e930607` |
+| c5 Lernpreview | `14007781236` | `7870ab42d73de43d9980f5c344136a34fadae58a3fb8ca2e25b22ed2ecaebe3a` |
+| c5 Teilarchiv | `14007662211` | `64edf232ad0793f53d6aa334a5d224f045622a167b7dc2db4b0bf73341a484c2` |
+| e181 Lernpreview | `14008426690` | `336cd3f4fecd08495273354d406a8b86d32a2516f0f93490425e0b40f586aeb1` |
 
 Die beiden neuen fehlschlagenden Gates heißen
 `build_settlement_play_regression/rendered` und
@@ -74,6 +79,12 @@ Die neue Host-Pipeline erhält die historischen 2017-Releasegates und ergänzt:
    Prüfungen sammeln bei einem Fehler weiter Bilder, die Gesamtabnahme bleibt `FAIL`.
 4. Tatsächliche Android-Oberflächenprobe: Zehnerbrücke über die sichtbare Flutterroute,
    fünf echte Bewegungen, unveränderte Lernwerte und Rückkehr zur gleichen Aufgabe.
+   Zusätzlich ist die technische Sprachprüfung vorbereitet: vorhandene sichtbare
+   lokale Modellfreigabe, unveränderte Mikrofon-/Cloudfreigaben, Flugmodus sowie
+   echte MediaPlayer-Start-/Endemeldungen für Eingangserklärung und gesprochenes
+   Ergebnis nach der fünften Bewegung. Der isolierte Sprachprozess muss bei der
+   Rückkehr beendet sein. Diese neue Androidprüfung wurde noch nicht ausgeführt.
+   `-noaudio` erlaubt ausdrücklich keine Abnahme hörbarer Qualität oder Lippensynchronität.
 5. Tatsächliche Kartenstube: zwei native Ziehen-Aktionen mit Dart-ACK und Speicherung,
    vollständige 112-Karten-Erhaltung, Kind-/Rundenidentität, sichtbare OS-Servicebindung
    vor und nach mindestens 35 Sekunden, Pause, Rückkehr und Wiederöffnung.
@@ -90,8 +101,8 @@ sieben bearbeiteten Produktionsszenen. Er aktiviert die Veröffentlichung nicht.
 
 ## Lokal erneut ausgeführte Werkzeugtests
 
-- 287 Build-/Daten-/Release-Vertragstests nach Registry-Integration: bestanden, 19,674 Sekunden, 0 übersprungen.
-- 665 Android-Probe-/Evidenztests: bestanden, 19,436 Sekunden, 0 übersprungen.
+- 287 Build-/Daten-/Release-Vertragstests nach Sprach-Evidenzintegration: bestanden, 20,939 Sekunden, 0 übersprungen.
+- 667 Android-Probe-/Evidenztests: bestanden, 19,621 Sekunden, 0 übersprungen.
 - 3 Native-Runner-Orchestrierungstests: bestanden; ihre Fake-Engine prüft ausschließlich
   Fehlerfortsetzung und Ablehnung, niemals Grafik oder Gameplay.
 - 6 neue Delivery-/Receipt-Tests plus 5 Workflow-Tests: bestanden; synthetische

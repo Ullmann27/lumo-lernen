@@ -1,0 +1,33 @@
+{
+  "status": "PASS focused",
+  "tests": 19,
+  "prior_failed_cases": 2,
+  "before_turn_bottom": [
+    383.6,
+    419.6
+  ],
+  "required_safe_bottom": 336,
+  "window": [
+    640,
+    360
+  ],
+  "system_insets_top_bottom": 24,
+  "text_scale": [
+    1.0,
+    1.4
+  ],
+  "actual_touch_size_min_dp": 48,
+  "source_sha256": {
+    "lib/features/games/lumo_cards/lumo_cards_screen.dart": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945",
+    "test/lumo_cards_safe_area_test.dart": "3b00b9b7f3a35f5905ab9cdfdc016c96fee5228f569eb6ab306afde09654e943"
+  },
+  "full_acceptance": {
+    "status": "PASS",
+    "passed": 2462,
+    "failed": 0,
+    "skipped": 0,
+    "pngs": 542,
+    "source_files_unchanged": 47,
+    "machine_log_sha256": "c6243cba709cd0ce5675d529d0e38a32e0b4fd2b7304558b544ed5950ded0832"
+  }
+}

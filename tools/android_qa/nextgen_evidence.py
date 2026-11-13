@@ -7,6 +7,36 @@ from __future__ import annotations
 import re
 
 
+def require_learning_voice(log: str, *, after_final_move: bool = False) -> dict:
+    """Require real Android MediaPlayer start/completion; never infer sound quality."""
+    if after_final_move:
+        movements = list(re.finditer(
+            r'\[LearningWorld\] move kind=bridge_ten token=\d+ target=12 placed=5 complete=true', log))
+        if not movements:
+            raise RuntimeError('No actual final bridge move before the spoken result')
+        log = log[movements[-1].end():]
+    events = re.findall(
+        r'(?m)^I/LumoLearningSpeech\s*\(\s*(\d+)\):\s*'
+        r'(started|completed) id=(\d+)(?: profile=([\w-]+))?\s*$', log)
+    starts, completed, pids = {}, [], set()
+    for pid, state, raw_id, profile in events:
+        utterance = int(raw_id)
+        if utterance <= 0:
+            raise RuntimeError('Invalid native speech utterance identity')
+        if state == 'started':
+            if profile != 'lumo-free-supertonic-de-v1':
+                raise RuntimeError('Speech did not use the original local Lumo profile')
+            starts[(int(pid), utterance)] = True
+        elif (int(pid), utterance) in starts:
+            completed.append(utterance)
+            pids.add(int(pid))
+    if not completed or len(pids) != 1:
+        raise RuntimeError('No completed actual local playback in one native process')
+    return {'native_process_pid': pids.pop(), 'completed_utterance_ids': sorted(set(completed)),
+            'profile': 'lumo-free-supertonic-de-v1', 'preset': 'F2',
+            'audible_quality_verified': False, 'lip_sync_verified': False}
+
+
 def require_cards_authority_binding(services: str, package: str) -> dict:
     """Read Android's real ServiceRecord/IntentBindRecord dump, not app claims.
 

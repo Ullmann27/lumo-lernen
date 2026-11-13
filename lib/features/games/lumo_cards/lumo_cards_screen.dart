@@ -1169,9 +1169,25 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
       return Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
         SizedBox(
           width: (c.maxWidth * .32).clamp(240.0, 380.0),
-          child: SingleChildScrollView(
-            child: Column(mainAxisSize: MainAxisSize.min, children: top),
-          ),
+          child: shortLandscape
+              ? Column(children: [
+                  top.first,
+                  // System bars and larger text reduce the available height.
+                  // Keep controls and the actual turn fixed on screen; only
+                  // the opponent/character area may scroll when necessary.
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Row(children: [
+                        for (final child in top.skip(1))
+                          if (child is! LumoTurnBanner) Expanded(child: child),
+                      ]),
+                    ),
+                  ),
+                  ...top.whereType<LumoTurnBanner>(),
+                ])
+              : SingleChildScrollView(
+                  child: Column(mainAxisSize: MainAxisSize.min, children: top),
+                ),
         ),
         Expanded(
           child: Column(children: [...banner, children[arena], ...bottom]),
