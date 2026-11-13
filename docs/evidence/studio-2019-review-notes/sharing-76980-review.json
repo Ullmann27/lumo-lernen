@@ -1,0 +1,266 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T15:21:47.494760+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "Scoped sharing visual and current artifact log review PASS; no overall candidate approval",
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact_id": 14048854681,
+  "workflow_run_id": 43449903088,
+  "github_artifact_metadata": {
+    "id": 14048854681,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA0ODg1NDY4MQ==",
+    "name": "lumo-studio-2019-new-evidence",
+    "size_in_bytes": 19716818,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14048854681",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14048854681/zip",
+    "expired": false,
+    "digest": "sha256:ca2f4f6c3ae63546bb4b205d47ef1a66b478e227f7399d8932b45f1312485674",
+    "created_at": "2026-11-13T15:14:51Z",
+    "updated_at": "2026-11-13T15:14:51Z",
+    "expires_at": "2026-12-13T15:14:48Z",
+    "workflow_run": {
+      "id": 43449903088,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3"
+    }
+  },
+  "original_zip": {
+    "name": "studio-new-native-76980a94.zip",
+    "sha256": "ca2f4f6c3ae63546bb4b205d47ef1a66b478e227f7399d8932b45f1312485674",
+    "bytes": 19716818,
+    "github_digest_and_size_independently_matched": true
+  },
+  "source_stamp": {
+    "entry": "source-sha.txt",
+    "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3"
+  },
+  "dirty_stamp": {
+    "entry": "source-dirty.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "clean": true
+  },
+  "studio_gate_roster": {
+    "entry": "results.tsv",
+    "sha256": "e9000f75f90eb97fb9325b2a672b5573bf0b066ff818d220e3457897289ecf11",
+    "passed": 9,
+    "total": 9,
+    "rows": [
+      {
+        "probe": "learning_sharing_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_studio_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_studio_motion_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_rotation_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_exploration_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "learning_sharing_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "lumo_studio_motion_capture",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "puzzle_rotation_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      },
+      {
+        "probe": "treasure_exploration_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      }
+    ]
+  },
+  "review_method": "Alle sechs unveränderten aktuellen PNGs einzeln mit view_image geöffnet. Danach eigene PNG-Hashes, Dekodierung und Bytegleichheit zum jeweiligen Original-ZIP-Mitglied geprüft; GitHub-Artefaktmetadata unabhängig am aktuellen Run gelesen. Die drei angegebenen Original-Logs wurden vollständig auf aktuelle PASS-Marker sowie Fehler/Timeouts geprüft.",
+  "images": [
+    {
+      "filename": "sharing-complete-1280x720.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "bytes": 249525,
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Jede Gruppe besitzt sichtbar vier Würfel und den Zähler 4; kein Restvorrat bleibt.",
+        "Die vollständige Erklärung 12 geteilt durch 3 ist 4 ist lesbar. Der Verteilknopf ist deaktiviert; Noch einmal und Zur Aufgabe bleiben frei.",
+        "Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "sharing-complete-412x915.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "02f5f6cb203d87f15b8d5de46557d1e47b16b965072b9d6b1fc365731f6abe71",
+      "bytes": 110576,
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Jede Gruppe besitzt sichtbar vier Würfel und den Zähler 4; kein Restvorrat bleibt.",
+        "Die vollständige Erklärung 12 geteilt durch 3 ist 4 ist lesbar. Der Verteilknopf ist deaktiviert; Noch einmal und Zur Aufgabe bleiben frei.",
+        "Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "sharing-first-round-1280x720.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "364b2e326ca79abda3f0894f7d91fbb9e19e1428f2ce5bc69ac176839f45a9b2",
+      "bytes": 247071,
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Jede der drei Gruppen besitzt sichtbar einen Würfel und den Zähler 1.",
+        "Neun verbleibende Würfel, Status 3/12 und die passende Erklärung der nächsten Verteilrunde sind sichtbar.",
+        "Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "sharing-first-round-412x915.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "bytes": 111652,
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Jede der drei Gruppen besitzt sichtbar einen Würfel und den Zähler 1.",
+        "Neun verbleibende Würfel, Status 3/12 und die passende Erklärung der nächsten Verteilrunde sind sichtbar.",
+        "Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "sharing-start-1280x720.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "8153286850252d1bf7b365b079673b1da0ecb354ffb22fe8a0f9b4dbe768c605",
+      "bytes": 244185,
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 12 : 3 und die Anweisung zur reihum gleichmäßigen Verteilung sind vollständig lesbar.",
+        "Drei leere Zielgruppen zeigen jeweils 0; der Würfelvorrat und der Status 0/12 sind sichtbar. Die erste Gruppe ist als nächstes Ziel hervorgehoben.",
+        "Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    },
+    {
+      "filename": "sharing-start-412x915.png",
+      "artifact_entry": "captures/learning_sharing_capture/sharing-start-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "59edf83f79a88341b04dd9d3a74bb8bc03aad42385e601d24a739cefc06fe94b",
+      "bytes": 110235,
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die Aufgabe 12 : 3 und die Anweisung zur reihum gleichmäßigen Verteilung sind vollständig lesbar.",
+        "Drei leere Zielgruppen zeigen jeweils 0; der Würfelvorrat und der Status 0/12 sind sichtbar. Die erste Gruppe ist als nächstes Ziel hervorgehoben.",
+        "Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild."
+      ],
+      "same_png_bytes_as_previous_24fb_capture": true
+    }
+  ],
+  "current_artifact_logs": [
+    {
+      "entry": "learning_sharing_regression-headless.log",
+      "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+      "bytes": 1480,
+      "required_marker_found": "[LearningSharing] PASS checks=1811",
+      "error_or_timeout_markers": false,
+      "original_zip_bytes_equal": true,
+      "tests_rerun_by_reviewer": false,
+      "checks": 1811
+    },
+    {
+      "entry": "learning_studio_regression-headless.log",
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+      "bytes": 1799,
+      "required_marker_found": "[LearningStudio] PASS checks=183",
+      "error_or_timeout_markers": false,
+      "original_zip_bytes_equal": true,
+      "tests_rerun_by_reviewer": false,
+      "checks": 183,
+      "actual_mesh_equality_projections": 12,
+      "minimum_projected_gap_px": 2.24810791015625,
+      "maximum_projected_gap_px": 3.7830810546875,
+      "scope": "Headless geometry/runtime test from this exact CI artifact; separate from forthcoming hundred-caption visual review."
+    },
+    {
+      "entry": "learning_sharing_capture-rendered.log",
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "bytes": 3506,
+      "required_marker_found": "[LearningSharingCapture] PASS captures=6",
+      "error_or_timeout_markers": false,
+      "original_zip_bytes_equal": true,
+      "tests_rerun_by_reviewer": false,
+      "captures": 6,
+      "logged_successful_object_moves": 24,
+      "renderer": "Godot 4.6.3 / X11 / OpenGL Compatibility / Mesa 25.2.8 llvmpipe LLVM 20.1.2",
+      "documented_backend_warnings": [
+        "V-Sync mode change unsupported",
+        "Screen-space AA needs Forward+ or Mobile",
+        "Volumetric fog needs Forward+"
+      ]
+    }
+  ],
+  "scope_limits": [
+    "Die sechs Bildbytes stimmen mit den bisherigen 24fb-Verteilbildern überein. Hier wird die erneute quellengebundene Regression am neuen SHA geprüft, keine neue Änderung der Verteilgrafik behauptet.",
+    "Der neue LearningStudio-Lauf hat 183 Checks einschließlich der zwölf tatsächlichen Mesh-Projektionen bestanden. Diese Logprüfung ersetzt nicht die noch separat zu prüfenden frischen 25 Lernpreviewbilder.",
+    "Die Gesamtfreigabe bleibt wegen des vom Integrator gemeldeten fehlgeschlagenen Gameplay-Jobs mit Audio-Playbacks nach Lasso-Szenenaustritt blockiert. Diese Teilprüfung erzeugt keinen finalen Receipt.",
+    "Keine lokale Testwiederholung, Produktänderung oder Änderung am vom Integrator besessenen Gesamtbericht.",
+    "Keine physische Android-/Fold7-, FPS-, Temperatur- oder vollständige Gameplay-Abnahme."
+  ]
+}

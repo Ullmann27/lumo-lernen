@@ -192,6 +192,26 @@ Die frischen Rendererbilder und gezielten Eingabeproben bestätigten drei zusät
 
 Der gemeinsame Native-Quellfreeze `76980a941fa05d047574d8cc386d3249d93ffca3` ist jetzt tatsächlich gespeichert; seine vier unmittelbar betroffenen Lern-/Bauweltdateien stimmen bytegleich mit den lokal geprüften Quellen überein. Die lokalen Korrekturen, die abgeschlossene Bauwelt-Rendererprüfung und der neue Commit begründen weder eine nachträgliche Freigabe von 24fb noch einen vorweggenommenen PASS der noch laufenden Studio-CI `43449903088`.
 
+### 4.10 Aktuelle Teilabnahme am unveränderten Quellstand 76980
+
+Am 13. November um 15:37 UTC sind alle drei Touchjobs, Studio und Lernpreview am exakten Native-SHA erfolgreich. Insgesamt **81 aktuelle Bilder aus fünf Originalartefakten** wurden tatsächlich einzeln geöffnet: 24 Studioaufnahmen, 25 Lernbilder, zwölf Bauweltdialoge, sechs Werkstatt- und 14 Schatzsuchebilder. Diese Zahl umfasst auch die acht technischen Posenbilder; sie ersetzen kein Bild der produktiven Jump-Szene.
+
+| Aktueller Bereich | Ausgeführter Nachweis | Eigenständige Reviewnotiz |
+| --- | --- | --- |
+| Lernatelier / Hunderterbeschriftung | 183 Geometrie-/Integrationsprüfungen, 25 aktuelle Lernbilder; sichtbarer Balkenspalt mindestens 2,2481079 px | [Learning](evidence/studio-2019-review-notes/learning-76980-review.json) |
+| Gleichmäßiges Verteilen | 1811 Prüfungen, sechs Bilder und 24 protokollierte Bewegungen | [Sharing](evidence/studio-2019-review-notes/sharing-76980-review.json) |
+| Original-Lumo-Posen | 1046 Prüfungen, acht Posenbilder, maximaler Endpunktfehler 0,000000733 m | [Motion](evidence/studio-2019-review-notes/motion-76980-review.json) |
+| Drehpuzzle / zweiter Schatzweg | 4558/4565 beziehungsweise 87/90 Prüfungen, sieben plus drei Bilder | [Puzzle / Exploration](evidence/studio-2019-review-notes/puzzle-treasure-76980-review.json) |
+| Bauwelt-Eingabe und Dialoge | 2016/2046 Prüfungen, zwölf Bilder, 285 Messdatensätze ab 48 dp | [Build-Touch](evidence/studio-2019-review-notes/build-touch-76980-review.json) |
+| Werkstatt-Eingabe | 4129/4148 Prüfungen, acht Formate, sechs Bilder, je 40 Wischer ohne Buttonaktivierung | [Workshop-Touch](evidence/studio-2019-review-notes/workshop-touch-76980-review.json) |
+| Schatzsuche-Eingabe | 1085/1114 Prüfungen, 14 Bilder, 139 Messdatensätze mindestens 52 × 48 dp | [Treasure-Touch](evidence/studio-2019-review-notes/treasure-touch-76980-review.json) |
+
+Die drei Touchartefakte und das Studioartefakt besitzen leere Änderungsstempel vor beziehungsweise nach dem Lauf. Das separate Lernpreview enthält keinen Dirty-Stempel; dafür wird keine solche Aussage gemacht. Die jeweiligen Einzelnotizen binden alle Bilder und Logs an Original-ZIP-Bytes und GitHub-Artefaktmetadaten. Messdatensätze enthalten wiederholte Zustände derselben Bedienelemente und sind keine Zahl unterschiedlicher Buttons.
+
+**Audio-Gesamtblocker:** Der erste Gameplay-Job des Studio-Laufs scheiterte nach der Lasso-Szene an noch vorhandenen Playback-Objekten. Mehrere lokale Gegenkontrollen und die isolierte GitHub-Diagnose [43453409001](https://github.com/Ullmann27/lumo-godot/actions/runs/43453409001) reproduzierten den Fehler nicht: Regeln 34 PASS, Originaltest 26 PASS, Messkopie 26 PASS, unveränderter Nachlauf 26 PASS. Die [Diagnosenotiz](evidence/studio-2019-review-notes/native-audio-diagnostic-b127f30-review.json) und [Originalartefakt](evidence/studio-audio-lifetime-20261113/github-original-artifact.zip) sichern die Ergebnisse. Produktcode, Originaltest und 3000-ms-Deadline wurden nicht geändert. Die Diagnose lief bei gleichem Enginehash und Ubuntu-Image auf einem anderen frischen Runner; eine Infrastrukturursache ist damit nicht bewiesen. Nach Abschluss des noch laufenden vollständigen Weltenjobs ist genau eine kontrollierte Wiederholung der fehlgeschlagenen Jobs am selben Quellstand vorgesehen. Die Diagnose ersetzt keinen verpflichtenden Abnahmejob. Ein erneuter Fehler würde weitere Ursachenanalyse erfordern, keine blinde Wiederholungsserie.
+
+Der vollständige Weltenjob, seine noch fehlenden neuen Produktionsbilder, die Gesamtfreigabe, der finale Bildreceipt und sämtliche Android-Liefergates sind zum Zeitpunkt dieses Abschnitts noch offen.
+
 ## 5. Tatsächlich ausgeführte Abnahme und ihre Reichweite
 
 Testzahlen verschiedener Zeilen überlappen. Sie werden nicht zu einer künstlichen Gesamtsumme addiert. Ältere Nextgen-Tests bleiben historische Bestandsbelege und werden nicht als neue Studio-Funktionen ausgegeben.

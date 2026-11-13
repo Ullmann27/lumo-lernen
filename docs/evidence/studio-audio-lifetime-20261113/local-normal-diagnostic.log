@@ -1,0 +1,26 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Perf] quality_profile:medium
+[Kart] race_world_ready: sonnenhafen mode=training
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@Node@37/Music0 node=98566145956 playback=-9223371784206674717 stream=res://assets/audio/kart/sonnenhafen.ogg paused=false
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@Node@37/Music1 node=98599700390 playback=-9223371937802090573 stream=res://assets/audio/kart/garage.ogg paused=false
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@AudioStreamPlayer@38 node=98767472560 playback=-9223371691780994985 stream= paused=false
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] race_world_ready: sonnenhafen mode=training
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@Node@2407/Music0 node=347825248897 playback=-9223371538118471737 stream=res://assets/audio/kart/sonnenhafen.ogg paused=false
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@Node@2407/Music1 node=347858803326 playback=-9223371688744314289 stream=res://assets/audio/kart/garage.ogg paused=false
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@Node@2407/Effect0 node=347892357763 playback=-9223371537548043699 stream=res://assets/audio/kart/collision.ogg paused=false
+[Kart] Holographic garage ready: five modes, twelve worlds, free steering
+[Kart] race_world_ready: sonnenhafen mode=race
+[KartLassoProductionMotion] before=24.532 immediate=16.682 next_physical=16.591
+[AudioLifetimeDiag] observe path=/root/LumoIslandCup/@Node@3903/Music0 node=502058195631 playback=-9223371234148869384 stream=res://assets/audio/kart/sonnenhafen.ogg paused=false
+[AudioLifetimeDiag] start count=7 nodes=11 game_valid=false
+[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild

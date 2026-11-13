@@ -1,0 +1,44 @@
+[
+  {
+    "profile": "normal",
+    "probe": "rules",
+    "exit": 0,
+    "seconds": 0.467,
+    "log": "/tmp/lumo-audio-ci-sequence-v1/normal/rules.log"
+  },
+  {
+    "profile": "normal",
+    "probe": "production",
+    "exit": 0,
+    "seconds": 9.852,
+    "log": "/tmp/lumo-audio-ci-sequence-v1/normal/production.log"
+  },
+  {
+    "profile": "normal",
+    "probe": "diagnostic",
+    "exit": 0,
+    "seconds": 9.384,
+    "log": "/tmp/lumo-audio-ci-sequence-v1/normal/diagnostic.log"
+  },
+  {
+    "profile": "single-core",
+    "probe": "rules",
+    "exit": 0,
+    "seconds": 0.375,
+    "log": "/tmp/lumo-audio-ci-sequence-v1/single-core/rules.log"
+  },
+  {
+    "profile": "single-core",
+    "probe": "production",
+    "exit": 0,
+    "seconds": 8.797,
+    "log": "/tmp/lumo-audio-ci-sequence-v1/single-core/production.log"
+  },
+  {
+    "profile": "single-core",
+    "probe": "diagnostic",
+    "exit": 0,
+    "seconds": 9.222,
+    "log": "/tmp/lumo-audio-ci-sequence-v1/single-core/diagnostic.log"
+  }
+]

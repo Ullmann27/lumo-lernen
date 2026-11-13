@@ -1,0 +1,257 @@
+{
+  "kind": "fresh_native_motion_renderer_review",
+  "reviewed_at_utc": "2026-11-13T15:21:32.759481+00:00",
+  "status": "all_eight_images_reviewed_no_additional_visible_blocker",
+  "scope": "Nur die acht Motion-Studiobilder und ihre aktuellen Motion-Logs; keine Gesamtfreigabe, kein finales Native-/Android-Receipt.",
+  "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "source_dirty_stamp_empty": true,
+  "artifact": {
+    "github_artifact_id": 14048854681,
+    "github_run_id": 43449903088,
+    "zip_file": "studio-new-native-76980a94.zip",
+    "zip_sha256": "ca2f4f6c3ae63546bb4b205d47ef1a66b478e227f7399d8932b45f1312485674",
+    "zip_bytes": 19716818,
+    "archive_png_count": 24,
+    "provenance_metadata_supplied_by_coordinator": true,
+    "local_zip_hash_and_entry_bytes_independently_verified": true
+  },
+  "checked_files": [
+    {
+      "file": "source-sha.txt",
+      "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+      "bytes": 41,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "source-tree.txt",
+      "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+      "bytes": 41,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "engine.txt",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "bytes": 32,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "results.tsv",
+      "sha256": "e9000f75f90eb97fb9325b2a672b5573bf0b066ff818d220e3457897289ecf11",
+      "bytes": 399,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "lumo_studio_motion_regression-headless.log",
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "bytes": 601,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "lumo_studio_motion_capture-rendered.log",
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "bytes": 1202,
+      "extracted_bytes_equal_original_zip_entry": true
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/studio-motion-capture.json",
+      "sha256": "126a697b87ba699266a101c1fb33bf0bd2b0aee1d16d913643883700dce2f061",
+      "bytes": 2206,
+      "extracted_bytes_equal_original_zip_entry": true
+    }
+  ],
+  "runtime_checks": {
+    "headless_motion_assertions": 1046,
+    "headless_motion_pass": true,
+    "blender_godot_max_endpoint_error_m": 7.33e-07,
+    "segment_error_m": 1.79e-07,
+    "rendered_capture_pass": true,
+    "rendered_capture_png_count": 8,
+    "motion_log_errors_observed": false,
+    "other_studio_rows_listed_in_results_tsv": 9,
+    "overall_workflow_success_asserted": false
+  },
+  "baseline": {
+    "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+    "purpose": "Exact baseline pose source for renderer comparison on unchanged original mesh",
+    "revision": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+    "sha256": "cd0a5cd4054fef04103a072df2385040271eeca2560f457c20c04d868839e65b"
+  },
+  "capture_kind": "native Godot pose studio, separate from gameplay capture",
+  "capture_manifest_failures": [],
+  "images": [
+    {
+      "file": "captures/lumo_studio_motion_capture/before_walk.png",
+      "sha256": "e963e44f8bcb604c6476a47690ebf33b6f7d38a16a5f3554e5edbe48246af276",
+      "bytes": 234905,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "before_walk.png",
+        "sample": "walk",
+        "state": "walk_loop",
+        "stride_phase": 5.36369468307842,
+        "variant": "before"
+      },
+      "observations": [
+        "Original-Lumo mit Brille, blauem Anzug, Ohren und orange-weißem Schwanz vollständig sichtbar.",
+        "Breiter Stand mit nur geringer erkennbarer Gehpose in dieser Baseline-Einzelaufnahme; Schuhe nicht vom Bildrand abgeschnitten."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_sprint.png",
+      "sha256": "a490cdfad662653025e849ae3f66f1ac1479b1054252da23a68841f69dd0ff2b",
+      "bytes": 236286,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "before_sprint.png",
+        "sample": "sprint",
+        "state": "run_loop",
+        "stride_phase": 4.18879020478639,
+        "variant": "before"
+      },
+      "observations": [
+        "Originalfigur vollständig sichtbar; Pose dieser Baselineaufnahme unterscheidet sich nur wenig vom Baseline-Gehen.",
+        "Ohren, Schwanz, Handschuhe und Schuhe erhalten. Ein einzelnes Bild belegt keine Sprintgeschwindigkeit."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_jump_rise.png",
+      "sha256": "dc2a537f56f807ecdc2d93c516aaf31508d8402db34961e18c9b08d13d950533",
+      "bytes": 233683,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "before_jump_rise.png",
+        "sample": "jump_rise",
+        "state": "jump_rise",
+        "stride_phase": 5.36369468307842,
+        "variant": "before"
+      },
+      "observations": [
+        "Beine fast aufrecht; untere Schuhkonturen werden auf Höhe der Studio-Bodenfläche abgeschnitten.",
+        "Originalfigur erhalten. Dieses Bild illustriert die vorherige Boden-/Pose-Lücke im Vergleichsstudio."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/before_land.png",
+      "sha256": "f4146c517e89bc057be2759415684533efe747267e84ee65b5d3b7810721909c",
+      "bytes": 226559,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "before_land.png",
+        "sample": "land",
+        "state": "land",
+        "stride_phase": 5.36369468307842,
+        "variant": "before"
+      },
+      "observations": [
+        "Untere Bereiche beider Schuhe werden von der Studio-Bodenfläche verdeckt.",
+        "Körper bleibt gegenüber der neuen Aufnahme relativ aufrecht; Gesicht, Kleidung und Schwanz bleiben original."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_walk.png",
+      "sha256": "ee838afa26760e013fa9446b1b2732019b9c61b5227ae55b9c6c5ded4fec3b4d",
+      "bytes": 229788,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "after_walk.png",
+        "sample": "walk",
+        "state": "walk_loop",
+        "stride_phase": 5.63875594887731,
+        "variant": "after"
+      },
+      "observations": [
+        "Gleiche Originalfigur und Materialien erkennbar.",
+        "Engerer Schrittstand und gebeugte Knie gegenüber der Baseline; ganze Schuhe und Bodenschatten sichtbar. Keine offensichtliche Gliedmaßenstreckung oder grobe Durchdringung in diesem Bild."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_sprint.png",
+      "sha256": "1a0c94b4a770315a9b071bdffa38cbad22df40fc21b9380443daeeb35e1e9999",
+      "bytes": 226051,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "after_sprint.png",
+        "sample": "sprint",
+        "state": "run_loop",
+        "stride_phase": 5.88495525249918,
+        "variant": "after"
+      },
+      "observations": [
+        "Gebeugte Knie und veränderter Fußstand; Originalkopf, Körperproportionen und Schwanz erhalten.",
+        "Beide Schuhe vollständig sichtbar, keine offensichtliche extreme Streckung. Dynamik und Animationsübergänge sind nicht allein aus dem Einzelbild ablesbar."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_jump_rise.png",
+      "sha256": "80a2f272b3e0b4e7b33186263ccd3d935af219349eb4be5b81e5ef2cf141b8c6",
+      "bytes": 229670,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "after_jump_rise.png",
+        "sample": "jump_rise",
+        "state": "jump_rise",
+        "stride_phase": 5.63875594887731,
+        "variant": "after"
+      },
+      "observations": [
+        "Beide Knie deutlich gebeugt und Füße sichtbar vom Boden abgehoben; Schatten getrennt unter der Figur.",
+        "Hand-/Armhaltung unterscheidet sich passend zur Sprungpose; ganze Schuhe, Ohren und Schwanz sichtbar. Keine zusätzliche sichtbare Verformung erkannt."
+      ]
+    },
+    {
+      "file": "captures/lumo_studio_motion_capture/after_land.png",
+      "sha256": "d9442204e757b11d6a325f35df510cea0f02e3ba4cf0b68a0ca08103eabe4b51",
+      "bytes": 232932,
+      "extracted_bytes_equal_original_zip_entry": true,
+      "actually_opened_with_view_image": true,
+      "capture_metadata": {
+        "display": "X11",
+        "draw_calls": 4,
+        "file": "after_land.png",
+        "sample": "land",
+        "state": "land",
+        "stride_phase": 5.63875594887731,
+        "variant": "after"
+      },
+      "observations": [
+        "Ganze Schuhe sichtbar und Stellung auf der Bodenfläche mit passendem Schatten erkennbar; Knie leicht gebeugt.",
+        "Die starke Fußverdeckung der Baseline ist in dieser Aufnahme behoben. Keine zusätzliche sichtbare Gliedmaßen- oder Bodenkollision erkannt."
+      ]
+    }
+  ],
+  "limits": [
+    "Native Godot/X11/Mesa-llvmpipe-Studioaufnahmen aus diesem ZIP; keine Smartphonekamera und keine physische Android-Leistungsmessung.",
+    "Standbilder prüfen Originalidentität, Pose, Boden und sichtbare Gliedmaßen. Sie belegen allein weder Eingabelatenz noch flüssige Übergänge, Spielphysik oder einen vollständigen Spielverlauf.",
+    "Vorher/Nachher verwenden den im Manifest eingefrorenen ada5ed81-Posecode beziehungsweise die aktuellen Clips auf der Originalfigur; die ausgewählten Stride-Phasen sind nicht identisch. Ein Vergleich gleicher Zeitpunkte wird nicht behauptet.",
+    "Der separate Gameplay-Audio-Teardown-Fehler bleibt laut Koordinator ein offener Gesamtfreigabeblocker. Dieses Bildreview hebt ihn nicht auf."
+  ],
+  "product_files_changed_by_review": false
+}

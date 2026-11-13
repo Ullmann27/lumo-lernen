@@ -1,0 +1,5 @@
+stage	probe	result
+rules	kart_lasso_regression	PASS
+original	kart_lasso_production_regression	PASS
+diagnostic	diagnostics/kart_lasso_audio_lifetime_diagnostic	PASS
+original-after	kart_lasso_production_regression	PASS

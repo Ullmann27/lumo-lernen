@@ -1,0 +1,499 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T15:35:57.507117+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "Scoped workshop visual, density and current artifact log review PASS; no overall candidate approval",
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "artifact_id": 14053790456,
+  "workflow_run_id": 43449903088,
+  "github_artifact_metadata": {
+    "id": 14053790456,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA1Mzc5MDQ1Ng==",
+    "name": "lumo-studio-2019-touch-workshop",
+    "size_in_bytes": 9971642,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14053790456",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14053790456/zip",
+    "expired": false,
+    "digest": "sha256:d59e97479b2e15b9cdb1c1c0768cd433797cd19bb2d1c55084505a956efd814b",
+    "created_at": "2026-11-13T15:28:57Z",
+    "updated_at": "2026-11-13T15:28:57Z",
+    "expires_at": "2026-12-13T15:28:56Z",
+    "workflow_run": {
+      "id": 43449903088,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3"
+    }
+  },
+  "github_job_metadata": {
+    "id": 131969016389,
+    "run_id": 43449903088,
+    "workflow_name": "LUMO Studio native acceptance",
+    "head_branch": "chatgpt/lumo-studio-20261113",
+    "run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/43449903088",
+    "run_attempt": 1,
+    "node_id": "CR_kwDOSpcSOM8AAAAeufdiRQ",
+    "head_sha": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/jobs/131969016389",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43449903088/job/131969016389",
+    "status": "completed",
+    "conclusion": "success",
+    "created_at": "2026-11-13T15:10:28Z",
+    "started_at": "2026-11-13T15:10:30Z",
+    "completed_at": "2026-11-13T15:29:00Z",
+    "name": "touch-workshop",
+    "steps": [
+      {
+        "name": "Set up job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 1,
+        "started_at": "2026-11-13T15:10:31Z",
+        "completed_at": "2026-11-13T15:10:31Z"
+      },
+      {
+        "name": "Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 2,
+        "started_at": "2026-11-13T15:10:31Z",
+        "completed_at": "2026-11-13T15:10:40Z"
+      },
+      {
+        "name": "Install exact verified Godot engine and software renderer",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 3,
+        "started_at": "2026-11-13T15:10:40Z",
+        "completed_at": "2026-11-13T15:10:47Z"
+      },
+      {
+        "name": "Import production project and exercise real density-aware input",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 4,
+        "started_at": "2026-11-13T15:10:47Z",
+        "completed_at": "2026-11-13T15:28:55Z"
+      },
+      {
+        "name": "Run actions/upload-artifact@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 5,
+        "started_at": "2026-11-13T15:28:55Z",
+        "completed_at": "2026-11-13T15:28:58Z"
+      },
+      {
+        "name": "Post Run actions/checkout@v4",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 10,
+        "started_at": "2026-11-13T15:28:58Z",
+        "completed_at": "2026-11-13T15:28:58Z"
+      },
+      {
+        "name": "Complete job",
+        "status": "completed",
+        "conclusion": "success",
+        "number": 11,
+        "started_at": "2026-11-13T15:28:58Z",
+        "completed_at": "2026-11-13T15:28:58Z"
+      }
+    ],
+    "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-godot/check-runs/131969016389",
+    "labels": [
+      "ubuntu-latest"
+    ],
+    "runner_id": 1000016324,
+    "runner_name": "GitHub Actions 1000016324",
+    "runner_group_id": 0,
+    "runner_group_name": "GitHub Actions"
+  },
+  "original_zip": {
+    "name": "studio-touch-workshop-76980a94.zip",
+    "sha256": "d59e97479b2e15b9cdb1c1c0768cd433797cd19bb2d1c55084505a956efd814b",
+    "bytes": 9971642,
+    "github_digest_and_size_independently_matched": true
+  },
+  "source_and_engine_stamps": [
+    {
+      "entry": "workshop/source-sha.txt",
+      "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+      "bytes": 41,
+      "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "original_zip_bytes_equal": true
+    },
+    {
+      "entry": "workshop/source-tree.txt",
+      "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+      "bytes": 41,
+      "value": "8df22766bd0dbae31aacaa26c0228811c027686e",
+      "original_zip_bytes_equal": true
+    },
+    {
+      "entry": "workshop/source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "value": "",
+      "original_zip_bytes_equal": true
+    },
+    {
+      "entry": "workshop/source-dirty-after.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "value": "",
+      "original_zip_bytes_equal": true
+    },
+    {
+      "entry": "workshop/engine.txt",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "bytes": 32,
+      "value": "4.6.3.stable.official.7d41c59c4",
+      "original_zip_bytes_equal": true
+    }
+  ],
+  "before_and_after_dirty_stamps_empty": true,
+  "gate_roster": {
+    "entry": "workshop/results.tsv",
+    "sha256": "c9d8181d388096d44183d9cd5580dd5048efa46db21e83275024c2d41fe062e7",
+    "original_zip_bytes_equal": true,
+    "rows": [
+      {
+        "probe": "kart_workshop_density_regression",
+        "mode": "headless",
+        "result": "PASS"
+      },
+      {
+        "probe": "kart_workshop_density_regression",
+        "mode": "rendered",
+        "result": "PASS"
+      }
+    ]
+  },
+  "review_method": "Alle sechs unveränderten aktuellen PNGs einzeln mit view_image geöffnet, einschließlich der vollständigen Hochformat-Rücksetzansicht. Original-ZIP-Mitglieder, eigene Hashes, Dekodierung und Renderer-Roster abgeglichen. Artefakt- und erfolgreicher touch-workshop-Job unabhängig am exakten GitHub-SHA gelesen. Vollständige aktuelle Logs und alle 464 Messdatensätze geprüft; keine Tests erneut ausgeführt.",
+  "images": [
+    {
+      "filename": "workshop-1080x2400-paint-purchase.png",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-1080x2400-paint-purchase.png",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "density_fixture": 2.625,
+      "sha256": "b8c54eb76777a44061f6075a996cf5d3ce0951c645c80ec2bfc0bffec12d258e",
+      "bytes": 1015973,
+      "original_zip_bytes_equal": true,
+      "renderer_image_roster_matches": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die rote Vorschau am Kart stimmt mit der hervorgehobenen Lackauswahl überein. Leistungswerte und Stufenfortschritt sind sichtbar.",
+        "Der Kaufknopf ist vollständig lesbar; die am unteren Scrollrand teilweise angeschnittene Farbreihe ist ein Ausschnitt der Liste. Die Rückkehrschaltfläche bleibt unabhängig von diesem Scrollstand erreichbar.",
+        "Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild."
+      ]
+    },
+    {
+      "filename": "workshop-1080x2400-performance.png",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "density_fixture": 2.625,
+      "sha256": "cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e",
+      "bytes": 976617,
+      "original_zip_bytes_equal": true,
+      "renderer_image_roster_matches": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Hochformat ordnet Kartansicht und Leistungswerte oberhalb der scrollbaren Teileliste an. Der Werkstatttitel wird mit Auslassungspunkten gekürzt; Fahrzeugname Comet bleibt im Statistikfeld lesbar.",
+        "Prüflauf starten, Motor, Bremsen und Reifen zeigen vollständig sichtbare Aktionsknöpfe und lesbare Beschreibungen. Originaler Kartfuchs und Fahrzeug werden nicht durch diese Bedienelemente verdeckt.",
+        "Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild."
+      ]
+    },
+    {
+      "filename": "workshop-1080x2400-refund.png",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "density_fixture": 2.625,
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "bytes": 864319,
+      "original_zip_bytes_equal": true,
+      "renderer_image_roster_matches": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die vollständige Hochformat-Aufnahme zeigt den unteren Listenbereich einschließlich Goldglanz-Auswahl, Felgen, Neonfarben und Weiß-Beschriftung.",
+        "Der komplette Rücksetztext mit Erstattung von 16 Sternen bleibt innerhalb der sichtbaren Fläche. Zurück, Guthaben, Leistungswerte und Original-Kartfuchs sind weiterhin sichtbar.",
+        "Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild."
+      ]
+    },
+    {
+      "filename": "workshop-2400x1080-paint-purchase.png",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-2400x1080-paint-purchase.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "density_fixture": 2.625,
+      "sha256": "ff946fe24f13c11e6e63ded4c6f35732e354ebdf4e26ba98eab575cdd46d298f",
+      "bytes": 1027439,
+      "original_zip_bytes_equal": true,
+      "renderer_image_roster_matches": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Die ausgewählte rote Lackierung wird am real gerenderten Kart gezeigt. Bremsen, Reifen und Turbo besitzen erkennbare Stufenanzeigen.",
+        "Der Lack-Kaufknopf Kaufen · Stern 6 ist vollständig sichtbar. Die untere Palette reicht über den aktuellen Scrollausschnitt hinaus; ihre vollständige Erreichbarkeit ist separat durch die protokollierten Eingabeprüfungen belegt.",
+        "Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild."
+      ]
+    },
+    {
+      "filename": "workshop-2400x1080-performance.png",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-2400x1080-performance.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "density_fixture": 2.625,
+      "sha256": "dfc4e3f2a0463750d362c68f41f101260435d13f4864777fa0b4bdaa1a9ae9b6",
+      "bytes": 981109,
+      "original_zip_bytes_equal": true,
+      "renderer_image_roster_matches": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Zurück, Werkstatt-Titel und Sternestand sind klar voneinander getrennt. Originaler Kartfuchs, Kart, Räder und beleuchtete Plattform sind vollständig erkennbar.",
+        "Prüflauf starten sowie Motor- und Bremsen-Upgrades sind groß und vollständig lesbar. Andere Listenzeilen werden an der sichtbaren Scrollgrenze regulär angeschnitten; das Foto allein zeigt nicht alle Tuningoptionen gleichzeitig.",
+        "Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild."
+      ]
+    },
+    {
+      "filename": "workshop-2400x1080-refund.png",
+      "artifact_entry": "workshop/captures/kart_workshop_density_regression/workshop-2400x1080-refund.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "density_fixture": 2.625,
+      "sha256": "20fdbdfb518ae5ff63cd0e4d29251e0ea45c2630d25c2492474ec7234fcb32b7",
+      "bytes": 940755,
+      "original_zip_bytes_equal": true,
+      "renderer_image_roster_matches": true,
+      "actually_opened_individually": true,
+      "verdict": "PASS for this static visual scope only",
+      "observations": [
+        "Felgen- und Neonpaletten sind klar unterscheidbar; Neon und Weiß sind als Auswahl benannt. Die gelbe/goldene Kartlackierung ist sichtbar.",
+        "Der vollständige Rücksetzknopf Alle Teile zurücksetzen und Stern 16 zurückholen ist am Listenende lesbar. Zurück und Sternestand bleiben zugleich sichtbar.",
+        "Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild."
+      ]
+    }
+  ],
+  "renderer_image_roster": {
+    "entry": "workshop/renderer-images.json",
+    "sha256": "ba25740e88dcc8fc66a0b09c4a1097be7c3812c98e909b6fb98c014fc3697d3f",
+    "bytes": 1555,
+    "original_zip_bytes_equal": true,
+    "all_six_pngs_matched": true
+  },
+  "density_measurement_review": {
+    "entry": "workshop/captures/kart_workshop_density_regression/measurements.json",
+    "sha256": "4ea31dec344c8668a677a35894c5cff612b35355a0e0f9c0323372ea3fc23509",
+    "bytes": 95358,
+    "original_zip_bytes_equal": true,
+    "scope_from_original": "desktop renderer + explicit density fixtures, not a physical Android device",
+    "measurement_records": 464,
+    "records_include_repeated_targets_at_different_interaction_steps": true,
+    "all_physical_size_divided_by_density_matches_recorded_dp": true,
+    "all_widths_and_heights_at_least_48_dp": true,
+    "minimum_recorded_dimension_dp": 48.0,
+    "profile_summaries": [
+      {
+        "surface": [
+          1280,
+          720
+        ],
+        "density": 1.0,
+        "measurement_records": 58,
+        "minimum_width_dp": 64.0,
+        "minimum_height_dp": 48.0,
+        "minimum_physical_width_px": 64.0,
+        "minimum_physical_height_px": 48.0
+      },
+      {
+        "surface": [
+          640,
+          360
+        ],
+        "density": 1.0,
+        "measurement_records": 58,
+        "minimum_width_dp": 52.0,
+        "minimum_height_dp": 48.0,
+        "minimum_physical_width_px": 52.0,
+        "minimum_physical_height_px": 48.0
+      },
+      {
+        "surface": [
+          640,
+          320
+        ],
+        "density": 1.0,
+        "measurement_records": 58,
+        "minimum_width_dp": 52.0,
+        "minimum_height_dp": 48.0,
+        "minimum_physical_width_px": 52.0,
+        "minimum_physical_height_px": 48.0
+      },
+      {
+        "surface": [
+          412,
+          915
+        ],
+        "density": 1.0,
+        "measurement_records": 58,
+        "minimum_width_dp": 52.0,
+        "minimum_height_dp": 48.0121307373047,
+        "minimum_physical_width_px": 52.0,
+        "minimum_physical_height_px": 48.0121307373047
+      },
+      {
+        "surface": [
+          690,
+          829
+        ],
+        "density": 1.0,
+        "measurement_records": 58,
+        "minimum_width_dp": 64.0,
+        "minimum_height_dp": 48.0267028808594,
+        "minimum_physical_width_px": 64.0,
+        "minimum_physical_height_px": 48.0267028808594
+      },
+      {
+        "surface": [
+          2400,
+          1080
+        ],
+        "density": 2.625,
+        "measurement_records": 58,
+        "minimum_width_dp": 52.0,
+        "minimum_height_dp": 48.0,
+        "minimum_physical_width_px": 136.5,
+        "minimum_physical_height_px": 126.0
+      },
+      {
+        "surface": [
+          1080,
+          2400
+        ],
+        "density": 2.625,
+        "measurement_records": 58,
+        "minimum_width_dp": 52.0,
+        "minimum_height_dp": 48.0075035095215,
+        "minimum_physical_width_px": 136.5,
+        "minimum_physical_height_px": 126.01969909668
+      },
+      {
+        "surface": [
+          2176,
+          1812
+        ],
+        "density": 2.25,
+        "measurement_records": 58,
+        "minimum_width_dp": 64.0000076293945,
+        "minimum_height_dp": 48.0397720336914,
+        "minimum_physical_width_px": 144.000015258789,
+        "minimum_physical_height_px": 108.089485168457
+      }
+    ],
+    "coverage": "Produktiver Garageneintritt, Werkstatteintritt, Rückkehr, Prüfstand, vier Teile-Upgrades, alle Lack-/Felgen-/Neonpaletten und bezahlten Optionen, Rücksetzen einschließlich zweitem Bestätigungstipp. Die tatsächlichen Eingabeprüfungen umfassen Randtipps 22 dp unter der Buttonmitte sowie Wischer direkt auf Prüfstand-, Upgrade-, Farb-, Kauf- und Rücksetzbuttons.",
+    "measurement_method": "Der eingefrorene Test misst Control.get_global_rect() im produktiven Elternlayout, multipliziert mit root.size/root.get_visible_rect().size und dividiert durch die explizite Displaydichte. Zusätzlich prüft er vollständige Lage im Surface, in der geerbten Safe Area und bei Listenzielen im realen Scrollviewport. InputEventScreenTouch und InputEventScreenDrag durchlaufen die tatsächliche Eingabeverarbeitung.",
+    "desktop_test_prerequisite": "Input.emulate_touch_from_mouse wird nur im Test temporär aktiviert, damit der Desktop-ScrollContainer seinen Touchpfad nutzt; der vorherige Wert wird wiederhergestellt. Kein Android-Gerätelauf."
+  },
+  "current_artifact_logs": [
+    {
+      "entry": "workshop/kart_workshop_density_regression-headless.log",
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "bytes": 3861,
+      "original_zip_bytes_equal": true,
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false,
+      "required_marker_found": "[WorkshopDensity] PASS 4129 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches",
+      "checks": 4129,
+      "case_lines": [
+        "[WorkshopDensity] CASE [(1280, 720), 1.0] checks=516 failures=0",
+        "[WorkshopDensity] CASE [(640, 360), 1.0] checks=1032 failures=0",
+        "[WorkshopDensity] CASE [(640, 320), 1.0] checks=1548 failures=0",
+        "[WorkshopDensity] CASE [(412, 915), 1.0] checks=2064 failures=0",
+        "[WorkshopDensity] CASE [(690, 829), 1.0] checks=2580 failures=0",
+        "[WorkshopDensity] CASE [(2400, 1080), 2.625] checks=3096 failures=0",
+        "[WorkshopDensity] CASE [(1080, 2400), 2.625] checks=3612 failures=0",
+        "[WorkshopDensity] CASE [(2176, 1812), 2.25] checks=4128 failures=0"
+      ],
+      "actual_button_swipes": 40,
+      "all_logged_swipes_moved_scroll_position": true,
+      "all_logged_swipe_button_activations_zero": true
+    },
+    {
+      "entry": "workshop/kart_workshop_density_regression-rendered.log",
+      "sha256": "4ab2179a3f74f8cbc91725bfde5516237f5ccb7dc822377e3a384e60cffe188d",
+      "bytes": 4510,
+      "original_zip_bytes_equal": true,
+      "error_or_timeout_markers": [],
+      "warnings": [
+        "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+        "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+        "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      ],
+      "tests_rerun_by_reviewer": false,
+      "required_marker_found": "[WorkshopDensity] PASS 4148 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches",
+      "checks": 4148,
+      "case_lines": [
+        "[WorkshopDensity] CASE [(1280, 720), 1.0] checks=516 failures=0",
+        "[WorkshopDensity] CASE [(640, 360), 1.0] checks=1032 failures=0",
+        "[WorkshopDensity] CASE [(640, 320), 1.0] checks=1548 failures=0",
+        "[WorkshopDensity] CASE [(412, 915), 1.0] checks=2064 failures=0",
+        "[WorkshopDensity] CASE [(690, 829), 1.0] checks=2580 failures=0",
+        "[WorkshopDensity] CASE [(2400, 1080), 2.625] checks=3105 failures=0",
+        "[WorkshopDensity] CASE [(1080, 2400), 2.625] checks=3630 failures=0",
+        "[WorkshopDensity] CASE [(2176, 1812), 2.25] checks=4146 failures=0"
+      ],
+      "actual_button_swipes": 40,
+      "all_logged_swipes_moved_scroll_position": true,
+      "all_logged_swipe_button_activations_zero": true,
+      "renderer": "Godot 4.6.3 / X11 / OpenGL Compatibility / Mesa 25.2.8 llvmpipe LLVM 20.1.2"
+    },
+    {
+      "entry": "workshop/import.log",
+      "sha256": "ff310a512466aa1a2b417ff0040980fd6a5ce09ee78916162d91f7cd7238f861",
+      "bytes": 161102,
+      "original_zip_bytes_equal": true,
+      "error_or_timeout_markers": [],
+      "warnings": [],
+      "tests_rerun_by_reviewer": false
+    }
+  ],
+  "frozen_files_read_without_mutation": [
+    {
+      "path": "scripts/games/kart_workshop.gd",
+      "sha256": "c6c2b6a3b3acda5cfc4bf7e074e4d19c1617536f46165166994eb8cd329a6090"
+    },
+    {
+      "path": "scripts/tests/kart_workshop_density_regression.gd",
+      "sha256": "06ec58fa89036a66eb1d15f8e90c8a03b0f947119a2b327a479521adc034c61d"
+    }
+  ],
+  "scope_limits": [
+    "Die aktuellen Läufe erreichen alle acht Layoutprofile und alle sechs vereinbarten Rendererbilder. Der frühere 24fb-Abbruch durch das Renderzeitlimit bleibt als historische fehlgeschlagene Prüfung unverändert.",
+    "Je Lauf wurden 40 echte Button-Wischer mit Bewegung der Scrollposition und ohne Buttonaktivierung protokolliert. Der bestandene Regressionstest prüft zusätzlich unverändertes Guthaben, Upgrades, Eigentum und Vorschau während dieser Wischer; die Logs werden hier gelesen, nicht als neuer lokaler Lauf ausgegeben.",
+    "Bilder zeigen jeweils den angegebenen Scrollzustand. Nicht jede Option ist gleichzeitig im Foto sichtbar; vollständige Zielrechtecke und Eingaben werden separat durch die Messdaten und Regression geprüft.",
+    "Die Gesamtfreigabe bleibt wegen des vom Integrator gemeldeten offenen Audiopfads nach Lasso-Szenenaustritt blockiert. Diese Teilprüfung erzeugt keinen finalen Receipt und bewertet den Diagnose-Run 43453409001 nicht.",
+    "Keine Produktänderung und kein Eingriff in den vom Integrator besessenen Gesamtbericht.",
+    "Desktop-Software-Renderer und explizite Dichtefixtures belegen keine physische Android-/Fold7-, FPS-, Temperatur- oder vollständige Gameplay-Abnahme."
+  ]
+}

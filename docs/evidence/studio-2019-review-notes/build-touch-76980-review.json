@@ -1,0 +1,406 @@
+{
+  "kind": "fresh_build_dialog_density_renderer_review",
+  "reviewed_at_utc": "2026-11-13T15:31:48.131172+00:00",
+  "status": "all_twelve_images_reviewed_no_additional_visible_blocker",
+  "scope": "Vier Aktuelles-Bauziel-Bilder und acht Vorlagenbilder aus dem aktuellen Artefakt; keine Gesamtfreigabe und kein Android-Receipt.",
+  "source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "source_dirty_before_empty": true,
+  "source_dirty_after_empty": true,
+  "artifact": {
+    "github_artifact_id": 14051016324,
+    "github_run_id": 43449903088,
+    "zip_file": "studio-touch-build-76980a94.zip",
+    "zip_sha256": "74c3d123807fc97a25c2479375b1c3f919cf45de1268fae57522bd939953f6f7",
+    "zip_bytes": 23403825,
+    "png_count": 12,
+    "metadata_ids_supplied_by_coordinator": true,
+    "zip_and_extracted_entry_bytes_independently_verified": true
+  },
+  "verified_files": [
+    {
+      "file": "build/source-sha.txt",
+      "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3",
+      "bytes": 41,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/source-tree.txt",
+      "sha256": "0a8c47db57d99eefda690854a97ff062441c47537a6164b08d0848b54695bf98",
+      "bytes": 41,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/source-dirty-after.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/results.tsv",
+      "sha256": "5b5205d32babc9c7ca3ddb0c8616064dec845bbf32cebb2de2d71fdf34d73f26",
+      "bytes": 110,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/engine.txt",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "bytes": 32,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/renderer-images.json",
+      "sha256": "4f9742e7593e8fb1d7caa22f9034c9c2676e03df3cca53ea562572696f0cf088",
+      "bytes": 3158,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/build_dialog_density_regression-headless.log",
+      "sha256": "5fd278369441e54c3bf69a8029bf46e855978b9897b9bcc219c5507af954ea83",
+      "bytes": 1434,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/build_dialog_density_regression-rendered.log",
+      "sha256": "b5cb8304a1627154c247e745b7263557d03e19323a189af55deddf3ae26159b8",
+      "bytes": 3219,
+      "zip_entry_bytes_equal": true
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/measurements.json",
+      "sha256": "33ae07127d361880871e7f4d002af4b0bb6535a7a36482dd1afb89ad1bc2eb19",
+      "bytes": 113456,
+      "zip_entry_bytes_equal": true
+    }
+  ],
+  "images": [
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-2400x1080-current-goal.png",
+      "sha256": "385198da46c554969ea7cf1a92b1dd50eadfa480b165ed69b7bd9dceff1859c1",
+      "bytes": 1253167,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "build-dialog-2400x1080-current-goal.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Zentrierter Dialog vollständig innerhalb des Querformats. Überschrift, Verbinde die Inseln, vollständige zweizeilige Aufgabe, Mein Bauwerk testen und Abbrechen sind lesbar.",
+        "Der feste Abbrechen-Knopf ist vom Aufgabeninhalt getrennt; keine Überdeckung eines Dialogbuttons durch die Hintergrund-Werkzeugleisten."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-2400x1080-templates-top.png",
+      "sha256": "1ada10a0910fb2c61400a6c182110b6be26b7dc587e01a9b2e07148e27ab5d8e",
+      "bytes": 1275432,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "build-dialog-2400x1080-templates-top.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Vorlagenkopf und erste fünf Einträge bis Sternenturm vollständig sichtbar. Scrollbalken zeigt längere Liste; die nächste Zeile ist am unteren Scrollrand teilweise sichtbar.",
+        "Abbrechen bleibt außerhalb der scrollenden Liste vollständig sichtbar. Hintergrund-Werkzeuge sind erwartungsgemäß teilweise vom Modal verdeckt."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-2400x1080-templates-bottom.png",
+      "sha256": "dd39ab3ab7fb78121c2b3b24b8bd969ef8b371b98a211f906a26af99a0bda625",
+      "bytes": 1265251,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "build-dialog-2400x1080-templates-bottom.png",
+        "height": 1080,
+        "renderer": "gl_compatibility",
+        "width": 2400
+      },
+      "observations": [
+        "Unterer Listenteil zeigt Garten, Garten-Parzelle, Hafen-Parzelle, Insel-Parzelle und Leere Insel vollständig; vorherige Zeile am oberen Scrollrand abgeschnitten.",
+        "Leere Insel und fester Abbrechen-Knopf bleiben getrennt und vollständig lesbar."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-1080x2400-current-goal.png",
+      "sha256": "1fa1f1b014f386cbbd4fb742d91ed427ba391df7606776fcb9268e1ce181c579",
+      "bytes": 1241921,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "build-dialog-1080x2400-current-goal.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Porträtdialog liegt mit seitlichem Abstand innerhalb des Bildes. Titel, Aufgabenbeschreibung, Testaktion und Abbrechen vollständig sichtbar.",
+        "Der Hintergrundtitel ist wegen der schmalen Ansicht teilweise verkürzt; dies betrifft nicht den Inhalt des geöffneten Aufgabendialogs."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-top.png",
+      "sha256": "9b85e6ce98f7a88e78fc5cdc9f6deaa4ff9c33eb9428df30a31da5873fbca384",
+      "bytes": 1295205,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "build-dialog-1080x2400-templates-top.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Großes Sternenschloss bis Garten-Parzelle vollständig sichtbar; Hafen-Parzelle beginnt am unteren Scrollrand.",
+        "Vorlagentitel und fester Abbrechen-Knopf bleiben lesbar. Es wird nicht behauptet, dass die gesamte Liste gleichzeitig sichtbar sei."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "sha256": "e0b26f735c66fe56616aa91cf80e58c44c42a26335f7c77cd710fb999674d7a8",
+      "bytes": 1283500,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.625,
+        "filename": "build-dialog-1080x2400-templates-bottom.png",
+        "height": 2400,
+        "renderer": "gl_compatibility",
+        "width": 1080
+      },
+      "observations": [
+        "Brücke bis Leere Insel vollständig im unteren Scrollausschnitt sichtbar; Starter-Haus am oberen Rand teilweise abgeschnitten.",
+        "Letzter Vorlageneintrag und Abbrechen haben getrennte sichtbare Flächen; kein abgeschnittener abschließender Dialogbutton."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-2176x1812-current-goal.png",
+      "sha256": "45576d2991289dd5a5efd6d48390ecb47d844001bfa2ba0f01dd1af34b7c63a1",
+      "bytes": 3635691,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.25,
+        "filename": "build-dialog-2176x1812-current-goal.png",
+        "height": 1812,
+        "renderer": "gl_compatibility",
+        "width": 2176
+      },
+      "observations": [
+        "Fold-Format: Aufgabendialog vollständig sichtbar. Zusätzlich sichtbare Inline-Zielkarte im Hintergrund und Modal nennen dieselbe Aufgabe.",
+        "Modaltext, Testaktion und Abbrechen lesbar; die doppelte Darstellung im Hintergrund ist kein verdeckter Dialoginhalt."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-2176x1812-templates-top.png",
+      "sha256": "5452e5c6bb6b722072bf837ca8e3c3fe0c02d8d404db6164f5a90280dcf6d4df",
+      "bytes": 3680761,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.25,
+        "filename": "build-dialog-2176x1812-templates-top.png",
+        "height": 1812,
+        "renderer": "gl_compatibility",
+        "width": 2176
+      },
+      "observations": [
+        "Vorlagenliste beginnt mit Großes Sternenschloss; Einträge bis Garten-Parzelle vollständig sichtbar, weiterer Inhalt wird am unteren Scrollrand begrenzt.",
+        "Fester Abbrechen-Knopf bleibt sichtbar. Hinter dem Modal steht beim Ziel Schon geschafft; das Modal verdeckt erwartungsgemäß einen Teil der Bauwelt."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-2176x1812-templates-bottom.png",
+      "sha256": "5aed6774f710b9007def2ab3872b8eb78c45d5004790815ca2b3fde6b2493d75",
+      "bytes": 3671294,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 2.25,
+        "filename": "build-dialog-2176x1812-templates-bottom.png",
+        "height": 1812,
+        "renderer": "gl_compatibility",
+        "width": 2176
+      },
+      "observations": [
+        "Unterer Listenausschnitt zeigt Brücke bis Leere Insel; die vorherige Zeile wird oben durch den Scrollbereich begrenzt.",
+        "Leere Insel und Abbrechen vollständig sichtbar, keine Überschneidung ihrer Beschriftungen."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "sha256": "8c733ef1efbb6e931aa1d7015d46c4a4d6725f6ef7984d7d5920c28b8e39d347",
+      "bytes": 129640,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "build-dialog-640x360-current-goal.png",
+        "height": 360,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Kleine Queransicht: Dialog innerhalb des Bildes mit vollständigem Titel, zweizeiliger Aufgabe, Testaktion und Abbrechen.",
+        "Hintergrund ist weitgehend durch das Modal abgedeckt; alle für den geöffneten Dialog nötigen Beschriftungen sind lesbar."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-640x360-templates-top.png",
+      "sha256": "41cae3178141f6995dafe84ee005fc52db079a16f88bea9ac23b2e15b8424e2e",
+      "bytes": 134300,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "build-dialog-640x360-templates-top.png",
+        "height": 360,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Vier Vorlagen Großes Sternenschloss, Dorf für Freunde, Starter-Haus und Brücke vollständig sichtbar; weitere Einträge liegen im Scrollbereich.",
+        "Titel und fester Abbrechen-Knopf passen in die nur 360 Pixel hohe Ansicht."
+      ]
+    },
+    {
+      "file": "build/captures/build_dialog_density_regression/build-dialog-640x360-templates-bottom.png",
+      "sha256": "1a90dfb3f3a9a849cb5071833ece0a491a4350bc019b11bf631fde968aa2add5",
+      "bytes": 132626,
+      "zip_entry_bytes_equal": true,
+      "actually_opened_with_view_image": true,
+      "fixture": {
+        "density": 1.0,
+        "filename": "build-dialog-640x360-templates-bottom.png",
+        "height": 360,
+        "renderer": "gl_compatibility",
+        "width": 640
+      },
+      "observations": [
+        "Garten-Parzelle, Hafen-Parzelle, Insel-Parzelle und Leere Insel vollständig sichtbar; vorheriger Listeneintrag oben nur teilweise.",
+        "Letzte Auswahl und Abbrechen bleiben getrennt, lesbar und innerhalb des Bildes."
+      ]
+    }
+  ],
+  "current_logs": {
+    "build/build_dialog_density_regression-headless.log": {
+      "checks": 2016,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "5fd278369441e54c3bf69a8029bf46e855978b9897b9bcc219c5507af954ea83"
+    },
+    "build/build_dialog_density_regression-rendered.log": {
+      "checks": 2046,
+      "passed": true,
+      "errors_observed": false,
+      "sha256": "b5cb8304a1627154c247e745b7263557d03e19323a189af55deddf3ae26159b8"
+    }
+  },
+  "measurements": {
+    "file": "build/captures/build_dialog_density_regression/measurements.json",
+    "sha256": "33ae07127d361880871e7f4d002af4b0bb6535a7a36482dd1afb89ad1bc2eb19",
+    "scope_from_original_manifest": "Production scene, own popup transforms, real InputEvents and explicit density fixtures; not a physical Android/Fold7 test",
+    "target_records": 285,
+    "records_are_not_a_unique_button_count": true,
+    "min_width_dp": 48.0,
+    "min_height_dp": 48.0,
+    "records_below_48dp": 0,
+    "by_fixture": [
+      {
+        "surface_pixels": [
+          2400,
+          1080
+        ],
+        "fixture_density": 2.625,
+        "measured_target_records": 54,
+        "min_width_dp": 48.0149726867676,
+        "min_height_dp": 48.0500373840332,
+        "full_exposure_required_records": 32,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          640,
+          320
+        ],
+        "fixture_density": 1.0,
+        "measured_target_records": 77,
+        "min_width_dp": 48.0,
+        "min_height_dp": 48.0,
+        "full_exposure_required_records": 55,
+        "has_reviewed_pngs": false
+      },
+      {
+        "surface_pixels": [
+          1080,
+          2400
+        ],
+        "fixture_density": 2.625,
+        "measured_target_records": 50,
+        "min_width_dp": 48.0500602722168,
+        "min_height_dp": 48.0149955749512,
+        "full_exposure_required_records": 28,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          2176,
+          1812
+        ],
+        "fixture_density": 2.25,
+        "measured_target_records": 50,
+        "min_width_dp": 48.0055351257324,
+        "min_height_dp": 48.0198554992676,
+        "full_exposure_required_records": 28,
+        "has_reviewed_pngs": true
+      },
+      {
+        "surface_pixels": [
+          640,
+          360
+        ],
+        "fixture_density": 1.0,
+        "measured_target_records": 54,
+        "min_width_dp": 48.0,
+        "min_height_dp": 48.0,
+        "full_exposure_required_records": 32,
+        "has_reviewed_pngs": true
+      }
+    ],
+    "method_read_from_regression_source": "control.get_viewport().get_screen_transform() * control.get_global_transform_with_canvas(), applied to the actual control rectangle; resulting physical pixel size divided by explicit fixture density. Popup-specific viewport transforms are included."
+  },
+  "interaction_scope": [
+    "Actual InputEventScreenTouch/InputEventScreenDrag via Input.parse_input_event and flush_buffered_events, including 22dp edge taps, horizontal toolbar swipes and vertical list drags.",
+    "Production dialogs, preserved six world slots and original template/goal choices, last-option selection, fixed cancellation, current-goal test action and saved-byte preservation on cancellation.",
+    "Open modal resize to 640×320 and cancellation, embedding-policy restoration, release of embedded modals, and subsequent-scene input. 640×320 is measured in the log but has no PNG among these twelve.",
+    "Rendered desktop harness explicitly moves the OS pointer into the restored window away from the next button before injecting the original ScreenTouch; this establishes the documented X11 precondition rather than bypassing button input."
+  ],
+  "local_test_source_read_for_scope": {
+    "file": "scripts/tests/build_dialog_density_regression.gd",
+    "sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3"
+  },
+  "limitations": [
+    "Alle Aufnahmen stammen aus Godot 4.6.3/X11/Mesa-llvmpipe mit expliziten Dichte-Fixtures. Kein physischer Fold7-/Android-Test und keine FPS-, Latenz- oder Temperaturmessung.",
+    "285 Einträge sind Messaufzeichnungen einschließlich Wiederholungen und Zustandswechseln; kein Anspruch auf 285 unterschiedliche Buttons oder Prüfung jeder möglichen Bauweltaktion.",
+    "Listenränder schneiden erwartungsgemäß vorherige/nächste Scrollzeilen an. Sichtbarkeit der letzten Auswahl und des festen Abbrechen-Knopfs wurde gesondert beurteilt.",
+    "Die zwölf Bilder zeigen Dialogzustände und ersetzen keinen Film sämtlicher Touchgesten.",
+    "Der getrennte Gameplay-Audio-Teardown-Blocker bleibt offen; diese eng begrenzte Prüfung hebt ihn nicht auf."
+  ],
+  "product_files_changed": false,
+  "other_agents_local_evidence_changed": false
+}
