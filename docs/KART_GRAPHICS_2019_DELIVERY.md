@@ -70,10 +70,10 @@ four review areas. Metadata uses these exact paths:
   `source-sha.txt`, `source-tree.txt`, `source-dirty.txt`, `engine.txt` and
   `image-manifest.json` copied from that artifact.
 - The home directory additionally contains original `regression.log`,
-  `home-promenade.log`, `preserved-spatial-menu.log`,
+  `preview-resolution.log`, `home-promenade.log`, `preserved-spatial-menu.log`,
   `preserved-garage.log` and `render.log`.
 - The worlds directory additionally contains original `regression.log`,
-  `render-winter_sprint.log` and `render-crystal_canyon.log`.
+  `winter-visibility.log`, `render-winter_sprint.log` and `render-crystal_canyon.log`.
 - The feedback directory additionally contains original `regression.log`
   and `render.log`.
 

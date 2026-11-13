@@ -59,6 +59,8 @@ class KartGraphicsReviewTests(unittest.TestCase):
             }
             for filename, marker in review.REQUIRED_LOGS[key].items():
                 entries[filename] = ('OpenGL API fixture, not a real renderer\n' + marker + '\n').encode()
+                if filename == 'winter-visibility.log':
+                    entries[filename] += b'[KartWorldExpansionCapture] PASS track=winter_sprint views=0\n'
             manifest = []
             for area in areas:
                 orientations = [(640, 360), (360, 640)] if key == 'home' else [(640, 360)]
@@ -214,6 +216,14 @@ class KartGraphicsReviewTests(unittest.TestCase):
             self.rewrite_metadata(args, 'feedback', lambda entries: entries.update({filename: data}))
             with self.subTest(filename=filename, data=data), self.assertRaises(ValueError):
                 review.verify_visual_review(*args)
+
+    def test_camera_visibility_without_completed_scene_teardown_fails(self):
+        args = self.fixture()
+        self.rewrite_metadata(args, 'worlds', lambda entries: entries.update({
+            'winter-visibility.log': b'[KartWinterVisibility] PASS checks=49\n',
+        }))
+        with self.assertRaisesRegex(ValueError, 'scene/audio teardown'):
+            review.verify_visual_review(*args)
 
     def test_baseline_outside_missing_changed_and_manifest_mismatched_images_fail(self):
         for mutation in ('baseline', 'outside', 'missing', 'changed', 'manifest', 'dimensions',

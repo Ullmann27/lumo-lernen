@@ -43,18 +43,50 @@ Canyon captures exposed asynchronous audio cleanup. These failures were
 reproduced and repaired; their partial images do not approve publication.
 
 Second run `43433485068` on `b83437ce50b6fc395f56bdcb698aab17e80818f7`
-passed the worlds renderer gate (67 checks, 6072 road-clearance triangle tests)
-and the feedback renderer gate (52 checks). The original archives and all 18
-world/effect PNG hashes were verified. The real images show distinct ice-gallery
+completed all three jobs successfully. Home passed 251 headless and 324 actual
+renderer checks in four formats, plus the original 554 Spatial and 93 Garage
+checks. Worlds passed 67 checks and 6072 road-clearance triangle tests; feedback
+passed 52 renderer checks. The original archives and all 62
+home/world/effect PNG hashes were verified. The real images show distinct ice-gallery
 and mineral-arch sections, unobstructed racing corridors, small nozzle-bound
 boost pulses and a separately readable ground landing ring.
 
 That source is not final: the separate full Stage 2 run `43433490455` exposed
-feedback anchors retained after an actual vehicle variant rebuild. The original
-production regression remains unchanged while the product lifetime fix and a
-targeted rebuild regression are prepared. The winter overview also needs a
-better diagnostic camera to show the whole cable-car line; the actual driving
-views already show the new gallery. No scenery is hidden to manufacture proof.
+feedback anchors retained after an actual vehicle variant rebuild. The product
+fix automatically rebinds current tyre/nozzle nodes before sampling and direct
+events, including paused rebuilds. The unchanged original production regression
+passed 2069 checks on the integrated correction. A new actual rebuild regression
+passed 42 local logic checks; the final rendered path remains required.
+
+Real image review and mesh inspection also exposed the new winter station
+overlapping an existing snow mountain. The correction repositions only the new
+station/cable structures and checks their continuous cabin paths against the
+actual submitted decoration, road geometry and production camera. No scenery is
+hidden to manufacture proof.
+
+The menu's inherited logical canvas also requested up to 9.65 times the displayed
+3D pixel area. The correction keeps logical UI/input/camera coordinates and
+antialiasing quality while setting `scaling_3d_scale` from actual displayed
+pixels. Its 52-case resolution gate includes a same-aspect window resize and is
+mandatory in the final Home job and transferred original logs. This is not a
+physical device frame-rate measurement.
+
+## Inherited Android blocker found before the 2019 build
+
+Existing 2018 run `43428626135`, on host `8eab228433f124c1e2332e3d3c2ecf462ec8b136`,
+passed compilation, complete Flutter/native gates, signed APK construction and
+the real 2017-to-2018 update. Its Android tour failed in the Cards face capture.
+Four byte-identical actual images showed Android status icons over the Pause
+button and the clock over Back. The strict OCR precondition therefore rejected
+the unpaused table before examining card-face pixels, eventually exhausting the
+capture budget. The original archive digest is
+`60b1397d3fb5ef9a35c83fdd5adca26bd81ab3c10a5daba19aa91ebbbf5a646b`.
+
+Root and two module reviewers opened these originals. The card fronts were
+visible; the header lacked the native Android safe-area placement used elsewhere
+in the project. A minimal product correction is being integrated. The existing
+OCR, pixel, same-revision and two-frame checks remain mandatory. Extra timeout
+or weaker acceptance would not fix this actual interface overlap.
 
 ## Final acceptance boundary
 

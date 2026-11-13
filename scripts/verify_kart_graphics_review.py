@@ -32,6 +32,7 @@ AREA_ARTIFACT = {'home': 'home', 'winter_sprint': 'worlds',
 REQUIRED_LOGS = {
     'home': {
         'regression.log': '[KartHomeExperience] PASS',
+        'preview-resolution.log': '[KartPreviewResolution] PASS',
         'home-promenade.log': '[KartHomePromenade] PASS',
         'preserved-spatial-menu.log': '[SpatialMenu] PASS',
         'preserved-garage.log': '[NextGenGarage] PASS',
@@ -39,6 +40,7 @@ REQUIRED_LOGS = {
     },
     'worlds': {
         'regression.log': '[KartWorldExpansion] PASS',
+        'winter-visibility.log': '[KartWinterVisibility] PASS',
         'render-winter_sprint.log': '[KartWorldExpansionCapture] PASS',
         'render-crystal_canyon.log': '[KartWorldExpansionCapture] PASS',
     },
@@ -199,6 +201,9 @@ def verify_visual_review(root: Path, receipt: dict, native: str, proofs: Path) -
                 'Missing or failed original graphics gate: ' + key + '/' + filename)
             if filename.startswith('render') or (filename == 'regression.log' and key != 'home'):
                 require('OpenGL API' in log, 'A headless result cannot approve rendered graphics')
+            if filename == 'winter-visibility.log':
+                require('[KartWorldExpansionCapture] PASS track=winter_sprint views=0' in log,
+                        'Winter camera proof did not complete the actual scene/audio teardown')
         manifest = json.loads(originals['image-manifest.json'])
         require(isinstance(manifest, list) and bool(manifest), 'Missing original PNG hash manifest')
         indexed = {}
