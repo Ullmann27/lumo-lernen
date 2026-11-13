@@ -5,27 +5,46 @@ host PR #465 paired with native PR #160. The producer-specific handoff below is
 preserved as upstream history; its branch, pin and publication instructions do
 not describe this combined checkout.
 
-The combined host includes the published Studio touch contract and the Cards
-Android edge-to-edge lifecycle connection. Its completed source checkpoint is
-`dc1e2bc66b7ac0736ddf51d8cb50839dd69cd11e`. Published graphics host followup
-`abeee5fff4663e894f64e8afe0d5902504481fee` contributes the original failed-import
-diagnostics. The three combined source-identity files are deliberately retained
-until the repaired combined native source passes its own acceptance; the
-producer-only native pin `25e3a118` is not this integration's approved source.
+The combined host contains the published Studio touch contract, Cards Android
+edge-to-edge lifecycle connection and the independent final verification path.
+The complete existing Host gate passed 409 tests with no errors or skips after
+the exact folded-YAML test-parser repair. The newer current-goal archive adapter
+passes all 66 existing Studio/Nextgen/graphics contracts with no skips. Source
+identities and complete original logs are retained in the integration evidence.
+The earlier 55 Flutter tests remain supported by the unchanged whole lib/test/
+assets trees, both Pubspec files and twelve exact checked source files.
 
-Native PR #160 currently checks `cf039ad8c834522f355b858e3bee1e201e397da4`.
-Its current graphics gates produced actual images, but the Worlds comparison
-failed during the old baseline import. The new Build touch renderer probe also
-failed one subsequent-scene input case. These are recorded failures, not full
-acceptance. Published native workflow correction `25e3a118` is now merged into
-the local combined native branch; the Build touch cause is being repaired.
-Fresh complete native evidence and explicit current-image reviews remain
-mandatory before atomically binding the host's three identity files.
+Native PR #160 now checks `74c246d0b0af01c5d2d5438400ddd9ff3a3b0fef`, tree
+`05f547fd58ccdc1002d98ff1031d4208b992b0ee`, integrating published Studio 76980
+with the existing Village and graphics work. The current complete runs are
+Nextgen 43458898046 and Graphics 43458897683. They must finish on this exact
+source, then the current original images must be explicitly inspected.
+
+The predecessor 703 completed all 15 workflows: 37 Core PASS pairs / 24 Studio
+PNGs plus 6 Touch PASS pairs / 28 Touch PNGs, all three graphics jobs and original
+ZIP archiving. Its graphics receipt records five original images actually
+inspected on that exact source. It cannot approve 74c. Root also observed the
+old upper extruded equals sign as one unresolved bright bar; the published
+learning fix therefore requires a fresh actual image review. No complete
+native visual receipt was created for 703.
+
+The current combined contract adds four actual current-goal Build images and
+requires 32 Touch PNGs, including 12 Build PNGs. The wider HUD-start guard replaces
+the older toolbar STOP after a reproduced three-format interaction. The final
+unmodified headless BuildPlay 62 / BuildDialog 2016 and LearningStudio 183 results
+are documented, and the actual native renderer remains mandatory.
+
+The three Host identity files deliberately retain their provisional source
+until the final exact native/graphics acceptance and both current image reviews.
+Set config/godot-source.json, APPROVED[2019] and the candidate 2019 test constant
+atomically to the accepted combined source; preserve every historical pin and
+2018 receipt. Then publish the exact Host tree to its own PR with an expected-
+SHA ref lease and observe actual Android compile, API 35 / API 37 and update gates.
 
 The integration workflow verifies the final candidate independently. Its
 publisher remains restricted to the separate producer graphics branch. Preserve
-the 2018 receipts, historical source pins, main and all concurrent worktrees.
-There is no scheduled task or claim of unattended execution after this session.
+main, the live 2018 release and every concurrent producer worktree. There is no
+scheduled task or claim of unattended execution after this session.
 
 ## Published graphics producer handoff
 

@@ -147,7 +147,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             'touch-evidence/workshop': 'c' * 40, 'touch-evidence/treasure': 'c' * 40,
             'touch-evidence/build': 'c' * 40})
         self.assertEqual(facts['native_touch_probe_count'], 6)
-        self.assertEqual(facts['native_touch_raster_count'], 28)
+        self.assertEqual(facts['native_touch_raster_count'], 32)
         self.assertEqual(set(facts['reviewed_touch_capture_probes']), delivery.TOUCH_CAPTURE_PROBES)
         self.assertEqual((args[:6], args[6].read_bytes()), before)
 
@@ -193,9 +193,17 @@ class Nextgen2019ReviewTests(unittest.TestCase):
                 with self.subTest(prefix=prefix, mutation=mutation), self.assertRaises(ValueError):
                     self.verify(args)
 
-    def test_all_28_original_touch_rasters_have_fixed_paths_pixels_and_digests(self):
+    def test_all_32_original_touch_rasters_have_fixed_paths_pixels_and_digests(self):
         self.assertEqual({prefix: len(images) for prefix, images in delivery.NEXTGEN_TOUCH_PNGS.items()}, {
-            'touch-evidence/workshop': 6, 'touch-evidence/treasure': 14, 'touch-evidence/build': 8})
+            'touch-evidence/workshop': 6, 'touch-evidence/treasure': 14, 'touch-evidence/build': 12})
+        goal_images = {
+            'captures/build_dialog_density_regression/build-dialog-2400x1080-current-goal.png': (2400, 1080),
+            'captures/build_dialog_density_regression/build-dialog-1080x2400-current-goal.png': (1080, 2400),
+            'captures/build_dialog_density_regression/build-dialog-2176x1812-current-goal.png': (2176, 1812),
+            'captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png': (640, 360),
+        }
+        self.assertEqual({path: size for path, size in delivery.NEXTGEN_TOUCH_PNGS[
+            'touch-evidence/build'].items() if path.endswith('-current-goal.png')}, goal_images)
         for prefix in delivery.NEXTGEN_TOUCH_PROBES:
             for mutation in ('missing-roster', 'missing-png', 'short', 'duplicate', 'renamed',
                              'digest', 'bytes', 'dimensions', 'substituted-size', 'corrupt-unreviewed'):
@@ -227,6 +235,30 @@ class Nextgen2019ReviewTests(unittest.TestCase):
                 self.archive_change(args, changes)
                 with self.subTest(prefix=prefix, mutation=mutation), self.assertRaises(ValueError):
                     self.verify(args)
+
+        prefix = 'touch-evidence/build'
+        for missing in ('historical-eight-build-images', *goal_images):
+            args = self.review_fixture()
+            key = prefix + '/renderer-images.json'
+            with zipfile.ZipFile(args[6]) as zipped:
+                roster = json.loads(zipped.read(key))
+            if missing == 'historical-eight-build-images':
+                changes = {prefix + '/' + path: None for path in goal_images}
+                roster['images'] = [item for item in roster['images']
+                                    if item['path'] not in goal_images]
+                self.assertEqual(len(roster['images']), 8)
+                changes[key] = json.dumps(roster).encode()
+            else:
+                # Retain the complete declared roster and all other bytes so
+                # each new original must actually exist inside the ZIP.
+                changes = {prefix + '/' + missing: None}
+            self.archive_change(args, changes)
+            with self.subTest(missing=missing), self.assertRaises(ValueError) as caught:
+                self.verify(args)
+            if missing == 'historical-eight-build-images':
+                self.assertIn('complete original touch raster roster', str(caught.exception))
+            else:
+                self.assertIn(missing, str(caught.exception))
 
     def test_every_touch_job_and_bundle_is_required_at_the_same_source_and_run(self):
         original = self.review_fixture()

@@ -141,7 +141,7 @@ NEXTGEN_TOUCH_PNGS = MappingProxyType({
     'touch-evidence/build': MappingProxyType({
         f'captures/build_dialog_density_regression/build-dialog-{width}x{height}-{view}.png': (width, height)
         for width, height in ((2400, 1080), (1080, 2400), (2176, 1812), (640, 360))
-        for view in ('templates-top', 'templates-bottom')
+        for view in ('templates-top', 'templates-bottom', 'current-goal')
     }),
 })
 
@@ -326,7 +326,7 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
 
 
 def verify_nextgen_touch_archive(zipped: zipfile.ZipFile, tree: str) -> dict:
-    """Require all three source-bound input runs and their 28 original PNGs."""
+    """Require all three source-bound input runs and their 32 original PNGs."""
     trees, probe_count, raster_count = {}, 0, 0
     for prefix, probe in NEXTGEN_TOUCH_PROBES.items():
         try:
