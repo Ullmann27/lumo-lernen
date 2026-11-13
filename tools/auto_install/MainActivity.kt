@@ -194,13 +194,15 @@ class MainActivity : FlutterActivity() {
                                 return@setMethodCallHandler
                             }
                             options.put("learning", JSONObject(learning))
+                        }
+                        if (game in setOf("learning", "build")) {
                             options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
                                 .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
                                 .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
                                 .put("learningVoiceRate", (call.argument<Number>("learningVoiceRate")?.toDouble()
                                     ?.takeIf { it.isFinite() } ?: 1.0).coerceIn(0.70, 1.60))
                             // Release Flutter's local inference model before the
-                            // isolated lesson owns the same original voice.
+                            // isolated lesson or village owns the same original voice.
                             offlineSpeech?.release()
                         }
                         if (game == "cards") {
