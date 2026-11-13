@@ -86,6 +86,21 @@ class NextgenWorkflowContractTests(unittest.TestCase):
         self.assertLess(old, new)
         self.assertIn('--prior-tour tour/tour-result.json', job)
 
+    def test_update_uses_its_own_emulator_in_parallel_with_the_complete_tour(self):
+        source = NEXTGEN.read_text()
+        update = source.split('  update-2018-from-2017:\n', 1)[1].split('  publish-reviewed-2018:\n', 1)[0]
+        needs = re.search(r'^    needs: \[(.*?)\]$', update, re.M)
+        self.assertIsNotNone(needs)
+        self.assertEqual(needs[1], 'verify-and-build')
+        self.assertIn('uses: reactivecircus/android-emulator-runner@v2', update)
+        self.assertIn('--baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk', update)
+        self.assertIn('--candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk', update)
+        self.assertNotIn('--prior-tour', update)
+        publisher = source.split('  publish-reviewed-2018:\n', 1)[1]
+        self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2018-from-2017]', publisher)
+        for gate in ('verify-and-build', 'android-host-compile', 'android-tour', 'update-2018-from-2017'):
+            self.assertIn("needs." + gate + ".result == 'success'", publisher)
+
     def test_publication_stays_blocked_until_review_and_keeps_all_actual_dependencies(self):
         publisher = NEXTGEN.read_text().split('  publish-reviewed-2018:\n', 1)[1]
         self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2018-from-2017]', publisher)

@@ -407,7 +407,9 @@ jobs:
           retention-days: 30
 
   update-2018-from-2017:
-    needs: [verify-and-build, android-tour]
+    # Independent emulator and baseline data; publication still requires both
+    # the complete tour and this complete in-place update to succeed.
+    needs: [verify-and-build]
     permissions:
       contents: read
       actions: read

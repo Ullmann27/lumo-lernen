@@ -1,0 +1,232 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] loaded stars:50 streak:0 letters:0
+CARDS_ROOM_BATCHES sources=146 batches=13
+ERROR: Cards table: JSON card resolves original number face: orange 0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 1
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 4
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 5
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 6
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 7
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 8
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: orange 9
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 1
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 4
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 5
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 6
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 7
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 8
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: purple 9
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 1
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 4
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 5
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 6
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 7
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 8
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: blue 9
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 0
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 1
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 2
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 3
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 4
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 5
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 6
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 7
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 8
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+ERROR: Cards table: JSON card resolves original number face: green 9
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:140)
+[Perf] quality_profile:medium
+ERROR: Cards table: JSON hand and discard bind face textures: ["missing/wrong actual face material: r1", "missing/wrong actual face material: b2", "missing/wrong actual face material: g4", "missing/wrong actual face material: y5", "missing/wrong actual face material: r6", "missing/wrong actual face material: r5"]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:157)
+ERROR: Cards table: JSON hand and discard bind face textures: ["missing/wrong actual face material: r1", "missing/wrong actual face material: b2", "missing/wrong actual face material: r5"]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:157)
+ERROR: Cards table: JSON hand and discard bind face textures: ["missing/wrong actual face material: r1", "missing/wrong actual face material: b2", "missing/wrong actual face material: g4", "missing/wrong actual face material: y5", "missing/wrong actual face material: r5"]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:157)
+ERROR: Cards table: JSON hand and discard bind face textures: ["missing/wrong actual face material: r1", "missing/wrong actual face material: b2", "missing/wrong actual face material: g4", "missing/wrong actual face material: y5", "missing/wrong actual face material: r6", "missing/wrong actual face material: r5"]
+   at: push_error (core/variant/variant_utility.cpp:1024)
+   GDScript backtrace (most recent call first):
+       [0] check (res://scripts/tests/cards_table_regression.gd:87)
+       [1] _run (res://scripts/tests/cards_table_regression.gd:157)
+CARDS_TABLE_RUNTIME_FAIL checks=208 failures=44
