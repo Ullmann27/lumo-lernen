@@ -329,6 +329,11 @@ jobs:
           compression-level: 0
   android-tour:
     needs: [verify-and-build, android-host-compile]
+    name: Android API ${{ matrix.api }} live application tour
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [35, 37]
     runs-on: ubuntu-latest
     timeout-minutes: 65
     steps:
@@ -355,6 +360,7 @@ jobs:
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_studio_surfaces_android_probe.py
           .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
       - name: Enable accelerated disposable emulator
         run: |
@@ -385,23 +391,26 @@ jobs:
           GALLIUM_DRIVER: llvmpipe
           LP_NUM_THREADS: '2'
         with:
-          api-level: 35
+          api-level: ${{ matrix.api }}
           target: google_apis
           arch: x86_64
           profile: pixel_5
-          emulator-build: '14472402'
-          ram-size: 3072M
+          emulator-build: ${{ matrix.api == 35 && '14472402' || '' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '3072M' }}
           heap-size: 512M
           disable-animations: true
           emulator-boot-timeout: 300
           emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
           script: |
+            adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+            adb shell getprop ro.build.version.release > tour/android-release.txt
+            "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
-            .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --out tour/nextgen
+            .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-studio-2019-android-tour
+          name: ${{ matrix.api == 37 && 'lumo-studio-2019-android-17-tour' || 'lumo-studio-2019-android-tour' }}
           path: tour/
           retention-days: 30
 
@@ -537,6 +546,10 @@ jobs:
         with:
           name: lumo-studio-2019-android-tour
           path: proofs/tour/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-studio-2019-android-17-tour
+          path: proofs/android17/
       - uses: actions/download-artifact@v4
         with:
           name: lumo-2019-in-place-update-proof

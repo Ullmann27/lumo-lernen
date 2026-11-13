@@ -65,7 +65,7 @@ Kind“ ist der native Spielstandpfad trotzdem eine offene Grenze.
 ### Tatsächlich ausgeführte Reproduktion
 
 Fixture:
-`docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart`
+`docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart.txt` (unveränderte Rohquelle der historischen Diagnose)
 
 Rohlog:
 `docs/evidence/studio-learning-review-20261113/native-profile-key-probe.log`
@@ -73,7 +73,9 @@ Rohlog:
 Aufruf:
 
 ```text
+cp docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart.txt docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart
 flutter --no-version-check test --no-pub --reporter expanded docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart
+rm docs/evidence/studio-learning-review-20261113/native_profile_key_probe.dart
 ```
 
 Der Test verwendet ausschließlich synthetische Daten in einem

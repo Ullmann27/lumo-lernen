@@ -606,6 +606,7 @@ def main() -> int:
     parser.add_argument('--provenance', required=True, type=Path)
     parser.add_argument('--sums', required=True, type=Path)
     parser.add_argument('--prior-tour', required=True, type=Path)
+    parser.add_argument('--expected-api', required=True, type=int, choices=(35, 37))
     parser.add_argument('--out', required=True, type=Path)
     args = parser.parse_args()
     out = args.out.resolve()
@@ -619,6 +620,17 @@ def main() -> int:
             raise RuntimeError('The mandatory original Android tour did not pass')
         if identity['versionCode'] != 2019:
             raise RuntimeError('Studio surface acceptance requires versionCode 2019')
+        runtime = {
+            'sdk': int(base.adb('shell', 'getprop', 'ro.build.version.sdk').strip()),
+            'release': base.adb('shell', 'getprop', 'ro.build.version.release').strip(),
+            'fingerprint': base.adb('shell', 'getprop', 'ro.build.fingerprint').strip(),
+            'model': base.adb('shell', 'getprop', 'ro.product.model').strip(),
+        }
+        result['android_runtime'] = runtime
+        if runtime['sdk'] != args.expected_api or not runtime['fingerprint']:
+            raise RuntimeError('Actual Android runtime differs from the requested API test')
+        if args.expected_api == 37 and runtime['release'].split('.')[0] != '17':
+            raise RuntimeError('API 37 acceptance requires an actual Android 17 runtime')
         result['emulator_root_readiness'] = probe.ensure_rooted_emulator(base.adb, out)
         base.display(1080, 2400, 420)
         if not tour.alive() or tour.godot_alive():

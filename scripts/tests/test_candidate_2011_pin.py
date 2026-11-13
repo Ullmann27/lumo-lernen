@@ -22,7 +22,7 @@ TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
 GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
-STUDIO_2019_REVISION = "64f75eb7725ebef898d0f259049bddef7021532f"
+STUDIO_2019_REVISION = "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -266,6 +266,7 @@ class Candidate2011PinTests(unittest.TestCase):
         invalid = set(previous.values()) | {
             "0" * 40, "", STUDIO_2019_REVISION[:8],
             "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+            "64f75eb7725ebef898d0f259049bddef7021532f",
         }
         for revision in sorted(invalid):
             with self.subTest(revision=revision):

@@ -12,6 +12,7 @@ import hashlib
 import inspect
 import json
 from pathlib import Path
+import shutil
 import stat
 import sys
 import tempfile
@@ -45,6 +46,23 @@ class StudioDeliveryTests(unittest.TestCase):
                      args[9]['steps'][0], args[10]['apk_identity']):
             info.update(versionCode=2019, versionName='0.13.7')
         return args
+
+    def dual_platform_fixture(self):
+        args = self.proof_fixture()
+        separate = self.proof_fixture()
+        args[9]['android_sdk'] = '35'
+        separate[9]['android_sdk'] = '37'
+        args[10]['android_runtime'] = {
+            'sdk': 35, 'release': '15', 'fingerprint': 'synthetic/api35/parser-fixture',
+            'model': 'Synthetic x86_64 fixture, not a device test'}
+        separate[10]['android_runtime'] = {
+            'sdk': 37, 'release': '17', 'fingerprint': 'synthetic/api37/parser-fixture',
+            'model': 'Synthetic x86_64 fixture, not a device test'}
+        root = self.base / 'proofs/android17'
+        shutil.copytree(separate[12], root / 'nextgen', dirs_exist_ok=True)
+        (root / 'tour-result.json').write_text(json.dumps(separate[9]))
+        (root / 'nextgen/native-surfaces-result.json').write_text(json.dumps(separate[10]))
+        return args + [root]
 
     def review_fixture(self, *, portrait=True):
         root, native = self.base / 'fixture-images', 'b' * 40
@@ -136,6 +154,155 @@ class StudioDeliveryTests(unittest.TestCase):
         self.assertEqual((facts['versionName'], facts['versionCode']), ('0.13.7', 2019))
         self.assertEqual(len(facts['cardsFrontFacePixels']['stages']), 4)
         self.assertIn('not measured', facts['deviceScope'])
+
+    def test_both_original_emulator_datasets_are_required_before_device_scope_changes(self):
+        args = self.dual_platform_fixture()
+        before = copy.deepcopy(args[:-2])
+        tour_path = args[-1] / 'tour-result.json'
+        surface_path = args[-1] / 'nextgen/native-surfaces-result.json'
+        original_files = (tour_path.read_bytes(), surface_path.read_bytes())
+        facts = delivery.verify_android_platforms(*args)
+        self.assertEqual(args[:-2], before, 'Runtime verification must not rewrite API 35 inputs')
+        self.assertEqual((tour_path.read_bytes(), surface_path.read_bytes()), original_files,
+                         'Android 17 evidence remains byte-identical after verification')
+        accepted = facts['androidEmulatorAcceptance']
+        self.assertEqual([entry['android_runtime']['sdk'] for entry in accepted], [35, 37])
+        self.assertEqual(accepted[1]['android_runtime']['release'], '17')
+        self.assertTrue(all(len(entry['cardsFrontFacePixels']['stages']) == 4 for entry in accepted))
+        self.assertEqual(accepted[0]['androidTourApkSha256'], accepted[1]['androidTourApkSha256'])
+        self.assertIn('API 35 and API 37 (Android 17)', facts['deviceScope'])
+        self.assertIn('physical Samsung Galaxy Z Fold7', facts['deviceScope'])
+        self.assertIn('FPS and temperature not measured', facts['deviceScope'])
+
+    def test_missing_android17_directory_or_either_original_report_cannot_publish(self):
+        for missing in ('directory', 'tour-result.json', 'nextgen/native-surfaces-result.json'):
+            args = self.dual_platform_fixture()
+            if missing == 'directory':
+                shutil.rmtree(args[-1])
+            else:
+                (args[-1] / missing).unlink()
+            with self.subTest(missing=missing), self.assertRaisesRegex(ValueError, 'Android 17'):
+                delivery.verify_android_platforms(*args)
+
+    def test_runtime_must_measure_api37_android17_fingerprint_and_model(self):
+        args = self.dual_platform_fixture()
+        path = args[-1] / 'nextgen/native-surfaces-result.json'
+        original = json.loads(path.read_text())
+        for field, value in (('sdk', 35), ('sdk', '37'), ('sdk', 37.0), ('sdk', None),
+                             ('release', '15'), ('release', '16'), ('release', '17-preview'),
+                             ('release', ''), ('release', None),
+                             ('fingerprint', ''), ('fingerprint', '   '), ('fingerprint', None),
+                             ('model', ''), ('model', None)):
+            report = copy.deepcopy(original)
+            report['android_runtime'][field] = value
+            path.write_text(json.dumps(report))
+            with self.subTest(field=field, value=value), self.assertRaises(ValueError):
+                delivery.verify_android_platforms(*args)
+        report = copy.deepcopy(original)
+        del report['android_runtime']
+        path.write_text(json.dumps(report))
+        with self.assertRaisesRegex(ValueError, 'API 37'):
+            delivery.verify_android_platforms(*args)
+
+    def test_api35_is_still_mandatory_and_cannot_be_used_as_android17(self):
+        args = self.dual_platform_fixture()
+        original = copy.deepcopy(args[10])
+        for runtime in (None, {'sdk': 37, 'release': '17', 'fingerprint': 'fixture', 'model': 'fixture'}):
+            args[10]['android_runtime'] = runtime
+            with self.subTest(runtime=runtime), self.assertRaisesRegex(ValueError, 'API 35'):
+                delivery.verify_android_platforms(*args)
+        args[10] = original
+        (args[-1] / 'tour-result.json').write_text(json.dumps(args[9]))
+        (args[-1] / 'nextgen/native-surfaces-result.json').write_text(json.dumps(args[10]))
+        with self.assertRaisesRegex(ValueError, 'API 37'):
+            delivery.verify_android_platforms(*args)
+
+    def test_api35_tour_cannot_accompany_api37_surfaces_even_for_the_same_apk(self):
+        args = self.dual_platform_fixture()
+        report = args[-1] / 'tour-result.json'
+        original = report.read_bytes()
+        report.write_text(json.dumps(args[9]))
+        with self.assertRaisesRegex(ValueError, 'Original Android tour must report API 37'):
+            delivery.verify_android_platforms(*args)
+        report.write_bytes(original)
+        args[9]['android_sdk'] = '37'
+        with self.assertRaisesRegex(ValueError, 'Original Android tour must report API 35'):
+            delivery.verify_android_platforms(*args)
+
+    def test_tour_sdk_must_use_the_original_measured_string_format(self):
+        args = self.dual_platform_fixture()
+        report_path = args[-1] / 'tour-result.json'
+        original = json.loads(report_path.read_text())
+        for value in (None, True, 37, 37.0, '', '37.0', '037', ' 37', '37 ', '35', '36'):
+            report = copy.deepcopy(original)
+            report['android_sdk'] = value
+            report_path.write_text(json.dumps(report))
+            with self.subTest(value=value), self.assertRaisesRegex(ValueError, 'Original Android tour'):
+                delivery.verify_android_platforms(*args)
+        report = copy.deepcopy(original)
+        del report['android_sdk']
+        report_path.write_text(json.dumps(report))
+        with self.assertRaisesRegex(ValueError, 'Original Android tour'):
+            delivery.verify_android_platforms(*args)
+
+    def test_android17_proofs_cannot_be_symlinked_to_another_report_or_surface_directory(self):
+        args = self.dual_platform_fixture()
+        report = args[-1] / 'tour-result.json'
+        other = self.base / 'api35-tour.json'
+        other.write_bytes(report.read_bytes())
+        report.unlink()
+        report.symlink_to(other)
+        with self.assertRaisesRegex(ValueError, 'original Android 17 report'):
+            delivery.verify_android_platforms(*args)
+        report.unlink()
+        report.write_bytes(other.read_bytes())
+        shutil.rmtree(args[-1] / 'nextgen')
+        (args[-1] / 'nextgen').symlink_to(args[12], target_is_directory=True)
+        with self.assertRaisesRegex(ValueError, 'cannot reuse the API 35'):
+            delivery.verify_android_platforms(*args)
+
+    def test_android17_tour_and_surfaces_must_bind_the_same_actual_apk_source_and_pck(self):
+        args = self.dual_platform_fixture()
+        tour_path = args[-1] / 'tour-result.json'
+        surface_path = args[-1] / 'nextgen/native-surfaces-result.json'
+        original_tour, original_surfaces = json.loads(tour_path.read_text()), json.loads(surface_path.read_text())
+        for mutation in ('old-tour-source', 'old-surface-source', 'different-native', 'different-pck',
+                         'different-apk', 'old-version', 'different-signature', 'failed-tour',
+                         'failed-surfaces', 'crash', 'missing-kart-launch', 'mastery-awarded',
+                         'voice-incomplete', 'cards-not-conserved', 'cards-not-persisted',
+                         'cards-idle-too-short', 'cards-authority-unbound', 'cards-pixels-missing'):
+            tour, surfaces = copy.deepcopy(original_tour), copy.deepcopy(original_surfaces)
+            if mutation == 'old-tour-source': tour['steps'][0]['flutter_source_commit'] = '0' * 40
+            if mutation == 'old-surface-source': surfaces['apk_identity']['flutter_source_commit'] = '0' * 40
+            if mutation == 'different-native': surfaces['apk_identity']['godot_revision'] = '0' * 40
+            if mutation == 'different-pck': surfaces['apk_identity']['godot_pck_sha256'] = '0' * 64
+            if mutation == 'different-apk': tour['apk_sha256'] = '0' * 64
+            if mutation == 'old-version': surfaces['apk_identity']['versionCode'] = 2018
+            if mutation == 'different-signature': surfaces['apk_identity']['signingCertificateSha256'] = '0' * 64
+            if mutation == 'failed-tour': tour['status'] = 'FAIL'
+            if mutation == 'failed-surfaces': surfaces['status'] = 'FAIL'
+            if mutation == 'crash': surfaces['fatal_crashes'] = 1
+            if mutation == 'missing-kart-launch': tour['steps'].pop()
+            if mutation == 'mastery-awarded': surfaces['learning']['illustration_did_not_award_mastery'] = False
+            if mutation == 'voice-incomplete': surfaces['learning']['speech']['result']['completed_utterance_ids'] = []
+            if mutation == 'cards-not-conserved': surfaces['cards']['draw']['cards_conserved'] = 111
+            if mutation == 'cards-not-persisted': surfaces['cards']['pause_saved_state_unchanged'] = False
+            if mutation == 'cards-idle-too-short': surfaces['cards']['visible_idle_seconds'] = 1
+            if mutation == 'cards-authority-unbound': surfaces['cards']['android_authority_binding'][0]['bound'] = False
+            if mutation == 'cards-pixels-missing': surfaces['cards']['front_face_pixels'] = []
+            tour_path.write_text(json.dumps(tour))
+            surface_path.write_text(json.dumps(surfaces))
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                delivery.verify_android_platforms(*args)
+
+    def test_android17_remeasures_its_own_original_pngs_even_when_api35_pixels_pass(self):
+        args = self.dual_platform_fixture()
+        surfaces = json.loads((args[-1] / 'nextgen/native-surfaces-result.json').read_text())
+        frame = surfaces['cards']['front_face_pixels'][0]['frames'][-1]['source']
+        self.assertTrue((args[12] / frame).is_file(), 'The separate API 35 frame remains available')
+        (args[-1] / 'nextgen' / frame).unlink()
+        with self.assertRaisesRegex(ValueError, 'Missing original Cards PNG'):
+            delivery.verify_android_platforms(*args)
 
     def test_2018_or_wrong_version_identity_never_satisfies_2019(self):
         original = self.proof_fixture()

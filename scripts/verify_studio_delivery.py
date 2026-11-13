@@ -309,6 +309,74 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'deviceScope': 'x86_64 Android emulator acceptance; physical Fold7/Android17/FPS not measured'}
 
 
+def verify_android_runtime(surfaces: dict, expected_api: int) -> dict:
+    require(isinstance(surfaces, dict), 'Missing actual Android surface report')
+    runtime = surfaces.get('android_runtime')
+    require(isinstance(runtime, dict) and type(runtime.get('sdk')) is int and
+            runtime['sdk'] == expected_api,
+            f'Actual Android runtime must report API {expected_api}')
+    for field in ('release', 'fingerprint', 'model'):
+        require(isinstance(runtime.get(field), str) and bool(runtime[field].strip()),
+                f'Missing actual Android API {expected_api} runtime {field}')
+    if expected_api == 37:
+        require(bool(re.fullmatch(r'17(?:\.[0-9]+)*', runtime['release'])),
+                'API 37 acceptance requires actual Android release 17')
+    return {field: runtime[field] for field in ('sdk', 'release', 'fingerprint', 'model')}
+
+
+def verify_tour_android_runtime(tour: dict, runtime: dict) -> None:
+    # The original tour writes the stripped getprop value as a JSON string.
+    # Do not coerce other types or normalize evidence from a different device.
+    require(isinstance(tour, dict) and isinstance(tour.get('android_sdk'), str) and
+            tour['android_sdk'] == str(runtime['sdk']),
+            f"Original Android tour must report API {runtime['sdk']} matching its surface runtime")
+
+
+def verify_android_platforms(source: str, native: str, version_name: str, digest: str, size: int,
+                             proof: dict, verification: dict, measured: dict, update: dict,
+                             tour: dict, surfaces: dict, host: dict, surface_evidence: Path,
+                             android17_root: Path) -> dict:
+    """Require both original emulator datasets without altering any input proof.
+
+    The same ARM64 delivery and exact x86_64 candidate/PCK must satisfy the full
+    existing gates twice. The original 2017 update remains mandatory; an API 35
+    tour or surface directory cannot substitute for the separate Android 17 run.
+    """
+    require(android17_root.is_dir() and not android17_root.is_symlink(),
+            'Missing separate original Android 17 evidence directory')
+    android17_evidence = android17_root / 'nextgen'
+    require(android17_evidence.resolve() != surface_evidence.resolve(),
+            'Android 17 evidence cannot reuse the API 35 surface directory')
+    reports = []
+    for relative in ('tour-result.json', 'nextgen/native-surfaces-result.json'):
+        path = android17_root / relative
+        require(path.is_file() and not path.is_symlink(),
+                'Missing original Android 17 report: ' + relative)
+        reports.append(read_json(path))
+    android17_tour, android17_surfaces = reports
+    runtime35 = verify_android_runtime(surfaces, 35)
+    runtime37 = verify_android_runtime(android17_surfaces, 37)
+    verify_tour_android_runtime(tour, runtime35)
+    verify_tour_android_runtime(android17_tour, runtime37)
+    facts = verify_proofs(source, native, version_name, digest, size, proof, verification, measured,
+                          update, tour, surfaces, host, surface_evidence)
+    android17 = verify_proofs(source, native, version_name, digest, size, proof, verification, measured,
+                              update, android17_tour, android17_surfaces, host, android17_evidence)
+    facts['androidEmulatorAcceptance'] = [
+        {'status': 'PASS', 'android_runtime': runtime35,
+         'androidTourApkSha256': facts['androidTourApkSha256'],
+         'cardsFrontFacePixels': facts['cardsFrontFacePixels']},
+        {'status': 'PASS', 'android_runtime': runtime37,
+         'androidTourApkSha256': android17['androidTourApkSha256'],
+         'cardsFrontFacePixels': android17['cardsFrontFacePixels']},
+    ]
+    facts['deviceScope'] = (
+        'Android API 35 and API 37 (Android 17) x86_64 emulator acceptance; '
+        'physical Samsung Galaxy Z Fold7 performance, FPS and temperature not measured'
+    )
+    return facts
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source-sha', required=True)
@@ -329,12 +397,13 @@ def main() -> int:
             'Packaged application version differs from current source')
     require(read_json(dist / 'GODOT-SOURCE.json') == json.loads(source_config), 'Packaged source pin differs')
     apk = dist / 'Lumo-Lernen-Neu.apk'
-    facts = verify_proofs(args.source_sha, native, version_name, sha256_file(apk), apk.stat().st_size,
+    facts = verify_android_platforms(args.source_sha, native, version_name, sha256_file(apk), apk.stat().st_size,
                           read_json(dist / 'BUILD-PROVENANCE.json'), read_json(dist / 'APK-VERIFICATION.json'),
                           read_json(dist / 'PUBLISH-VERIFICATION.json'), read_json(proofs / 'update/update-result.json'),
                           read_json(proofs / 'tour/tour-result.json'),
                           read_json(proofs / 'tour/nextgen/native-surfaces-result.json'),
-                          read_json(proofs / 'host/result.json'), proofs / 'tour/nextgen')
+                          read_json(proofs / 'host/result.json'), proofs / 'tour/nextgen',
+                          proofs / 'android17')
     facts['visualReview'] = verify_visual_review(root, read_json(root / REVIEW_RECEIPT), native,
                                                read_json(proofs / 'native-artifact.json'),
                                                read_json(proofs / 'native-run.json'),
