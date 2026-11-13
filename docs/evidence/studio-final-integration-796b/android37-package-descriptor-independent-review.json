@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "recorded_utc": "2026-11-13T19:53:44.846031+00:00",
+  "status": "READ_ONLY_REVIEW_NO_ADDITIONAL_BLOCKER_RUNTIME_REMAINS_PENDING",
+  "scope": "Enge unabhängige Prüfung der Korrektur der installierten SDK-Paketrevision. Keine Quelländerung und keine eigene Test-/SDK-/Emulatorausführung.",
+  "actual_failed_run": {
+    "run": 43494312623,
+    "job": 132123295003,
+    "source": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+    "artifact": 14071940754,
+    "zip": {
+      "path": "/workspace/scratch/5987865ae883/qa/android37-cli22-fbb9-diagnostic/original-artifact.zip",
+      "bytes": 47501,
+      "sha256": "e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570"
+    },
+    "stage": "SDK-Pakete installiert; Prüfung stoppte vor altem AVD, CLI22-Installation und Emulatorstart."
+  },
+  "actual_original_metadata": {
+    "package_path": "system-images;android-37.0;google_apis;x86_64",
+    "local_package_count": 1,
+    "installed_revision_major": 8,
+    "embedded_source_properties_pkg_revision": "7",
+    "original_sdkmanager_version": "12.0",
+    "install_exit_code": 0,
+    "install_elapsed_seconds": 55.29060179000001,
+    "install_stdout_archive": "x86_64-37.0_r08.zip",
+    "fixtures": [
+      {
+        "path": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/tests/fixtures/android37_image_43494312623/source.properties",
+        "bytes": 359,
+        "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+        "original_zip_member": "framework-start/cli22/packages-original/image/source.properties",
+        "original_zip_member_and_both_checkouts_byte_identical": true
+      },
+      {
+        "path": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/tests/fixtures/android37_image_43494312623/package.xml",
+        "bytes": 18753,
+        "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+        "original_zip_member": "framework-start/cli22/packages-original/image/package.xml",
+        "original_zip_member_and_both_checkouts_byte_identical": true
+      }
+    ]
+  },
+  "changed_source_files": [
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/prepare_android37_cli22.py",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/tests/test_android37_cli22.py",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26"
+    }
+  ],
+  "both_reviewed_checkouts_identical": [
+    "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+    "/workspace/scratch/5987865ae883/lumo-studio-final-e3d"
+  ],
+  "independent_static_comparison": {
+    "prior_helper_sha256": "2cbf5f613f329c1ab6a1e1bab1b60cbc09e44ae680f55dac6a3a73b1838f38ff",
+    "changed_existing_definitions": [
+      "package_records",
+      "verify_current_avd"
+    ],
+    "added_definition": [
+      "installed_package"
+    ],
+    "unchanged_other_definitions": [
+      "digest",
+      "write_json",
+      "properties",
+      "Commands",
+      "file_record",
+      "tools_manifest",
+      "require_official_tools",
+      "snapshot_avd",
+      "extract_verified_tools",
+      "prepare",
+      "observe_current_avd",
+      "memory_mb",
+      "main"
+    ],
+    "all_original_module_constants_ast_identical": true,
+    "unchanged_framework_workflow_action_hashes": {
+      "scripts/android_framework_ready.py": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4",
+      "scripts/prepare_android37_emulator_action.py": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa",
+      ".github/workflows/lumo-studio-2019.yml": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722"
+    }
+  },
+  "findings": [
+    "Der neue Parser liest das vorhandene lokale package.xml. Er verlangt genau einen localPackage-Eintrag mit exakt erwarteter Paket-ID und genau eine Revision mit numerischen, eindeutigen major/minor/micro/preview-Komponenten. Fehlender major und mehrdeutige Felder werden verworfen.",
+    "Der Image-Guard verlangt weiterhin exakt die installierte stabile Revision8. Eine tatsächlich andere major-, minor-, micro- oder preview-Revision wird nicht zugelassen. Die bisherige Verwechslung dieses Paketwerts mit der separat eingebetteten Properties-Angabe7 ist damit eng korrigiert.",
+    "Originale Properties und XML werden vor der Validierung bytegleich archiviert. Die tatsächliche Angabe7 wird beibehalten; weder SDK-Dateien noch AVD-targets werden nachträglich umgeschrieben.",
+    "Der spätere Actionvergleich verlangt sowohl unveränderte vollständige Properties als auch denselben normalisierten lokalen Paketdeskriptor. Die Korrektur ignoriert keine spätere Metadatenänderung.",
+    "Alle13 übrigen Helperdefinitionen und alle ursprünglichen Konstanten sind unabhängig zum zuvor gesicherten fbb9-Helper verglichen. Framework-/Neustart-/Quellguards, Workflows, Actionpatch, CLI22-Archivhash, GPU-/Disk-/Targetvorgaben bleiben unverändert."
+  ],
+  "existing_executed_evidence_read": {
+    "red": {
+      "test": "test_official_r08_descriptor_is_distinct_from_embedded_properties",
+      "result": "1ERROR am unveränderten alten Properties-Guard",
+      "seconds": 0.004,
+      "log": {
+        "path": "/workspace/scratch/5987865ae883/qa/android37-package-descriptor-fix/descriptor-red.log",
+        "bytes": 1330,
+        "sha256": "9b71da630b69c5ba9fcbc4ffb6f70f05a3caadfb0e65882bd796e35fba5951f7"
+      }
+    },
+    "green": {
+      "passed": 12,
+      "skipped": 0,
+      "seconds": 0.114,
+      "log": {
+        "path": "/workspace/scratch/5987865ae883/qa/android37-package-descriptor-fix/descriptor-green.log",
+        "bytes": 2407,
+        "sha256": "f66039c536521568e6e70e3edbb0c0110501933c0ca6d8062a66058854c0faaa"
+      }
+    },
+    "meaningful_negative_cases": [
+      "abweichende Revision9 oder8.1",
+      "falsche Paket-ID",
+      "fehlender oder doppelter localPackage",
+      "später geänderte Properties bei gleichem Descriptor",
+      "später geänderter Descriptor bei gleichen Properties"
+    ],
+    "scope": "Logs von As tatsächlich ausgeführten gezielten Läufen gelesen; von mir keine Wiederholung. Echte Originalmetadaten als lokale Fixture, keine neue Android-Erfolgsbehauptung."
+  },
+  "additional_blockers": [],
+  "acceptance_limits": [
+    "Der fbb9-Lauf bleibt gescheitert und wird nicht nachträglich freigegeben.",
+    "Der eigene tatsächliche AVD-target-Vergleich, CLI22-Start und die komplette Android17-Tour sind weiter offen.",
+    "Das vollständige Systemimagearchiv wurde für diese Quellprüfung nicht erneut heruntergeladen; Grundlage sind die ursprünglichen tatsächlich installierten Dateien, ihre bytegleichen ZIP-Belege und der originale SDK-Installationslog."
+  ]
+}

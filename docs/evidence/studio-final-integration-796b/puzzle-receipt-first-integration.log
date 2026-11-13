@@ -1,0 +1,49 @@
+test_2018_or_wrong_version_identity_never_satisfies_2019 (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_2018_or_wrong_version_identity_never_satisfies_2019) ... ok
+test_android17_proofs_cannot_be_symlinked_to_another_report_or_surface_directory (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_android17_proofs_cannot_be_symlinked_to_another_report_or_surface_directory) ... ok
+test_android17_remeasures_its_own_original_pngs_even_when_api35_pixels_pass (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_android17_remeasures_its_own_original_pngs_even_when_api35_pixels_pass) ... ok
+test_android17_tour_and_surfaces_must_bind_the_same_actual_apk_source_and_pck (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_android17_tour_and_surfaces_must_bind_the_same_actual_apk_source_and_pck) ... ok
+test_android_gate_body_is_preserved_without_rewriting_evidence (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_android_gate_body_is_preserved_without_rewriting_evidence) ... ok
+test_api35_is_still_mandatory_and_cannot_be_used_as_android17 (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_api35_is_still_mandatory_and_cannot_be_used_as_android17) ... ok
+test_api35_tour_cannot_accompany_api37_surfaces_even_for_the_same_apk (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_api35_tour_cannot_accompany_api37_surfaces_even_for_the_same_apk) ... ok
+test_archive_is_rechecked_instead_of_trusting_receipt_and_metadata (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_archive_is_rechecked_instead_of_trusting_receipt_and_metadata) ... ok
+test_archive_symlink_is_not_an_original_png (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_archive_symlink_is_not_an_original_png) ... ok
+test_both_original_emulator_datasets_are_required_before_device_scope_changes (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_both_original_emulator_datasets_are_required_before_device_scope_changes) ... ok
+test_committed_png_symlink_cannot_satisfy_review (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_committed_png_symlink_cannot_satisfy_review) ... ok
+test_corrupt_png_with_forged_hashes_is_rejected_by_actual_decode (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_corrupt_png_with_forged_hashes_is_rejected_by_actual_decode) ... ok
+test_current_artifact_workflow_and_exact_sha_are_mandatory (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_artifact_workflow_and_exact_sha_are_mandatory) ... ok
+test_current_complete_original_archive_covers_nine_modules_and_eight_jobs (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_complete_original_archive_covers_nine_modules_and_eight_jobs) ... ok
+test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) ... ok
+test_destination_collision_is_rejected_before_receipt_or_other_images_are_written (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_destination_collision_is_rejected_before_receipt_or_other_images_are_written) ... ok
+test_duplicate_zip_source_stamp_or_capture_is_ambiguous (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_duplicate_zip_source_stamp_or_capture_is_ambiguous) ... ok
+test_every_capture_source_must_exist_match_and_be_clean (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_every_capture_source_must_exist_match_and_be_clean) ... ok
+test_every_native_job_must_succeed_at_same_sha_and_run (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_every_native_job_must_succeed_at_same_sha_and_run) ... ok
+test_every_production_module_and_both_orientations_remain_required (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_every_production_module_and_both_orientations_remain_required) ... ok
+test_failed_acceptance_or_modified_source_never_records_an_approved_receipt (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_failed_acceptance_or_modified_source_never_records_an_approved_receipt) ... ok
+test_legacy_module_png_cannot_be_relabelled_as_a_new_touch_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_legacy_module_png_cannot_be_relabelled_as_a_new_touch_capture) ... ok
+test_missing_android17_directory_or_either_original_report_cannot_publish (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_missing_android17_directory_or_either_original_report_cannot_publish) ... ok
+test_old_module_images_cannot_replace_any_new_touch_capture_review (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_old_module_images_cannot_replace_any_new_touch_capture_review) ... ok
+test_old_pending_or_undated_receipts_fail (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_old_pending_or_undated_receipts_fail) ... ok
+test_package_signature_apk_bytes_source_and_abi_gates_remain_mandatory (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_package_signature_apk_bytes_source_and_abi_gates_remain_mandatory) ... ok
+test_png_filename_dimensions_findings_and_duplicate_paths_are_checked (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_png_filename_dimensions_findings_and_duplicate_paths_are_checked) ... ok
+test_png_must_match_both_committed_bytes_and_original_current_artifact (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_png_must_match_both_committed_bytes_and_original_current_artifact) ... ok
+test_real_2017_upgrade_current_android_cards_speech_and_host_remain_mandatory (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_real_2017_upgrade_current_android_cards_speech_and_host_remain_mandatory) ... ok
+test_recording_copies_only_hash_bound_originals_into_separate_2019_paths (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_recording_copies_only_hash_bound_originals_into_separate_2019_paths) ... ok
+test_reordered_reviews_and_new_bytes_never_overwrite_previous_originals (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_reordered_reviews_and_new_bytes_never_overwrite_previous_originals) ... FAIL
+test_runtime_must_measure_api37_android17_fingerprint_and_model (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_runtime_must_measure_api37_android17_fingerprint_and_model) ... ok
+test_same_source_2019_fixture_retains_real_cards_pixel_recomputation (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_same_source_2019_fixture_retains_real_cards_pixel_recomputation) ... ok
+test_touch_delivery_contract_requires_eight_jobs_and_five_source_stamps (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_touch_delivery_contract_requires_eight_jobs_and_five_source_stamps) ... ok
+test_tour_sdk_must_use_the_original_measured_string_format (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_tour_sdk_must_use_the_original_measured_string_format) ... ok
+test_unknown_mislabeled_and_pose_studio_images_do_not_count_as_products (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_unknown_mislabeled_and_pose_studio_images_do_not_count_as_products) ... ok
+
+======================================================================
+FAIL: test_reordered_reviews_and_new_bytes_never_overwrite_previous_originals (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_reordered_reviews_and_new_bytes_never_overwrite_previous_originals)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_delivery.py", line 632, in test_reordered_reviews_and_new_bytes_never_overwrite_previous_originals
+    self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}), 14)
+AssertionError: 15 != 14
+
+----------------------------------------------------------------------
+Ran 36 tests in 11.090s
+
+FAILED (failures=1)

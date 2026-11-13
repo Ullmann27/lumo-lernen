@@ -372,7 +372,8 @@ class StudioDeliveryTests(unittest.TestCase):
             'touch-evidence/treasure/captures/treasure_density_regression': 'treasure',
             'touch-evidence/build/captures/build_dialog_density_regression': 'build'}
         self.assertEqual(delivery.TOUCH_CAPTURE_PROBES, set(touch_modules))
-        self.assertEqual(len(delivery.CAPTURE_MODULES), 13)
+        self.assertEqual(len(delivery.CAPTURE_MODULES), 14)
+        self.assertEqual(delivery.CAPTURE_MODULES[delivery.PUZZLE_MENU_CAPTURE_PROBE], 'puzzle')
         for probe, module in touch_modules.items():
             with self.subTest(probe=probe):
                 self.assertEqual(delivery.CAPTURE_MODULES[probe], module)
@@ -384,7 +385,23 @@ class StudioDeliveryTests(unittest.TestCase):
         self.assertEqual(set(result['native_acceptance_jobs']), delivery.NATIVE_JOBS)
         self.assertEqual(set(result['native_capture_sources']), set(delivery.CAPTURE_SOURCES))
         self.assertEqual(set(result['reviewed_touch_capture_probes']), delivery.TOUCH_CAPTURE_PROBES)
-        self.assertEqual(result['images'], 13)
+        self.assertEqual(result['images'], 14)
+
+    def test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture(self):
+        args = self.review_fixture()
+        probe = 'studio-evidence/captures/puzzle_menu_lifecycle_regression'
+        args[1]['images'] = [item for item in args[1]['images']
+                             if str(Path(item['artifact_entry']).parent) != probe]
+        self.assertEqual({item['module'] for item in args[1]['images']},
+                         delivery.REVIEW_MODULES)
+        self.assertTrue(any(item['module'] == 'puzzle' for item in args[1]['images']))
+        with self.subTest(verifier=True), self.assertRaisesRegex(ValueError, 'current puzzle menu lifecycle capture'):
+            delivery.verify_visual_review(*args)
+        destination = self.base / 'missing-puzzle-menu'
+        with self.subTest(recorder=True), self.assertRaisesRegex(ValueError, 'current puzzle menu lifecycle capture'):
+            self.record(args, destination)
+        with self.subTest(no_receipt=True):
+            self.assertFalse((destination / delivery.REVIEW_RECEIPT).exists())
 
     def test_old_module_images_cannot_replace_any_new_touch_capture_review(self):
         for probe in sorted(delivery.TOUCH_CAPTURE_PROBES):
@@ -612,7 +629,7 @@ class StudioDeliveryTests(unittest.TestCase):
         fresh_png = historical_tests.fixture_png(*changed['dimensions'], 90)
         self.archive_change(args, {changed['artifact_entry']: fresh_png})
         second = self.record(args)
-        self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}), 14)
+        self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}), 15)
         for relative, data in original_bytes.items():
             self.assertEqual((self.base / 'recorded' / relative).read_bytes(), data)
 

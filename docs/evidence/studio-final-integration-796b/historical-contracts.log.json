@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_historical_apk_expectations.py",
+    "-v"
+  ],
+  "exit": 0,
+  "elapsed_seconds": 0.4994508489908185,
+  "log_sha256": "c624192aeb34faaddad03c63f20e9e2b0676f0e1cb48715342986853abeb71f0",
+  "log": "historical-contracts.log"
+}

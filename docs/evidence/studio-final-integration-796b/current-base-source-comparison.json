@@ -1,0 +1,301 @@
+{
+  "schema": "lumo-current-base-source-comparison-v1",
+  "recorded_at_utc": "2026-11-13 19:33:36 UTC",
+  "result": "PASS_NO_OMITTED_NON_DOCUMENTATION_BASE_CHANGE",
+  "scope": "Read-only comparison of the observed current Nextgen bases and the five Flutter non-doc changes. This records the completed inspection; it does not rerun tests, merge branches or claim future branch immutability.",
+  "github_observations": {
+    "flutter": {
+      "pull_request": 466,
+      "url": "https://github.com/Ullmann27/lumo-lernen/pull/466",
+      "base_ref": "chatgpt/lumo-nextgen-20261113",
+      "observed_base_sha": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+      "studio_head_sha": "3022777fba84618a1915f98fdcf6a6ccda9f4db1",
+      "original_studio_base_sha": "3c712129fef8f144d8946fad567b9ed11c628a60"
+    },
+    "native": {
+      "pull_request": 158,
+      "url": "https://github.com/Ullmann27/lumo-godot/pull/158",
+      "base_ref": "chatgpt/lumo-nextgen-20261113",
+      "observed_base_sha": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "expected_original_base_sha": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+      "base_advanced": false,
+      "studio_head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    }
+  },
+  "flutter_base_delta": {
+    "compare_url": "https://github.com/Ullmann27/lumo-lernen/compare/3c712129fef8f144d8946fad567b9ed11c628a60...8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+    "commits": [
+      {
+        "sha": "f257c787878be5d3d9615d1258aaa8f2f83a945e",
+        "subject": "fix(qa): preserve immutable visual proofs and recover transient Android speech logcat"
+      },
+      {
+        "sha": "d32c080378147e5daf4fcd8d15222667e69d316c",
+        "subject": "test(android): use bounded native logcat for real learning moves too"
+      },
+      {
+        "sha": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+        "subject": "Integrate Build 2018 Android logcat recovery and immutable visual proof"
+      }
+    ],
+    "changed_files": 7,
+    "non_documentation_files": 5,
+    "product_dart_android_or_godot_source_changes": 0,
+    "classifications": [
+      {
+        "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+        "kind": "Android evidence probe",
+        "change": "Filter actual native speech/Godot logs and retry at most three reads only for observed adb/logcat transport exit 255; use the same reader for actual movement evidence. Existing speech and movement requirements remain."
+      },
+      {
+        "path": "scripts/record_nextgen_visual_review.py",
+        "kind": "Evidence recorder",
+        "change": "Use original PNG SHA256 in immutable image paths rather than selection ordinals."
+      },
+      {
+        "path": "scripts/tests/test_nextgen_review_recovery.py",
+        "kind": "Regression contracts",
+        "change": "Protect previous original images, idempotence and fail-closed receipt validation."
+      },
+      {
+        "path": "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py",
+        "kind": "Regression contracts",
+        "change": "Exercise transient transport recovery and required actual speech/movement evidence; permanent or empty evidence still fails."
+      },
+      {
+        "path": ".github/workflows/lumo-review-recovery.yml",
+        "kind": "Support CI workflow",
+        "change": "Separate review-recovery regression workflow."
+      }
+    ],
+    "documentation_only_files": [
+      {
+        "path": "docs/qa/2026-11-13-visual-review-recovery.md",
+        "git_blob": "5bc73598d97e420b473f2d5c3c5da654f2973869",
+        "status": "added"
+      },
+      {
+        "path": "docs/superpowers/plans/2026-11-13-visual-review-recovery.md",
+        "git_blob": "36f542264a91f03d349b87cb97a2ac3c20dd4014",
+        "status": "added"
+      }
+    ]
+  },
+  "remote_commit_blob_comparisons": {
+    "method": "GitHub connector fetch_file with explicit immutable ref and base64 encoding; returned Git blob SHA compared with the actual 8eab commit-diff blob SHA.",
+    "baseline_revision": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
+    "baseline_files": [
+      {
+        "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+        "git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f"
+      },
+      {
+        "path": ".github/workflows/lumo-review-recovery.yml",
+        "git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0"
+      },
+      {
+        "path": "scripts/record_nextgen_visual_review.py",
+        "git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95"
+      },
+      {
+        "path": "scripts/tests/test_nextgen_review_recovery.py",
+        "git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f"
+      },
+      {
+        "path": "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py",
+        "git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a"
+      }
+    ],
+    "commits": [
+      {
+        "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+        "matched": 5,
+        "total": 5,
+        "files": [
+          {
+            "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+            "expected_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+            "actual_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/.github/probes/lumo_nextgen_surfaces_android_probe.py"
+          },
+          {
+            "path": ".github/workflows/lumo-review-recovery.yml",
+            "expected_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+            "actual_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/.github/workflows/lumo-review-recovery.yml"
+          },
+          {
+            "path": "scripts/record_nextgen_visual_review.py",
+            "expected_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+            "actual_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/scripts/record_nextgen_visual_review.py"
+          },
+          {
+            "path": "scripts/tests/test_nextgen_review_recovery.py",
+            "expected_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+            "actual_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/scripts/tests/test_nextgen_review_recovery.py"
+          },
+          {
+            "path": "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py",
+            "expected_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+            "actual_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py"
+          }
+        ]
+      },
+      {
+        "revision": "3022777fba84618a1915f98fdcf6a6ccda9f4db1",
+        "matched": 5,
+        "total": 5,
+        "files": [
+          {
+            "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+            "expected_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+            "actual_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/3022777fba84618a1915f98fdcf6a6ccda9f4db1/.github/probes/lumo_nextgen_surfaces_android_probe.py"
+          },
+          {
+            "path": ".github/workflows/lumo-review-recovery.yml",
+            "expected_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+            "actual_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/3022777fba84618a1915f98fdcf6a6ccda9f4db1/.github/workflows/lumo-review-recovery.yml"
+          },
+          {
+            "path": "scripts/record_nextgen_visual_review.py",
+            "expected_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+            "actual_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/3022777fba84618a1915f98fdcf6a6ccda9f4db1/scripts/record_nextgen_visual_review.py"
+          },
+          {
+            "path": "scripts/tests/test_nextgen_review_recovery.py",
+            "expected_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+            "actual_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/3022777fba84618a1915f98fdcf6a6ccda9f4db1/scripts/tests/test_nextgen_review_recovery.py"
+          },
+          {
+            "path": "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py",
+            "expected_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+            "actual_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/3022777fba84618a1915f98fdcf6a6ccda9f4db1/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py"
+          }
+        ]
+      },
+      {
+        "revision": "651d4d967f6d7c918a3e5cd666c5364283abbaa5",
+        "matched": 5,
+        "total": 5,
+        "files": [
+          {
+            "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+            "expected_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+            "actual_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/651d4d967f6d7c918a3e5cd666c5364283abbaa5/.github/probes/lumo_nextgen_surfaces_android_probe.py"
+          },
+          {
+            "path": ".github/workflows/lumo-review-recovery.yml",
+            "expected_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+            "actual_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/651d4d967f6d7c918a3e5cd666c5364283abbaa5/.github/workflows/lumo-review-recovery.yml"
+          },
+          {
+            "path": "scripts/record_nextgen_visual_review.py",
+            "expected_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+            "actual_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/651d4d967f6d7c918a3e5cd666c5364283abbaa5/scripts/record_nextgen_visual_review.py"
+          },
+          {
+            "path": "scripts/tests/test_nextgen_review_recovery.py",
+            "expected_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+            "actual_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/651d4d967f6d7c918a3e5cd666c5364283abbaa5/scripts/tests/test_nextgen_review_recovery.py"
+          },
+          {
+            "path": "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py",
+            "expected_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+            "actual_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+            "match": true,
+            "source_url": "https://github.com/Ullmann27/lumo-lernen/blob/651d4d967f6d7c918a3e5cd666c5364283abbaa5/tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py"
+          }
+        ]
+      }
+    ],
+    "matched_total": 15,
+    "total": 15
+  },
+  "local_comparison": {
+    "checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+    "method": "Read local file bytes and compute SHA256 and canonical Git blob SHA1; compare with the same five 8eab blob IDs. This is a working-copy byte comparison, not a clean-HEAD assertion.",
+    "matched": 5,
+    "total": 5,
+    "files": [
+      {
+        "path": ".github/probes/lumo_nextgen_surfaces_android_probe.py",
+        "bytes": 36239,
+        "sha256": "6dbda171d05375ef047d49e0cd1b3909daad7004b82a9d31a2f723b0767ed75e",
+        "git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+        "expected_git_blob": "0fb1bb77a02cb60e46571740133145d8164a186f",
+        "match": true
+      },
+      {
+        "path": ".github/workflows/lumo-review-recovery.yml",
+        "bytes": 3186,
+        "sha256": "d7d7edcd13ab98f1855160f95260c568411fd0e6d1c36bc7e661b7ef049cd4af",
+        "git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+        "expected_git_blob": "9e111704e09fd5a1f8b6b25df35b708ad3af61a0",
+        "match": true
+      },
+      {
+        "path": "scripts/record_nextgen_visual_review.py",
+        "bytes": 5870,
+        "sha256": "30734c7f1e3e550d16b1412e8153a7bb980bd235ca6e065a3d6e581822b29211",
+        "git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+        "expected_git_blob": "30d602142e9e0b71fa35e9968e22c102dc3d0b95",
+        "match": true
+      },
+      {
+        "path": "scripts/tests/test_nextgen_review_recovery.py",
+        "bytes": 8523,
+        "sha256": "50d8a83838316f949f4e10b3e6fcb2b998834d9ae29d2fa5cf73323cc7d70835",
+        "git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+        "expected_git_blob": "31a9fe20b48bc47fc8ec8616a8e3ae313606501f",
+        "match": true
+      },
+      {
+        "path": "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py",
+        "bytes": 5343,
+        "sha256": "bf3d96ca0db1a3239a0d168c2a3fafcad3a992f0a862b6730afb5fc543252787",
+        "git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+        "expected_git_blob": "2f6720e066d4d36f2aa615d974f07171e05a6d9a",
+        "match": true
+      }
+    ]
+  },
+  "findings": {
+    "omitted_non_documentation_changes": [],
+    "all_five_qa_changes_present_in_e3d_302_and_cards_651d": true,
+    "native_base_unchanged": true
+  },
+  "operations": {
+    "product_files_changed": false,
+    "workflow_files_changed": false,
+    "branches_changed": false,
+    "pull_requests_changed": false,
+    "tests_rerun": false,
+    "auto_merge_performed": false
+  }
+}

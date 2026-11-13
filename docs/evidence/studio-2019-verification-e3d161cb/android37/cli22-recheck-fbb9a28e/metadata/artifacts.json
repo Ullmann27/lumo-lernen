@@ -1,0 +1,23 @@
+{
+  "artifacts": [
+    {
+      "id": 14071940754,
+      "name": "lumo-2019-android37-cli22-recheck-43494312623-1",
+      "size_in_bytes": 47501,
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14071940754",
+      "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14071940754/zip",
+      "expired": false,
+      "created_at": "2026-11-13T19:42:33Z",
+      "expires_at": "2026-12-13T19:42:32Z",
+      "updated_at": "2026-11-13T19:42:33Z",
+      "digest": "sha256:e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570",
+      "workflow_run": {
+        "id": 43494312623,
+        "repository_id": 1222433959,
+        "head_repository_id": 1222433959,
+        "head_branch": "chatgpt/lumo-android17-cli22-recheck-20261113",
+        "head_sha": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f"
+      }
+    }
+  ]
+}

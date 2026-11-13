@@ -1,0 +1,100 @@
+{
+  "id": 132073880264,
+  "name": "Unchanged e3d APK diagnostic on API 35",
+  "status": "completed",
+  "conclusion": "failure",
+  "run_id": 43480051009,
+  "logs_url": null,
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1
+    },
+    {
+      "name": "Checkout the actual diagnostic probe source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2
+    },
+    {
+      "name": "Verify all six bounded-scroll contracts before emulator setup",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3
+    },
+    {
+      "name": "Checkout immutable original app identity without replacing probe code",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4
+    },
+    {
+      "name": "Record original candidate and completed build metadata",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5
+    },
+    {
+      "name": "Download only the original e3d candidate artifact",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6
+    },
+    {
+      "name": "Require original APK PCK source version and GitHub identities",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7
+    },
+    {
+      "name": "Live UI reader and unchanged Studio contracts",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 8
+    },
+    {
+      "name": "Enable accelerated disposable emulator",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 9
+    },
+    {
+      "name": "Software display",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 10
+    },
+    {
+      "name": "Complete original tour followed by Studio learning and Cards",
+      "status": "completed",
+      "conclusion": "failure",
+      "number": 11
+    },
+    {
+      "name": "Preserve diagnostic evidence without publishing any APK",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12
+    },
+    {
+      "name": "Post Checkout immutable original app identity without replacing probe code",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 23
+    },
+    {
+      "name": "Post Checkout the actual diagnostic probe source",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 24
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 25
+    }
+  ]
+}

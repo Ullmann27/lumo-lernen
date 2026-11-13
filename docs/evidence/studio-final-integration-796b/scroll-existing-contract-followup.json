@@ -1,0 +1,19 @@
+{
+  "scope": "Correction to an existing expectation after the independently reproduced N-gesture/N+1-observation fix; no product/helper alteration in this step.",
+  "original_full_suite": {
+    "tests": 390,
+    "failures": 1,
+    "elapsed_seconds": 68.177,
+    "failure": "Old LongParentScrollTest expected 24 live reads, actual bounded helper performs 26."
+  },
+  "correction": "Explicitly assert unchanged 24 actual gestures (12 per direction) and 26 observations, including each final reached viewport. Existing position=12 and zero-control-touch assertions retained.",
+  "targeted_result": {
+    "tests": 7,
+    "failures": 0,
+    "skips": 0,
+    "elapsed_seconds": 0.179
+  },
+  "test_path": "scripts/tests/test_android_voice_scroll.py",
+  "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a",
+  "full_suite_after_correction": "Not re-run yet; the next complete candidate gate remains required."
+}

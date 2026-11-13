@@ -1,0 +1,17 @@
+test_official_r08_descriptor_is_distinct_from_embedded_properties (scripts.tests.test_android37_cli22.InstalledPackageMetadataTests.test_official_r08_descriptor_is_distinct_from_embedded_properties) ... ERROR
+
+======================================================================
+ERROR: test_official_r08_descriptor_is_distinct_from_embedded_properties (scripts.tests.test_android37_cli22.InstalledPackageMetadataTests.test_official_r08_descriptor_is_distinct_from_embedded_properties)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/tests/test_android37_cli22.py", line 153, in test_official_r08_descriptor_is_distinct_from_embedded_properties
+    observed = CLI.package_records(root / 'sdk', root / 'observed')
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/prepare_android37_cli22.py", line 177, in package_records
+    raise ValueError('Actual image revision differs from the observed failing run')
+ValueError: Actual image revision differs from the observed failing run
+
+----------------------------------------------------------------------
+Ran 1 test in 0.004s
+
+FAILED (errors=1)

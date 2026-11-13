@@ -1,0 +1,59 @@
+{
+  "status": "FROZEN_OFFLINE_FIXTURE_INTEGRATION",
+  "final_workflow_sha256": "b0a91ffa4c1cdafc29d8c3ea3b55494dc80c6d9f57f844c7bb95b6e5689e2043",
+  "test_source_sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d",
+  "diagnostic_and_final_fixture_bytes_equal": true,
+  "fixtures": [
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/LICENSE",
+      "bytes": 11343,
+      "sha256": "0b64a565cedfa1ac8d2cd7cf40965e6098f97f260fe51a4df9f697a063d0a8db"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/README.md",
+      "bytes": 1776,
+      "sha256": "308c0ed63517568cc0ab514d2c7201c54b54d4c905f1038d9419d32ccb6c083d"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/action.yml",
+      "bytes": 3980,
+      "sha256": "a7c4de9a466ae7d70a599ffdc5a27b2bccadd7b2d602e24b44f8b490cb7bbdfe"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/lib/emulator-manager.js",
+      "bytes": 7155,
+      "sha256": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/lib/main.js",
+      "bytes": 11865,
+      "sha256": "8121ea56f1c89d470071e89f80e15f932b2d8d5f711c28fc99476f34a442bc35"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/src/emulator-manager.ts",
+      "bytes": 5396,
+      "sha256": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f"
+    },
+    {
+      "path": "scripts/tests/fixtures/android_emulator_runner_a421/src/main.ts",
+      "bytes": 9407,
+      "sha256": "a52d9ff8ea3b544677bbfaeb995b1db4d0cf8f9b520f34e25b0532250123358d"
+    }
+  ],
+  "actual_no_env_contracts": {
+    "tests": 8,
+    "failures": 0,
+    "skips": 0,
+    "elapsed_seconds": 0.468,
+    "log": "docs/evidence/android37-framework-ready-20261113/readiness-contracts-no-env.log"
+  },
+  "source_comparison": {
+    "verify_and_build_entire_job_restored_to_original": true,
+    "all_non_android_tour_jobs_unchanged": true,
+    "api35_unchanged_except_if": true,
+    "api37_original_tour_commands_preserved": true,
+    "actual_api37_action_checkout_retained": true
+  },
+  "actionlint_exit": 0,
+  "bash_n_blocks": 42
+}

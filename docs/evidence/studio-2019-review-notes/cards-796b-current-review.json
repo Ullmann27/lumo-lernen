@@ -1,0 +1,54 @@
+{
+  "reviewer": "root integrator",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_run": 43479909943,
+  "artifact": {
+    "id": 14067226187,
+    "name": "lumo-studio-2019-native-evidence",
+    "size_in_bytes": 174869869,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14067226187",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14067226187/zip",
+    "expired": false,
+    "created_at": "2026-11-13T18:39:23Z",
+    "expires_at": "2026-12-13T18:39:13Z",
+    "updated_at": "2026-11-13T18:39:23Z",
+    "digest": "sha256:3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+    "workflow_run": {
+      "id": 43479909943,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+    }
+  },
+  "source_dirty_empty": true,
+  "images": [
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "expected_full_bundle_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "bytes": 568103,
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "actually_opened_individually": true,
+      "findings": "Actual landscape Cards room: original fox opposite player, table and room depth, separate draw/discard stacks and all seven face cards are visible. The 7/7 hand counters and current turn instructions are readable; card placement remains disabled with no selection, draw action visible."
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "expected_full_bundle_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "bytes": 289390,
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "actually_opened_individually": true,
+      "findings": "Actual portrait Cards room: three readable face cards in the first of three pages, previous/next controls, visible draw/discard stacks, original fox and room geometry. Current player turn and 7/7 hand counts remain legible. This image does not itself prove a whole game, AI strength or native Android rendering."
+    }
+  ],
+  "scope": "Exactly two current receipt-selected Cards captures were actually opened. The other two Cards format captures were not separately reviewed in this pass. Original artifact byte equality is checked, not concept-image similarity."
+}

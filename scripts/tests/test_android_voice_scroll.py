@@ -63,7 +63,10 @@ class LongParentScrollTest(unittest.TestCase):
     def test_existing_default_search_is_not_silently_unbounded(self):
         with self.assertRaisesRegex(RuntimeError, "No enabled live Flutter control"):
             self.run_reader()
-        self.assertEqual(self.nodes.call_count, 24)
+        # Each of the two directions still permits only twelve gestures.
+        # The view reached by its last gesture must also be inspected.
+        self.assertEqual(self.scrolled, 24)
+        self.assertEqual(self.nodes.call_count, 26)
         self.assertEqual(self.position, 12)
         self.assertEqual(self.control_touches, 0)
         self.capture.assert_called_once()

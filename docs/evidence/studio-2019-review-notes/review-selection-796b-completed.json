@@ -1,0 +1,127 @@
+[
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+    "findings": "Completed 12:3 state visibly shows four real cubes in each group, no remaining supply, correct explanatory text, disabled distribution action and active reset/return controls. No answer or mastery award is claimed."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+    "findings": "First complete round visibly shows three groups with one cube each and nine remaining cubes. Status reads 3/12; task and action controls are readable in this actual viewport."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+    "findings": "Actual completed 180+50 scene: both horizontal strokes of the upper equals sign are visible; lower 230=2 hundreds+3 tens caption is fully backed and readable. The hundred tile, ten bundled tens and three remaining tens are distinct. Task/feedback fit the sampled viewport. Density is a renderer fixture, not a physical Fold7 measurement."
+  },
+  {
+    "module": "learning",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+    "findings": "Actual completed 180+50 scene: both horizontal strokes of the upper equals sign are visible; lower 230=2 hundreds+3 tens caption is fully backed and readable. The hundred tile, ten bundled tens and three remaining tens are distinct. Task/feedback fit the sampled viewport. Density is a renderer fixture, not a physical Fold7 measurement."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+    "findings": "Original-Lumo ist zwischen Startinsel und nächster Plattform sichtbar in der Luft; Kopf, Schwanz und vier Gliedmaßen bleiben erkennbar. Keine sichtbare Streckung der Figur. Bewegungsstick links und großer Sprungknopf rechts liegen getrennt. Header, Etappenhinweis und Spiel-/Pauseaktionen sind lesbar. Der Bildschirm zeigt den tatsächlichen Sprungaufstieg; die Zustandsdatei meldet jump_rise, grounded=false und positive vertikale Geschwindigkeit."
+  },
+  {
+    "module": "jump",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+    "findings": "Der Originalcharakter steht wieder auf dem Steinweg der Startinsel; Schwanz, Füße und Bodenschatten sind sichtbar. Die Zustandsdatei meldet grounded=true, idle und Nullgeschwindigkeit. Der obere Fortschrittstext bricht im schmalen Format in mehrere Zeilen um, ohne die Spiel-/Pauseaktionen zu verdecken. Stick und Sprungknopf sind deutlich voneinander getrennt; keine neue überlagerte Steuerung sichtbar."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+    "findings": "Eine versetzte Brücke ist als cyanfarbene Auswahl im begehbaren räumlichen Baugelände sichtbar; daneben steht ein weiteres Bauteil. Der HUD zeigt zwei Teile und 90 Grad. Die Rückmeldung Brücke versetzt. Rückgängig stellt den vorherigen Platz wieder her. ist lesbar. Bauziel und Testaktion sowie Verschieben/Drehen/Rückgängig/Wiederholen sind sichtbar. Lange Werkzeug- und Bauteilleisten besitzen weiterhin horizontale Scrollausschnitte."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+    "findings": "Der Dialog Aktuelles Bauziel passt vollständig in 640×360. Das Ziel Verbinde die Inseln, die auf zwei Zeilen umbrochene Weganweisung und beide Aktionen sind lesbar. Mein Bauwerk testen und Abbrechen bleiben vollständig sichtbar und voneinander getrennt. Die hinter dem Dialog verdeckte Bauwelt ist erwarteter Modalhintergrund."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+    "findings": "Der bis zum unteren Ende gescrollte Vorlagendialog zeigt Brücke, Sternenturm, Garten, Garten-Parzelle, Hafen-Parzelle, Insel-Parzelle und Leere Insel lesbar; die feste Abbrechen-Aktion bleibt sichtbar. Starter-Haus ist am oberen Scrollrand teilweise abgeschnitten, passend zum aufgenommenen unteren Scrollstand. Dies ist keine Behauptung, dass alle Listeneinträge gleichzeitig sichtbar sind. Der lange Bauwelt-Titel im Hintergrund ist im schmalen Header verkürzt/verdeckt; die eigentlichen Navigationsaktionen und die sichtbaren Dialogaktionen bleiben unterscheidbar."
+  },
+  {
+    "module": "settlement",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+    "findings": "Die tatsächliche 388×390-Dialogoberfläche erklärt den vorübergehenden Auszug eines Bewohners, zwei verbleibende Bewohner, die Materialrückgabe und die Rückgängig-Funktion. Haus behalten und Ja, umbauen sind vollständig sichtbar und getrennt. Die Aufnahme ist der gerenderte Dialog-Viewport, kein vollständiges Landschaftsbild. Kleine vorhandene Textunschärfe: Bei einer Münze steht grammatisch 1 Münzen; kein Bedienblocker."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+    "findings": "Original-Lumo steht rechts neben einem plastischen Kart auf der beleuchteten Plattform. Werkstattboden, Werkzeuge, Reifenständer und Schattierung ergeben einen räumlichen Schauplatz. Kartliste, Auswahl Comet, Lack/Teile/Effekte, Rückkehr und Rennen starten sind lesbar. Untere weitere Kartoptionen benötigen den vorhandenen Listen-Scrollbereich. Aus diesem Standbild allein wird keine laufende Dreh- oder Figurenanimation behauptet."
+  },
+  {
+    "module": "garage",
+    "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+    "findings": "Original-Lumo sitzt auf dem goldfarbenen Kart; Reifen, Sitzposition, Schwanz, Plattform und Schatten sind deutlich erkennbar. Keine neue sichtbare Gliedmaßenverzerrung. Die unteren Lack-/Felgen-/Neonoptionen und Alle Teile zurücksetzen und 16 zurückholen sind lesbar. Zurück, 370 freie Sterne und Tuning 4 von 20 bleiben sichtbar. Der lange Werkstatttitel wird mit Auslassungszeichen gekürzt. Das Bild zeigt den Zustand vor dem ersten Rückerstattungstipp am unteren Scrollende. Der erfolgreiche Zwei-Tipp-Ablauf und die Unterdrückung einer Aktion beim Wischen sind durch die zugehörige aktuelle Eingaberegression belegt, nicht durch das Standbild allein."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+    "findings": "Actual landscape Cards room: original fox opposite player, table and room depth, separate draw/discard stacks and all seven face cards are visible. The 7/7 hand counters and current turn instructions are readable; card placement remains disabled with no selection, draw action visible."
+  },
+  {
+    "module": "cards",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+    "findings": "Actual portrait Cards room: three readable face cards in the first of three pages, previous/next controls, visible draw/discard stacks, original fox and room geometry. Current player turn and 7/7 hand counts remain legible. This image does not itself prove a whole game, AI strength or native Android rendering."
+  },
+  {
+    "module": "rhythm",
+    "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+    "findings": "Die räumliche Rhythmusbühne zeigt vier deutlich getrennte Spuren, passende große untere Eingabefelder, Lichtquellen und Original-Lumo auf der Bühne. Ein sichtbarer diagonaler Verbindungsstrich führt vom hervorgehobenen dritten Ziel zur nächsten Spur; Zur nächsten Spur! ist klar lesbar. Das Bild zeigt die Aufforderung mit 0 Punkten, nicht den späteren Erfolg des Slide-Ereignisses. Touch-/Hold-/Slide-Erfolg folgt aus dem aktuellen Eingabeprotokoll."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+    "findings": "Actual compact 640x360 play view: board and pieces remain between HUD and toolbar; selected target is visibly outlined, one placed part and one hint are shown. Only the visible toolbar segment is assessed; the existing horizontal scroll affordance remains."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+    "findings": "Actual landscape state after placing a correctly oriented part: 1/6, zero hints; extruded piece geometry and side trays visible; unavailable rotate control is disabled; current feedback and buttons are legible."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+    "findings": "Actual branch point after bridge discovery: instruction explicitly names crystal/garden choice and requirement for both finds. Scene contains playable terrain, companion, objects and touch controls. Existing large background wall and simpler companion remain; this is not a complete art overhaul."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+    "findings": "Actually opened current 2176x1812 density-fixture completion scene: 7/7 solved clues and 3/3 discoveries are readable; the modal visibly lists 3 stars and 54 XP and all three actions (continue exploring, new adventure, return to play world). Buttons and modal text remain inside the viewport; joystick/action controls remain visible behind it. A screenshot alone does not verify reward persistence or modal input interception. The title has the existing light text over scenery, and background architecture is unchanged. This is a specific renderer state, not a physical fold transition or complete art-quality approval."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+    "findings": "Das einzige sichtbare Auswahlmenü zeigt Leuchtturm-Bucht, Mini · 6 Teile und Modus: Drehpuzzle. Titel und alle fünf Menüaktionen einschließlich Zur Spielewelt sind lesbar. Keine doppelte oder stehengebliebene Auswahlzeile sichtbar. Der reale Spielraum bleibt hinter dem Menü erkennbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+    "findings": "Das Auswahlmenü ist geschlossen. Der HUD zeigt Mini · Drehpuzzle · 0 / 6 Teile · 0 Tipps und den Hinweis Eine Vierteldrehung. Vergleiche Bild und Form. Drehen, Teilewahl und weitere Werkzeugaktionen sind sichtbar. Die räumlichen Puzzleteile liegen auf den seitlichen Ablagen, das mittlere Zielfeld ist frei."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+    "findings": "Der klassische Modus zeigt 1 / 6 Teile und Das passt! Dein Bild wächst. Ein Teil sitzt im mittleren Zielfeld; weitere Teile liegen auf den Ablagen. Keine Drehen-Aktion sichtbar; normale Werkzeugaktionen sind lesbar. Kein zurückgebliebenes Auswahlmenü sichtbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+    "findings": "Auch im kleinen Format zeigt ein einziges Menü das gewählte Motiv, sechs Teile und Drehpuzzle. Die vier oberen Auswahl-/Startaktionen sind lesbar. Der letzte Eintrag Zur Spielewelt liegt am unteren Rand nur teilweise im sichtbaren Ausschnitt. Die vertikale Scrollleiste ist sichtbar. Dieses Bild belegt keine gleichzeitige vollständige Sichtbarkeit aller Aktionen. Der horizontale Werkzeug-Scrollbereich hinter dem Menü ist ebenfalls sichtbar. Kein doppelt aufgebautes Menü erkennbar."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+    "findings": "Das Menü ist geschlossen. 0 / 6, Modus und Drehhinweis sind lesbar; mittleres Zielfeld und beide Teileablagen sind im Spielraum erkennbar. Drehen sowie die linken Werkzeugaktionen sind sichtbar. Weitere rechte Aktionen benötigen den vorhandenen horizontalen Scrollbereich; dieses Bild behauptet keine gleichzeitige Sichtbarkeit der gesamten Werkzeugleiste."
+  },
+  {
+    "module": "puzzle",
+    "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+    "findings": "Der HUD zeigt 1 / 6 und Das passt! Dein Bild wächst. Ein Teil liegt im mittleren Zielfeld. Der Drehknopf ist im klassischen Modus ausgeblendet. Werkzeugtexte bis Speichern sind lesbar; die nächste rechte Aktion liegt außerhalb beziehungsweise teilweise am Rand des horizontalen Scrollausschnitts. Keine neue Menüduplikation oder verdeckte Platzierungsrückmeldung sichtbar."
+  }
+]

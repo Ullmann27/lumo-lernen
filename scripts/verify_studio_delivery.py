@@ -43,6 +43,7 @@ TOUCH_CAPTURE_PROBES = frozenset({
     'touch-evidence/treasure/captures/treasure_density_regression',
     'touch-evidence/build/captures/build_dialog_density_regression',
 })
+PUZZLE_MENU_CAPTURE_PROBE = 'studio-evidence/captures/puzzle_menu_lifecycle_regression'
 # Pose-studio images are useful technical evidence, but cannot stand in for an
 # actual production scene. The probe directory fixes the image's module.
 CAPTURE_MODULES = {
@@ -55,6 +56,7 @@ CAPTURE_MODULES = {
     'nextgen-evidence/nextgen/captures/cards_table_capture': 'cards',
     'nextgen-evidence/nextgen/captures/rhythm_tour_play_regression': 'rhythm',
     'studio-evidence/captures/puzzle_rotation_regression': 'puzzle',
+    PUZZLE_MENU_CAPTURE_PROBE: 'puzzle',
     'studio-evidence/captures/treasure_exploration_regression': 'treasure',
     'touch-evidence/workshop/captures/kart_workshop_density_regression': 'garage',
     'touch-evidence/treasure/captures/treasure_density_regression': 'treasure',
@@ -213,6 +215,8 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     require(modules == REVIEW_MODULES, 'Visual review must cover all nine changed production scenes')
     require(TOUCH_CAPTURE_PROBES.issubset(capture_probes),
             'Visual review must include the current workshop, treasure and build touch captures')
+    require(PUZZLE_MENU_CAPTURE_PROBE in capture_probes,
+            'Visual review must include the current puzzle menu lifecycle capture')
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,

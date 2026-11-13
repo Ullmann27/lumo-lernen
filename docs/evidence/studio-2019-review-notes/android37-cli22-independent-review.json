@@ -1,0 +1,158 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "recorded_utc": "2026-11-13T19:39:17.972108+00:00",
+  "verdict": "READ_ONLY_REVIEW_NO_ADDITIONAL_BLOCKER_REAL_ANDROID_EXECUTION_REQUIRED",
+  "scope": "Unabhängige Prüfung des eingefrorenen CLI22-/AVD-Anschlusses und seines API37-only-Anschlusses im finalen Studio. Keine Änderungen an Diagnose-/Finalbaum, keine eigene Testwiederholung, kein Emulatorstart und kein Commit/Release.",
+  "diagnostic_base": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+  "diagnostic_branch": "chatgpt/lumo-android17-cli22-recheck-20261113",
+  "source_files": [
+    {
+      "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+      "path": ".github/workflows/lumo-android37-cli22-recheck.yml",
+      "bytes": 9525,
+      "sha256": "c3d70c98771aaf1ef9d6856cf11d84df0d48ef008f0220396c48f6ca362a7fd7"
+    },
+    {
+      "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+      "path": "scripts/prepare_android37_cli22.py",
+      "bytes": 18986,
+      "sha256": "2cbf5f613f329c1ab6a1e1bab1b60cbc09e44ae680f55dac6a3a73b1838f38ff"
+    },
+    {
+      "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+      "path": "scripts/tests/test_android37_cli22.py",
+      "bytes": 8176,
+      "sha256": "d0d7d4de13e4e70ee8e2e063773d5f1bb3a769bd90313fe1b84bc2db1b11ad53"
+    },
+    {
+      "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+      "path": "scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4"
+    },
+    {
+      "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "bytes": 8434,
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa"
+    }
+  ],
+  "final_studio_workflow": {
+    "checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "bytes": 41327,
+    "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722"
+  },
+  "independently_performed_static_comparisons": {
+    "framework_core_ast_unchanged": {
+      "Recorder": true,
+      "observe": true,
+      "poll_framework": true,
+      "start_monitor": true,
+      "collect_monitor": true,
+      "stop_monitor": true,
+      "monitor_alive": true,
+      "adb_path": true
+    },
+    "diagnostic_protected_files_byte_unchanged": {
+      "scripts/verify_android_recheck_identity.py": true,
+      "scripts/run_android_recheck_tour.sh": true,
+      ".github/probes/creative_android_probe.py": true,
+      ".github/probes/modernization_android_tour.py": true,
+      ".github/probes/lumo_studio_surfaces_android_probe.py": true,
+      "scripts/tests/test_android_framework_ready.py": true
+    },
+    "shared_helpers_byte_equal": {
+      "scripts/prepare_android37_cli22.py": true,
+      "scripts/tests/test_android37_cli22.py": true,
+      "scripts/android_framework_ready.py": true,
+      "scripts/prepare_android37_emulator_action.py": true
+    },
+    "diagnostic_jobs": [
+      "android-recheck"
+    ],
+    "diagnostic_api_matrix": [
+      37
+    ],
+    "studio_workflow_sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722",
+    "api35_action": "reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d",
+    "api35_condition": "matrix.api == 35",
+    "api35_emulator_options": "-no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none"
+  },
+  "findings": [
+    {
+      "area": "Echte Originalaufnahme",
+      "result": "Vor der kanonischen Umstellung werden realer bisheriger latest-Pfad, Dateihashes, source.properties und ausgeführte SDK-Manager-Version erfasst. Die tatsächlich gepinnte a421-Funktion createAvd erzeugt ein gesondertes ungebootetes Original-AVD mit denselben Eingaben. INI und Konfiguration werden gelesen und unverändert kopiert; die alten Werkzeuge und AVD-Dateien bleiben erhalten."
+    },
+    {
+      "area": "Offizielle CLI22",
+      "result": "Das fest benannte offizielle Archiv muss den bereits im früheren echten SDK-Inventurlauf bestätigten SHA256 4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583 besitzen. Neue Paketbytes und tatsächliche22.0-Version werden geprüft. Vorhandenes latest wird erhalten und auf die echten installierten22.0-Werkzeuge umgestellt. Alle ursprünglichen ZIP-Dateien bleiben später hashpflichtig; nur eine zusätzliche SDK-Registrierung package.xml ist zulässig."
+    },
+    {
+      "area": "Unveränderte Konfiguration",
+      "result": "API37.0/google_apis/x86_64, Image-Revision8 und Emulator37.2.13 werden gebunden. Die echten a421-Aufrufe behalten Pixel5, zwei Kerne,4096M RAM,512M Heap und die bisherige GPU-/Partitionskonfiguration. Die Pflichtprüfung verlangt den real generierten target android-37.0, dieselbe Imageadresse, ursprüngliche CPU-/Speicherwerte und unveränderte Image-/Emulatoreigenschaften. Sie schreibt keinen target und keine Partition um."
+    },
+    {
+      "area": "Tatsächliche harte Prüfgrenze",
+      "result": "Der unveränderte Action-Hook kann einen Fehler nur registrieren und danach trotzdem booten. Deshalb archiviert der Hook hier nur. Derselbe tatsächliche CLI-/AVD-/Quellvergleich läuft zusätzlich zwingend im strikten Framework-Guard vor dem ursprünglichen Keyevent und vor jeder App-Tour. Eine Abweichung oder fehlende Vorbereitung endet dort mit Fehler und erreicht den unveränderten äußeren Action-Cleanup. Es wird ausdrücklich kein Stop vor dem Emulatorstart behauptet."
+    },
+    {
+      "area": "Zeitrahmen und Neustarterkennung",
+      "result": "Die einmaligen read-only-Ressourcenbeobachtungen und die begrenzte CLI-/AVD-Verifikation liegen innerhalb derselben ursprünglichen120s-Gesamtfrist. Die Framework-Pollfunktion, Android37/Release17-Bedingungen, Identitätswechsel-Ablehnung, Mindestbeobachtungen und Monitorfunktionen sind unabhängig als AST-identisch zum e4ed-Stand verglichen. Es gibt keine neue Toleranz für beobachtete Systemserverwechsel."
+    },
+    {
+      "area": "APK- und API35-Abgrenzung",
+      "result": "Der Diagnoseworkflow enthält nur API37 und weder Build noch Publisher. Originalartefakt14061222588/Run43461547945, immutable e3d-Appquelle und alle sechs überprüften bestehenden Identitäts-/Tour-/Probe-Dateien bleiben unverändert. Der finale Studioanschluss ist für Vorbereitung und Guard ausdrücklich auf matrix.api==37 beschränkt; API35 verwendet weiterhin die ursprüngliche gepinnte Action und GPU-Einstellung. Der finale Kandidat bindet seinen eigenen Quellstand separat."
+    }
+  ],
+  "tests_read_not_rerun": {
+    "cli22_contracts": {
+      "passed": 8,
+      "skipped": 0,
+      "seconds": 0.037,
+      "scope": "Synthetische Dateien und lokale Parser-/Hash-/Quellgegenfälle; kein SDK-Installationslauf."
+    },
+    "existing_framework_action_contracts": {
+      "passed": 8,
+      "skipped": 0,
+      "seconds": 0.405,
+      "scope": "Bestehende synthetische Framework- und echte upstream-JavaScript-Kontrollflussverträge. Gesicherter Toolausgabetext chunk7ec560, ausdrücklich kein behaupteter bytegetreuer Original-Rohstream."
+    },
+    "static_validation_reviewed": "Beide actionlint-Ergebnisse0 sowie14/45 Bashblöcke aus As local-validation/static-integration gelesen; von mir nicht erneut ausgeführt.",
+    "log_files": [
+      {
+        "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+        "path": "docs/evidence/android37-cli22-recheck-20261113/cli22-contracts.log",
+        "bytes": 1631,
+        "sha256": "71c9c43c7bb2c6c4f70534c77a1c076f50bd25e2ec7c835009b80d55c0da7d9a"
+      },
+      {
+        "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+        "path": "docs/evidence/android37-cli22-recheck-20261113/framework-contracts.tool-output.log",
+        "bytes": 1612,
+        "sha256": "d809fc2d26bee4e2d1b3e3c57fa93bef218c52ab44651961b1ebc8383ec41e75"
+      },
+      {
+        "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+        "path": "docs/evidence/android37-cli22-recheck-20261113/local-validation.json",
+        "bytes": 4008,
+        "sha256": "782fd918d297302229a9bc2639b327e25685db4fb04cb5e0679d276c43b794c7"
+      },
+      {
+        "checkout": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+        "path": "docs/evidence/android37-cli22-recheck-20261113/static-integration.json",
+        "bytes": 1433,
+        "sha256": "143616468673029a53573aa1bf2b61df12056ea1780a1d81ab07f5c4f5c36876"
+      }
+    ]
+  },
+  "additional_blockers": [],
+  "acceptance_limits": [
+    "Die CLI22-/AVD-Hypothese bleibt bis zum wirklichen neuen Runnerlauf unbestätigt. Unser gescheiterter e4ed-Lauf enthält weiterhin keinen eigenen alten target- oder CLI-Versionsnachweis.",
+    "Die alte AVD-Vergleichsinstanz wird absichtlich nicht gebootet; der Vergleich bestätigt ihre erzeugte Konfiguration, nicht ein neues vollständiges altes/neues Laufzeit-A/B.",
+    "Frameworkreadiness ist eine begrenzte Stichprobe; die archivierten tatsächlichen Startlogs müssen zusätzlich auf frühe Neustarts und Grafikabbrüche geprüft werden.",
+    "Keine Android17-, App-Tour-, Cards-, Fold7- oder FPS-Freigabe durch diese Quellprüfung."
+  ],
+  "related_primary_source_review": "docs/evidence/studio-2019-review-notes/android37-cli-primary-sources-review.json"
+}

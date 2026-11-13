@@ -1,0 +1,80 @@
+{
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "full_artifact_id": 14067226187,
+  "full_artifact_sha256": "3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+  "root_individually_opened_images": 14,
+  "full_bundle_matches_all_reviewed_original_bytes": true,
+  "images": [
+    {
+      "path": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/learning_sharing_capture/sharing-complete-412x915.png",
+      "sha256": "02f5f6cb203d87f15b8d5de46557d1e47b16b965072b9d6b1fc365731f6abe71",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-1280x720.png",
+      "sha256": "364b2e326ca79abda3f0894f7d91fbb9e19e1428f2ce5bc69ac176839f45a9b2",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/learning_sharing_capture/sharing-start-1280x720.png",
+      "sha256": "8153286850252d1bf7b365b079673b1da0ecb354ffb22fe8a0f9b4dbe768c605",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/learning_sharing_capture/sharing-start-412x915.png",
+      "sha256": "59edf83f79a88341b04dd9d3a74bb8bc03aad42385e601d24a739cefc06fe94b",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+      "review": "learning-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "f781e5cdf9aa32bcf83aec408ab52a5800249480ae1ed6c4a97550755292b460",
+      "review": "puzzle-treasure-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "review": "puzzle-treasure-796b-current-review.json"
+    },
+    {
+      "path": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "d751095dec4aed5503d7d8f3821adae6730258efcd26611a43d6fc0d6cd6c7a7",
+      "review": "puzzle-treasure-796b-current-review.json"
+    },
+    {
+      "path": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7",
+      "review": "treasure-touch-796b-current-review.json"
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "review": "cards-796b-current-review.json"
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "review": "cards-796b-current-review.json"
+    }
+  ],
+  "scope": "Exact byte comparison links earlier actual original standalone-image reviews to the complete current bundle; no additional visual review is inferred."
+}

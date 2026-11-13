@@ -1,0 +1,14 @@
+test_android_zero_pointer_cannot_pass_even_with_android37_image (test_android37_cli22.ActualFileBindingTests.test_android_zero_pointer_cannot_pass_even_with_android37_image) ... ok
+test_different_image_or_official_tool_bytes_fail_closed (test_android37_cli22.ActualFileBindingTests.test_different_image_or_official_tool_bytes_fail_closed) ... ok
+test_foreign_probe_source_or_missing_preparation_is_rejected (test_android37_cli22.ActualFileBindingTests.test_foreign_probe_source_or_missing_preparation_is_rejected) ... ok
+test_generated_configuration_is_read_not_repaired (test_android37_cli22.ActualFileBindingTests.test_generated_configuration_is_read_not_repaired) ... ok
+test_sdk_registration_metadata_does_not_allow_changed_official_files (test_android37_cli22.ActualFileBindingTests.test_sdk_registration_metadata_does_not_allow_changed_official_files) ... ok
+test_unverified_zip_is_not_extracted_or_executed (test_android37_cli22.ActualFileBindingTests.test_unverified_zip_is_not_extracted_or_executed) ... ok
+test_failed_actual_avd_binding_cannot_reach_framework_acceptance (test_android37_cli22.FrameworkBindingTests.test_failed_actual_avd_binding_cannot_reach_framework_acceptance) ... ok
+test_resources_are_exactly_three_read_only_observations (test_android37_cli22.FrameworkBindingTests.test_resources_are_exactly_three_read_only_observations) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.037s
+
+OK
+{"status": "FAIL", "reason": "actual_cli22_avd_binding_not_verified", "serial": "emulator-5554", "elapsed_seconds": 0.0001730270014377311, "consecutive_ready_samples": 0}

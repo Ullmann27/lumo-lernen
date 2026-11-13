@@ -1,0 +1,20 @@
+{
+  "commit": "a421e43855164a8197daf9d8d40fe71c6996bb0d",
+  "retrieval": "GitHub fetch_file at exact commit; returned Git blob independently recomputed from stored bytes",
+  "files": [
+    {
+      "name": "sdk-installer.ts",
+      "git_blob": "6dfef13d5f460486092c5981900c45e4c73737e1",
+      "url": "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/src/sdk-installer.ts",
+      "bytes": 3985,
+      "sha256": "b96a07a6a63a950dfc91b4c314ae1f89f19cb2d0954e259681ec0543487af62f"
+    },
+    {
+      "name": "sdk-installer.js",
+      "git_blob": "0e4f33eb144511d23dd1bf49e99ddde7f9a9bace",
+      "url": "https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/lib/sdk-installer.js",
+      "bytes": 5745,
+      "sha256": "0d393abad551932cb94a26860eab8af113e68788f9f95475b2fd5a520022f19e"
+    }
+  ]
+}

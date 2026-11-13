@@ -1,0 +1,46 @@
+{
+  "status": "INTEGRATED_FROZEN_FOR_ROOT_REVIEW",
+  "files": [
+    {
+      "path": "scripts/android_framework_ready.py",
+      "sha256": "7114e856b81513a34b63e3e197190f70e5c15402e217cd2a45f6f82ccddc4066",
+      "bytes": 15405,
+      "byte_equal_to_reviewed_diagnostic": true
+    },
+    {
+      "path": "scripts/prepare_android37_emulator_action.py",
+      "sha256": "2aeada254a220c14528f344669f1afbb64d50a9f1d24cd663dc38263afe0bfde",
+      "bytes": 8260,
+      "byte_equal_to_reviewed_diagnostic": true
+    },
+    {
+      "path": "scripts/tests/test_android_framework_ready.py",
+      "sha256": "2e90c3e647104b3bee567f5bf264f988462fa5b9028408b03f80d307582be325",
+      "bytes": 11240,
+      "byte_equal_to_reviewed_diagnostic": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "sha256": "7b8c22aa441473ae93109b4d0280f9869684531585041e078e8075a9137bcf21",
+      "bytes": 40629
+    }
+  ],
+  "workflow_before_sha256": "2c10c45856a51a96d77dc39e359d221f76d60e286d7b3fde6729b8c9eba71a9c",
+  "semantic_comparison": {
+    "api35_original_action_unchanged_except_matrix_if": true,
+    "api37_preserves_every_original_tour_command_and_with_input": true,
+    "original_artifacts_and_publish_dependencies_unchanged": true,
+    "all_other_jobs_unchanged": true,
+    "full_python_contract_suite_preserved_with_required_exact_action_fixture": true,
+    "no_e3d_or_76980_binding_in_new_workflow": true
+  },
+  "actual_config_native_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "host_apk_source_expression": "${{ github.event.pull_request.head.sha || github.sha }}",
+  "readiness_code_tests_repeated": false,
+  "static_checks": {
+    "actionlint_exit": 0,
+    "bash_n_blocks": 42,
+    "bash_n_result": "PASS"
+  },
+  "no_ci_or_build_triggered": true
+}

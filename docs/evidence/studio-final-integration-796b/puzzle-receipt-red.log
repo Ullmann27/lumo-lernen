@@ -1,0 +1,35 @@
+test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) ... 
+  test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) (verifier=True) ... FAIL
+  test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) (recorder=True) ... FAIL
+  test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) (no_receipt=True) ... FAIL
+
+======================================================================
+FAIL: test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) (verifier=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_delivery.py", line 397, in test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture
+    with self.subTest(verifier=True), self.assertRaisesRegex(ValueError, 'current puzzle menu lifecycle capture'):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) (recorder=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_delivery.py", line 400, in test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture
+    with self.subTest(recorder=True), self.assertRaisesRegex(ValueError, 'current puzzle menu lifecycle capture'):
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture) (no_receipt=True)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_delivery.py", line 403, in test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture
+    self.assertFalse((destination / delivery.REVIEW_RECEIPT).exists())
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 1 test in 0.074s
+
+FAILED (failures=3)

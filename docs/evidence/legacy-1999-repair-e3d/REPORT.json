@@ -1,0 +1,374 @@
+{
+  "status": "ISOLATED_REPAIR_PREPARED_LOCAL_CONTRACTS_PASS_NOT_INTEGRATED_OR_EXECUTED_ON_ANDROID",
+  "prepared_utc": "2026-11-13T17:18:28.850196+00:00",
+  "worktree": "/workspace/scratch/5987865ae883/legacy-1999-repair-e3d",
+  "base_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "base_tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+  "initial_worktree_clean": true,
+  "detached_worktree": true,
+  "original_failure": {
+    "status": "separate historical workflow failed",
+    "reviewed_at_utc": "2026-11-13T16:43:48.539964+00:00",
+    "host_revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "workflow": ".github/workflows/lumo-1999-update-gate.yml",
+    "run_id": 43461548520,
+    "job_id": 132009474907,
+    "failed_step": "Independently verify both candidate ABIs and baseline signature",
+    "actual_error": "Wrong Android version: 0.12.87+1999, expected 0.13.7+2019",
+    "historical_candidate_workflow_run_id": 40096024152,
+    "historical_candidate_revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "historical_baseline_workflow_run_id": 39755153883,
+    "historical_baseline_revision": "136f486ac3bdc4aabbd3b990e6629d2d6640c7d4",
+    "finding": "The path-triggered historical workflow downloads fixed 1997/1999 artifacts but invokes the current checkout verifier, whose expected version is 2019. It rejected the historical candidate. This workflow is not a dependency of the Studio 2019 publisher. No current 2019 APK or Android update ran in this failed step. This remains a separate historical workflow maintenance issue; no claim that every repository workflow is green.",
+    "original_log": "legacy-1999-workflow-e3d-failure.log",
+    "original_log_sha256": "eb2500f4cf73f61b9aa798594f4bb9821bfb581d89443ea9a24f9202be5929e8",
+    "code_or_workflow_changed_for_this_finding": false
+  },
+  "original_verifier_difference": "The c60 verifier lacks the current fixed family certificate guard. The repair executes the current verifier, not the historical verifier.",
+  "repair": [
+    "The unchanged historical APK artifact runs remain fixed at 40096024152 (1999) and 39755153883 (1997).",
+    "A separate sparse read-only checkout supplies only four expectation metadata paths from c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf.",
+    "The current verifier reads these paths directly from the exact Git commit objects, with replacement objects disabled; modified working-copy metadata cannot substitute for the pinned bytes.",
+    "Repository and full 40-character commit must be provided together. Conflicting version environment overrides are rejected for source-bound checks.",
+    "Both candidate ABI reports include the expected source commit and SHA256 for all four input metadata files.",
+    "Default current-build behavior retains the current ROOT metadata and existing version override behavior."
+  ],
+  "changed_code_and_test_files": [
+    {
+      "path": ".github/workflows/lumo-1999-update-gate.yml",
+      "bytes": 6865,
+      "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1"
+    },
+    {
+      "path": "scripts/verify_unified_apk.py",
+      "bytes": 12075,
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+    },
+    {
+      "path": "scripts/tests/test_historical_apk_expectations.py",
+      "bytes": 13552,
+      "sha256": "6d9f146935c5f80ff305f7171843c34ce17f514161894014348b79810260af0f"
+    }
+  ],
+  "current_verifier_guard_preservation": {
+    "baseline": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "guard_ast_review": {
+      "validate_abis": true,
+      "validate_offline_voice": true,
+      "verify_body_identical_after_removing_only_new_expectation_reader_binding_and_extra_report": true
+    },
+    "unchanged_guard_and_product_files": [
+      {
+        "path": "scripts/verify_android_apk.py",
+        "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+        "matches_e3d": true
+      },
+      {
+        "path": "scripts/LumoApkCertificateVerifier.java",
+        "sha256": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+        "matches_e3d": true
+      },
+      {
+        "path": "tools/lumo-debug.keystore",
+        "sha256": "af536f19a882d7de1aed2bb4ae5b6bde9235112e0be1dc8ffacd08f3aecf0cfb",
+        "matches_e3d": true
+      },
+      {
+        "path": ".github/probes/candidate_update_android_probe.py",
+        "sha256": "38d6744b48424ac3a038e4d6a4fe6a42c5135cee6bec3315f1b7dbe3a80e8f9f",
+        "matches_e3d": true
+      },
+      {
+        "path": ".github/probes/lumo_learning_journey_probe.py",
+        "sha256": "695aa825f506c77a8d68e3d3063eb4eaad3e1678a03028f6081a344b1ba02e63",
+        "matches_e3d": true
+      },
+      {
+        "path": ".github/probes/modernization_android_tour.py",
+        "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b",
+        "matches_e3d": true
+      },
+      {
+        "path": "tools/android_qa/update_preservation.py",
+        "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+        "matches_e3d": true
+      },
+      {
+        "path": "tools/android_qa/tests/test_update_preservation.py",
+        "sha256": "d292dd0ec9968bb6b5cd8836c3d0c170ef9d8fac7532d578d8bec26929db389a",
+        "matches_e3d": true
+      },
+      {
+        "path": "config/godot-source.json",
+        "sha256": "ff76449f25572273d0602fff4bb826e14850030c063bb41d9471e262ffcc8896",
+        "matches_e3d": true
+      },
+      {
+        "path": "pubspec.yaml",
+        "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+        "matches_e3d": true
+      },
+      {
+        "path": ".github/workflows/lumo-studio-2019.yml",
+        "sha256": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98",
+        "matches_e3d": true
+      }
+    ],
+    "live_host_files_unchanged": [
+      {
+        "path": "scripts/verify_unified_apk.py",
+        "current_host_sha256": "20ac42965bc2de166d59218d5feb6d062c35d0c2197662fa530677cad43ed8ed",
+        "matches_e3d": true
+      },
+      {
+        "path": ".github/workflows/lumo-1999-update-gate.yml",
+        "current_host_sha256": "ca6c21f5f33b3ed94e853dca3735b75cb1ca59c4faf2db71dda91649c4bc02df",
+        "matches_e3d": true
+      }
+    ],
+    "changed_worktree_paths": [
+      " M .github/workflows/lumo-1999-update-gate.yml",
+      " M scripts/verify_unified_apk.py",
+      "?? scripts/tests/test_historical_apk_expectations.py"
+    ]
+  },
+  "actual_historical_source_expectations": {
+    "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "files": {
+      "pubspec.yaml": "8d2ee4ad44ef4fbc18ad33a18bd28f49b41080ad6ee0bf37ce524007c40cf333",
+      "config/godot-source.json": "42f707ab60020b545e642a70fa8c392156ef27bb589713c273a4b228e5f540a4",
+      "config/lumo-offline-voice.json": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+      "assets/audio/voice/lumo_free/catalog.json": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c"
+    },
+    "pubspec_version": "version: 0.12.87+1999",
+    "native_revision": "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+    "git_blobs": {
+      "pubspec.yaml": "2d7d9b0a655be15f466a3f250c2226099e363458",
+      "config/godot-source.json": "4847a71640d1230f0a7b67e07c7cc5c606649e58",
+      "config/lumo-offline-voice.json": "200b67029cd4e19f27118f77b52e683c49461a6b",
+      "assets/audio/voice/lumo_free/catalog.json": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315"
+    }
+  },
+  "validation": {
+    "red": {
+      "test_methods": 15,
+      "failures": 1,
+      "errors_including_subtests": 25,
+      "exit_code": 1,
+      "meaning": "The new bound-source and workflow contracts fail before the repair; the existing default also reproduces rejection of 1999 metadata against the current version."
+    },
+    "green": {
+      "test_methods": 15,
+      "passed": 15,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0,
+      "execution": {
+        "command": [
+          "python3",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "scripts/tests",
+          "-p",
+          "test_historical_apk_expectations.py",
+          "-v"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.5098128559984616,
+        "scope": "Synthetic contract tests; no Android execution"
+      }
+    },
+    "existing_abi_voice_contracts": {
+      "test_methods": 9,
+      "passed": 9,
+      "failed": 0,
+      "skipped": 0,
+      "exit_code": 0
+    },
+    "lint": {
+      "actionlint_version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for linux/amd64\n",
+      "actionlint_exit_code": 0,
+      "bash_blocks": [
+        {
+          "step": "Verify the immutable candidate and baseline workflow identities",
+          "kind": "run",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "step": "Install independent live UI and image readers",
+          "kind": "run",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "step": "Independently verify both candidate ABIs and baseline signature",
+          "kind": "run",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "step": "Enable accelerated disposable emulator",
+          "kind": "run",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "step": "Software display",
+          "kind": "run",
+          "exit_code": 0,
+          "stderr": ""
+        },
+        {
+          "step": "Actual 1997 learning, in-place update, offline Kart and preserved progress",
+          "kind": "emulator_script",
+          "exit_code": 0,
+          "stderr": ""
+        }
+      ]
+    },
+    "patch_application": {
+      "forward_check_against_exact_e3d_file_bytes": {
+        "exit_code": 0,
+        "stderr": ""
+      },
+      "reverse_check_against_isolated_patched_worktree": {
+        "exit_code": 0,
+        "stderr": ""
+      }
+    },
+    "git_diff_check_exit_code": 0,
+    "synthetic_scope": "The tiny ZIP fixtures are not real signed APKs. External signature and aapt readers are stubbed; immutable Git reads and current package/PCK/voice/ABI/resource validation actually execute. No Android or renewed CI success is claimed.",
+    "warnings": [
+      "Four ResourceWarning messages expose the pre-existing unclosed path.open call in the verifier final APK digest. The identical call exists at e3d; it is outside this repair and remains unchanged.",
+      "One fatal unknown-revision diagnostic is intentionally emitted by the negative zero-commit fixture; the rejection is asserted and the test passes."
+    ]
+  },
+  "patch": {
+    "file": "legacy-1999-source-bound-verifier.patch",
+    "bytes": 23770,
+    "sha256": "47bc8f0dd249a56ec521a671e30f6927ea5532a35b8b034eeae54b0dcb7a744c"
+  },
+  "unmodified_active_delivery": {
+    "host": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "native": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "github_mutation": false,
+    "ci_started_or_retried": false,
+    "active_host_or_native_product_files_modified": false
+  },
+  "remaining_acceptance": "The historical workflow must be run after a separate reviewed integration before claiming this historical Android gate passes. No changes are inserted into the running Studio delivery.",
+  "independent_review": {
+    "file": "independent-source-review.json",
+    "bytes": 1202,
+    "sha256": "a3dabef2df9a6565bac4ec902bcbc961783fc96a1803c41cb411a41394583641"
+  },
+  "evidence_files": [
+    {
+      "file": "actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "file": "bash-update-and-tour-10-emulator_script.sh",
+      "bytes": 200,
+      "sha256": "95000cc07c02771d5a7c5a409c80421d06eb7110a42bdeedc3b2919df52b87d2"
+    },
+    {
+      "file": "bash-update-and-tour-2-run.sh",
+      "bytes": 694,
+      "sha256": "2b65953649fb731d38e1e270ef2f6915759bd27ebe3638af443aae55d592179f"
+    },
+    {
+      "file": "bash-update-and-tour-6-run.sh",
+      "bytes": 793,
+      "sha256": "91282161803254d0841cf9c2fbfde430ed19ce1f98e4ffba7322e04408dccf08"
+    },
+    {
+      "file": "bash-update-and-tour-7-run.sh",
+      "bytes": 780,
+      "sha256": "81c5c7d88d5a80c6e946861a8152446cfec5188c7460f988e0ed0efe1d97cee6"
+    },
+    {
+      "file": "bash-update-and-tour-8-run.sh",
+      "bytes": 241,
+      "sha256": "c206e86f21274c1a8a2d0f24e0cae1903776338623ebfb7609f74b10a842c260"
+    },
+    {
+      "file": "bash-update-and-tour-9-run.sh",
+      "bytes": 291,
+      "sha256": "e61ebb32cb4d759b6a1e47fa53ae56f0e18495c2828d3d0bf86397fbd1a32573"
+    },
+    {
+      "file": "contracts-green.log",
+      "bytes": 4517,
+      "sha256": "3badb5d76e5b63bd3220ecff22514c941f68c8a26b915f7220e10cced51bb6b9"
+    },
+    {
+      "file": "contracts-red.log",
+      "bytes": 38843,
+      "sha256": "ee2e9e2bdd43ecfef75312ff4730e53bbd3ebda93a775cc9713ae954867f4464"
+    },
+    {
+      "file": "existing-apk-contracts.log",
+      "bytes": 1379,
+      "sha256": "abbf9bb4a5ce8225e658ce5a4742ece7410c414a6afd5d6feffc60a6db06fbf8"
+    },
+    {
+      "file": "existing-contract-execution.json",
+      "bytes": 253,
+      "sha256": "3ff5ddc32c1ee7ed6d6900f907596bb53d608d70fb319e8b32f5493f09e2a128"
+    },
+    {
+      "file": "green-execution.json",
+      "bytes": 293,
+      "sha256": "1540cc4227cb31ba1e8eabc542e667d15459cfa15bbfb8155dcf4ca36ebf605a"
+    },
+    {
+      "file": "legacy-1999-source-bound-verifier.patch",
+      "bytes": 23770,
+      "sha256": "47bc8f0dd249a56ec521a671e30f6927ea5532a35b8b034eeae54b0dcb7a744c"
+    },
+    {
+      "file": "legacy-1999-workflow-e3d-failure.log",
+      "bytes": 64369,
+      "sha256": "eb2500f4cf73f61b9aa798594f4bb9821bfb581d89443ea9a24f9202be5929e8"
+    },
+    {
+      "file": "legacy-1999-workflow-e3d-review.json",
+      "bytes": 1364,
+      "sha256": "17af3ff61f95e834e01b681a65b6b912dbd445851fb55604d17a62e00d0de21a"
+    },
+    {
+      "file": "lint-execution.json",
+      "bytes": 1050,
+      "sha256": "16baf99f2fe8582e7f96f2667dfdf0ee75df3199333b942694a725053e80b29c"
+    },
+    {
+      "file": "patch-application-check.json",
+      "bytes": 192,
+      "sha256": "9e92f778aa990ad14137d9ff2a0cf41a7bb89ac7355daec958a618ffb72c02ed"
+    },
+    {
+      "file": "preservation-review.json",
+      "bytes": 2849,
+      "sha256": "d392f847b7b63e4adc6a5ce215e90cff3264bd9e0ec832da2d04e828f194649c"
+    },
+    {
+      "file": "real-historical-expectations.json",
+      "bytes": 936,
+      "sha256": "60fbddbff1ea36675cb43144f8d0837f5296047dd7e9809ab7cb31803299b891"
+    },
+    {
+      "file": "red-execution.json",
+      "bytes": 279,
+      "sha256": "75a0ef292827748835555897e29a1ad22d0e8a3eb41a27eeca387a77a4b1fae6"
+    },
+    {
+      "file": "independent-source-review.json",
+      "bytes": 1202,
+      "sha256": "a3dabef2df9a6565bac4ec902bcbc961783fc96a1803c41cb411a41394583641"
+    }
+  ]
+}

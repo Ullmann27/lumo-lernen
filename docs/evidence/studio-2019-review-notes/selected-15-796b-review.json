@@ -1,0 +1,966 @@
+{
+  "schema": "lumo-studio-selected-visual-review-v1",
+  "reviewed_at_utc": "2026-11-13T18:52:53.433088+00:00",
+  "reviewer": "character_animation agent B",
+  "result": "PASS_SCOPED_15_IMAGE_REVIEW_WITH_DOCUMENTED_LAYOUT_LIMITS",
+  "global_release_receipt": false,
+  "native_revision": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "native_tree": "ffd943c83079c5957514934ad7077f32e743fe68",
+  "scope": "Six fresh Puzzle-menu images plus the nine requested Jump/Build/Settlement/Garage/Rhythm selection images. Other image selections and the full delivery receipt remain owned by Root and the other assigned reviewers.",
+  "github": {
+    "repository": "Ullmann27/lumo-godot",
+    "run_id": 43479909943,
+    "run_attempt": 1,
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "artifact_id": 14067226187,
+    "artifact_name": "lumo-studio-2019-native-evidence",
+    "artifact_created_at_utc": "2026-11-13T18:39:23Z",
+    "artifact_digest": "sha256:3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+    "required_jobs": [
+      {
+        "id": 132073398621,
+        "name": "studio",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:09:52Z",
+        "completed_at": "2026-11-13T18:15:45Z"
+      },
+      {
+        "id": 132073399152,
+        "name": "learning-preview",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:09:52Z",
+        "completed_at": "2026-11-13T18:19:43Z"
+      },
+      {
+        "id": 132073399090,
+        "name": "gameplay",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:09:52Z",
+        "completed_at": "2026-11-13T18:29:59Z"
+      },
+      {
+        "id": 132073399192,
+        "name": "touch-build",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:09:52Z",
+        "completed_at": "2026-11-13T18:26:54Z"
+      },
+      {
+        "id": 132073399076,
+        "name": "touch-treasure",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:09:52Z",
+        "completed_at": "2026-11-13T18:27:34Z"
+      },
+      {
+        "id": 132073399244,
+        "name": "touch-workshop",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:09:52Z",
+        "completed_at": "2026-11-13T18:38:54Z"
+      },
+      {
+        "id": 132076788274,
+        "name": "new-worlds",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:15:47Z",
+        "completed_at": "2026-11-13T18:33:54Z"
+      },
+      {
+        "id": 132089802381,
+        "name": "bundle-evidence",
+        "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+        "status": "completed",
+        "conclusion": "success",
+        "run_attempt": 1,
+        "started_at": "2026-11-13T18:38:57Z",
+        "completed_at": "2026-11-13T18:39:25Z"
+      }
+    ],
+    "archive_job": {
+      "id": 132090089258,
+      "name": "archive-evidence",
+      "head_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "status": "completed",
+      "conclusion": "success",
+      "run_attempt": 1
+    },
+    "metadata_files_read": {
+      "artifact.json": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-metadata/artifact.json",
+        "bytes": 761,
+        "sha256": "0876f64aaaafb8b36647226a2c4c609731eed1e9bee7e4222e04b0e93c79ded8"
+      },
+      "jobs.json": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-metadata/jobs.json",
+        "bytes": 27628,
+        "sha256": "8327118dd365f5577839aea2536ff225064a454837fbd10c4ccbe756ac7804a2"
+      },
+      "run.json": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-metadata/run.json",
+        "bytes": 14410,
+        "sha256": "95e34b42474369f96473bc8ec1d515b51ec2cc4fe59d4306b275ea0836beccab"
+      }
+    }
+  },
+  "original_bundle": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-native-796b-original.zip",
+    "bytes": 174869869,
+    "sha256": "3aed744b481e02c485ae0ea039750728ad59842b6b4f6ed9a2c3109ca63a2067",
+    "digest_matches_archived_github_artifact_metadata": true,
+    "independent_crc_check": "PASS",
+    "zip_entry_count": 3605,
+    "checked_extracted_members_byte_equal_to_original_zip": true,
+    "checked_member_count": 58,
+    "checked_member_paths": [
+      "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "nextgen-evidence/nextgen/source-sha.txt",
+      "nextgen-evidence/nextgen/source-dirty.txt",
+      "nextgen-evidence/nextgen/engine.txt",
+      "studio-evidence/source-sha.txt",
+      "studio-evidence/source-dirty.txt",
+      "studio-evidence/source-tree.txt",
+      "studio-evidence/engine.txt",
+      "touch-evidence/build/source-sha.txt",
+      "touch-evidence/build/source-dirty.txt",
+      "touch-evidence/build/source-tree.txt",
+      "touch-evidence/build/source-dirty-after.txt",
+      "touch-evidence/build/engine.txt",
+      "touch-evidence/treasure/source-sha.txt",
+      "touch-evidence/treasure/source-dirty.txt",
+      "touch-evidence/treasure/source-tree.txt",
+      "touch-evidence/treasure/source-dirty-after.txt",
+      "touch-evidence/treasure/engine.txt",
+      "touch-evidence/workshop/source-sha.txt",
+      "touch-evidence/workshop/source-dirty.txt",
+      "touch-evidence/workshop/source-tree.txt",
+      "touch-evidence/workshop/source-dirty-after.txt",
+      "touch-evidence/workshop/engine.txt",
+      "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "nextgen-evidence/nextgen/jump_expeditions_regression-headless.log",
+      "nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log",
+      "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log",
+      "nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log",
+      "touch-evidence/build/build_dialog_density_regression-headless.log",
+      "touch-evidence/build/build_dialog_density_regression-rendered.log",
+      "touch-evidence/workshop/kart_workshop_density_regression-headless.log",
+      "touch-evidence/workshop/kart_workshop_density_regression-rendered.log",
+      "studio-evidence/puzzle_menu_lifecycle_regression-headless.log",
+      "studio-evidence/puzzle_menu_lifecycle_regression-rendered.log",
+      "touch-evidence/build/captures/build_dialog_density_regression/measurements.json",
+      "touch-evidence/workshop/captures/kart_workshop_density_regression/measurements.json",
+      "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump-nextgen-evidence.json"
+    ]
+  },
+  "current_source_stamps": [
+    {
+      "group": "nextgen-evidence/nextgen",
+      "source_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_bytes": 0,
+      "files": [
+        {
+          "path": "nextgen-evidence/nextgen/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+          "text": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e\n"
+        },
+        {
+          "path": "nextgen-evidence/nextgen/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "nextgen-evidence/nextgen/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+          "text": "4.6.3.stable.official.7d41c59c4\n"
+        }
+      ],
+      "tree_stamp_present": false
+    },
+    {
+      "group": "studio-evidence",
+      "source_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_bytes": 0,
+      "files": [
+        {
+          "path": "studio-evidence/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+          "text": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e\n"
+        },
+        {
+          "path": "studio-evidence/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "studio-evidence/source-tree.txt",
+          "bytes": 41,
+          "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90",
+          "text": "ffd943c83079c5957514934ad7077f32e743fe68\n"
+        },
+        {
+          "path": "studio-evidence/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+          "text": "4.6.3.stable.official.7d41c59c4\n"
+        }
+      ]
+    },
+    {
+      "group": "touch-evidence/build",
+      "source_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_bytes": 0,
+      "files": [
+        {
+          "path": "touch-evidence/build/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+          "text": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e\n"
+        },
+        {
+          "path": "touch-evidence/build/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "touch-evidence/build/source-tree.txt",
+          "bytes": 41,
+          "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90",
+          "text": "ffd943c83079c5957514934ad7077f32e743fe68\n"
+        },
+        {
+          "path": "touch-evidence/build/source-dirty-after.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "touch-evidence/build/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+          "text": "4.6.3.stable.official.7d41c59c4\n"
+        }
+      ]
+    },
+    {
+      "group": "touch-evidence/treasure",
+      "source_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_bytes": 0,
+      "files": [
+        {
+          "path": "touch-evidence/treasure/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+          "text": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e\n"
+        },
+        {
+          "path": "touch-evidence/treasure/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "touch-evidence/treasure/source-tree.txt",
+          "bytes": 41,
+          "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90",
+          "text": "ffd943c83079c5957514934ad7077f32e743fe68\n"
+        },
+        {
+          "path": "touch-evidence/treasure/source-dirty-after.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "touch-evidence/treasure/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+          "text": "4.6.3.stable.official.7d41c59c4\n"
+        }
+      ]
+    },
+    {
+      "group": "touch-evidence/workshop",
+      "source_sha": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+      "dirty_bytes": 0,
+      "files": [
+        {
+          "path": "touch-evidence/workshop/source-sha.txt",
+          "bytes": 41,
+          "sha256": "c2de94eb005a9d4349bfa136880c2e1b08faf977d39299d2fcc810b142921cbe",
+          "text": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e\n"
+        },
+        {
+          "path": "touch-evidence/workshop/source-dirty.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "touch-evidence/workshop/source-tree.txt",
+          "bytes": 41,
+          "sha256": "f1b1b40c466d1f14909c8b67f309b2537a93d57f5e006771199084b8f57a8c90",
+          "text": "ffd943c83079c5957514934ad7077f32e743fe68\n"
+        },
+        {
+          "path": "touch-evidence/workshop/source-dirty-after.txt",
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "text": ""
+        },
+        {
+          "path": "touch-evidence/workshop/engine.txt",
+          "bytes": 32,
+          "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+          "text": "4.6.3.stable.official.7d41c59c4\n"
+        }
+      ]
+    }
+  ],
+  "previous_partial_review_preserved": {
+    "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-2019-review-notes/puzzle-menu-796b-review.json",
+    "sha256": "3217cc41f4ac7de342ffee7895da7c6e794cb153ceaf1340c8b8a752b5e7d5b4",
+    "six_original_studio_image_copies_byte_equal_to_full_bundle": true
+  },
+  "images": [
+    {
+      "path": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "width": 960,
+      "height": 540,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Das einzige sichtbare Auswahlmenü zeigt Leuchtturm-Bucht, Mini · 6 Teile und Modus: Drehpuzzle. Titel und alle fünf Menüaktionen einschließlich Zur Spielewelt sind lesbar.",
+        "Keine doppelte oder stehengebliebene Auswahlzeile sichtbar. Der reale Spielraum bleibt hinter dem Menü erkennbar."
+      ],
+      "new_visible_blocker_found": false,
+      "source_group": "studio-evidence",
+      "review_origin": "Individually opened from the original Studio artifact 14064024974 in this turn; bytes reverified against this full bundle.",
+      "byte_equal_to_previously_reviewed_original_studio_image": true
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "width": 960,
+      "height": 540,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Das Auswahlmenü ist geschlossen. Der HUD zeigt Mini · Drehpuzzle · 0 / 6 Teile · 0 Tipps und den Hinweis Eine Vierteldrehung. Vergleiche Bild und Form.",
+        "Drehen, Teilewahl und weitere Werkzeugaktionen sind sichtbar. Die räumlichen Puzzleteile liegen auf den seitlichen Ablagen, das mittlere Zielfeld ist frei."
+      ],
+      "new_visible_blocker_found": false,
+      "source_group": "studio-evidence",
+      "review_origin": "Individually opened from the original Studio artifact 14064024974 in this turn; bytes reverified against this full bundle.",
+      "byte_equal_to_previously_reviewed_original_studio_image": true
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302109,
+      "sha256": "8e2611f52d3d15c70b7938c46254d0df5c11ef89aa465dbaebe5818a3209f55c",
+      "width": 960,
+      "height": 540,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Der klassische Modus zeigt 1 / 6 Teile und Das passt! Dein Bild wächst. Ein Teil sitzt im mittleren Zielfeld; weitere Teile liegen auf den Ablagen.",
+        "Keine Drehen-Aktion sichtbar; normale Werkzeugaktionen sind lesbar. Kein zurückgebliebenes Auswahlmenü sichtbar."
+      ],
+      "new_visible_blocker_found": false,
+      "source_group": "studio-evidence",
+      "review_origin": "Individually opened from the original Studio artifact 14064024974 in this turn; bytes reverified against this full bundle.",
+      "byte_equal_to_previously_reviewed_original_studio_image": true
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Auch im kleinen Format zeigt ein einziges Menü das gewählte Motiv, sechs Teile und Drehpuzzle. Die vier oberen Auswahl-/Startaktionen sind lesbar.",
+        "Der letzte Eintrag Zur Spielewelt liegt am unteren Rand nur teilweise im sichtbaren Ausschnitt. Die vertikale Scrollleiste ist sichtbar. Dieses Bild belegt keine gleichzeitige vollständige Sichtbarkeit aller Aktionen.",
+        "Der horizontale Werkzeug-Scrollbereich hinter dem Menü ist ebenfalls sichtbar. Kein doppelt aufgebautes Menü erkennbar."
+      ],
+      "new_visible_blocker_found": false,
+      "source_group": "studio-evidence",
+      "review_origin": "Individually opened from the original Studio artifact 14064024974 in this turn; bytes reverified against this full bundle.",
+      "byte_equal_to_previously_reviewed_original_studio_image": true
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109589,
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Das Menü ist geschlossen. 0 / 6, Modus und Drehhinweis sind lesbar; mittleres Zielfeld und beide Teileablagen sind im Spielraum erkennbar.",
+        "Drehen sowie die linken Werkzeugaktionen sind sichtbar. Weitere rechte Aktionen benötigen den vorhandenen horizontalen Scrollbereich; dieses Bild behauptet keine gleichzeitige Sichtbarkeit der gesamten Werkzeugleiste."
+      ],
+      "new_visible_blocker_found": false,
+      "source_group": "studio-evidence",
+      "review_origin": "Individually opened from the original Studio artifact 14064024974 in this turn; bytes reverified against this full bundle.",
+      "byte_equal_to_previously_reviewed_original_studio_image": true
+    },
+    {
+      "path": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109568,
+      "sha256": "510f9fd1c4039e0a8200ff5abc35140627a17ad8bd6cf15d04336701a131f673",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "findings": [
+        "Der HUD zeigt 1 / 6 und Das passt! Dein Bild wächst. Ein Teil liegt im mittleren Zielfeld. Der Drehknopf ist im klassischen Modus ausgeblendet.",
+        "Werkzeugtexte bis Speichern sind lesbar; die nächste rechte Aktion liegt außerhalb beziehungsweise teilweise am Rand des horizontalen Scrollausschnitts. Keine neue Menüduplikation oder verdeckte Platzierungsrückmeldung sichtbar."
+      ],
+      "new_visible_blocker_found": false,
+      "source_group": "studio-evidence",
+      "review_origin": "Individually opened from the original Studio artifact 14064024974 in this turn; bytes reverified against this full bundle.",
+      "byte_equal_to_previously_reviewed_original_studio_image": true
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "bytes": 605902,
+      "sha256": "0d9e5031e6b59e437202eb379693d49df9b252806fadb85b4de21be41ebc22eb",
+      "width": 690,
+      "height": 829,
+      "source_group": "nextgen-evidence",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Original-Lumo ist zwischen Startinsel und nächster Plattform sichtbar in der Luft; Kopf, Schwanz und vier Gliedmaßen bleiben erkennbar. Keine sichtbare Streckung der Figur.",
+        "Bewegungsstick links und großer Sprungknopf rechts liegen getrennt. Header, Etappenhinweis und Spiel-/Pauseaktionen sind lesbar. Der Bildschirm zeigt den tatsächlichen Sprungaufstieg; die Zustandsdatei meldet jump_rise, grounded=false und positive vertikale Geschwindigkeit."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "bytes": 473680,
+      "sha256": "83bf4178aa912b52c4402168edb56493fec7c4c7b9f0adc079d97201643fd7d7",
+      "width": 412,
+      "height": 915,
+      "source_group": "nextgen-evidence",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Der Originalcharakter steht wieder auf dem Steinweg der Startinsel; Schwanz, Füße und Bodenschatten sind sichtbar. Die Zustandsdatei meldet grounded=true, idle und Nullgeschwindigkeit.",
+        "Der obere Fortschrittstext bricht im schmalen Format in mehrere Zeilen um, ohne die Spiel-/Pauseaktionen zu verdecken. Stick und Sprungknopf sind deutlich voneinander getrennt; keine neue überlagerte Steuerung sichtbar."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409215,
+      "sha256": "5bf36ebae99f9e60dd24fad4ad65f119e6f0d980d0c97d2b078a947df7e22efd",
+      "width": 1280,
+      "height": 720,
+      "source_group": "nextgen-evidence",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Eine versetzte Brücke ist als cyanfarbene Auswahl im begehbaren räumlichen Baugelände sichtbar; daneben steht ein weiteres Bauteil. Der HUD zeigt zwei Teile und 90 Grad.",
+        "Die Rückmeldung Brücke versetzt. Rückgängig stellt den vorherigen Platz wieder her. ist lesbar. Bauziel und Testaktion sowie Verschieben/Drehen/Rückgängig/Wiederholen sind sichtbar. Lange Werkzeug- und Bauteilleisten besitzen weiterhin horizontale Scrollausschnitte."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 129611,
+      "sha256": "51ee59546821ad7acfb1aecb6ee3496f30086ca8146fd317d3882ccc008dd8f6",
+      "width": 640,
+      "height": 360,
+      "source_group": "touch-evidence/build",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Der Dialog Aktuelles Bauziel passt vollständig in 640×360. Das Ziel Verbinde die Inseln, die auf zwei Zeilen umbrochene Weganweisung und beide Aktionen sind lesbar.",
+        "Mein Bauwerk testen und Abbrechen bleiben vollständig sichtbar und voneinander getrennt. Die hinter dem Dialog verdeckte Bauwelt ist erwarteter Modalhintergrund."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1283402,
+      "sha256": "a1ff72b95ee5e65fd39ce4678ceec10fed993986f70504157c748df4bea3136f",
+      "width": 1080,
+      "height": 2400,
+      "source_group": "touch-evidence/build",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Der bis zum unteren Ende gescrollte Vorlagendialog zeigt Brücke, Sternenturm, Garten, Garten-Parzelle, Hafen-Parzelle, Insel-Parzelle und Leere Insel lesbar; die feste Abbrechen-Aktion bleibt sichtbar.",
+        "Starter-Haus ist am oberen Scrollrand teilweise abgeschnitten, passend zum aufgenommenen unteren Scrollstand. Dies ist keine Behauptung, dass alle Listeneinträge gleichzeitig sichtbar sind.",
+        "Der lange Bauwelt-Titel im Hintergrund ist im schmalen Header verkürzt/verdeckt; die eigentlichen Navigationsaktionen und die sichtbaren Dialogaktionen bleiben unterscheidbar."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57478,
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "width": 388,
+      "height": 390,
+      "source_group": "nextgen-evidence",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Die tatsächliche 388×390-Dialogoberfläche erklärt den vorübergehenden Auszug eines Bewohners, zwei verbleibende Bewohner, die Materialrückgabe und die Rückgängig-Funktion.",
+        "Haus behalten und Ja, umbauen sind vollständig sichtbar und getrennt. Die Aufnahme ist der gerenderte Dialog-Viewport, kein vollständiges Landschaftsbild. Kleine vorhandene Textunschärfe: Bei einer Münze steht grammatisch 1 Münzen; kein Bedienblocker."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "bytes": 436821,
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "width": 1280,
+      "height": 720,
+      "source_group": "nextgen-evidence",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Original-Lumo steht rechts neben einem plastischen Kart auf der beleuchteten Plattform. Werkstattboden, Werkzeuge, Reifenständer und Schattierung ergeben einen räumlichen Schauplatz.",
+        "Kartliste, Auswahl Comet, Lack/Teile/Effekte, Rückkehr und Rennen starten sind lesbar. Untere weitere Kartoptionen benötigen den vorhandenen Listen-Scrollbereich. Aus diesem Standbild allein wird keine laufende Dreh- oder Figurenanimation behauptet."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "bytes": 864319,
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "width": 1080,
+      "height": 2400,
+      "source_group": "touch-evidence/workshop",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Original-Lumo sitzt auf dem goldfarbenen Kart; Reifen, Sitzposition, Schwanz, Plattform und Schatten sind deutlich erkennbar. Keine neue sichtbare Gliedmaßenverzerrung.",
+        "Die unteren Lack-/Felgen-/Neonoptionen und Alle Teile zurücksetzen und 16 zurückholen sind lesbar. Zurück, 370 freie Sterne und Tuning 4 von 20 bleiben sichtbar. Der lange Werkstatttitel wird mit Auslassungszeichen gekürzt.",
+        "Das Bild zeigt den Zustand vor dem ersten Rückerstattungstipp am unteren Scrollende. Der erfolgreiche Zwei-Tipp-Ablauf und die Unterdrückung einer Aktion beim Wischen sind durch die zugehörige aktuelle Eingaberegression belegt, nicht durch das Standbild allein."
+      ],
+      "new_visible_blocker_found": false
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655540,
+      "sha256": "c428e4c6799d614ffe6b49ac2f175a7e26e4d23b1f6431d8a23cfad0ab922293",
+      "width": 1280,
+      "height": 720,
+      "source_group": "nextgen-evidence",
+      "opened_individually_with_view_image": true,
+      "review_origin": "Opened individually from this original full-bundle extraction in this turn.",
+      "findings": [
+        "Die räumliche Rhythmusbühne zeigt vier deutlich getrennte Spuren, passende große untere Eingabefelder, Lichtquellen und Original-Lumo auf der Bühne.",
+        "Ein sichtbarer diagonaler Verbindungsstrich führt vom hervorgehobenen dritten Ziel zur nächsten Spur; Zur nächsten Spur! ist klar lesbar. Das Bild zeigt die Aufforderung mit 0 Punkten, nicht den späteren Erfolg des Slide-Ereignisses. Touch-/Hold-/Slide-Erfolg folgt aus dem aktuellen Eingabeprotokoll."
+      ],
+      "new_visible_blocker_found": false
+    }
+  ],
+  "current_probe_logs": [
+    {
+      "path": "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "bytes": 1995,
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "success_markers": [
+        "[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "success_markers": [
+        "[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/jump_expeditions_regression-headless.log",
+      "bytes": 2758,
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "success_markers": [
+        "[JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "bytes": 689,
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "success_markers": [
+        "[JumpOriginalLumo] PASS: original 65-bone GLB visible, grounded, moving, paused and resumed"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 685,
+      "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c",
+      "success_markers": [
+        "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "success_markers": [
+        "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "success_markers": [
+        "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "success_markers": [
+        "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log",
+      "bytes": 732,
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "success_markers": [
+        "[NextGenGarage] PASS 93 checks; captures=0"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "success_markers": [
+        "[NextGenGarage] PASS 118 checks; captures=12"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log",
+      "bytes": 598,
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "success_markers": [
+        "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "success_markers": [
+        "[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "touch-evidence/build/build_dialog_density_regression-headless.log",
+      "bytes": 1434,
+      "sha256": "e2833e88c201930682a77d8a3418cf8ee63cacec27318bc4eb211d2737c144af",
+      "success_markers": [
+        "[BuildDialogDensity] PASS 2016 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "touch-evidence/build/build_dialog_density_regression-rendered.log",
+      "bytes": 3219,
+      "sha256": "57bc002a030164eba8c156ca137df278349fd8923b36ecfae436540a3a9a9d51",
+      "success_markers": [
+        "[BuildDialogDensity] PASS 2046 checks: bounded dialogs, preserved choices, actual scroll/select/cancel, >=48dp and restore"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "touch-evidence/workshop/kart_workshop_density_regression-headless.log",
+      "bytes": 3861,
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "success_markers": [
+        "[WorkshopDensity] PASS 4129 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches"
+      ],
+      "strict_engine_error_lines": [],
+      "real_button_swipe_records": 40,
+      "all_swipes_have_zero_button_activations": true
+    },
+    {
+      "path": "touch-evidence/workshop/kart_workshop_density_regression-rendered.log",
+      "bytes": 4510,
+      "sha256": "4ab2179a3f74f8cbc91725bfde5516237f5ccb7dc822377e3a384e60cffe188d",
+      "success_markers": [
+        "[WorkshopDensity] PASS 4148 checks: eight layouts, actual >=48dp canvas targets, all palette/upgrade/purchase/refund/return touches"
+      ],
+      "strict_engine_error_lines": [],
+      "real_button_swipe_records": 40,
+      "all_swipes_have_zero_button_activations": true
+    },
+    {
+      "path": "studio-evidence/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3082,
+      "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+      "success_markers": [
+        "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+      ],
+      "strict_engine_error_lines": []
+    },
+    {
+      "path": "studio-evidence/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "success_markers": [
+        "[PuzzleMenuLifecycle] PASS 732 behavioral checks; strict native log gate still required"
+      ],
+      "strict_engine_error_lines": []
+    }
+  ],
+  "current_jump_state_evidence": {
+    "path": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump-nextgen-evidence.json",
+    "bytes": 4932,
+    "sha256": "80845a1239224c7fc9a4d2a3346dc0414e5c176e44b48b10f13abd28f33f43a8",
+    "checks": 80,
+    "display": "X11",
+    "failures": [],
+    "device_fps_measured": false,
+    "selected_frames": [
+      {
+        "actor_position": "(-0.000001, 0.200178, -0.735314)",
+        "animation": "idle",
+        "draw_calls": 228,
+        "file": "jump_412x915_landed.png",
+        "grounded": true,
+        "height": 915,
+        "primitives": 257138,
+        "velocity": "(0.0, 0.0, 0.0)",
+        "width": 412
+      },
+      {
+        "actor_position": "(-0.0, 1.652587, -0.01735)",
+        "animation": "jump_rise",
+        "draw_calls": 251,
+        "file": "jump_690x829_touch_ascent.png",
+        "grounded": false,
+        "height": 829,
+        "primitives": 265916,
+        "velocity": "(-0.000001, 4.899998, -3.193553)",
+        "width": 690
+      }
+    ]
+  },
+  "current_density_measurements": [
+    {
+      "path": "touch-evidence/build/captures/build_dialog_density_regression/measurements.json",
+      "bytes": 113460,
+      "sha256": "c1ca932f96c75aaca2a8e276f5511712879922dc0410581ba7fb630e267ef356",
+      "scope": "Production scene, own popup transforms, real InputEvents and explicit density fixtures; not a physical Android/Fold7 test",
+      "target_count": 285,
+      "min_width_dp": 48.0,
+      "min_height_dp": 48.0,
+      "surface_summaries": [
+        {
+          "surface": [
+            640,
+            320
+          ],
+          "target_count": 77,
+          "min_width_dp": 48.0,
+          "min_height_dp": 48.0
+        },
+        {
+          "surface": [
+            640,
+            360
+          ],
+          "target_count": 54,
+          "min_width_dp": 48.0,
+          "min_height_dp": 48.0
+        },
+        {
+          "surface": [
+            1080,
+            2400
+          ],
+          "target_count": 50,
+          "min_width_dp": 48.0500602722168,
+          "min_height_dp": 48.0149955749512
+        },
+        {
+          "surface": [
+            2176,
+            1812
+          ],
+          "target_count": 50,
+          "min_width_dp": 48.0055351257324,
+          "min_height_dp": 48.0198554992676
+        },
+        {
+          "surface": [
+            2400,
+            1080
+          ],
+          "target_count": 54,
+          "min_width_dp": 48.0149726867676,
+          "min_height_dp": 48.0500373840332
+        }
+      ]
+    },
+    {
+      "path": "touch-evidence/workshop/captures/kart_workshop_density_regression/measurements.json",
+      "bytes": 95358,
+      "sha256": "4ea31dec344c8668a677a35894c5cff612b35355a0e0f9c0323372ea3fc23509",
+      "scope": "desktop renderer + explicit density fixtures, not a physical Android device",
+      "target_count": 464,
+      "min_width_dp": 52.0,
+      "min_height_dp": 48.0,
+      "surface_summaries": [
+        {
+          "surface": [
+            412,
+            915
+          ],
+          "target_count": 58,
+          "min_width_dp": 52.0,
+          "min_height_dp": 48.0121307373047
+        },
+        {
+          "surface": [
+            640,
+            320
+          ],
+          "target_count": 58,
+          "min_width_dp": 52.0,
+          "min_height_dp": 48.0
+        },
+        {
+          "surface": [
+            640,
+            360
+          ],
+          "target_count": 58,
+          "min_width_dp": 52.0,
+          "min_height_dp": 48.0
+        },
+        {
+          "surface": [
+            690,
+            829
+          ],
+          "target_count": 58,
+          "min_width_dp": 64.0,
+          "min_height_dp": 48.0267028808594
+        },
+        {
+          "surface": [
+            1080,
+            2400
+          ],
+          "target_count": 58,
+          "min_width_dp": 52.0,
+          "min_height_dp": 48.0075035095215
+        },
+        {
+          "surface": [
+            1280,
+            720
+          ],
+          "target_count": 58,
+          "min_width_dp": 64.0,
+          "min_height_dp": 48.0
+        },
+        {
+          "surface": [
+            2176,
+            1812
+          ],
+          "target_count": 58,
+          "min_width_dp": 64.0000076293945,
+          "min_height_dp": 48.0397720336914
+        },
+        {
+          "surface": [
+            2400,
+            1080
+          ],
+          "target_count": 58,
+          "min_width_dp": 52.0,
+          "min_height_dp": 48.0
+        }
+      ]
+    }
+  ],
+  "findings_summary": [
+    "All fifteen assigned original renderer images were individually viewed. The six previously reviewed Studio images are byte-identical to their copies in the complete 796b bundle.",
+    "No new visible gameplay or control blocker was found in this selected scope. The current native run and all eight required jobs plus archive job are successful on attempt one according to the archived GitHub metadata.",
+    "Build density measurements cover 285 target samples with minimum 48×48 dp. Workshop measurements cover 464 samples with minimum width 52 dp and minimum height 48 dp. These use explicit desktop density fixtures, not a physical Android device.",
+    "Each current workshop log records forty actual button-started swipes with zero button activations; current rendered build/workshop checks are 2046 and 4148 respectively. The refund screenshot is the pre-confirmation state, while the successful two-tap transaction is a separate behavioral assertion.",
+    "The 640×360 Puzzle menu and toolbar require their existing scroll areas. Menu target revealing in the lifecycle probe is programmatic and does not serve as a natural finger-scroll proof.",
+    "The portrait Build template screenshot intentionally shows the bottom of the list; the top item is partially clipped. The fixed cancel action and bottom choices remain visible. The narrow background header truncates the title while keeping navigation actions visible.",
+    "The settlement dialog contains the pre-existing grammatical wording 1 Münzen. This is documented without claiming a new interaction blocker."
+  ],
+  "limits": [
+    "This selected review is not a final APK/release receipt and does not approve every image in the bundle.",
+    "No APK installation, Android17/API37 runtime, physical Galaxy Z Fold7 test, sustained 60 FPS, thermal or latency result follows from these desktop renderer images.",
+    "Jump state, menu lifecycle, transactions and touch behavior are supported by their current raw logs and state reports; individual still images alone do not establish a complete gameplay sequence.",
+    "No code mutation, extra engine test, CI retry or additional artifact download was performed for this consolidation."
+  ]
+}

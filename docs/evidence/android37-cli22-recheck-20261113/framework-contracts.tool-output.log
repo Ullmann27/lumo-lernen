@@ -1,0 +1,13 @@
+test_exact_original_main_keeps_keyevent_settings_and_cleanup (test_android_framework_ready.ExactUpstreamActionTests.test_exact_original_main_keeps_keyevent_settings_and_cleanup) ... ok
+test_only_additive_guard_is_accepted_and_tampered_upstream_rejected (test_android_framework_ready.ExactUpstreamActionTests.test_only_additive_guard_is_accepted_and_tampered_upstream_rejected) ... ok
+test_android35_cannot_satisfy_android37_framework_guard (test_android_framework_ready.FrameworkReadinessTests.test_android35_cannot_satisfy_android37_framework_guard) ... ok
+test_boot_property_cannot_replace_input_or_settings_service (test_android_framework_ready.FrameworkReadinessTests.test_boot_property_cannot_replace_input_or_settings_service) ... ok
+test_changed_system_server_identity_is_failure_not_a_new_success_window (test_android_framework_ready.FrameworkReadinessTests.test_changed_system_server_identity_is_failure_not_a_new_success_window) ... ok
+test_real_command_timeout_preserves_raw_stdout_and_stderr (test_android_framework_ready.FrameworkReadinessTests.test_real_command_timeout_preserves_raw_stdout_and_stderr) ... ok
+test_registered_service_without_real_settings_read_still_fails (test_android_framework_ready.FrameworkReadinessTests.test_registered_service_without_real_settings_read_still_fails) ... ok
+test_transient_missing_service_must_be_followed_by_full_stable_window (test_android_framework_ready.FrameworkReadinessTests.test_transient_missing_service_must_be_followed_by_full_stable_window) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.405s
+
+OK

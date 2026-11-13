@@ -1,0 +1,12 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_delivery",
+    "-v"
+  ],
+  "exit": 0,
+  "elapsed_seconds": 10.445547999988776,
+  "log_tail": "ding_copies_only_hash_bound_originals_into_separate_2019_paths (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_recording_copies_only_hash_bound_originals_into_separate_2019_paths) ... ok\ntest_reordered_reviews_and_new_bytes_never_overwrite_previous_originals (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_reordered_reviews_and_new_bytes_never_overwrite_previous_originals) ... ok\ntest_runtime_must_measure_api37_android17_fingerprint_and_model (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_runtime_must_measure_api37_android17_fingerprint_and_model) ... ok\ntest_same_source_2019_fixture_retains_real_cards_pixel_recomputation (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_same_source_2019_fixture_retains_real_cards_pixel_recomputation) ... ok\ntest_touch_delivery_contract_requires_eight_jobs_and_five_source_stamps (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_touch_delivery_contract_requires_eight_jobs_and_five_source_stamps) ... ok\ntest_tour_sdk_must_use_the_original_measured_string_format (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_tour_sdk_must_use_the_original_measured_string_format) ... ok\ntest_unknown_mislabeled_and_pose_studio_images_do_not_count_as_products (scripts.tests.test_studio_delivery.StudioDeliveryTests.test_unknown_mislabeled_and_pose_studio_images_do_not_count_as_products) ... ok\n\n----------------------------------------------------------------------\nRan 36 tests in 10.363s\n\nOK\n"
+}

@@ -1,0 +1,91 @@
+{
+  "protocol": 1,
+  "token": "867e84faa545a2627fd185c8ce0d585a",
+  "revision": 4,
+  "ack": 0,
+  "roundId": "cards-2bfdb660002c03f978ccce80c0745645",
+  "phase": "playing",
+  "paused": true,
+  "reduceMotion": true,
+  "viewer": 0,
+  "current": 0,
+  "players": [
+    {
+      "name": "Du",
+      "count": 7,
+      "stars": 0
+    },
+    {
+      "name": "Lumo",
+      "count": 7,
+      "stars": 0
+    }
+  ],
+  "hand": [
+    {
+      "id": "wind-21",
+      "color": "orange",
+      "type": "whirlwind",
+      "number": null,
+      "playable": false
+    },
+    {
+      "id": "num-3",
+      "color": "orange",
+      "type": "number",
+      "number": 2,
+      "playable": false
+    },
+    {
+      "id": "rain-46",
+      "color": "purple",
+      "type": "starRain",
+      "number": null,
+      "playable": false
+    },
+    {
+      "id": "num-96",
+      "color": "green",
+      "type": "number",
+      "number": 9,
+      "playable": false
+    },
+    {
+      "id": "num-89",
+      "color": "green",
+      "type": "number",
+      "number": 6,
+      "playable": false
+    },
+    {
+      "id": "num-33",
+      "color": "purple",
+      "type": "number",
+      "number": 4,
+      "playable": false
+    },
+    {
+      "id": "jump-97",
+      "color": "green",
+      "type": "lumoJump",
+      "number": null,
+      "playable": false
+    }
+  ],
+  "top": {
+    "id": "num-27",
+    "color": "purple",
+    "type": "number",
+    "number": 1
+  },
+  "selectedColor": "purple",
+  "drawCount": 97,
+  "canDraw": false,
+  "message": "Du fängt an. Lege eine passende Karte!",
+  "error": false,
+  "winner": null,
+  "canCall": false,
+  "round": 1,
+  "totalRounds": 1,
+  "difficulty": "Schlau"
+}

@@ -1,0 +1,39 @@
+{
+  "gas_touch": [
+    2296,
+    904
+  ],
+  "hold_ms": 9000,
+  "samples": [
+    {
+      "pulse": 1,
+      "distance": 3.9689185e-06,
+      "elapsed": 1.0000000000000013,
+      "speed": 0.0,
+      "distance_gain": 0.0,
+      "elapsed_gain": 0.0
+    },
+    {
+      "pulse": 2,
+      "distance": 3.9689185e-06,
+      "elapsed": 1.0000000000000013,
+      "speed": 0.0,
+      "distance_gain": 0.0,
+      "elapsed_gain": 0.0
+    },
+    {
+      "pulse": 3,
+      "distance": 89.90552436254802,
+      "elapsed": 6.016666666666651,
+      "speed": 11.164405735723282,
+      "distance_gain": 89.906,
+      "elapsed_gain": 5.017
+    }
+  ],
+  "native_progress": {
+    "result_id": "4364d7de-5c07-4175-8e2d-b801e08fb6b0-1794593884244-119713214",
+    "distance_gain": 89.91,
+    "elapsed_gain": 5.02,
+    "checkpoint_index": 0
+  }
+}

@@ -1,0 +1,11 @@
+test_exact_bytes_can_be_rechecked_after_a_later_android_job_failed (test_android_recheck_identity.RecheckIdentityTests.test_exact_bytes_can_be_rechecked_after_a_later_android_job_failed) ... ok
+test_pack_bytes_are_read_even_when_new_apk_metadata_agrees (test_android_recheck_identity.RecheckIdentityTests.test_pack_bytes_are_read_even_when_new_apk_metadata_agrees) ... ok
+test_source_check_requires_real_head_and_unchanged_tracked_files (test_android_recheck_identity.RecheckIdentityTests.test_source_check_requires_real_head_and_unchanged_tracked_files) ... ok
+test_unchanged_original_tour_reads_the_real_apk_checkout_head (test_android_recheck_identity.RecheckIdentityTests.test_unchanged_original_tour_reads_the_real_apk_checkout_head) ... ok
+test_wrong_app_source_native_version_signature_or_actual_apk_fails (test_android_recheck_identity.RecheckIdentityTests.test_wrong_app_source_native_version_signature_or_actual_apk_fails) ... ok
+test_wrong_artifact_origin_digest_or_failed_build_is_rejected (test_android_recheck_identity.RecheckIdentityTests.test_wrong_artifact_origin_digest_or_failed_build_is_rejected) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.162s
+
+OK

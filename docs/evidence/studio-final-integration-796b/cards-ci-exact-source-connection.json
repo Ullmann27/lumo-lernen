@@ -1,0 +1,103 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "recorded_utc": "2026-11-13T19:42:28.573955+00:00",
+  "status": "STATIC_CONNECTION_VERIFIED_ACTUAL_ANDROID_RESULTS_PENDING",
+  "scope": "Rein lesende Kontrolle des eingefrorenen finalen Workflows und der wirklichen Cards-Aufrufkette. Keine neuen Tests, keine Produkt-/Workflowänderungen.",
+  "reviewed_checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "files": [
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "bytes": 19411,
+      "sha256": "9750d80c1a74daaae82e752c61f0d135955caffcaf79efcf74e428e56991e2fe"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 46556,
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+    }
+  ],
+  "source_binding": {
+    "checkout_expression": "${{ github.event.pull_request.head.sha || github.sha }}",
+    "jobs_using_same_expression": [
+      "verify-and-build",
+      "android-host-compile",
+      "android-tour"
+    ],
+    "api35_call": ".probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen",
+    "api37_call_identical": true,
+    "probe_origin": "Relative Quelldatei und lokale Imports im neuen Studio-Checkout; keine alte e3d-Probenkopie und kein APK-Artefakt als Probequelle.",
+    "apk_binding": "verify_apk_identity bindet die tatsächlich gelesenen APK-Bytes an Provenienz und SHA-Liste, git rev-parse HEAD, pubspec, Signatur und Native-Pin. main verlangt danach die bestandene ursprüngliche Tour derselben APK und das echte erwartete API-Level; bei37 zusätzlich Release17.",
+    "published_new_host_sha": null,
+    "limit": "Der neue veröffentlichte Commit und der tatsächliche Joblauf werden erst nach Roots Bekanntgabe anhand der CI-Ausgaben bestätigt."
+  },
+  "lifecycle_connection": {
+    "path": "cards_roundtrip -> cards_ready_to_draw/capture_cards_faces/weitere State-Reads -> CardsMailbox.read(name=state) -> finally _observe_lifecycle",
+    "artifacts": "tour/nextgen/cards-lifecycle-NNN.txt und .json; zugehörige cards-mailbox-NNN-state.json bleibt separat.",
+    "observed_values": [
+      "echte Gerätezeit vor/nach Dateilesen",
+      "active",
+      "stamp",
+      "pauseEpoch",
+      "zugehörige State-Revision/Ack/Pause",
+      "Zeitintervall seit Stamp"
+    ],
+    "read_bound_seconds": 0.75,
+    "failure_semantics": "Fehlende oder fehlerhafte optionale Beobachtung wird MISSING mit Ursache. Die ursprüngliche State-Ausnahme wird erneut geworfen. Keine Resume-/Touch-Aktion, Lifecycle-Dateiänderung oder Ersatz-Erfolg.",
+    "sampling_limit": "Nacheinander erhobene Beobachtungen, kein behaupteter atomarer State-/Lifecycle-Snapshot; Cards-Diagnostik entsteht erst, wenn der echte Ablauf den Cards-Bereich erreicht."
+  },
+  "hard_gates_preserved": [
+    "Ready: derselbe tatsächliche Kind-/Runden-/Sitzungszustand; nur aktueller sichtbarer Resume-Touch und bestätigte neue Sequenz;90s unverändert.",
+    "Pixel: zwei tatsächliche unpausierte Frames derselben Revision/Handseite, aktuelles Pause-/Seiten-OCR, unveränderter öffentlicher Zustand und Original-PNG-Hash;60s unverändert.",
+    "Draw: echter Ziehen-Touch, frische Requestsequenz, Dart-Ack und Revision sowie tatsächlich hinzugekommene Kindkarten und kleinerer Ziehstapel.",
+    "Authority/Idle: reale Android-Servicebindung vor/nach mindestens35s sichtbarer Wartezeit, dieselben Prozesse und danach zweiter echter bestätigter Zug.",
+    "Save/Pause: derselbe Kind-Eigentümer und vollständige112-Karten-Erhaltung; unveränderter Speicherzustand während Pause.",
+    "TaskReturn/Reopen: Godot-Prozess beendet, MainActivity wieder sichtbar und Flutter lebendig; gleiche gespeicherte Runde, geleerte alte Mailbox und neuer Token beim erneuten Öffnen.",
+    "Jeder Fehler führt über result=FAIL zu Exit1. Kein continue-on-error; Publisher verlangt Erfolg der vollständigen Android-Matrix und der anderen Pflichtjobs."
+  ],
+  "independent_read_only_comparison": {
+    "baseline": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "all_15_original_top_level_functions_ast_identical": {
+      "wait_for": true,
+      "must_see": true,
+      "tap_flutter": true,
+      "native_ready": true,
+      "resumed_activity": true,
+      "returned_to_flutter": true,
+      "local_voice_permission": true,
+      "_speech_logcat": true,
+      "completed_native_speech": true,
+      "learning_roundtrip": true,
+      "cards_ready_to_draw": true,
+      "cards_display_density": true,
+      "capture_cards_faces": true,
+      "cards_roundtrip": true,
+      "main": true
+    },
+    "original_mailbox_locate_and_saved_ast_identical": {
+      "locate": true,
+      "saved": true
+    },
+    "original_cards_assertion_helper_byte_identical": true
+  },
+  "additional_blockers": [],
+  "new_test_executions": 0,
+  "actual_api35_cards_pass": false,
+  "actual_api37_cards_pass": false,
+  "next_step": "Nach Mitteilung des neuen Source/Run die tatsächliche API35-Cards-Ausgabe und Originalartefakte prüfen."
+}
