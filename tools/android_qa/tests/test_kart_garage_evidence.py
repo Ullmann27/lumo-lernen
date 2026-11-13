@@ -259,6 +259,111 @@ class DriverObservedTargetTests(unittest.TestCase):
         adb.assert_not_called()
 
 
+class CupObservedLabelTests(unittest.TestCase):
+    """Synthetic OCR for the actual 01cf063 landing's wide/narrow cup labels.
+
+    kart_spatial_landing.gd retains mode=cup and changes its visible title to
+    Pokal below 520dp; no screen width is used to guess a caption in the probe.
+    """
+    def setUp(self):
+        self.temp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.temp.cleanup)
+        self.out = Path(self.temp.name)
+        self.capture_count = 0
+        self.dimensions = (2400, 1080)
+
+    def lines(self, caption='Grand Prix'):
+        if self.dimensions == (640, 320):
+            return [{'text': caption, 'bounds': [210, 100, 290, 125]},
+                    {'text': 'Fahrer', 'bounds': [20, 190, 90, 210]},
+                    {'text': 'Garage', 'bounds': [210, 190, 300, 210]}]
+        return [{'text': caption, 'bounds': [100, 300, 350, 340]},
+                {'text': 'Fahrer', 'bounds': [100, 800, 250, 840]},
+                {'text': 'Garage', 'bounds': [400, 800, 550, 840]}]
+
+    def capture(self, _out, tag, **_kwargs):
+        self.capture_count += 1
+        target = self.out / (tag + '.png')
+        Image.new('RGB', self.dimensions, (30, 50, 70)).save(target)
+        return {'file': target.name}
+
+    def test_actual_wide_and_compact_cup_captions_both_require_two_observed_targets(self):
+        for caption, dimensions in (('Grand Prix', (2400, 1080)), ('Pokal', (640, 320))):
+            with self.subTest(caption=caption):
+                self.dimensions = dimensions
+                self.capture_count = 0
+                with patch.object(tour.probe, 'capture', side_effect=self.capture), \
+                        patch.object(tour.probe, 'image_lines', return_value=self.lines(caption)), \
+                        patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'sleep'):
+                    result = tour._stage_cup_text(self.out, 'current-cup', tap=True)
+                self.assertEqual(result['caption'], caption)
+                self.assertEqual(self.capture_count, 2)
+                adb.assert_called_once()
+                x0, y0, x1, y1 = self.lines(caption)[0]['bounds']
+                x, y = str(round((x0 + x1) / 2)), str(round((y0 + y1) / 2))
+                self.assertEqual(adb.call_args.args, ('shell', 'input', 'swipe', x, y, x, y, '120'))
+                journal = json.loads((self.out / result['readiness']).read_text())
+                self.assertEqual(journal['status'], 'TOUCH_SENT')
+                self.assertEqual([frame['target']['stable_observed_target'] for frame in journal['frames']],
+                                 [False, True])
+
+    def test_missing_wrong_or_conflicting_cup_captions_never_trigger_a_fallback_touch(self):
+        wrong_region = self.lines()
+        wrong_region[0]['bounds'] = [100, 900, 350, 940]
+        missing_navigation = self.lines()[:1]
+        cases = [self.lines()[1:], self.lines('Zeit'), wrong_region, missing_navigation,
+                 self.lines() + [{'text': 'Pokal', 'bounds': [100, 400, 250, 440]}],
+                 self.lines() + [{'text': 'Grand Prix', 'bounds': [100, 400, 350, 440]}]]
+        for lines in cases:
+            with self.subTest(lines=lines), \
+                    patch.object(tour.probe, 'capture', side_effect=self.capture), \
+                    patch.object(tour.probe, 'image_lines', return_value=lines), \
+                    patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'sleep'), \
+                    self.assertRaises(RuntimeError):
+                tour._stage_cup_text(self.out, 'bad-cup', tap=True)
+            adb.assert_not_called()
+            journal = json.loads((self.out / 'bad-cup-surface-readiness.json').read_text())
+            self.assertEqual(journal['status'], 'FAIL')
+
+    def test_caption_change_needs_two_new_observations_even_at_identical_bounds(self):
+        captions = iter(['Grand Prix', 'Pokal', 'Pokal'])
+        with patch.object(tour.probe, 'capture', side_effect=self.capture), \
+                patch.object(tour.probe, 'image_lines', side_effect=lambda *_a, **_k: self.lines(next(captions))), \
+                patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'sleep'):
+            result = tour._stage_cup_text(self.out, 'changed-cup', tap=True)
+        self.assertEqual(self.capture_count, 3)
+        self.assertEqual(result['caption'], 'Pokal')
+        adb.assert_called_once()
+        journal = json.loads((self.out / result['readiness']).read_text())
+        self.assertEqual([frame['target']['stable_observed_target'] for frame in journal['frames']],
+                         [False, False, True])
+
+    def test_landing_return_accepts_only_the_observed_caption_without_an_extra_touch(self):
+        for caption in ('Grand Prix', 'Pokal'):
+            with self.subTest(caption=caption), \
+                    patch.object(tour.probe, 'capture', side_effect=self.capture), \
+                    patch.object(tour.probe, 'image_lines', return_value=self.lines(caption)), \
+                    patch.object(tour.base, 'adb') as adb:
+                result = tour._stage_cup_text(self.out, 'restored-cup')
+            self.assertEqual(result['caption'], caption)
+            adb.assert_not_called()
+            journal = json.loads((self.out / result['readiness']).read_text())
+            self.assertEqual(journal['status'], 'OBSERVED')
+            self.assertEqual(len(journal['frames']), 1)
+
+    def test_replaced_cup_screenshot_prevents_the_touch(self):
+        def ocr(*_args, source_path, **_kwargs):
+            if self.capture_count == 2:
+                source_path.write_bytes(b'changed after observation')
+            return self.lines()
+        with patch.object(tour.probe, 'capture', side_effect=self.capture), \
+                patch.object(tour.probe, 'image_lines', side_effect=ocr), \
+                patch.object(tour.base, 'adb') as adb, patch.object(tour.time, 'sleep'), \
+                self.assertRaisesRegex(RuntimeError, 'cup screenshot changed'):
+            tour._stage_cup_text(self.out, 'replaced-cup', tap=True)
+        adb.assert_not_called()
+
+
 class CurrentGarageProbeWiringTests(unittest.TestCase):
     def test_current_mandatory_pause_phase_requires_continue_and_a_second_real_pause(self):
         main = next(node for node in ast.parse(Path(tour.__file__).read_text()).body

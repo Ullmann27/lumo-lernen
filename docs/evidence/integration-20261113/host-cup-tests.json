@@ -1,0 +1,74 @@
+{
+  "source_head": "95efd9bfe47b4d1a0575673f7111ea2203804eed",
+  "source_dirty": true,
+  "source_sha256": {
+    ".github/probes/modernization_android_tour.py": "ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1",
+    "tools/android_qa/kart_garage_evidence.py": "07f7d5b0c76b3c3f62f5f57cd5675f536e4eee9fc1049469c7cb96f2dd810de1",
+    "tools/android_qa/tests/test_kart_garage_evidence.py": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1",
+    "tools/android_qa/tests/test_modernization_tour_identity.py": "a709fb6f2b9c03f04f25ed484d67b14ab55e3bba2a3c51b3e1e15cc63d990273",
+    "tools/android_qa/tests/test_kart_tour_evidence.py": "0d19e57c65197d7d6d52f3ef2618cfcc9350bd795133906547644c65fab58966"
+  },
+  "source_hashes_unchanged": true,
+  "finished_utc": "2026-11-13T13:14:14.080052+00:00",
+  "commands": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_kart_garage_evidence.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 25,
+      "skips": 0
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_modernization_tour_identity.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 13,
+      "skips": 0
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_kart_tour_evidence.py",
+        "-v"
+      ],
+      "exit_code": 0,
+      "tests_run": 15,
+      "skips": 0
+    }
+  ],
+  "tests_run": 53,
+  "scope": "Current observed Grand Prix/Pokal binding plus existing driver, Garage, Continue, race-evidence and historical Android OCR fixtures. No fresh Android run.",
+  "native_label_source": {
+    "commit": "01cf063a7c11681b0060430cdb72c16d56a0b061",
+    "file": "scripts/games/kart_spatial_landing.gd",
+    "cup_mode": "cup",
+    "wide_caption": "Grand Prix",
+    "narrow_caption": "Pokal",
+    "narrow_below_dp": 520,
+    "other_changed_caption": "Zeitrennen -> Zeit; unused by the current tour"
+  }
+}

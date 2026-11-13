@@ -432,9 +432,67 @@ def _select_stage_driver(out: Path, timeout: float = 150) -> dict:
         journal.write_text(json.dumps(touch, indent=2, ensure_ascii=False) + '\n')
 
 
+def _stage_cup_text(out: Path, tag: str, *, tap: bool = False, timeout: float = 150) -> dict:
+    """Observe the current cup caption and, when requested, touch it exactly once."""
+    journal = out / (tag + '-surface-readiness.json')
+    started = time.monotonic()
+    deadline = started + timeout
+    report = {'status': 'WAITING', 'mode': 'cup', 'touch_requested': tap, 'frames': [],
+              'scope': 'Current landing cup caption; actual new race mode remains mandatory'}
+    previous = None
+    previous_caption = None
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-{len(report["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            report['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous = None
+                previous_caption = None
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                lines = probe.image_lines(out, name, source_path=source, timeout=remaining)
+                choice = garage_evidence.stage_cup_target_observation(frame, lines)
+                frame['cup_choice'] = choice
+                if choice['caption'] != previous_caption:
+                    previous = None
+                observed = probe.target_observation(frame, choice['target']['bounds'], previous)
+                frame['target'] = observed
+                previous, previous_caption = observed, choice['caption']
+                if observed['target_geometry_valid'] and (not tap or observed['stable_observed_target']):
+                    garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                           'Observed cup screenshot changed before acceptance')
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    report.update(caption=choice['caption'], final_observed_bounds=observed['bounds'])
+                    if tap:
+                        x0, y0, x1, y1 = observed['bounds']
+                        x, y = round((x0 + x1) / 2), round((y0 + y1) / 2)
+                        base.adb('shell', 'input', 'swipe', str(x), str(y), str(x), str(y), '120',
+                                 timeout=min(15, remaining))
+                        report.update(status='TOUCH_SENT', touch=[x, y])
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                    else:
+                        report['status'] = 'OBSERVED'
+                    return {'caption': choice['caption'], 'readiness': journal.name}
+            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Actual cup caption did not settle on the current landing')
+    except Exception as error:
+        report.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
 def _inspect_spatial_kart_menu(out: Path) -> dict:
     """Use the 2017 mode and direct sections through their actual rendered labels."""
-    probe.native_text(out, 'Grand Prix', '21_stage_mode_cup', tap=True, exact=True)
+    mode = _stage_cup_text(out, '21_stage_mode_cup', tap=True)
     sections = []
     selection_touches = []
     for key, label in (('garage', 'Garage'), ('driver', 'Fahrer')):
@@ -467,13 +525,14 @@ def _inspect_spatial_kart_menu(out: Path) -> dict:
             time.sleep(1)
         else:
             raise RuntimeError('Spatial Kart section has no visible return footer: ' + label)
-        probe.native_text(out, 'Grand Prix', tag + '-landing-restored', exact=True)
+        landing = _stage_cup_text(out, tag + '-landing-restored')
         sections.append({'section': key, 'visible_label': label,
                          'return_caption': caption, 'return_touch': point,
+                         'landing_caption': landing['caption'],
                          'touch_evidence': tag + '-open-surface-readiness.json'})
     report = {'status': 'PASS', 'selected_mode': 'cup', 'sections': sections,
               'selection_touches': selection_touches, 'expected_kart': 'gecko_velo',
-              'mode_touch_evidence': '21_stage_mode_cup-surface-readiness.json',
+              'mode_caption': mode['caption'], 'mode_touch_evidence': mode['readiness'],
               'scope': 'Live Android OCR touches; no injected Godot selection or coordinates'}
     (out / '21_stage_navigation.json').write_text(json.dumps(report, indent=2) + '\n')
     return report

@@ -1,30 +1,93 @@
 {
-  "schema": 1,
-  "updated_at_utc": "2026-11-13T12:47:18Z",
+  "schema": 2,
+  "updated_at_utc": "2026-11-13T13:17:43.486258+00:00",
   "mode": "active_session_only",
   "scheduled_automation_enabled": false,
-  "state": "integrating",
+  "state": "paired_native_acceptance_pending",
   "integration_branch": "integration/lumo-connections-20261113",
   "integration_pr": 465,
-  "product_host_sha": "3c712129fef8f144d8946fad567b9ed11c628a60",
+  "product_host_sha": "8eab228433f124c1e2332e3d3c2ecf462ec8b136",
   "native_pin": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
-  "secured_code_sha": "aea885f0f07644de2d6057ce32ef2bb5a636cdc3",
-  "tested_code_tree": "0a037b2f789dfa1e506edfad161284b5d8d5c5a8",
+  "previous_secured_code_sha": "719df4f4bc9e0b08752f67d0e1953935d6d6eee8",
+  "local_code_checkpoint": {
+    "sha": "b91f2f16afa6009289474cc4740e8421248e8533",
+    "tree": "f96fe4bd403ad3d715676388377186c7d2b16576"
+  },
   "checks": {
-    "script_contracts": {"passed": 318, "failed": 0, "skipped": 0},
-    "speech_logcat": {"passed": 5, "failed": 0, "skipped": 0},
-    "speech_evidence": {"passed": 12, "failed": 0, "skipped": 0},
-    "actionlint": "pass",
-    "new_android_tour": "not_run"
+    "historical_full_script_contracts": {
+      "passed": 318,
+      "failed": 0,
+      "skipped": 0,
+      "tree": "0a037b2f789dfa1e506edfad161284b5d8d5c5a8"
+    },
+    "latest_affected_garage_and_cup_contracts": {
+      "passed": 53,
+      "failed": 0,
+      "skipped": 0,
+      "manifest": "docs/evidence/integration-20261113/host-cup-tests.json"
+    },
+    "studio_targeted_flutter": {
+      "passed": 91,
+      "failed": 0,
+      "skipped": 0,
+      "manifest": "docs/evidence/integration-20261113/studio-host/manifest.json"
+    },
+    "combined_build_voice_host": {
+      "flutter_passed": 47,
+      "python_host_passed": 12,
+      "kotlin_return_store_passed": 9,
+      "manifest": "docs/evidence/integration-20261113/village-host/manifest.json"
+    },
+    "serialized_studio_payloads": {
+      "host_cases": 5,
+      "native_checks": 135,
+      "android_ipc_evidence": false
+    },
+    "new_android_tour": "not_run",
+    "new_native_visual_approval": "pending"
   },
   "queue": [
-    {"source_pr": 463, "source_sha": "b56295f53f08c70079266331039250b96ca7bdbc", "state": "integrated_via_464"},
-    {"source_pr": 464, "source_sha": "f257c787878be5d3d9615d1258aaa8f2f83a945e", "state": "integrated"},
-    {"source_pr": 456, "state": "adapting_existing_garage_resume_probe", "legacy_publisher": "excluded"},
-    {"source_branch": "chatgpt/lumo-studio-20261113", "source_sha": "a8e09123805b2bf30706c8dd1914b928ae6b24ca", "state": "waiting_for_matching_native_equal_sharing_source_and_checks"},
-    {"source_branch": "chatgpt/lumo-game-rooms-20261113", "state": "awaiting_published_product_delivery"},
-    {"source_branch": "chatgpt/lumo-graphics-expansion-20261113", "repository": "Ullmann27/lumo-godot", "state": "awaiting_published_product_delivery"}
+    {
+      "source_pr": 464,
+      "source_sha": "d32c080378147e5daf4fcd8d15222667e69d316c",
+      "state": "integrated_via_product_8eab228"
+    },
+    {
+      "source_pr": 456,
+      "state": "existing_garage_resume_QA_adapted_and_tested",
+      "legacy_publisher": "excluded"
+    },
+    {
+      "source_branch": "chatgpt/lumo-studio-20261113",
+      "host_sha": "a8e09123805b2bf30706c8dd1914b928ae6b24ca",
+      "native_sha": "cfa9f6657a2fda218f8752dbd21e4cfb49045a70",
+      "state": "source_integrated_matching_native_pin_and_new_rendered_approval_pending"
+    },
+    {
+      "source_branch": "chatgpt/lumo-living-village-host-20261113",
+      "source_sha": "fe66edf97ae1cf8b680fd1b596ea06425352b379",
+      "state": "host_options_integrated_missing_native_world_speech_trigger_in_published_7c"
+    },
+    {
+      "source_branch": "chatgpt/lumo-living-village-20261113",
+      "source_sha": "7c088c521fc6a3d6033040956b2f4aa255caf926",
+      "state": "free_build_extension_reviewed_village_UI_followup_not_yet_published"
+    },
+    {
+      "source_branch": "chatgpt/lumo-graphics-expansion-20261113",
+      "repository": "Ullmann27/lumo-godot",
+      "source_sha": "01cf063a7c11681b0060430cdb72c16d56a0b061",
+      "state": "integrating_published_child_followups_and_concrete_variant_lifecycle_repair"
+    },
+    {
+      "source_branch": "chatgpt/lumo-game-rooms-20261113",
+      "state": "no_published_product_delta",
+      "handoff": "docs/integration/2026-11-13/rooms_cards_handoff.md"
+    }
   ],
-  "protected_branches": ["main", "master"],
+  "protected_branches": [
+    "main",
+    "master"
+  ],
   "producer_worktrees_modified": false
 }

@@ -68,6 +68,49 @@ def normalize(text: str) -> str:
     return ''.join(char for char in text if char.isalnum())
 
 
+def stage_cup_target_observation(frame: dict, lines: list[dict]) -> dict:
+    """Read the actual cup label: Grand Prix, or Pokal on the narrow landing."""
+    demand(frame.get('acceptable_for_target_sampling') is True,
+           'Cannot read a cup choice on an incomplete native surface')
+    width, height = frame['pixels']
+    demand(width > height > 0, 'Cup observation requires the actual landscape landing')
+    aliases = {'grandprix': 'Grand Prix', 'pokal': 'Pokal'}
+    navigation_words = {'fahrer', 'garage', 'strecken', 'tempo', 'mehr', 'modi'}
+    navigation, candidates, seen_navigation = [], [], set()
+    for row in lines:
+        words = {normalize(word) for word in row['text'].split()} - {''}
+        if words <= navigation_words and words & {'fahrer', 'garage'}:
+            navigation.append(row)
+            seen_navigation.update(words)
+        if normalize(row['text']) in aliases:
+            candidates.append(row)
+    demand({'fahrer', 'garage'} <= seen_navigation,
+           'Actual landing Fahrer/Garage navigation required before the cup choice')
+    for row in navigation + candidates:
+        bounds = row.get('bounds')
+        demand(isinstance(bounds, (list, tuple)) and len(bounds) == 4 and
+               all(isinstance(value, (int, float)) and not isinstance(value, bool) and
+                   math.isfinite(value) for value in bounds), 'Invalid observed cup/navigation bounds')
+        x0, y0, x1, y1 = bounds
+        demand(0 <= x0 < x1 <= width and 0 <= y0 < y1 <= height,
+               'Observed cup/navigation bounds exceed the current screenshot')
+    navigation_top = min(row['bounds'][1] for row in navigation)
+    candidates = [row for row in candidates if row['bounds'][3] < navigation_top]
+    demand(candidates, 'No actual Grand Prix or Pokal caption above the landing navigation')
+    demand(len({normalize(row['text']) for row in candidates}) == 1,
+           'Conflicting current cup captions on the same landing')
+    selected = candidates[0]
+    x0, y0, x1, y1 = selected['bounds']
+    for row in candidates[1:]:
+        a0, b0, a1, b1 = row['bounds']
+        overlap = max(0, min(x1, a1) - max(x0, a0)) * max(0, min(y1, b1) - max(y0, b0))
+        union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - overlap
+        demand(overlap / union >= .6, 'Ambiguous cup-caption regions on the current landing')
+    return {'target': selected, 'caption': aliases[normalize(selected['text'])],
+            'navigation_top': navigation_top, 'matching_observations': len(candidates),
+            'scope': 'Observed cup button; the new native race must still confirm mode cup'}
+
+
 def stage_driver_target_observation(frame: dict, lines: list[dict]) -> dict:
     """Locate the real Lumo card below the tabs, never the identical brand.
 
