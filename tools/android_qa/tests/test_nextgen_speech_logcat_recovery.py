@@ -75,6 +75,23 @@ class SpeechLogcatRecoveryTests(unittest.TestCase):
         report = self.capture(adb, after_final_move=True)
         self.assertEqual(report['completed_utterance_ids'], [5])
 
+    def test_native_movement_log_uses_same_bounded_transport_evidence(self):
+        source = ast.parse(PROBE.read_text())
+        roundtrip = next(node for node in source.body
+                         if isinstance(node, ast.FunctionDef) and node.name == 'learning_roundtrip')
+        movement = [node for node in ast.walk(roundtrip)
+                    if isinstance(node, ast.Assign) and any(
+                        isinstance(target, ast.Name) and target.id == 'movement_log'
+                        for target in node.targets)]
+        self.assertEqual(len(movement), 1)
+        self.assertIsInstance(movement[0].value, ast.Call)
+        self.assertIsInstance(movement[0].value.func, ast.Name)
+        self.assertEqual(movement[0].value.func.id, '_speech_logcat')
+        self.assertTrue(any(isinstance(node, ast.Call)
+                            and isinstance(node.func, ast.Name)
+                            and node.func.id == 'require_learning_bridge_moves'
+                            for node in ast.walk(roundtrip)))
+
     def test_nontransport_failure_is_not_silently_retried(self):
         calls = []
         def adb(*args, timeout):

@@ -196,7 +196,7 @@ def learning_roundtrip(out: Path) -> dict:
     probe.native_text(out, 'gefüllt', 'learning-complete', settle=True,
                       orientation='responsive')
     probe.capture(out, '04_learning_native_thirteen')
-    movement_log = base.adb('logcat', '-d', '-v', 'brief', timeout=60)
+    movement_log = _speech_logcat()
     (out / 'learning-movement-logcat.txt').write_text(movement_log)
     moves = require_learning_bridge_moves(movement_log)
     final_voice = completed_native_speech(out, after_final_move=True)
