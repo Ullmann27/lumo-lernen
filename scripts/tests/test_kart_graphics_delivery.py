@@ -4,6 +4,7 @@ from __future__ import annotations
 import ast
 import copy
 import json
+import os
 from pathlib import Path
 import re
 import shutil
@@ -11,6 +12,7 @@ import subprocess
 import sys
 import tempfile
 import unittest
+import venv
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import verify_kart_graphics_delivery as delivery
@@ -308,13 +310,58 @@ class KartGraphicsWorkflowTests(unittest.TestCase):
     def test_android17_runs_the_producer_surface_probe_and_has_its_own_original_artifact(self):
         source = WORKFLOW.read_text()
         tour = source.split('  android-tour:\n', 1)[1].split('  update-2019-from-2017:', 1)[0]
-        for required in ('fail-fast: false', 'api: [35, 37]', 'api-level: ${{ matrix.api }}',
+        for required in ('fail-fast: false', 'api: [35, 37]',
+                         "api-level: ${{ matrix.api == 37 && '37.0' || matrix.api }}",
                          'lumo_studio_surfaces_android_probe.py --apk', '--expected-api ${{ matrix.api }}',
                          'lumo-kart-graphics-2019-android-17-tour', 'lumo-kart-graphics-2019-android-tour'):
             with self.subTest(required=required):
                 self.assertIn(required, tour)
         verifier_job = source.split('  verify-reviewed-2019:\n', 1)[1].split('  publish-reviewed-2019:\n', 1)[0]
         self.assertIn('name: lumo-kart-graphics-2019-android-17-tour\n          path: proofs/android17/', verifier_job)
+
+    def test_both_2019_workflows_select_existing_packages_without_changing_runtime_api(self):
+        for filename in ('lumo-kart-graphics-2019.yml', 'lumo-studio-2019.yml'):
+            with self.subTest(workflow=filename):
+                source = (ROOT / '.github/workflows' / filename).read_text()
+                tour = source.split('  android-tour:\n', 1)[1].split('  update-2019-from-2017:', 1)[0]
+                selector = re.search(r'^\s+api-level: \$\{\{ (.+) \}\}$', tour, re.MULTILINE)
+                self.assertIsNotNone(selector)
+                for api, expected_package in ((35, '35'), (37, '37.0')):
+                    expression = selector.group(1).replace('matrix.api', str(api))
+                    expression = expression.replace('&&', 'and').replace('||', 'or')
+                    with self.subTest(api=api):
+                        self.assertEqual(str(eval(expression, {'__builtins__': {}}, {})), expected_package)
+                self.assertIn('api: [35, 37]', tour)
+                self.assertIn('--expected-api ${{ matrix.api }}', tour)
+                self.assertIn('target: google_apis', tour)
+                self.assertIn('arch: x86_64', tour)
+
+    def test_native_validators_in_both_2019_workflows_keep_the_installed_venv_after_checkout(self):
+        # Execute the workflow's actual PATH/cwd changes with a real isolated
+        # venv. No SDK installation, native checkout or renderer is simulated.
+        with tempfile.TemporaryDirectory() as directory:
+            workspace = Path(directory) / 'host source'
+            native = Path(directory) / 'native checkout'
+            workspace.mkdir()
+            native.mkdir()
+            environment = workspace / '.ci-python'
+            venv.EnvBuilder(with_pip=False).create(environment)
+            for filename in ('lumo-kart-graphics-2019.yml', 'lumo-studio-2019.yml'):
+                with self.subTest(workflow=filename):
+                    source = (ROOT / '.github/workflows' / filename).read_text()
+                    step = source.split('      - name: Require actual gameplay gates on the exact pinned native source\n', 1)[1]
+                    step = step.split('      - uses:', 1)[0].split('        run: |\n', 1)[1]
+                    commands = [line.strip() for line in step.splitlines()
+                                if line.strip().startswith('export PATH=') or
+                                line.strip() == 'cd "$native_source"']
+                    self.assertIn('cd "$native_source"', commands)
+                    commands.append("python3 -c 'import sys; print(sys.prefix)'")
+                    result = subprocess.run(['bash', '-c', 'set -eu\n' + '\n'.join(commands)],
+                                            cwd=workspace, text=True, capture_output=True, check=True,
+                                            env={**os.environ, 'PATH': os.defpath,
+                                                 'GITHUB_WORKSPACE': str(workspace),
+                                                 'native_source': str(native)})
+                    self.assertEqual(Path(result.stdout.strip()).resolve(), environment.resolve())
 
     def test_combined_final_verification_runs_on_integration_without_release_write_access(self):
         verifier_job = WORKFLOW.read_text().split('  verify-reviewed-2019:\n', 1)[1].split(

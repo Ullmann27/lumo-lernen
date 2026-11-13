@@ -1,91 +1,104 @@
 # Continue combined LUMO integration / candidate 2019
 
-The active drafts are Host PR465 and Native PR160. Root prepares published
-followups in `integration/lumo-host-followups-20261113`; the published Host
-integration ref remains `e5c8d6f931647b56368daefab5b924070a02f11f` until the
-final exact Native source and its two reviewed evidence sets are ready.
-The previous public Host review checkpoint is
-`4098d8992a649640c408e89f0aeab78fd9e7d1a4`, tree
-`86e6ed0f439b9ec8fda6d83d6f1e7d0c5e24b3b1` (local `fd0d777`).
-Root uses exact-tree GitData checkpoints and expected-SHA branch updates.
-Main, live Host PR461 and producer dirty worktrees remain protected.
+The active drafts are Native PR160 and Host PR465. The current Native PR160
+head is `90d34181409c15d1b1ad3a6a9643539453155c1d`, Tree
+`9b407d61633a6421dc47b6858e6a6fb3fa60bea5`. Its first CI attempt is running:
+Nextgen run `43483977169`, Graphics run `43483977529`, plus thirteen auxiliary
+workflows. The published Host integration ref remains
+`e5c8d6f931647b56368daefab5b924070a02f11f` until the exact final Native source
+and both reviewed evidence sets are ready. The previous public Host checkpoint
+is `2fa3b3d346c9d53930782bf6b9f0ad035ada7ac0`, Tree
+`99f25c730a9a062d9529fea1979f3196e5831692` (local `851554036f1e78ca5123fcede92bab88ab9458fc`).
+Root publishes exact-tree checkpoints with expected-SHA leases. Main, live
+Host PR461 and producer dirty worktrees remain protected.
 
-## New published followups connected
+## Current Native and Host contracts
 
-The shared Native/Host acceptance now requires 43 Core pairs, unchanged
-24 Studio PNGs, four Village PNGs, six additional Puzzle-menu PNGs and
-unchanged six Touch pairs/32 Touch PNGs. A current Puzzle-menu image and a
-Village image must each be explicitly reviewed in addition to the nine module
-families and all three repaired Touch surfaces. The new six-frame set fixes
-both 960x540 and 640x360 across rotation menu, rotation play and classic play.
-Names, physical sizes, original bytes/hashes, full decoding and visible pixels
-are mandatory. Studio's separate default profile remains unchanged.
+The combined source connects the published Loop, Village, Puzzle PR165 and
+standalone Studio PR158 followups while preserving the existing build-goal
+and HUD repairs. The shared Native/Host acceptance requires 43 Core pairs,
+24 Studio PNGs, four Village PNGs, six Puzzle-menu PNGs and six Touch pairs
+with 32 Touch PNGs. The Host fully decodes the fixed frames; the Native
+Puzzle/Village gates require their own current fixed-size original frames.
+A current Puzzle-menu image and a Village image must each be explicitly
+reviewed in addition to the nine module families and three Touch surfaces.
+Puzzle menu sizes are 960x540 and 640x360, across rotation menu, rotation play
+and classic play. The standalone Studio runner now has eleven mode pairs;
+its affected contracts pass 18 methods. No local renderer result is inferred.
 
-The corresponding published Native code checkpoint is
-`8a90fa9fb0db7a8f8fb45a0bd157baf476381ab3`, tree
-`07591ef728f12a665ab226a74778535f05583d1d`, on the own branch
-`checkpoint/lumo-puzzle-connections-20261113`. It includes published Puzzle
-PR165 and retains all Loop, Village, build-goal and HUD repairs. The currently
-running Native PR160 source remains cce with its frozen 41-pair contract;
-8a90 has not yet received its own complete renderer/Android acceptance.
+Native cce / Tree8409 reported GitHub SUCCESS for all fifteen workflows. Its
+original Nextgen bundle is artifact `14064293493`, SHA256
+`4e2eb984edc779175d85bea77555a42146d9c39a443654fd2d6a5dbc573b780d`.
+Those full original checkpoints, including all logs, archive/image indices,
+release bindings and the frozen 41-pair Host verifier, are preserved in the
+current Native tree. Root reviewed five original Graphics images and all four
+Village originals from that source. These historical cce proofs cannot approve
+the new 90d source or its additional Puzzle contract.
 
-Published Host PR469's historical verifier now reads four expectation files
-from an explicit full Git commit, with replacement objects disabled, and
-records each original SHA256. Current verification code still enforces the
-package, family signature, exact ABI set, voice assets, PCK and manifests.
-Conflicting version overrides cannot reinterpret a historical candidate.
-The 1999 workflow fixes its expectation commit to c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf
-and preserves our internal repository/fork/branch condition.
+## Concrete Native CI blocker found in original job logs
 
-Published Host PR468 has no missing lib/test/assets runtime. Its full branch
-would discard the stronger Village gate and remove a helper imported by the
-existing 2019 tests. Only its explicit 2017-to-2020 update wrapper is connected,
-using an additive, strictly typed, mutually exclusive allow_2020 option.
-Existing 2018/2019 wrappers and tests remain unchanged. The real 2020 release
-pin is still unapproved; no 2020 version, source pin, receipt or incomplete
-release workflow has been adopted.
+Current Kart geometry run `43483977367`, job `132087436119`, reports GitHub
+SUCCESS and a PASS marker, but contains GDScript parse/compile failures for
+Lumo platform and teacher pose dependencies. Both files exist in the complete
+90d tree; the hand-copied temporary fixture omits them. The negated grep does
+not enforce the intended failure under shell errexit. This is not a valid
+geometry pass. The owning agent is isolating the exact fixture and strict
+runner correction; 90d remains frozen while its other evidence is collected.
+The earlier cce original job log is being checked for the same defect,
+without rerunning or reinterpreting its source identity.
 
-## Exact local validation and preserved boundaries
+## Current Host source repairs
 
-Native runner/raster contracts pass 15 tests; affected Host scene/Graphics
-contracts pass 76. Historical APK/ABI/Voice/update contracts pass 86 tests,
-with all 24 bound paths and 12 protected identity/receipt/legacy paths unchanged.
-The changed historical workflow passes actionlint. Original producer evidence
-and these integration proofs are retained separately under
-`docs/evidence/integration-20261113/host-published-followups/`.
+The published Host302 followup contains original API35 scroll and API37 package
+failure evidence. Its exact final-scroll patch is connected: after N gestures,
+the helper makes the final live observation without issuing an extra gesture.
+Both 2019 workflows select SDK package37.0 for numeric API37 and preserve the
+strict actual-device API37/Android17 check. Both export the absolute existing
+Python Venv before entering Native and import Pillow there before the gates.
+The real Action implementation and original stable SDK catalogs are archived.
 
-The complete Host build-contract suite passes 434 tests with zero errors or
-skips. The complete Android QA contract suite passes 794 tests, also with zero
-errors or skips. All 1,246 bound paths are unchanged across the runs. The first
-build-contract invocation lacked Gradle on PATH and had two setup errors plus
-one skip; that diagnostic is preserved. Restoring the already installed
-Gradle/Java toolchain produced the successful full run without source changes.
-These are contract and Kotlin execution tests, not an APK or emulator tour.
-The existing ResourceWarnings in the inherited APK hash reader are preserved
-in the original logs. Earlier 414/409-test results keep their own source scopes.
+The five final source files passed six Scroll, 25 Workflow/platform and 126
+Android-neighbour methods, with no errors or skips. Both workflows pass
+actionlint. All 1,853 bound paths stayed unchanged during testing. The original
+red cases and independent frozen-source review are preserved under
+`docs/evidence/integration-20261113/host-2019-readiness/`. No new Android boot,
+APK or image receipt is claimed. Version, pins and existing receipts remain.
 
-Earlier 55 Flutter runtime tests apply to the unchanged lib/test/assets and
-Pubspec sources. They are not current Android IPC or physical-device proof.
-The original handwriting trainer, journal, child data and existing game paths
-remain preserved by the combined source.
+The previous Host checkpoint already connects the source-bound historical
+APK verifier and the additive 2017-to-2020 update wrapper. Historical inputs
+come from four exact Git blobs with replacement objects disabled; current
+verification code still enforces package, signature, ABI, voice and PCK.
+Conflicting version overrides fail. The historical1999 workflow retains its
+fixed c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf source and internal guards.
+The allow_2020 option is strictly typed and mutually exclusive; existing
+2018/2019 paths remain. The actual 2020 release pin remains unapproved.
+The whole PR468 collector was not adopted because it would discard stronger
+Village gates and remove a helper still used by existing 2019 tests.
 
-## Finish the source-bound Android pipeline
+## Validation boundaries
 
-Published Native cce / tree8409 has successful Graphics, all thirteen auxiliary
-workflows, Gameplay, Learning Preview, Core/Worlds, Build Touch and Treasure
-Touch. Workshop and final bundling are still being collected. Root reviewed
-all five current Graphics originals and all four current Village originals.
-Keep those 41-pair proofs under their original cce identities; they cannot
-approve the subsequent 43-pair Puzzle source.
+The previous 2fa/851554 Host checkpoint passed the complete 434 Script and
+794 Android-QA suites without errors or skips. All 1,246 bound paths stayed
+unchanged. The first Script invocation lacked Gradle on PATH and had two
+setup errors and one skip; that original diagnostic remains. The corrected
+installed Gradle/Java PATH produced the complete pass without source changes.
+Existing inherited APK-hash ResourceWarnings remain visible in original logs.
+These are contract and Kotlin execution tests, not emulator tours. The new
+five-file readiness patch has the separate focused 157-method evidence above.
+Earlier 55 Flutter runtime checks apply only to the unchanged lib/test/assets
+and Pubspec sources. The handwriting trainer, journal and saved data remain.
 
-After the final combined Native source passes its own complete Native/Graphics
-runs, review its original images and record both current Host receipts. Set
-config/godot-source.json, APPROVED[2019] and the candidate-2019 test constant
-atomically to that accepted Native SHA. Publish the exact Host tree to its own
-PR with the expected E5 lease. Then complete actual ARM64/x86 compile,
-API35/API37, APK/PCK/signing identity and the real 2017-to-2019 update gates.
+## Finish the exact-source Android pipeline
+
+Keep 90d source fixed while collecting its own complete Nextgen, Graphics and
+auxiliary CI. Use the frozen Host2fa parser snapshot for its 43-pair contract.
+Review the actual current original images before generating both receipts.
+Set config/godot-source.json, APPROVED[2019] and the candidate-2019 test constant
+atomically to the final accepted Native SHA. Publish the exact Host tree to
+its draft with expected E5 lease. Then observe actual ARM64/x86 compilation,
+API35/API37, APK/PCK/signing identities and the real 2017-to-2019 update.
 The integration branch does not publish an APK. No unattended automation is
-running after the active session.
+running after this active session. Old branch notes below remain historical.
 
 ## Published graphics producer handoff
 

@@ -257,6 +257,7 @@ jobs:
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
           sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0
+          export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
           native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
           native_source="$RUNNER_TEMP/lumo-native-acceptance"
           native_logs="$GITHUB_WORKSPACE/acceptance-native"
@@ -272,6 +273,7 @@ jobs:
           export XDG_CACHE_HOME="$native_logs/user-cache"
           mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
           cd "$native_source"
+          python3 -c 'from PIL import Image; print("Pinned-native raster verification ready")'
           python3 tools/validate_project.py 2>&1 | tee "$native_logs/project.log"
           bash tools/validate_project.sh 2>&1 | tee "$native_logs/legacy-gameplay.log"
           LUMO_2014_LOG_DIR="$native_logs/2014" bash tools/validate_2014.sh
@@ -391,7 +393,8 @@ jobs:
           GALLIUM_DRIVER: llvmpipe
           LP_NUM_THREADS: '2'
         with:
-          api-level: ${{ matrix.api }}
+          # SDK packages use 37.0; the measured runtime API remains integer 37.
+          api-level: ${{ matrix.api == 37 && '37.0' || matrix.api }}
           target: google_apis
           arch: x86_64
           profile: pixel_5

@@ -1,3 +1,41 @@
+# Combined LUMO integration / candidate 2019
+
+Updated: 2026-11-13, 18:43 UTC. Active drafts: Native PR160 and Host PR465.
+The current Native integration source is `90d34181409c15d1b1ad3a6a9643539453155c1d`,
+Tree `9b407d61633a6421dc47b6858e6a6fb3fa60bea5`. Its own complete CI is running.
+The preceding cce checkpoint reported GitHub SUCCESS for all fifteen workflows;
+those originals retain their cce source identities. The current auxiliary-log
+review found that the new Kart geometry job reports SUCCESS despite GDScript
+parse/compile failures. Its PASS marker cannot establish a valid gate in the
+presence of these errors. The hand-copied fixture omits two existing pose
+dependencies; the bounded fixture/error-handling repair is being isolated.
+
+This Host checkpoint adds the source-reviewed final-scroll observation,
+API37 SDK-package selection and Native Python-environment repairs. The five
+changed files passed 157 focused methods without errors or skips; two changed
+workflows passed actionlint. Full original producer diagnostics, counterchecks,
+frozen source hashes and the independent review are preserved under
+[Android readiness evidence](docs/evidence/integration-20261113/host-2019-readiness/README.md).
+
+The preceding public Host checkpoint is `2fa3b3d346c9d53930782bf6b9f0ad035ada7ac0`,
+Tree `99f25c730a9a062d9529fea1979f3196e5831692`. Its 434 full Script and 794 full
+Android-QA test results retain that earlier source scope. This checkpoint does
+not change version, native pins, visual receipts or publication conditions.
+Host PR465 remains at `e5c8d6f931647b56368daefab5b924070a02f11f` until current
+Native evidence has passed and its original images have been reviewed.
+
+Next: complete the exact 90d Native/Graphics evidence, review current original
+images, record both source-bound receipts and update all three 2019 Native
+identities together. Then publish the Host integration tree to its existing
+draft and observe actual ARM64/x86, API35/API37 and 2017-to-2019 update gates.
+The integration branch does not publish an APK. Main, PR461 and producer
+worktrees remain protected. See [CONTINUE.md](CONTINUE.md) for the handoff.
+
+## Earlier candidate-2017 history
+
+The following preserved notes describe their original 2017 candidates and
+historical decisions. They are not the active integration source or approval.
+
 # Lumo Spielewelt and Kart action candidate 2017
 
 Updated: 2026-11-12. Branch: `chatgpt/lumo-spielewelt-stage-20261112`.
