@@ -1,0 +1,38 @@
+{
+  "gradle": {
+    "command": [
+      "gradle",
+      "--version"
+    ],
+    "exit_code": 0,
+    "stdout": "\n------------------------------------------------------------\nGradle 9.1.0\n------------------------------------------------------------\n\nBuild time:    2025-09-18 13:05:56 UTC\nRevision:      e45a8dbf2470c2e2474ccc25be9f49331406a07e\n\nKotlin:        2.2.0\nGroovy:        4.0.28\nAnt:           Apache Ant(TM) version 1.10.15 compiled on August 25 2024\nLauncher JVM:  21.0.13 (Debian 21.0.13+9-1-deb13u2-Debian)\nDaemon JVM:    /usr/lib/jvm/java-21-openjdk-amd64 (no JDK specified, using current Java home)\nOS:            Linux 6.18.57 amd64\n\n",
+    "stderr": ""
+  },
+  "flutter": {
+    "command": [
+      "flutter",
+      "--version",
+      "--machine"
+    ],
+    "exit_code": 0,
+    "stdout": "{\n  \"frameworkVersion\": \"3.44.9\",\n  \"channel\": \"stable\",\n  \"repositoryUrl\": \"https://github.com/flutter/flutter.git\",\n  \"frameworkRevision\": \"6b182d2c7585eba26d4edce0f97630effd256c33\",\n  \"frameworkCommitDate\": \"2026-08-05 10:04:07 -0700\",\n  \"engineRevision\": \"5a2a6a42cce67f965cf540fcecf616faca624aa1\",\n  \"engineCommitDate\": \"2026-07-31 18:31:59.000Z\",\n  \"engineContentHash\": \"b9499e4c25212536ba3a4eec4f5c1905fb3214fe\",\n  \"engineBuildDate\": \"2026-07-31 13:30:03.301\",\n  \"dartSdkVersion\": \"3.12.2\",\n  \"devToolsVersion\": \"2.57.0\",\n  \"flutterVersion\": \"3.44.9\",\n  \"flutterRoot\": \"/workspace/scratch/e0abce7d2838/toolchain/flutter\"\n}\n",
+    "stderr": ""
+  },
+  "java": {
+    "command": [
+      "java",
+      "-version"
+    ],
+    "exit_code": 0,
+    "stdout": "",
+    "stderr": "openjdk version \"21.0.13\" 2026-10-20\nOpenJDK Runtime Environment (build 21.0.13+9-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.13+9-1-deb13u2-Debian, mixed mode, sharing)\n"
+  },
+  "python": {
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "pillow": {
+    "version": "13.0.0",
+    "path": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/site-packages/PIL/__init__.py"
+  }
+}

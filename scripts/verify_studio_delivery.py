@@ -8,6 +8,7 @@ downloaded original artifact, including all independent capture source stamps.
 from __future__ import annotations
 
 import argparse
+from dataclasses import dataclass
 from datetime import datetime
 import hashlib
 from io import BytesIO
@@ -16,6 +17,8 @@ from pathlib import Path, PurePosixPath
 import re
 import stat
 import struct
+from types import MappingProxyType
+from typing import Mapping
 import zipfile
 
 from release_pipeline_gates import (EXPECTED_CERT_SHA256, PACKAGE_ID,
@@ -61,10 +64,122 @@ CAPTURE_MODULES = {
     'touch-evidence/build/captures/build_dialog_density_regression': 'build',
 }
 
+# These are two concrete producer layouts, never caller-supplied acceptance
+# rules. The Studio default follows the published producer contract.
+NEXTGEN_PREFIX = 'nextgen-evidence/nextgen'
+NEXTGEN_CAPTURE_MODULES = MappingProxyType({
+    **{NEXTGEN_PREFIX + '/captures/' + probe: module for probe, module in (
+        ('learning_world_capture', 'learning'), ('learning_sharing_capture', 'learning'),
+        ('jump_nextgen_capture', 'jump'), ('build_nextgen_play_regression', 'build'),
+        ('build_settlement_play_regression', 'settlement'),
+        ('kart_nextgen_garage_regression', 'garage'), ('cards_table_capture', 'cards'),
+        ('rhythm_tour_play_regression', 'rhythm'), ('puzzle_rotation_regression', 'puzzle'),
+        ('treasure_exploration_regression', 'treasure'),
+    )},
+    **{probe: CAPTURE_MODULES[probe] for probe in TOUCH_CAPTURE_PROBES},
+})
+NEXTGEN_REQUIRED_PROBES = frozenset(
+    (probe, 'headless') for probe in (
+        'learning_world_regression', 'learning_sharing_regression', 'learning_studio_regression',
+        'learning_host_payload_regression', 'puzzle_rotation_regression',
+        'treasure_exploration_regression', 'jump_nextgen_regression', 'jump_expeditions_regression',
+        'lumo_teacher_pose_regression', 'lumo_studio_motion_regression', 'lumo_65bone_walk_gait_regression',
+        'lumo_original_jump_visual_regression', 'bauwelt_identity_2013_regression',
+        'build_frontier_regression', 'build_transform_regression', 'build_nextgen_play_regression',
+        'build_settlement_regression', 'build_settlement_play_regression',
+        'creative_nextgen_environment_regression', 'kart_nextgen_garage_regression',
+        'kart_track_pass_regression', 'cards_table_regression', 'rhythm_tour_regression',
+        'rhythm_tour_play_regression',
+    )
+) | frozenset(
+    (probe, 'rendered') for probe in (
+        'learning_world_capture', 'learning_sharing_capture', 'lumo_studio_motion_capture',
+        'puzzle_rotation_regression', 'treasure_exploration_regression', 'jump_nextgen_capture',
+        'build_nextgen_play_regression', 'build_settlement_play_regression',
+        'creative_nextgen_environment_regression', 'kart_nextgen_garage_regression',
+        'cards_table_capture', 'rhythm_tour_play_regression', 'kart_player_full_route_regression',
+    )
+)
+# The eight pose-studio frames are required archive evidence, but are never
+# allowed to substitute for a reviewed production scene in CAPTURE_MODULES.
+NEXTGEN_STUDIO_PNGS = frozenset(
+    f'captures/learning_sharing_capture/{state}-{size}.png'
+    for state in ('sharing-start', 'sharing-first-round', 'sharing-complete')
+    for size in ('1280x720', '412x915')
+) | frozenset(
+    f'captures/lumo_studio_motion_capture/{variant}_{sample}.png'
+    for variant in ('before', 'after') for sample in ('walk', 'sprint', 'jump_rise', 'land')
+) | frozenset(
+    f'captures/puzzle_rotation_regression/puzzle_rotation_{view}.png'
+    for view in ('table', 'hint', 'placed', '640x360', '412x915', '840x760', 'compact_menu')
+) | frozenset(
+    f'captures/treasure_exploration_regression/treasure_{view}.png'
+    for view in ('choose_route', 'garden_first', 'route_complete')
+)
 
-def verify_native_acceptance(native: str, artifact: dict, workflow: dict, jobs: dict) -> None:
+# The independent density captures were published in native 24fb8580. Their
+# paths and physical dimensions come from the three production input probes;
+# they supplement, and never replace, the fixed 37-probe/24-raster core above.
+NEXTGEN_TOUCH_PROBES = MappingProxyType({
+    'touch-evidence/workshop': 'kart_workshop_density_regression',
+    'touch-evidence/treasure': 'treasure_density_regression',
+    'touch-evidence/build': 'build_dialog_density_regression',
+})
+NEXTGEN_TOUCH_PNGS = MappingProxyType({
+    'touch-evidence/workshop': MappingProxyType({
+        f'captures/kart_workshop_density_regression/workshop-{width}x{height}-{view}.png': (width, height)
+        for width, height in ((2400, 1080), (1080, 2400))
+        for view in ('performance', 'paint-purchase', 'refund')
+    }),
+    'touch-evidence/treasure': MappingProxyType({
+        **{f'captures/treasure_density_regression/treasure-{width}x{height}-{view}.png': (width, height)
+           for width, height in ((2400, 1080), (1080, 2400), (640, 320))
+           for view in ('play', 'question', 'complete', 'inventory')},
+        **{f'captures/treasure_density_regression/treasure-2176x1812-{view}.png': (2176, 1812)
+           for view in ('play', 'complete')},
+    }),
+    'touch-evidence/build': MappingProxyType({
+        f'captures/build_dialog_density_regression/build-dialog-{width}x{height}-{view}.png': (width, height)
+        for width, height in ((2400, 1080), (1080, 2400), (2176, 1812), (640, 360))
+        for view in ('templates-top', 'templates-bottom', 'current-goal')
+    }),
+})
+
+
+@dataclass(frozen=True)
+class _NativeReviewProfile:
+    artifact: str
+    workflow: str
+    jobs: frozenset[str]
+    sources: tuple[str, ...]
+    capture_modules: Mapping[str, str]
+    directory: PurePosixPath
+    receipt: str
+
+
+NATIVE_PROFILES = MappingProxyType({
+    'studio-2019': _NativeReviewProfile(NATIVE_ARTIFACT, NATIVE_WORKFLOW, NATIVE_JOBS,
+        CAPTURE_SOURCES, MappingProxyType(CAPTURE_MODULES), REVIEW_DIRECTORY, REVIEW_RECEIPT),
+    'nextgen-2019': _NativeReviewProfile('lumo-nextgen-2018-native-evidence',
+        '.github/workflows/lumo-nextgen-2018.yml',
+        frozenset({'gameplay', 'new-worlds', 'learning-preview', 'touch-workshop',
+                   'touch-treasure', 'touch-build', 'bundle-evidence'}),
+        (NEXTGEN_PREFIX, *NEXTGEN_TOUCH_PROBES),
+        NEXTGEN_CAPTURE_MODULES, PurePosixPath('docs/evidence/nextgen-2019-reviewed'),
+        'config/nextgen-2019-visual-review.json'),
+})
+
+
+def native_review_profile(name: str) -> _NativeReviewProfile:
+    require(isinstance(name, str) and name in NATIVE_PROFILES, 'Unknown fixed native review profile')
+    return NATIVE_PROFILES[name]
+
+
+def verify_native_acceptance(native: str, artifact: dict, workflow: dict, jobs: dict,
+                             *, native_profile: str = 'studio-2019') -> None:
+    profile = native_review_profile(native_profile)
     require(bool(re.fullmatch(r'[a-f0-9]{40}', str(native))), 'Invalid reviewed native SHA')
-    require(artifact.get('name') == NATIVE_ARTIFACT and artifact.get('expired') is False,
+    require(artifact.get('name') == profile.artifact and artifact.get('expired') is False,
             'Current Studio native visual evidence is missing or expired')
     require(type(artifact.get('id')) is int and artifact['id'] > 0, 'Invalid native artifact identity')
     run_id = workflow.get('id')
@@ -72,13 +187,13 @@ def verify_native_acceptance(native: str, artifact: dict, workflow: dict, jobs: 
             artifact.get('workflow_run', {}).get('id') == run_id and
             artifact['workflow_run'].get('head_sha') == native,
             'Native artifact was rendered from another source or workflow run')
-    require(workflow.get('path') == NATIVE_WORKFLOW and workflow.get('head_sha') == native and
+    require(workflow.get('path') == profile.workflow and workflow.get('head_sha') == native and
             workflow.get('status') == 'completed' and workflow.get('conclusion') == 'success',
             'Current Studio native workflow did not succeed at the exact pin')
     actual_jobs = jobs.get('jobs')
     require(isinstance(actual_jobs, list) and all(isinstance(job, dict) for job in actual_jobs),
             'Missing native acceptance job metadata')
-    for name in sorted(NATIVE_JOBS):
+    for name in sorted(profile.jobs):
         matching = [job for job in actual_jobs if job.get('name') == name]
         require(len(matching) == 1, 'Missing or ambiguous full native acceptance job: ' + name)
         job = matching[0]
@@ -99,9 +214,11 @@ def archive_member(zipped: zipfile.ZipFile, name: str) -> bytes:
         raise ValueError('Cannot read original native archive member: ' + name) from error
 
 
-def verify_archive_sources(zipped: zipfile.ZipFile, native: str) -> dict:
+def verify_archive_sources(zipped: zipfile.ZipFile, native: str,
+                           *, native_profile: str = 'studio-2019') -> dict:
+    profile = native_review_profile(native_profile)
     sources = {}
-    for prefix in CAPTURE_SOURCES:
+    for prefix in profile.sources:
         try:
             source = archive_member(zipped, prefix + '/source-sha.txt').decode('utf-8').strip()
             dirty = archive_member(zipped, prefix + '/source-dirty.txt').decode('utf-8').strip()
@@ -113,13 +230,14 @@ def verify_archive_sources(zipped: zipfile.ZipFile, native: str) -> dict:
     return sources
 
 
-def capture_module(entry: str) -> str:
+def capture_module(entry: str, *, native_profile: str = 'studio-2019') -> str:
+    profile = native_review_profile(native_profile)
     require(isinstance(entry, str) and '\\' not in entry, 'Invalid original artifact image path')
     path = PurePosixPath(entry)
     require(not path.is_absolute() and '..' not in path.parts and str(path) == entry and
             bool(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*\.png', path.name)),
             'Only original current production-scene PNGs may be reviewed')
-    module = CAPTURE_MODULES.get(str(path.parent))
+    module = profile.capture_modules.get(str(path.parent))
     require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
     return module
 
@@ -143,15 +261,19 @@ def png_dimensions(data: bytes) -> list[int]:
     return [width, height]
 
 
-def reviewed_relative_path(digest: str, module: str, entry: str) -> str:
+def reviewed_relative_path(digest: str, module: str, entry: str,
+                           *, native_profile: str = 'studio-2019') -> str:
+    profile = native_review_profile(native_profile)
     require(bool(re.fullmatch(r'[a-f0-9]{64}', str(digest))), 'Invalid reviewed image SHA-256')
-    require(capture_module(entry) == module, 'Reviewed module differs from its actual production capture')
-    return str(REVIEW_DIRECTORY / f'{digest}-{module}-{PurePosixPath(entry).name}')
+    require(capture_module(entry, native_profile=native_profile) == module,
+            'Reviewed module differs from its actual production capture')
+    return str(profile.directory / f'{digest}-{module}-{PurePosixPath(entry).name}')
 
 
-def reviewed_file(root: Path, relative: str) -> Path:
+def reviewed_file(root: Path, relative: str, *, native_profile: str = 'studio-2019') -> Path:
+    profile = native_review_profile(native_profile)
     parts = PurePosixPath(relative).parts
-    require(parts[:3] == REVIEW_DIRECTORY.parts and len(parts) == 4 and '\\' not in relative,
+    require(parts[:3] == profile.directory.parts and len(parts) == 4 and '\\' not in relative,
             'Reviewed image must be a content-addressed committed Studio PNG')
     path = root
     for component in parts:
@@ -160,8 +282,102 @@ def reviewed_file(root: Path, relative: str) -> Path:
     return path
 
 
+def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
+    """Check the fixed combined runner's original results and complete raster roster."""
+    try:
+        tree = archive_member(zipped, NEXTGEN_PREFIX + '/source-tree.txt').decode('utf-8').strip()
+        engine = archive_member(zipped, NEXTGEN_PREFIX + '/engine.txt').decode('utf-8').strip()
+        rows = [line.split('\t') for line in archive_member(
+            zipped, NEXTGEN_PREFIX + '/results.tsv').decode('utf-8').splitlines()]
+        roster = json.loads(archive_member(zipped, NEXTGEN_PREFIX + '/renderer-images.json'))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError('Invalid original Nextgen runner metadata') from error
+    head_commit = workflow.get('head_commit')
+    require(bool(re.fullmatch(r'[a-f0-9]{40}', tree)) and isinstance(head_commit, dict) and
+            head_commit.get('tree_id') == tree, 'Native capture tree differs from its exact workflow source')
+    require(engine.startswith('4.6.3.stable.'), 'Unexpected native capture engine')
+    require(bool(rows) and rows[0] == ['probe', 'mode', 'result'] and
+            all(len(row) == 3 and row[2] == 'PASS' for row in rows[1:]),
+            'Every original Nextgen probe must report PASS')
+    observed = [(row[0], row[1]) for row in rows[1:]]
+    require(len(observed) == len(set(observed)) and set(observed) == NEXTGEN_REQUIRED_PROBES,
+            'The complete original 37-probe Nextgen result is required')
+    images = roster.get('images') if isinstance(roster, dict) else None
+    require(isinstance(images, list) and len(images) == len(NEXTGEN_STUDIO_PNGS),
+            'The complete original 24-PNG Studio roster is required')
+    seen = set()
+    for item in images:
+        require(isinstance(item, dict), 'Invalid original Studio raster metadata')
+        relative = item.get('path')
+        require(isinstance(relative, str) and relative in NEXTGEN_STUDIO_PNGS and relative not in seen,
+                'Missing, duplicate or unexpected original Studio raster path')
+        seen.add(relative)
+        data = archive_member(zipped, NEXTGEN_PREFIX + '/' + relative)
+        require(type(item.get('bytes')) is int and len(data) == item['bytes'] and
+                hashlib.sha256(data).hexdigest() == item.get('sha256'),
+                'Original Studio raster digest or byte count differs')
+        dimensions = png_dimensions(data)
+        require(all(type(item.get(key)) is int for key in ('width', 'height')) and
+                dimensions == [item['width'], item['height']] and min(dimensions) >= 360,
+                'Original Studio raster dimensions differ')
+    require(seen == NEXTGEN_STUDIO_PNGS, 'The complete original 24-PNG Studio roster is required')
+    return {'native_capture_tree': tree, 'native_probe_count': len(observed),
+            'native_studio_raster_count': len(seen), **verify_nextgen_touch_archive(zipped, tree)}
+
+
+def verify_nextgen_touch_archive(zipped: zipfile.ZipFile, tree: str) -> dict:
+    """Require all three source-bound input runs and their 32 original PNGs."""
+    trees, probe_count, raster_count = {}, 0, 0
+    for prefix, probe in NEXTGEN_TOUCH_PROBES.items():
+        try:
+            captured_tree = archive_member(zipped, prefix + '/source-tree.txt').decode('utf-8').strip()
+            dirty_after = archive_member(zipped, prefix + '/source-dirty-after.txt').decode('utf-8').strip()
+            engine = archive_member(zipped, prefix + '/engine.txt').decode('utf-8').strip()
+            rows = [line.split('\t') for line in archive_member(
+                zipped, prefix + '/results.tsv').decode('utf-8').splitlines()]
+            roster = json.loads(archive_member(zipped, prefix + '/renderer-images.json'))
+        except (UnicodeDecodeError, json.JSONDecodeError) as error:
+            raise ValueError('Invalid original touch runner metadata: ' + prefix) from error
+        require(captured_tree == tree, 'Touch capture tree differs from its exact workflow source: ' + prefix)
+        require(not dirty_after, 'Tracked touch source changed during capture: ' + prefix)
+        require(engine.startswith('4.6.3.stable.'), 'Unexpected touch capture engine: ' + prefix)
+        require(bool(rows) and rows[0] == ['probe', 'mode', 'result'] and
+                all(len(row) == 3 and row[2] == 'PASS' for row in rows[1:]),
+                'Every original touch probe must report PASS: ' + prefix)
+        observed = [(row[0], row[1]) for row in rows[1:]]
+        require(len(observed) == 2 and set(observed) == {(probe, 'headless'), (probe, 'rendered')},
+                'Both independent original touch modes must pass exactly once: ' + prefix)
+        expected = NEXTGEN_TOUCH_PNGS[prefix]
+        images = roster.get('images') if isinstance(roster, dict) else None
+        require(isinstance(images, list) and len(images) == len(expected),
+                'The complete original touch raster roster is required: ' + prefix)
+        seen = set()
+        for item in images:
+            require(isinstance(item, dict), 'Invalid original touch raster metadata: ' + prefix)
+            relative = item.get('path')
+            require(isinstance(relative, str) and relative in expected and relative not in seen,
+                    'Missing, duplicate or unexpected original touch raster path: ' + prefix)
+            seen.add(relative)
+            data = archive_member(zipped, prefix + '/' + relative)
+            require(type(item.get('bytes')) is int and len(data) == item['bytes'] and
+                    hashlib.sha256(data).hexdigest() == item.get('sha256'),
+                    'Original touch raster digest or byte count differs: ' + prefix)
+            dimensions = png_dimensions(data)
+            require(all(type(item.get(key)) is int for key in ('width', 'height')) and
+                    dimensions == [item['width'], item['height']] == list(expected[relative]),
+                    'Original touch raster dimensions differ from the production probe: ' + prefix)
+        require(seen == set(expected), 'The complete original touch raster roster is required: ' + prefix)
+        trees[prefix] = captured_tree
+        probe_count += len(observed)
+        raster_count += len(seen)
+    return {'native_touch_capture_trees': trees, 'native_touch_probe_count': probe_count,
+            'native_touch_raster_count': raster_count}
+
+
 def verify_visual_review(root: Path, receipt: dict, native: str,
-                         artifact: dict, workflow: dict, jobs: dict, archive: Path) -> dict:
+                         artifact: dict, workflow: dict, jobs: dict, archive: Path,
+                         *, native_profile: str = 'studio-2019') -> dict:
+    profile = native_review_profile(native_profile)
     require(receipt.get('schema') == 1 and receipt.get('status') == 'approved',
             'The final Studio visual review is not approved')
     require(receipt.get('versionCode') == VERSION_CODE and receipt.get('native_revision') == native,
@@ -173,7 +389,10 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     except (TypeError, ValueError, AttributeError) as error:
         raise ValueError('Missing dated visual review') from error
     require(reviewed_at.tzinfo is not None, 'Visual review date must include its time zone')
-    verify_native_acceptance(native, artifact, workflow, jobs)
+    if native_profile == 'nextgen-2019':
+        require(receipt.get('native_profile') == native_profile,
+                'The combined Nextgen review must name its fixed native profile')
+    verify_native_acceptance(native, artifact, workflow, jobs, native_profile=native_profile)
     require(artifact['id'] == receipt.get('native_artifact_id') and
             workflow['id'] == receipt.get('native_workflow_run_id'),
             'Visual artifact or workflow identity differs from the reviewed artifact')
@@ -185,20 +404,23 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     images = receipt.get('images')
     require(isinstance(images, list) and bool(images), 'No reviewed original PNGs')
     modules, orientations, paths, hashes, entries = set(), set(), set(), set(), set()
+    additional = {}
     capture_probes = set()
     with zipfile.ZipFile(archive) as zipped:
-        sources = verify_archive_sources(zipped, native)
+        sources = verify_archive_sources(zipped, native, native_profile=native_profile)
+        if native_profile == 'nextgen-2019':
+            additional = verify_nextgen_archive(zipped, workflow)
         for entry in images:
             require(isinstance(entry, dict), 'Invalid reviewed image entry')
             module, original = entry.get('module'), entry.get('artifact_entry')
             image_digest = entry.get('sha256')
-            relative = reviewed_relative_path(image_digest, module, original)
+            relative = reviewed_relative_path(image_digest, module, original, native_profile=native_profile)
             require(entry.get('path') == relative, 'Reviewed PNG filename must contain its full SHA-256 and module')
             require(relative not in paths and original not in entries, 'Duplicate reviewed image path or archive entry')
             paths.add(relative)
             entries.add(original)
             capture_probes.add(str(PurePosixPath(original).parent))
-            path = reviewed_file(root, relative)
+            path = reviewed_file(root, relative, native_profile=native_profile)
             require(path.is_file(), 'Reviewed PNG is not committed as a real file')
             data = path.read_bytes()
             require(hashlib.sha256(data).hexdigest() == image_digest and image_digest not in hashes,
@@ -216,10 +438,10 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,
-            'native_capture_sources': sources, 'native_acceptance_jobs': sorted(NATIVE_JOBS),
+            'native_capture_sources': sources, 'native_acceptance_jobs': sorted(profile.jobs),
             'reviewed_touch_capture_probes': sorted(TOUCH_CAPTURE_PROBES),
             'reviewed_by': receipt['reviewed_by'], 'reviewed_at': receipt['reviewed_at'],
-            'images': len(images), 'modules': sorted(modules)}
+            'images': len(images), 'modules': sorted(modules), **additional}
 
 
 def verify_proofs(source: str, native: str, version_name: str, digest: str, size: int,

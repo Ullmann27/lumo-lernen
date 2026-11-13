@@ -50,7 +50,9 @@ class NextgenReviewRecoveryTests(unittest.TestCase):
             for index, module in enumerate(sorted(REVIEW_MODULES)):
                 color = index + (100 if module == changed_module else 10)
                 dimensions = (320, 600) if index == 0 else (640, 360)
-                entry = 'nextgen-evidence/nextgen/captures/' + module + '/scene.png'
+                entry = ('nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_table.png'
+                         if module == 'puzzle' else
+                         'nextgen-evidence/nextgen/captures/' + module + '/scene.png')
                 zipped.writestr(entry, fixture_png(*dimensions, color))
                 selection.append({'module': module, 'artifact_entry': entry,
                                   'findings': 'Synthetic storage regression, not visual approval'})
@@ -172,12 +174,14 @@ class NextgenReviewRecoveryTests(unittest.TestCase):
 
     def test_incomplete_module_set_does_not_write_partial_evidence(self):
         self.record(self.bundle())
-        bundle = self.bundle(native='b' * 40, changed_module='cards')
-        bundle[-1].pop()
-        before = self.snapshot()
-        with self.assertRaisesRegex(ValueError, 'every changed production scene'):
-            self.record(bundle)
-        self.assertEqual(before, self.snapshot())
+        for missing_module in ('settlement', 'puzzle'):
+            bundle = self.bundle(native='b' * 40, changed_module='cards')
+            bundle[-1] = [item for item in bundle[-1] if item['module'] != missing_module]
+            before = self.snapshot()
+            with self.subTest(missing_module=missing_module):
+                with self.assertRaisesRegex(ValueError, 'every changed production scene'):
+                    self.record(bundle)
+                self.assertEqual(before, self.snapshot())
 
 
 if __name__ == '__main__':

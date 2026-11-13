@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Real 2017 to 2019 in-place update with the original package and certificate.
+"""Real 2017 to 2019 in-place update with exact reviewed source identities.
 
-The established update probe retains live-created learning, profile identity,
-offline Kart, restart and simulated Fold checks. Only the reviewed source pair
-and candidate version change here; this wrapper cannot approve arbitrary pins.
+The shared live update runner preserves all learning, child ownership, rewards,
+offline Kart, restart and Fold gates. This entry point has its own explicit
+2019 migration opt-in; it cannot reinterpret a 2018 result as current evidence.
 """
 from importlib.util import module_from_spec, spec_from_file_location
 from pathlib import Path
@@ -17,7 +17,7 @@ BASELINE_NATIVE = '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'
 
 def reviewed_candidate_native(pubspec_text: str, source_text: str) -> str:
     spec = spec_from_file_location(
-        'lumo_reviewed_candidate_pin', ROOT / 'scripts/verify_legacy_release_pin.py')
+        'lumo_reviewed_graphics_pin', ROOT / 'scripts/verify_legacy_release_pin.py')
     if spec is None or spec.loader is None:
         raise RuntimeError('The reviewed native-source policy is unavailable')
     policy = module_from_spec(spec)
@@ -44,5 +44,5 @@ if __name__ == '__main__':
         candidate_version=2019,
         baseline_native=BASELINE_NATIVE,
         candidate_native=native_source,
-        allow_2018_independent_evidence_migration=True,
+        allow_2019_independent_evidence_migration=True,
     ))
