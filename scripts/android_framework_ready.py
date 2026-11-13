@@ -202,6 +202,20 @@ def observe(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
     return {"observed_at": utc(), "ready": not errors, "errors": errors, "pid": pid, "start_count": count, "android_runtime": runtime, "services": {name: output(f"service-{name}") for name in SERVICES}, "settings_boot_count": output("settings-read"), "package_android": output("package-read"), "window_size": output("window-read"), "command_records": {name: {key: value for key, value in item.items() if key not in ("stdout", "stderr")} for name, item in results.items()}}
 
 
+def observe_resources(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
+    """One read-only storage/memory sample; never a substitute readiness gate."""
+    results = {}
+    for name, arguments in (("data-filesystem", ["df", "-k", "/data"]),
+                            ("memory-info", ["cat", "/proc/meminfo"]),
+                            ("mounted-filesystems", ["cat", "/proc/mounts"])):
+        remaining = deadline - clock()
+        if remaining <= 0:
+            break
+        result = recorder.run(name, arguments, min(2.0, remaining))
+        results[name] = {key: value for key, value in result.items() if key not in ("stdout", "stderr")}
+    return {"scope": "Single actual read-only /data, memory and mount observation, including unsuccessful command records; no partition changes", "command_records": results}
+
+
 def poll_framework(recorder: Recorder, timeout: float, stable_seconds: float, minimum_samples: int, poll_seconds: float = 2, clock=time.monotonic, sleeper=time.sleep) -> dict:
     start = clock()
     deadline = start + timeout
@@ -240,13 +254,37 @@ def poll_framework(recorder: Recorder, timeout: float, stable_seconds: float, mi
     return {"schema": 1, "status": status, "reason": reason, "elapsed_seconds": clock() - start, "budget_seconds": timeout, "required_stable_seconds": stable_seconds, "required_minimum_samples": minimum_samples, "consecutive_ready_samples": consecutive, "stable_observed_seconds": 0 if stable_since is None else clock() - stable_since, "samples": samples, "observed_start_count_greater_than_one": any(s["start_count"].isdigit() and int(s["start_count"]) > 1 for s in samples), "scope": "Sampled pre-app framework readiness only; raw startup logs must distinguish any early race from a system-server failure. This is not an app test or physical-device performance measurement."}
 
 
-def wait_for_framework(out: Path, serial: str, timeout: float, stable_seconds: float, minimum_samples: int) -> int:
+def wait_for_framework(out: Path, serial: str, timeout: float, stable_seconds: float, minimum_samples: int, cli22_proof: Path | None = None) -> int:
     if not monitor_alive(out):
         raise RuntimeError("Startup log monitor is unavailable; refusing unobserved readiness")
     record = json.loads((out / "monitor-process.json").read_text())
     if record["serial"] != serial or record["adb"] != adb_path():
         raise RuntimeError("Readiness and startup monitor target different SDK adb/device identities")
-    result = poll_framework(Recorder(out, adb_path(), serial), timeout, stable_seconds, minimum_samples)
+    started = time.monotonic()
+    deadline = started + timeout
+    recorder = Recorder(out, adb_path(), serial)
+    resources = observe_resources(recorder, deadline)
+    result = {"schema": 1, "status": "FAIL", "reason": "actual_cli22_avd_binding_not_verified", "samples": [], "consecutive_ready_samples": 0}
+    try:
+        if cli22_proof is None:
+            raise ValueError("The actual CLI22 and generated AVD proof is mandatory before keyevent or app tests")
+        command = [sys.executable, str(Path(__file__).with_name("prepare_android37_cli22.py")),
+                   "verify", "--out", str(cli22_proof), "--phase", "guard"]
+        with (out / "cli22-avd-verify.stdout").open("xb") as stdout, (out / "cli22-avd-verify.stderr").open("xb") as stderr:
+            verified = subprocess.run(command, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
+                                      timeout=max(.001, min(20, deadline - time.monotonic())), check=False)
+        write_json(out / "cli22-avd-verify.json", {"command": command, "returncode": verified.returncode})
+        if verified.returncode:
+            raise RuntimeError("Actual CLI22/AVD verification failed; original stderr is preserved")
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            raise TimeoutError("Original readiness budget exhausted before framework polling")
+        result = poll_framework(recorder, remaining, stable_seconds, minimum_samples)
+        result["framework_poll_budget_seconds"] = remaining
+    except Exception as error:
+        result["binding_error"] = f"{type(error).__name__}: {error}"
+    result.update({"resource_observation": resources, "cli22_proof": str(cli22_proof) if cli22_proof else None,
+                   "budget_seconds": timeout, "elapsed_seconds": time.monotonic() - started})
     result.update({"serial": serial, "adb": adb_path(), "finished_at": utc(), "monitor_alive_at_finish": monitor_alive(out)})
     if not result["monitor_alive_at_finish"]:
         result.update(status="FAIL", reason="startup_monitor_exited_before_readiness_finished")
@@ -263,6 +301,7 @@ def main() -> int:
     parser.add_argument("--timeout", type=float, default=120)
     parser.add_argument("--stable-seconds", type=float, default=10)
     parser.add_argument("--minimum-samples", type=int, default=3)
+    parser.add_argument("--cli22-proof", type=Path)
     parser.add_argument("--allow-not-started", action="store_true")
     args = parser.parse_args()
     if not re.fullmatch(r"emulator-[0-9]+", args.serial):
@@ -275,7 +314,7 @@ def main() -> int:
     elif args.mode == "_monitor":
         return collect_monitor(out, args.serial)
     elif args.mode == "wait":
-        return wait_for_framework(out, args.serial, args.timeout, args.stable_seconds, args.minimum_samples)
+        return wait_for_framework(out, args.serial, args.timeout, args.stable_seconds, args.minimum_samples, args.cli22_proof)
     else:
         stop_monitor(out, args.allow_not_started)
     return 0
