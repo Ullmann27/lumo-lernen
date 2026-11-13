@@ -8,7 +8,6 @@ import '../../app/app_design.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../core/ai_task_cache.dart';
 import '../../core/ai_tutor_service.dart';
-import '../../core/error_breakdown_repository.dart';
 import '../../core/test_result_repository.dart';
 import '../../core/lumo_ai_proxy_client.dart';
 import '../../core/lumo_ai_learning_access.dart';
@@ -53,8 +52,13 @@ import '../../widgets/design/lumo_design_system.dart';
 import '../../widgets/fox/lumo_character.dart';
 
 class LearningContent extends StatefulWidget {
-  const LearningContent({super.key, required this.appState});
+  const LearningContent({
+    super.key,
+    required this.appState,
+    this.aiProxy = const LumoAiProxyClient(),
+  });
   final LumoAppState appState;
+  final LumoAiProxyClient aiProxy;
 
   @override
   State<LearningContent> createState() => _LearningContentState();
@@ -65,7 +69,7 @@ class _LearningContentState extends State<LearningContent> {
   final _adapter = const LegacyLumoTaskAdapter();
   final _resultHandler = const SkillStateUpdater();
   final _rewardEngine = const RewardEngine();
-  final _feedbackEngine = LumoLearningFeedbackEngine();
+  var _feedbackEngine = LumoLearningFeedbackEngine();
   final _taskHints = const TaskHintService();
   LumoCompanionTaskContext? _publishedTaskContext;
   String? _activeSessionScope;
@@ -95,11 +99,11 @@ class _LearningContentState extends State<LearningContent> {
   String? _aiQueueScope;
 
   String get _currentAiScope =>
-      '$_childId|${widget.appState.state.grade}|${_aiSubjectName(widget.appState.state.subject)}';
+      '${widget.appState.profileGeneration}|$_childId|${widget.appState.state.grade}|${_aiSubjectName(widget.appState.state.subject)}';
 
   String get _sessionScope {
     final state = widget.appState.state;
-    return '$_childId|${state.subject}|${state.unit}|${state.sessionKind.name}';
+    return '${widget.appState.profileGeneration}|$_childId|${state.subject}|${state.unit}|${state.sessionKind.name}';
   }
 
   static const int _recentTaskMemory = RecentTaskRepository.maxTaskKeys;
@@ -176,11 +180,9 @@ class _LearningContentState extends State<LearningContent> {
   // Wird in den ErrorBreakdownRepository persistiert und vom DNA-Engine
   // in Phase 1 gelesen.
   final Map<String, int> _errorBreakdown = <String, int>{};
-  final ErrorBreakdownRepository _errorRepo = const ErrorBreakdownRepository();
 
   // KI-Hilfe vom Cloud-Tutor (optional, nur wenn aiProxyEnabled).
   // Heinz' Wunsch: pro Bereich zugeschnittener KI-Helfer mit echtem Kontext.
-  final LumoAiProxyClient _aiProxy = const LumoAiProxyClient();
   String? _aiHelpReply;
   bool _aiHelpLoading = false;
 
@@ -233,18 +235,22 @@ class _LearningContentState extends State<LearningContent> {
     super.didUpdateWidget(oldWidget);
     if (_activeSessionScope == _sessionScope) return;
     _skillStates.clear();
+    _feedbackEngine = LumoLearningFeedbackEngine();
+    _errorBreakdown.clear();
     _recentTaskKeys.clear();
     _recentUnits.clear();
     _sessionTaskKeys.clear();
     _lastTaskMarkers.clear();
     _varietyGuard.reset();
     _aiDraftQueue.clear();
+    _aiQueueScope = null;
     _loadNextTask(resetCounter: true);
     unawaited(_hydrateRecent());
     unawaited(_hydrateAiQueueAndMaybeRefill());
   }
 
   Future<void> _hydrateRecent() async {
+    final generation = widget.appState.profileGeneration;
     final st = widget.appState.state;
     final childId = _childId;
     final subject = st.subject;
@@ -257,6 +263,7 @@ class _LearningContentState extends State<LearningContent> {
       subject: subject,
     );
     if (!mounted ||
+        generation != widget.appState.profileGeneration ||
         childId != _childId ||
         subject != widget.appState.state.subject) {
       return;
@@ -290,6 +297,7 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   Future<void> _hydrateAiQueueAndMaybeRefill() async {
+    final generation = widget.appState.profileGeneration;
     final st = widget.appState.state;
     final subject = _aiSubjectName(st.subject);
     if (subject == null) return;
@@ -297,6 +305,7 @@ class _LearningContentState extends State<LearningContent> {
     final scope = _currentAiScope;
     bool isCurrent() =>
         mounted &&
+        generation == widget.appState.profileGeneration &&
         _childId == childId &&
         widget.appState.state.grade == st.grade &&
         _aiSubjectName(widget.appState.state.subject) == subject;
@@ -508,7 +517,13 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _requestTaskHelp() {
-    if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
+    if (!mounted ||
+        _activeSessionScope != _sessionScope ||
+        !_allowHelp ||
+        _answered ||
+        _sessionFinished) {
+      return;
+    }
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
     _sceneRequestSerial++;
     final placeValueNumber =
@@ -565,6 +580,7 @@ class _LearningContentState extends State<LearningContent> {
 
   Future<void> _openNativeLearning() async {
     if (!mounted ||
+        _activeSessionScope != _sessionScope ||
         !_allowHelp ||
         _answered ||
         _sessionFinished ||
@@ -613,6 +629,14 @@ class _LearningContentState extends State<LearningContent> {
   /// the local model license; never silently switch to a different voice.
   Future<void> _speakTutorHint(String text,
       {bool explainAvailability = false}) async {
+    final generation = widget.appState.profileGeneration;
+    final taskId = _taskInstance.taskInstanceId;
+    bool isCurrent() =>
+        mounted &&
+        generation == widget.appState.profileGeneration &&
+        _activeSessionScope == _sessionScope &&
+        taskId == _taskInstance.taskInstanceId;
+    if (!isCurrent()) return;
     final settings = widget.appState.state.settings;
     if (!settings.voiceEnabled || !LumoVoice.instance.isEnabled) {
       if (explainAvailability && mounted) {
@@ -625,7 +649,7 @@ class _LearningContentState extends State<LearningContent> {
     }
 
     await LumoVoiceClips.ensureFreeLoaded();
-    if (!mounted) return;
+    if (!isCurrent()) return;
     final recorded = LumoVoiceClips.freeLookup(text) != null;
     if (!recorded && !settings.localVoiceLicenseAccepted) {
       // This complete German phrase is in the signed local catalog. The
@@ -642,7 +666,7 @@ class _LearningContentState extends State<LearningContent> {
       return;
     }
     if (!recorded && !await LumoVoice.instance.localSpeechAvailable()) {
-      if (mounted) {
+      if (isCurrent()) {
         _showTutorSpeechNotice(
           'Die lokale Lumo-Sprachausgabe ist auf diesem Gerät '
           'noch nicht verfügbar. Der Tipp bleibt lesbar.',
@@ -650,7 +674,7 @@ class _LearningContentState extends State<LearningContent> {
       }
       return;
     }
-    if (!mounted) return;
+    if (!isCurrent()) return;
     unawaited(LumoVoice.instance.speak(text, style: VoiceStyle.explain));
   }
 
@@ -679,6 +703,7 @@ class _LearningContentState extends State<LearningContent> {
       return;
     }
     if (!mounted) return;
+    final generation = widget.appState.profileGeneration;
     final taskId = _taskInstance.taskInstanceId;
     setState(() => _aiHelpLoading = true);
     try {
@@ -689,7 +714,7 @@ class _LearningContentState extends State<LearningContent> {
       final question = 'Aufgabe: "${_task.prompt}" '
           'Mein bisheriger Versuch: ${_attemptCount > 0 ? 'noch nicht richtig' : 'noch keiner'}. '
           'Bitte gib mir EINEN kleinen Tipp, ohne die Loesung zu verraten.';
-      final response = await _aiProxy.ask(
+      final response = await widget.aiProxy.ask(
         settings: widget.appState.state.settings,
         state: widget.appState.state,
         message: question,
@@ -701,8 +726,12 @@ class _LearningContentState extends State<LearningContent> {
           'visual': _task.visual,
         },
       );
-      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
-      if (_answered || !_allowHelp) {
+      if (!mounted ||
+          generation != widget.appState.profileGeneration ||
+          _taskInstance.taskInstanceId != taskId) {
+        return;
+      }
+      if (_answered || !_allowHelp || !_cloudHelpAllowed) {
         setState(() => _aiHelpLoading = false);
         return;
       }
@@ -719,7 +748,11 @@ class _LearningContentState extends State<LearningContent> {
         );
       }
     } catch (e) {
-      if (!mounted || _taskInstance.taskInstanceId != taskId) return;
+      if (!mounted ||
+          generation != widget.appState.profileGeneration ||
+          _taskInstance.taskInstanceId != taskId) {
+        return;
+      }
       setState(() {
         // The immediate offline explanation remains usable after network errors.
         _aiHelpReply = null;
@@ -980,7 +1013,11 @@ class _LearningContentState extends State<LearningContent> {
       _varietyGuard.taskMemoryKeys(task);
 
   void _answerAdaptive(AdaptiveTaskAnswer answer) {
-    if (_answered) return;
+    if (_answered ||
+        _activeSessionScope != _sessionScope ||
+        answer.task.taskInstanceId != _taskInstance.taskInstanceId) {
+      return;
+    }
     _completeAnswer(
       correct: answer.correct,
       hintUsed: _allowHelp &&
@@ -990,7 +1027,12 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _answerWriting(WritingTaskResult result) {
-    if (_answered) return;
+    if (!mounted ||
+        _answered ||
+        _activeSessionScope != _sessionScope ||
+        result.task.taskInstanceId != _taskInstance.taskInstanceId) {
+      return;
+    }
     final typedAnswer = result.typedAnswer;
     if (typedAnswer != null) {
       // Keyboard-mode is actual spelling practice, not handwriting.
@@ -1028,7 +1070,12 @@ class _LearningContentState extends State<LearningContent> {
   /// liefert correct/feedback. Hier wird das in den Standard-Pfad
   /// eingespeist.
   void _answerShapeTrace(ShapeTraceTaskResult result) {
-    if (_answered) return;
+    if (!mounted ||
+        _answered ||
+        _activeSessionScope != _sessionScope ||
+        result.task.taskInstanceId != _taskInstance.taskInstanceId) {
+      return;
+    }
     _completeAnswer(
       correct: result.correct,
       hintUsed: false,
@@ -1098,6 +1145,7 @@ class _LearningContentState extends State<LearningContent> {
     required Object answerGiven,
     double? handwritingScore,
   }) {
+    if (!mounted || _activeSessionScope != _sessionScope) return;
     hintUsed = _allowHelp &&
         (hintUsed ||
             _requestedHelpLevel > 0 ||
@@ -1126,8 +1174,9 @@ class _LearningContentState extends State<LearningContent> {
 
     final responseTimeMs =
         DateTime.now().difference(_taskStartedAt).inMilliseconds;
-    final errorTypes =
-        correct ? const <ErrorType>[] : _legacyErrorTypes(answerGiven);
+    final errorTypes = correct || hintUsed
+        ? const <ErrorType>[]
+        : _legacyErrorTypes(answerGiven);
     final firstAttempt = _attemptCount == 0;
     if (widget.appState.state.sessionKind == LumoSessionKind.test) {
       if (correct && !_questionHadWrong) _testFirstTryCorrect++;
@@ -1145,11 +1194,11 @@ class _LearningContentState extends State<LearningContent> {
       if (_allowHelp) _attemptCount++;
     }
 
-    // Phase 2 - Lumo Fehlerdetektiv. Erkennt sofort beim 1. Fehler
+    // Phase 2 - Lumo Fehlerdetektiv. Erkennt beim selbstständigen Fehler
     // die wahrscheinlichste Fehlerart und gibt kindgerechtes Feedback.
-    // Faellt zurueck auf den bestehenden Tutor-Engine wenn Vertrauen niedrig.
+    // Begleitete Versuche bleiben im Verlauf, ohne als Schwäche zu gelten.
     final nextTutorHint = _tutorHint;
-    if (!correct) {
+    if (!correct && !hintUsed) {
       final detection = const ErrorDetective().analyze(
         subject: _task.subject,
         prompt: _task.prompt,
@@ -1160,7 +1209,7 @@ class _LearningContentState extends State<LearningContent> {
         // Fehlerart zaehlen + persistieren fuer die DNA-Anzeige in Phase 1.
         final key = detection.pattern.germanShortLabel;
         _errorBreakdown[key] = (_errorBreakdown[key] ?? 0) + 1;
-        unawaited(_errorRepo.increment(_childId, key));
+        unawaited(widget.appState.recordLearningErrorType(key));
       }
     }
     final result = TaskResult(
@@ -1246,7 +1295,7 @@ class _LearningContentState extends State<LearningContent> {
         _nextQuestion,
       );
     } else {
-      widget.appState.wrongAnswer(_task.unit);
+      widget.appState.wrongAnswer(_task.unit, independentEvidence: !hintUsed);
       if (!_allowHelp) {
         widget.appState.addStars(rewardDelta.stars);
         widget.appState.addXp(rewardDelta.xp);
@@ -1311,7 +1360,7 @@ class _LearningContentState extends State<LearningContent> {
   }
 
   void _nextQuestion() {
-    if (!mounted) return;
+    if (!mounted || _activeSessionScope != _sessionScope) return;
     _autoAdvanceTimer?.cancel();
     if (_questionNum >= _totalQuestions) {
       final st = widget.appState.state;

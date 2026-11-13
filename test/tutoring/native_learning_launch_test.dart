@@ -8,9 +8,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:lumo_lernen/core/error_breakdown_repository.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
+import 'package:lumo_lernen/domain/learning/error_detective.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/domain/tutoring/tutoring_session_planner.dart';
@@ -121,6 +123,28 @@ void main() {
                 a: 7,
                 b: 4)),
         isNull);
+  });
+
+  test('current third-grade hundred crossing reaches its exact native model',
+      () {
+    const adapter = LegacyLumoTaskAdapter();
+    final task = adapter.toTaskInstance(
+        task: const LumoTask(
+            id: 'native-current-hundred',
+            grade: 3,
+            subject: 'Mathematik',
+            unit: 'Rechnen bis 1000',
+            prompt: 'Wie viel ist 180 + 50?',
+            choices: ['230', '220', '240'],
+            answer: '230',
+            explanation: 'Ergänze zuerst zum nächsten Hunderter.',
+            visual: 'written_add'),
+        childId: 'synthetic-hundred',
+        difficulty: 2);
+    expect(task.prompt, 'Wie viel ist 180 + 50?');
+    expect(task.correctAnswer, 230);
+    expect(NativeLearningActivity.fromTask(task)!.toLaunchOptions(),
+        {'kind': 'bridge_hundred', 'a': 180, 'b': 50});
   });
 
   test('adaptive task descriptors use checked original operands and word', () {
@@ -382,6 +406,71 @@ void main() {
               LumoCompanionRequests.instance.taskContext.value!.helpLevel, 1);
           expect(app!.state.stars, 0);
         }
+        // Complete the real caller path after either a native explanation or
+        // an independent schoolwork attempt. No direct scoring injection.
+        const errors = ErrorBreakdownRepository();
+        const savedErrors = {'Frühere selbstständige Beobachtung': 2};
+        await tester.runAsync(() => errors.save(task.childId, savedErrors));
+        final owner = await tester.runAsync(app!.captureLearningProfile);
+        final beforeWeak = Map<String, int>.from(app!.state.weakSkills);
+        final beforeAttempts = app!.state.practiceErrors;
+        final wrong = task.options.firstWhere((option) {
+          final answer = '${option.payload ?? option.label}';
+          return answer != '${task.correctAnswer}' &&
+              const ErrorDetective()
+                      .analyze(
+                          subject: 'Mathematik',
+                          prompt: task.prompt,
+                          correctAnswer: '${task.correctAnswer}',
+                          givenAnswer: answer)
+                      .confidence >=
+                  0.65;
+        });
+        final wrongAction = find
+            .descendant(
+                of: find.byType(AdaptiveTaskRenderer),
+                matching: find.text(wrong.label))
+            .last;
+        await tester.ensureVisible(wrongAction);
+        await tester.tap(wrongAction);
+        await _frames(tester);
+        final accompanied = kind == LumoSessionKind.quickPractice;
+        expect(app!.state.practiceErrors, beforeAttempts + 1,
+            reason: 'The attempt and encouraging feedback remain visible.');
+        final expectedWeak = Map<String, int>.from(beforeWeak);
+        if (!accompanied) {
+          expectedWeak[app!.state.unit] =
+              (expectedWeak[app!.state.unit] ?? 0) + 1;
+        }
+        expect(app!.state.weakSkills, expectedWeak,
+            reason:
+                'A taught attempt does not influence legacy weakness selection.');
+        // The actual tap started its storage callbacks in the widget zone.
+        // Keep advancing that zone while the real repositories finish.
+        var saved = false;
+        app!.flushLearningProgress().then((_) => saved = true);
+        for (var frame = 0; frame < 100 && !saved; frame++) {
+          await _frames(tester, 1);
+        }
+        expect(saved, isTrue, reason: 'Actual answer persistence completes.');
+        await tester.runAsync(() async {
+          expect(await errors.load(task.childId), savedErrors,
+              reason: 'Unassigned legacy name/grade records stay untouched.');
+          final histogram = await errors.loadForProfile(owner!.studentId);
+          if (accompanied) {
+            expect(histogram, isEmpty,
+                reason: 'Assisted errors do not become error-type diagnoses.');
+          } else {
+            expect(histogram.values.reduce((a, b) => a + b), 1,
+                reason: 'Real independent error evidence remains connected.');
+          }
+          final history = await app!.attemptLog.load();
+          final recorded =
+              history.lastWhere((entry) => entry.prompt == task.prompt);
+          expect(recorded.correct, isFalse);
+          expect(recorded.hintUsed, accompanied);
+          expect(recorded.given, '${wrong.payload ?? wrong.label}');
+        });
         expect(tester.takeException(), isNull);
       } finally {
         await tester.pumpWidget(const SizedBox.shrink());

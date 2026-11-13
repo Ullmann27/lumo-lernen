@@ -18,6 +18,7 @@ import '../core/progress_repository.dart';
 import '../core/profile_repository.dart';
 import '../core/recommendation_engine.dart';
 import '../core/attempt_log_repository.dart';
+import '../core/error_breakdown_repository.dart';
 import '../core/lumo_error_log.dart';
 import '../core/reward_wallet_repository.dart';
 import '../core/school_repository.dart';
@@ -772,6 +773,25 @@ class LumoAppState extends ChangeNotifier {
     }
   }
 
+  /// Accepted independent error evidence retains its actual profile owner.
+  /// Diagnostic storage is optional; the canonical answer log remains separate.
+  Future<void> recordLearningErrorType(String label) {
+    if (_disposed || _resetting) return Future<void>.value();
+    final source = captureLearningProfile();
+    return _trackLearning(() async {
+      try {
+        final owner = await source;
+        if (!canUseLearningLease(owner)) return;
+        await const ErrorBreakdownRepository().incrementForProfile(
+            owner.studentId, label,
+            mayWrite: () => canUseLearningLease(owner));
+      } catch (_) {
+        // A diagnostic failure must not manufacture evidence or replace an
+        // existing, potentially damaged record. Answer persistence is separate.
+      }
+    }());
+  }
+
   Future<void> recordLearningAnswer({
     required String subject,
     required String unit,
@@ -1290,6 +1310,7 @@ class LumoAppState extends ChangeNotifier {
     try {
       await _drainLearningOperations();
       await owner.profile.reset();
+      await const ErrorBreakdownRepository().resetForProfile(id);
       await _missionRepository(owner).reset();
       owner._session.pendingMissionAnswers.clear();
       await owner.cosmos.reset();
