@@ -14,18 +14,74 @@ class NativeLearningActivity {
   static NativeLearningActivity? fromTask(TaskInstance task) {
     final data = task.visualPayload.data;
     if (task.subject == LearningSubject.mathematik) {
-      final a =
-          data['operation'] == 'subtraction' ? data['start'] : data['left'];
-      final b =
-          data['operation'] == 'subtraction' ? data['takeAway'] : data['right'];
+      if (data['operation'] == 'fraction_addition') {
+        final numerator = data['numerator'];
+        final denominator = data['denominator'];
+        final extra = data['extra'];
+        if (numerator is! int ||
+            denominator is! int ||
+            extra is! int ||
+            numerator < 1 ||
+            denominator < 2 ||
+            denominator > 12 ||
+            extra < 1 ||
+            numerator + extra > denominator ||
+            !_matchesFraction(
+              task.correctAnswer,
+              numerator + extra,
+              denominator,
+            )) {
+          return null;
+        }
+        return NativeLearningActivity._('fraction_parts', {
+          'kind': 'fraction_parts',
+          'a': numerator,
+          'b': denominator,
+          'extra': extra,
+        });
+      }
+      final a = data['operation'] == 'subtraction'
+          ? data['start']
+          : data['left'];
+      final b = data['operation'] == 'subtraction'
+          ? data['takeAway']
+          : data['right'];
       if (a is! int || b is! int || a < 0 || b < 1) return null;
+      if (data['operation'] == 'multiplication' &&
+          a >= 1 &&
+          a <= 6 &&
+          b <= 6 &&
+          task.correctAnswer == a * b) {
+        return NativeLearningActivity._('equal_groups', {
+          'kind': 'equal_groups',
+          'a': a,
+          'b': b,
+        });
+      }
+      if (data['operation'] == 'division' &&
+          b >= 2 &&
+          b <= 6 &&
+          a >= b &&
+          a <= 36 &&
+          a % b == 0 &&
+          a ~/ b <= 6 &&
+          task.correctAnswer == a ~/ b) {
+        return NativeLearningActivity._('equal_sharing', {
+          'kind': 'equal_sharing',
+          'a': a,
+          'b': b,
+        });
+      }
       if (data['operation'] == 'addition' &&
           a <= 10 &&
           b <= 10 &&
           a + b <= 20 &&
           task.correctAnswer == a + b) {
-        return NativeLearningActivity._(
-            'addition', {'kind': 'addition', 'a': a, 'b': b});
+        return NativeLearningActivity._('addition', {
+          'kind': 'addition',
+          'a': a,
+          'b': b,
+        });
       }
       if (data['operation'] == 'addition' &&
           a >= 100 &&
@@ -35,15 +91,21 @@ class NativeLearningActivity {
           b % 10 == 0 &&
           a % 100 + b >= 100 &&
           task.correctAnswer == a + b) {
-        return NativeLearningActivity._(
-            'bridge_hundred', {'kind': 'bridge_hundred', 'a': a, 'b': b});
+        return NativeLearningActivity._('bridge_hundred', {
+          'kind': 'bridge_hundred',
+          'a': a,
+          'b': b,
+        });
       }
       if (data['operation'] == 'subtraction' &&
           a <= 20 &&
           b <= a &&
           task.correctAnswer == a - b) {
-        return NativeLearningActivity._(
-            'subtract_ten', {'kind': 'subtract_ten', 'a': a, 'b': b});
+        return NativeLearningActivity._('subtract_ten', {
+          'kind': 'subtract_ten',
+          'a': a,
+          'b': b,
+        });
       }
     }
     if (task.subject == LearningSubject.deutsch) {
@@ -67,8 +129,22 @@ class NativeLearningActivity {
     return null;
   }
 
+  static bool _matchesFraction(Object? answer, int numerator, int denominator) {
+    if (answer is! String) return false;
+    final match = RegExp(r'^(\d+)\s*/\s*(\d+)$').firstMatch(answer.trim());
+    if (match == null) return false;
+    final actualNumerator = int.tryParse(match[1]!);
+    final actualDenominator = int.tryParse(match[2]!);
+    return actualNumerator != null &&
+        actualDenominator != null &&
+        actualDenominator > 0 &&
+        actualNumerator * denominator == numerator * actualDenominator;
+  }
+
   static NativeLearningActivity? fromLesson(
-      GuidedLesson lesson, GuidedLessonStep step) {
+    GuidedLesson lesson,
+    GuidedLessonStep step,
+  ) {
     switch (lesson.concept) {
       case GuidedLessonConcept.bridgeTen:
         if (step.a < 1 ||
@@ -105,12 +181,18 @@ class NativeLearningActivity {
         if (step.a < 1 || step.a > 20 || step.b < 1 || step.b > step.a) {
           return null;
         }
-        return NativeLearningActivity._(
-            'subtract_ten', {'kind': 'subtract_ten', 'a': step.a, 'b': step.b});
+        return NativeLearningActivity._('subtract_ten', {
+          'kind': 'subtract_ten',
+          'a': step.a,
+          'b': step.b,
+        });
       case GuidedLessonConcept.equalGroups:
         if (step.a < 1 || step.a > 6 || step.b < 1 || step.b > 6) return null;
-        return NativeLearningActivity._(
-            'equal_groups', {'kind': 'equal_groups', 'a': step.a, 'b': step.b});
+        return NativeLearningActivity._('equal_groups', {
+          'kind': 'equal_groups',
+          'a': step.a,
+          'b': step.b,
+        });
       case GuidedLessonConcept.bridgeHundred:
         if (step.a < 100 ||
             step.a > 890 ||
@@ -121,8 +203,11 @@ class NativeLearningActivity {
             step.a % 100 + step.b < 100) {
           return null;
         }
-        return NativeLearningActivity._('bridge_hundred',
-            {'kind': 'bridge_hundred', 'a': step.a, 'b': step.b});
+        return NativeLearningActivity._('bridge_hundred', {
+          'kind': 'bridge_hundred',
+          'a': step.a,
+          'b': step.b,
+        });
       case GuidedLessonConcept.fractionParts:
         if (step.b < 2 ||
             step.b > 12 ||

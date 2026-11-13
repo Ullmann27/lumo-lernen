@@ -189,18 +189,20 @@ class MainActivity : FlutterActivity() {
                             .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
                         if (game == "learning") {
                             val learning = call.argument<Map<String, Any?>>("learning")
-                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "bridge_hundred", "fraction_parts", "syllables", "plant_parts")) {
+                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts")) {
                                 result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
                                 return@setMethodCallHandler
                             }
                             options.put("learning", JSONObject(learning))
+                        }
+                        if (game in setOf("learning", "build")) {
                             options.put("learningVoiceEnabled", call.argument<Boolean>("learningVoiceEnabled") == true)
                                 .put("localVoiceLicenseAccepted", call.argument<Boolean>("localVoiceLicenseAccepted") == true)
                                 .put("learningAutoRead", call.argument<Boolean>("learningAutoRead") == true)
                                 .put("learningVoiceRate", (call.argument<Number>("learningVoiceRate")?.toDouble()
                                     ?.takeIf { it.isFinite() } ?: 1.0).coerceIn(0.70, 1.60))
                             // Release Flutter's local inference model before the
-                            // isolated lesson owns the same original voice.
+                            // isolated lesson or village owns the same original voice.
                             offlineSpeech?.release()
                         }
                         if (game == "cards") {

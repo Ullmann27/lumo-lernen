@@ -113,7 +113,7 @@ class LumoGameActivity : GodotActivity() {
         launchOptions = intent.getStringExtra("lumoLaunchOptions") ?: "{}"
         super.onCreate(savedInstanceState)
         val options = try { org.json.JSONObject(launchOptions) } catch (_: Exception) { org.json.JSONObject() }
-        if (options.optString("game") == "learning") {
+        if (options.optString("game") in setOf("learning", "build")) {
             learningSpeech = LumoLearningSpeech(applicationContext, options)
         }
     }

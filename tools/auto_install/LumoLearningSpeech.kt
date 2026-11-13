@@ -10,12 +10,12 @@ import android.util.Log
 import io.flutter.plugin.common.MethodChannel
 import org.json.JSONObject
 
-/** Original F2 synthesis and real playback, confined to the native lesson.
+/** Original F2 synthesis and real playback for the native lesson and village.
  * No microphone, system TTS, online service or learning score is involved. */
 class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val main = Handler(Looper.getMainLooper())
     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
-    private val allowed = options.optString("game") == "learning" &&
+    private val allowed = options.optString("game") in setOf("learning", "build") &&
         options.optBoolean("learningVoiceEnabled", false) &&
         options.optBoolean("localVoiceLicenseAccepted", false)
     private val speed = options.optDouble("learningVoiceRate", 1.0)

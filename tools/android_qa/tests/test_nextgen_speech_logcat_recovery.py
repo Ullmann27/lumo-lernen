@@ -97,7 +97,7 @@ class SpeechLogcatRecoveryTests(unittest.TestCase):
         def adb(*args, timeout):
             calls.append(args)
             raise RuntimeError("Command failed (1): ('adb', 'logcat')")
-        with self.assertRaisesRegex(RuntimeError, 'Command failed \(1\)'):
+        with self.assertRaisesRegex(RuntimeError, r'Command failed \(1\)'):
             self.capture(adb)
         self.assertEqual(len(calls), 1)
 

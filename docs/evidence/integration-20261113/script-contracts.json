@@ -1,0 +1,40 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "exit_code": 0,
+  "duration_seconds": 43.45,
+  "source_tree": "0a037b2f789dfa1e506edfad161284b5d8d5c5a8",
+  "source_sha256_before": {
+    ".github/workflows/lumo-1999-update-gate.yml": "aced4dfc612a358c190936a3aa9ee4ccdbb478a7e905f32997fb2c2e9488275e",
+    "scripts/record_nextgen_visual_review.py": "30734c7f1e3e550d16b1412e8153a7bb980bd235ca6e065a3d6e581822b29211",
+    "scripts/tests/test_historical_update_workflow_scope.py": "8c53e398c985df5c6d4814230591a55d745c79fdc5a0dbac25489ebfa23ec084",
+    "scripts/tests/test_nextgen_review_recovery.py": "50d8a83838316f949f4e10b3e6fcb2b998834d9ae29d2fa5cf73323cc7d70835",
+    ".github/probes/lumo_nextgen_surfaces_android_probe.py": "9f78b70ba89a79608b7c68c732124c12b2e3c4da59294a7e1fb746443f522177",
+    "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py": "8005d244af785f9c29380ed9fecea710814bba73f32874ea2e3de1645f39397e"
+  },
+  "source_sha256_after": {
+    ".github/workflows/lumo-1999-update-gate.yml": "aced4dfc612a358c190936a3aa9ee4ccdbb478a7e905f32997fb2c2e9488275e",
+    "scripts/record_nextgen_visual_review.py": "30734c7f1e3e550d16b1412e8153a7bb980bd235ca6e065a3d6e581822b29211",
+    "scripts/tests/test_historical_update_workflow_scope.py": "8c53e398c985df5c6d4814230591a55d745c79fdc5a0dbac25489ebfa23ec084",
+    "scripts/tests/test_nextgen_review_recovery.py": "50d8a83838316f949f4e10b3e6fcb2b998834d9ae29d2fa5cf73323cc7d70835",
+    ".github/probes/lumo_nextgen_surfaces_android_probe.py": "9f78b70ba89a79608b7c68c732124c12b2e3c4da59294a7e1fb746443f522177",
+    "tools/android_qa/tests/test_nextgen_speech_logcat_recovery.py": "8005d244af785f9c29380ed9fecea710814bba73f32874ea2e3de1645f39397e"
+  },
+  "sources_unchanged": true,
+  "log_sha256": "0e79b2af9cade3907a21a3f8efc631574998d151c8a6a4ac2313b1a4bc06fb90",
+  "remote_code_sha": "aea885f0f07644de2d6057ce32ef2bb5a636cdc3",
+  "summary": {
+    "passed": 318,
+    "failed": 0,
+    "skipped": 0
+  },
+  "compressed_log": "script-contracts.log.gz",
+  "compressed_log_sha256": "7c59062ecef356390e237bfce206442743a97f60c78f050a899d27bc247cf21c"
+}
