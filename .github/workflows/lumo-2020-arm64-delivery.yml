@@ -1,0 +1,72 @@
+name: LUMO 2020 extract exact signed ARM64 candidate
+on:
+  push:
+    branches: [chatgpt/lumo-2020-direct-apk-delivery-20261113]
+permissions:
+  contents: read
+  actions: read
+jobs:
+  extract-arm64:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '14062500309'
+          run-id: 43470824583
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: candidate/
+      - name: Verify original signed APK and preserve original build SHA
+        run: |
+          set -euo pipefail
+          test -s candidate/dist/Lumo-Lernen-Neu.apk
+          test -s candidate/release-proof/BUILD-PROVENANCE.json
+          mkdir -p delivery
+          python3 - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+          from zipfile import ZipFile
+          apk = Path('candidate/dist/Lumo-Lernen-Neu.apk')
+          provenance = json.loads(Path('candidate/release-proof/BUILD-PROVENANCE.json').read_text())
+          expected_source = '1f47a96116e22a4c0c1fab655d0db165c461736e'
+          expected_native = 'dc478230e0819a05f42de2fd59b93abebfb08406'
+          digest = hashlib.file_digest(apk.open('rb'), 'sha256').hexdigest()
+          assert provenance['sha256'] == digest, 'APK digest does not match original proven build'
+          assert provenance['flutter_source_commit'] == expected_source, 'Unexpected Flutter source'
+          assert provenance['tracked_source_clean'] is True, 'Build source was dirty'
+          assert provenance['versionName'] == '0.13.8', 'Wrong version name'
+          assert int(provenance['versionCode']) == 2020, 'Wrong version code'
+          assert provenance['package'] == 'dev.ullmann.lumo.lumo_lernen.coachpreview', 'Wrong package'
+          assert provenance['godot']['revision'] == expected_native, 'Wrong Godot revision'
+          assert provenance['signingCertificateSha256'].lower() == 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702', 'Unexpected signing certificate'
+          with ZipFile(apk) as archive:
+              assert 'assets/lumo_game_source.json' in archive.namelist(), 'Native PCK proof missing'
+              bound = json.loads(archive.read('assets/lumo_game_source.json'))
+              assert bound['revision'] == expected_native, 'Packaged native source mismatch'
+              assert bound['pck_sha256'] == provenance['godot']['pck_sha256'], 'PCK hash claim mismatch'
+          output = {
+              'flutterSource': expected_source, 'nativeSource': expected_native,
+              'sha256': digest, 'apkBytes': apk.stat().st_size,
+              'versionName': '0.13.8', 'versionCode': 2020,
+              'package': provenance['package'], 'signingCertificateSha256': provenance['signingCertificateSha256'],
+              'type': 'exact unmodified ARM64 APK from successful 2020 GitHub build'
+          }
+          Path('delivery/arm64-verification.json').write_text(json.dumps(output, indent=2) + '\n')
+          Path('delivery/SHA256SUMS.txt').write_text(f'{digest}  Lumo-Lernen-Neu.apk\n')
+          print(json.dumps(output, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-2020-arm64-direct-verified
+          path: |
+            candidate/dist/Lumo-Lernen-Neu.apk
+            delivery/arm64-verification.json
+            delivery/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
