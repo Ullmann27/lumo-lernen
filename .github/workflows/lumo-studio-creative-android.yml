@@ -1,0 +1,140 @@
+name: Exact51e additional creative Android inputs
+
+on:
+  push:
+    branches: [qa/lumo-creative-51e-20261113]
+    paths:
+      - .github/workflows/lumo-studio-creative-android.yml
+      - .github/probes/studio_creative_android_probe.py
+      - scripts/tests/test_studio_creative_android_probe.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: exact51e-creative-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  creative-api35:
+    if: github.ref == 'refs/heads/qa/lumo-creative-51e-20261113'
+    name: Exact51e APK creative inputs on API35
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - name: Checkout separate QA source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          path: qa-source
+          sparse-checkout: |
+            .github/probes
+            scripts/tests
+      - name: Checkout unchanged actual APK source for original identity verifier
+        uses: actions/checkout@v4
+        with:
+          ref: 51e92fb5afab232a29850ffefef5637359af08f7
+          persist-credentials: false
+          path: candidate-source
+          sparse-checkout: |
+            .github/probes
+            scripts/probes
+            tools/android_qa
+            config
+            lib/features/games/spielwelt
+      - name: Read exact native scene sources without exporting or modifying them
+        uses: actions/checkout@v4
+        with:
+          repository: Ullmann27/lumo-godot
+          ref: 993c145304c3e5f8aa947e1c7a949a8ef8685415
+          persist-credentials: false
+          path: native-source
+          sparse-checkout: |
+            scripts/games
+            scripts/creative
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Inspect actual immutable build run and candidate artifact
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          mkdir -p evidence/metadata
+          gh api repos/Ullmann27/lumo-lernen/actions/runs/43502594333 > evidence/metadata/run.json
+          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43502594333/artifacts?per_page=100' > evidence/metadata/artifacts.json
+          gh api 'repos/Ullmann27/lumo-lernen/actions/runs/43502594333/jobs?per_page=100' > evidence/metadata/jobs.json
+          git -C qa-source rev-parse HEAD > evidence/probe-source-sha.txt
+          git -C candidate-source rev-parse HEAD > evidence/apk-source-sha.txt
+          git -C native-source rev-parse HEAD > evidence/native-source-sha.txt
+      - name: Install existing live UI and image helpers
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng ffmpeg
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python qa-source/.github/probes/studio_creative_android_probe.py --metadata-dir evidence/metadata --out evidence
+          .probe-venv/bin/python -m unittest discover -s qa-source/scripts/tests -p test_studio_creative_android_probe.py -v 2>&1 | tee evidence/local-contracts.log
+      - name: Download the one already built candidate, with no rebuild
+        uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 43502594333
+          name: lumo-kart-graphics-2019-candidate
+          path: candidate/dist/
+      - name: Enable disposable emulator KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > evidence/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > evidence/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' evidence/mesa-renderer.txt
+      - name: Real single-pointer gameplay, save and screenrecord evidence
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          PYTHONDONTWRITEBYTECODE: '1'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python qa-source/.github/probes/studio_creative_android_probe.py --candidate-source candidate-source --native-source native-source --probe-source qa-source --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out evidence/tour
+      - name: Preserve original evidence even when an action cannot be established
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: exact51e-creative-api35-original
+          path: evidence/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 6

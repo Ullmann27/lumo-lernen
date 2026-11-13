@@ -1,3 +1,24 @@
+# Separate creative QA for the existing51e Android candidate
+
+This isolated QA branch imports PR473 with two corrected test controls: observed
+Puzzle motif selection and the final allowed toolbar observation. All16 focused
+local cases pass without skips; the original probe failed six boundary cases.
+An independent source review and actionlint passed. The immutable APK remains
+Host51e92fb5 / Native993c1453 / build43502594333 / artifact14078786114.
+
+Current main Android tours and update failed at the same ambiguous Kart cup
+caption after successful installation and launch. That failure is preserved and
+repaired separately. This additional creative workflow uses the unchanged APK
+on API35 with separate source binding, original evidence on failure and no
+rebuild or publisher. Android creative acceptance and direct Jump-video review
+remain pending. Do not move the integration source just to run this QA.
+
+Details and exact source/hash evidence:
+`docs/evidence/integration-20261113/host-51e-creative-qa/`.
+The earlier integration handoff below is retained as historical context.
+
+---
+
 # Combined LUMO integration / candidate 2019
 
 Updated: 2026-11-13, 20:22 UTC. Active drafts: Native PR160 and Host PR465.
