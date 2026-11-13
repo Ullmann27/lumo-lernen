@@ -1,0 +1,29 @@
+{
+  "engine_log": "godot-config-serializer.log",
+  "scope": "Actual Godot4.6.3 serializer, synthetic QA-only values, no application state loaded or written",
+  "fixture": "scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg",
+  "fixture_sha256": "dd4b43efa2202f92ddad79640ed4443880154c4e76b928fb4d72ad5aa067dd5c",
+  "old_ini_parser": {
+    "status": "EXPECTED_FAIL",
+    "exception": "ParsingError",
+    "message": "Source contains parsing errors: '<string>'\n\t[line 13]: '}\\n'\n\t[line 19]: '},\\n'\n\t[line 21]: '}\\n'"
+  },
+  "new_variant_reader": {
+    "status": "PASS",
+    "field_names": [
+      "version",
+      "child_scope",
+      "course",
+      "grade",
+      "subject",
+      "result_id",
+      "checkpoint",
+      "collected",
+      "goals_completed",
+      "active_question",
+      "recent_questions"
+    ],
+    "collected_raw": "{\n0: true,\n3: true\n}",
+    "recent_questions_raw": "Array[String]([\"first\", \"second {quoted} \\\"word\\\"\"])"
+  }
+}
