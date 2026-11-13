@@ -516,7 +516,7 @@ class _ReadingArena extends StatelessWidget {
               else
                 _ReadingHeader(progress: progress, isListening: isListening),
               const SizedBox(height: 14),
-              _TextDisplay(text: text, progress: progress),
+              _TextDisplay(text: text, progress: progress, finished: finished),
               if (finished && ReadingComprehension.forText(text) != null) ...[
                 const SizedBox(height: 16),
                 _ComprehensionCard(
@@ -676,9 +676,11 @@ class _ReadingHeader extends StatelessWidget {
 }
 
 class _TextDisplay extends StatelessWidget {
-  const _TextDisplay({required this.text, required this.progress});
+  const _TextDisplay(
+      {required this.text, required this.progress, required this.finished});
   final ReadingText text;
   final ReadingProgress? progress;
+  final bool finished;
 
   @override
   Widget build(BuildContext context) {
@@ -722,7 +724,7 @@ class _TextDisplay extends StatelessWidget {
                 final status = idx < statuses.length
                     ? statuses[idx]
                     : ReadingWordStatus.pending;
-                final isCurrent = idx == currentIdx;
+                final isCurrent = !finished && idx == currentIdx;
                 return _WordChip(
                     word: word, status: status, isCurrent: isCurrent);
               }).toList(),

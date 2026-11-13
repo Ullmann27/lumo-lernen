@@ -3,6 +3,9 @@ import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/lumo_sound.dart';
+import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/lumo_voice.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_game_controller.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/lumo_cards_bot_policy.dart';
@@ -220,6 +223,38 @@ void main() {
     valid = false;
     await session.pump();
     expect(mailbox.closed, isTrue);
+    expect(controller.state, same(original));
+  });
+
+  test(
+      'Revoked parent daily-mission gate closes native authority without a move',
+      () async {
+    final app = LumoAppState(walletRepository: RewardWalletRepository());
+    await app.hydrateFromWallet();
+    addTearDown(app.dispose);
+    final owner = await app.captureLearningProfile();
+    await app.prepareLearningLease(owner);
+    final controller = game();
+    final mailbox = _Mailbox();
+    final session = LumoCardsTableSession(
+        controller: controller,
+        transport: mailbox,
+        canUseProfile: () =>
+            app.isCurrentLearningLease(owner) && app.canPlayToday,
+        now: () => mailbox.now,
+        persist: () async {});
+    await session.open(automaticPolling: false);
+    await session.pump();
+    mailbox.action('draw');
+    final original = controller.state;
+    app.updateSettings(const AppSettings(
+        requireDailyMissionForGames: true,
+        voiceEnabled: false,
+        soundEnabled: false));
+    expect(app.canPlayToday, isFalse);
+    await session.pump();
+    expect(mailbox.closed, isTrue);
+    expect(controller.turnClock.value, isTrue);
     expect(controller.state, same(original));
   });
 

@@ -4,6 +4,7 @@ import 'discovery_progress.dart';
 import 'learning_journey.dart';
 import 'legacy_learning_data.dart';
 import '../domain/learning_intelligence/scene_memory.dart';
+import '../domain/learning/independent_evidence.dart';
 
 /// Speichert den Lernfortschritt eines Kindes lokal auf dem Gerät.
 /// Offline-first. Keine Cloud. Kein Tracking.
@@ -61,6 +62,7 @@ class ProgressRepository {
     'currentMisses',
     'difficulty',
     'lastSeen',
+    'independentEvidence',
   };
 
   /// Read errors are not permission to reset a child's history. Never pass the
@@ -252,6 +254,7 @@ class SkillRecord {
     this.currentStreak = 0,
     this.currentMisses = 0,
     this.difficulty = 1,
+    this.independentEvidence,
     DateTime? lastSeen,
   }) : lastSeen = lastSeen ?? DateTime.now();
 
@@ -265,23 +268,35 @@ class SkillRecord {
   int currentMisses;
   int difficulty;
   DateTime lastSeen;
+  IndependentEvidence? independentEvidence;
+
+  IndependentEvidence get assessed =>
+      independentEvidence ??
+      IndependentEvidence.fromLegacy(
+          correct: correct,
+          wrong: wrong,
+          helpCount: hintCount,
+          correctStreak: currentStreak,
+          wrongStreak: currentMisses);
 
   int get attempts => correct + wrong;
   double get accuracy => attempts == 0 ? 0.0 : correct / attempts;
 
   int get mastery {
-    if (attempts == 0) return 0;
-    final base = accuracy * 100;
-    final volumeBonus = (attempts.clamp(0, 20) / 20) * 10;
-    final streakBonus = (currentStreak.clamp(0, 5) / 5) * 10;
+    final evidence = assessed;
+    if (evidence.attempts == 0) return 0;
+    final base = evidence.accuracy * 100;
+    final volumeBonus = (evidence.attempts.clamp(0, 20) / 20) * 10;
+    final streakBonus = (evidence.correctStreak.clamp(0, 5) / 5) * 10;
     return (base * 0.8 + volumeBonus + streakBonus).clamp(0, 100).toInt();
   }
 
   double get weaknessScore {
-    if (attempts < 3) return 0.0;
-    final errorRate = wrong / attempts;
+    final evidence = assessed;
+    if (evidence.attempts < 3) return 0.0;
+    final errorRate = evidence.wrong / evidence.attempts;
     final mastery01 = mastery / 100.0;
-    final missesFactor = currentMisses.clamp(0, 5) / 5;
+    final missesFactor = evidence.wrongStreak.clamp(0, 5) / 5;
     return (errorRate * 0.5 + (1.0 - mastery01) * 0.3 + missesFactor * 0.2)
         .clamp(0.0, 1.0);
   }
@@ -303,6 +318,7 @@ class SkillRecord {
       currentMisses: currentMisses.clamp(0, 1000).toInt(),
       difficulty: difficulty.clamp(1, 5).toInt(),
       lastSeen: lastSeen,
+      independentEvidence: assessed,
     );
   }
 
@@ -317,6 +333,7 @@ class SkillRecord {
         'currentMisses': currentMisses,
         'difficulty': difficulty,
         'lastSeen': lastSeen.toIso8601String(),
+        'independentEvidence': assessed.toJson(),
       };
 
   factory SkillRecord.fromJson(Map<String, dynamic> json) {
@@ -344,7 +361,17 @@ class SkillRecord {
           1,
       lastSeen: DateTime.tryParse(json['lastSeen'] as String? ?? '') ??
           DateTime.now(),
+      independentEvidence: json.containsKey('independentEvidence')
+          ? IndependentEvidence.fromJson(json['independentEvidence'])
+          : json.containsKey('hintCount')
+              ? null
+              : const IndependentEvidence(),
     );
+    if (record.assessed.correct > record.correct.clamp(0, 10000) ||
+        record.assessed.wrong > record.wrong.clamp(0, 10000)) {
+      throw const FormatException(
+          'Independent evidence exceeds practice history');
+    }
     return record.normalized();
   }
 

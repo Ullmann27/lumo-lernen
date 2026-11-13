@@ -5,11 +5,38 @@ import sys
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from nextgen_evidence import (require_cards_draw, require_learning_bridge_moves,
+from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
                              require_public_saved_match, require_saved_round)
 
 
 class NextgenEvidenceTests(unittest.TestCase):
+    def test_android_binding_requires_the_distinct_real_main_and_native_processes(self):
+        package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+        component = package + '/dev.ullmann.lumo.lumo_lernen.CardsAuthorityService'
+        # Structural fixture follows AOSP ServiceRecord/IntentBindRecord output.
+        # It tests evidence parsing; it never represents an actual device run.
+        dump = f'''ACTIVITY MANAGER SERVICES (dumpsys activity services)
+  * ServiceRecord{{a1 u0 {component}}}
+    app=ProcessRecord{{a2 1234:{package}/u0a123}}
+    Bindings:
+    * IntentBindRecord{{a3 CREATE}}:
+      requested=true received=true hasBound=true doRebind=false
+      * Client AppBindRecord{{a4 ProcessRecord{{a5 1235:{package}:lumo_game/u0a123}}}}
+        Per-process Connections:
+          ConnectionRecord{{a6 u0 CR {component}:@a7}}
+'''
+        report = require_cards_authority_binding(dump, package)
+        self.assertEqual((report['main_process_pid'], report['native_process_pid']), (1234, 1235))
+        self.assertTrue(report['bound'])
+        for bad in ('', dump.replace('received=true', 'received=false'),
+                    dump.replace('hasBound=true', 'hasBound=false'),
+                    dump.replace('1235:', '1234:'), dump.replace('u0 CR ', 'u0 '),
+                    dump.replace('1234:' + package + '/', '1234:' + package + ':lumo_game/'),
+                    dump.replace('1235:' + package + ':lumo_game/', '1235:other.app/'),
+                    dump.replace('CardsAuthorityService', 'OtherService')):
+            with self.subTest(dump=bad[-160:]), self.assertRaises(RuntimeError):
+                require_cards_authority_binding(bad, package)
+
     def setUp(self):
         self.round = 'cards-' + 'a' * 32
         self.saved = {'id': self.round, 'owner': 'b' * 64, 'version': 1, 'deckVersion': 1,

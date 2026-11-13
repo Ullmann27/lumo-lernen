@@ -478,3 +478,207 @@ jobs:
           path: tour/
           retention-days: 30
 
+  publish-reviewed-2018:
+    name: Publish visually reviewed Build 2018 ARM64 APK for direct Chrome download
+    needs: [verify-and-build, android-host-compile, android-tour, update-2018-from-2017]
+    # Explicitly disabled until the final images and immutable native pin are approved.
+    if: >-
+      false &&
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/lumo-nextgen-20261113' &&
+      needs.verify-and-build.result == 'success' &&
+      needs.android-tour.result == 'success' &&
+      needs.android-host-compile.result == 'success' &&
+      needs.update-2018-from-2017.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+      - name: Install APK signature and manifest verification tools
+        run: sdkmanager 'build-tools;36.0.0'
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-arm64-verified
+          path: dist/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-android-tour
+          path: proofs/tour/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-2018-in-place-update-proof
+          path: proofs/update/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-android-host-compile
+          path: proofs/host/
+      - name: Fetch the exact reviewed native artifact and acceptance identity
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path('config/nextgen-2018-visual-review.json').read_text())
+          assert receipt['status'] == 'approved', 'Publication requires completed visual review'
+          for name in ('native_workflow_run_id', 'native_artifact_id'):
+              value = receipt[name]
+              assert type(value) is int and value > 0
+              Path('proofs/' + name + '.txt').write_text(str(value))
+          PYCODE
+          reviewed_run="$(cat proofs/native_workflow_run_id.txt)"
+          reviewed_artifact="$(cat proofs/native_artifact_id.txt)"
+          curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/$reviewed_artifact" --output proofs/native-artifact.json
+          curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/$reviewed_run" --output proofs/native-run.json
+          curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/$reviewed_run/jobs?per_page=100" --output proofs/native-jobs.json
+      - name: Reverify actual ARM64 bytes and bind all live proofs to the reviewed 2018 source
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          python3 scripts/verify_legacy_release_pin.py
+          sha256sum -c dist/APK-SHA256.txt
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > dist/PUBLISH-VERIFICATION.json
+          python3 scripts/verify_nextgen_delivery.py --source-sha "$SOURCE_SHA"
+          cp config/nextgen-2018-visual-review.json dist/VISUAL-REVIEW.json
+      - name: Preserve existing releases and select create-or-verify
+        id: release-state
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          gh api --paginate --slurp 'repos/Ullmann27/lumo-lernen/releases?per_page=100' > dist/RELEASE-PAGES.json
+          gh api 'repos/Ullmann27/lumo-lernen/git/matching-refs/tags/coachpreview-build-2018' > dist/EXISTING-TAGS.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          pages = json.loads(Path('dist/RELEASE-PAGES.json').read_text())
+          assert isinstance(pages, list) and all(isinstance(page, list) for page in pages)
+          releases = [release for page in pages for release in page]
+          existing = [release for release in releases if release['tag_name'] == 'coachpreview-build-2018']
+          refs = json.loads(Path('dist/EXISTING-TAGS.json').read_text())
+          assert isinstance(refs, list)
+          exact_refs = [ref for ref in refs if ref['ref'] == 'refs/tags/coachpreview-build-2018']
+          mode = 'create'
+          if existing or exact_refs:
+              assert len(existing) == 1 and len(exact_refs) == 1, 'Incomplete or conflicting immutable version already exists'
+              release, ref = existing[0], exact_refs[0]
+              assert release['draft'] is False and release['prerelease'] is True
+              assert ref['object']['type'] == 'commit' and ref['object']['sha'] == os.environ['SOURCE_SHA'], 'Existing tag belongs to another source'
+              assets = [asset for asset in release['assets'] if asset['name'] == 'Lumo-Lernen-Neu.apk']
+              assert len(assets) == 1 and assets[0]['state'] == 'uploaded', 'Existing release has no completed APK'
+              mode = 'verify-existing'
+          Path('dist/RELEASES.json').write_text(json.dumps(releases))
+          Path('dist/RELEASE-STATE.json').write_text(json.dumps({'mode': mode}) + '\n')
+          with Path(os.environ['GITHUB_OUTPUT']).open('a') as output:
+              output.write(f'mode={mode}\n')
+          PY
+          if [ "$(python3 -c 'import json; print(json.load(open("dist/RELEASE-STATE.json"))["mode"])')" = create ]; then
+            python3 scripts/release_pipeline_gates.py --pubspec pubspec.yaml --verification dist/PUBLISH-VERIFICATION.json --apk dist/Lumo-Lernen-Neu.apk --releases-json dist/RELEASES.json
+          else
+            echo 'Existing release is preserved. Only public byte/source verification will run.'
+          fi
+      - name: Publish the tested file once under the installed family update channel
+        if: steps.release-state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          {
+            echo 'Lumo Lernen + Lumo Kart Build 2018, ARM64 test APK.'
+            echo
+            cat dist/RELEASE-FACTS.json
+            echo
+            echo "Acceptance workflow: $RUN_URL"
+            echo 'Full Flutter/native gates, reviewed original renderer images, actual learning/Cards Android surfaces, and the in-place 2017→2018 learning-preservation upgrade passed before publication.'
+            echo 'Install as an update without uninstalling the existing family app.'
+            echo 'Signed with the unchanged public Lumo TEST key. This is not Google Play signing.'
+            echo 'Physical Samsung/Fold7 performance and 60 FPS have not been measured.'
+            echo 'Older APKs, releases and the production main branch remain unchanged.'
+          } > dist/RELEASE-NOTES.txt
+          gh release create coachpreview-build-2018 \
+            dist/Lumo-Lernen-Neu.apk \
+            dist/Lumo-Lernen-Neu.apk.sha256 \
+            dist/BUILD-PROVENANCE.json \
+            dist/GODOT-SOURCE.json \
+            dist/PUBLISH-VERIFICATION.json \
+            dist/RELEASE-FACTS.json \
+            dist/VISUAL-REVIEW.json \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title 'Lumo 2018 Android ARM64 Test-APK' \
+            --notes-file dist/RELEASE-NOTES.txt \
+            --prerelease --latest=false
+      - name: Verify the published release, immutable tag and unauthenticated Chrome APK bytes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          gh api repos/Ullmann27/lumo-lernen/releases/tags/coachpreview-build-2018 > dist/PUBLISHED-RELEASE.json
+          gh api repos/Ullmann27/lumo-lernen/git/ref/tags/coachpreview-build-2018 > dist/PUBLISHED-TAG.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          release = json.loads(Path('dist/PUBLISHED-RELEASE.json').read_text())
+          tag = json.loads(Path('dist/PUBLISHED-TAG.json').read_text())
+          facts = json.loads(Path('dist/RELEASE-FACTS.json').read_text())
+          assert release['draft'] is False and release['prerelease'] is True
+          assert release['tag_name'] == 'coachpreview-build-2018'
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] == os.environ['SOURCE_SHA']
+          assets = [asset for asset in release['assets'] if asset['name'] == 'Lumo-Lernen-Neu.apk']
+          assert len(assets) == 1 and assets[0]['state'] == 'uploaded'
+          assert assets[0]['size'] == facts['apkBytes'] > 0
+          url = 'https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2018/Lumo-Lernen-Neu.apk'
+          assert assets[0]['browser_download_url'] == url
+          Path('dist/DIRECT-APK-URL.txt').write_text(url + '\n')
+          PY
+          curl --fail --location --retry 3 --max-time 600 \
+            "$(cat dist/DIRECT-APK-URL.txt)" --output "$RUNNER_TEMP/lumo-public-2018.apk"
+          python3 - "$RUNNER_TEMP/lumo-public-2018.apk" <<'PY'
+          import hashlib
+          import json
+          import sys
+          from pathlib import Path
+          apk = Path(sys.argv[1])
+          facts = json.loads(Path('dist/RELEASE-FACTS.json').read_text())
+          assert apk.stat().st_size == facts['apkBytes']
+          assert hashlib.sha256(apk.read_bytes()).hexdigest() == facts['apkSha256'], 'Public download bytes differ'
+          print('Verified public Chrome APK:', Path('dist/DIRECT-APK-URL.txt').read_text().strip())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2018-public-delivery-receipt
+          path: |
+            dist/RELEASE-FACTS.json
+            dist/PUBLISH-VERIFICATION.json
+            dist/PUBLISHED-RELEASE.json
+            dist/PUBLISHED-TAG.json
+            dist/DIRECT-APK-URL.txt
+            dist/VISUAL-REVIEW.json
+            proofs/native-artifact.json
+            proofs/native-run.json
+            proofs/native-jobs.json
+          if-no-files-found: warn
+          retention-days: 90

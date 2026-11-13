@@ -41,7 +41,7 @@ import json
 from pathlib import Path
 import subprocess
 
-required = ('MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge',
+required = ('MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge', 'CardsAuthorityService',
             'LumoLearningSpeech', 'LumoOfflineSpeechBridge', 'LumoOfflineSpeechEngine')
 classes = {}
 for name in required:

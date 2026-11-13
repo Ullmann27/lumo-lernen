@@ -17,7 +17,7 @@ import traceback
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import modernization_android_tour as tour
-from nextgen_evidence import (require_cards_draw, require_learning_bridge_moves,
+from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
                              require_public_saved_match, require_saved_round)
 
 probe, base, live = tour.probe, tour.base, tour.live
@@ -184,7 +184,7 @@ def cards_roundtrip(out: Path) -> dict:
     probe.capture_flutter_ready(out, '10_cards_flutter_round')
     before_prefs = probe.prefs(out, 'cards-before-native')
     tap_flutter(out, ['Am 3D-Tisch spielen', '3D'], 'cards-native-entry')
-    native_ready(out, '3D-Tisch', 'cards-native-title')
+    native_ready(out, 'Lumos Kartenstube', 'cards-native-title')
     box = CardsMailbox(out)
     wait_for('Private Cards IPC session created by app', box.locate, bool)
     first = box.read()
@@ -206,6 +206,39 @@ def cards_roundtrip(out: Path) -> dict:
     saved = box.saved(after['roundId'])
     draw = require_cards_draw(before, request, after, saved, owner=before_save['owner'])
     probe.capture(out, '12_cards_real_table_persisted_draw')
+    # Android must see the dependency on the Dart host while its native child
+    # activity is visible. Archive OS importance data rather than inferring it
+    # from a successful first turn immediately after the activity launch.
+    bindings = []
+    started = time.monotonic()
+    for stage in ('before-idle', 'after-idle'):
+        if stage == 'after-idle':
+            deadline = started + 35
+            while time.monotonic() < deadline:
+                if 'LumoGameActivity' not in resumed_activity() or not tour.alive():
+                    raise RuntimeError('Cards authority or native table disappeared during visible idle')
+                time.sleep(min(1, max(0, deadline - time.monotonic())))
+        services = base.adb('shell', 'dumpsys', 'activity', 'services', PACKAGE, timeout=60)
+        processes = base.adb('shell', 'dumpsys', 'activity', 'processes', PACKAGE, timeout=60)
+        (out / f'cards-authority-services-{stage}.txt').write_text(services)
+        (out / f'cards-authority-processes-{stage}.txt').write_text(processes)
+        bindings.append(require_cards_authority_binding(services, PACKAGE))
+    if bindings[0] != bindings[1]:
+        raise RuntimeError('Cards authority processes restarted during the visible table session')
+    idle_seconds = time.monotonic() - started
+    before_late = box.read()
+    before_late_save = box.saved(before_late['roundId'])
+    require_public_saved_match(before_late, before_late_save)
+    if before_late_save != saved:
+        raise RuntimeError('The idle child turn mutated its persisted Cards round')
+    probe.native_text(out, 'Ziehen', 'cards-native-late-draw', tap=True, exact=True, settle=True)
+    late_request = box.read('request')
+    after = wait_for('Dart acknowledged the actual draw after visible idle', box.read,
+                    lambda state: state.get('ack', -1) >= late_request.get('sequence', 10**10)
+                    and state.get('canDraw') is True and state.get('paused') is False)
+    late_draw = require_cards_draw(before_late, late_request, after,
+                                   box.saved(after['roundId']), owner=before_save['owner'])
+    probe.capture(out, '12b_cards_persisted_draw_after_visible_idle')
     probe.native_text(out, 'Pause', 'cards-native-pause', tap=True, exact=True, settle=True)
     paused = wait_for('Cards clock actually paused', box.read,
                       lambda state: state.get('paused') is True)
@@ -232,7 +265,7 @@ def cards_roundtrip(out: Path) -> dict:
     if 'Fortsetzen' in labels:
         tap_flutter(out, ['Fortsetzen'], 'cards-flutter-resume')
     tap_flutter(out, ['Am 3D-Tisch spielen', '3D'], 'cards-reopen')
-    native_ready(out, '3D-Tisch', 'cards-reopened-title')
+    native_ready(out, 'Lumos Kartenstube', 'cards-reopened-title')
     reopened = CardsMailbox(out)
     wait_for('Reopened actual Cards IPC', reopened.locate, bool)
     state = reopened.read()
@@ -243,7 +276,10 @@ def cards_roundtrip(out: Path) -> dict:
     probe.capture(out, '15_cards_reopened_same_round')
     probe.native_text(out, 'Zurück', 'cards-reopened-back', tap=True, exact=True, settle=True)
     returned_to_flutter(out, 'Spiel pausiert', '16_cards_final_flutter_return')
-    return {'draw': draw, 'pause_saved_state_unchanged': True,
+    return {'draw': draw, 'draw_after_visible_idle': late_draw,
+            'visible_idle_seconds': idle_seconds,
+            'android_authority_binding': bindings,
+            'pause_saved_state_unchanged': True,
             'reopened_same_round': True, 'new_mailbox_token': True,
             'learning_preservation': preservation}
 

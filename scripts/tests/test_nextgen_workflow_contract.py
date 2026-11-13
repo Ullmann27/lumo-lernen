@@ -29,6 +29,32 @@ def initial_pincheck() -> str:
 
 
 class NextgenWorkflowContractTests(unittest.TestCase):
+    def test_publication_stays_blocked_until_review_and_keeps_all_actual_dependencies(self):
+        publisher = NEXTGEN.read_text().split('  publish-reviewed-2018:\n', 1)[1]
+        self.assertIn('needs: [verify-and-build, android-host-compile, android-tour, update-2018-from-2017]', publisher)
+        expression = publisher.split('    if: >-\n', 1)[1].split('    runs-on:', 1)[0].strip()
+        expression = expression.replace('\n', ' ').replace('&&', 'and').replace('false', 'False')
+        defaults = {
+            'github.event_name': 'pull_request', 'github.repository': 'Ullmann27/lumo-lernen',
+            'github.event.pull_request.head.repo.full_name': 'Ullmann27/lumo-lernen',
+            'github.event.pull_request.head.ref': 'chatgpt/lumo-nextgen-20261113',
+            'needs.verify-and-build.result': 'success', 'needs.android-tour.result': 'success',
+            'needs.android-host-compile.result': 'success', 'needs.update-2018-from-2017.result': 'success',
+        }
+        receipt = json.loads((ROOT / 'config/nextgen-2018-visual-review.json').read_text())
+        cases = [(key, 'failure') for key in defaults if key.startswith('needs.')]
+        cases += [('github.event_name', 'push'), ('github.event.pull_request.head.ref', 'main'),
+                  ('github.event.pull_request.head.repo.full_name', 'someone/fork')]
+        if receipt['status'] != 'approved':
+            cases.append(('github.event_name', 'pull_request'))
+        for field, value in cases:
+            executable = expression
+            values = dict(defaults, **{field: value})
+            for key in sorted(values, key=len, reverse=True):
+                executable = executable.replace(key, repr(values[key]))
+            with self.subTest(field=field, value=value):
+                self.assertFalse(eval(executable, {'__builtins__': {}}, {}))
+
     def test_historical_release_pins_remain_byte_equivalent_as_2018_is_added(self):
         spec = importlib.util.spec_from_file_location(
             'nextgen_pin_policy', ROOT / 'scripts/verify_legacy_release_pin.py')

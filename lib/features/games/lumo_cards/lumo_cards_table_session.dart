@@ -218,7 +218,7 @@ class LumoCardsTableSession {
       if (!canUseProfile()) {
         controller.turnClock.pause();
         _error =
-            'Das Kinderprofil hat gewechselt. Bitte zum Kartenspiel zurückkehren.';
+            'Deine Spiel-Freigabe hat sich geändert. Bitte zur Lern-App zurückkehren.';
         _revision++;
         await transport.publish(token, view);
         await close();

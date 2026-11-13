@@ -7,6 +7,41 @@ from __future__ import annotations
 import re
 
 
+def require_cards_authority_binding(services: str, package: str) -> dict:
+    """Read Android's real ServiceRecord/IntentBindRecord dump, not app claims.
+
+    AOSP's IntentBindRecord.dumpInService emits requested/received/hasBound and
+    a Client AppBindRecord containing its ProcessRecord. Unknown dump formats
+    fail closed so saved output can be inspected before adapting the parser.
+    """
+    if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]*(?:\.[A-Za-z][A-Za-z0-9_]*)+', package):
+        raise RuntimeError('Invalid Android package for Cards binding evidence')
+    # Android's applicationId adds .coachpreview, while the compiled Kotlin
+    # namespace remains dev.ullmann.lumo.lumo_lernen. Do not confuse the two.
+    service_class = 'dev.ullmann.lumo.lumo_lernen.CardsAuthorityService'
+    class_names = [re.escape(service_class)]
+    if service_class.startswith(package + '.'):
+        class_names.append(re.escape(service_class[len(package):]))
+    component = re.escape(package) + r'/(?:' + '|'.join(class_names) + r')'
+    blocks = re.split(r'(?m)(?=^[ \t]*\* ServiceRecord\{)', services)
+    matching = [block for block in blocks if re.match(
+        r'^[ \t]*\* ServiceRecord\{[^\n}]*\b' + component + r'\}', block)]
+    if len(matching) != 1:
+        raise RuntimeError('Expected one actual Android CardsAuthorityService record')
+    block = matching[0]
+    main = re.search(r'\bapp=ProcessRecord\{[^\n}]* (\d+):' + re.escape(package) + r'/[^\n}]+\}', block)
+    client = re.search(r'\* Client AppBindRecord\{[^\n}]*ProcessRecord\{[^\n}]* (\d+):' +
+                       re.escape(package) + r':lumo_game/[^\n}]+\}', block)
+    if not main or not client or main[1] == client[1]:
+        raise RuntimeError('Cards service must bind the visible native process to the distinct Dart host')
+    if not re.search(r'\brequested=true received=true hasBound=true\b', block):
+        raise RuntimeError('Android has not delivered a live Cards authority binding')
+    if not re.search(r'ConnectionRecord\{[^\n}]*\bCR\b[^\n}]*' + component, block):
+        raise RuntimeError('Cards authority has no actual auto-create connection')
+    return {'main_process_pid': int(main[1]), 'native_process_pid': int(client[1]),
+            'service': service_class, 'bound': True}
+
+
 def require_saved_round(saved: dict, round_id: str) -> dict:
     if not re.fullmatch(r'cards-[a-f0-9]{32}', round_id):
         raise RuntimeError('Cards round identity is not an opaque generated ID')

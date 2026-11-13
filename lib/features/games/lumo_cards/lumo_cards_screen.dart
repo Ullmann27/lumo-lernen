@@ -609,7 +609,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
           !_controller.turnClock.value,
       onCallLumo: _onLumoCall,
       canUseProfile: () =>
-          mounted && widget.appState.isCurrentLearningLease(owner),
+          mounted &&
+          widget.appState.isCurrentLearningLease(owner) &&
+          widget.appState.canPlayToday,
       persist: () async {
         if (!mounted || !widget.appState.isCurrentLearningLease(owner)) {
           throw StateError('Cards profile changed');
@@ -625,6 +627,15 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     );
     _nativeTable = table;
     try {
+      await widget.appState.ensureSettingsLoaded();
+      if (widget.appState.state.settings.requireDailyMissionForGames) {
+        await widget.appState.loadDailyMission();
+      }
+      if (!mounted ||
+          !widget.appState.isCurrentLearningLease(owner) ||
+          !widget.appState.canPlayToday) {
+        return;
+      }
       await table.open();
       if (mounted && widget.appState.isCurrentLearningLease(owner)) {
         await launchLumo3D(context,

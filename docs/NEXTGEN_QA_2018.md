@@ -1,0 +1,100 @@
+# Build 2018: Integrations- und Auslieferungsnachweise
+
+Stand: 13.11.2026. Diese Datei beschreibt tatsächlich ausgeführte Prüfungen und
+die vorbereiteten Abnahmegrenzen. Sie ist keine Veröffentlichungsgenehmigung.
+`main` wurde durch Team E nicht verändert; Version und endgültiger Native-Pin
+sind während der visuellen Nachbesserung noch nicht freigegeben.
+
+## Ausführbare Werkzeuge und Grenzen
+
+| Arbeit | Status | Tatsächlicher Nachweis / Grenze |
+| --- | --- | --- |
+| Godot-Szenen, Shader, Original-GLB und Animationen bearbeiten | direkt umsetzbar | Godot 4.6.3 vorhanden; echte Import-/Laufprüfungen |
+| Geometrie erzeugen und Originalassets weiterverwenden | direkt umsetzbar | Blender 4.3.2 und programmatische Meshes verfügbar |
+| Reale 3D-Rendererbilder prüfen | mit vorhandenen Werkzeugen umsetzbar | GitHub Linux/X11/llvmpipe liefert Original-PNGs; lokaler Displayzugriff für diesen Prozess nicht verfügbar |
+| Flutter- und Python-Tests | direkt umsetzbar | Tatsächlicher Flutter-3.44.9-/Dart-3.12.2-Runner; reproduzierbare Gradle-9.1.0-Toolchain |
+| Kotlin/Java-Androidhost kompilieren | mit vorhandenen Werkzeugen umsetzbar | Zwei echte GitHub-Androidkompilierungen erfolgreich |
+| Signierte APK, Emulator-Tour, In-place-Update | mit vorhandenen Werkzeugen umsetzbar | Vollständige Pipeline vorbereitet; erst nach finalem Native-Pin ausführbar |
+| Samsung Z Fold7, Android 17, Temperatur/Touchlatenz/60 FPS | derzeit blockiert | Kein physisches Zielgerät angebunden. Linuxbilder und Android-35-x86-Emulator ersetzen diesen Nachweis nicht. |
+
+## Tatsächlich vorhandene CI-Belege
+
+| Exakter Source | Tatsächliches Ergebnis |
+| --- | --- |
+| Godot `d66aaebf9185e8b86d9d09d8a66149860239c6e2` | [Run 43351450613](https://github.com/Ullmann27/lumo-godot/actions/runs/43351450613): vollständige Gameplay-/Action-/2014-/Technical-Art-Gates und damals 20 neue Gates bestanden. 71 PNGs aus dem neuen Artefakt plus 22 aus dem Legacy-Artefakt heruntergeladen. Dieser Zwischenstand erhielt keine endgültige visuelle Freigabe. |
+| Flutter `2d36496d5ed3684d52dab633b6e9a5d24cef0456` | [Run 43351542336](https://github.com/Ullmann27/lumo-lernen/actions/runs/43351542336), Job `131643514999`: echte Kotlin-/Java-Kompilierung, `BUILD SUCCESSFUL in 2m 57s`, 107 Tasks; ursprüngliche Cards-IPC- und Offline-Speech-Quellen enthalten. |
+| Flutter `c9e05e24db94e4d366acca0255925ef7c46a6f7a` | [Run 43353261145](https://github.com/Ullmann27/lumo-lernen/actions/runs/43353261145), Job `131649128007`: erneut echte Kotlin-/Java-Kompilierung, `BUILD SUCCESSFUL in 3m 26s`, 107 Tasks. Neuer CardsAuthorityService und aktuelle Lebenszyklusänderungen enthalten. Keine APK oder Android-Laufzeitfreigabe daraus ableiten. |
+| Godot `096c9d20a3a1b92605e0a4f648e1afd87f967b9a` | [Run 43354218466](https://github.com/Ullmann27/lumo-godot/actions/runs/43354218466): fokussierter echter Lernrenderer mit 21 PNGs erfolgreich. Neue Gates: 23 PASS, 2 FAIL; alle 75 Originalbilder des Gesamtartefakts heruntergeladen. Settlement-/Umgebungsproben scheitern nach ihren Spielaussagen an geleakten GL-Texturen. Legacy-Action-Job scheitert nach seinen 24 Lasso-Aussagen an vier noch referenzierten Ressourcen beim Prozessende. Diese Fehler werden nicht ausgefiltert. |
+
+Verifizierte ZIP-Digests:
+
+| Artefakt | ID | SHA-256 |
+| --- | --- | --- |
+| d66 neue Szenen | `14004132755` | `f47d73df4c3084f644238555666959ab3f29c0d9e121c60932b9273739384fc0` |
+| d66 Legacy | `14003839859` | `b0856ec0a3bed5637a55c0701dbdbbf5241bbac1d3b2008fafb25a71ce2170a6` |
+| Host c9 Kompilierung | `14005081851` | `25cc600debde803e062bbf67ce2723c888c94e14e0dc923b78e9177823beae74` |
+| 096 Lernpreview | `14006155015` | `56bf30015a3de03869146941fb167dbc5eb0a0c656a4d0ed07ed38c2bc6f5ac7` |
+| 096 alle neuen Szenen | `14006170582` | `32fa6f43a54bf4940bb7e46b7d6ec86f2a36e585f08860974fa2b2a68e930607` |
+
+Die beiden neuen fehlschlagenden Gates heißen
+`build_settlement_play_regression/rendered` und
+`creative_nextgen_environment_regression/rendered`. Sie erreichen 114 bzw. 48
+Aussagen; die anschließenden Rendererfehler über jeweils 21.844 Byte große
+Texturen machen diese Läufe trotzdem ungültig. Die unabhängigen Bilder anderer
+Module werden weiterhin erstellt. Die Rhythm-Bilder dieses SHAs gehören zum
+damaligen 48-/54-Aussagen-Stand, nicht zum später lokal erweiterten Test.
+
+## Sichtprüfung der 21 Lernbilder aus 096c9d20
+
+Alle 21 Originalbilder wurden geöffnet. Die Zehnerfelder zeigen jetzt die
+Zustände 8, 10 und 13 getrennt; die Hochformatansicht nutzt die verfügbare Fläche.
+Subtraktion zeigt tatsächlich acht verbleibende Würfel und fünf weggenommene.
+Pflanzenteile und die drei vollständig gefüllten Vierergruppen sind erkennbar.
+
+Vor einer Freigabe gemeldete Restfehler:
+
+- `syllables-start.png`: untere Glyphenteile auf den drei Start-Silbenblöcken verdeckt.
+- `fraction_parts-complete.png`: räumliche Beschriftung weiterhin `1/4`, obwohl drei Viertel gefüllt sind.
+- `bridge_hundred-start.png` und `bridge_hundred-complete.png`: der vorhandene Hunderter ist als kleiner unbeschrifteter Block nicht eindeutig vom Zehnermaterial unterscheidbar.
+- `fraction_parts-start.png`: Zusatzteile werden teilweise vom unteren Bedienfeld verdeckt.
+- Helle gelbliche Bodenflächen, starke Glanzstellen am Fuchs und große graue Randflächen im dichten Querformat bleiben Gegenstand der visuellen Überarbeitung.
+
+Diese Feststellungen wurden Team A und der Integration gemeldet. Ein bestandener
+Capture-Marker ersetzt weder diese Sichtprüfung noch die notwendige Korrektur.
+
+## Neue verbindliche Auslieferungsgrenzen
+
+Die neue Host-Pipeline erhält die historischen 2017-Releasegates und ergänzt:
+
+1. Eigenständige echte Hostkompilierung einschließlich `CardsAuthorityService.class`.
+2. Alle Fluttertests und optionalen Capturetests, ohne übersprungene Tests.
+3. Vollständige alte Native-Gates sowie die neuen Produktionsszenen; unabhängige
+   Prüfungen sammeln bei einem Fehler weiter Bilder, die Gesamtabnahme bleibt `FAIL`.
+4. Tatsächliche Android-Oberflächenprobe: Zehnerbrücke über die sichtbare Flutterroute,
+   fünf echte Bewegungen, unveränderte Lernwerte und Rückkehr zur gleichen Aufgabe.
+5. Tatsächliche Kartenstube: zwei native Ziehen-Aktionen mit Dart-ACK und Speicherung,
+   vollständige 112-Karten-Erhaltung, Kind-/Rundenidentität, sichtbare OS-Servicebindung
+   vor und nach mindestens 35 Sekunden, Pause, Rückkehr und Wiederöffnung.
+6. Echtes unverändertes 2017-Paket als In-place-Updatebasis.
+7. Veröffentlichung ausschließlich nach genauer Quell-/PCK-/APK-/Signaturprüfung und
+   einer expliziten, an den finalen Native-SHA gebundenen Sichtprüfungs-Receipt.
+
+`publish-reviewed-2018` ist ausdrücklich deaktiviert. Die Receipt unter
+`config/nextgen-2018-visual-review.json` bleibt `pending`. Der Vorbereiter
+`scripts/record_nextgen_visual_review.py` kann erst nach tatsächlicher Sichtung
+Original-PNGs aus einem SHA-geprüften erfolgreichen CI-Archiv übernehmen. Er prüft
+den Source im Archiv, das vollständige Native-CI-Ergebnis und die Abdeckung aller
+sieben bearbeiteten Produktionsszenen. Er aktiviert die Veröffentlichung nicht.
+
+## Lokal erneut ausgeführte Werkzeugtests
+
+- 282 Build-/Daten-/Release-Vertragstests: bestanden, 19,430 Sekunden, 0 übersprungen.
+- 665 Android-Probe-/Evidenztests: bestanden, 19,436 Sekunden, 0 übersprungen.
+- 3 Native-Runner-Orchestrierungstests: bestanden; ihre Fake-Engine prüft ausschließlich
+  Fehlerfortsetzung und Ablehnung, niemals Grafik oder Gameplay.
+- 6 neue Delivery-/Receipt-Tests plus 5 Workflow-Tests: bestanden; synthetische
+  Testfixtures werden ausdrücklich nicht als Render-/APK-Evidenz gespeichert.
+- Alle Shellblöcke des neuen Hostworkflows: `bash -n` erfolgreich.
+
+Die tatsächlichen lokalen Logs liegen in `qa/host/`. Die Anzahl bezieht sich auf
+diesen Werkzeugstand und wird nicht für später veränderte Quellen wiederverwendet.

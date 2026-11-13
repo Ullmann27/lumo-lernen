@@ -578,7 +578,7 @@ class _LearningContentState extends State<LearningContent> {
     setState(() {
       _nativeLearningOpen = true;
       // An explicitly requested 3D solution is assistance. The existing
-      // result writer already excludes assisted responses from mastery.
+      // result writer receives helpUsed for the following answer.
       _requestedHelpLevel = math.max(1, _requestedHelpLevel);
     });
     _publishTaskContext();
