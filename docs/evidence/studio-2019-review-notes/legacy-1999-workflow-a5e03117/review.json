@@ -1,0 +1,429 @@
+{
+  "schema_version": 1,
+  "status": "HISTORICAL_1999_VERIFIER_REPAIR_CONFIRMED_BY_ACTUAL_CI",
+  "scope": "Read-only review of the completed historical gate, original proof ZIP and full job text. No APK rebuild, local APK re-verification, test rerun or visual review of the old screenshots.",
+  "repository": "Ullmann27/lumo-lernen",
+  "repair_revision": "a5e03117158c157ba3154083db25947724e67727",
+  "branch": "chatgpt/lumo-historical-1999-verifier-20261113",
+  "draft_pull_request": 469,
+  "workflow": ".github/workflows/lumo-1999-update-gate.yml",
+  "run_id": 43472126071,
+  "job_id": 132046436344,
+  "job_name": "update-and-tour",
+  "job_conclusion": "success",
+  "run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43472126071",
+  "original_artifact": {
+    "id": 14062645376,
+    "name": "lumo-1999-actual-update-proof",
+    "bytes": 94355474,
+    "sha256": "c9962d0e927a7f4e15130a84683f295fdb7b24b54a7e0f47439796ad6cb9438e",
+    "local_original_zip": "/workspace/scratch/5987865ae883/qa/legacy-1999-actual-update-a5e03117.zip",
+    "github_digest_matches_original_download": true,
+    "github_head_sha_matches_repair_revision": true,
+    "zip_members": 303,
+    "crc_result": "PASS",
+    "duplicate_members": 0,
+    "unsafe_paths": 0,
+    "all_member_hash_manifest": "archive-members.json",
+    "png_members": 69,
+    "png_images_visually_opened_by_this_reviewer": 0
+  },
+  "original_log": {
+    "file": "original-job.log",
+    "bytes": 308579,
+    "sha256": "75cedcd485325f571467af44385372d09a6419e48d8e4a65b5f34d38c44dc4ee",
+    "lines": 3273,
+    "preservation": "Complete original decoded text supplied by fetch_workflow_job_logs; saved in ten sequential chunks, including BOM and timestamps. Not a claim to possess GitHub compressed log archive."
+  },
+  "original_metadata_files": [
+    "original-artifact-metadata.json",
+    "original-job-metadata.json"
+  ],
+  "raw_members": {
+    "manifest": "original-extracted-files.json",
+    "count": 20,
+    "preservation": "Selected members copied with exact original bytes; no evidence-field edits."
+  },
+  "actual_historical_inputs": {
+    "candidate": {
+      "run_id": 40096024152,
+      "source": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+      "artifact_id": 12560943116,
+      "archive_bytes": 637406936,
+      "archive_expected_and_downloaded_sha256_from_ci_log": "3901f889808f4a7ff91510bf00e839bbbc823b970b9b2aa11fc73590d2e7b900",
+      "download_digest_source_lines": [
+        317,
+        322
+      ]
+    },
+    "baseline": {
+      "run_id": 39755153883,
+      "source": "136f486ac3bdc4aabbd3b990e6629d2d6640c7d4",
+      "artifact_id": 12416601122,
+      "archive_bytes": 637446724,
+      "archive_expected_and_downloaded_sha256_from_ci_log": "20c1e7573c66465b2bce4e64933aa99e89dbc9ed002d0343384a2d4894a1f844",
+      "download_digest_source_lines": [
+        343,
+        348
+      ]
+    },
+    "scope": "The actual CI downloaded these immutable old candidate artifacts and verified their published digests. This reviewer downloaded only the new proof ZIP, not these two APK archives."
+  },
+  "actual_apk_verification": {
+    "commands_source_lines": [
+      720,
+      721,
+      722,
+      723
+    ],
+    "current_guard_sources": [
+      {
+        "path": ".github/workflows/lumo-1999-update-gate.yml",
+        "revision": "a5e03117158c157ba3154083db25947724e67727",
+        "git_blob": "744f805b60382529b329aa6070d3863a8ac0dea5",
+        "bytes": 6865,
+        "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1",
+        "saved_original_source": "source/lumo-1999-update-gate.yml"
+      },
+      {
+        "path": "scripts/verify_unified_apk.py",
+        "revision": "a5e03117158c157ba3154083db25947724e67727",
+        "git_blob": "455a69423b887843efc4477568d5f2cd094d6088",
+        "bytes": 12075,
+        "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+        "saved_original_source": "source/verify_unified_apk.py"
+      },
+      {
+        "path": "scripts/verify_android_apk.py",
+        "revision": "a5e03117158c157ba3154083db25947724e67727",
+        "git_blob": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64",
+        "bytes": 3688,
+        "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+        "saved_original_source": "source/verify_android_apk.py"
+      },
+      {
+        "path": "scripts/LumoApkCertificateVerifier.java",
+        "revision": "a5e03117158c157ba3154083db25947724e67727",
+        "git_blob": "2267e553326a4034677a3a94c17fda71d7e543e0",
+        "bytes": 2007,
+        "sha256": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+        "saved_original_source": "source/LumoApkCertificateVerifier.java"
+      }
+    ],
+    "fixed_family_signing_sha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "arm64": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 1999,
+      "versionName": "0.12.87",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "arm64-v8a"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 317113542,
+      "sha256": "6d821c210afa4a26b905325551fb527ac3559eac877dc5ec322993d9350334e2",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+        "engine": "4.6.3",
+        "pck_sha256": "0203d602a776156fcc02a100621e01b6aba3c8a9499a1c447fd439516cab317a",
+        "bytes": 54744008
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "expectationsSource": {
+        "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+        "files": {
+          "pubspec.yaml": "8d2ee4ad44ef4fbc18ad33a18bd28f49b41080ad6ee0bf37ce524007c40cf333",
+          "config/godot-source.json": "42f707ab60020b545e642a70fa8c392156ef27bb589713c273a4b228e5f540a4",
+          "config/lumo-offline-voice.json": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+          "assets/audio/voice/lumo_free/catalog.json": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c"
+        }
+      }
+    },
+    "x86_64": {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 1999,
+      "versionName": "0.12.87",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "x86_64"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 320266867,
+      "sha256": "b187c3e1d32ff5e1aa1a00be41d302eb3ae599b4df7bde3c651f7727e24095ed",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "4d0fd40fdf188be6ca86057596c7b51f41701fa3",
+        "engine": "4.6.3",
+        "pck_sha256": "0203d602a776156fcc02a100621e01b6aba3c8a9499a1c447fd439516cab317a",
+        "bytes": 54744008
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "expectationsSource": {
+        "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+        "files": {
+          "pubspec.yaml": "8d2ee4ad44ef4fbc18ad33a18bd28f49b41080ad6ee0bf37ce524007c40cf333",
+          "config/godot-source.json": "42f707ab60020b545e642a70fa8c392156ef27bb589713c273a4b228e5f540a4",
+          "config/lumo-offline-voice.json": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+          "assets/audio/voice/lumo_free/catalog.json": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c"
+        }
+      }
+    },
+    "baseline_signature_file": "raw/baseline-signature.txt",
+    "expectations": "historical-expectations-byte-comparison.json",
+    "expectation_binding": "Both actual APK reports contain identical expectationsSource values for four files read from full c60 commit Git objects with --no-replace-objects. This reviewer independently read the same local Git objects; all four hashes match both reports.",
+    "current_guards_retained": [
+      "Fixed family certificate check before expectation loading.",
+      "Exact package, version, minimum SDK 24 and target SDK 36 checks.",
+      "Exact requested ABI and required Flutter/app/Godot libraries.",
+      "ZIP integrity, uncompressed/aligned resources.arsc and 16-KiB ELF load alignment.",
+      "Pinned offline voice models/catalog/licenses and 155 actual clip digests.",
+      "Pinned Godot revision, embedded PCK digest and PCK magic.",
+      "Private embedded game activity and non-debuggable release manifest."
+    ],
+    "code_boundary": "Current a5e verifier and signature helpers execute. Historical checkout supplies only four expectation data files; no historical verifier code executes. Version environment overrides cannot change bound historical metadata.",
+    "remaining_resource_warning": "Four actual unittest ResourceWarning reports name an unclosed APK file reader used for hashing in verify_unified_apk.py. They remain in the original log and are not claimed fixed."
+  },
+  "fresh_ci_contracts": [
+    {
+      "tests": 35,
+      "seconds": 0.056,
+      "source_line": 642,
+      "result": "OK",
+      "suite": "update_preservation",
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "tests": 15,
+      "seconds": 0.554,
+      "source_line": 662,
+      "result": "OK",
+      "suite": "kart_tour_evidence",
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "tests": 13,
+      "seconds": 12.57,
+      "source_line": 680,
+      "result": "OK",
+      "suite": "modernization_tour_identity",
+      "skipped": 0,
+      "failed": 0
+    },
+    {
+      "tests": 15,
+      "seconds": 0.61,
+      "source_line": 715,
+      "result": "OK",
+      "suite": "historical_apk_expectations",
+      "skipped": 0,
+      "failed": 0
+    }
+  ],
+  "historical_update_evidence": {
+    "result": "raw/update-result.json",
+    "status": "PASS",
+    "scope": "Actual 1997 learning -> install -r 1999 -> offline Kart -> restart/fold",
+    "installation": {
+      "before_version": 1997,
+      "after_version": 1999,
+      "userId": "10209",
+      "firstInstallTime": "2026-11-13 17:26:50"
+    },
+    "baseline_apk_sha256": "41f93d34869d46f8b0c3ac64ca9898e82d220300e64e34691ed477211ebfbea6",
+    "candidate_apk_sha256": "b187c3e1d32ff5e1aa1a00be41d302eb3ae599b4df7bde3c651f7727e24095ed",
+    "candidate_report_matches_fresh_x86_verifier": true,
+    "baseline_and_updated_uid_file_bytes_identical": true,
+    "rooted_emulator_and_boot_completed_report": "raw/rooted-emulator.json",
+    "configured_emulator_api": 35,
+    "architecture": "x86_64",
+    "renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "after_update": {
+      "profile": {
+        "id": "1794590860543756",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T17:27:40.543756"
+      },
+      "learning_keys_compared": 6,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 6,
+      "earned_xp": 37
+    },
+    "after_kart": {
+      "profile": {
+        "id": "1794590860543756",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T17:27:40.543756"
+      },
+      "learning_keys_compared": 6,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 6,
+      "earned_xp": 37
+    },
+    "after_restart": {
+      "profile": {
+        "id": "1794590860543756",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-13T17:27:40.543756"
+      },
+      "learning_keys_compared": 6,
+      "learning_keys_added": [],
+      "correct_answers_preserved": 1,
+      "earned_stars": 6,
+      "earned_xp": 37
+    },
+    "fold": {
+      "cover": {
+        "profile": {
+          "id": "1794590860543756",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-13T17:27:40.543756"
+        },
+        "learning_keys_compared": 6,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 6,
+        "earned_xp": 37
+      },
+      "open": {
+        "profile": {
+          "id": "1794590860543756",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-13T17:27:40.543756"
+        },
+        "learning_keys_compared": 6,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 6,
+        "earned_xp": 37
+      },
+      "landscape": {
+        "profile": {
+          "id": "1794590860543756",
+          "name": "LumoTest",
+          "age": 7,
+          "grade": 1,
+          "createdAt": "2026-11-13T17:27:40.543756"
+        },
+        "learning_keys_compared": 6,
+        "learning_keys_added": [],
+        "correct_answers_preserved": 1,
+        "earned_stars": 6,
+        "earned_xp": 37
+      }
+    },
+    "offline": true,
+    "fatal_crashes_reported": 0,
+    "native_drive": {
+      "result_id": "79c010e6-9a6a-491b-a4b2-bd49f948d7bc-1794591129286-42624705",
+      "distance_gain": 38.0,
+      "elapsed_gain": 5.02,
+      "checkpoint_index": 0
+    },
+    "baseline_learning": {
+      "core_path_status": "PASS",
+      "task": {
+        "prompt": "6 + 4 = ?",
+        "answer": 10
+      },
+      "dedicated_math_task": false,
+      "saved_correct_answers": 1,
+      "reward_delta": {
+        "stars": 6,
+        "xp": 37
+      },
+      "tour_failures": {
+        "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+        "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. "
+      },
+      "limits": [
+        "physisches Gerät oder Fold-Scharnier",
+        "Bildrate",
+        "Sprachausgabe",
+        "falsche Antworten und Tipps auf Android (nur Flutter-Test)",
+        "andere Fächer und Klassen"
+      ]
+    },
+    "not_tested": [
+      "physical ARM64 device",
+      "GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race reward"
+    ]
+  },
+  "diagnostics": {
+    "raw_marker_file": "job-diagnostic-markers.json",
+    "preserved_findings": [
+      "Four unclosed APK-reader ResourceWarning messages in the fresh historical contract tests.",
+      "Emulator Vulkan driver detection errors and fallback-library warnings.",
+      "Initial ADB connection/no-emulator diagnostic before eventual boot/root success.",
+      "Emulator shutdown stop-not-implemented and configuration warnings.",
+      "setup-java and Node-action/deprecated API warnings.",
+      "Two explicitly failed optional baseline-tour entrances: Deutsch and Englisch; dedicated_math_task is false."
+    ],
+    "interpretation": "The job and required APK/update core path succeeded, but the complete log and the old tour are not represented as uniformly error-free or fully covered."
+  },
+  "limits": [
+    "This is exclusively the 0.12.85+1997 to 0.12.87+1999 historical gate, not a 0.13.7+2019 validation.",
+    "The frozen Studio Host e3d161cb and Native76980 are not changed or approved by this result.",
+    "No new historical screenshot visual acceptance is claimed.",
+    "No physical ARM64/Fold7, 60 FPS, heat, audible output or complete two-lap reward acceptance is claimed.",
+    "No final delivery receipt or release approval is produced."
+  ]
+}

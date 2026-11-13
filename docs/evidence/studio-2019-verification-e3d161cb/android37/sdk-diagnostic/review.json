@@ -1,0 +1,72 @@
+{
+  "status": "INVENTORY_VERIFIED_BOOT_NOT_TESTED",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_commit": "31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+  "source_tree": "8d4b6f282268218542e7c7bbc4efcfb0192585d8",
+  "parent_host_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "run_id": 43476259207,
+  "run_attempt": 1,
+  "job_id": 132060744959,
+  "job_conclusion": "success",
+  "artifact": {
+    "id": 14064150357,
+    "bytes": 55078,
+    "sha256": "318e0ea8e3e72e9be7961943d5cdbfe4b9f4019855f2b82a180342b1875aa216",
+    "github_digest_matches_download": true,
+    "member_count": 59,
+    "all_extracted_members_byte_identical": true,
+    "embedded_file_hashes_verified": true
+  },
+  "source_binding": {
+    "git_commit_and_tree_match": true,
+    "recorded_source_status_empty": true,
+    "parent_confirmed_from_github_commit_api": true,
+    "note": "Shallow checkout emitted no parents in git show; original commit API establishes the actual e3d parent."
+  },
+  "commands_completed": 10,
+  "catalogs_completed": 4,
+  "tool_versions": {
+    "existing": "12.0",
+    "fresh": "22.0",
+    "java": "Temurin 17.0.21+9",
+    "source_properties_match_version_outputs": true,
+    "fresh_archive_bytes": 181833628,
+    "fresh_archive_sha256": "4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583"
+  },
+  "runner": {
+    "inventory_image": "ubuntu24 20261111.370.1",
+    "failed_tour_image": "ubuntu-24.04 20261111.127.1",
+    "limitation": "The newly measured 12.0 version belongs to this diagnostic runner. It is not retroactive measurement of the failed tour runner."
+  },
+  "finding": "Both existing and fresh managers expose android-37.0 platform/image identifiers in channel0 and channel3. The originally requested bare android-37 identifiers are absent from every complete available catalog.",
+  "relevant_packages": {
+    "platform": "platforms;android-37.0",
+    "platform_revision": 2,
+    "system_image": "system-images;android-37.0;google_apis;x86_64",
+    "system_image_revision": 8,
+    "stable_emulator": "37.2.13",
+    "system_image_minimum_emulator": "37.2.11"
+  },
+  "stderr_review": {
+    "existing_catalogs": "empty",
+    "fresh_catalogs": "CLI deprecation notice only; all commands exited zero, no repository-loading error recorded."
+  },
+  "proposal": "proposed-studio-package-name.patch",
+  "active_product_or_workflow_mutated": false,
+  "limitations": [
+    "No system image or platform installation, emulator boot, Android getprop, APK installation or app interaction performed.",
+    "Stable catalog availability does not by itself prove successful boot or actual SDK37/release17. Existing strict runtime gates remain mandatory.",
+    "No local x86 APK/PCK binary comparison: shared candidate ZIP exceeds the connector transfer limit."
+  ],
+  "supporting_files": [
+    "github-run.json",
+    "github-job.json",
+    "github-commit.json",
+    "github-artifact.json",
+    "job.log",
+    "artifact-members.json",
+    "catalog-analysis.json",
+    "action-input-analysis.json",
+    "proposal.json"
+  ]
+}

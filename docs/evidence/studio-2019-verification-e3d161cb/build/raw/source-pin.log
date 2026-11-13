@@ -1,0 +1,44 @@
+2026-11-13T16:19:56.0318234Z ##[group]Run set -euo pipefail
+2026-11-13T16:19:56.0318648Z [36;1mset -euo pipefail[0m
+2026-11-13T16:19:56.0318925Z [36;1mmkdir -p dist[0m
+2026-11-13T16:19:56.0319225Z [36;1mgit rev-parse HEAD | tee dist/BUILD-SOURCE.txt[0m
+2026-11-13T16:19:56.0319649Z [36;1mcat config/godot-source.json | tee dist/GODOT-SOURCE.json[0m
+2026-11-13T16:19:56.0320010Z [36;1mpython3 - <<'PY'[0m
+2026-11-13T16:19:56.0320240Z [36;1mimport json[0m
+2026-11-13T16:19:56.0320451Z [36;1mimport re[0m
+2026-11-13T16:19:56.0320657Z [36;1mimport sys[0m
+2026-11-13T16:19:56.0320884Z [36;1mfrom pathlib import Path[0m
+2026-11-13T16:19:56.0321469Z [36;1msys.path.insert(0, "scripts")[0m
+2026-11-13T16:19:56.0321835Z [36;1mfrom verify_legacy_release_pin import verify[0m
+2026-11-13T16:19:56.0322375Z [36;1mbuild, native = verify(Path("pubspec.yaml").read_text(), Path("config/godot-source.json").read_text())[0m
+2026-11-13T16:19:56.0322998Z [36;1massert build == 2019, "Studio workflow requires build 2019"[0m
+2026-11-13T16:19:56.0323410Z [36;1mconfig=json.load(open("config/godot-source.json"))[0m
+2026-11-13T16:19:56.0324024Z [36;1massert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"[0m
+2026-11-13T16:19:56.0324918Z [36;1massert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"[0m
+2026-11-13T16:19:56.0325639Z [36;1massert config["engine"]=="4.6.3", "Unexpected Godot engine"[0m
+2026-11-13T16:19:56.0326122Z [36;1m# Historical bad sources remain rejected on this separate candidate.[0m
+2026-11-13T16:19:56.0326607Z [36;1m# Actual rendered review exposed native menu geometry defects.[0m
+2026-11-13T16:19:56.0327086Z [36;1m# This workflow revision rejects the measured candidates on every run.[0m
+2026-11-13T16:19:56.0327576Z [36;1m# It cannot alter historical workflow revisions used by older runs.[0m
+2026-11-13T16:19:56.0327986Z [36;1mrejected_android_layout_sources = {[0m
+2026-11-13T16:19:56.0328326Z [36;1m    "0aa89cdea3a07d0c2bc0a31a153737a1fee41454":[0m
+2026-11-13T16:19:56.0328758Z [36;1m        "Android 2400x1080: header/tab overlap and landing model occlusion",[0m
+2026-11-13T16:19:56.0329194Z [36;1m    "f04e580ec0d7d8f70e8be269523fabedd15b0766":[0m
+2026-11-13T16:19:56.0329630Z [36;1m        "Android 2400x1080: selected kart card exceeds visible scroll viewport",[0m
+2026-11-13T16:19:56.0330034Z [36;1m}[0m
+2026-11-13T16:19:56.0330344Z [36;1massert config["revision"] not in rejected_android_layout_sources, ([0m
+2026-11-13T16:19:56.0330924Z [36;1m    "Rejected Android menu layout: " + rejected_android_layout_sources.get(config["revision"], "")[0m
+2026-11-13T16:19:56.0331632Z [36;1m)[0m
+2026-11-13T16:19:56.0331962Z [36;1m# scripts/export_embedded_game.py subsequently fetches/checks out this[0m
+2026-11-13T16:19:56.0332459Z [36;1m# exact SHA, then compares its HEAD before packaging the native PCK.[0m
+2026-11-13T16:19:56.0332868Z [36;1mPY[0m
+2026-11-13T16:19:56.0357198Z shell: /usr/bin/bash -e {0}
+2026-11-13T16:19:56.0357477Z env:
+2026-11-13T16:19:56.0357899Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T16:19:56.0358130Z ##[endgroup]
+2026-11-13T16:19:56.0450543Z e3d161cb2f79b732ac2dbafc2764b151247f018b
+2026-11-13T16:19:56.0465510Z {
+2026-11-13T16:19:56.0466056Z   "repository": "https://github.com/Ullmann27/lumo-godot.git",
+2026-11-13T16:19:56.0466749Z   "revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+2026-11-13T16:19:56.0467269Z   "engine": "4.6.3"
+2026-11-13T16:19:56.0467597Z }

@@ -1,0 +1,191 @@
+{
+  "review_version": 1,
+  "reviewer": "Agent A / learning_worlds",
+  "status": "ACTUAL_FULL_FLUTTER_SUITE_PASS_WITH_DOCUMENTED_WARNINGS",
+  "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "run_id": 43461547945,
+  "job_id": 132009667976,
+  "artifact": {
+    "id": 14056724587,
+    "name": "lumo-candidate-all-flutter-tests-and-captures",
+    "size_in_bytes": 333193668,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14056724587",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14056724587/zip",
+    "expired": false,
+    "created_at": "2026-11-13T16:32:11Z",
+    "expires_at": "2026-12-13T16:32:00Z",
+    "updated_at": "2026-11-13T16:32:11Z",
+    "digest": "sha256:5f072ab9ab1d46a38106acfa81d5153ca41d77934e025cecf66e82bd4dd04fd8",
+    "workflow_run": {
+      "id": 43461547945,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "e3d161cb2f79b732ac2dbafc2764b151247f018b"
+    }
+  },
+  "original_zip": {
+    "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-full-flutter-e3d161cb.zip",
+    "bytes": 333193668,
+    "sha256": "5f072ab9ab1d46a38106acfa81d5153ca41d77934e025cecf66e82bd4dd04fd8",
+    "independently_verified_against_github_digest": true
+  },
+  "source_binding": "Original GitHub artifact metadata binds this new artifact to run43461547945 at full host commit e3d161cb2f79b732ac2dbafc2764b151247f018b. The Flutter summary itself has no source/dirty stamp; no clean-worktree assertion is inferred from it.",
+  "independently_recounted_machine_events": {
+    "passed": 2510,
+    "failed": 0,
+    "skipped": 0,
+    "error_events": 0
+  },
+  "runner_summary": {
+    "status": "PASS",
+    "passed": 2510,
+    "failed": [],
+    "skipped": [],
+    "capture_error_files": [],
+    "flutter_exit_code": 0,
+    "runner_completed_successfully": true,
+    "runner_errors": [],
+    "scope": [
+      "complete Flutter suite; capture outputs recorded below"
+    ],
+    "capture_png_counts": {
+      "LUMO_TUTORING_CAPTURE_DIR": {
+        "directory": "tutoring",
+        "pngs": 6
+      },
+      "LUMO_RIG_STRESS": {
+        "directory": "rig-stress",
+        "pngs": 27
+      },
+      "LUMO_CARDS_OPPONENT_CAPTURE": {
+        "directory": "cards-opponents",
+        "pngs": 4
+      },
+      "LUMO_STREAM_E_CAPTURE": {
+        "directory": "cards-memory",
+        "pngs": 8
+      },
+      "LUMO_NAVIGATION_CAPTURES": {
+        "directory": "navigation",
+        "pngs": 26
+      },
+      "LUMO_GUIDED_CAPTURE_DIR": {
+        "directory": "guided-learning",
+        "pngs": 170
+      },
+      "LUMO_VISUAL_CAPTURE_DIR": {
+        "directory": "reasoning",
+        "pngs": 15
+      },
+      "LUMO_TOUR_DIR": {
+        "directory": "tour",
+        "pngs": 62
+      },
+      "LUMO_FLUTTER_GAMES_CAPTURE": {
+        "directory": "games",
+        "pngs": 16
+      },
+      "LUMO_LEARNING_CAPTURE_DIR": {
+        "directory": "learning-adventure",
+        "pngs": 80
+      },
+      "LUMO_COMPANION_CAPTURE_DIR": {
+        "directory": "companion",
+        "pngs": 6
+      },
+      "LUMO_SPATIAL_CAPTURES": {
+        "directory": "reading",
+        "pngs": 12
+      },
+      "LUMO_CAPTURE_DIR": {
+        "directory": "modernization",
+        "pngs": 42
+      },
+      "LUMO_CARD_FACE_EXPORT_DIR": {
+        "directory": "card-face-exports",
+        "pngs": 56
+      },
+      "LUMO_NEXTGEN_READING_CAPTURES": {
+        "directory": "nextgen-reading",
+        "pngs": 6
+      },
+      "LUMO_READING_CAPTURES": {
+        "directory": "reading-passages",
+        "pngs": 3
+      },
+      "LUMO_ASSISTED_LEARNING_CAPTURES": {
+        "directory": "assisted-learning",
+        "pngs": 2
+      },
+      "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+        "directory": "native-profiles",
+        "pngs": 4
+      }
+    },
+    "capture_file_outputs": {
+      "LUMO_CARDS_CUP_CAPTURE": {
+        "path": "cards-cup/trophy.png",
+        "created": true
+      }
+    },
+    "rendered_png_count": 546
+  },
+  "runner_done_event": {
+    "success": true,
+    "type": "done",
+    "time": 641591
+  },
+  "warning_counts": {
+    "injected_storage_failure": 5,
+    "widget_audio_plugin_unavailable": 9,
+    "tap_hit_test_warning": 1
+  },
+  "warning_assessment": {
+    "storage": "Five messages belong to tests that intentionally fail durable reward acknowledgements. The actual test sources set failAcknowledgement=true or acknowledgementsToFail=1 and assert exactly-once recovery and preserved rewards.",
+    "audio": "Nine MissingPluginException audio messages arise in Flutter widget/capture tests without the Android audioplayers implementation. They do not establish audible playback and are not hidden as successful audio tests.",
+    "hit_test": "One actual warning at test/lumo_shell_layout_test.dart:198: find.text(Lernen).last did not hit its selected text widget at Offset(234.8,551.4). The test still asserts the destination LumoAkademieScreen and passes. This is an ambiguity in that particular selected tap evidence, not a proven production navigation failure. No rerun, suppression or product change was made."
+  },
+  "images": {
+    "archive_png_count": 546,
+    "png_headers_checked": 546,
+    "images_visually_opened_in_this_review": 0,
+    "blanket_visual_approval": false
+  },
+  "evidence_files": [
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/acceptance-summary.json",
+      "bytes": 2118,
+      "sha256": "63d01ce2a53bde277e2fa545f98b573a0fa286f6b7917ad44541d1c9de27e451"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/flutter-machine.jsonl",
+      "bytes": 1583396,
+      "sha256": "3d6b8fff3663cb6d068d4f9636fe8f7284ad35be13e70d9122b5bf8e19b81cf4"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/github-artifact-metadata.json",
+      "bytes": 944,
+      "sha256": "fd9b2de7ab29a4df7c317dbb5dc2d9f4afe1eb923404f0a3e8190268ec3cf794"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/png-archive-inventory.json",
+      "bytes": 92139,
+      "sha256": "60a86ea254c7cf4dc39c7330cd3f8e5d9c7e0c9b72248b3b567941fa5bc76aea"
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/flutter/warning-events.json",
+      "bytes": 11025,
+      "sha256": "b2b88e8c6941d8d475cb1abc30a56f4d7eb92c51b2219dbb59815614f1dbf2dd"
+    }
+  ],
+  "not_claimed": [
+    "A new feature is proved merely by the unchanged total number of tests",
+    "Individual visual acceptance of all 546 Flutter captures",
+    "Actual Android audio or device acceptance",
+    "Completion of Python/native/build steps that were still running when this Flutter-only note was written",
+    "Overall workflow or release approval"
+  ],
+  "new_tests_or_ci_started_by_reviewer": false,
+  "product_files_changed_by_reviewer": false
+}

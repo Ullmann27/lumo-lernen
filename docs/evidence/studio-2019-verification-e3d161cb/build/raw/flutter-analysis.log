@@ -1,0 +1,156 @@
+2026-11-13T16:20:25.6225554Z ##[group]Run flutter analyze --no-fatal-infos --no-fatal-warnings
+2026-11-13T16:20:25.6226092Z [36;1mflutter analyze --no-fatal-infos --no-fatal-warnings[0m
+2026-11-13T16:20:25.6246147Z shell: /usr/bin/bash -e {0}
+2026-11-13T16:20:25.6246451Z env:
+2026-11-13T16:20:25.6246666Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T16:20:25.6247033Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:20:25.6247558Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:20:25.6248238Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-13T16:20:25.6248667Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-13T16:20:25.6248946Z ##[endgroup]
+2026-11-13T16:20:25.7994882Z Resolving dependencies...
+2026-11-13T16:20:25.9068847Z Downloading packages...
+2026-11-13T16:20:25.9930580Z   clock 1.1.2 (1.1.3 available)
+2026-11-13T16:20:25.9931546Z   code_assets 1.2.1 (2.2.0 available)
+2026-11-13T16:20:25.9932224Z   cross_file 0.3.5+5 (0.4.0 available)
+2026-11-13T16:20:25.9932739Z   crypto 3.0.7 (3.0.8 available)
+2026-11-13T16:20:25.9933381Z   file_selector_macos 0.9.5+1 (0.9.5+2 available)
+2026-11-13T16:20:25.9933950Z   flutter_lints 4.0.0 (6.0.0 available)
+2026-11-13T16:20:25.9934489Z   google_mlkit_commons 0.8.1 (1.0.3 available)
+2026-11-13T16:20:25.9935067Z   google_mlkit_text_recognition 0.13.1 (1.0.3 available)
+2026-11-13T16:20:25.9935496Z   hooks 2.0.2 (2.2.0 available)
+2026-11-13T16:20:25.9935802Z   image_picker 1.2.3 (1.2.4 available)
+2026-11-13T16:20:25.9936178Z   image_picker_ios 0.8.13+9 (0.8.13+15 available)
+2026-11-13T16:20:25.9936808Z   image_picker_platform_interface 2.11.1 (2.11.2 available)
+2026-11-13T16:20:25.9937427Z   jni 1.1.0 (1.1.2 available)
+2026-11-13T16:20:25.9937882Z   jni_flutter 1.0.3 (1.0.4+1 available)
+2026-11-13T16:20:25.9938373Z   lints 4.0.0 (6.1.0 available)
+2026-11-13T16:20:25.9938840Z   matcher 0.12.19 (0.12.20 available)
+2026-11-13T16:20:25.9939395Z   material_color_utilities 0.13.0 (0.13.1 available)
+2026-11-13T16:20:25.9939963Z   meta 1.18.0 (1.19.0 available)
+2026-11-13T16:20:25.9940427Z   objective_c 9.5.0 (9.6.4 available)
+2026-11-13T16:20:25.9940828Z   record_use 0.6.0 (1.1.1 available)
+2026-11-13T16:20:25.9941421Z   shared_preferences 2.5.5 (2.5.6 available)
+2026-11-13T16:20:25.9941864Z   shared_preferences_android 2.4.28 (2.5.5 available)
+2026-11-13T16:20:25.9942299Z   shared_preferences_foundation 2.5.7 (2.6.2 available)
+2026-11-13T16:20:25.9942693Z   stack_trace 1.12.1 (1.12.2 available)
+2026-11-13T16:20:25.9943037Z   synchronized 3.4.2 (3.6.1+1 available)
+2026-11-13T16:20:25.9943380Z   test_api 0.7.11 (0.7.15 available)
+2026-11-13T16:20:25.9943699Z   vector_math 2.2.0 (2.4.4 available)
+2026-11-13T16:20:25.9944022Z   vm_service 15.3.0 (15.4.0 available)
+2026-11-13T16:20:25.9944347Z   web 1.1.1 (1.1.2 available)
+2026-11-13T16:20:25.9944638Z Got dependencies!
+2026-11-13T16:20:25.9945046Z 29 packages have newer versions incompatible with dependency constraints.
+2026-11-13T16:20:25.9945562Z Try `flutter pub outdated` for more information.
+2026-11-13T16:20:45.7144830Z Analyzing lumo-lernen...                                        
+2026-11-13T16:20:45.7179285Z 
+2026-11-13T16:20:45.7207667Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/core/app_update_service.dart:79:5 • prefer_const_declarations
+2026-11-13T16:20:45.7209971Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/app_update_service.dart:89:58 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7212522Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:644:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7214769Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1003:13 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7217695Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1035:68 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7220070Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_ai_proxy_client.dart:1095:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7222551Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:299:40 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7225052Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:302:37 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7227288Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:328:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7229499Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:330:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7232234Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:332:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7234676Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:335:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7237120Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:341:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7239487Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:343:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7242122Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:345:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7244482Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_engine.dart:354:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7246869Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_companion_guide.dart:212:51 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7263296Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:69:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7266173Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:73:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7268855Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:75:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7271985Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/lumo_personal_daily_tutor_planner.dart:192:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7274816Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:105:66 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7277924Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:136:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7280854Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:168:37 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7283437Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/core/tutor_coordination_engine.dart:187:53 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7285265Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/concept_graph.dart:31:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7287354Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:155:32 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7289165Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:158:45 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7291033Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:184:37 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7293195Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:224:45 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7295020Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:227:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7296821Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:235:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7299058Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/learning_scene_contract.dart:253:51 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7302163Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:137:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7304953Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:153:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7313437Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:165:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7334995Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lesson_scene_engine.dart:206:5 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7356722Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:38:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7373671Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:42:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7376342Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:46:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7379360Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:66:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7382193Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:104:11 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7384832Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:146:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7387693Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/lumo_intelligence_engine.dart:152:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7390309Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:78:15 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7392935Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:90:44 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7395347Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:123:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7397767Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:150:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7400192Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:160:5 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7402944Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:198:32 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7405375Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:205:11 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7407795Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:221:40 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7410283Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/domain/learning_intelligence/scene_memory.dart:235:50 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7412627Z    info • Dangling library doc comment. Add a 'library' directive after the library comment • lib/domain/quiz/quiz_rewards.dart:1:1 • dangling_library_doc_comments
+2026-11-13T16:20:45.7414750Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/agent/lumo_agent_content.dart:90:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7417081Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/games/mini_games/lesson_trail_game.dart:48:55 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7419714Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:86:25 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7423057Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:88:25 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7425890Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:92:25 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7428690Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:210:16 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7431905Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/games/star_trail/star_trail_screen.dart:304:14 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7434553Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/features/learning/cross_grade_practice_screen.dart:193:5 • prefer_const_declarations
+2026-11-13T16:20:45.7436996Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_hub.dart:50:59 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7439605Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_hub.dart:181:41 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7442680Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:43:7 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7445584Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:91:19 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7448191Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_screen.dart:96:52 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7450618Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/lab/learning_lab_screen.dart:179:38 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7453443Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/features/learning/lab/learning_lab_screen.dart:383:43 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7456034Z    info • Unnecessary braces in a string interpolation. Try removing the braces • lib/features/learning/lumo_rechentricks_poster_screen.dart:435:30 • unnecessary_brace_in_string_interps
+2026-11-13T16:20:45.7458502Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:63:59 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7461043Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:78:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7463912Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:108:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7466460Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:152:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7469195Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/learning/widgets/lumo_learning_scene_card.dart:161:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7471774Z warning • The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' • lib/features/live/lumo_live_pro_screen.dart:343:16 • unused_element
+2026-11-13T16:20:45.7474082Z warning • Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import
+2026-11-13T16:20:45.7476460Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/magic_hub/lumo_magic_hub_screen.dart:104:47 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7478982Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:229:52 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7481605Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:232:52 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7484010Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/reading/reading_content.dart:242:52 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7486354Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/story/lumo_story_library_screen.dart:50:20 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7488802Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/story/lumo_story_library_screen.dart:55:20 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7490980Z    info • The private field _companion could be 'final'. Try making the field 'final' • lib/features/story/lumo_story_setup_screen.dart:34:10 • prefer_final_fields
+2026-11-13T16:20:45.7493162Z    info • The private field _magicItem could be 'final'. Try making the field 'final' • lib/features/story/lumo_story_setup_screen.dart:35:10 • prefer_final_fields
+2026-11-13T16:20:45.7495094Z warning • The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field
+2026-11-13T16:20:45.7497249Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • lib/features/story/widgets/lumo_story_scene.dart:327:5 • prefer_const_declarations
+2026-11-13T16:20:45.7499639Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/teacher/student_assignments_card.dart:105:45 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7502148Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tests/iq_test_screen.dart:177:53 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7504558Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tutoring/guided_language_nature_illustration.dart:154:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7507141Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • lib/features/tutoring/guided_language_nature_illustration.dart:192:9 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7510197Z    info • The import of 'package:flutter/foundation.dart' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/material.dart'. Try removing the import directive • lib/widgets/design/lumo_design_system.dart:1:8 • unnecessary_import
+2026-11-13T16:20:45.7513449Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/widgets/design/lumo_design_system.dart:1056:39 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7516355Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • lib/widgets/design/lumo_design_system.dart:1187:23 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7519000Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import
+2026-11-13T16:20:45.7521789Z    info • Use interpolation to compose strings and values. Try using string interpolation to build the composite string • test/games/star_trail_visual_test.dart:34:17 • prefer_interpolation_to_compose_strings
+2026-11-13T16:20:45.7524533Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/grade_1_to_4_subject_menu_integrity_test.dart:83:41 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7527302Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/helpers/lumo_capture.dart:2:8 • unnecessary_import
+2026-11-13T16:20:45.7530099Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:106:66 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7532670Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:137:7 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7534974Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/legacy_tutor_9fdf.dart:168:37 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7537384Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/intelligence/live_alternative_scene_test.dart:30:51 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7539715Z warning • Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import
+2026-11-13T16:20:45.7542712Z    info • The import of 'dart:typed_data' is unnecessary because all of the used elements are also provided by the import of 'package:flutter/services.dart'. Try removing the import directive • test/lumo_cards_reference_showcase_test.dart:2:8 • unnecessary_import
+2026-11-13T16:20:45.7545646Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • test/tutoring/language_nature_lessons_test.dart:19:7 • prefer_const_declarations
+2026-11-13T16:20:45.7548041Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/tutoring/language_nature_runtime_test.dart:133:15 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7550442Z    info • Statements in an if should be enclosed in a block. Try wrapping the statement in a block • test/tutoring/language_nature_runtime_test.dart:183:13 • curly_braces_in_flow_control_structures
+2026-11-13T16:20:45.7552958Z    info • Use 'const' for final variables initialized to a constant value. Try replacing 'final' with 'const' • test/tutoring/place_value_tutor_test.dart:22:5 • prefer_const_declarations
+2026-11-13T16:20:45.7554076Z 
+2026-11-13T16:20:45.7554282Z 108 issues found. (ran in 19.1s)

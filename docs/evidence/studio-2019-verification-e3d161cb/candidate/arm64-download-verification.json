@@ -1,0 +1,40 @@
+{
+  "original_archive": "/workspace/scratch/5987865ae883/qa/studio-2019-arm64-e3d161cb.zip",
+  "original_archive_bytes": 322133454,
+  "original_archive_sha256": "92aef209eee62bae63a9e2100fadc771fadd67711fa871579b4669de5a30c145",
+  "zip_crc_pass": true,
+  "extracted_directory": "/workspace/scratch/5987865ae883/qa/studio-2019-arm64-e3d161cb",
+  "files": [
+    {
+      "path": "APK-SHA256.txt",
+      "bytes": 91,
+      "sha256": "6a57d3dd809d4ae4247d9fc25a5530623bc4ebb51d463e1b22373e9ac2f6ebbd"
+    },
+    {
+      "path": "APK-VERIFICATION.json",
+      "bytes": 1779,
+      "sha256": "5752165b804271a72669e2453957ff5f5621368a5edfaca0c1ecc0571ef8d4ef"
+    },
+    {
+      "path": "APP-VERSION.txt",
+      "bytes": 21,
+      "sha256": "1f107f2a5a41471b198f39dc6edaf17334b38e1c90ebeed3b970e5d21a71ca89"
+    },
+    {
+      "path": "BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "sha256": "ff8b9d06e3baa27bb33c7f460fb6087ee22835f34c427660d9a3459b22c8801a"
+    },
+    {
+      "path": "GODOT-SOURCE.json",
+      "bytes": 145,
+      "sha256": "ff76449f25572273d0602fff4bb826e14850030c063bb41d9471e262ffcc8896"
+    },
+    {
+      "path": "Lumo-Lernen-Neu.apk",
+      "bytes": 322123041,
+      "sha256": "c8f3f15a2e9eb77a1f03152f849f0e73211de91cd6f4299fb6555e557735a3d1"
+    }
+  ],
+  "combined_artifact_limit": "GitHub connector rejected the 647427173-byte combined artifact because its download cap is 536870912 bytes. This is the separate, original ARM64 artifact from the exact same run, not a claimed local x86 binary verification."
+}

@@ -1,0 +1,60 @@
+{
+  "schema_version": 1,
+  "scope": "Drei tatsächlich geöffnete Originalbilder als begrenzte Ergänzung der getrennten Installations- und Datenprüfung; keine neue Emulatorausführung.",
+  "reviewer": "Agent C / games_worlds",
+  "host_candidate": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_candidate": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "run_id": 43461547945,
+  "job_id": 132049288712,
+  "artifact_id": 14063535322,
+  "original_zip_sha256": "6fd1aaf1b829b94c80ca3b173620a3dd7aee989e68b54434cc501b3067d7536c",
+  "baseline_is_historical_2017": true,
+  "images": [
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/baseline-learning/09-after-lesson.png",
+      "bytes": 1618713,
+      "sha256": "c15f689e86b9c5fabb41d1963198d6e9d2e3e2605c80f8fd2978206187fc4223",
+      "purpose": "Tatsächlich geöffnetes, unverändertes Original-Emulatorbild; sichtbarer Vorher-/Nachher-Vergleich.",
+      "pixel_dimensions": [
+        1080,
+        2340
+      ],
+      "opened_with_view_image": true,
+      "identical_to_original_zip_member": true,
+      "observation": "2017 vor dem Update: Mathematikmenü zeigt Level 1, 1. Klasse, einen Stern und 5 / 400 XP; Plus bis 10 zeigt 1 richtig und 82 % sicher."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/updated-profile-offline.png",
+      "bytes": 3099748,
+      "sha256": "435a0c641caa62e0d278906bea2fcd533174cce59ff2f4dd200c2a4e00eca1b2",
+      "purpose": "Tatsächlich geöffnetes, unverändertes Original-Emulatorbild; sichtbarer Vorher-/Nachher-Vergleich.",
+      "pixel_dimensions": [
+        1080,
+        2400
+      ],
+      "opened_with_view_image": true,
+      "identical_to_original_zip_member": true,
+      "observation": "2019 nach dem Update: Startseite begrüßt LumoTest; Profilkopf zeigt weiterhin Level 1, 1. Klasse, einen Stern und 5 / 400 XP. Flugmodus-Symbol sichtbar."
+    },
+    {
+      "path": "docs/evidence/studio-2019-verification-e3d161cb/update/original-artifact/restart-profile-offline.png",
+      "bytes": 3099720,
+      "sha256": "d9f58be68fc5d892510f85172c572bae19e1acbdbb74bdb0c95942dd21484064",
+      "purpose": "Tatsächlich geöffnetes, unverändertes Original-Emulatorbild; sichtbarer Vorher-/Nachher-Vergleich.",
+      "pixel_dimensions": [
+        1080,
+        2400
+      ],
+      "opened_with_view_image": true,
+      "identical_to_original_zip_member": true,
+      "observation": "2019 nach dem anschließenden Neustart: dieselbe Begrüßung und sichtbaren Profil-/Belohnungswerte bleiben erhalten. Flugmodus-Symbol sichtbar."
+    }
+  ],
+  "result": "Die sichtbaren Profil-/Belohnungswerte in diesen drei Bildern widersprechen dem erfolgreichen Datenvergleich nicht. Kein zusätzlicher konkreter Bildfehler erkannt.",
+  "limits": [
+    "Die Vorher-Aufnahme zeigt den echten installierten Altstand 2017 und zählt nicht als neue 2019-Rendereraufnahme.",
+    "Die beiden Nachher-Bilder belegen die angezeigten Werte, allein jedoch keine Persistenz- oder Migrationsinvarianz; diese folgt aus Original-XML/Installationsdaten und der getrennten Review von Agent A.",
+    "Diese Flutteransichten enthalten bestehende Bildgrafiken. Sie sind kein neuer Nachweis von Echtzeit-3D, vollständiger Touchbedienbarkeit, Android 17 oder physischer Fold7-Leistung.",
+    "Nur ein fiktives lokales Kind wurde in diesem tatsächlichen Upgrade geprüft; keine allgemeine Profil-/Daten-/Releasefreigabe."
+  ]
+}

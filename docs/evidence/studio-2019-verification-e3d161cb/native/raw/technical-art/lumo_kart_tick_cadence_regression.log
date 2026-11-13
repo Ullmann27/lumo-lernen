@@ -1,0 +1,19 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":60,"input_hz":30,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.1306656524539}
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":100,"input_hz":50,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.14586122799665}
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":120,"input_hz":60,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.14644318819046}
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":150,"input_hz":75,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.1496206279844}
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":180,"input_hz":90,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.14873819984496}
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":240,"input_hz":120,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.14976614713669}
+[LumoKartTickCadence] {"clip_elapsed_seconds":2.0,"clip_evaluations":60,"input_frames":288,"input_hz":144,"largest_clip_step_seconds":0.0333333333333334,"sample_seconds":2,"worst_hand_contact_mm":1.14587694406509}
+[Perf] quality_profile:medium
+[LumoKartTickCadence] checks=1196 failures=0
+[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration

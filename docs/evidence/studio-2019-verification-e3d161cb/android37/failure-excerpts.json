@@ -1,0 +1,58 @@
+[
+  {
+    "line": 17,
+    "text": "2026-11-13T17:27:20.6797162Z Image: ubuntu-24.04"
+  },
+  {
+    "line": 18,
+    "text": "2026-11-13T17:27:20.6797553Z Version: 20261111.127.1"
+  },
+  {
+    "line": 33,
+    "text": "2026-11-13T17:27:23.3713164Z Download action repository 'reactivecircus/android-emulator-runner@v2' (SHA:a421e43855164a8197daf9d8d40fe71c6996bb0d)"
+  },
+  {
+    "line": 494,
+    "text": "2026-11-13T17:29:15.5641421Z d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93  candidate/dist/x86_64/Lumo-Lernen-Neu.apk"
+  },
+  {
+    "line": 519,
+    "text": "2026-11-13T17:29:18.5556524Z ##[group]Run reactivecircus/android-emulator-runner@v2"
+  },
+  {
+    "line": 521,
+    "text": "2026-11-13T17:29:18.5557064Z   api-level: 37"
+  },
+  {
+    "line": 543,
+    "text": "2026-11-13T17:29:18.5563965Z   channel: stable"
+  },
+  {
+    "line": 571,
+    "text": "2026-11-13T17:29:18.6004057Z Channel: 0 (stable)"
+  },
+  {
+    "line": 581,
+    "text": "2026-11-13T17:29:18.8308624Z [command]/usr/bin/sh -c \\yes | sdkmanager --licenses > /dev/null"
+  },
+  {
+    "line": 583,
+    "text": "2026-11-13T17:29:26.7869900Z [command]/usr/bin/sh -c \\sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-37'> /dev/null"
+  },
+  {
+    "line": 584,
+    "text": "2026-11-13T17:29:27.7123725Z Warning: Failed to find package 'platforms;android-37'"
+  },
+  {
+    "line": 611,
+    "text": "2026-11-13T17:29:29.0267853Z Uploaded bytes 1563"
+  },
+  {
+    "line": 613,
+    "text": "2026-11-13T17:29:29.1207562Z SHA256 digest of uploaded artifact zip is 2f90c43467888e76fe184974e8e7983518942634c847421873854941bd77c507"
+  },
+  {
+    "line": 615,
+    "text": "2026-11-13T17:29:29.7135553Z Artifact lumo-studio-2019-android-17-tour.zip successfully finalized. Artifact ID 14062255301"
+  }
+]

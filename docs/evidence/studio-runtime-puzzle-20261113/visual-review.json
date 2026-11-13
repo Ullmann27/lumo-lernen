@@ -1,0 +1,201 @@
+{
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "source_manifest_sha256": "6b871be0caca2d3614e441fa39af5d6ab0b1f32a05a63d40fe26c120d2693d1f",
+  "video": "Lumo-Drehpuzzle-Runtime.mp4",
+  "video_sha256": "1208b51fce515a5d3422f755a7524a77647b235b49519b610875b7a286b1128b",
+  "video_bytes": 308729,
+  "actual_verification": {
+    "renderer_process_exit": 0,
+    "wrapper_process_exit": 0,
+    "godot_marker": "[PuzzleRuntimeMovie] PASS frames=240 placed=1 moves=4",
+    "actual_renderer": "Godot 4.6.3, X11, OpenGL Compatibility, Mesa llvmpipe software renderer",
+    "capture_wall_seconds": 46.111527394001314,
+    "full_mp4_decoded": true,
+    "full_decode_exit": 0,
+    "decode_error_log_bytes": 0,
+    "ffprobe_dimensions": [
+      960,
+      540
+    ],
+    "ffprobe_read_frames": 240,
+    "format_frame_rate": "24/1",
+    "duration_seconds": 10.0,
+    "all_24_relevant_source_files_match_exact_commit_and_remain_unchanged": true,
+    "all_240_drawn_frames_are_consecutive": true,
+    "automated_touch_events": 10,
+    "automated_drag_events": 61,
+    "all_eight_decoded_frames_opened": true,
+    "production_autosave_contains_played_locked_piece": true
+  },
+  "played_sequence": {
+    "initial_configuration": "selected_count=6, selected_rotation=true before add_child; motif default 3; isolated empty user directory; actual new-game button initializes model",
+    "rng_seed": 20191113,
+    "piece_id": 2,
+    "turn_sequence": [
+      2,
+      3,
+      0
+    ],
+    "actual_rotate_release_frames": [
+      43,
+      75
+    ],
+    "actual_drag_frame_range": [
+      110,
+      170
+    ],
+    "actual_drop_release_frame": 178,
+    "final_placed": 1,
+    "final_moves": 4,
+    "final_hints": 0,
+    "moves_explanation": "Das erste Loslassen zur Auswahl zählt als noch nicht passender Ablageversuch; zwei Drehungen und die abschließende Platzierung ergeben vier echte Produktionszüge."
+  },
+  "visual_review": [
+    {
+      "frame": 8,
+      "path": "runtime-initial.png",
+      "sha256": "2de2bb52b5078b79470f34686c968c14b2c537a72b0024463b2b34f1f8eb618c",
+      "opened_and_visually_reviewed": true,
+      "observed": "960×540, sechs ungelegte Teile, 0/6, Hilfezähler 0. Leuchtturmmotiv zunächst kopfüber. Brett, seitliche Ablagen und Hauptbedienung sichtbar; Drehen ohne Auswahl deaktiviert.",
+      "state_after_frame": {
+        "model_turn": 2,
+        "selected_piece": -1,
+        "dragging": -1,
+        "matching_hover": false,
+        "locked": false,
+        "placed": 0,
+        "moves": 0,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 25,
+      "path": "runtime-selected.png",
+      "sha256": "7dc6e9b5d6c8997ac15f0cab1cbcd7c178591814ced2df2a5d514cec88821bd8",
+      "opened_and_visually_reviewed": true,
+      "observed": "Das tatsächlich berührte linke untere Teil ist angehoben. Der bestehende Drehen-Knopf ist aktiv. Keine vorgetäuschte Platzierung: weiterhin 0/6.",
+      "state_after_frame": {
+        "model_turn": 2,
+        "selected_piece": 2,
+        "dragging": 2,
+        "matching_hover": false,
+        "locked": false,
+        "placed": 0,
+        "moves": 0,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 45,
+      "path": "runtime-first-turn.png",
+      "sha256": "3fcb498d428b17cc56156cc880f2d9c24f4378b1a30ebc4327abfe9e4db7bd43",
+      "opened_and_visually_reviewed": true,
+      "observed": "Teil während der ersten produktiven Quaternion-Tween-Drehung, Bild und Form ändern sichtbar ihre Lage. Der Status nennt die Vierteldrehung.",
+      "state_after_frame": {
+        "model_turn": 3,
+        "selected_piece": 2,
+        "dragging": -1,
+        "matching_hover": false,
+        "locked": false,
+        "placed": 0,
+        "moves": 2,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 55,
+      "path": "runtime-quarter-turned.png",
+      "sha256": "06c17b4f99ef3a1d66199ca3241188e9ef775d876f6afdbbb6b2ff4f79fb774f",
+      "opened_and_visually_reviewed": true,
+      "observed": "Erste Vierteldrehung abgeschlossen: Leuchtturmbild seitlich, Modellzustand turn=3. Knopf und Puzzlefläche bleiben getrennt erreichbar.",
+      "state_after_frame": {
+        "model_turn": 3,
+        "selected_piece": 2,
+        "dragging": -1,
+        "matching_hover": false,
+        "locked": false,
+        "placed": 0,
+        "moves": 2,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 77,
+      "path": "runtime-second-turn.png",
+      "sha256": "18d7343295ff1a431636b27bcf337ad40b63cb88c748543d6ee371df786d8d8c",
+      "opened_and_visually_reviewed": true,
+      "observed": "Zweite produktive Vierteldrehung sichtbar; Motiv nahe aufrechter Orientierung. Weiterhin 0/6, kein vorab gesetztes Ergebnis.",
+      "state_after_frame": {
+        "model_turn": 0,
+        "selected_piece": 2,
+        "dragging": -1,
+        "matching_hover": false,
+        "locked": false,
+        "placed": 0,
+        "moves": 3,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 135,
+      "path": "runtime-dragging.png",
+      "sha256": "b622e80958a21a8b773584393f0dddb8a7e200f2caa1d3c3b7734ec6d2203d30",
+      "opened_and_visually_reviewed": true,
+      "observed": "Teil frei über Tisch und Brett unterwegs, von ursprünglicher Ablage gelöst; räumlicher Abstand und Schatten sichtbar. Tatsächliche ScreenDrag-Eingaben treiben die Position.",
+      "state_after_frame": {
+        "model_turn": 0,
+        "selected_piece": 2,
+        "dragging": 2,
+        "matching_hover": false,
+        "locked": false,
+        "placed": 0,
+        "moves": 3,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 171,
+      "path": "runtime-matching-target.png",
+      "sha256": "203c5bec6931ebb027f9166ccf3f04d58b56442b26625591c2d69a64938bc58a",
+      "opened_and_visually_reviewed": true,
+      "observed": "Teil über dem rechten oberen passenden Ziel. Es ist noch angehoben und nicht eingerastet; matching_hover=true, placed=0. Status und Bedienung sind lesbar.",
+      "state_after_frame": {
+        "model_turn": 0,
+        "selected_piece": 2,
+        "dragging": 2,
+        "matching_hover": true,
+        "locked": false,
+        "placed": 0,
+        "moves": 3,
+        "hints": 0
+      }
+    },
+    {
+      "frame": 190,
+      "path": "runtime-snapped.png",
+      "sha256": "a9f1f62cb4ecdf04284e5933844554a106318b926daeb0a9ac82902bff5a76f7",
+      "opened_and_visually_reviewed": true,
+      "observed": "Teil liegt nach tatsächlichem Loslassen im rechten oberen Brettplatz, kleines produktives Partikelecho sichtbar. Fortschritt 1/6 und „Das passt! Dein Bild wächst.“. Der Auswahlknopf ist danach wieder deaktiviert.",
+      "state_after_frame": {
+        "model_turn": 0,
+        "selected_piece": -1,
+        "dragging": -1,
+        "matching_hover": false,
+        "locked": true,
+        "placed": 1,
+        "moves": 4,
+        "hints": 0
+      }
+    }
+  ],
+  "known_limitations": [
+    "Vorbereitende echte Menüwechsel reproduzierten fünf nichtfatale Godot-can_process-Fehler. Originalbeleg und ausführbare Erstprobe liegen unter menu-setup-diagnostic/. Die Produktursache wurde nicht geändert oder als behoben gewertet.",
+    "Der freigegebene Film verwendet ein offengelegtes Aufnahme-Anfangspreset und echten Startknopf. Er beweist daher den Spielablauf, keine fehlerfreie Menüauswahl.",
+    "Die 24 fps sind das feste Aufnahme-/Dateiformat. 46,112 Sekunden Software-Rechenzeit für den Lauf sind kein Android- oder Geräte-FPS-Nachweis.",
+    "Keine Tonspur. Die Aufnahme zeigt die Produktions-Puzzleszene und vorhandene Geometrie; keine neue Figur, keine vollständige Puzzlelösung und keine Abnahme aller Schwierigkeitsstufen.",
+    "Der Compatibility-Renderer protokolliert bestehende Warnungen zu VSync, Screen-space AA und volumetrischem Nebel. Sie werden nicht als unterstützte Mobile-/Forward+-Effekte dargestellt."
+  ],
+  "acceptance": "Accepted only as genuine, source-bound runtime film of the declared piece interaction. No full-menu, Android/Fold7, performance, release or master approval.",
+  "product_changes": false,
+  "git_or_ci_mutation": false
+}

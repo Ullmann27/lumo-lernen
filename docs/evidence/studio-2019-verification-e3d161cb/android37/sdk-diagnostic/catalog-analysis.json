@@ -1,0 +1,234 @@
+[
+  {
+    "name": "existing-channel-0",
+    "sdkmanager_version": "12.0",
+    "channel": 0,
+    "stdout_bytes": 101046,
+    "stdout_sha256": "a76eb6e4abe48742f18c40b0e2bd9c8419a3ae3c6f4561049654f969382daf55",
+    "line_count": 3161,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "available_packages_count": 605,
+    "installed_packages_count": 34,
+    "available_package_paths_sha256": "b0ffa9fca1fe18b13ce73eec69992d2b8e9c31132199c008737d34c4a433aa3b",
+    "exact_relevant_available_blocks": [
+      {
+        "package": "platforms;android-37.0",
+        "line": 1095,
+        "properties": [
+          "Description:        Android SDK Platform 37.0",
+          "Version:            2"
+        ]
+      },
+      {
+        "package": "system-images;android-37.0;google_apis;x86_64",
+        "line": 2891,
+        "properties": [
+          "Description:        Google APIs Intel x86_64 Atom System Image",
+          "Version:            8",
+          "Dependencies:",
+          "emulator Revision 37.2.11"
+        ]
+      },
+      {
+        "package": "build-tools;37.0.0",
+        "line": 523,
+        "properties": [
+          "Description:        Android SDK Build-Tools 37",
+          "Version:            37.0.0"
+        ]
+      },
+      {
+        "package": "emulator",
+        "line": 715,
+        "properties": [
+          "Description:        Android Emulator",
+          "Version:            37.2.13"
+        ]
+      }
+    ],
+    "all_available_api37_platforms": [
+      "platforms;android-37.0",
+      "platforms;android-37.1",
+      "platforms;android-37.2",
+      "platforms;android-37.2-beta1",
+      "platforms;android-37.2-beta2",
+      "platforms;android-37.2-beta3"
+    ],
+    "bare_api37_platform_present": false,
+    "bare_api37_google_apis_x86_image_present": false
+  },
+  {
+    "name": "existing-channel-3",
+    "sdkmanager_version": "12.0",
+    "channel": 3,
+    "stdout_bytes": 109811,
+    "stdout_sha256": "d1f502f9b14d19e71d27cd80aeae3117e89d2d12c83986d8e67c73aa4deda83c",
+    "line_count": 3438,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "available_packages_count": 659,
+    "installed_packages_count": 34,
+    "available_package_paths_sha256": "11288b9e5e979da35b7f0ff04f2716f701038a43dacdd9d1d142cda68d14027c",
+    "exact_relevant_available_blocks": [
+      {
+        "package": "platforms;android-37.0",
+        "line": 1237,
+        "properties": [
+          "Description:        Android SDK Platform 37.0",
+          "Version:            2"
+        ]
+      },
+      {
+        "package": "system-images;android-37.0;google_apis;x86_64",
+        "line": 3143,
+        "properties": [
+          "Description:        Google APIs Intel x86_64 Atom System Image",
+          "Version:            8",
+          "Dependencies:",
+          "emulator Revision 37.2.11"
+        ]
+      },
+      {
+        "package": "build-tools;37.0.0",
+        "line": 523,
+        "properties": [
+          "Description:        Android SDK Build-Tools 37",
+          "Version:            37.0.0"
+        ]
+      },
+      {
+        "package": "emulator",
+        "line": 723,
+        "properties": [
+          "Description:        Android Emulator",
+          "Version:            37.3.9"
+        ]
+      }
+    ],
+    "all_available_api37_platforms": [
+      "platforms;android-37.0",
+      "platforms;android-37.1",
+      "platforms;android-37.2",
+      "platforms;android-37.2-beta1",
+      "platforms;android-37.2-beta2",
+      "platforms;android-37.2-beta3"
+    ],
+    "bare_api37_platform_present": false,
+    "bare_api37_google_apis_x86_image_present": false
+  },
+  {
+    "name": "fresh-channel-0",
+    "sdkmanager_version": "22.0",
+    "channel": 0,
+    "stdout_bytes": 92656,
+    "stdout_sha256": "98c191cb60dae2f5d4c4e56aa2f08df8fdcae84ec933abafe98e8f5ad4498ace",
+    "line_count": 2961,
+    "stderr_sha256": "33414add6da35520d5a84e032882487bbb8835eae8767d88e1853859f196bf15",
+    "available_packages_count": 605,
+    "installed_packages_count": 0,
+    "available_package_paths_sha256": "b0ffa9fca1fe18b13ce73eec69992d2b8e9c31132199c008737d34c4a433aa3b",
+    "exact_relevant_available_blocks": [
+      {
+        "package": "platforms;android-37.0",
+        "line": 895,
+        "properties": [
+          "Description:        Android SDK Platform 37.0",
+          "Version:            2"
+        ]
+      },
+      {
+        "package": "system-images;android-37.0;google_apis;x86_64",
+        "line": 2691,
+        "properties": [
+          "Description:        Google APIs Intel x86_64 Atom System Image",
+          "Version:            8",
+          "Dependencies:",
+          "emulator Revision 37.2.11"
+        ]
+      },
+      {
+        "package": "build-tools;37.0.0",
+        "line": 323,
+        "properties": [
+          "Description:        Android SDK Build-Tools 37",
+          "Version:            37.0.0"
+        ]
+      },
+      {
+        "package": "emulator",
+        "line": 515,
+        "properties": [
+          "Description:        Android Emulator",
+          "Version:            37.2.13"
+        ]
+      }
+    ],
+    "all_available_api37_platforms": [
+      "platforms;android-37.0",
+      "platforms;android-37.1",
+      "platforms;android-37.2",
+      "platforms;android-37.2-beta1",
+      "platforms;android-37.2-beta2",
+      "platforms;android-37.2-beta3"
+    ],
+    "bare_api37_platform_present": false,
+    "bare_api37_google_apis_x86_image_present": false
+  },
+  {
+    "name": "fresh-channel-3",
+    "sdkmanager_version": "22.0",
+    "channel": 3,
+    "stdout_bytes": 101288,
+    "stdout_sha256": "972b607346dd74138607a4756ff2ab2a242a962a2c7e1ac7cc9a34485de1169a",
+    "line_count": 3233,
+    "stderr_sha256": "33414add6da35520d5a84e032882487bbb8835eae8767d88e1853859f196bf15",
+    "available_packages_count": 659,
+    "installed_packages_count": 0,
+    "available_package_paths_sha256": "11288b9e5e979da35b7f0ff04f2716f701038a43dacdd9d1d142cda68d14027c",
+    "exact_relevant_available_blocks": [
+      {
+        "package": "platforms;android-37.0",
+        "line": 1037,
+        "properties": [
+          "Description:        Android SDK Platform 37.0",
+          "Version:            2"
+        ]
+      },
+      {
+        "package": "system-images;android-37.0;google_apis;x86_64",
+        "line": 2943,
+        "properties": [
+          "Description:        Google APIs Intel x86_64 Atom System Image",
+          "Version:            8",
+          "Dependencies:",
+          "emulator Revision 37.2.11"
+        ]
+      },
+      {
+        "package": "build-tools;37.0.0",
+        "line": 323,
+        "properties": [
+          "Description:        Android SDK Build-Tools 37",
+          "Version:            37.0.0"
+        ]
+      },
+      {
+        "package": "emulator",
+        "line": 523,
+        "properties": [
+          "Description:        Android Emulator",
+          "Version:            37.3.9"
+        ]
+      }
+    ],
+    "all_available_api37_platforms": [
+      "platforms;android-37.0",
+      "platforms;android-37.1",
+      "platforms;android-37.2",
+      "platforms;android-37.2-beta1",
+      "platforms;android-37.2-beta2",
+      "platforms;android-37.2-beta3"
+    ],
+    "bare_api37_platform_present": false,
+    "bare_api37_google_apis_x86_image_present": false
+  }
+]

@@ -1,0 +1,353 @@
+{
+  "reviewed_at_utc": "2026-11-13T17:04:22.871833+00:00",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "reviewer": "root integrator",
+  "reviews": [
+    {
+      "directory": "studio-runtime-learning-20261113",
+      "video": "Lumo-Lernen-12-durch-3-Runtime.mp4",
+      "bytes": 555987,
+      "sha256": "921e41ef7a8d3002c72c9ea089851cd4f2e445ace25b89fc9e3a795b48d30a5e",
+      "source_checks": [
+        {
+          "path": "project.godot",
+          "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scenes/learning/learning_world.tscn",
+          "sha256": "9f9d43a306a500da06ae3a4625695e3f6cf348b275d8d515a8bfcdc3097c846e",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scenes/default_env.tres",
+          "sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/learning/learning_world.gd",
+          "sha256": "327d222133c076a3cf5c7242e933bad2b9376c6c24a4179b03156a3fc71f411d",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/learning/learning_activity.gd",
+          "sha256": "c8071598b341a9ef8d905effe70aafacf98f325e9289903bb12a370d0d29541a",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/learning/learning_atelier.gd",
+          "sha256": "6696a9f5604bf71efa5eb6d64fe5b6ff4ca85f76cee8553586dec8743ad7022b",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+          "sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+          "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+          "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+          "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+          "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+          "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+          "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/learning/studio/learning_studio.glb",
+          "sha256": "e5b33abceaba8df76b6475efc04454aac3db353a1b40005267d2986be718a034",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/learning/studio/studio_leaf_motion.gdshader",
+          "sha256": "92e405a96eb23e5da0f12bf229e6e9227d2cc4c9b28f2aaf080f51e7ab63c410",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/models/lumo_lantern.glb",
+          "sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/games/visual/kart_harbor_cinema.gd",
+          "sha256": "bc180fa343ad690680d52c8223e1ceca105457bf8db8db6e487060098511eb90",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/games/visual/kart_cinema_materials.gd",
+          "sha256": "69fc8def6197e5173104f015d82daf7a6b7c8574e0e6b158ae3e2a083ba0df15",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/shaders/kart_lumo_cinema_high.gdshader",
+          "sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader",
+          "sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/event_bus.gd",
+          "sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/settings_store.gd",
+          "sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/performance_manager.gd",
+          "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/host_bridge.gd",
+          "sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/asset_loader.gd",
+          "sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/audio_manager.gd",
+          "sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/progress_store.gd",
+          "sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/app/mobile_runtime.gd",
+          "sha256": "847408202daecd839e843a344bd32ed4a09c02be03656e46edd617d199dde1b2",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/app/scene_router.gd",
+          "sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/manifests/assets.json",
+          "sha256": "170c162ccd67158ee12409b3bdca23a1af287438d1093e19490c11c19423e185",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "tools/run_local_renderer.py",
+          "sha256": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247",
+          "actual_local_equals_fetched_commit": true
+        }
+      ],
+      "source_count": 31,
+      "consecutive_recorded_engine_frames": 240,
+      "individually_opened_decoded_samples": [
+        {
+          "file": "runtime-learning-moving.png",
+          "sha256": "34da7284464edde1df5331ca2be52d73c6bddbf5336f9aed0e71b3cbeee4a500",
+          "resolution": [
+            960,
+            540
+          ],
+          "actually_opened_by_integrator": true,
+          "observed": "Moving cube visible above the highlighted next group; all explanation and controls readable."
+        },
+        {
+          "file": "runtime-learning-complete.png",
+          "sha256": "353e84d193b1d91347229887d6592d5aed8620304fc141b12319ae295c01252b",
+          "resolution": [
+            960,
+            540
+          ],
+          "actually_opened_by_integrator": true,
+          "observed": "Actual final frame shows three groups of four physical cubes and the explanation 12 divided by 3 is 4."
+        }
+      ]
+    },
+    {
+      "directory": "studio-runtime-puzzle-20261113",
+      "video": "Lumo-Drehpuzzle-Runtime.mp4",
+      "bytes": 308729,
+      "sha256": "1208b51fce515a5d3422f755a7524a77647b235b49519b610875b7a286b1128b",
+      "source_checks": [
+        {
+          "path": "project.godot",
+          "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scenes/creative/puzzle_world.tscn",
+          "sha256": "34b3b142e65b61eb38edf9cead878d2b27315a440549cd7b67c5f5903e439244",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/puzzle_world.gd",
+          "sha256": "016b93b1a934f2ccf5d13972f431d2d098274009d33ef72f270385c6e20ea2af",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/puzzle_state.gd",
+          "sha256": "f0104403990e7cd9de815a39c7a3a2697b61997e9c0b5366c5303bdec4437e21",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/puzzle_piece.gd",
+          "sha256": "4f07ae76e4a61c278bb5b83be05a74f7e0b24e9360db1e1e8cfad47b6b8b39be",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/puzzle_atelier_art.gd",
+          "sha256": "c3c9b0ed77fa7c2034469c358aaee75c9dca7e56e7542bad634f6d5c90c247f2",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/creative_kit.gd",
+          "sha256": "a3d32bb117ba62f984575907d99c8b95b0e92849cab46b2a5ef097998ea4fed7",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/creative_runtime.gd",
+          "sha256": "7f28fa392b7a3ae7aba144d2072bba937b5cc9578fb6bb8e4970de4f0cd7fd6c",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/build_premium_props.gd",
+          "sha256": "f453019cf41ed1e06d77ca0454abc6524f2f5858ec33356c7b5def30b0137157",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/creative/build_voxel_style.gd",
+          "sha256": "403b5ff3cd1f3391c49c97432c1c341436f5bc665921d431a33f8bc33d84e54c",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/games/kart_world_meshes.gd",
+          "sha256": "df551c3a231c251a4e5be976775d720758295b2fda2eefc49cf80780f7795a12",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/render/lumo_environment_creative_presets.gd",
+          "sha256": "5217ebfbc63ed08ad94d9906c058f407d21515428fc3c4f898fbc5214fcdbe9b",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/app/mobile_runtime.gd",
+          "sha256": "847408202daecd839e843a344bd32ed4a09c02be03656e46edd617d199dde1b2",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/app/scene_router.gd",
+          "sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "scripts/systems/host_bridge.gd",
+          "sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "tools/run_local_renderer.py",
+          "sha256": "d7169f0353071159e64a74d76e6e35718117402a597dfcc05c8f99ed7f275247",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/puzzle_alive.gdshader",
+          "sha256": "a71af283330c25640226fb0a3019ce5485d12a489108bcf4e377c3a4687cf6c8",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/puzzle_table.gdshader",
+          "sha256": "197b0a8b67d9b0b5863e40061ba093a1a4956fe4b40b13f4bcaee3ab629369b3",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/hafen.webp",
+          "sha256": "83555a5d250bc85e0ec36bb319ddf69f53b5b3be646273afed9c955e645d3d42",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/moonlight.webp",
+          "sha256": "acab3c59cd9782feab6e39cb2786dd79352709f0ea00a3a7c399879a435570dd",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/candy.webp",
+          "sha256": "614eb04629e4ffe09bbcad9e87964da694333a885b63284a529e1e240d056b70",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/volcano.webp",
+          "sha256": "71def22241eea7c6139f90f316e798c1670a281f2ebf3c881b07c7ed834a7fc1",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/puzzle/bluetenwiese.webp",
+          "sha256": "e27ca6fec08217084b1e8f65a6f2f404f637a7461117fca0caf5f87d941bf749",
+          "actual_local_equals_fetched_commit": true
+        },
+        {
+          "path": "assets/creative/models/lumo_lantern.glb",
+          "sha256": "88628b79065a08963e27bc7c12da68a38782c4fe9dfe34eeaffc903675c45ea3",
+          "actual_local_equals_fetched_commit": true
+        }
+      ],
+      "source_count": 24,
+      "consecutive_recorded_engine_frames": 240,
+      "individually_opened_decoded_samples": [
+        {
+          "file": "runtime-selected.png",
+          "sha256": "7dc6e9b5d6c8997ac15f0cab1cbcd7c178591814ced2df2a5d514cec88821bd8",
+          "resolution": [
+            960,
+            540
+          ],
+          "actually_opened_by_integrator": true,
+          "observed": "Selected unplaced piece is raised, rotate button active, actual counter still 0 of 6."
+        },
+        {
+          "file": "runtime-snapped.png",
+          "sha256": "a9f1f62cb4ecdf04284e5933844554a106318b926daeb0a9ac82902bff5a76f7",
+          "resolution": [
+            960,
+            540
+          ],
+          "actually_opened_by_integrator": true,
+          "observed": "Released piece occupies the matching top right slot, counter 1 of 6 and matching feedback visible."
+        }
+      ]
+    }
+  ],
+  "scope": [
+    "Two representative decoded frames from each completed MP4 were actually viewed by the integrator. Agent reviews cover the other listed representative images. This is not a claim that every video frame was visually inspected.",
+    "Actual MP4 content and selected decoded PNGs are hashed; source files are independently compared to git show from the previously fetched exact commit.",
+    "The fixed 24 fps recording clock and media format are not a runtime frame rate or physical device measurement. No audio track.",
+    "The puzzle film declares six pieces and rotation mode as initial configuration before adding the production scene. The preserved separate true menu-input run contains five nonfatal can_process errors; the film does not certify that menu path.",
+    "No product mutation, Android release approval, completed full puzzle or full Master acceptance is implied."
+  ]
+}

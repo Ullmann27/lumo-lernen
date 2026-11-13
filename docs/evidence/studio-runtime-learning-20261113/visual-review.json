@@ -1,0 +1,271 @@
+{
+  "kind": "independent_actual_runtime_learning_movie_visual_review",
+  "reviewed_utc": "2026-11-13T17:04:59.138328+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "LOCAL_RUNTIME_RECORDING_AND_SIX_DECODED_FRAME_REVIEW_PASS",
+  "native_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "native_tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+  "source_manifest": {
+    "file": "source-manifest.json",
+    "bytes": 49008,
+    "sha256": "f53e13d57705c034b9904df8849b827f15c7c0ff8f1f9fc52ee8db8521dd6e1f"
+  },
+  "source_scope": "The listed product paths match native76980 before and after capture. No whole-checkout or imported-cache cleanliness is claimed.",
+  "source_paths_checked_before_and_after": 31,
+  "all_listed_paths_match_pinned_git_bytes_before_and_after": true,
+  "video": {
+    "file": "Lumo-Lernen-12-durch-3-Runtime.mp4",
+    "bytes": 555987,
+    "sha256": "921e41ef7a8d3002c72c9ea089851cd4f2e445ace25b89fc9e3a795b48d30a5e"
+  },
+  "resolution": [
+    960,
+    540
+  ],
+  "media_frame_rate": 24,
+  "duration_seconds": 10.0,
+  "consecutive_actual_viewport_frames": 240,
+  "engine_process_frame_range": [
+    24,
+    263
+  ],
+  "frame_interpolation_or_generated_inbetween_frames": false,
+  "full_video_decode": {
+    "all_frames_decoded": 240,
+    "ffmpeg_error_log_empty": true,
+    "ffmpeg_exit_code": 0,
+    "ffprobe": {
+      "file": "ffprobe.json",
+      "bytes": 2387,
+      "sha256": "7af2769759bfa6eb6e0c3f1a8720ff336b3f99b9c4dd9f39e8be4b7f6bd7dbf1"
+    },
+    "raw_log": {
+      "file": "decode-all.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "input_evidence": {
+    "file": {
+      "file": "input-events.json",
+      "bytes": 7288,
+      "sha256": "95351da2b2f85e3ba8fc126fb5f763d09d2f9be61c5b9a530acbe62d8fc65a60"
+    },
+    "screen_touch_presses": 12,
+    "screen_touch_releases": 12,
+    "observed_production_button_pressed_signals": 12,
+    "direct_activity_or_action_handler_calls": false,
+    "method": "Synthetic QA InputEventScreenTouch events dispatched to the existing production button, not human touches."
+  },
+  "runtime_evidence": {
+    "file": {
+      "file": "runtime-frames.json",
+      "bytes": 440209,
+      "sha256": "d9cbb92f61f90e3c73f41689d884e85706f261008c3e36da8a704bba239dadae"
+    },
+    "failures": [],
+    "fair_rounds": {
+      "1": [
+        1,
+        1,
+        1
+      ],
+      "2": [
+        2,
+        2,
+        2
+      ],
+      "3": [
+        3,
+        3,
+        3
+      ],
+      "4": [
+        4,
+        4,
+        4
+      ]
+    },
+    "final_counts": [
+      4,
+      4,
+      4
+    ],
+    "first_logical_completion_video_frame": 157,
+    "first_settled_geometry_completion_video_frame": 167,
+    "actual_cube_target_tolerance_metres": 0.001,
+    "original_imported_model_rig_bones": 65,
+    "teacher_state_sample_counts": {
+      "agree_nod": 116,
+      "celebrate": 49,
+      "greeting_wave": 25,
+      "idle": 50
+    }
+  },
+  "renderer": {
+    "godot_version": "4.6.3.stable.official.7d41c59c4",
+    "display": "isolated X11 :105",
+    "method": "gl_compatibility",
+    "device": "Mesa llvmpipe (LLVM 19.1.7, 256 bits)",
+    "capture_wall_seconds": 73.1342069309976,
+    "fixed_capture_timestep": true,
+    "audio_in_video": false,
+    "runtime_voice_enabled": false
+  },
+  "renderer_warnings": [
+    "X11 software driver cannot change V-Sync mode.",
+    "Screen-space AA is unavailable with the Compatibility renderer.",
+    "Volumetric fog is unavailable with the Compatibility renderer."
+  ],
+  "renderer_warnings_scope": "These three actual warnings are retained in godot.log. This film does not establish Forward+/Mobile effects or physical-device performance.",
+  "visually_reviewed_frames": [
+    {
+      "file": "runtime-learning-start.png",
+      "sha256": "8ab7d3b252f6ac0a2d571205f7a39366a81bedbc6c577b3626a61cfd51326286",
+      "bytes": 256913,
+      "decoded_video_frame": 12,
+      "media_time_seconds": 0.5,
+      "actually_opened_with_view_image": true,
+      "observed_group_counts": [
+        0,
+        0,
+        0
+      ],
+      "runtime_placed": 0,
+      "runtime_moving_tokens": [],
+      "finding": "Tatsächlich geöffnet: Titel und Verteilanweisung vollständig lesbar; drei Gruppen mit 0, Originalfuchs links, Würfelablage rechts. Die drei unteren Bedienelemente liegen getrennt und sichtbar im Bild.",
+      "verdict": "PASS_FOR_THIS_DECODED_FRAME"
+    },
+    {
+      "file": "runtime-learning-moving.png",
+      "sha256": "34da7284464edde1df5331ca2be52d73c6bddbf5336f9aed0e71b3cbeee4a500",
+      "bytes": 257768,
+      "decoded_video_frame": 29,
+      "media_time_seconds": 1.2083333333333333,
+      "actually_opened_with_view_image": true,
+      "observed_group_counts": [
+        1,
+        0,
+        0
+      ],
+      "runtime_placed": 1,
+      "runtime_moving_tokens": [
+        0
+      ],
+      "finding": "Tatsächlich geöffnet: Ein echter Würfel befindet sich auf dem Weg von der Ablage zum Gruppentablett. Der logische Zähler steht bereits bei [1, 0, 0], die nächste Gruppe ist hervorgehoben; während der Bewegung ist der Verteilknopf deaktiviert. Anweisung und Originalfuchs sind sichtbar.",
+      "verdict": "PASS_FOR_THIS_DECODED_FRAME"
+    },
+    {
+      "file": "runtime-learning-round-1.png",
+      "sha256": "a637b3ef7622346c83e267460fd0ae39c67d6b81614de526db9680a5938271c0",
+      "bytes": 265392,
+      "decoded_video_frame": 59,
+      "media_time_seconds": 2.4583333333333335,
+      "actually_opened_with_view_image": true,
+      "observed_group_counts": [
+        1,
+        1,
+        1
+      ],
+      "runtime_placed": 3,
+      "runtime_moving_tokens": [],
+      "finding": "Tatsächlich geöffnet: Auf jeder der drei Gruppen liegt ein Würfel; alle drei räumlichen Zähler zeigen 1. Der Text nennt 9 verbleibende Würfel und die nächste Runde. Keine Überdeckung der Mengen oder des Verteilknopfs durch das HUD.",
+      "verdict": "PASS_FOR_THIS_DECODED_FRAME"
+    },
+    {
+      "file": "runtime-learning-round-2.png",
+      "sha256": "8c69f1eaddd12b1cb56b69e2128d7e3ccb0e667541214215db5e4277d7836eff",
+      "bytes": 269062,
+      "decoded_video_frame": 95,
+      "media_time_seconds": 3.9583333333333335,
+      "actually_opened_with_view_image": true,
+      "observed_group_counts": [
+        2,
+        2,
+        2
+      ],
+      "runtime_placed": 6,
+      "runtime_moving_tokens": [],
+      "finding": "Tatsächlich geöffnet: Je zwei Würfel sind getrennt erkennbar; die drei Zähler zeigen 2. Sechs Würfel liegen noch auf der rechten Ablage. Der Text und die untere Bedienleiste bleiben lesbar.",
+      "verdict": "PASS_FOR_THIS_DECODED_FRAME"
+    },
+    {
+      "file": "runtime-learning-round-3.png",
+      "sha256": "b1813d05d113c80c0451646e572dde3b7ff198b4b764be216b2863e4f3b2f426",
+      "bytes": 270537,
+      "decoded_video_frame": 131,
+      "media_time_seconds": 5.458333333333333,
+      "actually_opened_with_view_image": true,
+      "observed_group_counts": [
+        3,
+        3,
+        3
+      ],
+      "runtime_placed": 9,
+      "runtime_moving_tokens": [],
+      "finding": "Tatsächlich geöffnet: Je drei Würfel und drei Zähler mit 3 sind klar zu sehen. Rechts verbleiben drei Würfel, entsprechend dem Erklärungstext. Der Verteilknopf ist sichtbar und wieder aktiv.",
+      "verdict": "PASS_FOR_THIS_DECODED_FRAME"
+    },
+    {
+      "file": "runtime-learning-complete.png",
+      "sha256": "353e84d193b1d91347229887d6592d5aed8620304fc141b12319ae295c01252b",
+      "bytes": 270216,
+      "decoded_video_frame": 239,
+      "media_time_seconds": 9.958333333333334,
+      "actually_opened_with_view_image": true,
+      "observed_group_counts": [
+        4,
+        4,
+        4
+      ],
+      "runtime_placed": 12,
+      "runtime_moving_tokens": [],
+      "finding": "Tatsächlich geöffnet: Jede Gruppe enthält vier getrennte echte Würfel; alle Zähler zeigen 4, die ursprüngliche Ablage ist leer. Der vollständige Satz erklärt 12 geteilt durch 3 ist 4. Der Abschluss ist sichtbar; Noch einmal und Zur Aufgabe bleiben lesbar. Der deaktivierte Verteilknopf passt zum abgeschlossenen Zustand.",
+      "verdict": "PASS_FOR_THIS_DECODED_FRAME"
+    }
+  ],
+  "visually_reviewed_frame_count": 6,
+  "all_240_frames_individually_visually_reviewed": false,
+  "blocking_visual_findings_in_the_six_reviewed_frames": [],
+  "limitations": [
+    "Local Linux software-renderer recording, not Android or a physical Galaxy Z Fold7 test.",
+    "24 fps is the fixed simulation/encoding format. Capture consumed 73.1342069309976 wall-clock seconds and is not a 24/60 fps performance measurement.",
+    "The production scene is loaded by an external QA harness with normal launch payload and isolated QA data; this does not exercise Flutter-to-Android entry, return, profile preservation or the other two footer actions.",
+    "Source binding covers the 31 enumerated paths and their before/after bytes. No clean whole-checkout or imported-cache attestation is made.",
+    "All video frames were technically decoded; exactly six decoded frames were individually opened for visual review.",
+    "Voice and audio were disabled for this recording. No speech, lip-sync or audio claim is made.",
+    "This evidence is separate from the CI release gates and does not constitute an Android release receipt."
+  ],
+  "supporting_files": [
+    {
+      "file": "record_learning_runtime.gd",
+      "bytes": 7203,
+      "sha256": "916a5835a2453d992dad6ef024c550328228cf650aecfad9f91d0eff10d02921"
+    },
+    {
+      "file": "record_runtime_movie.py",
+      "bytes": 9513,
+      "sha256": "202f09af9641f97975cf16a42284840171714b4766836d072d5f7e01ce96e488"
+    },
+    {
+      "file": "decoded-samples.json",
+      "bytes": 11916,
+      "sha256": "6a9b5b47f4b77b1617637dc51f2e506865233041864cf07b3b36d2573bc92502"
+    },
+    {
+      "file": "godot.log",
+      "bytes": 2190,
+      "sha256": "061e3b22e0968d37f7f9e7342768f2f4da9301a44845bd46099d84afed8a8f1b"
+    },
+    {
+      "file": "run.json",
+      "bytes": 518,
+      "sha256": "34184a6759ca3352aea505825aead06732935d5100cdb95a57f32bfc1d6563ec"
+    },
+    {
+      "file": "encode.log",
+      "bytes": 3414,
+      "sha256": "820eae9e835b4c8c19d0ec49772291c87dd8e98ac186b3348132cbdc49c5b43a"
+    }
+  ]
+}

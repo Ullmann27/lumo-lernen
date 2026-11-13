@@ -1,0 +1,184 @@
+{
+  "captures": [
+    {
+      "actor_position": "(0.0, 0.199961, 1.5)",
+      "animation": "idle",
+      "draw_calls": 221,
+      "file": "jump_412x915_ready.png",
+      "grounded": true,
+      "height": 915,
+      "primitives": 254998,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 412
+    },
+    {
+      "actor_position": "(-0.000001, 1.652589, -0.017352)",
+      "animation": "jump_rise",
+      "draw_calls": 226,
+      "file": "jump_412x915_touch_ascent.png",
+      "grounded": false,
+      "height": 915,
+      "primitives": 255522,
+      "velocity": "(-0.000001, 4.899998, -3.193565)",
+      "width": 412
+    },
+    {
+      "actor_position": "(-0.000001, 0.819254, -0.735314)",
+      "animation": "jump_fall",
+      "draw_calls": 225,
+      "file": "jump_412x915_airborne.png",
+      "grounded": false,
+      "height": 915,
+      "primitives": 255426,
+      "velocity": "(0.0, -7.100004, 0.0)",
+      "width": 412
+    },
+    {
+      "actor_position": "(-0.000001, 0.200178, -0.735314)",
+      "animation": "idle",
+      "draw_calls": 229,
+      "file": "jump_412x915_landed.png",
+      "grounded": true,
+      "height": 915,
+      "primitives": 257186,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 412
+    },
+    {
+      "actor_position": "(0.0, 0.199961, 1.5)",
+      "animation": "idle",
+      "draw_calls": 251,
+      "file": "jump_690x829_ready.png",
+      "grounded": true,
+      "height": 829,
+      "primitives": 265924,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 690
+    },
+    {
+      "actor_position": "(-0.0, 1.652587, -0.01735)",
+      "animation": "jump_rise",
+      "draw_calls": 252,
+      "file": "jump_690x829_touch_ascent.png",
+      "grounded": false,
+      "height": 829,
+      "primitives": 265964,
+      "velocity": "(-0.000001, 4.899998, -3.193553)",
+      "width": 690
+    },
+    {
+      "actor_position": "(-0.0, 0.819252, -0.735308)",
+      "animation": "jump_fall",
+      "draw_calls": 253,
+      "file": "jump_690x829_airborne.png",
+      "grounded": false,
+      "height": 829,
+      "primitives": 266524,
+      "velocity": "(0.0, -7.100004, 0.0)",
+      "width": 690
+    },
+    {
+      "actor_position": "(-0.0, 0.200176, -0.735308)",
+      "animation": "idle",
+      "draw_calls": 256,
+      "file": "jump_690x829_landed.png",
+      "grounded": true,
+      "height": 829,
+      "primitives": 268652,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 690
+    },
+    {
+      "actor_position": "(0.0, 0.199961, 1.5)",
+      "animation": "idle",
+      "draw_calls": 286,
+      "file": "jump_1280x720_ready.png",
+      "grounded": true,
+      "height": 720,
+      "primitives": 283066,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 1280
+    },
+    {
+      "actor_position": "(-0.0, 1.652588, -0.017345)",
+      "animation": "jump_rise",
+      "draw_calls": 287,
+      "file": "jump_1280x720_touch_ascent.png",
+      "grounded": false,
+      "height": 720,
+      "primitives": 283114,
+      "velocity": "(-0.000001, 4.899998, -3.193547)",
+      "width": 1280
+    },
+    {
+      "actor_position": "(-0.000001, 0.819253, -0.735302)",
+      "animation": "jump_fall",
+      "draw_calls": 287,
+      "file": "jump_1280x720_airborne.png",
+      "grounded": false,
+      "height": 720,
+      "primitives": 283114,
+      "velocity": "(0.0, -7.100004, 0.0)",
+      "width": 1280
+    },
+    {
+      "actor_position": "(-0.000001, 0.200177, -0.735302)",
+      "animation": "idle",
+      "draw_calls": 288,
+      "file": "jump_1280x720_landed.png",
+      "grounded": true,
+      "height": 720,
+      "primitives": 283154,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 1280
+    },
+    {
+      "actor_position": "(0.0, 0.199961, 1.5)",
+      "animation": "idle",
+      "draw_calls": 295,
+      "file": "jump_2400x1080_ready.png",
+      "grounded": true,
+      "height": 1080,
+      "primitives": 344984,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 2400
+    },
+    {
+      "actor_position": "(0.0, 1.652588, -0.017344)",
+      "animation": "jump_rise",
+      "draw_calls": 296,
+      "file": "jump_2400x1080_touch_ascent.png",
+      "grounded": false,
+      "height": 1080,
+      "primitives": 374984,
+      "velocity": "(0.000001, 4.899998, -3.193545)",
+      "width": 2400
+    },
+    {
+      "actor_position": "(0.0, 0.819253, -0.735301)",
+      "animation": "jump_fall",
+      "draw_calls": 295,
+      "file": "jump_2400x1080_airborne.png",
+      "grounded": false,
+      "height": 1080,
+      "primitives": 344984,
+      "velocity": "(0.0, -7.100004, 0.0)",
+      "width": 2400
+    },
+    {
+      "actor_position": "(0.0, 0.200177, -0.735301)",
+      "animation": "idle",
+      "draw_calls": 296,
+      "file": "jump_2400x1080_landed.png",
+      "grounded": true,
+      "height": 1080,
+      "primitives": 345012,
+      "velocity": "(0.0, 0.0, 0.0)",
+      "width": 2400
+    }
+  ],
+  "checks": 80,
+  "device_fps_measured": false,
+  "display": "X11",
+  "failures": []
+}

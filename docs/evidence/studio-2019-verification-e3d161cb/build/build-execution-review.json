@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "status": "CURRENT_CI_JOB_SUCCESS_WITH_RECORDED_WARNINGS_AND_SCOPE_LIMITS",
+  "scope": "Read-only review of the complete original verify-and-build job log and exact source code; no test rerun, APK download, Android execution or visual image review by this reviewer.",
+  "repository": "Ullmann27/lumo-lernen",
+  "host_revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "host_tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "workflow": ".github/workflows/lumo-studio-2019.yml",
+  "run_id": 43461547945,
+  "job_id": 132009667976,
+  "job_conclusion": "success",
+  "workflow_run_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43461547945",
+  "original_log": {
+    "file": "verify-and-build-original.log",
+    "bytes": 1504998,
+    "sha256": "2f85fa6cbdbdf270384bb9bc900bc0698c7d6ec3b84aea257e0102b78bfebda0",
+    "lines": 12672,
+    "first_line": "﻿2026-11-13T16:19:45.2764502Z Current runner version: '2.338.2'",
+    "last_line": "2026-11-13T17:27:14.6086127Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/",
+    "preservation": "Complete decoded text returned by fetch_workflow_job_logs, saved in 46 sequential chunks; original BOM and timestamps retained. This is not a claim to possess GitHub's compressed log archive. No truncation marker was returned by the retrieval.",
+    "source_identity_line": 218
+  },
+  "job_metadata_file": "completed-job-metadata.json",
+  "raw_excerpts": "raw-excerpt-manifest.json",
+  "reviewed_sources": "reviewed-source-manifest.json",
+  "python_invocations": [
+    {
+      "invocation": "scripts/tests complete suite",
+      "passed": 353,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 81.735,
+      "source_summary_line": 1318,
+      "result": "OK"
+    },
+    {
+      "invocation": "tools/android_qa/tests complete suite",
+      "passed": 746,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 49.375,
+      "source_summary_line": 2483,
+      "result": "OK"
+    },
+    {
+      "invocation": "font and capture guard",
+      "passed": 3,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.091,
+      "source_summary_line": 2503,
+      "result": "OK"
+    },
+    {
+      "invocation": "export and source preservation contracts",
+      "passed": 23,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 0.214,
+      "source_summary_line": 2548,
+      "result": "OK"
+    },
+    {
+      "invocation": "launcher icon tests during build",
+      "passed": 8,
+      "failed": 0,
+      "skipped": 0,
+      "seconds": 2.842,
+      "source_summary_line": 8246,
+      "result": "OK"
+    }
+  ],
+  "flutter": {
+    "complete_suite": {
+      "status": "PASS",
+      "passed": 2510,
+      "failed": [],
+      "skipped": [],
+      "capture_error_files": [],
+      "flutter_exit_code": 0,
+      "runner_completed_successfully": true,
+      "runner_errors": [],
+      "scope": [
+        "complete Flutter suite; capture outputs recorded below"
+      ],
+      "capture_png_counts": {
+        "LUMO_TUTORING_CAPTURE_DIR": {
+          "directory": "tutoring",
+          "pngs": 6
+        },
+        "LUMO_RIG_STRESS": {
+          "directory": "rig-stress",
+          "pngs": 27
+        },
+        "LUMO_CARDS_OPPONENT_CAPTURE": {
+          "directory": "cards-opponents",
+          "pngs": 4
+        },
+        "LUMO_STREAM_E_CAPTURE": {
+          "directory": "cards-memory",
+          "pngs": 8
+        },
+        "LUMO_NAVIGATION_CAPTURES": {
+          "directory": "navigation",
+          "pngs": 26
+        },
+        "LUMO_GUIDED_CAPTURE_DIR": {
+          "directory": "guided-learning",
+          "pngs": 170
+        },
+        "LUMO_VISUAL_CAPTURE_DIR": {
+          "directory": "reasoning",
+          "pngs": 15
+        },
+        "LUMO_TOUR_DIR": {
+          "directory": "tour",
+          "pngs": 62
+        },
+        "LUMO_FLUTTER_GAMES_CAPTURE": {
+          "directory": "games",
+          "pngs": 16
+        },
+        "LUMO_LEARNING_CAPTURE_DIR": {
+          "directory": "learning-adventure",
+          "pngs": 80
+        },
+        "LUMO_COMPANION_CAPTURE_DIR": {
+          "directory": "companion",
+          "pngs": 6
+        },
+        "LUMO_SPATIAL_CAPTURES": {
+          "directory": "reading",
+          "pngs": 12
+        },
+        "LUMO_CAPTURE_DIR": {
+          "directory": "modernization",
+          "pngs": 42
+        },
+        "LUMO_CARD_FACE_EXPORT_DIR": {
+          "directory": "card-face-exports",
+          "pngs": 56
+        },
+        "LUMO_NEXTGEN_READING_CAPTURES": {
+          "directory": "nextgen-reading",
+          "pngs": 6
+        },
+        "LUMO_READING_CAPTURES": {
+          "directory": "reading-passages",
+          "pngs": 3
+        },
+        "LUMO_ASSISTED_LEARNING_CAPTURES": {
+          "directory": "assisted-learning",
+          "pngs": 2
+        },
+        "LUMO_NATIVE_PROFILE_CAPTURE_DIR": {
+          "directory": "native-profiles",
+          "pngs": 4
+        }
+      },
+      "capture_file_outputs": {
+        "LUMO_CARDS_CUP_CAPTURE": {
+          "path": "cards-cup/trophy.png",
+          "created": true
+        }
+      },
+      "rendered_png_count": 546
+    },
+    "complete_suite_summary_source_line": 710,
+    "focused_invocations": [
+      {
+        "source_line": 637,
+        "tests": 31,
+        "result": "PASS"
+      },
+      {
+        "source_line": 797,
+        "tests": 3,
+        "result": "PASS"
+      },
+      {
+        "source_line": 845,
+        "tests": 3,
+        "result": "PASS"
+      },
+      {
+        "source_line": 2606,
+        "tests": 3,
+        "result": "PASS"
+      },
+      {
+        "source_line": 2642,
+        "tests": 19,
+        "result": "PASS"
+      },
+      {
+        "source_line": 2662,
+        "tests": 5,
+        "result": "PASS"
+      },
+      {
+        "source_line": 2686,
+        "tests": 3,
+        "result": "PASS"
+      }
+    ],
+    "analyzer": {
+      "command": "flutter analyze --no-fatal-infos --no-fatal-warnings",
+      "issues": 108,
+      "severity_counts": {
+        "info": 103,
+        "warning": 5
+      },
+      "errors": 0,
+      "seconds": 19.1,
+      "warnings": [
+        {
+          "source_line": 552,
+          "severity": "warning",
+          "message": "The declaration '_capturePhoto' isn't referenced. Try removing the declaration of '_capturePhoto' • lib/features/live/lumo_live_pro_screen.dart:343:16 • unused_element"
+        },
+        {
+          "source_line": 553,
+          "severity": "warning",
+          "message": "Unused import: '../../widgets/premium/lumo_magic_background.dart'. Try removing the import directive • lib/features/magic_hub/lumo_magic_hub_screen.dart:16:8 • unused_import"
+        },
+        {
+          "source_line": 562,
+          "severity": "warning",
+          "message": "The value of the field '_ink' isn't used. Try removing the field, or using it • lib/features/story/widgets/lumo_story_scene.dart:150:16 • unused_field"
+        },
+        {
+          "source_line": 571,
+          "severity": "warning",
+          "message": "Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/design/denkprofil_knobel_before_after_capture_test.dart:11:8 • unused_import"
+        },
+        {
+          "source_line": 579,
+          "severity": "warning",
+          "message": "Unused import: 'package:lumo_lernen/features/tests/iq_test_screen.dart'. Try removing the import directive • test/iq/iq_extended_adventure_test.dart:5:8 • unused_import"
+        }
+      ],
+      "full_findings": "flutter-analysis-findings.json",
+      "interpretation": "Completed successfully under explicitly nonfatal warning/info settings; not an analyzer-clean result."
+    },
+    "warning_scope_review": "../flutter/hit-test-scope-review.json",
+    "separate_full_suite_review": "../../studio-2019-review-notes/flutter-tests-e3d161cb-review.json",
+    "new_images_visually_opened_for_this_review": 0
+  },
+  "counting_rule": "Per-invocation counts only; focused Flutter, font/export and launcher checks can overlap broader suites and are not added into a unique grand total.",
+  "native": {
+    "original_fresh_artifact_id": 14060103448,
+    "original_zip_bytes": 129002360,
+    "original_zip_sha256": "6fdffb9f6253f634bba96b2044b29f9b4658a4c91ef66a4265cd195e605695ba",
+    "review": "../native/native-execution-review.json",
+    "review_sha256": "2b597ea12c3686093db192dc00e9b46e69067b79d1545d317ec4b538a92abb03",
+    "required_probe_invocations": 84,
+    "static_project": {
+      "passed": 117,
+      "warnings": 7,
+      "failed": 0
+    },
+    "scope": "Fresh same-run pinned gameplay evidence. Separate touch-density workflow evidence is not relabelled as this artifact."
+  },
+  "build": {
+    "configuration_preflight": {
+      "task": ":app:verifyLumoSplitVersionCodes",
+      "result": "BUILD SUCCESSFUL",
+      "seconds": 155,
+      "tasks": 5,
+      "executed": 1,
+      "up_to_date": 4,
+      "scope": "Configuration-only preflight; its interim version-code base is not the final APK version."
+    },
+    "actual_flutter_assemble_release": {
+      "seconds": 245.5,
+      "summary_source_line": 12275,
+      "built_output_source_lines": [
+        12276,
+        12277
+      ]
+    },
+    "apk_verifier_reports": "parsed-apk-verifications.json",
+    "apk_reports": [
+      {
+        "abi": "arm64-v8a",
+        "both_phases_identical": true,
+        "source_lines": [
+          12278,
+          12378
+        ],
+        "phases": [
+          "build_script",
+          "post_build_independent_verification"
+        ],
+        "verified_report": {
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "versionCode": 2019,
+          "versionName": "0.13.7",
+          "minSdk": 24,
+          "targetSdk": 36,
+          "abis": [
+            "arm64-v8a"
+          ],
+          "elf16KiBAligned": true,
+          "resourcesArscAligned": true,
+          "bytes": 322123041,
+          "sha256": "c8f3f15a2e9eb77a1f03152f849f0e73211de91cd6f4299fb6555e557735a3d1",
+          "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+          "godot": {
+            "repository": "https://github.com/Ullmann27/lumo-godot.git",
+            "revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+            "engine": "4.6.3",
+            "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+            "bytes": 66217416
+          },
+          "offlineVoice": {
+            "profile": "lumo-free-supertonic-de-v1",
+            "preset": "F2",
+            "speakerId": 1,
+            "sampleRate": 44100,
+            "onnxruntimeVersion": "1.23.1",
+            "clipCount": 155,
+            "modelSha256": {
+              "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+              "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+              "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+              "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+              "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+              "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+              "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+            },
+            "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+            "scope": "Actual APK package validation, not audible playback acceptance"
+          }
+        }
+      },
+      {
+        "abi": "x86_64",
+        "both_phases_identical": true,
+        "source_lines": [
+          12319,
+          12420
+        ],
+        "phases": [
+          "build_script",
+          "post_build_independent_verification"
+        ],
+        "verified_report": {
+          "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+          "versionCode": 2019,
+          "versionName": "0.13.7",
+          "minSdk": 24,
+          "targetSdk": 36,
+          "abis": [
+            "x86_64"
+          ],
+          "elf16KiBAligned": true,
+          "resourcesArscAligned": true,
+          "bytes": 325277610,
+          "sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+          "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+          "godot": {
+            "repository": "https://github.com/Ullmann27/lumo-godot.git",
+            "revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+            "engine": "4.6.3",
+            "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+            "bytes": 66217416
+          },
+          "offlineVoice": {
+            "profile": "lumo-free-supertonic-de-v1",
+            "preset": "F2",
+            "speakerId": 1,
+            "sampleRate": 44100,
+            "onnxruntimeVersion": "1.23.1",
+            "clipCount": 155,
+            "modelSha256": {
+              "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+              "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+              "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+              "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+              "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+              "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+              "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+            },
+            "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+            "scope": "Actual APK package validation, not audible playback acceptance"
+          }
+        }
+      }
+    ],
+    "verification_scope": "The original CI log proves two actual strict verifier executions per ABI, with identical reports. APK bytes were not downloaded or independently inspected locally by this reviewer. Root owns the original candidate archive review.",
+    "source_guard_scope": "Exact e3d build/export source was read and hash-compared. Successful set -e paths enforce tracked-source cleanliness before/after scaffold, dependencies, export and build, fixed Native revision, and provenance writing. Actual BUILD-PROVENANCE.json contents are not printed in this log and are not claimed as directly inspected here.",
+    "offline_voice_scope": "155 packaged clips, weights, licenses and native runtime libraries are verified by the APK verifier. Audible playback requires the separate actual Android evidence."
+  },
+  "diagnostics": {
+    "strict_error_lines": [
+      {
+        "source_line": 6131,
+        "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      },
+      {
+        "source_line": 6162,
+        "message": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      },
+      {
+        "source_line": 6217,
+        "message": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      }
+    ],
+    "resource_exit_errors": "Three pre-existing legacy/2014 resource exit errors (4, 2 and 4 resources) plus ObjectDB warnings are allowed only by unchanged narrowly scoped helper filters after the required PASS marker. They are preserved here and are not described as fixed or error-free.",
+    "native_warning_detail": "See ../native/native-execution-review.json: 96 Compatibility renderer warnings, 19 intentional FakeHost/IntegerHost reward-rejection warnings, and 7 static inventory warnings.",
+    "adb_daemon_connection_messages": [
+      {
+        "source_line": 5355,
+        "message": "2026-11-13T16:36:24.4733661Z cannot connect to daemon at tcp:5037: Connection refused"
+      },
+      {
+        "source_line": 10679,
+        "message": "2026-11-13T17:19:39.1575783Z cannot connect to daemon at tcp:5037: Connection refused"
+      },
+      {
+        "source_line": 12067,
+        "message": "2026-11-13T17:19:46.1496389Z cannot connect to daemon at tcp:5037: Connection refused"
+      }
+    ],
+    "compiler_and_build": [
+      "Unsupported Kotlin plugin version warning.",
+      "Deprecated android.builtInKotlin=false and android.newDsl=false settings and Android/Gradle DSL/plugin APIs.",
+      "Obsolete ApkVariantOutput.getVersionCodeOverride() and future Gradle 10 incompatibility notice (current Gradle 9.1.0).",
+      "Caught exception: Already watching path: /home/runner/work/lumo-lernen/lumo-lernen/android, source line 12274. The later build and strict APK verification succeeded; the log does not establish the underlying watcher issue as resolved."
+    ],
+    "runner_actions": [
+      "actions/setup-java@v4 deprecation.",
+      "Node punycode and url.parse deprecations.",
+      "Node20 actions forced to Node24 warning."
+    ],
+    "full_suite_prior_warning_review": "The same-run full Flutter artifact review separately records five intentional storage-ack diagnostics, nine MissingPluginException audio diagnostics and the Lernen hit-test warning. The latter supports Home-card destination-view coverage, not complete permanent-sidebar input coverage.",
+    "marker_file": "job-warning-error-markers.json",
+    "marker_file_note": "This file contains notes and diagnostic matches as well as warnings/errors. Its entry count is not a warning count."
+  },
+  "limits": [
+    "No code, workflow, pin or test was modified by this evidence review.",
+    "No failed-test/skip result is hidden in the reported successful invocations; no unrelated workflow success is asserted.",
+    "This job result is not proof that API35/API37 device tours, 2017-to-2019 preservation or final delivery verification have completed.",
+    "No physical Galaxy Z Fold7 measurement, 60 FPS, heat, latency or audible speech acceptance follows from this job.",
+    "No blanket visual acceptance of the 546 Flutter captures or Native captures is made.",
+    "No release receipt or approval is produced."
+  ]
+}

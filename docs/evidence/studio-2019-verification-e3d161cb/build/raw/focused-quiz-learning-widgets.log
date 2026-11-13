@@ -1,0 +1,51 @@
+2026-11-13T16:20:45.7596005Z ##[group]Run flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+2026-11-13T16:20:45.7597070Z [36;1mflutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \[0m
+2026-11-13T16:20:45.7597857Z [36;1m  test/quiz_premium_stage_layout_test.dart \[0m
+2026-11-13T16:20:45.7598493Z [36;1m  test/quiz_premium_stage_visual_capture_test.dart \[0m
+2026-11-13T16:20:45.7599123Z [36;1m  test/home_navigation_progress_test.dart \[0m
+2026-11-13T16:20:45.7599735Z [36;1m  test/home_subject_islands_premium_test.dart \[0m
+2026-11-13T16:20:45.7600392Z [36;1m  test/academy_grade_3_4_visible_navigation_test.dart \[0m
+2026-11-13T16:20:45.7601021Z [36;1m  test/lumo_scene_art_panel_test.dart \[0m
+2026-11-13T16:20:45.7601772Z [36;1m  test/learning_lab_runtime_test.dart \[0m
+2026-11-13T16:20:45.7602418Z [36;1m  test/parents/parent_school_grade_progression_test.dart[0m
+2026-11-13T16:20:45.7629229Z shell: /usr/bin/bash -e {0}
+2026-11-13T16:20:45.7629641Z env:
+2026-11-13T16:20:45.7630007Z   LUMO_SPLIT_PER_ABI: 1
+2026-11-13T16:20:45.7630752Z   JAVA_HOME: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:20:45.7631781Z   JAVA_HOME_17_X64: /opt/hostedtoolcache/Java_Temurin-Hotspot_jdk/17.0.21-9/x64
+2026-11-13T16:20:45.7632614Z   FLUTTER_ROOT: /opt/hostedtoolcache/flutter/stable-3.44.9-x64/flutter
+2026-11-13T16:20:45.7633253Z   PUB_CACHE: /home/runner/.pub-cache
+2026-11-13T16:20:45.7633698Z ##[endgroup]
+2026-11-13T16:20:47.9879588Z 00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_layout_test.dart
+2026-11-13T16:20:57.3354869Z 00:00 +0: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_layout_test.dart: Three live jokers, mascot and prize rail remain separated
+2026-11-13T16:20:59.0472477Z 00:01 +1: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 320.0 px at text scale 1.0
+2026-11-13T16:20:59.4242755Z 00:02 +2: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 320.0 px at text scale 1.0
+2026-11-13T16:20:59.6790523Z 00:02 +3: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 320.0 px at text scale 1.5
+2026-11-13T16:21:01.0265946Z 00:03 +4: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 420.0 px at text scale 1.0
+2026-11-13T16:21:02.1512323Z 00:04 +5: /home/runner/work/lumo-lernen/lumo-lernen/test/home_navigation_progress_test.dart: Lernen and Spielen stay visible and usable across Fold resize
+2026-11-13T16:21:02.9590549Z 00:05 +6: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 420.0 px at text scale 1.5
+2026-11-13T16:21:03.2514687Z 00:05 +7: /home/runner/work/lumo-lernen/lumo-lernen/test/home_navigation_progress_test.dart: home uses persisted daily learning and live wallet values
+2026-11-13T16:21:03.5566285Z 00:06 +8: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.0
+2026-11-13T16:21:03.7228457Z 00:06 +9: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.0
+2026-11-13T16:21:03.9103585Z 00:06 +10: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.0
+2026-11-13T16:21:04.9452351Z 00:07 +11: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.0
+2026-11-13T16:21:05.0583460Z 00:07 +12: /home/runner/work/lumo-lernen/lumo-lernen/test/home_navigation_progress_test.dart: Kart discovery uses the same in-app game selection
+2026-11-13T16:21:05.2916978Z 00:07 +13: /home/runner/work/lumo-lernen/lumo-lernen/test/quiz_premium_stage_visual_capture_test.dart: Premium quiz capture 1024.0 px at text scale 1.5
+2026-11-13T16:21:06.7033084Z 00:09 +14: /home/runner/work/lumo-lernen/lumo-lernen/test/home_subject_islands_premium_test.dart: Nine real 3D learning islands fit phone and unfolded Fold
+2026-11-13T16:21:08.1910869Z 00:10 +15: /home/runner/work/lumo-lernen/lumo-lernen/test/home_subject_islands_premium_test.dart: Music island opens genuine grade-aware practical exercises
+2026-11-13T16:21:08.6694096Z 00:11 +16: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-13T16:21:09.3799892Z 00:12 +17: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-13T16:21:10.2071832Z 00:12 +18: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-13T16:21:10.2765406Z 00:12 +19: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: grade picker visibly distinguishes 3rd and 4th-class topics
+2026-11-13T16:21:10.4014041Z 00:13 +20: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: class 3 German focus opens its real lesson
+2026-11-13T16:21:10.8425507Z 00:13 +21: /home/runner/work/lumo-lernen/lumo-lernen/test/academy_grade_3_4_visible_navigation_test.dart: class 4 German focus opens its real lesson
+2026-11-13T16:21:11.0450826Z 00:13 +22: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: learning narration replay remains accessible and opt-in
+2026-11-13T16:21:11.8722956Z 00:14 +23: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: learning narration replay remains accessible and opt-in
+2026-11-13T16:21:11.8801053Z 00:14 +24: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: learning narration replay remains accessible and opt-in
+2026-11-13T16:21:12.2775479Z 00:14 +25: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real build then two new free recall problems persist honest evidence
+2026-11-13T16:21:13.4903182Z 00:16 +26: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: specific error opens escalating help and does not claim independence
+2026-11-13T16:21:14.3700927Z 00:17 +27: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: profile switch invalidates the open task
+2026-11-13T16:21:14.4225050Z 00:17 +28: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real lab layout Size(320.0, 740.0) text 2.0
+2026-11-13T16:21:14.5285956Z 00:17 +29: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real lab layout Size(840.0, 720.0) text 1.0
+2026-11-13T16:21:14.6225824Z 00:17 +30: /home/runner/work/lumo-lernen/lumo-lernen/test/learning_lab_runtime_test.dart: real lab layout Size(915.0, 412.0) text 1.4
+2026-11-13T16:21:14.7551152Z 00:17 +31: All tests passed!

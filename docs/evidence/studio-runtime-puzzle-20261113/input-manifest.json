@@ -1,0 +1,917 @@
+{
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "probe_sha256": "b3737ba8cd726a116fc77b83207799e79629d9709364446992319c206d46b6a0",
+  "runtime_frames_sha256": "ae1cb435655e2767eee4b5dc5a99b30ab72a4c821c8975e9b49dd19ac45897ee",
+  "setup": "Recorder sets initial configuration selected_count=6 and selected_rotation=true before adding scene to tree; motif remains default 3. Actual new-game button creates all fresh piece data. No existing save or progress is used.",
+  "rng_seed": 20191113,
+  "event_counts": {
+    "InputEventScreenTouch": 10,
+    "InputEventScreenDrag": 61
+  },
+  "dispatch": "Input.parse_input_event followed by Input.flush_buffered_events; no direct gameplay callbacks or signal emission",
+  "events": [
+    {
+      "finger": 21,
+      "frame": -1,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        480.0,
+        352.0
+      ],
+      "pressed": true,
+      "purpose": "setup: Neues Puzzle beginnen"
+    },
+    {
+      "finger": 21,
+      "frame": -1,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        480.0,
+        352.0
+      ],
+      "pressed": false,
+      "purpose": "setup release: Neues Puzzle beginnen"
+    },
+    {
+      "finger": 21,
+      "frame": 24,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "pressed": true,
+      "purpose": "select initial half-turned piece"
+    },
+    {
+      "finger": 21,
+      "frame": 28,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "pressed": false,
+      "purpose": "retain piece selection for rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 40,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": true,
+      "purpose": "press production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 43,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": false,
+      "purpose": "release production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 72,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": true,
+      "purpose": "press production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 75,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        72.0,
+        486.0
+      ],
+      "pressed": false,
+      "purpose": "release production rotate button"
+    },
+    {
+      "finger": 21,
+      "frame": 104,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "pressed": true,
+      "purpose": "pick correctly rotated piece for dragging"
+    },
+    {
+      "finger": 21,
+      "frame": 110,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        195.373596191406,
+        390.547760009766
+      ],
+      "relative": [
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 111,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        195.69841003418,
+        390.458221435547
+      ],
+      "relative": [
+        0.324813842773438,
+        -0.08953857421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 112,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        196.658264160156,
+        390.193634033203
+      ],
+      "relative": [
+        0.959854125976562,
+        -0.26458740234375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 113,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        198.231262207031,
+        389.760040283203
+      ],
+      "relative": [
+        1.572998046875,
+        -0.43359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 114,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        200.3955078125,
+        389.163482666016
+      ],
+      "relative": [
+        2.16424560546875,
+        -0.5965576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 115,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        203.129089355469,
+        388.409973144531
+      ],
+      "relative": [
+        2.73358154296875,
+        -0.753509521484375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 116,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        206.410125732422,
+        387.505554199219
+      ],
+      "relative": [
+        3.28103637695312,
+        -0.9044189453125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 117,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        210.216705322266,
+        386.456298828125
+      ],
+      "relative": [
+        3.80657958984375,
+        -1.04925537109375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 118,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        214.526931762695,
+        385.268188476562
+      ],
+      "relative": [
+        4.31022644042969,
+        -1.1881103515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 119,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        219.318908691406,
+        383.947265625
+      ],
+      "relative": [
+        4.79197692871094,
+        -1.3209228515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 120,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        224.570755004883,
+        382.499633789062
+      ],
+      "relative": [
+        5.25184631347656,
+        -1.4476318359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 121,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        230.260543823242,
+        380.931243896484
+      ],
+      "relative": [
+        5.68978881835938,
+        -1.56838989257812
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 122,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        236.366394042969,
+        379.248168945312
+      ],
+      "relative": [
+        6.10585021972656,
+        -1.68307495117188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 123,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        242.866409301758,
+        377.456451416016
+      ],
+      "relative": [
+        6.50001525878906,
+        -1.79171752929688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 124,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        249.738693237305,
+        375.562133789062
+      ],
+      "relative": [
+        6.87228393554688,
+        -1.89431762695312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 125,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        256.961334228516,
+        373.571228027344
+      ],
+      "relative": [
+        7.22264099121094,
+        -1.99090576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 126,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        264.512451171875,
+        371.48974609375
+      ],
+      "relative": [
+        7.55111694335938,
+        -2.08148193359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 127,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        272.3701171875,
+        369.323791503906
+      ],
+      "relative": [
+        7.857666015625,
+        -2.16595458984375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 128,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        280.512512207031,
+        367.079376220703
+      ],
+      "relative": [
+        8.14239501953125,
+        -2.24441528320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 129,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        288.917633056641,
+        364.762512207031
+      ],
+      "relative": [
+        8.40512084960938,
+        -2.31686401367188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 130,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        297.563629150391,
+        362.379272460938
+      ],
+      "relative": [
+        8.64599609375,
+        -2.38323974609375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 131,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        306.428619384766,
+        359.935638427734
+      ],
+      "relative": [
+        8.864990234375,
+        -2.44363403320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 132,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        315.490661621094,
+        357.437713623047
+      ],
+      "relative": [
+        9.06204223632812,
+        -2.4979248046875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 133,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        324.727935791016,
+        354.891479492188
+      ],
+      "relative": [
+        9.23727416992188,
+        -2.54623413085938
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 134,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        334.118469238281,
+        352.302978515625
+      ],
+      "relative": [
+        9.39053344726562,
+        -2.5885009765625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 135,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        343.640350341797,
+        349.678283691406
+      ],
+      "relative": [
+        9.52188110351562,
+        -2.62469482421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 136,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        353.271789550781,
+        347.023406982422
+      ],
+      "relative": [
+        9.63143920898438,
+        -2.65487670898438
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 137,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        362.990783691406,
+        344.344390869141
+      ],
+      "relative": [
+        9.718994140625,
+        -2.67901611328125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 138,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        372.775512695312,
+        341.647247314453
+      ],
+      "relative": [
+        9.78472900390625,
+        -2.6971435546875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 139,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        382.60400390625,
+        338.938049316406
+      ],
+      "relative": [
+        9.8284912109375,
+        -2.70919799804688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 140,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        392.454376220703,
+        336.222808837891
+      ],
+      "relative": [
+        9.85037231445312,
+        -2.71524047851562
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 141,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        402.304748535156,
+        333.507568359375
+      ],
+      "relative": [
+        9.85037231445312,
+        -2.71524047851562
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 142,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        412.133239746094,
+        330.798370361328
+      ],
+      "relative": [
+        9.8284912109375,
+        -2.70919799804688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 143,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        421.91796875,
+        328.101226806641
+      ],
+      "relative": [
+        9.78472900390625,
+        -2.6971435546875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 144,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        431.636993408203,
+        325.422210693359
+      ],
+      "relative": [
+        9.71902465820312,
+        -2.67901611328125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 145,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        441.268371582031,
+        322.767333984375
+      ],
+      "relative": [
+        9.63137817382812,
+        -2.65487670898438
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 146,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        450.790313720703,
+        320.142639160156
+      ],
+      "relative": [
+        9.52194213867188,
+        -2.62469482421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 147,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        460.180816650391,
+        317.554138183594
+      ],
+      "relative": [
+        9.3905029296875,
+        -2.5885009765625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 148,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        469.418090820312,
+        315.007904052734
+      ],
+      "relative": [
+        9.23727416992188,
+        -2.54623413085938
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 149,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        478.480133056641,
+        312.509979248047
+      ],
+      "relative": [
+        9.06204223632812,
+        -2.4979248046875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 150,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        487.345123291016,
+        310.066345214844
+      ],
+      "relative": [
+        8.864990234375,
+        -2.44363403320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 151,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        495.991149902344,
+        307.68310546875
+      ],
+      "relative": [
+        8.64602661132812,
+        -2.38323974609375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 152,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        504.396209716797,
+        305.366241455078
+      ],
+      "relative": [
+        8.40505981445312,
+        -2.31686401367188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 153,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        512.53857421875,
+        303.121826171875
+      ],
+      "relative": [
+        8.14236450195312,
+        -2.24441528320312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 154,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        520.396301269531,
+        300.955871582031
+      ],
+      "relative": [
+        7.85772705078125,
+        -2.16595458984375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 155,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        527.947387695312,
+        298.874389648438
+      ],
+      "relative": [
+        7.55108642578125,
+        -2.08148193359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 156,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        535.170043945312,
+        296.883483886719
+      ],
+      "relative": [
+        7.22265625,
+        -1.99090576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 157,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        542.042358398438,
+        294.989166259766
+      ],
+      "relative": [
+        6.872314453125,
+        -1.89431762695312
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 158,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        548.542358398438,
+        293.197448730469
+      ],
+      "relative": [
+        6.5,
+        -1.79171752929688
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 159,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        554.648193359375,
+        291.514373779297
+      ],
+      "relative": [
+        6.1058349609375,
+        -1.68307495117188
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 160,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        560.338012695312,
+        289.945983886719
+      ],
+      "relative": [
+        5.6898193359375,
+        -1.56838989257812
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 161,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        565.58984375,
+        288.498352050781
+      ],
+      "relative": [
+        5.2518310546875,
+        -1.4476318359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 162,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        570.3818359375,
+        287.177429199219
+      ],
+      "relative": [
+        4.7919921875,
+        -1.3209228515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 163,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        574.692077636719,
+        285.989318847656
+      ],
+      "relative": [
+        4.31024169921875,
+        -1.1881103515625
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 164,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        578.498657226562,
+        284.940063476562
+      ],
+      "relative": [
+        3.80657958984375,
+        -1.04925537109375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 165,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        581.779663085938,
+        284.03564453125
+      ],
+      "relative": [
+        3.281005859375,
+        -0.9044189453125
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 166,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        584.513244628906,
+        283.282135009766
+      ],
+      "relative": [
+        2.73358154296875,
+        -0.753509521484375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 167,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        586.677490234375,
+        282.685577392578
+      ],
+      "relative": [
+        2.16424560546875,
+        -0.5965576171875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 168,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        588.250549316406,
+        282.251983642578
+      ],
+      "relative": [
+        1.57305908203125,
+        -0.43359375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 169,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        589.210327148438,
+        281.987396240234
+      ],
+      "relative": [
+        0.95977783203125,
+        -0.26458740234375
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 170,
+      "kind": "InputEventScreenDrag",
+      "physical_position": [
+        589.53515625,
+        281.897857666016
+      ],
+      "relative": [
+        0.3248291015625,
+        -0.08953857421875
+      ]
+    },
+    {
+      "finger": 21,
+      "frame": 178,
+      "kind": "InputEventScreenTouch",
+      "physical_position": [
+        589.53515625,
+        281.897857666016
+      ],
+      "pressed": false,
+      "purpose": "release above the real matching slot"
+    }
+  ]
+}

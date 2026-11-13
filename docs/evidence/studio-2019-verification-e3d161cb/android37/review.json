@@ -1,0 +1,133 @@
+{
+  "scope": "Independent review of the original API 37 job and artifact; no Android runtime was created.",
+  "status": "BLOCKED_BEFORE_EMULATOR_BOOT",
+  "github": {
+    "repository": "Ullmann27/lumo-lernen",
+    "run_id": 43461547945,
+    "run_attempt": 1,
+    "job_id": 132049288677,
+    "job_name": "Android API 37 live application tour",
+    "job_conclusion": "failure",
+    "host_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "native_pin": "76980a941fa05d047574d8cc386d3249d93ffca3"
+  },
+  "original_artifact": {
+    "id": 14062255301,
+    "name": "lumo-studio-2019-android-17-tour",
+    "bytes": 1563,
+    "sha256": "2f90c43467888e76fe184974e8e7983518942634c847421873854941bd77c507",
+    "github_digest_matches_downloaded_bytes": true,
+    "zip_crc_passed": true,
+    "members": [
+      {
+        "path": "mesa-renderer.txt",
+        "bytes": 1724,
+        "sha256": "d19c255303d9015189a1b9f40d827fce973eee7e59265a450924b67e147eba73",
+        "extracted_copy_byte_identical": true
+      },
+      {
+        "path": "tesseract-installed-languages.txt",
+        "bytes": 87,
+        "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+        "extracted_copy_byte_identical": true
+      },
+      {
+        "path": "tested-apk-sha256.txt",
+        "bytes": 108,
+        "sha256": "3bc93abf3d66d2a0bf52f63b0d16fc399f9a8d70b757c5f49dd5365da9a6dcfa",
+        "extracted_copy_byte_identical": true
+      },
+      {
+        "path": "xvfb.log",
+        "bytes": 2348,
+        "sha256": "b987a262609a3720f450ab6815ed90b2069dd47b7b012959ca19c325aebf5d55",
+        "extracted_copy_byte_identical": true
+      }
+    ]
+  },
+  "job_log": {
+    "path": "job.log",
+    "bytes": 62804,
+    "sha256": "2af4af8d849ae0404a88598f7c64c91797369169e02071fa71a606381f217258",
+    "source": "Original completed GitHub job log returned by the GitHub connector; not a generated replacement."
+  },
+  "failure": {
+    "at_utc": "2026-11-13T17:29:27.7123725Z",
+    "phase": "Android SDK platform package installation",
+    "message": "Warning: Failed to find package 'platforms;android-37'",
+    "command": "sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-37' > /dev/null",
+    "command_exit_code": 1,
+    "classification": "CI SDK infrastructure blocker before AVD creation, emulator boot, APK installation or application execution.",
+    "adb_5554_connection_refused": "Cleanup attempted after the install failure; no listening emulator existed. This is a consequence, not evidence of an app crash."
+  },
+  "configured_environment_only": {
+    "api": 37,
+    "channel": "stable",
+    "system_image_target": "google_apis",
+    "architecture": "x86_64",
+    "device_profile": "pixel_5",
+    "ram": "4096M",
+    "cores": 2,
+    "boot_timeout_seconds": 300,
+    "emulator_build_pin": null,
+    "no_audio": true,
+    "host_software_renderer": "llvmpipe (LLVM 20.1.2, 256 bits)",
+    "host_mesa": "25.2.8"
+  },
+  "actual_android_runtime": {
+    "sdk": null,
+    "release": null,
+    "fingerprint": null,
+    "model": null,
+    "emulator_version": null,
+    "installed_apk": null,
+    "reason": "Emulator-dependent script never ran; no getprop or application result exists."
+  },
+  "apk_file_preflight": {
+    "sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+    "source": "The real sha256sum before emulator installation, preserved in tested-apk-sha256.txt and original job log. The artifact filename does not establish an app test.",
+    "pck_identity_in_this_artifact": null,
+    "candidate_archive_crosscheck": "Pending the separately downloaded original candidate archive; not an API37 runtime result."
+  },
+  "completed_before_failure": {
+    "python_nextgen_probe_contract_tests": 51,
+    "python_studio_probe_contract_tests": 6,
+    "language_inventory": [
+      "deu",
+      "eng",
+      "osd"
+    ],
+    "note": "Python harness regressions and host rendering prerequisites are not Android application acceptance."
+  },
+  "not_run": {
+    "original_android_tour": true,
+    "studio_surface_tour": true,
+    "privacy_and_local_voice": true,
+    "learning_native_roundtrip": true,
+    "cards_native_roundtrip": true,
+    "android_screenshots": true
+  },
+  "screenshot_count": 0,
+  "screenshots_visually_reviewed": [],
+  "acceptance": {
+    "api37_pass": false,
+    "android17_runtime_verified": false,
+    "physical_fold7_performance_measured": false,
+    "audible_quality_verified": false,
+    "lip_sync_verified": false,
+    "global_release_receipt": false
+  },
+  "limitations": [
+    "No inference of Android 17 app compatibility or incompatibility from this infrastructure failure.",
+    "No API35 substitution, gate relaxation, retry or product mutation was performed.",
+    "The stable-channel failure does not prove API37 is unavailable through every possible SDK channel or package identifier."
+  ],
+  "followup": "Resolve SDK package availability with a separate read-only diagnosis before rerunning the unchanged strict SDK37/release17 acceptance.",
+  "supporting_files": [
+    "github-job.json",
+    "github-artifact.json",
+    "artifact-members.json",
+    "failure-excerpts.json",
+    "sdk-installation-diagnosis.json"
+  ]
+}

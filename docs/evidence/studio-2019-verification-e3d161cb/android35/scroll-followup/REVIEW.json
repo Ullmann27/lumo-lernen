@@ -1,0 +1,109 @@
+{
+  "kind": "bounded_final_scroll_observation_fix",
+  "status": "locally_verified_isolated_followup_not_yet_android_retested",
+  "base_host_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_pin_unchanged": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "isolated_worktree": "/workspace/scratch/5987865ae883/lumo-lernen-api35-scroll-followup-e3d161cb",
+  "active_host_helper_byte_identical_to_base": true,
+  "new_github_or_ci_mutations": false,
+  "files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha256_before": "2408d2f47ce227558e41c231e3093ee71e4bb04231f465ec91861875940684ed",
+      "sha256_candidate": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "bytes": 52523
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_tap_scroll_budget.py",
+      "sha256": "886247df7bcf68e811b401db6f804b502d4e8e9b06aabba072606b1035600781",
+      "bytes": 5556,
+      "test_source_unchanged_between_observed_red_and_green_runs": true
+    }
+  ],
+  "candidate_patch_sha256": "b98e5b9468e11229ff08f88670c626f9871294254278f6a9ba5421c449eca6b3",
+  "change": "Vor und nach jeder begrenzten Folge von N Scrollgesten wird das vorhandene Live-Ziel geprüft. Der letzte zusätzliche Schleifendurchlauf liest nur; nach einem fehlenden Ziel wird dort keine weitere Geste ausgeführt.",
+  "bounds": {
+    "default_scroll_attempts_unchanged": 12,
+    "studio_scroll_attempts_unchanged": 16,
+    "max_scrolls_per_direction": 16,
+    "max_scrolls_for_studio_search": 32,
+    "max_normal_observations_for_studio_search": 34,
+    "existing_enabled_and_min_visible_height_guard_unchanged": true,
+    "parent_assent_not_bypassed": true,
+    "no_success_if_final_target_missing": true
+  },
+  "actual_android_failure_reference": {
+    "run_id": 43461547945,
+    "job_id": 132049288587,
+    "artifact_id": 14062416986,
+    "archive_sha256": "5831d58a021769a925bb943f84d82be89895870791433f4fd9cbd1421c441d3f",
+    "diagnosis_file": "../failure-review.json",
+    "normal_tour_steps": 21,
+    "native_learning_and_cards_reached": false
+  },
+  "red_green_contract_scope": "Synthetische Transport-/UI-Fixtures führen die tatsächliche flutter_tap-Funktion aus dem Quellcode aus. Die Navigationslogik wird nicht kopiert. Die Fixtures sind kein neuer Androidlauf.",
+  "contracts": [
+    "Ziel wird erst nach letzter erlaubter Geste sichtbar: Budgets 1, 2 und 16. Danach genau eine echte Helper-Touchanforderung, keine zusätzliche Scrollgeste.",
+    "Weiterhin fehlendes Ziel: RuntimeError nach finaler Beobachtung; 4 Gesten bei Budget 2, keine Tast-/Schalteraktion.",
+    "Deaktiviertes Ziel nach letzter Geste bleibt Fehler.",
+    "Nur 1 Pixel hohes Ziel behält bestehenden 48-Pixel-Sichtbarkeitsguard.",
+    "Noch nicht klickbares Ziel nach letzter Geste wird nicht als Erfolg gewertet.",
+    "Anfangs sichtbares Ziel behält unmittelbaren einzigen Touch ohne Scrollen."
+  ],
+  "runs": [
+    {
+      "file": "before-unit.log",
+      "sha256": "f5819efea418212c86ce4a5207d62bfd7a89ecaf6fad5cdcb116c7dca56aec05",
+      "bytes": 6736,
+      "process_exit_code": 1,
+      "test_methods": 6,
+      "assertion_failures_including_subtests": 7,
+      "skipped": 0,
+      "seconds": 0.082
+    },
+    {
+      "file": "after-unit.log",
+      "sha256": "73433ac7a852eed38cdc5b3ad91b92f6345c65500c28e4bc640ef47663b47d51",
+      "bytes": 1246,
+      "process_exit_code": 0,
+      "test_methods": 6,
+      "assertion_failures_including_subtests": 0,
+      "skipped": 0,
+      "seconds": 0.091
+    },
+    {
+      "file": "existing-tour-contracts.log",
+      "sha256": "3d25d2191aa12d062c9c98dba154664ad7256506b4c7d9d9cbc63b3d4d8cc50c",
+      "bytes": 2356,
+      "process_exit_code": 0,
+      "test_methods": 13,
+      "assertion_failures_including_subtests": 0,
+      "skipped": 0,
+      "seconds": 9.041
+    },
+    {
+      "file": "affected-probe-contracts.log",
+      "sha256": "7522ae471d6a26f347e1eb4c1882005be4000c7e2c2431095e99b74c3c7a9645",
+      "bytes": 21542,
+      "process_exit_code": 0,
+      "test_methods": 113,
+      "assertion_failures_including_subtests": 0,
+      "skipped": 0,
+      "seconds": 10.068
+    }
+  ],
+  "existing_affected_test_patterns": [
+    "test_modernization_tour_identity.py",
+    "test_flutter*.py (neuer Vertrag separat ausgeführt)",
+    "test_visible_flutter_return.py",
+    "test_live_ui_snapshot.py",
+    "test_1939_flutter_navigation.py",
+    "test_nextgen*.py",
+    "test_studio*.py"
+  ],
+  "limits": [
+    "Die ursprüngliche API35-Tour bleibt im Native-Learning-/Cards-Gate fehlgeschlagen.",
+    "Kein neuer Emulatorlauf, kein Produkt-/Nativepatch und keine neue APK-Freigabe durch diese lokalen Verträge.",
+    "Root integriert ausschließlich den überprüften Nachtrag und führt die verlangten tatsächlichen Androidprüfungen im neuen Kandidatenlauf aus."
+  ]
+}

@@ -1,0 +1,142 @@
+[
+  {
+    "member": "21_kart_real_touches.json",
+    "bytes": 103,
+    "sha256": "251707dc4256cd952864f4c295abfee0442f79a8185eb40f64792850242d1e8c",
+    "local_path": "raw/21_kart_real_touches.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "21_race_drive_telemetry.json",
+    "bytes": 826,
+    "sha256": "8b536dad19c52f79ddfb719f1cf944e34dbc9831d46248c95dc1fe8871c9ae12",
+    "local_path": "raw/21_race_drive_telemetry.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "23_zurueck_in_flutter-flutter-return.json",
+    "bytes": 468,
+    "sha256": "1eb67dd8aff79c65a0026401db5976f788f58cc6d2e7c2395dfc75144999e0c9",
+    "local_path": "raw/23_zurueck_in_flutter-flutter-return.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "apk-sha256.txt",
+    "bytes": 316,
+    "sha256": "9e84bbfdc2a1db25068b4da513a85ea0a6baec7c88d14e2eb88cd7a0f8adf5d4",
+    "local_path": "raw/apk-sha256.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "arm64-verification.json",
+    "bytes": 2310,
+    "sha256": "b4cd83b177e4f1adfe4721a4722893df978091528d2961856bfd5e07cadf6351",
+    "local_path": "raw/arm64-verification.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "baseline-install.txt",
+    "bytes": 137,
+    "sha256": "1f5ef6f9b6fafd7cbd0a1764d7b8bd2313d1eb0acdbc3de6428c03801b5eeff1",
+    "local_path": "raw/baseline-install.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "baseline-learning/learning-journey-result.json",
+    "bytes": 4218,
+    "sha256": "3b7cfcc67071f7f17b9add3276a9d306892d7eb2ed2315585c615e52a29d12eb",
+    "local_path": "raw/baseline-learning/learning-journey-result.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "baseline-package-uid.txt",
+    "bytes": 59,
+    "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+    "local_path": "raw/baseline-package-uid.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "baseline-package.txt",
+    "bytes": 9965,
+    "sha256": "ad4ca126e586d0eb013048debe105f3348683991e7b5bfbab30e37c05f8ee3c2",
+    "local_path": "raw/baseline-package.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "baseline-run.json",
+    "bytes": 13024,
+    "sha256": "e9e5998b96f8145b14c05e51499c424eb4af9c5f3a9936d6681b891b93b1af62",
+    "local_path": "raw/baseline-run.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "baseline-signature.txt",
+    "bytes": 116,
+    "sha256": "ade17ff1bfcc6c5abc1856fc3a7762c8b60101319468b472e07f1d3ec76d44b5",
+    "local_path": "raw/baseline-signature.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "candidate-run.json",
+    "bytes": 12984,
+    "sha256": "8424650ce138a68ebab4a76d505a6429434b16abd8167d0fa7d40015f3c6168d",
+    "local_path": "raw/candidate-run.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "fatal-logcat.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local_path": "raw/fatal-logcat.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "mesa-renderer.txt",
+    "bytes": 1724,
+    "sha256": "fa3b9697f868aee413e001d80b931aeefd6e84ca62fa16fcc97f208608bb0f3b",
+    "local_path": "raw/mesa-renderer.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "rooted-emulator.json",
+    "bytes": 1545,
+    "sha256": "ec56456981599dc4b3b4270f2cfa95d5a5919ed8046707bd8a10038c7ace1bc0",
+    "local_path": "raw/rooted-emulator.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "update-install.txt",
+    "bytes": 139,
+    "sha256": "7013cbcca79fb784c78e017e440a2d1d3510153b54792b03ed370f9a7d1cb924",
+    "local_path": "raw/update-install.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "update-result.json",
+    "bytes": 28744,
+    "sha256": "f0d32df5a75f4f9402c5c1c4c8b4b91c8912d7a324dd4f4ba51bc5d4167dcf00",
+    "local_path": "raw/update-result.json",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "updated-package-uid.txt",
+    "bytes": 59,
+    "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a",
+    "local_path": "raw/updated-package-uid.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "updated-package.txt",
+    "bytes": 9343,
+    "sha256": "f9df001504d3c3c49c3d74163ec9b511cba5bbe691c1695bec1cdcae699df55c",
+    "local_path": "raw/updated-package.txt",
+    "original_bytes_preserved": true
+  },
+  {
+    "member": "x86-verification.json",
+    "bytes": 2307,
+    "sha256": "86d241e190c6b8c2b4cbdf3afe95110e7abeb45abdb5cf9b335b129ad13e2831",
+    "local_path": "raw/x86-verification.json",
+    "original_bytes_preserved": true
+  }
+]

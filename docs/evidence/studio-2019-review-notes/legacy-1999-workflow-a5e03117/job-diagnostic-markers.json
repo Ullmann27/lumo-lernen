@@ -1,0 +1,130 @@
+[
+  {
+    "source_line": 151,
+    "text": "##[warning]setup-java v4 is deprecated and will no longer receive updates. Please migrate to actions/setup-java@v5."
+  },
+  {
+    "source_line": 155,
+    "text": "(node:2224) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "source_line": 313,
+    "text": "(node:2452) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "source_line": 315,
+    "text": "(node:2452) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "source_line": 321,
+    "text": "(node:2452) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+  },
+  {
+    "source_line": 339,
+    "text": "(node:2466) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "source_line": 341,
+    "text": "(node:2466) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "source_line": 347,
+    "text": "(node:2466) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead."
+  },
+  {
+    "source_line": 683,
+    "text": "test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier) ... /home/runner/work/lumo-lernen/lumo-lernen/scripts/verify_unified_apk.py:192: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmph72uor7q/fixture-arm64-v8a.apk'>"
+  },
+  {
+    "source_line": 685,
+    "text": "ResourceWarning: Enable tracemalloc to get the object allocation traceback"
+  },
+  {
+    "source_line": 687,
+    "text": "test_changed_working_copy_cannot_replace_committed_expectations (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_changed_working_copy_cannot_replace_committed_expectations) ... /home/runner/work/lumo-lernen/lumo-lernen/scripts/verify_unified_apk.py:192: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp22lw27r6/fixture-arm64-v8a.apk'>"
+  },
+  {
+    "source_line": 689,
+    "text": "ResourceWarning: Enable tracemalloc to get the object allocation traceback"
+  },
+  {
+    "source_line": 693,
+    "text": "test_exact_commit_inputs_allow_both_historical_abis (test_historical_apk_expectations.HistoricalApkExpectationsTest.test_exact_commit_inputs_allow_both_historical_abis) ... /home/runner/work/lumo-lernen/lumo-lernen/scripts/verify_unified_apk.py:192: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp9fpx1u_i/fixture-arm64-v8a.apk'>"
+  },
+  {
+    "source_line": 695,
+    "text": "ResourceWarning: Enable tracemalloc to get the object allocation traceback"
+  },
+  {
+    "source_line": 696,
+    "text": "/home/runner/work/lumo-lernen/lumo-lernen/scripts/verify_unified_apk.py:192: ResourceWarning: unclosed file <_io.BufferedReader name='/tmp/tmp9fpx1u_i/fixture-x86_64.apk'>"
+  },
+  {
+    "source_line": 698,
+    "text": "ResourceWarning: Enable tracemalloc to get the object allocation traceback"
+  },
+  {
+    "source_line": 867,
+    "text": "ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+  },
+  {
+    "source_line": 869,
+    "text": "ERROR        | emuglConfig_get_vulkan_hardware_gpu_support_info: Failed to create vulkan instance. Error: [VK_ERROR_INCOMPATIBLE_DRIVER] -9"
+  },
+  {
+    "source_line": 872,
+    "text": "WARNING      | Could not detect GPU properly for Vulkan emulation. Please try updating your GPU Drivers."
+  },
+  {
+    "source_line": 880,
+    "text": "ERROR        | Unable to connect to adb daemon on port: 5037"
+  },
+  {
+    "source_line": 890,
+    "text": "WARNING      | Could not open libX11.so, try libX11.so.6"
+  },
+  {
+    "source_line": 901,
+    "text": "WARNING      | Could not open libX11-xcb.so, try libX11-xcb.so.1"
+  },
+  {
+    "source_line": 1005,
+    "text": "WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+  },
+  {
+    "source_line": 1006,
+    "text": "WARNING      | Failed to process .ini file /home/runner/.android/emu-update-last-check.ini for reading."
+  },
+  {
+    "source_line": 1392,
+    "text": "WARNING      | adb command '/usr/local/lib/android/sdk/platform-tools/adb -e shell settings put system accelerometer_rotation 1 ' failed: 'adb: no emulators found'"
+  },
+  {
+    "source_line": 3200,
+    "text": "WARNING      | Not saving state: RAM not mapped as shared"
+  },
+  {
+    "source_line": 3202,
+    "text": "ERROR        | stop: Not implemented"
+  },
+  {
+    "source_line": 3203,
+    "text": "WARNING      | Emulator client has not yet been configured.. Call configure me first!"
+  },
+  {
+    "source_line": 3218,
+    "text": "(node:5075) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "source_line": 3224,
+    "text": "(node:5075) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities."
+  },
+  {
+    "source_line": 3256,
+    "text": "(node:5183) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead."
+  },
+  {
+    "source_line": 3273,
+    "text": "##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/download-artifact@v4, actions/setup-java@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+  }
+]

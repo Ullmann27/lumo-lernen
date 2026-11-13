@@ -1,0 +1,1158 @@
+[
+  {
+    "path": "2014/build_sandbox_tools_regression.log",
+    "markers": [
+      {
+        "line": 10,
+        "text": "[BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+      }
+    ]
+  },
+  {
+    "path": "2014/build_sandbox_ui_regression.log",
+    "markers": [
+      {
+        "line": 19,
+        "text": "[BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+      }
+    ]
+  },
+  {
+    "path": "2014/creative_touch_layout_regression.log",
+    "markers": [
+      {
+        "line": 22,
+        "text": "[CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density"
+      }
+    ]
+  },
+  {
+    "path": "2014/jump_extras_regression.log",
+    "markers": [
+      {
+        "line": 16,
+        "text": "[JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_full_field_regression.log",
+    "markers": [
+      {
+        "line": 307,
+        "text": "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_garage_3d_touch_regression.log",
+    "markers": [
+      {
+        "line": 19,
+        "text": "[Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_harbor_attraction_regression.log",
+    "markers": [
+      {
+        "line": 22,
+        "text": "[HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_harbor_race_hook_regression.log",
+    "markers": [
+      {
+        "line": 20,
+        "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_loop_contact_regression.log",
+    "markers": [
+      {
+        "line": 5,
+        "text": "[LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_menu_depth_2013_regression.log",
+    "markers": [
+      {
+        "line": 20,
+        "text": "[MenuDepth] PASS: 41 checks"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_player_full_route_regression.log",
+    "markers": [
+      {
+        "line": 68,
+        "text": "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_racecraft_regression.log",
+    "markers": [
+      {
+        "line": 14,
+        "text": "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_rival_drift_items_regression.log",
+    "markers": [
+      {
+        "line": 14,
+        "text": "[KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_rival_flight_regression.log",
+    "markers": [
+      {
+        "line": 22,
+        "text": "[RivalFlight] sonnenhafen: automatic AI approach, take-off and landing PASS"
+      },
+      {
+        "line": 24,
+        "text": "[RivalFlight] bergwelt: automatic AI approach, take-off and landing PASS"
+      },
+      {
+        "line": 26,
+        "text": "[RivalFlight] ramp reprojection cannot skip the take-off lip PASS"
+      },
+      {
+        "line": 27,
+        "text": "[RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_sonnenhafen_generation_regression.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_stunt_continuity_regression.log",
+    "markers": [
+      {
+        "line": 25,
+        "text": "[StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+      }
+    ]
+  },
+  {
+    "path": "2014/kart_zauberwald_library_regression.log",
+    "markers": [
+      {
+        "line": 20,
+        "text": "[ZauberwaldLibrary] PASS checks=601"
+      }
+    ]
+  },
+  {
+    "path": "2014/puzzle_expansion_regression.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds"
+      }
+    ]
+  },
+  {
+    "path": "action-stage/kart_lasso_production_regression.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild"
+      }
+    ]
+  },
+  {
+    "path": "action-stage/kart_lasso_regression.log",
+    "markers": [
+      {
+        "line": 10,
+        "text": "[KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules"
+      }
+    ]
+  },
+  {
+    "path": "action-stage/kart_menu_flow_regression.log",
+    "markers": [
+      {
+        "line": 35,
+        "text": "[KartMenuFlow] PASS: direct selected Cup start inside compact Android safe insets"
+      },
+      {
+        "line": 36,
+        "text": "[KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+      }
+    ]
+  },
+  {
+    "path": "action-stage/kart_spatial_menu_regression.log",
+    "markers": [
+      {
+        "line": 61,
+        "text": "[SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11"
+      }
+    ]
+  },
+  {
+    "path": "action-stage/kart_roadside_action_regression.log",
+    "markers": [
+      {
+        "line": 26,
+        "text": "[RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/build_nextgen_play_regression-headless.log",
+    "markers": [
+      {
+        "line": 12,
+        "text": "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      }
+    ]
+  },
+  {
+    "path": "legacy-gameplay.log",
+    "markers": [
+      {
+        "line": 2437,
+        "text": "[KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award"
+      },
+      {
+        "line": 2547,
+        "text": "[HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return"
+      },
+      {
+        "line": 2590,
+        "text": "[HostBridgeTests] PASS: native options, lifecycle save/pause, Back, resume identity, reward retry/once, games/learn return, fresh restart"
+      },
+      {
+        "line": 2600,
+        "text": "[HostBridgeTests] PASS: jump native reward, question pause, save/resume identity, Back to games"
+      },
+      {
+        "line": 2647,
+        "text": "[JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume"
+      },
+      {
+        "line": 2666,
+        "text": "[LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne"
+      },
+      {
+        "line": 2694,
+        "text": "[LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers"
+      },
+      {
+        "line": 2704,
+        "text": "[LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day"
+      },
+      {
+        "line": 2717,
+        "text": "[CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches"
+      },
+      {
+        "line": 2748,
+        "text": "[KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes"
+      },
+      {
+        "line": 2821,
+        "text": "[KartSplit] PASS: Wolkenweg raised 2.20 m while main lane stayed at 0.00 m"
+      },
+      {
+        "line": 2823,
+        "text": "[KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route"
+      },
+      {
+        "line": 2841,
+        "text": "[KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere"
+      },
+      {
+        "line": 2854,
+        "text": "[KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas"
+      },
+      {
+        "line": 2869,
+        "text": "[KartLandingFit] PASS: all five choices readable above START on 4 Android sizes"
+      },
+      {
+        "line": 2897,
+        "text": "[LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle"
+      },
+      {
+        "line": 2915,
+        "text": "[KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows"
+      },
+      {
+        "line": 3153,
+        "text": "[KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation"
+      },
+      {
+        "line": 3194,
+        "text": "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds"
+      },
+      {
+        "line": 3225,
+        "text": "[GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp"
+      },
+      {
+        "line": 3253,
+        "text": "[CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/build_settlement_play_regression-headless.log",
+    "markers": [
+      {
+        "line": 26,
+        "text": "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/build_nextgen_play_regression-rendered.log",
+    "markers": [
+      {
+        "line": 19,
+        "text": "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/build_settlement_play_regression-rendered.log",
+    "markers": [
+      {
+        "line": 33,
+        "text": "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/build_settlement_regression-headless.log",
+    "markers": [
+      {
+        "line": 3,
+        "text": "[Settlement] PASS 194 checks; mirrored complete AI campaign 22 days"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/build_transform_regression-headless.log",
+    "markers": [
+      {
+        "line": 10,
+        "text": "[BuildTransform] PASS checks=38: identity, rotation, support graph, atomic history and v1 saves"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/cards_table_capture-rendered.log",
+    "markers": []
+  },
+  {
+    "path": "nextgen/cards_table_regression-headless.log",
+    "markers": []
+  },
+  {
+    "path": "nextgen/creative_nextgen_environment_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[CreativeNextgenEnvironment] PASS checks=35: original textures, bounded cloud batch, preserved quality and no added lights"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/creative_nextgen_environment_regression-rendered.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[CreativeNextgenEnvironment] PASS checks=53: original textures, bounded cloud batch, preserved quality and no added lights"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/jump_expeditions_regression-headless.log",
+    "markers": [
+      {
+        "line": 105,
+        "text": "[JumpExpeditions] PASS 29 checks: three physical courses, four stages, real menu selection and preserved progress"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/jump_nextgen_capture-rendered.log",
+    "markers": [
+      {
+        "line": 38,
+        "text": "[JumpNextgenCapture] PASS 80 checks, 16 actual renderer frames and native two-finger jumps"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/jump_nextgen_regression-headless.log",
+    "markers": [
+      {
+        "line": 54,
+        "text": "[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/kart_nextgen_garage_regression-headless.log",
+    "markers": [
+      {
+        "line": 14,
+        "text": "[NextGenGarage] PASS 93 checks; captures=0"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/kart_nextgen_garage_regression-rendered.log",
+    "markers": [
+      {
+        "line": 21,
+        "text": "[NextGenGarage] PASS 118 checks; captures=12"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/kart_player_full_route_regression-rendered.log",
+    "markers": [
+      {
+        "line": 68,
+        "text": "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/kart_track_pass_regression-headless.log",
+    "markers": [
+      {
+        "line": 20,
+        "text": "[KartTrackPass] PASS 104 checks"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/learning_world_capture-rendered.log",
+    "markers": [
+      {
+        "line": 95,
+        "text": "[LearningCapture] PASS captures=25"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/learning_world_regression-headless.log",
+    "markers": [
+      {
+        "line": 136,
+        "text": "[LearningWorld] PASS checks=5340"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/lumo_65bone_walk_gait_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[LumoGait] PASS: real 65-bone alternating thigh/foot/toe/arm movement, pause, calm mode, neutral reset"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/lumo_original_jump_visual_regression-headless.log",
+    "markers": [
+      {
+        "line": 16,
+        "text": "[JumpOriginalLumo] PASS: original 65-bone GLB visible, grounded, moving, paused and resumed"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/lumo_teacher_pose_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/rhythm_tour_play_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/rhythm_tour_play_regression-rendered.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[RhythmTourPlay] PASS checks=93: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      }
+    ]
+  },
+  {
+    "path": "nextgen/rhythm_tour_regression-headless.log",
+    "markers": [
+      {
+        "line": 10,
+        "text": "[RhythmTour] PASS checks=2118: distinct fair charts, three difficulties, non-perfect campaign and additive saves"
+      }
+    ]
+  },
+  {
+    "path": "project.log",
+    "markers": [
+      {
+        "line": 3,
+        "text": "[PASS] project: project.godot"
+      },
+      {
+        "line": 4,
+        "text": "[PASS] dir: scenes/app/"
+      },
+      {
+        "line": 5,
+        "text": "[PASS] dir: scenes/hub/"
+      },
+      {
+        "line": 6,
+        "text": "[PASS] dir: scenes/characters/"
+      },
+      {
+        "line": 7,
+        "text": "[PASS] dir: scenes/games/"
+      },
+      {
+        "line": 8,
+        "text": "[PASS] dir: scripts/app/"
+      },
+      {
+        "line": 9,
+        "text": "[PASS] dir: scripts/camera/"
+      },
+      {
+        "line": 10,
+        "text": "[PASS] dir: scripts/characters/"
+      },
+      {
+        "line": 11,
+        "text": "[PASS] dir: scripts/hub/"
+      },
+      {
+        "line": 12,
+        "text": "[PASS] dir: scripts/systems/"
+      },
+      {
+        "line": 13,
+        "text": "[PASS] dir: scripts/ui/"
+      },
+      {
+        "line": 14,
+        "text": "[PASS] dir: assets/manifests/"
+      },
+      {
+        "line": 15,
+        "text": "[PASS] dir: assets/models/"
+      },
+      {
+        "line": 16,
+        "text": "[PASS] dir: assets/materials/"
+      },
+      {
+        "line": 17,
+        "text": "[PASS] dir: assets/textures/"
+      },
+      {
+        "line": 18,
+        "text": "[PASS] dir: assets/shaders/"
+      },
+      {
+        "line": 19,
+        "text": "[PASS] dir: tools/"
+      },
+      {
+        "line": 20,
+        "text": "[PASS] scene: scenes/app/boot.tscn"
+      },
+      {
+        "line": 21,
+        "text": "[PASS] scene: scenes/app/intro_3d.tscn"
+      },
+      {
+        "line": 22,
+        "text": "[PASS] scene: scenes/app/home_3d.tscn"
+      },
+      {
+        "line": 23,
+        "text": "[PASS] scene: scenes/app/loading_screen.tscn"
+      },
+      {
+        "line": 24,
+        "text": "[PASS] scene: scenes/hub/hub_portal.tscn"
+      },
+      {
+        "line": 25,
+        "text": "[PASS] scene: scenes/hub/star_field.tscn"
+      },
+      {
+        "line": 26,
+        "text": "[PASS] scene: scenes/characters/lumo_companion.tscn"
+      },
+      {
+        "line": 27,
+        "text": "[PASS] scene: scenes/default_env.tres"
+      },
+      {
+        "line": 28,
+        "text": "[PASS] script: scripts/app/app_boot.gd"
+      },
+      {
+        "line": 29,
+        "text": "[PASS] script: scripts/app/scene_router.gd"
+      },
+      {
+        "line": 30,
+        "text": "[PASS] script: scripts/app/mobile_runtime.gd"
+      },
+      {
+        "line": 31,
+        "text": "[PASS] script: scripts/app/intro_controller.gd"
+      },
+      {
+        "line": 32,
+        "text": "[PASS] script: scripts/app/home_controller.gd"
+      },
+      {
+        "line": 33,
+        "text": "[PASS] script: scripts/camera/mobile_touch_camera.gd"
+      },
+      {
+        "line": 34,
+        "text": "[PASS] script: scripts/characters/lumo_companion.gd"
+      },
+      {
+        "line": 35,
+        "text": "[PASS] script: scripts/hub/portal_interaction.gd"
+      },
+      {
+        "line": 36,
+        "text": "[PASS] script: scripts/hub/star_field.gd"
+      },
+      {
+        "line": 37,
+        "text": "[PASS] script: scripts/systems/performance_manager.gd"
+      },
+      {
+        "line": 38,
+        "text": "[PASS] script: scripts/systems/asset_loader.gd"
+      },
+      {
+        "line": 39,
+        "text": "[PASS] script: scripts/systems/event_bus.gd"
+      },
+      {
+        "line": 40,
+        "text": "[PASS] script: scripts/systems/settings_store.gd"
+      },
+      {
+        "line": 41,
+        "text": "[PASS] script: scripts/systems/audio_manager.gd"
+      },
+      {
+        "line": 42,
+        "text": "[PASS] script: scripts/ui/mobile_safe_area.gd"
+      },
+      {
+        "line": 43,
+        "text": "[PASS] autoload: EventBus"
+      },
+      {
+        "line": 44,
+        "text": "[PASS] autoload: PerformanceManager"
+      },
+      {
+        "line": 45,
+        "text": "[PASS] autoload: SceneRouter"
+      },
+      {
+        "line": 46,
+        "text": "[PASS] autoload: MobileRuntime"
+      },
+      {
+        "line": 47,
+        "text": "[PASS] autoload: AssetLoader"
+      },
+      {
+        "line": 48,
+        "text": "[PASS] autoload: SettingsStore"
+      },
+      {
+        "line": 49,
+        "text": "[PASS] autoload: AudioManager"
+      },
+      {
+        "line": 50,
+        "text": "[PASS] manifest: valid JSON, 6 model entries"
+      },
+      {
+        "line": 57,
+        "text": "[PASS] asset-pack: present: assets/generated/lumo3d_assets"
+      },
+      {
+        "line": 58,
+        "text": "[PASS] asset-pack-manifest: valid JSON, 175 assets in counts"
+      },
+      {
+        "line": 59,
+        "text": "[PASS] asset-pack-png-count: 176 PNG files"
+      },
+      {
+        "line": 60,
+        "text": "[PASS] asset-pack-category: textures/albedo: 12 PNGs"
+      },
+      {
+        "line": 61,
+        "text": "[PASS] asset-pack-category: textures/normal: 12 PNGs"
+      },
+      {
+        "line": 62,
+        "text": "[PASS] asset-pack-category: textures/emission: 23 PNGs"
+      },
+      {
+        "line": 63,
+        "text": "[PASS] asset-pack-category: particles: 32 PNGs"
+      },
+      {
+        "line": 64,
+        "text": "[PASS] asset-pack-category: billboards: 28 PNGs"
+      },
+      {
+        "line": 65,
+        "text": "[PASS] asset-pack-category: portals: 20 PNGs"
+      },
+      {
+        "line": 66,
+        "text": "[PASS] asset-pack-category: sky_gradients: 12 PNGs"
+      },
+      {
+        "line": 67,
+        "text": "[PASS] asset-pack-category: ui_panels: 16 PNGs"
+      },
+      {
+        "line": 68,
+        "text": "[PASS] asset-pack-category: masks: 20 PNGs"
+      },
+      {
+        "line": 69,
+        "text": "[PASS] generated-material: mat_grass_magic.tres"
+      },
+      {
+        "line": 70,
+        "text": "[PASS] generated-material: mat_stone_warm.tres"
+      },
+      {
+        "line": 71,
+        "text": "[PASS] generated-material: mat_wood_warm.tres"
+      },
+      {
+        "line": 72,
+        "text": "[PASS] generated-material: mat_hologrid_cyan.tres"
+      },
+      {
+        "line": 73,
+        "text": "[PASS] generated-material: mat_crystal_floor.tres"
+      },
+      {
+        "line": 74,
+        "text": "[PASS] generated-material: mat_portal_learn.tres"
+      },
+      {
+        "line": 75,
+        "text": "[PASS] generated-material: mat_portal_games.tres"
+      },
+      {
+        "line": 76,
+        "text": "[PASS] generated-material: mat_portal_parent.tres"
+      },
+      {
+        "line": 77,
+        "text": "[PASS] generated-material: mat_sky_backdrop.tres"
+      },
+      {
+        "line": 78,
+        "text": "[PASS] generated-material: mat_billboard_crystal.tres"
+      },
+      {
+        "line": 79,
+        "text": "[PASS] generated-material: mat_billboard_book.tres"
+      },
+      {
+        "line": 80,
+        "text": "[PASS] generated-material: mat_particle_gold.tres"
+      },
+      {
+        "line": 81,
+        "text": "[PASS] central-manifest: textures: 12 IDs"
+      },
+      {
+        "line": 82,
+        "text": "[PASS] central-manifest: normal_maps: 12 IDs"
+      },
+      {
+        "line": 83,
+        "text": "[PASS] central-manifest: emission_maps: 23 IDs"
+      },
+      {
+        "line": 84,
+        "text": "[PASS] central-manifest: particles: 32 IDs"
+      },
+      {
+        "line": 85,
+        "text": "[PASS] central-manifest: billboards: 28 IDs"
+      },
+      {
+        "line": 86,
+        "text": "[PASS] central-manifest: portals: 20 IDs"
+      },
+      {
+        "line": 87,
+        "text": "[PASS] central-manifest: sky: 12 IDs"
+      },
+      {
+        "line": 88,
+        "text": "[PASS] central-manifest: ui: 16 IDs"
+      },
+      {
+        "line": 89,
+        "text": "[PASS] central-manifest: masks: 20 IDs"
+      },
+      {
+        "line": 90,
+        "text": "[PASS] central-manifest: materials: 13 IDs"
+      },
+      {
+        "line": 91,
+        "text": "[PASS] home-island-material: home_controller references generated island material"
+      },
+      {
+        "line": 92,
+        "text": "[PASS] home-sky: home_controller references mat_sky_backdrop"
+      },
+      {
+        "line": 93,
+        "text": "[PASS] home-billboards: home_controller references billboard materials"
+      },
+      {
+        "line": 94,
+        "text": "[PASS] home-portal-materials: all 3 portal materials wired"
+      },
+      {
+        "line": 95,
+        "text": "[PASS] portal-content: scenes/games/star_collect.tscn"
+      },
+      {
+        "line": 96,
+        "text": "[PASS] portal-content: scenes/games/learn_card.tscn"
+      },
+      {
+        "line": 97,
+        "text": "[PASS] portal-content: scenes/games/parent_settings.tscn"
+      },
+      {
+        "line": 98,
+        "text": "[PASS] portal-content: scripts/games/star_collect_game.gd"
+      },
+      {
+        "line": 99,
+        "text": "[PASS] portal-content: scripts/games/learn_card.gd"
+      },
+      {
+        "line": 100,
+        "text": "[PASS] portal-content: scripts/games/parent_settings.gd"
+      },
+      {
+        "line": 101,
+        "text": "[PASS] lumo-reference: 10 PNG sheets in reference/"
+      },
+      {
+        "line": 102,
+        "text": "[PASS] lumo-reference-manifest: lumo_reference_manifest.json valide"
+      },
+      {
+        "line": 103,
+        "text": "[PASS] lumo-system: scenes/characters/lumo/lumo_character.tscn"
+      },
+      {
+        "line": 104,
+        "text": "[PASS] lumo-system: scenes/characters/lumo/lumo_showcase.tscn"
+      },
+      {
+        "line": 105,
+        "text": "[PASS] lumo-system: scripts/characters/lumo/lumo_character_controller.gd"
+      },
+      {
+        "line": 106,
+        "text": "[PASS] lumo-system: scripts/characters/lumo/lumo_behavior_controller.gd"
+      },
+      {
+        "line": 107,
+        "text": "[PASS] lumo-system: scripts/characters/lumo/lumo_animation_state.gd"
+      },
+      {
+        "line": 108,
+        "text": "[PASS] lumo-system: scripts/characters/lumo/lumo_eye_system.gd"
+      },
+      {
+        "line": 109,
+        "text": "[PASS] lumo-system: scripts/characters/lumo/lumo_mouth_system.gd"
+      },
+      {
+        "line": 110,
+        "text": "[PASS] lumo-system: scripts/characters/lumo/lumo_reference_board.gd"
+      },
+      {
+        "line": 111,
+        "text": "[PASS] lumo-system: scripts/app/showcase_controller.gd"
+      },
+      {
+        "line": 112,
+        "text": "[PASS] no-flutter: absent: pubspec.yaml"
+      },
+      {
+        "line": 113,
+        "text": "[PASS] no-flutter: absent: lib/main.dart"
+      },
+      {
+        "line": 114,
+        "text": "[PASS] tool: tools/build_web.sh"
+      },
+      {
+        "line": 116,
+        "text": "[PASS] tool: tools/build_android.sh"
+      },
+      {
+        "line": 117,
+        "text": "[PASS] tool: tools/setup_android_keystore.sh"
+      },
+      {
+        "line": 118,
+        "text": "[PASS] tool: tools/install_android.sh"
+      },
+      {
+        "line": 119,
+        "text": "[PASS] tool: tools/logcat_lumo.sh"
+      },
+      {
+        "line": 120,
+        "text": "[PASS] tool: tools/serve_web.py"
+      },
+      {
+        "line": 121,
+        "text": "[PASS] tool: tools/fetch_assets.py"
+      },
+      {
+        "line": 122,
+        "text": "[PASS] tool: tools/validate_project.py"
+      },
+      {
+        "line": 123,
+        "text": "[PASS] docs: CLAUDE.md enthaelt 'mobile'"
+      },
+      {
+        "line": 124,
+        "text": "[PASS] docs: CLAUDE.md enthaelt 'boot'"
+      },
+      {
+        "line": 125,
+        "text": "[PASS] docs: CLAUDE.md enthaelt 'home'"
+      },
+      {
+        "line": 126,
+        "text": "[PASS] docs: CLAUDE.md enthaelt 'performance'"
+      },
+      {
+        "line": 128,
+        "text": "SUMMARY: 117 PASS / 7 WARN / 0 FAIL"
+      },
+      {
+        "line": 129,
+        "text": "RESULT: PASS (7 warnings)"
+      }
+    ]
+  },
+  {
+    "path": "studio/learning_sharing_capture-rendered.log",
+    "markers": [
+      {
+        "line": 48,
+        "text": "[LearningSharingCapture] PASS captures=6"
+      }
+    ]
+  },
+  {
+    "path": "studio/learning_sharing_regression-headless.log",
+    "markers": [
+      {
+        "line": 23,
+        "text": "[LearningSharing] PASS checks=1811"
+      }
+    ]
+  },
+  {
+    "path": "studio/lumo_studio_motion_capture-rendered.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[LumoStudioCapture] PASS 8 real renderer frames; frozen baseline and current IK clips"
+      }
+    ]
+  },
+  {
+    "path": "studio/lumo_studio_motion_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[LumoStudioMotion] PASS checks=1046 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+      }
+    ]
+  },
+  {
+    "path": "studio/puzzle_rotation_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      }
+    ]
+  },
+  {
+    "path": "studio/learning_studio_regression-headless.log",
+    "markers": [
+      {
+        "line": 28,
+        "text": "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+      }
+    ]
+  },
+  {
+    "path": "studio/puzzle_rotation_regression-rendered.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      }
+    ]
+  },
+  {
+    "path": "studio/treasure_exploration_regression-headless.log",
+    "markers": [
+      {
+        "line": 11,
+        "text": "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      }
+    ]
+  },
+  {
+    "path": "studio/treasure_exploration_regression-rendered.log",
+    "markers": [
+      {
+        "line": 18,
+        "text": "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/kart_air_trick_regression.log",
+    "markers": [
+      {
+        "line": 10,
+        "text": "[AirTrick] PASS: 20 checks"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/kart_garage_presentation_regression.log",
+    "markers": [
+      {
+        "line": 22,
+        "text": "[GaragePresentation] PASS 66 checks"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/kart_harbor_race_hook_regression.log",
+    "markers": [
+      {
+        "line": 20,
+        "text": "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/kart_sonnenhafen_streetfronts_regression.log",
+    "markers": [
+      {
+        "line": 20,
+        "text": "[Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+    "markers": [
+      {
+        "line": 13,
+        "text": "[StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/lumo_attention_landing_regression.log",
+    "markers": []
+  },
+  {
+    "path": "technical-art/lumo_gesture_contact_regression.log",
+    "markers": [
+      {
+        "line": 15,
+        "text": "[LumoGestureContact] PASS checks=200 failures=0"
+      }
+    ]
+  },
+  {
+    "path": "technical-art/lumo_kart_tick_cadence_regression.log",
+    "markers": [
+      {
+        "line": 19,
+        "text": "[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+      }
+    ]
+  }
+]

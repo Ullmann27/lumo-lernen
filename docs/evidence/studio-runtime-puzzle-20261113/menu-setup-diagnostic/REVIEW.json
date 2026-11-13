@@ -1,0 +1,47 @@
+{
+  "status": "nonfatal_existing_menu_dispatch_error_reproduced",
+  "source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "actual_touch_events": "4 count cycle releases and 1 rotation-mode release before recording",
+  "observed_errors": 5,
+  "error": "Condition !is_inside_tree() is true. Returning false, can_process, synchronous input dispatch",
+  "source_path": "scripts/creative/puzzle_world.gd:_next_count/_toggle_rotation_mode -> _show_selection -> _clear_menu",
+  "actual_gameplay": "240 consecutive renderer frames, two quarter turns and one correct placement; process exit 0 but strict movie wrapper rejects logged ERROR",
+  "cause_scope": "Button removed from scene tree during its release callback; no crash or wrong game state observed. Android effect not tested. Product unchanged.",
+  "files": [
+    {
+      "path": "record_puzzle_runtime.gd",
+      "sha256": "6234f875a6dbe556be9e810053f3bcf457a9ec18ed6a8047ade2034d415bd810",
+      "bytes": 8963
+    },
+    {
+      "path": "record_runtime_movie.py",
+      "sha256": "6e5d2a4bb4e138a8974c4e53cf6fbbdf1fa54c6e14528010df5e0659eed2b99f",
+      "bytes": 7964
+    },
+    {
+      "path": "godot.log",
+      "sha256": "3dcf929953dfa77a0a7a30a573473f5186565cb63a114c70a2121dd2a3ac111a",
+      "bytes": 4017
+    },
+    {
+      "path": "renderer-launcher.log",
+      "sha256": "87b6dbfef862218b73f8750940553b0aa19aa6286bd6568f6def6f70da822820",
+      "bytes": 458
+    },
+    {
+      "path": "run.json",
+      "sha256": "c8f1df05b199b8bcde7dbbe242368f9aecf839b400c39b8cb193ce3fcf7c88fb",
+      "bytes": 514
+    },
+    {
+      "path": "runtime-frames.json",
+      "sha256": "ebf1feb0a325dbe77fabe59a30551bdcf9e9344fbefd9dff2d934b3e662714db",
+      "bytes": 160512
+    },
+    {
+      "path": "source-manifest.json",
+      "sha256": "8e1624e6797ef12d44e05f2cafdbede948dcc9640ab975cc3db6e32b9613021b",
+      "bytes": 9465
+    }
+  ]
+}

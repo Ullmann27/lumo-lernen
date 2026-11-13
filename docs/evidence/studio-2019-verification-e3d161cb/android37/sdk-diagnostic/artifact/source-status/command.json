@@ -1,0 +1,29 @@
+{
+  "name": "source-status",
+  "argv": [
+    "git",
+    "-C",
+    "/home/runner/work/lumo-lernen/lumo-lernen",
+    "status",
+    "--porcelain=v1"
+  ],
+  "environment_overrides": {},
+  "started_utc": "2026-11-13T17:47:46.379674+00:00",
+  "timeout_seconds": 30,
+  "exit_code": 0,
+  "timed_out": false,
+  "start_error": null,
+  "finished_utc": "2026-11-13T17:47:46.644053+00:00",
+  "elapsed_seconds": 0.26439450300000544,
+  "success": true,
+  "stdout": {
+    "path": "source-status/stdout.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "stderr": {
+    "path": "source-status/stderr.txt",
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

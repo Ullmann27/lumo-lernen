@@ -1,0 +1,23 @@
+{
+  "checked_at_utc": "2026-11-13T17:37:52.714788+00:00",
+  "artifact_id": 14060323809,
+  "host_source": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "apk_sha256": "c8f3f15a2e9eb77a1f03152f849f0e73211de91cd6f4299fb6555e557735a3d1",
+  "apk_bytes": 322123041,
+  "observed_abis": [
+    "arm64-v8a"
+  ],
+  "embedded_source_metadata": {
+    "repository": "https://github.com/Ullmann27/lumo-godot.git",
+    "revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "engine": "4.6.3",
+    "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+    "bytes": 66217416
+  },
+  "pck_header_magic_valid": true,
+  "pck_bytes": 66217416,
+  "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+  "matches_actual_ci_build_verification": true,
+  "local_scope": "Original ARM64 artifact and APK/PCK byte identity. Package/version/signature/16-KiB alignment were verified by the actual successful CI job on these identical APK bytes; no second local apksigner execution or local x86 binary check is claimed. No Android runtime approval from this check."
+}

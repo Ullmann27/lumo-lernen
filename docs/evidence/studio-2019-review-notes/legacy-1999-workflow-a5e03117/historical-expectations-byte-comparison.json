@@ -1,0 +1,34 @@
+[
+  {
+    "path": "pubspec.yaml",
+    "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "git_blob": "2d7d9b0a655be15f466a3f250c2226099e363458",
+    "bytes": 2637,
+    "sha256": "8d2ee4ad44ef4fbc18ad33a18bd28f49b41080ad6ee0bf37ce524007c40cf333",
+    "matches_both_ci_apk_verifiers": true
+  },
+  {
+    "path": "config/godot-source.json",
+    "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "git_blob": "4847a71640d1230f0a7b67e07c7cc5c606649e58",
+    "bytes": 145,
+    "sha256": "42f707ab60020b545e642a70fa8c392156ef27bb589713c273a4b228e5f540a4",
+    "matches_both_ci_apk_verifiers": true
+  },
+  {
+    "path": "config/lumo-offline-voice.json",
+    "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "git_blob": "200b67029cd4e19f27118f77b52e683c49461a6b",
+    "bytes": 1877,
+    "sha256": "9d0593c11a9dfa3db5683feedbc692cb5b79db6799b05a49b044c4226849fd12",
+    "matches_both_ci_apk_verifiers": true
+  },
+  {
+    "path": "assets/audio/voice/lumo_free/catalog.json",
+    "revision": "c60bff1a9e7a6bdcb077b5f3d5886fcee8fe4eaf",
+    "git_blob": "a0fe8fe81d3b661ae70ff9d4828502b7f8c3a315",
+    "bytes": 64441,
+    "sha256": "4d2eee9fe4aaada720d029f2c9161c2fb29773bb1bc2bf768d8a66f6b81f428c",
+    "matches_both_ci_apk_verifiers": true
+  }
+]

@@ -1,0 +1,84 @@
+{
+  "activity": {
+    "a": 12,
+    "b": 3,
+    "kind": "equal_sharing"
+  },
+  "captures": [
+    {
+      "complete": false,
+      "counts": [
+        0,
+        0,
+        0
+      ],
+      "file": "sharing-start-1280x720.png",
+      "height": 720,
+      "placed": 0,
+      "width": 1280
+    },
+    {
+      "complete": false,
+      "counts": [
+        1,
+        1,
+        1
+      ],
+      "file": "sharing-first-round-1280x720.png",
+      "height": 720,
+      "placed": 3,
+      "width": 1280
+    },
+    {
+      "complete": true,
+      "counts": [
+        4,
+        4,
+        4
+      ],
+      "file": "sharing-complete-1280x720.png",
+      "height": 720,
+      "placed": 12,
+      "width": 1280
+    },
+    {
+      "complete": false,
+      "counts": [
+        0,
+        0,
+        0
+      ],
+      "file": "sharing-start-412x915.png",
+      "height": 915,
+      "placed": 0,
+      "width": 412
+    },
+    {
+      "complete": false,
+      "counts": [
+        1,
+        1,
+        1
+      ],
+      "file": "sharing-first-round-412x915.png",
+      "height": 915,
+      "placed": 3,
+      "width": 412
+    },
+    {
+      "complete": true,
+      "counts": [
+        4,
+        4,
+        4
+      ],
+      "file": "sharing-complete-412x915.png",
+      "height": 915,
+      "placed": 12,
+      "width": 412
+    }
+  ],
+  "display": "X11",
+  "failures": 0,
+  "renderer": "gl_compatibility"
+}

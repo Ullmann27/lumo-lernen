@@ -1,0 +1,34 @@
+[
+  {
+    "path": ".github/workflows/lumo-1999-update-gate.yml",
+    "revision": "a5e03117158c157ba3154083db25947724e67727",
+    "git_blob": "744f805b60382529b329aa6070d3863a8ac0dea5",
+    "bytes": 6865,
+    "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1",
+    "saved_original_source": "source/lumo-1999-update-gate.yml"
+  },
+  {
+    "path": "scripts/verify_unified_apk.py",
+    "revision": "a5e03117158c157ba3154083db25947724e67727",
+    "git_blob": "455a69423b887843efc4477568d5f2cd094d6088",
+    "bytes": 12075,
+    "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+    "saved_original_source": "source/verify_unified_apk.py"
+  },
+  {
+    "path": "scripts/verify_android_apk.py",
+    "revision": "a5e03117158c157ba3154083db25947724e67727",
+    "git_blob": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64",
+    "bytes": 3688,
+    "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+    "saved_original_source": "source/verify_android_apk.py"
+  },
+  {
+    "path": "scripts/LumoApkCertificateVerifier.java",
+    "revision": "a5e03117158c157ba3154083db25947724e67727",
+    "git_blob": "2267e553326a4034677a3a94c17fda71d7e543e0",
+    "bytes": 2007,
+    "sha256": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+    "saved_original_source": "source/LumoApkCertificateVerifier.java"
+  }
+]

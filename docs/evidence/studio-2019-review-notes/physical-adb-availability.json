@@ -1,0 +1,16 @@
+{
+  "checked_at_utc": "2026-11-13T16:34:57.843046+00:00",
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/android-probe-venv/lib/python3.12/site-packages/adbutils/binaries/adb",
+    "devices",
+    "-l"
+  ],
+  "exit_code": 0,
+  "observed_stdout": "List of devices attached\n\n",
+  "accessible_devices": [],
+  "adb_binary_sha256": "372d800c04c3272729afade8a85d95a70fb1c7e74062d9ab17a92eb7b618096c",
+  "daemon_started_by_this_check": true,
+  "owned_daemon_stopped_after_inventory": true,
+  "apk_installed_by_this_check": false,
+  "scope": "No Android device or emulator is reachable through this local ADB inventory. Remote GitHub emulators are separate. This provides no physical Fold7 or performance result."
+}

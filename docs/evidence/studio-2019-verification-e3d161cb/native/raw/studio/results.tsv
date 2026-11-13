@@ -1,0 +1,10 @@
+probe	mode	result
+learning_sharing_regression	headless	PASS
+learning_studio_regression	headless	PASS
+lumo_studio_motion_regression	headless	PASS
+puzzle_rotation_regression	headless	PASS
+treasure_exploration_regression	headless	PASS
+learning_sharing_capture	rendered	PASS
+lumo_studio_motion_capture	rendered	PASS
+puzzle_rotation_regression	rendered	PASS
+treasure_exploration_regression	rendered	PASS

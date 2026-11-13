@@ -1,0 +1,74 @@
+[
+  {
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 36187,
+    "sha256": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98",
+    "git_blob": "691b66740fc1a9f1f2e74fef41fa4f95dd8222c5",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "scripts/build_unified_apk.sh",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 4563,
+    "sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5",
+    "git_blob": "44f6957c904d074e5a0ce2c604b50ad546c1ecf0",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "scripts/build_version.py",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 1099,
+    "sha256": "fda7fd32c7a61de047702dd9b59a63bd7dde79ba584a457e63467a777cfc0a31",
+    "git_blob": "f73182ab00069c5b39282d2fb4ba3e58788f5e45",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "scripts/export_embedded_game.py",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 8567,
+    "sha256": "fcef35e68e8487fa16357161adec6550b9c3c8c0c7bb8f84574ef7963f8a3fcc",
+    "git_blob": "00915781968bb61f5d1ce1923529fb14a35cce19",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "scripts/verify_unified_apk.py",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 9572,
+    "sha256": "20ac42965bc2de166d59218d5feb6d062c35d0c2197662fa530677cad43ed8ed",
+    "git_blob": "c2e5bd64a19bd9f09324dd865784b2721926c9db",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "scripts/verify_android_apk.py",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 3688,
+    "sha256": "1914f1294f618653c23ab54d9bdaf3e69cf74e4050c2a7ade97486345addbbdc",
+    "git_blob": "02b08f5aff49e9dc71c30ff9f37fa686c4d73d64",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "scripts/LumoApkCertificateVerifier.java",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 2007,
+    "sha256": "caf87af2279cf8d6d453487b39bc240e8a56feb4d021e0c221c8f48064bd82ca",
+    "git_blob": "2267e553326a4034677a3a94c17fda71d7e543e0",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "pubspec.yaml",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 2675,
+    "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+    "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+    "working_file_matches_commit": true
+  },
+  {
+    "path": "config/godot-source.json",
+    "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "bytes": 145,
+    "sha256": "ff76449f25572273d0602fff4bb826e14850030c063bb41d9471e262ffcc8896",
+    "git_blob": "b921f3e68828b4c1f22631628f7c654bc2ef560a",
+    "working_file_matches_commit": true
+  }
+]

@@ -1,0 +1,201 @@
+{
+  "review_version": 1,
+  "reviewer": "Agent A / learning_worlds",
+  "status": "ACTUAL_ANDROID_HOST_COMPILE_PASS_FOR_E3D161CB",
+  "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "source_tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+  "native_pin": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "run_id": 43461547945,
+  "run_attempt": 1,
+  "job_id": 132009668746,
+  "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43461547945/job/132009668746",
+  "job_started_at": "2026-11-13T16:19:44Z",
+  "job_completed_at": "2026-11-13T16:24:48Z",
+  "artifact": {
+    "id": 14057610890,
+    "name": "lumo-studio-2019-android-host-compile",
+    "bytes": 5404,
+    "sha256": "6f9149b6632c7af00e1f1860fd52e70ecbc0b61f7af8e4d0358f89e6c3a9f777",
+    "github_digest": "sha256:6f9149b6632c7af00e1f1860fd52e70ecbc0b61f7af8e4d0358f89e6c3a9f777",
+    "original_zip_verified": true
+  },
+  "compile_gate_source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "path": "scripts/compile_android_host.sh",
+    "github_git_blob_sha1": "58eb1fe98d31155aceda49721092122b85fd4e6b",
+    "computed_git_blob_sha1": "58eb1fe98d31155aceda49721092122b85fd4e6b",
+    "sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4",
+    "bytes": 3231,
+    "url": "https://github.com/Ullmann27/lumo-lernen/blob/e3d161cb2f79b732ac2dbafc2764b151247f018b/scripts/compile_android_host.sh"
+  },
+  "actual_result": {
+    "status": "PASS",
+    "scope": "Actual Android Kotlin/Java compilation only; no APK or runtime claim",
+    "flutter_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+    "godot_aar": "org.godotengine:godot:4.6.3.stable",
+    "onnxruntime_android": "1.23.1",
+    "classes": {
+      "MainActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/MainActivity.class",
+          "bytes": 25349,
+          "sha256": "b36d00d5b44541113fc87d6daa59243386246c7e8ead488f0f042c9c30926eb0"
+        }
+      ],
+      "LumoGameActivity": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoGameActivity.class",
+          "bytes": 12446,
+          "sha256": "993e120923d503aaa4ce675a823fa7fefa1b60706a5beeca279d9b211ae77dc2"
+        }
+      ],
+      "LumoHostPlugin": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoHostPlugin.class",
+          "bytes": 4581,
+          "sha256": "7595e0e2bb3d02318ad7c0ed9266109b07b59a7152e58528d40d29158c8f8ae6"
+        }
+      ],
+      "CardsTableBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsTableBridge.class",
+          "bytes": 20859,
+          "sha256": "434667a7937f5ce3957f6aa3ce5bd9db3ece3c69a10262746fa628e19d3792fa"
+        }
+      ],
+      "CardsAuthorityService": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.class",
+          "bytes": 2674,
+          "sha256": "f9fbd8919270c109d3e52fbe61d2f6fae00f95392a637ebb7eb1799007c74b1d"
+        }
+      ],
+      "CardsAuthorityRegistry": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.class",
+          "bytes": 1797,
+          "sha256": "4f6a6545b1fd26f90b563be7c75628f8223b63edb3be646208a43eff39991b35"
+        }
+      ],
+      "LumoLearningSpeech": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoLearningSpeech.class",
+          "bytes": 11487,
+          "sha256": "6292cefa55e33b540a0c05a24bf085f94c4d6607d7e73390e1ab892d7438b534"
+        }
+      ],
+      "LumoOfflineSpeechBridge": [
+        {
+          "path": "build/app/tmp/kotlin-classes/debug/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechBridge.class",
+          "bytes": 19017,
+          "sha256": "205454042f42b167261e16b9dffd63f8095d752aad0bf7b49feccd8ae840408b"
+        }
+      ],
+      "LumoOfflineSpeechEngine": [
+        {
+          "path": "build/app/intermediates/javac/debug/compileDebugJavaWithJavac/classes/dev/ullmann/lumo/lumo_lernen/LumoOfflineSpeechEngine.class",
+          "bytes": 17178,
+          "sha256": "c9944e14323d807932a1fb3b1cbfa6ac05a2df46f8b88b7ea493755e0a6be5af"
+        }
+      ]
+    }
+  },
+  "original_zip_entries": [
+    {
+      "path": "cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "6169521c4f323700cc5d2e1c98910933e1c7866d5c792ee57dba218927fafc37"
+    },
+    {
+      "path": "compile.log",
+      "bytes": 33778,
+      "sha256": "0ecf701816a1852bdba714f725ad3d58746e0507e45db62a085330406d4cd62d"
+    },
+    {
+      "path": "flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "path": "result.json",
+      "bytes": 2769,
+      "sha256": "10bb6d111cc6724a973f6d093a7d65f550164dc5863e81e9f1bf6c20b970a700"
+    },
+    {
+      "path": "source-sha.txt",
+      "bytes": 41,
+      "sha256": "08bff7f9fac480fd1ec39d3a2531c13e041e3e85cc64ef3d328b9f3624163aab"
+    }
+  ],
+  "evidence_files": [
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/cards-authority-registry.log",
+      "bytes": 1325,
+      "sha256": "6169521c4f323700cc5d2e1c98910933e1c7866d5c792ee57dba218927fafc37"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/compile.log",
+      "bytes": 33778,
+      "sha256": "0ecf701816a1852bdba714f725ad3d58746e0507e45db62a085330406d4cd62d"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/flutter-version.txt",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/github-artifact-metadata.json",
+      "bytes": 763,
+      "sha256": "821b6f6bcc29921e37d7c15b1bb47fd99baac54335c95d1f42d33d05f18bf687"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/github-job-metadata.json",
+      "bytes": 3616,
+      "sha256": "37b02b8c919e746d9cefdc49513a49ae2c8b1060f9b12c05f51d7eed71d7082e"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/job-decoded.log",
+      "bytes": 238670,
+      "sha256": "fffcd66fe475d761c854d9ddbdcdccb9d921e09437a951fc1eac5b8efb3b958d"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/original-github-artifact.zip",
+      "bytes": 5404,
+      "sha256": "6f9149b6632c7af00e1f1860fd52e70ecbc0b61f7af8e4d0358f89e6c3a9f777"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/result.json",
+      "bytes": 2769,
+      "sha256": "10bb6d111cc6724a973f6d093a7d65f550164dc5863e81e9f1bf6c20b970a700"
+    },
+    {
+      "path": "docs/evidence/studio-2019-host-compile-e3d161cb/source-sha.txt",
+      "bytes": 41,
+      "sha256": "08bff7f9fac480fd1ec39d3a2531c13e041e3e85cc64ef3d328b9f3624163aab"
+    }
+  ],
+  "findings": {
+    "compiler_or_host_integration_blocker": false,
+    "gradle_result": "BUILD SUCCESSFUL in 3m 21s",
+    "actual_guard_tests": "6 tests passed in 1.229s in the same new CI job",
+    "required_classes_reported": 9,
+    "source_stamps_match": true,
+    "fresh_job_and_artifact_verified": true,
+    "previous_399e_pass_reused": false,
+    "bytecode_verification_scope": "The exact compile script validates CAFEBABE JVM headers and hashes actual emitted classes on the CI runner. This reviewer independently verified the original new ZIP, source stamps, logs and all nine metadata records; .class bytes are not part of this artifact.",
+    "nonblocking_warnings": [
+      "Existing Kotlin/Gradle deprecations and unnecessary non-null assertions, including LumoLearningSpeech.kt:156/157 and MainActivity.kt:259. No compilation failure."
+    ]
+  },
+  "scope": "New actual Kotlin/Java host compilation at exactly e3d161cb2f79b732ac2dbafc2764b151247f018b after the update-gate fix. Distinct run, job and ZIP from the earlier 399e compilation.",
+  "not_claimed": [
+    "Assembled release APK or R8 acceptance",
+    "Actual API35/API37 gameplay or update acceptance",
+    "Physical Fold7/GPU frame times or 60 FPS",
+    "Overall workflow or release approval",
+    "Compilation of any later commit"
+  ],
+  "new_tests_or_ci_started_by_reviewer": false,
+  "product_files_changed_by_reviewer": false
+}

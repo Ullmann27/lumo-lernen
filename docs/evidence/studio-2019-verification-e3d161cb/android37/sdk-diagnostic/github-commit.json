@@ -1,0 +1,125 @@
+{
+  "sha": "31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+  "node_id": "C_kwDOSNzcp9oAKDMxYjZjMWQ2OWU1YWMwYjU4OGRmOTFiZDhiMzQxNDllMTQyZTA1ZDQ",
+  "commit": {
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-13T17:47:19Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-13T17:47:19Z"
+    },
+    "message": "diagnostics: inventory actual Android 17 SDK packages without changing acceptance",
+    "tree": {
+      "sha": "8d4b6f282268218542e7c7bbc4efcfb0192585d8",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/8d4b6f282268218542e7c7bbc4efcfb0192585d8"
+    },
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+  "comments_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/comments",
+  "author": {
+    "login": "Ullmann27",
+    "id": 64243701,
+    "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+    "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Ullmann27",
+    "html_url": "https://github.com/Ullmann27",
+    "followers_url": "https://api.github.com/users/Ullmann27/followers",
+    "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+    "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+    "repos_url": "https://api.github.com/users/Ullmann27/repos",
+    "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "committer": {
+    "login": "Ullmann27",
+    "id": 64243701,
+    "node_id": "MDQ6VXNlcjY0MjQzNzAx",
+    "avatar_url": "https://avatars.githubusercontent.com/u/64243701?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Ullmann27",
+    "html_url": "https://github.com/Ullmann27",
+    "followers_url": "https://api.github.com/users/Ullmann27/followers",
+    "following_url": "https://api.github.com/users/Ullmann27/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Ullmann27/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Ullmann27/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Ullmann27/subscriptions",
+    "organizations_url": "https://api.github.com/users/Ullmann27/orgs",
+    "repos_url": "https://api.github.com/users/Ullmann27/repos",
+    "events_url": "https://api.github.com/users/Ullmann27/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Ullmann27/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false
+  },
+  "parents": [
+    {
+      "sha": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/commits/e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/e3d161cb2f79b732ac2dbafc2764b151247f018b"
+    }
+  ],
+  "stats": {
+    "total": 305,
+    "additions": 305,
+    "deletions": 0
+  },
+  "files": [
+    {
+      "sha": "70da979d9046d42426276ad54da70d458bd1f583",
+      "filename": ".github/workflows/lumo-android17-sdk-diagnostic.yml",
+      "status": "added",
+      "additions": 44,
+      "deletions": 0,
+      "changes": 44,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/.github%2Fworkflows%2Flumo-android17-sdk-diagnostic.yml",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/.github%2Fworkflows%2Flumo-android17-sdk-diagnostic.yml",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/.github%2Fworkflows%2Flumo-android17-sdk-diagnostic.yml?ref=31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+      "patch": "@@ -0,0 +1,44 @@\n+name: Android 17 SDK package inventory\n+\n+on:\n+  push:\n+    branches: [chatgpt/lumo-android17-sdk-diagnostic-20261113]\n+    paths:\n+      - .github/workflows/lumo-android17-sdk-diagnostic.yml\n+      - scripts/diagnose_android17_sdk.py\n+  workflow_dispatch:\n+\n+permissions:\n+  contents: read\n+\n+concurrency:\n+  group: android17-sdk-inventory-${{ github.ref }}\n+  cancel-in-progress: false\n+\n+jobs:\n+  package-inventory:\n+    runs-on: ubuntu-latest\n+    timeout-minutes: 25\n+    steps:\n+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262\n+        with:\n+          persist-credentials: false\n+          ref: ${{ github.sha }}\n+      - name: Record existing and freshly verified SDK package catalogs\n+        env:\n+          LUMO_SDK_INVENTORY_OUT: ${{ runner.temp }}/lumo-android17-sdk-inventory\n+          LUMO_SDK_INVENTORY_WORK: ${{ runner.temp }}/lumo-android17-sdk-tools\n+        run: |\n+          set -euo pipefail\n+          python3 scripts/diagnose_android17_sdk.py \\\n+            --out \"$LUMO_SDK_INVENTORY_OUT\" \\\n+            --work \"$LUMO_SDK_INVENTORY_WORK\"\n+      - name: Preserve original command outputs and exit codes\n+        if: always()\n+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02\n+        with:\n+          name: lumo-android17-sdk-inventory-${{ github.run_id }}-${{ github.run_attempt }}\n+          path: ${{ runner.temp }}/lumo-android17-sdk-inventory/\n+          if-no-files-found: error\n+          retention-days: 30\n+          include-hidden-files: false"
+    },
+    {
+      "sha": "1e034ab02dea6428128e0fd73f1fdde088a959fd",
+      "filename": "docs/evidence/android17-sdk-diagnostic-20261113/README.md",
+      "status": "added",
+      "additions": 43,
+      "deletions": 0,
+      "changes": 43,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/docs%2Fevidence%2Fandroid17-sdk-diagnostic-20261113%2FREADME.md",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/docs%2Fevidence%2Fandroid17-sdk-diagnostic-20261113%2FREADME.md",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/docs%2Fevidence%2Fandroid17-sdk-diagnostic-20261113%2FREADME.md?ref=31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+      "patch": "@@ -0,0 +1,43 @@\n+# Android 17 SDK package diagnosis\n+\n+Base Host: `e3d161cb2f79b732ac2dbafc2764b151247f018b`.\n+Dedicated push branch: `chatgpt/lumo-android17-sdk-diagnostic-20261113`.\n+\n+The original Studio API37 job `132049288677` in run `43461547945` stopped at\n+`sdkmanager --install 'build-tools;37.0.0' platform-tools 'platforms;android-37'`\n+with `Failed to find package 'platforms;android-37'`. It did not start an emulator\n+or install the candidate APK. Its SDK-manager version and available package list\n+were not recorded.\n+\n+This independent workflow inventories the current Ubuntu runner. It records the\n+effective SDK-manager path, actual version output, original `source.properties`,\n+Java version, source commit/tree/parents and runner environment identifiers. It\n+preserves complete, unfiltered SDK catalogs for channels 0 and 3, including each\n+command's stdout, stderr, actual exit code, elapsed time and timeout state.\n+\n+It then compares the existing tools with Google's command-line-tools archive\n+`commandlinetools-linux-15859902_latest.zip`, executing that archive only after\n+SHA256 equals `4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583`.\n+The fresh toolset and its Android user directory are isolated in runner temporary\n+storage. The ZIP's identity and contents listing are archived; the downloaded\n+tool binaries are not included in the evidence artifact.\n+\n+Official source references supplied for this diagnosis:\n+\n+- <https://developer.android.com/studio/>\n+- <https://developer.android.com/about/versions/17/setup-sdk>\n+- <https://github.com/ReactiveCircus/android-emulator-runner/blob/a421e43855164a8197daf9d8d40fe71c6996bb0d/src/sdk-installer.ts>\n+\n+The observed emulator action passes its channel argument to emulator and system\n+image installation, but not to the preceding platform/build-tools installation.\n+Its separate `system-image-api-level` input may become relevant after real package\n+names are established. This inventory does not select or install such an image.\n+\n+No SDK platform, emulator, system image or APK is installed. No release is created.\n+`INVENTORY_COMPLETE` means only that the diagnostic commands succeeded. It does\n+not assert API37 availability or Android17 runtime compatibility. The Studio\n+SDK37/release17 checks and frozen APK/native source remain unchanged.\n+\n+Failures and timeouts remain visible in `summary.json` and fail the job while\n+the artifact upload still runs. Package-name matches are only a navigation aid;\n+the complete catalogs and their installed/available headings remain authoritative."
+    },
+    {
+      "sha": "d839dade3e14bfcf44c7a0b4085fbd9e1dae6e1f",
+      "filename": "scripts/diagnose_android17_sdk.py",
+      "status": "added",
+      "additions": 218,
+      "deletions": 0,
+      "changes": 218,
+      "blob_url": "https://github.com/Ullmann27/lumo-lernen/blob/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/scripts%2Fdiagnose_android17_sdk.py",
+      "raw_url": "https://github.com/Ullmann27/lumo-lernen/raw/31b6c1d69e5ac0b588df91bd8b34149e142e05d4/scripts%2Fdiagnose_android17_sdk.py",
+      "contents_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/scripts%2Fdiagnose_android17_sdk.py?ref=31b6c1d69e5ac0b588df91bd8b34149e142e05d4",
+      "patch": "@@ -0,0 +1,218 @@\n+\"\"\"Read SDK catalogs without installing platforms, system images or an APK.\"\"\"\n+import argparse\n+from datetime import datetime, timezone\n+import hashlib\n+import json\n+import os\n+from pathlib import Path\n+import re\n+import shutil\n+import signal\n+import subprocess\n+import sys\n+import time\n+import zipfile\n+\n+\n+BASE_HOST_COMMIT = 'e3d161cb2f79b732ac2dbafc2764b151247f018b'\n+TOOLS_URL = 'https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip'\n+TOOLS_SHA256 = '4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583'\n+REPOSITORY = Path(__file__).resolve().parents[1]\n+\n+\n+def utc_now():\n+    return datetime.now(timezone.utc).isoformat()\n+\n+\n+def digest(path):\n+    with path.open('rb') as stream:\n+        return hashlib.file_digest(stream, 'sha256').hexdigest()\n+\n+\n+def write_json(path, value):\n+    path.write_text(json.dumps(value, indent=2, ensure_ascii=False) + '\\n')\n+\n+\n+class Inventory:\n+    def __init__(self, out):\n+        self.out = out\n+        self.commands = []\n+\n+    def run(self, name, argv, *, environment=None, timeout=180):\n+        folder = self.out / name\n+        folder.mkdir()\n+        command = [str(value) for value in argv]\n+        overrides = {key: str(value) for key, value in (environment or {}).items()}\n+        record = {'name': name, 'argv': command, 'environment_overrides': overrides,\n+                  'started_utc': utc_now(), 'timeout_seconds': timeout,\n+                  'exit_code': None, 'timed_out': False, 'start_error': None}\n+        started = time.monotonic()\n+        with (folder / 'stdout.txt').open('wb') as stdout, (folder / 'stderr.txt').open('wb') as stderr:\n+            try:\n+                process = subprocess.Popen(command, stdout=stdout, stderr=stderr,\n+                                           env={**os.environ, **overrides},\n+                                           start_new_session=True)\n+                try:\n+                    process.wait(timeout=timeout)\n+                except subprocess.TimeoutExpired:\n+                    record['timed_out'] = True\n+                    try:\n+                        os.killpg(process.pid, signal.SIGTERM)\n+                    except ProcessLookupError:\n+                        pass\n+                    try:\n+                        process.wait(timeout=10)\n+                    except subprocess.TimeoutExpired:\n+                        try:\n+                            os.killpg(process.pid, signal.SIGKILL)\n+                        except ProcessLookupError:\n+                            pass\n+                        process.wait()\n+                record['exit_code'] = process.returncode\n+            except OSError as error:\n+                record['start_error'] = f'{type(error).__name__}: {error}'\n+        record.update(finished_utc=utc_now(), elapsed_seconds=time.monotonic() - started)\n+        record['success'] = (record['exit_code'] == 0 and not record['timed_out']\n+                             and record['start_error'] is None)\n+        for stream in ('stdout', 'stderr'):\n+            path = folder / (stream + '.txt')\n+            record[stream] = {'path': str(path.relative_to(self.out)),\n+                              'bytes': path.stat().st_size, 'sha256': digest(path)}\n+        write_json(folder / 'command.json', record)\n+        self.commands.append(record)\n+        print(json.dumps({'command': name, 'exit_code': record['exit_code'],\n+                          'timed_out': record['timed_out'], 'success': record['success']}), flush=True)\n+        return record\n+\n+    def properties(self, name, sdk_root, manager):\n+        paths = {manager.parent.parent / 'source.properties'}\n+        for pattern in ('cmdline-tools/*/source.properties', 'platform-tools/source.properties',\n+                        'emulator/source.properties', 'platforms/*/source.properties'):\n+            paths.update(sdk_root.glob(pattern))\n+        folder = self.out / (name + '-source-properties')\n+        folder.mkdir()\n+        records = []\n+        for index, path in enumerate(sorted(paths)):\n+            if not path.is_file():\n+                continue\n+            destination = folder / f'{index:03d}-source.properties'\n+            shutil.copyfile(path, destination)\n+            records.append({'original_path': str(path), 'resolved_path': str(path.resolve()),\n+                            'artifact_path': str(destination.relative_to(self.out)),\n+                            'sha256': digest(destination), 'bytes': destination.stat().st_size})\n+        write_json(folder / 'index.json', records)\n+\n+    def catalogs(self, name, manager, sdk_root, user_root):\n+        user_root.mkdir(parents=True)\n+        environment = {'ANDROID_HOME': sdk_root, 'ANDROID_SDK_ROOT': sdk_root,\n+                       'ANDROID_USER_HOME': user_root}\n+        self.properties(name, sdk_root, manager)\n+        self.run(name + '-version', [manager, '--version'], environment=environment, timeout=60)\n+        for channel in (0, 3):\n+            self.run(f'{name}-channel-{channel}',\n+                     [manager, f'--sdk_root={sdk_root}', '--list', '--verbose', f'--channel={channel}'],\n+                     environment=environment)\n+\n+\n+def main():\n+    parser = argparse.ArgumentParser(description=__doc__)\n+    parser.add_argument('--out', type=Path, required=True)\n+    parser.add_argument('--work', type=Path, required=True)\n+    args = parser.parse_args()\n+    out, work = args.out.resolve(), args.work.resolve()\n+    if out == work or out in work.parents or work in out.parents:\n+        parser.error('Evidence and downloaded tool directories must be separate siblings.')\n+    out.mkdir(parents=True, exist_ok=False)\n+    work.mkdir(parents=True, exist_ok=False)\n+    inventory = Inventory(out)\n+    errors = []\n+    write_json(out / 'environment.json', {\n+        'recorded_utc': utc_now(), 'base_host_commit': BASE_HOST_COMMIT,\n+        'python': sys.version, 'environment': {key: os.environ.get(key) for key in (\n+            'ImageOS', 'ImageVersion', 'RUNNER_OS', 'RUNNER_ARCH', 'GITHUB_SHA',\n+            'GITHUB_REF', 'GITHUB_RUN_ID', 'GITHUB_RUN_ATTEMPT', 'JAVA_HOME',\n+            'ANDROID_HOME', 'ANDROID_SDK_ROOT')},\n+        'on_path_sdkmanager': shutil.which('sdkmanager'),\n+        'scope': 'Package inventory only. No Android runtime, APK, privacy or performance acceptance.',\n+    })\n+    try:\n+        inventory.run('source-commit-tree-parents', ['git', '-C', REPOSITORY, 'show', '--no-patch',\n+                                                  '--format=%H%n%T%n%P', 'HEAD'], timeout=30)\n+        inventory.run('source-status', ['git', '-C', REPOSITORY, 'status', '--porcelain=v1'], timeout=30)\n+        inventory.run('java-version', ['java', '-version'], timeout=30)\n+        root_value = os.environ.get('ANDROID_HOME') or os.environ.get('ANDROID_SDK_ROOT')\n+        on_path = shutil.which('sdkmanager')\n+        if not root_value:\n+            errors.append('Runner does not expose ANDROID_HOME or ANDROID_SDK_ROOT.')\n+        else:\n+            sdk_root = Path(root_value).resolve()\n+            preferred = sdk_root / 'cmdline-tools/latest/bin/sdkmanager'\n+            manager = preferred if preferred.is_file() else (Path(on_path) if on_path else preferred)\n+            write_json(out / 'existing-manager.json', {\n+                'sdk_root': str(sdk_root), 'action_preferred_path': str(preferred),\n+                'on_path': on_path, 'selected': str(manager), 'resolved': str(manager.resolve()),\n+                'exists': manager.is_file(),\n+                'selection': 'Use the same latest/bin precedence as the observed emulator action.',\n+            })\n+            inventory.catalogs('existing', manager, sdk_root, work / 'existing-user')\n+        archive = work / 'commandlinetools-linux-15859902_latest.zip'\n+        download = inventory.run('fresh-download', [\n+            'curl', '--fail', '--location', '--proto', '=https', '--tlsv1.2',\n+            '--connect-timeout', '30', '--max-time', '240', '--retry', '1',\n+            '--output', archive, TOOLS_URL], timeout=300)\n+        download_identity = {'url': TOOLS_URL, 'expected_sha256': TOOLS_SHA256,\n+                             'actual_sha256': digest(archive) if archive.is_file() else None,\n+                             'bytes': archive.stat().st_size if archive.is_file() else None}\n+        download_identity['verified'] = download['success'] and download_identity['actual_sha256'] == TOOLS_SHA256\n+        write_json(out / 'fresh-download-identity.json', download_identity)\n+        if not download_identity['verified']:\n+            errors.append('Fresh official tool download failed or does not match its pinned SHA256; not executed.')\n+        else:\n+            extraction = work / 'verified-archive'\n+            with zipfile.ZipFile(archive) as source:\n+                if source.testzip() is not None:\n+                    raise RuntimeError('Verified command-line-tools ZIP failed CRC validation.')\n+                members = source.namelist()\n+                if any(Path(name).is_absolute() or '..' in Path(name).parts for name in members):\n+                    raise RuntimeError('Command-line-tools archive contains an unsafe member path.')\n+                (out / 'fresh-archive-members.txt').write_text('\\n'.join(members) + '\\n')\n+                source.extractall(extraction)\n+            fresh_root = work / 'fresh-sdk'\n+            (fresh_root / 'cmdline-tools').mkdir(parents=True)\n+            shutil.move(extraction / 'cmdline-tools', fresh_root / 'cmdline-tools/latest')\n+            manager = fresh_root / 'cmdline-tools/latest/bin/sdkmanager'\n+            # ZipFile extraction does not restore executable permission bits.\n+            manager.chmod(manager.stat().st_mode | 0o100)\n+            inventory.catalogs('fresh', manager, fresh_root, work / 'fresh-user')\n+    except Exception as error:\n+        errors.append(f'{type(error).__name__}: {error}')\n+    finally:\n+        required = {'source-commit-tree-parents', 'source-status', 'java-version',\n+                    'existing-version', 'existing-channel-0', 'existing-channel-3',\n+                    'fresh-download', 'fresh-version', 'fresh-channel-0', 'fresh-channel-3'}\n+        completed = {record['name'] for record in inventory.commands if record['success']}\n+        observed = {}\n+        for name in ('existing-channel-0', 'existing-channel-3', 'fresh-channel-0', 'fresh-channel-3'):\n+            path = out / name / 'stdout.txt'\n+            lines = path.read_text(errors='replace').splitlines() if path.is_file() else []\n+            observed[name] = [line for line in lines if re.search(r'android-37|cinnamon|bun', line, re.I)]\n+        summary = {\n+            'status': 'INVENTORY_COMPLETE' if not errors and required <= completed else 'INVENTORY_INCOMPLETE',\n+            'errors': errors, 'missing_or_unsuccessful_commands': sorted(required - completed),\n+            'commands': inventory.commands, 'matching_catalog_lines_only': observed,\n+            'interpretation': 'Matches are a navigation aid. Read complete raw catalogs and their installed/available headings before choosing a package.',\n+            'no_sdkmanager_install_invoked': True, 'no_emulator_boot_attempted': True,\n+            'no_apk_installed_or_published': True, 'android17_runtime_verified': False,\n+            'previous_api37_failure_resolved': False,\n+        }\n+        write_json(out / 'summary.json', summary)\n+        files = [{'path': str(path.relative_to(out)), 'bytes': path.stat().st_size, 'sha256': digest(path)}\n+                 for path in sorted(out.rglob('*')) if path.is_file()]\n+        write_json(out / 'evidence-files.json', files)\n+        print(json.dumps({'status': summary['status'], 'errors': errors,\n+                          'missing_or_unsuccessful_commands': summary['missing_or_unsuccessful_commands']}), flush=True)\n+    return 0 if summary['status'] == 'INVENTORY_COMPLETE' else 1\n+\n+\n+if __name__ == '__main__':\n+    sys.exit(main())"
+    }
+  ]
+}
