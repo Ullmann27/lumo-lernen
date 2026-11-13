@@ -16,7 +16,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  reproduce:
+  regression:
     if: github.repository == 'Ullmann27/lumo-lernen'
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -25,30 +25,22 @@ jobs:
         with:
           ref: ${{ github.sha }}
           persist-credentials: false
-      - name: Archive tracked exact source for isolated reproduction
+      - name: Record actual source identity
         run: |
           set -euo pipefail
-          mkdir -p "$RUNNER_TEMP/lumo-review-source"
-          git rev-parse HEAD > "$RUNNER_TEMP/lumo-review-source/source-sha.txt"
-          git rev-parse 'HEAD^{tree}' > "$RUNNER_TEMP/lumo-review-source/source-tree.txt"
-          git status --porcelain --untracked-files=no > "$RUNNER_TEMP/lumo-review-source/source-dirty.txt"
-          test ! -s "$RUNNER_TEMP/lumo-review-source/source-dirty.txt"
-          git archive --format=tar HEAD | gzip -1 > "$RUNNER_TEMP/lumo-review-source/source.tar.gz"
-          cd "$RUNNER_TEMP/lumo-review-source"
-          sha256sum source.tar.gz > SHA256SUMS.txt
-      - name: Review recovery regression when present
+          mkdir -p review-proof
+          git rev-parse HEAD > review-proof/source-sha.txt
+          git rev-parse 'HEAD^{tree}' > review-proof/source-tree.txt
+          git status --porcelain --untracked-files=no > review-proof/source-dirty.txt
+          test ! -s review-proof/source-dirty.txt
+      - name: Existing delivery and new recovery regressions
         run: |
           set -euo pipefail
-          if test -f scripts/tests/test_nextgen_review_recovery.py; then
-            python3 -m unittest discover -s scripts/tests -p test_nextgen_review_recovery.py -v
-          else
-            echo 'Source reproduction only: no regression result claimed.'
-          fi
+          python3 -m unittest discover -s scripts/tests -p 'test_nextgen*.py' -v 2>&1 | tee review-proof/regression.log
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: lumo-review-recovery-source
-          path: ${{ runner.temp }}/lumo-review-source/
-          compression-level: 0
-          retention-days: 1
+          name: lumo-review-recovery-proof
+          path: review-proof/
+          retention-days: 14
           if-no-files-found: error
