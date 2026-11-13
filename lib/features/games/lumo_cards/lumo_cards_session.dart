@@ -224,14 +224,23 @@ class LumoCardsRound {
 /// Each school/local child, grade and play mode has an independent slot.
 class LumoCardsSessionRepository {
   LumoCardsSessionRepository(
-      {required String studentId, required this.grade, required this.vsBot})
-      : owner = sha256.convert(utf8.encode(studentId)).toString();
+      {required String studentId,
+      required this.grade,
+      required this.vsBot,
+      this.slot = ''})
+      : owner = sha256.convert(utf8.encode(studentId)).toString() {
+    if (slot.isNotEmpty &&
+        !RegExp(r'^cup-cards-[a-f0-9]{32}-[0-2]$').hasMatch(slot)) {
+      throw ArgumentError.value(slot, 'slot', 'Unknown Cards session slot');
+    }
+  }
 
   final String owner;
+  final String slot;
   final int grade;
   final bool vsBot;
   String get storageKey =>
-      'lumo.cards.round.v1.$owner.$grade.${vsBot ? 'solo' : 'local'}';
+      'lumo.cards.round.v1.$owner.$grade.${vsBot ? 'solo' : 'local'}${slot.isEmpty ? '' : '.$slot'}';
 
   Future<LumoCardsRound?> load(
           {required String player1Name, required String player2Name}) =>

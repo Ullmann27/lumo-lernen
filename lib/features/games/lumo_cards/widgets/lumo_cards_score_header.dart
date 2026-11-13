@@ -11,6 +11,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
     this.onSettings,
     this.onAudioSettings,
     this.onOpponentSettings,
+    this.onNativeTable,
   });
 
   final int round;
@@ -21,11 +22,13 @@ class LumoCardsScoreHeader extends StatelessWidget {
   final VoidCallback? onSettings;
   final VoidCallback? onAudioSettings;
   final VoidCallback? onOpponentSettings;
+  final VoidCallback? onNativeTable;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final narrow = constraints.maxWidth < (onOpponentSettings == null ? 320 : 350);
+      final narrow =
+          constraints.maxWidth < (onOpponentSettings == null ? 320 : 350);
       final titleRow = Row(children: [
         IconButton(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -61,6 +64,15 @@ class LumoCardsScoreHeader extends StatelessWidget {
   }
 
   List<Widget> get actions => [
+        if (onNativeTable != null)
+          IconButton(
+              key: const ValueKey('cards-native-table'),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+              visualDensity: VisualDensity.standard,
+              tooltip: 'Am 3D-Tisch spielen',
+              onPressed: onNativeTable,
+              icon: const Text('3D',
+                  style: TextStyle(fontWeight: FontWeight.w900))),
         if (onOpponentSettings != null)
           IconButton(
               key: const ValueKey('cards-opponent-settings'),
@@ -83,7 +95,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
               tooltip: 'Ton einstellen',
               onPressed: onAudioSettings,
               icon: const Icon(Icons.volume_up_rounded)),
-        if (onSettings != null)
+        if (onSettings != null && onNativeTable == null)
           IconButton(
               constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
               visualDensity: VisualDensity.standard,

@@ -28,6 +28,8 @@ import '../../core/lumo_voice.dart';
 import '../../core/lumo_voice_clips.dart';
 import '../../domain/learning/adaptive_learning_engine.dart';
 import '../../domain/learning/error_detective.dart';
+import '../../domain/tutoring/native_learning_activity.dart';
+import '../lumo3d/lumo3d_launcher.dart';
 import '../../domain/learning/lumo_learning_domain.dart';
 import '../../domain/learning/lumo_learning_feedback_engine.dart';
 import '../../domain/learning/reward_engine.dart';
@@ -107,6 +109,7 @@ class _LearningContentState extends State<LearningContent> {
   late TaskInstance _taskInstance;
   DateTime _taskStartedAt = DateTime.now();
   bool _answered = false;
+  bool _nativeLearningOpen = false;
   Timer? _autoAdvanceTimer;
   bool? _lastCorrect;
   RewardDelta? _lastRewardDelta;
@@ -137,12 +140,21 @@ class _LearningContentState extends State<LearningContent> {
     final generation = widget.appState.profileGeneration;
     final subject = _task.subject, unit = _task.unit;
     try {
-      final saved = await widget.appState.saveLearningSceneCompletion(subject: subject, unit: unit,
-        proof: proof, method: _pendingSceneMethod);
+      final saved = await widget.appState.saveLearningSceneCompletion(
+          subject: subject,
+          unit: unit,
+          proof: proof,
+          method: _pendingSceneMethod);
       if (!mounted || generation != widget.appState.profileGeneration) return;
-      if (saved && identical(_pendingSceneCompletion, proof)) setState(() { _pendingSceneCompletion = null; _sceneCompletionError = null; });
+      if (saved && identical(_pendingSceneCompletion, proof))
+        setState(() {
+          _pendingSceneCompletion = null;
+          _sceneCompletionError = null;
+        });
     } catch (_) {
-      if (mounted && generation == widget.appState.profileGeneration) setState(() => _sceneCompletionError = 'Dein Lernschritt wartet noch aufs Speichern.');
+      if (mounted && generation == widget.appState.profileGeneration)
+        setState(() => _sceneCompletionError =
+            'Dein Lernschritt wartet noch aufs Speichern.');
     }
   }
 
@@ -497,12 +509,18 @@ class _LearningContentState extends State<LearningContent> {
     if (!mounted || !_allowHelp || _answered || _sessionFinished) return;
     _requestedHelpLevel = (_requestedHelpLevel + 1).clamp(1, 3);
     _sceneRequestSerial++;
-    final placeValueNumber = LumoPlaceValueWorkshop.numberForPrompt(_task.prompt);
+    final placeValueNumber =
+        LumoPlaceValueWorkshop.numberForPrompt(_task.prompt);
     if (_placeValueLesson == null && placeValueNumber != null) {
-      final target = const LumoIntelligenceEngine().transferNumber(placeValueNumber, widget.appState.learningProfile.sceneMemory);
-      if (target != null) _placeValueLesson = PlaceValueLessonSession(sourceNumber: placeValueNumber,
-        targetNumber: target, sourceProblemId: _publishedTaskContext!.tutorScope.problemId,
-        sourceTaskId: _taskInstance.taskInstanceId, generation: widget.appState.profileGeneration);
+      final target = const LumoIntelligenceEngine().transferNumber(
+          placeValueNumber, widget.appState.learningProfile.sceneMemory);
+      if (target != null)
+        _placeValueLesson = PlaceValueLessonSession(
+            sourceNumber: placeValueNumber,
+            targetNumber: target,
+            sourceProblemId: _publishedTaskContext!.tutorScope.problemId,
+            sourceTaskId: _taskInstance.taskInstanceId,
+            generation: widget.appState.profileGeneration);
     }
     // Additional hints during the new task remain assisted, including requests
     // after all four scene methods have already been tried. Only a displayed
@@ -539,6 +557,45 @@ class _LearningContentState extends State<LearningContent> {
     }
     if (_cloudHelpAllowed) {
       unawaited(_askAiTutor());
+    }
+  }
+
+  Future<void> _openNativeLearning() async {
+    if (!mounted ||
+        !_allowHelp ||
+        _answered ||
+        _sessionFinished ||
+        _nativeLearningOpen) return;
+    final activity = NativeLearningActivity.fromTask(_taskInstance);
+    if (activity == null) return;
+    final taskId = _taskInstance.taskInstanceId;
+    final generation = widget.appState.profileGeneration;
+    setState(() {
+      _nativeLearningOpen = true;
+      // An explicitly requested 3D solution is assistance. The existing
+      // result writer already excludes assisted responses from mastery.
+      _requestedHelpLevel = math.max(1, _requestedHelpLevel);
+    });
+    _publishTaskContext();
+    LumoCompanionRequests.instance.recordLearningEvent(
+        LumoLearningEventKind.hintRequested,
+        context: _publishedTaskContext);
+    try {
+      await LumoVoice.instance.stop();
+      if (!mounted ||
+          widget.appState.profileGeneration != generation ||
+          _taskInstance.taskInstanceId != taskId) return;
+      await launchLumo3D(context,
+          scene: 'learning',
+          appState: widget.appState,
+          subject: _task.subject,
+          learning: activity);
+    } finally {
+      if (mounted) {
+        setState(() => _nativeLearningOpen = false);
+        if (widget.appState.profileGeneration == generation &&
+            _taskInstance.taskInstanceId == taskId) _publishTaskContext();
+      }
     }
   }
 
@@ -1613,30 +1670,66 @@ class _LearningContentState extends State<LearningContent> {
                               explainAvailability: true)),
                         ),
                       ],
+                      if (_allowHelp &&
+                          !_answered &&
+                          NativeLearningActivity.fromTask(_taskInstance) !=
+                              null) ...[
+                        const SizedBox(height: 12),
+                        FilledButton.icon(
+                          key: const ValueKey('adaptive-open-3d'),
+                          onPressed: _nativeLearningOpen
+                              ? null
+                              : () => unawaited(_openNativeLearning()),
+                          style: FilledButton.styleFrom(
+                              minimumSize: const Size(48, 56)),
+                          icon: const Icon(Icons.view_in_ar_rounded),
+                          label: const Text('Mit Lumo in 3D ausprobieren'),
+                        ),
+                      ],
                       // After choosing three explicit help steps, let the
                       // child count actual tens instead of merely rereading
                       // the explanation. No rewards or automatic answers.
-                      if (_allowHelp && !_answered && _requestedHelpLevel > 0 && _placeValueLesson != null) ...[
+                      if (_allowHelp &&
+                          !_answered &&
+                          _requestedHelpLevel > 0 &&
+                          _placeValueLesson != null) ...[
                         const SizedBox(height: 14),
-                        LumoLearningSceneCard(key: ValueKey('scene-${_taskInstance.taskInstanceId}'),
-                          appState: widget.appState, scope: _publishedTaskContext!.tutorScope,
-                          number: _placeValueLesson!.sourceNumber, requestedHelpLevel: _requestedHelpLevel,
-                          requestSerial: _sceneRequestSerial,
-                          reduceMotion: st.settings.reduceAnimations || st.settings.calmMode,
-                          onDifferentTask: () => setState(() => _loadNextTask()),
-                          onMethodChosen: (method) {
-                            if (!_allowHelp || _answered) return;
-                            _placeValueLesson?.markTransferHelp();
-                            setState(() { _sceneMethod = method;
-                              _requestedHelpLevel = math.max(_requestedHelpLevel, (method.index + 1).clamp(1,3)); });
-                            _publishTaskContext();
-                            LumoCompanionRequests.instance.recordLearningEvent(LumoLearningEventKind.hintRequested, context: _publishedTaskContext);
-                          }),
+                        LumoLearningSceneCard(
+                            key: ValueKey(
+                                'scene-${_taskInstance.taskInstanceId}'),
+                            appState: widget.appState,
+                            scope: _publishedTaskContext!.tutorScope,
+                            number: _placeValueLesson!.sourceNumber,
+                            requestedHelpLevel: _requestedHelpLevel,
+                            requestSerial: _sceneRequestSerial,
+                            reduceMotion: st.settings.reduceAnimations ||
+                                st.settings.calmMode,
+                            onDifferentTask: () =>
+                                setState(() => _loadNextTask()),
+                            onMethodChosen: (method) {
+                              if (!_allowHelp || _answered) return;
+                              _placeValueLesson?.markTransferHelp();
+                              setState(() {
+                                _sceneMethod = method;
+                                _requestedHelpLevel = math.max(
+                                    _requestedHelpLevel,
+                                    (method.index + 1).clamp(1, 3));
+                              });
+                              _publishTaskContext();
+                              LumoCompanionRequests.instance
+                                  .recordLearningEvent(
+                                      LumoLearningEventKind.hintRequested,
+                                      context: _publishedTaskContext);
+                            }),
                       ],
                       if (_sceneCompletionError != null) ...[
-                        Text(_sceneCompletionError!, style: const TextStyle(color: Colors.white)),
-                        TextButton(onPressed: () => unawaited(_saveSceneCompletion()),
-                          style: TextButton.styleFrom(minimumSize: const Size(48,48)), child: const Text('Lernschritt erneut speichern')),
+                        Text(_sceneCompletionError!,
+                            style: const TextStyle(color: Colors.white)),
+                        TextButton(
+                            onPressed: () => unawaited(_saveSceneCompletion()),
+                            style: TextButton.styleFrom(
+                                minimumSize: const Size(48, 48)),
+                            child: const Text('Lernschritt erneut speichern')),
                       ],
                       if (_allowHelp &&
                           !_answered &&
@@ -1654,7 +1747,9 @@ class _LearningContentState extends State<LearningContent> {
                           lesson: _placeValueLesson,
                           onTransferChecked: (result) {
                             if (!_allowHelp || result.proof == null) return;
-                            if (_tutorCoordinator.checkSceneTransfer(result.proof!) == null) return;
+                            if (_tutorCoordinator
+                                    .checkSceneTransfer(result.proof!) ==
+                                null) return;
                             _pendingSceneCompletion = result.proof;
                             _pendingSceneMethod = _sceneMethod;
                             unawaited(_saveSceneCompletion());

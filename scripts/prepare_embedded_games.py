@@ -132,7 +132,7 @@ def prepare(root: Path):
     gradle.write_text(text)
     target = main / 'kotlin' / Path(*namespace.split('.'))
     target.mkdir(parents=True, exist_ok=True)
-    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt'):
+    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt'):
         source = (root / 'tools/auto_install' / filename).read_text()
         (target / filename).write_text(re.sub(r'^package [^\n]+', f'package {namespace}', source, count=1))
     resources = main / 'res/values'

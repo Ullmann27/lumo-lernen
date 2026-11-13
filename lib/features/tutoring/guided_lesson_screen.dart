@@ -8,6 +8,7 @@ import '../../core/lumo_voice.dart';
 import '../../core/learning_attempt_id.dart';
 import '../../domain/tutoring/guided_lesson_catalog.dart';
 import '../../domain/tutoring/guided_lesson_evidence.dart';
+import '../../domain/tutoring/native_learning_activity.dart';
 import '../../domain/tutoring/tutoring_session_planner.dart';
 import '../../theme/lumo_visual_tokens.dart';
 import '../../widgets/design/lumo_design_system.dart';
@@ -16,6 +17,7 @@ import '../../widgets/fox/lumo_character.dart';
 import '../../widgets/fox/lumo_companion_requests.dart';
 import '../../widgets/lumo_speech_controls.dart';
 import '../learning_modules/learning_module_progress.dart';
+import '../lumo3d/lumo3d_launcher.dart';
 import 'guided_math_illustration.dart';
 
 /// Real five-part instruction using existing tutoring types, central voice,
@@ -372,6 +374,35 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
         .recordLearningEvent(LumoLearningEventKind.taskRepeated);
   }
 
+  Future<void> _openLearningWorld() async {
+    if (!_current || _busy || _progress.hasPending) return;
+    final activity = NativeLearningActivity.fromLesson(widget.lesson, _step);
+    if (activity == null) return;
+    final serial = _serial;
+    _stopOwnedVoice();
+    setState(() {
+      _busy = true;
+      // Requested solution support remains assistance even when Android's
+      // return acknowledgement is interrupted after the child saw the model.
+      _accompaniedSteps.add(_index);
+      _helpLevel = math.max(1, _helpLevel);
+    });
+    _publish();
+    try {
+      await launchLumo3D(context,
+          scene: 'learning',
+          grade: widget.lesson.grade,
+          subject: widget.lesson.subject,
+          appState: widget.appState,
+          learning: activity);
+    } finally {
+      if (_current && _serial == serial) {
+        setState(() => _busy = false);
+        _publish();
+      }
+    }
+  }
+
   Future<void> _next() async {
     if (!_current || _busy || !_passed || _progress.hasPending) return;
     if (_step.type == TutoringStepType.recap) {
@@ -632,7 +663,8 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                 lesson: widget.lesson,
                 step: step,
                 autoNarrate: settings.voiceEnabled &&
-                    settings.autoReadEnabled && !settings.calmMode,
+                    settings.autoReadEnabled &&
+                    !settings.calmMode,
                 onNarratePhase: settings.voiceEnabled
                     ? (text) async {
                         if (_serial == illustrationSerial && _tenFrameExample) {
@@ -645,15 +677,29 @@ class _GuidedLessonScreenState extends State<GuidedLessonScreen> {
                   if (_serial == illustrationSerial) _stopOwnedVoice();
                 },
                 reduceMotion: _quiet),
+            if (NativeLearningActivity.fromLesson(widget.lesson, step) != null)
+              Padding(
+                padding: const EdgeInsets.only(top: 12),
+                child: FilledButton.icon(
+                  key: const ValueKey('guided-open-3d'),
+                  onPressed: _busy || _progress.hasPending
+                      ? null
+                      : () => unawaited(_openLearningWorld()),
+                  style:
+                      FilledButton.styleFrom(minimumSize: const Size(48, 56)),
+                  icon: const Icon(Icons.view_in_ar_rounded),
+                  label: const Text('Mit Lumo in 3D ausprobieren'),
+                ),
+              ),
             if (step.type == TutoringStepType.showExample) ...[
               const SizedBox(height: 12),
               Wrap(spacing: 10, runSpacing: 8, children: [
                 if (widget.lesson.concept != GuidedLessonConcept.bridgeTen)
                   OutlinedButton.icon(
-                  onPressed: _replayExample,
-                  icon: const Icon(Icons.replay_rounded),
-                  label: const Text('Beispiel noch einmal'),
-                ),
+                    onPressed: _replayExample,
+                    icon: const Icon(Icons.replay_rounded),
+                    label: const Text('Beispiel noch einmal'),
+                  ),
                 TextButton.icon(
                     onPressed: () =>
                         setState(() => _showExplanation = !_showExplanation),

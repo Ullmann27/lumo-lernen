@@ -9,10 +9,12 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
     super.key,
     required this.onSolo,
     required this.onLocal,
+    this.onCup,
   });
 
   final VoidCallback onSolo;
   final VoidCallback onLocal;
+  final VoidCallback? onCup;
 
   static const referenceArt = 'assets/lumo_design/fox/fox_cards_welcome.png';
 
@@ -143,6 +145,18 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                           child: Column(
                             mainAxisSize: MainAxisSize.min,
                             children: [
+                              if (onCup != null)
+                                Padding(
+                                    padding: const EdgeInsets.only(bottom: 8),
+                                    child: FilledButton.icon(
+                                        key: const ValueKey('cards-hub-cup'),
+                                        onPressed: onCup,
+                                        style: FilledButton.styleFrom(
+                                            minimumSize: const Size(220, 52)),
+                                        icon: const Icon(
+                                            Icons.emoji_events_rounded),
+                                        label: const Text(
+                                            'Sternenpokal · 3 Runden'))),
                               const Text(
                                 'DEIN MAGISCHES KARTENABENTEUER',
                                 textAlign: TextAlign.center,
@@ -218,33 +232,33 @@ class LumoCardsShowcaseScreen extends StatelessWidget {
                                             SizedBox(
                                               width: double.infinity,
                                               child: _StartButton(
-                                              key: const ValueKey(
-                                                  'cards-hub-solo'),
-                                              label: 'Solo spielen',
-                                              icon: Icons.play_arrow_rounded,
-                                              onPressed: () {
-                                                HapticFeedback.mediumImpact();
-                                                onSolo();
-                                              },
-                                              primary: true,
-                                              reduceMotion: reduceMotion,
-                                            ),
+                                                key: const ValueKey(
+                                                    'cards-hub-solo'),
+                                                label: 'Solo spielen',
+                                                icon: Icons.play_arrow_rounded,
+                                                onPressed: () {
+                                                  HapticFeedback.mediumImpact();
+                                                  onSolo();
+                                                },
+                                                primary: true,
+                                                reduceMotion: reduceMotion,
+                                              ),
                                             ),
                                             const SizedBox(height: 10),
                                             SizedBox(
                                               width: double.infinity,
                                               child: _StartButton(
-                                              key: const ValueKey(
-                                                  'cards-hub-local'),
-                                              label: 'Mit Freunden',
-                                              icon: Icons.groups_rounded,
-                                              onPressed: () {
-                                                HapticFeedback.mediumImpact();
-                                                onLocal();
-                                              },
-                                              primary: false,
-                                              reduceMotion: reduceMotion,
-                                            ),
+                                                key: const ValueKey(
+                                                    'cards-hub-local'),
+                                                label: 'Mit Freunden',
+                                                icon: Icons.groups_rounded,
+                                                onPressed: () {
+                                                  HapticFeedback.mediumImpact();
+                                                  onLocal();
+                                                },
+                                                primary: false,
+                                                reduceMotion: reduceMotion,
+                                              ),
                                             ),
                                           ],
                                         ),
@@ -292,12 +306,9 @@ class _StartButtonState extends State<_StartButton> {
 
   @override
   Widget build(BuildContext context) {
-    final accent = widget.primary
-        ? const Color(0xFFFFE08A)
-        : const Color(0xFF9AF2FF);
-    final ink = widget.primary
-        ? const Color(0xFF3C220A)
-        : Colors.white;
+    final accent =
+        widget.primary ? const Color(0xFFFFE08A) : const Color(0xFF9AF2FF);
+    final ink = widget.primary ? const Color(0xFF3C220A) : Colors.white;
     final minH = widget.compact ? 60.0 : 66.0;
     return Semantics(
       button: true,
@@ -314,8 +325,16 @@ class _StartButtonState extends State<_StartButton> {
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: widget.primary
-                ? const [Color(0xFFFFE08A), Color(0xFFFFC35C), Color(0xFFFF8A1F)]
-                : const [Color(0xFF1A8AD0), Color(0xFF0B609A), Color(0xFF062845)],
+                ? const [
+                    Color(0xFFFFE08A),
+                    Color(0xFFFFC35C),
+                    Color(0xFFFF8A1F)
+                  ]
+                : const [
+                    Color(0xFF1A8AD0),
+                    Color(0xFF0B609A),
+                    Color(0xFF062845)
+                  ],
           ),
           border: Border.all(color: accent, width: 2),
           boxShadow: _pressed
@@ -380,7 +399,8 @@ class _StartButtonState extends State<_StartButton> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Icon(widget.icon, size: widget.compact ? 24 : 28, color: ink),
+                      Icon(widget.icon,
+                          size: widget.compact ? 24 : 28, color: ink),
                       const SizedBox(width: 8),
                       Flexible(
                         child: Text(

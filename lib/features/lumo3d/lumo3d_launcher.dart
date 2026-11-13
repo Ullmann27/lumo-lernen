@@ -9,6 +9,8 @@ import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
 import '../../core/reward_wallet_repository.dart';
+import '../../core/lumo_voice.dart';
+import '../../domain/tutoring/native_learning_activity.dart';
 import 'lumo_game_entry_overlay.dart';
 
 // The native channel completes only when the game returns. Keep the guard
@@ -23,8 +25,16 @@ Future<bool> launchLumo3D(
   int? grade,
   String? subject,
   LumoAppState? appState,
+  NativeLearningActivity? learning,
+  String? cardsToken,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
+  // Only reviewed, bounded lesson descriptors open the educational route.
+  if ((scene == 'learning') != (learning != null)) return false;
+  if (scene == 'cards' &&
+      (cardsToken == null || !RegExp(r'^[a-f0-9]{32}$').hasMatch(cardsToken))) {
+    return false;
+  }
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) {
     _showLaunchMessage(
       context,
@@ -46,7 +56,8 @@ Future<bool> launchLumo3D(
   );
   try {
     await appState?.ensureSettingsLoaded();
-    if (appState?.state.settings.requireDailyMissionForGames == true) {
+    if (learning == null &&
+        appState?.state.settings.requireDailyMissionForGames == true) {
       await appState!.loadDailyMission();
       if (!appState.canPlayToday) {
         if (context.mounted) {
@@ -97,7 +108,9 @@ Future<bool> launchLumo3D(
         (originRoute != null && !originRoute.isCurrent)) {
       return false;
     }
-    if (appState != null && !appState.canPlayToday) return false;
+    if (learning == null && appState != null && !appState.canPlayToday) {
+      return false;
+    }
     entry?.setPhase(LumoGameEntryPhase.opening);
     final response = await bridge.invokeMapMethod<String, dynamic>('launch3D', {
       'scene': scene,
@@ -106,6 +119,25 @@ Future<bool> launchLumo3D(
       'stars': appState?.state.stars ?? 0,
       'lifetimeStars': lifetimeStars,
       'childKey': childKey,
+      'reduceAnimations':
+          (appState?.state.settings.reduceAnimations ?? false) ||
+              (appState?.state.settings.calmMode ?? false),
+      if (learning != null) 'learning': learning.toLaunchOptions(),
+      if (learning != null) ...{
+        // Preserve the selected voice. Only the existing, licensed local
+        // identity is available in the isolated engine; no silent fallback.
+        'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
+            appState?.state.settings.localVoiceLicenseAccepted == true &&
+            LumoVoice.instance.identity == LumoVoiceIdentity.freeOffline,
+        'localVoiceLicenseAccepted':
+            appState?.state.settings.localVoiceLicenseAccepted == true,
+        'learningAutoRead': appState?.state.settings.autoReadEnabled == true &&
+            appState?.state.settings.calmMode != true,
+        'learningVoiceRate':
+            ((appState?.state.settings.voiceRate ?? 0.35) / 0.35)
+                .clamp(0.70, 1.60),
+      },
+      if (scene == 'cards') 'cardsToken': cardsToken,
     });
     // MainActivity returns a destination map on actual Activity return.
     // Null/malformed replies must not masquerade as successful game returns.
@@ -118,6 +150,12 @@ Future<bool> launchLumo3D(
           'Bitte versuche es erneut.',
         );
       }
+      return false;
+    }
+    // A return belongs to the same captured child, even if Android kept the
+    // engine open while the Flutter profile was changed by another action.
+    if (appState?.resetting == true ||
+        appState?.profileGeneration != generation) {
       return false;
     }
     return true;

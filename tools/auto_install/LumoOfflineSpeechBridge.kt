@@ -45,60 +45,69 @@ class LumoOfflineSpeechBridge(private val context: Context) {
                             result.success(mapOf("available" to false, "local" to true))
                         }
                     }
-                    "synthesize" -> {
-                        val text = call.argument<String>("text")
-                        val style = call.argument<String>("style") ?: "warm"
-                        // Licensing assent is not an online/privacy/microphone consent.
-                        if (call.argument<Boolean>("localLicenseAccepted") != true) {
-                            result.error("local_license", "Lokale Sprachlizenz nicht bestätigt.", null)
-                        } else if (text.isNullOrBlank() || text.length > 220 ||
-                            style !in setOf("warm", "greeting", "explain", "celebrate", "comfort", "question")) {
-                            result.error("local_input", "Ungültiger lokaler Sprachtext.", null)
-                        } else {
-                            cancelCurrent()
-                            val request = Request(revision.incrementAndGet(), result)
-                            pending = request
-                            request.future = worker.submit {
-                                try {
-                                    if (request.id != revision.get()) throw InterruptedException()
-                                    // Immutable weights are verified when opening a model,
-                                    // not rehashed for every subsequent spoken sentence.
-                                    val voice = engine ?: LumoOfflineSpeechEngine(
-                                        prepareModels(request.id)
-                                    ).also { engine = it }
-                                    val started = System.nanoTime()
-                                    val wav = voice.synthesize(text, style) { request.id != revision.get() }
-                                    val elapsed = (System.nanoTime() - started) / 1_000_000
-                                    main.post {
-                                        if (request.id == revision.get() &&
-                                            request.finished.compareAndSet(false, true)) {
-                                            if (pending === request) pending = null
-                                            result.success(mapOf(
-                                                "wav" to wav, "profile" to LumoOfflineSpeechEngine.PROFILE,
-                                                "preset" to LumoOfflineSpeechEngine.PRESET,
-                                                "language" to "de", "local" to true,
-                                                "sampleRate" to LumoOfflineSpeechEngine.SAMPLE_RATE,
-                                                "synthesisMs" to elapsed
-                                            ))
-                                        }
-                                    }
-                                } catch (_: Throwable) {
-                                    main.post {
-                                        if (request.finished.compareAndSet(false, true)) {
-                                            if (pending === request) pending = null
-                                            result.error("local_unavailable",
-                                                "Die lokale Lumo-Stimme konnte diesen Satz nicht erzeugen.", null)
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    "synthesize" -> synthesize(
+                        call.argument<String>("text"),
+                        call.argument<String>("style") ?: "warm",
+                        call.argument<Boolean>("localLicenseAccepted") == true,
+                        result
+                    )
                     "cancel" -> { cancelCurrent(); result.success(true) }
                     else -> result.notImplemented()
                 }
             }
     }
+
+    /** Same verified local voice for Flutter and the embedded learning activity. */
+    fun synthesize(text: String?, style: String, localLicenseAccepted: Boolean,
+        result: MethodChannel.Result) {
+        // Licensing assent is not an online/privacy/microphone consent.
+        if (!localLicenseAccepted) {
+            result.error("local_license", "Lokale Sprachlizenz nicht bestätigt.", null)
+        } else if (text.isNullOrBlank() || text.length > 220 ||
+            style !in setOf("warm", "greeting", "explain", "celebrate", "comfort", "question")) {
+            result.error("local_input", "Ungültiger lokaler Sprachtext.", null)
+        } else {
+            cancelCurrent()
+            val request = Request(revision.incrementAndGet(), result)
+            pending = request
+            request.future = worker.submit {
+                try {
+                    if (request.id != revision.get()) throw InterruptedException()
+                    // Immutable weights are verified when opening a model,
+                    // not rehashed for every subsequent spoken sentence.
+                    val voice = engine ?: LumoOfflineSpeechEngine(
+                        prepareModels(request.id)
+                    ).also { engine = it }
+                    val started = System.nanoTime()
+                    val wav = voice.synthesize(text, style) { request.id != revision.get() }
+                    val elapsed = (System.nanoTime() - started) / 1_000_000
+                    main.post {
+                        if (request.id == revision.get() &&
+                            request.finished.compareAndSet(false, true)) {
+                            if (pending === request) pending = null
+                            result.success(mapOf(
+                                "wav" to wav, "profile" to LumoOfflineSpeechEngine.PROFILE,
+                                "preset" to LumoOfflineSpeechEngine.PRESET,
+                                "language" to "de", "local" to true,
+                                "sampleRate" to LumoOfflineSpeechEngine.SAMPLE_RATE,
+                                "synthesisMs" to elapsed
+                            ))
+                        }
+                    }
+                } catch (_: Throwable) {
+                    main.post {
+                        if (request.finished.compareAndSet(false, true)) {
+                            if (pending === request) pending = null
+                            result.error("local_unavailable",
+                                "Die lokale Lumo-Stimme konnte diesen Satz nicht erzeugen.", null)
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    fun cancel() = cancelCurrent()
 
     private fun cancelCurrent() {
         revision.incrementAndGet()

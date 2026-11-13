@@ -28,6 +28,7 @@ import 'flame/lumo_jump_game.dart';
 import 'connect_four/lumo_connect_four_game.dart';
 import 'dice_race/lumo_dice_race_game.dart';
 import 'lumo_cards/lumo_cards_screen.dart';
+import 'lumo_cards/lumo_cards_cup_screen.dart';
 import 'star_trail/star_trail_screen.dart';
 import 'lumo_cards/lumo_cards_showcase_screen.dart';
 import 'memory/lumo_memory_game.dart';
@@ -262,6 +263,8 @@ class _GamesContentState extends State<GamesContent> {
       await Navigator.of(context).push<void>(
         MaterialPageRoute<void>(
           builder: (hubContext) => LumoCardsShowcaseScreen(
+            onCup: () => Navigator.of(hubContext).push<void>(MaterialPageRoute<void>(
+              builder: (_) => LumoCardsCupScreen(appState: widget.appState))),
             onSolo: () => Navigator.of(hubContext).push<void>(
               MaterialPageRoute<void>(
                 builder: (_) => LumoCardsScreen(

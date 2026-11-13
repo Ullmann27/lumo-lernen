@@ -22,7 +22,7 @@ class EmbeddedAndroidTest(unittest.TestCase):
             gradle.write_text('android { namespace = "dev.ullmann.lumo.lumo_lernen"\n defaultConfig { applicationId = "dev.ullmann.lumo.lumo_lernen.coachpreview" } }')
             templates = root / 'tools/auto_install'
             templates.mkdir(parents=True)
-            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt'):
+            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt', 'CardsTableBridge.kt'):
                 (templates / filename).write_text((ROOT / 'tools/auto_install' / filename).read_text())
             # Upgrade a host already prepared by the old script. Existing app
             # rules and its reflected plugin rule must survive the JNI fix.
