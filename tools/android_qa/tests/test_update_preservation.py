@@ -142,7 +142,7 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
         self.assertNotIn('independentEvidence', json.loads(self.before[self.key])[self.skill])
 
     def test_unapproved_version_pairs_types_and_missing_opt_in_fail(self):
-        for versions in [(2016, 2018), (2016, 2019), (2017, 2020),
+        for versions in [(2016, 2018), (2016, 2019), (2017, 2021),
                          (2018, 2018), (2018, 2019), (2019, 2019),
                          ('2017', 2018), ('2017', 2019), [2017, 2018],
                          [2017, 2019], (True, 2018), (2017, True),
@@ -322,6 +322,16 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
             self.before, self.before, self.before), expected)
         with self.assertRaises(RuntimeError):
             require_post_update_learning_preserved(self.before, self.after, self.after)
+
+
+class Build2020IndependentEvidenceMigrationTests(Build2018IndependentEvidenceMigrationTests):
+    """The exact 2017->2020 extension preserves all 2018 evidence invariants."""
+    versions = (2017, 2020)
+
+    def test_invalid_foreign_update_is_rejected(self):
+        for versions in ((2018, 2020), (2017, 2021), (2019, 2020)):
+            with self.subTest(versions=versions), self.assertRaises(RuntimeError):
+                self.require(versions=versions)
 
 
 class Build2019IndependentEvidenceMigrationTests(Build2018IndependentEvidenceMigrationTests):

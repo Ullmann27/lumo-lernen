@@ -75,8 +75,8 @@ def _approved_migration_view(before: dict, after: dict,
     """
     if (type(versions) is not tuple or len(versions) != 2 or
             any(type(value) is not int for value in versions) or
-            versions not in ((2017, 2018), (2017, 2019))):
-        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018 or 2019')
+            versions not in ((2017, 2018), (2017, 2019), (2017, 2020))):
+        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018, 2019 or 2020')
     owner = before.get(_LOCAL_STUDENT_KEY)
     if (type(owner) is not str or not re.fullmatch(r'local-[a-f0-9]{32}', owner) or
             after.get(_LOCAL_STUDENT_KEY) != owner):
