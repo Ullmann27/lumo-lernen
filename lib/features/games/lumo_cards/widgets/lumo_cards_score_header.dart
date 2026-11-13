@@ -28,7 +28,13 @@ class LumoCardsScoreHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
       final buttons = actions;
-      final narrow = constraints.maxWidth < 176 + buttons.length * 48;
+      final availableWidth = constraints.maxWidth - 16;
+      final actionWidth = buttons.length * 48.0;
+      final narrow = availableWidth < 176 + actionWidth;
+      // A short landscape layout places this header in a narrow side column.
+      // Keep the score readable instead of squeezing it to a few pixels next
+      // to all actions, which pushes the actual turn banner off-screen.
+      final separateScore = narrow && availableWidth < actionWidth + 96;
       final titleRow = Row(children: [
         IconButton(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -46,15 +52,19 @@ class LumoCardsScoreHeader extends StatelessWidget {
       ]);
       final score = Text(
         narrow
-            ? 'Runde $round/$totalRounds\n$targetPoints Sterne'
+            ? 'Runde $round/$totalRounds${separateScore ? ' · ' : '\n'}$targetPoints Sterne'
             : 'Runde $round/$totalRounds · $targetPoints gesammelte Sterne',
         style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
       );
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: EdgeInsets.symmetric(
+            horizontal: 8, vertical: separateScore ? 2 : 4),
         child: Column(children: [
           titleRow,
-          if (narrow)
+          if (separateScore) ...[
+            score,
+            Wrap(alignment: WrapAlignment.center, children: buttons),
+          ] else if (narrow)
             Row(children: [Expanded(child: score), ...buttons])
           else
             score,

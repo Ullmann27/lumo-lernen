@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "checkpoint": "e2980be9c73f86e104af546c38c8c52db6bc922b",
+  "scope": "Final learning profile boundary patch; no broad legacy-data migration",
+  "product_source_frozen": true,
+  "flutter_test_count": 71,
+  "flutter_test_files": 7,
+  "profile_boundary_tests": 7,
+  "analyzer_items": 9,
+  "analyzer_result": "No issues found",
+  "files": [
+    {
+      "file": "lib/app/app_state.dart",
+      "sha256": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f"
+    },
+    {
+      "file": "lib/core/error_breakdown_repository.dart",
+      "sha256": "d2e6c1b2f11ab513dc56880c26687513113382454529eb2aab6b663a3627b18f"
+    },
+    {
+      "file": "lib/features/learning/learning_content.dart",
+      "sha256": "4f485a351e787c2411783c2542c5fa15bf7b875b12ab72257eea26d31057b692"
+    },
+    {
+      "file": "test/tutoring/native_learning_launch_test.dart",
+      "sha256": "4fff9015bba0fbbe5a69c6de613a1b1123db97c76e17b49ecca5e20426c15824"
+    },
+    {
+      "file": "test/tutoring/learning_profile_boundaries_test.dart",
+      "sha256": "70fc1b7e52481cf43aa8d67d857a9a39e106260766d4555571119a1b2872f471"
+    },
+    {
+      "file": "docs/NEXTGEN_LEARNING_HOST_20261113.md",
+      "sha256": "70ee230dcf8c7b6bc57e61445056e3f80a62c789569485d01a49a97e0d395bb1"
+    }
+  ],
+  "evidence": [
+    {
+      "file": "flutter-analyze.log",
+      "sha256": "27556eb8c9ccb7907623ba576c4dcfbb3cf7cdf6490590598398e0140429c28b"
+    },
+    {
+      "file": "flutter-regression.log",
+      "sha256": "4ccd41635c08ee8aae5da8c46fc52b625646c996259369d120e411de4582c5b6"
+    },
+    {
+      "file": "host-preparation.log",
+      "sha256": "08057dcf62b363da21f629820600c4df9506e16d0aa300c5f006f68c2beb77e5"
+    },
+    {
+      "file": "profile-boundaries.log",
+      "sha256": "7045ca5e54bd2e6f8d1b8b5cbcdcc74a4f3e816f913155bcee6ed3717d7a5586"
+    },
+    {
+      "file": "renderer-review.json",
+      "sha256": "3429db63f8b41dbd1de8491ed121eac2b7784ad0d9d3019725ce9532136853a2"
+    }
+  ]
+}

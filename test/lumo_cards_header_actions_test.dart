@@ -3,7 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/features/games/lumo_cards/widgets/lumo_cards_score_header.dart';
 
 void main() {
-  for (final width in [320.0, 344.0, 412.0, 840.0]) {
+  for (final width in [220.0, 240.0, 320.0, 344.0, 412.0, 840.0]) {
     for (final textScale in [1.0, 1.4]) {
       testWidgets('3D entry preserves explicit pause at $width / $textScale',
           (tester) async {
