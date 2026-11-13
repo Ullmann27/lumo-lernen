@@ -1,17 +1,24 @@
 name: LUMO Next Generation 2018 Android candidate
 on:
-  push:
-    branches: [chatgpt/lumo-nextgen-20261113]
+  # PR synchronization is the single automatic APK event. A push to its head
+  # must not create a second build of the same source.
   pull_request:
     branches: [chatgpt/lumo-spielewelt-stage-20261112]
   workflow_dispatch:
 permissions:
   contents: read
 concurrency:
-  group: lumo-nextgen-2018-${{ github.ref }}
+  group: lumo-nextgen-2018-${{ github.head_ref || github.ref_name }}
   cancel-in-progress: true
 jobs:
   android-host-compile:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'chatgpt/lumo-nextgen-20261113') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'chatgpt/lumo-nextgen-20261113'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -42,6 +49,13 @@ jobs:
           retention-days: 30
 
   verify-and-build:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'chatgpt/lumo-nextgen-20261113') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'chatgpt/lumo-nextgen-20261113'))
     runs-on: ubuntu-latest
     timeout-minutes: 90
     env:
@@ -341,7 +355,7 @@ jobs:
           python3 -m venv .probe-venv
           .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
           python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_nextgen_surfaces_android_probe.py
-          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_nextgen_evidence.py -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
           sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
       - name: Enable accelerated disposable emulator
         run: |

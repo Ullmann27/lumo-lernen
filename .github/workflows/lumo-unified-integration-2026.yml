@@ -58,7 +58,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify-and-build:
-    if: github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113'
+    if: github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113' && github.head_ref != 'chatgpt/lumo-2018-android-acceptance-20261113' && github.ref_name != 'chatgpt/lumo-2018-android-acceptance-20261113'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     env:
@@ -77,6 +77,10 @@ jobs:
           python3 - <<'PY'
           import json
           import re
+          from pathlib import Path
+          version = re.search(r'^version:\s*[0-9.]+\+(\d+)\s*$', Path('pubspec.yaml').read_text(), re.M)
+          assert version is not None, 'Missing application version'
+          assert int(version[1]) != 2018, 'Build 2018 requires the dedicated Nextgen workflow'
           config=json.load(open("config/godot-source.json"))
           assert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"
           assert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"

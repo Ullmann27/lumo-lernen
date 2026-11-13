@@ -1,0 +1,58 @@
+test_2017_events_and_legacy_kart (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_2017_events_and_legacy_kart) ... ok
+test_cold_recreated_host_preserves_fallback (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_cold_recreated_host_preserves_fallback) ... ok
+test_failed_commit_retains_fallback_and_explicit_reset_still_works (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_failed_commit_retains_fallback_and_explicit_reset_still_works) ... ok
+test_foreign_stale_and_wrong_destination (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_foreign_stale_and_wrong_destination) ... ok
+test_invalid_session_never_writes (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_invalid_session_never_writes) ... ok
+test_new_launch_supersedes_only_stale_navigation (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_new_launch_supersedes_only_stale_navigation) ... ok
+test_result_before_resume (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_result_before_resume) ... ok
+test_resume_before_result (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_resume_before_result) ... ok
+test_stale_ack_keeps_return_and_unacknowledged_rewards (scripts.tests.test_game_return_contract.GameReturnStoreTest.test_stale_ack_keeps_return_and_unacknowledged_rewards) ... ok
+test_completion_is_live_session_bound_and_commit_precedes_success_and_unlock (scripts.tests.test_game_return_contract.GameReturnWiringTest.test_completion_is_live_session_bound_and_commit_precedes_success_and_unlock) ... ok
+test_native_persists_fallback_before_return_and_retains_process_shutdown (scripts.tests.test_game_return_contract.GameReturnWiringTest.test_native_persists_fallback_before_return_and_retains_process_shutdown) ... ok
+test_validated_private_launch_owns_only_learning_and_cards (scripts.tests.test_game_return_contract.GameReturnWiringTest.test_validated_private_launch_owns_only_learning_and_cards) ... ok
+test_same_package_private_engine_repeatable_preparation (scripts.tests.test_embedded_android.EmbeddedAndroidTest.test_same_package_private_engine_repeatable_preparation) ... ok
+test_actual_local_voice_templates_preserve_host_namespace_and_user_files (scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files)
+Real new source templates; fixtures do not prove Android compilation. ... ok
+test_kotlin_and_groovy_identity_transitions_and_explicit_signing (scripts.tests.test_prepare_android.AndroidHostTest.test_kotlin_and_groovy_identity_transitions_and_explicit_signing) ... ok
+test_namespace_permissions_signing_and_idempotence (scripts.tests.test_prepare_android.AndroidHostTest.test_namespace_permissions_signing_and_idempotence) ... ok
+test_actual_stale_mailbox_does_not_revive_session (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_actual_stale_mailbox_does_not_revive_session) ... ok
+test_close_revokes_before_file_cleanup (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_close_revokes_before_file_cleanup) ... ok
+test_detach_and_replacement_engine_revoke_old_tokens (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_detach_and_replacement_engine_revoke_old_tokens) ... ok
+test_invalid_and_foreign_tokens_never_gain_authority (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_invalid_and_foreign_tokens_never_gain_authority) ... ok
+test_restarted_process_requires_new_live_session (scripts.tests.test_cards_authority_registry.CardsAuthorityRegistryTest.test_restarted_process_requires_new_live_session) ... ok
+
+----------------------------------------------------------------------
+Ran 21 tests in 9.946s
+
+OK
+GAME_RETURN_STORE_PASS legacy-2017
+GAME_RETURN_STORE_PASS cold-recreated
+GAME_RETURN_STORE_PASS storage-failure-and-reset
+GAME_RETURN_STORE_PASS foreign-stale-and-destination
+GAME_RETURN_STORE_PASS invalid-session
+GAME_RETURN_STORE_PASS new-launch-stale-navigation
+GAME_RETURN_STORE_PASS result-before-resume
+GAME_RETURN_STORE_PASS resume-before-result
+GAME_RETURN_STORE_PASS stale-ack-and-rewards
+Embedded Godot host prepared; same APK, private activity, durable reward events.
+Embedded Godot host prepared; same APK, private activity, durable reward events.
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: example.retained.host; stable signing; installer and 3D bridge connected
+Android host prepared: example.retained.host; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected

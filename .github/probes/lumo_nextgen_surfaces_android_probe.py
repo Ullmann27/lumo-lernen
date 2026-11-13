@@ -17,6 +17,7 @@ import traceback
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 import modernization_android_tour as tour
+import lumo_education_android_probe as education
 from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
                              require_learning_voice, require_public_saved_match, require_saved_round)
 
@@ -70,13 +71,19 @@ def resumed_activity() -> str:
         raise
 
 
-def returned_to_flutter(out: Path, caption: str, tag: str) -> None:
+def returned_to_flutter(out: Path, caption: str, tag: str, *, scroll_to_caption=False) -> None:
     wait_for('Native return and isolated process exit',
              lambda: not tour.godot_alive() and 'MainActivity' in resumed_activity(),
              bool, timeout=45)
     if not tour.alive():
         raise RuntimeError('Flutter host quit during native return')
-    must_see(out, caption, tag)
+    if scroll_to_caption:
+        # Returning preserves the real lesson's scroll offset. Its 3D launch
+        # control is below the illustration; bring the same title back into
+        # view through actual content swipes, never a different route.
+        education.wait_text(out, caption, tag, timeout=45, scroll=True)
+    else:
+        must_see(out, caption, tag)
     probe.capture_flutter_ready(out, tag)
 
 
@@ -140,8 +147,11 @@ def completed_native_speech(out: Path, *, after_final_move=False) -> dict:
 
 def learning_roundtrip(out: Path) -> dict:
     tap_flutter(out, ['Lernen'], 'learning-tab')
+    tap_flutter(out, ['Lernwerkzeuge & Geschichten'], 'guided-tools')
+    must_see(out, 'Dein Lernatelier', 'guided-tools-open')
     tap_flutter(out, ['Lumo erklärt es mir'], 'guided-hub')
-    tap_flutter(out, ['Über den Zehner'], 'guided-bridge')
+    must_see(out, 'Über den Zehner', 'guided-bridge-card')
+    education.tap_named_course(out, 'Über den Zehner', 'guided-bridge')
     must_see(out, 'Heute lernen wir einen Rechentrick', 'guided-greeting')
     tap_flutter(out, ['Weiter'], 'guided-next')
     must_see(out, 'Zähle die Äpfel', 'guided-foundation')
@@ -173,15 +183,18 @@ def learning_roundtrip(out: Path) -> dict:
             min(final_voice['completed_utterance_ids']) <= max(initial_voice['completed_utterance_ids'])):
         raise RuntimeError('The spoken result was not a new utterance in the same native lesson')
     probe.native_text(out, 'Zur Aufgabe', 'learning-back', tap=True, exact=True, settle=True)
-    returned_to_flutter(out, 'Acht und fünf', '05_learning_same_flutter_lesson')
+    returned_to_flutter(out, 'Acht und fünf', '05_learning_same_flutter_lesson',
+                        scroll_to_caption=True)
     after = probe.prefs(out, 'learning-after-native')
     preservation = tour.evidence.learning_preserved(before, after)
     if tour.evidence.learning_snapshot(before) != tour.evidence.learning_snapshot(after):
         raise RuntimeError('The explanatory 3D illustration changed learning/mastery/reward data')
     # Return through the two actually opened Flutter routes to the academy.
-    for _ in range(2):
+    for caption, tag in (('Mit Lumo anfangen', 'learning-return-hub'),
+                         ('LUMO AKADEMIE', 'learning-return-academy')):
         base.adb('shell', 'input', 'keyevent', '4')
         time.sleep(1)
+        must_see(out, caption, tag)
     must_see(out, 'Spielen', 'learning-return-navigation')
     return {'moves': moves, 'preservation': preservation, 'same_lesson_after_return': True,
             'speech': {'initial': initial_voice, 'result': final_voice,
@@ -241,6 +254,121 @@ class CardsMailbox:
         return matches[0]
 
 
+def cards_ready_to_draw(out: Path, box: CardsMailbox, *, timeout=90) -> tuple[dict, dict]:
+    """Observe current state throughout OCR; never press a vanished pause modal."""
+    started = time.monotonic()
+    deadline = started + timeout
+    evidence = {'status': 'WAITING', 'states': [], 'frames': [], 'touch': None,
+                'scope': 'Actual initial Cards state and, only if needed, native resume'}
+    identity = None
+    previous = None
+    previous_revision = None
+
+    def observe():
+        nonlocal identity
+        state = box.read()
+        current = (state.get('token'), state.get('roundId'), state.get('viewer'))
+        if (state.get('protocol') != 1 or current[0] != box.token or current[2] != 0 or
+                not re.fullmatch(r'cards-[a-f0-9]{32}', current[1] or '')):
+            raise RuntimeError('Cards readiness requires the actual child session')
+        if identity is not None and current != identity:
+            raise RuntimeError('Cards session changed while observing its pause control')
+        identity = current
+        facts = {key: state.get(key) for key in
+                 ('token', 'roundId', 'viewer', 'current', 'phase', 'paused',
+                  'canDraw', 'revision', 'ack')}
+        evidence['states'].append(facts)
+        if state.get('phase') == 'gameOver':
+            raise RuntimeError('Cards round ended before the requested child draw')
+        return state
+
+    def child_turn(state):
+        return (state.get('paused') is False and state.get('canDraw') is True and
+                state.get('phase') == 'playing' and state.get('current') == 0)
+
+    try:
+        while time.monotonic() < deadline:
+            state = observe()
+            if child_turn(state):
+                evidence.update(status='READY', mode='active_without_resume_touch')
+                return state, evidence
+            if state.get('paused') is not True:
+                previous = None
+                time.sleep(min(.5, max(0, deadline - time.monotonic())))
+                continue
+            tag = f'cards-native-resume-{len(evidence["frames"]):02d}'
+            snapshot = probe.capture(out, tag, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source)
+            evidence['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous = None
+                time.sleep(min(.5, max(0, deadline - time.monotonic())))
+                continue
+            wanted = probe.normalized('Weiterspielen')
+            lines = probe.image_lines(out, tag, wanted, source_path=source, exact=True,
+                                      timeout=max(.001, deadline - time.monotonic()))
+            latest = observe()
+            # Opening the mailbox pauses Dart until the first native heartbeat.
+            # It may resume while screenshot/OCR work is in progress. Discard
+            # those old coordinates instead of searching for or pressing them.
+            if latest.get('paused') is not True or latest.get('revision') != state.get('revision'):
+                frame['state_changed_during_ocr'] = True
+                previous = None
+                continue
+            matches = [line for line in lines if probe.normalized(line['text']) == wanted]
+            if not matches:
+                previous = None
+            else:
+                selected = min(matches, key=lambda line: len(line['text']))
+                observed = probe.target_observation(
+                    frame, selected['bounds'],
+                    previous if previous_revision == latest.get('revision') else None)
+                frame['target'] = observed
+                previous, previous_revision = observed, latest.get('revision')
+                if observed['stable_observed_target']:
+                    if probe.digest(source) != frame['source_sha256']:
+                        raise RuntimeError('Cards screenshot changed during target observation')
+                    before_touch = observe()
+                    if (before_touch.get('paused') is not True or
+                            before_touch.get('revision') != previous_revision):
+                        frame['state_changed_before_touch'] = True
+                        previous = None
+                        continue
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    x0, y0, x1, y1 = observed['bounds']
+                    x, y = str(round((x0 + x1) / 2)), str(round((y0 + y1) / 2))
+                    base.adb('shell', 'input', 'swipe', x, y, x, y, '120',
+                             timeout=min(15, remaining))
+                    evidence['touch'] = [int(x), int(y)]
+                    time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                    request = box.read('request')
+                    sequence = request.get('sequence')
+                    if (request.get('action') != 'resume' or request.get('token') != box.token or
+                            request.get('revision') != before_touch.get('revision') or
+                            type(sequence) is not int or sequence <= before_touch.get('ack', -1)):
+                        raise RuntimeError('Actual Weiterspielen touch did not publish a fresh resume request')
+                    evidence['resume_request'] = request
+                    ready = wait_for('Same Cards round acknowledged native resume', observe,
+                                     lambda value: child_turn(value) and
+                                     value.get('ack', -1) >= sequence and
+                                     value.get('revision', -1) > request['revision'],
+                                     timeout=max(0, deadline - time.monotonic()))
+                    evidence.update(status='READY', mode='native_resume_acknowledged')
+                    return ready, evidence
+            time.sleep(min(.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Cards did not expose an active child turn or a current resume control')
+    except Exception as error:
+        evidence.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        evidence['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        (out / 'cards-initial-readiness.json').write_text(
+            json.dumps(evidence, indent=2, ensure_ascii=False) + '\n')
+
+
 def cards_roundtrip(out: Path) -> dict:
     tap_flutter(out, ['Spielen', 'Spiele'], 'cards-games-tab')
     tap_flutter(out, ['Lumo Cards. Sammeln. Spielen. Staunen! Spielen', 'Lumo Cards',
@@ -253,12 +381,7 @@ def cards_roundtrip(out: Path) -> dict:
     native_ready(out, 'Lumos Kartenstube', 'cards-native-title')
     box = CardsMailbox(out)
     wait_for('Private Cards IPC session created by app', box.locate, bool)
-    first = box.read()
-    if first.get('paused'):
-        probe.native_text(out, 'Weiterspielen', 'cards-native-resume', tap=True,
-                          exact=True, settle=True)
-    before = wait_for('Child can draw in the real table', box.read,
-                      lambda state: state.get('canDraw') is True and state.get('paused') is False)
+    before, initial_readiness = cards_ready_to_draw(out, box)
     before_save = box.saved(before['roundId'])
     require_public_saved_match(before, before_save)
     probe.capture(out, '11_cards_real_table_before_draw')
@@ -342,7 +465,8 @@ def cards_roundtrip(out: Path) -> dict:
     probe.capture(out, '15_cards_reopened_same_round')
     probe.native_text(out, 'Zurück', 'cards-reopened-back', tap=True, exact=True, settle=True)
     returned_to_flutter(out, 'Spiel pausiert', '16_cards_final_flutter_return')
-    return {'draw': draw, 'draw_after_visible_idle': late_draw,
+    return {'initial_readiness': initial_readiness,
+            'draw': draw, 'draw_after_visible_idle': late_draw,
             'visible_idle_seconds': idle_seconds,
             'android_authority_binding': bindings,
             'pause_saved_state_unchanged': True,

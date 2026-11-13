@@ -77,6 +77,7 @@ class Action2017InitialPincheckTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             root = Path(directory)
             root.joinpath('config').mkdir()
+            root.joinpath('pubspec.yaml').write_text('version: 0.13.5+2017\n')
             root.joinpath('config/godot-source.json').write_text(json.dumps(source))
             return subprocess.run(
                 [sys.executable, '-c', initial_pincheck_python()], cwd=root,

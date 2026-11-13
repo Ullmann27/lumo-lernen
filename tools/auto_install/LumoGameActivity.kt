@@ -136,12 +136,21 @@ class LumoGameActivity : GodotActivity() {
 
     fun options(): String = launchOptions
 
+    private fun callerReturnSession(): String? = try {
+        val options = org.json.JSONObject(launchOptions)
+        intent.getStringExtra(GameEventStore.CALLER_RETURN_SESSION)?.takeIf {
+            options.optString("game") in setOf("learning", "cards") &&
+                options.optString("sessionId") == it && GameEventStore.validCallerSession(it)
+        }
+    } catch (_: Exception) { null }
+
     @Synchronized
     fun returnToLearningApp(destination: String): Boolean {
         if (returning) return true
         val target = if (destination == "learn") "learn" else "games"
+        val callerSession = callerReturnSession()
         try {
-            GameEventStore.recordReturn(this, target)
+            GameEventStore.recordReturn(this, target, callerSession)
         } catch (error: Exception) {
             Log.e("LumoHost", "Could not save game return; keep result open", error)
             return false
@@ -150,7 +159,8 @@ class LumoGameActivity : GodotActivity() {
         learningSpeech?.stop()
         runOnUiThread {
             setResult(Activity.RESULT_OK, Intent().putExtra("destination", target)
-                .putExtra("gamePid", android.os.Process.myPid()))
+                .putExtra("gamePid", android.os.Process.myPid())
+                .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession))
             finish()
             // Android receives finish/result first. Kill only :lumo_game, never Flutter.
             Handler(Looper.getMainLooper()).postDelayed({
