@@ -1,0 +1,138 @@
+test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) ... 
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'chatgpt/lumo-nextgen-20261113'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'integration/lumo-connections-20261113'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'main'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'repair/lumo-1999-update-learning-hub-20261026-other'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.repo.full_name': 'other/lumo-lernen'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.repository': 'other/lumo-lernen'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'push', 'github.ref_name': 'repair/lumo-1999-update-learning-hub-20261026'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'workflow_run', 'github.ref_name': 'repair/lumo-1999-update-learning-hub-20261026'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'workflow_dispatch', 'github.ref_name': 'main'}) ... FAIL
+  test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'workflow_dispatch', 'github.ref_name': 'chatgpt/lumo-nextgen-20261113'}) ... FAIL
+test_original_pull_request_and_manual_branch_run_remain_available (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_original_pull_request_and_manual_branch_run_remain_available) ... FAIL
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'chatgpt/lumo-nextgen-20261113'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'integration/lumo-connections-20261113'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'main'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.ref': 'repair/lumo-1999-update-learning-hub-20261026-other'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event.pull_request.head.repo.full_name': 'other/lumo-lernen'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.repository': 'other/lumo-lernen'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'push', 'github.ref_name': 'repair/lumo-1999-update-learning-hub-20261026'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'workflow_run', 'github.ref_name': 'repair/lumo-1999-update-learning-hub-20261026'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'workflow_dispatch', 'github.ref_name': 'main'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks) (context={'github.event_name': 'workflow_dispatch', 'github.ref_name': 'chatgpt/lumo-nextgen-20261113'})
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 57, in test_new_candidates_forks_and_unrelated_events_do_not_run_old_apks
+    self.assertFalse(self.accepts(**case))
+                     ^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+======================================================================
+FAIL: test_original_pull_request_and_manual_branch_run_remain_available (test_historical_update_workflow_scope.HistoricalUpdateWorkflowScopeTests.test_original_pull_request_and_manual_branch_run_remain_available)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 33, in test_original_pull_request_and_manual_branch_run_remain_available
+    self.assertTrue(self.accepts())
+                    ^^^^^^^^^^^^^^
+  File "/workspace/scratch/b3485b7bb989/lumo-lernen/scripts/tests/test_historical_update_workflow_scope.py", line 16, in accepts
+    self.assertIn('    if: >-\n', header,
+AssertionError: '    if: >-\n' not found in '' : Historical APKs must not be checked against unrelated app versions
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.001s
+
+FAILED (failures=11)

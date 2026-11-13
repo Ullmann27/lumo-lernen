@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "updated_at_utc": "2026-11-13T12:47:18Z",
+  "mode": "active_session_only",
+  "scheduled_automation_enabled": false,
+  "state": "integrating",
+  "integration_branch": "integration/lumo-connections-20261113",
+  "integration_pr": 465,
+  "product_host_sha": "3c712129fef8f144d8946fad567b9ed11c628a60",
+  "native_pin": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+  "secured_code_sha": "aea885f0f07644de2d6057ce32ef2bb5a636cdc3",
+  "tested_code_tree": "0a037b2f789dfa1e506edfad161284b5d8d5c5a8",
+  "checks": {
+    "script_contracts": {"passed": 318, "failed": 0, "skipped": 0},
+    "speech_logcat": {"passed": 5, "failed": 0, "skipped": 0},
+    "speech_evidence": {"passed": 12, "failed": 0, "skipped": 0},
+    "actionlint": "pass",
+    "new_android_tour": "not_run"
+  },
+  "queue": [
+    {"source_pr": 463, "source_sha": "b56295f53f08c70079266331039250b96ca7bdbc", "state": "integrated_via_464"},
+    {"source_pr": 464, "source_sha": "f257c787878be5d3d9615d1258aaa8f2f83a945e", "state": "integrated"},
+    {"source_pr": 456, "state": "adapting_existing_garage_resume_probe", "legacy_publisher": "excluded"},
+    {"source_branch": "chatgpt/lumo-studio-20261113", "source_sha": "a8e09123805b2bf30706c8dd1914b928ae6b24ca", "state": "waiting_for_matching_native_equal_sharing_source_and_checks"},
+    {"source_branch": "chatgpt/lumo-game-rooms-20261113", "state": "awaiting_published_product_delivery"},
+    {"source_branch": "chatgpt/lumo-graphics-expansion-20261113", "repository": "Ullmann27/lumo-godot", "state": "awaiting_published_product_delivery"}
+  ],
+  "protected_branches": ["main", "master"],
+  "producer_worktrees_modified": false
+}
