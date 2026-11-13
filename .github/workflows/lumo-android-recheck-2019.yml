@@ -1,0 +1,141 @@
+name: LUMO 2019 unchanged APK Android recheck
+
+on:
+  push:
+    branches: [chatgpt/lumo-android-recheck-2019-20261113]
+    paths:
+      - .github/workflows/lumo-android-recheck-2019.yml
+      - .github/probes/creative_android_probe.py
+      - scripts/verify_android_recheck_identity.py
+      - scripts/run_android_recheck_tour.sh
+      - tools/android_qa/tests/test_flutter_tap_scroll_budget.py
+      - scripts/tests/test_android_recheck_identity.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-android-recheck-2019-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  android-recheck:
+    name: Unchanged e3d APK diagnostic on API ${{ matrix.api }}
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [35, 37]
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    env:
+      LUMO_RECHECK_PROBE_SOURCE: ${{ github.sha }}
+    steps:
+      - name: Checkout the actual diagnostic probe source
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Verify all six bounded-scroll contracts before emulator setup
+        run: |
+          set -euo pipefail
+          mkdir -p tour/recheck
+          python3 -B -m unittest discover -s tools/android_qa/tests -p test_flutter_tap_scroll_budget.py -v 2>&1 | tee tour/recheck/scroll-contracts.log
+      - name: Checkout immutable original app identity without replacing probe code
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: e3d161cb2f79b732ac2dbafc2764b151247f018b
+          path: apk-source
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            /pubspec.yaml
+            /config/godot-source.json
+      - name: Record original candidate and completed build metadata
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          gh api repos/Ullmann27/lumo-lernen/actions/artifacts/14061222588 > tour/recheck/original-artifact.json
+          gh api repos/Ullmann27/lumo-lernen/actions/runs/43461547945 > tour/recheck/original-run.json
+          gh api repos/Ullmann27/lumo-lernen/actions/jobs/132009667976 > tour/recheck/original-build-job.json
+      - name: Download only the original e3d candidate artifact
+        uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '14061222588'
+          merge-multiple: true
+          path: candidate/dist/
+          run-id: 43461547945
+          repository: Ullmann27/lumo-lernen
+          github-token: ${{ github.token }}
+      - name: Require original APK PCK source version and GitHub identities
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s scripts/tests -p test_android_recheck_identity.py -v 2>&1 | tee tour/recheck/identity-contracts.log
+          python3 scripts/verify_android_recheck_identity.py --phase before --dist candidate/dist --out tour --apk-source-checkout apk-source --probe-source "$LUMO_RECHECK_PROBE_SOURCE" --expected-api ${{ matrix.api }}
+      - name: Live UI reader and unchanged Studio contracts
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_studio_surfaces_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_studio*.py' -v
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Complete original tour followed by Studio learning and Cards
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          LUMO_NATIVE_STAGE_MENU: '1'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api == 37 && '37.0' || '35' }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: ${{ matrix.api == 35 && '14472402' || '' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '3072M' }}
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: bash "$GITHUB_WORKSPACE/scripts/run_android_recheck_tour.sh" '${{ matrix.api }}'
+      - name: Preserve diagnostic evidence without publishing any APK
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2019-android-recheck-api${{ matrix.api }}-${{ github.run_id }}-${{ github.run_attempt }}
+          path: tour/
+          if-no-files-found: error
+          retention-days: 30

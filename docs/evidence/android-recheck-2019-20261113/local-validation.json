@@ -1,0 +1,182 @@
+{
+  "status": "LOCAL_NARROW_CONTRACTS_AND_LINT_PASS_RUNTIME_PENDING",
+  "base": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "branch": "chatgpt/lumo-android-recheck-2019-20261113",
+  "scroll_contracts": {
+    "tests": 6,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 0.083,
+    "log": "scroll-contract-6-tests.log"
+  },
+  "identity_contracts": {
+    "tests": 6,
+    "failed": 0,
+    "skipped": 0,
+    "seconds": 0.056,
+    "log": "identity-contract-6-tests.log"
+  },
+  "workflow_shell_blocks_parsed": 7,
+  "checks": [
+    {
+      "name": "actionlint",
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "/workspace/scratch/5987865ae883/lumo-android-recheck-e3d/.github/workflows/lumo-android-recheck-2019.yml"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "bash-runner",
+      "argv": [
+        "bash",
+        "-n",
+        "scripts/run_android_recheck_tour.sh"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-1",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-2",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-3",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-4",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-5",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-6",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "workflow-shell-7",
+      "argv": [
+        "bash",
+        "-n"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "name": "python-ast",
+      "files": 4,
+      "result": "PASS"
+    },
+    {
+      "name": "git-diff-check",
+      "argv": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "unchanged_original_gates": [
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 36187,
+      "sha256": "ae13c51986aeaac5318442669480d890de9beed73655d0595a65ba5ec94f9f98"
+    },
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 46556,
+      "sha256": "2cd4f2af109d8bd91da573eea2cd8b8555a4bbe2f9cf65294045ebf23c32f69b"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 37089,
+      "sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c"
+    },
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "bytes": 28048,
+      "sha256": "25376c29c729506ef591e936fac21f82f106f249df2fe67b3e1254151192fccb"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "bytes": 19411,
+      "sha256": "9750d80c1a74daaae82e752c61f0d135955caffcaf79efcf74e428e56991e2fe"
+    },
+    {
+      "path": "scripts/probes/pr207_android_smoke.py",
+      "bytes": 14884,
+      "sha256": "9b56797c32ff6c637002c0d937f6843c45a052e126fe162b781b0a97b848f04e"
+    },
+    {
+      "path": "scripts/probes/pr207_android_ui_probe.py",
+      "bytes": 2032,
+      "sha256": "b94dc20910a27f88613b520674d8594793621d238578da4f3918be73b7c36cb4"
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+    },
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "ff76449f25572273d0602fff4bb826e14850030c063bb41d9471e262ffcc8896"
+    }
+  ],
+  "only_changed_existing_file": [
+    ".github/probes/creative_android_probe.py"
+  ],
+  "actual_android_execution": false,
+  "new_apk_built": false,
+  "github_mutation_by_this_agent": false
+}
