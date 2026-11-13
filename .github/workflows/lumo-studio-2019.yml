@@ -1,7 +1,9 @@
 name: LUMO Studio 2019 Android candidate
 on:
-  # PR synchronization is the single automatic APK event. A push to its head
-  # must not create a second build of the same source.
+  # Isolated, source-locked 2019 candidate: pushing this branch launches
+  # tests and an unpublished APK; the publish job below does not run on push.
+  push:
+    branches: [chatgpt/lumo-2019-release-candidate-20261113]
   pull_request:
     branches: [chatgpt/lumo-nextgen-20261113]
   workflow_dispatch:
@@ -18,7 +20,9 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.head_ref == 'chatgpt/lumo-studio-20261113') ||
       (github.event_name == 'workflow_dispatch' &&
-      github.ref_name == 'chatgpt/lumo-studio-20261113'))
+      github.ref_name == 'chatgpt/lumo-studio-20261113') ||
+      (github.event_name == 'push' &&
+      github.ref_name == 'chatgpt/lumo-2019-release-candidate-20261113'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -55,7 +59,9 @@ jobs:
       github.event.pull_request.head.repo.full_name == github.repository &&
       github.head_ref == 'chatgpt/lumo-studio-20261113') ||
       (github.event_name == 'workflow_dispatch' &&
-      github.ref_name == 'chatgpt/lumo-studio-20261113'))
+      github.ref_name == 'chatgpt/lumo-studio-20261113') ||
+      (github.event_name == 'push' &&
+      github.ref_name == 'chatgpt/lumo-2019-release-candidate-20261113'))
     runs-on: ubuntu-latest
     timeout-minutes: 110
     env:
