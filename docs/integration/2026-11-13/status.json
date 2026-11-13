@@ -44,7 +44,13 @@
       "android_ipc_evidence": false
     },
     "new_android_tour": "not_run",
-    "new_native_visual_approval": "pending"
+    "new_native_visual_approval": "pending",
+    "puzzle_visual_contracts": {
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "manifest": "docs/evidence/integration-20261113/puzzle-visual-gate/manifest.json"
+    }
   },
   "queue": [
     {
@@ -89,5 +95,13 @@
     "main",
     "master"
   ],
-  "producer_worktrees_modified": false
+  "producer_worktrees_modified": false,
+  "native_integration_pr": 160,
+  "native_candidate_sha": "2eb6c9ae388b1d79e4ac970088f9235a6aab59f7",
+  "native_candidate_tree": "d50d0d6bdb96a0d882e78a947392f84c966f0d4a",
+  "native_acceptance_runs": {
+    "nextgen": 43434091038,
+    "graphics": 43434090730,
+    "state": "in_progress"
+  }
 }

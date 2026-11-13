@@ -1,0 +1,27 @@
+{
+  "source_base": "143cf7864efa5a1479d78771d582099a05d996d8",
+  "passed": 16,
+  "failed": 0,
+  "skipped": 0,
+  "sources": {
+    "scripts/verify_nextgen_delivery.py": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196",
+    "scripts/tests/test_nextgen_delivery.py": "aacb984bcaeec2fa3e9a09efdf06e8a1c5aff382dcb48ba1e73ed671b2267b52",
+    "scripts/tests/test_nextgen_review_recovery.py": "0e39cb405424a4ae3c13fd6fae21af905e97bb615efe7891c013b2ea0d4c82e8"
+  },
+  "command": "python3 -m unittest -v scripts.tests.test_nextgen_delivery scripts.tests.test_nextgen_review_recovery",
+  "scope": "Synthetic verification/recorder contracts. Missing Puzzle reproduced before correction. No new visual approval.",
+  "logs": [
+    {
+      "original_log": "before-puzzle-gate.log",
+      "original_sha256": "ac87e5450658c4bd1e50030e94c53a46a24479a3aff82bc8041746c5eda57b16",
+      "archive": "before-puzzle-gate.log.gz",
+      "archive_sha256": "3a3675a4a96f4d49b0e4d63ba0665f30f0de9a9098f6eee9cda363581d171a5f"
+    },
+    {
+      "original_log": "recorder-delivery-contracts.log",
+      "original_sha256": "88d1f89561c3d7294ae9ec68deb1b8e725118f49db4370ede2ae15643ff9a6c3",
+      "archive": "recorder-delivery-contracts.log.gz",
+      "archive_sha256": "49c5be6da24adce2ca11edf16572c760ec2e52015e92d85195c0548d91ba34dd"
+    }
+  ]
+}
