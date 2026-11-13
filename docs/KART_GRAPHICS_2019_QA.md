@@ -34,6 +34,17 @@ incorrect ARM64 PCK digests, checked preservation boundaries, and inspected the
 workflow shell and embedded Python programs. The existing 2018 workflow,
 dedicated update wrapper, publisher and visual receipt were preserved.
 
+After binding version 0.13.7+2019 and native `ea72b244` in exact host tree
+`08183aa0e71038f5f947b852b7a0a6232dc7b9a0`, the complete build/release suite
+passed **335 tests in 56.321 seconds**, with no failures or skips. Its preserved
+raw log is `docs/evidence/kart-graphics-2019-reviewed/diagnostics/final-build-contracts.log`.
+An initial local invocation had omitted the installed Gradle from PATH and
+therefore lacked the Kotlin compiler; the successful invocation used the
+existing verified Gradle 9.1.0 installation. No test was disabled or changed to
+address that environment configuration. The targeted current-APK/tour identity
+suite also passed all 13 tests in 9.776 seconds; workflow actionlint and
+`git diff --check` pass. All old 2018 and earlier source policies remain intact.
+
 ## Actual renderer review and corrections
 
 Native run `43430078141` on `01cf063a7c11681b0060430cdb72c16d56a0b061`
@@ -70,6 +81,16 @@ antialiasing quality while setting `scaling_3d_scale` from actual displayed
 pixels. Its 52-case resolution gate includes a same-aspect window resize and is
 mandatory in the final Home job and transferred original logs. This is not a
 physical device frame-rate measurement.
+
+Root and the menu agent opened the final-source current Home images in all four
+formats; the menu agent additionally checked all four selected-mode, garage and
+return views. The actual selected Gecko returns correctly and the original
+driver and controls remain visible. Fine 3D edges/details look somewhat softer
+on Phone/Fold after removing the prior supersampling; 2D controls stay sharp.
+The very short 640x320 format retains a small stage to preserve usable controls.
+The lighthouse and pavilion are partly occluded; complete landmark visibility
+is not claimed. These observations initially use attempt 1's current captures;
+the accepted retry originals must be rebound and reviewed or proven identical.
 
 ## Inherited Android blocker found before the 2019 build
 
