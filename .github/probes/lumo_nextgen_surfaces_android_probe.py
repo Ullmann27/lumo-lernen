@@ -600,7 +600,9 @@ def cards_roundtrip(out: Path) -> dict:
             'learning_preservation': preservation}
 
 
-def main() -> int:
+def main(*, expected_version: int = 2018) -> int:
+    if type(expected_version) is not int or expected_version not in (2018, 2019):
+        raise ValueError('Native surface acceptance supports only the dedicated 2018 and 2019 probes')
     parser = argparse.ArgumentParser()
     parser.add_argument('--apk', required=True, type=Path)
     parser.add_argument('--provenance', required=True, type=Path)
@@ -617,8 +619,8 @@ def main() -> int:
         prior = json.loads(args.prior_tour.read_text())
         if prior.get('status') != 'PASS' or prior.get('apk_sha256') != identity['apk_sha256']:
             raise RuntimeError('The mandatory original Android tour did not pass')
-        if identity['versionCode'] != 2018:
-            raise RuntimeError('Nextgen surface acceptance requires versionCode 2018')
+        if identity['versionCode'] != expected_version:
+            raise RuntimeError(f'Nextgen surface acceptance requires versionCode {expected_version}')
         result['emulator_root_readiness'] = probe.ensure_rooted_emulator(base.adb, out)
         base.display(1080, 2400, 420)
         if not tour.alive() or tour.godot_alive():

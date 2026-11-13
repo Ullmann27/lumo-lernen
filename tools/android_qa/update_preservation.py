@@ -17,6 +17,21 @@ _EVIDENCE_FIELDS = frozenset({
 })
 
 
+def reviewed_migration_versions(baseline_version: int, candidate_version: int, *,
+                                allow_2018: bool = False,
+                                allow_2019: bool = False) -> tuple[int, int] | None:
+    """Keep each release probe's opt-in bound to its actual installed pair."""
+    if type(allow_2018) is not bool or type(allow_2019) is not bool or (allow_2018 and allow_2019):
+        raise RuntimeError('Choose exactly one reviewed migration opt-in')
+    if not allow_2018 and not allow_2019:
+        return None
+    expected = 2019 if allow_2019 else 2018
+    if (type(baseline_version) is not int or type(candidate_version) is not int or
+            (baseline_version, candidate_version) != (2017, expected)):
+        raise RuntimeError(f'The reviewed migration requires the actual 2017 to {expected} pair')
+    return baseline_version, candidate_version
+
+
 def _strict_object(raw: str) -> dict:
     def unique_object(pairs):
         result = {}
@@ -75,8 +90,8 @@ def _approved_migration_view(before: dict, after: dict,
     """
     if (type(versions) is not tuple or len(versions) != 2 or
             any(type(value) is not int for value in versions) or
-            versions != (2017, 2018)):
-        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018')
+            versions not in ((2017, 2018), (2017, 2019))):
+        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018 or 2019')
     owner = before.get(_LOCAL_STUDENT_KEY)
     if (type(owner) is not str or not re.fullmatch(r'local-[a-f0-9]{32}', owner) or
             after.get(_LOCAL_STUDENT_KEY) != owner):
@@ -160,7 +175,7 @@ def require_learning_preserved(before: dict, after: dict, *,
                   earned_stars=wallet['stars'], earned_xp=wallet['xp'])
     if migration_versions is not None:
         report['approved_migration'] = {
-            'from_version': 2017, 'to_version': 2018,
+            'from_version': migration_versions[0], 'to_version': migration_versions[1],
             'kind': 'independentEvidence-v1', 'records': migrated,
             'existing_fields_preserved': True,
         }
