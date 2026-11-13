@@ -155,6 +155,8 @@ class CardsMailbox:
             if re.fullmatch(r'flutter\.lumo\.cards\.round\.v1\.[a-f0-9]{64}\.[1-4]\.solo', key):
                 parsed = json.loads(value)
                 if parsed.get('id') == round_id:
+                    if parsed.get('owner') != key.split('.')[-3]:
+                        raise RuntimeError('Cards save owner differs from its per-child storage key')
                     matches.append(parsed)
         if len(matches) != 1:
             raise RuntimeError('Expected exactly one actual per-child save of this Cards round')
@@ -180,7 +182,8 @@ def cards_roundtrip(out: Path) -> dict:
                           exact=True, settle=True)
     before = wait_for('Child can draw in the real table', box.read,
                       lambda state: state.get('canDraw') is True and state.get('paused') is False)
-    require_public_saved_match(before, box.saved(before['roundId']))
+    before_save = box.saved(before['roundId'])
+    require_public_saved_match(before, before_save)
     probe.capture(out, '11_cards_real_table_before_draw')
     probe.native_text(out, 'Ziehen', 'cards-native-draw', tap=True, exact=True, settle=True)
     request = box.read('request')
@@ -190,7 +193,7 @@ def cards_roundtrip(out: Path) -> dict:
                      lambda state: state.get('ack', -1) >= request.get('sequence', 10**10)
                      and state.get('canDraw') is True and state.get('paused') is False)
     saved = box.saved(after['roundId'])
-    draw = require_cards_draw(before, request, after, saved)
+    draw = require_cards_draw(before, request, after, saved, owner=before_save['owner'])
     probe.capture(out, '12_cards_real_table_persisted_draw')
     probe.native_text(out, 'Pause', 'cards-native-pause', tap=True, exact=True, settle=True)
     paused = wait_for('Cards clock actually paused', box.read,

@@ -4,6 +4,7 @@ import io.flutter.plugin.common.BinaryMessenger
 import io.flutter.plugin.common.MethodChannel
 import java.io.File
 import java.io.FileOutputStream
+import java.io.RandomAccessFile
 import org.json.JSONObject
 
 /** Private mailbox between Flutter and the isolated :lumo_game process.
@@ -12,6 +13,16 @@ import org.json.JSONObject
 object CardsTableBridge {
     private const val MAX_BYTES = 262144
     private val tokenPattern = Regex("[a-f0-9]{32}")
+
+    // :lumo_game has a separate VM. A JVM monitor alone cannot protect close
+    // against a native heartbeat recreating lifecycle.json after cleanup.
+    private inline fun <T> locked(root: File, action: () -> T): T = synchronized(this) {
+        val base = File(root, "lumo_cards_table_v1")
+        check(base.isDirectory || base.mkdirs())
+        RandomAccessFile(File(base, "bridge.lock"), "rw").use { file ->
+            file.channel.lock().use { action() }
+        }
+    }
 
     private fun session(root: File, token: String): File {
         require(tokenPattern.matches(token)) { "Invalid Cards table token" }
@@ -37,7 +48,7 @@ object CardsTableBridge {
         MethodChannel(messenger, "lumo_lernen/cards_table").setMethodCallHandler { call, result ->
             try {
                 val token = call.argument<String>("token") ?: ""
-                synchronized(this) {
+                locked(root) {
                     val dir = session(root, token)
                     when (call.method) {
                         "open" -> {
@@ -81,41 +92,46 @@ object CardsTableBridge {
         }
     }
 
-    @Synchronized
     fun state(root: File, token: String): String = try {
-        read(File(session(root, token), "state.json"))?.toString() ?: "{}"
+        locked(root) { read(File(session(root, token), "state.json"))?.toString() ?: "{}" }
     } catch (_: Exception) { "{}" }
 
-    @Synchronized
-    fun submit(root: File, token: String, payload: String): Boolean {
-      return try {
-        require(payload.toByteArray(Charsets.UTF_8).size <= 4096)
-        val dir = session(root, token)
-        val state = read(File(dir, "state.json")) ?: return false
-        val request = JSONObject(payload)
-        require(request.optString("token") == token)
-        val sequence = request.optLong("sequence", -1)
-        require(sequence > state.optLong("ack", 0) && sequence <= 1000000000L)
-        require(request.optInt("revision", -1) == state.optInt("revision", -2))
-        val previous = read(File(dir, "request.json"))
-        // At most one unacknowledged action. Repeating it is harmless.
-        if (previous != null && previous.optLong("sequence") > state.optLong("ack", 0)) {
-            return previous.toString() == request.toString()
+    fun submit(root: File, token: String, payload: String): Boolean = try {
+        locked(root) {
+            require(payload.toByteArray(Charsets.UTF_8).size <= 4096)
+            val dir = session(root, token)
+            val state = read(File(dir, "state.json"))
+            if (state == null) {
+                false
+            } else {
+                val request = JSONObject(payload)
+                require(request.optString("token") == token)
+                val sequence = request.optLong("sequence", -1)
+                require(sequence > state.optLong("ack", 0) && sequence <= 1000000000L)
+                require(request.optInt("revision", -1) == state.optInt("revision", -2))
+                val previous = read(File(dir, "request.json"))
+                // At most one unacknowledged action. Repeating it is harmless.
+                if (previous != null && previous.optLong("sequence") > state.optLong("ack", 0)) {
+                    previous.toString() == request.toString()
+                } else {
+                    require(request.optString("action") in setOf("play", "draw", "color", "answer", "handover", "pause", "resume", "call"))
+                    write(File(dir, "request.json"), request)
+                    true
+                }
+            }
         }
-        require(request.optString("action") in setOf("play", "draw", "color", "answer", "handover", "pause", "resume", "call"))
-        write(File(dir, "request.json"), request)
-        true
     } catch (_: Exception) { false }
-    }
 
-    @Synchronized
-    fun pulse(root: File, token: String, active: Boolean): Boolean {
-      return try {
-        val dir = session(root, token)
-        if (!File(dir, "state.json").isFile) return false
-        write(File(dir, "lifecycle.json"), JSONObject().put("active", active)
-            .put("stamp", System.currentTimeMillis()), durable = false)
-        true
+    fun pulse(root: File, token: String, active: Boolean): Boolean = try {
+        locked(root) {
+            val dir = session(root, token)
+            if (!File(dir, "state.json").isFile) {
+                false
+            } else {
+                write(File(dir, "lifecycle.json"), JSONObject().put("active", active)
+                    .put("stamp", System.currentTimeMillis()), durable = false)
+                true
+            }
+        }
     } catch (_: Exception) { false }
-    }
 }

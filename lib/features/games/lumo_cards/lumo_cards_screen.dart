@@ -354,7 +354,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
     if (!mounted ||
         owner == null ||
         _profileInvalidated ||
-        widget.appState.isCurrentLearningLease(owner)) return;
+        widget.appState.isCurrentLearningLease(owner)) {
+      return;
+    }
     _profileInvalidated = true;
     _controller.turnClock.pause();
     unawaited(_nativeTable?.close().catchError((_) {}) ?? Future<void>.value());
@@ -363,7 +365,9 @@ class _LumoCardsScreenState extends State<LumoCardsScreen> {
 
   Future<void> _settleTournamentRound() async {
     if (_controller.state.phase != GamePhase.gameOver ||
-        widget.onRoundCompleted == null) return;
+        widget.onRoundCompleted == null) {
+      return;
+    }
     final roundId = _controller.roundId;
     if (_settlingRoundId == roundId && _externalRoundSettlement != null) {
       return _externalRoundSettlement;

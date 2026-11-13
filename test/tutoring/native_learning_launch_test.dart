@@ -8,11 +8,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
+import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/school_exercise_generator.dart';
+import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/domain/tutoring/guided_lesson_catalog.dart';
 import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/domain/tutoring/tutoring_session_planner.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
 import 'package:lumo_lernen/features/tutoring/guided_lesson_screen.dart';
+import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
+import 'package:lumo_lernen/features/learning/learning_content.dart';
+import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
 import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 const _channel = MethodChannel('lumo_lernen/bridge');
@@ -88,11 +94,114 @@ void main() {
         NativeLearningActivity.fromLesson(GuidedLessonCatalog.bridgeTen,
             GuidedLessonCatalog.bridgeTen.steps.first),
         isNull);
+    for (final lesson in GuidedLessonCatalog.all) {
+      expect(
+          lesson.steps.any((step) =>
+              NativeLearningActivity.fromLesson(lesson, step) != null),
+          isTrue,
+          reason: 'Each reviewed concept has an actual native representation.');
+      for (final step in lesson.steps) {
+        final descriptor = NativeLearningActivity.fromLesson(lesson, step);
+        if (descriptor == null ||
+            lesson.concept == GuidedLessonConcept.syllables ||
+            lesson.concept == GuidedLessonConcept.plantParts) {
+          continue;
+        }
+        expect(descriptor.toLaunchOptions()['a'], step.a);
+        expect(descriptor.toLaunchOptions()['b'], step.b);
+      }
+    }
     expect(
-        NativeLearningActivity.fromLesson(GuidedLessonCatalog.fractionParts,
-            GuidedLessonCatalog.fractionParts.steps[2]),
-        isNull,
-        reason: 'Unsupported illustrations do not route to unrelated scenes.');
+        NativeLearningActivity.fromLesson(
+            GuidedLessonCatalog.fractionParts,
+            const GuidedLessonStep(
+                type: TutoringStepType.independentTask,
+                title: 'Invalid',
+                instruction: '',
+                a: 7,
+                b: 4)),
+        isNull);
+  });
+
+  test('adaptive task descriptors use checked original operands and word', () {
+    const adapter = LegacyLumoTaskAdapter();
+    TaskInstance task(String prompt, String answer, String visual,
+            {String subject = 'Mathematik'}) =>
+        adapter.toTaskInstance(
+            task: LumoTask(
+                id: 'native-actual',
+                grade: 1,
+                subject: subject,
+                unit: subject == 'Deutsch' ? 'Silben' : 'Rechnen bis 20',
+                prompt: prompt,
+                choices: answer == '3' ? ['3', '2', '4'] : [answer, '3', '7'],
+                answer: answer,
+                explanation: 'Wir probieren es aus.',
+                visual: visual),
+            childId: 'synthetic',
+            difficulty: 1);
+    expect(
+        NativeLearningActivity.fromTask(
+                task('Wie viel ist 7 + 5?', '12', 'counters'))!
+            .toLaunchOptions(),
+        {'kind': 'addition', 'a': 7, 'b': 5});
+    expect(
+        NativeLearningActivity.fromTask(
+                task('Wie viel ist 14 - 6?', '8', 'counters'))!
+            .toLaunchOptions(),
+        {'kind': 'subtract_ten', 'a': 14, 'b': 6});
+    expect(
+        NativeLearningActivity.fromTask(task(
+                'Wie viele Silben hat Banane?', '3', 'syllables',
+                subject: 'Deutsch'))!
+            .toLaunchOptions(),
+        {
+          'kind': 'syllables',
+          'word': 'Banane',
+          'syllables': ['Ba', 'na', 'ne']
+        });
+    expect(
+        NativeLearningActivity.fromTask(
+            task('Wie viel ist 27 + 15?', '42', 'counters')),
+        isNull);
+  });
+
+  testWidgets('native voice preserves license, mute and selected identity',
+      (tester) async {
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    try {
+      final state = _LaunchState();
+      addTearDown(state.dispose);
+      final context = await _mount(tester);
+      for (final scenario in [
+        (true, false, LumoVoiceIdentity.freeOffline, false),
+        (false, true, LumoVoiceIdentity.freeOffline, false),
+        (true, true, LumoVoiceIdentity.sulafatOriginal, false),
+        (true, true, LumoVoiceIdentity.freeOffline, true),
+      ]) {
+        state.state.settings = AppSettings(
+            voiceEnabled: scenario.$1,
+            localVoiceLicenseAccepted: scenario.$2,
+            autoReadEnabled: true,
+            calmMode: true,
+            voiceRate: 0.35);
+        await LumoVoice.instance.configure(identity: scenario.$3);
+        final opened = launchLumo3D(context,
+            scene: 'learning', appState: state, learning: math);
+        await _frames(tester);
+        expect(await opened, isTrue);
+        final options = calls.last.arguments as Map;
+        expect(options['learningVoiceEnabled'], scenario.$4);
+        expect(options['learningAutoRead'], isFalse,
+            reason:
+                'Calm mode forbids automatic narration, not explicit replay.');
+        expect(options['learningVoiceRate'], 1.0);
+      }
+      await LumoVoice.instance
+          .configure(identity: LumoVoiceIdentity.freeOffline);
+    } finally {
+      debugDefaultTargetPlatformOverride = null;
+    }
   });
 
   testWidgets('3D explanation stays available while games are mission locked',
@@ -213,4 +322,74 @@ void main() {
       debugDefaultTargetPlatformOverride = null;
     }
   });
+
+  for (final kind in [
+    LumoSessionKind.quickPractice,
+    LumoSessionKind.schoolwork
+  ]) {
+    testWidgets('actual adaptive $kind preserves task and assessment boundary',
+        (tester) async {
+      debugDefaultTargetPlatformOverride = TargetPlatform.android;
+      LumoAppState? app;
+      try {
+        await tester.binding.setSurfaceSize(const Size(690, 1000));
+        await tester.runAsync(() async {
+          app = LumoAppState(walletRepository: RewardWalletRepository());
+          app!.update(app!.state.copyWith(
+              grade: 1,
+              subject: 'Mathematik',
+              unit: 'Plus bis 10',
+              sessionKind: kind,
+              section: LumoSection.learn));
+          await app!.school.setActiveStudent('native-adaptive-child');
+          await app!.hydrateFromWallet();
+          await app!.loadLearningProfile();
+          app!.updateSettings(const AppSettings(
+              voiceEnabled: false,
+              autoReadEnabled: false,
+              reduceAnimations: true));
+        });
+        await tester.pumpWidget(
+            MaterialApp(home: Scaffold(body: LearningContent(appState: app!))));
+        await _frames(tester, 40);
+        final task = tester
+            .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
+            .task;
+        final descriptor = NativeLearningActivity.fromTask(task);
+        expect(descriptor, isNotNull);
+        final action = find.byKey(const ValueKey('adaptive-open-3d'));
+        if (kind == LumoSessionKind.schoolwork) {
+          expect(action, findsNothing,
+              reason: 'A graded schoolwork session cannot reveal the answer.');
+          expect(calls, isEmpty);
+        } else {
+          expect(action, findsOneWidget);
+          await tester.ensureVisible(action);
+          await tester.tap(action);
+          await _frames(tester, 40);
+          expect(calls, hasLength(1));
+          expect((calls.single.arguments as Map)['learning'],
+              descriptor!.toLaunchOptions());
+          expect(
+              tester
+                  .widget<AdaptiveTaskRenderer>(
+                      find.byType(AdaptiveTaskRenderer))
+                  .task
+                  .taskInstanceId,
+              task.taskInstanceId,
+              reason: 'Return never replaces the current task.');
+          expect(
+              LumoCompanionRequests.instance.taskContext.value!.helpLevel, 1);
+          expect(app!.state.stars, 0);
+        }
+        expect(tester.takeException(), isNull);
+      } finally {
+        await tester.pumpWidget(const SizedBox.shrink());
+        await tester.pump();
+        app?.dispose();
+        await tester.binding.setSurfaceSize(null);
+        debugDefaultTargetPlatformOverride = null;
+      }
+    });
+  }
 }

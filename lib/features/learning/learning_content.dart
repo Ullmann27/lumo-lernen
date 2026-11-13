@@ -146,15 +146,17 @@ class _LearningContentState extends State<LearningContent> {
           proof: proof,
           method: _pendingSceneMethod);
       if (!mounted || generation != widget.appState.profileGeneration) return;
-      if (saved && identical(_pendingSceneCompletion, proof))
+      if (saved && identical(_pendingSceneCompletion, proof)) {
         setState(() {
           _pendingSceneCompletion = null;
           _sceneCompletionError = null;
         });
+      }
     } catch (_) {
-      if (mounted && generation == widget.appState.profileGeneration)
+      if (mounted && generation == widget.appState.profileGeneration) {
         setState(() => _sceneCompletionError =
             'Dein Lernschritt wartet noch aufs Speichern.');
+      }
     }
   }
 
@@ -514,13 +516,14 @@ class _LearningContentState extends State<LearningContent> {
     if (_placeValueLesson == null && placeValueNumber != null) {
       final target = const LumoIntelligenceEngine().transferNumber(
           placeValueNumber, widget.appState.learningProfile.sceneMemory);
-      if (target != null)
+      if (target != null) {
         _placeValueLesson = PlaceValueLessonSession(
             sourceNumber: placeValueNumber,
             targetNumber: target,
             sourceProblemId: _publishedTaskContext!.tutorScope.problemId,
             sourceTaskId: _taskInstance.taskInstanceId,
             generation: widget.appState.profileGeneration);
+      }
     }
     // Additional hints during the new task remain assisted, including requests
     // after all four scene methods have already been tried. Only a displayed
@@ -565,7 +568,9 @@ class _LearningContentState extends State<LearningContent> {
         !_allowHelp ||
         _answered ||
         _sessionFinished ||
-        _nativeLearningOpen) return;
+        _nativeLearningOpen) {
+      return;
+    }
     final activity = NativeLearningActivity.fromTask(_taskInstance);
     if (activity == null) return;
     final taskId = _taskInstance.taskInstanceId;
@@ -584,7 +589,9 @@ class _LearningContentState extends State<LearningContent> {
       await LumoVoice.instance.stop();
       if (!mounted ||
           widget.appState.profileGeneration != generation ||
-          _taskInstance.taskInstanceId != taskId) return;
+          _taskInstance.taskInstanceId != taskId) {
+        return;
+      }
       await launchLumo3D(context,
           scene: 'learning',
           appState: widget.appState,
@@ -594,7 +601,9 @@ class _LearningContentState extends State<LearningContent> {
       if (mounted) {
         setState(() => _nativeLearningOpen = false);
         if (widget.appState.profileGeneration == generation &&
-            _taskInstance.taskInstanceId == taskId) _publishTaskContext();
+            _taskInstance.taskInstanceId == taskId) {
+          _publishTaskContext();
+        }
       }
     }
   }
@@ -1074,7 +1083,9 @@ class _LearningContentState extends State<LearningContent> {
       if (!mounted || _taskInstance.taskInstanceId != taskId) return;
       if (generation != widget.appState.profileGeneration ||
           !_allowHelp ||
-          _requestedHelpLevel < 3) return;
+          _requestedHelpLevel < 3) {
+        return;
+      }
       setState(() => _visualAid = aid);
     } catch (_) {
       // Bildhilfe ist optional. Wenn sie nicht laedt, gehts ohne weiter.
@@ -1749,7 +1760,9 @@ class _LearningContentState extends State<LearningContent> {
                             if (!_allowHelp || result.proof == null) return;
                             if (_tutorCoordinator
                                     .checkSceneTransfer(result.proof!) ==
-                                null) return;
+                                null) {
+                              return;
+                            }
                             _pendingSceneCompletion = result.proof;
                             _pendingSceneMethod = _sceneMethod;
                             unawaited(_saveSceneCompletion());

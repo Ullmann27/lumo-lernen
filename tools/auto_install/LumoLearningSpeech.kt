@@ -3,32 +3,46 @@ package dev.ullmann.lumo
 import android.content.Context
 import android.media.AudioAttributes
 import android.media.MediaPlayer
+import android.media.MediaDataSource
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import io.flutter.plugin.common.MethodChannel
 import org.json.JSONObject
-import java.io.File
 
 /** Original F2 synthesis and real playback, confined to the native lesson.
  * No microphone, system TTS, online service or learning score is involved. */
 class LumoLearningSpeech(context: Context, options: JSONObject) {
     private val main = Handler(Looper.getMainLooper())
     private val bridge = LumoOfflineSpeechBridge(context.applicationContext)
-    private val directory = context.cacheDir
     private val allowed = options.optString("game") == "learning" &&
         options.optBoolean("learningVoiceEnabled", false) &&
         options.optBoolean("localVoiceLicenseAccepted", false)
     private val speed = options.optDouble("learningVoiceRate", 1.0)
         .takeIf { it.isFinite() }?.coerceIn(0.70, 1.60)?.toFloat() ?: 1.0f
     private var player: MediaPlayer? = null
-    private var audioFile: File? = null
+    private var audioSource: WavSource? = null
     private var generation = 0L
     private var utterance = 0
     private var state = "idle"
     private var active = false
     private var destroyed = false
     @Volatile private var snapshot = "{\"state\":\"idle\",\"id\":0,\"positionMs\":0,\"durationMs\":0}"
+
+    // Avoid blocking the UI/render thread on a temporary WAV write. Android
+    // reads the completed local synthesis buffer directly; release drops it.
+    private class WavSource(bytes: ByteArray) : MediaDataSource() {
+        @Volatile private var data = bytes
+        override fun getSize(): Long = data.size.toLong()
+        override fun readAt(position: Long, buffer: ByteArray, offset: Int, size: Int): Int {
+            val source = data
+            if (position < 0 || position >= source.size) return -1
+            val count = minOf(size, source.size - position.toInt())
+            source.copyInto(buffer, offset, position.toInt(), position.toInt() + count)
+            return count
+        }
+        override fun close() { data = ByteArray(0) }
+    }
 
     private val pulse = object : Runnable {
         override fun run() {
@@ -74,15 +88,14 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
                         return
                     }
                     try {
-                        val file = File.createTempFile("lumo-learning-", ".wav", directory)
-                        audioFile = file
-                        file.writeBytes(bytes)
+                        val source = WavSource(bytes)
+                        audioSource = source
                         val playback = MediaPlayer()
                         player = playback
                         playback.setAudioAttributes(AudioAttributes.Builder()
                             .setUsage(AudioAttributes.USAGE_MEDIA)
                             .setContentType(AudioAttributes.CONTENT_TYPE_SPEECH).build())
-                        playback.setDataSource(file.absolutePath)
+                        playback.setDataSource(source)
                         playback.setOnPreparedListener {
                             if (token != generation || !active || destroyed) return@setOnPreparedListener
                             try {
@@ -133,8 +146,8 @@ class LumoLearningSpeech(context: Context, options: JSONObject) {
         main.removeCallbacks(pulse)
         player?.let { try { it.release() } catch (_: Exception) {} }
         player = null
-        audioFile?.delete()
-        audioFile = null
+        audioSource?.close()
+        audioSource = null
     }
 
     private fun publish() {

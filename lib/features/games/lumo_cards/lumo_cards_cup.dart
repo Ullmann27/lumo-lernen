@@ -29,11 +29,14 @@ class LumoCardsCup {
   ];
   LumoCardsCup record(
       {required int round, required String roundId, required bool won}) {
+    if (round < 0 || round > 2) throw StateError('Unexpected cup round');
     final existing = results.where((result) => result.roundId == roundId);
     if (existing.isNotEmpty) {
       if (round < results.length &&
           results[round].roundId == roundId &&
-          existing.first.won == won) return this;
+          existing.first.won == won) {
+        return this;
+      }
       throw StateError('Conflicting cup result');
     }
     if (complete ||
@@ -124,8 +127,9 @@ class LumoCardsCupRepository {
         final raw = prefs.getString(storageKey);
         if (raw == null) throw StateError('Cup missing');
         final old = LumoCardsCup.decode(raw, owner, grade);
-        if (old.id != cupId || !old.complete)
+        if (old.id != cupId || !old.complete) {
           throw StateError('Cup not completed');
+        }
         final next = LumoCardsCup(id: LumoCardsRound.newId());
         await LearningStorage.write(
             prefs, storageKey, jsonEncode(next.encode(owner, grade)));

@@ -91,8 +91,9 @@ class NativeLearningActivity {
           'plantPart': (step.plantPart ?? GuidedPlantPart.root).name,
         });
       case GuidedLessonConcept.subtractTen:
-        if (step.a < 1 || step.a > 20 || step.b < 1 || step.b > step.a)
+        if (step.a < 1 || step.a > 20 || step.b < 1 || step.b > step.a) {
           return null;
+        }
         return NativeLearningActivity._(
             'subtract_ten', {'kind': 'subtract_ten', 'a': step.a, 'b': step.b});
       case GuidedLessonConcept.equalGroups:
@@ -106,7 +107,9 @@ class NativeLearningActivity {
             step.b < 10 ||
             step.b > 90 ||
             step.b % 10 != 0 ||
-            step.a % 100 + step.b < 100) return null;
+            step.a % 100 + step.b < 100) {
+          return null;
+        }
         return NativeLearningActivity._('bridge_hundred',
             {'kind': 'bridge_hundred', 'a': step.a, 'b': step.b});
       case GuidedLessonConcept.fractionParts:
@@ -114,7 +117,9 @@ class NativeLearningActivity {
             step.b > 12 ||
             step.a < 1 ||
             step.fractionExtra < 0 ||
-            step.a + step.fractionExtra > step.b) return null;
+            step.a + step.fractionExtra > step.b) {
+          return null;
+        }
         return NativeLearningActivity._('fraction_parts', {
           'kind': 'fraction_parts',
           'a': step.a,

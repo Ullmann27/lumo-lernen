@@ -61,8 +61,9 @@ class _LumoCardsCupScreenState extends State<LumoCardsCupScreen> {
         _error = null;
       });
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(() => _error = 'Dein Pokal konnte noch nicht geladen werden.');
+      }
     }
   }
 
@@ -73,7 +74,9 @@ class _LumoCardsCupScreenState extends State<LumoCardsCupScreen> {
         _opening ||
         cup == null ||
         repository == null ||
-        cup.complete) return;
+        cup.complete) {
+      return;
+    }
     setState(() => _opening = true);
     final leg = cup.nextRound;
     final opponent = LumoCardsCup.opponents[leg];
@@ -111,15 +114,17 @@ class _LumoCardsCupScreenState extends State<LumoCardsCupScreen> {
     try {
       final next =
           await _repository!.restart(cupId: _cup!.id, canWrite: () => _valid);
-      if (_valid)
+      if (_valid) {
         setState(() {
           _cup = next;
           _error = null;
         });
+      }
     } catch (_) {
-      if (mounted)
+      if (mounted) {
         setState(() =>
             _error = 'Der neue Pokal konnte noch nicht gespeichert werden.');
+      }
     }
   }
 

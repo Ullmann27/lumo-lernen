@@ -30,7 +30,7 @@ class NextgenEvidenceTests(unittest.TestCase):
         self.request = {'action': 'draw', 'token': 'c' * 32, 'sequence': 1, 'revision': 2}
 
     def test_real_ack_requires_same_round_and_actual_persisted_hand_growth(self):
-        report = require_cards_draw(self.before, self.request, self.after, self.saved)
+        report = require_cards_draw(self.before, self.request, self.after, self.saved, owner='b' * 64)
         self.assertEqual(report['cards_conserved'], 112)
         self.assertEqual(report['child_cards_added'], 1)
 
@@ -40,12 +40,14 @@ class NextgenEvidenceTests(unittest.TestCase):
             after = copy.deepcopy(self.after)
             after[field] = value
             with self.subTest(field=field), self.assertRaises(RuntimeError):
-                require_cards_draw(self.before, self.request, after, self.saved)
+                require_cards_draw(self.before, self.request, after, self.saved, owner='b' * 64)
         for field, value in (('action', 'pause'), ('revision', 1), ('sequence', 0),
                              ('sequence', True), ('token', 'd' * 32)):
             request = dict(self.request, **{field: value})
             with self.subTest(request=field), self.assertRaises(RuntimeError):
-                require_cards_draw(self.before, request, self.after, self.saved)
+                require_cards_draw(self.before, request, self.after, self.saved, owner='b' * 64)
+        with self.assertRaisesRegex(RuntimeError, 'child owner'):
+            require_cards_draw(self.before, self.request, self.after, self.saved, owner='d' * 64)
 
     def test_missing_duplicate_and_cross_child_cards_fail(self):
         for mutation in ('missing', 'duplicate', 'owner', 'round'):
@@ -61,7 +63,7 @@ class NextgenEvidenceTests(unittest.TestCase):
         before = copy.deepcopy(self.before)
         before['hand'] = copy.deepcopy(self.after['hand'])
         with self.assertRaises(RuntimeError):
-            require_cards_draw(before, self.request, self.after, self.saved)
+            require_cards_draw(before, self.request, self.after, self.saved, owner='b' * 64)
         for private in ({'drawPile': ['hidden']}, {'question': {'correct': 1}}):
             with self.subTest(private=private), self.assertRaises(RuntimeError):
                 require_public_saved_match(dict(self.after, **private), self.saved)

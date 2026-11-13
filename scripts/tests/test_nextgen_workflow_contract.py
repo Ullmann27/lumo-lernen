@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import importlib.util
+import hashlib
 import json
 from pathlib import Path
 import re
@@ -28,6 +29,16 @@ def initial_pincheck() -> str:
 
 
 class NextgenWorkflowContractTests(unittest.TestCase):
+    def test_historical_release_pins_remain_byte_equivalent_as_2018_is_added(self):
+        spec = importlib.util.spec_from_file_location(
+            'nextgen_pin_policy', ROOT / 'scripts/verify_legacy_release_pin.py')
+        policy = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(policy)
+        historical = {version: sha for version, sha in policy.APPROVED.items() if version < 2018}
+        digest = hashlib.sha256(json.dumps(
+            historical, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+        self.assertEqual(digest, 'f20f1d3a33f9380e5731cd015ae29d02367b9417da8f3232961a26070d8ada9b')
+
     def test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches(self):
         guard = LEGACY.read_text().split('  verify-and-build:\n', 1)[1]
         expression = guard.split('    if: ', 1)[1].splitlines()[0]

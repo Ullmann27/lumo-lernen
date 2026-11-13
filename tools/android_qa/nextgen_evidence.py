@@ -61,8 +61,10 @@ def require_public_saved_match(public: dict, saved: dict) -> dict:
     return report
 
 
-def require_cards_draw(before: dict, request: dict, after: dict, saved: dict) -> dict:
+def require_cards_draw(before: dict, request: dict, after: dict, saved: dict, *, owner: str) -> dict:
     report = require_public_saved_match(after, saved)
+    if not re.fullmatch(r'[a-f0-9]{64}', owner) or saved['owner'] != owner:
+        raise RuntimeError('Cards draw changed the persisted child owner')
     if not before.get('canDraw') or before.get('paused') or before.get('viewer') != 0:
         raise RuntimeError('Draw did not start on the active child turn')
     for key in ('token', 'roundId', 'viewer'):

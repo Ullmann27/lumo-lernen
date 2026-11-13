@@ -5,6 +5,7 @@ import 'dart:math';
 import 'package:flutter/services.dart';
 
 import 'lumo_cards_game_controller.dart';
+import 'lumo_cards_bot_policy.dart';
 import 'lumo_cards_models.dart';
 import 'lumo_cards_rules.dart';
 
