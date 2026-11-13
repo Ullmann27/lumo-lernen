@@ -38,7 +38,7 @@ def record_review(root: Path, archive: Path, artifact: dict, workflow: dict, job
         require(source == native, 'Archive source metadata differs from the reviewed native commit')
         dirty = zipped.read('nextgen-evidence/nextgen/source-dirty.txt').decode().strip()
         require(not dirty, 'Native screenshots were captured from modified tracked source')
-        for index, choice in enumerate(selection):
+        for choice in selection:
             require(isinstance(choice, dict), 'Invalid inspected image selection')
             entry = str(choice.get('artifact_entry', ''))
             archive_path = PurePosixPath(entry)
@@ -50,12 +50,15 @@ def record_review(root: Path, archive: Path, artifact: dict, workflow: dict, job
             data = zipped.read(entry)
             require(data[:8] == b'\x89PNG\r\n\x1a\n' and data[12:16] == b'IHDR' and len(data) > 32,
                     'Selected archive entry is not an original PNG')
-            relative = f'docs/evidence/nextgen-2018-reviewed/{index + 1:02d}-{module}-{archive_path.name}'
+            image_digest = hashlib.sha256(data).hexdigest()
+            # Corrected pixels get a new immutable path; unchanged pixels remain
+            # reusable even when reviewers reorder the selected originals.
+            relative = f'docs/evidence/nextgen-2018-reviewed/{module}-{image_digest}-{archive_path.name}'
             path = staging / relative
             path.parent.mkdir(parents=True, exist_ok=True)
             path.write_bytes(data)
             receipt['images'].append({'path': relative, 'module': module, 'artifact_entry': entry,
-                                      'sha256': hashlib.sha256(data).hexdigest(),
+                                      'sha256': image_digest,
                                       'dimensions': list(struct.unpack('>II', data[16:24])),
                                       'findings': choice.get('findings')})
         verify_visual_review(staging, receipt, native, artifact, workflow, jobs)

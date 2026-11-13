@@ -1,0 +1,73 @@
+name: LUMO visual review recovery support
+
+on:
+  push:
+    branches: [chatgpt/lumo-2018-review-recovery-20261113]
+    paths:
+      - '.github/workflows/lumo-review-recovery.yml'
+      - 'scripts/record_nextgen_visual_review.py'
+      - 'scripts/tests/test_nextgen_review_recovery.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-review-recovery-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  regression:
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Record actual source identity
+        run: |
+          set -euo pipefail
+          mkdir -p review-proof
+          git rev-parse HEAD > review-proof/source-sha.txt
+          git rev-parse 'HEAD^{tree}' > review-proof/source-tree.txt
+          git status --porcelain --untracked-files=no > review-proof/source-dirty.txt
+          test ! -s review-proof/source-dirty.txt
+          sha256sum scripts/record_nextgen_visual_review.py scripts/verify_nextgen_delivery.py scripts/tests/test_nextgen_review_recovery.py > review-proof/tested-source.sha256
+      - name: Existing delivery and new recovery regressions
+        run: |
+          set -euo pipefail
+          python3 -m unittest discover -s scripts/tests -p 'test_nextgen*.py' -v 2>&1 | tee review-proof/regression.log
+      - name: Install the existing build-contract verification dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          python3 -m venv "$RUNNER_TEMP/lumo-review-python"
+          "$RUNNER_TEMP/lumo-review-python/bin/python" -m pip install --disable-pip-version-check Pillow==12.3.0
+          command -v rg
+          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
+          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 "$RUNNER_TEMP/lumo-gradle.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-gradle.zip" -d "$RUNNER_TEMP/lumo-verified-gradle"
+          echo "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/bin" >> "$GITHUB_PATH"
+      - name: Complete script-contract suite with no skipped tests
+        run: |
+          set -euo pipefail
+          "$RUNNER_TEMP/lumo-review-python/bin/python" -m unittest discover -s scripts/tests -v 2>&1 | tee review-proof/full-script-contracts.log
+          if grep -Eq '^OK \(skipped=|^FAILED.*skipped=' review-proof/full-script-contracts.log; then
+            echo 'Skipped contract tests are not accepted.' >&2
+            exit 1
+          fi
+          sha256sum -c review-proof/tested-source.sha256
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-review-recovery-proof
+          path: review-proof/
+          retention-days: 14
+          if-no-files-found: error
