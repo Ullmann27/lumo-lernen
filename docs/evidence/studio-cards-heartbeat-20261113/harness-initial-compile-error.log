@@ -1,0 +1,17 @@
+setUpClass (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest) ... ERROR
+
+======================================================================
+ERROR: setUpClass (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 324, in setUpClass
+    raise AssertionError(result.stdout + result.stderr)
+AssertionError: /tmp/lumo-cards-heartbeat-before.kt:115:108: error: no value passed for parameter 'raw'.
+        val options = try { org.json.JSONObject(launchOptions) } catch (_: Exception) { org.json.JSONObject() }
+                                                                                                           ^^
+
+
+----------------------------------------------------------------------
+Ran 0 tests in 4.147s
+
+FAILED (errors=1)

@@ -1,0 +1,142 @@
+test_mandatory_studio_run_cannot_skip_missing_compiler (scripts.tests.test_cards_lifecycle_heartbeat.CardsHeartbeatDependencyContractTest.test_mandatory_studio_run_cannot_skip_missing_compiler) ... ok
+test_optional_legacy_environment_reports_missing_dependency_as_skip (scripts.tests.test_cards_lifecycle_heartbeat.CardsHeartbeatDependencyContractTest.test_optional_legacy_environment_reports_missing_dependency_as_skip) ... ok
+test_authority_loss_without_render_poll (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_authority_loss_without_render_poll) ... FAIL
+test_closed_mailbox_does_not_renew_lease (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_closed_mailbox_does_not_renew_lease) ... FAIL
+test_destroy_and_late_callback (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_destroy_and_late_callback) ... FAIL
+test_explicit_return_stops_before_finish (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_explicit_return_stops_before_finish) ... FAIL
+test_missing_authority_keeps_existing_binding_deadline (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_missing_authority_keeps_existing_binding_deadline) ... ok
+test_other_games_do_not_start_cards_heartbeat (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_other_games_do_not_start_cards_heartbeat) ... ok
+test_pause_and_old_callbacks_never_revive_lease (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_pause_and_old_callbacks_never_revive_lease) ... FAIL
+test_render_stall_exceeding_unchanged_lease (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_render_stall_exceeding_unchanged_lease) ... FAIL
+test_render_thread_cannot_write_active_or_inactive_pulse (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_render_thread_cannot_write_active_or_inactive_pulse) ... FAIL
+test_repeated_resume_does_not_duplicate_scheduled_loop (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_repeated_resume_does_not_duplicate_scheduled_loop) ... FAIL
+test_stop_and_late_service_connection (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_stop_and_late_service_connection) ... FAIL
+
+======================================================================
+FAIL: test_authority_loss_without_render_poll (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_authority_loss_without_render_poll)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 349, in test_authority_loss_without_render_poll
+    def test_authority_loss_without_render_poll(self): self.scenario('authority-lost')
+                                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.lang.IllegalStateException: Revoked authority must stop without a renderer poll
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:77)
+
+
+======================================================================
+FAIL: test_closed_mailbox_does_not_renew_lease (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_closed_mailbox_does_not_renew_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 351, in test_closed_mailbox_does_not_renew_lease
+    def test_closed_mailbox_does_not_renew_lease(self): self.scenario('closed-mailbox')
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.lang.IllegalStateException: Closed mailbox must terminate the active lease
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:90)
+
+
+======================================================================
+FAIL: test_destroy_and_late_callback (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_destroy_and_late_callback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 347, in test_destroy_and_late_callback
+    def test_destroy_and_late_callback(self): self.scenario('destroy')
+                                              ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.single(_Collections.kt:616)
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:60)
+
+
+======================================================================
+FAIL: test_explicit_return_stops_before_finish (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_explicit_return_stops_before_finish)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 348, in test_explicit_return_stops_before_finish
+    def test_explicit_return_stops_before_finish(self): self.scenario('return')
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.single(_Collections.kt:616)
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:68)
+
+
+======================================================================
+FAIL: test_pause_and_old_callbacks_never_revive_lease (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_pause_and_old_callbacks_never_revive_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 345, in test_pause_and_old_callbacks_never_revive_lease
+    def test_pause_and_old_callbacks_never_revive_lease(self): self.scenario('pause-and-stale-callback')
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.single(_Collections.kt:616)
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:39)
+
+
+======================================================================
+FAIL: test_render_stall_exceeding_unchanged_lease (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_render_stall_exceeding_unchanged_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 344, in test_render_stall_exceeding_unchanged_lease
+    def test_render_stall_exceeding_unchanged_lease(self): self.scenario('render-stall')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.lang.IllegalStateException: Render stall expired the unchanged 2500-ms authority lease
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:30)
+
+
+======================================================================
+FAIL: test_render_thread_cannot_write_active_or_inactive_pulse (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_render_thread_cannot_write_active_or_inactive_pulse)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 352, in test_render_thread_cannot_write_active_or_inactive_pulse
+    def test_render_thread_cannot_write_active_or_inactive_pulse(self): self.scenario('render-read-is-read-only')
+                                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.lang.IllegalStateException: Render reads must not own lifecycle writes
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:99)
+
+
+======================================================================
+FAIL: test_repeated_resume_does_not_duplicate_scheduled_loop (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_repeated_resume_does_not_duplicate_scheduled_loop)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 353, in test_repeated_resume_does_not_duplicate_scheduled_loop
+    def test_repeated_resume_does_not_duplicate_scheduled_loop(self): self.scenario('repeated-resume')
+                                                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.lang.IllegalStateException: Check failed.
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:107)
+
+
+======================================================================
+FAIL: test_stop_and_late_service_connection (scripts.tests.test_cards_lifecycle_heartbeat.CardsLifecycleHeartbeatTest.test_stop_and_late_service_connection)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 346, in test_stop_and_late_service_connection
+    def test_stop_and_late_service_connection(self): self.scenario('stop-and-late-binding')
+                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_cards_lifecycle_heartbeat.py", line 340, in scenario
+    self.assertEqual(result.returncode, 0, result.stdout + result.stderr)
+AssertionError: 1 != 0 : Exception in thread "main" java.util.NoSuchElementException: List is empty.
+	at kotlin.collections.CollectionsKt___CollectionsKt.single(_Collections.kt:616)
+	at dev.ullmann.lumo.CardsHeartbeatRegression.main(CardsHeartbeatRegression.kt:52)
+
+
+----------------------------------------------------------------------
+Ran 13 tests in 7.704s
+
+FAILED (failures=9)
+Compiled complete production Activity SHA256=6e4ac87b1013dc7b82be2c3ca8de9a8f2ba63faf5c9866728db45dbcfbb31eb2
+CARDS_LIFECYCLE_HEARTBEAT_PASS missing-authority
+CARDS_LIFECYCLE_HEARTBEAT_PASS other-game

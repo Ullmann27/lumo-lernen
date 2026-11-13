@@ -1,0 +1,80 @@
+{
+  "schema": 1,
+  "recorded_at": "2026-11-13T19:15:44.985376+00:00",
+  "reviewer": "learning_worlds (Agent A), independent read-only addendum review",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_EXACT_ADDENDUM",
+  "previous_review": {
+    "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-integration-796b/final-workflow-and-heartbeat-independent-review.json",
+    "bytes": 10113,
+    "sha256": "5b09de54f1a08e1f214e3eed8846c7cec68e806e291e44371d393de3199d1276"
+  },
+  "source_checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "reviewed_sources": {
+    "tools/auto_install/LumoGameActivity.kt": {
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+    },
+    "scripts/tests/test_cards_lifecycle_heartbeat.py": {
+      "bytes": 16774,
+      "sha256": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1"
+    },
+    ".github/probes/lumo_studio_surfaces_android_probe.py": {
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801"
+    },
+    "tools/android_qa/tests/test_cards_lifecycle_observation.py": {
+      "bytes": 9288,
+      "sha256": "de3244764ed9606879323d9c75cc0c3f3391b90b12f7052685b1b1945f228d12"
+    },
+    ".github/workflows/lumo-studio-2019.yml": {
+      "bytes": 40199,
+      "sha256": "b0a91ffa4c1cdafc29d8c3ea3b55494dc80c6d9f57f844c7bb95b6e5689e2043"
+    }
+  },
+  "dependency_change": {
+    "old_test_sha256": "301f04d8849c980826108f8f323d9c22dfb3513f820ac5a1b63556f85aa3e9e8",
+    "static_reversal_recovers_old_test_bytes": true,
+    "change": "Only dependency helper/import, the two missing-toolchain branches and two dependency-policy tests were added; the original eleven Lifecycle cases recover byte-for-byte.",
+    "mandatory_studio_rule": "REQUIRE_ALL_TESTS=true raises RuntimeError for missing JDK/compiler. The final Verify job sets this value and separately rejects skipped contract suites.",
+    "optional_legacy_rule": "Other environments may report missing JDK/compiler as SkipTest. This is not a Studio acceptance path."
+  },
+  "probe_change": {
+    "only_changed_existing_top_level_definition_against_e3d": "CardsMailbox",
+    "read_order": "Original state read, parse, identity validation and save retain their result/exception; a finally block adds one optional lifecycle observation afterward.",
+    "bounded_transport": "One exec-out command with timeout 0.75 seconds; validated private session path and shell quoting; no writes, taps or automatic resume.",
+    "recorded_data": "Device clock before/after actual lifecycle content; active/stamp/pauseEpoch, associated state filename/revision/ack/paused, elapsed time, returned command text and parsed JSON.",
+    "failure_semantics": "Original state exception is re-raised. Diagnostic failure is MISSING; diagnostic output-write failure is reported on stderr without replacing the original state exception.",
+    "limits": "The observation follows the state read and is not an atomic state/lifecycle pair. It adds a bounded observation cost; existing acceptance timeouts and action guards are unchanged.",
+    "guards_preserved": [
+      "cards_ready_to_draw",
+      "cards_display_density",
+      "capture_cards_faces",
+      "cards_roundtrip"
+    ]
+  },
+  "existing_results_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/evidence/studio-cards-heartbeat-20261113/after-final-contract.log",
+      "bytes": 3047,
+      "sha256": "5422e7fe644a91e716bce11b2b448082e0c9452151cfa39469bedb9b4e7bd70d",
+      "result": "13/13 PASS, 0 skipped, 6.456 seconds; eleven actual Activity cases plus two dependency cases under REQUIRE_ALL_TESTS=true"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/evidence/studio-cards-heartbeat-20261113/lifecycle-observation-and-existing-probes.log",
+      "bytes": 10427,
+      "sha256": "2c73a52ece12fa5620ac8c551e22b82a295eea378caa77394bd5a38164080bdf",
+      "result": "52/52 PASS, 0 skipped, 1.547 seconds; additive observation and existing probe contracts"
+    }
+  ],
+  "review_actions": {
+    "new_test_runs": 0,
+    "source_edits": 0,
+    "workflow_edits": 0,
+    "android_runs": 0
+  },
+  "acceptance_limits": [
+    "The unchanged production Activity remains bound to 0b3f2dee; no further product change was approved.",
+    "JVM/ADB-boundary and Linux-shell contracts do not establish new real Android API35/API37 success.",
+    "The forthcoming final APK must still satisfy all original runtime, Cards, save, return, signature, source and update gates."
+  ]
+}

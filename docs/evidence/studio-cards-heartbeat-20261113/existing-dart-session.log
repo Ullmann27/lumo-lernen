@@ -1,0 +1,10 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-lernen/test/lumo_cards_table_session_test.dart
+00:00 +0: Public renderer view never contains hidden hands, deck order or answer
+00:00 +1: Native draw is saved then acknowledged once; duplicate cannot draw twice
+00:00 +2: Stale revision, wrong nonce and foreign card IDs cannot change the round
+00:00 +3: Storage rejection holds acknowledgement and retries without reapplying action
+00:00 +4: Native background, expired heartbeat and profile invalidation stop authority
+00:00 +5: Revoked parent daily-mission gate closes native authority without a move
+00:00 +6: Missed Android pause remains sticky after Dart is scheduled again
+00:00 +7: Twelve complete rounds through the native protocol preserve all 112 cards and every phase
+00:00 +8: All tests passed!
