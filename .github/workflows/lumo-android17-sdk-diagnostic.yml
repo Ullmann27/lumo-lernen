@@ -1,0 +1,44 @@
+name: Android 17 SDK package inventory
+
+on:
+  push:
+    branches: [chatgpt/lumo-android17-sdk-diagnostic-20261113]
+    paths:
+      - .github/workflows/lumo-android17-sdk-diagnostic.yml
+      - scripts/diagnose_android17_sdk.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: android17-sdk-inventory-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  package-inventory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+      - name: Record existing and freshly verified SDK package catalogs
+        env:
+          LUMO_SDK_INVENTORY_OUT: ${{ runner.temp }}/lumo-android17-sdk-inventory
+          LUMO_SDK_INVENTORY_WORK: ${{ runner.temp }}/lumo-android17-sdk-tools
+        run: |
+          set -euo pipefail
+          python3 scripts/diagnose_android17_sdk.py \
+            --out "$LUMO_SDK_INVENTORY_OUT" \
+            --work "$LUMO_SDK_INVENTORY_WORK"
+      - name: Preserve original command outputs and exit codes
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: lumo-android17-sdk-inventory-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/lumo-android17-sdk-inventory/
+          if-no-files-found: error
+          retention-days: 30
+          include-hidden-files: false
