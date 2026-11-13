@@ -255,18 +255,18 @@ class _Cell extends StatelessWidget {
   final DnaSkillEntry entry;
   final void Function(DnaSkillEntry)? onTap;
 
-  /// Observed answer ratio grouped only after ten answers; otherwise neutral.
+  /// Group independent observations only after ten answers; otherwise neutral.
   Color _cellColor() {
     if (!entry.hasEnoughAnswersForGrouping) return const Color(0xFFF3F4F6);
-    if (entry.score < 0.45) return const Color(0xFFFCA5A5);
-    if (entry.score < 0.70) return const Color(0xFFFCD34D);
+    if (entry.assessmentScore <= 0.45) return const Color(0xFFFCA5A5);
+    if (entry.assessmentScore < 0.70) return const Color(0xFFFCD34D);
     return const Color(0xFF86EFAC);
   }
 
   Color _borderColor() {
     if (!entry.hasEnoughAnswersForGrouping) return const Color(0xFFD1D5DB);
-    if (entry.score < 0.45) return const Color(0xFFDC2626);
-    if (entry.score < 0.70) return const Color(0xFFCA8A04);
+    if (entry.assessmentScore <= 0.45) return const Color(0xFFDC2626);
+    if (entry.assessmentScore < 0.70) return const Color(0xFFCA8A04);
     return const Color(0xFF15803D);
   }
 

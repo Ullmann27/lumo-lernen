@@ -1,0 +1,11 @@
+test_capture_overflow_evidence_rejects_false_green (scripts.tests.test_full_flutter_acceptance.FullFlutterAcceptanceTests.test_capture_overflow_evidence_rejects_false_green) ... ok
+test_complete_success_passes (scripts.tests.test_full_flutter_acceptance.FullFlutterAcceptanceTests.test_complete_success_passes) ... ok
+test_hidden_compilation_failure_is_not_lost (scripts.tests.test_full_flutter_acceptance.FullFlutterAcceptanceTests.test_hidden_compilation_failure_is_not_lost) ... ok
+test_missing_runner_completion_rejects_truncated_log (scripts.tests.test_full_flutter_acceptance.FullFlutterAcceptanceTests.test_missing_runner_completion_rejects_truncated_log) ... ok
+test_nonzero_process_cannot_be_hidden_by_done_event (scripts.tests.test_full_flutter_acceptance.FullFlutterAcceptanceTests.test_nonzero_process_cannot_be_hidden_by_done_event) ... ok
+test_skipped_test_rejects_candidate_even_when_flutter_exits_zero (scripts.tests.test_full_flutter_acceptance.FullFlutterAcceptanceTests.test_skipped_test_rejects_candidate_even_when_flutter_exits_zero) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.000s
+
+OK

@@ -1,0 +1,66 @@
+{
+  "hand": [
+    {
+      "id": "num-6",
+      "color": "orange",
+      "type": "number",
+      "number": 3,
+      "playable": false
+    },
+    {
+      "id": "num-80",
+      "color": "green",
+      "type": "number",
+      "number": 1,
+      "playable": false
+    },
+    {
+      "id": "num-64",
+      "color": "blue",
+      "type": "number",
+      "number": 6,
+      "playable": false
+    },
+    {
+      "id": "num-10",
+      "color": "orange",
+      "type": "number",
+      "number": 5,
+      "playable": false
+    },
+    {
+      "id": "num-15",
+      "color": "orange",
+      "type": "number",
+      "number": 8,
+      "playable": false
+    },
+    {
+      "id": "jump-45",
+      "color": "purple",
+      "type": "lumoJump",
+      "number": null,
+      "playable": false
+    },
+    {
+      "id": "num-40",
+      "color": "purple",
+      "type": "number",
+      "number": 7,
+      "playable": false
+    },
+    {
+      "id": "num-81",
+      "color": "green",
+      "type": "number",
+      "number": 2,
+      "playable": false
+    }
+  ],
+  "top": {
+    "id": "num-87",
+    "color": "green",
+    "type": "number",
+    "number": 5
+  }
+}

@@ -1,0 +1,884 @@
+test_never_tap_the_parent_row_while_it_is_bouncing (test_1939_flutter_navigation.StableFlutterControlTest.test_never_tap_the_parent_row_while_it_is_bouncing) ... ok
+test_actual_clipped_gas_menu_scrolls_only_after_two_stable_frames (test_1939_pause_navigation.PauseNavigationTest.test_actual_clipped_gas_menu_scrolls_only_after_two_stable_frames) ... ok
+test_ambiguous_or_missing_footer_cannot_authorize_scroll (test_1939_pause_navigation.PauseNavigationTest.test_ambiguous_or_missing_footer_cannot_authorize_scroll) ... ok
+test_actual_flutter_frame_and_exact_apk_source_are_required (test_authorized_1928_publication.AuthorizedPublicationTests.test_actual_flutter_frame_and_exact_apk_source_are_required) ... ok
+test_exact_unpublished_release_is_required (test_authorized_1928_publication.AuthorizedPublicationTests.test_exact_unpublished_release_is_required) ... ok
+test_root_app_proof_is_distinct_from_nested_system_result (test_authorized_1928_publication.AuthorizedPublicationTests.test_root_app_proof_is_distinct_from_nested_system_result) ... ok
+test_unapproved_or_duplicate_assets_are_rejected (test_authorized_1928_publication.AuthorizedPublicationTests.test_unapproved_or_duplicate_assets_are_rejected) ... ok
+test_build_preflight_rejects_apk_or_either_cached_asset (test_candidate_cache.CandidateCacheTest.test_build_preflight_rejects_apk_or_either_cached_asset) ... ok
+test_cache_download_then_passed_promotion_preserves_bytes_and_original_source (test_candidate_cache.CandidateCacheTest.test_cache_download_then_passed_promotion_preserves_bytes_and_original_source) ... ok
+test_candidate_requires_explicit_matching_sha_and_unique_provenance (test_candidate_cache.CandidateCacheTest.test_candidate_requires_explicit_matching_sha_and_unique_provenance) ... ok
+test_corrupt_cached_bytes_or_provenance_fail_closed (test_candidate_cache.CandidateCacheTest.test_corrupt_cached_bytes_or_provenance_fail_closed) ... ok
+test_failed_ui_or_changed_bytes_never_upload_final_apk (test_candidate_cache.CandidateCacheTest.test_failed_ui_or_changed_bytes_never_upload_final_apk) ... ok
+test_action_above_heading_or_shared_across_colors_is_rejected (test_cards_color_picker.ColorPickerTests.test_action_above_heading_or_shared_across_colors_is_rejected) ... ok
+test_direct_actionable_caption_is_supported_without_ancestor_guessing (test_cards_color_picker.ColorPickerTests.test_direct_actionable_caption_is_supported_without_ancestor_guessing) ... ok
+test_disabled_or_invisible_label_or_action_ancestor_is_rejected (test_cards_color_picker.ColorPickerTests.test_disabled_or_invisible_label_or_action_ancestor_is_rejected) ... ok
+test_duplicate_table_caption_uses_actual_clickable_picker_ancestor_bounds (test_cards_color_picker.ColorPickerTests.test_duplicate_table_caption_uses_actual_clickable_picker_ancestor_bounds) ... ok
+test_missing_or_ambiguous_picker_heading_never_taps_a_color_caption (test_cards_color_picker.ColorPickerTests.test_missing_or_ambiguous_picker_heading_never_taps_a_color_caption) ... ok
+test_multiple_actionable_color_buttons_are_rejected (test_cards_color_picker.ColorPickerTests.test_multiple_actionable_color_buttons_are_rejected) ... ok
+test_all_twenty_real_letter_instructions_remain_explicitly_unverified (test_cards_learning_prompt.LearningPromptTests.test_all_twenty_real_letter_instructions_remain_explicitly_unverified) ... ok
+test_ambiguous_or_absent_heading_never_taps (test_cards_learning_prompt.LearningPromptTests.test_ambiguous_or_absent_heading_never_taps) ... ok
+test_ambiguous_prompt_strip_never_guesses (test_cards_learning_prompt.LearningPromptTests.test_ambiguous_prompt_strip_never_guesses) ... ok
+test_disabled_or_hidden_prompt_ancestor_never_counts_as_visible (test_cards_learning_prompt.LearningPromptTests.test_disabled_or_hidden_prompt_ancestor_never_counts_as_visible) ... ok
+test_unsupported_instruction_without_opt_in_never_taps (test_cards_learning_prompt.LearningPromptTests.test_unsupported_instruction_without_opt_in_never_taps) ... ok
+test_visible_arithmetic_still_taps_only_the_computed_answer (test_cards_learning_prompt.LearningPromptTests.test_visible_arithmetic_still_taps_only_the_computed_answer) ... ok
+test_kart_activity_remains_resizable_for_foldables (test_embedded_kart_orientation.EmbeddedKartOrientationTest.test_kart_activity_remains_resizable_for_foldables) ... ok
+test_kart_activity_uses_sensor_landscape_not_portrait (test_embedded_kart_orientation.EmbeddedKartOrientationTest.test_kart_activity_uses_sensor_landscape_not_portrait) ... ok
+test_resize_config_changes_cover_fold_window_changes (test_embedded_kart_orientation.EmbeddedKartOrientationTest.test_resize_config_changes_cover_fold_window_changes) ... ok
+test_continuous_logger_loss_preserves_original_device_failure (test_emulator_diagnostics.DiagnosticTests.test_continuous_logger_loss_preserves_original_device_failure) ... ok
+test_device_loss_is_not_masked_by_final_logcat_timeout (test_emulator_diagnostics.DiagnosticTests.test_device_loss_is_not_masked_by_final_logcat_timeout) ... ok
+test_failed_final_logging_cannot_pass_a_successful_usage_check (test_emulator_diagnostics.DiagnosticTests.test_failed_final_logging_cannot_pass_a_successful_usage_check) ... ok
+test_fatal_before_log_buffer_rollover_still_fails (test_emulator_diagnostics.DiagnosticTests.test_fatal_before_log_buffer_rollover_still_fails) ... ok
+test_fatal_is_saved_without_replacing_an_original_failure (test_emulator_diagnostics.DiagnosticTests.test_fatal_is_saved_without_replacing_an_original_failure) ... ok
+test_unexpected_continuous_logger_exit_cannot_turn_the_run_green (test_emulator_diagnostics.DiagnosticTests.test_unexpected_continuous_logger_exit_cannot_turn_the_run_green) ... ok
+test_version_gate_rejects_different_running_binary (test_emulator_diagnostics.DiagnosticTests.test_version_gate_rejects_different_running_binary) ... {
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc"
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc",
+  "ui_tested": false,
+  "final_apk_uploaded": false,
+  "release_published": false
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc"
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 3,
+  "asset_name": "Lumo-Lernen-Neu.apk",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "final-apk",
+  "flutter_source_commit": null,
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc"
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 3,
+  "asset_name": "Lumo-Lernen-Neu.apk",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "final-apk",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc",
+  "passing_test_sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "final_apk_already_present": false,
+  "release_published": false
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 3,
+  "asset_name": "Lumo-Lernen-Neu.apk",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "final-apk",
+  "flutter_source_commit": null,
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc"
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 3,
+  "asset_name": "Lumo-Lernen-Neu.apk",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "final-apk",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": "cccccccccccccccccccccccccccccccccccccccc",
+  "passing_test_sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "final_apk_already_present": true,
+  "release_published": false
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": null
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": null,
+  "ui_tested": false,
+  "final_apk_uploaded": false,
+  "release_published": false
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": null
+}
+{
+  "repository": "Ullmann27/lumo-lernen",
+  "release_tag": "unified-build-275",
+  "release_id": 42,
+  "draft": true,
+  "asset_id": 1,
+  "asset_name": "Lumo-Lernen-Pruefkandidat.bin",
+  "bytes": 651,
+  "sha256": "f3a271b1f91fd30472db6d01775657ec1b0452db81b91592d1a29bba342023ea",
+  "source_kind": "cached-candidate",
+  "flutter_source_commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "qa_harness_commit": null,
+  "ui_tested": false,
+  "final_apk_uploaded": false,
+  "release_published": false
+}
+{
+  "version": "36.3.10.0",
+  "build_id": "14472402",
+  "binary": "/tmp/tmp8h74xg8x/sdk/emulator/emulator",
+  "expected_qemu": "/tmp/tmp8h74xg8x/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64",
+  "headless": false,
+  "running_qemu": [
+    {
+      "pid": 42,
+      "name": "qemu-system-x86",
+      "executable": "/tmp/tmp8h74xg8x/different-qemu"
+    }
+  ],
+  "library_search_paths": [
+    "/tmp/tmp8h74xg8x/sdk/emulator/lib64",
+    "/tmp/tmp8h74xg8x/sdk/emulator/lib64/qt/lib"
+  ],
+  "passed": false
+}
+ok
+test_version_gate_rejects_load_failure_even_when_version_text_is_present (test_emulator_diagnostics.DiagnosticTests.test_version_gate_rejects_load_failure_even_when_version_text_is_present) ... ok
+test_version_gate_rejects_missing_libpulse (test_emulator_diagnostics.DiagnosticTests.test_version_gate_rejects_missing_libpulse) ... ok
+test_version_gate_rejects_missing_running_qemu (test_emulator_diagnostics.DiagnosticTests.test_version_gate_rejects_missing_running_qemu) ... {
+  "version": "36.3.10.0",
+  "build_id": "14472402",
+  "binary": "/tmp/tmpypze6fbs/sdk/emulator/emulator",
+  "expected_qemu": "/tmp/tmpypze6fbs/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64",
+  "headless": false,
+  "running_qemu": [],
+  "library_search_paths": [
+    "/tmp/tmpypze6fbs/sdk/emulator/lib64",
+    "/tmp/tmpypze6fbs/sdk/emulator/lib64/qt/lib"
+  ],
+  "passed": false
+}
+ok
+test_version_gate_rejects_wrong_version_and_build (test_emulator_diagnostics.DiagnosticTests.test_version_gate_rejects_wrong_version_and_build) ... ok
+test_version_gate_verifies_running_binary_and_captures_library_paths (test_emulator_diagnostics.DiagnosticTests.test_version_gate_verifies_running_binary_and_captures_library_paths) ... {
+  "version": "36.3.10.0",
+  "build_id": "14472402",
+  "binary": "/tmp/tmpsyktigvg/sdk/emulator/emulator",
+  "expected_qemu": "/tmp/tmpsyktigvg/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64",
+  "headless": false,
+  "running_qemu": [
+    {
+      "pid": 42,
+      "name": "qemu-system-x86",
+      "executable": "/tmp/tmpsyktigvg/sdk/emulator/qemu/linux-x86_64/qemu-system-x86_64"
+    }
+  ],
+  "library_search_paths": [
+    "/tmp/tmpsyktigvg/sdk/emulator/lib64",
+    "/tmp/tmpsyktigvg/sdk/emulator/lib64/qt/lib"
+  ],
+  "passed": true
+}
+ok
+test_actual_api_change_or_malformed_api_stays_fatal_after_uid_boot_verification (test_emulator_handoff_identity.CreativeIdentityTests.test_actual_api_change_or_malformed_api_stays_fatal_after_uid_boot_verification) ... ok
+test_already_online_handoff_still_rejects_second_foreign_or_unauthorized_device_before_root (test_emulator_handoff_identity.CreativeIdentityTests.test_already_online_handoff_still_rejects_second_foreign_or_unauthorized_device_before_root) ... ok
+test_exact_offline_preserves_one_shared_readiness_budget_and_original_failure (test_emulator_handoff_identity.CreativeIdentityTests.test_exact_offline_preserves_one_shared_readiness_budget_and_original_failure) ... ok
+test_expected_identity_must_have_exact_commits_digest_and_integer_api (test_emulator_handoff_identity.CreativeIdentityTests.test_expected_identity_must_have_exact_commits_digest_and_integer_api) ... ok
+test_final_transport_inventory_cannot_gain_an_extra_or_offline_device (test_emulator_handoff_identity.CreativeIdentityTests.test_final_transport_inventory_cannot_gain_an_extra_or_offline_device) ... ok
+test_healthy_handoff_retains_both_raw_proofs_and_rechecks_unique_serial_api_uid_boot (test_emulator_handoff_identity.CreativeIdentityTests.test_healthy_handoff_retains_both_raw_proofs_and_rechecks_unique_serial_api_uid_boot) ... ok
+test_identity_inputs_cannot_be_supplied_without_the_matching_prior_files (test_emulator_handoff_identity.CreativeIdentityTests.test_identity_inputs_cannot_be_supplied_without_the_matching_prior_files) ... ok
+test_late_successful_api_read_cannot_overrun_the_shared_total_deadline (test_emulator_handoff_identity.CreativeIdentityTests.test_late_successful_api_read_cannot_overrun_the_shared_total_deadline) ... ok
+test_late_successful_final_inventory_cannot_be_reported_as_pass (test_emulator_handoff_identity.CreativeIdentityTests.test_late_successful_final_inventory_cannot_be_reported_as_pass) ... ok
+test_malformed_duplicate_or_non_object_creative_proof_is_retained_and_rejected (test_emulator_handoff_identity.CreativeIdentityTests.test_malformed_duplicate_or_non_object_creative_proof_is_retained_and_rejected) ... ok
+test_missing_previous_creative_result_rejects_before_adb_and_keeps_root_proof (test_emulator_handoff_identity.CreativeIdentityTests.test_missing_previous_creative_result_rejects_before_adb_and_keeps_root_proof) ... ok
+test_prior_root_object_must_match_raw_readiness_not_only_claim_a_pass (test_emulator_handoff_identity.CreativeIdentityTests.test_prior_root_object_must_match_raw_readiness_not_only_claim_a_pass) ... ok
+test_wrong_creative_status_apk_source_pin_or_api_rejects_before_any_adb (test_emulator_handoff_identity.CreativeIdentityTests.test_wrong_creative_status_apk_source_pin_or_api_rejects_before_any_adb) ... ok
+test_disappeared_only_emulator_is_rejected_with_visible_proof (test_emulator_identity.EmulatorIdentityTests.test_disappeared_only_emulator_is_rejected_with_visible_proof) ... ok
+test_gui_mode_rejects_headless_executable_without_explicit_selection (test_emulator_identity.EmulatorIdentityTests.test_gui_mode_rejects_headless_executable_without_explicit_selection) ... ok
+test_headless_mode_rejects_gui_executable_even_in_same_sdk (test_emulator_identity.EmulatorIdentityTests.test_headless_mode_rejects_gui_executable_even_in_same_sdk) ... ok
+test_headless_mode_rejects_missing_libraries (test_emulator_identity.EmulatorIdentityTests.test_headless_mode_rejects_missing_libraries) ... ok
+test_headless_mode_rejects_same_basename_in_another_sdk (test_emulator_identity.EmulatorIdentityTests.test_headless_mode_rejects_same_basename_in_another_sdk) ... ok
+test_headless_mode_rejects_two_running_processes (test_emulator_identity.EmulatorIdentityTests.test_headless_mode_rejects_two_running_processes) ... ok
+test_headless_mode_verifies_exact_running_binary_and_its_dependencies (test_emulator_identity.EmulatorIdentityTests.test_headless_mode_verifies_exact_running_binary_and_its_dependencies) ... ok
+test_missing_headless_binary_cannot_fall_back_to_gui (test_emulator_identity.EmulatorIdentityTests.test_missing_headless_binary_cannot_fall_back_to_gui) ... ok
+test_renamed_main_thread_matches_the_exact_pinned_executable (test_emulator_identity.EmulatorIdentityTests.test_renamed_main_thread_matches_the_exact_pinned_executable) ... ok
+test_same_basename_in_another_sdk_is_rejected_even_when_renamed (test_emulator_identity.EmulatorIdentityTests.test_same_basename_in_another_sdk_is_rejected_even_when_renamed) ... ok
+test_second_renamed_qemu_from_another_sdk_is_rejected (test_emulator_identity.EmulatorIdentityTests.test_second_renamed_qemu_from_another_sdk_is_rejected) ... ok
+test_spoofed_qemu_thread_name_cannot_hide_a_second_candidate (test_emulator_identity.EmulatorIdentityTests.test_spoofed_qemu_thread_name_cannot_hide_a_second_candidate) ... ok
+test_two_processes_using_the_pinned_binary_are_rejected (test_emulator_identity.EmulatorIdentityTests.test_two_processes_using_the_pinned_binary_are_rejected) ... ok
+test_unrelated_process_is_not_counted_as_an_emulator (test_emulator_identity.EmulatorIdentityTests.test_unrelated_process_is_not_counted_as_an_emulator) ... ok
+test_cached_candidate_is_never_delivered_as_final (test_export_delivery.DeliveryTests.test_cached_candidate_is_never_delivered_as_final) ... ok
+test_each_required_success_proof_field_is_enforced (test_export_delivery.DeliveryTests.test_each_required_success_proof_field_is_enforced) ... ok
+test_exact_successful_run_is_accepted (test_export_delivery.DeliveryTests.test_exact_successful_run_is_accepted) ... ok
+test_failed_run_exports_only_diagnostics_even_with_old_success_proof (test_export_delivery.DeliveryTests.test_failed_run_exports_only_diagnostics_even_with_old_success_proof) ... ok
+test_running_run_cannot_be_exported_as_finished (test_export_delivery.DeliveryTests.test_running_run_cannot_be_exported_as_finished) ... ok
+test_wrong_head_repository_and_workflow_are_rejected (test_export_delivery.DeliveryTests.test_wrong_head_repository_and_workflow_are_rejected) ... ok
+test_wrong_proof_attempt_is_rejected (test_export_delivery.DeliveryTests.test_wrong_proof_attempt_is_rejected) ... ok
+test_initial_navigation_reobserves_empty_hierarchy_before_tapping (test_flutter_empty_semantics.EmptySemanticsTests.test_initial_navigation_reobserves_empty_hierarchy_before_tapping) ... ok
+test_initial_navigation_returns_persistently_empty_hierarchy_only_after_retries (test_flutter_empty_semantics.EmptySemanticsTests.test_initial_navigation_returns_persistently_empty_hierarchy_only_after_retries) ... ok
+test_permanently_empty_ui_still_fails_without_input (test_flutter_empty_semantics.EmptySemanticsTests.test_permanently_empty_ui_still_fails_without_input) ... ok
+test_transient_empty_frame_is_reobserved_then_tapped (test_flutter_empty_semantics.EmptySemanticsTests.test_transient_empty_frame_is_reobserved_then_tapped) ... ok
+test_visible_frame_needs_no_extra_observation (test_flutter_empty_semantics.EmptySemanticsTests.test_visible_frame_needs_no_extra_observation) ... ok
+test_actual_akademie_plus_module_path_requires_help_answer_and_daily_reward (test_flutter_flows.VisibleUiTests.test_actual_akademie_plus_module_path_requires_help_answer_and_daily_reward) ... ok
+test_actual_api35_merged_profile_preserves_original_xml_and_touch_bounds (test_flutter_flows.VisibleUiTests.test_actual_api35_merged_profile_preserves_original_xml_and_touch_bounds) ... ok
+test_actual_compact_android_wallet_progress_prefix_preserves_xml_and_bounds (test_flutter_flows.VisibleUiTests.test_actual_compact_android_wallet_progress_prefix_preserves_xml_and_bounds) ... ok
+test_all_home_wallet_fields_can_share_one_visible_semantics_caption (test_flutter_flows.VisibleUiTests.test_all_home_wallet_fields_can_share_one_visible_semantics_caption) ... ok
+test_arithmetic_is_computed_from_supported_visible_question_only (test_flutter_flows.VisibleUiTests.test_arithmetic_is_computed_from_supported_visible_question_only) ... ok
+test_cards_back_resume_accepts_actual_merged_pause_caption (test_flutter_flows.VisibleUiTests.test_cards_back_resume_accepts_actual_merged_pause_caption) ... ok
+test_cards_uses_visible_face_labels_and_complete_result_controls (test_flutter_flows.VisibleUiTests.test_cards_uses_visible_face_labels_and_complete_result_controls) ... ok
+test_help_caption_can_be_merged_with_its_visible_decorative_emoji (test_flutter_flows.VisibleUiTests.test_help_caption_can_be_merged_with_its_visible_decorative_emoji) ... ok
+test_local_apple_help_must_match_unique_visible_plus_task (test_flutter_flows.VisibleUiTests.test_local_apple_help_must_match_unique_visible_plus_task) ... ok
+test_memory_back_background_resume_accepts_actual_merged_pause_caption (test_flutter_flows.VisibleUiTests.test_memory_back_background_resume_accepts_actual_merged_pause_caption) ... ok
+test_merged_progress_prefix_never_bypasses_missing_or_ambiguous_wallet_checks (test_flutter_flows.VisibleUiTests.test_merged_progress_prefix_never_bypasses_missing_or_ambiguous_wallet_checks) ... ok
+test_missing_or_conflicting_merged_profile_and_wallet_still_fail (test_flutter_flows.VisibleUiTests.test_missing_or_conflicting_merged_profile_and_wallet_still_fail) ... ok
+test_numeric_merged_progress_value_matches_actual_daily_completion (test_flutter_flows.VisibleUiTests.test_numeric_merged_progress_value_matches_actual_daily_completion) ... ok
+test_only_observed_memory_faces_are_available_to_solver (test_flutter_flows.VisibleUiTests.test_only_observed_memory_faces_are_available_to_solver) ... ok
+test_real_home_scroll_stays_inside_content_above_companion (test_flutter_flows.VisibleUiTests.test_real_home_scroll_stays_inside_content_above_companion) ... ok
+test_scroll_targets_actual_fold_viewport_and_refuses_non_scrollable_controls (test_flutter_flows.VisibleUiTests.test_scroll_targets_actual_fold_viewport_and_refuses_non_scrollable_controls) ... ok
+test_shared_pause_caption_is_an_exact_visible_line_not_a_substring (test_flutter_flows.VisibleUiTests.test_shared_pause_caption_is_an_exact_visible_line_not_a_substring) ... ok
+test_target_requires_actionable_ancestor_and_clips_current_display (test_flutter_flows.VisibleUiTests.test_target_requires_actionable_ancestor_and_clips_current_display) ... ok
+test_task_prompt_line_remains_visible_when_merged_with_its_subject (test_flutter_flows.VisibleUiTests.test_task_prompt_line_remains_visible_when_merged_with_its_subject) ... ok
+test_visible_non_arithmetic_answer_never_counts_as_verified_math (test_flutter_flows.VisibleUiTests.test_visible_non_arithmetic_answer_never_counts_as_verified_math) ... ok
+test_wallet_reconstructs_xp_and_daily_progress_across_level_boundary (test_flutter_flows.VisibleUiTests.test_wallet_reconstructs_xp_and_daily_progress_across_level_boundary) ... ok
+test_wallet_rejects_missing_ambiguous_or_invalid_actual_captions (test_flutter_flows.VisibleUiTests.test_wallet_rejects_missing_ambiguous_or_invalid_actual_captions) ... ok
+test_empty_transition_is_observed_without_input_before_real_scroll (test_flutter_return_transition.ReturnTransitionTests.test_empty_transition_is_observed_without_input_before_real_scroll) ... ok
+test_late_content_cannot_pass_after_deadline (test_flutter_return_transition.ReturnTransitionTests.test_late_content_cannot_pass_after_deadline) ... ok
+test_permanently_empty_content_times_out_without_any_input (test_flutter_return_transition.ReturnTransitionTests.test_permanently_empty_content_times_out_without_any_input) ... ok
+test_settled_non_scrollable_content_keeps_existing_behavior (test_flutter_return_transition.ReturnTransitionTests.test_settled_non_scrollable_content_keeps_existing_behavior) ... ok
+test_exactly_three_independent_visual_race_hud_markers (test_focused_race_hud.FocusedKartHudOCRTests.test_exactly_three_independent_visual_race_hud_markers) ... ok
+test_genuine_screen_pixels_recover_lap_rank_and_speed (test_focused_race_hud.FocusedKartHudOCRTests.test_genuine_screen_pixels_recover_lap_rank_and_speed) ... ok
+test_only_real_landscape_frame_is_accepted (test_focused_race_hud.FocusedKartHudOCRTests.test_only_real_landscape_frame_is_accepted) ... ok
+test_cleanup_device_loss_does_not_pass_a_successful_read (test_fresh_ui_hierarchy.FreshHierarchyTests.test_cleanup_device_loss_does_not_pass_a_successful_read) ... ok
+test_confirmed_current_dump_is_read_and_fingerprinted (test_fresh_ui_hierarchy.FreshHierarchyTests.test_confirmed_current_dump_is_read_and_fingerprinted) ... ok
+test_exit_zero_idle_error_cannot_return_a_preexisting_good_xml (test_fresh_ui_hierarchy.FreshHierarchyTests.test_exit_zero_idle_error_cannot_return_a_preexisting_good_xml) ... ok
+test_invalid_attempt_limits_are_rejected_before_any_device_access (test_fresh_ui_hierarchy.FreshHierarchyTests.test_invalid_attempt_limits_are_rejected_before_any_device_access) ... ok
+test_malformed_xml_empty_root_and_wrong_root_fail_closed (test_fresh_ui_hierarchy.FreshHierarchyTests.test_malformed_xml_empty_root_and_wrong_root_fail_closed) ... ok
+test_retry_uses_new_path_without_scroll_tap_or_app_restart (test_fresh_ui_hierarchy.FreshHierarchyTests.test_retry_uses_new_path_without_scroll_tap_or_app_restart) ... ok
+test_success_for_wrong_remote_path_is_rejected (test_fresh_ui_hierarchy.FreshHierarchyTests.test_success_for_wrong_remote_path_is_rejected) ... ok
+test_timeout_can_retry_but_cannot_read_an_old_path (test_fresh_ui_hierarchy.FreshHierarchyTests.test_timeout_can_retry_but_cannot_read_an_old_path) ... ok
+test_unexpected_remote_error_is_not_replaced_by_cleanup_error (test_fresh_ui_hierarchy.FreshHierarchyTests.test_unexpected_remote_error_is_not_replaced_by_cleanup_error) ... ok
+test_changed_current_source_bytes_abort_before_swipe (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_changed_current_source_bytes_abort_before_swipe) ... ok
+test_changed_previous_source_bytes_abort_before_swipe (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_changed_previous_source_bytes_abort_before_swipe) ... ok
+test_clipped_footer_fails_current_screenshot_bounds (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_clipped_footer_fails_current_screenshot_bounds) ... ok
+test_current_digest_is_checked_after_previous_digest_immediately_before_input (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_current_digest_is_checked_after_previous_digest_immediately_before_input) ... ok
+test_disordered_footer_aborts_without_scroll (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_disordered_footer_aborts_without_scroll) ... ok
+test_equal_or_older_capture_time_is_not_fresh (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_equal_or_older_capture_time_is_not_fresh) ... ok
+test_existing_deadline_exhaustion_prevents_all_input (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_existing_deadline_exhaustion_prevents_all_input) ... ok
+test_expiry_during_source_verification_prevents_swipe (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_expiry_during_source_verification_prevents_swipe) ... ok
+test_factory_only_enables_exact_gas_pause_and_original_down_scroll (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_factory_only_enables_exact_gas_pause_and_original_down_scroll) ... ok
+test_first_full_missing_frame_cannot_authorize_swipe (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_first_full_missing_frame_cannot_authorize_swipe) ... ok
+test_frame_source_and_finite_capture_time_are_required (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_frame_source_and_finite_capture_time_are_required) ... ok
+test_intervening_native_reset_cannot_reuse_prior_missing_frame (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_intervening_native_reset_cannot_reuse_prior_missing_frame) ... ok
+test_invalid_caption_bounds_are_not_input_coordinates (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_invalid_caption_bounds_are_not_input_coordinates) ... ok
+test_maximum_two_recovery_swipes_and_no_reused_pair_after_input (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_maximum_two_recovery_swipes_and_no_reused_pair_after_input) ... ok
+test_missing_or_ambiguous_footer_aborts_without_scroll (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_missing_or_ambiguous_footer_aborts_without_scroll) ... ok
+test_nonfinite_or_boolean_deadline_cannot_create_a_new_budget (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_nonfinite_or_boolean_deadline_cannot_create_a_new_budget) ... ok
+test_only_hud_or_world_captions_never_supply_recovery (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_only_hud_or_world_captions_never_supply_recovery) ... ok
+test_outside_footer_content_cannot_supply_recovery_gesture (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_outside_footer_content_cannot_supply_recovery_gesture) ... ok
+test_partial_frame_resets_callback_pair_without_input (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_partial_frame_resets_callback_pair_without_input) ... ok
+test_resized_surface_cannot_reuse_old_modal_pair (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_resized_surface_cannot_reuse_old_modal_pair) ... ok
+test_reused_source_name_is_stale_even_if_pixels_are_complete (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_reused_source_name_is_stale_even_if_pixels_are_complete) ... ok
+test_shifted_modal_requires_new_pair (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_shifted_modal_requires_new_pair) ... ok
+test_swipe_timeout_uses_only_remaining_native_budget (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_swipe_timeout_uses_only_remaining_native_budget) ... ok
+test_two_distinct_fresh_full_frames_use_observed_upward_recovery (test_gas_caption_scroll_recovery.GasCaptionCallbackGuards.test_two_distinct_fresh_full_frames_use_observed_upward_recovery) ... ok
+test_actual_fullrace_initial_gas_match_then_lost_caption_recovers_before_exact_touch (test_gas_caption_scroll_recovery.GasCaptionRecoveryRegressionTests.test_actual_fullrace_initial_gas_match_then_lost_caption_recovers_before_exact_touch)
+Identical test must be RED on f6, GREEN on the reconstructed change. ... ok
+test_callback_is_never_called_for_partial_surface_or_without_ready_ocr (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_callback_is_never_called_for_partial_surface_or_without_ready_ocr) ... ok
+test_callback_only_sees_empty_exact_target_and_same_deadline (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_callback_only_sees_empty_exact_target_and_same_deadline) ... ok
+test_default_missing_caption_remains_bounded_and_never_clicks (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_default_missing_caption_remains_bounded_and_never_clicks) ... ok
+test_fullrace_gas_uses_minimum_of_120_and_outer_remaining_deadline (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_fullrace_gas_uses_minimum_of_120_and_outer_remaining_deadline) ... ok
+test_fullrace_other_labels_and_contexts_keep_original_native_text_path (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_fullrace_other_labels_and_contexts_keep_original_native_text_path) ... ok
+test_late_ocr_result_does_not_invoke_recovery_or_send_input (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_late_ocr_result_does_not_invoke_recovery_or_send_input) ... ok
+test_observed_exact_target_bypasses_callback_and_keeps_original_two_frame_touch (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_observed_exact_target_bypasses_callback_and_keeps_original_two_frame_touch) ... ok
+test_partial_interruption_resets_the_previous_missing_frame_chain (test_gas_caption_scroll_recovery.NativeMissingCaptionHookGuards.test_partial_interruption_resets_the_previous_missing_frame_chain) ... ok
+test_device_base_hash_and_size_are_compared_and_split_paths_recorded (test_installed_apk_bytes.InstalledApkBytesTest.test_device_base_hash_and_size_are_compared_and_split_paths_recorded) ... ok
+test_missing_malformed_or_wrong_filename_hash_is_rejected (test_installed_apk_bytes.InstalledApkBytesTest.test_missing_malformed_or_wrong_filename_hash_is_rejected) ... ok
+test_missing_or_ambiguous_base_fails_before_hashing (test_installed_apk_bytes.InstalledApkBytesTest.test_missing_or_ambiguous_base_fails_before_hashing) ... ok
+test_missing_or_malformed_size_is_rejected (test_installed_apk_bytes.InstalledApkBytesTest.test_missing_or_malformed_size_is_rejected) ... ok
+test_package_is_derived_uniquely_from_apk_before_adb (test_installed_apk_bytes.InstalledApkBytesTest.test_package_is_derived_uniquely_from_apk_before_adb) ... ok
+test_sdk_build_tools_fallback_identifies_package_without_path_aapt (test_installed_apk_bytes.InstalledApkBytesTest.test_sdk_build_tools_fallback_identifies_package_without_path_aapt) ... ok
+test_unavailable_device_hash_tool_fails_without_fallback (test_installed_apk_bytes.InstalledApkBytesTest.test_unavailable_device_hash_tool_fails_without_fallback) ... ok
+test_wrong_bytes_or_size_fail_despite_successful_install_output (test_installed_apk_bytes.InstalledApkBytesTest.test_wrong_bytes_or_size_fail_despite_successful_install_output) ... ok
+test_actual_godot_errors_fail_but_unsupported_renderer_warnings_are_retained (test_kart_complete_android_evidence.ActualNativeInteractionEvidenceTests.test_actual_godot_errors_fail_but_unsupported_renderer_warnings_are_retained) ... ok
+test_resize_cannot_replace_completed_payload_or_drop_finished_state (test_kart_complete_android_evidence.ActualNativeInteractionEvidenceTests.test_resize_cannot_replace_completed_payload_or_drop_finished_state) ... ok
+test_resize_cannot_replace_saved_identity_or_advance_paused_progress (test_kart_complete_android_evidence.ActualNativeInteractionEvidenceTests.test_resize_cannot_replace_saved_identity_or_advance_paused_progress) ... ok
+test_scroll_uses_only_observed_modal_caption_positions (test_kart_complete_android_evidence.ActualNativeInteractionEvidenceTests.test_scroll_uses_only_observed_modal_caption_positions) ... ok
+test_unreadable_world_labels_do_not_invent_scroll_targets (test_kart_complete_android_evidence.ActualNativeInteractionEvidenceTests.test_unreadable_world_labels_do_not_invent_scroll_targets) ... ok
+test_a_new_distinct_duplicate_is_not_hidden_by_a_contained_overread (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_a_new_distinct_duplicate_is_not_hidden_by_a_contained_overread) ... ok
+test_actual_raw_outline_overread_uses_corroborated_unchanged_footer_bounds (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_actual_raw_outline_overread_uses_corroborated_unchanged_footer_bounds) ... ok
+test_both_actual_saved_frames_keep_two_stable_full_surface_gate (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_both_actual_saved_frames_keep_two_stable_full_surface_gate) ... ok
+test_even_three_pixel_clipping_cannot_count_as_full_containment (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_even_three_pixel_clipping_cannot_count_as_full_containment) ... ok
+test_fixture_records_original_android_artifact_and_both_frame_hashes (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_fixture_records_original_android_artifact_and_both_frame_hashes) ... ok
+test_missing_corroboration_cannot_discard_a_conflicting_raw_box (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_missing_corroboration_cannot_discard_a_conflicting_raw_box) ... ok
+test_multiple_nested_raw_overreads_remain_ambiguous (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_multiple_nested_raw_overreads_remain_ambiguous) ... ok
+test_non_raw_expanded_box_remains_ambiguous (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_non_raw_expanded_box_remains_ambiguous) ... ok
+test_partly_overlapping_raw_box_cannot_override_the_confirmed_caption (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_partly_overlapping_raw_box_cannot_override_the_confirmed_caption) ... ok
+test_repeating_one_variant_does_not_manufacture_independent_corroboration (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_repeating_one_variant_does_not_manufacture_independent_corroboration) ... ok
+test_same_geometry_still_rejects_partial_second_surface (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_same_geometry_still_rejects_partial_second_surface) ... ok
+test_spatially_separate_raw_duplicate_remains_fatal_despite_other_consensus (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_spatially_separate_raw_duplicate_remains_fatal_despite_other_consensus) ... ok
+test_two_independently_corroborated_boxes_cannot_be_resolved_by_a_majority (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_two_independently_corroborated_boxes_cannot_be_resolved_by_a_majority) ... ok
+test_unknown_variant_names_cannot_supply_corroboration (test_kart_complete_android_evidence.CorroboratedPauseFooterOcrTests.test_unknown_variant_names_cannot_supply_corroboration) ... ok
+test_actual_read_failure_is_retained_and_never_treated_as_pending_readiness (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_actual_read_failure_is_retained_and_never_treated_as_pending_readiness) ... ok
+test_another_fresh_identity_change_cannot_satisfy_stable_readiness (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_another_fresh_identity_change_cannot_satisfy_stable_readiness) ... ok
+test_earlier_countdown_zero_session_cannot_identify_the_new_race (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_earlier_countdown_zero_session_cannot_identify_the_new_race) ... ok
+test_fresh_identity_must_finish_countdown_and_green_start_phase_naturally (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_fresh_identity_must_finish_countdown_and_green_start_phase_naturally) ... ok
+test_late_command_result_cannot_pass_after_the_readiness_deadline (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_late_command_result_cannot_pass_after_the_readiness_deadline) ... ok
+test_poll_retains_old_pending_and_two_stable_fresh_ready_observations (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_poll_retains_old_pending_and_two_stable_fresh_ready_observations) ... ok
+test_runtime_cannot_revert_to_the_prior_saved_race_after_new_identity_seen (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_runtime_cannot_revert_to_the_prior_saved_race_after_new_identity_seen) ... ok
+test_stale_save_wait_is_bounded_and_does_not_manufacture_new_state (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_stale_save_wait_is_bounded_and_does_not_manufacture_new_state) ... ok
+test_wrong_setup_completed_or_already_advanced_race_is_fatal (test_kart_complete_android_evidence.FreshRaceReadinessTests.test_wrong_setup_completed_or_already_advanced_race_is_fatal) ... ok
+test_ack_requires_the_actual_result_to_leave_the_pending_host_queue (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_ack_requires_the_actual_result_to_leave_the_pending_host_queue) ... ok
+test_android_org_json_writes_integral_times_without_fraction (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_android_org_json_writes_integral_times_without_fraction) ... ok
+test_host_event_must_equal_the_actual_payload_and_occur_only_once (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_host_event_must_equal_the_actual_payload_and_occur_only_once) ... ok
+test_host_time_rounding_is_strictly_subnanosecond_and_finite (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_host_time_rounding_is_strictly_subnanosecond_and_finite) ... ok
+test_host_time_tolerance_never_accepts_changed_fields_or_duplicates (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_host_time_tolerance_never_accepts_changed_fields_or_duplicates) ... ok
+test_old_duplicate_or_missing_result_cannot_be_counted_as_new_reward (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_old_duplicate_or_missing_result_cannot_be_counted_as_new_reward) ... ok
+test_only_two_actual_timing_fields_accept_sub_nanosecond_json_variance (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_only_two_actual_timing_fields_accept_sub_nanosecond_json_variance) ... ok
+test_race_with_no_learning_questions_awards_exactly_three_stars_and_no_xp (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_race_with_no_learning_questions_awards_exactly_three_stars_and_no_xp) ... ok
+test_real_android35_native_and_host_round_trip_may_differ_only_in_last_float_bits (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_real_android35_native_and_host_round_trip_may_differ_only_in_last_float_bits) ... ok
+test_unrelated_result_cannot_explain_the_wallet_delta (test_kart_complete_android_evidence.HostRewardEvidenceTests.test_unrelated_result_cannot_explain_the_wallet_delta) ... ok
+test_both_visible_gas_modes_are_settings_only_inside_the_modal (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_both_visible_gas_modes_are_settings_only_inside_the_modal) ... ok
+test_clipped_geometry_and_gestures_outside_the_seen_content_fail (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_clipped_geometry_and_gestures_outside_the_seen_content_fail) ... ok
+test_different_ocr_variants_of_one_footer_are_deduplicated_without_guessing (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_different_ocr_variants_of_one_footer_are_deduplicated_without_guessing) ... ok
+test_disordered_or_separate_footer_rows_cannot_bound_the_scroll_content (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_disordered_or_separate_footer_rows_cannot_bound_the_scroll_content) ... ok
+test_full_gas_setting_caption_outside_footer_geometry_is_also_excluded (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_full_gas_setting_caption_outside_footer_geometry_is_also_excluded) ... ok
+test_invalid_relevant_bounds_fail_instead_of_becoming_input_coordinates (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_invalid_relevant_bounds_fail_instead_of_becoming_input_coordinates) ... ok
+test_missing_or_ambiguous_pinned_footer_never_guesses_modal_geometry (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_missing_or_ambiguous_pinned_footer_never_guesses_modal_geometry) ... ok
+test_modal_or_footer_movement_requires_new_stable_frames (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_modal_or_footer_movement_requires_new_stable_frames) ... ok
+test_one_full_frame_is_insufficient_but_two_stable_current_frames_authorize_swipe (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_one_full_frame_is_insufficient_but_two_stable_current_frames_authorize_swipe) ... ok
+test_partial_surface_or_resizing_never_reuses_previous_geometry (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_partial_surface_or_resizing_never_reuses_previous_geometry) ... ok
+test_real_hud_gas_cannot_authorize_the_outside_modal_swipe (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_real_hud_gas_cannot_authorize_the_outside_modal_swipe) ... ok
+test_settings_below_or_beside_the_footer_cannot_supply_a_scroll_path (test_kart_complete_android_evidence.ModalScrollReadinessTests.test_settings_below_or_beside_the_footer_cannot_supply_a_scroll_path) ... ok
+test_final_save_alone_and_missing_second_lap_cannot_prove_a_driven_race (test_kart_complete_android_evidence.NaturalKartCompletionTests.test_final_save_alone_and_missing_second_lap_cannot_prove_a_driven_race) ... ok
+test_requires_both_genuinely_in_progress_laps_and_complete_native_result (test_kart_complete_android_evidence.NaturalKartCompletionTests.test_requires_both_genuinely_in_progress_laps_and_complete_native_result) ... ok
+test_unfinished_state_or_forged_payload_checkpoint_is_rejected (test_kart_complete_android_evidence.NaturalKartCompletionTests.test_unfinished_state_or_forged_payload_checkpoint_is_rejected) ... ok
+test_wrong_result_id_or_training_mode_cannot_pass_a_two_lap_race (test_kart_complete_android_evidence.NaturalKartCompletionTests.test_wrong_result_id_or_training_mode_cannot_pass_a_two_lap_race) ... ok
+test_actual_configfile_shapes_preserve_scalar_and_multiline_result_fields (test_kart_complete_android_evidence.ReadOnlyKartSaveTests.test_actual_configfile_shapes_preserve_scalar_and_multiline_result_fields) ... ok
+test_duplicate_or_missing_ids_are_rejected_instead_of_using_stale_data (test_kart_complete_android_evidence.ReadOnlyKartSaveTests.test_duplicate_or_missing_ids_are_rejected_instead_of_using_stale_data) ... ok
+test_invalid_nonfinite_numeric_fields_cannot_prove_real_progress (test_kart_complete_android_evidence.ReadOnlyKartSaveTests.test_invalid_nonfinite_numeric_fields_cannot_prove_real_progress) ... ok
+test_no_python_or_godot_expression_is_executed (test_kart_complete_android_evidence.ReadOnlyKartSaveTests.test_no_python_or_godot_expression_is_executed) ... ok
+test_typed_checkpoint_and_finish_state_cannot_be_string_or_boolean_coerced (test_kart_complete_android_evidence.ReadOnlyKartSaveTests.test_typed_checkpoint_and_finish_state_cannot_be_string_or_boolean_coerced) ... ok
+test_both_independent_interactions_satisfy_the_existing_full_gate (test_kart_learning_evidence.LearningEvidenceTests.test_both_independent_interactions_satisfy_the_existing_full_gate) ... ok
+test_correct_only_option_cannot_be_guessed_into_a_wrong_answer (test_kart_learning_evidence.LearningEvidenceTests.test_correct_only_option_cannot_be_guessed_into_a_wrong_answer) ... ok
+test_explicit_non_hint_mode_does_not_change_correct_answer_gate (test_kart_learning_evidence.LearningEvidenceTests.test_explicit_non_hint_mode_does_not_change_correct_answer_gate) ... ok
+test_finished_race_and_correct_answers_do_not_replace_missing_hint (test_kart_learning_evidence.LearningEvidenceTests.test_finished_race_and_correct_answers_do_not_replace_missing_hint) ... ok
+test_hint_alone_does_not_replace_a_correct_answer (test_kart_learning_evidence.LearningEvidenceTests.test_hint_alone_does_not_replace_a_correct_answer) ... ok
+test_only_an_actually_read_different_option_is_selected (test_kart_learning_evidence.LearningEvidenceTests.test_only_an_actually_read_different_option_is_selected) ... ok
+test_changed_prompt_does_not_require_an_answer_button (test_kart_prompt_identity.PromptIdentityTests.test_changed_prompt_does_not_require_an_answer_button) ... ok
+test_equal_result_does_not_make_different_tasks_identical (test_kart_prompt_identity.PromptIdentityTests.test_equal_result_does_not_make_different_tasks_identical) ... ok
+test_malformed_task_does_not_prove_change (test_kart_prompt_identity.PromptIdentityTests.test_malformed_task_does_not_prove_change) ... ok
+test_no_prior_prompt_cannot_prove_change_behind_a_visible_lesson (test_kart_prompt_identity.PromptIdentityTests.test_no_prior_prompt_cannot_prove_change_behind_a_visible_lesson) ... ok
+test_optional_equals_fallback_remains_supported (test_kart_prompt_identity.PromptIdentityTests.test_optional_equals_fallback_remains_supported) ... ok
+test_prompt_outside_actual_question_box_is_ignored (test_kart_prompt_identity.PromptIdentityTests.test_prompt_outside_actual_question_box_is_ignored) ... ok
+test_real_seven_minus_two_not_spurious_twenty_two (test_kart_prompt_identity.PromptIdentityTests.test_real_seven_minus_two_not_spurious_twenty_two) ... ok
+test_real_three_minus_three_not_spurious_thirty_five (test_kart_prompt_identity.PromptIdentityTests.test_real_three_minus_three_not_spurious_thirty_five) ... ok
+test_same_task_with_different_spacing_is_not_a_transition (test_kart_prompt_identity.PromptIdentityTests.test_same_task_with_different_spacing_is_not_a_transition) ... ok
+test_skipped_original_can_be_identified_without_answer_buttons (test_kart_prompt_identity.PromptIdentityTests.test_skipped_original_can_be_identified_without_answer_buttons) ... ok
+test_two_conflicting_explicit_readings_are_rejected (test_kart_prompt_identity.PromptIdentityTests.test_two_conflicting_explicit_readings_are_rejected) ... ok
+test_unreadable_options_still_block_a_correct_answer_action (test_kart_prompt_identity.PromptIdentityTests.test_unreadable_options_still_block_a_correct_answer_action) ... ok
+test_lightweight_reload_needs_both_actual_enabled_setting_and_resume_buttons (test_kart_race_evidence.KartActionCaptionTests.test_lightweight_reload_needs_both_actual_enabled_setting_and_resume_buttons) ... ok
+test_real_kvm_learning_header_targets_observed_skip_caption_inside_its_button (test_kart_race_evidence.KartActionCaptionTests.test_real_kvm_learning_header_targets_observed_skip_caption_inside_its_button) ... ok
+test_real_kvm_pause_ocr_clicks_resume_button_instead_of_explanation (test_kart_race_evidence.KartActionCaptionTests.test_real_kvm_pause_ocr_clicks_resume_button_instead_of_explanation) ... ok
+test_return_buttons_accept_real_caption_suffixes_but_not_explanations (test_kart_race_evidence.KartActionCaptionTests.test_return_buttons_accept_real_caption_suffixes_but_not_explanations) ... ok
+test_real_result_buttons_are_read_but_actual_save_error_still_fails (test_kart_race_evidence.KartActualResultTests.test_real_result_buttons_are_read_but_actual_save_error_still_fails) ... ok
+test_all_real_skip_captions_are_read_inside_their_actual_blue_buttons (test_kart_race_evidence.KartActualScreenshotTests.test_all_real_skip_captions_are_read_inside_their_actual_blue_buttons) ... ok
+test_complete_wrapped_book_prompt_and_all_real_answer_fields_are_read (test_kart_race_evidence.KartActualScreenshotTests.test_complete_wrapped_book_prompt_and_all_real_answer_fields_are_read) ... ok
+test_raw_fixtures_are_the_unmodified_actual_android_frames (test_kart_race_evidence.KartActualScreenshotTests.test_raw_fixtures_are_the_unmodified_actual_android_frames) ... ok
+test_real_frame_with_missing_base_place_still_proves_round_two_before_result (test_kart_race_evidence.KartActualScreenshotTests.test_real_frame_with_missing_base_place_still_proves_round_two_before_result) ... ok
+test_real_wrong_hint_is_contextual_and_correct_eight_remains_readable (test_kart_race_evidence.KartActualScreenshotTests.test_real_wrong_hint_is_contextual_and_correct_eight_remains_readable) ... ok
+test_wrapped_garden_task_uses_observed_three_instead_of_prompt_digits (test_kart_race_evidence.KartActualScreenshotTests.test_wrapped_garden_task_uses_observed_three_instead_of_prompt_digits) ... ok
+test_complete_known_story_prompts_are_computed_but_partial_noise_is_rejected (test_kart_race_evidence.KartAnswerTargetTests.test_complete_known_story_prompts_are_computed_but_partial_noise_is_rejected) ... ok
+test_explanation_with_numbers_is_not_an_arithmetic_prompt (test_kart_race_evidence.KartAnswerTargetTests.test_explanation_with_numbers_is_not_an_arithmetic_prompt) ... ok
+test_real_kvm_answer_strip_excludes_prompt_digits_for_both_answer_choices (test_kart_race_evidence.KartAnswerTargetTests.test_real_kvm_answer_strip_excludes_prompt_digits_for_both_answer_choices) ... ok
+test_real_kvm_arithmetic_without_ocr_equals_uses_the_observed_eight_button (test_kart_race_evidence.KartAnswerTargetTests.test_real_kvm_arithmetic_without_ocr_equals_uses_the_observed_eight_button) ... ok
+test_second_real_kvm_question_is_answerable_when_skip_caption_is_not_readable (test_kart_race_evidence.KartAnswerTargetTests.test_second_real_kvm_question_is_answerable_when_skip_caption_is_not_readable) ... ok
+test_real_compact_pause_footer_captions_are_read_inside_observed_buttons (test_kart_race_evidence.KartCompactPauseTests.test_real_compact_pause_footer_captions_are_read_inside_observed_buttons) ... ok
+test_combined_hud_round_two_is_read_without_using_speed_or_crystals (test_kart_race_evidence.KartRaceEvidenceTests.test_combined_hud_round_two_is_read_without_using_speed_or_crystals) ... ok
+test_measured_hud_ignores_captions_outside_its_real_panel (test_kart_race_evidence.KartRaceEvidenceTests.test_measured_hud_ignores_captions_outside_its_real_panel) ... ok
+test_real_desktop_ocr_round_one_cannot_prove_round_two (test_kart_race_evidence.KartRaceEvidenceTests.test_real_desktop_ocr_round_one_cannot_prove_round_two) ... ok
+test_result_hud_round_two_is_insufficient_even_when_button_ocr_fails (test_kart_race_evidence.KartRaceEvidenceTests.test_result_hud_round_two_is_insufficient_even_when_button_ocr_fails) ... ok
+test_success_keeps_reference_to_the_actual_prior_capture (test_kart_race_evidence.KartRaceEvidenceTests.test_success_keeps_reference_to_the_actual_prior_capture) ... ok
+test_unreadable_or_inconsistent_hud_does_not_prove_the_required_round (test_kart_race_evidence.KartRaceEvidenceTests.test_unreadable_or_inconsistent_hud_does_not_prove_the_required_round) ... ok
+test_valid_later_hud_crop_is_read_and_conflicting_values_are_rejected (test_kart_race_evidence.KartRaceEvidenceTests.test_valid_later_hud_crop_is_read_and_conflicting_values_are_rejected) ... ok
+test_answer_transition_requires_a_real_hud_after_the_lesson_disappears (test_kart_race_evidence.KartTransitionEvidenceTests.test_answer_transition_requires_a_real_hud_after_the_lesson_disappears) ... ok
+test_default_native_deadline_rejects_late_success_and_slow_stale_panels (test_kart_race_evidence.KartTransitionEvidenceTests.test_default_native_deadline_rejects_late_success_and_slow_stale_panels) ... ok
+test_hint_must_replace_the_waiting_caption_while_the_lesson_remains (test_kart_race_evidence.KartTransitionEvidenceTests.test_hint_must_replace_the_waiting_caption_while_the_lesson_remains) ... ok
+test_one_capture_over_the_deadline_cannot_turn_into_late_success (test_kart_race_evidence.KartTransitionEvidenceTests.test_one_capture_over_the_deadline_cannot_turn_into_late_success) ... ok
+test_real_slow_answer_observations_fit_the_bounded_native_processing_budget (test_kart_race_evidence.KartTransitionEvidenceTests.test_real_slow_answer_observations_fit_the_bounded_native_processing_budget) ... ok
+test_real_world_skip_caption_does_not_leave_a_phantom_learning_pause (test_kart_race_evidence.KartTransitionEvidenceTests.test_real_world_skip_caption_does_not_leave_a_phantom_learning_pause) ... ok
+test_restart_requires_round_one_and_cannot_accept_stale_result_or_hud (test_kart_race_evidence.KartTransitionEvidenceTests.test_restart_requires_round_one_and_cannot_accept_stale_result_or_hud) ... ok
+test_stale_hud_alone_times_out_and_keeps_its_actual_ocr_in_failure (test_kart_race_evidence.KartTransitionEvidenceTests.test_stale_hud_alone_times_out_and_keeps_its_actual_ocr_in_failure) ... ok
+test_stale_hud_frames_are_retained_until_pause_is_actually_visible (test_kart_race_evidence.KartTransitionEvidenceTests.test_stale_hud_frames_are_retained_until_pause_is_actually_visible) ... ok
+test_actual_product_tail_calls_resource_gate_before_status_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_actual_product_tail_calls_resource_gate_before_status_pass) ... ok
+test_all_three_raw_reads_and_exact_command_arguments_are_required (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_all_three_raw_reads_and_exact_command_arguments_are_required) ... ok
+test_both_real_parser_controlled_snapshots_allow_actual_final_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_both_real_parser_controlled_snapshots_allow_actual_final_pass) ... ok
+test_each_failed_or_not_executed_phase_blocks_final_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_each_failed_or_not_executed_phase_blocks_final_pass) ... ok
+test_each_snapshot_identity_is_bound_to_exact_current_result (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_each_snapshot_identity_is_bound_to_exact_current_result) ... ok
+test_either_missing_existing_phase_cannot_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_either_missing_existing_phase_cannot_pass) ... ok
+test_extra_or_replaced_phase_cannot_substitute_for_two_required_reads (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_extra_or_replaced_phase_cannot_substitute_for_two_required_reads) ... ok
+test_failed_resource_producer_return_cannot_become_fullrace_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_failed_resource_producer_return_cannot_become_fullrace_pass) ... ok
+test_legitimate_meminfo_without_rss_remains_unavailable (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_legitimate_meminfo_without_rss_remains_unavailable) ... ok
+test_missing_raw_read_timestamps_cannot_be_archived_as_complete (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_missing_raw_read_timestamps_cannot_be_archived_as_complete) ... ok
+test_nonfinite_or_boolean_capture_duration_cannot_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_nonfinite_or_boolean_capture_duration_cannot_pass) ... ok
+test_nonobject_snapshot_container_or_phase_cannot_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_nonobject_snapshot_container_or_phase_cannot_pass) ... ok
+test_phase_field_and_failure_error_are_not_ignored (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_phase_field_and_failure_error_are_not_ignored) ... ok
+test_reported_metrics_cannot_disagree_with_captured_raw_inputs (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_reported_metrics_cannot_disagree_with_captured_raw_inputs) ... ok
+test_snapshots_missing_from_final_report_cannot_pass (test_kart_resource_gate_recovery.KartResourceGateRecoveryTests.test_snapshots_missing_from_final_report_cannot_pass) ... ok
+test_different_viewports_are_never_compared (test_kart_tour_evidence.GarageAndMotionTests.test_different_viewports_are_never_compared) ... ok
+test_the_real_garage_is_not_accepted_as_the_race (test_kart_tour_evidence.GarageAndMotionTests.test_the_real_garage_is_not_accepted_as_the_race) ... ok
+test_world_must_move_between_frames_of_one_race (test_kart_tour_evidence.GarageAndMotionTests.test_world_must_move_between_frames_of_one_race) ... ok
+test_a_different_child_profile_fails (test_kart_tour_evidence.LearningStateTests.test_a_different_child_profile_fails) ... ok
+test_lost_or_changed_learning_data_fails (test_kart_tour_evidence.LearningStateTests.test_lost_or_changed_learning_data_fails) ... ok
+test_page_must_keep_most_of_its_controls (test_kart_tour_evidence.LearningStateTests.test_page_must_keep_most_of_its_controls) ... ok
+test_return_keeps_profile_and_learning_data (test_kart_tour_evidence.LearningStateTests.test_return_keeps_profile_and_learning_data) ... ok
+test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause (test_kart_tour_evidence.NativeSessionTests.test_expected_mode_track_and_identity_cannot_change_during_drive_or_pause) ... ok
+test_explicit_cup_mode_keeps_all_running_and_driving_checks (test_kart_tour_evidence.NativeSessionTests.test_explicit_cup_mode_keeps_all_running_and_driving_checks) ... ok
+test_holding_gas_must_cover_distance_in_the_same_race (test_kart_tour_evidence.NativeSessionTests.test_holding_gas_must_cover_distance_in_the_same_race) ... ok
+test_other_tracks_modes_or_finished_races_are_rejected (test_kart_tour_evidence.NativeSessionTests.test_other_tracks_modes_or_finished_races_are_rejected) ... ok
+test_pause_must_freeze_the_saved_race (test_kart_tour_evidence.NativeSessionTests.test_pause_must_freeze_the_saved_race) ... ok
+test_race_counts_as_running_only_after_countdown_and_first_second (test_kart_tour_evidence.NativeSessionTests.test_race_counts_as_running_only_after_countdown_and_first_second) ... ok
+test_actual_android_race_frames_are_rendered_3d_scenes (test_kart_tour_evidence.RenderedFrameTests.test_actual_android_race_frames_are_rendered_3d_scenes) ... ok
+test_black_flat_and_portrait_frames_are_rejected (test_kart_tour_evidence.RenderedFrameTests.test_black_flat_and_portrait_frames_are_rejected) ... ok
+test_actual_command_observations_are_retained_on_transport_failure (test_kart_video_recorder.VideoRecorderProcessTests.test_actual_command_observations_are_retained_on_transport_failure) ... ok
+test_already_finished_own_client_collects_without_process_discovery (test_kart_video_recorder.VideoRecorderProcessTests.test_already_finished_own_client_collects_without_process_discovery) ... ok
+test_clean_remote_exit_with_delayed_host_observation_collects_without_signal (test_kart_video_recorder.VideoRecorderProcessTests.test_clean_remote_exit_with_delayed_host_observation_collects_without_signal) ... ok
+test_cmdline_read_error_cannot_authorize_sigint (test_kart_video_recorder.VideoRecorderProcessTests.test_cmdline_read_error_cannot_authorize_sigint) ... ok
+test_empty_video_cannot_pass_after_a_successful_process_exit (test_kart_video_recorder.VideoRecorderProcessTests.test_empty_video_cannot_pass_after_a_successful_process_exit) ... ok
+test_invalid_or_group_pid_cannot_receive_a_signal (test_kart_video_recorder.VideoRecorderProcessTests.test_invalid_or_group_pid_cannot_receive_a_signal) ... ok
+test_late_successful_client_reply_cannot_bypass_finish_deadline (test_kart_video_recorder.VideoRecorderProcessTests.test_late_successful_client_reply_cannot_bypass_finish_deadline) ... ok
+test_later_segment_launch_failure_cannot_pass_using_earlier_footage (test_kart_video_recorder.VideoRecorderProcessTests.test_later_segment_launch_failure_cannot_pass_using_earlier_footage) ... ok
+test_live_single_matching_target_receives_only_its_own_sigint (test_kart_video_recorder.VideoRecorderProcessTests.test_live_single_matching_target_receives_only_its_own_sigint) ... ok
+test_missing_remote_pid_does_not_allow_an_unbounded_client_wait (test_kart_video_recorder.VideoRecorderProcessTests.test_missing_remote_pid_does_not_allow_an_unbounded_client_wait) ... ok
+test_multiple_pids_are_not_resolved_by_picking_one (test_kart_video_recorder.VideoRecorderProcessTests.test_multiple_pids_are_not_resolved_by_picking_one) ... ok
+test_non_utf8_process_response_retains_the_exact_observed_bytes (test_kart_video_recorder.VideoRecorderProcessTests.test_non_utf8_process_response_retains_the_exact_observed_bytes) ... ok
+test_own_client_nonzero_exit_is_never_usable_footage (test_kart_video_recorder.VideoRecorderProcessTests.test_own_client_nonzero_exit_is_never_usable_footage) ... ok
+test_pid_observation_and_client_wait_share_one_20_second_budget (test_kart_video_recorder.VideoRecorderProcessTests.test_pid_observation_and_client_wait_share_one_20_second_budget) ... ok
+test_pidof_nonzero_status_with_a_numeric_stdout_is_not_success (test_kart_video_recorder.VideoRecorderProcessTests.test_pidof_nonzero_status_with_a_numeric_stdout_is_not_success) ... ok
+test_pidof_transport_errors_remain_fatal_even_with_empty_stdout (test_kart_video_recorder.VideoRecorderProcessTests.test_pidof_transport_errors_remain_fatal_even_with_empty_stdout) ... ok
+test_segment_still_fails_after_its_original_200_second_limit (test_kart_video_recorder.VideoRecorderProcessTests.test_segment_still_fails_after_its_original_200_second_limit) ... ok
+test_single_pid_for_another_remote_recording_is_never_signalled (test_kart_video_recorder.VideoRecorderProcessTests.test_single_pid_for_another_remote_recording_is_never_signalled) ... ok
+test_truncated_cmdline_cannot_authorize_sigint (test_kart_video_recorder.VideoRecorderProcessTests.test_truncated_cmdline_cannot_authorize_sigint) ... ok
+test_build_requires_existing_android_tools_without_overwriting_jar (test_live_ui_snapshot.LiveUiSnapshotTests.test_build_requires_existing_android_tools_without_overwriting_jar) ... ok
+test_emulator_identity_is_explicit (test_live_ui_snapshot.LiveUiSnapshotTests.test_emulator_identity_is_explicit) ... ok
+test_environment_selects_the_same_fixed_snapshot_helper (test_live_ui_snapshot.LiveUiSnapshotTests.test_environment_selects_the_same_fixed_snapshot_helper) ... ok
+test_install_rejects_physical_device_before_reading_or_pushing_jar (test_live_ui_snapshot.LiveUiSnapshotTests.test_install_rejects_physical_device_before_reading_or_pushing_jar) ... ok
+test_live_helper_without_completion_marker_cannot_reuse_old_xml (test_live_ui_snapshot.LiveUiSnapshotTests.test_live_helper_without_completion_marker_cannot_reuse_old_xml) ... ok
+test_live_snapshot_uses_unique_confirmed_file_without_global_idle (test_live_ui_snapshot.LiveUiSnapshotTests.test_live_snapshot_uses_unique_confirmed_file_without_global_idle) ... ok
+test_remote_hash_and_path_must_both_match (test_live_ui_snapshot.LiveUiSnapshotTests.test_remote_hash_and_path_must_both_match) ... ok
+test_unapproved_or_injected_helper_path_is_rejected_before_adb (test_live_ui_snapshot.LiveUiSnapshotTests.test_unapproved_or_injected_helper_path_is_rejected_before_adb) ... ok
+test_same_commit_version_signature_and_native_identity_are_required (test_living_intelligence_update_identity.LivingIntelligenceUpdateIdentityTests.test_same_commit_version_signature_and_native_identity_are_required) ... ok
+test_actual_mixed_child_footer_does_not_make_temporary_button_faces_matched (test_memory_observation_stability.MemoryObservationTests.test_actual_mixed_child_footer_does_not_make_temporary_button_faces_matched) ... ok
+test_extreme_card_outside_viewport_clipped_or_exposed_never_passes_fresh_check (test_memory_observation_stability.MemoryObservationTests.test_extreme_card_outside_viewport_clipped_or_exposed_never_passes_fresh_check) ... ok
+test_fresh_grid_reachability_uses_real_swipe_directions_before_any_touch (test_memory_observation_stability.MemoryObservationTests.test_fresh_grid_reachability_uses_real_swipe_directions_before_any_touch) ... ok
+test_observation_only_remembers_matched_role_and_preserves_actual_xml (test_memory_observation_stability.MemoryObservationTests.test_observation_only_remembers_matched_role_and_preserves_actual_xml) ... ok
+test_opponent_matched_face_cannot_confirm_own_first_tap_or_trigger_second (test_memory_observation_stability.MemoryObservationTests.test_opponent_matched_face_cannot_confirm_own_first_tap_or_trigger_second) ... ok
+test_ready_requires_two_identical_settled_snapshots_after_actual_turn_changes (test_memory_observation_stability.MemoryObservationTests.test_ready_requires_two_identical_settled_snapshots_after_actual_turn_changes) ... ok
+test_transient_empty_semantics_is_saved_and_reobserved_without_input (test_memory_observation_stability.MemoryObservationTests.test_transient_empty_semantics_is_saved_and_reobserved_without_input) ... ok
+test_unchanged_unresponsive_first_tap_still_fails_without_silent_retry (test_memory_observation_stability.MemoryObservationTests.test_unchanged_unresponsive_first_tap_still_fails_without_silent_retry) ... ok
+test_visible_pair_score_must_be_complete_unique_and_possible (test_memory_observation_stability.MemoryObservationTests.test_visible_pair_score_must_be_complete_unique_and_possible) ... ok
+test_boot_and_uid_share_the_time_remaining_after_missing_transport_wait (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_boot_and_uid_share_the_time_remaining_after_missing_transport_wait) ... ok
+test_bound_serial_or_actual_android_api_mismatch_is_fatal (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_bound_serial_or_actual_android_api_mismatch_is_fatal) ... ok
+test_empty_offline_foreign_or_multiple_inventory_after_wait_is_fatal (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_empty_offline_foreign_or_multiple_inventory_after_wait_is_fatal) ... ok
+test_exact_missing_transport_may_already_be_online_in_inventory (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_exact_missing_transport_may_already_be_online_in_inventory) ... ok
+test_exact_missing_transport_may_be_temporarily_absent (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_exact_missing_transport_may_be_temporarily_absent) ... ok
+test_exact_missing_transport_may_reappear_offline_before_bounded_wait (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_exact_missing_transport_may_reappear_offline_before_bounded_wait) ... ok
+test_final_unique_inventory_is_reverified_after_root_boot_and_api (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_final_unique_inventory_is_reverified_after_root_boot_and_api) ... ok
+test_foreign_multiple_unauthorized_malformed_initial_inventory_fails_before_wait (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_foreign_multiple_unauthorized_malformed_initial_inventory_fails_before_wait) ... ok
+test_fullrace_entrypoint_consumes_previous_creative_identity_before_app_read (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_fullrace_entrypoint_consumes_previous_creative_identity_before_app_read) ... [CompleteKartAndroid] FAIL: TEST_STOP_AFTER_VERIFIED_ROOT_BEFORE_INSTALLED_APK_READ
+ok
+test_headerless_empty_inventory_is_not_an_observed_empty_adb_inventory (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_headerless_empty_inventory_is_not_an_observed_empty_adb_inventory) ... ok
+test_mismatching_candidate_provenance_fails_before_adb (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_mismatching_candidate_provenance_fails_before_adb) ... ok
+test_missing_without_previous_readiness_or_creative_pass_is_not_recoverable (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_missing_without_previous_readiness_or_creative_pass_is_not_recoverable) ... ok
+test_other_serial_return_code_command_or_extra_output_are_not_retried (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_other_serial_return_code_command_or_extra_output_are_not_retried) ... ok
+test_wait_cannot_extend_the_shared_deadline (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_wait_cannot_extend_the_shared_deadline) ... ok
+test_wait_failure_cannot_request_root (test_missing_emulator_handoff_recovery.MissingEmulatorHandoffRecoveryTests.test_wait_failure_cannot_request_root) ... ok
+test_any_other_build_identity_is_refused (test_modernization_tour_identity.TourApkIdentityTests.test_any_other_build_identity_is_refused) ... ok
+test_build_job_checksum_must_match_the_tested_file (test_modernization_tour_identity.TourApkIdentityTests.test_build_job_checksum_must_match_the_tested_file) ... ok
+test_the_exact_verified_build_is_accepted (test_modernization_tour_identity.TourApkIdentityTests.test_the_exact_verified_build_is_accepted) ... ok
+test_real_android_garage_keeps_weiter_and_has_no_start (test_modernization_tour_identity.TourKartLandingStartTests.test_real_android_garage_keeps_weiter_and_has_no_start) ... ok
+test_real_landing_start_is_found_bottom_left (test_modernization_tour_identity.TourKartLandingStartTests.test_real_landing_start_is_found_bottom_left) ... ok
+test_only_this_apps_visible_captions_are_compared (test_modernization_tour_identity.TourLabelTests.test_only_this_apps_visible_captions_are_compared) ... ok
+test_premium_start_binds_the_tour_to_the_real_grand_prix_mode (test_modernization_tour_identity.TourRaceModeTests.test_premium_start_binds_the_tour_to_the_real_grand_prix_mode) ... ok
+test_running_clock_uses_the_launch_expectation (test_modernization_tour_identity.TourRaceModeTests.test_running_clock_uses_the_launch_expectation) ... ok
+test_clipped_one_pixel_kart_button_scrolls_before_press (test_modernization_tour_identity.TourRealKartTouchTests.test_clipped_one_pixel_kart_button_scrolls_before_press) ... ok
+test_too_small_or_invalid_touch_threshold_is_rejected (test_modernization_tour_identity.TourRealKartTouchTests.test_too_small_or_invalid_touch_threshold_is_rejected) ... ok
+test_2017_start_keeps_the_real_race_gates_and_records_native_navigation (test_modernization_tour_identity.TourSpatialMenuTests.test_2017_start_keeps_the_real_race_gates_and_records_native_navigation) ... ok
+test_missing_section_or_return_does_not_fall_back_to_unverified_touches (test_modernization_tour_identity.TourSpatialMenuTests.test_missing_section_or_return_does_not_fall_back_to_unverified_touches) ... ok
+test_mode_garage_and_driver_use_observed_labels_and_return_coordinates (test_modernization_tour_identity.TourSpatialMenuTests.test_mode_garage_and_driver_use_observed_labels_and_return_coordinates) ... ok
+test_actual_cover_frames_read_exact_drift_with_real_bounds (test_native_dim_caption.NativeDimCaptionRegression.test_actual_cover_frames_read_exact_drift_with_real_bounds) ... ok
+test_partial_rift_is_not_accepted_as_drift (test_native_dim_caption.NativeDimCaptionRegression.test_partial_rift_is_not_accepted_as_drift) ... ok
+test_actual_result_identity_cannot_switch_to_another_valid_generated_id (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_actual_result_identity_cannot_switch_to_another_valid_generated_id) ... ok
+test_dynamic_handoff_objects_require_exact_three_keys (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_dynamic_handoff_objects_require_exact_three_keys) ... ok
+test_dynamic_identity_accepts_distinct_source_generated_ids (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_dynamic_identity_accepts_distinct_source_generated_ids) ... ok
+test_each_row_has_exact_object_fields (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_each_row_has_exact_object_fields) ... ok
+test_each_static_expectation_and_observation_is_source_bound_and_typed (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_each_static_expectation_and_observation_is_source_bound_and_typed) ... ok
+test_every_passed_flag_requires_true_boolean (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_every_passed_flag_requires_true_boolean) ... ok
+test_exact_nine_root_fields_cannot_be_missing_or_extended (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_exact_nine_root_fields_cannot_be_missing_or_extended) ... ok
+test_fixture_explicitly_marks_synthetic_scope_and_valid_source_contract (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_fixture_explicitly_marks_synthetic_scope_and_valid_source_contract) ... ok
+test_mirrored_static_forgeries_do_not_gain_validity_from_passed_true (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_mirrored_static_forgeries_do_not_gain_validity_from_passed_true) ... ok
+test_non_object_roots_and_synthetic_envelope_are_not_runtime_evidence (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_non_object_roots_and_synthetic_envelope_are_not_runtime_evidence) ... ok
+test_official_engine_fields_are_required_typed_and_source_bound (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_official_engine_fields_are_required_typed_and_source_bound) ... ok
+test_producer_path_binds_active_continuity_and_never_inactive_bridge (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_producer_path_binds_active_continuity_and_never_inactive_bridge) ... ok
+test_result_identity_requires_source_session_prefix_and_two_digit_fields (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_result_identity_requires_source_session_prefix_and_two_digit_fields) ... ok
+test_reward_and_return_counts_require_integer_one_even_when_mirrored (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_reward_and_return_counts_require_integer_one_even_when_mirrored) ... ok
+test_scope_cannot_claim_physical_driving_or_suppress_assigned_state (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_scope_cannot_claim_physical_driving_or_suppress_assigned_state) ... ok
+test_source_ordered_labels_cannot_be_changed_duplicated_or_coerced (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_source_ordered_labels_cannot_be_changed_duplicated_or_coerced) ... ok
+test_status_and_rendered_display_require_exact_strings (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_status_and_rendered_display_require_exact_strings) ... ok
+test_ten_ordered_rows_reject_missing_extra_reordered_and_non_list_checks (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_ten_ordered_rows_reject_missing_extra_reordered_and_non_list_checks) ... ok
+test_three_source_identities_require_actual_digests_not_only_digest_shape (test_native_handoff_evidence_recovery.HandoffLifecycleContractTests.test_three_source_identities_require_actual_digests_not_only_digest_shape) ... ok
+test_artifact_loader_rejects_missing_empty_malformed_duplicate_and_nonfinite_json (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_artifact_loader_rejects_missing_empty_malformed_duplicate_and_nonfinite_json) ... ok
+test_controlled_default_summary_returns_exact_five_keys_and_source_bindings (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_controlled_default_summary_returns_exact_five_keys_and_source_bindings) ... ok
+test_each_real_hash_binding_rejects_foreign_bytes_before_artifact_loading (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_each_real_hash_binding_rejects_foreign_bytes_before_artifact_loading) ... ok
+test_error_timeout_and_exit_leak_logs_cannot_be_hidden_by_pass_markers (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_error_timeout_and_exit_leak_logs_cannot_be_hidden_by_pass_markers) ... ok
+test_exact_once_lifecycle_line_rejects_duplicate_embedded_or_prefixed_pass (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_exact_once_lifecycle_line_rejects_duplicate_embedded_or_prefixed_pass) ... ok
+test_explicit_artifact_and_log_paths_work_with_other_fixture_reward_ids (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_explicit_artifact_and_log_paths_work_with_other_fixture_reward_ids) ... ok
+test_invalid_artifact_semantics_cannot_be_summarized_even_with_clean_pass_log (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_invalid_artifact_semantics_cannot_be_summarized_even_with_clean_pass_log) ... ok
+test_log_loader_rejects_missing_empty_invalid_utf8_directory_and_symlink (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_log_loader_rejects_missing_empty_invalid_utf8_directory_and_symlink) ... ok
+test_matching_first_result_reward_log_is_required_exactly_once (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_matching_first_result_reward_log_is_required_exactly_once) ... ok
+test_real_source_binding_rejects_missing_empty_directory_and_symlink (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_real_source_binding_rejects_missing_empty_directory_and_symlink) ... ok
+test_summary_requires_both_original_continuity_and_lifecycle_pass_markers (test_native_handoff_evidence_recovery.HandoffLifecycleSummaryTests.test_summary_requires_both_original_continuity_and_lifecycle_pass_markers) ... ok
+test_closed_schema_rerun_fixture_is_byte_exact_and_valid (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_closed_schema_rerun_fixture_is_byte_exact_and_valid) ... ok
+test_count_status_source_and_rendering_are_bound (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_count_status_source_and_rendering_are_bound) ... ok
+test_malformed_touch_check_shapes_fail_with_value_error (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_malformed_touch_check_shapes_fail_with_value_error) ... ok
+test_nine_ordered_check_names_and_true_boolean_flags_are_required (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_nine_ordered_check_names_and_true_boolean_flags_are_required) ... ok
+test_paused_touch_result_has_correct_zero_reward_identity_and_session (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_paused_touch_result_has_correct_zero_reward_identity_and_session) ... ok
+test_published_touch_times_keep_milliseconds_and_frozen_raw_elapsed (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_published_touch_times_keep_milliseconds_and_frozen_raw_elapsed) ... ok
+test_reopened_touch_payload_cannot_change_identity_or_award (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_reopened_touch_payload_cannot_change_identity_or_award) ... ok
+test_root_and_missing_shape_errors_use_value_error (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_root_and_missing_shape_errors_use_value_error) ... ok
+test_saved_second_lap_restores_checkpoint_timing_and_identity (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_saved_second_lap_restores_checkpoint_timing_and_identity) ... ok
+test_touch_expected_and_actual_cannot_both_forge_duplicate_reward (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_expected_and_actual_cannot_both_forge_duplicate_reward) ... ok
+test_touch_gate_trace_is_ordered_monotonic_and_finite (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_gate_trace_is_ordered_monotonic_and_finite) ... ok
+test_touch_hud_uses_actual_zero_text_and_preserves_raw_speed (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_hud_uses_actual_zero_text_and_preserves_raw_speed) ... ok
+test_touch_lap_intervals_and_unrounded_best_derive_from_gates (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_lap_intervals_and_unrounded_best_derive_from_gates) ... ok
+test_touch_png_roles_are_exact_six_and_reopened_digest_agrees (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_png_roles_are_exact_six_and_reopened_digest_agrees) ... ok
+test_touch_public_solved_zero_is_integer_and_reward_is_legitimate (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_public_solved_zero_is_integer_and_reward_is_legitimate) ... ok
+test_touch_reopened_controls_actions_and_title_are_correct_in_both_frames (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_touch_reopened_controls_actions_and_title_are_correct_in_both_frames) ... ok
+test_visible_touch_result_lines_remain_unique_and_agree_with_payload (test_native_lap_evidence_recovery.CompleteFlowEvidenceRecoveryTests.test_visible_touch_result_lines_remain_unique_and_agree_with_payload) ... ok
+test_ack_allows_only_completed_normalized_payload_and_fixed_session_transition (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_ack_allows_only_completed_normalized_payload_and_fixed_session_transition) ... ok
+test_ack_requires_one_return_and_removed_durable_save (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_ack_requires_one_return_and_removed_durable_save) ... ok
+test_check_name_pass_flag_and_expected_type_are_strict (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_check_name_pass_flag_and_expected_type_are_strict) ... ok
+test_closed_actual_fixture_is_byte_exact_and_valid (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_closed_actual_fixture_is_byte_exact_and_valid) ... ok
+test_driven_check_rows_cannot_disagree_with_top_level_gate_trace (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_driven_check_rows_cannot_disagree_with_top_level_gate_trace) ... ok
+test_driven_gate_order_and_integer_gate_identity_are_required (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_driven_gate_order_and_integer_gate_identity_are_required) ... ok
+test_driven_gate_seconds_and_distance_must_advance_and_be_finite (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_driven_gate_seconds_and_distance_must_advance_and_be_finite) ... ok
+test_exact_live_start_check_does_not_gain_serialization_tolerance (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_exact_live_start_check_does_not_gain_serialization_tolerance) ... ok
+test_expected_laps_derive_from_gate_eight_and_sixteen (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_expected_laps_derive_from_gate_eight_and_sixteen) ... ok
+test_expected_values_cannot_be_changed_with_actual_values_to_forge_pass (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_expected_values_cannot_be_changed_with_actual_values_to_forge_pass) ... ok
+test_lap_two_history_and_origin_cannot_be_missing_or_invented (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_lap_two_history_and_origin_cannot_be_missing_or_invented) ... ok
+test_lap_two_restored_progress_and_identity_cannot_change (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_lap_two_restored_progress_and_identity_cannot_change) ... ok
+test_legacy_fixture_expected_sentinel_cannot_be_forged_with_actual (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_legacy_fixture_expected_sentinel_cannot_be_forged_with_actual) ... ok
+test_legacy_fixture_pairs_keep_unknown_sentinel_and_strict_types (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_legacy_fixture_pairs_keep_unknown_sentinel_and_strict_types) ... ok
+test_legacy_fixture_scope_cannot_be_relabelled_as_driven_laps (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_legacy_fixture_scope_cannot_be_relabelled_as_driven_laps) ... ok
+test_legacy_visible_best_uses_valid_payload_only (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_legacy_visible_best_uses_valid_payload_only) ... ok
+test_malformed_projection_shapes_fail_with_value_error (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_malformed_projection_shapes_fail_with_value_error) ... ok
+test_missing_extra_or_reordered_check_is_rejected (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_missing_extra_or_reordered_check_is_rejected) ... ok
+test_passed_true_cannot_mask_contradictory_recorded_values (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_passed_true_cannot_mask_contradictory_recorded_values) ... ok
+test_projection_checks_are_accepted_without_invented_full_equality (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_projection_checks_are_accepted_without_invented_full_equality) ... ok
+test_public_payload_times_preserve_millisecond_precision (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_public_payload_times_preserve_millisecond_precision) ... ok
+test_public_solved_zero_requires_integer_and_reward_identity (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_public_solved_zero_requires_integer_and_reward_identity) ... ok
+test_reopened_payload_cannot_change_or_repeat_reward (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_reopened_payload_cannot_change_or_repeat_reward) ... ok
+test_result_ui_both_frames_hide_controls_and_disable_each_action (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_result_ui_both_frames_hide_controls_and_disable_each_action) ... ok
+test_result_ui_keeps_correct_title_and_underlying_raw_speed (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_result_ui_keeps_correct_title_and_underlying_raw_speed) ... ok
+test_result_ui_parses_actual_hud_zero_and_rejects_boolean_metadata (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_result_ui_parses_actual_hud_zero_and_rejects_boolean_metadata) ... ok
+test_reviewed_timing_comparison_accepts_small_serialization_difference (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_reviewed_timing_comparison_accepts_small_serialization_difference) ... ok
+test_root_and_required_field_errors_use_value_error (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_root_and_required_field_errors_use_value_error) ... ok
+test_runtime_metadata_cannot_claim_headless_or_foreign_engine (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_runtime_metadata_cannot_claim_headless_or_foreign_engine) ... ok
+test_source_probe_fixture_hashes_require_digest_shape (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_source_probe_fixture_hashes_require_digest_shape) ... ok
+test_status_count_failure_metadata_is_strict (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_status_count_failure_metadata_is_strict) ... ok
+test_time_trial_ui_checks_preserve_drive_pause_and_raw_speed (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_time_trial_ui_checks_preserve_drive_pause_and_raw_speed) ... ok
+test_timing_comparison_rejects_difference_above_one_nanosecond (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_timing_comparison_rejects_difference_above_one_nanosecond) ... ok
+test_visible_best_and_total_require_unique_consistent_lines (test_native_lap_evidence_recovery.ContinuityEvidenceRecoveryTests.test_visible_best_and_total_require_unique_consistent_lines) ... ok
+test_file_binding_accepts_only_actual_nonempty_regular_bytes (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_file_binding_accepts_only_actual_nonempty_regular_bytes) ... ok
+test_file_binding_rejects_mismatched_and_changed_source_bytes (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_file_binding_rejects_mismatched_and_changed_source_bytes) ... ok
+test_file_binding_rejects_missing_empty_directory_symlink_and_fifo (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_file_binding_rejects_missing_empty_directory_symlink_and_fifo) ... ok
+test_json_loader_binds_actual_fixture_bytes_and_digest (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_json_loader_binds_actual_fixture_bytes_and_digest) ... ok
+test_json_loader_rejects_duplicate_keys_at_root_and_nested_levels (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_json_loader_rejects_duplicate_keys_at_root_and_nested_levels) ... ok
+test_json_loader_rejects_empty_invalid_utf8_and_malformed_json (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_json_loader_rejects_empty_invalid_utf8_and_malformed_json) ... ok
+test_json_loader_rejects_nonfinite_constants (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_json_loader_rejects_nonfinite_constants) ... ok
+test_png_binding_accepts_complete_generated_fixture_of_actual_viewport (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_png_binding_accepts_complete_generated_fixture_of_actual_viewport) ... ok
+test_png_binding_rejects_changed_bytes_and_wrong_declared_digest (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_png_binding_rejects_changed_bytes_and_wrong_declared_digest) ... ok
+test_png_binding_rejects_unclosed_truncated_or_crc_corrupt_declared_bytes (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_png_binding_rejects_unclosed_truncated_or_crc_corrupt_declared_bytes) ... ok
+test_png_binding_rejects_wrong_signature_ihdr_and_dimensions (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_png_binding_rejects_wrong_signature_ihdr_and_dimensions) ... ok
+test_summary_aborts_on_wrong_source_before_reading_runtime_artifacts (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_summary_aborts_on_wrong_source_before_reading_runtime_artifacts) ... ok
+test_summary_missing_source_is_value_error_and_never_creates_a_pass (test_native_lap_evidence_recovery.EvidenceFileBindingRecoveryTests.test_summary_missing_source_is_value_error_and_never_creates_a_pass) ... ok
+test_actual_driven_raw_speed_is_dynamic_when_float_and_frozen_across_ticks (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_actual_driven_raw_speed_is_dynamic_when_float_and_frozen_across_ticks) ... ok
+test_driven_frame_count_must_match_raw_elapsed_at_60_physics_steps (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_driven_frame_count_must_match_raw_elapsed_at_60_physics_steps) ... ok
+test_dynamic_driven_raw_speed_rejects_type_negative_and_after_tick_mutation (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_dynamic_driven_raw_speed_rejects_type_negative_and_after_tick_mutation) ... ok
+test_existing_wallet_star_counter_is_dynamic_but_typed_and_unchanged (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_existing_wallet_star_counter_is_dynamic_but_typed_and_unchanged) ... ok
+test_formatter_official_engine_hash_and_hex_are_source_bound (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_formatter_official_engine_hash_and_hex_are_source_bound) ... ok
+test_mirrored_direct_result_rejects_signed_embedded_suffixed_and_extra_hud_tokens (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_mirrored_direct_result_rejects_signed_embedded_suffixed_and_extra_hud_tokens) ... ok
+test_mirrored_driven_gate_observations_require_float_not_integer_or_boolean (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_mirrored_driven_gate_observations_require_float_not_integer_or_boolean) ... ok
+test_mirrored_ranked_result_rejects_signed_embedded_suffixed_and_extra_hud_tokens (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_mirrored_ranked_result_rejects_signed_embedded_suffixed_and_extra_hud_tokens) ... ok
+test_mirrored_touch_raw_speed_requires_float_even_for_numeric_zero (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_mirrored_touch_raw_speed_requires_float_even_for_numeric_zero) ... ok
+test_mirrored_touch_result_rejects_invalid_hud_tokens_in_both_frames (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_mirrored_touch_result_rejects_invalid_hud_tokens_in_both_frames) ... ok
+test_source_correct_place_titles_support_all_six_integer_ranks_only (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_source_correct_place_titles_support_all_six_integer_ranks_only) ... ok
+test_time_trial_drive_and_pause_reject_signed_embedded_and_extra_43_tokens (test_native_lap_evidence_recovery.MirroredHudAndPhysicalObservationRecoveryTests.test_time_trial_drive_and_pause_reject_signed_embedded_and_extra_43_tokens) ... ok
+test_closed_actual_time_fixture_is_byte_exact_and_valid (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_closed_actual_time_fixture_is_byte_exact_and_valid) ... ok
+test_formatter_carries_seconds_and_minutes_after_millisecond_rounding (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_carries_seconds_and_minutes_after_millisecond_rounding) ... ok
+test_formatter_engine_and_scope_cannot_be_reclassified (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_engine_and_scope_cannot_be_reclassified) ... ok
+test_formatter_expected_and_observed_cannot_both_be_forged (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_expected_and_observed_cannot_both_be_forged) ... ok
+test_formatter_flags_numbers_and_sources_are_not_coerced (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_flags_numbers_and_sources_are_not_coerced) ... ok
+test_formatter_half_millisecond_boundary_is_preserved (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_half_millisecond_boundary_is_preserved) ... ok
+test_formatter_known_actual_lap_and_payload_do_not_retain_float_noise (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_known_actual_lap_and_payload_do_not_retain_float_noise) ... ok
+test_formatter_missing_extra_or_reordered_boundary_cases_are_rejected (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_missing_extra_or_reordered_boundary_cases_are_rejected) ... ok
+test_formatter_root_and_counts_are_strict (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_formatter_root_and_counts_are_strict) ... ok
+test_malformed_formatter_case_shape_fails_with_value_error (test_native_lap_evidence_recovery.TimeFormatEvidenceRecoveryTests.test_malformed_formatter_case_shape_fails_with_value_error) ... ok
+test_a_tile_boundary_cannot_turn_a_clipped_word_into_a_shorter_requested_caption (test_native_ocr_tiles.NativeOCRTileGuards.test_a_tile_boundary_cannot_turn_a_clipped_word_into_a_shorter_requested_caption) ... ok
+test_adjacent_words_use_only_the_requested_phrases_own_observed_bounds (test_native_ocr_tiles.NativeOCRTileGuards.test_adjacent_words_use_only_the_requested_phrases_own_observed_bounds) ... ok
+test_clipped_negative_or_nonpositive_bounds_cannot_generate_a_touch_target (test_native_ocr_tiles.NativeOCRTileGuards.test_clipped_negative_or_nonpositive_bounds_cannot_generate_a_touch_target) ... ok
+test_command_failure_keeps_raw_error_and_never_returns_a_match (test_native_ocr_tiles.NativeOCRTileGuards.test_command_failure_keeps_raw_error_and_never_returns_a_match) ... ok
+test_exact_observed_word_required_without_jtem_substring_or_low_confidence_alias (test_native_ocr_tiles.NativeOCRTileGuards.test_exact_observed_word_required_without_jtem_substring_or_low_confidence_alias) ... ok
+test_fallback_runs_only_after_all_five_whole_frame_variants_miss_requested_word (test_native_ocr_tiles.NativeOCRTileGuards.test_fallback_runs_only_after_all_five_whole_frame_variants_miss_requested_word) ... ok
+test_grid_covers_entire_current_frame_and_stays_inside_all_surface_sizes (test_native_ocr_tiles.NativeOCRTileGuards.test_grid_covers_entire_current_frame_and_stays_inside_all_surface_sizes) ... ok
+test_missing_caption_and_blank_reads_exhaust_six_tiles_without_visibility_pass (test_native_ocr_tiles.NativeOCRTileGuards.test_missing_caption_and_blank_reads_exhaust_six_tiles_without_visibility_pass) ... ok
+test_original_failed_cover_word_maps_scale_and_offset_to_actual_screen (test_native_ocr_tiles.NativeOCRTileGuards.test_original_failed_cover_word_maps_scale_and_offset_to_actual_screen) ... ok
+test_total_deadline_and_mutated_current_frame_fail_instead_of_using_stale_words (test_native_ocr_tiles.NativeOCRTileGuards.test_total_deadline_and_mutated_current_frame_fail_instead_of_using_stale_words) ... ok
+test_blank_left_edge_is_rejected_without_assuming_a_right_only_failure (test_native_surface_readiness.NativeSurfaceReadinessTests.test_blank_left_edge_is_rejected_without_assuming_a_right_only_failure) ... ok
+test_capture_exhaustion_fails_without_target_read_or_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_capture_exhaustion_fails_without_target_read_or_touch) ... ok
+test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_fullrace_press_ignores_substring_before_two_current_exact_observations) ... ok
+test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_ocr_continues_to_next_actual_tsv_variant_while_default_keeps_substring) ... ok
+test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix (test_native_surface_readiness.NativeSurfaceReadinessTests.test_exact_ocr_reaches_tile_fallback_when_all_actual_variants_only_have_prefix) ... ok
+test_flutter_return_waits_for_real_component_and_exact_current_frame (test_native_surface_readiness.NativeSurfaceReadinessTests.test_flutter_return_waits_for_real_component_and_exact_current_frame) ... ok
+test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds (test_native_surface_readiness.NativeSurfaceReadinessTests.test_generic_puzzle_start_waits_past_two_stale_frames_and_ten_seconds) ... ok
+test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png (test_native_surface_readiness.NativeSurfaceReadinessTests.test_incomplete_capture_retries_share_elapsed_budget_and_preserve_original_png) ... [AndroidCapture] bounded.png
+ok
+test_invalid_or_offscreen_bounds_never_generate_a_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_invalid_or_offscreen_bounds_never_generate_a_touch) ... ok
+test_native_or_launcher_foreground_cannot_be_return_evidence (test_native_surface_readiness.NativeSurfaceReadinessTests.test_native_or_launcher_foreground_cannot_be_return_evidence) ... ok
+test_navy_read_keeps_original_frame_and_requires_observed_exact_word (test_native_surface_readiness.NativeSurfaceReadinessTests.test_navy_read_keeps_original_frame_and_requires_observed_exact_word) ... ok
+test_no_black_band_is_not_enough_to_accept_a_source_inconsistent_target (test_native_surface_readiness.NativeSurfaceReadinessTests.test_no_black_band_is_not_enough_to_accept_a_source_inconsistent_target) ... ok
+test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_only_substring_captions_cannot_authorize_an_exact_fullrace_touch) ... ok
+test_persistently_partial_surface_times_out_without_ocr_or_any_tap (test_native_surface_readiness.NativeSurfaceReadinessTests.test_persistently_partial_surface_times_out_without_ocr_or_any_tap) ... ok
+test_portrait_or_blank_frame_cannot_authorize_a_landscape_touch (test_native_surface_readiness.NativeSurfaceReadinessTests.test_portrait_or_blank_frame_cannot_authorize_a_landscape_touch) ... ok
+test_quoted_glyph_does_not_merge_tsv_rows (test_native_surface_readiness.NativeSurfaceReadinessTests.test_quoted_glyph_does_not_merge_tsv_rows) ... ok
+test_real_world_dark_regions_and_system_bars_are_not_blank_edge_bands (test_native_surface_readiness.NativeSurfaceReadinessTests.test_real_world_dark_regions_and_system_bars_are_not_blank_edge_bands) ... ok
+test_resize_or_moving_target_requires_a_new_stable_pair (test_native_surface_readiness.NativeSurfaceReadinessTests.test_resize_or_moving_target_requires_a_new_stable_pair) ... ok
+test_resumed_flutter_with_stale_pause_frame_cannot_pass_return (test_native_surface_readiness.NativeSurfaceReadinessTests.test_resumed_flutter_with_stale_pause_frame_cannot_pass_return) ... ok
+test_treasure_and_puzzle_observed_final_targets_require_two_stable_frames (test_native_surface_readiness.NativeSurfaceReadinessTests.test_treasure_and_puzzle_observed_final_targets_require_two_stable_frames) ... ok
+test_two_identical_original_shape_frames_remain_partial_not_settled (test_native_surface_readiness.NativeSurfaceReadinessTests.test_two_identical_original_shape_frames_remain_partial_not_settled) ... ok
+test_unscaled_navy_read_keeps_captured_pixel_bounds (test_native_surface_readiness.NativeSurfaceReadinessTests.test_unscaled_navy_read_keeps_captured_pixel_bounds) ... ok
+test_ack_with_unchanged_hand_or_private_answer_is_not_evidence (test_nextgen_evidence.NextgenEvidenceTests.test_ack_with_unchanged_hand_or_private_answer_is_not_evidence) ... ok
+test_android_binding_requires_the_distinct_real_main_and_native_processes (test_nextgen_evidence.NextgenEvidenceTests.test_android_binding_requires_the_distinct_real_main_and_native_processes) ... ok
+test_eight_plus_five_requires_five_unique_successful_actual_moves (test_nextgen_evidence.NextgenEvidenceTests.test_eight_plus_five_requires_five_unique_successful_actual_moves) ... ok
+test_missing_duplicate_and_cross_child_cards_fail (test_nextgen_evidence.NextgenEvidenceTests.test_missing_duplicate_and_cross_child_cards_fail) ... ok
+test_real_ack_requires_same_round_and_actual_persisted_hand_growth (test_nextgen_evidence.NextgenEvidenceTests.test_real_ack_requires_same_round_and_actual_persisted_hand_growth) ... ok
+test_replaced_round_replayed_action_and_unacknowledged_draw_fail (test_nextgen_evidence.NextgenEvidenceTests.test_replaced_round_replayed_action_and_unacknowledged_draw_fail) ... ok
+test_all_four_screens_use_visible_headings_without_name_field_hint (test_onboarding_captions.OnboardingCaptionTests.test_all_four_screens_use_visible_headings_without_name_field_hint) ... ok
+test_existing_home_is_not_changed_or_reprofiled (test_onboarding_captions.OnboardingCaptionTests.test_existing_home_is_not_changed_or_reprofiled) ... ok
+test_learning_return_caption_matches_the_akademie_actually_wired_in_shell (test_onboarding_captions.OnboardingCaptionTests.test_learning_return_caption_matches_the_akademie_actually_wired_in_shell) ... ok
+test_partial_name_age_and_grade_are_reported_instead_of_assumed_home (test_onboarding_captions.OnboardingCaptionTests.test_partial_name_age_and_grade_are_reported_instead_of_assumed_home) ... ok
+test_cli_exact_zip_retry_uses_local_fixture_and_keeps_partial (test_prepare_system_image.SystemImageRecoveryTests.test_cli_exact_zip_retry_uses_local_fixture_and_keeps_partial) ... ok
+test_cli_fails_missing_license_without_acceptance_attempt (test_prepare_system_image.SystemImageRecoveryTests.test_cli_fails_missing_license_without_acceptance_attempt) ... ok
+test_cli_rejects_unsupported_api_before_manager_invocation (test_prepare_system_image.SystemImageRecoveryTests.test_cli_rejects_unsupported_api_before_manager_invocation) ... ok
+test_cli_reuses_api35_without_license_answers (test_prepare_system_image.SystemImageRecoveryTests.test_cli_reuses_api35_without_license_answers) ... ok
+test_cli_reuses_api36_and_archives_raw_metadata (test_prepare_system_image.SystemImageRecoveryTests.test_cli_reuses_api36_and_archives_raw_metadata) ... ok
+test_data_path_requires_actual_directory (test_prepare_system_image.SystemImageRecoveryTests.test_data_path_requires_actual_directory) ... ok
+test_empty_data_disk_requires_regular_marker (test_prepare_system_image.SystemImageRecoveryTests.test_empty_data_disk_requires_regular_marker) ... ok
+test_environment_requires_home_and_matching_alternate (test_prepare_system_image.SystemImageRecoveryTests.test_environment_requires_home_and_matching_alternate) ... ok
+test_every_mandatory_image_is_required (test_prepare_system_image.SystemImageRecoveryTests.test_every_mandatory_image_is_required) ... ok
+test_evidence_directory_must_be_outside_sdk (test_prepare_system_image.SystemImageRecoveryTests.test_evidence_directory_must_be_outside_sdk) ... ok
+test_exact_zip_fault_is_limited_to_three_install_attempts (test_prepare_system_image.SystemImageRecoveryTests.test_exact_zip_fault_is_limited_to_three_install_attempts) ... ok
+test_exact_zip_fault_retries_and_retains_matching_partial_package (test_prepare_system_image.SystemImageRecoveryTests.test_exact_zip_fault_retries_and_retains_matching_partial_package) ... ok
+test_exhausted_shared_deadline_prevents_a_fresh_attempt (test_prepare_system_image.SystemImageRecoveryTests.test_exhausted_shared_deadline_prevents_a_fresh_attempt) ... ok
+test_existing_license_must_be_nonempty_regular_and_nonsymlink (test_prepare_system_image.SystemImageRecoveryTests.test_existing_license_must_be_nonempty_regular_and_nonsymlink) ... ok
+test_first_install_uses_exact_api35_and_api36_packages (test_prepare_system_image.SystemImageRecoveryTests.test_first_install_uses_exact_api35_and_api36_packages) ... ok
+test_initial_image_rejects_empty_nonregular_and_symlink (test_prepare_system_image.SystemImageRecoveryTests.test_initial_image_rejects_empty_nonregular_and_symlink) ... ok
+test_installed_listing_rejects_failed_command_and_error_output (test_prepare_system_image.SystemImageRecoveryTests.test_installed_listing_rejects_failed_command_and_error_output) ... ok
+test_installed_listing_requires_one_matching_installed_row (test_prepare_system_image.SystemImageRecoveryTests.test_installed_listing_requires_one_matching_installed_row) ... ok
+test_invalid_present_data_cannot_use_valid_initial_fallback (test_prepare_system_image.SystemImageRecoveryTests.test_invalid_present_data_cannot_use_valid_initial_fallback) ... ok
+test_invalid_present_initial_image_cannot_use_valid_data_fallback (test_prepare_system_image.SystemImageRecoveryTests.test_invalid_present_initial_image_cannot_use_valid_data_fallback) ... ok
+test_license_directory_must_not_be_symlink (test_prepare_system_image.SystemImageRecoveryTests.test_license_directory_must_not_be_symlink) ... ok
+test_local_prop_requires_nonempty_regular_companion (test_prepare_system_image.SystemImageRecoveryTests.test_local_prop_requires_nonempty_regular_companion) ... ok
+test_manager_must_be_executable_inside_sdk (test_prepare_system_image.SystemImageRecoveryTests.test_manager_must_be_executable_inside_sdk) ... ok
+test_mandatory_images_reject_empty_nonregular_and_symlinks (test_prepare_system_image.SystemImageRecoveryTests.test_mandatory_images_reject_empty_nonregular_and_symlinks) ... ok
+test_matching_environment_reuses_exact_package (test_prepare_system_image.SystemImageRecoveryTests.test_matching_environment_reuses_exact_package) ... ok
+test_metadata_hashes_bind_actual_raw_properties_and_xml (test_prepare_system_image.SystemImageRecoveryTests.test_metadata_hashes_bind_actual_raw_properties_and_xml) ... ok
+test_metadata_legacy_initial_image (test_prepare_system_image.SystemImageRecoveryTests.test_metadata_legacy_initial_image) ... ok
+test_metadata_modern_data_directory_allows_empty_marker (test_prepare_system_image.SystemImageRecoveryTests.test_metadata_modern_data_directory_allows_empty_marker) ... ok
+test_metadata_rejects_missing_all_userdata_bootstrap (test_prepare_system_image.SystemImageRecoveryTests.test_metadata_rejects_missing_all_userdata_bootstrap) ... ok
+test_metadata_revisions_must_match (test_prepare_system_image.SystemImageRecoveryTests.test_metadata_revisions_must_match) ... ok
+test_metadata_valid_both_layouts_records_both (test_prepare_system_image.SystemImageRecoveryTests.test_metadata_valid_both_layouts_records_both) ... ok
+test_other_installer_failures_are_not_retryable (test_prepare_system_image.SystemImageRecoveryTests.test_other_installer_failures_are_not_retryable) ... ok
+test_package_api35_exact (test_prepare_system_image.SystemImageRecoveryTests.test_package_api35_exact) ... ok
+test_package_api36_exact (test_prepare_system_image.SystemImageRecoveryTests.test_package_api36_exact) ... ok
+test_package_rejects_other_versions_and_types (test_prepare_system_image.SystemImageRecoveryTests.test_package_rejects_other_versions_and_types) ... ok
+test_partial_identity_does_not_require_finished_images (test_prepare_system_image.SystemImageRecoveryTests.test_partial_identity_does_not_require_finished_images) ... ok
+test_partial_identity_rejects_present_wrong_metadata (test_prepare_system_image.SystemImageRecoveryTests.test_partial_identity_rejects_present_wrong_metadata) ... ok
+test_preexisting_incomplete_image_is_not_reinstalled (test_prepare_system_image.SystemImageRecoveryTests.test_preexisting_incomplete_image_is_not_reinstalled) ... ok
+test_prepare_requires_existing_absolute_nonroot_sdk (test_prepare_system_image.SystemImageRecoveryTests.test_prepare_requires_existing_absolute_nonroot_sdk) ... ok
+test_properties_reject_duplicate_and_malformed_lines (test_prepare_system_image.SystemImageRecoveryTests.test_properties_reject_duplicate_and_malformed_lines) ... ok
+test_properties_require_exact_stable_package_identity (test_prepare_system_image.SystemImageRecoveryTests.test_properties_require_exact_stable_package_identity) ... ok
+test_properties_require_regular_nonsymlink_metadata (test_prepare_system_image.SystemImageRecoveryTests.test_properties_require_regular_nonsymlink_metadata) ... ok
+test_raw_metadata_and_bootstrap_evidence_exist_before_listing (test_prepare_system_image.SystemImageRecoveryTests.test_raw_metadata_and_bootstrap_evidence_exist_before_listing) ... ok
+test_return_code_zero_does_not_hide_warning_or_stderr (test_prepare_system_image.SystemImageRecoveryTests.test_return_code_zero_does_not_hide_warning_or_stderr) ... ok
+test_reuse_issues_only_stable_installed_listing (test_prepare_system_image.SystemImageRecoveryTests.test_reuse_issues_only_stable_installed_listing) ... ok
+test_revision_normalizes_release_trailing_zeros (test_prepare_system_image.SystemImageRecoveryTests.test_revision_normalizes_release_trailing_zeros) ... ok
+test_revision_rejects_preview_and_malformed_values (test_prepare_system_image.SystemImageRecoveryTests.test_revision_rejects_preview_and_malformed_values) ... ok
+test_safe_target_rejects_symlinked_ancestor_and_sdk (test_prepare_system_image.SystemImageRecoveryTests.test_safe_target_rejects_symlinked_ancestor_and_sdk) ... ok
+test_safe_target_rejects_target_and_descendant_symlinks (test_prepare_system_image.SystemImageRecoveryTests.test_safe_target_rejects_target_and_descendant_symlinks) ... ok
+test_subprocess_timeout_is_not_retried_and_keeps_command_logs (test_prepare_system_image.SystemImageRecoveryTests.test_subprocess_timeout_is_not_retried_and_keeps_command_logs) ... ok
+test_three_attempts_and_listing_share_one_600_second_budget (test_prepare_system_image.SystemImageRecoveryTests.test_three_attempts_and_listing_share_one_600_second_budget) ... ok
+test_timeout_bounds_and_types_fail_before_invocation (test_prepare_system_image.SystemImageRecoveryTests.test_timeout_bounds_and_types_fail_before_invocation) ... ok
+test_xml_missing_nonregular_symlink_and_parse_failure (test_prepare_system_image.SystemImageRecoveryTests.test_xml_missing_nonregular_symlink_and_parse_failure) ... ok
+test_xml_rejects_wrong_or_duplicate_local_package (test_prepare_system_image.SystemImageRecoveryTests.test_xml_rejects_wrong_or_duplicate_local_package) ... ok
+test_xml_required_fields_are_unique_and_present (test_prepare_system_image.SystemImageRecoveryTests.test_xml_required_fields_are_unique_and_present) ... ok
+test_xml_requires_matching_platform_abi_tag_and_license (test_prepare_system_image.SystemImageRecoveryTests.test_xml_requires_matching_platform_abi_tag_and_license) ... ok
+test_xml_revision_rejects_preview_duplicate_and_invalid_number (test_prepare_system_image.SystemImageRecoveryTests.test_xml_revision_rejects_preview_duplicate_and_invalid_number) ... ok
+test_zip_retry_rejects_partial_package_of_wrong_identity (test_prepare_system_image.SystemImageRecoveryTests.test_zip_retry_rejects_partial_package_of_wrong_identity) ... ok
+test_both_video_grade_markers_required (test_preserved_source_proof.PreservedSourceProofTests.test_both_video_grade_markers_required) ... ok
+test_error_after_final_pass_is_never_ignored (test_preserved_source_proof.PreservedSourceProofTests.test_error_after_final_pass_is_never_ignored) ... ok
+test_exact_evidence_pass_retains_original_failure_and_all_file_hashes (test_preserved_source_proof.PreservedSourceProofTests.test_exact_evidence_pass_retains_original_failure_and_all_file_hashes) ... ok
+test_extra_dirty_path_and_other_build_errors_rejected (test_preserved_source_proof.PreservedSourceProofTests.test_extra_dirty_path_and_other_build_errors_rejected) ... ok
+test_missing_expected_base_red_is_not_success (test_preserved_source_proof.PreservedSourceProofTests.test_missing_expected_base_red_is_not_success) ... ok
+test_missing_final_marker_rejects_an_earlier_split_pass (test_preserved_source_proof.PreservedSourceProofTests.test_missing_final_marker_rejects_an_earlier_split_pass) ... ok
+test_missing_runtime_image_is_rejected (test_preserved_source_proof.PreservedSourceProofTests.test_missing_runtime_image_is_rejected) ... ok
+test_native_import_error_and_wrong_engine_rejected (test_preserved_source_proof.PreservedSourceProofTests.test_native_import_error_and_wrong_engine_rejected) ... ok
+test_stale_source_rejected_for_each_artifact (test_preserved_source_proof.PreservedSourceProofTests.test_stale_source_rejected_for_each_artifact) ... ok
+test_symlink_cannot_substitute_evidence (test_preserved_source_proof.PreservedSourceProofTests.test_symlink_cannot_substitute_evidence) ... ok
+test_unordered_race_gate_is_rejected (test_preserved_source_proof.PreservedSourceProofTests.test_unordered_race_gate_is_rejected) ... ok
+test_wrong_test_count_and_green_failure_rejected (test_preserved_source_proof.PreservedSourceProofTests.test_wrong_test_count_and_green_failure_rejected) ... ok
+test_complete_png_has_iend_chunk (test_probe_capture_integrity.CaptureIntegrityTest.test_complete_png_has_iend_chunk) ... ok
+test_truncated_transfer_is_rejected (test_probe_capture_integrity.CaptureIntegrityTest.test_truncated_transfer_is_rejected) ... ok
+test_gh_failure_propagates (test_release_lookup.DraftReleaseLookupTest.test_gh_failure_propagates) ... ok
+test_gh_json_pages_are_read_without_shell_interpolation (test_release_lookup.DraftReleaseLookupTest.test_gh_json_pages_are_read_without_shell_interpolation) ... ok
+test_later_page_and_cross_page_ambiguity (test_release_lookup.DraftReleaseLookupTest.test_later_page_and_cross_page_ambiguity) ... ok
+test_published_or_missing_release_is_rejected (test_release_lookup.DraftReleaseLookupTest.test_published_or_missing_release_is_rejected) ... ok
+test_publishing_during_lookup_is_rejected (test_release_lookup.DraftReleaseLookupTest.test_publishing_during_lookup_is_rejected) ... ok
+test_unpublished_tag_resolves_by_id_and_returns_fresh_assets (test_release_lookup.DraftReleaseLookupTest.test_unpublished_tag_resolves_by_id_and_returns_fresh_assets) ... ok
+test_already_online_serial_still_must_match_previous_probe (test_rooted_emulator.InitialOfflineBootstrapTests.test_already_online_serial_still_must_match_previous_probe) ... ok
+test_bootstrap_consumes_the_same_budget_before_root_boot_verification (test_rooted_emulator.InitialOfflineBootstrapTests.test_bootstrap_consumes_the_same_budget_before_root_boot_verification) ... ok
+test_bootstrap_wait_timeout_is_retained_and_never_requests_root (test_rooted_emulator.InitialOfflineBootstrapTests.test_bootstrap_wait_timeout_is_retained_and_never_requests_root) ... ok
+test_empty_multiple_foreign_unauthorized_or_malformed_inventory_is_fatal (test_rooted_emulator.InitialOfflineBootstrapTests.test_empty_multiple_foreign_unauthorized_or_malformed_inventory_is_fatal) ... ok
+test_exact_offline_preserves_failure_and_proves_same_serial_uid_and_boot (test_rooted_emulator.InitialOfflineBootstrapTests.test_exact_offline_preserves_failure_and_proves_same_serial_uid_and_boot) ... ok
+test_late_successful_wait_cannot_extend_the_total_readiness_deadline (test_rooted_emulator.InitialOfflineBootstrapTests.test_late_successful_wait_cannot_extend_the_total_readiness_deadline) ... ok
+test_malformed_or_duplicate_previous_fields_are_retained_as_failure (test_rooted_emulator.InitialOfflineBootstrapTests.test_malformed_or_duplicate_previous_fields_are_retained_as_failure) ... ok
+test_missing_previous_readiness_is_fatal_before_any_adb_request (test_rooted_emulator.InitialOfflineBootstrapTests.test_missing_previous_readiness_is_fatal_before_any_adb_request) ... ok
+test_other_initial_errors_return_codes_or_output_are_never_retried (test_rooted_emulator.InitialOfflineBootstrapTests.test_other_initial_errors_return_codes_or_output_are_never_retried) ... ok
+test_previous_root_boot_or_serial_claim_must_be_strict_and_unambiguous (test_rooted_emulator.InitialOfflineBootstrapTests.test_previous_root_boot_or_serial_claim_must_be_strict_and_unambiguous) ... ok
+test_transport_inventory_remains_single_same_and_online_after_wait (test_rooted_emulator.InitialOfflineBootstrapTests.test_transport_inventory_remains_single_same_and_online_after_wait) ... ok
+test_unknown_initial_offline_does_not_inventory_or_recover_without_previous_pass (test_rooted_emulator.InitialOfflineBootstrapTests.test_unknown_initial_offline_does_not_inventory_or_recover_without_previous_pass) ... ok
+test_wrong_bound_serial_after_wait_cannot_request_root (test_rooted_emulator.InitialOfflineBootstrapTests.test_wrong_bound_serial_after_wait_cannot_request_root) ... ok
+test_previous_creative_pass_bootstraps_initial_offline_before_any_installed_apk_read (test_rooted_emulator.InitialOfflineFullraceIntegrationTests.test_previous_creative_pass_bootstraps_initial_offline_before_any_installed_apk_read) ... [CompleteKartAndroid] FAIL: TEST_STOP_AFTER_VERIFIED_ROOT_BEFORE_INSTALLED_APK_READ
+ok
+test_all_recovery_commands_remain_bound_to_the_same_emulator_serial (test_rooted_emulator.RootedEmulatorTests.test_all_recovery_commands_remain_bound_to_the_same_emulator_serial) ... ok
+test_arbitrary_errors_and_other_rcs_are_not_recovered (test_rooted_emulator.RootedEmulatorTests.test_arbitrary_errors_and_other_rcs_are_not_recovered) ... ok
+test_exact_recorded_rc1_closed_is_retained_then_uid_and_boot_verified (test_rooted_emulator.RootedEmulatorTests.test_exact_recorded_rc1_closed_is_retained_then_uid_and_boot_verified) ... ok
+test_malformed_uid_and_failed_verification_are_fatal (test_rooted_emulator.RootedEmulatorTests.test_malformed_uid_and_failed_verification_are_fatal) ... ok
+test_non_root_shell_or_unfinished_boot_cannot_pass_or_reroot_forever (test_rooted_emulator.RootedEmulatorTests.test_non_root_shell_or_unfinished_boot_cannot_pass_or_reroot_forever) ... ok
+test_normal_root_requires_real_uid_zero_and_boot_one (test_rooted_emulator.RootedEmulatorTests.test_normal_root_requires_real_uid_zero_and_boot_one) ... ok
+test_physical_devices_are_rejected_before_root_request (test_rooted_emulator.RootedEmulatorTests.test_physical_devices_are_rejected_before_root_request) ... ok
+test_production_root_refusal_is_fatal_even_when_command_returns_zero (test_rooted_emulator.RootedEmulatorTests.test_production_root_refusal_is_fatal_even_when_command_returns_zero) ... ok
+test_reconnect_timeout_remains_a_failure_after_exact_root_disconnect (test_rooted_emulator.RootedEmulatorTests.test_reconnect_timeout_remains_a_failure_after_exact_root_disconnect) ... ok
+test_adb_error_and_bad_meminfo_are_metric_failures_with_raw_evidence (test_runtime_resource_evidence.ResourceCaptureTests.test_adb_error_and_bad_meminfo_are_metric_failures_with_raw_evidence) ... ok
+test_invalid_label_and_timeout_never_call_device_or_escape_output (test_runtime_resource_evidence.ResourceCaptureTests.test_invalid_label_and_timeout_never_call_device_or_escape_output) ... ok
+test_no_pid_or_multiple_pids_stop_before_stat_and_meminfo (test_runtime_resource_evidence.ResourceCaptureTests.test_no_pid_or_multiple_pids_stop_before_stat_and_meminfo) ... ok
+test_only_three_serial_bound_reads_keep_raw_provenance_and_unknown_conversions (test_runtime_resource_evidence.ResourceCaptureTests.test_only_three_serial_bound_reads_keep_raw_provenance_and_unknown_conversions) ... ok
+test_prior_root_identity_serial_and_provenance_fail_without_device_calls (test_runtime_resource_evidence.ResourceCaptureTests.test_prior_root_identity_serial_and_provenance_fail_without_device_calls) ... ok
+test_shared_deadline_decreases_caps_and_post_command_overrun_preserves_raw (test_runtime_resource_evidence.ResourceCaptureTests.test_shared_deadline_decreases_caps_and_post_command_overrun_preserves_raw) ... ok
+test_documented_pss_table_marks_absent_rss_unavailable_not_zero (test_runtime_resource_evidence.ResourceParserTests.test_documented_pss_table_marks_absent_rss_unavailable_not_zero) ... ok
+test_meminfo_wrong_pid_or_process_and_malformed_totals_fail (test_runtime_resource_evidence.ResourceParserTests.test_meminfo_wrong_pid_or_process_and_malformed_totals_fail) ... ok
+test_modern_android_pss_rss_summary_uses_raw_kib_values (test_runtime_resource_evidence.ResourceParserTests.test_modern_android_pss_rss_summary_uses_raw_kib_values) ... ok
+test_proc_stat_comm_spaces_and_closing_parentheses_do_not_shift_metrics (test_runtime_resource_evidence.ResourceParserTests.test_proc_stat_comm_spaces_and_closing_parentheses_do_not_shift_metrics) ... ok
+test_proc_wrong_pid_truncated_state_and_numeric_corruption_fail (test_runtime_resource_evidence.ResourceParserTests.test_proc_wrong_pid_truncated_state_and_numeric_corruption_fail) ... ok
+test_other_command_errors_are_not_retried (test_screencap_resize_retry.ScreencapResizeRetry.test_other_command_errors_are_not_retried) ... ok
+test_persistent_failure_preserves_error_after_four_attempts_without_png (test_screencap_resize_retry.ScreencapResizeRetry.test_persistent_failure_preserves_error_after_four_attempts_without_png) ... ok
+test_timeout_capture_keeps_original_overall_deadline (test_screencap_resize_retry.ScreencapResizeRetry.test_timeout_capture_keeps_original_overall_deadline) ... ok
+test_transient_resize_failure_requires_fresh_complete_png (test_screencap_resize_retry.ScreencapResizeRetry.test_transient_resize_failure_requires_fresh_complete_png) ... [AndroidCapture] frame.png
+ok
+test_actions_must_share_one_visible_system_dialog (test_system_ui.PixelLauncherAnrTests.test_actions_must_share_one_visible_system_dialog) ... ok
+test_empty_malformed_clipped_or_overlapping_action_bounds_are_rejected (test_system_ui.PixelLauncherAnrTests.test_empty_malformed_clipped_or_overlapping_action_bounds_are_rejected) ... ok
+test_every_other_app_failure_or_near_title_remains_unrecovered (test_system_ui.PixelLauncherAnrTests.test_every_other_app_failure_or_near_title_remains_unrecovered) ... ok
+test_exact_observed_captions_return_current_clickable_bounds_without_mutation (test_system_ui.PixelLauncherAnrTests.test_exact_observed_captions_return_current_clickable_bounds_without_mutation) ... ok
+test_foreign_packages_ids_disabled_hidden_or_unclickable_actions_are_rejected (test_system_ui.PixelLauncherAnrTests.test_foreign_packages_ids_disabled_hidden_or_unclickable_actions_are_rejected) ... ok
+test_missing_wait_or_ambiguous_close_app_fails_closed (test_system_ui.PixelLauncherAnrTests.test_missing_wait_or_ambiguous_close_app_fails_closed) ... ok
+test_deleted_changed_and_unearned_reward_data_are_rejected (test_update_preservation.UpdatePreservationTests.test_deleted_changed_and_unearned_reward_data_are_rejected) ... ok
+test_empty_or_zero_progress_is_never_update_evidence (test_update_preservation.UpdatePreservationTests.test_empty_or_zero_progress_is_never_update_evidence) ... ok
+test_nonempty_learning_and_other_child_data_are_preserved (test_update_preservation.UpdatePreservationTests.test_nonempty_learning_and_other_child_data_are_preserved) ... ok
+test_reinstall_version_reuse_and_wrong_version_are_rejected (test_update_preservation.UpdatePreservationTests.test_reinstall_version_reuse_and_wrong_version_are_rejected) ... ok
+test_same_installation_with_higher_expected_version_is_accepted (test_update_preservation.UpdatePreservationTests.test_same_installation_with_higher_expected_version_is_accepted) ... ok
+test_bounded_poll_preserves_waiting_frames_and_accepts_only_two_actual_observations (test_visible_flutter_return.VisibleFlutterReturnTests.test_bounded_poll_preserves_waiting_frames_and_accepts_only_two_actual_observations) ... ok
+test_distinct_duplicate_semantics_are_ambiguous (test_visible_flutter_return.VisibleFlutterReturnTests.test_distinct_duplicate_semantics_are_ambiguous) ... ok
+test_foreign_or_ambiguous_resumed_activity_does_not_pass_package_substring_check (test_visible_flutter_return.VisibleFlutterReturnTests.test_foreign_or_ambiguous_resumed_activity_does_not_pass_package_substring_check) ... ok
+test_foreign_package_prefix_cannot_impersonate_the_expected_host (test_visible_flutter_return.VisibleFlutterReturnTests.test_foreign_package_prefix_cannot_impersonate_the_expected_host) ... ok
+test_invalid_frame_interrupts_the_stable_sequence (test_visible_flutter_return.VisibleFlutterReturnTests.test_invalid_frame_interrupts_the_stable_sequence) ... ok
+test_late_successful_read_cannot_extend_the_total_deadline (test_visible_flutter_return.VisibleFlutterReturnTests.test_late_successful_read_cannot_extend_the_total_deadline) ... ok
+test_live_flutter_semantics_with_stale_godot_pixels_cannot_pass (test_visible_flutter_return.VisibleFlutterReturnTests.test_live_flutter_semantics_with_stale_godot_pixels_cannot_pass) ... ok
+test_live_native_process_partial_png_or_blank_compositor_frame_do_not_pass (test_visible_flutter_return.VisibleFlutterReturnTests.test_live_native_process_partial_png_or_blank_compositor_frame_do_not_pass) ... ok
+test_one_current_full_host_frame_is_insufficient_but_two_fresh_frames_pass (test_visible_flutter_return.VisibleFlutterReturnTests.test_one_current_full_host_frame_is_insufficient_but_two_fresh_frames_pass) ... ok
+test_orientation_or_caption_geometry_change_requires_two_new_stable_frames (test_visible_flutter_return.VisibleFlutterReturnTests.test_orientation_or_caption_geometry_change_requires_two_new_stable_frames) ... ok
+test_permanent_stale_pixels_fail_without_navigation_or_restart (test_visible_flutter_return.VisibleFlutterReturnTests.test_permanent_stale_pixels_fail_without_navigation_or_restart) ... ok
+test_previous_frame_ocr_cannot_confirm_a_new_capture (test_visible_flutter_return.VisibleFlutterReturnTests.test_previous_frame_ocr_cannot_confirm_a_new_capture) ... ok
+test_relative_component_must_resolve_to_the_real_android_namespace_class (test_visible_flutter_return.VisibleFlutterReturnTests.test_relative_component_must_resolve_to_the_real_android_namespace_class) ... ok
+test_same_saved_xml_or_png_cannot_be_reused_as_the_second_observation (test_visible_flutter_return.VisibleFlutterReturnTests.test_same_saved_xml_or_png_cannot_be_reused_as_the_second_observation) ... ok
+test_shell_semantics_require_current_package_enabled_clickable_and_actual_in_surface_bounds (test_visible_flutter_return.VisibleFlutterReturnTests.test_shell_semantics_require_current_package_enabled_clickable_and_actual_in_surface_bounds) ... ok
+test_stopped_native_process_with_native_activity_foreground_is_not_host_return (test_visible_flutter_return.VisibleFlutterReturnTests.test_stopped_native_process_with_native_activity_foreground_is_not_host_return) ... ok
+
+----------------------------------------------------------------------
+Ran 665 tests in 19.436s
+
+OK

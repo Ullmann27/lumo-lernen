@@ -1,0 +1,90 @@
+{
+  "status": "PASS",
+  "passed": 2460,
+  "failed": [],
+  "skipped": [],
+  "capture_error_files": [],
+  "flutter_exit_code": 0,
+  "runner_completed_successfully": true,
+  "runner_errors": [],
+  "scope": [
+    "complete Flutter suite; capture outputs recorded below"
+  ],
+  "capture_png_counts": {
+    "LUMO_TUTORING_CAPTURE_DIR": {
+      "directory": "tutoring",
+      "pngs": 6
+    },
+    "LUMO_RIG_STRESS": {
+      "directory": "rig-stress",
+      "pngs": 27
+    },
+    "LUMO_CARDS_OPPONENT_CAPTURE": {
+      "directory": "cards-opponents",
+      "pngs": 4
+    },
+    "LUMO_STREAM_E_CAPTURE": {
+      "directory": "cards-memory",
+      "pngs": 8
+    },
+    "LUMO_NAVIGATION_CAPTURES": {
+      "directory": "navigation",
+      "pngs": 26
+    },
+    "LUMO_GUIDED_CAPTURE_DIR": {
+      "directory": "guided-learning",
+      "pngs": 170
+    },
+    "LUMO_VISUAL_CAPTURE_DIR": {
+      "directory": "reasoning",
+      "pngs": 15
+    },
+    "LUMO_TOUR_DIR": {
+      "directory": "tour",
+      "pngs": 62
+    },
+    "LUMO_FLUTTER_GAMES_CAPTURE": {
+      "directory": "games",
+      "pngs": 16
+    },
+    "LUMO_LEARNING_CAPTURE_DIR": {
+      "directory": "learning-adventure",
+      "pngs": 80
+    },
+    "LUMO_COMPANION_CAPTURE_DIR": {
+      "directory": "companion",
+      "pngs": 6
+    },
+    "LUMO_SPATIAL_CAPTURES": {
+      "directory": "reading",
+      "pngs": 12
+    },
+    "LUMO_CAPTURE_DIR": {
+      "directory": "modernization",
+      "pngs": 42
+    },
+    "LUMO_CARD_FACE_EXPORT_DIR": {
+      "directory": "card-face-exports",
+      "pngs": 56
+    },
+    "LUMO_NEXTGEN_READING_CAPTURES": {
+      "directory": "nextgen-reading",
+      "pngs": 6
+    },
+    "LUMO_READING_CAPTURES": {
+      "directory": "reading-passages",
+      "pngs": 3
+    },
+    "LUMO_ASSISTED_LEARNING_CAPTURES": {
+      "directory": "assisted-learning",
+      "pngs": 2
+    }
+  },
+  "capture_file_outputs": {
+    "LUMO_CARDS_CUP_CAPTURE": {
+      "path": "cards-cup/trophy.png",
+      "created": true
+    }
+  },
+  "rendered_png_count": 542
+}

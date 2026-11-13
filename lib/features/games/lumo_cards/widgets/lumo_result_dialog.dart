@@ -23,6 +23,7 @@ class LumoResultDialog extends StatefulWidget {
     required this.streak,
     required this.onRestart,
     required this.onExit,
+    this.continueLabel = 'Nochmal',
   });
 
   final String winnerName;
@@ -31,6 +32,7 @@ class LumoResultDialog extends StatefulWidget {
   final int streak;
   final VoidCallback onRestart;
   final VoidCallback onExit;
+  final String continueLabel;
 
   @override
   State<LumoResultDialog> createState() => _LumoResultDialogState();
@@ -214,9 +216,9 @@ class _LumoResultDialogState extends State<LumoResultDialog>
               FilledButton.icon(
                 onPressed: widget.onRestart,
                 icon: const Icon(Icons.replay_rounded),
-                label: const Text(
-                  'Nochmal',
-                  style: TextStyle(
+                label: Text(
+                  widget.continueLabel,
+                  style: const TextStyle(
                       fontFamily: 'Nunito', fontWeight: FontWeight.w900),
                 ),
                 style: FilledButton.styleFrom(

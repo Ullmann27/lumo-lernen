@@ -355,21 +355,25 @@ class LearningProfileEngine {
     final id = SkillRecord.makeId(subject, unit);
     final existing =
         _skills[id] ?? SkillRecord(skillId: id, subject: subject, unit: unit);
+    // Snapshot any legacy attribution before changing its practice totals.
+    final evidence = existing.assessed;
 
     if (isCorrect) {
       existing.correct++;
-      existing.currentStreak++;
-      existing.currentMisses = 0;
     } else {
       existing.wrong++;
-      existing.currentMisses++;
-      existing.currentStreak = 0;
     }
     if (hintUsed) {
       existing.hintCount++;
     }
+    existing.independentEvidence =
+        hintUsed ? evidence : evidence.record(isCorrect);
+    existing.currentStreak = existing.assessed.correctStreak;
+    existing.currentMisses = existing.assessed.wrongStreak;
     existing.lastSeen = DateTime.now();
-    existing.difficulty = _detector.suggestDifficulty(existing);
+    if (!hintUsed) {
+      existing.difficulty = _detector.suggestDifficulty(existing);
+    }
 
     _skills[id] = existing;
     _lastTopics[subject] = unit;

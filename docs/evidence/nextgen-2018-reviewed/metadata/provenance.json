@@ -1,0 +1,234 @@
+{
+  "native_source": "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+  "workflow_run": 43365141980,
+  "workflow_conclusion": "success",
+  "new_world_gates_passed": 25,
+  "new_world_gates_failed": 0,
+  "new_scene_png_count": 66,
+  "learning_full_artifact_matches_reviewed_preview_count": 21,
+  "native_archive_sha256": "84a71c209c7f01015b2dd1735d27087c40b2ed37fb022c406b959128d5e0bb4c",
+  "legacy_archive_sha256": "4ab554f9f0942d4f4ffe783a7b3cc0d3e557f6390af122fe29ca0fd453d11435",
+  "physical_device_fps_measured": false,
+  "android_2018_runtime_status": "Not executed yet; independent signed APK tour, Cards authority, technical offline speech and preserved 2017 upgrade remain mandatory.",
+  "capture_measurement_scope": "X11 software renderer; draw-call/geometry counts only. These are not physical GPU frame-time, thermal or touch-latency measurements.",
+  "files": [
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/workflow-final.json",
+      "sha256": "86f30b44ab675f9f2ad4c1453aad2309d2112935e138fd48088a6587845d1859",
+      "origin": "Unmodified response bytes from the public GitHub REST API for run 43365141980"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/jobs-final.json",
+      "sha256": "338cb21c50df40ecd50fcb251cb97ba0f4187b6317a95d16ab40069f7b4cb16f",
+      "origin": "Unmodified response bytes from the public GitHub REST API for run 43365141980"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/artifact-final.json",
+      "sha256": "3f0c6ce61cfadf572608dfb75201ed774cac011a7037cfe30d8edc45e85e3d2b",
+      "origin": "One unchanged artifact object selected from the raw GitHub artifacts response"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/artifacts-final.json",
+      "sha256": "2282ac301910f94bcdb13e367e1b022629b2f47b305993a4695191d65f0a6647",
+      "origin": "Unmodified response bytes from the public GitHub REST API for run 43365141980"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/full-capture-comparison.json",
+      "sha256": "0dd5787bdffd36f2f57681a07e87aa162793f6c4b031e9b4178a1e476416eab4",
+      "origin": "Locally derived exact-byte comparison; not a raw API response"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/learning-preview-comparison.json",
+      "sha256": "feff6aa194d1b7443201156e4f2ce174b5977f003d152a1d887f8fed61d86899",
+      "origin": "Locally derived exact-byte comparison; not a raw API response"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/build_nextgen_play_regression-headless.log",
+      "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/build_nextgen_play_regression-rendered.log",
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/build_settlement_play_regression-headless.log",
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/build_settlement_play_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/build_settlement_play_regression-rendered.log",
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/build_settlement_regression-headless.log",
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/build_settlement_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/build_transform_regression-headless.log",
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/build_transform_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/cards_table_capture-rendered.log",
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/cards_table_capture-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/cards_table_regression-headless.log",
+      "sha256": "133e64334f665c21b63b0e22967d5896a4fbb08909e22d05141880f89c6d3078",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/cards_table_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/creative_nextgen_environment_regression-headless.log",
+      "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/creative_nextgen_environment_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/creative_nextgen_environment_regression-rendered.log",
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/creative_nextgen_environment_regression-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/engine.txt",
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/engine.txt"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/jump_expeditions_regression-headless.log",
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/jump_expeditions_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/jump_nextgen_capture-rendered.log",
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/jump_nextgen_regression-headless.log",
+      "sha256": "d332210b1b20ad0e94fbc58bdd0e12abafb9f15769dabab7bfda1c2666af6ef5",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/jump_nextgen_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/kart_nextgen_garage_regression-headless.log",
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/kart_nextgen_garage_regression-rendered.log",
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/kart_player_full_route_regression-rendered.log",
+      "sha256": "e81a96beaa46ba89d795c2a12eaf3bd463d8adf4301c3bfa5c14eb3767a6c989",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/kart_player_full_route_regression-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/kart_track_pass_regression-headless.log",
+      "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/kart_track_pass_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/learning_world_capture-rendered.log",
+      "sha256": "8340ba769d369279c5281ea4e7bf0737d70c3dbf83b071ba9dfd032bf44cde4f",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/learning_world_capture-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/learning_world_regression-headless.log",
+      "sha256": "2a51d58d0ab764cf2f4d7fe66f004671ea30a6e37e3438109484016b03814679",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/learning_world_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/lumo_65bone_walk_gait_regression-headless.log",
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/lumo_65bone_walk_gait_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/lumo_original_jump_visual_regression-headless.log",
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/lumo_teacher_pose_regression-headless.log",
+      "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/lumo_teacher_pose_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/results.tsv",
+      "sha256": "c61f7b94de60e2388e654f559e170cdc170bf97cac0e84f90850ceae7b1ac991",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/results.tsv"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/rhythm_tour_play_regression-headless.log",
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/rhythm_tour_play_regression-rendered.log",
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/rhythm_tour_regression-headless.log",
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/rhythm_tour_regression-headless.log"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/source-dirty.txt"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/native/source-sha.txt",
+      "sha256": "2c25b6b1f90e0e8d4e663a4b483fd70dc6b77bcbcb44f9511ab3e6609eb142b0",
+      "origin": "Original native evidence ZIP entry nextgen-evidence/nextgen/source-sha.txt"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/capture-metrics/cards_table_capture-cards-render.json",
+      "sha256": "cd99b741f7fe8e8dfd2df8571c52d3732a1f3c8bec059b6c7f7e4621fcff6d53",
+      "origin": "Original native evidence ZIP capture report"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/capture-metrics/jump_nextgen_capture-jump-nextgen-evidence.json",
+      "sha256": "d75711dcccfba630fc328b05a90c4125a2613f8f36f996b4e2cb4c3a3bc068b5",
+      "origin": "Original native evidence ZIP capture report"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/capture-metrics/kart_nextgen_garage_regression-capture.json",
+      "sha256": "4b1148672f44bd85775c0c26c88993306cfcd9670b85715bef35e6bcce60fad4",
+      "origin": "Original native evidence ZIP capture report"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/capture-metrics/kart_player_full_route_regression-player-route.json",
+      "sha256": "a5a5c3b642e326beadc68b4775e955b6880422b9628612039321f461e86ab528",
+      "origin": "Original native evidence ZIP capture report"
+    }
+  ],
+  "final_module_reviews": [
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/reviews/c_kart_settlement_visual_review.json",
+      "sha256": "baab08d73e90b81ba43531dee92e7f4d3d091727774468c8d8dcf46cc4f11942",
+      "origin": "Unmodified final-source visual review written by the named collaborating agent"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/reviews/cards-visual-review.json",
+      "sha256": "7875507b079dc8efaa0dfcaf6b076fa364b873c2481136b1bf30c2da255091ee",
+      "origin": "Unmodified final-source visual review written by the named collaborating agent"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/reviews/creative_games_final.json",
+      "sha256": "4b20f97ac82f165d55d5bd702fa549b1fbc93d5a12cfdcada5830dcb1cbc79bd",
+      "origin": "Unmodified final-source visual review written by the named collaborating agent"
+    },
+    {
+      "path": "docs/evidence/nextgen-2018-reviewed/metadata/reviews/jump-original-captures-review.json",
+      "sha256": "4f7da22f07bb78c0db6eb62d45f206f35d3bc58d06057e4e608f2fdcb29903ee",
+      "origin": "Unmodified final-source visual review written by the named collaborating agent"
+    }
+  ],
+  "learning_review": "Root and Integration QA opened the two corrected 51fb plant originals. Root also re-opened the final phone8\u219210\u219213 sequence. All21 full-artifact learning images exactly match the approved51fb preview; the other19 preview images exactly match their previously inspected originals."
+}

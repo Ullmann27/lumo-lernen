@@ -113,6 +113,17 @@ def prepare(root: Path):
         'theme': '@style/LumoGameTheme', 'enableOnBackInvokedCallback': 'false',
     }.items():
         activity.set(attr(key), value)
+    # A visible Cards activity depends on the existing Dart controller in the
+    # main process. A private bound service makes that dependency visible to
+    # Android's cached-process/freezer policy; it is never a started service.
+    service_name = namespace + '.CardsAuthorityService'
+    service = next((entry for entry in app.findall('service')
+                    if entry.get(attr('name')) == service_name), None)
+    if service is None:
+        service = ET.SubElement(app, 'service')
+    service.set(attr('name'), service_name)
+    service.set(attr('exported'), 'false')
+    service.attrib.pop(attr('process'), None)
     main_activity = next((a for a in app.findall('activity') if (a.get(attr('name')) or '').endswith('MainActivity')), None)
     if main_activity is not None:
         main_activity.set(attr('resizeableActivity'), 'true')
@@ -132,9 +143,14 @@ def prepare(root: Path):
     gradle.write_text(text)
     target = main / 'kotlin' / Path(*namespace.split('.'))
     target.mkdir(parents=True, exist_ok=True)
-    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt'):
+    for filename in ('LumoGameActivity.kt', 'GameEventStore.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt'):
         source = (root / 'tools/auto_install' / filename).read_text()
         (target / filename).write_text(re.sub(r'^package [^\n]+', f'package {namespace}', source, count=1))
+    java_target = main / 'java' / Path(*namespace.split('.'))
+    java_target.mkdir(parents=True, exist_ok=True)
+    source = (root / 'tools/auto_install/CardsAuthorityRegistry.java').read_text()
+    (java_target / 'CardsAuthorityRegistry.java').write_text(
+        re.sub(r'^package [^\n]+', f'package {namespace};', source, count=1))
     resources = main / 'res/values'
     resources.mkdir(parents=True, exist_ok=True)
     (resources / 'lumo_game_styles.xml').write_text('''<resources>

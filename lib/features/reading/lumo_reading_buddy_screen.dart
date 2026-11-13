@@ -10,9 +10,8 @@ import 'dart:async';
 //   - Gelb: aehnlich erkannt (Levenshtein 1-2)
 //   - Orange-Unterstrichen: aktuell zu lesen (Cursor)
 //
-// Lumo-Pose-PNG reagiert: idle (Start) -> think (laeuft) -> cheer
-// (>= 80% Accuracy am Ende) oder sad (< 50%). Es gibt nichts vergleich-
-// bares fuer deutschsprachige Volksschueler.
+// Erkennungsmarkierungen sind unverbindliche Lesehilfen. Nur die ausdrückliche
+// Antwort auf eine zum gewählten Text gehörende Verständnisfrage wird bewertet.
 // ════════════════════════════════════════════════════════════════════════
 
 import 'package:flutter/material.dart';
@@ -23,12 +22,16 @@ import '../../app/app_theme.dart';
 import '../../core/lumo_speech_listener.dart';
 import '../../core/lumo_feature_permissions.dart';
 import '../../widgets/design/lumo_design_system.dart';
+import '../learning_modules/learning_module_progress.dart';
+import 'reading_comprehension.dart';
 import 'reading_text_library.dart';
 import 'voice_reading_evaluator.dart';
 
 class LumoReadingBuddyScreen extends StatefulWidget {
-  const LumoReadingBuddyScreen({super.key, required this.appState});
+  const LumoReadingBuddyScreen(
+      {super.key, required this.appState, this.speechListener});
   final LumoAppState appState;
+  final LumoSpeechListener? speechListener;
 
   @override
   State<LumoReadingBuddyScreen> createState() => _LumoReadingBuddyScreenState();
@@ -37,15 +40,24 @@ class LumoReadingBuddyScreen extends StatefulWidget {
 class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
     with WidgetsBindingObserver {
   ReadingText? _selectedText;
-  final LumoSpeechListener _speech = LumoSpeechListener();
+  late final LumoSpeechListener _speech;
+  late final LearningModuleProgress _learningProgress;
   final VoiceReadingEvaluator _eval = const VoiceReadingEvaluator();
   ReadingProgress? _progress;
   String _liveText = '';
   bool _finished = false;
+  int? _answer;
+  late int _profileGeneration;
+  int _readingEpoch = 0;
 
   @override
   void initState() {
     super.initState();
+    _speech = widget.speechListener ?? LumoSpeechListener();
+    _learningProgress = LearningModuleProgress(
+        appState: widget.appState, subject: 'Lesen', unit: 'Leseverständnis');
+    _profileGeneration = widget.appState.profileGeneration;
+    widget.appState.addListener(_onProfileChange);
     _speech.addListener(_onSpeechUpdate);
     WidgetsBinding.instance.addObserver(this);
   }
@@ -53,13 +65,20 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
   @override
   void dispose() {
     _speech.removeListener(_onSpeechUpdate);
+    widget.appState.removeListener(_onProfileChange);
+    _learningProgress.dispose();
     WidgetsBinding.instance.removeObserver(this);
     _speech.dispose();
     super.dispose();
   }
 
   void _onSpeechUpdate() {
-    if (!mounted || _selectedText == null) return;
+    if (!mounted ||
+        _selectedText == null ||
+        _finished ||
+        _profileGeneration != widget.appState.profileGeneration) {
+      return;
+    }
     setState(() {
       // Hoere auf STT-Aenderungen, recompute progress
       final p = _eval.evaluate(
@@ -69,38 +88,54 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
       _progress = p;
       if (p.isComplete && !_finished) {
         _finished = true;
-        _speech.cancel();
+        unawaited(_speech.cancel());
         HapticFeedback.heavyImpact();
-        _logFinished(p);
       }
     });
   }
 
-  DateTime? _startedAt;
+  void _onProfileChange() {
+    if (!mounted || _profileGeneration == widget.appState.profileGeneration) {
+      return;
+    }
+    _profileGeneration = widget.appState.profileGeneration;
+    _resetAndPickText();
+  }
 
-  /// Fertig vorgelesener Text zählt als Aufgabe „Text vorlesen“. Gespeichert
-  /// werden Titel, Genauigkeit und Zeit, keine Aufnahme und kein Transkript.
-  void _logFinished(ReadingProgress p) {
+  void _finishReading() {
+    if (_finished) return;
+    setState(() => _finished = true);
+    unawaited(_speech.cancel());
+  }
+
+  Future<void> _answerQuestion(int index) async {
     final text = _selectedText;
-    if (text == null) return;
-    final started = _startedAt;
-    unawaited(widget.appState.recordLearningAnswer(
-      subject: 'Lesen',
-      unit: 'Text vorlesen',
-      correct: p.accuracy >= .8,
-      prompt: text.title,
-      durationMs: started == null
-          ? null
-          : DateTime.now().difference(started).inMilliseconds.clamp(0, 600000).toInt(),
-      score: p.accuracy,
-    ));
+    final question = text == null ? null : ReadingComprehension.forText(text);
+    if (question == null ||
+        _answer != null ||
+        _learningProgress.hasPending ||
+        _profileGeneration != widget.appState.profileGeneration ||
+        index < 0 ||
+        index >= question.answers.length) {
+      return;
+    }
+    setState(() => _answer = index);
+    await _learningProgress.saveAnswer(
+      correct: index == question.correctIndex,
+      prompt: '${text!.title}: ${question.question}',
+      given: question.answers[index],
+      expected: question.answers[question.correctIndex],
+      problemKey: 'reading:${text.id}:comprehension:v1',
+    );
   }
 
   Future<void> _startListening() async {
     if (_selectedText == null) return;
-    _startedAt = DateTime.now();
+    final epoch = ++_readingEpoch;
     if (!await LumoFeaturePermissions.microphone(context, widget.appState) ||
-        !mounted) {
+        !mounted ||
+        epoch != _readingEpoch ||
+        _selectedText == null) {
       return;
     }
     HapticFeedback.mediumImpact();
@@ -111,7 +146,13 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
     });
     await _speech.startListening(
       onResult: (text) {
-        if (!mounted || _selectedText == null) return;
+        if (!mounted ||
+            _selectedText == null ||
+            _finished ||
+            epoch != _readingEpoch ||
+            _profileGeneration != widget.appState.profileGeneration) {
+          return;
+        }
         setState(() {
           _liveText = text;
           _progress = _eval.evaluate(
@@ -121,7 +162,13 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
         });
       },
       onFinalResult: (text) {
-        if (!mounted || _selectedText == null) return;
+        if (!mounted ||
+            _selectedText == null ||
+            _finished ||
+            epoch != _readingEpoch ||
+            _profileGeneration != widget.appState.profileGeneration) {
+          return;
+        }
         setState(() {
           _liveText = text;
           _progress = _eval.evaluate(
@@ -143,12 +190,14 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
   }
 
   void _resetAndPickText() {
+    _readingEpoch++;
     _speech.cancel();
     setState(() {
       _selectedText = null;
       _progress = null;
       _liveText = '';
       _finished = false;
+      _answer = null;
     });
   }
 
@@ -160,18 +209,23 @@ class _LumoReadingBuddyScreenState extends State<LumoReadingBuddyScreen>
         onPick: (t) => setState(() => _selectedText = t),
       );
     }
-    return _ReadingArena(
-      text: _selectedText!,
-      progress: _progress,
-      isListening: _speech.listening,
-      isInitialized: _speech.initialized,
-      isAvailable: _speech.available,
-      error: _speech.error,
-      finished: _finished,
-      onStart: _startListening,
-      onStop: _stopListening,
-      onBack: _resetAndPickText,
-    );
+    return LearningModuleProgressScope(
+        progress: _learningProgress,
+        child: _ReadingArena(
+          text: _selectedText!,
+          progress: _progress,
+          isListening: _speech.listening,
+          isInitialized: _speech.initialized,
+          isAvailable: _speech.available,
+          error: _speech.error,
+          finished: _finished,
+          onStart: _startListening,
+          onStop: _stopListening,
+          onBack: _resetAndPickText,
+          onFinish: _finishReading,
+          answer: _answer,
+          onAnswer: _answerQuestion,
+        ));
   }
 }
 
@@ -410,6 +464,9 @@ class _ReadingArena extends StatelessWidget {
     required this.onStart,
     required this.onStop,
     required this.onBack,
+    required this.onFinish,
+    required this.answer,
+    required this.onAnswer,
   });
 
   final ReadingText text;
@@ -422,6 +479,9 @@ class _ReadingArena extends StatelessWidget {
   final VoidCallback onStart;
   final VoidCallback onStop;
   final VoidCallback onBack;
+  final VoidCallback onFinish;
+  final int? answer;
+  final ValueChanged<int> onAnswer;
 
   @override
   Widget build(BuildContext context) {
@@ -451,12 +511,19 @@ class _ReadingArena extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              if (finished && progress != null)
-                _FinishCard(progress: progress!)
+              if (finished)
+                _FinishCard(progress: progress)
               else
                 _ReadingHeader(progress: progress, isListening: isListening),
               const SizedBox(height: 14),
-              _TextDisplay(text: text, progress: progress),
+              _TextDisplay(text: text, progress: progress, finished: finished),
+              if (finished && ReadingComprehension.forText(text) != null) ...[
+                const SizedBox(height: 16),
+                _ComprehensionCard(
+                    question: ReadingComprehension.forText(text)!,
+                    answer: answer,
+                    onAnswer: onAnswer),
+              ],
               const SizedBox(height: 16),
               if (error != null)
                 Container(
@@ -497,6 +564,18 @@ class _ReadingArena extends StatelessWidget {
                     color: LumoColors.ink600,
                   ),
                 ),
+                const SizedBox(height: 12),
+                OutlinedButton.icon(
+                  key: const ValueKey('reading-finish'),
+                  style: OutlinedButton.styleFrom(
+                      minimumSize: const Size(160, 48)),
+                  onPressed: onFinish,
+                  icon: const Icon(Icons.menu_book_rounded),
+                  label: const Text('Gelesen · zur Textfrage'),
+                ),
+                const Text(
+                    'Du kannst auch ohne Mikrofon lesen. Die Erkennung ist keine Note.',
+                    textAlign: TextAlign.center),
               ],
             ],
           ),
@@ -579,7 +658,7 @@ class _ReadingHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 4),
                 Text(
-                  '${(pct * 100).round()}% richtig',
+                  '${(pct * 100).round()}% vom Mikrofon zugeordnet',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 11,
@@ -597,9 +676,11 @@ class _ReadingHeader extends StatelessWidget {
 }
 
 class _TextDisplay extends StatelessWidget {
-  const _TextDisplay({required this.text, required this.progress});
+  const _TextDisplay(
+      {required this.text, required this.progress, required this.finished});
   final ReadingText text;
   final ReadingProgress? progress;
+  final bool finished;
 
   @override
   Widget build(BuildContext context) {
@@ -643,7 +724,7 @@ class _TextDisplay extends StatelessWidget {
                 final status = idx < statuses.length
                     ? statuses[idx]
                     : ReadingWordStatus.pending;
-                final isCurrent = idx == currentIdx;
+                final isCurrent = !finished && idx == currentIdx;
                 return _WordChip(
                     word: word, status: status, isCurrent: isCurrent);
               }).toList(),
@@ -774,28 +855,16 @@ class _MicButton extends StatelessWidget {
 
 class _FinishCard extends StatelessWidget {
   const _FinishCard({required this.progress});
-  final ReadingProgress progress;
+  final ReadingProgress? progress;
 
   @override
   Widget build(BuildContext context) {
-    final pct = (progress.accuracy * 100).round();
-    final stars = progress.accuracy >= 0.85
-        ? 3
-        : progress.accuracy >= 0.6
-            ? 2
-            : progress.accuracy >= 0.4
-                ? 1
-                : 0;
-    final asset = stars >= 2
-        ? 'assets/companion/lumo_cheer.png'
-        : 'assets/companion/lumo_sad.png';
+    const asset = 'assets/companion/lumo_cheer.png';
     return Container(
       padding: const EdgeInsets.fromLTRB(18, 20, 18, 20),
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: stars >= 2
-              ? const [Color(0xFFDCFCE7), Color(0xFFA7F3D0)]
-              : const [Color(0xFFFEF3C7), Color(0xFFFCD34D)],
+          colors: const [Color(0xFFDCFCE7), Color(0xFFA7F3D0)],
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         ),
@@ -840,7 +909,7 @@ class _FinishCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  stars >= 2 ? 'Spitze gelesen!' : 'Gut gemacht!',
+                  'Danke fürs Lesen!',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 18,
@@ -850,26 +919,13 @@ class _FinishCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  '$pct% erkannt · ${progress.matchedCount}/${progress.totalWords} Wörter perfekt',
+                  'Jetzt schauen wir gemeinsam, was in der Geschichte passiert ist.',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: LumoColors.ink600,
+                    color: Color(0xFF28564D),
                   ),
-                ),
-                const SizedBox(height: 6),
-                Row(
-                  children: List<Widget>.generate(3, (i) {
-                    final filled = i < stars;
-                    return Icon(
-                      filled ? Icons.star_rounded : Icons.star_outline_rounded,
-                      color: filled
-                          ? const Color(0xFFFCD34D)
-                          : const Color(0xFFD1D5DB),
-                      size: 28,
-                    );
-                  }),
                 ),
               ],
             ),
@@ -878,4 +934,46 @@ class _FinishCard extends StatelessWidget {
       ),
     );
   }
+}
+
+class _ComprehensionCard extends StatelessWidget {
+  const _ComprehensionCard(
+      {required this.question, required this.answer, required this.onAnswer});
+  final ReadingComprehension question;
+  final int? answer;
+  final ValueChanged<int> onAnswer;
+
+  @override
+  Widget build(BuildContext context) => Card(
+        child: Padding(
+            padding: const EdgeInsets.all(18),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Text(question.question,
+                    style: Theme.of(context).textTheme.titleLarge),
+                const SizedBox(height: 12),
+                for (var index = 0; index < question.answers.length; index++)
+                  Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: OutlinedButton(
+                        key: ValueKey('reading-answer-$index'),
+                        style: OutlinedButton.styleFrom(
+                            minimumSize: const Size(0, 48),
+                            padding: const EdgeInsets.all(12)),
+                        onPressed:
+                            answer == null ? () => onAnswer(index) : null,
+                        child: Text(question.answers[index],
+                            textAlign: TextAlign.center),
+                      )),
+                if (answer != null)
+                  Text(
+                      answer == question.correctIndex
+                          ? 'Genau! Im Text steht: ${question.evidenceLine}'
+                          : 'Schauen wir gemeinsam nach: ${question.evidenceLine}',
+                      key: const ValueKey('reading-answer-feedback'),
+                      style: const TextStyle(fontSize: 16, height: 1.4)),
+              ],
+            )),
+      );
 }

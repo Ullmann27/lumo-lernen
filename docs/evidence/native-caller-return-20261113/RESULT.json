@@ -1,0 +1,61 @@
+{
+  "recorded_at_utc": "2026-11-13T06:43:55.746560+00:00",
+  "status": "PASS",
+  "scope": "Production Kotlin GameEventStore on JVM, Android source wiring, real installer templates and existing Cards registry regression. Not a full Android host compilation or device run.",
+  "tests": 21,
+  "breakdown": {
+    "production_kotlin_store_scenarios": 9,
+    "android_source_wiring": 3,
+    "existing_embedded_installer": 1,
+    "existing_android_installer": 3,
+    "existing_cards_registry_jvm": 5
+  },
+  "command": "LUMO_KOTLIN_LIB_DIR=<verified-gradle-9.1.0>/lib PYTHONDONTWRITEBYTECODE=1 python3 -m unittest scripts.tests.test_game_return_contract scripts.tests.test_embedded_android scripts.tests.test_prepare_android scripts.tests.test_cards_authority_registry -v",
+  "source_sha256": {
+    "tools/auto_install/GameEventStore.kt": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+    "tools/auto_install/MainActivity.kt": "399e7dd55df52e6515f877982b3a60007a792d293ec51758012024d3235f4a5e",
+    "tools/auto_install/LumoGameActivity.kt": "6e4ac87b1013dc7b82be2c3ca8de9a8f2ba63faf5c9866728db45dbcfbb31eb2",
+    "scripts/tests/test_game_return_contract.py": "6425258d84f8d87011ed2f3017429765ff02cbf138e525f239eb38d021cc944b"
+  },
+  "before_source_sha256": {
+    "tools/auto_install/GameEventStore.kt": "88af554f9c6333d57eb68b1d0e9f62beaf3d2bcd0b5d8c7ffec5b4fc1c5b8b07",
+    "tools/auto_install/MainActivity.kt": "eba60245c45dc8025e75cf4596279ee314afd955ed87115b075463cfb7c1a53f",
+    "tools/auto_install/LumoGameActivity.kt": "123024f9ccdf9eb102e426207dbb7a143665a05770251c2f95b8d9e1eaf0a99f"
+  },
+  "test_log_sha256": "e1b7c33c3996fa7a35e79363a6362a08181b9823d02baced7fb5ef119db41f75",
+  "transport": {
+    "new_field": "callerReturnSession",
+    "scope": "Private MainActivity-generated UUID for validated learning/cards launches only; native verifies scene and launch session match.",
+    "durable_event": "results unchanged; destination remains persisted with callerReturnSession until exact live completion or cold-host acknowledgement.",
+    "warm_pending": "Suppress destination and session only when stored session equals the live pending MethodChannel caller.",
+    "completion": "After existing process-stop wait; require same live callback/session and non-destroyed Activity. Atomically remove only equal destination+session before callback success and unlocking.",
+    "storage_exception": "AtomicFile failure keeps durable fallback/rewards and live caller; completion retries after one second until committed or Activity destroyed.",
+    "cold_fallback": "Recreated MainActivity has no live caller; normal learn/games destination remains visible and acknowledgeable.",
+    "stale_ack": "An old same-destination generic ACK cannot remove a caller-tagged return while a caller is live; requested reward IDs alone are acknowledged.",
+    "stale_launch": "A newly validated explicit caller launch supersedes only prior navigation keys, preserving all rewards.",
+    "legacy": "2017 raw events and all legacy game returns remain ordinary destination navigation."
+  },
+  "compiler": {
+    "kind": "Kotlin JVM compiler from verified Gradle9.1.0 distribution",
+    "compiler_version": "2.2.0",
+    "compiler_jar_sha256": "b2f743ea5ba12f69e0f35e5d8d46069d74c8e2861087548a7e0e14a784bc4cf1",
+    "android_adapters": [
+      "Context.filesDir",
+      "AtomicFile using actual temporary filesystem"
+    ],
+    "json_url": "https://repo.maven.apache.org/maven2/org/json/json/20240303/json-20240303.jar",
+    "json_sha256": "3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed"
+  },
+  "installation": {
+    "MainActivity.kt": "scripts/prepare_android.py -> android/app/src/main/kotlin/<generated namespace>/MainActivity.kt",
+    "GameEventStore.kt": "scripts/prepare_embedded_games.py -> android/app/src/main/kotlin/<generated namespace>/GameEventStore.kt",
+    "LumoGameActivity.kt": "scripts/prepare_embedded_games.py -> android/app/src/main/kotlin/<generated namespace>/LumoGameActivity.kt",
+    "new_production_files": []
+  },
+  "limits": [
+    "The Android adapters are test-only and do not emulate Android lifecycle or AtomicFile internals.",
+    "The full Android Kotlin/Java host and APK must be compiled and rerun in the real emulator pipeline.",
+    "Flutter AppShell/Guided/Cards lifecycle regression and original RED evidence are maintained separately by Team A.",
+    "No Dart production changes, no Godot source changes, no new version or release claim."
+  ]
+}

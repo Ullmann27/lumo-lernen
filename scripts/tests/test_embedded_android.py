@@ -22,7 +22,7 @@ class EmbeddedAndroidTest(unittest.TestCase):
             gradle.write_text('android { namespace = "dev.ullmann.lumo.lumo_lernen"\n defaultConfig { applicationId = "dev.ullmann.lumo.lumo_lernen.coachpreview" } }')
             templates = root / 'tools/auto_install'
             templates.mkdir(parents=True)
-            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt'):
+            for filename in ('GameEventStore.kt', 'LumoGameActivity.kt', 'CardsTableBridge.kt', 'CardsAuthorityService.kt', 'CardsAuthorityRegistry.java'):
                 (templates / filename).write_text((ROOT / 'tools/auto_install' / filename).read_text())
             # Upgrade a host already prepared by the old script. Existing app
             # rules and its reflected plugin rule must survive the JNI fix.
@@ -50,6 +50,18 @@ class EmbeddedAndroidTest(unittest.TestCase):
             self.assertEqual(engine.get(attr('exported')), 'false')
             self.assertEqual(engine.get(attr('process')), ':lumo_game')
             self.assertEqual(engine.get(attr('resizeableActivity')), 'true')
+            services = doc.findall('application/service')
+            self.assertEqual(len(services), 1)
+            self.assertEqual(services[0].get(attr('name')), 'dev.ullmann.lumo.lumo_lernen.CardsAuthorityService')
+            self.assertEqual(services[0].get(attr('exported')), 'false')
+            self.assertIsNone(services[0].get(attr('process')), 'Authority must share the Dart main process')
+            self.assertFalse(doc.findall('uses-permission'), 'No new background/wake/network permissions')
+            service_file = main / 'kotlin/dev/ullmann/lumo/lumo_lernen/CardsAuthorityService.kt'
+            self.assertTrue(service_file.is_file())
+            self.assertIn('package dev.ullmann.lumo.lumo_lernen', service_file.read_text())
+            registry_file = main / 'java/dev/ullmann/lumo/lumo_lernen/CardsAuthorityRegistry.java'
+            self.assertTrue(registry_file.is_file())
+            self.assertTrue(registry_file.read_text().startswith('package dev.ullmann.lumo.lumo_lernen;\n'))
             self.assertFalse(doc.findall('queries/package'))
             renderer = [entry for entry in doc.findall('application/meta-data')
                         if entry.get(attr('name')) == 'io.flutter.embedding.android.EnableImpeller']

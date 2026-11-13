@@ -1,0 +1,701 @@
+name: LUMO Next Generation 2018 Android candidate
+on:
+  # PR synchronization is the single automatic APK event. A push to its head
+  # must not create a second build of the same source.
+  pull_request:
+    branches: [chatgpt/lumo-spielewelt-stage-20261112]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-nextgen-2018-${{ github.head_ref || github.ref_name }}
+  cancel-in-progress: true
+jobs:
+  android-host-compile:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'chatgpt/lumo-nextgen-20261113') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'chatgpt/lumo-nextgen-20261113'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+      - name: Compile actual current Android host before native release pin approval
+        run: bash scripts/compile_android_host.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-2018-android-host-compile
+          path: host-compile-evidence/
+          if-no-files-found: error
+          retention-days: 30
+
+  verify-and-build:
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.head_ref == 'chatgpt/lumo-nextgen-20261113') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'chatgpt/lumo-nextgen-20261113'))
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Save source identity and validate exact Godot integration pin
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          git rev-parse HEAD | tee dist/BUILD-SOURCE.txt
+          cat config/godot-source.json | tee dist/GODOT-SOURCE.json
+          python3 - <<'PY'
+          import json
+          import re
+          import sys
+          from pathlib import Path
+          sys.path.insert(0, "scripts")
+          from verify_legacy_release_pin import verify
+          build, native = verify(Path("pubspec.yaml").read_text(), Path("config/godot-source.json").read_text())
+          assert build == 2018, "Nextgen workflow requires build 2018"
+          config=json.load(open("config/godot-source.json"))
+          assert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"
+          assert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"
+          assert config["engine"]=="4.6.3", "Unexpected Godot engine"
+          # Historical bad sources remain rejected on this separate candidate.
+          # Actual rendered review exposed native menu geometry defects.
+          # This workflow revision rejects the measured candidates on every run.
+          # It cannot alter historical workflow revisions used by older runs.
+          rejected_android_layout_sources = {
+              "0aa89cdea3a07d0c2bc0a31a153737a1fee41454":
+                  "Android 2400x1080: header/tab overlap and landing model occlusion",
+              "f04e580ec0d7d8f70e8be269523fabedd15b0766":
+                  "Android 2400x1080: selected kart card exceeds visible scroll viewport",
+          }
+          assert config["revision"] not in rejected_android_layout_sources, (
+              "Rejected Android menu layout: " + rejected_android_layout_sources.get(config["revision"], "")
+          )
+          # scripts/export_embedded_game.py subsequently fetches/checks out this
+          # exact SHA, then compares its HEAD before packaging the native PCK.
+          PY
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Install real system emoji for ABC screenshots and Flutter test suite
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y fonts-noto-color-emoji
+          test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
+      - name: Resolve immutable Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Flutter static analysis
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Real widget tests for premium quiz and 3D learning islands
+        run: |
+          flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2 \
+            test/quiz_premium_stage_layout_test.dart \
+            test/quiz_premium_stage_visual_capture_test.dart \
+            test/home_navigation_progress_test.dart \
+            test/home_subject_islands_premium_test.dart \
+            test/academy_grade_3_4_visible_navigation_test.dart \
+            test/lumo_scene_art_panel_test.dart \
+            test/learning_lab_runtime_test.dart \
+            test/parents/parent_school_grade_progression_test.dart
+      - name: Save genuine rendered Quizshow screenshots for reference comparison
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1983-quiz-studio-captures
+          path: .ci-results/quiz-premium-stage/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Full Flutter regression suite including every capture
+        env:
+          REQUIRE_ALL_TESTS: 'true'
+        run: |
+          set -euo pipefail
+          if [ "$REQUIRE_ALL_TESTS" = true ]; then
+            python3 scripts/run_full_flutter_acceptance.py --output .ci-results/full-acceptance
+          else
+            flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-candidate-all-flutter-tests-and-captures
+          path: .ci-results/full-acceptance/
+          include-hidden-files: true
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Capture and verify actual 2001 tutor, transfer and daily-plan routes
+        if: hashFiles('test/design/lumo_tutor_brain_capture_test.dart') != ''
+        env:
+          LUMO_TUTOR_BRAIN_CAPTURES: .ci-results/tutor-2001
+        run: flutter test --no-pub --reporter=expanded test/design/lumo_tutor_brain_capture_test.dart
+      - uses: actions/upload-artifact@v4
+        if: always() && hashFiles('.ci-results/tutor-2001/*.png') != ''
+        with:
+          name: lumo-tutor-2001-actual-flutter-captures
+          path: .ci-results/tutor-2001/
+          include-hidden-files: true
+          if-no-files-found: error
+          retention-days: 90
+      - name: Capture spatial reading, answer retry and subject cards on phone and Fold
+        env:
+          LUMO_SPATIAL_CAPTURES: visual-evidence/1988/spatial-reading
+        run: flutter test --no-pub --reporter=expanded test/design/lumo_spatial_reading_capture_test.dart
+      - name: Install actual app-script verification dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          python3 -m venv .ci-python
+          .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          command -v rg
+          .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
+      - name: Install verified Gradle for the real build-contract probe
+        run: |
+          set -euo pipefail
+          curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
+          printf '%s  %s\n' a17ddd85a26b6a7f5ddb71ff8b05fc5104c0202c6e64782429790c933686c806 "$RUNNER_TEMP/lumo-gradle.zip" | sha256sum -c -
+          unzip -q "$RUNNER_TEMP/lumo-gradle.zip" -d "$RUNNER_TEMP/lumo-verified-gradle"
+          echo "$RUNNER_TEMP/lumo-verified-gradle/gradle-9.1.0/bin" >> "$GITHUB_PATH"
+      - name: Verify all build and preservation contracts
+        env:
+          REQUIRE_ALL_TESTS: 'true'
+        run: |
+          set -euo pipefail
+          mkdir -p .ci-results
+          .ci-python/bin/python -m unittest discover -s scripts/tests -v 2>&1 | tee .ci-results/build-contracts.log
+          if [ "$REQUIRE_ALL_TESTS" = true ] && grep -Eq '^OK \(skipped=|^FAILED.*skipped=' .ci-results/build-contracts.log; then
+            echo 'Build acceptance rejects skipped contract tests.' >&2
+            exit 1
+          fi
+      - name: Code-level Android probe regression with verified image dependencies
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y tesseract-ocr tesseract-ocr-deu
+          .ci-python/bin/python -c 'from PIL import Image; print("Pillow ready", Image.__version__ if hasattr(Image, "__version__") else "ok")'
+          .ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_*.py' -v
+      - name: Reject unreadable Ahem-font captures before issuing visual proof
+        run: |
+          set -euo pipefail
+          .ci-python/bin/python -m unittest discover -s tools/qa/tests -p 'test_verify_capture_fonts.py' -v
+          .ci-python/bin/python tools/qa/verify_capture_fonts.py visual-evidence
+      - name: Verify pin-scoped Godot GLB JPEG cleanup and preserve-source safety
+        run: python3 -m unittest discover -s scripts/tests -p 'test_export_embedded_game.py' -v
+      - name: Render actual premium lessons on phone and Fold
+        env:
+          LUMO_LESSON_CAPTURES: visual-evidence/1978/lessons
+        run: flutter test --no-pub --reporter=expanded test/design/lesson_premium_capture_test.dart
+      - name: Render actual app sections on phone and Fold
+        env:
+          LUMO_TOUR_DIR: visual-evidence/1978/tour
+          LUMO_TOUR_CAPTURE_SCALE: '1'
+        run: flutter test --no-pub --reporter=expanded test/design/app_tour_capture_test.dart
+      - name: Render playable Connect Four on five real layout sizes
+        env:
+          LUMO_CONNECT_CAPTURES: visual-evidence/1978/connect_four
+        run: flutter test --no-pub --reporter=expanded test/design/connect_four_visual_test.dart
+      - name: Render genuine offline atelier on phone and Fold
+        env:
+          LUMO_LAB_CAPTURES: visual-evidence/1981/atelier
+        run: |
+          set -euo pipefail
+          flutter test --no-pub --reporter=expanded --timeout=60s test/design/learning_lab_visual_capture_test.dart
+          for device in phone fold-open fold-cover-large-text; do
+            for phase in example build; do
+              test -s "visual-evidence/1981/atelier/${device}-${phase}.png"
+            done
+          done
+      - name: Archive only verified readable Flutter captures
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-1981-real-flutter-captures
+          path: visual-evidence/
+          if-no-files-found: error
+          retention-days: 30
+      - name: Install Godot 4.6.3 for the exact pinned Kart source
+        run: bash scripts/install_godot_for_build.sh
+      - name: Require actual gameplay gates on the exact pinned native source
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+          REQUIRE_TECHNICAL_ART: 'true'
+          REQUIRE_ACTION_STAGE: 'true'
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb libgl1-mesa-dri libglx-mesa0
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          native_source="$RUNNER_TEMP/lumo-native-acceptance"
+          native_logs="$GITHUB_WORKSPACE/acceptance-native"
+          mkdir -p "$native_logs/user-data/godot/app_userdata/Lumo 3D"
+          git init "$native_source"
+          git -C "$native_source" remote add origin https://github.com/Ullmann27/lumo-godot.git
+          git -C "$native_source" fetch --depth 1 origin "$native_revision"
+          git -C "$native_source" checkout --detach FETCH_HEAD
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          printf '%s\n' "$native_revision" > "$native_logs/source-sha.txt"
+          export XDG_DATA_HOME="$native_logs/user-data"
+          export XDG_CONFIG_HOME="$native_logs/user-config"
+          export XDG_CACHE_HOME="$native_logs/user-cache"
+          mkdir -p "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          cd "$native_source"
+          python3 tools/validate_project.py 2>&1 | tee "$native_logs/project.log"
+          bash tools/validate_project.sh 2>&1 | tee "$native_logs/legacy-gameplay.log"
+          LUMO_2014_LOG_DIR="$native_logs/2014" bash tools/validate_2014.sh
+          if [ "$REQUIRE_TECHNICAL_ART" = true ]; then
+            LUMO_ART_LOG_DIR="$native_logs/technical-art" bash tools/validate_technical_art.sh
+          fi
+          if [ "$REQUIRE_ACTION_STAGE" = true ]; then
+            LUMO_ACTION_LOG_DIR="$native_logs/action-stage" bash tools/validate_action_stage.sh
+          fi
+          LUMO_NEXTGEN_LOG_DIR="$native_logs/nextgen" bash tools/validate_nextgen.sh
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-candidate-pinned-native-gameplay
+          path: acceptance-native/
+          if-no-files-found: warn
+          retention-days: 30
+      - name: Build unified real Android APK
+        run: bash scripts/build_unified_apk.sh
+      - name: Verify APK archive and collect reproducible source hashes
+        run: |
+          set -euo pipefail
+          test -s dist/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a
+          sha256sum dist/Lumo-Lernen-Neu.apk | tee dist/APK-SHA256.txt
+          test -s dist/APK-VERIFICATION.json
+          test -s dist/BUILD-PROVENANCE.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64
+          sha256sum dist/x86_64/Lumo-Lernen-Neu.apk > dist/ANDROID-TOUR-SHA256SUMS.txt
+          grep '^version:' pubspec.yaml | tee dist/APP-VERSION.txt
+      - name: Upload exact candidate (no release or synthetic screenshots)
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-2018-candidate
+          path: dist/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+      - name: Deliver verified ARM64 APK separately for direct download
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen-2018-arm64-verified
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/APK-SHA256.txt
+            dist/APK-VERIFICATION.json
+            dist/BUILD-PROVENANCE.json
+            dist/GODOT-SOURCE.json
+            dist/APP-VERSION.txt
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+  android-tour:
+    needs: [verify-and-build, android-host-compile]
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-candidate
+          path: candidate/dist/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py .github/probes/lumo_nextgen_surfaces_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p 'test_nextgen*.py' -v
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Install and tour the exact APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          LUMO_NATIVE_STAGE_MENU: '1'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: |
+            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+            .probe-venv/bin/python .github/probes/lumo_nextgen_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --out tour/nextgen
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen-2018-android-tour
+          path: tour/
+          retention-days: 30
+
+  update-2018-from-2017:
+    # Independent emulator and baseline data; publication still requires both
+    # the complete tour and this complete in-place update to succeed.
+    needs: [verify-and-build]
+    permissions:
+      contents: read
+      actions: read
+    runs-on: ubuntu-latest
+    timeout-minutes: 55
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-candidate
+          path: candidate/dist/
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '13948686178'
+          merge-multiple: true
+          path: baseline/dist/
+          run-id: 43220602252
+          github-token: ${{ github.token }}
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          command -v tesseract
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq 'deu' tour/tesseract-installed-languages.txt
+          grep -Fxq 'eng' tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/lumo_2003_update_android_probe.py .github/probes/lumo_2018_update_android_probe.py
+          .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Preserve actual 2017 learning through an in-place 2018 upgrade
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_CANDIDATE_SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_2018_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2018-in-place-update-proof
+          path: tour/
+          retention-days: 30
+
+  publish-reviewed-2018:
+    name: Publish visually reviewed Build 2018 ARM64 APK for direct Chrome download
+    needs: [verify-and-build, android-host-compile, android-tour, update-2018-from-2017]
+    # Exact reviewed native images and all independent live proofs remain mandatory.
+    if: >-
+      github.event_name == 'pull_request' &&
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'chatgpt/lumo-nextgen-20261113' &&
+      needs.verify-and-build.result == 'success' &&
+      needs.android-tour.result == 'success' &&
+      needs.android-host-compile.result == 'success' &&
+      needs.update-2018-from-2017.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.event.pull_request.head.sha }}
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407
+        with:
+          packages: platform-tools
+      - name: Install APK signature and manifest verification tools
+        run: |
+          set -euo pipefail
+          sdkmanager 'build-tools;36.0.0'
+          python3 -m venv .publish-venv
+          .publish-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-arm64-verified
+          path: dist/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-android-tour
+          path: proofs/tour/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-2018-in-place-update-proof
+          path: proofs/update/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen-2018-android-host-compile
+          path: proofs/host/
+      - name: Fetch the exact reviewed native artifact and acceptance identity
+        run: |
+          set -euo pipefail
+          python3 - <<'PYCODE'
+          import json
+          from pathlib import Path
+          receipt = json.loads(Path('config/nextgen-2018-visual-review.json').read_text())
+          assert receipt['status'] == 'approved', 'Publication requires completed visual review'
+          for name in ('native_workflow_run_id', 'native_artifact_id'):
+              value = receipt[name]
+              assert type(value) is int and value > 0
+              Path('proofs/' + name + '.txt').write_text(str(value))
+          PYCODE
+          reviewed_run="$(cat proofs/native_workflow_run_id.txt)"
+          reviewed_artifact="$(cat proofs/native_artifact_id.txt)"
+          curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/$reviewed_artifact" --output proofs/native-artifact.json
+          curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/$reviewed_run" --output proofs/native-run.json
+          curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/$reviewed_run/jobs?per_page=100" --output proofs/native-jobs.json
+      - name: Reverify actual ARM64 bytes and bind all live proofs to the reviewed 2018 source
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$SOURCE_SHA"
+          python3 scripts/verify_legacy_release_pin.py
+          sha256sum -c dist/APK-SHA256.txt
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > dist/PUBLISH-VERIFICATION.json
+          .publish-venv/bin/python scripts/verify_nextgen_delivery.py --source-sha "$SOURCE_SHA"
+          cp config/nextgen-2018-visual-review.json dist/VISUAL-REVIEW.json
+      - name: Preserve existing releases and select create-or-verify
+        id: release-state
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          gh api --paginate --slurp 'repos/Ullmann27/lumo-lernen/releases?per_page=100' > dist/RELEASE-PAGES.json
+          gh api 'repos/Ullmann27/lumo-lernen/git/matching-refs/tags/coachpreview-build-2018' > dist/EXISTING-TAGS.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          pages = json.loads(Path('dist/RELEASE-PAGES.json').read_text())
+          assert isinstance(pages, list) and all(isinstance(page, list) for page in pages)
+          releases = [release for page in pages for release in page]
+          existing = [release for release in releases if release['tag_name'] == 'coachpreview-build-2018']
+          refs = json.loads(Path('dist/EXISTING-TAGS.json').read_text())
+          assert isinstance(refs, list)
+          exact_refs = [ref for ref in refs if ref['ref'] == 'refs/tags/coachpreview-build-2018']
+          mode = 'create'
+          if existing or exact_refs:
+              assert len(existing) == 1 and len(exact_refs) == 1, 'Incomplete or conflicting immutable version already exists'
+              release, ref = existing[0], exact_refs[0]
+              assert release['draft'] is False and release['prerelease'] is True
+              assert ref['object']['type'] == 'commit' and ref['object']['sha'] == os.environ['SOURCE_SHA'], 'Existing tag belongs to another source'
+              assets = [asset for asset in release['assets'] if asset['name'] == 'Lumo-Lernen-Neu.apk']
+              assert len(assets) == 1 and assets[0]['state'] == 'uploaded', 'Existing release has no completed APK'
+              mode = 'verify-existing'
+          Path('dist/RELEASES.json').write_text(json.dumps(releases))
+          Path('dist/RELEASE-STATE.json').write_text(json.dumps({'mode': mode}) + '\n')
+          with Path(os.environ['GITHUB_OUTPUT']).open('a') as output:
+              output.write(f'mode={mode}\n')
+          PY
+          if [ "$(python3 -c 'import json; print(json.load(open("dist/RELEASE-STATE.json"))["mode"])')" = create ]; then
+            python3 scripts/release_pipeline_gates.py --pubspec pubspec.yaml --verification dist/PUBLISH-VERIFICATION.json --apk dist/Lumo-Lernen-Neu.apk --releases-json dist/RELEASES.json
+          else
+            echo 'Existing release is preserved. Only public byte/source verification will run.'
+          fi
+      - name: Publish the tested file once under the installed family update channel
+        if: steps.release-state.outputs.mode == 'create'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+          RUN_URL: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          {
+            echo 'Lumo Lernen + Lumo Kart Build 2018, ARM64 test APK.'
+            echo
+            cat dist/RELEASE-FACTS.json
+            echo
+            echo "Acceptance workflow: $RUN_URL"
+            echo 'Full Flutter/native gates, reviewed original renderer images, actual learning/Cards Android surfaces, and the in-place 2017→2018 learning-preservation upgrade passed before publication.'
+            echo 'Install as an update without uninstalling the existing family app.'
+            echo 'Signed with the unchanged public Lumo TEST key. This is not Google Play signing.'
+            echo 'Physical Samsung/Fold7 performance and 60 FPS have not been measured.'
+            echo 'Older APKs, releases and the production main branch remain unchanged.'
+          } > dist/RELEASE-NOTES.txt
+          gh release create coachpreview-build-2018 \
+            dist/Lumo-Lernen-Neu.apk \
+            dist/Lumo-Lernen-Neu.apk.sha256 \
+            dist/BUILD-PROVENANCE.json \
+            dist/GODOT-SOURCE.json \
+            dist/PUBLISH-VERIFICATION.json \
+            dist/RELEASE-FACTS.json \
+            dist/VISUAL-REVIEW.json \
+            --repo Ullmann27/lumo-lernen \
+            --target "$SOURCE_SHA" \
+            --title 'Lumo 2018 Android ARM64 Test-APK' \
+            --notes-file dist/RELEASE-NOTES.txt \
+            --prerelease --latest=false
+      - name: Verify the published release, immutable tag and unauthenticated Chrome APK bytes
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          gh api repos/Ullmann27/lumo-lernen/releases/tags/coachpreview-build-2018 > dist/PUBLISHED-RELEASE.json
+          gh api repos/Ullmann27/lumo-lernen/git/ref/tags/coachpreview-build-2018 > dist/PUBLISHED-TAG.json
+          python3 - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+          release = json.loads(Path('dist/PUBLISHED-RELEASE.json').read_text())
+          tag = json.loads(Path('dist/PUBLISHED-TAG.json').read_text())
+          facts = json.loads(Path('dist/RELEASE-FACTS.json').read_text())
+          assert release['draft'] is False and release['prerelease'] is True
+          assert release['tag_name'] == 'coachpreview-build-2018'
+          assert tag['object']['type'] == 'commit' and tag['object']['sha'] == os.environ['SOURCE_SHA']
+          assets = [asset for asset in release['assets'] if asset['name'] == 'Lumo-Lernen-Neu.apk']
+          assert len(assets) == 1 and assets[0]['state'] == 'uploaded'
+          assert assets[0]['size'] == facts['apkBytes'] > 0
+          url = 'https://github.com/Ullmann27/lumo-lernen/releases/download/coachpreview-build-2018/Lumo-Lernen-Neu.apk'
+          assert assets[0]['browser_download_url'] == url
+          Path('dist/DIRECT-APK-URL.txt').write_text(url + '\n')
+          PY
+          curl --fail --location --retry 3 --max-time 600 \
+            "$(cat dist/DIRECT-APK-URL.txt)" --output "$RUNNER_TEMP/lumo-public-2018.apk"
+          python3 - "$RUNNER_TEMP/lumo-public-2018.apk" <<'PY'
+          import hashlib
+          import json
+          import sys
+          from pathlib import Path
+          apk = Path(sys.argv[1])
+          facts = json.loads(Path('dist/RELEASE-FACTS.json').read_text())
+          assert apk.stat().st_size == facts['apkBytes']
+          assert hashlib.sha256(apk.read_bytes()).hexdigest() == facts['apkSha256'], 'Public download bytes differ'
+          print('Verified public Chrome APK:', Path('dist/DIRECT-APK-URL.txt').read_text().strip())
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-2018-public-delivery-receipt
+          path: |
+            dist/RELEASE-FACTS.json
+            dist/PUBLISH-VERIFICATION.json
+            dist/PUBLISHED-RELEASE.json
+            dist/PUBLISHED-TAG.json
+            dist/DIRECT-APK-URL.txt
+            dist/VISUAL-REVIEW.json
+            proofs/native-artifact.json
+            proofs/native-run.json
+            proofs/native-jobs.json
+          if-no-files-found: warn
+          retention-days: 90

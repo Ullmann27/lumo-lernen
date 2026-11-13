@@ -1,0 +1,719 @@
+{
+  "status": "PASS",
+  "scope": "Working-copy trigger audit for next Nextgen PR head/base; not a new CI result. PyYAML 6.0.3 parsed every current workflow. Historical unrelated/manual branches were not disabled.",
+  "observed_at_utc": "2026-11-13T06:35:02.203186+00:00",
+  "head_branch": "chatgpt/lumo-nextgen-20261113",
+  "base_branch": "chatgpt/lumo-spielewelt-stage-20261112",
+  "automatic_apk_jobs": {
+    "push": [],
+    "pull_request": [
+      "lumo-nextgen-2018.yml:verify-and-build"
+    ]
+  },
+  "audited_apk_build_jobs": 39,
+  "matching_files": 2476,
+  "jobs": [
+    {
+      "workflow": "android-debug-apk.yml",
+      "workflow_sha256": "1b656f8140c0d7845cf48e963e2b011319b12a0041ad6fe483155bcfa7f4c17c",
+      "job": "build",
+      "build_steps": [
+        "Build debug APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "android-integration-qa.yml",
+      "workflow_sha256": "0bd008e9a6ef180995616f71de749ec49654373f1d2d09ffb4331ec29d137b0f",
+      "job": "exact-apk",
+      "build_steps": [
+        "Build the saved source and pinned Godot into one release APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1700-android.yml",
+      "workflow_sha256": "1f574b437a4851bde96230fcadb7b04dc4207ce98d7ea5a7d3ffdbca24e8bc15",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build and verify the unified APK from exact clean source"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1918-apk-artifact.yml",
+      "workflow_sha256": "d9b1260ae74ac7ede0c46239202b946f235fa58a3e61eea649526a7f386aee16",
+      "job": "build-test-apk",
+      "build_steps": [
+        "Compile the same integrated Flutter and Godot app as installable APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1925-apk.yml",
+      "workflow_sha256": "a5d79b0a29748e9336ab10a625828a6283d144ba762957ee302feff849f4ffc3",
+      "job": "verified-release",
+      "build_steps": [
+        "Build integrated Flutter and Godot signed release APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1926-sulafat-apk.yml",
+      "workflow_sha256": "b1cd1f9cc6f498d162ea905af1c6fafa8162fe74eb29ff00ac412ccba117a15e",
+      "job": "verified-release",
+      "build_steps": [
+        "Build integrated Flutter and Godot signed release APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1940-unified-probe.yml",
+      "workflow_sha256": "978961b0141d9f40072cc9a2dc913ec0343637f091a40d3cfe60db20c59dcd43",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified signed Flutter and Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1941-unified-probe.yml",
+      "workflow_sha256": "21cf15ebbab34c9abdcd2b6e8985471f323ca89e6b12b9e9159c93cbb897c821",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified signed Flutter and Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1942-family-update-probe.yml",
+      "workflow_sha256": "8b48456e596083d7439b367135bc04bda236006003730642c80b4500eed402da",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified signed Flutter and Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1943-curriculum-menu-audit.yml",
+      "workflow_sha256": "b61451a6f5e2e30a82a7cf604d72196e3bdd3f5fd801640c14fcb41b527f2e93",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified signed Flutter and Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1944-mobile-learning-qa.yml",
+      "workflow_sha256": "acddd9a4dd092b9dbcd7c3b0a9a14d665f7954a836de623278415d296e45f8c0",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified signed Flutter and Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1949-combined-apk.yml",
+      "workflow_sha256": "20af85f0b2ce00fcb893cbe1ea222d4f72d2e61d181814c22b5670387f7b1b26",
+      "job": "signed-arm64-candidate",
+      "build_steps": [
+        "Build verified signed integrated arm64 Android package"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1950-unified-visual-apk.yml",
+      "workflow_sha256": "d233811852510313cccc34ea9986af421ac7c4c692ee5ee1623fe756eea59e6b",
+      "job": "signed-arm64-candidate",
+      "build_steps": [
+        "Build verified signed integrated arm64 Android package"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1951-writing-apk.yml",
+      "workflow_sha256": "0b0771aea2c1fc1b524b50d5c48610c5e398a2c15cfd374640a983f0a8d529f0",
+      "job": "signed-arm64-candidate",
+      "build_steps": [
+        "Build verified signed integrated arm64 Android package"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1952-child-writing-apk.yml",
+      "workflow_sha256": "eaa8150ac2be15cee734b4b83c34620be06fa3709413f63e32662b9a742ce796",
+      "job": "signed-arm64-candidate",
+      "build_steps": [
+        "Build verified signed integrated arm64 Android package"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1954-followup-android.yml",
+      "workflow_sha256": "87f32a02b4ef30807fcf45d4c7ab24ae64e2c2e5eda966cacff025820e074f07",
+      "job": "apk",
+      "build_steps": [
+        "Build signed unified Flutter and Godot APKs"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-1955-original-ui-feedback.yml",
+      "workflow_sha256": "76c1c712528b850b1fc8208980270c096f2932cc97773bc85439abb3cac473f4",
+      "job": "apk",
+      "build_steps": [
+        "Build signed unified Flutter and Godot APKs"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-complete-games.yml",
+      "workflow_sha256": "a7b85e858124b89fcbbe3119aff691278a5caf897eea145d04f7e320d86df7ef",
+      "job": "build",
+      "build_steps": [
+        "Build exact clean tested source with matching engine"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-complete-surface-qa.yml",
+      "workflow_sha256": "d5a3bb4db013ea369e913d43b5152dfb61e1a5120c520822b63640c240bbb516",
+      "job": "build-clean-source",
+      "build_steps": [
+        "Build and verify immutable APK1902 from the clean checkout"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1930.yml",
+      "workflow_sha256": "1c2e13d4ebfe914fcbf226b7e02af0bc51745fb68f27bfd676839c4998d4156c",
+      "job": "verify-build",
+      "build_steps": [
+        "Build the preserved Flutter, native voice and Godot integration once"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1931.yml",
+      "workflow_sha256": "0921c5153b031ab5797cddfdf2016f30e6beefebb8b733161d53652662e213d9",
+      "job": "verify-build",
+      "build_steps": [
+        "Build the preserved Flutter, native voice and Godot integration once"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1932.yml",
+      "workflow_sha256": "96497ff9e59600064a049516f36893f312cf94c823b2f09cf154c5b47eaa5757",
+      "job": "verify-build",
+      "build_steps": [
+        "Build the preserved Flutter, native voice and Godot integration once"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1934.yml",
+      "workflow_sha256": "54b532314006b61aa5f939a68902fcc2f435b5e0817568930e41e3cbb2f7fb0a",
+      "job": "verify-build",
+      "build_steps": [
+        "Build the preserved Flutter, native voice and Godot integration once"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1935.yml",
+      "workflow_sha256": "35528f18cf5fe8585a4ace913d02781d83d3f5f31acd926357957745489afdab",
+      "job": "verify-build",
+      "build_steps": [
+        "Build unified Flutter + Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1937.yml",
+      "workflow_sha256": "d85b126e7333c5e2a7e575089a6e97f0b4502d1c9e1a8291241c20ae7bd39dd9",
+      "job": "verify-build",
+      "build_steps": [
+        "Build unified Flutter + Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1938.yml",
+      "workflow_sha256": "69f79ea863782cc5b1583641a9a4cdb2cd72d2c7b8d4d4ed7082a9a60777bee1",
+      "job": "verify-build",
+      "build_steps": [
+        "Build unified Flutter + Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-education-1939.yml",
+      "workflow_sha256": "c99e75fa85be9aa56f2ab53c0e49471d49935e035df21c8c5e888e22b390b0d9",
+      "job": "verify-build",
+      "build_steps": [
+        "Build unified Flutter + Godot APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-family-draft-release.yml",
+      "workflow_sha256": "5fd9d6faac4e42cb14a32217ddbe5bfc81cd299a7bd9b9f4465bf279579e2bed",
+      "job": "build-and-verify",
+      "build_steps": [
+        "Build and verify the single family application"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": true,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-fold-controls.yml",
+      "workflow_sha256": "96fe00bc0b524d50d495f9a203dc8ee141ea2bdcde344225e7c9b8a44726cb4f",
+      "job": "build",
+      "build_steps": [
+        "Build exact clean tested source with matching engine"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-free-voice-1929.yml",
+      "workflow_sha256": "d6239f6fe7bc4e5e29370ccb6869b5216d55e712ea00b5631152596f7520249f",
+      "job": "verify-build",
+      "build_steps": [
+        "Build the existing integrated Flutter and Godot host"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-kart-stage2.yml",
+      "workflow_sha256": "c1aa5d3926c0c913b393cb5cbfa069ad3516a67443cc03dd28e51e3f618d91c3",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build and verify the unified APK from exact clean source"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-modernization-apk.yml",
+      "workflow_sha256": "4029b82d0a2a5d56399a08467f67b491a55bc6a4494ec57b3fcf67688d835eb3",
+      "job": "apk",
+      "build_steps": [
+        "Build signed unified Flutter and Godot APKs"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-nextgen-2018.yml",
+      "workflow_sha256": "4a07374c4360c78e26fe37ca6975a3aac97ff3f9a1daf62e1abb3eb1c147fb8a",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified real Android APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": true,
+          "job_guard_allows": true
+        }
+      }
+    },
+    {
+      "workflow": "lumo-pr207-candidate.yml",
+      "workflow_sha256": "3a8ec6317f6a61ab9618126d396806c0a59f40b9b6734c751d043b2df72aca04",
+      "job": "candidate",
+      "build_steps": [
+        "Build and verify side-by-side APK with Lumo launcher"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-repair.yml",
+      "workflow_sha256": "8a20308d6e1ed9c3084c2f65a462c527b88ea0f08c95abafa7b871568ed58a27",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build and verify the unified APK from exact clean source"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-runtime-apk.yml",
+      "workflow_sha256": "7ea855e9179cefb6db36f203cfccf15d78c74772c525ff7c73a7ad8021becb76",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build and verify the unified APK from exact clean source"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-unified-integration-2026.yml",
+      "workflow_sha256": "a93cd262dc3c22517d86cd19e57e7a163b209a336b2bdd372058c3231bbf58b6",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build unified real Android APK"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": true,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "lumo-video-quality.yml",
+      "workflow_sha256": "7ef2e1a9abb3e69e9f5af54712095b6cf31f9456881e11eca1d222ef6788f528",
+      "job": "verify-and-build",
+      "build_steps": [
+        "Build and verify the unified APK from exact clean source"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    },
+    {
+      "workflow": "release-apk.yml",
+      "workflow_sha256": "d8703a8f193c51540691aa2d7bbca873c579d3eb041da730ba86a467cc44e8ba",
+      "job": "verify",
+      "build_steps": [
+        "Build and verify the single application"
+      ],
+      "automatic": {
+        "push": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        },
+        "pull_request": {
+          "workflow_trigger_matches": false,
+          "job_guard_allows": false
+        }
+      }
+    }
+  ]
+}

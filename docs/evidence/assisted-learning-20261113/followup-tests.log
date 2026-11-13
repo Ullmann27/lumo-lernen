@@ -1,0 +1,59 @@
+00:00 +0: loading /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart
+00:00 +0: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine uses coaching tone on first wrong answer
+00:00 +1: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine uses teacher-like rescue tone from second wrong answer
+00:00 +2: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine resets wrong streak after correct answer
+00:00 +3: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine guided successes receive practice praise without capability claims
+00:00 +4: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine guided answers cannot seed a later independent success streak
+00:00 +5: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine practice does not erase an existing independent series
+00:00 +6: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine guided mistakes do not produce an independent wrong-answer series
+00:00 +7: /workspace/scratch/e0abce7d2838/lumo-lernen/test/lumo_learning_feedback_engine_test.dart: LumoLearningFeedbackEngine fast guided answers cannot seed an independent speed badge
+00:00 +8: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: three illustrated answers remain practice without assessed mastery
+00:00 +9: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: guided errors do not become a weakness or frustration diagnosis
+00:00 +10: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: assisted counts cannot re-enter mastery on the next assessed answer
+00:00 +11: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: genuine unaided transfer can subsequently raise difficulty
+00:00 +12: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: a completed guided answer keeps practice rewards without mastery bonus
+00:00 +13: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: difficulty window is unchanged by accompanied practice
+00:00 +14: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: requesting help neither erases nor inflates existing independent proof
+00:00 +15: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: profile reload preserves practice without inventing assessment
+00:00 +16: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: guided profile errors do not trigger a diagnosis after JSON restore
+00:00 +17: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: legacy mixed JSON keeps all history without claiming an attribution
+00:00 +18: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: legacy explicitly unaided history remains assessed after JSON restore
+00:00 +19: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: null
+00:00 +20: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 2, correct: 3, wrong: 0, correctStreak: 3, wrongStreak: 0}
+00:00 +21: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 3}
+00:00 +22: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 3.5, wrong: 0, correctStreak: 3, wrongStreak: 0}
+00:00 +23: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 30, wrong: 0, correctStreak: 3, wrongStreak: 0}
+00:00 +24: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_evidence_test.dart: unsupported evidence is not normalized over saved bytes: {version: 1, correct: 3, wrong: 0, correctStreak: 3, wrongStreak: 1}
+00:00 +25: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: (setUpAll)
+00:00 +25: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: guided history remains visible without DNA strength or weakness
+00:00 +26: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: guided successes cannot disguise independent difficulties after restore
+00:00 +27: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: guided mistakes cannot hide later independent capability after restore
+00:00 +28: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: mixed legacy counts cannot be attributed to independent evidence
+00:00 +29: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: a mixed small sample names the independent denominator
+00:00 +30: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +31: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +32: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +33: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +34: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +35: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +36: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +37: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +38: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +39: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +40: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +41: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +42: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:00 +43: /workspace/scratch/e0abce7d2838/lumo-lernen/test/assisted_learning_dna_test.dart: heatmap color follows independent evidence, not raw practice
+00:01 +44: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight: request omits local name
+00:01 +45: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight: request omits local name
+00:01 +46: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight: request omits local name
+00:01 +47: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight: request omits local name
+00:01 +48: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight: request omits local name
+00:02 +49: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight: disabled AI never connects
+00:02 +50: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Elternbericht: request omits local name
+00:02 +51: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Elternbericht: disabled AI never connects
+00:02 +52: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Insight discards a delayed AI reply after profile switch
+00:03 +53: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: Elternbericht discards a delayed AI reply after profile switch
+00:04 +54: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: parent report does not automatically retry a failed profile load
+00:04 +55: /workspace/scratch/e0abce7d2838/lumo-lernen/test/parents/parent_report_request_privacy_test.dart: (tearDownAll)
+00:04 +55: All tests passed!

@@ -17,7 +17,8 @@ import time
 import traceback
 
 import modernization_android_tour as tour
-from update_preservation import require_in_place_update, require_learning_preserved
+from update_preservation import (require_in_place_update, require_learning_preserved,
+                                 require_post_update_learning_preserved)
 from update_artifact_identity import require_update_artifact
 
 probe, base, live = tour.probe, tour.base, tour.live
@@ -91,7 +92,8 @@ def native_tour(out: Path) -> dict:
 
 def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
          candidate_version: int = 2003, baseline_native: str = GODOT,
-         candidate_native: str = GODOT) -> int:
+         candidate_native: str = GODOT,
+         allow_2018_independent_evidence_migration: bool = False) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, required=True)
@@ -104,6 +106,12 @@ def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
               'not_tested': ['physical ARM64 device', 'GPU frame times / 60 FPS',
                              'audio output', 'complete two-lap race reward']}
     try:
+        migration_versions = None
+        if allow_2018_independent_evidence_migration:
+            if (type(baseline_version) is not int or type(candidate_version) is not int or
+                    (baseline_version, candidate_version) != (2017, 2018)):
+                raise RuntimeError('The reviewed migration requires the actual 2017 to 2018 pair')
+            migration_versions = (baseline_version, candidate_version)
         result['baseline'] = artifact(args.baseline, baseline_source, baseline_version, baseline_native)
         result['candidate'] = artifact(args.candidate, SOURCE, candidate_version, candidate_native)
         result['emulator'] = probe.ensure_rooted_emulator(base.adb, out)
@@ -144,20 +152,29 @@ def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
         base.display(1080, 2400, 420)
         base.launch(out, 'updated-offline')
         wait_profile(out, 'updated-profile-offline')
-        result['after_update'] = require_learning_preserved(before, probe.prefs(out, 'after-update'))
+        after_update = probe.prefs(out, 'after-update')
+        result['after_update'] = require_learning_preserved(
+            before, after_update, migration_versions=migration_versions)
+
+        def preserved_after_update(snapshot: dict) -> dict:
+            # First prove that Kart/restart/fold changed no byte of the actual
+            # migrated learning state, then retain the transitive 2017 proof.
+            return require_post_update_learning_preserved(
+                before, after_update, snapshot, migration_versions=migration_versions)
+
         result['native_tour'] = native_tour(out)
-        result['after_kart'] = require_learning_preserved(before, probe.prefs(out, 'after-kart'))
+        result['after_kart'] = preserved_after_update(probe.prefs(out, 'after-kart'))
         base.adb('shell', 'am', 'force-stop', tour.PACKAGE)
         base.launch(out, 'restart-offline')
         wait_profile(out, 'restart-profile-offline')
-        result['after_restart'] = require_learning_preserved(before, probe.prefs(out, 'after-restart'))
+        result['after_restart'] = preserved_after_update(probe.prefs(out, 'after-restart'))
         result['fold'] = {}
         for name, size in (('cover', (904, 2316, 420)), ('open', (1812, 2176, 420)),
                            ('landscape', (2400, 1080, 420))):
             base.display(*size)
             time.sleep(4)
             wait_profile(out, 'fold-' + name)
-            result['fold'][name] = require_learning_preserved(before, probe.prefs(out, 'fold-' + name))
+            result['fold'][name] = preserved_after_update(probe.prefs(out, 'fold-' + name))
         fatal = tour.logcat_fatal()
         (out / 'fatal-logcat.txt').write_text('\n\n'.join(fatal))
         if fatal or not tour.alive():

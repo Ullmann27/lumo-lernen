@@ -1,0 +1,28 @@
+test_lesson_return_scrolls_to_exact_preserved_title_before_capturing (test_nextgen_learning_route.NextgenLearningRouteTests.test_lesson_return_scrolls_to_exact_preserved_title_before_capturing) ... ERROR
+test_named_course_never_taps_the_static_heading_or_other_course (test_nextgen_learning_route.NextgenLearningRouteTests.test_named_course_never_taps_the_static_heading_or_other_course) ... ok
+test_real_route_opens_tools_then_the_named_course_action (test_nextgen_learning_route.NextgenLearningRouteTests.test_real_route_opens_tools_then_the_named_course_action) ... ok
+test_recorded_closed_academy_requires_the_visible_tools_toggle (test_nextgen_learning_route.NextgenLearningRouteTests.test_recorded_closed_academy_requires_the_visible_tools_toggle) ... ok
+test_scrolling_cannot_replace_actual_native_exit_and_flutter_resume (test_nextgen_learning_route.NextgenLearningRouteTests.test_scrolling_cannot_replace_actual_native_exit_and_flutter_resume) ... ok
+
+======================================================================
+ERROR: test_lesson_return_scrolls_to_exact_preserved_title_before_capturing (test_nextgen_learning_route.NextgenLearningRouteTests.test_lesson_return_scrolls_to_exact_preserved_title_before_capturing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/tools/android_qa/tests/test_nextgen_learning_route.py", line 127, in test_lesson_return_scrolls_to_exact_preserved_title_before_capturing
+    scope['returned_to_flutter'](Path('/fixture'), 'Acht und fünf', 'same-lesson', **options)
+  File "/workspace/scratch/e0abce7d2838/lumo-lernen/.github/probes/lumo_nextgen_surfaces_android_probe.py", line 80, in returned_to_flutter
+    must_see(out, caption, tag)
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1139, in __call__
+    return self._mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1143, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/mock.py", line 1198, in _execute_mock_call
+    raise effect
+RuntimeError: Actual saved title is above the viewport
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.053s
+
+FAILED (errors=1)

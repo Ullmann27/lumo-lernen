@@ -79,8 +79,8 @@ class ConnectFourEngine {
     return const [];
   }
 
-  /// Fair beginner bot. Simulations use copies, so suggestions never mutate
-  /// real state and cannot erase a piece after an interrupted turn.
+  /// Fair opponents see only the public board. Search uses a private scratch
+  /// board, so a suggestion never changes the real turn, pieces or result.
   ///
   /// [level] defaults to [ConnectLumoLevel.mittel], the historical behaviour
   /// (always take a win, always block, 30 % random otherwise).
@@ -91,6 +91,9 @@ class ConnectFourEngine {
     if (phase != ConnectPhase.playing || turn != ConnectPiece.lumo) return null;
     final valid = validColumns;
     if (valid.isEmpty) return null;
+    if (level == ConnectLumoLevel.schlau) {
+      return _ConnectFourSearch(_board).choose();
+    }
     for (final c in valid) {
       if (findWinningLine(_simulation(c, ConnectPiece.lumo), ConnectPiece.lumo)
           .isNotEmpty) {
@@ -123,41 +126,12 @@ class ConnectFourEngine {
     for (final c in valid) {
       var score = _potential(_simulation(c, ConnectPiece.lumo)) -
           (c - columns ~/ 2).abs() * 2;
-      if (level == ConnectLumoLevel.schlau) {
-        final after = _simulation(c, ConnectPiece.lumo);
-        // Penalize moves that leave an immediate child win.
-        for (final reply in _validColumnsOn(after)) {
-          if (findWinningLine(
-                  _apply(after, reply, ConnectPiece.child), ConnectPiece.child)
-              .isNotEmpty) {
-            score -= 80;
-            break;
-          }
-        }
-      }
       if (score > bestScore) {
         best = c;
         bestScore = score;
       }
     }
     return best;
-  }
-
-  List<int> _validColumnsOn(List<List<ConnectPiece>> board) => [
-        for (var c = 0; c < columns; c++)
-          if (board[0][c] == ConnectPiece.empty) c,
-      ];
-
-  List<List<ConnectPiece>> _apply(
-      List<List<ConnectPiece>> board, int column, ConnectPiece who) {
-    final copy = board.map((row) => row.toList()).toList();
-    for (var r = rows - 1; r >= 0; r--) {
-      if (copy[r][column] == ConnectPiece.empty) {
-        copy[r][column] = who;
-        break;
-      }
-    }
-    return copy;
   }
 
   List<List<ConnectPiece>> _simulation(int c, ConnectPiece who) {
@@ -180,6 +154,166 @@ class ConnectFourEngine {
             score += mine * mine;
           }
         }
+      }
+    }
+    return score;
+  }
+}
+
+/// Bounded six-ply alpha-beta search for the existing "Schlau" setting.
+/// Iterative deepening keeps only a fully examined root iteration. The node
+/// budget bounds synchronous mobile work independently of the board position.
+/// Only this private copy is changed; no profile, timer or random seed is read.
+class _ConnectFourSearch {
+  _ConnectFourSearch(List<List<ConnectPiece>> board)
+      : _cells = [
+          for (final row in board)
+            for (final piece in row)
+              piece == ConnectPiece.lumo
+                  ? 1
+                  : piece == ConnectPiece.child
+                      ? -1
+                      : 0,
+        ] {
+    for (var c = 0; c < 7; c++) {
+      var row = 5;
+      while (row >= 0 && _cells[row * 7 + c] != 0) {
+        row--;
+      }
+      _nextRow[c] = row;
+    }
+  }
+
+  static const _order = [3, 2, 4, 1, 5, 0, 6];
+  static const _win = 100000;
+  static const _nodeLimit = 18000;
+  static const _weights = [0, 2, 12, 72, 0];
+  static final _windows = <List<int>>[
+    for (var r = 0; r < 6; r++)
+      for (var c = 0; c < 7; c++)
+        for (final (dr, dc) in ConnectFourEngine.directions)
+          if (r + dr * 3 >= 0 &&
+              r + dr * 3 < 6 &&
+              c + dc * 3 >= 0 &&
+              c + dc * 3 < 7)
+            [for (var k = 0; k < 4; k++) (r + dr * k) * 7 + c + dc * k],
+  ];
+
+  final List<int> _cells;
+  final List<int> _nextRow = List.filled(7, 5);
+  int _nodes = 0;
+  bool _exhausted = false;
+
+  int choose() {
+    var best = _order.firstWhere((c) => _nextRow[c] >= 0);
+    for (var depth = 1; depth <= 6; depth++) {
+      var iterationBest = best;
+      var iterationScore = -_win * 2;
+      for (final c in _order) {
+        final row = _nextRow[c];
+        if (row < 0) continue;
+        _place(c, 1);
+        final score = _wonAt(row, c, 1)
+            ? _win
+            : _search(depth - 1, iterationScore, _win * 2, -1, 1);
+        _undo(c);
+        if (_exhausted) break;
+        if (score > iterationScore) {
+          iterationScore = score;
+          iterationBest = c;
+        }
+      }
+      if (_exhausted) break;
+      best = iterationBest;
+      if (iterationScore >= _win - 6) break;
+    }
+    return best;
+  }
+
+  int _search(int depth, int alpha, int beta, int who, int ply) {
+    if (++_nodes > _nodeLimit) {
+      _exhausted = true;
+      return 0;
+    }
+    var hasMove = false;
+    for (final row in _nextRow) {
+      if (row >= 0) hasMove = true;
+    }
+    if (!hasMove) return 0;
+    if (depth == 0) return _evaluate();
+    var best = who == 1 ? -_win * 2 : _win * 2;
+    for (final c in _order) {
+      final row = _nextRow[c];
+      if (row < 0) continue;
+      _place(c, who);
+      final score = _wonAt(row, c, who)
+          ? who * (_win - ply)
+          : _search(depth - 1, alpha, beta, -who, ply + 1);
+      _undo(c);
+      if (_exhausted) return 0;
+      if (who == 1) {
+        if (score > best) best = score;
+        if (best > alpha) alpha = best;
+      } else {
+        if (score < best) best = score;
+        if (best < beta) beta = best;
+      }
+      if (alpha >= beta) break;
+    }
+    return best;
+  }
+
+  void _place(int column, int who) {
+    _cells[_nextRow[column] * 7 + column] = who;
+    _nextRow[column]--;
+  }
+
+  void _undo(int column) {
+    _nextRow[column]++;
+    _cells[_nextRow[column] * 7 + column] = 0;
+  }
+
+  bool _wonAt(int row, int column, int who) {
+    for (final (dr, dc) in ConnectFourEngine.directions) {
+      var length = 1;
+      for (final sign in const [-1, 1]) {
+        var r = row + dr * sign;
+        var c = column + dc * sign;
+        while (r >= 0 && r < 6 && c >= 0 && c < 7 && _cells[r * 7 + c] == who) {
+          length++;
+          r += dr * sign;
+          c += dc * sign;
+        }
+      }
+      if (length >= 4) return true;
+    }
+    return false;
+  }
+
+  int _evaluate() {
+    var score = 0;
+    for (var r = 0; r < 6; r++) {
+      score += _cells[r * 7 + 3] * 5;
+    }
+    for (final line in _windows) {
+      var mine = 0;
+      var theirs = 0;
+      var empty = -1;
+      for (final cell in line) {
+        switch (_cells[cell]) {
+          case 1:
+            mine++;
+          case -1:
+            theirs++;
+          default:
+            empty = cell;
+        }
+      }
+      if (mine != 0 && theirs != 0) continue;
+      score += _weights[mine] - _weights[theirs];
+      if (empty >= 0 && _nextRow[empty % 7] == empty ~/ 7) {
+        if (mine == 3) score += 90;
+        if (theirs == 3) score -= 90;
       }
     }
     return score;

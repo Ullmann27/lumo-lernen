@@ -1,0 +1,186 @@
+{
+  "schema": 1,
+  "source_commit": "c5c71145ffaa9ca90b501c5020967b8d5062c387",
+  "ci_run": 43358819881,
+  "ci_job": 131667187053,
+  "capture": "actual Godot renderer / learning_world_capture.gd",
+  "preview_archive_sha256": "7870ab42d73de43d9980f5c344136a34fadae58a3fb8ca2e25b22ed2ecaebe3a",
+  "review_date": "2026-11-13",
+  "reviewer": "Team A learning",
+  "images": [
+    {
+      "file": "bridge_hundred-complete.png",
+      "sha256": "1a8d6b1c5fb69637c7c8dc131cb6c46b99ef610f8e2db1f84672eca76f63e67b",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Existing hundred has a 100-cell model and 100 label; moving ten-blocks show 10 and updated place value remains visible."
+    },
+    {
+      "file": "bridge_hundred-start.png",
+      "sha256": "d298c591a0807dd4f434537a195fbe4a260e265db4763ebcd2ac80a364af154b",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Existing hundred has a 100-cell model and 100 label; moving ten-blocks show 10 and updated place value remains visible."
+    },
+    {
+      "file": "equal_groups-complete.png",
+      "sha256": "8a36d3c61f5092aa41f5bab8f671c5b562cc8e84f0649a2ce62938e438eb3f5e",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Three actual groups receive four cubes each; final quantities match 3 x 4 = 12."
+    },
+    {
+      "file": "equal_groups-start.png",
+      "sha256": "398413714a24c63decb479f3359e5f92d4ff0a881cf300c4070772ba192ed48b",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Three actual groups receive four cubes each; final quantities match 3 x 4 = 12."
+    },
+    {
+      "file": "fraction_parts-complete.png",
+      "sha256": "05c03fba06d11e1afadb4ac6c68fd5d29de3fbea4333ee3aac83e5afe7a545c5",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Both source pieces stay above the footer and the visible placed-part label changes from 1/4 to 3/4."
+    },
+    {
+      "file": "fraction_parts-start.png",
+      "sha256": "e6a7ae7329f1da174d1e0d28e0c0afd3a204dc97c7cada50999d2c3e45b6ad60",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Both source pieces stay above the footer and the visible placed-part label changes from 1/4 to 3/4."
+    },
+    {
+      "file": "math-complete-1280x720.png",
+      "sha256": "3359cf1e6ed87ea8069b11073fc166eba689f836df9dd7a0e67a48cad0beb9b2",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-complete-2400x1080.png",
+      "sha256": "2edb031084be28f89b815ae8c5a8a4f0fc2962736157a2355323f3bf77cf2978",
+      "width": 2400,
+      "height": 1080,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-complete-412x915.png",
+      "sha256": "8f0e89d6bafe8bb4aba5a42ea0fad0803972109652ff48f016c91fbcbead1e8e",
+      "width": 412,
+      "height": 915,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-start-1280x720.png",
+      "sha256": "0a737c9a981e7580b46a9d464850f8eff5583594b5b426a466e5c77a1bdb42e8",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-start-2400x1080.png",
+      "sha256": "4f7ec76e542bbb3322a8f5875803150e4df3070c731880f183bb36cb2e4807d6",
+      "width": 2400,
+      "height": 1080,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-start-412x915.png",
+      "sha256": "057c6991e38e17f257971cde5500bc5fdde4f5b6fd10219169cc7ae89d210fab",
+      "width": 412,
+      "height": 915,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-ten-1280x720.png",
+      "sha256": "ef8c902a5e6fbca1cb859bc92d7de5be0ecb7b5988aa97efc9ab0b54dfb67a7f",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-ten-2400x1080.png",
+      "sha256": "8edd2f9168bb5405eb65cc6de4d5ebf44d2d726b9325419be5cb5b74dd0190b9",
+      "width": 2400,
+      "height": 1080,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "math-ten-412x915.png",
+      "sha256": "e583e11a401f23a28172ed1e5a4281c15fbd1837207971d894694fcde2b020ef",
+      "width": 412,
+      "height": 915,
+      "review": "manually_opened",
+      "finding": "All real cubes remain visible in the three captured aspect ratios; ten plus three is readable and original Lumo remains visible."
+    },
+    {
+      "file": "plant_parts-complete.png",
+      "sha256": "89b446a8ed51ec78bbe3928abc0f1d3e9019740a01d7cc4ec8688664b137e6f7",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Root, stem, leaves and blossom are distinguishable, with visible watered/lit growth and matching explanation."
+    },
+    {
+      "file": "plant_parts-start.png",
+      "sha256": "6f5097f87b22537a00a3d87a01c2afc7bc615549fae44ce57b350387a249e533",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Root, stem, leaves and blossom are distinguishable, with visible watered/lit growth and matching explanation."
+    },
+    {
+      "file": "subtract_ten-complete.png",
+      "sha256": "1c51fcd5c00efc19e89795fa4f6863897ea4dfbbb630065032fd57419488881a",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "13 initial cubes become eight remaining and five removed, all retained as visible geometry."
+    },
+    {
+      "file": "subtract_ten-start.png",
+      "sha256": "64e66f930a0aca05c8f8db274c900e1ab97e4fc83cce87247d8ac9b2f69895e4",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "13 initial cubes become eight remaining and five removed, all retained as visible geometry."
+    },
+    {
+      "file": "syllables-complete.png",
+      "sha256": "e4abadfb998f5d2efd7ff2e97a69f597356d9946a5e0b3b7995e2a16e97b000a",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Every extruded syllable glyph is fully visible both in the source tray and after word assembly."
+    },
+    {
+      "file": "syllables-start.png",
+      "sha256": "6a337e1646429100ce146ace212ffc4e34dc421683d384117a44807a17da5886",
+      "width": 1280,
+      "height": 720,
+      "review": "manually_opened",
+      "finding": "Every extruded syllable glyph is fully visible both in the source tray and after word assembly."
+    }
+  ],
+  "observed_result": "Previously reported glyph clipping, stale fraction label, unclear hundred, hidden source pieces, overexposure and empty gray edges are resolved in this image set.",
+  "limits": [
+    "Stylized learning atelier; no AAA-quality claim.",
+    "Static pictures do not establish audible speech, Android runtime or Fold7 frame times.",
+    "Independent settlement parse failure means this is not whole-project approval."
+  ]
+}

@@ -23,6 +23,7 @@ class LearningDnaEngine {
         score: record.accuracy,
         correctAnswers: record.correct,
         wrongAnswers: record.wrong,
+        independentEvidence: record.assessed,
       );
     }).toList()
       ..sort((a, b) {
@@ -31,13 +32,19 @@ class LearningDnaEngine {
       });
     final strengths = observations.where((e) => e.isStrength).toList()
       ..sort((a, b) {
-        final ratio = b.score.compareTo(a.score);
-        return ratio != 0 ? ratio : b.answerCount.compareTo(a.answerCount);
+        final ratio = b.assessmentScore.compareTo(a.assessmentScore);
+        return ratio != 0
+            ? ratio
+            : b.independentEvidence.attempts
+                .compareTo(a.independentEvidence.attempts);
       });
     final weaknesses = observations.where((e) => e.isWeakness).toList()
       ..sort((a, b) {
-        final ratio = a.score.compareTo(b.score);
-        return ratio != 0 ? ratio : b.answerCount.compareTo(a.answerCount);
+        final ratio = a.assessmentScore.compareTo(b.assessmentScore);
+        return ratio != 0
+            ? ratio
+            : b.independentEvidence.attempts
+                .compareTo(a.independentEvidence.attempts);
       });
     final correct = observations.fold<int>(0, (n, e) => n + e.correctAnswers);
     final incorrect = observations.fold<int>(0, (n, e) => n + e.wrongAnswers);
@@ -80,8 +87,9 @@ class LearningDnaEngine {
     return DnaRecommendation(
       title: '${top.skillLabel} üben',
       subject: top.subject,
-      reason: '${top.answerSummary}. Mit fünf leichten Aufgaben weiterüben.',
-      priority: top.score <= 0.25 ? 'hoch' : 'mittel',
+      reason:
+          '${top.independentAnswerSummary}. Mit fünf leichten Aufgaben weiterüben.',
+      priority: top.assessmentScore <= 0.25 ? 'hoch' : 'mittel',
       suggestedUnit: top.skillLabel,
     );
   }

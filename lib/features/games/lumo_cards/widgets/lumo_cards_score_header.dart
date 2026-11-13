@@ -11,6 +11,7 @@ class LumoCardsScoreHeader extends StatelessWidget {
     this.onSettings,
     this.onAudioSettings,
     this.onOpponentSettings,
+    this.onNativeTable,
   });
 
   final int round;
@@ -21,11 +22,19 @@ class LumoCardsScoreHeader extends StatelessWidget {
   final VoidCallback? onSettings;
   final VoidCallback? onAudioSettings;
   final VoidCallback? onOpponentSettings;
+  final VoidCallback? onNativeTable;
 
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      final narrow = constraints.maxWidth < (onOpponentSettings == null ? 320 : 350);
+      final buttons = actions;
+      final availableWidth = constraints.maxWidth - 16;
+      final actionWidth = buttons.length * 48.0;
+      final narrow = availableWidth < 176 + actionWidth;
+      // A short landscape layout places this header in a narrow side column.
+      // Keep the score readable instead of squeezing it to a few pixels next
+      // to all actions, which pushes the actual turn banner off-screen.
+      final separateScore = narrow && availableWidth < actionWidth + 96;
       final titleRow = Row(children: [
         IconButton(
           constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
@@ -39,20 +48,24 @@ class LumoCardsScoreHeader extends StatelessWidget {
                 style: TextStyle(fontSize: 19, fontWeight: FontWeight.w900),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis)),
-        if (!narrow) ...actions,
+        if (!narrow) ...buttons,
       ]);
       final score = Text(
         narrow
-            ? 'Runde $round/$totalRounds\n$targetPoints Sterne'
+            ? 'Runde $round/$totalRounds${separateScore ? ' · ' : '\n'}$targetPoints Sterne'
             : 'Runde $round/$totalRounds · $targetPoints gesammelte Sterne',
         style: const TextStyle(fontWeight: FontWeight.w700, fontSize: 12),
       );
       return Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+        padding: EdgeInsets.symmetric(
+            horizontal: 8, vertical: separateScore ? 2 : 4),
         child: Column(children: [
           titleRow,
-          if (narrow)
-            Row(children: [Expanded(child: score), ...actions])
+          if (separateScore) ...[
+            score,
+            Wrap(alignment: WrapAlignment.center, children: buttons),
+          ] else if (narrow)
+            Row(children: [Expanded(child: score), ...buttons])
           else
             score,
         ]),
@@ -61,6 +74,15 @@ class LumoCardsScoreHeader extends StatelessWidget {
   }
 
   List<Widget> get actions => [
+        if (onNativeTable != null)
+          IconButton(
+              key: const ValueKey('cards-native-table'),
+              constraints: const BoxConstraints(minWidth: 48, minHeight: 48),
+              visualDensity: VisualDensity.standard,
+              tooltip: 'Am 3D-Tisch spielen',
+              onPressed: onNativeTable,
+              icon: const Text('3D',
+                  style: TextStyle(fontWeight: FontWeight.w900))),
         if (onOpponentSettings != null)
           IconButton(
               key: const ValueKey('cards-opponent-settings'),

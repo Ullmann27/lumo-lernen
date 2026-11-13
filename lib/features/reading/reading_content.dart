@@ -20,10 +20,12 @@ import 'widgets/reading_active_sentence_view.dart';
 import '../story/lumo_story_library_screen.dart';
 
 class ReadingContent extends StatefulWidget {
-  const ReadingContent({super.key, required this.appState, required this.onBack});
+  const ReadingContent({super.key, required this.appState, required this.onBack,
+      this.speechListener});
 
   final LumoAppState appState;
   final VoidCallback onBack;
+  final LumoSpeechListener? speechListener;
 
   @override
   State<ReadingContent> createState() => _ReadingContentState();
@@ -35,7 +37,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   final _monitor = ReadingMonitor(
     analyzer: const ReadingV2PronunciationAnalyzer(),
   );
-  final _speech = LumoSpeechListener();
+  late final LumoSpeechListener _speech;
   final _readingRepo = ReadingProgressRepository();
   DateTime? _listenStartedAt;
   final _storyMemoryRepo = ReadingStoryMemoryRepository();
@@ -64,6 +66,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   @override
   void initState() {
     super.initState();
+    _speech = widget.speechListener ?? LumoSpeechListener();
     WidgetsBinding.instance.addObserver(this);
     _prepareStorySession();
   }
@@ -221,10 +224,11 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
   }
 
   Future<void> _startListening() async {
+    final profileGeneration = widget.appState.profileGeneration;
     if (_progress == null || _openingLibrary ||
         ModalRoute.of(context)?.isCurrent != true) return;
     await widget.appState.ensureSettingsLoaded();
-    if (!mounted || _openingLibrary ||
+    if (!mounted || profileGeneration != widget.appState.profileGeneration || _openingLibrary ||
         ModalRoute.of(context)?.isCurrent != true) return;
     if (!widget.appState.state.settings.microphoneEnabled) {
       setState(() => _lumoLine = 'Das Mikrofon ist im Elternbereich ausgeschaltet.');
@@ -234,7 +238,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
 
     _listenTimer?.cancel();
     await LumoVoice.instance.stop();
-    if (!mounted || _openingLibrary ||
+    if (!mounted || profileGeneration != widget.appState.profileGeneration || _openingLibrary ||
         ModalRoute.of(context)?.isCurrent != true) return;
 
     setState(() {
@@ -249,7 +253,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     LumoCompanionRequests.instance.recordInteraction(LumoInteractionKind.readingStarted);
     await _speech.startListening(
       onResult: (words) {
-        if (!mounted) return;
+        if (!mounted || profileGeneration != widget.appState.profileGeneration) return;
         final sentence = _safeProgress.currentSentence;
         final live = _liveReadingPosition(sentence: sentence, transcript: words);
         setState(() {
@@ -262,11 +266,11 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
         }
       },
       onFinalResult: (words) {
-        if (!mounted) return;
+        if (!mounted || profileGeneration != widget.appState.profileGeneration) return;
         _processTranscript(words);
       },
       onNoMatch: () {
-        if (!mounted) return;
+        if (!mounted || profileGeneration != widget.appState.profileGeneration) return;
         _handleNoMatch();
       },
     );
@@ -413,7 +417,6 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       decision: attemptDecision,
       correct: result.analysis.correctEnough,
       score: result.analysis.alignmentScore,
-      problemWord: attemptDecision.confirmedProblemWord ?? result.analysis.problemWord,
     );
 
     setState(() {
@@ -453,18 +456,16 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
     });
   }
 
-  /// Ein vorgelesener Satz als Aufgabe im Aufgabenprotokoll. Gespeichert werden
-  /// nur Satz, Ergebnis, Genauigkeit, Zeit und – bei Fehlern – das schwierige
-  /// Wort, nie die Sprachaufnahme oder das ganze Transkript.
+  /// Successful recognition may acknowledge reading practice. A mismatch is
+  /// only a tentative practice hint, never a measured reading deficit: even
+  /// repeated confident ASR output can be wrong. No transcript is stored here.
   void _logReadingAttempt({
     required ReadingSessionProgress progress,
     required ReadingAttemptDecision decision,
     required bool correct,
     required double score,
-    String? problemWord,
   }) {
-    // Undeutliche Aufnahmen sind kein Lesefehler und zählen nicht.
-    if (decision.outcome == ReadingAttemptOutcome.retryBecauseRecognitionWasUnclear) {
+    if (!correct || decision.outcome != ReadingAttemptOutcome.accepted) {
       return;
     }
     final started = _listenStartedAt;
@@ -475,7 +476,7 @@ class _ReadingContentState extends State<ReadingContent> with WidgetsBindingObse
       correct: correct,
       hintUsed: progress.attemptNumber > 1,
       prompt: progress.currentSentence.text,
-      given: correct ? '' : (problemWord?.trim() ?? ''),
+      given: '',
       durationMs: started == null
           ? null
           : DateTime.now().difference(started).inMilliseconds.clamp(0, 120000).toInt(),

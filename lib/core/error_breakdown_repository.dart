@@ -1,6 +1,9 @@
 import 'dart:convert';
 
+import 'package:crypto/crypto.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'legacy_learning_data.dart';
 
 /// Persistiert das Fehler-Histogramm pro Kind (Phase 2 - Fehlerdetektiv).
 ///
@@ -10,6 +13,48 @@ class ErrorBreakdownRepository {
   const ErrorBreakdownRepository();
 
   String _key(String childId) => 'lumo.error_breakdown.$childId';
+
+  /// A distinct namespace for verified profile IDs. Legacy name/grade keys
+  /// remain untouched because their owner cannot be inferred safely.
+  String _profileScope(String studentId) =>
+      'profile_v1_${sha256.convert(utf8.encode(studentId))}';
+
+  Future<Map<String, int>> loadForProfile(String studentId) =>
+      load(_profileScope(studentId));
+
+  Future<void> resetForProfile(String studentId) =>
+      LearningStorage.run((prefs) async {
+        await LearningStorage.remove(prefs, _key(_profileScope(studentId)));
+      });
+
+  Future<void> incrementForProfile(String studentId, String errorLabel,
+          {required bool Function() mayWrite}) =>
+      LearningStorage.run((prefs) async {
+        if (!mayWrite()) return;
+        final key = _key(_profileScope(studentId));
+        final current = _decode(prefs.getString(key));
+        current[errorLabel] = (current[errorLabel] ?? 0) + 1;
+        // No await separates ownership validation and the actual write.
+        if (mayWrite()) {
+          await LearningStorage.write(prefs, key, jsonEncode(current));
+        }
+      });
+
+  Map<String, int> _decode(String? raw) {
+    if (raw == null || raw.isEmpty) return <String, int>{};
+    final decoded = jsonDecode(raw);
+    if (decoded is! Map) {
+      throw const FormatException('Expected an error histogram');
+    }
+    final result = <String, int>{};
+    for (final entry in decoded.entries) {
+      if (entry.key is! String || entry.value is! int || entry.value < 0) {
+        throw const FormatException('Unknown error histogram entry');
+      }
+      result[entry.key as String] = entry.value as int;
+    }
+    return result;
+  }
 
   Future<Map<String, int>> load(String childId) async {
     try {
