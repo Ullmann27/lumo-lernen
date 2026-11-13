@@ -1,0 +1,67 @@
+[
+  {
+    "kind": "stick",
+    "source": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-jump-20261113/runtime-run.png",
+    "source_sha256": "5b603504f1f9570e58ecc0cb0dcc7610646e32a0ed3ad5f5030f4425ad936b00",
+    "dimensions": [
+      960,
+      540
+    ],
+    "measured_target": {
+      "bounds": [
+        29.333333333333332,
+        336.0,
+        154.66666666666666,
+        460.0
+      ],
+      "center": [
+        92.0,
+        398.0
+      ],
+      "diameter": 124.66666666666667,
+      "ring_fraction": 1.0,
+      "basis": "Observed connected cyan ring of original joystick texture"
+    },
+    "scope": "Existing real desktop renderer image, not Android gameplay evidence. Puzzle uses common nonzero-motif board geometry."
+  },
+  {
+    "kind": "puzzle",
+    "source": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-puzzle-20261113/runtime-initial.png",
+    "source_sha256": "2de2bb52b5078b79470f34686c968c14b2c537a72b0024463b2b34f1f8eb618c",
+    "dimensions": [
+      960,
+      540
+    ],
+    "measured_target": {
+      "point": [
+        237.49672076056666,
+        266.84752891692955
+      ],
+      "board_corners": [
+        [
+          313.3333333333333,
+          253.33333333333334
+        ],
+        [
+          637.3333333333334,
+          253.33333333333334
+        ],
+        [
+          666.6666666666666,
+          412.0
+        ],
+        [
+          280.0,
+          412.0
+        ]
+      ],
+      "world_tray_center": [
+        -7.0,
+        0.15,
+        -2.2
+      ],
+      "basis": "Current screenshot board homography + source796b first tray center; save rotation must confirm hit"
+    },
+    "scope": "Existing real desktop renderer image, not Android gameplay evidence. Puzzle uses common nonzero-motif board geometry."
+  }
+]

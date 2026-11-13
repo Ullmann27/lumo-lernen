@@ -1,0 +1,27 @@
+[
+  {
+    "step": "Inspect actual immutable build run and candidate artifact",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "step": "Install existing live UI and image helpers",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "step": "Enable disposable emulator KVM",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "step": "Start software display",
+    "exit_code": 0,
+    "stderr": ""
+  },
+  {
+    "step": "Real single-pointer gameplay, save and screenrecord evidence",
+    "exit_code": 0,
+    "stderr": ""
+  }
+]
