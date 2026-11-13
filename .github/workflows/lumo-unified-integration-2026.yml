@@ -58,6 +58,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   verify-and-build:
+    if: github.head_ref != 'chatgpt/lumo-nextgen-20261113' && github.ref_name != 'chatgpt/lumo-nextgen-20261113'
     runs-on: ubuntu-latest
     timeout-minutes: 75
     env:

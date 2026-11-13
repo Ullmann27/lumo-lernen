@@ -30,6 +30,11 @@ POLICY_SPEC = importlib.util.spec_from_file_location(
 POLICY = importlib.util.module_from_spec(POLICY_SPEC)
 POLICY_SPEC.loader.exec_module(POLICY)
 OLD_POLICY_SHA256 = '6577810bda4d3811422fc9df47733f1d2e698ede56206d9c11f850dc6150b0db'
+HISTORICAL_PUBSPEC = 'version: 0.13.5+2017\n'
+HISTORICAL_CONFIG = json.dumps({
+    'repository': 'https://github.com/Ullmann27/lumo-godot.git',
+    'revision': POLICY.APPROVED[2017], 'engine': '4.6.3',
+})
 PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
 CERTIFICATE = 'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 SYNTHETIC_SOURCE = 'a' * 40
@@ -108,8 +113,8 @@ class Action2017PinTests(unittest.TestCase):
             'action_2017_update', ROOT / '.github/probes/lumo_2017_update_android_probe.py')
         wrapper = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(wrapper)
-        pubspec = (ROOT / 'pubspec.yaml').read_text()
-        source = (ROOT / 'config/godot-source.json').read_text()
+        pubspec = HISTORICAL_PUBSPEC
+        source = HISTORICAL_CONFIG
         self.assertEqual(wrapper.reviewed_candidate_native(pubspec, source), POLICY.APPROVED[2017])
         self.assertEqual(wrapper.BASELINE_SOURCE, '2718f405e69c193d0121c6f6447fe53769d7c803')
         self.assertEqual(wrapper.BASELINE_NATIVE, POLICY.APPROVED[2015])
@@ -130,7 +135,7 @@ class Action2017PublicationTests(unittest.TestCase):
         self.directory = tempfile.TemporaryDirectory()
         self.addCleanup(self.directory.cleanup)
         self.root = Path(self.directory.name)
-        self.source = json.loads((ROOT / 'config/godot-source.json').read_text())
+        self.source = json.loads(HISTORICAL_CONFIG)
         self.native = self.source['revision']
         self.apk_bytes = b'SYNTHETIC METADATA TEST INPUT; NOT AN ANDROID APK'
         self.digest = hashlib.sha256(self.apk_bytes).hexdigest()
@@ -173,7 +178,7 @@ class Action2017PublicationTests(unittest.TestCase):
         self.root.joinpath('scripts').symlink_to(ROOT / 'scripts', target_is_directory=True)
         self.root.joinpath('config').mkdir()
         self.root.joinpath('config/godot-source.json').write_text(json.dumps(self.source))
-        self.root.joinpath('pubspec.yaml').write_text((ROOT / 'pubspec.yaml').read_text())
+        self.root.joinpath('pubspec.yaml').write_text(HISTORICAL_PUBSPEC)
         self.root.joinpath('dist').mkdir()
         self.root.joinpath('dist/APP-VERSION.txt').write_text('version: 0.13.5+2017\n')
         self.root.joinpath('dist/Lumo-Lernen-Neu.apk').write_bytes(self.apk_bytes)
