@@ -3,7 +3,7 @@
 
 The historical 2018 verifier and receipts remain immutable. This verifier does
 not approve images: it validates an explicitly recorded review against the
-downloaded original artifact, including both independent capture source stamps.
+downloaded original artifact, including all independent capture source stamps.
 """
 from __future__ import annotations
 
@@ -30,12 +30,19 @@ VERSION_CODE = 2019
 VERSION_NAME = '0.13.7'
 NATIVE_ARTIFACT = 'lumo-studio-2019-native-evidence'
 NATIVE_WORKFLOW = '.github/workflows/lumo-studio-2019.yml'
-NATIVE_JOBS = frozenset({'gameplay', 'new-worlds', 'studio', 'learning-preview'})
+NATIVE_JOBS = frozenset({'gameplay', 'new-worlds', 'studio', 'learning-preview',
+                         'touch-workshop', 'touch-treasure', 'touch-build', 'bundle-evidence'})
 REVIEW_MODULES = frozenset({'learning', 'jump', 'build', 'settlement', 'garage',
                             'cards', 'rhythm', 'puzzle', 'treasure'})
 REVIEW_DIRECTORY = PurePosixPath('docs/evidence/studio-2019-reviewed')
 REVIEW_RECEIPT = 'config/studio-2019-visual-review.json'
-CAPTURE_SOURCES = ('nextgen-evidence/nextgen', 'studio-evidence')
+CAPTURE_SOURCES = ('nextgen-evidence/nextgen', 'studio-evidence',
+                   'touch-evidence/workshop', 'touch-evidence/treasure', 'touch-evidence/build')
+TOUCH_CAPTURE_PROBES = frozenset({
+    'touch-evidence/workshop/captures/kart_workshop_density_regression',
+    'touch-evidence/treasure/captures/treasure_density_regression',
+    'touch-evidence/build/captures/build_dialog_density_regression',
+})
 # Pose-studio images are useful technical evidence, but cannot stand in for an
 # actual production scene. The probe directory fixes the image's module.
 CAPTURE_MODULES = {
@@ -49,6 +56,9 @@ CAPTURE_MODULES = {
     'nextgen-evidence/nextgen/captures/rhythm_tour_play_regression': 'rhythm',
     'studio-evidence/captures/puzzle_rotation_regression': 'puzzle',
     'studio-evidence/captures/treasure_exploration_regression': 'treasure',
+    'touch-evidence/workshop/captures/kart_workshop_density_regression': 'garage',
+    'touch-evidence/treasure/captures/treasure_density_regression': 'treasure',
+    'touch-evidence/build/captures/build_dialog_density_regression': 'build',
 }
 
 
@@ -175,6 +185,7 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     images = receipt.get('images')
     require(isinstance(images, list) and bool(images), 'No reviewed original PNGs')
     modules, orientations, paths, hashes, entries = set(), set(), set(), set(), set()
+    capture_probes = set()
     with zipfile.ZipFile(archive) as zipped:
         sources = verify_archive_sources(zipped, native)
         for entry in images:
@@ -186,6 +197,7 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             require(relative not in paths and original not in entries, 'Duplicate reviewed image path or archive entry')
             paths.add(relative)
             entries.add(original)
+            capture_probes.add(str(PurePosixPath(original).parent))
             path = reviewed_file(root, relative)
             require(path.is_file(), 'Reviewed PNG is not committed as a real file')
             data = path.read_bytes()
@@ -199,10 +211,13 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             modules.add(module)
             orientations.add('portrait' if dimensions[1] > dimensions[0] else 'landscape')
     require(modules == REVIEW_MODULES, 'Visual review must cover all nine changed production scenes')
+    require(TOUCH_CAPTURE_PROBES.issubset(capture_probes),
+            'Visual review must include the current workshop, treasure and build touch captures')
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,
             'native_capture_sources': sources, 'native_acceptance_jobs': sorted(NATIVE_JOBS),
+            'reviewed_touch_capture_probes': sorted(TOUCH_CAPTURE_PROBES),
             'reviewed_by': receipt['reviewed_by'], 'reviewed_at': receipt['reviewed_at'],
             'images': len(images), 'modules': sorted(modules)}
 

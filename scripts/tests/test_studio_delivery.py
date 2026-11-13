@@ -360,13 +360,64 @@ class StudioDeliveryTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 delivery.verify_proofs(*args)
 
-    def test_current_complete_original_archive_covers_nine_modules_and_four_jobs(self):
+    def test_touch_delivery_contract_requires_eight_jobs_and_five_source_stamps(self):
+        self.assertEqual(delivery.NATIVE_JOBS, {
+            'gameplay', 'new-worlds', 'studio', 'learning-preview',
+            'touch-workshop', 'touch-treasure', 'touch-build', 'bundle-evidence'})
+        self.assertEqual(set(delivery.CAPTURE_SOURCES), {
+            'nextgen-evidence/nextgen', 'studio-evidence',
+            'touch-evidence/workshop', 'touch-evidence/treasure', 'touch-evidence/build'})
+        touch_modules = {
+            'touch-evidence/workshop/captures/kart_workshop_density_regression': 'garage',
+            'touch-evidence/treasure/captures/treasure_density_regression': 'treasure',
+            'touch-evidence/build/captures/build_dialog_density_regression': 'build'}
+        self.assertEqual(delivery.TOUCH_CAPTURE_PROBES, set(touch_modules))
+        self.assertEqual(len(delivery.CAPTURE_MODULES), 13)
+        for probe, module in touch_modules.items():
+            with self.subTest(probe=probe):
+                self.assertEqual(delivery.CAPTURE_MODULES[probe], module)
+
+    def test_current_complete_original_archive_covers_nine_modules_and_eight_jobs(self):
         args = self.review_fixture()
         result = delivery.verify_visual_review(*args)
         self.assertEqual(set(result['modules']), delivery.REVIEW_MODULES)
         self.assertEqual(set(result['native_acceptance_jobs']), delivery.NATIVE_JOBS)
         self.assertEqual(set(result['native_capture_sources']), set(delivery.CAPTURE_SOURCES))
-        self.assertEqual(result['images'], 10)
+        self.assertEqual(set(result['reviewed_touch_capture_probes']), delivery.TOUCH_CAPTURE_PROBES)
+        self.assertEqual(result['images'], 13)
+
+    def test_old_module_images_cannot_replace_any_new_touch_capture_review(self):
+        for probe in sorted(delivery.TOUCH_CAPTURE_PROBES):
+            args = self.review_fixture()
+            args[1]['images'] = [item for item in args[1]['images']
+                                 if str(Path(item['artifact_entry']).parent) != probe]
+            # All nine products and the original matching module image remain
+            # reviewed. Failure must specifically require the new touch image.
+            self.assertEqual({item['module'] for item in args[1]['images']}, delivery.REVIEW_MODULES)
+            module = delivery.CAPTURE_MODULES[probe]
+            self.assertTrue(any(item['module'] == module and
+                                not item['artifact_entry'].startswith('touch-evidence/')
+                                for item in args[1]['images']))
+            with self.subTest(probe=probe), self.assertRaisesRegex(ValueError, 'current workshop, treasure and build touch captures'):
+                delivery.verify_visual_review(*args)
+            destination = self.base / ('missing-touch-' + module)
+            with self.subTest(recorder=probe), self.assertRaisesRegex(ValueError, 'current workshop, treasure and build touch captures'):
+                self.record(args, destination)
+            self.assertFalse((destination / delivery.REVIEW_RECEIPT).exists())
+            self.assertFalse((destination / delivery.REVIEW_DIRECTORY).exists())
+
+    def test_legacy_module_png_cannot_be_relabelled_as_a_new_touch_capture(self):
+        for probe in sorted(delivery.TOUCH_CAPTURE_PROBES):
+            args = self.review_fixture()
+            touch = next(item for item in args[1]['images']
+                         if str(Path(item['artifact_entry']).parent) == probe)
+            legacy = next(item for item in args[1]['images']
+                          if item['module'] == touch['module'] and
+                          not item['artifact_entry'].startswith('touch-evidence/'))
+            args[1]['images'].remove(touch)
+            legacy['artifact_entry'] = touch['artifact_entry']
+            with self.subTest(probe=probe), self.assertRaisesRegex(ValueError, 'differs from the original'):
+                delivery.verify_visual_review(*args)
 
     def test_old_pending_or_undated_receipts_fail(self):
         original = self.review_fixture()
@@ -413,7 +464,7 @@ class StudioDeliveryTests(unittest.TestCase):
                 with self.subTest(name=name, mutation=mutation), self.assertRaises(ValueError):
                     delivery.verify_visual_review(*args)
 
-    def test_both_capture_sources_must_exist_match_and_be_clean(self):
+    def test_every_capture_source_must_exist_match_and_be_clean(self):
         for prefix in delivery.CAPTURE_SOURCES:
             for mutation in ('old-sha', 'missing-sha', 'dirty', 'missing-dirty', 'bad-utf8'):
                 args = self.review_fixture()
@@ -561,7 +612,7 @@ class StudioDeliveryTests(unittest.TestCase):
         fresh_png = historical_tests.fixture_png(*changed['dimensions'], 90)
         self.archive_change(args, {changed['artifact_entry']: fresh_png})
         second = self.record(args)
-        self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}), 11)
+        self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}), 14)
         for relative, data in original_bytes.items():
             self.assertEqual((self.base / 'recorded' / relative).read_bytes(), data)
 

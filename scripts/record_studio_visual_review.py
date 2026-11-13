@@ -3,7 +3,8 @@
 
 Selection entries contain module, artifact_entry and the reviewer's findings
 for PNGs they actually inspected. This command does not inspect the art. Every
-review is bound to all four current native jobs and both clean capture sources;
+review is bound to all eight required native jobs and five clean capture sources;
+the three repaired touch surfaces each need an inspected current renderer image.
 original images are stored under their full content hash without replacing an
 older review's different PNG bytes. Recording never publishes an APK.
 """
