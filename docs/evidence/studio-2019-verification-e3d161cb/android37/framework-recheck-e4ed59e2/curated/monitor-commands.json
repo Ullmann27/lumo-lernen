@@ -1,0 +1,38 @@
+{
+  "commands": [
+    {
+      "command": [
+        "/usr/local/lib/android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "wait-for-device"
+      ],
+      "started_at": "2026-11-13T19:09:15.699672+00:00",
+      "finished_at": "2026-11-13T19:09:25.515670+00:00",
+      "returncode": 0,
+      "ended_by_observer": false,
+      "stop_requested": false,
+      "stdout": "wait-for-device.stdout",
+      "stderr": "wait-for-device.stderr"
+    },
+    {
+      "command": [
+        "/usr/local/lib/android/sdk/platform-tools/adb",
+        "-s",
+        "emulator-5554",
+        "logcat",
+        "-b",
+        "all",
+        "-v",
+        "threadtime"
+      ],
+      "started_at": "2026-11-13T19:09:25.516048+00:00",
+      "finished_at": "2026-11-13T19:11:22.016424+00:00",
+      "returncode": 255,
+      "ended_by_observer": false,
+      "stop_requested": false,
+      "stdout": "logcat-all.stdout",
+      "stderr": "logcat-all.stderr"
+    }
+  ]
+}

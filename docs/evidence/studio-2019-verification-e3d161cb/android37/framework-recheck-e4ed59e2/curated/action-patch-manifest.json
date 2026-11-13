@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "EXACT_UPSTREAM_PLUS_ADDITIVE_GUARD",
+  "upstream_repository": "ReactiveCircus/android-emulator-runner",
+  "upstream_revision": "a421e43855164a8197daf9d8d40fe71c6996bb0d",
+  "upstream_tree": "30f687b0945b18f77e56323c141e3646b6f246b0",
+  "upstream_license_file": "LICENSE",
+  "upstream_license_sha256": "0b64a565cedfa1ac8d2cd7cf40965e6098f97f260fe51a4df9f697a063d0a8db",
+  "license_note": "Original LICENSE retained byte-for-byte; it contains Apache License 2.0. Upstream package.json says MIT; neither metadata file is rewritten.",
+  "original_verified_files": {
+    "action.yml": "a7c4de9a466ae7d70a599ffdc5a27b2bccadd7b2d602e24b44f8b490cb7bbdfe",
+    "LICENSE": "0b64a565cedfa1ac8d2cd7cf40965e6098f97f260fe51a4df9f697a063d0a8db",
+    "src/main.ts": "a52d9ff8ea3b544677bbfaeb995b1db4d0cf8f9b520f34e25b0532250123358d",
+    "lib/main.js": "8121ea56f1c89d470071e89f80e15f932b2d8d5f711c28fc99476f34a442bc35",
+    "src/emulator-manager.ts": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f",
+    "lib/emulator-manager.js": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577"
+  },
+  "modified_files": [
+    {
+      "path": "src/emulator-manager.ts",
+      "before_sha256": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f",
+      "after_sha256": "2dc051cd4d4a20eddb77b16e260ae682eb2491cb7b474237068fa114ce9d0a1f",
+      "before_bytes": 5396,
+      "after_bytes": 5790
+    },
+    {
+      "path": "lib/emulator-manager.js",
+      "before_sha256": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577",
+      "after_sha256": "8e6603a845c0593718f1b8af6edeef9a4dace55ddc9293b13beeb3791f089b5d",
+      "before_bytes": 7155,
+      "after_bytes": 7557
+    }
+  ],
+  "source_and_execution": "Equivalent additive calls in src/emulator-manager.ts and checked-in lib/emulator-manager.js; no npm install, compilation, or other action modification.",
+  "guard_position": "After original waitForDevice; before original input keyevent 82.",
+  "original_calls_preserved": [
+    "waitForDevice",
+    "input keyevent 82",
+    "settings put",
+    "killEmulator"
+  ],
+  "probe_revision": "e4ed59e226ab76c4d7accf174f1f05fc05089d87",
+  "probe_tree": "403ef4e138bee73d633231349258332e34122494",
+  "probe_file_sha256": {
+    ".github/workflows/lumo-android37-framework-recheck.yml": "25f7413c856f4370ac4c214cd18dc533115f51de6b9950f8131e5c2ddbbc14d3",
+    "scripts/android_framework_ready.py": "7114e856b81513a34b63e3e197190f70e5c15402e217cd2a45f6f82ccddc4066",
+    "scripts/prepare_android37_emulator_action.py": "2aeada254a220c14528f344669f1afbb64d50a9f1d24cd663dc38263afe0bfde",
+    "scripts/tests/test_android_framework_ready.py": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d"
+  },
+  "invoking_workflow": ".github/workflows/lumo-android37-framework-recheck.yml",
+  "execution_context": "unchanged-apk-diagnostic",
+  "apk_source_revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "native_source_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "apk_binding_scope": "Caller-declared source identities; the unchanged original APK/provenance verifier must verify the actual binary independently.",
+  "framework_readiness_claim": "Not yet tested; this manifest only binds the prepared action bytes."
+}
