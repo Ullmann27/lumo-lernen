@@ -22,7 +22,7 @@ TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
 GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
-STUDIO_2019_REVISION = "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"
+STUDIO_2019_REVISION = "803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -290,6 +290,13 @@ class Candidate2011PinTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, message):
                     POLICY.verify(version(2019), json.dumps(data))
 
+    def test_2019_rejects_superseded_796b_native_identity(self):
+        with self.assertRaisesRegex(ValueError, "revision mismatch for build 2019"):
+            POLICY.verify(
+                version(2019),
+                config("796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e"),
+            )
+
     def test_2005_keeps_its_original_revision(self):
         self.assertEqual(POLICY.verify(version(2005), config(PREVIOUS_REVISION)),
                          (2005, PREVIOUS_REVISION))
@@ -318,9 +325,10 @@ class Candidate2011PinTests(unittest.TestCase):
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
         for build in (2006, 2007, 2008, 2009, 2010, 2020, 9999):
-            with self.subTest(build=build):
-                with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
-                    POLICY.verify(version(build), config())
+            for revision in (CANDIDATE_REVISION, STUDIO_2019_REVISION):
+                with self.subTest(build=build, revision=revision):
+                    with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
+                        POLICY.verify(version(build), config(revision))
 
     def test_missing_or_duplicate_version_remains_rejected(self):
         for spec in ("name: lumo_lernen\n", version(2011) + version(2011)):

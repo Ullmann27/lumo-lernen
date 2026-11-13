@@ -1,0 +1,238 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-13T23:44:38.349256+00:00",
+  "status": "TECHNISCHE_NATIVE_ABNAHME_BESTANDEN",
+  "repository": "Ullmann27/lumo-godot",
+  "branch": "chatgpt/lumo-studio-20261113",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "native_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "branch_head_unchanged": true,
+  "workflow": {
+    "id": 43524051371,
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "updated_at": "2026-11-13T23:32:27Z"
+  },
+  "jobs": [
+    {
+      "id": 132225270715,
+      "name": "learning-preview",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:12:01Z"
+    },
+    {
+      "id": 132225271017,
+      "name": "touch-workshop",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:24:51Z"
+    },
+    {
+      "id": 132225271066,
+      "name": "gameplay",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:17:04Z"
+    },
+    {
+      "id": 132225271223,
+      "name": "touch-build",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:19:16Z"
+    },
+    {
+      "id": 132225271238,
+      "name": "touch-treasure",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:20:29Z"
+    },
+    {
+      "id": 132225271330,
+      "name": "studio",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:13:21Z"
+    },
+    {
+      "id": 132229996720,
+      "name": "new-worlds",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:31:31Z"
+    },
+    {
+      "id": 132237586623,
+      "name": "bundle-evidence",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:31:54Z"
+    },
+    {
+      "id": 132237747822,
+      "name": "archive-evidence",
+      "head_sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "status": "completed",
+      "conclusion": "success",
+      "completed_at": "2026-11-13T23:32:27Z"
+    }
+  ],
+  "required_jobs_successful": 8,
+  "additional_archive_job_successful": true,
+  "original_archive": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-original.zip",
+    "artifact_id": 14085523056,
+    "name": "lumo-studio-2019-native-evidence",
+    "bytes": 199274727,
+    "sha256": "3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+    "crc": "PASS",
+    "member_count": 4447,
+    "full_cache_extraction_performed": false
+  },
+  "source_stamps": {
+    "nextgen-evidence/nextgen": {
+      "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "dirty": "",
+      "tree": null
+    },
+    "studio-evidence": {
+      "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "dirty": "",
+      "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+    },
+    "touch-evidence/workshop": {
+      "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "dirty": "",
+      "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+    },
+    "touch-evidence/treasure": {
+      "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "dirty": "",
+      "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+    },
+    "touch-evidence/build": {
+      "source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "dirty": "",
+      "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c"
+    }
+  },
+  "tree_scope": "Vier tatsächlich vorhandene Tree-Stempel stimmen überein. Der bestehende Nextgen-Harness erzeugt keinen separaten Tree-Stempel; dessen Source- und Dirty-Stempel sind vorhanden und geprüft.",
+  "result_tables": {
+    "nextgen-evidence/nextgen": {
+      "rows": 25,
+      "all_pass": true,
+      "sha256": "c61f7b94de60e2388e654f559e170cdc170bf97cac0e84f90850ceae7b1ac991"
+    },
+    "studio-evidence": {
+      "rows": 16,
+      "all_pass": true,
+      "sha256": "b091a75178d616ecc211ce1a6c6eb222df98ef9e0b837725f1ec77daf4427809"
+    },
+    "touch-evidence/workshop": {
+      "rows": 2,
+      "all_pass": true,
+      "sha256": "c9d8181d388096d44183d9cd5580dd5048efa46db21e83275024c2d41fe062e7"
+    },
+    "touch-evidence/treasure": {
+      "rows": 2,
+      "all_pass": true,
+      "sha256": "2899998b1e874e13568468e16ba6a7aa5593bb4342abf28f2746a915a2d373c0"
+    },
+    "touch-evidence/build": {
+      "rows": 2,
+      "all_pass": true,
+      "sha256": "5b5205d32babc9c7ca3ddb0c8616064dec845bbf32cebb2de2d71fdf34d73f26"
+    }
+  },
+  "fixed_orchestration_contract": {
+    "actual_job_id": 132229996720,
+    "tests": 8,
+    "failures": 0,
+    "skips": 0,
+    "duration_seconds": 14.293,
+    "original_log": "new-worlds-original-job.log",
+    "scope": "Tatsächlicher CI-Gegenlauf nach dem verworfenen 20fd-Lauf, keine Übernahme lokaler Resultate."
+  },
+  "renderer_inventory": {
+    "studio_pngs": 37,
+    "cards_raw_layout_sidecars": 3,
+    "shared_mobile_report": 1,
+    "shared_mobile_touch_targets": 15,
+    "planned_review_pngs_extracted": 32,
+    "early_studio_files_compared_to_final_bundle": 41,
+    "all_early_studio_bytes_identical": true,
+    "pngs_visually_opened_by_this_agent": [],
+    "limits": "Die 37 Studio-Bilder schließen technische Bewegungsszenen ein. Die 32 geplanten Receipt-Bilder sind davon getrennt als tatsächliche Produktionsszenen zugeordnet. Visuelle Freigaben führen Root und B separat durch."
+  },
+  "release": {
+    "id": 444845191,
+    "tag": "studio-evidence-803e7a626ea6ef0aeeda9c37010e844033d3a8e3-14085523056",
+    "asset_id": 745576028,
+    "asset_size": 199274727,
+    "asset_digest": "sha256:3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+    "public_url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-evidence-803e7a626ea6ef0aeeda9c37010e844033d3a8e3-14085523056/native-evidence.zip",
+    "digest_matches_original_artifact": true,
+    "public_zip_downloaded_again_by_this_agent": false
+  },
+  "other_commit_workflows": {
+    "observed_at_utc": "2026-11-13T23:40:54Z",
+    "api_total_count": 14,
+    "additional_workflows_count": 13,
+    "all_additional_completed_success": true,
+    "metadata_file": "all-head-workflows-original.json",
+    "summary_file": "other-workflows-summary.json",
+    "scope": "One read-only exact-head API query. These are GitHub status observations, not independent source/log/image reviews of those workflows. No workflow was started or repeated."
+  },
+  "host_read_only_validation": {
+    "status": "PASS",
+    "verifier_sha256": "d2d8cad7b1e1e41141b1df0c3f1cb026749580670aa48b2fa82becbd464fa8dd",
+    "same_after": true,
+    "calls": [
+      "verify_native_acceptance",
+      "verify_archive_sources",
+      "capture_module for all32 planned images"
+    ],
+    "record_inputs": "record-input-paths.json",
+    "recorder_invoked_by_this_agent": false
+  },
+  "github_source_files_read": [
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 19740,
+      "sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "bytes": 18235,
+      "sha256": "58bc8cf4ddec61355bdd349612d99360b6142a3c3969ce12366e14c91c7e7560"
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "bytes": 7230,
+      "sha256": "78d1cd6df60968c9d4d767b0c27c9b240df9968a817e703cec8d77294057b587"
+    },
+    {
+      "path": "tools/validate_studio_touch.sh",
+      "bytes": 3840,
+      "sha256": "4a517be7f757c16bd724c4fa9aa3b34b4e89cc873d32b4acc60f0c1f3408dc53"
+    }
+  ],
+  "limits": [
+    "Native Desktop-/Software-Rendererabnahme; keine Android- oder physische Fold7-Abnahme und kein Nachweis stabiler 60 FPS.",
+    "Die Cards- und gemeinsamen Safe-Area-Renderfälle verwenden ausdrücklich gekennzeichnete Android-Geometriefixtures. Der Java-Randvertrag ist ebenfalls keine reale Gerätemessung.",
+    "Keine Tests oder CI-Läufe wiederholt, keine Native-/Hostquellen, Pins, Receipts, Branches oder Releases durch diesen Prüfschritt verändert. Die Archivveröffentlichung stammt aus dem unveränderten CI-Workflow.",
+    "Die Original-ZIP bleibt genau einmal im QA-Bereich und liegt zusätzlich unverändert in der sourcegebundenen GitHub-Archivveröffentlichung. Sie wird nicht in das Dokumentenmanifest aufgenommen."
+  ]
+}

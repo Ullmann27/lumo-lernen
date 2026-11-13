@@ -1,0 +1,215 @@
+{
+  "schema": 1,
+  "status": "PARTIAL_VISUAL_REVIEW_AWAITING_FULL_NATIVE_BUNDLE",
+  "reviewed_at": "2026-11-13T23:19:47.891818+00:00",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "early_studio_artifact_id": 14084682972,
+  "early_studio_artifact_sha256": "a29ea9d83fcd5cb4f5561dd8cd82c9d56347e5faeb2c953f28bf8e628a3f3328",
+  "reviewer": "root",
+  "opened_images": 15,
+  "planned_images": 19,
+  "images": [
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "findings": "Hochformat: Zurück und Pause sind vollständig vom oberen Bildrand abgesetzt. Drei große Kartenfronten, Handseite 1/3 und Ziehen sind getrennt lesbar; Karte legen ist sichtbar deaktiviert. Räumlicher Tisch und Original-Lumo bleiben sichtbar. Desktopfixture mit Android-Randwerten, kein Android-JNI-Nachweis.",
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "bytes": 1272873,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/cards_safe_area_regression/android35_portrait-playing.png"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "findings": "Pausenzustand: Weiter oben rechts und Weiterspielen im mittigen Dialog sind vollständig sichtbar; der Dialog erklärt, dass der Zug wartet. Die Tisch-/Handdarstellung bleibt als Hintergrund erhalten. Das Standbild belegt die Anordnung, nicht die Ausführung eines Resume-Taps.",
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "bytes": 1141738,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/cards_safe_area_regression/android35_portrait-paused.png"
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "findings": "Querformat mit linkem Aussparungsrand: Zurück und Pause liegen eingerückt; alle sieben Kartenfronten und die untere Ziehen-Aktion sind sichtbar. Die Statuszeile nennt beide Handgrößen und den aktuellen Zug. Aufnahme aus der Cutout-Desktopfixture, keine Aufnahme eines physischen Telefons.",
+      "sha256": "53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86",
+      "bytes": 1002640,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png"
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "findings": "Original-Lumo steht auf der vorderen 3D-Insel; Folgeplattformen, Wolken und Bäume sind räumlich erkennbar. Linker Stick und rechter Sprungknopf sind getrennt und mit Abstand zu den Außenrändern sichtbar. Die Status- und Zieltexte bleiben lesbar. Die statische Aufnahme ersetzt keinen Bewegungs- oder FPS-Nachweis.",
+      "sha256": "bf713689f7c17c42e9c0ab8fdfaf2faf68dc801e1b5c5110ab7a74c14ff1e79b",
+      "bytes": 1858128,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/mobile_safe_area_regression/jump-landscape-cutout.png"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "findings": "3D-Bauinsel mit Burg, Fluss und platzierten Teilen ist sichtbar. Spiele, Pause und Mit Lumo laufen sind innerhalb des eingerückten Bereichs. Beide horizontalen Werkzeugleisten zeigen ihre Scrollleisten; weitere Optionen sind am rechten Rand teilweise angeschnitten und müssen gescrollt werden. Keine Behauptung, alle Katalogoptionen seien gleichzeitig sichtbar.",
+      "sha256": "a2e11ff77cb5126a89a8ca46fc3c216ed7e719b8987e247def257649c5047489",
+      "bytes": 2497923,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/mobile_safe_area_regression/build-landscape-cutout.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "findings": "Räumlicher Puzzletisch mit zentralem Menü. Bild-, Schwierigkeits-, Modus- und Startauswahl sind klar lesbar; die vertikale Scrollleiste ist sichtbar. Der untere Zur-Spielewelt-Eintrag ist zunächst nur teilweise sichtbar und gehört zum scrollbaren Dialog. Spiele- und Pauseflächen sind vom Aussparungsrand abgesetzt.",
+      "sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+      "bytes": 479283,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/mobile_safe_area_regression/puzzle-landscape-cutout.png"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "findings": "Burg, Weg, Pflanzen und begehbare 3D-Umgebung bleiben erkennbar. Stick, Springen und Ansehen sind getrennte sichtbare Flächen; Spiele, Rucksack und Pause liegen eingerückt. Der Entdeckungszähler bricht vor der 3 um, bleibt jedoch lesbar. Das große Hinweisfeld verdeckt einen Teil der Figur; die Aufnahme ist eine Layoutfixture, kein vollständiger Gameplaynachweis.",
+      "sha256": "bdda79f17b7500edf24dba2dc9453759fe87d3920e8c8eb3c23f4cb93318e9ee",
+      "bytes": 2815565,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/mobile_safe_area_regression/treasure-landscape-cutout.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "findings": "Die abgeschlossene Aufgabe 12:3 zeigt drei räumliche Teller mit jeweils vier gelben Würfeln und jeweils der Zahl 4. Die Erklärung stimmt mit 12 verteilten Objekten überein. Original-Lumo und Blender-Atelierobjekte sind sichtbar. Noch einmal und Zur Aufgabe sind erreichbar dargestellt; die Verteilaktion ist im Abschlusszustand deaktiviert.",
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "bytes": 249525,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/learning_sharing_capture/sharing-complete-1280x720.png"
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "findings": "Im schmalen Hochformat liegt nach der ersten Runde auf jedem der drei Teller genau ein Würfel; neun Würfel verbleiben im Vorrat. Die Texte 3/12 bewegt und Jede Gruppe hat jetzt 1 passen dazu. Verteil-, Wiederhol- und Rückkehraktion sind innerhalb des Bildes, die Erklärung ist ohne abgeschnittene Zeile lesbar.",
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "bytes": 111652,
+      "dimensions": [
+        412,
+        915
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/learning_sharing_capture/sharing-first-round-412x915.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "findings": "Das 960x540-Menü zeigt Mini, sechs Teile und Modus Drehpuzzle. Alle fünf Menüaktionen einschließlich Neues Puzzle beginnen und Zur Spielewelt sind vollständig sichtbar. Das zentrale Menü ist vom oberen Spiele-/Pausebereich und der unteren Werkzeugleiste getrennt; Hintergrundtexte werden durch das Menü überlagert.",
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "bytes": 151982,
+      "dimensions": [
+        960,
+        540
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "findings": "Nach dem Menüstarter ist die Dialogfläche geschlossen. Mini, Drehpuzzle und 0/6 sind sichtbar; der Hinweis beschreibt eine Vierteldrehung. Der Drehen-Knopf steht links in der vollständigen Werkzeugleiste, das zentrale Brett und die beiden Teileablagen sind räumlich erkennbar.",
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "bytes": 300994,
+      "dimensions": [
+        960,
+        540
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "findings": "Der klassische Modus zeigt 1/6, die Rückmeldung Das passt und ein tatsächlich auf dem mittleren Brett liegendes Bildteil. Der Drehen-Knopf fehlt passend zum klassischen Modus. Teile, Randteile, Bild ansehen, Tipp, Speichern und Neues Puzzle sind vollständig dargestellt.",
+      "sha256": "dc44ab4fc43f6aea55e4b3f23aea177c43c1a75bd68509465afc7e44bf14b3c6",
+      "bytes": 302160,
+      "dimensions": [
+        960,
+        540
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "findings": "Im 640x360-Menü sind Mini, sechs Teile, Drehpuzzle und Neues Puzzle beginnen vollständig lesbar. Die vertikale Scrollleiste ist klar sichtbar; Zur Spielewelt liegt zunächst teilweise unter der Scrollkante. Dies wird als scrollbarer kleiner Dialog dokumentiert, nicht als gleichzeitig vollständig sichtbare Menüliste.",
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "bytes": 72841,
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "findings": "Kleine Queransicht: Titel, 0/6, Drehpuzzle und Vierteldrehungs-Hinweis sind lesbar. Drehen und die ersten Werkzeugaktionen liegen vollständig in einer horizontal scrollbaren Leiste; die weiteren Aktionen sind über den sichtbaren Scrollbereich erreichbar. Spielbrett und Teileablagen bleiben im mittleren freien Bereich sichtbar.",
+      "sha256": "4c04fa21563efcb22242a9e3298439f746d7d466e8077aad16f38e7607ad6645",
+      "bytes": 109931,
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png"
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "findings": "Kleine klassische Ansicht: 1/6 und die Erfolgsrückmeldung passen zum sichtbaren platzierten Teil. Die Werkzeugleiste enthält keinen Drehen-Knopf; Speichern ist sichtbar, die äußerste folgende Aktion nur teilweise und über horizontales Scrollen erreichbar. Keine abgeschnittene Statuszeile.",
+      "sha256": "ae29d12159ed846e3e7072123dea9d66791db20d396790a4c50165fd899ea634",
+      "bytes": 109557,
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened": true,
+      "early_artifact_entry": "captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png"
+    }
+  ],
+  "binding_note": "The first local administrative comparison used the future full-bundle studio-evidence/ prefix and raised KeyError before writing a review. The child Studio ZIP has no such prefix. This completed comparison records each actual child entry explicitly and requires exact byte equality. No product test or evidence threshold changed.",
+  "limits": [
+    "Actual new desktop renderer images, not Android or physical Fold7 captures.",
+    "Four root images and final full-workflow/archive binding remain outstanding.",
+    "Scrollable content and the visible Treasure counter wrap are documented explicitly. No performance or AAA completion claim."
+  ]
+}

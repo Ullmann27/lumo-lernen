@@ -140,7 +140,7 @@ APPROVED = {
     # 2019: Studio source with caption/input repairs and verified menu lifecycle.
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
-    2019: "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+    2019: "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

@@ -1,0 +1,195 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-13T23:17:09.997152+00:00",
+  "status": "PARTIAL_STUDIO_IMAGES_VIEWED_TOTAL_BUNDLE_PENDING",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "native_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "workflow_run_id": 43524051371,
+  "studio_job_id": 132225271330,
+  "studio_job_conclusion_from_current_metadata": "success",
+  "studio_original": {
+    "artifact_id": 14084682972,
+    "path": "/workspace/scratch/5987865ae883/qa/studio-803e-original.zip",
+    "bytes": 48010581,
+    "sha256": "a29ea9d83fcd5cb4f5561dd8cd82c9d56347e5faeb2c953f28bf8e628a3f3328",
+    "crc_check": "PASS",
+    "source_stamps": {
+      "source-sha.txt": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3\n",
+      "source-tree.txt": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c\n",
+      "source-dirty.txt": ""
+    }
+  },
+  "review_plan": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/review-plan.json",
+    "sha256": "7cdc0715d8767c6d7ea3fa0648f9ca140efb724c98da9f423deaa1b2b9fbcfe6"
+  },
+  "expected_selected_images": 13,
+  "individually_viewed_images": 3,
+  "full_bundle_binding_complete": false,
+  "entries": [
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "studio_zip_member": "captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "bytes": 113792,
+      "sha256": "64cfd6c4bb10862a8cfb6499fe096282e273574a469dcdf2c80893b3aa43081a",
+      "width": 640,
+      "height": 360,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_studio_zip": true,
+      "byte_equal_original_combined_zip": null,
+      "visual_result": "NO_VISIBLE_BLOCKER_IN_SELECTED_IMAGE",
+      "findings": [
+        "Der Titel, die Zeile „Mini · Drehpuzzle · 1 / 6 Teile · 1 Tipps“ und die konkrete Hilfemeldung sind vollständig lesbar.",
+        "Die untere sichtbare Reihe mit Drehen, beiden Teile-Tasten, Randteile, Bild ansehen und Ein Tipp bleibt innerhalb des Bildes; Zurück und Pause sind getrennt am oberen Rand.",
+        "Der mittlere Ausschnitt zeigt die räumliche Ablage, Bildfragmente und das hervorgehobene Feld; die große Oberfläche reduziert den sichtbaren Tischbereich, verdeckt aber keine der gezeigten Hauptaktionen."
+      ],
+      "limits": [
+        "Eine statische 640×360-Aufnahme belegt weder Android-dp noch Eingabelatenz. Die hier nicht sichtbaren weiteren Toolbar-Aktionen werden durch dieses Einzelbild nicht beurteilt."
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "studio_zip_member": "captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_studio_zip": true,
+      "byte_equal_original_combined_zip": null,
+      "visual_result": "NO_VISIBLE_BLOCKER_IN_SELECTED_IMAGE",
+      "findings": [
+        "Ein einzelnes Bildteil liegt auf dem zentralen blauen Brett; die Anzeige meldet 1 / 6 Teile und „Das passt! Dein Bild wächst.“.",
+        "Die restlichen Bildfragmente liegen auf zwei seitlichen Ablagen. Dicke, Perspektive und Schatten der Teile und Ablagen sind sichtbar.",
+        "Die unteren Aktionen einschließlich Speichern und Neues Puzzle sind vollständig sichtbar. Drehen ist erkennbar deaktiviert; Titel, Status, Pause und Zurück überlagern die Hauptaktionen nicht."
+      ],
+      "limits": [
+        "Das Bild zeigt den erreichten Zustand, nicht den gesamten Touch-, Rotations- oder Speicherablauf. Die Aussagen zu diesen Abläufen stammen getrennt aus den aktuellen zugehörigen Protokollen."
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "reviewer": "character_animation",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/selected-originals/studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "studio_zip_member": "captures/treasure_exploration_regression/treasure_choose_route.png",
+      "bytes": 1365772,
+      "sha256": "9cf63708774f49aef5abc66ea216c8dafe2bf6e6daee047bcc562ff45c55b44d",
+      "width": 1280,
+      "height": 720,
+      "opened_individually_with_view_image": true,
+      "byte_equal_original_studio_zip": true,
+      "byte_equal_original_combined_zip": null,
+      "visual_result": "NO_VISIBLE_BLOCKER_IN_SELECTED_IMAGE",
+      "findings": [
+        "Die Fuchsfigur, räumliche Bäume, Blumen, Turm, Mauer und Schatten sind sichtbar. Figur und Bewegungsstick sind nicht vom Hinweisfenster verdeckt.",
+        "Der Hinweis zeigt 3 / 7 gelöste Hinweise und die Wahl zwischen Kristallwächter und Mondgarten; der Text erläutert, dass beide Funde für das Schloss benötigt werden.",
+        "Zurück, Rucksack, Pause, Springen und Ansehen liegen sichtbar getrennt innerhalb des Bildes. Die Fundmeldung „Brückenwappen“ ist lesbar.",
+        "Der Entdeckungszähler bricht vor der letzten 3 um, bleibt aber vollständig lesbar; darin liegt hier kein abgeschnittener Inhalt."
+      ],
+      "limits": [
+        "Dieses Bild belegt keine vollständige Reise, keine Wahl beider Wege und keine neue Gesicht-/Lippensynchronisierung. Aus der sichtbaren Figur wird keine zusätzliche Rig- oder Clip-Eigenschaft abgeleitet."
+      ]
+    }
+  ],
+  "current_related_original_logs": [
+    {
+      "studio_zip_member": "puzzle_rotation_regression-headless.log",
+      "bytes": 571,
+      "sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9",
+      "observed_markers": [
+        "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ]
+    },
+    {
+      "studio_zip_member": "puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "observed_markers": [
+        "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ]
+    },
+    {
+      "studio_zip_member": "treasure_exploration_regression-headless.log",
+      "bytes": 589,
+      "sha256": "02d20b766c253672fea75aa6cc8744460cb1134dd54beeb4d73fa6b743825b76",
+      "observed_markers": [
+        "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ]
+    },
+    {
+      "studio_zip_member": "treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "observed_markers": [
+        "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ]
+    }
+  ],
+  "pending_entries": [
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "reviewer": "character_animation"
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "reviewer": "character_animation"
+    }
+  ],
+  "limits": [
+    "Only these newly extracted803e images were used; no796b or20fd visual approval was transferred.",
+    "The complete13-image review remains open until the new full bundle exists and all selected bytes are matched to it.",
+    "Screenshots are renderer evidence. Gameplay checks are separately identified original logs; screenshots alone do not establish controls, save correctness or physics.",
+    "No physical Fold7 execution, Android safe-area runtime result,60FPS claim, final APK approval or overall Native receipt is issued by this partial visual review.",
+    "No source or receipt was changed."
+  ]
+}
