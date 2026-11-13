@@ -4,6 +4,7 @@ from __future__ import annotations
 import copy
 from functools import lru_cache
 import hashlib
+from io import BytesIO
 import json
 from pathlib import Path
 import sys
@@ -20,12 +21,36 @@ import verify_studio_delivery as delivery
 
 
 PROFILE = 'nextgen-2019'
+VILLAGE_CAPTURE = 'nextgen-evidence/nextgen/captures/build_village_scene_regression'
+VILLAGE_PNGS = {
+    'captures/build_village_scene_regression/village-overview-1280x720.png': (1280, 720),
+    'captures/build_village_scene_regression/village-chapters-412x915.png': (412, 915),
+    'captures/build_village_scene_regression/village-trader-2176x1812.png': (2176, 1812),
+    'captures/build_village_scene_regression/village-treasury-640x360.png': (640, 360),
+}
+VILLAGE_PROBES = frozenset({
+    ('build_village_economy_regression', 'headless'),
+    ('build_village_art_regression', 'headless'),
+    ('build_village_scene_regression', 'headless'),
+    ('build_village_scene_regression', 'rendered'),
+})
 
 
 @lru_cache(maxsize=128)
 def fixture_png(width, height, color):
     """Reuse deterministic synthetic PNG bytes, never production images."""
     return historical_tests.fixture_png(width, height, color)
+
+
+@lru_cache(maxsize=8)
+def village_fixture_png(width, height, color):
+    """Two-color parser input, never a production scene or visual finding."""
+    from PIL import Image
+    image = Image.new('RGB', (width, height), (color, 20, 30))
+    image.paste((20, color, 160), (width // 2, 0, width, height))
+    output = BytesIO()
+    image.save(output, format='PNG')
+    return output.getvalue()
 
 
 class Nextgen2019ReviewTests(unittest.TestCase):
@@ -60,6 +85,14 @@ class Nextgen2019ReviewTests(unittest.TestCase):
                            'sha256': hashlib.sha256(data).hexdigest(),
                            'width': dimensions[0], 'height': dimensions[1]})
         members[prefix + '/renderer-images.json'] = json.dumps({'images': roster}).encode()
+        village_roster = []
+        for index, (relative, dimensions) in enumerate(sorted(VILLAGE_PNGS.items())):
+            data = village_fixture_png(*dimensions, index + 180)
+            members[prefix + '/' + relative] = data
+            village_roster.append({'path': relative, 'bytes': len(data),
+                                   'sha256': hashlib.sha256(data).hexdigest(),
+                                   'width': dimensions[0], 'height': dimensions[1]})
+        members[prefix + '/village-images.json'] = json.dumps({'images': village_roster}).encode()
         color = 50
         for touch_prefix, probe in delivery.NEXTGEN_TOUCH_PROBES.items():
             members.update({
@@ -129,7 +162,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             'Synthetic unit-test reviewer', 'Synthetic parser test; never production approval',
             native_profile=PROFILE)
 
-    def test_exact_combined_archive_keeps_37_and_24_plus_all_independent_touch_evidence(self):
+    def test_exact_combined_archive_keeps_41_core_24_studio_4_village_and_all_touch_evidence(self):
         args = self.review_fixture()
         before = copy.deepcopy(args[:6]), args[6].read_bytes()
         facts = self.verify(args)
@@ -137,8 +170,12 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         self.assertEqual(facts['native_acceptance_jobs'], [
             'bundle-evidence', 'gameplay', 'learning-preview', 'new-worlds',
             'touch-build', 'touch-treasure', 'touch-workshop'])
-        self.assertEqual(facts['native_probe_count'], 37)
+        self.assertEqual(facts['native_probe_count'], 41)
         self.assertEqual(facts['native_studio_raster_count'], 24)
+        self.assertEqual(facts['native_village_raster_count'], 4)
+        self.assertEqual(facts['reviewed_village_capture_probes'], [VILLAGE_CAPTURE])
+        self.assertEqual(dict(delivery.NEXTGEN_VILLAGE_PNGS), VILLAGE_PNGS)
+        self.assertTrue(VILLAGE_PROBES.issubset(delivery.NEXTGEN_REQUIRED_PROBES))
         self.assertEqual(facts['native_capture_tree'], 'c' * 40)
         self.assertEqual(facts['native_capture_sources'], {
             'nextgen-evidence/nextgen': args[2], 'touch-evidence/workshop': args[2],
@@ -150,6 +187,82 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         self.assertEqual(facts['native_touch_raster_count'], 32)
         self.assertEqual(set(facts['reviewed_touch_capture_probes']), delivery.TOUCH_CAPTURE_PROBES)
         self.assertEqual((args[:6], args[6].read_bytes()), before)
+
+    def test_legacy_37_gate_results_cannot_satisfy_the_additional_village_contract(self):
+        args = self.review_fixture()
+        key = delivery.NEXTGEN_PREFIX + '/results.tsv'
+        with zipfile.ZipFile(args[6]) as zipped:
+            rows = zipped.read(key).decode().splitlines()
+        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in VILLAGE_PROBES]
+        self.assertEqual(len(rows), 38, 'The previously accepted 37-pair result is retained as a negative fixture')
+        self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
+        with self.assertRaisesRegex(ValueError, '41-probe'):
+            self.verify(args)
+
+    def test_existing_nine_modules_do_not_replace_the_additional_village_review(self):
+        args = self.review_fixture()
+        args[1]['images'] = [item for item in args[1]['images']
+                             if str(Path(item['artifact_entry']).parent) != VILLAGE_CAPTURE]
+        self.assertEqual({item['module'] for item in args[1]['images']}, delivery.REVIEW_MODULES)
+        with self.assertRaisesRegex(ValueError, 'current Village production capture'):
+            self.verify(args)
+        destination = self.base / 'missing-village-review'
+        with self.assertRaisesRegex(ValueError, 'current Village production capture'):
+            self.record(args, destination)
+        self.assertFalse(destination.exists(), 'Missing Village review must not publish any receipt or PNG')
+
+    def test_each_original_village_image_is_required_even_when_not_selected_for_review(self):
+        for relative in VILLAGE_PNGS:
+            args = self.review_fixture()
+            self.archive_change(args, {delivery.NEXTGEN_PREFIX + '/' + relative: None})
+            with self.subTest(image=relative), self.assertRaises(ValueError):
+                self.verify(args)
+
+    def test_village_roster_rejects_missing_duplicate_corrupt_uniform_and_wrong_sized_originals(self):
+        prefix = delivery.NEXTGEN_PREFIX
+        for mutation in ('missing-roster', 'short-roster', 'duplicate', 'renamed', 'digest',
+                         'bytes', 'metadata-size', 'pixel-size', 'truncated', 'uniform',
+                         'transparent', 'extra-png'):
+            args = self.review_fixture()
+            key = prefix + '/village-images.json'
+            with zipfile.ZipFile(args[6]) as zipped:
+                roster = json.loads(zipped.read(key))
+                item = roster['images'][0]
+                original = zipped.read(prefix + '/' + item['path'])
+            changes = {}
+            if mutation == 'missing-roster': changes[key] = None
+            if mutation == 'short-roster': roster['images'].pop()
+            if mutation == 'duplicate': roster['images'][-1] = copy.deepcopy(item)
+            if mutation == 'renamed': item['path'] = item['path'].replace('.png', '-invented.png')
+            if mutation == 'digest': item['sha256'] = '0' * 64
+            if mutation == 'bytes': item['bytes'] += 1
+            if mutation == 'metadata-size': item['width'] += 1
+            data = None
+            if mutation == 'pixel-size':
+                data = village_fixture_png(640, 360, 230)
+                item['width'], item['height'] = 640, 360
+            if mutation == 'truncated': data = original[:40]
+            if mutation == 'uniform': data = fixture_png(item['width'], item['height'], 230)
+            if mutation == 'transparent':
+                from PIL import Image
+                output = BytesIO()
+                Image.new('RGBA', (item['width'], item['height']), (200, 40, 90, 0)).save(output, format='PNG')
+                data = output.getvalue()
+            if data is not None:
+                changes[prefix + '/' + item['path']] = data
+                item['bytes'], item['sha256'] = len(data), hashlib.sha256(data).hexdigest()
+            if mutation == 'extra-png': changes[VILLAGE_CAPTURE + '/unrequested.png'] = original
+            if mutation != 'missing-roster': changes[key] = json.dumps(roster).encode()
+            self.archive_change(args, changes)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                self.verify(args)
+
+    def test_village_capture_does_not_extend_the_producer_studio_default(self):
+        entry = VILLAGE_CAPTURE + '/village-overview-1280x720.png'
+        with self.assertRaises(ValueError):
+            delivery.reviewed_relative_path('a' * 64, 'settlement', entry)
+        with self.assertRaises(ValueError):
+            delivery.reviewed_relative_path('a' * 64, 'build', entry, native_profile=PROFILE)
 
     def test_existing_module_review_never_replaces_any_repaired_touch_surface(self):
         for probe in sorted(delivery.TOUCH_CAPTURE_PROBES):
@@ -323,14 +436,19 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.verify(args)
 
-    def test_each_of_the_37_probe_modes_must_be_present_once_and_pass(self):
-        for mutation in ('old-32-probe-run', 'missing-treasure', 'duplicate', 'wrong-mode', 'failed'):
+    def test_each_of_the_41_probe_modes_must_be_present_once_and_pass(self):
+        for mutation in ('old-32-probe-run', 'missing-treasure', 'missing-village-headless',
+                         'missing-village-rendered', 'duplicate', 'wrong-mode', 'failed'):
             args = self.review_fixture()
             key = delivery.NEXTGEN_PREFIX + '/results.tsv'
             with zipfile.ZipFile(args[6]) as zipped:
                 rows = zipped.read(key).decode().splitlines()
             if mutation == 'old-32-probe-run': rows = rows[:33]
             if mutation == 'missing-treasure': rows.remove('treasure_exploration_regression\trendered\tPASS')
+            if mutation == 'missing-village-headless':
+                rows = [row for row in rows if row != 'build_village_scene_regression\theadless\tPASS']
+            if mutation == 'missing-village-rendered':
+                rows = [row for row in rows if row != 'build_village_scene_regression\trendered\tPASS']
             if mutation == 'duplicate': rows.append(rows[-1])
             if mutation == 'wrong-mode': rows[1] = rows[1].replace('\theadless\t', '\trendered\t')
             if mutation == 'failed': rows[1] = rows[1].replace('\tPASS', '\tFAIL')

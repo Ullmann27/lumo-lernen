@@ -1,0 +1,33 @@
+{
+  "base_local_commit": "3deae002a9930bfc7bef7afeaed6ba4861125ec1",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "started_at": "2026-11-13T17:19:55.228230+00:00",
+  "finished_at": "2026-11-13T17:21:57.204184+00:00",
+  "seconds": 121.976,
+  "exit_code": 0,
+  "source_files": 1705,
+  "changed_during_run": [],
+  "log_sha256": "a3613c9a4bd8608a21bfb1c128e45ae527b8b479133689173f259ee9fee500eb",
+  "last_lines": [
+    "test_1999_update_requires_identical_1997_identity_and_emulator (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_1999_update_requires_identical_1997_identity_and_emulator) ... ok",
+    "test_generic_name_is_identical_for_arm64_upload_and_release_download (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_generic_name_is_identical_for_arm64_upload_and_release_download) ... ok",
+    "test_original_1988_release_requires_old_branch_and_original_version (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_original_1988_release_requires_old_branch_and_original_version) ... ok",
+    "test_java_home_selects_the_configured_jdk_instead_of_a_jre_on_path (test_verify_android_apk.ApkSignatureTest.test_java_home_selects_the_configured_jdk_instead_of_a_jre_on_path) ... ok",
+    "test_tool_failure_cannot_pass_even_with_success_text (test_verify_android_apk.ApkSignatureTest.test_tool_failure_cannot_pass_even_with_success_text) ... ok",
+    "",
+    "----------------------------------------------------------------------",
+    "Ran 414 tests in 121.567s",
+    "",
+    "OK",
+    "",
+    "Android host prepared: example.studio.learning; stable signing; installer and 3D bridge connected"
+  ]
+}

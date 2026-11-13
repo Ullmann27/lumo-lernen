@@ -155,10 +155,11 @@ class KartGraphicsDeliveryTests(unittest.TestCase):
         self.assertEqual(facts['visualReview']['areas'], ['crystal_canyon', 'feedback', 'home', 'winter_sprint'])
         self.assertEqual(set(facts['nativeVisualReview']['modules']),
                          {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 'rhythm', 'puzzle', 'treasure'})
-        self.assertEqual(facts['nativeVisualReview']['native_probe_count'], 37)
+        self.assertEqual(facts['nativeVisualReview']['native_probe_count'], 41)
+        self.assertEqual(facts['nativeVisualReview']['native_village_raster_count'], 4)
 
-    def test_graphics_approval_does_not_cover_missing_puzzle_treasure_or_different_native_sha(self):
-        for mutation in ('puzzle', 'treasure', 'other-sha', 'missing-native-receipt', 'missing-native-zip'):
+    def test_graphics_approval_does_not_cover_missing_puzzle_treasure_village_or_different_native_sha(self):
+        for mutation in ('puzzle', 'treasure', 'village', 'other-sha', 'missing-native-receipt', 'missing-native-zip'):
             args = self.visual_fixture()
             path = args[0] / 'config/nextgen-2019-visual-review.json'
             receipt = json.loads(path.read_text())
@@ -168,6 +169,9 @@ class KartGraphicsDeliveryTests(unittest.TestCase):
                 (args[2] / 'native-nextgen/native-evidence.zip').unlink()
             else:
                 if mutation == 'other-sha': receipt['native_revision'] = '0' * 40
+                elif mutation == 'village':
+                    receipt['images'] = [item for item in receipt['images']
+                                         if str(Path(item['artifact_entry']).parent) != native_review_tests.VILLAGE_CAPTURE]
                 else: receipt['images'] = [item for item in receipt['images'] if item['module'] != mutation]
                 path.write_text(json.dumps(receipt))
             with self.subTest(mutation=mutation), self.assertRaises((ValueError, FileNotFoundError)):

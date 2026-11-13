@@ -1,68 +1,64 @@
 # Continue combined LUMO integration / candidate 2019
 
-This checkout is the integration branch `integration/lumo-connections-20261113`,
-host PR #465 paired with native PR #160. The producer-specific handoff below is
-preserved as upstream history; its branch, pin and publication instructions do
-not describe this combined checkout.
+This is the integration branch `integration/lumo-connections-20261113`, Host
+PR #465 paired with Native PR #160. Producer handoffs below remain history;
+their pins and publication instructions do not describe this combined source.
+The latest published Host review checkpoint before the Village contract is
+`9e285e17a8cbd54f73cf5a14ccdad07c0ad29199`, tree
+`a62c2186c5a5f4b9d89b172f67a0625d8736098c` (local 3deae002). The PR ref is
+kept separate until final Native identities and both receipts are ready.
 
-The combined host contains the published Studio touch contract, Cards Android
-edge-to-edge lifecycle connection and the independent final verification path.
-The complete existing Host gate passed 409 tests with no errors or skips after
-the exact folded-YAML test-parser repair. The newer current-goal archive adapter
-passes all 66 existing Studio/Nextgen/graphics contracts with no skips. Source
-identities and complete original logs are retained in the integration evidence.
-The earlier 55 Flutter tests remain supported by the unchanged whole lib/test/
-assets trees, both Pubspec files and twelve exact checked source files.
+The Host retains the Studio touch contract, Cards Android edge-to-edge
+lifecycle repair and independent final verification. Published e3d update
+wrapper execution tests are integrated with the existing separate exact-
+version 2018/2019 opt-ins. Their 37 preservation tests pass at the mocked
+Android boundary. Earlier 55 Flutter runtime tests still apply to unchanged
+lib/test/assets and Pubspec sources; they are not actual device IPC evidence.
 
-Published Studio Host `e3d161cb2f79b732ac2dbafc2764b151247f018b` adds useful
-execution tests for the actual 2019 update wrapper and both artifact identities.
-Those tests are integrated into the existing 2019 test module. The combined
-Host preserves its distinct exact-version 2018/2019 opt-ins and all existing
-data invariants. The 37 update-preservation tests pass with 168 scoped source
-files unchanged. These tests stop at the mocked Android boundary; they do not
-claim a live update. Original source identities, patch and full output are in
-`docs/evidence/integration-20261113/studio-e3d-update-wrapper/`.
+The new common contract has 41 Core pairs, the unchanged Studio24 roster,
+four separately bound Village images and unchanged Touch6/32. A genuine
+Village capture must also appear in the explicit original-image review;
+missing Village evidence blocks the final delivery verifier. Native Runner/
+Raster/archive contracts pass 13 tests; Host Studio/Nextgen/Graphics contracts
+pass 71. The complete existing Host test gate now passes 414 tests with no
+errors or skips, 1,705 scoped files unchanged. The earlier 409-test result on
+9e remains a distinct historical checkpoint. Original commands, source maps,
+full logs and limits are retained under docs/evidence/integration-20261113/
+village-nextgen-contract/ and host-contract-followups/.
 
-Native PR #160 now checks `74c246d0b0af01c5d2d5438400ddd9ff3a3b0fef`, tree
-`05f547fd58ccdc1002d98ff1031d4208b992b0ee`, integrating published Studio 76980
-with the existing Village and graphics work. Graphics 43458897683 succeeded.
-Nextgen 43458898046 finished with Gameplay failed after the old Kart probe
-printed PASS before eight resources remained at exit. All other required jobs
-succeeded, but the original bundle is partial evidence and its archive is
-correctly skipped. The real Host verifier rejects that failed overall run.
-The next native repair requires actual scene/audio lifetime completion in the
-main Kart probe and twelve audited consumers before their final PASS.
+Native `4f3449253fd59023a2544432a178eb9efcafe4f9`, tree
+`189b7a66c731067559469e2503e3a190b337031d`, completed all 15 workflows.
+Nextgen 43466004918 accepts the full previous 37/24 + Touch6/32 contract with
+the frozen Host9e verifier. Graphics 43466005184 also succeeds. The original
+Gameplay job confirms actual scene/audio release before PASS for all thirteen
+repaired consumers. Root viewed twelve original module/Touch images from the
+complete 4f bundle, including corrected equality and both current-goal layouts,
+and all five required current Graphics selections. These source-bound views
+are not receipts for the subsequent Loop/Village integration.
 
-The predecessor 703 completed all 15 workflows: 37 Core PASS pairs / 24 Studio
-PNGs plus 6 Touch PASS pairs / 28 Touch PNGs, all three graphics jobs and original
-ZIP archiving. Its graphics receipt records five original images actually
-inspected on that exact source. It cannot approve 74c. Root also observed the
-old upper extruded equals sign as one unresolved bright bar; the published
-learning fix therefore requires a fresh actual image review. No complete
-native visual receipt was created for 703.
+The next isolated Native source merges published PR161 Loop effects and PR162
+living-village economy/art/scene code. Root repaired actual village scrolling
+and open-dialog resize defects. The identical touch-capable probe fails on the
+published product and passes all 223 checks on the repair, retaining its old
+19 statements. Classic SettlementPlay127 and exact previous BuildPlay62 stay
+green; no existing handwriting trainer or journal is replaced. The four new
+Village renderer images must still be produced and reviewed on this next SHA.
+Matching Host PR467 contains no missing runtime delta; its differing provisional
+pins and producer-only push route are not imported.
 
-Root has now actually viewed the corrected equality, the short and portrait
-current-goal dialogs, and the five required Graphics selections from the new
-74c originals. These limited findings remain bound to 74c and do not approve
-its failed Gameplay run or the subsequent teardown repair.
+Three Host identity files retain their provisional Native source until the
+final exact Native/Graphics acceptance and both current image reviews. Set
+config/godot-source.json, APPROVED[2019] and the candidate2019 test constant
+atomically to that accepted combined SHA, retaining every historical pin and
+2018 receipt. Publish the exact Host tree to its own PR using an expected-SHA
+lease and observe actual Android compile, API35/API37, APK/PCK/signing identity
+and the 2017-to-2019 in-place update. Tests and original renderer evidence do
+not replace those separate device gates.
 
-The current combined contract adds four actual current-goal Build images and
-requires 32 Touch PNGs, including 12 Build PNGs. The wider HUD-start guard replaces
-the older toolbar STOP after a reproduced three-format interaction. The final
-unmodified headless BuildPlay 62 / BuildDialog 2016 and LearningStudio 183 results
-are documented, and the actual native renderer remains mandatory.
-
-The three Host identity files deliberately retain their provisional source
-until the final exact native/graphics acceptance and both current image reviews.
-Set config/godot-source.json, APPROVED[2019] and the candidate 2019 test constant
-atomically to the accepted combined source; preserve every historical pin and
-2018 receipt. Then publish the exact Host tree to its own PR with an expected-
-SHA ref lease and observe actual Android compile, API 35 / API 37 and update gates.
-
-The integration workflow verifies the final candidate independently. Its
-publisher remains restricted to the separate producer graphics branch. Preserve
-main, the live 2018 release and every concurrent producer worktree. There is no
-scheduled task or claim of unattended execution after this session.
+The final verifier is independent. APK publication stays restricted to the
+separate producer branch. Main, the live 2018 release PR #461 and concurrent
+producer worktrees stay protected. There is no scheduled task or unattended
+execution claim after this active session.
 
 ## Published graphics producer handoff
 

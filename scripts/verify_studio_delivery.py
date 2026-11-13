@@ -67,11 +67,13 @@ CAPTURE_MODULES = {
 # These are two concrete producer layouts, never caller-supplied acceptance
 # rules. The Studio default follows the published producer contract.
 NEXTGEN_PREFIX = 'nextgen-evidence/nextgen'
+NEXTGEN_VILLAGE_CAPTURE = NEXTGEN_PREFIX + '/captures/build_village_scene_regression'
 NEXTGEN_CAPTURE_MODULES = MappingProxyType({
     **{NEXTGEN_PREFIX + '/captures/' + probe: module for probe, module in (
         ('learning_world_capture', 'learning'), ('learning_sharing_capture', 'learning'),
         ('jump_nextgen_capture', 'jump'), ('build_nextgen_play_regression', 'build'),
         ('build_settlement_play_regression', 'settlement'),
+        ('build_village_scene_regression', 'settlement'),
         ('kart_nextgen_garage_regression', 'garage'), ('cards_table_capture', 'cards'),
         ('rhythm_tour_play_regression', 'rhythm'), ('puzzle_rotation_regression', 'puzzle'),
         ('treasure_exploration_regression', 'treasure'),
@@ -87,6 +89,8 @@ NEXTGEN_REQUIRED_PROBES = frozenset(
         'lumo_original_jump_visual_regression', 'bauwelt_identity_2013_regression',
         'build_frontier_regression', 'build_transform_regression', 'build_nextgen_play_regression',
         'build_settlement_regression', 'build_settlement_play_regression',
+        'build_village_economy_regression', 'build_village_art_regression',
+        'build_village_scene_regression',
         'creative_nextgen_environment_regression', 'kart_nextgen_garage_regression',
         'kart_track_pass_regression', 'cards_table_regression', 'rhythm_tour_regression',
         'rhythm_tour_play_regression',
@@ -96,6 +100,7 @@ NEXTGEN_REQUIRED_PROBES = frozenset(
         'learning_world_capture', 'learning_sharing_capture', 'lumo_studio_motion_capture',
         'puzzle_rotation_regression', 'treasure_exploration_regression', 'jump_nextgen_capture',
         'build_nextgen_play_regression', 'build_settlement_play_regression',
+        'build_village_scene_regression',
         'creative_nextgen_environment_regression', 'kart_nextgen_garage_regression',
         'cards_table_capture', 'rhythm_tour_play_regression', 'kart_player_full_route_regression',
     )
@@ -117,9 +122,18 @@ NEXTGEN_STUDIO_PNGS = frozenset(
     for view in ('choose_route', 'garden_first', 'route_complete')
 )
 
+# Village is a separately inspected production scene within the settlement
+# module family. Its four original captures supplement the unchanged Studio set.
+NEXTGEN_VILLAGE_PNGS = MappingProxyType({
+    'captures/build_village_scene_regression/village-overview-1280x720.png': (1280, 720),
+    'captures/build_village_scene_regression/village-chapters-412x915.png': (412, 915),
+    'captures/build_village_scene_regression/village-trader-2176x1812.png': (2176, 1812),
+    'captures/build_village_scene_regression/village-treasury-640x360.png': (640, 360),
+})
+
 # The independent density captures were published in native 24fb8580. Their
 # paths and physical dimensions come from the three production input probes;
-# they supplement, and never replace, the fixed 37-probe/24-raster core above.
+# they supplement, and never replace, the fixed core and its 24 Studio rasters.
 NEXTGEN_TOUCH_PROBES = MappingProxyType({
     'touch-evidence/workshop': 'kart_workshop_density_regression',
     'touch-evidence/treasure': 'treasure_density_regression',
@@ -301,7 +315,7 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
             'Every original Nextgen probe must report PASS')
     observed = [(row[0], row[1]) for row in rows[1:]]
     require(len(observed) == len(set(observed)) and set(observed) == NEXTGEN_REQUIRED_PROBES,
-            'The complete original 37-probe Nextgen result is required')
+            'The complete original 41-probe Nextgen result is required')
     images = roster.get('images') if isinstance(roster, dict) else None
     require(isinstance(images, list) and len(images) == len(NEXTGEN_STUDIO_PNGS),
             'The complete original 24-PNG Studio roster is required')
@@ -322,7 +336,54 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
                 'Original Studio raster dimensions differ')
     require(seen == NEXTGEN_STUDIO_PNGS, 'The complete original 24-PNG Studio roster is required')
     return {'native_capture_tree': tree, 'native_probe_count': len(observed),
-            'native_studio_raster_count': len(seen), **verify_nextgen_touch_archive(zipped, tree)}
+            'native_studio_raster_count': len(seen), **verify_nextgen_village_archive(zipped),
+            **verify_nextgen_touch_archive(zipped, tree)}
+
+
+def verify_nextgen_village_archive(zipped: zipfile.ZipFile) -> dict:
+    """Require the complete original Village set, including its visible pixels."""
+    try:
+        roster = json.loads(archive_member(zipped, NEXTGEN_PREFIX + '/village-images.json'))
+    except (UnicodeDecodeError, json.JSONDecodeError) as error:
+        raise ValueError('Invalid original Village raster metadata') from error
+    images = roster.get('images') if isinstance(roster, dict) else None
+    require(isinstance(images, list) and len(images) == len(NEXTGEN_VILLAGE_PNGS),
+            'The complete original four-PNG Village roster is required')
+    originals = [item.filename for item in zipped.infolist()
+                 if item.filename.startswith(NEXTGEN_VILLAGE_CAPTURE + '/') and
+                 PurePosixPath(item.filename).suffix.lower() == '.png']
+    require(len(originals) == len(set(originals)) and
+            set(originals) == {NEXTGEN_PREFIX + '/' + path for path in NEXTGEN_VILLAGE_PNGS},
+            'The complete original four-PNG Village capture directory is required')
+    seen = set()
+    from PIL import Image
+    for item in images:
+        require(isinstance(item, dict), 'Invalid original Village raster entry')
+        relative = item.get('path')
+        require(isinstance(relative, str) and relative in NEXTGEN_VILLAGE_PNGS and relative not in seen,
+                'Missing, duplicate or unexpected original Village raster path')
+        seen.add(relative)
+        data = archive_member(zipped, NEXTGEN_PREFIX + '/' + relative)
+        require(type(item.get('bytes')) is int and len(data) == item['bytes'] and
+                hashlib.sha256(data).hexdigest() == item.get('sha256'),
+                'Original Village raster digest or byte count differs')
+        expected = NEXTGEN_VILLAGE_PNGS[relative]
+        require(data[16:24] == struct.pack('>II', *expected),
+                'Original Village raster dimensions differ from the production probe')
+        dimensions = png_dimensions(data)
+        require(all(type(item.get(key)) is int for key in ('width', 'height')) and
+                dimensions == [item['width'], item['height']] == list(expected),
+                'Original Village raster dimensions differ from the production probe')
+        with Image.open(BytesIO(data)) as image:
+            image.load()
+            visible = Image.alpha_composite(
+                Image.new('RGBA', image.size, (0, 0, 0, 255)),
+                image.convert('RGBA')).convert('RGB')
+            require(any(low != high for low, high in visible.getextrema()),
+                    'Original Village PNG is empty or a uniform color')
+    require(seen == set(NEXTGEN_VILLAGE_PNGS),
+            'The complete original four-PNG Village roster is required')
+    return {'native_village_raster_count': len(seen)}
 
 
 def verify_nextgen_touch_archive(zipped: zipfile.ZipFile, tree: str) -> dict:
@@ -435,6 +496,10 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
     require(modules == REVIEW_MODULES, 'Visual review must cover all nine changed production scenes')
     require(TOUCH_CAPTURE_PROBES.issubset(capture_probes),
             'Visual review must include the current workshop, treasure and build touch captures')
+    if native_profile == 'nextgen-2019':
+        require(NEXTGEN_VILLAGE_CAPTURE in capture_probes,
+                'Visual review must include the current Village production capture')
+        additional['reviewed_village_capture_probes'] = [NEXTGEN_VILLAGE_CAPTURE]
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,

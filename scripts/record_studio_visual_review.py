@@ -5,9 +5,10 @@ Selection entries contain module, artifact_entry and the reviewer's findings
 for PNGs they actually inspected. This command does not inspect the art. Every
 review is bound to the selected fixed native workflow and its clean capture
 sources. Studio requires eight jobs and five sources. Nextgen requires its
-37-pass/24-raster core plus three independent touch sources, six passing touch
-probes and 32 original touch rasters. Both profiles require an inspected current
-renderer image from each repaired touch surface. Original images retain their
+41-pass/24-raster core, four original Village rasters and an explicit Village
+review, plus three independent touch sources, six passing touch probes and
+32 original touch rasters. Both profiles require an inspected current renderer
+image from each repaired touch surface. Original images retain their
 full content hash without replacing older bytes. Recording never publishes an APK.
 """
 from __future__ import annotations
