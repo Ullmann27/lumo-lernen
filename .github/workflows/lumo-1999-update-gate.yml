@@ -16,6 +16,15 @@ concurrency:
   cancel-in-progress: false
 jobs:
   update-and-tour:
+    # These fixed APK artifacts belong to 1999. Newer candidates have their
+    # own update workflows and must not validate them against a newer pubspec.
+    if: >-
+      github.repository == 'Ullmann27/lumo-lernen' &&
+      ((github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.full_name == github.repository &&
+      github.event.pull_request.head.ref == 'repair/lumo-1999-update-learning-hub-20261026') ||
+      (github.event_name == 'workflow_dispatch' &&
+      github.ref_name == 'repair/lumo-1999-update-learning-hub-20261026'))
     runs-on: ubuntu-latest
     timeout-minutes: 50
     steps:

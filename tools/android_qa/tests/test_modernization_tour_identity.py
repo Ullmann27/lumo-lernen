@@ -217,7 +217,13 @@ class TourSpatialMenuTests(unittest.TestCase):
 
     def test_mode_garage_and_driver_use_observed_labels_and_return_coordinates(self):
         with tempfile.TemporaryDirectory() as folder, \
+                patch.object(TOUR_MODULE, '_stage_cup_text',
+                             return_value={'caption': 'Pokal', 'readiness': 'cup-observed.json'}) as cup, \
                 patch.object(TOUR_MODULE.probe, 'native_text') as reader, \
+                patch.object(TOUR_MODULE, '_select_stage_kart',
+                             side_effect=lambda _out, kart: {'kart': kart}) as select, \
+                patch.object(TOUR_MODULE, '_select_stage_driver',
+                             return_value={'driver': 'fox'}) as driver, \
                 patch.object(TOUR_MODULE, '_screencap', return_value=b'synthetic reader frame'), \
                 patch.object(TOUR_MODULE, '_read_garage_footer', return_value=(137, 241)), \
                 patch.object(TOUR_MODULE.base, 'adb') as adb, \
@@ -226,9 +232,7 @@ class TourSpatialMenuTests(unittest.TestCase):
         touches = [(call.args[1], call.kwargs.get('tap', False))
                    for call in reader.call_args_list]
         self.assertEqual(touches, [
-            ('Grand Prix', True), ('Garage', True), ('Karts', False),
-            ('Grand Prix', False), ('Fahrer', True), ('Karts', False),
-            ('Grand Prix', False),
+            ('Garage', True), ('Karts', False), ('Fahrer', True), ('Karts', False),
         ])
         self.assertTrue(all(call.kwargs['exact'] for call in reader.call_args_list))
         self.assertEqual([call.args for call in adb.call_args_list], [
@@ -238,10 +242,23 @@ class TourSpatialMenuTests(unittest.TestCase):
         self.assertEqual([section['section'] for section in report['sections']],
                          ['garage', 'driver'])
         self.assertEqual(report['selected_mode'], 'cup')
+        self.assertEqual([call.args[1] for call in select.call_args_list], ['comet', 'gecko_velo'])
+        driver.assert_called_once_with(Path(folder))
+        self.assertEqual(report['selection_touches'][-1], {'driver': 'fox'})
+        self.assertEqual(report['expected_kart'], 'gecko_velo')
+        self.assertEqual(report['mode_caption'], 'Pokal')
+        self.assertEqual(report['mode_touch_evidence'], 'cup-observed.json')
+        self.assertEqual([section['landing_caption'] for section in report['sections']], ['Pokal', 'Pokal'])
+        self.assertEqual([(call.args[1], call.kwargs.get('tap', False)) for call in cup.call_args_list], [
+            ('21_stage_mode_cup', True), ('21_stage_garage-landing-restored', False),
+            ('21_stage_driver-landing-restored', False),
+        ])
 
     def test_missing_section_or_return_does_not_fall_back_to_unverified_touches(self):
         with tempfile.TemporaryDirectory() as folder, \
+                patch.object(TOUR_MODULE, '_stage_cup_text', return_value={'caption': 'Grand Prix'}), \
                 patch.object(TOUR_MODULE.probe, 'native_text'), \
+                patch.object(TOUR_MODULE, '_select_stage_kart', return_value={}), \
                 patch.object(TOUR_MODULE, '_screencap', return_value=b'synthetic reader frame'), \
                 patch.object(TOUR_MODULE, '_read_garage_footer', return_value=None), \
                 patch.object(TOUR_MODULE.base, 'adb') as adb, \
@@ -256,6 +273,7 @@ class TourSpatialMenuTests(unittest.TestCase):
                 raise RuntimeError('Current native screenshot lacks Karts')
 
         with tempfile.TemporaryDirectory() as folder, \
+                patch.object(TOUR_MODULE, '_stage_cup_text', return_value={'caption': 'Grand Prix'}), \
                 patch.object(TOUR_MODULE.probe, 'native_text', side_effect=missing_section), \
                 patch.object(TOUR_MODULE.base, 'adb') as adb:
             with self.assertRaisesRegex(RuntimeError, 'lacks Karts'):
@@ -264,10 +282,14 @@ class TourSpatialMenuTests(unittest.TestCase):
 
     def test_2017_start_keeps_the_real_race_gates_and_records_native_navigation(self):
         navigation = {'status': 'PASS', 'selected_mode': 'cup',
+                      'expected_kart': 'gecko_velo',
                       'sections': [{'section': 'garage'}, {'section': 'driver'}]}
+        confirmed = {'result_id': 'new-race', 'selected_kart': 'gecko_velo'}
         with tempfile.TemporaryDirectory() as folder, \
                 patch.dict(os.environ, {'LUMO_NATIVE_STAGE_MENU': '1'}), \
                 patch.object(TOUR_MODULE, '_inspect_spatial_kart_menu', return_value=navigation) as inspect, \
+                patch.object(TOUR_MODULE, '_previous_kart_race_id', return_value='old-race'), \
+                patch.object(TOUR_MODULE, '_confirm_stage_selection', return_value=confirmed) as confirm, \
                 patch.object(TOUR_MODULE, 'godot_alive', return_value=True), \
                 patch.object(TOUR_MODULE, '_screencap', return_value=b'synthetic reader frame'), \
                 patch.object(TOUR_MODULE, '_read_garage_footer', return_value=(20, 30)), \
@@ -278,10 +300,12 @@ class TourSpatialMenuTests(unittest.TestCase):
                 patch.object(TOUR_MODULE.evidence, 'rendered_race_frame', return_value={}) as rendered:
             report = TOUR_MODULE._start_actual_embedded_race(Path(folder))
             inspect.assert_called_once_with(Path(folder))
+            confirm.assert_called_once_with(Path(folder), 'cup', 'sonnenhafen', 'gecko_velo', 'old-race')
             changed.assert_called_once()
             rendered.assert_called_once()
         self.assertEqual(report['expected_mode'], 'cup')
         self.assertEqual(report['spatial_menu_navigation'], navigation)
+        self.assertEqual(report['confirmed_selection'], confirmed)
 
 
 if __name__ == '__main__':

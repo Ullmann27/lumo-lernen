@@ -150,12 +150,17 @@ class NextgenWorkflowContractTests(unittest.TestCase):
 
     def test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches(self):
         guard = LEGACY.read_text().split('  verify-and-build:\n', 1)[1]
-        expression = guard.split('    if: ', 1)[1].splitlines()[0]
+        expression = guard.split('    if: >-\n', 1)[1].split('    runs-on:', 1)[0]
+        expression = expression.replace('\n', ' ').strip()
         for head, ref, expected in (
             ('chatgpt/lumo-nextgen-20261113', '461/merge', False),
             ('', 'chatgpt/lumo-nextgen-20261113', False),
             ('chatgpt/lumo-2018-android-acceptance-20261113', '462/merge', False),
             ('', 'chatgpt/lumo-2018-android-acceptance-20261113', False),
+            ('chatgpt/lumo-kart-graphics-apk-20261113', '464/merge', False),
+            ('', 'chatgpt/lumo-kart-graphics-apk-20261113', False),
+            ('integration/lumo-connections-20261113', '465/merge', False),
+            ('', 'integration/lumo-connections-20261113', False),
             ('chatgpt/lumo-spielewelt-stage-20261112', '459/merge', True),
             ('', 'chatgpt/lumo-spielewelt-stage-20261112', True),
             ('another-review-branch', '462/merge', True),

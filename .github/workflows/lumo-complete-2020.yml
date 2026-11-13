@@ -1,0 +1,264 @@
+name: LUMO NextGen 2020 complete candidate, APK and Android proof
+# Source-locked unpublished Build 2020. Never merges to main or creates a Release.
+on:
+  push:
+    branches: [chatgpt/lumo-complete-app-20261113]
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+concurrency:
+  group: lumo-nextgen2020-${{ github.ref }}
+  cancel-in-progress: true
+env:
+  CI: 'true'
+  FLUTTER_SUPPRESS_ANALYTICS: 'true'
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Locked dependencies and analysis
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          flutter analyze --no-fatal-infos --no-fatal-warnings
+      - name: Verify exact 2020 native pin and historical-release protections
+        run: |
+          set -euo pipefail
+          python3 scripts/verify_legacy_release_pin.py
+          python3 -m unittest scripts.tests.test_candidate_2011_pin -v
+          python3 -m venv .qa-venv
+          .qa-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
+          PYTHONPATH=tools/android_qa .qa-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+      - name: Complete Flutter test suite
+        run: flutter test --no-pub --reporter=expanded --timeout=60s --concurrency=2
+      - name: Real render captures of the reworked screens
+        run: |
+          set -euo pipefail
+          LUMO_CAPTURE_DIR="$PWD/captures" flutter test --no-pub \
+            test/design/lumo_modernization_capture_test.dart
+          ls captures | wc -l
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen2020-flutter-captures
+          path: captures/
+          if-no-files-found: error
+          retention-days: 30
+  apk:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 75
+    env:
+      LUMO_SPLIT_PER_ABI: '1'
+      LUMO_NDK_DISPOSABLE_RUNNER: '1'
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Record exact sources
+        run: |
+          set -euo pipefail
+          mkdir -p release-proof
+          git rev-parse HEAD | tee release-proof/FLUTTER-SOURCE.txt
+          cp config/godot-source.json release-proof/GODOT-SOURCE.json
+          grep '^version:' pubspec.yaml | tee release-proof/APP-VERSION.txt
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Flutter and Android toolchain
+        run: |
+          set -euo pipefail
+          flutter pub get --enforce-lockfile
+          bash scripts/install_ndk_for_build.sh release-proof/ndk
+      - name: Exact Godot engine
+        run: bash scripts/install_godot_for_build.sh
+      - name: Build signed unified Flutter and Godot APKs
+        run: |
+          set -euo pipefail
+          bash scripts/build_unified_apk.sh
+          for apk in dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk; do
+            test -s "$apk"
+          done
+          python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > release-proof/VERIFICATION-arm64.json
+          python3 scripts/verify_unified_apk.py dist/x86_64/Lumo-Lernen-Neu.apk --abi x86_64 > release-proof/VERIFICATION-x86_64.json
+          sha256sum dist/Lumo-Lernen-Neu.apk dist/x86_64/Lumo-Lernen-Neu.apk | tee release-proof/SHA256SUMS.txt
+          cp dist/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE.json
+          cp dist/x86_64/BUILD-PROVENANCE.json release-proof/BUILD-PROVENANCE-x86_64.json
+      - uses: actions/upload-artifact@v4
+        with:
+          name: lumo-nextgen2020-android-apk
+          path: |
+            dist/Lumo-Lernen-Neu.apk
+            dist/x86_64/Lumo-Lernen-Neu.apk
+            release-proof/
+          if-no-files-found: error
+          retention-days: 30
+          compression-level: 0
+  android-tour:
+    needs: apk
+    name: Actual Android API ${{ matrix.api }} tour
+    strategy:
+      fail-fast: false
+      matrix:
+        api: [35, 37]
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen2020-android-apk
+          path: candidate/
+      - name: Live UI reader
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          mkdir -p tour
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          python3 -m py_compile .github/probes/modernization_android_tour.py
+          sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software display
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Install and tour the exact APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: ${{ matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: ${{ matrix.api == 35 && '14472402' || '' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '3072M' }}
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen2020-android-${{ matrix.api }}-tour
+          path: tour/
+          retention-days: 30
+
+  update-2017-to-2020:
+    name: Real in-place Android 2017 to 2020 learning preservation
+    needs: apk
+    runs-on: ubuntu-latest
+    timeout-minutes: 65
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-nextgen2020-android-apk
+          path: candidate/
+      - uses: actions/download-artifact@v4
+        with:
+          artifact-ids: '13948686178'
+          run-id: 43220602252
+          github-token: ${{ github.token }}
+          merge-multiple: true
+          path: baseline/dist/
+      - name: Prepare exact source and Android upgrade tools
+        run: |
+          set -euo pipefail
+          mkdir -p upgrade-tour
+          test -s baseline/dist/x86_64/Lumo-Lernen-Neu.apk
+          test -s candidate/dist/x86_64/Lumo-Lernen-Neu.apk
+          python3 scripts/verify_legacy_release_pin.py
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m py_compile .github/probes/lumo_2020_update_android_probe.py
+          sha256sum baseline/dist/x86_64/Lumo-Lernen-Neu.apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk > upgrade-tour/apk-sha256.txt
+      - name: Enable isolated Android emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Software renderer
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > upgrade-tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > upgrade-tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string' upgrade-tour/mesa-renderer.txt
+      - name: Install existing 2017 then upgrade using the signed 2020 APK
+        uses: reactivecircus/android-emulator-runner@v2
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+          LUMO_CANDIDATE_SOURCE_SHA: ${{ github.sha }}
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python .github/probes/lumo_2020_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out upgrade-tour
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-nextgen2020-update-proof
+          path: upgrade-tour/
+          retention-days: 30

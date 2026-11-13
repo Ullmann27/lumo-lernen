@@ -277,8 +277,9 @@ class NextgenDeliveryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             args = self.review_fixture(Path(directory))
             result = delivery.verify_visual_review(*args)
-            self.assertEqual(result['images'], 7)
-            self.assertEqual(set(result['modules']), delivery.REVIEW_MODULES)
+            self.assertEqual(result['images'], 8)
+            self.assertEqual(set(result['modules']),
+                             {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 'rhythm', 'puzzle'})
             path = args[0] / args[1]['images'][0]['path']
             path.write_bytes(path.read_bytes() + b'changed')
             with self.assertRaisesRegex(ValueError, 'bytes changed'):
@@ -288,7 +289,8 @@ class NextgenDeliveryTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             original = self.review_fixture(Path(directory))
             for mutation in ('pending', 'old-native', 'artifact-source', 'artifact-digest', 'expired',
-                             'run-failed', 'missing-full-gate', 'missing-module', 'outside-path', 'bad-dimensions'):
+                             'run-failed', 'missing-full-gate', 'missing-module', 'missing-puzzle',
+                             'outside-path', 'bad-dimensions'):
                 args = copy.deepcopy(original)
                 _, receipt, _, artifact, run, jobs = args
                 if mutation == 'pending': receipt['status'] = 'pending'
@@ -299,6 +301,9 @@ class NextgenDeliveryTests(unittest.TestCase):
                 if mutation == 'run-failed': run['conclusion'] = 'failure'
                 if mutation == 'missing-full-gate': jobs['jobs'].pop()
                 if mutation == 'missing-module': receipt['images'].pop()
+                if mutation == 'missing-puzzle':
+                    receipt['images'] = [item for item in receipt['images'] if item['module'] != 'puzzle']
+                    self.assertEqual(len(receipt['images']), 7)
                 if mutation == 'outside-path': receipt['images'][0]['path'] = '../outside.png'
                 if mutation == 'bad-dimensions': receipt['images'][0]['dimensions'] = [1, 1]
                 with self.subTest(mutation=mutation), self.assertRaises(ValueError):
@@ -315,7 +320,9 @@ class NextgenDeliveryTests(unittest.TestCase):
                 zipped.writestr('nextgen-evidence/nextgen/source-sha.txt', native + '\n')
                 zipped.writestr('nextgen-evidence/nextgen/source-dirty.txt', '')
                 for item in receipt['images']:
-                    entry = 'nextgen-evidence/nextgen/captures/' + item['module'] + '/actual.png'
+                    entry = ('nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_table.png'
+                             if item['module'] == 'puzzle' else
+                             'nextgen-evidence/nextgen/captures/' + item['module'] + '/actual.png')
                     zipped.writestr(entry, (fixture_root / item['path']).read_bytes())
                     selection.append({'module': item['module'], 'artifact_entry': entry,
                                       'findings': 'Synthetic unit-test fixture only'})
@@ -323,7 +330,11 @@ class NextgenDeliveryTests(unittest.TestCase):
             root = base / 'recorded'
             output = record_review(root, archive, artifact, run, jobs, selection,
                                    'Synthetic unit-test reviewer', 'Synthetic fixture, not visual approval')
-            self.assertEqual(len(output['images']), 7)
+            self.assertEqual(len(output['images']), 8)
+            puzzle = next(item for item in output['images'] if item['module'] == 'puzzle')
+            self.assertEqual(puzzle['artifact_entry'],
+                             'nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_table.png')
+            self.assertTrue(puzzle['path'].endswith('-puzzle_rotation_table.png'))
             self.assertTrue((root / 'config/nextgen-2018-visual-review.json').is_file())
             for item in output['images']:
                 self.assertEqual(hashlib.sha256((root / item['path']).read_bytes()).hexdigest(), item['sha256'])

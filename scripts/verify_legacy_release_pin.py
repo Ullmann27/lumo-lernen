@@ -141,6 +141,9 @@ APPROVED = {
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
     2019: "76980a941fa05d047574d8cc386d3249d93ffca3",
+    # LUMO combined NextGen 2020 source identity. Graphics/Studio/Village/Kart,
+    # exact native SHA; this pin is NOT Android or physical-device approval.
+    2020: "dc478230e0819a05f42de2fd59b93abebfb08406",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:

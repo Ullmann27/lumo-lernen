@@ -1,0 +1,78 @@
+test_actual_local_voice_templates_preserve_host_namespace_and_user_files (scripts.tests.test_prepare_android.AndroidHostTest.test_actual_local_voice_templates_preserve_host_namespace_and_user_files)
+Real new source templates; fixtures do not prove Android compilation. ... ok
+test_kotlin_and_groovy_identity_transitions_and_explicit_signing (scripts.tests.test_prepare_android.AndroidHostTest.test_kotlin_and_groovy_identity_transitions_and_explicit_signing) ... ok
+test_namespace_permissions_signing_and_idempotence (scripts.tests.test_prepare_android.AndroidHostTest.test_namespace_permissions_signing_and_idempotence) ... ok
+setUpClass (scripts.tests.test_game_return_contract.GameReturnStoreTest) ... ERROR
+test_completion_is_live_session_bound_and_commit_precedes_success_and_unlock (scripts.tests.test_game_return_contract.GameReturnWiringTest.test_completion_is_live_session_bound_and_commit_precedes_success_and_unlock) ... ok
+test_native_persists_fallback_before_return_and_retains_process_shutdown (scripts.tests.test_game_return_contract.GameReturnWiringTest.test_native_persists_fallback_before_return_and_retains_process_shutdown) ... ok
+test_validated_private_launch_owns_only_learning_and_cards (scripts.tests.test_game_return_contract.GameReturnWiringTest.test_validated_private_launch_owns_only_learning_and_cards) ... ok
+test_generated_host_admits_every_checked_dart_learning_descriptor (scripts.tests.test_studio_learning_contract.StudioLearningHostTest.test_generated_host_admits_every_checked_dart_learning_descriptor) ... ok
+test_existing_marker_cannot_hide_a_changed_runtime (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_existing_marker_cannot_hide_a_changed_runtime) ... ok
+test_missing_or_modified_model_license_is_not_silently_ignored (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_missing_or_modified_model_license_is_not_silently_ignored) ... ok
+test_pinned_bytes_license_dependency_and_idempotence (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_pinned_bytes_license_dependency_and_idempotence) ... ok
+test_unbalanced_dependency_marker_is_refused (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_unbalanced_dependency_marker_is_refused) ... ok
+test_wrong_archive_is_refused_before_payload_use (scripts.tests.test_prepare_offline_voice.OfflineModelPackagingTest.test_wrong_archive_is_refused_before_payload_use) ... ok
+
+======================================================================
+ERROR: setUpClass (scripts.tests.test_game_return_contract.GameReturnStoreTest)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/village-host-fe66edf/scripts/tests/test_game_return_contract.py", line 189, in setUpClass
+    raise RuntimeError('Set LUMO_KOTLIN_LIB_DIR or use the verified Gradle installation on PATH')
+RuntimeError: Set LUMO_KOTLIN_LIB_DIR or use the verified Gradle installation on PATH
+
+----------------------------------------------------------------------
+Ran 12 tests in 0.029s
+
+FAILED (errors=1)
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: example.retained.host; stable signing; installer and 3D bridge connected
+Android host prepared: example.retained.host; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: dev.ullmann.lumo.lumo_lernen; stable signing; installer and 3D bridge connected
+Android host prepared: example.studio.learning; stable signing; installer and 3D bridge connected
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}
+{
+  "profile": "test-fixture",
+  "preset": "F2",
+  "model_sha256": {
+    "model.int8.onnx": "1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747"
+  },
+  "runtime_cloud_calls": 0,
+  "system_tts": false,
+  "model_asset_bytes": 51
+}

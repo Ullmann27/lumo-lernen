@@ -1,0 +1,35 @@
+{
+  "scope": "Production Kotlin compiled and executed against JVM boundary adapters, not Android API/Insets/render acceptance",
+  "base_head": "1a5d456a6731d0ae319cbb95c17effd1ed106fba",
+  "source_sha256": {
+    "tools/auto_install/LumoGameActivity.kt": "6ebebc7b30ef881f0a0aa732a3ce435b993768c72c973545d2d88d9920a30510",
+    "scripts/tests/test_embedded_android.py": "7380ecc61731b3b802daa0f085a7a2c376ede8cbdce79e3fd509c22bcd176012",
+    ".github/probes/lumo_nextgen_surfaces_android_probe.py": "3c35cde09c2d7d7ac9c82d1fc0201386a24cc7dd018d7a4f2ffebf977be0864b"
+  },
+  "official_engine_tag": "4.6.3-stable",
+  "engine_reference_sha256": {
+    "GodotApp.java": "2d65385ac41275cb34528a2b36bdfd02f39891052bd37835de222569d75a0b52",
+    "Godot.kt": "2389f5ba827debe2b5338085a81b15039c2e71ebe3ba44a0cd94f3352b2e2ef7",
+    "GodotIO.java": "da47258a4b53b51f6e41d8d697fb3ea5af70a153acd4a2bcfbccc4f51228c7a6"
+  },
+  "old_source_negative": {
+    "tests": 4,
+    "failures": 2,
+    "errors": 0,
+    "unchanged_non_cards_and_authority_cases": "PASS",
+    "source": "1a5d456a6731d0ae319cbb95c17effd1ed106fba"
+  },
+  "frozen_source_paths": [
+    "tools/auto_install/LumoGameActivity.kt",
+    "scripts/tests/test_embedded_android.py",
+    ".github/probes/lumo_nextgen_surfaces_android_probe.py"
+  ],
+  "source_files_changed_after_tests": false,
+  "logs": {
+    "cards-window-before-regression.log": "04b13797fa27f7f75dacd08817fc33312d0a4675f090e569556035645f0f0971",
+    "cards-window-preservation-regression.log": "1f5f2952b626e7e619e54e2b09a15577960555d475bfc59766c429f9aed4996d"
+  },
+  "no_apk_or_emulator_launched": true,
+  "actual_aar_compile": "pending root commit / Android SDK availability",
+  "android_runtime_acceptance": "pending exact-source CI"
+}

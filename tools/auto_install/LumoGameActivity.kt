@@ -10,6 +10,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
+import androidx.activity.enableEdgeToEdge
 import org.godotengine.godot.Godot
 import org.godotengine.godot.GodotActivity
 import org.godotengine.godot.plugin.GodotPlugin
@@ -18,6 +19,7 @@ import org.godotengine.godot.plugin.UsedByGodot
 /** Godot is part of this APK. Its engine has an isolated process for repeatable launches. */
 class LumoGameActivity : GodotActivity() {
     private var returning = false
+    private var cardsEdgeToEdge = false
     @Volatile private var launchOptions = "{}"
     @Volatile private var learningSpeech: LumoLearningSpeech? = null
     @Volatile private var cardsActive = false
@@ -97,6 +99,7 @@ class LumoGameActivity : GodotActivity() {
 
     override fun onResume() {
         super.onResume()
+        updateCardsWindowAppearance()
         cardsActive = true
         cardsPulse()
         learningSpeech?.setActive(true)
@@ -111,11 +114,29 @@ class LumoGameActivity : GodotActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         launchOptions = intent.getStringExtra("lumoLaunchOptions") ?: "{}"
-        super.onCreate(savedInstanceState)
         val options = try { org.json.JSONObject(launchOptions) } catch (_: Exception) { org.json.JSONObject() }
-        if (options.optString("game") == "learning") {
+        cardsEdgeToEdge = options.optString("game") == "cards"
+        if (cardsEdgeToEdge) enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
+        if (options.optString("game") in setOf("learning", "build")) {
             learningSpeech = LumoLearningSpeech(applicationContext, options)
         }
+    }
+
+    private fun updateCardsWindowAppearance() {
+        if (!cardsEdgeToEdge) return
+        val engine = getGodot() ?: return
+        // Godot 4.6.3's exported GodotApp performs this on resume and main-loop
+        // start. Embedded GodotActivity does not. Keep the full Cards viewport
+        // while exposing actual system-bar/cutout insets to its native header.
+        engine.enableImmersiveMode(engine.isInImmersiveMode(), true)
+        engine.enableEdgeToEdge(engine.isInEdgeToEdgeMode(), true)
+        engine.setSystemBarsAppearance()
+    }
+
+    override fun onGodotMainLoopStarted() {
+        super.onGodotMainLoopStarted()
+        if (cardsEdgeToEdge) runOnUiThread { updateCardsWindowAppearance() }
     }
 
     override fun onDestroy() {
@@ -130,6 +151,7 @@ class LumoGameActivity : GodotActivity() {
 
     override fun getCommandLine(): MutableList<String> = ArrayList(super.getCommandLine()).apply {
         addAll(listOf("--main-pack", "res://lumo_game.pck", "--rendering-method", "gl_compatibility"))
+        if (cardsEdgeToEdge) add("--edge_to_edge")
     }
 
     override fun getHostPlugins(engine: Godot): Set<GodotPlugin> = setOf(LumoHostPlugin(engine, this))

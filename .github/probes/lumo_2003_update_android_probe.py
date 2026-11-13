@@ -93,7 +93,9 @@ def native_tour(out: Path) -> dict:
 def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
          candidate_version: int = 2003, baseline_native: str = GODOT,
          candidate_native: str = GODOT,
-         allow_2018_independent_evidence_migration: bool = False) -> int:
+         allow_2018_independent_evidence_migration: bool = False,
+         allow_2019_independent_evidence_migration: bool = False,
+         allow_2020_independent_evidence_migration: bool = False) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, required=True)
@@ -107,11 +109,19 @@ def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
                              'audio output', 'complete two-lap race reward']}
     try:
         migration_versions = None
-        if allow_2018_independent_evidence_migration:
-            if (type(baseline_version) is not int or type(candidate_version) is not int or
-                    (baseline_version, candidate_version) not in ((2017, 2018), (2017, 2019))):
-                raise RuntimeError('The reviewed migration requires actual 2017 to 2018 or 2019')
-            migration_versions = (baseline_version, candidate_version)
+        migration_flags = [
+            (allow_2018_independent_evidence_migration, (2017, 2018)),
+            (allow_2019_independent_evidence_migration, (2017, 2019)),
+            (allow_2020_independent_evidence_migration, (2017, 2020)),
+        ]
+        selected = [pair for flag, pair in migration_flags if flag is True]
+        if any(type(flag) is not bool for flag, _ in migration_flags) or len(selected) > 1:
+            raise RuntimeError('Only one explicitly approved typed migration is permitted')
+        if selected:
+            if (type(baseline_version) is not int or type(candidate_version) is not int
+                    or (baseline_version, candidate_version) != selected[0]):
+                raise RuntimeError('The requested release migration requires its exact 2017 baseline')
+            migration_versions = selected[0]
         result['baseline'] = artifact(args.baseline, baseline_source, baseline_version, baseline_native)
         result['candidate'] = artifact(args.candidate, SOURCE, candidate_version, candidate_native)
         result['emulator'] = probe.ensure_rooted_emulator(base.adb, out)
