@@ -1,0 +1,19 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 90.50518586600083,
+  "display": 98,
+  "project": "/workspace/scratch/5987865ae883/lumo-godot",
+  "godot_arguments": [
+    "--resolution",
+    "960x540",
+    "--disable-vsync",
+    "--fixed-fps",
+    "24",
+    "--quit-after",
+    "260",
+    "--script",
+    "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-jump-20261113/record_jump_runtime.gd"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

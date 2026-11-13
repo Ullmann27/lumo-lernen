@@ -1,0 +1,47 @@
+{
+  "review_utc": "2026-11-13T15:01:38.323667+00:00",
+  "source_sha": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "run_id": 43442579190,
+  "artifact_id": 14047872796,
+  "original_zip_sha256": "30456bfba5f7a80c384c2668fecc8bd4545cfd5821e428d6f09d8f9124b99e35",
+  "status": "PARTIAL_RENDER_ONLY_TIMEOUT_NOT_APPROVED",
+  "images": [
+    {
+      "path": "workshop/captures/kart_workshop_density_regression/workshop-1080x2400-paint-purchase.png",
+      "sha256": "b8c54eb76777a44061f6075a996cf5d3ce0951c645c80ec2bfc0bffec12d258e",
+      "reviewed_by": "root",
+      "opened_individually": true
+    },
+    {
+      "path": "workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "sha256": "cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e",
+      "reviewed_by": "root",
+      "opened_individually": true
+    },
+    {
+      "path": "workshop/captures/kart_workshop_density_regression/workshop-2400x1080-paint-purchase.png",
+      "sha256": "ff946fe24f13c11e6e63ded4c6f35732e354ebdf4e26ba98eab575cdd46d298f",
+      "reviewed_by": "root",
+      "opened_individually": true
+    },
+    {
+      "path": "workshop/captures/kart_workshop_density_regression/workshop-2400x1080-performance.png",
+      "sha256": "dfc4e3f2a0463750d362c68f41f101260435d13f4864777fa0b4bdaa1a9ae9b6",
+      "reviewed_by": "root",
+      "opened_individually": true
+    },
+    {
+      "path": "workshop/captures/kart_workshop_density_regression/workshop-2400x1080-refund.png",
+      "sha256": "20fdbdfb518ae5ff63cd0e4d29251e0ea45c2630d25c2492474ec7234fcb32b7",
+      "reviewed_by": "root",
+      "opened_individually": true
+    }
+  ],
+  "findings": [
+    "All five available original PNGs actually opened by root. Preview kart, selected paint and upgrade/refund actions are visibly distinct and readable in the pictured viewport.",
+    "The right upgrade pane is intentionally scrolled: partially clipped rows at its boundaries are not claimed to be fully visible; actual drag/press tests provide interaction evidence.",
+    "The portrait refund image is absent because the full renderer hit its 1200-second budget. Six of eight profiles completed with zero failures; seventh partial. This is not a full renderer pass.",
+    "The workshop retains its existing split preview/control layout. This repair does not claim a newly built walkable 3D workshop.",
+    "Source remains the rejected 24fb candidate; final source-bound complete native artifact and visual receipt are still required."
+  ]
+}

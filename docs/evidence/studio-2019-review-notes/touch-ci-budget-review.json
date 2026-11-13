@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T15:02:50.241527+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "PASS for the scoped semantic and syntax comparison; no CI or release approval",
+  "baseline_native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "baseline_retrieval": "Die beiden Originaldateien und die ursprüngliche Werkstattregression wurden unabhängig über GitHub-Fetch direkt am vollen24fb-SHA gelesen. Kein lokaler HEAD-Wechsel oder Reset.",
+  "current_native_revision": null,
+  "current_source_freeze": "Ausstehend; Prüfung an den hier gebundenen Workspace-Dateihashes.",
+  "files": [
+    {
+      "path": "tools/validate_studio_touch.sh",
+      "baseline_sha256": "006adc0ab87a731fb39e5203359d7e25ee399e756b133596d4699492557cde9d",
+      "current_sha256": "4a517be7f757c16bd724c4fa9aa3b34b4e89cc873d32b4acc60f0c1f3408dc53",
+      "baseline_url": "https://github.com/Ullmann27/lumo-godot/blob/24fb85800dfb58ec11dd409449e276299aa72b06/tools/validate_studio_touch.sh",
+      "unified_diff": "--- 24fb/tools/validate_studio_touch.sh\n+++ workspace/tools/validate_studio_touch.sh\n@@ -5,7 +5,7 @@\n case \"$scope\" in\n   workshop) probe=kart_workshop_density_regression; marker='[WorkshopDensity] PASS'; expected_pngs=6 ;;\n   treasure) probe=treasure_density_regression; marker='[TreasureDensity] PASS'; expected_pngs=14 ;;\n-  build) probe=build_dialog_density_regression; marker='[BuildDialogDensity] PASS'; expected_pngs=8 ;;\n+  build) probe=build_dialog_density_regression; marker='[BuildDialogDensity] PASS'; expected_pngs=12 ;;\n   *) echo \"Unknown Studio touch scope: $scope\" >&2; exit 2 ;;\n esac\n \n@@ -42,6 +42,10 @@\n for mode in headless rendered; do\n   seconds=600\n   [[ \"$mode\" == rendered ]] && seconds=1200\n+  # The first full Mesa workshop run reached the seventh of eight layouts\n+  # without a failed assertion before its 1200s process limit. Preserve every\n+  # input/layout check and give this software-rendered run enough wall time.\n+  [[ \"$mode\" == rendered && \"$scope\" == workshop ]] && seconds=2100\n   if run_probe \"$mode\" \"$seconds\"; then\n     printf '%s\\t%s\\tPASS\\n' \"$probe\" \"$mode\" >> \"$log_dir/results.tsv\"\n   else\n"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "baseline_sha256": "0bc31553055d2788ec1239fd79e89eae8a55062b7f09f48162ad346abca2a342",
+      "current_sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b",
+      "baseline_url": "https://github.com/Ullmann27/lumo-godot/blob/24fb85800dfb58ec11dd409449e276299aa72b06/.github/workflows/lumo-studio-2019.yml",
+      "unified_diff": "--- 24fb/.github/workflows/lumo-studio-2019.yml\n+++ workspace/.github/workflows/lumo-studio-2019.yml\n@@ -239,7 +239,7 @@\n   touch-density:\n     name: touch-${{ matrix.scope }}\n     runs-on: ubuntu-latest\n-    timeout-minutes: 40\n+    timeout-minutes: 50\n     strategy:\n       fail-fast: false\n       matrix:\n"
+    }
+  ],
+  "semantic_findings": [
+    {
+      "check": "Exact helper diff",
+      "result": "PASS",
+      "detail": "Ausschließlich Build-PNG-Anforderung8→12 und zusätzlicher2100s-Timeout nur für workshop/rendered. Alle anderen Laufbefehle,600sHeadless,1200s für übrige Renderer, PASS-Marker, strikte Exit-/Fehlerbehandlung, Bildformat-/Anzahl-/Symlinkprüfungen und Quellenstempel unverändert."
+    },
+    {
+      "check": "Workflow parsed semantic equality",
+      "result": "PASS",
+      "detail": "Die geparsten Workflows sind identisch, sobald der einzige alte Touchjobwert40 durch50Minuten ersetzt wird. Keine geänderten Trigger, Berechtigungen, Assertions, Imports, Quellenbindungen oder Artifactpfade."
+    },
+    {
+      "check": "Workshop test unchanged",
+      "result": "PASS",
+      "sha256": "06ec58fa89036a66eb1d15f8e90c8a03b0f947119a2b327a479521adc034c61d",
+      "detail": "Bytegleich zur tatsächlichen24fb-Datei; alle8Dichte-/Layoutprofile, echte Touch-/Scrollprüfungen,40Wischer und6Pflichtbilder bleiben enthalten. Der Timeout-Lauf ist weiterhin FAIL und wird nicht in PASS umgeschrieben."
+    },
+    {
+      "check": "Build capture expansion",
+      "result": "PASS",
+      "sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3",
+      "detail": "Die vorhandenen8Vorlagenbilder oben/unten aus4Formaten bleiben; _goal_access ergänzt4current-goal-Bilder. Die zusätzliche640×320-Eingabeprobe bleibt enthalten und liefert wie zuvor kein eigenesPNG. Probe und Helper verlangen beide exakt12Bilder."
+    },
+    {
+      "check": "Independent three-scope matrix",
+      "result": "PASS",
+      "scopes": [
+        "workshop",
+        "treasure",
+        "build"
+      ],
+      "detail": "fail-fast:false; kein continue-on-error. Uploads behalten scope-Unterordner. bundle-evidence benötigt new-worlds und die vollständig erfolgreiche touch-density-Matrix."
+    },
+    {
+      "check": "Bundle and archive source binding",
+      "result": "PASS",
+      "detail": "Bundle lädt lumo-studio-2019-worlds-evidence sowie lumo-studio-2019-touch-* mit merge-multiple unter native-evidence/touch-evidence. archive-evidence benötigt weiterhin learning-preview,gameplay,new-worlds,studio,touch-density,bundle-evidence ohne always()-Umgehung. AktuellerSHA,Run-ID,Originaldigest und Bytevergleich des öffentlichenZIP bleiben unverändert."
+    }
+  ],
+  "budgets_seconds": {
+    "headless_each": 600,
+    "rendered_workshop": 2100,
+    "rendered_treasure": 1200,
+    "rendered_build": 1200,
+    "outer_touch_job": 3000
+  },
+  "budget_scope": "Mehr Walltime für den real beobachteten Mesa-Software-Renderer-Test; keine Performancefreigabe und keine Reduktion von Formaten, Eingaben oder Bildern. Die maximalen inneren Workshoplimits summieren sich auf45Minuten, innerhalb des50Minuten-Jobs; tatsächlicher Setup-/Importbedarf bleibt Bestandteil des nächstenCI-Laufs.",
+  "syntax_checks": [
+    {
+      "argv": [
+        "bash",
+        "-n",
+        "tools/validate_studio_touch.sh"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-godot",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "argv": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        "-color",
+        "-oneline",
+        ".github/workflows/lumo-studio-2019.yml"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-godot",
+      "exit_code": 0,
+      "stdout": "",
+      "stderr": ""
+    }
+  ],
+  "actual_24fb_jobs": {
+    "source": "https://github.com/Ullmann27/lumo-godot/actions/runs/43442579190/jobs?per_page=100",
+    "raw_file": "native-24fb-jobs-reviewed.json",
+    "sha256": "78ff7cbd3806b12d3cbb8ebc9244a304ade32cfc3ebb3f8e2fdb2a48c21f801a",
+    "jobs": [
+      {
+        "name": "studio",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 131943678942
+      },
+      {
+        "name": "gameplay",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 131943679206
+      },
+      {
+        "name": "touch-build",
+        "status": "completed",
+        "conclusion": "failure",
+        "job_id": 131943679259
+      },
+      {
+        "name": "learning-preview",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 131943679316
+      },
+      {
+        "name": "touch-workshop",
+        "status": "completed",
+        "conclusion": "failure",
+        "job_id": 131943679561
+      },
+      {
+        "name": "touch-treasure",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 131943679566
+      },
+      {
+        "name": "new-worlds",
+        "status": "completed",
+        "conclusion": "success",
+        "job_id": 131946024828
+      },
+      {
+        "name": "bundle-evidence",
+        "status": "completed",
+        "conclusion": "skipped",
+        "job_id": 131958803635
+      },
+      {
+        "name": "archive-evidence",
+        "status": "completed",
+        "conclusion": "skipped",
+        "job_id": 131958804000
+      }
+    ]
+  },
+  "scope_limits": [
+    "Keine Mutation der geprüften nativen Helper-,Workflow- oder Produktdateien durch diesesReview.",
+    "Die drei neuen Produktkorrekturen sind von den zwei CI-/Harnessursachen gesondert dokumentiert.",
+    "Kein vollständiger neuerNative-CI-Abschluss, kein finalerVisualReceipt und keine Android-/Fold7-FPS-Aussage."
+  ]
+}

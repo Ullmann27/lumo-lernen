@@ -1,0 +1,20 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(0, 0) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-hud-6-(2400, 1080)_1.json
+[Perf] quality_profile:medium
+[HUDOverlap] {"center_tap_signals":["Dächer"],"density":2.625,"goal_text_pixels":"[P: (68.27134, 441.4599), S: (682.7134, 204.9635)]","intersections":[{"caption":"Bauen","overlap":"[P: (68.27134, 717.3723), S: (157.5492, 65.69348)]","rect":"[P: (31.50985, 717.3723), S: (194.3107, 126.1314)]"},{"caption":"Dächer","overlap":"[P: (236.3239, 717.3723), S: (210.0656, 65.69348)]","rect":"[P: (236.3239, 717.3723), S: (210.0656, 126.1314)]"},{"caption":"Wege","overlap":"[P: (456.8928, 717.3723), S: (175.93, 65.69348)]","rect":"[P: (456.8928, 717.3723), S: (175.93, 126.1314)]"},{"caption":"Natur","overlap":"[P: (643.326, 717.3723), S: (107.6587, 65.69348)]","rect":"[P: (643.326, 717.3723), S: (183.8074, 126.1314)]"}],"status_pixels":"[P: (31.50985, 654.3066), S: (2336.98, 52.55474)]","surface":"(2400, 1080)","test_rect_dp":"[P: (26.00813, 250.2607), S: (260.0813, 48.05006)]","test_rect_pixels":"[P: (68.27134, 656.9343), S: (682.7134, 126.1314)]"}
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-hud-6-(640, 360)_1.json
+[HUDOverlap] {"center_tap_signals":[],"density":1.0,"goal_text_pixels":"[P: (26.0, 168.0), S: (260.0, 78.0)]","intersections":[{"caption":"Bauen","overlap":"[P: (26.0, 250.0), S: (60.0, 20.0)]","rect":"[P: (12.0, 222.0), S: (74.0, 48.0)]"},{"caption":"Dächer","overlap":"[P: (90.0, 250.0), S: (80.0, 20.0)]","rect":"[P: (90.0, 222.0), S: (80.0, 48.0)]"},{"caption":"Wege","overlap":"[P: (174.0, 250.0), S: (67.0, 20.0)]","rect":"[P: (174.0, 222.0), S: (67.0, 48.0)]"},{"caption":"Natur","overlap":"[P: (245.0, 250.0), S: (41.0, 20.0)]","rect":"[P: (245.0, 222.0), S: (70.0, 48.0)]"}],"status_pixels":"[P: (12.0, 198.0), S: (616.0, 20.0)]","surface":"(640, 360)","test_rect_dp":"[P: (26.0, 250.0), S: (260.0, 48.0)]","test_rect_pixels":"[P: (26.0, 250.0), S: (260.0, 48.0)]"}
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-hud-6-(640, 320)_1.json
+[HUDOverlap] {"center_tap_signals":[],"density":1.0,"goal_text_pixels":"[P: (26.0, 168.0), S: (260.0, 78.0)]","intersections":[],"status_pixels":"[P: (12.0, 158.0), S: (616.0, 20.0)]","surface":"(640, 320)","test_rect_dp":"[P: (26.0, 250.0), S: (260.0, 48.0)]","test_rect_pixels":"[P: (26.0, 250.0), S: (260.0, 48.0)]"}
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-hud-6-(2176, 1812)_1.json
+[HUDOverlap] {"center_tap_signals":["Mein Bauwerk testen"],"density":2.25,"goal_text_pixels":"[P: (58.50672, 378.1565), S: (585.0672, 236.3478)]","intersections":[],"status_pixels":"[P: (27.0031, 1447.349), S: (2121.994, 45.01863)]","surface":"(2176, 1812)","test_rect_dp":"[P: (26.00299, 250.1035), S: (260.0299, 48.01988)]","test_rect_pixels":"[P: (58.50672, 562.7329), S: (585.0672, 108.0447)]"}
+[Bauwelt] ready: real geometry, 41 parts, save=user://lumo_build_isolated-hud-6-(1080, 2400)_1.json
+[HUDOverlap] {"center_tap_signals":["Mein Bauwerk testen"],"density":2.625,"goal_text_pixels":"[P: (68.32117, 441.1379), S: (683.2117, 275.7112)]","intersections":[],"status_pixels":"[P: (31.53285, 1974.617), S: (1016.934, 52.51641)]","surface":"(1080, 2400)","test_rect_dp":"[P: (26.02711, 250.0782), S: (260.2711, 48.01501)]","test_rect_pixels":"[P: (68.32117, 656.4551), S: (683.2117, 126.0394)]"}

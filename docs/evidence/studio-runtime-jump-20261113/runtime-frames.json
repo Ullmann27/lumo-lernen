@@ -1,0 +1,4947 @@
+{
+  "animation_states": {
+    "idle": 92,
+    "jump_fall": 26,
+    "jump_rise": 22,
+    "land": 14,
+    "run_loop": 20,
+    "walk_loop": 66
+  },
+  "braking_samples": 11,
+  "capture_format_fps": 24,
+  "display": "X11",
+  "events": [
+    {
+      "finger": 3,
+      "frame": 20,
+      "kind": "touch",
+      "physical_position": [
+        92.0537261962891,
+        397.890625
+      ],
+      "pressed": true
+    },
+    {
+      "axis": [
+        0.0,
+        -0.280000001192093
+      ],
+      "frame": 20,
+      "kind": "stick_drag"
+    },
+    {
+      "axis": [
+        0.219892710447311,
+        -0.975524008274078
+      ],
+      "frame": 48,
+      "kind": "stick_drag"
+    },
+    {
+      "finger": 4,
+      "frame": 54,
+      "kind": "touch",
+      "physical_position": [
+        876.104431152344,
+        405.921875
+      ],
+      "pressed": true
+    },
+    {
+      "finger": 4,
+      "frame": 77,
+      "kind": "touch",
+      "physical_position": [
+        876.104431152344,
+        405.921875
+      ],
+      "pressed": false
+    },
+    {
+      "finger": 3,
+      "frame": 77,
+      "kind": "touch",
+      "physical_position": [
+        92.0537261962891,
+        397.890625
+      ],
+      "pressed": false
+    },
+    {
+      "finger": 3,
+      "frame": 96,
+      "kind": "touch",
+      "physical_position": [
+        92.0537261962891,
+        397.890625
+      ],
+      "pressed": true
+    },
+    {
+      "axis": [
+        -0.280000001192093,
+        0.0
+      ],
+      "frame": 96,
+      "kind": "stick_drag"
+    },
+    {
+      "axis": [
+        1.0,
+        0.0
+      ],
+      "frame": 125,
+      "kind": "stick_drag"
+    },
+    {
+      "finger": 3,
+      "frame": 143,
+      "kind": "touch",
+      "physical_position": [
+        92.0537261962891,
+        397.890625
+      ],
+      "pressed": false
+    },
+    {
+      "finger": 4,
+      "frame": 168,
+      "kind": "touch",
+      "physical_position": [
+        876.104431152344,
+        405.921875
+      ],
+      "pressed": true
+    },
+    {
+      "finger": 4,
+      "frame": 190,
+      "kind": "touch",
+      "physical_position": [
+        876.104431152344,
+        405.921875
+      ],
+      "pressed": false
+    },
+    {
+      "finger": 4,
+      "frame": 239,
+      "kind": "touch",
+      "physical_position": [
+        876.104431152344,
+        405.921875
+      ],
+      "pressed": false
+    }
+  ],
+  "failures": [],
+  "fixed_capture_timestep": true,
+  "frames": [
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 0,
+      "grounded": false,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.395000010728836,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.0,
+      "velocity": [
+        0.0,
+        -0.300000011920929,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 1,
+      "grounded": false,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.370000004768372,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.0416666666666667,
+      "velocity": [
+        0.0,
+        -0.900000035762787,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 2,
+      "grounded": false,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.294999986886978,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.0833333333333333,
+      "velocity": [
+        0.0,
+        -1.79999995231628,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 3,
+      "grounded": false,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.219999998807907,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.125,
+      "velocity": [
+        0.0,
+        -2.39999985694885,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 4,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.166666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 5,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.208333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 6,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.25,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 7,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.291666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 8,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.333333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 9,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.375,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 10,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.416666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 11,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.458333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 12,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.5,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 13,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.541666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 14,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.583333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 15,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.625,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 16,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.666666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 17,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.708333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 18,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.75,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 19,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0,
+        0.199960932135582,
+        1.5
+      ],
+      "stick_finger": -1,
+      "time_seconds": 0.791666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 20,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.00000000975818714721299,
+        0.200834408402443,
+        1.4799998998642
+      ],
+      "stick_finger": 3,
+      "time_seconds": 0.833333333333333,
+      "velocity": [
+        -0.000000390327443255956,
+        0.0,
+        -0.800000011920929
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 21,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000044562469270204,
+        0.200825348496437,
+        1.40866637229919
+      ],
+      "stick_finger": 3,
+      "time_seconds": 0.875,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 22,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.0000000696085606932684,
+        0.200831040740013,
+        1.35733282566071
+      ],
+      "stick_finger": 3,
+      "time_seconds": 0.916666666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 23,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000107177697827865,
+        0.200821354985237,
+        1.28033256530762
+      ],
+      "stick_finger": 3,
+      "time_seconds": 0.958333333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 24,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000132223789250929,
+        0.200821921229362,
+        1.22899901866913
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.0,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 25,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000169792926385526,
+        0.200822234153748,
+        1.15199887752533
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.04166666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 26,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.00000019483901780859,
+        0.200827643275261,
+        1.10066521167755
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.08333333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 27,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000232408169154041,
+        0.200825348496437,
+        1.02366495132446
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.125,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 28,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.00000025745427478796,
+        0.200824558734894,
+        0.972331523895264
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.16666666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 29,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000295023426133412,
+        0.200825065374374,
+        0.89533132314682
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.20833333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 30,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000320069517556476,
+        0.200824499130249,
+        0.843997836112976
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.25,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 31,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000357638640480218,
+        0.200833976268768,
+        0.766997516155243
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.29166666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 32,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000382684731903282,
+        0.200837150216103,
+        0.715664029121399
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.33333333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 33,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000420253883248733,
+        0.200825065374374,
+        0.638663828372955
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.375,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 34,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000445299946250088,
+        0.200827643275261,
+        0.587330341339111
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.41666666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 35,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.00000048286909759554,
+        0.200830653309822,
+        0.510330021381378
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.45833333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 36,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000507915160596895,
+        0.200833931565285,
+        0.458996534347534
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.5,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 37,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000545484283520636,
+        0.200833484530449,
+        0.381996303796768
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.54166666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 38,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.00000057053040336541,
+        0.200824707746506,
+        0.330662846565247
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.58333333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 39,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000608099583132571,
+        0.200825065374374,
+        0.253662616014481
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.625,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 40,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000633145646133926,
+        0.200834408402443,
+        0.202329114079475
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.66666666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 41,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000670714825901086,
+        0.200837060809135,
+        0.125328853726387
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.70833333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 42,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.00000069576094574586,
+        0.200840428471565,
+        0.0739953517913818
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.75,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 43,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000733330125513021,
+        0.200787648558617,
+        -0.00300490111112595
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.79166666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 44,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000758376131670957,
+        0.200833767652512,
+        -0.0543384030461311
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.83333333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 45,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000795945311438118,
+        0.200840309262276,
+        -0.131338655948639
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.875,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 46,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000820991431282891,
+        0.200837284326553,
+        -0.182672157883644
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.91666666666667,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 47,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.000000858560611050052,
+        0.200840219855309,
+        -0.259672403335571
+      ],
+      "stick_finger": 3,
+      "time_seconds": 1.95833333333333,
+      "velocity": [
+        -0.000000751382799535349,
+        0.0,
+        -1.54000496864319
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 48,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.00602807011455297,
+        0.200824126601219,
+        -0.330075562000275
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.0,
+      "velocity": [
+        0.241157367825508,
+        0.0,
+        -2.30279111862183
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 49,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0301438495516777,
+        0.200824394822121,
+        -0.483354419469833
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.04166666666667,
+      "velocity": [
+        0.60289454460144,
+        0.0,
+        -3.44697046279907
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 50,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.056269284337759,
+        0.200824752449989,
+        -0.617323100566864
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.08333333333333,
+      "velocity": [
+        0.844052672386169,
+        0.0,
+        -4.20975685119629
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 51,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.110529817640781,
+        0.200834348797798,
+        -0.865950286388397
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.125,
+      "velocity": [
+        1.20578980445862,
+        0.0,
+        -5.35393571853638
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 52,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.150843426585197,
+        0.200824484229088,
+        -1.0447963476181
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.16666666666667,
+      "velocity": [
+        1.20940864086151,
+        0.0,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 53,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.211313858628273,
+        0.20082850754261,
+        -1.31306540966034
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.20833333333333,
+      "velocity": [
+        1.20940864086151,
+        0.0,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 54,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.25163808465004,
+        0.479236394166946,
+        -1.49195849895477
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.25,
+      "velocity": [
+        1.20940864086151,
+        8.19999980926514,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 55,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.312108486890793,
+        0.859236359596252,
+        -1.7602276802063
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.29166666666667,
+      "velocity": [
+        1.20940864086151,
+        7.29999923706055,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 56,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.352422088384628,
+        1.08756971359253,
+        -1.93907380104065
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.33333333333333,
+      "velocity": [
+        1.20940864086151,
+        6.69999885559082,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 57,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.412892490625381,
+        1.39256978034973,
+        -2.20734262466431
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.375,
+      "velocity": [
+        1.20940864086151,
+        5.79999828338623,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 58,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.453206092119217,
+        1.57090318202972,
+        -2.38618850708008
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.41666666666667,
+      "velocity": [
+        1.20940864086151,
+        5.1999979019165,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 59,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.513676524162292,
+        1.80090296268463,
+        -2.65445733070374
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.45833333333333,
+      "velocity": [
+        1.20940864086151,
+        4.29999732971191,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 60,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.553990125656128,
+        1.92923617362976,
+        -2.83330321311951
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.5,
+      "velocity": [
+        1.20940864086151,
+        3.69999742507935,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 61,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.614460527896881,
+        2.08423614501953,
+        -3.10157203674316
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.54166666666667,
+      "velocity": [
+        1.20940864086151,
+        2.79999756813049,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 62,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.654774129390717,
+        2.16256928443909,
+        -3.28041791915894
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.58333333333333,
+      "velocity": [
+        1.20940864086151,
+        2.19999766349792,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 63,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.71524453163147,
+        2.24256896972656,
+        -3.54868674278259
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.625,
+      "velocity": [
+        1.20940864086151,
+        1.29999780654907,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 64,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.755558133125305,
+        2.27090215682983,
+        -3.72753262519836
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.66666666666667,
+      "velocity": [
+        1.20940864086151,
+        0.699997782707214,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 65,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.816028535366058,
+        2.27590203285217,
+        -3.99580144882202
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.70833333333333,
+      "velocity": [
+        1.20940864086151,
+        -0.20000222325325,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 66,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.856342136859894,
+        2.25423526763916,
+        -4.17464780807495
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.75,
+      "velocity": [
+        1.20940864086151,
+        -0.800002217292786,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 67,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.916812539100647,
+        2.18423509597778,
+        -4.44291734695435
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.79166666666667,
+      "velocity": [
+        1.20940864086151,
+        -1.70000207424164,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 68,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        0.957126140594482,
+        2.11256837844849,
+        -4.62176370620728
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.83333333333333,
+      "velocity": [
+        1.20940864086151,
+        -2.3000020980835,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 69,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        1.01759660243988,
+        1.96756827831268,
+        -4.89003324508667
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.875,
+      "velocity": [
+        1.20940864086151,
+        -3.20000195503235,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 70,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        1.05791032314301,
+        1.84590148925781,
+        -5.0688796043396
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.91666666666667,
+      "velocity": [
+        1.20940864086151,
+        -3.80000185966492,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 71,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        1.11838090419769,
+        1.62590134143829,
+        -5.33714914321899
+      ],
+      "stick_finger": 3,
+      "time_seconds": 2.95833333333333,
+      "velocity": [
+        1.20940864086151,
+        -4.70000219345093,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 72,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        1.15869462490082,
+        1.45423460006714,
+        -5.51599550247192
+      ],
+      "stick_finger": 3,
+      "time_seconds": 3.0,
+      "velocity": [
+        1.20940864086151,
+        -5.30000257492065,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 73,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        1.21916520595551,
+        1.15923452377319,
+        -5.78426504135132
+      ],
+      "stick_finger": 3,
+      "time_seconds": 3.04166666666667,
+      "velocity": [
+        1.20940864086151,
+        -6.20000314712524,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 0,
+      "falls": 0,
+      "frame": 74,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        1.25947892665863,
+        0.93756777048111,
+        -5.96311140060425
+      ],
+      "stick_finger": 3,
+      "time_seconds": 3.08333333333333,
+      "velocity": [
+        1.20940864086151,
+        -6.80000352859497,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 75,
+      "grounded": true,
+      "jump_held": true,
+      "position": [
+        1.31994950771332,
+        0.671244502067566,
+        -6.23138093948364
+      ],
+      "stick_finger": 3,
+      "time_seconds": 3.125,
+      "velocity": [
+        1.20940864086151,
+        0.0,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 76,
+      "grounded": true,
+      "jump_held": true,
+      "position": [
+        1.36026310920715,
+        0.671250343322754,
+        -6.41022682189941
+      ],
+      "stick_finger": 3,
+      "time_seconds": 3.16666666666667,
+      "velocity": [
+        1.20940864086151,
+        0.0,
+        -5.36538219451904
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 77,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.40900599956512,
+        0.671240568161011,
+        -6.62646770477295
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.20833333333333,
+      "velocity": [
+        0.857580661773682,
+        0.0,
+        -3.80454397201538
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 78,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.43172824382782,
+        0.671246409416199,
+        -6.72727203369141
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.25,
+      "velocity": [
+        0.623028635978699,
+        0.0,
+        -2.76398515701294
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 79,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45115208625793,
+        0.671253323554993,
+        -6.81344318389893
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.29166666666667,
+      "velocity": [
+        0.271200716495514,
+        0.0,
+        -1.20314645767212
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 80,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.33333333333333,
+      "velocity": [
+        0.0366487354040146,
+        0.0,
+        -0.162587285041809
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 81,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.375,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 82,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.41666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 83,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.45833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 84,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.5,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 85,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.54166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 86,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.58333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 87,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.625,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 88,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.66666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 89,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.70833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 90,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.75,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 91,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.79166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 92,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.83333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 93,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.875,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 94,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.91666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 95,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.45432829856873,
+        0.671237349510193,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 3.95833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 96,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.43432831764221,
+        0.671239912509918,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.0,
+      "velocity": [
+        -0.800000011920929,
+        0.0,
+        -0.000000390328438015786
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 97,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.3629949092865,
+        0.671235978603363,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.04166666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 98,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.31166160106659,
+        0.671250104904175,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.08333333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 99,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.23466145992279,
+        0.671247363090515,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.125,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 100,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.18332815170288,
+        0.67123931646347,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.16666666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 101,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.10632812976837,
+        0.671245396137238,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.20833333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 102,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.05499470233917,
+        0.671232342720032,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.25,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 103,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.977994561195374,
+        0.671235144138336,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.29166666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 104,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.926661133766174,
+        0.671238780021667,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.33333333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 105,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.849661111831665,
+        0.671246767044067,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.375,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 106,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.798327744007111,
+        0.671220004558563,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.41666666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 107,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.721327722072601,
+        0.671243488788605,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.45833333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 108,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.669994354248047,
+        0.671258211135864,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.5,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 109,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.592994272708893,
+        0.671087920665741,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.54166666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 110,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.541660845279694,
+        0.67125928401947,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.58333333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 111,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.464660793542862,
+        0.671249687671661,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.625,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 112,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.413327425718307,
+        0.671243607997894,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.66666666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 113,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.336327373981476,
+        0.671229898929596,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.70833333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 114,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.284993976354599,
+        0.671232461929321,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.75,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 115,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.207993924617767,
+        0.671235024929047,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.79166666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 116,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.156660541892052,
+        0.671253144741058,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.83333333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 117,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0796604827046394,
+        0.671247243881226,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.875,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 118,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0283271074295044,
+        0.671232342720032,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.91666666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 119,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.0486729554831982,
+        0.671232104301453,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 4.95833333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 120,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.100006327033043,
+        0.671247243881226,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.0,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 121,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.177006393671036,
+        0.671232342720032,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.04166666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 122,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.228339776396751,
+        0.671252489089966,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.08333333333333,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 123,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.305339872837067,
+        0.671247363090515,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.125,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 124,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.356673240661621,
+        0.671238243579865,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.16666666666667,
+      "velocity": [
+        -1.54000115394592,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 125,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.393673300743103,
+        0.671237766742706,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.20833333333333,
+      "velocity": [
+        -0.340001195669174,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 126,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.385006636381149,
+        0.67125016450882,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.25,
+      "velocity": [
+        0.459998816251755,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 127,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.322006702423096,
+        0.67124992609024,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.29166666666667,
+      "velocity": [
+        1.6599987745285,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 128,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.246673420071602,
+        0.671235203742981,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.33333333333333,
+      "velocity": [
+        2.45999884605408,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 129,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        -0.0836734473705292,
+        0.671232044696808,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.375,
+      "velocity": [
+        3.65999913215637,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 130,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.0583265237510204,
+        0.671231925487518,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.41666666666667,
+      "velocity": [
+        4.45999908447266,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 131,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.318659842014313,
+        0.671247184276581,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.45833333333333,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 132,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.501993119716644,
+        0.671226322650909,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.5,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 133,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.776993095874786,
+        0.671235978603363,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.54166666666667,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 134,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        0.960326313972473,
+        0.6712406873703,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.58333333333333,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 135,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.23532629013062,
+        0.671253323554993,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.625,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 136,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.41865956783295,
+        0.67125004529953,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.66666666666667,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 137,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.69365954399109,
+        0.671240508556366,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.70833333333333,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 138,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        1.87699270248413,
+        0.671240508556366,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.75,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 139,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        2.15199279785156,
+        0.671240031719208,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.79166666666667,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 140,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        2.33532619476318,
+        0.67124992609024,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.83333333333333,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 141,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        2.61032605171204,
+        0.671243071556091,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.875,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 142,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        2.79365944862366,
+        0.671256363391876,
+        -6.82753419876099
+      ],
+      "stick_finger": 3,
+      "time_seconds": 5.91666666666667,
+      "velocity": [
+        5.49999856948853,
+        0.0,
+        -0.000000751382799535349
+      ]
+    },
+    {
+      "animation": "run_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 143,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.01532626152039,
+        0.671250522136688,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 5.95833333333333,
+      "velocity": [
+        3.89999866485596,
+        0.0,
+        -0.000000532798651420308
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 144,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.11865949630737,
+        0.671234548091888,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.0,
+      "velocity": [
+        2.83333206176758,
+        0.0,
+        -0.00000038707588601028
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 145,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.20699214935303,
+        0.671229720115662,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.04166666666667,
+      "velocity": [
+        1.23333215713501,
+        0.0,
+        -0.000000168491737895238
+      ]
+    },
+    {
+      "animation": "walk_loop",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 146,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.671243607997894,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.08333333333333,
+      "velocity": [
+        0.166665434837341,
+        0.0,
+        -0.0000000227690080123466
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 147,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.125,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 148,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.16666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 149,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.20833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 150,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.25,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 151,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.29166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 152,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.33333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 153,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.375,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 154,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.41666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 155,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.45833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 156,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.5,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 157,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.54166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 158,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.58333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 159,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.625,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 160,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.66666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 161,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.70833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 162,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.75,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 163,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.79166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 164,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.83333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 165,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.875,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 166,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.91666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 167,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.670063197612762,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 6.95833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 168,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        0.949532628059387,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.0,
+      "velocity": [
+        0.0,
+        8.19999980926514,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 169,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.32953262329102,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.04166666666667,
+      "velocity": [
+        0.0,
+        7.29999923706055,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 170,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.55786597728729,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.08333333333333,
+      "velocity": [
+        0.0,
+        6.69999885559082,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 171,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.86286604404449,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.125,
+      "velocity": [
+        0.0,
+        5.79999828338623,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 172,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.04119920730591,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.16666666666667,
+      "velocity": [
+        0.0,
+        5.1999979019165,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 173,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.27119922637939,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.20833333333333,
+      "velocity": [
+        0.0,
+        4.29999732971191,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 174,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.39953255653381,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.25,
+      "velocity": [
+        0.0,
+        3.69999742507935,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 175,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.55453252792358,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.29166666666667,
+      "velocity": [
+        0.0,
+        2.79999756813049,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 176,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.63286590576172,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.33333333333333,
+      "velocity": [
+        0.0,
+        2.19999766349792,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 177,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.71286559104919,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.375,
+      "velocity": [
+        0.0,
+        1.29999780654907,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_rise",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 178,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.74119877815247,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.41666666666667,
+      "velocity": [
+        0.0,
+        0.699997782707214,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 179,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.7461986541748,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.45833333333333,
+      "velocity": [
+        0.0,
+        -0.20000222325325,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 180,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.72453188896179,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.5,
+      "velocity": [
+        0.0,
+        -0.800002217292786,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 181,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.65453171730042,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.54166666666667,
+      "velocity": [
+        0.0,
+        -1.70000207424164,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 182,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.58286499977112,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.58333333333333,
+      "velocity": [
+        0.0,
+        -2.3000020980835,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 183,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.4378650188446,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.625,
+      "velocity": [
+        0.0,
+        -3.20000195503235,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 184,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.31619834899902,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.66666666666667,
+      "velocity": [
+        0.0,
+        -3.80000185966492,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 185,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        2.09619832038879,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.70833333333333,
+      "velocity": [
+        0.0,
+        -4.70000219345093,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 186,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.92453145980835,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.75,
+      "velocity": [
+        0.0,
+        -5.30000257492065,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 187,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.6295313835144,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.79166666666667,
+      "velocity": [
+        0.0,
+        -6.20000314712524,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 188,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.40786468982697,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.83333333333333,
+      "velocity": [
+        0.0,
+        -6.80000352859497,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 189,
+      "grounded": false,
+      "jump_held": true,
+      "position": [
+        3.2214367389679,
+        1.03786432743073,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.875,
+      "velocity": [
+        0.0,
+        -7.70000410079956,
+        0.0
+      ]
+    },
+    {
+      "animation": "jump_fall",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 190,
+      "grounded": false,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.766197562217712,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.91666666666667,
+      "velocity": [
+        0.0,
+        -8.30000400543213,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 191,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 7.95833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 192,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.0,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 193,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.04166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "land",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 194,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.08333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 195,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.125,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 196,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.16666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 197,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.20833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 198,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.25,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 199,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.29166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 200,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.33333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 201,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.375,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 202,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.41666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 203,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.45833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 204,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.5,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 205,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.54166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 206,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.58333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 207,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.625,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 208,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.66666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 209,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.70833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 210,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.75,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 211,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.79166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 212,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.83333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 213,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.875,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 214,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.91666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 215,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 8.95833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 216,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.0,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 217,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.04166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 218,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.08333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 219,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.125,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 220,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.16666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 221,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.20833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 222,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.25,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 223,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.29166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 224,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.33333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 225,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.375,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 226,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.41666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 227,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.45833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 228,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.5,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 229,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.54166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 230,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.58333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 231,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.625,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 232,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.66666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 233,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.70833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 234,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.75,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 235,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.79166666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 236,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.83333333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 237,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.875,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 238,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.91666666666667,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "animation": "idle",
+      "checkpoint": 1,
+      "falls": 0,
+      "frame": 239,
+      "grounded": true,
+      "jump_held": false,
+      "position": [
+        3.2214367389679,
+        0.67045533657074,
+        -6.82753419876099
+      ],
+      "stick_finger": -1,
+      "time_seconds": 9.95833333333333,
+      "velocity": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "kind": "production_jump_runtime_movie",
+  "physical_device_fps_measured": false,
+  "recording_method": "actual_viewport_png_sequence",
+  "scene": "res://scenes/games/jump_islands.tscn",
+  "scene_or_camera_or_physics_modified": false,
+  "scheduled_frames": 240
+}

@@ -1,0 +1,382 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T15:08:07.214819+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "Limited visual preflight only; candidate24fb remains rejected; no final receipt",
+  "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "original_zip": {
+    "filename": "studio-worlds-24fb8580.zip",
+    "sha256": "671dce5f465d3c4ddf6555565cf49e2d20207a422db7278d4647da9c1bbf3115",
+    "bytes": 104472768
+  },
+  "github_artifact": {
+    "id": 14048776045,
+    "node_id": "MDg6QXJ0aWZhY3QxNDA0ODc3NjA0NQ==",
+    "name": "lumo-studio-2019-worlds-evidence",
+    "size_in_bytes": 104472768,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14048776045",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/14048776045/zip",
+    "expired": false,
+    "digest": "sha256:671dce5f465d3c4ddf6555565cf49e2d20207a422db7278d4647da9c1bbf3115",
+    "created_at": "2026-11-13T14:52:45Z",
+    "updated_at": "2026-11-13T14:52:45Z",
+    "expires_at": "2026-12-13T14:52:38Z",
+    "workflow_run": {
+      "id": 43442579190,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "24fb85800dfb58ec11dd409449e276299aa72b06"
+    }
+  },
+  "metadata_source": "https://github.com/Ullmann27/lumo-godot/actions/runs/43442579190/artifacts?per_page=100",
+  "source_stamps": [
+    {
+      "entry": "nextgen-evidence/nextgen/source-sha.txt",
+      "sha256": "21e4a4dd83795a6d0707fbf4e7324957d0761aeb645c2df6001b91903264bc75",
+      "bytes": 41,
+      "value": "24fb85800dfb58ec11dd409449e276299aa72b06"
+    },
+    {
+      "entry": "nextgen-evidence/nextgen/source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "value": ""
+    },
+    {
+      "entry": "studio-evidence/source-sha.txt",
+      "sha256": "21e4a4dd83795a6d0707fbf4e7324957d0761aeb645c2df6001b91903264bc75",
+      "bytes": 41,
+      "value": "24fb85800dfb58ec11dd409449e276299aa72b06"
+    },
+    {
+      "entry": "studio-evidence/source-dirty.txt",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "value": ""
+    }
+  ],
+  "review_method": "Alle19PNGs einzeln mit view_image geöffnet. Anschließend jedes extrahierte Bild bytegleich zum Original-ZIP-Mitglied geprüft, PNG dekodiert und SHA256 gebunden. ZIP-Größe und Digest stimmen mit unabhängig abgerufenen aktuellen GitHub-Artefaktmetadaten überein.",
+  "counts": {
+    "kart_nextgen_garage_regression": 12,
+    "cards_table_capture": 4,
+    "rhythm_tour_play_regression": 3
+  },
+  "images": [
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "bytes": 436821,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Comet ist ausgewählt und als räumliches Kart mit Reifen, Karosserie, Beleuchtung und Schatten erkennbar.",
+        "Originalfuchs und Werkstattrequisiten sind sichtbar; Werkstatteinstieg, Rückkehr und Start werden nicht überdeckt. Teilweise angeschnittene nächste Listenkarten gehören zum Scrollbereich."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "sha256": "633f8330997b0b748e897a43385aaad1bec4961561e01b5c81b3e5befec97a48",
+      "bytes": 875335,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Comet ist ausgewählt und als räumliches Kart mit Reifen, Karosserie, Beleuchtung und Schatten erkennbar.",
+        "Originalfuchs und Werkstattrequisiten sind sichtbar; Werkstatteinstieg, Rückkehr und Start werden nicht überdeckt. Teilweise angeschnittene nächste Listenkarten gehören zum Scrollbereich."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+      "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b",
+      "bytes": 208179,
+      "dimensions": [
+        412,
+        915
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Comet ist ausgewählt und als räumliches Kart mit Reifen, Karosserie, Beleuchtung und Schatten erkennbar.",
+        "Originalfuchs und Werkstattrequisiten sind sichtbar; Werkstatteinstieg, Rückkehr und Start werden nicht überdeckt. Teilweise angeschnittene nächste Listenkarten gehören zum Scrollbereich."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-1280x720.png",
+      "sha256": "01f56f1f34f922d4b3d11dd9949efa7912f874ed0d3cb22b2a43b22cf39ec06f",
+      "bytes": 439057,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Gecko Velo ist sichtbar ausgewählt; die räumliche Kartfarbe und die markierte Auswahl stimmen überein.",
+        "Der Originalfuchs steht mit erkennbarem Kopf, Körper, Kleidung und Material neben dem Kart; kein fehlendes Hauptmesh sichtbar. Werkstatteinstieg, Rückkehr und Start bleiben lesbar."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-2400x1080.png",
+      "sha256": "cbeb1578dc2166d2b518c99bff80383f2ebabd45e997d9fa6716bbeeb251be3d",
+      "bytes": 874426,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Gecko Velo ist sichtbar ausgewählt; die räumliche Kartfarbe und die markierte Auswahl stimmen überein.",
+        "Der Originalfuchs steht mit erkennbarem Kopf, Körper, Kleidung und Material neben dem Kart; kein fehlendes Hauptmesh sichtbar. Werkstatteinstieg, Rückkehr und Start bleiben lesbar."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-412x915.png",
+      "sha256": "7332be0f869a8ce07d42c871853f76aaf2d705f3bb36bfb8716eae43d184eb65",
+      "bytes": 209458,
+      "dimensions": [
+        412,
+        915
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Gecko Velo ist sichtbar ausgewählt; die räumliche Kartfarbe und die markierte Auswahl stimmen überein.",
+        "Der Originalfuchs steht mit erkennbarem Kopf, Körper, Kleidung und Material neben dem Kart; kein fehlendes Hauptmesh sichtbar. Werkstatteinstieg, Rückkehr und Start bleiben lesbar."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-1280x720.png",
+      "sha256": "6442cefc5feb3b38f69a5a9025772f178b9ae96a4267e12595992afc54e83ae8",
+      "bytes": 579130,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Rennweltliste und Zielangabe 0/3 · 2 Runden ins Ziel sind lesbar; die räumliche Streckenminiatur ist sichtbar.",
+        "Menü/Start sowie obere Navigation bleiben frei. Weitere Listeneinträge können im Scrollausschnitt liegen; dieses Standbild belegt keinen vollständigen Listenwisch."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-2400x1080.png",
+      "sha256": "cf887c1a0be8a3798bf8861aa84b361c65629baf6731a6e73b4391c86953555b",
+      "bytes": 943839,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Rennweltliste und Zielangabe 0/3 · 2 Runden ins Ziel sind lesbar; die räumliche Streckenminiatur ist sichtbar.",
+        "Menü/Start sowie obere Navigation bleiben frei. Weitere Listeneinträge können im Scrollausschnitt liegen; dieses Standbild belegt keinen vollständigen Listenwisch."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-412x915.png",
+      "sha256": "add6d7f17be8cf1bea7b60490037ea4406fa5e018294beb3ff13a08639b668e8",
+      "bytes": 255673,
+      "dimensions": [
+        412,
+        915
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Rennweltliste und Zielangabe 0/3 · 2 Runden ins Ziel sind lesbar; die räumliche Streckenminiatur ist sichtbar.",
+        "Menü/Start sowie obere Navigation bleiben frei. Weitere Listeneinträge können im Scrollausschnitt liegen; dieses Standbild belegt keinen vollständigen Listenwisch."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-1280x720.png",
+      "sha256": "0903fbc28591dccfe53703e6663f45ccdd9ca60dfa58a42209c819dafd862033",
+      "bytes": 449383,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Die vergrößerte räumliche Kartansicht und der Originalfuchs sind sichtbar; keine neu verdeckte erforderliche Aktion.",
+        "Die ausgewählte Gecko-Velo-Karte, Werkstatteinstieg, Rückkehr und Start bleiben lesbar. Ein teilweise beschnittener dekorativer Sockel bzw. Wandtitel ist kein verdecktes Eingabeziel."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-2400x1080.png",
+      "sha256": "7cd2fd08d7aa0127b39897529a5ff186f7068fddcefb0928ddb8eeef577e0647",
+      "bytes": 884601,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Die vergrößerte räumliche Kartansicht und der Originalfuchs sind sichtbar; keine neu verdeckte erforderliche Aktion.",
+        "Die ausgewählte Gecko-Velo-Karte, Werkstatteinstieg, Rückkehr und Start bleiben lesbar. Ein teilweise beschnittener dekorativer Sockel bzw. Wandtitel ist kein verdecktes Eingabeziel."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-412x915.png",
+      "sha256": "f890ee169501a69ea3f9c3cf7dac6e49d746aa08dd12b96e73037ddb7593c58e",
+      "bytes": 215497,
+      "dimensions": [
+        412,
+        915
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Die vergrößerte räumliche Kartansicht und der Originalfuchs sind sichtbar; keine neu verdeckte erforderliche Aktion.",
+        "Die ausgewählte Gecko-Velo-Karte, Werkstatteinstieg, Rückkehr und Start bleiben lesbar. Ein teilweise beschnittener dekorativer Sockel bzw. Wandtitel ist kein verdecktes Eingabeziel."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "bytes": 568103,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "7 Karten dieser Handseite sind lesbar; Seitenanzeige 1/1 und beide Blätteraktionen sind sichtbar.",
+        "Ziehstapel, Ablage, Spielzughinweis und Lumo-Motiv am Tisch sind sichtbar. Zurück, Pause und Ziehen bleiben frei.",
+        "Karte legen ist im gezeigten Zustand ohne ausgewählte Karte deaktiviert; aus dem Standbild wird kein vollständiger Regel-/Touch-/Animationsnachweis abgeleitet."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-2400x1080.png",
+      "sha256": "f83e7e0dd30064841cd10689e73c8cf2b4a8c7258e6377a5fbc9528e54cb464a",
+      "bytes": 1028887,
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "7 Karten dieser Handseite sind lesbar; Seitenanzeige 1/1 und beide Blätteraktionen sind sichtbar.",
+        "Ziehstapel, Ablage, Spielzughinweis und Lumo-Motiv am Tisch sind sichtbar. Zurück, Pause und Ziehen bleiben frei.",
+        "Karte legen ist im gezeigten Zustand ohne ausgewählte Karte deaktiviert; aus dem Standbild wird kein vollständiger Regel-/Touch-/Animationsnachweis abgeleitet."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "bytes": 289390,
+      "dimensions": [
+        412,
+        915
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "3 Karten dieser Handseite sind lesbar; Seitenanzeige 1/3 und beide Blätteraktionen sind sichtbar.",
+        "Ziehstapel, Ablage, Spielzughinweis und Lumo-Motiv am Tisch sind sichtbar. Zurück, Pause und Ziehen bleiben frei.",
+        "Karte legen ist im gezeigten Zustand ohne ausgewählte Karte deaktiviert; aus dem Standbild wird kein vollständiger Regel-/Touch-/Animationsnachweis abgeleitet."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-690x829.png",
+      "sha256": "62bd3ce901232399b1f3fb2181d010923a84b904c4f42beec4cfec48feb76042",
+      "bytes": 429629,
+      "dimensions": [
+        690,
+        829
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "5 Karten dieser Handseite sind lesbar; Seitenanzeige 1/2 und beide Blätteraktionen sind sichtbar.",
+        "Ziehstapel, Ablage, Spielzughinweis und Lumo-Motiv am Tisch sind sichtbar. Zurück, Pause und Ziehen bleiben frei.",
+        "Karte legen ist im gezeigten Zustand ohne ausgewählte Karte deaktiviert; aus dem Standbild wird kein vollständiger Regel-/Touch-/Animationsnachweis abgeleitet."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/01_rhythm_tour_map.png",
+      "sha256": "666b8e0f47cb1b3c9ca419ea76e12924d0c1456e2600031532cfb3167a3dad4d",
+      "bytes": 390759,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Tourkarte zeigt aktuelle Bühne, Ziel 16 von 40 Tönen, Modus, Schwierigkeit und Start verständlich.",
+        "Start und Rückkehr sind vollständig innerhalb des Dialogs; verdeckte Bühnentexte dahinter sind keine erforderlichen Aktionen des offenen Dialogs."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "0adc9fec8f8854a661fd8507aa0ca4f156eb106fbb8bd837e58623737aabc08e",
+      "bytes": 655555,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Vier farbige Spielspuren, der sichtbare Slideweg und die zugehörigen vier Eingabeflächen sind erkennbar.",
+        "Score, Wechselhinweis, Rückkehr und Pause sind lesbar. Bühnenlicht und das entfernte Lumo-Motiv erscheinen ohne fehlende Materialflächen; dieses Bild belegt weder Taktgenauigkeit noch neue Rig-Integration."
+      ]
+    },
+    {
+      "path": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/03_rhythm_tour_result.png",
+      "sha256": "8eb9fccc31505edcebe62e394ad5c0bd101d0c89c5d8ddf21095dc7099350848",
+      "bytes": 422046,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "original_zip_bytes_equal": true,
+      "actually_opened_individually": true,
+      "verdict": "No additional visible blocking issue within this static capture",
+      "observations": [
+        "Ergebnis mit zwei Sternen, 2445 Punkten, 54 Prozent Treffern und freigeschalteter nächster Bühne ist lesbar.",
+        "Noch einmal spielen, Zur Tourkarte und Zur Spielewelt bleiben vollständig sichtbar. Der Dialog verdeckt nur die dahinterliegende Spielsituation."
+      ]
+    }
+  ],
+  "limits": [
+    "Keine Mutation von Produkt- oder Testdateien.",
+    "Keine volle Spielrunde, neue Eingabemessung, Zeit-/Framerate-/Temperaturmessung oder physische Android-/Fold7-Prüfung.",
+    "Die12Garagebilder ersetzen nicht die6verpflichtenden neuen Werkstatt-Touchbilder. Der24fb-Werkstattjob ist wegen Timeout weiterhin fehlgeschlagen.",
+    "Sichtbare Lumo-Motive in Cards/Rhythm belegen keine nachträglich hinzugefügte Originalrig- oder Studio-Clip-Integration.",
+    "Die bekannten oberen Gleichheitszeichen- und Bauwelt-Befunde bleiben Gründe für die Verwerfung von24fb. Zukünftige Freigabebilder müssen aus dem nächsten tatsächlich gesicherten Kandidaten stammen."
+  ]
+}

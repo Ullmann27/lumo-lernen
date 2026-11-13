@@ -1,0 +1,26 @@
+{
+  "review_utc": "2026-11-13T15:08:12.054222+00:00",
+  "scope": "Two actual local final-v4 Build current-goal captures reviewed while the complete local input run is still in progress. No complete run pass or source-SHA receipt inferred.",
+  "product_sha256": "e562577eb2e21cceaa31152c62d30a329204d069ea2f049f927a39550a16ef6c",
+  "probe_sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3",
+  "images": [
+    {
+      "filename": "build-dialog-640x360-current-goal.png",
+      "sha256": "dd613724040c8e68d858628fef627c01e049738a9b561b47a30ac61a4e2cbd38",
+      "reviewer": "root",
+      "actually_opened": true
+    },
+    {
+      "filename": "build-dialog-2400x1080-current-goal.png",
+      "sha256": "44dc7a5f8e314270070eb28c1bf9079f88df9ec52392859a053037b07033e594",
+      "reviewer": "root",
+      "actually_opened": true
+    }
+  ],
+  "finding": "Complete assignment, unchanged test action and fixed cancellation are visible inside the viewport at both 640x360 and 2400x1080 density2.625. No further input overlap visible in these two dialog states.",
+  "limitations": [
+    "Only these two local images were opened by root in this review. Agent C owns the complete twelve-image and gameplay review.",
+    "No physical Android/Fold7 or performance proof.",
+    "The prepared native tree has not yet advanced the branch."
+  ]
+}

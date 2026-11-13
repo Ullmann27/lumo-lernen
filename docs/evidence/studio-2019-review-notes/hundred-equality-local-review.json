@@ -1,0 +1,205 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T14:58:10.716683+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "PASS for the narrowly scoped local correction and six rendered captures; no CI or release receipt",
+  "rejected_previous_candidate": {
+    "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+    "original_zip": "studio-learning-24fb8580.zip",
+    "sha256": "6e05364e0fe0ebd5eaf393e5e7313afb46ed65e94bb7252a0f7bc51e6b642f26",
+    "images": [
+      {
+        "entry": "images/bridge_hundred-complete.png",
+        "sha256": "7ffb621afc72660fb44ecb9de7d75a93e49163767f34f46dd6973efc43412f59",
+        "viewed_individually": true,
+        "verdict": "FAIL: die Extrusion schließt den sichtbaren Spalt des oberen Gleichheitszeichens nahezu vollständig."
+      },
+      {
+        "entry": "images/bridge_hundred-complete-412x915.png",
+        "sha256": "f9fb8ec21cff3c5968dd24c63fc9b2294c70635e14849f77e96d5646effb9cab",
+        "viewed_individually": true,
+        "verdict": "FAIL: die Extrusion schließt den sichtbaren Spalt des oberen Gleichheitszeichens nahezu vollständig."
+      },
+      {
+        "entry": "images/bridge_hundred-complete-2400x1080.png",
+        "sha256": "2839604104d7bfc817ff7c6f12481d1791ef1e77d1f1a2fbf22e8e53bf30c34a",
+        "viewed_individually": true,
+        "verdict": "FAIL: die Extrusion schließt den sichtbaren Spalt des oberen Gleichheitszeichens nahezu vollständig."
+      }
+    ]
+  },
+  "local_source_identity": {
+    "last_remote_snapshot": "24fb85800dfb58ec11dd409449e276299aa72b06",
+    "scope": "Lokale Korrektur über diesem zuletzt gesicherten Stand. Kein neuer Commit und keine saubere abschließende GitHub-Revision durch diesen Bericht behauptet.",
+    "files": [
+      {
+        "path": "scripts/learning/learning_world.gd",
+        "sha256": "327d222133c076a3cf5c7242e933bad2b9376c6c24a4179b03156a3fc71f411d"
+      },
+      {
+        "path": "scripts/tests/learning_studio_regression.gd",
+        "sha256": "db69f9b6f2b629b655534f5d11610709a15eee5d76317cc55e8a88e0c1b74c1c"
+      },
+      {
+        "path": "scripts/tests/learning_world_capture.gd",
+        "sha256": "edbb07b69d3909c9b9ea99e165d69173acc7f67381f8c8798e10284893d053c3"
+      }
+    ]
+  },
+  "fix": "Nur die obere bridge_hundred-Textgeometrie folgt nach dem Kameralayout der Kamerabasis. Die reale TextMesh-Extrusion von 0,045, die mathematische Zeichenfolge und flache Würfelbeschriftungen bleiben erhalten. Lebenszyklus-Guards verhindern einen globalen Transformzugriff nach dem Entfernen der Kinder aus dem Szenenbaum.",
+  "geometry_regression": {
+    "method": "Zusammenhängende Glyphenteile aus tatsächlichen TextMesh-Dreiecken, Erkennung beider getrennten horizontalen Gleichheitsbalken, Projektion sämtlicher Vertices einschließlich Extrusionsseiten; außerdem Sichtbereich zwischen realem HUD und Footer.",
+    "old_product_new_test": {
+      "exit_code": 1,
+      "gap_failures": 12,
+      "projected_gap_pixels_max": 0.02945
+    },
+    "corrected_product": {
+      "exit_code": 0,
+      "checks": 183,
+      "runtime_errors": 0,
+      "projected_gap_pixels_min": 2.2481079
+    },
+    "formats": [
+      [
+        1280,
+        720
+      ],
+      [
+        412,
+        915
+      ],
+      [
+        2400,
+        1080
+      ]
+    ],
+    "density_for_2400x1080": 2.625
+  },
+  "actual_renderer": {
+    "command": "python3 /tmp/lumo-isolated-xorg-run.py --display 97 --output /tmp/lumo-learning-x11-equals-clean --timeout 900 -- --script /tmp/lumo_hundred_equals_fixed_capture.gd -- --output=/tmp/lumo-learning-equals-clean-images",
+    "backend": "Godot 4.6.3 X11 compatibility renderer in isolated authenticated Xorg; software rendering",
+    "exit_code": 0,
+    "runtime_errors": 0,
+    "capture_count": 6,
+    "actual_screen_touch_lesson_steps": 15,
+    "pass_marker": "[HundredEqualsCapture] PASS captures=6; actual production scene and real lesson taps",
+    "verification": "Unveränderte produktive learning_world.tscn über das bestehende learning_world_capture-Harness. Die kleine eng begrenzte Probe ist hier mitgesichert; PNGs wurden unverändert kopiert und Hashgleichheit geprüft."
+  },
+  "logs_and_probe": [
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/geometry-red.log",
+      "sha256": "343b38ea8a9bc6f9c4aa7bd938780080a0a595a3df178d362cab450fe00581ef"
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/geometry-final.log",
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766"
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/renderer-final.log",
+      "sha256": "ca52dc260e4d36d0cf3b7dec8f5f9033c546c319b4f96b19e25dec80aca3c15f"
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/production_capture_probe.gd",
+      "sha256": "fa0cdcbb3dd86f067bc4dfa6791a9d723c4ffeac141aee1ae8882e0358e3e2d5"
+    }
+  ],
+  "images": [
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/bridge_hundred-complete-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "c269ecf31faf3162eb82b33283745c6abe6421b9631fca8c10bb00b5164b950f",
+      "bytes": 294085,
+      "viewed_individually": true,
+      "verdict": "PASS for this visual scope only",
+      "findings": [
+        "Das obere 3D-Gleichheitszeichen besitzt zwei klar getrennte Balken; 10 Zehner = 100 und die untere Stellenwertzerlegung sind lesbar.",
+        "Erforderliche Lernobjekte liegen zwischen Kopf- und Fußbereich. Original-Lumo, sein Material und die vorhandenen Touch-Schaltflächen bleiben sichtbar."
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/bridge_hundred-complete-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "bytes": 723952,
+      "viewed_individually": true,
+      "verdict": "PASS for this visual scope only",
+      "findings": [
+        "Das obere 3D-Gleichheitszeichen besitzt zwei klar getrennte Balken; 10 Zehner = 100 und die untere Stellenwertzerlegung sind lesbar.",
+        "Erforderliche Lernobjekte liegen zwischen Kopf- und Fußbereich. Original-Lumo, sein Material und die vorhandenen Touch-Schaltflächen bleiben sichtbar."
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/bridge_hundred-complete-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+      "bytes": 135397,
+      "viewed_individually": true,
+      "verdict": "PASS for this visual scope only",
+      "findings": [
+        "Das obere 3D-Gleichheitszeichen besitzt zwei klar getrennte Balken; 10 Zehner = 100 und die untere Stellenwertzerlegung sind lesbar.",
+        "Erforderliche Lernobjekte liegen zwischen Kopf- und Fußbereich. Original-Lumo, sein Material und die vorhandenen Touch-Schaltflächen bleiben sichtbar."
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/bridge_hundred-start-1280x720.png",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "43473ce298b60179323b80845737ff6e58ab6ffe3a0559b2f6b4b10e3d3bfcfe",
+      "bytes": 296121,
+      "viewed_individually": true,
+      "verdict": "PASS for this visual scope only",
+      "findings": [
+        "Startbeschriftung, acht Zehnerblöcke, fünf ergänzbare Zehner und der vorhandene Hunderter sind sichtbar.",
+        "Erforderliche Lernobjekte liegen zwischen Kopf- und Fußbereich. Original-Lumo, sein Material und die vorhandenen Touch-Schaltflächen bleiben sichtbar."
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/bridge_hundred-start-2400x1080.png",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "sha256": "371abc23b20bf4ff7e01396bc800b4fd3fec78584948a3cdbb858cd7fbc60303",
+      "bytes": 717882,
+      "viewed_individually": true,
+      "verdict": "PASS for this visual scope only",
+      "findings": [
+        "Startbeschriftung, acht Zehnerblöcke, fünf ergänzbare Zehner und der vorhandene Hunderter sind sichtbar.",
+        "Erforderliche Lernobjekte liegen zwischen Kopf- und Fußbereich. Original-Lumo, sein Material und die vorhandenen Touch-Schaltflächen bleiben sichtbar."
+      ]
+    },
+    {
+      "path": "docs/evidence/studio-2019-review-notes/hundred-equality-local/bridge_hundred-start-412x915.png",
+      "dimensions": [
+        412,
+        915
+      ],
+      "sha256": "2b3a3032edf94a32d504ebeadae50417371a4e5b4bb3a97227495bba5a49c8d3",
+      "bytes": 140079,
+      "viewed_individually": true,
+      "verdict": "PASS for this visual scope only",
+      "findings": [
+        "Startbeschriftung, acht Zehnerblöcke, fünf ergänzbare Zehner und der vorhandene Hunderter sind sichtbar.",
+        "Erforderliche Lernobjekte liegen zwischen Kopf- und Fußbereich. Original-Lumo, sein Material und die vorhandenen Touch-Schaltflächen bleiben sichtbar."
+      ]
+    }
+  ],
+  "limitations": [
+    "Lokale Renderer- und Geometrieevidenz; kein neuer vollständiger Native-CI-Nachweis.",
+    "Keine physische Fold7-Messung, Android-Laufzeit-, Framerate-, Temperatur- oder Latenzaussage.",
+    "Die frühere Zwischenmessung in /tmp/lumo-learning-x11-equals-final enthielt Exit-Lifecyclefehler und ist nicht diese finale saubere Evidenz.",
+    "Kein finaler Visual-Receipt; neue CI-Bilder müssen an den nächsten tatsächlichen Native-Commit gebunden geprüft werden."
+  ]
+}

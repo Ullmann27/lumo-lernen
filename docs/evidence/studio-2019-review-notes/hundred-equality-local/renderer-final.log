@@ -1,0 +1,39 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:364)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.
+     at: viewport_set_screen_space_aa (servers/rendering/renderer_viewport.cpp:1400)
+WARNING: Volumetric fog is only available when using the Forward+ renderer.
+     at: environment_set_volumetric_fog (servers/rendering/storage/environment_storage.cpp:458)
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(720, 1280) safe-area:[P: (0.0, 32.0), S: (0.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium
+[LearningCapture] SCREENSHOT bridge_hundred-start-1280x720 lit=49302 orange=31487 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-1280x720 lit=50804 orange=33220 fox_head_orange=2632 clipped_ratio=0.00123456790123
+[LearningCapture] SCREENSHOT bridge_hundred-start-412x915 lit=18650 orange=9387 fox_head_orange=969 clipped_ratio=0.0005812376487
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-412x915 lit=18196 orange=9599 fox_head_orange=870 clipped_ratio=0.00073087542634
+[LearningCapture] SCREENSHOT bridge_hundred-start-2400x1080 lit=95645 orange=31808 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[LearningWorld] move kind=bridge_hundred token=0 target=8 placed=1 complete=false
+[LearningWorld] move kind=bridge_hundred token=1 target=9 placed=2 complete=false
+[LearningWorld] move kind=bridge_hundred token=2 target=10 placed=3 complete=false
+[LearningWorld] move kind=bridge_hundred token=3 target=11 placed=4 complete=false
+[LearningWorld] move kind=bridge_hundred token=4 target=12 placed=5 complete=true
+[LearningCapture] SCREENSHOT bridge_hundred-complete-2400x1080 lit=96926 orange=33316 fox_head_orange=2525 clipped_ratio=0.00057823614214
+[HundredEqualsCapture] PASS captures=6; actual production scene and real lesson taps

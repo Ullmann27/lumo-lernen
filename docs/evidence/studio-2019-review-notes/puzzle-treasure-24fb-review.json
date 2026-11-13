@@ -1,0 +1,331 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T14:37:11.444643+00:00",
+  "reviewer": "Agent C /root/games_worlds",
+  "status": "PUZZLE_TREASURE_CAPTURE_SCOPE_PASS",
+  "final_visual_receipt": false,
+  "final_publication_approved": false,
+  "release_approval": false,
+  "scope": "Sieben Puzzle- und drei TreasureExploration-PNGs aus dem tatsächlich geöffneten frischen 24fb-Studioartefakt. Keine Gesamtfreigabe, Android-Abnahme oder Abnahme der separat erwarteten neuen Touch-Captures.",
+  "repository": "Ullmann27/lumo-godot",
+  "source_commit": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "source_tree": "86bdeb667b3bdc512360699fffc0546711fc575d",
+  "source_dirty_empty": true,
+  "source_stamps_match_original_archive": true,
+  "workflow_run": 43442579190,
+  "artifact_id": 14047461111,
+  "artifact_id_provenance": "GitHub-Identität vom Integrator angegeben; ZIP-SHA, Quellstempel, manifestgebundene PNG-Bytes, vier relevante Testlogs und neun Ergebniszeilen unabhängig aus dem Original-ZIP geprüft.",
+  "archive": {
+    "file": "studio-new-native-24fb8580.zip",
+    "sha256": "17b681aa99d62d5b6679e6b6d1157b051f1695a2ecb57ed99f5527e3111fc11c",
+    "bytes": 19716462,
+    "sha256_independently_recomputed": true
+  },
+  "renderer": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "display": "X11",
+    "backend": "OpenGL Compatibility / Mesa llvmpipe (LLVM 20.1.2, 256 bits)",
+    "source": "puzzle_rotation_regression-rendered.log",
+    "android_device_render": false
+  },
+  "images": [
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_412x915.png",
+      "file": "puzzle_rotation_412x915.png",
+      "module": "puzzle",
+      "sha256": "4482b1335b5efb5e18704156f9c35ad7b9c615b445198c6fbad2df82d0af8f50",
+      "bytes": 228010,
+      "dimensions_px": [
+        412,
+        915
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Das eingesetzte Teil und der helle Zielbereich auf dem mittleren Brett sowie die drei angebotenen Teile darunter sind frei sichtbar. Die untere Werkzeugleiste liegt deutlich unter den angebotenen Teilen.",
+        "Titel ist platzbedingt mit Ellipse gekürzt; die Hilfestellung bricht im Kopfbereich um und bleibt lesbar. Der angeschnittene seitliche Ablagebereich enthält in dieser Aufnahme keine benötigten angebotenen Teile.",
+        "Das Standbild belegt die sichtbare Anordnung im Hochformat, nicht selbst die tatsächliche Eingabe oder einen physischen Fold-Wechsel."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "file": "puzzle_rotation_640x360.png",
+      "module": "puzzle",
+      "sha256": "4d1a8e4040759af9dfe744ff3f264a52598e35c96f850968ae7b8f2b37825d18",
+      "bytes": 113795,
+      "dimensions_px": [
+        640,
+        360
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Die angebotenen Bildteile, das zentrale Brett und der helle Zielbereich liegen sichtbar zwischen dem Ende des oberen HUD und der unteren Werkzeugleiste. Die frühere Überdeckung der oberen Zielplätze durch die Fortschrittsanzeige ist in dieser Aufnahme nicht wieder vorhanden.",
+        "1 / 6 Teile und 1 Tipps sowie die Erklärung sind lesbar. Drehen, Teilewechsel, Randteile, Bild ansehen und Ein Tipp sind getrennt sichtbar; der horizontale Scrollbalken gehört zur Werkzeugleiste.",
+        "Der kleine blaue Stapel am unteren Tischrand ist Atelierdekoration; die aktiven texturierten Puzzleteile liegen darüber. Keine erforderliche aktive Zielregion erkennbar durch UI verdeckt."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_840x760.png",
+      "file": "puzzle_rotation_840x760.png",
+      "module": "puzzle",
+      "sha256": "cc2f1c9db1f436cf97c779351365abe6ceb08f3bf7823b57a3a33182ad761da7",
+      "bytes": 326232,
+      "dimensions_px": [
+        840,
+        760
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Mittleres Brett, eingesetztes Teil und drei angebotene Teile sind im freien Spielbereich. Die unteren Teile liegen oberhalb der Werkzeugleiste ohne erneute HUD-Überdeckung.",
+        "Fortschritt und Hilfetext sind vollständig lesbar. Die rechte Aktion Neues Puzzle ist am Ende der horizontal scrollbaren Leiste angeschnitten; das Bild zeigt eine Scrollposition, keine feste vollständige Sichtbarkeit dieser Aktion.",
+        "Die seitlichen leeren Ablagetische sind am Bildrand angeschnitten. Kein zusätzlicher konkreter Blocker für die sichtbaren angebotenen Teile oder den aktiven Brettbereich festgestellt."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_compact_menu.png",
+      "file": "puzzle_rotation_compact_menu.png",
+      "module": "puzzle",
+      "sha256": "ac240d4fb61ca94a2e367a5e3a2f438d7ffd114cfab5e57f23648796c93ed46e",
+      "bytes": 58985,
+      "dimensions_px": [
+        640,
+        360
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Bei 640×360 liegen Mini · 6 Teile, Modus: Drehpuzzle, Neues Puzzle beginnen, Gespeichertes Puzzle fortsetzen und Zur Spielewelt im dunklen Auswahlbereich mit lesbaren Beschriftungen.",
+        "Der sichtbare Scrollbalken steht am Listenende; der obere Auswahlinhalt ist nach oben gescrollt. Die unteren Start-, Fortsetzen- und Rückkehraktionen sind vollständig im Fenster sichtbar.",
+        "Keine zusätzlich abgeschnittene untere Pflichtaktion beobachtet. Das Standbild allein beweist den tatsächlichen Scroll-/Touchpfad nicht."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_hint.png",
+      "file": "puzzle_rotation_hint.png",
+      "module": "puzzle",
+      "sha256": "56a240ab05e93506deb170047b1ef80d677ad4b7cd84853ecb9f275d308396b6",
+      "bytes": 519079,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Das mittlere Teil ist sichtbar falsch orientiert. Der Text Der Platz stimmt. Drehe das Teil noch mit ↻ erläutert die noch nötige Aktion; der Fortschritt bleibt folgerichtig bei 0 / 6.",
+        "Der Drehknopf ist visuell aktiv; alle übrigen benötigten Teile und Werkzeugaktionen sind im Bild. Materialdicke und Schatten machen die Teile als räumliche Geometrie erkennbar."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "file": "puzzle_rotation_placed.png",
+      "module": "puzzle",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "bytes": 509560,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Das korrekt orientierte Teil liegt auf dem Brett. Die Oberfläche zeigt 1 / 6 Teile, einen entsprechenden Fortschrittsbalken und Das passt! Dein Bild wächst.",
+        "Die verbliebenen fünf Teile sind auf den beiden Ablagen sichtbar. Kein neues verdecktes Pflichtteil oder unlesbarer Aktionsbereich in dieser Aufnahme festgestellt."
+      ]
+    },
+    {
+      "artifact_entry": "captures/puzzle_rotation_regression/puzzle_rotation_table.png",
+      "file": "puzzle_rotation_table.png",
+      "module": "puzzle",
+      "sha256": "98549ca0d1293b62311bc9ebad93eef60d1fb4f35bee5e16ed6e614a16232f20",
+      "bytes": 507207,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Die Ausgangssituation zeigt sechs dicke, texturierte Teile auf zwei Ablagen und ein freies zentrales Brett. Fortschritt 0 / 6 und die Anweisung zum Antippen, Drehen und Ziehen sind lesbar.",
+        "Drehen ist ohne ausgewähltes Teil visuell deaktiviert. Die übrigen Aktionen, einschließlich Speichern und Neues Puzzle, sind vollständig sichtbar; keine fehlenden Texturen oder neue sichtbare Geometriefehler festgestellt."
+      ]
+    },
+    {
+      "artifact_entry": "captures/treasure_exploration_regression/treasure_choose_route.png",
+      "file": "treasure_choose_route.png",
+      "module": "treasure",
+      "sha256": "3d7e45f105482dfe932640339a3efeb9f29267c1161a7ba221916907e1b9cbc9",
+      "bytes": 1365759,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Die Ansicht zeigt 3 / 7 gelöste Hinweise und erklärt die Wahl zwischen Kristallwächter und Mondgarten sowie die Notwendigkeit beider Funde für das Schloss.",
+        "Spielerfigur, begehbare Landschaft, Schloss, Bäume und ein sichtbarer Zielstern sind räumlich dargestellt. Stick links sowie Springen und Ansehen rechts sind voneinander getrennt sichtbar.",
+        "Die Entdeckungsanzeige 0 / 3 bricht auf zwei Zeilen um, bleibt aber vollständig innerhalb der dunklen Textfläche lesbar. Kein zusätzliches Abschneiden des Erklärungstextes beobachtet."
+      ]
+    },
+    {
+      "artifact_entry": "captures/treasure_exploration_regression/treasure_garden_first.png",
+      "file": "treasure_garden_first.png",
+      "module": "treasure",
+      "sha256": "981f374912af414cc7f2e90fc426323c29271e21b83dcf55df25a784b98ac619",
+      "bytes": 1325012,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "Die Ansicht zeigt 4 / 7 gelöste Hinweise, den Fund Mondblüte und den verbleibenden Hinweis auf die Kristalle. Das passt zur dargestellten Reihenfolge Garten vor Kristallen.",
+        "Blumenbereich, Figur, weitere Objekte und Bewegungs-/Interaktionssteuerung sind frei sichtbar. Der Erklärungstext bleibt innerhalb seines Panels; keine neue sichtbare Überdeckung der erforderlichen Aktionen festgestellt."
+      ]
+    },
+    {
+      "artifact_entry": "captures/treasure_exploration_regression/treasure_route_complete.png",
+      "file": "treasure_route_complete.png",
+      "module": "treasure",
+      "sha256": "f25f7dcd102814090d2845463f250e62b7ec14714b98e46c75c6ea96bd6a757b",
+      "bytes": 1354277,
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "original_zip_member_byte_match": true,
+      "renderer_manifest_match": true,
+      "actually_opened_individually_from_24fb_directory": true,
+      "view_method": "tools.view_image with explicit original image output, one PNG per call",
+      "status": "NO_ADDITIONAL_CONCRETE_VISUAL_BLOCKER",
+      "findings": [
+        "7 / 7 gelöste Hinweise und der Abschlussdialog mit sieben Hinweisen, drei Sternen und 48 Erfahrungspunkten sind lesbar.",
+        "Insel weiter erkunden, Neues Abenteuer und Zur Spielewelt sind im zentrierten Dialog vollständig sichtbar und klar getrennt. Die darunterliegenden Weltsteuerungen bleiben im Hintergrund, sind aber nicht als Dialogaktionen ausgegeben.",
+        "Das Bild belegt die dargestellte Abschlussoberfläche. Die tatsächliche Vergabe/Speicherung und der finale Antwort-Touch ergeben sich nicht allein aus diesem Standbild."
+      ]
+    }
+  ],
+  "relevant_original_logs": [
+    {
+      "artifact_entry": "puzzle_rotation_regression-headless.log",
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "checks": 4558,
+      "pass_marker": "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume",
+      "original_zip_member_byte_match": true
+    },
+    {
+      "artifact_entry": "puzzle_rotation_regression-rendered.log",
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "checks": 4565,
+      "pass_marker": "[PuzzleRotation] PASS 4565 checks: orientation, legacy saves, real picking, touch rotation and resume",
+      "original_zip_member_byte_match": true
+    },
+    {
+      "artifact_entry": "treasure_exploration_regression-headless.log",
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "checks": 87,
+      "pass_marker": "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards",
+      "original_zip_member_byte_match": true
+    },
+    {
+      "artifact_entry": "treasure_exploration_regression-rendered.log",
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "checks": 90,
+      "pass_marker": "[TreasureExploration] PASS 90 checks: branching, actual location questions, movement, legacy saves and original rewards",
+      "original_zip_member_byte_match": true
+    }
+  ],
+  "studio_gate_results": [
+    {
+      "probe": "learning_sharing_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "learning_studio_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "lumo_studio_motion_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "puzzle_rotation_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "treasure_exploration_regression",
+      "mode": "headless",
+      "result": "PASS"
+    },
+    {
+      "probe": "learning_sharing_capture",
+      "mode": "rendered",
+      "result": "PASS"
+    },
+    {
+      "probe": "lumo_studio_motion_capture",
+      "mode": "rendered",
+      "result": "PASS"
+    },
+    {
+      "probe": "puzzle_rotation_regression",
+      "mode": "rendered",
+      "result": "PASS"
+    },
+    {
+      "probe": "treasure_exploration_regression",
+      "mode": "rendered",
+      "result": "PASS"
+    }
+  ],
+  "studio_gate_scope": "Neun PASS-Zeilen dieses Studioartefakts; keine Behauptung, alle acht Native-Abnahmejobs oder der Android-Workflow seien bereits abgeschlossen.",
+  "interaction_scope": [
+    "Der Reviewer hat in diesem Arbeitsschritt keine Godot-Interaktionssuite neu ausgeführt; die beigefügten vier Testlogs stammen unverändert aus dem aktuellen Originalartefakt.",
+    "Die Puzzle-Logs belegen 4558 Headless- und 4565 Renderer-Prüfungen einschließlich tatsächlicher Auswahl-/Dreh-/Platzierungsereignisse. Die Bilder werden davon getrennt visuell beurteilt.",
+    "TreasureExploration prüft beide Routen und tatsächliche Buttons sowie eine echte Stickbewegung; für weitere Frageorte verwendet die bestehende Probe direkt gesetzte Spielerpositionen. Keine vollständig manuell durchwanderte Insel behauptet."
+  ],
+  "limits": [
+    "Die drei Schatzsuchebilder sind sämtlich 1280×720. Sie ersetzen nicht die neue getrennte Treasure-Dichte-/Hochformat-Abnahme.",
+    "Die Schatzsuche benutzt weiterhin den vereinfachten vorhandenen Begleitfuchs aus kart_vehicle.gd; keine Original-GLB-Studio-Actor-, Blinzel- oder Lip-Sync-Integration daraus abgeleitet.",
+    "840×760 ist eine Engine-Layoutfixture, keine Aufnahme eines physischen Galaxy Z Fold7.",
+    "Statische Bilder belegen keine flüssige Animation, Eingabelatenz, Android-Lebenszyklen, Temperatur oder stabile 60 FPS.",
+    "Frische acht BuildTouch-Bilder und zehn Build-/Settlement-Produktbilder wurden in dieser Review nicht geprüft; sie werden separat erwartet.",
+    "Einzelne deterministisch identische PNG-Hashes zu einem Vorläufer werden nicht als neue sichtbare Funktion ausgegeben. Die hier geprüften Dateien und Logs sind an den tatsächlichen 24fb-Original-ZIP und seine Quellstempel gebunden."
+  ],
+  "product_code_changed": false
+}

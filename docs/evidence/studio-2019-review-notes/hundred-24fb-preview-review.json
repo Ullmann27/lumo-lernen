@@ -1,0 +1,50 @@
+{
+  "kind": "hundred_learning_preview_visual_review",
+  "native_revision": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "artifact_id": 14046463527,
+  "artifact_sha256": "6e05364e0fe0ebd5eaf393e5e7313afb46ed65e94bb7252a0f7bc51e6b642f26",
+  "reviewer": "root",
+  "status": "OPEN_VISIBLE_EQUALITY_GLYPH_FINDING",
+  "scope": "Six original current hundred-transition PNGs actually viewed, including landscape, portrait and explicit Android-density fixture. Not physical-device evidence.",
+  "source_sha_verified": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "dirty_source_claim": false,
+  "note": "This early preview has no dirty-source stamp. The overall24fb candidate already fails the independent Build renderer input gate. No release receipt recorded.",
+  "images": [
+    {
+      "artifact_entry": "images/bridge_hundred-complete-2400x1080.png",
+      "sha256": "2839604104d7bfc817ff7c6f12481d1791ef1e77d1f1a2fbf22e8e53bf30c34a",
+      "actually_viewed": true,
+      "findings": "Header, lower place-value caption and footer are visible; lower caption is fully backed by its dark 3D plate. At completion the upper flat extruded equals sign visually appears as a filled rectangle. Independent geometry/projection investigation requested; no visual approval for that symbol yet."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-complete-412x915.png",
+      "sha256": "f9fb8ec21cff3c5968dd24c63fc9b2294c70635e14849f77e96d5646effb9cab",
+      "actually_viewed": true,
+      "findings": "Header, lower place-value caption and footer are visible; lower caption is fully backed by its dark 3D plate. At completion the upper flat extruded equals sign visually appears as a filled rectangle. Independent geometry/projection investigation requested; no visual approval for that symbol yet."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-complete.png",
+      "sha256": "7ffb621afc72660fb44ecb9de7d75a93e49163767f34f46dd6973efc43412f59",
+      "actually_viewed": true,
+      "findings": "Header, lower place-value caption and footer are visible; lower caption is fully backed by its dark 3D plate. At completion the upper flat extruded equals sign visually appears as a filled rectangle. Independent geometry/projection investigation requested; no visual approval for that symbol yet."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-start-2400x1080.png",
+      "sha256": "ec4e44c1b2341c500f48a449341377ffb9e7191c7136bbd93bdc622d057b7c2b",
+      "actually_viewed": true,
+      "findings": "Header, lower place-value caption and footer are visible; lower caption is fully backed by its dark 3D plate. Eight starting tens plus one hundred and five additional tens are visible; the start caption requests completing 200 first."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-start-412x915.png",
+      "sha256": "25e4b985bda1ee1b37587621d22398d874ca4ba3699d39f95a92d8995a695108",
+      "actually_viewed": true,
+      "findings": "Header, lower place-value caption and footer are visible; lower caption is fully backed by its dark 3D plate. Eight starting tens plus one hundred and five additional tens are visible; the start caption requests completing 200 first."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-start.png",
+      "sha256": "81764976fce6917dd609a953081879fec0b5fd01ffbaeb0455610d3919825063",
+      "actually_viewed": true,
+      "findings": "Header, lower place-value caption and footer are visible; lower caption is fully backed by its dark 3D plate. Eight starting tens plus one hundred and five additional tens are visible; the start caption requests completing 200 first."
+    }
+  ]
+}

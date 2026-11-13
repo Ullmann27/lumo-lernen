@@ -1,0 +1,504 @@
+{
+  "schema_version": 1,
+  "status": "LOCAL_HEADLESS_AND_RENDERED_PASS_READY_FOR_NATIVE_FREEZE",
+  "release_approved": false,
+  "physical_android_or_fold7_test": false,
+  "native_remote_basis": "24fb85800dfb58ec11dd409449e276299aa72b06",
+  "native_candidate_commit": null,
+  "source_hashes": {
+    "scripts/creative/build_world.gd": {
+      "bytes": 54848,
+      "sha256": "e562577eb2e21cceaa31152c62d30a329204d069ea2f049f927a39550a16ef6c"
+    },
+    "scripts/tests/build_dialog_density_regression.gd": {
+      "bytes": 21985,
+      "sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3"
+    }
+  },
+  "ci_failure": {
+    "run_id": 43442579190,
+    "artifact_id": 14046856922,
+    "zip_bytes": 9786911,
+    "zip_sha256": "dbfb116a13ac9037b8370f29ef3bc31a14d0ac1ce43313a3e24480d81a0d40b8",
+    "source_commit": "24fb85800dfb58ec11dd409449e276299aa72b06",
+    "headless": "PASS 1637",
+    "rendered": "FAIL: A subsequent scene receives routed touch after modal scene exit",
+    "complete_capture_roster_present": false,
+    "available_captures": 4,
+    "source_before_hashes": {
+      "scripts/creative/build_world.gd": "2b686db2e4a31e2487fc4fcc0bc28610bf4704250ffee13e299d73076b3f098d",
+      "scripts/tests/build_dialog_density_regression.gd": "7eb920392b1c057652f691030a5c12e85fbc1f1b346f2fd90dd68694a462f846"
+    },
+    "observed_pngs": [
+      {
+        "filename": "build-dialog-2400x1080-templates-top.png",
+        "bytes": 1357012,
+        "sha256": "7c330aaccefda049a49d26e8338d0e364f9f0ed6fdeb7b3451eccb30b00c7628",
+        "original_zip_bytes_equal": true,
+        "actually_opened_individually": true,
+        "observation_de": "Vorlagen-Dialog vollständig im Querformat; oberste fünf Vorlagen lesbar, weiterer Inhalt scrollbar, Abbrechen fest und vollständig sichtbar. Dahinter überschneidet das alte Bauauftragsfeld die untere Kategoriezeile."
+      },
+      {
+        "filename": "build-dialog-2400x1080-templates-bottom.png",
+        "bytes": 1346302,
+        "sha256": "f1b515d06010157b7923ec51afba9b2959cda45be5918e18f39f30deadda89a2",
+        "original_zip_bytes_equal": true,
+        "actually_opened_individually": true,
+        "observation_de": "Letzte Optionen Garten/Garten-Parzelle/Hafen-Parzelle/Insel-Parzelle/Leere Insel sichtbar; Abbrechen bleibt vollständig sichtbar. Sichtbarer Hintergrundfehler der alten Bauprüfung anschließend durch echte Eingabe bestätigt."
+      },
+      {
+        "filename": "build-dialog-1080x2400-templates-top.png",
+        "bytes": 1307390,
+        "sha256": "36d7faebbde2ced7e0422edb8392580d0d6975fdb5f43a23bf74c921fe146305",
+        "original_zip_bytes_equal": true,
+        "actually_opened_individually": true,
+        "observation_de": "Dialog im Hochformat begrenzt; vollständiger Titel und lesbare Vorlagen; die am Scrollrand angeschnittene nächste Option ist Teil der Liste, Abbrechen bleibt außerhalb der Liste frei."
+      },
+      {
+        "filename": "build-dialog-1080x2400-templates-bottom.png",
+        "bytes": 1297344,
+        "sha256": "4ad6fbfa53ccb03818f364e3df9c65a6c261d2f1ea8480c5cabf61e714674db2",
+        "original_zip_bytes_equal": true,
+        "actually_opened_individually": true,
+        "observation_de": "Letzte Vorlagen und Abbrechen vollständig sichtbar; keine zusätzliche konkrete Dialogüberdeckung beobachtet. Hinter dem Modal bleiben die unteren Baukategorien sichtbar."
+      }
+    ]
+  },
+  "lifecycle_diagnosis_de": [
+    "Der echte lokale X11-Lauf des unveränderten ersten und zweiten Build-Testfalls reproduzierte den CI-Abbruch. Der zweite Folgeszenenknopf empfing korrekte GUI-Ereignisse an lokalen Koordinaten(100,30), erzeugte aber kein pressed-Signal.",
+    "Der Fensterfokus blieb wahr; der Root-Transform war skaliert mit0.25 und Offset0. Root-Position(920,640), Oberfläche640×320, logischer Viewport2560×1280, reale OS-Mausposition im Viewport(1440,2560) und damit außerhalb.",
+    "Die eingebettete Fensterliste war beim game.tree_exiting bereits leer. Die vermutete produktseitige Reihenfolgeursache ließ sich nicht belegen; _exit_tree und Siedlung blieben unverändert.",
+    "Ein unabhängiger Kontrollversuch ohne Spielszene, Modal oder Szenenende reproduzierte den Ausfall bei gui_embed_subwindows=false: Root-Position(80,60), Oberfläche640×320, Viewport2560×1280, Maus(4800,4880), Fokus wahr. Die ursprünglichen ScreenTouch-down/up-Ereignisse kamen an, aber kein button_down und kein pressed.",
+    "Nur injizierte MouseMotion-Ereignisse reparierten den Zustand nicht. Ein echtes root.warp_mouse in das Fenster, entfernt vom Zielknopf, stellte die Desktop-Fenstereintrittsvorbedingung her. Danach lösten unveränderte echte ScreenTouch-Ereignisse button_down/pressed/button_up aus, auch auf neu angelegten Folgeknöpfen.",
+    "Der Harness stellt deshalb ausschließlich bei echtem Desktop-Renderer den OS-Zeiger in die wiederhergestellte Fenstermitte, wartet Layout-/Inputframes ab und prüft den Eintritt. Modalabbau, beide vorherigen Einbettungswerte und die originale Touch-Rückkehrprüfung bleiben erhalten."
+  ],
+  "confirmed_product_defects_de": [
+    "2400×1080 bei Dichte2.625: alte Bauprüfungsfläche Position(26.00813,250.2607)dp, Größe260.0813×48.05006dp; die Kategoriezeile überdeckte die unteren25.026dp. Ein echter Touch in der Mitte löste Dächer statt Mein Bauwerk testen aus. Kleine640×360/320-Fälle wurden ebenfalls abgefangen; hohe Fold-/Portraitansichten trafen die Prüfung.",
+    "Ein tatsächlicher Toolbarwisch zum Bauauftrag änderte die Weltkamera von orbit0.48 auf4.467200256rad. Der vorhandene _unhandled_input registrierte rohe Berührungsstarts aus passierenden Scrollflächen zusätzlich als Weltgeste."
+  ],
+  "product_corrections_de": [
+    "Bei gemessener Überschneidung von Bauauftragsfeld und unterem HUD blendet die Szene das Feld aus und zeigt Aktuelles Bauziel in der vorhandenen horizontalen Werkzeugleiste. Der begrenzte Dialog bewahrt den vollständigen Aufgabentext, Mein Bauwerk testen und festes Abbrechen. Hohe Formate behalten das Inline-Feld; bei Rückkehr wird nur der passende Zugang gezeigt.",
+    "Neue Weltgesten beginnen nicht mehr in sichtbaren HUD-Flächen. Die Trefferprüfung verwendet deren echte Canvastransformation. Bereits in der Welt begonnene Objektgriffe und ihr Releasepfad bleiben unverändert.",
+    "Bauprüfung, Belohnungsregeln, Speicherdatenformat, Slot-IDs und bestehende Vorlagen wurden nicht verändert."
+  ],
+  "test_harness_corrections_de": [
+    "Bei nahe dem Rand liegenden Toolbarzielen verwendet der Harness echte, nach der noch fehlenden Strecke bemessene ScreenDrag-Wischer. Der vorherige feste64%-Wischer pendelte nachweislich zwischen linkem und rechtem Rand. Keine programmatische Scrollposition oder Signalabkürzung ersetzt die Eingabe.",
+    "Jeder Toolbarwischer prüft unveränderte Objekte und unveränderte Kamera. Eine separate echte Weltgeste muss weiterhin die Kamera bewegen. Die zuvor bestandenen fünf Inputformate bleiben erhalten.",
+    "Die ursprünglich acht Vorlagenbilder bleiben. Mit ausdrücklicher Root-Freigabe werden vier current-goal-Bilder ergänzt, insgesamt12. Hohe Dialogzustände entstehen durch echten Touch bei kompakter Ansicht und anschließenden Größenwechsel mit offenem Modal."
+  ],
+  "executed_tests": [
+    {
+      "script": "scripts/tests/build_dialog_density_regression.gd",
+      "mode": "headless",
+      "checks": 2016,
+      "failures": 0,
+      "exit_code": 0,
+      "raw_log": "density-headless.log"
+    },
+    {
+      "script": "scripts/tests/build_nextgen_play_regression.gd",
+      "mode": "headless",
+      "checks": 62,
+      "failures": 0,
+      "exit_code": 0,
+      "raw_log": "build-nextgen-regression.log"
+    },
+    {
+      "script": "scripts/tests/build_settlement_play_regression.gd",
+      "mode": "headless",
+      "checks": 127,
+      "failures": 0,
+      "exit_code": 0,
+      "raw_log": "settlement-regression.log"
+    },
+    {
+      "script": "scripts/tests/creative_touch_layout_regression.gd",
+      "mode": "headless",
+      "checks": 300,
+      "failures": 0,
+      "exit_code": 0,
+      "raw_log": "creative-touch-layout-regression.log"
+    },
+    {
+      "script": "build-modal-exit-probe.gd",
+      "mode": "real X11",
+      "exit_code": 0,
+      "raw_log": "build-modal-exit-probe.log",
+      "scope_de": "Fokussierte Produktionsszene mit offenem Modal, beide vorherigen Einbettungswerte, tatsächlicher Folgeknopf-Touch nach Desktop-Vorbedingung."
+    },
+    {
+      "script": "all-goal-dialogs-probe.gd",
+      "mode": "headless",
+      "checks": 192,
+      "failures": 0,
+      "exit_code": 0,
+      "raw_log": "all-goal-dialogs.log",
+      "scope_de": "Alle sechs unveränderten Bauauftragsbeschreibungen bei640×320; echter Toolbarzugang, vollständiger Text,48dp-Prüfknopf und echtes Abbrechen ohne Objekt-/Zieländerung. Separate lokale Ergänzungsprobe, nicht als Teil der2016CI-Prüfungen gezählt."
+    },
+    {
+      "script": "scripts/tests/build_dialog_density_regression.gd",
+      "mode": "real X11 / Compatibility / llvmpipe",
+      "checks": 2046,
+      "failures": 0,
+      "exit_code": 0,
+      "wall_seconds": 521.396,
+      "pngs": 12,
+      "raw_log": "density-rendered.log",
+      "measurement_file": "renderer-measurements.json",
+      "scope_de": "Alle fünf Inputformate; zwölf echte Bilder aus den ursprünglichen vier Captureformaten. Kein Android- oder Geräte-FPS-Nachweis."
+    }
+  ],
+  "new_renderer_run": {
+    "status": "PASS",
+    "path": "/tmp/lumo-build-dialog-final-v4-render",
+    "expected_png_count": 12,
+    "marker": "[BuildDialogDensity] PASS",
+    "renderer": "Godot 4.6.3 / X11 / OpenGL 4.5 Compatibility / Mesa 25.0.7 llvmpipe LLVM 19.1.7",
+    "note_de": "Software-Renderer und synthetische Dichtefälle; kein physisches Android-/Fold7-/60FPS-Ergebnis.",
+    "display": 100,
+    "startup_history_de": "Der Vorgänger v3 brach wegen eines vom bewusst abgebrochenen vorherigen Xorg-Lauf hinterlassenen Display-96-Locks vor Godot ab. Er hat keine Tests oder Bilder erzeugt. Der aktuelle v4-Lauf verwendet das neue isolierte Display100.",
+    "observed_pngs": [
+      {
+        "filename": "captures/build-dialog-1080x2400-current-goal.png",
+        "bytes": 1241209,
+        "sha256": "f4bc00ec3b8e4f389305e1fb0b289a1ee7c182f81e7247c4070db6120bb747ee",
+        "size": [
+          1080,
+          2400
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Hochformat nach tatsächlichem Öffnen im kleinen Format und Größenwechsel: kompletter Bauauftrag, vollständige Prüfaktion und Abbrechen sichtbar; das Inline-Feld ist im Hintergrund wiederhergestellt."
+      },
+      {
+        "filename": "captures/build-dialog-1080x2400-templates-bottom.png",
+        "bytes": 1282938,
+        "sha256": "fb400643304a7b57c4f3c3bf289287a6a64ec23bba47d41d9da0cefc21a51596",
+        "size": [
+          1080,
+          2400
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Hochformat: letzte Optionen bis Leere Insel sichtbar, Abbrechen vollständig; kein neuer konkreter Dialog- oder Trefferflächenblocker."
+      },
+      {
+        "filename": "captures/build-dialog-1080x2400-templates-top.png",
+        "bytes": 1294687,
+        "sha256": "ac5fc5c0dc3761df9f4e0152268c88593a9502f443ed29105a5decb54b329ad9",
+        "size": [
+          1080,
+          2400
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Hochformat: Titel und obere Vorlagen klar; der teilweise sichtbare nächste Eintrag liegt am normalen Scrollrand. Abbrechen vollständig außerhalb der Liste."
+      },
+      {
+        "filename": "captures/build-dialog-2176x1812-current-goal.png",
+        "bytes": 3636284,
+        "sha256": "705b7272bfa970ac11003884983d60647347f65eb5b0baf31bd7e4bb0b38c6e2",
+        "size": [
+          2176,
+          1812
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Fold-Format: kompletter Bauauftrag mit Prüfaktion und Abbrechen. Der Hintergrund zeigt das wiederhergestellte Inline-Feld; während des offenen exklusiven Dialogs wird die Hintergrundaktion nicht bedient."
+      },
+      {
+        "filename": "captures/build-dialog-2176x1812-templates-bottom.png",
+        "bytes": 3670204,
+        "sha256": "45cde8e1b518f027089d9e0da6de4b40437edfddcb22064d7791e960cbc5bada",
+        "size": [
+          2176,
+          1812
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Fold-Format: letzte Auswahl Leere Insel und Abbrechen frei; Vorlagenliste bleibt im begrenzten Fenster. Keine neue sichtbare Überdeckung."
+      },
+      {
+        "filename": "captures/build-dialog-2176x1812-templates-top.png",
+        "bytes": 3679807,
+        "sha256": "2ea1b6e5dc1b294d5da00040f31da5b90cf168fa70ce8995f20c661eff621e50",
+        "size": [
+          2176,
+          1812
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Fold-Format: Titel und erste Vorlagen vollständig, nächster Eintrag am Scrollrand angeschnitten. Das wiederhergestellte Inline-Zielpanel liegt frei über der Kategoriezeile."
+      },
+      {
+        "filename": "captures/build-dialog-2400x1080-current-goal.png",
+        "bytes": 1253416,
+        "sha256": "44dc7a5f8e314270070eb28c1bf9079f88df9ec52392859a053037b07033e594",
+        "size": [
+          2400,
+          1080
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Querformat: vollständiger aktueller Bauauftrag, Prüfknopf und festes Abbrechen frei. Das zuvor überdeckte Inline-Feld ist ausgeblendet; der neue Toolbarzugang bleibt sichtbar."
+      },
+      {
+        "filename": "captures/build-dialog-2400x1080-templates-bottom.png",
+        "bytes": 1265458,
+        "sha256": "53a1cca8933d0684e55ea27aa17886bcbfc721f174e05aa9544537f528ab74ff",
+        "size": [
+          2400,
+          1080
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Querformat: Garten, Garten-Parzelle, Hafen-Parzelle, Insel-Parzelle und Leere Insel sichtbar; letzte Auswahl und festes Abbrechen vollständig frei."
+      },
+      {
+        "filename": "captures/build-dialog-2400x1080-templates-top.png",
+        "bytes": 1275705,
+        "sha256": "7325750da8a6f64ea1a1ba85bc9aa5adc26440b10df718d0df4b706103f1d26a",
+        "size": [
+          2400,
+          1080
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Querformat: obere Vorlagen lesbar, Dialog begrenzt, Abbrechen bleibt außerhalb der Scrollliste erreichbar. Das alte überlappende Zielpanel ist nicht vorhanden."
+      },
+      {
+        "filename": "captures/build-dialog-640x360-current-goal.png",
+        "bytes": 129467,
+        "sha256": "dd613724040c8e68d858628fef627c01e049738a9b561b47a30ac61a4e2cbd38",
+        "size": [
+          640,
+          360
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Kleines Querformat: vollständiger Zieltext, Mein Bauwerk testen und Abbrechen vollständig sichtbar und voneinander getrennt. Kein altes überlappendes Inline-Zielpanel."
+      },
+      {
+        "filename": "captures/build-dialog-640x360-templates-bottom.png",
+        "bytes": 132716,
+        "sha256": "b4bdbf5511e770bc3ac98ab575d4fb061de859c63334c3dcb7562d9594eae659",
+        "size": [
+          640,
+          360
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Kleines Querformat: Garten-Parzelle, Hafen-Parzelle, Insel-Parzelle und Leere Insel vollständig erreichbar dargestellt; Abbrechen bleibt fest und wird nicht von der Liste überlagert."
+      },
+      {
+        "filename": "captures/build-dialog-640x360-templates-top.png",
+        "bytes": 134322,
+        "sha256": "94b7c69b98155541321baefddbd0dc472120de6368c3e2bac2c376662591a1ea",
+        "size": [
+          640,
+          360
+        ],
+        "actually_opened_individually": true,
+        "observation_de": "Kleines Querformat: vier obere Vorlagen vollständig, nächster Eintrag normal am Scrollrand; Titel und festes Abbrechen bleiben frei."
+      }
+    ],
+    "actual_png_count": 12,
+    "visual_review_status": "TWELVE_CAPTURES_SCOPE_PASS",
+    "visual_review_limits_de": "Diese Bilder prüfen Bauauftrag-/Vorlagendialoge und HUD. Sie belegen keine neue Charakteranimation, keine echte Fold-Hardware und keine Geräte-FPS.",
+    "exit_code": 0,
+    "checks": 2046,
+    "failures": 0,
+    "wall_seconds": 521.396,
+    "raw_log": "density-rendered.log",
+    "measurements": "renderer-measurements.json",
+    "minimum_recorded_target_dp": 48.0,
+    "recorded_target_count": 285
+  },
+  "limits_de": [
+    "24fb bleibt insgesamt verworfen; diese Notiz ist keine neue Gesamt- oder APK-Freigabe.",
+    "Das genuine native-window-smoke.png zeigt einen Testknopf aus dem realen lokalen Renderer und belegt keine Spielgrafik-Abnahme.",
+    "Der erste lokale12PNG-Lauf wurde wegen des nachgewiesenen veralteten Wisch-Harness abgebrochen und wird nicht als bestanden geführt. Nur der neue vollständige Lauf auf den gebundenen Quellhashes darf als Ergebnis ergänzt werden.",
+    "Physisches Galaxy Z Fold7, Android 17-Laufzeit, Gerätetemperatur und stabile 60 FPS bleiben hier ungetestet."
+  ],
+  "files": [
+    {
+      "path": "all-goal-dialogs-probe.gd",
+      "bytes": 1880,
+      "sha256": "246f5c08971b1aff648922f98429c52d81790eefd25c2229e76f23ebc5f84faa"
+    },
+    {
+      "path": "all-goal-dialogs.log",
+      "bytes": 1914,
+      "sha256": "cbbb268d8222b7f62bfd6900381135295839ddf861997dae31cb985a3ecd22cf"
+    },
+    {
+      "path": "build-lifecycle-before-probe.gd",
+      "bytes": 17498,
+      "sha256": "7b595f739bc4a999facc30ee6ff1e96596cec1bf3c391f05cda660c78a3f87cf"
+    },
+    {
+      "path": "build-lifecycle-before-probe.log",
+      "bytes": 9283,
+      "sha256": "9aadc19526eb6bcf8551efa7d5718ef23dee1bd0704f6e58b78128074ec4b360"
+    },
+    {
+      "path": "build-modal-exit-probe.gd",
+      "bytes": 2981,
+      "sha256": "9a15ae2fb814a0392ba8846c77bd864089b178647b313898e4b78f46127b0888"
+    },
+    {
+      "path": "build-modal-exit-probe.log",
+      "bytes": 5436,
+      "sha256": "e5444e1a5ce3636f8fd70eedeca563155cf5ca2a68108239561b555d366fcd71"
+    },
+    {
+      "path": "build-nextgen-regression.log",
+      "bytes": 685,
+      "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c"
+    },
+    {
+      "path": "captures/build-dialog-1080x2400-current-goal.png",
+      "bytes": 1241209,
+      "sha256": "f4bc00ec3b8e4f389305e1fb0b289a1ee7c182f81e7247c4070db6120bb747ee"
+    },
+    {
+      "path": "captures/build-dialog-1080x2400-templates-bottom.png",
+      "bytes": 1282938,
+      "sha256": "fb400643304a7b57c4f3c3bf289287a6a64ec23bba47d41d9da0cefc21a51596"
+    },
+    {
+      "path": "captures/build-dialog-1080x2400-templates-top.png",
+      "bytes": 1294687,
+      "sha256": "ac5fc5c0dc3761df9f4e0152268c88593a9502f443ed29105a5decb54b329ad9"
+    },
+    {
+      "path": "captures/build-dialog-2176x1812-current-goal.png",
+      "bytes": 3636284,
+      "sha256": "705b7272bfa970ac11003884983d60647347f65eb5b0baf31bd7e4bb0b38c6e2"
+    },
+    {
+      "path": "captures/build-dialog-2176x1812-templates-bottom.png",
+      "bytes": 3670204,
+      "sha256": "45cde8e1b518f027089d9e0da6de4b40437edfddcb22064d7791e960cbc5bada"
+    },
+    {
+      "path": "captures/build-dialog-2176x1812-templates-top.png",
+      "bytes": 3679807,
+      "sha256": "2ea1b6e5dc1b294d5da00040f31da5b90cf168fa70ce8995f20c661eff621e50"
+    },
+    {
+      "path": "captures/build-dialog-2400x1080-current-goal.png",
+      "bytes": 1253416,
+      "sha256": "44dc7a5f8e314270070eb28c1bf9079f88df9ec52392859a053037b07033e594"
+    },
+    {
+      "path": "captures/build-dialog-2400x1080-templates-bottom.png",
+      "bytes": 1265458,
+      "sha256": "53a1cca8933d0684e55ea27aa17886bcbfc721f174e05aa9544537f528ab74ff"
+    },
+    {
+      "path": "captures/build-dialog-2400x1080-templates-top.png",
+      "bytes": 1275705,
+      "sha256": "7325750da8a6f64ea1a1ba85bc9aa5adc26440b10df718d0df4b706103f1d26a"
+    },
+    {
+      "path": "captures/build-dialog-640x360-current-goal.png",
+      "bytes": 129467,
+      "sha256": "dd613724040c8e68d858628fef627c01e049738a9b561b47a30ac61a4e2cbd38"
+    },
+    {
+      "path": "captures/build-dialog-640x360-templates-bottom.png",
+      "bytes": 132716,
+      "sha256": "b4bdbf5511e770bc3ac98ab575d4fb061de859c63334c3dcb7562d9594eae659"
+    },
+    {
+      "path": "captures/build-dialog-640x360-templates-top.png",
+      "bytes": 134322,
+      "sha256": "94b7c69b98155541321baefddbd0dc472120de6368c3e2bac2c376662591a1ea"
+    },
+    {
+      "path": "ci-24fb-build-rendered-failure.log",
+      "bytes": 1895,
+      "sha256": "0fbdb5c55e1404199c993f875da447a54c20b41f801f7aaeeaec4700c3bf2a53"
+    },
+    {
+      "path": "creative-touch-layout-regression.log",
+      "bytes": 933,
+      "sha256": "32927d7dbe265fe4250448ce600e600abd65d20e9b115b1e088fbcfb1f25f87d"
+    },
+    {
+      "path": "density-headless.log",
+      "bytes": 1419,
+      "sha256": "c41206ce2e7ea438c7e8e446221426d1cc5c62bc4e9269f53e793be6301fdbe9"
+    },
+    {
+      "path": "density-rendered.log",
+      "bytes": 3202,
+      "sha256": "a2e5d8206bfc93e8dee5bd9c496388972766688e2b30e82e32312c608b0d3331"
+    },
+    {
+      "path": "hud-overlap-before-probe.gd",
+      "bytes": 2458,
+      "sha256": "cb9a071bd0a926cffadae3619a644255983bdbcf2954c0b1f74404cdff7d36f9"
+    },
+    {
+      "path": "hud-overlap-before-probe.log",
+      "bytes": 3813,
+      "sha256": "15d22e8141d44a17c1a0c97d36ca9651e015547353ca6c7948b00d97b2fc8199"
+    },
+    {
+      "path": "native-window-control.gd",
+      "bytes": 1612,
+      "sha256": "fe47b2228376afb5e097664b0c6f445bdf55a21b6b80a3592329c2f234befadd"
+    },
+    {
+      "path": "native-window-control.log",
+      "bytes": 2769,
+      "sha256": "6b3eec72ac10229c28aa45c7147dfce38ff551d557de59d00a0bfc5ad612d9c5"
+    },
+    {
+      "path": "native-window-smoke.png",
+      "bytes": 2067,
+      "sha256": "6086d0a336509128484e48201cbee0a341ccb6e3a78d64d3a908e2eb41066401"
+    },
+    {
+      "path": "pointer-entry-control.gd",
+      "bytes": 2554,
+      "sha256": "3173928286c17ebabe5f9591a63db617a8862d5cad3f53cef78b4934ebb8fad9"
+    },
+    {
+      "path": "pointer-entry-control.log",
+      "bytes": 7039,
+      "sha256": "272f1a27c24bc54246c0d082227b6d1ff610b6fae5d43e151fcc8c5abb6b281b"
+    },
+    {
+      "path": "renderer-measurements.json",
+      "bytes": 113456,
+      "sha256": "7494546160be40e70c4f7f9313597b299c2702de85813856aa490b55426b6c91"
+    },
+    {
+      "path": "settlement-regression.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4"
+    },
+    {
+      "path": "source-snapshot/build_dialog_density_regression.gd",
+      "bytes": 21985,
+      "sha256": "eb918398c01f3c0fe7a2a344017ea159dc3ef667bb186fc091bd6350327edea3"
+    },
+    {
+      "path": "source-snapshot/build_world.gd",
+      "bytes": 54848,
+      "sha256": "e562577eb2e21cceaa31152c62d30a329204d069ea2f049f927a39550a16ef6c"
+    },
+    {
+      "path": "toolbar-camera-before-probe.gd",
+      "bytes": 21164,
+      "sha256": "f7a0d88740414ee3a121887d6dc1dabd6b358872c53d623c58e6f63ffb8c511d"
+    },
+    {
+      "path": "toolbar-camera-before-probe.log",
+      "bytes": 838,
+      "sha256": "338b399a6b0545e98aad8e8b99ca95a68b71445e28a17ca02a1b35251ca956a3"
+    },
+    {
+      "path": "toolbar-overshoot-control.gd",
+      "bytes": 20743,
+      "sha256": "0218e96225b9d5a27ccaa08017d0135257f295f4aaeecbd363b5f14f46efeba3"
+    },
+    {
+      "path": "toolbar-overshoot-control.log",
+      "bytes": 8345,
+      "sha256": "427f43b0b726cbf22877f8a75a49c5ead7f17195df085368daeb0f2c0e0251e3"
+    }
+  ]
+}
