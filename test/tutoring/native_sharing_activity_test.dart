@@ -4,13 +4,18 @@ import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:lumo_lernen/app/app_state.dart';
+import 'package:lumo_lernen/core/app_settings.dart';
+import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/core/math_task_templates.dart';
 import 'package:lumo_lernen/core/school_exercise_generator.dart';
 import 'package:lumo_lernen/domain/learning/lumo_learning_domain.dart';
 import 'package:lumo_lernen/domain/tutoring/native_learning_activity.dart';
 import 'package:lumo_lernen/features/learning/adapters/legacy_lumo_task_adapter.dart';
 import 'package:lumo_lernen/features/learning/renderers/lumo_premium_visuals.dart';
+import 'package:lumo_lernen/features/learning/renderers/adaptive_task_renderer.dart';
+import 'package:lumo_lernen/features/learning/learning_content.dart';
 import 'package:lumo_lernen/features/lumo3d/lumo3d_launcher.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 TaskInstance task(String prompt, String answer, String visual,
         {List<String>? choices}) =>
@@ -61,6 +66,13 @@ Widget wrap(Widget child) => MaterialApp(
         home: Scaffold(
       body: SingleChildScrollView(child: SizedBox(width: 390, child: child)),
     ));
+
+Future<void> frames(WidgetTester tester, [int count = 30]) async {
+  for (var index = 0; index < count; index++) {
+    await tester.pump(const Duration(milliseconds: 16));
+    await tester.runAsync(() => Future<void>.delayed(Duration.zero));
+  }
+}
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
@@ -207,6 +219,103 @@ void main() {
     expect(find.text('+'), findsOneWidget);
     expect(find.text('='), findsNothing);
     expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'real fraction help returns to the task and stores assisted evidence',
+      (tester) async {
+    const channel = MethodChannel('lumo_lernen/bridge');
+    SharedPreferences.setMockInitialValues(
+        {'lumo_3d_save_salt_v1': 'studio-fraction-profile'});
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    final calls = <MethodCall>[];
+    TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+        .setMockMethodCallHandler(channel, (call) async {
+      calls.add(call);
+      return <String, Object?>{'destination': 'learn'};
+    });
+    LumoAppState? app;
+    try {
+      await tester.binding.setSurfaceSize(const Size(690, 1000));
+      await tester.runAsync(() async {
+        app = LumoAppState(walletRepository: RewardWalletRepository());
+        app!.update(app!.state.copyWith(
+            grade: 4,
+            subject: 'Mathematik',
+            unit: 'Bruchrechnen einfach',
+            sessionKind: LumoSessionKind.quickPractice,
+            section: LumoSection.learn));
+        await app!.school.setActiveStudent('synthetic-studio-fraction-child');
+        await app!.hydrateFromWallet();
+        await app!.loadLearningProfile();
+        app!.updateSettings(const AppSettings(
+            voiceEnabled: false,
+            autoReadEnabled: false,
+            reduceAnimations: true));
+      });
+      await tester.pumpWidget(
+          MaterialApp(home: Scaffold(body: LearningContent(appState: app!))));
+      await frames(tester, 40);
+      final current = tester
+          .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
+          .task;
+      expect(current.correctAnswer, isA<String>());
+      expect('${current.correctAnswer}', contains('/'));
+      final activity = NativeLearningActivity.fromTask(current)!;
+      expect(activity.kind, 'fraction_parts');
+      final help = find.byKey(const ValueKey('adaptive-open-3d'));
+      await tester.ensureVisible(help);
+      await tester.tap(help);
+      await frames(tester, 40);
+      expect(calls, hasLength(1));
+      expect((calls.single.arguments as Map)['learning'],
+          activity.toLaunchOptions());
+      expect(
+          tester
+              .widget<AdaptiveTaskRenderer>(find.byType(AdaptiveTaskRenderer))
+              .task
+              .taskInstanceId,
+          current.taskInstanceId);
+      expect(LumoCompanionRequests.instance.taskContext.value!.helpLevel, 1);
+      expect(app!.state.stars, 0,
+          reason:
+              'Returning from a 3D explanation is not an answer or reward.');
+      final beforeWeak = Map<String, int>.from(app!.state.weakSkills);
+      final wrong = current.options
+          .firstWhere((option) => option.payload != current.correctAnswer);
+      final answer = find
+          .descendant(
+              of: find.byType(AdaptiveTaskRenderer),
+              matching: find.text(wrong.label))
+          .last;
+      await tester.ensureVisible(answer);
+      await tester.tap(answer);
+      await frames(tester);
+      var saved = false;
+      app!.flushLearningProgress().then((_) => saved = true);
+      for (var frame = 0; frame < 100 && !saved; frame++) {
+        await frames(tester, 1);
+      }
+      expect(saved, isTrue);
+      expect(app!.state.weakSkills, beforeWeak);
+      await tester.runAsync(() async {
+        final history = await app!.attemptLog.load();
+        final recorded =
+            history.lastWhere((entry) => entry.prompt == current.prompt);
+        expect(recorded.correct, isFalse);
+        expect(recorded.hintUsed, isTrue);
+        expect(recorded.given, wrong.label);
+      });
+      expect(tester.takeException(), isNull);
+    } finally {
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.pump();
+      app?.dispose();
+      await tester.binding.setSurfaceSize(null);
+      debugDefaultTargetPlatformOverride = null;
+      TestDefaultBinaryMessengerBinding.instance.defaultBinaryMessenger
+          .setMockMethodCallHandler(channel, null);
+    }
   });
 
   testWidgets(

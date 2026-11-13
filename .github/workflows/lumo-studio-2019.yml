@@ -79,7 +79,7 @@ jobs:
           sys.path.insert(0, "scripts")
           from verify_legacy_release_pin import verify
           build, native = verify(Path("pubspec.yaml").read_text(), Path("config/godot-source.json").read_text())
-          assert build == 2019, "Nextgen workflow requires build 2019"
+          assert build == 2019, "Studio workflow requires build 2019"
           config=json.load(open("config/godot-source.json"))
           assert config["repository"]=="https://github.com/Ullmann27/lumo-godot.git", "Unexpected Godot repository"
           assert isinstance(config["revision"], str) and re.fullmatch(r"[0-9a-f]{40}", config["revision"]), "Godot source must be an immutable 40-character Git SHA"
@@ -546,8 +546,6 @@ jobs:
           name: lumo-studio-2019-android-host-compile
           path: proofs/host/
       - name: Fetch the exact reviewed native artifact and acceptance identity
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           set -euo pipefail
           python3 - <<'PYCODE'
@@ -565,7 +563,10 @@ jobs:
           curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/artifacts/$reviewed_artifact" --output proofs/native-artifact.json
           curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/$reviewed_run" --output proofs/native-run.json
           curl --fail --location --retry 3 "https://api.github.com/repos/Ullmann27/lumo-godot/actions/runs/$reviewed_run/jobs?per_page=100" --output proofs/native-jobs.json
-          gh api "repos/Ullmann27/lumo-godot/actions/artifacts/$reviewed_artifact/zip" > proofs/native-evidence.zip
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          curl --fail --location --retry 3 \
+            "https://github.com/Ullmann27/lumo-godot/releases/download/studio-evidence-$native_revision-$reviewed_artifact/native-evidence.zip" \
+            --output proofs/native-evidence.zip
       - name: Reverify actual ARM64 bytes and bind all live proofs to the reviewed 2019 source
         env:
           SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
