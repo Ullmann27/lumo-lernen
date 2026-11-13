@@ -129,7 +129,7 @@ class Build2018IndependentEvidenceMigrationTests(unittest.TestCase):
         self.assertNotIn('independentEvidence', json.loads(self.before[self.key])[self.skill])
 
     def test_unapproved_version_pairs_types_and_missing_opt_in_fail(self):
-        for versions in [(2016, 2018), (2017, 2020), (2018, 2018),
+        for versions in [(2016, 2018), (2017, 2021), (2018, 2018),
                          ('2017', 2018), [2017, 2018], (True, 2018), ()]:
             with self.subTest(versions=versions), self.assertRaises(RuntimeError):
                 self.require(versions=versions)

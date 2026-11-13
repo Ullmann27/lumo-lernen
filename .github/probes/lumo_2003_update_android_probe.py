@@ -95,7 +95,8 @@ def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
          candidate_version: int = 2003, baseline_native: str = GODOT,
          candidate_native: str = GODOT,
          allow_2018_independent_evidence_migration: bool = False,
-         allow_2019_independent_evidence_migration: bool = False) -> int:
+         allow_2019_independent_evidence_migration: bool = False,
+         allow_2020_independent_evidence_migration: bool = False) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--baseline', type=Path, required=True)
     parser.add_argument('--candidate', type=Path, required=True)
@@ -111,7 +112,8 @@ def main(*, baseline_source: str = BASE_SOURCE, baseline_version: int = 2002,
         migration_versions = reviewed_migration_versions(
             baseline_version, candidate_version,
             allow_2018=allow_2018_independent_evidence_migration,
-            allow_2019=allow_2019_independent_evidence_migration)
+            allow_2019=allow_2019_independent_evidence_migration,
+            allow_2020=allow_2020_independent_evidence_migration)
         result['baseline'] = artifact(args.baseline, baseline_source, baseline_version, baseline_native)
         result['candidate'] = artifact(args.candidate, SOURCE, candidate_version, candidate_native)
         result['emulator'] = probe.ensure_rooted_emulator(base.adb, out)

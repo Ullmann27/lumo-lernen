@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "local_base_commit": "fd0d777e6a8bdb489d58efd93d42d08cee0f65f2",
+  "scope": "Current combined Host source:434 build contracts passed after restoring the already installed Gradle/Java toolchain to the environment;794 Android QA contracts passed. All1246 bound paths match across both initial and corrected runs. Initial build invocation had two missing-Kotlin-library setup errors and one absent-Gradle skip; it is preserved as environment diagnostics and is never counted as acceptance. No product or test patch was made to obtain the corrected result. These are contract/Kotlin tests, not a real APK or emulator tour.",
+  "build_contracts": {
+    "tests": 434,
+    "seconds": 130.718,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "2b941f456c0c444010f13a066b5a94b15604dbf3bfcca6d4c9158985d4c521e5"
+  },
+  "android_qa_contracts": {
+    "tests": 794,
+    "seconds": 41.25,
+    "errors": 0,
+    "skips": 0,
+    "log_sha256": "41ab9c17c75ddf2ffaeb54c0786389e84e83e6b35018f0075b40ed60b13c4433"
+  },
+  "unchanged_bound_paths": 1246,
+  "objects": [
+    {
+      "path": "android-qa-contracts.log.gz",
+      "bytes": 23301,
+      "sha256": "6e73a384f294364d1c59f2240c124133796af034092025bb6bf0403433b4794f",
+      "original_path": "android-qa-contracts.log",
+      "original_bytes": 157715,
+      "original_sha256": "41ab9c17c75ddf2ffaeb54c0786389e84e83e6b35018f0075b40ed60b13c4433"
+    },
+    {
+      "path": "build-contracts.log.gz",
+      "bytes": 13434,
+      "sha256": "e4284d0fd7b89240a50dd6dd02fb874a528a7d0cd7c89531ba4825eb3269a802",
+      "original_path": "build-contracts.log",
+      "original_bytes": 87252,
+      "original_sha256": "e5bcb5b90f6656db7e4bc486c7a49bd9c65ed787ce0bbb291da01f7cd3b11f1a"
+    },
+    {
+      "path": "configured-toolchain/build-contracts.log.gz",
+      "bytes": 13735,
+      "sha256": "c6e800c926c8eb887043b2c936cde9d96ea6a1a956c4b5f474aa2dcc6cfe8978",
+      "original_path": "configured-toolchain/build-contracts.log",
+      "original_bytes": 88744,
+      "original_sha256": "2b941f456c0c444010f13a066b5a94b15604dbf3bfcca6d4c9158985d4c521e5"
+    },
+    {
+      "path": "configured-toolchain/result.json",
+      "bytes": 2396,
+      "sha256": "7998f8749a45c4ba6ac323fa6ffe3e227901928f98035cf304900f0379af1b6e"
+    },
+    {
+      "path": "configured-toolchain/source-after.json.gz",
+      "bytes": 62961,
+      "sha256": "87207cfac7ef71b68f2eed67afd34379dca1b7de197cd3a9c62acee19c365596",
+      "original_path": "configured-toolchain/source-after.json",
+      "original_bytes": 147516,
+      "original_sha256": "fcb8e53f58d6faee433c25b827884201894ff3ac79051e17f290f657164ecb4d"
+    },
+    {
+      "path": "configured-toolchain/source-before.json.gz",
+      "bytes": 62961,
+      "sha256": "87207cfac7ef71b68f2eed67afd34379dca1b7de197cd3a9c62acee19c365596",
+      "original_path": "configured-toolchain/source-before.json",
+      "original_bytes": 147516,
+      "original_sha256": "fcb8e53f58d6faee433c25b827884201894ff3ac79051e17f290f657164ecb4d"
+    },
+    {
+      "path": "result.json",
+      "bytes": 3925,
+      "sha256": "c1efe30a9ba6ab27f04652144556ae0d1929e65e15a9cf4b81213ac74fa164ba"
+    },
+    {
+      "path": "source-after.json.gz",
+      "bytes": 62961,
+      "sha256": "87207cfac7ef71b68f2eed67afd34379dca1b7de197cd3a9c62acee19c365596",
+      "original_path": "source-after.json",
+      "original_bytes": 147516,
+      "original_sha256": "fcb8e53f58d6faee433c25b827884201894ff3ac79051e17f290f657164ecb4d"
+    },
+    {
+      "path": "source-before.json.gz",
+      "bytes": 62961,
+      "sha256": "87207cfac7ef71b68f2eed67afd34379dca1b7de197cd3a9c62acee19c365596",
+      "original_path": "source-before.json",
+      "original_bytes": 147516,
+      "original_sha256": "fcb8e53f58d6faee433c25b827884201894ff3ac79051e17f290f657164ecb4d"
+    }
+  ]
+}

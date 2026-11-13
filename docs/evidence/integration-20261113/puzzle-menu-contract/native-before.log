@@ -1,0 +1,21 @@
+FF
+======================================================================
+FAIL: test_success_requires_every_logic_and_rendered_probe (tools.tests.test_nextgen_runner.NextgenRunnerTests.test_success_requires_every_logic_and_rendered_probe)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-native-puzzle-followups/tools/tests/test_nextgen_runner.py", line 155, in test_success_requires_every_logic_and_rendered_probe
+    self.assertEqual(len(cases), 43)
+AssertionError: 41 != 43
+
+======================================================================
+FAIL: test_missing_puzzle_menu_png_cannot_pass_with_all_existing_scene_evidence (tools.tests.test_nextgen_runner.NextgenRunnerTests.test_missing_puzzle_menu_png_cannot_pass_with_all_existing_scene_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/b3485b7bb989/lumo-native-puzzle-followups/tools/tests/test_nextgen_runner.py", line 192, in test_missing_puzzle_menu_png_cannot_pass_with_all_existing_scene_evidence
+    self.assertEqual(result.returncode, 1)
+AssertionError: 0 != 1
+
+----------------------------------------------------------------------
+Ran 2 tests in 8.352s
+
+FAILED (failures=2)

@@ -1,0 +1,71 @@
+{
+  "local_base_commit": "fd0d777e6a8bdb489d58efd93d42d08cee0f65f2",
+  "source_files": 1246,
+  "changed_during_run": [],
+  "cases": [
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "scripts/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-13T17:59:15.880517+00:00",
+      "finished_at_utc": "2026-11-13T18:00:54.055717+00:00",
+      "duration_seconds": 98.17520073500054,
+      "exit_code": 1,
+      "log_sha256": "e5bcb5b90f6656db7e4bc486c7a49bd9c65ed787ce0bbb291da01f7cd3b11f1a",
+      "last_lines": [
+        "  \"system_tts\": false,",
+        "  \"model_asset_bytes\": 51",
+        "}",
+        "{",
+        "  \"profile\": \"test-fixture\",",
+        "  \"preset\": \"F2\",",
+        "  \"model_sha256\": {",
+        "    \"model.int8.onnx\": \"1072ffe453530633ab222bc9b078b5d7b60d9cf0ee1e438f336a4e22ed937747\"",
+        "  },",
+        "  \"runtime_cloud_calls\": 0,",
+        "  \"system_tts\": false,",
+        "  \"model_asset_bytes\": 51",
+        "}",
+        "Android host prepared: example.studio.learning; stable signing; installer and 3D bridge connected"
+      ]
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-v"
+      ],
+      "started_at_utc": "2026-11-13T18:00:54.055941+00:00",
+      "finished_at_utc": "2026-11-13T18:01:35.613905+00:00",
+      "duration_seconds": 41.557979316989076,
+      "exit_code": 0,
+      "log_sha256": "41ab9c17c75ddf2ffaeb54c0786389e84e83e6b35018f0075b40ed60b13c4433",
+      "last_lines": [
+        "test_live_native_process_partial_png_or_blank_compositor_frame_do_not_pass (test_visible_flutter_return.VisibleFlutterReturnTests.test_live_native_process_partial_png_or_blank_compositor_frame_do_not_pass) ... ok",
+        "test_one_current_full_host_frame_is_insufficient_but_two_fresh_frames_pass (test_visible_flutter_return.VisibleFlutterReturnTests.test_one_current_full_host_frame_is_insufficient_but_two_fresh_frames_pass) ... ok",
+        "test_orientation_or_caption_geometry_change_requires_two_new_stable_frames (test_visible_flutter_return.VisibleFlutterReturnTests.test_orientation_or_caption_geometry_change_requires_two_new_stable_frames) ... ok",
+        "test_permanent_stale_pixels_fail_without_navigation_or_restart (test_visible_flutter_return.VisibleFlutterReturnTests.test_permanent_stale_pixels_fail_without_navigation_or_restart) ... ok",
+        "test_previous_frame_ocr_cannot_confirm_a_new_capture (test_visible_flutter_return.VisibleFlutterReturnTests.test_previous_frame_ocr_cannot_confirm_a_new_capture) ... ok",
+        "test_relative_component_must_resolve_to_the_real_android_namespace_class (test_visible_flutter_return.VisibleFlutterReturnTests.test_relative_component_must_resolve_to_the_real_android_namespace_class) ... ok",
+        "test_same_saved_xml_or_png_cannot_be_reused_as_the_second_observation (test_visible_flutter_return.VisibleFlutterReturnTests.test_same_saved_xml_or_png_cannot_be_reused_as_the_second_observation) ... ok",
+        "test_shell_semantics_require_current_package_enabled_clickable_and_actual_in_surface_bounds (test_visible_flutter_return.VisibleFlutterReturnTests.test_shell_semantics_require_current_package_enabled_clickable_and_actual_in_surface_bounds) ... ok",
+        "test_stopped_native_process_with_native_activity_foreground_is_not_host_return (test_visible_flutter_return.VisibleFlutterReturnTests.test_stopped_native_process_with_native_activity_foreground_is_not_host_return) ... ok",
+        "",
+        "----------------------------------------------------------------------",
+        "Ran 794 tests in 41.250s",
+        "",
+        "OK"
+      ]
+    }
+  ]
+}

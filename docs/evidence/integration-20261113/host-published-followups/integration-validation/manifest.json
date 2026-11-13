@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "owner": "/root/flutter_integration",
+  "base_commit": "fd0d777e6a8bdb489d58efd93d42d08cee0f65f2",
+  "base_tree": "86e6ed0f439b9ec8fda6d83d6f1e7d0c5e24b3b1",
+  "source_paths": [
+    ".github/workflows/lumo-1999-update-gate.yml",
+    "scripts/verify_unified_apk.py",
+    "scripts/tests/test_historical_apk_expectations.py",
+    ".github/probes/lumo_2003_update_android_probe.py",
+    ".github/probes/lumo_2020_update_android_probe.py",
+    "tools/android_qa/update_preservation.py",
+    "tools/android_qa/tests/test_update_preservation.py",
+    "tools/android_qa/tests/test_update_2020_preservation.py"
+  ],
+  "objects": [
+    {
+      "path": ".github__probes__lumo_2003_update_android_probe.py.final.gz",
+      "bytes": 3538,
+      "sha256": "0f885f5d1886744f02e1c1379e0ca18fc660b3bfc91fb505c467e9bdce89b629",
+      "decoded_original": {
+        "bytes": 10588,
+        "sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7"
+      }
+    },
+    {
+      "path": ".github__probes__lumo_2003_update_android_probe.py.original.gz",
+      "bytes": 3523,
+      "sha256": "41f0ad6d4edfefb7600401778eb98feb6db9b931b262a26d44e8f95858e55c95",
+      "decoded_original": {
+        "bytes": 10456,
+        "sha256": "7c24cf8a1f77eeb7c8720cc68199c4c85fc3922d87afe97aed1a43c2d460d713"
+      }
+    },
+    {
+      "path": ".github__probes__lumo_2020_update_android_probe.py.final.gz",
+      "bytes": 965,
+      "sha256": "49468a3368fcf7c217d1b0171e2a0c4551d54580fc588d1a99a6194b4d60cdb7",
+      "decoded_original": {
+        "bytes": 1894,
+        "sha256": "a95e27a02f3a021848d887f238fdd498f4d22c387beb5dbb0c0de60dfc44669c"
+      }
+    },
+    {
+      "path": ".github__workflows__lumo-1999-update-gate.yml.final.gz",
+      "bytes": 2487,
+      "sha256": "241b158fe17a28df69ab49ea64422cddd86f0682f886bb40b88c4247e2a6fa9a",
+      "decoded_original": {
+        "bytes": 7430,
+        "sha256": "b93d551e00116f5e936be15afd5487a8cd206185a5c2e0e4b028891680a050ce"
+      }
+    },
+    {
+      "path": ".github__workflows__lumo-1999-update-gate.yml.original.gz",
+      "bytes": 2284,
+      "sha256": "46d21b76eddc57fc879fcaf05a96d394e48ad9cfa6a49741fc39a0e8da3ea53d",
+      "decoded_original": {
+        "bytes": 6432,
+        "sha256": "aced4dfc612a358c190936a3aa9ee4ccdbb478a7e905f32997fb2c2e9488275e"
+      }
+    },
+    {
+      "path": "README.md",
+      "bytes": 4335,
+      "sha256": "16cf1657595e4f71f914c2fbf43bbec638dae508373861666a75aeff5ec09306"
+    },
+    {
+      "path": "actionlint-result.json",
+      "bytes": 434,
+      "sha256": "e33ef204e5f65ec8ec4826a3968857506e3d8dd909f63277591471eddfd450c0"
+    },
+    {
+      "path": "actionlint.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec",
+      "decoded_original": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "path": "affected-contracts-result.json",
+      "bytes": 6794,
+      "sha256": "4ad650921acc308b26f5c5cbd0440598fcde93f4586c685dea74b593c4f83c18"
+    },
+    {
+      "path": "affected-contracts.log.gz",
+      "bytes": 2593,
+      "sha256": "96c818c0713bce4d8622c965af68328fa62019378910f0134c47399b3d8bd29c",
+      "decoded_original": {
+        "bytes": 20622,
+        "sha256": "9a15eedde1b9e866edc94a3880b6a5d723f7d0ceaa32f5bdccfb47b9ca34b83a"
+      }
+    },
+    {
+      "path": "after.json",
+      "bytes": 9188,
+      "sha256": "f7c39a72abb9d0d0c38ac92d9b20591b94b84df8e7468e6b2c1b8ae7a447a439"
+    },
+    {
+      "path": "before.json",
+      "bytes": 3888,
+      "sha256": "2d581c0bfe9cc5c49e8dc1ba05081cc2d2b5ac6bb8502b506709b7fa0ffc6a1d"
+    },
+    {
+      "path": "host-followup-integration.patch.gz",
+      "bytes": 11000,
+      "sha256": "66f2b9143d6c00129f7fc2edae25e855b7636d022c4d509656393e3078bee200",
+      "decoded_original": {
+        "bytes": 42557,
+        "sha256": "38fec6d59f4c2e41dfe80cbb9f0ce0694a21d0a73037ee26111561b23fb79735"
+      }
+    },
+    {
+      "path": "initial-invocation-result.json",
+      "bytes": 562,
+      "sha256": "9b0ca1698967cd0ca85dddaaecc1f4afb6485c8e30e73413aee8619c15ab1b48"
+    },
+    {
+      "path": "initial-invocation.log.gz",
+      "bytes": 657,
+      "sha256": "911c1d0d1208e1b5c765d8b217dba4eccdffc7e19e90af34dda62476afd074aa",
+      "decoded_original": {
+        "bytes": 2354,
+        "sha256": "b9981afb68987b9349dd68039d6eadc836b0e839fd69acad12174a31fc2fb1c4"
+      }
+    },
+    {
+      "path": "producer-evidence-reference.json",
+      "bytes": 267,
+      "sha256": "b28b9a2e78cc7c0597c9ec68b35faf12a042840198f706c7cfaaa0d8ff3dbd3b"
+    },
+    {
+      "path": "producer-historical-three-file.patch.gz",
+      "bytes": 6568,
+      "sha256": "9ff5f9391e4c1f77e2b72af932137469a2a6a5225118902393550f41a62e0860",
+      "decoded_original": {
+        "bytes": 23764,
+        "sha256": "36d15a29afebbe968627ebd5bacd20cf76a6782b90fe6c9e133360508fc10b0e"
+      }
+    },
+    {
+      "path": "scripts__tests__test_historical_apk_expectations.py.final.gz",
+      "bytes": 4160,
+      "sha256": "ee9aeee76fab0577e59073761cf1e6bcca992b4d74e7b5ae32eda0bc8983ed5e",
+      "decoded_original": {
+        "bytes": 13552,
+        "sha256": "6d9f146935c5f80ff305f7171843c34ce17f514161894014348b79810260af0f"
+      }
+    },
+    {
+      "path": "scripts__verify_unified_apk.py.final.gz",
+      "bytes": 3984,
+      "sha256": "75c3453d676ee18d36fc52c33d8a0d32aa516ce0455a415472f25bb2fb1ae3cc",
+      "decoded_original": {
+        "bytes": 12075,
+        "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+      }
+    },
+    {
+      "path": "scripts__verify_unified_apk.py.original.gz",
+      "bytes": 3317,
+      "sha256": "15c4e0e6cfda864134dd5f34fba78f09f99d3e5e825834509acbd276a0cb9a52",
+      "decoded_original": {
+        "bytes": 9572,
+        "sha256": "20ac42965bc2de166d59218d5feb6d062c35d0c2197662fa530677cad43ed8ed"
+      }
+    },
+    {
+      "path": "targeted-green-result.json",
+      "bytes": 821,
+      "sha256": "a0a9160ef853ed2815e0f8b9bffe7d0c0fffce13dfbbac6b229df9d6133f168c"
+    },
+    {
+      "path": "targeted-green.log.gz",
+      "bytes": 474,
+      "sha256": "796e7f32e0a50de1a6d417d81b69a50aaf3d385e53bd840b8f13d27f69910872",
+      "decoded_original": {
+        "bytes": 875,
+        "sha256": "c05e55ea296198fd135ab26eef0c01686fecb82adb589cf15ea0f4d2ddf2cfc7"
+      }
+    },
+    {
+      "path": "targeted-red-result.json",
+      "bytes": 1004,
+      "sha256": "233129fcae87728d15572eda1ad8c2bce8a39e323d3e7fbe2d0db25c23bd07ad"
+    },
+    {
+      "path": "targeted-red.log.gz",
+      "bytes": 933,
+      "sha256": "ad4673044efcd702a04f3b725114aa0e673d7bcae6e830517f73257a1ab27cd1",
+      "decoded_original": {
+        "bytes": 3376,
+        "sha256": "3ac3c27f5c54f110f5964b8c863493ee52b99cf2f924fae367476af1fef70ead"
+      }
+    },
+    {
+      "path": "tools__android_qa__tests__test_update_2020_preservation.py.final.gz",
+      "bytes": 3652,
+      "sha256": "a921807a8d09cc4081df23f906953a0b8441a84c21c3af6691a0ab8159212d04",
+      "decoded_original": {
+        "bytes": 11917,
+        "sha256": "1bed363f797b6692d3ca8c8df7f6f18130273d25fee1d1c934c5d5bfd6fc36dc"
+      }
+    },
+    {
+      "path": "tools__android_qa__tests__test_update_preservation.py.final.gz",
+      "bytes": 4095,
+      "sha256": "c70ecb1d7c80e010c37c749f0a57a0745f49c681fbc168c2d639f5d73409d854",
+      "decoded_original": {
+        "bytes": 16766,
+        "sha256": "09d02454fd1eefb4ded1b47c81e2130147278211eb6f6c0e80ec4a0bedd93809"
+      }
+    },
+    {
+      "path": "tools__android_qa__tests__test_update_preservation.py.original.gz",
+      "bytes": 4095,
+      "sha256": "e520eb850c06092f432cee5158c14841e8f67f578aa121a0b262cf789aa9e4cb",
+      "decoded_original": {
+        "bytes": 16766,
+        "sha256": "8ce010b7da78e0147202da79a7c278955f284b9004d8adb01fe8c877a1083de1"
+      }
+    },
+    {
+      "path": "tools__android_qa__update_preservation.py.final.gz",
+      "bytes": 3083,
+      "sha256": "39d0e3695cc086d0c8845d3aa656f40bb6c2fdbbf6de6d00b08e00fde68135e6",
+      "decoded_original": {
+        "bytes": 10258,
+        "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a"
+      }
+    },
+    {
+      "path": "tools__android_qa__update_preservation.py.original.gz",
+      "bytes": 3015,
+      "sha256": "64eea0cdb78d90a98474ac2cd542012574820b302c457f63db734e647607bb5e",
+      "decoded_original": {
+        "bytes": 10021,
+        "sha256": "1f2f5cea3d020730e77443518e93754614328fc298c992e47289a1672921761e"
+      }
+    }
+  ]
+}

@@ -68,6 +68,7 @@ CAPTURE_MODULES = {
 # rules. The Studio default follows the published producer contract.
 NEXTGEN_PREFIX = 'nextgen-evidence/nextgen'
 NEXTGEN_VILLAGE_CAPTURE = NEXTGEN_PREFIX + '/captures/build_village_scene_regression'
+NEXTGEN_PUZZLE_MENU_CAPTURE = NEXTGEN_PREFIX + '/captures/puzzle_menu_lifecycle_regression'
 NEXTGEN_CAPTURE_MODULES = MappingProxyType({
     **{NEXTGEN_PREFIX + '/captures/' + probe: module for probe, module in (
         ('learning_world_capture', 'learning'), ('learning_sharing_capture', 'learning'),
@@ -76,6 +77,7 @@ NEXTGEN_CAPTURE_MODULES = MappingProxyType({
         ('build_village_scene_regression', 'settlement'),
         ('kart_nextgen_garage_regression', 'garage'), ('cards_table_capture', 'cards'),
         ('rhythm_tour_play_regression', 'rhythm'), ('puzzle_rotation_regression', 'puzzle'),
+        ('puzzle_menu_lifecycle_regression', 'puzzle'),
         ('treasure_exploration_regression', 'treasure'),
     )},
     **{probe: CAPTURE_MODULES[probe] for probe in TOUCH_CAPTURE_PROBES},
@@ -84,6 +86,7 @@ NEXTGEN_REQUIRED_PROBES = frozenset(
     (probe, 'headless') for probe in (
         'learning_world_regression', 'learning_sharing_regression', 'learning_studio_regression',
         'learning_host_payload_regression', 'puzzle_rotation_regression',
+        'puzzle_menu_lifecycle_regression',
         'treasure_exploration_regression', 'jump_nextgen_regression', 'jump_expeditions_regression',
         'lumo_teacher_pose_regression', 'lumo_studio_motion_regression', 'lumo_65bone_walk_gait_regression',
         'lumo_original_jump_visual_regression', 'bauwelt_identity_2013_regression',
@@ -99,6 +102,7 @@ NEXTGEN_REQUIRED_PROBES = frozenset(
     (probe, 'rendered') for probe in (
         'learning_world_capture', 'learning_sharing_capture', 'lumo_studio_motion_capture',
         'puzzle_rotation_regression', 'treasure_exploration_regression', 'jump_nextgen_capture',
+        'puzzle_menu_lifecycle_regression',
         'build_nextgen_play_regression', 'build_settlement_play_regression',
         'build_village_scene_regression',
         'creative_nextgen_environment_regression', 'kart_nextgen_garage_regression',
@@ -129,6 +133,11 @@ NEXTGEN_VILLAGE_PNGS = MappingProxyType({
     'captures/build_village_scene_regression/village-chapters-412x915.png': (412, 915),
     'captures/build_village_scene_regression/village-trader-2176x1812.png': (2176, 1812),
     'captures/build_village_scene_regression/village-treasury-640x360.png': (640, 360),
+})
+NEXTGEN_PUZZLE_MENU_PNGS = MappingProxyType({
+    f'captures/puzzle_menu_lifecycle_regression/{width}x{height}-{stage}.png': (width, height)
+    for width, height in ((960, 540), (640, 360))
+    for stage in ('rotation-menu', 'rotation-play', 'classic-play')
 })
 
 # The independent density captures were published in native 24fb8580. Their
@@ -315,7 +324,7 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
             'Every original Nextgen probe must report PASS')
     observed = [(row[0], row[1]) for row in rows[1:]]
     require(len(observed) == len(set(observed)) and set(observed) == NEXTGEN_REQUIRED_PROBES,
-            'The complete original 41-probe Nextgen result is required')
+            'The complete original 43-probe Nextgen result is required')
     images = roster.get('images') if isinstance(roster, dict) else None
     require(isinstance(images, list) and len(images) == len(NEXTGEN_STUDIO_PNGS),
             'The complete original 24-PNG Studio roster is required')
@@ -337,53 +346,69 @@ def verify_nextgen_archive(zipped: zipfile.ZipFile, workflow: dict) -> dict:
     require(seen == NEXTGEN_STUDIO_PNGS, 'The complete original 24-PNG Studio roster is required')
     return {'native_capture_tree': tree, 'native_probe_count': len(observed),
             'native_studio_raster_count': len(seen), **verify_nextgen_village_archive(zipped),
+            **verify_nextgen_puzzle_menu_archive(zipped),
             **verify_nextgen_touch_archive(zipped, tree)}
 
 
-def verify_nextgen_village_archive(zipped: zipfile.ZipFile) -> dict:
-    """Require the complete original Village set, including its visible pixels."""
+def verify_fixed_scene_rasters(zipped: zipfile.ZipFile, *, capture: str, manifest: str,
+                              expected: Mapping[str, tuple[int, int]], label: str) -> int:
+    """Verify a fixed production capture set, including decoded visible pixels."""
     try:
-        roster = json.loads(archive_member(zipped, NEXTGEN_PREFIX + '/village-images.json'))
+        roster = json.loads(archive_member(zipped, NEXTGEN_PREFIX + '/' + manifest))
     except (UnicodeDecodeError, json.JSONDecodeError) as error:
-        raise ValueError('Invalid original Village raster metadata') from error
+        raise ValueError(f'Invalid original {label} raster metadata') from error
     images = roster.get('images') if isinstance(roster, dict) else None
-    require(isinstance(images, list) and len(images) == len(NEXTGEN_VILLAGE_PNGS),
-            'The complete original four-PNG Village roster is required')
+    require(isinstance(images, list) and len(images) == len(expected),
+            f'The complete original {len(expected)}-PNG {label} roster is required')
     originals = [item.filename for item in zipped.infolist()
-                 if item.filename.startswith(NEXTGEN_VILLAGE_CAPTURE + '/') and
+                 if item.filename.startswith(capture + '/') and
                  PurePosixPath(item.filename).suffix.lower() == '.png']
     require(len(originals) == len(set(originals)) and
-            set(originals) == {NEXTGEN_PREFIX + '/' + path for path in NEXTGEN_VILLAGE_PNGS},
-            'The complete original four-PNG Village capture directory is required')
+            set(originals) == {NEXTGEN_PREFIX + '/' + path for path in expected},
+            f'The complete original {len(expected)}-PNG {label} capture directory is required')
     seen = set()
     from PIL import Image
     for item in images:
-        require(isinstance(item, dict), 'Invalid original Village raster entry')
+        require(isinstance(item, dict), f'Invalid original {label} raster entry')
         relative = item.get('path')
-        require(isinstance(relative, str) and relative in NEXTGEN_VILLAGE_PNGS and relative not in seen,
-                'Missing, duplicate or unexpected original Village raster path')
+        require(isinstance(relative, str) and relative in expected and relative not in seen,
+                f'Missing, duplicate or unexpected original {label} raster path')
         seen.add(relative)
         data = archive_member(zipped, NEXTGEN_PREFIX + '/' + relative)
         require(type(item.get('bytes')) is int and len(data) == item['bytes'] and
                 hashlib.sha256(data).hexdigest() == item.get('sha256'),
-                'Original Village raster digest or byte count differs')
-        expected = NEXTGEN_VILLAGE_PNGS[relative]
-        require(data[16:24] == struct.pack('>II', *expected),
-                'Original Village raster dimensions differ from the production probe')
+                f'Original {label} raster digest or byte count differs')
+        size = expected[relative]
+        require(data[16:24] == struct.pack('>II', *size),
+                f'Original {label} raster dimensions differ from the production probe')
         dimensions = png_dimensions(data)
         require(all(type(item.get(key)) is int for key in ('width', 'height')) and
-                dimensions == [item['width'], item['height']] == list(expected),
-                'Original Village raster dimensions differ from the production probe')
+                dimensions == [item['width'], item['height']] == list(size),
+                f'Original {label} raster dimensions differ from the production probe')
         with Image.open(BytesIO(data)) as image:
             image.load()
             visible = Image.alpha_composite(
                 Image.new('RGBA', image.size, (0, 0, 0, 255)),
                 image.convert('RGBA')).convert('RGB')
             require(any(low != high for low, high in visible.getextrema()),
-                    'Original Village PNG is empty or a uniform color')
-    require(seen == set(NEXTGEN_VILLAGE_PNGS),
-            'The complete original four-PNG Village roster is required')
-    return {'native_village_raster_count': len(seen)}
+                    f'Original {label} PNG is empty or a uniform color')
+    require(seen == set(expected),
+            f'The complete original {len(expected)}-PNG {label} roster is required')
+    return len(seen)
+
+
+def verify_nextgen_village_archive(zipped: zipfile.ZipFile) -> dict:
+    count = verify_fixed_scene_rasters(
+        zipped, capture=NEXTGEN_VILLAGE_CAPTURE, manifest='village-images.json',
+        expected=NEXTGEN_VILLAGE_PNGS, label='Village')
+    return {'native_village_raster_count': count}
+
+
+def verify_nextgen_puzzle_menu_archive(zipped: zipfile.ZipFile) -> dict:
+    count = verify_fixed_scene_rasters(
+        zipped, capture=NEXTGEN_PUZZLE_MENU_CAPTURE, manifest='puzzle-menu-images.json',
+        expected=NEXTGEN_PUZZLE_MENU_PNGS, label='Puzzle menu')
+    return {'native_puzzle_menu_raster_count': count}
 
 
 def verify_nextgen_touch_archive(zipped: zipfile.ZipFile, tree: str) -> dict:
@@ -500,6 +525,9 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
         require(NEXTGEN_VILLAGE_CAPTURE in capture_probes,
                 'Visual review must include the current Village production capture')
         additional['reviewed_village_capture_probes'] = [NEXTGEN_VILLAGE_CAPTURE]
+        require(NEXTGEN_PUZZLE_MENU_CAPTURE in capture_probes,
+                'Visual review must include the current Puzzle menu lifecycle capture')
+        additional['reviewed_puzzle_menu_capture_probes'] = [NEXTGEN_PUZZLE_MENU_CAPTURE]
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,

@@ -34,6 +34,16 @@ VILLAGE_PROBES = frozenset({
     ('build_village_scene_regression', 'headless'),
     ('build_village_scene_regression', 'rendered'),
 })
+PUZZLE_MENU_CAPTURE = 'nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression'
+PUZZLE_MENU_PROBES = frozenset({
+    ('puzzle_menu_lifecycle_regression', 'headless'),
+    ('puzzle_menu_lifecycle_regression', 'rendered'),
+})
+PUZZLE_MENU_PNGS = {
+    f'captures/puzzle_menu_lifecycle_regression/{width}x{height}-{stage}.png': (width, height)
+    for width, height in ((960, 540), (640, 360))
+    for stage in ('rotation-menu', 'rotation-play', 'classic-play')
+}
 
 
 @lru_cache(maxsize=128)
@@ -42,7 +52,7 @@ def fixture_png(width, height, color):
     return historical_tests.fixture_png(width, height, color)
 
 
-@lru_cache(maxsize=8)
+@lru_cache(maxsize=32)
 def village_fixture_png(width, height, color):
     """Two-color parser input, never a production scene or visual finding."""
     from PIL import Image
@@ -93,6 +103,14 @@ class Nextgen2019ReviewTests(unittest.TestCase):
                                    'sha256': hashlib.sha256(data).hexdigest(),
                                    'width': dimensions[0], 'height': dimensions[1]})
         members[prefix + '/village-images.json'] = json.dumps({'images': village_roster}).encode()
+        puzzle_menu_roster = []
+        for index, (relative, dimensions) in enumerate(sorted(PUZZLE_MENU_PNGS.items())):
+            data = village_fixture_png(*dimensions, index + 200)
+            members[prefix + '/' + relative] = data
+            puzzle_menu_roster.append({'path': relative, 'bytes': len(data),
+                                       'sha256': hashlib.sha256(data).hexdigest(),
+                                       'width': dimensions[0], 'height': dimensions[1]})
+        members[prefix + '/puzzle-menu-images.json'] = json.dumps({'images': puzzle_menu_roster}).encode()
         color = 50
         for touch_prefix, probe in delivery.NEXTGEN_TOUCH_PROBES.items():
             members.update({
@@ -162,7 +180,7 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             'Synthetic unit-test reviewer', 'Synthetic parser test; never production approval',
             native_profile=PROFILE)
 
-    def test_exact_combined_archive_keeps_41_core_24_studio_4_village_and_all_touch_evidence(self):
+    def test_exact_archive_keeps_43_core_24_studio_4_village_6_puzzle_menu_and_all_touch_evidence(self):
         args = self.review_fixture()
         before = copy.deepcopy(args[:6]), args[6].read_bytes()
         facts = self.verify(args)
@@ -170,12 +188,16 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         self.assertEqual(facts['native_acceptance_jobs'], [
             'bundle-evidence', 'gameplay', 'learning-preview', 'new-worlds',
             'touch-build', 'touch-treasure', 'touch-workshop'])
-        self.assertEqual(facts['native_probe_count'], 41)
+        self.assertEqual(facts['native_probe_count'], 43)
         self.assertEqual(facts['native_studio_raster_count'], 24)
         self.assertEqual(facts['native_village_raster_count'], 4)
         self.assertEqual(facts['reviewed_village_capture_probes'], [VILLAGE_CAPTURE])
         self.assertEqual(dict(delivery.NEXTGEN_VILLAGE_PNGS), VILLAGE_PNGS)
         self.assertTrue(VILLAGE_PROBES.issubset(delivery.NEXTGEN_REQUIRED_PROBES))
+        self.assertEqual(facts['native_puzzle_menu_raster_count'], 6)
+        self.assertEqual(facts['reviewed_puzzle_menu_capture_probes'], [PUZZLE_MENU_CAPTURE])
+        self.assertEqual(dict(delivery.NEXTGEN_PUZZLE_MENU_PNGS), PUZZLE_MENU_PNGS)
+        self.assertTrue(PUZZLE_MENU_PROBES.issubset(delivery.NEXTGEN_REQUIRED_PROBES))
         self.assertEqual(facts['native_capture_tree'], 'c' * 40)
         self.assertEqual(facts['native_capture_sources'], {
             'nextgen-evidence/nextgen': args[2], 'touch-evidence/workshop': args[2],
@@ -193,11 +215,87 @@ class Nextgen2019ReviewTests(unittest.TestCase):
         key = delivery.NEXTGEN_PREFIX + '/results.tsv'
         with zipfile.ZipFile(args[6]) as zipped:
             rows = zipped.read(key).decode().splitlines()
-        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in VILLAGE_PROBES]
+        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in VILLAGE_PROBES | PUZZLE_MENU_PROBES]
         self.assertEqual(len(rows), 38, 'The previously accepted 37-pair result is retained as a negative fixture')
         self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
-        with self.assertRaisesRegex(ValueError, '41-probe'):
+        with self.assertRaisesRegex(ValueError, '43-probe'):
             self.verify(args)
+
+    def test_legacy_41_gate_result_cannot_omit_the_new_puzzle_menu_modes(self):
+        args = self.review_fixture()
+        key = delivery.NEXTGEN_PREFIX + '/results.tsv'
+        with zipfile.ZipFile(args[6]) as zipped:
+            rows = zipped.read(key).decode().splitlines()
+        rows = [row for row in rows if tuple(row.split('\t')[:2]) not in PUZZLE_MENU_PROBES]
+        self.assertEqual(len(rows), 42, 'The previous complete 41-pair result is a negative fixture')
+        self.archive_change(args, {key: ('\n'.join(rows) + '\n').encode()})
+        with self.assertRaisesRegex(ValueError, '43-probe'):
+            self.verify(args)
+
+    def test_previous_puzzle_scene_does_not_replace_current_menu_lifecycle_review(self):
+        args = self.review_fixture()
+        args[1]['images'] = [item for item in args[1]['images']
+                             if str(Path(item['artifact_entry']).parent) != PUZZLE_MENU_CAPTURE]
+        self.assertEqual({item['module'] for item in args[1]['images']}, delivery.REVIEW_MODULES)
+        with self.assertRaisesRegex(ValueError, 'current Puzzle menu lifecycle capture'):
+            self.verify(args)
+        destination = self.base / 'missing-puzzle-menu-review'
+        with self.assertRaisesRegex(ValueError, 'current Puzzle menu lifecycle capture'):
+            self.record(args, destination)
+        self.assertFalse(destination.exists(), 'Missing lifecycle review must not create an approved receipt')
+
+    def test_all_six_original_menu_frames_are_required_even_when_not_reviewed(self):
+        for relative in PUZZLE_MENU_PNGS:
+            args = self.review_fixture()
+            self.archive_change(args, {delivery.NEXTGEN_PREFIX + '/' + relative: None})
+            with self.subTest(image=relative), self.assertRaises(ValueError):
+                self.verify(args)
+
+    def test_puzzle_menu_roster_rejects_invalid_or_relabelled_originals(self):
+        prefix = delivery.NEXTGEN_PREFIX
+        for mutation in ('missing-roster', 'short-roster', 'duplicate', 'renamed', 'digest',
+                         'bytes', 'metadata-size', 'pixel-size', 'truncated', 'uniform',
+                         'transparent', 'extra-png'):
+            args = self.review_fixture()
+            key = prefix + '/puzzle-menu-images.json'
+            with zipfile.ZipFile(args[6]) as zipped:
+                roster = json.loads(zipped.read(key))
+                item = roster['images'][0]
+                original = zipped.read(prefix + '/' + item['path'])
+            changes = {}
+            if mutation == 'missing-roster': changes[key] = None
+            if mutation == 'short-roster': roster['images'].pop()
+            if mutation == 'duplicate': roster['images'][-1] = copy.deepcopy(item)
+            if mutation == 'renamed': item['path'] = item['path'].replace('.png', '-invented.png')
+            if mutation == 'digest': item['sha256'] = '0' * 64
+            if mutation == 'bytes': item['bytes'] += 1
+            if mutation == 'metadata-size': item['width'] += 1
+            data = None
+            if mutation == 'pixel-size':
+                data = village_fixture_png(1280, 720, 230)
+                item['width'], item['height'] = 1280, 720
+            if mutation == 'truncated': data = original[:40]
+            if mutation == 'uniform': data = fixture_png(item['width'], item['height'], 230)
+            if mutation == 'transparent':
+                from PIL import Image
+                output = BytesIO()
+                Image.new('RGBA', (item['width'], item['height']), (200, 40, 90, 0)).save(output, format='PNG')
+                data = output.getvalue()
+            if data is not None:
+                changes[prefix + '/' + item['path']] = data
+                item['bytes'], item['sha256'] = len(data), hashlib.sha256(data).hexdigest()
+            if mutation == 'extra-png': changes[PUZZLE_MENU_CAPTURE + '/unrequested.png'] = original
+            if mutation != 'missing-roster': changes[key] = json.dumps(roster).encode()
+            self.archive_change(args, changes)
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                self.verify(args)
+
+    def test_puzzle_menu_capture_does_not_change_the_producer_studio_profile(self):
+        entry = PUZZLE_MENU_CAPTURE + '/960x540-rotation-menu.png'
+        with self.assertRaises(ValueError):
+            delivery.reviewed_relative_path('a' * 64, 'puzzle', entry)
+        with self.assertRaises(ValueError):
+            delivery.reviewed_relative_path('a' * 64, 'settlement', entry, native_profile=PROFILE)
 
     def test_existing_nine_modules_do_not_replace_the_additional_village_review(self):
         args = self.review_fixture()
@@ -436,9 +534,10 @@ class Nextgen2019ReviewTests(unittest.TestCase):
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 self.verify(args)
 
-    def test_each_of_the_41_probe_modes_must_be_present_once_and_pass(self):
+    def test_each_of_the_43_probe_modes_must_be_present_once_and_pass(self):
         for mutation in ('old-32-probe-run', 'missing-treasure', 'missing-village-headless',
-                         'missing-village-rendered', 'duplicate', 'wrong-mode', 'failed'):
+                         'missing-village-rendered', 'missing-puzzle-menu-headless',
+                         'missing-puzzle-menu-rendered', 'duplicate', 'wrong-mode', 'failed'):
             args = self.review_fixture()
             key = delivery.NEXTGEN_PREFIX + '/results.tsv'
             with zipfile.ZipFile(args[6]) as zipped:
@@ -449,6 +548,10 @@ class Nextgen2019ReviewTests(unittest.TestCase):
                 rows = [row for row in rows if row != 'build_village_scene_regression\theadless\tPASS']
             if mutation == 'missing-village-rendered':
                 rows = [row for row in rows if row != 'build_village_scene_regression\trendered\tPASS']
+            if mutation == 'missing-puzzle-menu-headless':
+                rows.remove('puzzle_menu_lifecycle_regression\theadless\tPASS')
+            if mutation == 'missing-puzzle-menu-rendered':
+                rows.remove('puzzle_menu_lifecycle_regression\trendered\tPASS')
             if mutation == 'duplicate': rows.append(rows[-1])
             if mutation == 'wrong-mode': rows[1] = rows[1].replace('\theadless\t', '\trendered\t')
             if mutation == 'failed': rows[1] = rows[1].replace('\tPASS', '\tFAIL')

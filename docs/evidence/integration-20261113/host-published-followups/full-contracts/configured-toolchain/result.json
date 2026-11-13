@@ -1,0 +1,35 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "started_at_utc": "2026-11-13T18:02:43.178428+00:00",
+  "finished_at_utc": "2026-11-13T18:04:54.204311+00:00",
+  "duration_seconds": 131.02588371600723,
+  "exit_code": 0,
+  "source_files": 1246,
+  "changed_during_run": [],
+  "log_sha256": "2b941f456c0c444010f13a066b5a94b15604dbf3bfcca6d4c9158985d4c521e5",
+  "last_lines": [
+    "test_1997_direct_release_consumes_verified_apk_after_emulator (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_1997_direct_release_consumes_verified_apk_after_emulator) ... ok",
+    "test_1998_spielwelt_apk_download_requires_actual_android_tour (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_1998_spielwelt_apk_download_requires_actual_android_tour) ... ok",
+    "test_1999_update_requires_identical_1997_identity_and_emulator (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_1999_update_requires_identical_1997_identity_and_emulator) ... ok",
+    "test_generic_name_is_identical_for_arm64_upload_and_release_download (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_generic_name_is_identical_for_arm64_upload_and_release_download) ... ok",
+    "test_original_1988_release_requires_old_branch_and_original_version (test_unified_workflow_artifact_names.UnifiedArtifactNamingTests.test_original_1988_release_requires_old_branch_and_original_version) ... ok",
+    "test_java_home_selects_the_configured_jdk_instead_of_a_jre_on_path (test_verify_android_apk.ApkSignatureTest.test_java_home_selects_the_configured_jdk_instead_of_a_jre_on_path) ... ok",
+    "test_tool_failure_cannot_pass_even_with_success_text (test_verify_android_apk.ApkSignatureTest.test_tool_failure_cannot_pass_even_with_success_text) ... ok",
+    "",
+    "----------------------------------------------------------------------",
+    "Ran 434 tests in 130.718s",
+    "",
+    "OK",
+    "",
+    "Android host prepared: example.studio.learning; stable signing; installer and 3D bridge connected"
+  ],
+  "environment_correction": "Verified Gradle9.1.0 and Flutter3.44.9 toolchain directories added to PATH; JAVA_HOME points to existing OpenJDK21. No product or test files changed after the initial missing-Gradle setup errors."
+}

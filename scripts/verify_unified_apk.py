@@ -16,6 +16,28 @@ SUPPORTED_ABIS = {'arm64-v8a', 'x86_64'}
 EXPECTED_SIGNING_CERT_SHA256 = (
     'a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702'
 )
+EXPECTATION_PATHS = (
+    'pubspec.yaml', 'config/godot-source.json', 'config/lumo-offline-voice.json',
+    'assets/audio/voice/lumo_free/catalog.json',
+)
+
+
+def load_expectations(repository: Path | None, revision: str | None) -> tuple[dict, dict | None]:
+    """Keep current verification code while binding historical inputs to Git bytes."""
+    if repository is None and revision is None:
+        return {name: (ROOT / name).read_bytes() for name in EXPECTATION_PATHS}, None
+    if repository is None or revision is None:
+        raise RuntimeError('Expectation repository and revision must be supplied together')
+    if not re.fullmatch(r'[0-9a-f]{40}', revision):
+        raise RuntimeError('Expected a full immutable expectation commit SHA')
+    git = ['git', '--no-replace-objects', '-C', str(repository)]
+    commit = subprocess.check_output(git + ['rev-parse', revision + '^{commit}'], text=True).strip()
+    if commit != revision:
+        raise RuntimeError('Expectation revision does not identify the exact commit')
+    files = {name: subprocess.check_output(git + ['show', f'{revision}:{name}'])
+             for name in EXPECTATION_PATHS}
+    return files, {'revision': revision, 'files': {
+        name: hashlib.sha256(content).hexdigest() for name, content in files.items()}}
 
 
 def validate_abis(actual: set[str], expected: set[str] | None = None) -> None:
@@ -78,7 +100,9 @@ def validate_offline_voice(archive: zipfile.ZipFile, abis: set[str],
     }
 
 
-def verify(path: Path, expected_abis: set[str] | None = None):
+def verify(path: Path, expected_abis: set[str] | None = None, *,
+           expectations_repository: Path | None = None,
+           expectations_revision: str | None = None):
     certificate = verify_apk(path)
     if certificate.lower() != EXPECTED_SIGNING_CERT_SHA256:
         raise RuntimeError(
@@ -90,12 +114,16 @@ def verify(path: Path, expected_abis: set[str] | None = None):
     package = re.search(r"package: name='([^']+)' versionCode='([^']+)' versionName='([^']+)'", badging)
     if package is None or package.group(1) != 'dev.ullmann.lumo.lumo_lernen.coachpreview':
         raise RuntimeError('Wrong package: this delivery must safely update the Build 274 parallel app')
+    expectations, expectations_source = load_expectations(expectations_repository, expectations_revision)
     version = re.search(r'^version:\s*([^\s+]+)\+(\d+)\s*$',
-                        (ROOT / 'pubspec.yaml').read_text(), re.MULTILINE)
+                        expectations['pubspec.yaml'].decode('utf-8'), re.MULTILINE)
     if version is None:
         raise RuntimeError('Expected a version name and build number in pubspec.yaml')
     expected_code = os.environ.get('LUMO_BUILD_NUMBER', version.group(2))
     expected_name = os.environ.get('LUMO_VERSION_NAME', version.group(1))
+    if expectations_source is not None and (expected_code != version.group(2)
+                                            or expected_name != version.group(1)):
+        raise RuntimeError('Version overrides cannot change source-bound expectations')
     if package.group(2) != expected_code or package.group(3) != expected_name:
         raise RuntimeError(
             f'Wrong Android version: {package.group(3)}+{package.group(2)}, '
@@ -104,7 +132,7 @@ def verify(path: Path, expected_abis: set[str] | None = None):
         raise RuntimeError('Unexpected minimum Android version')
     if "targetSdkVersion:'36'" not in badging:
         raise RuntimeError('Unexpected target Android version')
-    source = json.loads((ROOT / 'config/godot-source.json').read_text())
+    source = json.loads(expectations['config/godot-source.json'])
     with zipfile.ZipFile(path) as archive:
         if archive.testzip() is not None:
             raise RuntimeError('APK ZIP integrity failed')
@@ -117,8 +145,8 @@ def verify(path: Path, expected_abis: set[str] | None = None):
                     raise RuntimeError(f'Missing {abi}/{library}')
         offline_voice = validate_offline_voice(
             archive, abis,
-            json.loads((ROOT / 'config/lumo-offline-voice.json').read_text()),
-            json.loads((ROOT / 'assets/audio/voice/lumo_free/catalog.json').read_text()),
+            json.loads(expectations['config/lumo-offline-voice.json']),
+            json.loads(expectations['assets/audio/voice/lumo_free/catalog.json']),
         )
         info = archive.getinfo('resources.arsc')
         if info.compress_type != zipfile.ZIP_STORED:
@@ -164,6 +192,8 @@ def verify(path: Path, expected_abis: set[str] | None = None):
               'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),
               'signingCertificateSha256': certificate, 'godot': provenance,
               'offlineVoice': offline_voice}
+    if expectations_source is not None:
+        result['expectationsSource'] = expectations_source
     print(json.dumps(result, indent=2))
     return result
 
@@ -173,5 +203,13 @@ if __name__ == '__main__':
     parser.add_argument('apk', type=Path)
     parser.add_argument('--abi', action='append', choices=sorted(SUPPORTED_ABIS),
                         help='Exact expected ABI; repeat for multiple. Default checks both.')
+    parser.add_argument('--expectations-repository', type=Path,
+                        help='Git checkout containing an explicitly pinned historical expectation commit.')
+    parser.add_argument('--expectations-revision',
+                        help='Full commit SHA supplying version, Godot pin and voice metadata; current guards remain.')
     args = parser.parse_args()
-    verify(args.apk, set(args.abi) if args.abi else None)
+    if (args.expectations_repository is None) != (args.expectations_revision is None):
+        parser.error('--expectations-repository and --expectations-revision must be supplied together')
+    verify(args.apk, set(args.abi) if args.abi else None,
+           expectations_repository=args.expectations_repository,
+           expectations_revision=args.expectations_revision)
