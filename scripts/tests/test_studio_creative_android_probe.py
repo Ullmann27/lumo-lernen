@@ -1,11 +1,14 @@
 """Small offline counterexamples for the new QA contracts, not app tests."""
 import copy
+import hashlib
 import importlib.util
+import json
 from pathlib import Path
 import tempfile
 from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
+import xml.etree.ElementTree as ET
 
 from PIL import Image, ImageDraw
 
@@ -280,6 +283,118 @@ class MenuBoundaryContracts(unittest.TestCase):
         with patch.object(probe.time, 'sleep'), self.assertRaises(RuntimeError):
             tour.puzzle()
         self.assertEqual(state, {'motif': 2, 'touches': 4, 'observations': 5, 'saved_reads': 0})
+
+
+class OriginalHubPortalContracts(unittest.TestCase):
+    """Replay original UI observations through Tour.portal, without Android."""
+
+    def observation(self, title):
+        directory = Path(__file__).parent / 'fixtures/studio_creative_android/hub-6dcc'
+        provenance = json.loads((directory / 'provenance.json').read_text())
+        row = next(item for item in provenance['observations'] if item['title'] == title)
+        raw = (directory / row['xml']).read_bytes()
+        self.assertEqual(len(raw), row['xml_bytes'])
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), row['xml_sha256'])
+        nodes = list(ET.fromstring(raw).iter('node'))
+        matches = [node for node in nodes
+                   if node.get('content-desc', '').startswith(title + '. ')]
+        self.assertEqual(len(matches), 1)
+        target = matches[0]
+        self.assertEqual(target.get('clickable'), 'false')
+        self.assertEqual(target.get('class'), 'android.widget.Button')
+        for flag in ('enabled', 'focusable', 'visible-to-user'):
+            self.assertEqual(target.get(flag), 'true')
+        return nodes, target, row['capture']
+
+    def assert_original_portal(self, title):
+        nodes, target, shot = self.observation(title)
+        state = {'observations': 0, 'scrolls': 0, 'touches': []}
+
+        def live_nodes(*_):
+            state['observations'] += 1
+            return nodes
+
+        def adb(*arguments):
+            self.assertEqual(arguments[:3], ('shell', 'input', 'swipe'))
+            state['scrolls'] += 1
+
+        def touch(point, context):
+            state['touches'].append((point, context))
+
+        tour = probe.Tour.__new__(probe.Tour)
+        tour.out, tour.counter, tour.context = Path('unused-offline-output'), 0, {}
+        tour.probe = SimpleNamespace(normalized=lambda value: value.casefold())
+        tour.live, tour.base = SimpleNamespace(live_nodes=live_nodes), SimpleNamespace(adb=adb)
+        tour.shot = lambda _: (Path(shot['file']), shot)
+        tour.touch = touch
+        # Only image IO is stubbed: these dimensions/hash identify the matching
+        # real CI PNG in provenance.json. No synthetic picture is a UI proof.
+        image_size = (shot['width'], shot['height'])
+        image = SimpleNamespace(size=image_size, width=image_size[0], height=image_size[1])
+        with patch.object(probe, 'read_image', return_value=image), patch.object(probe.time, 'sleep'):
+            tour.portal(title)
+        self.assertEqual(state['observations'], 1)
+        self.assertEqual(state['scrolls'], 0)
+        self.assertEqual(len(state['touches']), 1)
+        point, context = state['touches'][0]
+        rect = probe.bounds(target.get('bounds'))
+        self.assertEqual(point, [(rect[0] + rect[2]) / 2, (rect[1] + rect[3]) / 2])
+        self.assertEqual(context['caption'], target.get('content-desc'))
+        self.assertEqual(context['bounds'], rect)
+        self.assertEqual(context['capture'], shot)
+        self.assertEqual(context['actionability'], 'source-bound-game-tile-button')
+        self.assertEqual(context['android_clickable'], 'false')
+
+    def test_original_jump_portal_touches_the_observed_button_without_scrolling(self):
+        self.assert_original_portal('Jump & Run')
+
+    def test_original_build_portal_touches_the_observed_button_without_scrolling(self):
+        self.assert_original_portal('Bauwelt')
+
+    def test_original_puzzle_portal_touches_the_observed_button_without_scrolling(self):
+        self.assert_original_portal('Puzzle')
+
+    def test_original_treasure_portal_touches_the_observed_button_without_scrolling(self):
+        self.assert_original_portal('Schatzsuche')
+
+    def test_nonclickable_original_target_requires_every_specific_role_and_caption_guard(self):
+        _, original, shot = self.observation('Jump & Run')
+        size = (shot['width'], shot['height'])
+        bad_values = (
+            ('package', 'another.application'), ('enabled', 'false'),
+            ('class', 'android.view.View'), ('focusable', 'false'),
+            ('visible-to-user', 'false'), ('clickable', None),
+            ('content-desc', 'Jump & Run. Spring. Laufe. Sei mutig! Noch gesperrt'),
+            ('content-desc', 'Jump & Run. A different caption Spielen'),
+            ('content-desc', 'Jump & Run spielen'),
+        )
+        for field, value in bad_values:
+            with self.subTest(field=field, value=value):
+                altered = dict(original.attrib)
+                if value is None:
+                    altered.pop(field)
+                else:
+                    altered[field] = value
+                self.assertIsNone(probe.hub_choice([altered], 'Jump & Run', size, 72))
+        for field in ('class', 'focusable', 'visible-to-user'):
+            with self.subTest(missing=field):
+                altered = dict(original.attrib)
+                altered.pop(field)
+                self.assertIsNone(probe.hub_choice([altered], 'Jump & Run', size, 72))
+
+    def test_original_button_role_does_not_accept_clipped_or_undersized_targets(self):
+        _, original, shot = self.observation('Bauwelt')
+        for rect in ('[-1,647][656,936]', '[288,647][1081,936]',
+                     '[288,1850][656,1921]', '[288,647][656,718]', '[288,647][288,936]'):
+            with self.subTest(bounds=rect):
+                self.assertIsNone(probe.hub_choice([{**original.attrib, 'bounds': rect}],
+                                                  'Bauwelt', (shot['width'], shot['height']), 72))
+
+    def test_two_distinct_original_role_targets_remain_a_hard_ambiguity(self):
+        _, original, shot = self.observation('Puzzle')
+        another = {**original.attrib, 'bounds': '[100,200][500,500]'}
+        with self.assertRaisesRegex(RuntimeError, 'Ambiguous live game tile'):
+            probe.hub_choice([original, another], 'Puzzle', (shot['width'], shot['height']), 72)
 
 
 if __name__ == '__main__':

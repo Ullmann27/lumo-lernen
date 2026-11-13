@@ -1,0 +1,577 @@
+{
+  "schema": 1,
+  "qa_parent": "6dcc5f5de7b313a387fce7654d73f620fae4a746",
+  "apk_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "archive": {
+    "path": "original-failure-and-repair.tar.gz",
+    "bytes": 2105893,
+    "sha256": "207a1dcc7b3427521978a97398c743df1a20e59fe6a00c25cf95035e23dc56fc"
+  },
+  "members": [
+    {
+      "path": "local-repair/README.md",
+      "bytes": 3030,
+      "sha256": "7498d3a6e475938d8796effc1cf7d46d33cd4c727dd6ef00b7c875d765f1a402"
+    },
+    {
+      "path": "local-repair/after/.github/probes/studio_creative_android_probe.py.gz",
+      "bytes": 17123,
+      "sha256": "bb7f67a309218bf6834b121d1a86352d64a99f3f11d39d047af5b5a8def0cf04"
+    },
+    {
+      "path": "local-repair/after/scripts/tests/fixtures/studio_creative_android/hub-6dcc/0007-hub-jumprun.xml.gz",
+      "bytes": 2370,
+      "sha256": "cebeb8e1b1016ba2ad6a73c1cf160244af0416826129340ad805b6d79380a220"
+    },
+    {
+      "path": "local-repair/after/scripts/tests/fixtures/studio_creative_android/hub-6dcc/0077-hub-bauwelt.xml.gz",
+      "bytes": 2358,
+      "sha256": "cb75ab48df9b26c79b5bd54a49e8ba693747cff5c0c7479a919aac20945b66db"
+    },
+    {
+      "path": "local-repair/after/scripts/tests/fixtures/studio_creative_android/hub-6dcc/0146-hub-puzzle.xml.gz",
+      "bytes": 2358,
+      "sha256": "2defe55706c61520477a78fe69017977af1de5ef8bb7e48f528f8ecd01cdc73f"
+    },
+    {
+      "path": "local-repair/after/scripts/tests/fixtures/studio_creative_android/hub-6dcc/0215-hub-schatzsuche.xml.gz",
+      "bytes": 2358,
+      "sha256": "8390f840231cc80428e19356005e90610731d15f4a34207c32694a368083224b"
+    },
+    {
+      "path": "local-repair/after/scripts/tests/fixtures/studio_creative_android/hub-6dcc/provenance.json.gz",
+      "bytes": 1058,
+      "sha256": "bbf93c9f294657e9726f26ac01cb12a49f13b3d3e0a846f865b8fe6db5fd26e6"
+    },
+    {
+      "path": "local-repair/after/scripts/tests/test_studio_creative_android_probe.py.gz",
+      "bytes": 5762,
+      "sha256": "5f892b294c957fb9d474b934db4246a030d3e7dd15a1b46b00304c19307f1451"
+    },
+    {
+      "path": "local-repair/before-source-manifest.json",
+      "bytes": 966,
+      "sha256": "d84fbab121afebb5ee7481e7634616aad604eb09a9eaf50efdadc9e5a6fc5241"
+    },
+    {
+      "path": "local-repair/before/.github/probes/studio_creative_android_probe.py.gz",
+      "bytes": 16670,
+      "sha256": "7d0b6184dc24501d3b3a869a98feb13c31b84c21ccc988a9235433c25757f86f"
+    },
+    {
+      "path": "local-repair/before/.github/workflows/lumo-studio-creative-android.yml.gz",
+      "bytes": 2270,
+      "sha256": "04189726eef25d96fe093ac431cc5abd424e8edc5681ed83985acf43136917ba"
+    },
+    {
+      "path": "local-repair/before/scripts/tests/test_studio_creative_android_probe.py.gz",
+      "bytes": 4363,
+      "sha256": "bf43fd2024e7d8a3948af3b4c89ea8a8bc2b1d4d7a1672850c456f9e324c64d0"
+    },
+    {
+      "path": "local-repair/focused-green.log",
+      "bytes": 1619,
+      "sha256": "606dd48fc2ae7da05a9ee5ed551621bbe33a64ca15b5bfcb7d085c2f95d7c658"
+    },
+    {
+      "path": "local-repair/focused-red-source.json",
+      "bytes": 1733,
+      "sha256": "83b21c721a92e782d3e2ac56d3e0fbc0cefb049c6dfe15772a3e33cab934a93b"
+    },
+    {
+      "path": "local-repair/focused-red.log",
+      "bytes": 6803,
+      "sha256": "f15e1cdfa4ba93ff11145344be9398b6a221fe91beefaf52d6cf48767e6ede53"
+    },
+    {
+      "path": "local-repair/full-23-green.log",
+      "bytes": 4644,
+      "sha256": "ac742db44c57aa85264d0e27f3dfd902a9f9942cfd77fefb82a6539512009297"
+    },
+    {
+      "path": "local-repair/handoff.json",
+      "bytes": 5114,
+      "sha256": "1723d8a3b939b81b9e042cb78201cd15903909d22083ead38d6b3f0ad39a09d7"
+    },
+    {
+      "path": "local-repair/manifest.json",
+      "bytes": 5218,
+      "sha256": "4ad95766ec62d956e4acdad21f96a9df3f5f4b165e6c253a25a747bc936769e1"
+    },
+    {
+      "path": "local-repair/original-ci-reference.json",
+      "bytes": 573,
+      "sha256": "fe11bcec7eee7d0b2bda319201e7ffcbc2f0fb2d4ab2f9e0378e7a4cd9b10248"
+    },
+    {
+      "path": "local-repair/source.patch.gz",
+      "bytes": 12224,
+      "sha256": "1134718d997a7aa97a6bd3c24c9f10329070fc8ca325d6ca0569102ae84a1a59"
+    },
+    {
+      "path": "original-ci/README.md",
+      "bytes": 2150,
+      "sha256": "c0a2e16f2481da89a8010fc7a038cb07a097777ac334aeb0d1e440a3174dd161"
+    },
+    {
+      "path": "original-ci/candidate-original/artifact.json.gz",
+      "bytes": 442,
+      "sha256": "233daa204c972a9e37ac1eb599b185bb7eb93d952b11fe979d4edd36a5a7f92c"
+    },
+    {
+      "path": "original-ci/candidate-original/build-apk-identities.json.gz",
+      "bytes": 1733,
+      "sha256": "2b452ad75ebdb89773a3cd09e4b1b86ee59376147de5c1e35eb1c34eb7565d7f"
+    },
+    {
+      "path": "original-ci/candidate-original/commit.json.gz",
+      "bytes": 513,
+      "sha256": "926c6e2ff72757009c50da77ae99d0afd59699bdf901d2768927a82df6b7a9a3"
+    },
+    {
+      "path": "original-ci/candidate-original/verify-and-build-132151952145.log.gz",
+      "bytes": 230364,
+      "sha256": "bc3c13446f4203f412fac6f907509a61cc1cd2b0a800936a16eb607dc0654fa7"
+    },
+    {
+      "path": "original-ci/final-originals/artifacts.json.gz",
+      "bytes": 450,
+      "sha256": "39d685e314fa238587de295af94b34a077eed042c311515ef4b9caf834ad0b3f"
+    },
+    {
+      "path": "original-ci/final-originals/jobs.json.gz",
+      "bytes": 1032,
+      "sha256": "56c5899b69bde37ae0251ee273915784c1d06e3baaa133f7bff2985eccdf9616"
+    },
+    {
+      "path": "original-ci/final-originals/run.json.gz",
+      "bytes": 1677,
+      "sha256": "ee410f69c70076cdc4821aa8a456bc09efb3a330edce16f0520c3c5395f5c58d"
+    },
+    {
+      "path": "original-ci/jobs/creative-132188311296.log.gz",
+      "bytes": 44241,
+      "sha256": "aa5f40069bd9a8ef37757b9dbb287e67b7ca6c4ba85f8a5b4fdb794933f9fdd8"
+    },
+    {
+      "path": "original-ci/manifest.json",
+      "bytes": 22009,
+      "sha256": "ac1a17e85a81661b97a55c6622ebf9ea96ce04a62656be0c6a76f171861a4476"
+    },
+    {
+      "path": "original-ci/original-zip-manifest.json",
+      "bytes": 75707,
+      "sha256": "9576c372162a75d2e561cf5b659382fe9059679a7c14efc7c727478f74cc86cb"
+    },
+    {
+      "path": "original-ci/originals/apk-source-sha.txt",
+      "bytes": 41,
+      "sha256": "c63f1a6e4e33f2084ebb6ead59211af95aa4932be7dde6164b20f6e614ccdcee"
+    },
+    {
+      "path": "original-ci/originals/candidate-artifact-binding.json",
+      "bytes": 1110,
+      "sha256": "427dfb27815d4a83a2ab72df50943ccb5b88cd0943132b0ceec40691546e05f3"
+    },
+    {
+      "path": "original-ci/originals/local-contracts.log",
+      "bytes": 3123,
+      "sha256": "18f9938c2d16ae1f1d40cf4e2ce0e8c90626ae33977c633eee542190619e5a17"
+    },
+    {
+      "path": "original-ci/originals/metadata/artifacts.json",
+      "bytes": 8200,
+      "sha256": "acc10bfd46a3e5ceee5d889fb15ae846c7c034bd6880991e4f86117b5b55046a"
+    },
+    {
+      "path": "original-ci/originals/metadata/jobs.json",
+      "bytes": 24328,
+      "sha256": "7b37ae2ced0fd0f25ea4c0fcd43d6ec20de4d78f895ac26c17d986b1abceb596"
+    },
+    {
+      "path": "original-ci/originals/metadata/run.json",
+      "bytes": 12961,
+      "sha256": "0b12396babceb00060ffd6a2ea637ed39ff4aa57b1417ec5bb36629e08d515a7"
+    },
+    {
+      "path": "original-ci/originals/native-source-sha.txt",
+      "bytes": 41,
+      "sha256": "36ca8f13d98ed1966f31b429208f16e92cb578e625fa7e2123bcb7ec0d198b66"
+    },
+    {
+      "path": "original-ci/originals/probe-source-sha.txt",
+      "bytes": 41,
+      "sha256": "8fc0e32b9d835488da392937f983aea5fac6607ff75562a8f61a2c24c253a1df"
+    },
+    {
+      "path": "original-ci/originals/tour/0007-hub-jumprun.xml",
+      "bytes": 33898,
+      "sha256": "17d7535575ac56f9b5ac4ebfe066a42f17771c06831bdb290cc256f9b9be75b0"
+    },
+    {
+      "path": "original-ci/originals/tour/0008-hub-before-choice.png",
+      "bytes": 1525022,
+      "sha256": "2de68c747131e3c8860fde6d789fbf7469314ca3fd3143eae3381bd450605f3c"
+    },
+    {
+      "path": "original-ci/originals/tour/0069-hub-jumprun.xml",
+      "bytes": 32938,
+      "sha256": "3082da553cf58cdc86c6fffd51afcda0d1f41f809253fd06ab133984615b1fc2"
+    },
+    {
+      "path": "original-ci/originals/tour/0077-hub-bauwelt.xml",
+      "bytes": 33899,
+      "sha256": "68739b0536f99ba5b30bb40997da5d7ce410790d1e22e080081cdc6af3db785c"
+    },
+    {
+      "path": "original-ci/originals/tour/0139-hub-bauwelt.xml",
+      "bytes": 32939,
+      "sha256": "efca90781925f6a994b78a0ea1c89b945eea76354967a93ac652183f15dfe6c4"
+    },
+    {
+      "path": "original-ci/originals/tour/0146-hub-puzzle.xml",
+      "bytes": 33899,
+      "sha256": "0a3e23e52f39573e180486bdcd77ceee51b9c9bfca96e3209216897bbae9afa8"
+    },
+    {
+      "path": "original-ci/originals/tour/0208-hub-puzzle.xml",
+      "bytes": 32939,
+      "sha256": "c3604d8860d2fc5728b8164040b92a82e383520832be57272af2eccab31a0765"
+    },
+    {
+      "path": "original-ci/originals/tour/0215-hub-schatzsuche.xml",
+      "bytes": 33899,
+      "sha256": "34d233f6d5fe157bf11146fa9779dd727f16247bcebf9f80fab79521785971dd"
+    },
+    {
+      "path": "original-ci/originals/tour/0277-hub-schatzsuche.xml",
+      "bytes": 32941,
+      "sha256": "2afc849cea41d4cbfde7173c64c94731ee0c9a78cec1467d36c09bddad8f3cf3"
+    },
+    {
+      "path": "original-ci/originals/tour/actual-source-files.json",
+      "bytes": 1992,
+      "sha256": "c42fb6052370d17b5361195f1977b87c0e9a94d941cdf2fa802c5f3989c3ad2f"
+    },
+    {
+      "path": "original-ci/originals/tour/creative-result.json",
+      "bytes": 9015,
+      "sha256": "db1e0f05b75216e78c027236dbdae19261648a82b18e884fd295e613b1b266d0"
+    },
+    {
+      "path": "original-ci/originals/tour/evidence-manifest.json",
+      "bytes": 47360,
+      "sha256": "ec49ebf09118f0d50a67d5fb0388d91c44667063f80b9407c18b93491eefb7de"
+    },
+    {
+      "path": "original-ci/originals/tour/install.txt",
+      "bytes": 180,
+      "sha256": "7d7ba46580cd10cdd7000ea44989cf8234e982827c0f5781d4fcdb8ad253e2c1"
+    },
+    {
+      "path": "original-ci/originals/tour/installed-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+    },
+    {
+      "path": "original-ci/originals/tour/installed-package.txt",
+      "bytes": 8745,
+      "sha256": "b974afcadec0c75918e259de6e08172596fc601893d52ec63bc27c93241f270a"
+    },
+    {
+      "path": "original-ci/originals/tour/native-engine-errors.json",
+      "bytes": 3,
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "original-ci/originals/tour/real-input-events.json",
+      "bytes": 83753,
+      "sha256": "138b63538c7b192158f2dec448cb504d32d7373673439fa7569b84c211d1af4c"
+    },
+    {
+      "path": "original-ci/review.json",
+      "bytes": 6243,
+      "sha256": "c1441101d64483aa62efe28c4b1168cb94e8149940a7be794bd92337dd801731"
+    },
+    {
+      "path": "original-ci/root-hub-visual-review.json",
+      "bytes": 830,
+      "sha256": "c90f57b9503bd6943076983720ce7d0dda00fc17422c548c41be863adfaa0043"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214801Z/artifacts.json.gz",
+      "bytes": 52,
+      "sha256": "445c0201400e7d67debcd7865fdc885bab735bc10686fdc583a3bd4a3be3286e"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214801Z/commit.json.gz",
+      "bytes": 525,
+      "sha256": "83549c4f3d71ded6aebf66071fd6b6da2357ed01283722f5a1a19e15c21901e4"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214801Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214801Z/pr.json.gz",
+      "bytes": 3110,
+      "sha256": "63ec58a68f948ce72281b8d7dacb3056d905087dd937bd3d57ee5263e4004b9e"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214801Z/run.json.gz",
+      "bytes": 1669,
+      "sha256": "f2458c14ceb83f9f709dd218393347add6f7bd6b38ae2561c21f44a506d78278"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214851Z/artifacts.json.gz",
+      "bytes": 52,
+      "sha256": "445c0201400e7d67debcd7865fdc885bab735bc10686fdc583a3bd4a3be3286e"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214851Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214851Z/native-commit.json.gz",
+      "bytes": 520,
+      "sha256": "2d29f5e02aa4fd8305fdc0b5ed30c3f06fc7b26997d5e0a186b51dde771c740a"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214851Z/run.json.gz",
+      "bytes": 1669,
+      "sha256": "f2458c14ceb83f9f709dd218393347add6f7bd6b38ae2561c21f44a506d78278"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214950Z/artifacts.json.gz",
+      "bytes": 52,
+      "sha256": "445c0201400e7d67debcd7865fdc885bab735bc10686fdc583a3bd4a3be3286e"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214950Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T214950Z/run.json.gz",
+      "bytes": 1669,
+      "sha256": "f2458c14ceb83f9f709dd218393347add6f7bd6b38ae2561c21f44a506d78278"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215107Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215209Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215310Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215426Z/interim-log-unavailable-tool-response.json.gz",
+      "bytes": 316,
+      "sha256": "7277a73687aafae5a8c1ffe2b3dc43002e0217cb6a5939dca3d076a9c0d1800c"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215426Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215529Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215635Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215737Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215842Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T215940Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T220050Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T220148Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T220249Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T220339Z/jobs.json.gz",
+      "bytes": 1017,
+      "sha256": "5709034259fd2e93425e7fe04a243af8b42a59765f6fe183ddaceb0aa7155e96"
+    },
+    {
+      "path": "original-ci/snapshots/20261113T220439Z/jobs.json.gz",
+      "bytes": 1032,
+      "sha256": "56c5899b69bde37ae0251ee273915784c1d06e3baaa133f7bff2985eccdf9616"
+    },
+    {
+      "path": "original-ci/source-binding.json",
+      "bytes": 12243,
+      "sha256": "7e4b01082832233f8068d5796e1d05c3fea22ede209472112de6d3e1451d927f"
+    },
+    {
+      "path": "original-ci/source/candidate/.github/probes/creative_android_probe.py.gz",
+      "bytes": 15217,
+      "sha256": "f36b805f037ace956c1e1e04b17ae1f27e6c2f654aa4318e31ca2b335a5b44ca"
+    },
+    {
+      "path": "original-ci/source/candidate/.github/probes/modernization_android_tour.py.gz",
+      "bytes": 17531,
+      "sha256": "213be11d82de332212ff8e994f951d66b4fdb592fd222fb5beadb6c21905486a"
+    },
+    {
+      "path": "original-ci/source/candidate/lib/features/games/spielwelt/spielwelt_hub.dart.gz",
+      "bytes": 6473,
+      "sha256": "fee485c6a18064d76e4ce9982d40bc3aa085510320df0f1f140fdb3a2b5fbc23"
+    },
+    {
+      "path": "original-ci/source/candidate/lib/features/games/spielwelt/spielwelt_routes.dart.gz",
+      "bytes": 1796,
+      "sha256": "63820e421b48f2749527fa036b3ed342b83d57331b48950f80acf7512ebc59bc"
+    },
+    {
+      "path": "original-ci/source/native/scripts/creative/build_state.gd.gz",
+      "bytes": 4737,
+      "sha256": "bc1dc87279e36339036c3627eabeffa71d7bc1993c7c1b0dd76883dd3b399d99"
+    },
+    {
+      "path": "original-ci/source/native/scripts/creative/build_world.gd.gz",
+      "bytes": 16164,
+      "sha256": "40d624d81821dd72a7e53d11f5b4a08ae363f81980bb51976c9226cfa5730c6f"
+    },
+    {
+      "path": "original-ci/source/native/scripts/creative/puzzle_state.gd.gz",
+      "bytes": 2470,
+      "sha256": "5c7dc7902e342e552927c42b890c99667220d99373a8467671a3d8ce0247036e"
+    },
+    {
+      "path": "original-ci/source/native/scripts/creative/puzzle_world.gd.gz",
+      "bytes": 9600,
+      "sha256": "5c0839d985676d95fc6d8124d7aa9ac814a9034449161a6088792a658d17ead3"
+    },
+    {
+      "path": "original-ci/source/native/scripts/creative/treasure_state.gd.gz",
+      "bytes": 2613,
+      "sha256": "2c81cb0823cb253ed22179bda0b99834e1be10275f5aab86a6716c355b6cc9de"
+    },
+    {
+      "path": "original-ci/source/native/scripts/creative/treasure_world.gd.gz",
+      "bytes": 8330,
+      "sha256": "894fdc4dfce534f4ab64dd7967df0d7261106b05cd5416abf938dd7766831fcf"
+    },
+    {
+      "path": "original-ci/source/native/scripts/games/jump_islands.gd.gz",
+      "bytes": 10539,
+      "sha256": "1080fd7ade17d905855d359411ef983ee6f2d5fa6ac489d1c292a653b11fa473"
+    },
+    {
+      "path": "original-ci/source/native/scripts/games/jump_touch_button.gd.gz",
+      "bytes": 1290,
+      "sha256": "4aa4860937d37a8b915c3cfa87a3007fc517b32bd93eabf4c612cee794340002"
+    },
+    {
+      "path": "original-ci/source/native/scripts/games/kart_joystick.gd.gz",
+      "bytes": 1230,
+      "sha256": "450aa464544a862fe62f9e45d2bbac47708bac4abf18140536123ace407bc1d6"
+    },
+    {
+      "path": "original-ci/source/qa/.github/probes/studio_creative_android_probe.py.gz",
+      "bytes": 16670,
+      "sha256": "7d0b6184dc24501d3b3a869a98feb13c31b84c21ccc988a9235433c25757f86f"
+    },
+    {
+      "path": "original-ci/source/qa/.github/workflows/lumo-studio-creative-android.yml.gz",
+      "bytes": 2270,
+      "sha256": "04189726eef25d96fe093ac431cc5abd424e8edc5681ed83985acf43136917ba"
+    },
+    {
+      "path": "original-ci/source/qa/scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg.gz",
+      "bytes": 324,
+      "sha256": "55399242e1f28c0b50129d845cfc7fcbd79fef11442b4eed18682456651bf535"
+    },
+    {
+      "path": "original-ci/source/qa/scripts/tests/fixtures/studio_creative_android/serialize_jump_config.gd.gz",
+      "bytes": 718,
+      "sha256": "20a287c2dc65181368b809be9fdd249faa0a0cb091520c2227107eb30533e2ca"
+    },
+    {
+      "path": "original-ci/source/qa/scripts/tests/test_studio_creative_android_probe.py.gz",
+      "bytes": 4363,
+      "sha256": "bf43fd2024e7d8a3948af3b4c89ea8a8bc2b1d4d7a1672850c456f9e324c64d0"
+    },
+    {
+      "path": "reviews/independent-review.json",
+      "bytes": 7881,
+      "sha256": "46fb1ba770d91b147fecd2e701376c9754ba328d1b76f919f33512645fe469e7"
+    },
+    {
+      "path": "reviews/root-source-review.json",
+      "bytes": 3502,
+      "sha256": "1cf3e8e792fb59879b24407e2bb200405af616c968489f2cfa880dc7940b8c4c"
+    },
+    {
+      "path": "reviews/staged-diff-check-original.log.gz",
+      "bytes": 8819,
+      "sha256": "cdb517e43e3522e9a46a23041270462d98c92d6e2f2fcf019e6fd8e2cf75a51c"
+    },
+    {
+      "path": "reviews/staged-whitespace-review.json",
+      "bytes": 2876,
+      "sha256": "4578dc01247d7b6a11b1109e7dd1c6d30c905ef053e374039ab5b46bca9adfc5"
+    }
+  ],
+  "excluded_payloads": [
+    {
+      "path": "original-ci/creative-original-14080093476.zip",
+      "bytes": 276006399,
+      "sha256": "a4e522645784830298b0635d7cd30b7cae3d277e8af103f5c91de6f717017903",
+      "retained_original": "/workspace/scratch/b3485b7bb989/host-pr474-6dcc5f5d-creative-evidence/creative-original-14080093476.zip",
+      "reason": "Full original retained; digest and all ZIP members verified in the frozen original-CI report."
+    },
+    {
+      "path": "original-ci/originals/tour/0078-hub-before-choice.png",
+      "bytes": 1523098,
+      "sha256": "a5976a1469756fbb83e6e4c4b31e2b6cc52dab70e83a38e5547be95b4fcf8712",
+      "retained_original": "/workspace/scratch/b3485b7bb989/host-pr474-6dcc5f5d-creative-evidence/originals/tour/0078-hub-before-choice.png",
+      "reason": "Full original retained; digest and all ZIP members verified in the frozen original-CI report."
+    },
+    {
+      "path": "original-ci/originals/tour/0278-hub-before-choice.png",
+      "bytes": 1485044,
+      "sha256": "1a78a315f76bc82d179b40445350d5de533c216f6d33d9631d4f40e372b59eeb",
+      "retained_original": "/workspace/scratch/b3485b7bb989/host-pr474-6dcc5f5d-creative-evidence/originals/tour/0278-hub-before-choice.png",
+      "reason": "Full original retained; digest and all ZIP members verified in the frozen original-CI report."
+    }
+  ],
+  "scope": "Every included member is byte-identical to its frozen source. Full original ZIP and two additional PNGs remain separately retained and explicitly indexed."
+}

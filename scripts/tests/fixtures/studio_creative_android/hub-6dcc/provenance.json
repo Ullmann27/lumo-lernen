@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "scope": "Byte-exact failed QA6dcc Android UI observations. Image dimensions/hashes are derived from the corresponding original PNGs retained in the original ZIP, not newly rendered images. No successful native game entry or screenreader interaction is claimed.",
+  "qa_source": "6dcc5f5de7b313a387fce7654d73f620fae4a746",
+  "apk_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "run_id": 43513179062,
+  "job_id": 132188311296,
+  "artifact_id": 14080093476,
+  "artifact_sha256": "a4e522645784830298b0635d7cd30b7cae3d277e8af103f5c91de6f717017903",
+  "observations": [
+    {
+      "title": "Jump & Run",
+      "xml": "0007-hub-jumprun.xml",
+      "original_zip_entry": "tour/0007-hub-jumprun.xml",
+      "xml_bytes": 33898,
+      "xml_sha256": "17d7535575ac56f9b5ac4ebfe066a42f17771c06831bdb290cc256f9b9be75b0",
+      "capture": {
+        "file": "0008-hub-before-choice.png",
+        "original_zip_entry": "tour/0008-hub-before-choice.png",
+        "bytes": 1525022,
+        "sha256": "2de68c747131e3c8860fde6d789fbf7469314ca3fd3143eae3381bd450605f3c",
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "title": "Bauwelt",
+      "xml": "0077-hub-bauwelt.xml",
+      "original_zip_entry": "tour/0077-hub-bauwelt.xml",
+      "xml_bytes": 33899,
+      "xml_sha256": "68739b0536f99ba5b30bb40997da5d7ce410790d1e22e080081cdc6af3db785c",
+      "capture": {
+        "file": "0078-hub-before-choice.png",
+        "original_zip_entry": "tour/0078-hub-before-choice.png",
+        "bytes": 1523098,
+        "sha256": "a5976a1469756fbb83e6e4c4b31e2b6cc52dab70e83a38e5547be95b4fcf8712",
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "title": "Puzzle",
+      "xml": "0146-hub-puzzle.xml",
+      "original_zip_entry": "tour/0146-hub-puzzle.xml",
+      "xml_bytes": 33899,
+      "xml_sha256": "0a3e23e52f39573e180486bdcd77ceee51b9c9bfca96e3209216897bbae9afa8",
+      "capture": {
+        "file": "0147-hub-before-choice.png",
+        "original_zip_entry": "tour/0147-hub-before-choice.png",
+        "bytes": 1523161,
+        "sha256": "76900d782ec234ef38b84ee0f2ff8f70dd49404b15e929c5376f641599809de2",
+        "width": 1080,
+        "height": 1920
+      }
+    },
+    {
+      "title": "Schatzsuche",
+      "xml": "0215-hub-schatzsuche.xml",
+      "original_zip_entry": "tour/0215-hub-schatzsuche.xml",
+      "xml_bytes": 33899,
+      "xml_sha256": "34d233f6d5fe157bf11146fa9779dd727f16247bcebf9f80fab79521785971dd",
+      "capture": {
+        "file": "0216-hub-before-choice.png",
+        "original_zip_entry": "tour/0216-hub-before-choice.png",
+        "bytes": 1523045,
+        "sha256": "159d628acc8d1b3e59fee9ae9e88f212a45d7cd58b6d9607c7917b7483f8c14d",
+        "width": 1080,
+        "height": 1920
+      }
+    }
+  ]
+}

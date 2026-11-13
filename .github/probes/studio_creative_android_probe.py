@@ -40,6 +40,17 @@ PACKAGE = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
 HELPER_SHA = '2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e'
 VERIFIER_SHA = 'ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1'
 
+# Exact51e _GameTile captions observed in the original API35 hierarchy. Its
+# outer Semantics(button:true, excludeSemantics:true) hides InkWell's click
+# action, while physical pointers still target the actual card. This is not
+# evidence of an Android accessibility click action or screenreader support.
+HUB_GAME_TILE_CAPTIONS = {
+    'Jump & Run': 'Jump & Run. Spring. Laufe. Sei mutig! Spielen',
+    'Bauwelt': 'Bauwelt. Bauen. Gestalten. Deiner Fantasie sind keine Grenzen gesetzt! Spielen',
+    'Puzzle': 'Puzzle. Stück für Stück die Welt entdecken! Spielen',
+    'Schatzsuche': 'Schatzsuche. Rätsel. Hinweise. Schätze! Spielen',
+}
+
 
 def sha(path: Path) -> str:
     with path.open('rb') as stream:
@@ -95,23 +106,33 @@ def bounds(value: str) -> list[int] | None:
 
 def hub_choice(nodes: list[dict], title: str, size: tuple[int, int],
                minimum: float) -> dict | None:
-    """The unchanged current _GameTile uses one full title/tagline/status node."""
+    """Select an explicit click target or the exact source-bound game Button."""
     choices = []
     for node in nodes:
         if node.get('package') != PACKAGE or node.get('enabled') != 'true':
             continue
-        if node.get('clickable') != 'true':
-            continue
         for caption in (node.get('content-desc', ''), node.get('text', '')):
             if not (caption.startswith(title + '. ') and caption.endswith(' Spielen')):
                 continue
+            actionability = 'android-click-action'
+            if node.get('clickable') != 'true':
+                if not (node.get('clickable') == 'false'
+                        and node.get('class') == 'android.widget.Button'
+                        and node.get('visible-to-user') == 'true'
+                        and node.get('focusable') == 'true'
+                        and caption == node.get('content-desc')
+                        and caption == HUB_GAME_TILE_CAPTIONS.get(title)):
+                    continue
+                actionability = 'source-bound-game-tile-button'
             rect = bounds(node.get('bounds', ''))
             if rect is None:
                 continue
             x0, y0, x1, y1 = rect
             if (0 <= x0 < x1 <= size[0] and 0 <= y0 < y1 <= size[1]
                     and min(x1 - x0, y1 - y0) >= minimum):
-                record = {'caption': caption, 'bounds': rect}
+                record = {'caption': caption, 'bounds': rect,
+                          'actionability': actionability,
+                          'android_clickable': node.get('clickable')}
                 if record not in choices:
                     choices.append(record)
     require(len(choices) <= 1, 'Ambiguous live game tile: ' + title)
@@ -503,7 +524,7 @@ class Tour:
                     rect = target['bounds']
                     self.touch([(rect[0] + rect[2]) / 2, (rect[1] + rect[3]) / 2],
                                {**target, 'capture': shot, 'hierarchy': tag,
-                                'basis': 'Current318 live _GameTile complete Semantics, enabled and clickable'})
+                                'basis': 'Current51e live _GameTile complete Semantics; explicit click action or source-bound visible Button'})
                     return
                 if attempt == 10:
                     break

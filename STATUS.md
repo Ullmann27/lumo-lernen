@@ -1,3 +1,25 @@
+# Creative portal repair; fresh Android result pending
+
+The original API 35 creative run 43513179062 on QA 6dcc5f5d failed before all
+four game portal touches. Installation, identity, onboarding and the actual hub
+passed. Its visible Button nodes carried clickable=false; the former QA filter
+rejected them. Original failures remain preserved with their original identities.
+
+The narrow QA repair recognizes only the four complete source-bound captions
+with the observed Button/visibility/focusability metadata, unchanged minimum
+size and bounds, and a hard ambiguity failure. Actual clickability is recorded.
+All 23 local cases pass without skips, including 16 unchanged original bodies.
+These are XML replays with stubbed input, not successful Android game sessions.
+
+The unchanged candidate remains Host 51e92fb5 / Native 993c1453, build
+43502594333 / artifact 14078786114. Workflow and actual gameplay/save/video
+gates remain unchanged. Observe the fresh QA push run before claiming native
+entry or acceptance. Main Host 84865ce2 continues independently and receives
+no transferred result. Evidence: docs/evidence/integration-20261113/
+host-51e-creative-portal/. Prior checkpoint notes below remain historical.
+
+---
+
 # Separate creative QA for the existing51e Android candidate
 
 This isolated QA branch imports PR473 with two corrected test controls: observed

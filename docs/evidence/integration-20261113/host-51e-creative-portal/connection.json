@@ -1,0 +1,29 @@
+{
+  "schema": 1,
+  "qa_parent": "6dcc5f5de7b313a387fce7654d73f620fae4a746",
+  "apk_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "failed_run": 43513179062,
+  "failed_job": 132188311296,
+  "failed_artifact": 14080093476,
+  "failed_status": "FAIL_BEFORE_PORTAL_TOUCH_FOR_ALL_FOUR_GAMES",
+  "candidate_build_run": 43502594333,
+  "candidate_artifact": 14078786114,
+  "probe_sha256": "a7554f8475f56a9ea283839513debc753e7e87a6c189cee75bfe15609149f762",
+  "test_sha256": "42fb3e716a3061b28ebf03588898bfdc62880e39219cc8f7c4de2c6338f1583d",
+  "workflow_sha256_unchanged": "664fd5a0b1e1d82e94e66102584fa63edc827aed57c63d66a803a9d5e966cc56",
+  "local_tests": {
+    "new": 7,
+    "full_module": 23,
+    "prior_unchanged_test_bodies": 16,
+    "skips": 0
+  },
+  "archive": {
+    "path": "original-failure-and-repair.tar.gz",
+    "bytes": 2105893,
+    "sha256": "207a1dcc7b3427521978a97398c743df1a20e59fe6a00c25cf95035e23dc56fc"
+  },
+  "new_actual_android_status": "PENDING_FRESH_PUSH_RUN",
+  "main_848_source_and_run_unchanged": true,
+  "whitespace_check": "Standard for all other paths; cr-at-eol only for four byte-exact original XML fixtures. Full original diagnostic and scope correction preserved."
+}
