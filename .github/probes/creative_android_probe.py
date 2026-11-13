@@ -298,6 +298,19 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
     variants = [('contrast',contrast,'deu+eng',2),('raw',image,'deu+eng',2),
                 ('white-text',white_text,'deu+eng',2),('white-latin',white_text,'eng',2),
                 ('navy-latin',navy_text,'eng',2),('navy-latin-1x',navy_text,'eng',1)]
+    # Actual a31 learning frames use dark teal (#1d3540) on the gold action.
+    # Its green/red difference is outside the Kart navy mask. Read those pixels
+    # across the entire unchanged frame, after all existing variants; do not
+    # assume a button region or substitute the requested text for OCR output.
+    # Retain antialiased edges between teal ink and gold, not just solid core
+    # pixels: a core-only mask fragmented these actual 40 px letters.
+    teal_dark = red.point(lambda value: 255 if 18 <= value <= 110 else 0)
+    teal_blue = blue.point(lambda value: 255 if 40 <= value <= 110 else 0)
+    teal_balance = ImageChops.difference(green, blue).point(
+        lambda value: 255 if value <= 65 else 0)
+    teal_ink = ImageChops.multiply(ImageChops.multiply(teal_dark, teal_blue), teal_balance)
+    if teal_ink.getbbox():
+        variants.append(('teal-text-1x', ImageChops.invert(teal_ink), 'deu+eng', 1))
     for variant, pixels, language, scale in variants:
         remaining = deadline - time.monotonic()
         if remaining <= 0:
@@ -353,7 +366,8 @@ def image_lines(out: Path, tag: str, wanted: str = '', source_path: Path | None 
 
 
 def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
-               exact: bool = False, missing_caption=None) -> None:
+               exact: bool = False, missing_caption=None, *,
+               orientation: str = 'landscape') -> None:
     """Wait for current full-surface evidence and two observed targets, then press once."""
     wanted = normalized(label)
     anchors = {'rucksack': 'right-toolbar', 'neuespuzzlebeginnen': 'center-panel',
@@ -361,7 +375,7 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
     started = time.monotonic()
     deadline = started + timeout
     evidence = {'status': 'WAITING', 'label': label, 'timeout_seconds': timeout,
-                'exact_caption_required': exact,
+                'exact_caption_required': exact, 'orientation_policy': orientation,
                 'scope': 'Observed touch prerequisites; post-action assertions still required',
                 'frames': []}
     journal = out / (tag + '-surface-readiness.json')
@@ -374,7 +388,7 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
             attempt += 1
             snapshot = capture(out, name, timeout=deadline - time.monotonic())
             source = out / snapshot['file']
-            frame = inspect_surface(source)
+            frame = inspect_surface(source, orientation=orientation)
             frame['captured_after_seconds'] = round(time.monotonic() - started, 6)
             evidence['frames'].append(frame)
             if not frame['acceptable_for_target_sampling']:
@@ -433,11 +447,11 @@ def native_tap(out: Path, label: str, tag: str, timeout: float = 120,
 
 
 def native_text(out: Path, label: str, tag: str, tap: bool = False, settle: bool = False,
-                exact: bool = False) -> None:
+                exact: bool = False, *, orientation: str = 'landscape') -> None:
     # All native presses need this guard, including Puzzle's previously
     # settle=False first start. Keep the existing keyword for callers.
     if tap:
-        return native_tap(out, label, tag, exact=exact)
+        return native_tap(out, label, tag, exact=exact, orientation=orientation)
     wanted = normalized(label)
     for attempt in range(10):
         lines = image_lines(out, f'{tag}-{attempt}', wanted, exact=exact)

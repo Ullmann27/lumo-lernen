@@ -184,7 +184,6 @@ jobs:
           command -v rg
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
       - name: Install verified Gradle for the real build-contract probe
-        if: true
         run: |
           set -euo pipefail
           curl -fL --retry 3 https://services.gradle.org/distributions/gradle-9.1.0-bin.zip -o "$RUNNER_TEMP/lumo-gradle.zip"
@@ -250,7 +249,6 @@ jobs:
       - name: Install Godot 4.6.3 for the exact pinned Kart source
         run: bash scripts/install_godot_for_build.sh
       - name: Require actual gameplay gates on the exact pinned native source
-        if: true
         env:
           LIBGL_ALWAYS_SOFTWARE: '1'
           REQUIRE_TECHNICAL_ART: 'true'
@@ -407,7 +405,9 @@ jobs:
           retention-days: 30
 
   update-2018-from-2017:
-    needs: [verify-and-build, android-tour]
+    # Independent emulator and baseline data; publication still requires both
+    # the complete tour and this complete in-place update to succeed.
+    needs: [verify-and-build]
     permissions:
       contents: read
       actions: read
@@ -523,7 +523,11 @@ jobs:
         with:
           packages: platform-tools
       - name: Install APK signature and manifest verification tools
-        run: sdkmanager 'build-tools;36.0.0'
+        run: |
+          set -euo pipefail
+          sdkmanager 'build-tools;36.0.0'
+          python3 -m venv .publish-venv
+          .publish-venv/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
       - uses: actions/download-artifact@v4
         with:
           name: lumo-nextgen-2018-arm64-verified
@@ -567,7 +571,7 @@ jobs:
           python3 scripts/verify_legacy_release_pin.py
           sha256sum -c dist/APK-SHA256.txt
           python3 scripts/verify_unified_apk.py dist/Lumo-Lernen-Neu.apk --abi arm64-v8a > dist/PUBLISH-VERIFICATION.json
-          python3 scripts/verify_nextgen_delivery.py --source-sha "$SOURCE_SHA"
+          .publish-venv/bin/python scripts/verify_nextgen_delivery.py --source-sha "$SOURCE_SHA"
           cp config/nextgen-2018-visual-review.json dist/VISUAL-REVIEW.json
       - name: Preserve existing releases and select create-or-verify
         id: release-state

@@ -1,12 +1,14 @@
-"""Reject mixed-source publication, old APK proof and unreviewed renderer files.
+"""Reject mixed sources, stale/forged Cards pixels and unreviewed renderer files.
 
-All JSON and PNG data here are explicitly synthetic parser fixtures. None is
-stored as an application screenshot, device result or publication receipt.
+Release records and draw sequences are synthetic parser fixtures, never device
+proof. Pixel checks additionally reuse hash-verified original renderer images;
+replaying them with synthetic states does not constitute Android acceptance.
 """
 from __future__ import annotations
 
 import copy
 import hashlib
+import json
 from pathlib import Path
 import struct
 import sys
@@ -18,6 +20,8 @@ import zipfile
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import verify_nextgen_delivery as delivery
 from record_nextgen_visual_review import record_review
+sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'tools/android_qa'))
+from nextgen_evidence import require_cards_face_pixels
 
 
 def fixture_png(width: int, height: int, color: int) -> bytes:
@@ -29,6 +33,56 @@ def fixture_png(width: int, height: int, color: int) -> bytes:
 
 
 class NextgenDeliveryTests(unittest.TestCase):
+    def cards_pixel_fixture(self, cards):
+        temporary = tempfile.TemporaryDirectory()
+        self.addCleanup(temporary.cleanup)
+        output = Path(temporary.name)
+        fixtures = Path(__file__).resolve().parents[2] / 'tools/android_qa/tests/fixtures/cards_faces_2018'
+        manifest = json.loads((fixtures / 'manifest.json').read_text())
+        case = next(item for item in manifest['cases'] if item['name'] == 'native_412x915')
+        raw = (fixtures / case['image']).read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(), case['sha256'])
+        observation = json.loads((fixtures / 'observations.json').read_text())[case['name']]
+        public = copy.deepcopy(case['public'])
+        public.update(roundId=cards['draw']['round_id'], token='a' * 32, viewer=0, current=0,
+                      revision=5, ack=1, drawCount=97)
+        states = []
+        for index, revision in enumerate((5, 7, 7, 9)):
+            if index in (1, 3):
+                public['hand'].append({'id': f'fixture-drawn-{index}', 'type': 'number',
+                                       'number': 4, 'color': 'orange', 'playable': True})
+                public['drawCount'] -= 1
+                public['ack'] += 1
+                public['players'][0]['count'] = len(public['hand'])
+            public['revision'] = revision
+            states.append(copy.deepcopy(public))
+        reports = []
+        for stage, state in zip(delivery.CARDS_FACE_STAGES, states):
+            frames = []
+            for index in range(2):
+                path = output / f'{stage}-face-check-{index:02d}.png'
+                path.write_bytes(raw)
+                pixels = require_cards_face_pixels(path, state, density=case['density'], observations=observation)
+                frames.append({'source': path.name, 'source_sha256': case['sha256'],
+                               'revision': state['revision'], 'public_before': copy.deepcopy(state),
+                               'public_after': copy.deepcopy(state), 'status': 'VISIBLE_FRONT_ARTWORK',
+                               'observations': copy.deepcopy(observation), 'pixels': pixels})
+            (output / (stage + '.png')).write_bytes(raw)
+            reports.append({'stage': stage, 'status': 'PASS', 'consecutive_same_revision_frames': 2,
+                            'token': public['token'], 'roundId': public['roundId'], 'viewer': 0,
+                            'revision': state['revision'], 'page': '1/3', 'source': stage + '.png',
+                            'source_sha256': case['sha256'], 'frames': frames, 'elapsed_seconds': 1,
+                            'scope': 'Synthetic parser replay of real renderer pixels; not Android proof'})
+        cards['front_face_pixels'] = reports
+        self.write_pixel_reports(cards, output)
+        return output
+
+    @staticmethod
+    def write_pixel_reports(cards, output):
+        for report in cards.get('front_face_pixels', []):
+            if isinstance(report, dict) and report.get('stage') in delivery.CARDS_FACE_STAGES:
+                (output / (report['stage'] + '-face-evidence.json')).write_text(json.dumps(report))
+
     def proof_fixture(self):
         source, native, digest, pck = 'a' * 40, 'b' * 40, 'c' * 64, 'd' * 64
         proof = {'flutter_source_commit': source, 'tracked_source_clean': True,
@@ -50,12 +104,16 @@ class NextgenDeliveryTests(unittest.TestCase):
                 'steps': [identity, {'step': 'start-kart-race', 'ok': True,
                                     'spatial_menu_navigation': {'status': 'PASS', 'selected_mode': 'cup',
                                         'sections': [{'section': 'garage'}, {'section': 'driver'}]}}]}
-        draw = {'cards_conserved': 112, 'child_cards_added': 1, 'owner': 'f' * 64, 'round_id': 'cards-' + 'a' * 32}
+        draw = {'cards_conserved': 112, 'child_cards_added': 1, 'owner': 'f' * 64,
+                'round_id': 'cards-' + 'a' * 32, 'sequence': 2, 'revision_before': 5,
+                'revision_after': 7, 'draw_count_before': 97, 'draw_count_after': 96}
+        late_draw = dict(draw, sequence=3, revision_before=7, revision_after=9,
+                         draw_count_before=96, draw_count_after=95)
         binding = {'bound': True, 'main_process_pid': 10, 'native_process_pid': 11}
         surfaces = {'status': 'PASS', 'apk_identity': copy.deepcopy(identity), 'fatal_crashes': 0,
                     'learning': {'moves': {'complete': True, 'moved_objects': 5},
                                  'same_lesson_after_return': True, 'illustration_did_not_award_mastery': True},
-                    'cards': {'draw': copy.deepcopy(draw), 'draw_after_visible_idle': copy.deepcopy(draw),
+                    'cards': {'draw': copy.deepcopy(draw), 'draw_after_visible_idle': late_draw,
                               'visible_idle_seconds': 35, 'android_authority_binding': [binding, binding],
                               'pause_saved_state_unchanged': True, 'reopened_same_round': True,
                               'new_mailbox_token': True}}
@@ -70,13 +128,16 @@ class NextgenDeliveryTests(unittest.TestCase):
         host = {'status': 'PASS', 'flutter_source_commit': source,
                 'classes': {name: [{'sha256': '1' * 64}] for name in delivery.COMPILED_CLASSES}}
         return [source, native, '0.13.6', digest, 12345, proof, copy.deepcopy(proof),
-                copy.deepcopy(proof), update, tour, surfaces, host]
+                copy.deepcopy(proof), update, tour, surfaces, host,
+                self.cards_pixel_fixture(surfaces['cards'])]
 
     def test_only_same_source_apk_and_real_surface_proofs_can_form_delivery_facts(self):
         facts = delivery.verify_proofs(*self.proof_fixture())
         self.assertEqual(facts['versionCode'], 2018)
         self.assertEqual(facts['package'], delivery.PACKAGE_ID)
         self.assertIn('not measured', facts['deviceScope'])
+        self.assertEqual(len(facts['cardsFrontFacePixels']['stages']), 4)
+        self.assertTrue(all(len(stage['frames']) == 2 for stage in facts['cardsFrontFacePixels']['stages']))
 
     def test_old_certificate_changed_bytes_or_native_source_fail_closed(self):
         for position, field, value in ((5, 'tracked_source_clean', False), (5, 'flutter_source_commit', '0' * 40),
@@ -97,7 +158,7 @@ class NextgenDeliveryTests(unittest.TestCase):
                          'different-child', 'host-old-source', 'service-not-compiled', 'registry-not-compiled',
                          'no-voice-consent', 'speech-incomplete', 'old-speech-id', 'different-speaker', 'false-audible-claim'):
             args = self.proof_fixture()
-            update, tour, surfaces, host = args[8:]
+            update, tour, surfaces, host = args[8:12]
             if mutation == 'old-tour': tour['apk_sha256'] = '0' * 64
             if mutation == 'wrong-baseline': update['baseline']['versionCode'] = 2015
             if mutation == 'surface-failed': surfaces['status'] = 'FAIL'
@@ -117,6 +178,76 @@ class NextgenDeliveryTests(unittest.TestCase):
             if mutation == 'false-audible-claim': surfaces['learning']['speech']['initial']['audible_quality_verified'] = True
             with self.subTest(mutation=mutation), self.assertRaises(ValueError):
                 delivery.verify_proofs(*args)
+
+    def test_missing_failed_stale_or_mutated_cards_reports_cannot_publish(self):
+        for mutation in ('missing', 'three-stages', 'failed', 'reordered', 'wrong-round', 'wrong-token',
+                         'stale-revision', 'different-viewer', 'one-frame', 'last-rejected', 'duplicate-frame',
+                         'changed-during-ocr', 'changed-between-frames', 'wrong-public-round', 'stale-public-revision',
+                         'different-page', 'forged-metrics', 'forged-source-hash', 'different-ui-source',
+                         'missing-disk-report', 'different-disk-report', 'missing-original', 'symlink-original',
+                         'outside-original', 'changed-main-image', 'different-draw-count', 'old-ack'):
+            args = self.proof_fixture()
+            cards, output = args[10]['cards'], args[12]
+            reports = cards['front_face_pixels']
+            report, frame = reports[0], reports[0]['frames'][-1]
+            if mutation == 'missing': del cards['front_face_pixels']
+            if mutation == 'three-stages': reports.pop()
+            if mutation == 'failed': report['status'] = 'FAIL'
+            if mutation == 'reordered': reports.reverse()
+            if mutation == 'wrong-round': report['roundId'] = 'cards-' + 'b' * 32
+            if mutation == 'wrong-token': reports[1]['token'] = 'b' * 32
+            if mutation == 'stale-revision': report['revision'] = 4
+            if mutation == 'different-viewer': report['viewer'] = 1
+            if mutation == 'one-frame': report['frames'].pop(0)
+            if mutation == 'last-rejected': frame['status'] = 'REJECTED'
+            if mutation == 'duplicate-frame': report['frames'][-1] = copy.deepcopy(report['frames'][0])
+            if mutation == 'changed-during-ocr': frame['public_before']['drawCount'] -= 1
+            if mutation == 'changed-between-frames':
+                frame['public_before']['message'] = frame['public_after']['message'] = 'different observed turn'
+            if mutation == 'wrong-public-round':
+                frame['public_before']['roundId'] = frame['public_after']['roundId'] = 'cards-' + 'b' * 32
+            if mutation == 'stale-public-revision':
+                frame['public_before']['revision'] = frame['public_after']['revision'] = 4
+            if mutation == 'different-page': report['page'] = '2/3'
+            if mutation == 'forged-metrics': frame['pixels']['faces'][0]['colored_fraction'] = 1
+            if mutation == 'forged-source-hash': frame['source_sha256'] = '0' * 64
+            if mutation == 'different-ui-source': frame['observations']['source_sha256'] = '0' * 64
+            if mutation == 'outside-original': frame['source'] = '../other.png'
+            if mutation == 'different-draw-count': cards['draw']['draw_count_before'] = 96
+            if mutation == 'old-ack': cards['draw']['sequence'] = 1
+            self.write_pixel_reports(cards, output)
+            if mutation == 'missing-disk-report': (output / (report['stage'] + '-face-evidence.json')).unlink()
+            if mutation == 'different-disk-report':
+                (output / (report['stage'] + '-face-evidence.json')).write_text('{}')
+            if mutation == 'missing-original': (output / frame['source']).unlink()
+            if mutation == 'symlink-original':
+                (output / frame['source']).unlink()
+                (output / frame['source']).symlink_to(output / report['source'])
+            if mutation == 'changed-main-image':
+                with (output / report['source']).open('ab') as stream: stream.write(b'changed')
+            with self.subTest(mutation=mutation), self.assertRaises(ValueError):
+                delivery.verify_proofs(*args)
+
+    def test_blank_fronts_with_forged_pass_metrics_fail_actual_png_recomputation(self):
+        from PIL import Image, ImageDraw
+        args = self.proof_fixture()
+        cards, output = args[10]['cards'], args[12]
+        report = cards['front_face_pixels'][0]
+        frame = report['frames'][-1]
+        image = Image.open(output / frame['source']).convert('RGB')
+        quad = frame['pixels']['faces'][0]['quad']
+        ImageDraw.Draw(image).polygon([tuple(point) for point in quad], fill='white')
+        path = output / frame['source']
+        image.save(path)
+        changed_hash = hashlib.sha256(path.read_bytes()).hexdigest()
+        # A forged writer updates every SHA/PASS field but leaves plausible
+        # old positive metrics. Actual PNG remeasurement must still reject it.
+        frame['source_sha256'] = frame['observations']['source_sha256'] = changed_hash
+        frame['pixels']['source_sha256'] = report['source_sha256'] = changed_hash
+        (output / report['source']).write_bytes(path.read_bytes())
+        self.write_pixel_reports(cards, output)
+        with self.assertRaisesRegex(ValueError, 'blank or lacks visible artwork'):
+            delivery.verify_proofs(*args)
 
     def review_fixture(self, root: Path):
         native = 'b' * 40

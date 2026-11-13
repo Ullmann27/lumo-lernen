@@ -20,6 +20,7 @@ import modernization_android_tour as tour
 import lumo_education_android_probe as education
 from nextgen_evidence import (require_cards_authority_binding, require_cards_draw, require_learning_bridge_moves,
                              require_learning_voice, require_public_saved_match, require_saved_round)
+from nextgen_evidence import cards_projected_faces, require_cards_face_pixels
 
 probe, base, live = tour.probe, tour.base, tour.live
 PACKAGE = probe.PACKAGE
@@ -57,7 +58,7 @@ def native_ready(out: Path, caption: str, tag: str) -> None:
     wait_for('Actual isolated Godot activity',
              lambda: tour.godot_alive() and 'LumoGameActivity' in resumed_activity(), bool,
              timeout=60)
-    probe.native_text(out, caption, tag, settle=True)
+    probe.native_text(out, caption, tag, settle=True, orientation='responsive')
 
 
 def resumed_activity() -> str:
@@ -168,12 +169,14 @@ def learning_roundtrip(out: Path) -> dict:
     initial_voice = completed_native_speech(out)
     for index in range(5):
         probe.native_text(out, 'Ein Objekt zeigen', f'learning-move-{index + 1}',
-                          tap=True, exact=True, settle=True)
+                          tap=True, exact=True, settle=True, orientation='responsive')
         time.sleep(.5)
         if index == 1:
-            probe.native_text(out, 'Zehn sind voll', 'learning-ten-filled', settle=True)
+            probe.native_text(out, 'Zehn sind voll', 'learning-ten-filled', settle=True,
+                              orientation='responsive')
             probe.capture(out, '03_learning_native_ten_and_three')
-    probe.native_text(out, 'gefüllt', 'learning-complete', settle=True)
+    probe.native_text(out, 'gefüllt', 'learning-complete', settle=True,
+                      orientation='responsive')
     probe.capture(out, '04_learning_native_thirteen')
     movement_log = base.adb('logcat', '-d', '-v', 'brief', timeout=60)
     (out / 'learning-movement-logcat.txt').write_text(movement_log)
@@ -182,7 +185,8 @@ def learning_roundtrip(out: Path) -> dict:
     if (initial_voice['native_process_pid'] != final_voice['native_process_pid'] or
             min(final_voice['completed_utterance_ids']) <= max(initial_voice['completed_utterance_ids'])):
         raise RuntimeError('The spoken result was not a new utterance in the same native lesson')
-    probe.native_text(out, 'Zur Aufgabe', 'learning-back', tap=True, exact=True, settle=True)
+    probe.native_text(out, 'Zur Aufgabe', 'learning-back', tap=True, exact=True, settle=True,
+                      orientation='responsive')
     returned_to_flutter(out, 'Acht und fünf', '05_learning_same_flutter_lesson',
                         scroll_to_caption=True)
     after = probe.prefs(out, 'learning-after-native')
@@ -299,7 +303,7 @@ def cards_ready_to_draw(out: Path, box: CardsMailbox, *, timeout=90) -> tuple[di
             tag = f'cards-native-resume-{len(evidence["frames"]):02d}'
             snapshot = probe.capture(out, tag, timeout=deadline - time.monotonic())
             source = out / snapshot['file']
-            frame = probe.inspect_surface(source)
+            frame = probe.inspect_surface(source, orientation='responsive')
             evidence['frames'].append(frame)
             if not frame['acceptable_for_target_sampling']:
                 previous = None
@@ -369,6 +373,100 @@ def cards_ready_to_draw(out: Path, box: CardsMailbox, *, timeout=90) -> tuple[di
             json.dumps(evidence, indent=2, ensure_ascii=False) + '\n')
 
 
+def cards_display_density(out: Path) -> float:
+    observed = base.adb('shell', 'wm', 'density')
+    (out / 'cards-actual-display-density.txt').write_text(observed + '\n')
+    override = re.findall(r'(?m)^Override density:\s*(\d+)\s*$', observed)
+    physical = re.findall(r'(?m)^Physical density:\s*(\d+)\s*$', observed)
+    values = override if override else physical
+    if len(values) != 1 or not 72 <= int(values[0]) <= 1280:
+        raise RuntimeError('Cards pixel proof could not read the actual Android display density')
+    # Same documented clamp as MobileRuntime.get_ui_density, whose supplied
+    # value comes from Android Resources.displayMetrics.density.
+    return min(4, max(.75, int(values[0]) / 160))
+
+
+def capture_cards_faces(out: Path, box: CardsMailbox, tag: str, identity: dict,
+                        density: float, *, timeout=60) -> tuple[dict, dict]:
+    """Wait for two actual unpaused frames of one public revision and page."""
+    started = time.monotonic()
+    deadline = started + timeout
+    report = {'status': 'WAITING', 'stage': tag, 'frames': [],
+              'scope': 'Current projected card fronts, observed UI and stable IPC; no pixel card-identity claim'}
+    previous = None
+    expected = tuple(identity.get(key) for key in ('token', 'roundId', 'viewer'))
+
+    def observe():
+        state = box.read()
+        if tuple(state.get(key) for key in ('token', 'roundId', 'viewer')) != expected:
+            raise RuntimeError('Cards identity changed during front-face pixel evidence')
+        return state
+
+    try:
+        while time.monotonic() < deadline:
+            before = observe()
+            if (before.get('paused') is not False or before.get('canDraw') is not True or
+                    before.get('phase') != 'playing' or before.get('current') != 0):
+                previous = None
+                time.sleep(min(.5, max(0, deadline - time.monotonic())))
+                continue
+            name = f'{tag}-face-check-{len(report["frames"]):02d}'
+            shot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / shot['file']
+            frame = {'source': source.name, 'source_sha256': probe.digest(source),
+                     'revision': before.get('revision'), 'public_before': before, 'status': 'CHECKING'}
+            report['frames'].append(frame)
+            try:
+                surface = probe.inspect_surface(source, orientation='responsive')
+                if not surface['acceptable_for_target_sampling']:
+                    raise RuntimeError('Cards viewport is not complete')
+                width, height = surface['pixels']
+                geometry = cards_projected_faces(width, height, density, len(before.get('hand', [])))
+                lines = probe.image_lines(out, name, probe.normalized('Pause'), source_path=source,
+                                          exact=True, timeout=max(.001, deadline - time.monotonic()))
+                pauses = [line for line in lines if line.get('text', '').strip() == 'Pause']
+                if not pauses:
+                    raise RuntimeError('Current Cards frame still has a paused/modal transition')
+                pages = [line for line in lines if ''.join(line.get('text', '').split()) == geometry['page']]
+                if not pages:
+                    lines = probe.image_lines(out, name + '-page', probe.normalized(geometry['page']),
+                                              source_path=source, exact=True,
+                                              timeout=max(.001, deadline - time.monotonic()))
+                    pages = [line for line in lines if ''.join(line.get('text', '').split()) == geometry['page']]
+                if not pages:
+                    raise RuntimeError('Current Cards frame does not expose its expected first hand page')
+                observations = {'source_sha256': frame['source_sha256'],
+                                'pause': min(pauses, key=lambda line: line['bounds'][1]),
+                                'page': max(pages, key=lambda line: line['bounds'][1])}
+                after = observe()
+                frame['public_after'] = after
+                if before != after:
+                    raise RuntimeError('Cards public state changed while its current frame was inspected')
+                pixels = require_cards_face_pixels(source, after, density=density, observations=observations)
+                frame.update(status='VISIBLE_FRONT_ARTWORK', observations=observations, pixels=pixels)
+                if previous == after:
+                    # Keep the original captured bytes; this is not an edited
+                    # screenshot or an image synthesized from the saved state.
+                    (out / (tag + '.png')).write_bytes(source.read_bytes())
+                    report.update(status='PASS', consecutive_same_revision_frames=2,
+                                  revision=after['revision'], page=geometry['page'],
+                                  token=after['token'], roundId=after['roundId'], viewer=after['viewer'],
+                                  source=tag + '.png', source_sha256=frame['source_sha256'])
+                    return after, report
+                previous = after
+            except (RuntimeError, TimeoutError) as error:
+                frame.update(status='REJECTED', error=str(error))
+                previous = None
+            time.sleep(min(.5, max(0, deadline - time.monotonic())))
+        raise RuntimeError('Cards front faces did not pass current unpaused pixel/UI evidence before deadline')
+    except Exception as error:
+        report.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        (out / (tag + '-face-evidence.json')).write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
 def cards_roundtrip(out: Path) -> dict:
     tap_flutter(out, ['Spielen', 'Spiele'], 'cards-games-tab')
     tap_flutter(out, ['Lumo Cards. Sammeln. Spielen. Staunen! Spielen', 'Lumo Cards',
@@ -379,22 +477,24 @@ def cards_roundtrip(out: Path) -> dict:
     before_prefs = probe.prefs(out, 'cards-before-native')
     tap_flutter(out, ['Am 3D-Tisch spielen', '3D'], 'cards-native-entry')
     native_ready(out, 'Lumos Kartenstube', 'cards-native-title')
+    density = cards_display_density(out)
     box = CardsMailbox(out)
     wait_for('Private Cards IPC session created by app', box.locate, bool)
     before, initial_readiness = cards_ready_to_draw(out, box)
+    before, faces_before = capture_cards_faces(out, box, '11_cards_real_table_before_draw', before, density)
     before_save = box.saved(before['roundId'])
     require_public_saved_match(before, before_save)
-    probe.capture(out, '11_cards_real_table_before_draw')
-    probe.native_text(out, 'Ziehen', 'cards-native-draw', tap=True, exact=True, settle=True)
+    probe.native_text(out, 'Ziehen', 'cards-native-draw', tap=True, exact=True, settle=True,
+                      orientation='responsive')
     request = box.read('request')
     if request.get('action') != 'draw':
         raise RuntimeError('Actual native Ziehen did not publish a draw request')
     after = wait_for('Dart acknowledged native draw and the bot finished its turn', box.read,
                      lambda state: state.get('ack', -1) >= request.get('sequence', 10**10)
                      and state.get('canDraw') is True and state.get('paused') is False)
+    after, faces_after = capture_cards_faces(out, box, '12_cards_real_table_persisted_draw', after, density)
     saved = box.saved(after['roundId'])
     draw = require_cards_draw(before, request, after, saved, owner=before_save['owner'])
-    probe.capture(out, '12_cards_real_table_persisted_draw')
     # Android must see the dependency on the Dart host while its native child
     # activity is visible. Archive OS importance data rather than inferring it
     # from a successful first turn immediately after the activity launch.
@@ -416,19 +516,24 @@ def cards_roundtrip(out: Path) -> dict:
         raise RuntimeError('Cards authority processes restarted during the visible table session')
     idle_seconds = time.monotonic() - started
     before_late = box.read()
+    before_late, faces_before_late = capture_cards_faces(
+        out, box, '12a_cards_real_table_before_late_draw', before_late, density)
     before_late_save = box.saved(before_late['roundId'])
     require_public_saved_match(before_late, before_late_save)
     if before_late_save != saved:
         raise RuntimeError('The idle child turn mutated its persisted Cards round')
-    probe.native_text(out, 'Ziehen', 'cards-native-late-draw', tap=True, exact=True, settle=True)
+    probe.native_text(out, 'Ziehen', 'cards-native-late-draw', tap=True, exact=True, settle=True,
+                      orientation='responsive')
     late_request = box.read('request')
     after = wait_for('Dart acknowledged the actual draw after visible idle', box.read,
                     lambda state: state.get('ack', -1) >= late_request.get('sequence', 10**10)
                     and state.get('canDraw') is True and state.get('paused') is False)
+    after, faces_after_late = capture_cards_faces(
+        out, box, '12b_cards_persisted_draw_after_visible_idle', after, density)
     late_draw = require_cards_draw(before_late, late_request, after,
                                    box.saved(after['roundId']), owner=before_save['owner'])
-    probe.capture(out, '12b_cards_persisted_draw_after_visible_idle')
-    probe.native_text(out, 'Pause', 'cards-native-pause', tap=True, exact=True, settle=True)
+    probe.native_text(out, 'Pause', 'cards-native-pause', tap=True, exact=True, settle=True,
+                      orientation='responsive')
     paused = wait_for('Cards clock actually paused', box.read,
                       lambda state: state.get('paused') is True)
     paused_save = box.saved(paused['roundId'])
@@ -437,7 +542,8 @@ def cards_roundtrip(out: Path) -> dict:
     if still.get('paused') is not True or box.saved(still['roundId']) != paused_save:
         raise RuntimeError('Persisted Cards round changed while native pause was shown')
     probe.capture(out, '13_cards_native_pause')
-    probe.native_text(out, 'Zurück', 'cards-native-back', tap=True, exact=True, settle=True)
+    probe.native_text(out, 'Zurück', 'cards-native-back', tap=True, exact=True, settle=True,
+                      orientation='responsive')
     returned_to_flutter(out, 'Spiel pausiert', '14_cards_same_flutter_round')
     restored = box.saved(after['roundId'])
     if restored != paused_save:
@@ -463,9 +569,11 @@ def cards_roundtrip(out: Path) -> dict:
     if reopened.saved(state['roundId']) != restored:
         raise RuntimeError('Reopened Cards table changed the saved round before any action')
     probe.capture(out, '15_cards_reopened_same_round')
-    probe.native_text(out, 'Zurück', 'cards-reopened-back', tap=True, exact=True, settle=True)
+    probe.native_text(out, 'Zurück', 'cards-reopened-back', tap=True, exact=True, settle=True,
+                      orientation='responsive')
     returned_to_flutter(out, 'Spiel pausiert', '16_cards_final_flutter_return')
     return {'initial_readiness': initial_readiness,
+            'front_face_pixels': [faces_before, faces_after, faces_before_late, faces_after_late],
             'draw': draw, 'draw_after_visible_idle': late_draw,
             'visible_idle_seconds': idle_seconds,
             'android_authority_binding': bindings,

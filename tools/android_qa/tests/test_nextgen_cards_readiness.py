@@ -53,14 +53,15 @@ class NextgenCardsReadinessTests(unittest.TestCase):
             return copy.deepcopy(box.state)
 
         box.read = read
-        surface = SimpleNamespace(partial=False)
+        surface = SimpleNamespace(partial=False, pixels=(192, 108), bounds=[60, 35, 120, 50])
 
         def capture(destination, tag, timeout):
             self.assertGreater(timeout, 0)
             clock.now += .1
-            image = Image.new('RGB', (192, 108), (20, 40, 60))
+            image = Image.new('RGB', surface.pixels, (20, 40, 60))
             if surface.partial:
-                image.paste('black', (100, 0, 192, 108))
+                width, height = surface.pixels
+                image.paste('black', (width // 2, 0, width, height))
             path = destination / (tag + '.png')
             image.save(path)
             return {'file': path.name}
@@ -69,10 +70,12 @@ class NextgenCardsReadinessTests(unittest.TestCase):
             self.assertTrue(kwargs['exact'])
             self.assertTrue(kwargs['source_path'].is_file())
             clock.now += .1
-            return [{'text': 'Weiterspielen', 'bounds': [60, 35, 120, 50]}]
+            return [{'text': 'Weiterspielen', 'bounds': surface.bounds}]
 
         def touch(*args, **kwargs):
-            self.assertEqual(args, ('shell', 'input', 'swipe', '90', '42', '90', '42', '120'))
+            x0, y0, x1, y1 = surface.bounds
+            x, y = str(round((x0 + x1) / 2)), str(round((y0 + y1) / 2))
+            self.assertEqual(args, ('shell', 'input', 'swipe', x, y, x, y, '120'))
             self.assertGreater(kwargs['timeout'], 0)
             box.request = {'token': box.token, 'action': 'resume',
                            'revision': box.state['revision'], 'sequence': box.state['ack'] + 1}
@@ -172,6 +175,28 @@ class NextgenCardsReadinessTests(unittest.TestCase):
         self.assertEqual(env.probe.capture.call_count, 3)
         self.assertEqual(report['resume_request']['revision'], 3)
         self.assertEqual(env.adb.call_count, 1)
+
+    def test_portrait_cards_keeps_the_two_frame_touch_and_resume_ack_contract(self):
+        env = self.scenario()
+        env.surface.pixels = (108, 192)
+        env.surface.bounds = [20, 35, 80, 50]
+        state, report = env.run(env.out, env.box)
+        self.assertFalse(state['paused'])
+        self.assertEqual(report['mode'], 'native_resume_acknowledged')
+        self.assertEqual(report['touch'], [50, 42])
+        self.assertEqual(len(report['frames']), 2)
+        self.assertTrue(all(frame['orientation_policy'] == 'responsive'
+                            for frame in report['frames']))
+        self.assertEqual(env.adb.call_count, 1)
+
+    def test_portrait_cards_partial_viewport_still_prevents_ocr_and_touch(self):
+        env = self.scenario()
+        env.surface.pixels = (108, 192)
+        env.surface.partial = True
+        with self.assertRaises(TimeoutError):
+            env.run(env.out, env.box, timeout=2)
+        env.probe.image_lines.assert_not_called()
+        env.adb.assert_not_called()
 
     def test_unpaused_bot_turn_is_not_mistaken_for_a_drawable_child_turn(self):
         env = self.scenario(paused=False)

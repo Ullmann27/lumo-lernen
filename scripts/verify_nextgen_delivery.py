@@ -13,6 +13,7 @@ import json
 from pathlib import Path, PurePosixPath
 import re
 import struct
+import sys
 
 from release_pipeline_gates import (EXPECTED_CERT_SHA256, PACKAGE_ID,
                                     parse_pubspec_version, sha256_file)
@@ -25,6 +26,9 @@ REVIEW_MODULES = {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 
 COMPILED_CLASSES = {'MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge',
                     'CardsAuthorityService', 'CardsAuthorityRegistry', 'LumoLearningSpeech', 'LumoOfflineSpeechBridge',
                     'LumoOfflineSpeechEngine'}
+CARDS_FACE_STAGES = ('11_cards_real_table_before_draw', '12_cards_real_table_persisted_draw',
+                    '12a_cards_real_table_before_late_draw',
+                    '12b_cards_persisted_draw_after_visible_idle')
 
 
 def require(condition: bool, reason: str) -> None:
@@ -108,9 +112,112 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             'images': len(images), 'modules': sorted(modules)}
 
 
+def verify_cards_front_faces(cards: dict, evidence: Path) -> dict:
+    """Recompute current front artwork from the original downloaded PNG bytes.
+
+    Reports alone cannot satisfy this gate. Each stage must bind two captured
+    frames to its actual persisted draw revision and unchanged public state.
+    """
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools/android_qa'))
+    from nextgen_evidence import require_cards_face_pixels
+
+    require(evidence.is_dir(), 'Missing original Android Cards pixel evidence directory')
+    reports = cards.get('front_face_pixels')
+    require(isinstance(reports, list) and len(reports) == len(CARDS_FACE_STAGES),
+            'Missing four actual Cards front-face pixel reports')
+    first, late = cards['draw'], cards['draw_after_visible_idle']
+    revisions = (first.get('revision_before'), first.get('revision_after'),
+                 late.get('revision_before'), late.get('revision_after'))
+    require(all(type(value) is int and value > 0 for value in revisions) and
+            revisions[0] < revisions[1] <= revisions[2] < revisions[3],
+            'Cards front-face stages are not bound to both actual draw revisions')
+    round_id = first.get('round_id')
+    require(bool(re.fullmatch(r'cards-[a-f0-9]{32}', str(round_id))),
+            'Cards front-face evidence lacks the actual round identity')
+    token, measured_stages = None, []
+    stage_states = []
+
+    def original(name: str, digest: str) -> Path:
+        require(isinstance(name, str) and PurePosixPath(name).name == name and
+                name.endswith('.png') and '\\' not in name,
+                'Cards frame must name an original PNG in the current evidence directory')
+        path = evidence / name
+        require(path.is_file() and not path.is_symlink(), 'Missing original Cards PNG: ' + name)
+        require(bool(re.fullmatch(r'[a-f0-9]{64}', str(digest))) and sha256_file(path) == digest,
+                'Original Cards PNG bytes differ from the observed frame: ' + name)
+        return path
+
+    for stage, revision, report in zip(CARDS_FACE_STAGES, revisions, reports):
+        require(isinstance(report, dict) and report.get('status') == 'PASS' and
+                report.get('stage') == stage and report.get('consecutive_same_revision_frames') == 2,
+                'Cards front-face report is failed, missing or from another stage')
+        require(report.get('roundId') == round_id and type(report.get('revision')) is int and
+                report['revision'] == revision and type(report.get('viewer')) is int and report['viewer'] == 0,
+                'Cards front-face report belongs to another round, draw revision or viewer')
+        current_token = report.get('token')
+        require(bool(re.fullmatch(r'[a-f0-9]{32}', str(current_token))) and
+                (token is None or token == current_token), 'Cards pixel evidence changed native sessions')
+        token = current_token
+        disk_report = evidence / (stage + '-face-evidence.json')
+        require(disk_report.is_file() and not disk_report.is_symlink() and
+                read_json(disk_report) == report, 'Embedded Cards pixel report differs from its actual artifact')
+        require(report.get('source') == stage + '.png', 'Cards stage PNG is not its current captured image')
+        main_image = original(report['source'], report.get('source_sha256'))
+        frames = report.get('frames')
+        require(isinstance(frames, list) and len(frames) >= 2, 'Cards needs two consecutive actual frames')
+        state = None
+        confirmed = []
+        for index in range(len(frames) - 2, len(frames)):
+            frame = frames[index]
+            expected_name = f'{stage}-face-check-{index:02d}.png'
+            require(isinstance(frame, dict) and frame.get('status') == 'VISIBLE_FRONT_ARTWORK' and
+                    frame.get('source') == expected_name and type(frame.get('revision')) is int and
+                    frame['revision'] == revision, 'Cards final frames are not two consecutive current captures')
+            public = frame.get('public_after')
+            require(isinstance(public, dict) and frame.get('public_before') == public and
+                    (state is None or state == public), 'Cards public state changed during its two pixel frames')
+            require(public.get('token') == token and public.get('roundId') == round_id and
+                    type(public.get('revision')) is int and public['revision'] == revision and
+                    type(public.get('viewer')) is int and public['viewer'] == 0,
+                    'Cards frame pixels belong to a stale or different public session')
+            state = public
+            image = original(frame['source'], frame.get('source_sha256'))
+            pixels, observations = frame.get('pixels'), frame.get('observations')
+            require(isinstance(pixels, dict) and isinstance(observations, dict),
+                    'Missing actual Cards front-face measurements or current OCR observations')
+            try:
+                measured = require_cards_face_pixels(image, public, density=pixels.get('density'),
+                                                     observations=observations)
+            except (RuntimeError, OSError, ValueError, TypeError) as error:
+                raise ValueError('Actual Cards front-face PNG failed repeated verification: ' + str(error)) from error
+            require(measured == pixels and measured.get('page') == report.get('page'),
+                    'Cards pixel measurements were changed or belong to another hand page')
+            confirmed.append({'source': frame['source'], 'sha256': frame['source_sha256'],
+                              'faces': len(measured['faces'])})
+        require(sha256_file(main_image) == frames[-1]['source_sha256'],
+                'Cards stage image is not the final observed frame')
+        stage_states.append(state)
+        measured_stages.append({'stage': stage, 'revision': revision,
+                                'source': report['source'], 'sha256': report['source_sha256'],
+                                'frames': confirmed})
+    require(stage_states[1] == stage_states[2], 'The idle Cards turn differs between its two pixel stages')
+    for index, move in ((0, first), (2, late)):
+        before, after = stage_states[index:index + 2]
+        hand_before = {card['id'] for card in before['hand']}
+        hand_after = {card['id'] for card in after['hand']}
+        require(hand_before < hand_after and len(hand_after - hand_before) == move['child_cards_added'] and
+                before.get('drawCount') == move.get('draw_count_before') and
+                after.get('drawCount') == move.get('draw_count_after') and
+                type(move.get('sequence')) is int and type(after.get('ack')) is int and
+                after['ack'] >= move['sequence'] > before.get('ack', -1),
+                'Cards pixel frames are not the actual acknowledged and persisted draw states')
+    return {'status': 'PASS', 'roundId': round_id, 'stages': measured_stages,
+            'scope': 'Original captured fronts rechecked for visible artwork; no pixel card-identity, audible or hardware-FPS claim'}
+
+
 def verify_proofs(source: str, native: str, version_name: str, digest: str, size: int,
                   proof: dict, verification: dict, measured: dict, update: dict,
-                  tour: dict, surfaces: dict, host: dict) -> dict:
+                  tour: dict, surfaces: dict, host: dict, surface_evidence: Path) -> dict:
     require(bool(re.fullmatch(r'[a-f0-9]{40}', source)), 'Missing immutable Flutter source')
     require(proof.get('flutter_source_commit') == source and proof.get('tracked_source_clean') is True,
             'APK provenance belongs to different or uncommitted Flutter source')
@@ -198,10 +305,12 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'Missing actual Android binding between native activity and Dart authority')
     require(host.get('status') == 'PASS' and host.get('flutter_source_commit') == source and
             COMPILED_CLASSES <= set(host.get('classes', {})), 'Current Android host bytecode not verified')
+    card_pixels = verify_cards_front_faces(cards, surface_evidence)
     return {'package': PACKAGE_ID, 'versionName': version_name, 'versionCode': 2018,
             'flutterSourceCommit': source, 'godotSourceCommit': native,
             'signingCertificateSha256': EXPECTED_CERT_SHA256, 'apkSha256': digest, 'apkBytes': size,
             'androidTourApkSha256': candidate['sha256'],
+            'cardsFrontFacePixels': card_pixels,
             'signingScope': 'Public Lumo test key; not Google Play signing',
             'voiceScope': 'Actual local playback callbacks in a -noaudio emulator; audible quality and lip synchronization not verified',
             'deviceScope': 'x86_64 Android emulator acceptance; physical Fold7/Android17/FPS not measured'}
@@ -229,7 +338,7 @@ def main() -> int:
                           read_json(dist / 'PUBLISH-VERIFICATION.json'), read_json(proofs / 'update/update-result.json'),
                           read_json(proofs / 'tour/tour-result.json'),
                           read_json(proofs / 'tour/nextgen/native-surfaces-result.json'),
-                          read_json(proofs / 'host/result.json'))
+                          read_json(proofs / 'host/result.json'), proofs / 'tour/nextgen')
     facts['visualReview'] = verify_visual_review(root, read_json(root / 'config/nextgen-2018-visual-review.json'),
                                                native, read_json(proofs / 'native-artifact.json'),
                                                read_json(proofs / 'native-run.json'),

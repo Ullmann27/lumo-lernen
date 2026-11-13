@@ -21,7 +21,7 @@ INTEGRATION_2014_REVISION = "207bfbc5377c0f3e8be800854c83ddf2110ac3f6"
 TECHNICAL_ART_2015_REVISION = "b357b2f8decb4b11b0cc45e9fde2b8df5ec9cbe1"
 GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
-NEXTGEN_2018_REVISION = "51fb026f0b0e7a43b3aad30cc0fcdc144050c724"
+NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -229,6 +229,7 @@ class Candidate2011PinTests(unittest.TestCase):
         previous = {build: sha for build, sha in POLICY.APPROVED.items() if build < 2018}
         invalid = set(previous.values()) | {
             "0" * 40, "", NEXTGEN_2018_REVISION[:8],
+            "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
             "30548ed259fadb73751a9f526f90b7d8b5f24679",
             "e181eeca2b33390c15c1c13a8ac6eb5924fb620d",
             "cc6e95a9bb5f49b70758f6d749cec1504c986fcb",

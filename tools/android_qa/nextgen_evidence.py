@@ -54,8 +54,13 @@ def require_cards_authority_binding(services: str, package: str) -> dict:
         class_names.append(re.escape(service_class[len(package):]))
     component = re.escape(package) + r'/(?:' + '|'.join(class_names) + r')'
     blocks = re.split(r'(?m)(?=^[ \t]*\* ServiceRecord\{)', services)
+    # The recorded Android dump adds its defining package as `c:<package>`.
+    # Accept only that observed suffix and the legacy header. Match the whole
+    # header so a foreign component or a later line cannot supply its identity.
+    header = (r'^[ \t]*\* ServiceRecord\{[^\s{}]+ u\d+ ' + component +
+              r'(?: c:' + re.escape(package) + r')?\}[ \t]*(?:\r?\n|$)')
     matching = [block for block in blocks if re.match(
-        r'^[ \t]*\* ServiceRecord\{[^\n}]*\b' + component + r'\}', block)]
+        header, block)]
     if len(matching) != 1:
         raise RuntimeError('Expected one actual Android CardsAuthorityService record')
     block = matching[0]
@@ -151,6 +156,160 @@ def require_cards_draw(before: dict, request: dict, after: dict, saved: dict, *,
     report.update(sequence=sequence, revision_before=before['revision'],
                   revision_after=after['revision'], child_cards_added=len(new_hand - old_hand),
                   draw_count_before=before['drawCount'], draw_count_after=after['drawCount'])
+    return report
+
+
+def cards_projected_faces(width: int, height: int, density: float, hand_count: int) -> dict:
+    """Project the actual Cards plane meshes; these are never input coordinates.
+
+    This layout contract follows cards_table.gd's billboard/projection and is
+    checked against independent Godot unproject_position readbacks in five
+    viewports. Unknown inputs fail rather than sampling a guessed screen area.
+    """
+    import math
+
+    if (type(width) is not int or type(height) is not int or
+            not 64 <= width <= 8192 or not 64 <= height <= 8192 or
+            type(hand_count) is not int or not 1 <= hand_count <= 112 or
+            isinstance(density, bool) or not isinstance(density, (int, float)) or
+            not math.isfinite(density) or not .75 <= density <= 4):
+        raise RuntimeError('Cards pixel proof requires valid viewport/density/hand geometry')
+    supported = {(1080, 2400, 2.625), (1280, 720, 1), (412, 915, 1),
+                 (690, 829, 1), (2400, 1080, 2.625)}
+    if (width, height, density) not in supported:
+        raise RuntimeError('Cards pixel proof has no verified production geometry for this layout')
+    compact = height / density < 520 and width > height
+    page_size = 7 if width / density > 850 else 5 if width / density > 550 else 3
+    if hand_count < page_size:
+        raise RuntimeError('Cards pixel proof requires the verified full first hand page')
+    visible = min(page_size, hand_count)
+    card_height = 96 * density if compact else min(max(height * .28, 96 * density), 180 * density)
+    card_width = card_height * .83 / 1.18
+    spacing = min(card_width * 1.08, (width - 32 * density - card_width) / max(1, visible - 1))
+    focal = height / (2 * math.tan(math.radians(23)))
+    # PlaneMesh is 0.017 units in front of the body; retain its true projection
+    # instead of using the nominal screen-space layout rectangle.
+    scale = 4 * card_height / focal / 1.18
+    magnification = 4 / (4 - .017 * scale)
+    center_y = height / 2 + (height / 2 - (76 if compact else 140) * density - card_height / 2) * magnification
+    hand = []
+    for index in range(visible):
+        center_x = width / 2 + (index - (visible - 1) / 2) * spacing * magnification
+        x0, x1 = center_x - card_width * magnification / 2, center_x + card_width * magnification / 2
+        y0, y1 = center_y - card_height * magnification / 2, center_y + card_height * magnification / 2
+        hand.append([[x0, y0], [x1, y0], [x1, y1], [x0, y1]])
+
+    distance = max(1, .72 / (width / height))
+    eye = (0, 5.3 * distance, 7 * distance)
+    backward = (0, eye[1] - 1.05, eye[2] + .25)
+    length = math.sqrt(sum(value * value for value in backward))
+    backward = tuple(value / length for value in backward)
+    up = (0, backward[2], -backward[1])
+    discard = []
+    for x, z in ((-.415, -.59), (.415, -.59), (.415, .59), (-.415, .59)):
+        relative = (.62 + x, 1.17 + .017 - eye[1], -.23 + z - eye[2])
+        depth = -sum(value * axis for value, axis in zip(relative, backward))
+        vertical = sum(value * axis for value, axis in zip(relative, up))
+        discard.append([width / 2 + focal * relative[0] / depth, height / 2 - focal * vertical / depth])
+    return {'hand': hand, 'discard': discard, 'page_size': page_size,
+            'page': f'1/{math.ceil(hand_count / page_size)}', 'compact': compact}
+
+
+def require_cards_face_pixels(source, public: dict, *, density: float, observations: dict) -> dict:
+    """Require visible artwork in actual projected front faces, not the whole image.
+
+    This rejects blank/flat fronts. It does not identify card art, assess exact
+    number legibility, or replace state/interaction evidence and human review.
+    """
+    import hashlib
+    import io
+    import math
+    from pathlib import Path
+    from PIL import Image, ImageChops, ImageDraw, ImageOps
+    from native_surface_readiness import inspect_surface
+
+    source = Path(source)
+    raw = source.read_bytes()
+    digest = hashlib.sha256(raw).hexdigest()
+    if observations.get('source_sha256') != digest:
+        raise RuntimeError('Cards UI observations do not belong to this original screenshot')
+    surface = inspect_surface(source, orientation='responsive')
+    if not surface['acceptable_for_target_sampling']:
+        raise RuntimeError('Cards pixel proof requires a complete current viewport')
+    if (public.get('paused') is not False or public.get('canDraw') is not True or
+            public.get('phase') != 'playing' or public.get('viewer') != 0 or public.get('current') != 0):
+        raise RuntimeError('Cards pixel proof requires the active unpaused child turn')
+    image = Image.open(io.BytesIO(raw)).convert('RGB')
+    hand = public.get('hand')
+    top = public.get('top')
+    if (not isinstance(hand, list) or not hand or not isinstance(top, dict) or
+            not isinstance(top.get('id'), str) or
+            any(not isinstance(card, dict) or not isinstance(card.get('id'), str) for card in hand)):
+        raise RuntimeError('Cards pixel proof requires public hand and discard identities')
+    geometry = cards_projected_faces(image.width, image.height, density, len(hand))
+
+    def caption(name, expected):
+        item = observations.get(name, {})
+        bounds = item.get('bounds')
+        if (''.join(str(item.get('text', '')).split()) != expected or
+                not isinstance(bounds, (list, tuple)) or len(bounds) != 4 or
+                any(isinstance(value, bool) or not isinstance(value, (int, float)) or
+                    not math.isfinite(value) for value in bounds)):
+            raise RuntimeError('Cards pixel proof lacks current exact OCR caption: ' + name)
+        x0, y0, x1, y1 = bounds
+        if not 0 <= x0 < x1 <= image.width or not 0 <= y0 < y1 <= image.height:
+            raise RuntimeError('Cards OCR caption lies outside its screenshot: ' + name)
+        return bounds
+
+    report = {'source': source.name, 'source_sha256': digest, 'pixels': list(image.size),
+              'density': density, 'roundId': public.get('roundId'), 'revision': public.get('revision'),
+              'page': geometry['page'], 'faces': [],
+              'scope': 'Projected current front faces contain nonuniform colored artwork; no card identity or legibility claim'}
+    faces = [(card['id'], quad) for card, quad in zip(hand, geometry['hand'])]
+    faces.append((top['id'], geometry['discard']))
+    red, green, blue = image.split()
+    high = ImageChops.lighter(ImageChops.lighter(red, green), blue)
+    low = ImageChops.darker(ImageChops.darker(red, green), blue)
+    color = ImageChops.subtract(high, low).point(lambda value: 255 if value >= 24 else 0)
+    grayscale = ImageOps.grayscale(image)
+    for card_id, quad in faces:
+        if any(not 0 <= x < image.width or not 0 <= y < image.height for x, y in quad):
+            raise RuntimeError('Projected Cards front face leaves the current viewport')
+        center = [sum(point[axis] for point in quad) / 4 for axis in (0, 1)]
+        # Exclude bevels, gold legal-move outlines and edge antialiasing. This is
+        # an inset of each actual mesh, not a fixed or globally sampled region.
+        interior = [(center[0] + (x - center[0]) * .72, center[1] + (y - center[1]) * .72)
+                    for x, y in quad]
+        mask = Image.new('L', image.size)
+        ImageDraw.Draw(mask).polygon(interior, fill=255)
+        pixels = mask.histogram()[255]
+        if pixels < 128:
+            raise RuntimeError('Cards front face is too small for reliable pixel evidence')
+        colored = ImageChops.multiply(color, mask).histogram()[255] / pixels
+        histogram = grayscale.histogram(mask)
+
+        def quantile(fraction):
+            count = 0
+            for value, amount in enumerate(histogram):
+                count += amount
+                if count >= pixels * fraction:
+                    return value
+            return 255
+
+        spread = quantile(.95) - quantile(.05)
+        face = {'card_id': card_id, 'quad': quad, 'interior_pixels': pixels,
+                'colored_fraction': colored, 'luminance_p95_minus_p05': spread}
+        report['faces'].append(face)
+        if colored < .12 or spread < 24:
+            raise RuntimeError('Cards front face is blank or lacks visible artwork: ' + str(face))
+    pause = caption('pause', 'Pause')
+    if pause[0] < image.width * .65 or pause[3] > min(image.height * .2, 100 * density):
+        raise RuntimeError('Cards Pause caption is not the current top navigation control')
+    page = caption('page', geometry['page'])
+    hand_bottom = max(point[1] for quad in geometry['hand'] for point in quad)
+    if not hand_bottom < page[1] < page[3] < min(image.height, hand_bottom + 100 * density):
+        raise RuntimeError('Cards page caption does not confirm the projected visible hand layout')
+
     return report
 
 

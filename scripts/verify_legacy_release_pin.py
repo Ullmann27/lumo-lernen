@@ -136,7 +136,7 @@ APPROVED = {
     # 2018: exact Nextgen source after full native and visual review.
     # APK, Android surfaces, preserved 2017 upgrade and review receipt
     # remain independent mandatory gates before immutable publication.
-    2018: "51fb026f0b0e7a43b3aad30cc0fcdc144050c724",
+    2018: "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
