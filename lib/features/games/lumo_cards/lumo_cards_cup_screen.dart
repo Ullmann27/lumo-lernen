@@ -131,90 +131,108 @@ class _LumoCardsCupScreenState extends State<LumoCardsCupScreen> {
   @override
   Widget build(BuildContext context) {
     final cup = _cup;
-    return Scaffold(
-      backgroundColor: const Color(0xFF071B3B),
-      appBar: AppBar(title: const Text('Lumo Cards · Sternenpokal')),
-      body: SafeArea(
-          child: Center(
-              child: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 620),
-          child: Column(mainAxisSize: MainAxisSize.min, children: [
-            Icon(Icons.emoji_events_rounded,
-                size: 90,
-                color: cup?.complete == true
-                    ? const Color(0xFFFFD56E)
-                    : const Color(0xFF7BE5EA)),
-            Text(
-                cup?.complete == true
-                    ? cup!.medal
-                    : 'Drei Gegnerstile · ein Pokal',
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.headlineSmall),
-            const SizedBox(height: 12),
-            const Text(
-                'Spiele drei Runden gegen Lumo. Seine Planung wird mit jeder Runde anspruchsvoller. '
-                'Deine Runde bleibt beim Verlassen gespeichert. Am 3D-Tisch gelten dieselben Regeln.',
-                textAlign: TextAlign.center),
-            const SizedBox(height: 20),
-            if (cup != null)
-              for (var index = 0; index < 3; index++)
-                Card(
-                    color: const Color(0xFF143455),
-                    child: ListTile(
-                      leading: Icon(
-                          index < cup.results.length
-                              ? (cup.results[index].won
-                                  ? Icons.star_rounded
-                                  : Icons.check_circle_outline_rounded)
-                              : Icons.style_rounded,
-                          color: const Color(0xFFFFD56E)),
-                      title: Text(
-                          'Runde ${index + 1} · ${LumoCardsCup.opponents[index].style.label}'),
-                      subtitle:
-                          Text(LumoCardsCup.opponents[index].difficulty.label),
-                      trailing: Text(index < cup.results.length
-                          ? (cup.results[index].won ? 'Gewonnen' : 'Gespielt')
-                          : index == cup.nextRound
-                              ? 'Als Nächstes'
-                              : 'Danach'),
-                    )),
-            if (cup?.complete == true) ...[
-              const SizedBox(height: 12),
-              Text(
-                  '${cup!.wins} von 3 Runden gewonnen. Dein Pokal bleibt gespeichert.'),
-              const Text(
-                  'Die Sterne aus jeder Runde wurden bereits mit dem Rundenergebnis verbucht.'),
-            ],
-            if (_error != null)
-              Padding(padding: const EdgeInsets.all(12), child: Text(_error!)),
-            const SizedBox(height: 20),
-            if (cup == null)
-              FilledButton(
-                  onPressed: _error == null ? null : _load,
-                  style:
-                      FilledButton.styleFrom(minimumSize: const Size(200, 52)),
-                  child: Text(
-                      _error == null ? 'Pokal wird geladen …' : 'Erneut laden'))
-            else
-              FilledButton.icon(
-                  onPressed: _opening
-                      ? null
-                      : cup.complete
-                          ? _restart
-                          : _play,
-                  style:
-                      FilledButton.styleFrom(minimumSize: const Size(220, 56)),
-                  icon: Icon(cup.complete
-                      ? Icons.refresh_rounded
-                      : Icons.play_arrow_rounded),
-                  label: Text(cup.complete
-                      ? 'Neuer Sternenpokal'
-                      : 'Runde ${cup.nextRound + 1} spielen')),
-          ]),
-        ),
-      ))),
+    final base = Theme.of(context);
+    final theme = base.copyWith(
+      colorScheme: base.colorScheme.copyWith(
+          brightness: Brightness.dark,
+          surface: const Color(0xFF071B3B),
+          onSurface: Colors.white,
+          onSurfaceVariant: const Color(0xFFD0E9F2)),
+      textTheme: base.textTheme
+          .apply(bodyColor: Colors.white, displayColor: Colors.white),
+      appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xFF071B3B), foregroundColor: Colors.white),
     );
+    return Theme(
+        data: theme,
+        child: Scaffold(
+          backgroundColor: const Color(0xFF071B3B),
+          appBar: AppBar(title: const Text('Lumo Cards · Sternenpokal')),
+          body: SafeArea(
+              child: Center(
+                  child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: ConstrainedBox(
+              constraints: const BoxConstraints(maxWidth: 620),
+              child: Column(mainAxisSize: MainAxisSize.min, children: [
+                Icon(Icons.emoji_events_rounded,
+                    size: 90,
+                    color: cup?.complete == true
+                        ? const Color(0xFFFFD56E)
+                        : const Color(0xFF7BE5EA)),
+                Text(
+                    cup?.complete == true
+                        ? cup!.medal
+                        : 'Drei Gegnerstile · ein Pokal',
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.headlineSmall),
+                const SizedBox(height: 12),
+                const Text(
+                    'Spiele drei Runden gegen Lumo. Seine Planung wird mit jeder Runde anspruchsvoller. '
+                    'Deine Runde bleibt beim Verlassen gespeichert. Am 3D-Tisch gelten dieselben Regeln.',
+                    textAlign: TextAlign.center),
+                const SizedBox(height: 20),
+                if (cup != null)
+                  for (var index = 0; index < 3; index++)
+                    Card(
+                        color: const Color(0xFF143455),
+                        child: ListTile(
+                          leading: Icon(
+                              index < cup.results.length
+                                  ? (cup.results[index].won
+                                      ? Icons.star_rounded
+                                      : Icons.check_circle_outline_rounded)
+                                  : Icons.style_rounded,
+                              color: const Color(0xFFFFD56E)),
+                          title: Text(
+                              'Runde ${index + 1} · ${LumoCardsCup.opponents[index].style.label}'),
+                          subtitle: Text(
+                              LumoCardsCup.opponents[index].difficulty.label),
+                          trailing: Text(index < cup.results.length
+                              ? (cup.results[index].won
+                                  ? 'Gewonnen'
+                                  : 'Gespielt')
+                              : index == cup.nextRound
+                                  ? 'Als Nächstes'
+                                  : 'Danach'),
+                        )),
+                if (cup?.complete == true) ...[
+                  const SizedBox(height: 12),
+                  Text(
+                      '${cup!.wins} von 3 Runden gewonnen. Dein Pokal bleibt gespeichert.'),
+                  const Text(
+                      'Die Sterne aus jeder Runde wurden bereits mit dem Rundenergebnis verbucht.'),
+                ],
+                if (_error != null)
+                  Padding(
+                      padding: const EdgeInsets.all(12), child: Text(_error!)),
+                const SizedBox(height: 20),
+                if (cup == null)
+                  FilledButton(
+                      onPressed: _error == null ? null : _load,
+                      style: FilledButton.styleFrom(
+                          minimumSize: const Size(200, 52)),
+                      child: Text(_error == null
+                          ? 'Pokal wird geladen …'
+                          : 'Erneut laden'))
+                else
+                  FilledButton.icon(
+                      onPressed: _opening
+                          ? null
+                          : cup.complete
+                              ? _restart
+                              : _play,
+                      style: FilledButton.styleFrom(
+                          minimumSize: const Size(220, 56)),
+                      icon: Icon(cup.complete
+                          ? Icons.refresh_rounded
+                          : Icons.play_arrow_rounded),
+                      label: Text(cup.complete
+                          ? 'Neuer Sternenpokal'
+                          : 'Runde ${cup.nextRound + 1} spielen')),
+              ]),
+            ),
+          ))),
+        ));
   }
 }

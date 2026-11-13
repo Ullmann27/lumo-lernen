@@ -54,14 +54,25 @@ def tap_flutter(out: Path, captions: list[str], tag: str) -> str:
 
 def native_ready(out: Path, caption: str, tag: str) -> None:
     wait_for('Actual isolated Godot activity',
-             lambda: tour.godot_alive() and 'LumoGameActivity' in base.foreground(), bool,
+             lambda: tour.godot_alive() and 'LumoGameActivity' in resumed_activity(), bool,
              timeout=60)
     probe.native_text(out, caption, tag, settle=True)
 
 
+def resumed_activity() -> str:
+    try:
+        return base.foreground()
+    except RuntimeError as error:
+        # During an actual activity handoff Android can briefly report no
+        # resumed app. Keep waiting; an empty observation never passes a gate.
+        if str(error).startswith('Probe app not foreground:'):
+            return ''
+        raise
+
+
 def returned_to_flutter(out: Path, caption: str, tag: str) -> None:
     wait_for('Native return and isolated process exit',
-             lambda: not tour.godot_alive() and 'LumoGameActivity' not in base.foreground(),
+             lambda: not tour.godot_alive() and 'MainActivity' in resumed_activity(),
              bool, timeout=45)
     if not tour.alive():
         raise RuntimeError('Flutter host quit during native return')
@@ -166,7 +177,7 @@ class CardsMailbox:
 
 def cards_roundtrip(out: Path) -> dict:
     tap_flutter(out, ['Spielen', 'Spiele'], 'cards-games-tab')
-    tap_flutter(out, ['Lumo Cards', 'Lumo Cards. Sammeln. Spielen. Staunen! Spielen',
+    tap_flutter(out, ['Lumo Cards. Sammeln. Spielen. Staunen! Spielen', 'Lumo Cards',
                       'Lumo Cards · Klassik'], 'cards-portal')
     tap_flutter(out, ['Solo spielen'], 'cards-solo')
     must_see(out, 'Lumo Cards', 'cards-flutter')

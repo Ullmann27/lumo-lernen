@@ -16,6 +16,7 @@ class _Mailbox implements CardsTableTransport {
   Map<String, dynamic>? request;
   DateTime now = DateTime(2026, 11, 13);
   bool active = true;
+  int pauseEpoch = 0;
   bool closed = false;
   @override
   Future<void> open(String token, Map<String, Object?> value) async {
@@ -30,7 +31,11 @@ class _Mailbox implements CardsTableTransport {
   @override
   Future<Map<String, dynamic>> poll(String token) async => {
         'request': request,
-        'lifecycle': {'active': active, 'stamp': now.millisecondsSinceEpoch},
+        'lifecycle': {
+          'active': active,
+          'stamp': now.millisecondsSinceEpoch,
+          'pauseEpoch': pauseEpoch
+        },
       };
   @override
   Future<void> close(String token) async {
@@ -205,6 +210,9 @@ void main() {
     expect(controller.state, same(original));
     mailbox.active = true;
     await session.pump();
+    expect(controller.turnClock.value, isTrue);
+    mailbox.action('resume');
+    await session.pump();
     expect(controller.turnClock.value, isFalse);
     clock = clock.add(const Duration(seconds: 4));
     await session.pump();
@@ -213,6 +221,37 @@ void main() {
     await session.pump();
     expect(mailbox.closed, isTrue);
     expect(controller.state, same(original));
+  });
+
+  test('Missed Android pause remains sticky after Dart is scheduled again',
+      () async {
+    final controller = game();
+    final mailbox = _Mailbox();
+    final session = LumoCardsTableSession(
+        controller: controller,
+        transport: mailbox,
+        canUseProfile: () => true,
+        now: () => mailbox.now,
+        persist: () async {});
+    await session.open(automaticPolling: false);
+    await session.pump();
+    expect(controller.turnClock.value, isFalse);
+    // Android onPause then onResume occurred while Dart had no execution time.
+    // The latest active heartbeat still carries the monotonic pause epoch.
+    mailbox.pauseEpoch++;
+    mailbox.action('draw');
+    final before = controller.state;
+    await session.pump();
+    expect(controller.turnClock.value, isTrue);
+    expect(controller.state, same(before));
+    mailbox.action('resume');
+    await session.pump();
+    expect(controller.turnClock.value, isFalse);
+    mailbox.action('draw');
+    await session.pump();
+    expect(controller.state.players[0].hand.length,
+        before.players[0].hand.length + 1);
+    await session.close();
   });
 
   test(

@@ -45,7 +45,7 @@ Der bisherige Reading Buddy schrieb bei Abschluss direkt `accuracy >= 0.8` der S
 
 Neue `reading_comprehension.dart`: zu allen 24 vorhandenen Geschichten gibt es eine geprüfte Verständnisfrage mit drei Auswahlantworten und einer konkreten Belegzeile aus genau diesem Text. Wird die Textgrundlage später verändert, wird eine nicht mehr passende Frage nicht angezeigt. Lesen funktioniert ohne Mikrofon; nur die ausdrückliche Antwort wird über `LearningModuleProgress` dauerhaft gespeichert. Doppeltippen, Neustart und spätes ASR nach einem Kinderwechsel sind berücksichtigt. Erkennungsmarkierungen bleiben unverbindliche Hilfen.
 
-Tatsächlich ausgeführt: `flutter test --no-pub test/reading_buddy_assessment_test.dart --reporter expanded`, sieben Tests bestanden. Diese umfassen alle 24 Textzuordnungen, leere/falsche/vollständige Erkennung ohne Bewertung, richtige/falsche ausdrückliche Antwort mit Wiederaufnahme und genau einer Speicherung sowie Profilwechsel. Der separate Satz-für-Satz-Lesebereich wird dadurch nicht als komplett neu entwickelt ausgegeben.
+Tatsächlich ausgeführt: `flutter test --no-pub test/reading_buddy_assessment_test.dart --reporter expanded`, acht Tests bestanden. Diese umfassen alle 24 Textzuordnungen, leere/falsche/vollständige Erkennung ohne Bewertung, richtige/falsche ausdrückliche Antwort mit Wiederaufnahme und genau einer Speicherung sowie Profilwechsel. Ein zusätzlicher echter Widget-Durchlauf prüft den separaten Satz-für-Satz-Coach: auch wiederholt plausibel erkannte falsche Wörter bleiben vorläufige Übungshinweise und erzeugen keinen negativen Schuleintrag. Eine danach vollständig erkannte Lesepassage darf weiterhin als erfolgreiche Leseübung zählen. Alte Daten bleiben erhalten.
 
 ## Vollständige Spieleinventur
 
@@ -74,7 +74,9 @@ Der neue Zustand startet mit begrenztem Holz/Stein/Essen/Münzen und zwei Bewohn
 
 Der KI-Rivale nutzt dieselben Bau-, Handels-, Produktions- und Wachstumsregeln, ohne fremde Spielerdaten oder freie Ressourcen. Im Wettbau wird nach einem vollständigen Tag auch ein Gleichstand korrekt bestimmt. Im freien Siedlungsmodus läuft die Wirtschaft weiter. Tageswechsel verhindern Undo zur nachträglichen Verdopplung von Produktion. Vorhandene freie Bauprojekte werden nicht migriert oder überschrieben.
 
-Das reine Wirtschaftsmodell besteht 124 ausgeführte Prüfungen, einschließlich vollständiger Zielerreichung, 22 Tagen unabhängig nachgespielter KI-Kostenregeln, JSON-Wiederaufnahme, ungültigen Daten, Handel und Undo/Redo. Die angeschlossene Spielszene hat zusätzliche Eingabe-, Layout-, Speicher- und Kindtrennungstests. Die endgültige Renderer-Abnahme ist davon getrennt.
+Die unabhängige Prüfung fand einen normalen wirtschaftlichen Stillstand: vier Wohnhäuser verbrauchten allen Stein, nach dem Tageswechsel fehlte eine Rückkehr zu Produktion. Der neue Rückbau gibt die ursprünglichen Baumaterialien zurück (bis zur Lagergrenze), schützt benötigten Wohnraum und ist atomar rückgängig machbar. Derselbe festgefahrene Spielstand kann danach Holzwerkstatt, Bauernhof und Steinbruch bauen; kein Neustart oder Bonusgeld ist nötig.
+
+Das reine Wirtschaftsmodell besteht nun 144 ausgeführte Prüfungen, einschließlich vollständiger Zielerreichung, 22 Tagen unabhängig nachgespielter KI-Kostenregeln, JSON-Wiederaufnahme, ungültigen Daten, Handel, Rückbau und Undo/Redo. Die angeschlossene Spielszene hat zusätzliche Eingabe-, Layout-, Speicher- und Kindtrennungstests. Die endgültige Renderer-Abnahme ist davon getrennt.
 
 ## Qualitätsgrenzen und nächste Abnahme
 

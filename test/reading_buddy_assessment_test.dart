@@ -5,13 +5,18 @@ import 'package:lumo_lernen/app/app_state.dart';
 import 'package:lumo_lernen/core/app_settings.dart';
 import 'package:lumo_lernen/core/progress_repository.dart';
 import 'package:lumo_lernen/core/lumo_speech_listener.dart';
+import 'package:lumo_lernen/core/lumo_voice.dart';
+import 'package:lumo_lernen/core/reading_v2_pronunciation_analyzer.dart';
 import 'package:lumo_lernen/core/reward_wallet_repository.dart';
 import 'package:lumo_lernen/features/reading/lumo_reading_buddy_screen.dart';
 import 'package:lumo_lernen/features/reading/reading_comprehension.dart';
 import 'package:lumo_lernen/features/reading/reading_text_library.dart';
+import 'package:lumo_lernen/features/reading/reading_content.dart';
+import 'package:lumo_lernen/widgets/fox/lumo_companion_requests.dart';
 
 class _Speech extends LumoSpeechListener {
   ValueChanged<String>? result;
+  ValueChanged<String>? finalResult;
   int starts = 0;
   bool active = false;
   @override
@@ -28,11 +33,18 @@ class _Speech extends LumoSpeechListener {
     starts++;
     active = true;
     result = onResult;
+    finalResult = onFinalResult;
     notifyListeners();
   }
 
   void emit(String text) {
     result?.call(text);
+    notifyListeners();
+  }
+
+  void finish(String text) {
+    active = false;
+    finalResult?.call(text);
     notifyListeners();
   }
 
@@ -191,6 +203,47 @@ void main() {
     expect(find.text('Was backt Mama?'), findsNothing);
     expect(_record(app), isNull);
     expect(app.learningDailyDone(), 0);
+    expect(tester.takeException(), isNull);
+  });
+
+  testWidgets(
+      'sentence coach treats confident mismatches as hints, never negative evidence',
+      (tester) async {
+    final speech = _Speech();
+    final app = await _mount(tester, _Speech());
+    LumoVoice.instance.isEnabled = false;
+    await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+            body: ReadingContent(
+                appState: app, onBack: () {}, speechListener: speech))));
+    await _frames(tester);
+    final sentence = LumoCompanionRequests.instance.taskContext.value!.prompt;
+    final words = sentence.split(RegExp(r'\s+'));
+    expect(words.length, greaterThanOrEqualTo(3));
+    for (var index = 1; index <= (words.length / 2).floor(); index++) {
+      words[index] = index.isEven ? 'Zitrone' : 'Rakete';
+    }
+    final mismatch = words.join(' ');
+    final analysis = const ReadingV2PronunciationAnalyzer()
+        .analyze(expectedSentence: sentence, spokenTranscript: mismatch);
+    expect(analysis.correctEnough, isFalse,
+        reason:
+            'Exercise must reach the former confidently-wrong assessment branch.');
+    expect(analysis.alignmentScore, greaterThanOrEqualTo(.28));
+    expect(analysis.problemWord, isNotNull);
+    final id = SkillRecord.makeId('Lesen', 'Sätze vorlesen');
+    for (var attempt = 0; attempt < 2; attempt++) {
+      await _tap(tester, find.byIcon(Icons.mic_rounded));
+      speech.finish(mismatch);
+      await _frames(tester);
+      expect(app.learningSkills()[id], isNull);
+      expect(app.learningDailyDone(), 0);
+    }
+    await _tap(tester, find.byIcon(Icons.mic_rounded));
+    speech.finish(sentence);
+    await _frames(tester);
+    expect(app.learningSkills()[id]!.correct, 1);
+    expect(app.learningSkills()[id]!.wrong, 0);
     expect(tester.takeException(), isNull);
   });
 }

@@ -249,6 +249,7 @@ class MainActivity : FlutterActivity() {
     }
 
     override fun onDestroy() {
+        CardsTableBridge.detach()
         offlineSpeech?.destroy()
         offlineSpeech = null
         super.onDestroy()

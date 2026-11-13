@@ -2,6 +2,10 @@ package dev.ullmann.lumo
 
 import android.app.Activity
 import android.content.Intent
+import android.content.ComponentName
+import android.content.Context
+import android.content.ServiceConnection
+import android.os.IBinder
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -14,11 +18,68 @@ import org.godotengine.godot.plugin.UsedByGodot
 /** Godot is part of this APK. Its engine has an isolated process for repeatable launches. */
 class LumoGameActivity : GodotActivity() {
     private var returning = false
-    private var launchOptions = "{}"
-    private var learningSpeech: LumoLearningSpeech? = null
-    private var cardsActive = false
+    @Volatile private var launchOptions = "{}"
+    @Volatile private var learningSpeech: LumoLearningSpeech? = null
+    @Volatile private var cardsActive = false
     private fun cardsToken(): String = try { org.json.JSONObject(launchOptions).optString("cardsToken", "") } catch (_: Exception) { "" }
-    fun cardsPulse(): Boolean = CardsTableBridge.pulse(filesDir, cardsToken(), cardsActive)
+    @Volatile private var cardsAuthority: IBinder? = null
+    private var cardsBindingRequested = false
+    private val cardsConnection = object : ServiceConnection {
+        override fun onServiceConnected(name: ComponentName, service: IBinder) {
+            if (!cardsBindingRequested) return
+            cardsAuthority = service
+            cardsPulse()
+        }
+        override fun onServiceDisconnected(name: ComponentName) {
+            cardsAuthority = null
+            cardsPulse()
+            if (cardsBindingRequested) returnToLearningApp("games")
+        }
+        override fun onNullBinding(name: ComponentName) {
+            releaseCardsAuthority()
+            returnToLearningApp("games")
+        }
+        override fun onBindingDied(name: ComponentName) {
+            releaseCardsAuthority()
+            returnToLearningApp("games")
+        }
+    }
+
+    fun cardsPulse(): Boolean {
+        val available = CardsAuthorityService.available(cardsAuthority)
+        val written = CardsTableBridge.pulse(filesDir, cardsToken(), cardsActive && available)
+        if (cardsAuthority != null && !available) returnToLearningApp("games")
+        return written && available
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val token = cardsToken()
+        if (!Regex("[a-f0-9]{32}").matches(token) || cardsBindingRequested) return
+        cardsBindingRequested = true
+        val accepted = try {
+            bindService(Intent(this, CardsAuthorityService::class.java).putExtra("cardsToken", token),
+                cardsConnection, Context.BIND_AUTO_CREATE)
+        } catch (_: Exception) { false }
+        if (!accepted) {
+            releaseCardsAuthority()
+            returnToLearningApp("games")
+        }
+    }
+
+    private fun releaseCardsAuthority() {
+        cardsAuthority = null
+        cardsPulse()
+        if (cardsBindingRequested) {
+            cardsBindingRequested = false
+            try { unbindService(cardsConnection) } catch (_: Exception) { }
+        }
+    }
+
+    override fun onStop() {
+        releaseCardsAuthority()
+        super.onStop()
+    }
 
     override fun onResume() {
         super.onResume()
@@ -85,8 +146,11 @@ class LumoGameActivity : GodotActivity() {
         return true
     }
 
-    override fun onGodotForceQuit(instance: Godot) { returnToLearningApp("games") }
-    override fun onGodotRestartRequested(instance: Godot) { returnToLearningApp("games") }
+    private fun returnDestination(): String = try {
+        if (org.json.JSONObject(launchOptions).optString("game") == "learning") "learn" else "games"
+    } catch (_: Exception) { "games" }
+    override fun onGodotForceQuit(instance: Godot) { returnToLearningApp(returnDestination()) }
+    override fun onGodotRestartRequested(instance: Godot) { returnToLearningApp(returnDestination()) }
 }
 
 class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotPlugin(engine) {
@@ -106,7 +170,7 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
 
     @UsedByGodot
     fun getCardsState(): String {
-        host.cardsPulse()
+        if (!host.cardsPulse()) return "{}"
         val token = try { org.json.JSONObject(host.options()).optString("cardsToken", "") } catch (_: Exception) { "" }
         return CardsTableBridge.state(host.filesDir, token)
     }

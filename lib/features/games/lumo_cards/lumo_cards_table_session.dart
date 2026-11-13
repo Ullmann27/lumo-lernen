@@ -161,6 +161,7 @@ class LumoCardsTableSession {
   bool _dirty = true;
   bool _userPaused = false;
   bool _nativeActive = false;
+  int _pauseEpoch = 0;
   int _revision = 1;
   int _processed = 0;
   int _ack = 0;
@@ -230,6 +231,15 @@ class LumoCardsTableSession {
       final age = stamp is int ? _now().millisecondsSinceEpoch - stamp : 100000;
       final active =
           life is Map && life['active'] == true && age >= 0 && age < 2500;
+      final pauseEpoch = life is Map ? life['pauseEpoch'] : null;
+      // Preserve a background pause even if Android suspended Dart between
+      // the native onPause and onResume heartbeats.
+      if ((pauseEpoch is int && pauseEpoch > _pauseEpoch) ||
+          (!active && _nativeActive)) {
+        if (pauseEpoch is int) _pauseEpoch = pauseEpoch;
+        _userPaused = true;
+        controller.turnClock.pause();
+      }
       if (active != _nativeActive) {
         _nativeActive = active;
         if (active && !_userPaused) {

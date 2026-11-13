@@ -917,12 +917,12 @@ class _FinishCard extends StatelessWidget {
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  'Was hast du entdeckt? Die Textfrage zählt; die Mikrofon-Markierungen sind keine Bewertung.',
+                  'Jetzt schauen wir gemeinsam, was in der Geschichte passiert ist.',
                   style: const TextStyle(
                     fontFamily: 'Nunito',
                     fontSize: 12,
                     fontWeight: FontWeight.w800,
-                    color: LumoColors.ink600,
+                    color: Color(0xFF28564D),
                   ),
                 ),
               ],

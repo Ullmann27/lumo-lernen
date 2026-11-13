@@ -11,6 +11,9 @@ import org.json.JSONObject
  * Only the Dart Cards controller owns rules, hidden cards, persistence and rewards.
  */
 object CardsTableBridge {
+    @Volatile private var attached = false
+    fun isAttached(): Boolean = attached
+    fun detach() { attached = false }
     private const val MAX_BYTES = 262144
     private val tokenPattern = Regex("[a-f0-9]{32}")
 
@@ -45,6 +48,7 @@ object CardsTableBridge {
     }
 
     fun attach(messenger: BinaryMessenger, root: File) {
+        attached = true
         MethodChannel(messenger, "lumo_lernen/cards_table").setMethodCallHandler { call, result ->
             try {
                 val token = call.argument<String>("token") ?: ""
@@ -128,8 +132,11 @@ object CardsTableBridge {
             if (!File(dir, "state.json").isFile) {
                 false
             } else {
+                val previous = read(File(dir, "lifecycle.json"))
+                val pauseEpoch = ((previous?.optLong("pauseEpoch", 0) ?: 0) +
+                    if (!active && previous?.optBoolean("active") == true) 1 else 0).coerceAtMost(1000000000L)
                 write(File(dir, "lifecycle.json"), JSONObject().put("active", active)
-                    .put("stamp", System.currentTimeMillis()), durable = false)
+                    .put("pauseEpoch", pauseEpoch).put("stamp", System.currentTimeMillis()), durable = false)
                 true
             }
         }

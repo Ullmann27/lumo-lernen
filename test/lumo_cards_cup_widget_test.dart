@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/app/app_state.dart';
@@ -27,8 +29,12 @@ Future<LumoAppState> _app() async {
 }
 
 Future<void> _openCup(WidgetTester tester, LumoAppState app) async {
-  await tester.pumpWidget(MaterialApp(
-      theme: LumoAppTheme.light(), home: LumoCardsCupScreen(appState: app)));
+  await tester.pumpWidget(RepaintBoundary(
+      key: const ValueKey('cards-cup-capture'),
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: LumoAppTheme.light(),
+          home: LumoCardsCupScreen(appState: app))));
   await tester.pump();
   await tester.pump();
 }
@@ -134,6 +140,12 @@ void main() {
       expect(tester.takeException(), isNull);
     }
     expect(find.text('Goldpokal'), findsOneWidget);
+    final capture = Platform.environment['LUMO_CARDS_CUP_CAPTURE'];
+    if (capture != null) {
+      await captureLumoBoundary(
+          tester, const ValueKey('cards-cup-capture'), capture,
+          pixelRatio: 1.5);
+    }
     expect(app.state.stars, 12);
     expect(app.state.xp, 20 + 25 + 30);
     expect(app.lumoCardsWinStreak, 3);
