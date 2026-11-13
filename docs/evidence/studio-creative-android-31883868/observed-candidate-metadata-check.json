@@ -1,0 +1,25 @@
+{
+  "artifact": {
+    "id": 14076081664,
+    "name": "lumo-studio-2019-candidate",
+    "size_in_bytes": 647428301,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14076081664",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14076081664/zip",
+    "expired": false,
+    "created_at": "2026-11-13T20:51:24Z",
+    "expires_at": "2026-12-13T20:51:15Z",
+    "updated_at": "2026-11-13T20:51:24Z",
+    "digest": "sha256:1058baf7755a0ad34502c5552bfbeaa2c6807803ddea7ba2f616e5e80c0e273f",
+    "workflow_run": {
+      "id": 43496928833,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-20261113",
+      "head_sha": "31883868bac56699dbf3b3d60a7cdb7afc496a8b"
+    }
+  },
+  "build_job_id": 132132346118,
+  "host_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_source": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "scope": "Original build artifact; other main-run tours are independent"
+}

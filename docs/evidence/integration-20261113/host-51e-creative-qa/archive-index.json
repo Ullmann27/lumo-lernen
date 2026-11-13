@@ -1,0 +1,427 @@
+{
+  "archive_bytes": 547513,
+  "archive_sha256": "2619b0bcea987ab4d8e308e0fce43f9948a72488e4b10e286d1c2b0ca2c8c93f",
+  "round_trip": "Every member byte-exact compared with its source",
+  "members": [
+    {
+      "path": "producer-review/README.md",
+      "bytes": 2508,
+      "sha256": "f5c6d14ba24681842554e78fbac6df3dc05314f9f33a06dbb759bc5ec45cce8b"
+    },
+    {
+      "path": "producer-review/apk-source-commit-original.json.gz",
+      "bytes": 513,
+      "sha256": "926c6e2ff72757009c50da77ae99d0afd59699bdf901d2768927a82df6b7a9a3"
+    },
+    {
+      "path": "producer-review/candidate-binding-review.json",
+      "bytes": 2983,
+      "sha256": "c9839c6c2cc28170c364dce4704374b7e9b369cc6034dd22391322a3ceded205"
+    },
+    {
+      "path": "producer-review/candidate-original/artifacts.json.gz",
+      "bytes": 1511,
+      "sha256": "2dd241967ebd276d9b48d4778c36c20bcee05eec8a98a815a8d4317860d2050b"
+    },
+    {
+      "path": "producer-review/candidate-original/jobs.json.gz",
+      "bytes": 3017,
+      "sha256": "6c52acfd978cb6607031667686c7a75f9950b42d7bcccc95d469fa78dea273c7"
+    },
+    {
+      "path": "producer-review/candidate-original/run.json.gz",
+      "bytes": 2191,
+      "sha256": "e5fbff4355cf7ca32f78cc0a60d87e07d4d3778fed9f94c2528858ef04ee5284"
+    },
+    {
+      "path": "producer-review/commit-original.json.gz",
+      "bytes": 520,
+      "sha256": "c96d8d162c688ddad6f207c0028a125d660d502568619071255557fa773a3c08"
+    },
+    {
+      "path": "producer-review/compare-original.json.gz",
+      "bytes": 30905,
+      "sha256": "749909e6210629f6ff7ecf6d8971c6fd5d536a37e14cfecf5ad7b75de901213e"
+    },
+    {
+      "path": "producer-review/dependencies/host/current/.github/probes/creative_android_probe.py.gz",
+      "bytes": 15217,
+      "sha256": "f36b805f037ace956c1e1e04b17ae1f27e6c2f654aa4318e31ca2b335a5b44ca"
+    },
+    {
+      "path": "producer-review/dependencies/host/current/.github/probes/modernization_android_tour.py.gz",
+      "bytes": 17531,
+      "sha256": "213be11d82de332212ff8e994f951d66b4fdb592fd222fb5beadb6c21905486a"
+    },
+    {
+      "path": "producer-review/dependencies/host/current/lib/features/games/spielwelt/spielwelt_hub.dart.gz",
+      "bytes": 6473,
+      "sha256": "fee485c6a18064d76e4ce9982d40bc3aa085510320df0f1f140fdb3a2b5fbc23"
+    },
+    {
+      "path": "producer-review/dependencies/host/current/lib/features/games/spielwelt/spielwelt_routes.dart.gz",
+      "bytes": 1796,
+      "sha256": "63820e421b48f2749527fa036b3ed342b83d57331b48950f80acf7512ebc59bc"
+    },
+    {
+      "path": "producer-review/dependencies/host/old/.github/probes/creative_android_probe.py.gz",
+      "bytes": 15217,
+      "sha256": "f36b805f037ace956c1e1e04b17ae1f27e6c2f654aa4318e31ca2b335a5b44ca"
+    },
+    {
+      "path": "producer-review/dependencies/host/old/.github/probes/modernization_android_tour.py.gz",
+      "bytes": 14292,
+      "sha256": "c97160cc077f1bc67721532603961e8fbf8470fd3250a8631f7e89b8ef0637cb"
+    },
+    {
+      "path": "producer-review/dependencies/host/old/lib/features/games/spielwelt/spielwelt_hub.dart.gz",
+      "bytes": 6473,
+      "sha256": "fee485c6a18064d76e4ce9982d40bc3aa085510320df0f1f140fdb3a2b5fbc23"
+    },
+    {
+      "path": "producer-review/dependencies/host/old/lib/features/games/spielwelt/spielwelt_routes.dart.gz",
+      "bytes": 1796,
+      "sha256": "63820e421b48f2749527fa036b3ed342b83d57331b48950f80acf7512ebc59bc"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scenes/creative/puzzle_world.tscn.gz",
+      "bytes": 169,
+      "sha256": "4e4116d1aedc0024554a1d5e36ffd6ec53d8bdc4a8a0df6192223035a09a806b"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/creative/build_state.gd.gz",
+      "bytes": 4737,
+      "sha256": "bc1dc87279e36339036c3627eabeffa71d7bc1993c7c1b0dd76883dd3b399d99"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/creative/build_world.gd.gz",
+      "bytes": 16164,
+      "sha256": "40d624d81821dd72a7e53d11f5b4a08ae363f81980bb51976c9226cfa5730c6f"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/creative/puzzle_state.gd.gz",
+      "bytes": 2470,
+      "sha256": "5c7dc7902e342e552927c42b890c99667220d99373a8467671a3d8ce0247036e"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/creative/puzzle_world.gd.gz",
+      "bytes": 9600,
+      "sha256": "5c0839d985676d95fc6d8124d7aa9ac814a9034449161a6088792a658d17ead3"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/creative/treasure_state.gd.gz",
+      "bytes": 2613,
+      "sha256": "2c81cb0823cb253ed22179bda0b99834e1be10275f5aab86a6716c355b6cc9de"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/creative/treasure_world.gd.gz",
+      "bytes": 8330,
+      "sha256": "894fdc4dfce534f4ab64dd7967df0d7261106b05cd5416abf938dd7766831fcf"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/games/jump_islands.gd.gz",
+      "bytes": 10539,
+      "sha256": "1080fd7ade17d905855d359411ef983ee6f2d5fa6ac489d1c292a653b11fa473"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/games/jump_touch_button.gd.gz",
+      "bytes": 1290,
+      "sha256": "4aa4860937d37a8b915c3cfa87a3007fc517b32bd93eabf4c612cee794340002"
+    },
+    {
+      "path": "producer-review/dependencies/native/current/scripts/games/kart_joystick.gd.gz",
+      "bytes": 1230,
+      "sha256": "450aa464544a862fe62f9e45d2bbac47708bac4abf18140536123ace407bc1d6"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scenes/creative/puzzle_world.tscn.gz",
+      "bytes": 169,
+      "sha256": "4e4116d1aedc0024554a1d5e36ffd6ec53d8bdc4a8a0df6192223035a09a806b"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/creative/build_state.gd.gz",
+      "bytes": 4752,
+      "sha256": "caa2fd18fd0206318f5df3d2b169d3fe6b4b6eca78b55b724190ed172293403e"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/creative/build_world.gd.gz",
+      "bytes": 15716,
+      "sha256": "a5f7261b2067976bd93c7b5c6e425aef404925098fc897173840b5790da5e048"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/creative/puzzle_state.gd.gz",
+      "bytes": 2470,
+      "sha256": "5c7dc7902e342e552927c42b890c99667220d99373a8467671a3d8ce0247036e"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/creative/puzzle_world.gd.gz",
+      "bytes": 9600,
+      "sha256": "5c0839d985676d95fc6d8124d7aa9ac814a9034449161a6088792a658d17ead3"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/creative/treasure_state.gd.gz",
+      "bytes": 2613,
+      "sha256": "2c81cb0823cb253ed22179bda0b99834e1be10275f5aab86a6716c355b6cc9de"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/creative/treasure_world.gd.gz",
+      "bytes": 8330,
+      "sha256": "894fdc4dfce534f4ab64dd7967df0d7261106b05cd5416abf938dd7766831fcf"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/games/jump_islands.gd.gz",
+      "bytes": 10539,
+      "sha256": "1080fd7ade17d905855d359411ef983ee6f2d5fa6ac489d1c292a653b11fa473"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/games/jump_touch_button.gd.gz",
+      "bytes": 1290,
+      "sha256": "4aa4860937d37a8b915c3cfa87a3007fc517b32bd93eabf4c612cee794340002"
+    },
+    {
+      "path": "producer-review/dependencies/native/old/scripts/games/kart_joystick.gd.gz",
+      "bytes": 1230,
+      "sha256": "450aa464544a862fe62f9e45d2bbac47708bac4abf18140536123ace407bc1d6"
+    },
+    {
+      "path": "producer-review/dependency-comparison.json",
+      "bytes": 9462,
+      "sha256": "5d4fa8da5b3598b5bfeb6502444abd81c528f30d88cafa01a640203894680cde"
+    },
+    {
+      "path": "producer-review/dependency-diffs/host/.github/probes/modernization_android_tour.py.patch.gz",
+      "bytes": 6088,
+      "sha256": "c0861595bcf47b3ae4c00998d5d0e50a2f62909d80afb9896a74d0bc4be5b41e"
+    },
+    {
+      "path": "producer-review/dependency-diffs/native/scripts/creative/build_state.gd.patch.gz",
+      "bytes": 566,
+      "sha256": "575a43a64a849d0603d1d1907d48afe77d47befac793db18f133460d2d6ee22c"
+    },
+    {
+      "path": "producer-review/dependency-diffs/native/scripts/creative/build_world.gd.patch.gz",
+      "bytes": 2589,
+      "sha256": "42eb91c195544e6866f7e649051c09cf6b2d21bfa9eca34ba4df55c103d29894"
+    },
+    {
+      "path": "producer-review/integration-plan.json",
+      "bytes": 6031,
+      "sha256": "db822a27eaae24e73ae66be0ba572f63b951159b5b12eb0c1168133ad8f79016"
+    },
+    {
+      "path": "producer-review/manifest.json",
+      "bytes": 19612,
+      "sha256": "6c25389e0560a10bd54ec7be2518b8e27988b252e81a723419be97df0d82fe62"
+    },
+    {
+      "path": "producer-review/native-original-source-commit-original.json.gz",
+      "bytes": 518,
+      "sha256": "7f422ca609c50297e76de62a5c37c4ac17ae0ac8673def94b86ae912e25e60ca"
+    },
+    {
+      "path": "producer-review/native-source-commit-original.json.gz",
+      "bytes": 520,
+      "sha256": "2d29f5e02aa4fd8305fdc0b5ed30c3f06fc7b26997d5e0a186b51dde771c740a"
+    },
+    {
+      "path": "producer-review/pr-original.json.gz",
+      "bytes": 3227,
+      "sha256": "79246b13354f4683bfdfec8823de3a5a99a648571ef96cb91b1e16b00123b3fb"
+    },
+    {
+      "path": "producer-review/published-file-binding.json",
+      "bytes": 5091,
+      "sha256": "010489f6dbed401da466c7bb9c5629db447db7b0e5972172eaf1ae7231fbc580"
+    },
+    {
+      "path": "producer-review/review.json",
+      "bytes": 2362,
+      "sha256": "e0a557262e5bea781cdc9f0a54f27874c34b7ce90cef1d14a0db6575c04dc69b"
+    },
+    {
+      "path": "producer-review/source/.github/probes/studio_creative_android_probe.py.gz",
+      "bytes": 16427,
+      "sha256": "3d0e1702e6667dc0e0c2855919b053be8ddb80a4620345ff1cdba443bd2179d2"
+    },
+    {
+      "path": "producer-review/source/.github/workflows/lumo-studio-creative-android.yml.gz",
+      "bytes": 2251,
+      "sha256": "1ab68528e82b1ccfe7941deb4d4da94e4ef5a2a2ddd24d1e6bb922e30200f5c6"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/PREPARATION.json.gz",
+      "bytes": 1557,
+      "sha256": "7123a64865a9d9c1d531df4bcbdcb4088c8964e73505fb56f52c69ea0bf684a1"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/README.md.gz",
+      "bytes": 3557,
+      "sha256": "083df941a07d4c0f9aba0ca085c664674af63bf817c66283609195c0eeddd4ed"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/actionlint.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/actionlint.log.result.json.gz",
+      "bytes": 154,
+      "sha256": "050bd063dad5a0c4f315b0688a05b4f0011e958d858c1c418a2482730cbca70e"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/config-format-red-green.json.gz",
+      "bytes": 600,
+      "sha256": "dded5e0dae6ca61517cf18cc226bf25ca9c64bccbefb7336c4e56c318b7a7ace"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/existing-renderer-target-checks.json.gz",
+      "bytes": 707,
+      "sha256": "91d90ad3f5262a0feac569dcc63c1bdc128ab08f256199e42b02bf9979086581"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/godot-config-serializer.log.gz",
+      "bytes": 170,
+      "sha256": "4732d8a4e413d21873e0d927b4d5bab715a49de6d761e077796908dfb393a7ed"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/local-contracts-before-image-close.log.gz",
+      "bytes": 695,
+      "sha256": "e97e5a8752f1e88bddeffdff84a3897e11e537b945ddb078e2734d23cef9bb12"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/local-contracts.log.gz",
+      "bytes": 464,
+      "sha256": "d809a37f03da69ba71ebbcd0d5c36fb01b849382250dc59100ad44ebd5f04881"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/local-contracts.log.result.json.gz",
+      "bytes": 165,
+      "sha256": "6bfa6a72ed8185f859c101772bfabde3c0fc6611456bd694d2cb4d829b792b5d"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/observed-candidate-metadata-check.json.gz",
+      "bytes": 522,
+      "sha256": "697848df33849cd0f7d44a95c97656c09a98d06239494eb19ea8f47a68aa48fa"
+    },
+    {
+      "path": "producer-review/source/docs/evidence/studio-creative-android-31883868/shell-syntax.json.gz",
+      "bytes": 231,
+      "sha256": "a8dd40affff2d3062a690ef6053309240472059eb106dc74d35b20085290a1ff"
+    },
+    {
+      "path": "producer-review/source/scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg.gz",
+      "bytes": 324,
+      "sha256": "55399242e1f28c0b50129d845cfc7fcbd79fef11442b4eed18682456651bf535"
+    },
+    {
+      "path": "producer-review/source/scripts/tests/fixtures/studio_creative_android/serialize_jump_config.gd.gz",
+      "bytes": 718,
+      "sha256": "20a287c2dc65181368b809be9fdd249faa0a0cb091520c2227107eb30533e2ca"
+    },
+    {
+      "path": "producer-review/source/scripts/tests/test_studio_creative_android_probe.py.gz",
+      "bytes": 3043,
+      "sha256": "04e850c9d2541125a5efd70fb03fc7eb3832d6feea11133ee8f9f9b068c8c26a"
+    },
+    {
+      "path": "repair/candidate-original/artifact.json",
+      "bytes": 739,
+      "sha256": "d306aacc36faa70290e940bb3e1082010aaaac486229b3f9a9396d0f7424b7b8"
+    },
+    {
+      "path": "repair/candidate-original/artifacts.json.gz",
+      "bytes": 1223,
+      "sha256": "c224c8e8e98413ecaee46e1df62cd4d56ac00566bf77cc10e48ed1f7db35b937"
+    },
+    {
+      "path": "repair/candidate-original/build-apk-identities.json",
+      "bytes": 9460,
+      "sha256": "3de0d788805cee96baec3c93947d8ba466759c1bc41a22d60895f9e4395fb72b"
+    },
+    {
+      "path": "repair/candidate-original/build-job.log.gz",
+      "bytes": 230364,
+      "sha256": "bc3c13446f4203f412fac6f907509a61cc1cd2b0a800936a16eb607dc0654fa7"
+    },
+    {
+      "path": "repair/candidate-original/jobs.json.gz",
+      "bytes": 2631,
+      "sha256": "b2002b6d4a58c5a62414f7c2975e3e799cf4cdd6c7523ee1d026bf209eea3218"
+    },
+    {
+      "path": "repair/candidate-original/run.json.gz",
+      "bytes": 1711,
+      "sha256": "0562d6c1d5f238f19b292e938fe68a185f582e36a7ace04b9cf6f6b9b8df4339"
+    },
+    {
+      "path": "repair/candidate-original/transport-status.json",
+      "bytes": 827,
+      "sha256": "07ea72cb5390e5ca385e0f80595ccc7f2f9832f239f7de5801db94a142013e61"
+    },
+    {
+      "path": "repair/connection.json",
+      "bytes": 6990,
+      "sha256": "5cf52482a8814d5f81c946fe25ab866d7e822d2603d8266ab4473f5b3589aeba"
+    },
+    {
+      "path": "repair/current-candidate-binding.json",
+      "bytes": 3267,
+      "sha256": "bd50459ee8d978e44b2d4a2f9e33cc50766f382ccf335c8ce0d37d1cf64e0271"
+    },
+    {
+      "path": "repair/fixed-probe-boundary-green.log",
+      "bytes": 3123,
+      "sha256": "9ec93a5caa7d78923fda1dc58ffde30411e5f22b2fd12d7c2f0d190a6ccaf08a"
+    },
+    {
+      "path": "repair/fixed-probe-boundary-green.result.json",
+      "bytes": 621,
+      "sha256": "8aa6191115959d56364c71617b4a6450c24653403797989c1fdf540837a20bc3"
+    },
+    {
+      "path": "repair/independent-review.json",
+      "bytes": 1324,
+      "sha256": "a750bd7b67f71a9ea548836b658dac2d4cd38e960ceebdc08a42c092b305d1f0"
+    },
+    {
+      "path": "repair/patches/.github/probes/studio_creative_android_probe.py.patch",
+      "bytes": 6441,
+      "sha256": "90c8a7132d571b9dce0120b048e3bac4246a6376e17102a421ae31e925852040"
+    },
+    {
+      "path": "repair/patches/.github/workflows/lumo-studio-creative-android.yml.patch",
+      "bytes": 3329,
+      "sha256": "7cd889aa0000c03cb95402590517945c38a8dc203a0ba6dce7448677057d8c07"
+    },
+    {
+      "path": "repair/patches/scripts/tests/test_studio_creative_android_probe.py.patch",
+      "bytes": 6859,
+      "sha256": "0276330a38d48bfa99d578e1859a6ec041691ded67fad238ea6012e3f9b6256f"
+    },
+    {
+      "path": "repair/producer-probe-boundary-red.log",
+      "bytes": 9956,
+      "sha256": "b2ed197da3c29f5ae4d38af6fc45e79c7cc4fac62a37df84afb83c4c190bedc1"
+    },
+    {
+      "path": "repair/producer-probe-boundary-red.result.json",
+      "bytes": 569,
+      "sha256": "288ec3754301fdd5e91c90dcf81864567f19281fbc2b248423bdbba3e7ee2c4b"
+    },
+    {
+      "path": "repair/producer-source-comparison.json",
+      "bytes": 5036,
+      "sha256": "d238dba47e622cca7184ade60eeef2a926bb183c6f50b59e9e3e449a3dcfb432"
+    },
+    {
+      "path": "repair/workflow-actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "repair/workflow-actionlint.result.json",
+      "bytes": 545,
+      "sha256": "522ddb085d3eb676a79962b089bcaae49c66fbea04dc7d08624151c6d810dd4b"
+    }
+  ]
+}

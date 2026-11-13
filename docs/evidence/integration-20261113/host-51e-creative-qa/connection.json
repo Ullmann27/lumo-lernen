@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "status": "LOCAL_QA_REPAIRS_VERIFIED_ANDROID_PENDING",
+  "created_utc": "2026-11-13T21:40:31.434234+00:00",
+  "producer_pr": 473,
+  "producer_source": "2fdd038d00ed7706971786400e3e1a42f5290c88",
+  "candidate_source": "51e92fb5afab232a29850ffefef5637359af08f7",
+  "candidate_tree": "a13ab981d917c7788f35318cf10d962c1bf657f7",
+  "native_source": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "native_tree": "f13dd5fc5540ecb7705c5f18bf3cf8ba6e79d7a6",
+  "qa_branch": "qa/lumo-creative-51e-20261113",
+  "build_run": 43502594333,
+  "candidate_artifact": 14078786114,
+  "implementation_scope": "Three newly imported QA files adapted; fourteen other new producer files byte-exact; no existing product files changed. STATUS/CONTINUE and current evidence added separately.",
+  "local_tests": {
+    "methods": 16,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "producer_red": {
+      "methods": 16,
+      "failures": 2,
+      "errors": 4,
+      "skips": 0
+    },
+    "meaning": "Synthetic offline fixtures invoking actual Tour methods; not app gameplay or Android acceptance."
+  },
+  "workflow_actionlint": "PASS",
+  "independent_review": "PASS within explicit source delta",
+  "main_candidate_run": "Build succeeded. API35/API37/update failed at the same ambiguous Kart cup-caption selector; no global install/launch/APK-identity failure. Separate creative QA does not exercise that Kart selector. Original failures remain and are repaired separately.",
+  "transport": "Candidate archive exceeds connector512MiB limit. Current binding uses original archive metadata and full CI build-verifier log. The separate Actions run must remeasure actual unchanged APK/PCK bytes. No local candidate-ZIP verification claim.",
+  "files": [
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "producer_sha256": "0b7d0278094dbb6063514a6e6da1d6bcbc274cdd776adb7cc12c5af1f0413b90",
+      "current_sha256": "23d2cd6f756c53677c1a70cc34ad633c5047d198e67f3297739822237b1a32f5",
+      "changed": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-creative-android.yml",
+      "producer_sha256": "74de29dd18bffbf56a68e8f71f0a1f4206b5fd7283b7e29d3c8059948467eb24",
+      "current_sha256": "664fd5a0b1e1d82e94e66102584fa63edc827aed57c63d66a803a9d5e966cc56",
+      "changed": true
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/PREPARATION.json",
+      "producer_sha256": "a5d76038b6960d9899d1a772ee326071768f27ebe62e2ba330d128b8d51d06fd",
+      "current_sha256": "a5d76038b6960d9899d1a772ee326071768f27ebe62e2ba330d128b8d51d06fd",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/README.md",
+      "producer_sha256": "d31632615d6bed8dc98ea7e83806760833782931c9186ca30b8631f6342da247",
+      "current_sha256": "d31632615d6bed8dc98ea7e83806760833782931c9186ca30b8631f6342da247",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/actionlint.log",
+      "producer_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "current_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/actionlint.log.result.json",
+      "producer_sha256": "71c315feb1d5a7b8303c8aec3c5e134135c0099b3a60bb3174e9b63230f06889",
+      "current_sha256": "71c315feb1d5a7b8303c8aec3c5e134135c0099b3a60bb3174e9b63230f06889",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/config-format-red-green.json",
+      "producer_sha256": "d7652a87b94dc66de3ec38eade0e002e923aabcb8cd6a735853da32ec695d87c",
+      "current_sha256": "d7652a87b94dc66de3ec38eade0e002e923aabcb8cd6a735853da32ec695d87c",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/existing-renderer-target-checks.json",
+      "producer_sha256": "973b27893df2615088e42ca80435badcb2fc56a48d8ef8a73fd834a8d3ba02ab",
+      "current_sha256": "973b27893df2615088e42ca80435badcb2fc56a48d8ef8a73fd834a8d3ba02ab",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/godot-config-serializer.log",
+      "producer_sha256": "0a99af44f01af3244b30c5c7ccda469b42465468a86d5c463cded968ce1d5db1",
+      "current_sha256": "0a99af44f01af3244b30c5c7ccda469b42465468a86d5c463cded968ce1d5db1",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/local-contracts-before-image-close.log",
+      "producer_sha256": "eb9d757c6a8b2619faa64e42c77ca90c963ec760427d896e352078c758168c41",
+      "current_sha256": "eb9d757c6a8b2619faa64e42c77ca90c963ec760427d896e352078c758168c41",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/local-contracts.log",
+      "producer_sha256": "34e5719bb08b2b631fa067d5035096a0f504ff5a5d324c26c18d83d20d270cfa",
+      "current_sha256": "34e5719bb08b2b631fa067d5035096a0f504ff5a5d324c26c18d83d20d270cfa",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/local-contracts.log.result.json",
+      "producer_sha256": "b9c98b9146cdae32f27f384fc8b7e6d634c850e31e2a62d1bf956f4fbe63187a",
+      "current_sha256": "b9c98b9146cdae32f27f384fc8b7e6d634c850e31e2a62d1bf956f4fbe63187a",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/observed-candidate-metadata-check.json",
+      "producer_sha256": "fc8e54ef7a4e02f949121bf17cf3c9143e7bf476a5a5a161d2dad05577c4f07e",
+      "current_sha256": "fc8e54ef7a4e02f949121bf17cf3c9143e7bf476a5a5a161d2dad05577c4f07e",
+      "changed": false
+    },
+    {
+      "path": "docs/evidence/studio-creative-android-31883868/shell-syntax.json",
+      "producer_sha256": "ae82647f07e47b8d5205940e88f13c16399e7e25cb38d1d2ae5f68119462ade1",
+      "current_sha256": "ae82647f07e47b8d5205940e88f13c16399e7e25cb38d1d2ae5f68119462ade1",
+      "changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg",
+      "producer_sha256": "dd4b43efa2202f92ddad79640ed4443880154c4e76b928fb4d72ad5aa067dd5c",
+      "current_sha256": "dd4b43efa2202f92ddad79640ed4443880154c4e76b928fb4d72ad5aa067dd5c",
+      "changed": false
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/serialize_jump_config.gd",
+      "producer_sha256": "e48a43329efb453ad9cb23833575c258fb2a871a554440b36fbad23cdef9c450",
+      "current_sha256": "e48a43329efb453ad9cb23833575c258fb2a871a554440b36fbad23cdef9c450",
+      "changed": false
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_android_probe.py",
+      "producer_sha256": "238be885787306e1f0c8a7568aa35ceea9960afc5f51161f89c74998c81ff2b6",
+      "current_sha256": "32aa393f716521ae1ec68076be517f9b1e6659fd6e59b754d2622c59977f8776",
+      "changed": true
+    }
+  ]
+}

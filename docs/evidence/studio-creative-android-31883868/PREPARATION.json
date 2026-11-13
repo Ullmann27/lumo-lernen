@@ -1,0 +1,68 @@
+{
+  "prepared_at_utc": "2026-11-13T21:11:55.306948+00:00",
+  "status": "FROZEN_FOR_ROOT_PUBLICATION_NOT_ANDROID_EXECUTED",
+  "qa_package_root": "/workspace/scratch/5987865ae883/qa/creative-android-31883868",
+  "base_host_commit": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "intended_qa_branch": "chatgpt/lumo-creative-android-31883868-20261113",
+  "original_build_run": 43496928833,
+  "original_artifact_id": 14076081664,
+  "probe_sources": [
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "sha256": "0b7d0278094dbb6063514a6e6da1d6bcbc274cdd776adb7cc12c5af1f0413b90"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-creative-android.yml",
+      "sha256": "74de29dd18bffbf56a68e8f71f0a1f4206b5fd7283b7e29d3c8059948467eb24"
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_android_probe.py",
+      "sha256": "238be885787306e1f0c8a7568aa35ceea9960afc5f51161f89c74998c81ff2b6"
+    }
+  ],
+  "local_checks": {
+    "new_unit_contracts": {
+      "passed": 9,
+      "skipped": 0,
+      "failed": 0,
+      "log": "local-contracts.log",
+      "resource_warnings_are_errors": true
+    },
+    "actionlint": {
+      "version": "1.7.12",
+      "exit_code": 0,
+      "log": "actionlint.log"
+    },
+    "shell_syntax": {
+      "snippets": 5,
+      "failed": 0,
+      "record": "shell-syntax.json"
+    },
+    "actual_godot_serializer": {
+      "engine": "4.6.3.stable.official.7d41c59c4",
+      "exit_code": 0,
+      "record": "config-format-red-green.json",
+      "meaning": "Synthetic format fixture only; old INI parser reproduced failure, complete raw Variant reader passed"
+    },
+    "existing_desktop_renderer_target_checks": {
+      "count": 2,
+      "record": "existing-renderer-target-checks.json",
+      "meaning": "No Android input/visual success claim"
+    }
+  },
+  "independent_review": {
+    "root": "Four gameplay sequences and current-frame/read-only-save boundaries reviewed; last-scroll and ConfigFile findings corrected",
+    "agent_a": "Workflow/identity reviewed; no remaining concrete blocker; final workflow hash supplied",
+    "agent_c": "Game/save contracts and corrected Variant reader reviewed; last image-close change also read; no remaining concrete blocker"
+  },
+  "runtime_acceptance": "All required state/input checks must pass; successful technical result remains RECORDED_REVIEW_REQUIRED until original Jump MP4 and images are actually reviewed",
+  "limitations": [
+    "No Android run of this QA wrapper yet",
+    "No APK download or APK execution in this local preparation",
+    "No original video from this new wrapper yet",
+    "No numeric jump height, simultaneous multitouch, physical Fold7, FPS, thermal, latency or Android17 claim",
+    "Native point targeting is validated by the future actual save difference; absence/mismatch fails closed"
+  ],
+  "mutations": "Only this isolated QA package; no product code, save injection, release, main merge, GitHub commit or workflow run performed by this agent"
+}
