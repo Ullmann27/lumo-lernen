@@ -24,20 +24,22 @@ class LumoLearningFeedbackEngine {
     _interactionCount++;
     _attemptsByUnit[event.unit] = (_attemptsByUnit[event.unit] ?? 0) + 1;
 
-    if (event.correct) {
+    if (!event.helpUsed && event.correct) {
       _correctByUnit[event.unit] = (_correctByUnit[event.unit] ?? 0) + 1;
       _correctStreak++;
       _wrongStreak = 0;
-    } else {
+    } else if (!event.helpUsed) {
       _wrongByUnit[event.unit] = (_wrongByUnit[event.unit] ?? 0) + 1;
       _wrongStreak++;
       _correctStreak = 0;
     }
 
     if (event.helpUsed) _helpCount++;
-    if (event.responseTimeMs < 4500 && event.correct) _fastCorrectCount++;
-    if (event.responseTimeMs > 18000) _slowAnswerCount++;
-    if (event.handwritingScore != null) _writingAttempts++;
+    if (!event.helpUsed) {
+      if (event.responseTimeMs < 4500 && event.correct) _fastCorrectCount++;
+      if (event.responseTimeMs > 18000) _slowAnswerCount++;
+      if (event.handwritingScore != null) _writingAttempts++;
+    }
 
     final tone = _toneFor(event);
     final title = _titleFor(event, tone);
@@ -59,6 +61,9 @@ class LumoLearningFeedbackEngine {
   }
 
   LumoFeedbackTone _toneFor(LumoInteractionEvent event) {
+    if (event.helpUsed) {
+      return event.correct ? LumoFeedbackTone.encouraging : LumoFeedbackTone.coaching;
+    }
     if (event.handwritingScore != null) return LumoFeedbackTone.handwriting;
     if (!event.correct && _wrongStreak >= 2) return LumoFeedbackTone.rescue;
     if (!event.correct) return LumoFeedbackTone.coaching;
@@ -69,6 +74,7 @@ class LumoLearningFeedbackEngine {
   }
 
   String _titleFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
+    if (event.helpUsed) return event.correct ? 'Gemeinsam geschafft!' : 'Wir üben gemeinsam';
     final isTest = event.sessionKind == 'test' || event.sessionKind == 'schoolwork';
     return switch (tone) {
       LumoFeedbackTone.handwriting => event.correct ? 'Sauber gezeichnet!' : 'Die Form braucht noch Ruhe',
@@ -82,6 +88,18 @@ class LumoLearningFeedbackEngine {
   }
 
   String _messageFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
+    if (event.helpUsed) {
+      return _pick('practice.${event.correct}.${event.taskIndex}', event.correct
+          ? <String>[
+              'Mit der Hilfe hast du diese Aufgabe gelöst. Gut mitgemacht!',
+              'Das passt. Wir haben die Aufgabe gemeinsam geübt.',
+              'Mit den gemeinsamen Schritten bist du zum Ergebnis gekommen.',
+            ]
+          : <String>[
+              'Noch nicht ganz. Wir üben diesen Schritt gemeinsam weiter.',
+              'Du darfst in Ruhe ausprobieren. Wir schauen noch einmal auf die Aufgabe.',
+            ]);
+    }
     final subject = event.subject;
     final unit = event.unit;
     final variants = switch (tone) {
@@ -132,6 +150,9 @@ class LumoLearningFeedbackEngine {
   }
 
   String _tipFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
+    if (event.helpUsed) {
+      return 'Lerntipp: Gehe den gezeigten Schritt noch einmal in Ruhe durch. Hilfe benutzen ist erlaubt.';
+    }
     final prompt = event.prompt.toLowerCase();
     final unit = event.unit.toLowerCase();
     final errors = event.errorTypes;
@@ -219,6 +240,7 @@ class LumoLearningFeedbackEngine {
 
   String _rewardLabelFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
     if (!event.correct) return 'Lernschritt gespeichert';
+    if (event.helpUsed) return 'Belohnung: gemeinsam geübt';
     final labels = <String>[];
     if (event.correct) labels.add('Belohnung: richtige Lösung');
     labels.add('Belohnung: Aufgabe bearbeitet');
@@ -231,6 +253,7 @@ class LumoLearningFeedbackEngine {
   }
 
   String? _badgeLabelFor(LumoInteractionEvent event, LumoFeedbackTone tone) {
+    if (event.helpUsed) return null;
     if (_correctStreak == 3) return 'Mini-Abzeichen: 3er-Fuchsserie';
     if (_correctStreak == 5) return 'Mini-Abzeichen: Konzentrationsfuchs';
     if (_wrongStreak == 0 && (_wrongByUnit[event.unit] ?? 0) > 0 && event.correct) return 'Mini-Abzeichen: Fehler verbessert';
@@ -241,6 +264,7 @@ class LumoLearningFeedbackEngine {
   }
 
   int _autoAdvanceDelay(LumoInteractionEvent event) {
+    if (event.helpUsed) return 1700;
     if (event.handwritingScore != null) return 2100;
     if (_correctStreak >= 3) return 1800;
     if (event.responseTimeMs < 4500) return 1400;

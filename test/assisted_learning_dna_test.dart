@@ -24,7 +24,10 @@ Future<void> _capture(WidgetTester tester, String name) async {
     final image = await boundary.toImage(pixelRatio: 1);
     try {
       final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-      final file = File('.ci-results/assisted-learning/$name.png');
+      final captureDirectory =
+          Platform.environment['LUMO_ASSISTED_LEARNING_CAPTURES'] ??
+              '.ci-results/assisted-learning';
+      final file = File('$captureDirectory/$name.png');
       await file.parent.create(recursive: true);
       await file.writeAsBytes(bytes!.buffer.asUint8List());
     } finally {

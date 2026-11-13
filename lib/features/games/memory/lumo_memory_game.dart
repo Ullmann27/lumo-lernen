@@ -14,6 +14,7 @@
 import 'dart:convert';
 import 'dart:math' as math;
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -53,8 +54,26 @@ class LumoMemoryScreen extends StatefulWidget {
 enum _Player { kind, lumo }
 
 class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
-  static const _prefsKey = 'lumo_memory_v2';
   static const _flip = Duration(milliseconds: 460);
+
+  late final LumoAppState _statsApp;
+  late final int _profileGeneration;
+  LearningProfileLease? _statsOwner;
+  Future<void> _statsWrites = Future<void>.value();
+  bool _statsLoading = true;
+  bool _statsWritable = false;
+  bool _profileChanged = false;
+  DialogRoute<void>? _resultRoute;
+
+  bool get _currentProfile =>
+      mounted &&
+      !_profileChanged &&
+      identical(widget.appState, _statsApp) &&
+      _profileGeneration == _statsApp.profileGeneration;
+  bool get _canPlay => _currentProfile && !_statsLoading;
+
+  String _statsKey(LearningProfileLease owner) =>
+      'lumo.memory.stats.v1.${sha256.convert(utf8.encode(owner.studentId))}';
 
   late MemoryDifficulty _difficulty;
   late List<MemoryMotif> _cards;
@@ -92,11 +111,16 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   @override
   void initState() {
     super.initState();
+    _statsApp = widget.appState;
+    _profileGeneration = _statsApp.profileGeneration;
+    _statsApp.addListener(_checkProfile);
     _rng = widget.seed == null ? math.Random() : math.Random(widget.seed);
     _difficulty = widget.difficulty ?? MemoryDifficulty.schwer;
     _pack = widget.pack ?? MemoryThemePack.alle;
     _setupBoard();
-    if (widget.difficulty == null) _loadStats();
+    // Capture identity before the first asynchronous operation. The old
+    // unowned lumo_memory_v2 record is deliberately neither read nor migrated.
+    _loadStats(_statsApp.captureLearningProfile());
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _say('Lass uns Memory spielen! Du fängst an.');
     });
@@ -104,17 +128,41 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
 
   @override
   void dispose() {
+    _statsApp.removeListener(_checkProfile);
     _clock.dispose();
     _lumo.dispose();
     super.dispose();
   }
 
-  Future<void> _loadStats() async {
+  @override
+  void didUpdateWidget(covariant LumoMemoryScreen oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (!identical(widget.appState, _statsApp)) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _checkProfile());
+    }
+  }
+
+  void _checkProfile() {
+    if (!mounted || _profileChanged || _currentProfile) return;
+    _clock.cancel();
+    final result = _resultRoute;
+    _resultRoute = null;
+    if (result != null) result.navigator?.removeRoute(result);
+    setState(() {
+      _profileChanged = true;
+      _best = {};
+    });
+  }
+
+  Future<void> _loadStats(Future<LearningProfileLease> captured) async {
     try {
+      final owner = await captured;
       final prefs = await SharedPreferences.getInstance();
-      final raw = prefs.getString(_prefsKey);
-      if (raw == null || !mounted) return;
-      final json = jsonDecode(raw) as Map<String, dynamic>;
+      if (!_currentProfile || !_statsApp.canUseLearningLease(owner)) return;
+      final raw = prefs.getString(_statsKey(owner));
+      final json = raw == null
+          ? <String, dynamic>{}
+          : jsonDecode(raw) as Map<String, dynamic>;
       final saved = MemoryDifficulty.values
           .where((d) => d.name == json['difficulty'])
           .firstOrNull;
@@ -123,9 +171,12 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
           e.key.toString(): (e.value as num).toInt(),
       };
       setState(() {
+        _statsOwner = owner;
+        _statsWritable = true;
         _best = best;
         // Nur wechseln, solange noch nichts gespielt wurde.
-        if (saved != null &&
+        if (widget.difficulty == null &&
+            saved != null &&
             saved != _difficulty &&
             _kindMoves == 0 &&
             !_faceUp.any((up) => up)) {
@@ -133,15 +184,28 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
           _setupBoard();
         }
       });
-    } catch (_) {}
+    } catch (_) {
+      // Do not replace an unreadable child record with empty defaults.
+      _statsWritable = false;
+    } finally {
+      if (_currentProfile) setState(() => _statsLoading = false);
+    }
   }
 
-  Future<void> _saveStats() async {
-    try {
+  Future<void> _saveStats() {
+    final owner = _statsOwner;
+    if (!_canPlay || !_statsWritable || owner == null) {
+      return Future<void>.value();
+    }
+    final key = _statsKey(owner);
+    final snapshot = jsonEncode({'difficulty': _difficulty.name, 'best': _best});
+    // Accepted work stays with its captured child even if selection changes
+    // while storage is pending. Serial writes preserve successive selections.
+    return _statsWrites = _statsWrites.then((_) async {
       final prefs = await SharedPreferences.getInstance();
-      await prefs.setString(_prefsKey,
-          jsonEncode({'difficulty': _difficulty.name, 'best': _best}));
-    } catch (_) {}
+      if (!_statsApp.canUseLearningLease(owner)) return;
+      await prefs.setString(key, snapshot);
+    }).catchError((Object _, StackTrace __) {});
   }
 
   void _say(String text) {
@@ -169,6 +233,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   }
 
   void _restart({MemoryDifficulty? difficulty, MemoryThemePack? pack}) {
+    if (!_canPlay) return;
     setState(() {
       if (difficulty != null) _difficulty = difficulty;
       if (pack != null) _pack = pack;
@@ -179,7 +244,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   }
 
   void _tapCard(int idx) {
-    if (_clock.value || _busy || _turn != _Player.kind) return;
+    if (!_canPlay || _clock.value || _busy || _turn != _Player.kind) return;
     if (_matched[idx] || _faceUp[idx]) return;
     HapticFeedback.lightImpact();
     setState(() {
@@ -264,7 +329,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   // faire Chancen hat.
 
   void _lumoTurn() {
-    if (!mounted || _turn != _Player.lumo || _isGameOver()) return;
+    if (!_canPlay || _turn != _Player.lumo || _isGameOver()) return;
     final firstIdx = _pickFirstLumoCard();
     if (firstIdx == null) return;
     setState(() {
@@ -326,7 +391,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
   bool _isGameOver() => _matched.every((m) => m);
 
   void _onGameOver() {
-    if (_rewardGiven) return;
+    if (!_canPlay || _rewardGiven) return;
     _rewardGiven = true;
     HapticFeedback.heavyImpact();
     final kindWon = _kindPairs > _lumoPairs;
@@ -358,7 +423,7 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
         ? 'Du hast gewonnen!'
         : (draw ? 'Unentschieden' : 'Lumo gewinnt');
     final reduce = _reduceMotion;
-    showDialog<void>(
+    final result = DialogRoute<void>(
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) => LumoGameResultBack(
@@ -386,12 +451,30 @@ class _LumoMemoryScreenState extends State<LumoMemoryScreen> {
         ),
       ),
     );
+    _resultRoute = result;
+    Navigator.of(context).push(result).whenComplete(() {
+      if (identical(_resultRoute, result)) _resultRoute = null;
+    });
   }
 
   // ── Oberfläche ───────────────────────────────────────────────────────
 
   @override
   Widget build(BuildContext context) {
+    if (!_currentProfile) {
+      return Scaffold(
+        appBar: AppBar(title: const Text('Lumo Memory')),
+        body: const Center(
+          child: Padding(
+            padding: EdgeInsets.all(24),
+            child: Text(
+              'Das Kinderprofil hat gewechselt. Öffne Memory erneut für dieses Kind.',
+              textAlign: TextAlign.center,
+            ),
+          ),
+        ),
+      );
+    }
     return LumoGamePauseScope(
       clock: _clock,
       onRestart: () => _restart(),

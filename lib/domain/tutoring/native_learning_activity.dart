@@ -27,6 +27,17 @@ class NativeLearningActivity {
         return NativeLearningActivity._(
             'addition', {'kind': 'addition', 'a': a, 'b': b});
       }
+      if (data['operation'] == 'addition' &&
+          a >= 100 &&
+          a <= 890 &&
+          a % 10 == 0 &&
+          b <= 90 &&
+          b % 10 == 0 &&
+          a % 100 + b >= 100 &&
+          task.correctAnswer == a + b) {
+        return NativeLearningActivity._(
+            'bridge_hundred', {'kind': 'bridge_hundred', 'a': a, 'b': b});
+      }
       if (data['operation'] == 'subtraction' &&
           a <= 20 &&
           b <= a &&

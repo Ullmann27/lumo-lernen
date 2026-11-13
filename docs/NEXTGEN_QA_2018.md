@@ -13,7 +13,7 @@ sind während der visuellen Nachbesserung noch nicht freigegeben.
 | Geometrie erzeugen und Originalassets weiterverwenden | direkt umsetzbar | Blender 4.3.2 und programmatische Meshes verfügbar |
 | Reale 3D-Rendererbilder prüfen | mit vorhandenen Werkzeugen umsetzbar | GitHub Linux/X11/llvmpipe liefert Original-PNGs; lokaler Displayzugriff für diesen Prozess nicht verfügbar |
 | Flutter- und Python-Tests | direkt umsetzbar | Tatsächlicher Flutter-3.44.9-/Dart-3.12.2-Runner; reproduzierbare Gradle-9.1.0-Toolchain |
-| Kotlin/Java-Androidhost kompilieren | mit vorhandenen Werkzeugen umsetzbar | Zwei echte GitHub-Androidkompilierungen erfolgreich |
+| Kotlin/Java-Androidhost kompilieren | mit vorhandenen Werkzeugen umsetzbar | Drei echte GitHub-Androidkompilierungen erfolgreich; zuletzt einschließlich Registry, Binder-Service und Start-Timeout |
 | Signierte APK, Emulator-Tour, In-place-Update | mit vorhandenen Werkzeugen umsetzbar | Vollständige Pipeline vorbereitet; erst nach finalem Native-Pin ausführbar |
 | Samsung Z Fold7, Android 17, Temperatur/Touchlatenz/60 FPS | derzeit blockiert | Kein physisches Zielgerät angebunden. Linuxbilder und Android-35-x86-Emulator ersetzen diesen Nachweis nicht. |
 
@@ -24,6 +24,7 @@ sind während der visuellen Nachbesserung noch nicht freigegeben.
 | Godot `d66aaebf9185e8b86d9d09d8a66149860239c6e2` | [Run 43351450613](https://github.com/Ullmann27/lumo-godot/actions/runs/43351450613): vollständige Gameplay-/Action-/2014-/Technical-Art-Gates und damals 20 neue Gates bestanden. 71 PNGs aus dem neuen Artefakt plus 22 aus dem Legacy-Artefakt heruntergeladen. Dieser Zwischenstand erhielt keine endgültige visuelle Freigabe. |
 | Flutter `2d36496d5ed3684d52dab633b6e9a5d24cef0456` | [Run 43351542336](https://github.com/Ullmann27/lumo-lernen/actions/runs/43351542336), Job `131643514999`: echte Kotlin-/Java-Kompilierung, `BUILD SUCCESSFUL in 2m 57s`, 107 Tasks; ursprüngliche Cards-IPC- und Offline-Speech-Quellen enthalten. |
 | Flutter `c9e05e24db94e4d366acca0255925ef7c46a6f7a` | [Run 43353261145](https://github.com/Ullmann27/lumo-lernen/actions/runs/43353261145), Job `131649128007`: erneut echte Kotlin-/Java-Kompilierung, `BUILD SUCCESSFUL in 3m 26s`, 107 Tasks. Neuer CardsAuthorityService und aktuelle Lebenszyklusänderungen enthalten. Keine APK oder Android-Laufzeitfreigabe daraus ableiten. |
+| Flutter `8a228c53c342675fd89b6ab9b662d40fb60a8535` | [Run 43357088248](https://github.com/Ullmann27/lumo-lernen/actions/runs/43357088248), Job `131661587570`: `BUILD SUCCESSFUL in 3m 16s`; neun echte Bytecodeklassen einschließlich Registry/Service nachgewiesen. Davor sechs Produktionsregistry-/Installerprüfungen bestanden. APK-Pinprüfung bleibt bis zur 2018-Freigabe gesperrt, Android-Tour/Upgrade/Veröffentlichung wurden nicht ausgeführt. |
 | Godot `096c9d20a3a1b92605e0a4f648e1afd87f967b9a` | [Run 43354218466](https://github.com/Ullmann27/lumo-godot/actions/runs/43354218466): fokussierter echter Lernrenderer mit 21 PNGs erfolgreich. Neue Gates: 23 PASS, 2 FAIL; alle 75 Originalbilder des Gesamtartefakts heruntergeladen. Settlement-/Umgebungsproben scheitern nach ihren Spielaussagen an geleakten GL-Texturen. Legacy-Action-Job scheitert nach seinen 24 Lasso-Aussagen an vier noch referenzierten Ressourcen beim Prozessende. Diese Fehler werden nicht ausgefiltert. |
 
 Verifizierte ZIP-Digests:
@@ -33,6 +34,7 @@ Verifizierte ZIP-Digests:
 | d66 neue Szenen | `14004132755` | `f47d73df4c3084f644238555666959ab3f29c0d9e121c60932b9273739384fc0` |
 | d66 Legacy | `14003839859` | `b0856ec0a3bed5637a55c0701dbdbbf5241bbac1d3b2008fafb25a71ce2170a6` |
 | Host c9 Kompilierung | `14005081851` | `25cc600debde803e062bbf67ce2723c888c94e14e0dc923b78e9177823beae74` |
+| Host 8a Kompilierung | `14005894311` | `d10c8b64bcb62fc530ac4b13c599011594fea811a9c999f6b6d4d00a06b671cc` |
 | 096 Lernpreview | `14006155015` | `56bf30015a3de03869146941fb167dbc5eb0a0c656a4d0ed07ed38c2bc6f5ac7` |
 | 096 alle neuen Szenen | `14006170582` | `32fa6f43a54bf4940bb7e46b7d6ec86f2a36e585f08860974fa2b2a68e930607` |
 
@@ -67,7 +69,7 @@ Capture-Marker ersetzt weder diese Sichtprüfung noch die notwendige Korrektur.
 Die neue Host-Pipeline erhält die historischen 2017-Releasegates und ergänzt:
 
 1. Eigenständige echte Hostkompilierung mit neun Pflichtklassen einschließlich `CardsAuthorityService.class` und `CardsAuthorityRegistry.class`. Der Compile-Job führt davor die Produktionsregistry in fünf tatsächlichen JVM-Szenarien sowie den Android-Installervertrag aus; auch deren Log wird archiviert.
-2. Alle Fluttertests und optionalen Capturetests, ohne übersprungene Tests.
+2. Alle Fluttertests ohne übersprungene Tests; die gesetzten Capture-Verzeichnisse, Einzeldateien und tatsächlich erzeugten Bildzahlen werden im Ergebnis ausgewiesen.
 3. Vollständige alte Native-Gates sowie die neuen Produktionsszenen; unabhängige
    Prüfungen sammeln bei einem Fehler weiter Bilder, die Gesamtabnahme bleibt `FAIL`.
 4. Tatsächliche Android-Oberflächenprobe: Zehnerbrücke über die sichtbare Flutterroute,
@@ -88,13 +90,28 @@ sieben bearbeiteten Produktionsszenen. Er aktiviert die Veröffentlichung nicht.
 
 ## Lokal erneut ausgeführte Werkzeugtests
 
-- 282 Build-/Daten-/Release-Vertragstests: bestanden, 19,430 Sekunden, 0 übersprungen.
+- 287 Build-/Daten-/Release-Vertragstests nach Registry-Integration: bestanden, 19,674 Sekunden, 0 übersprungen.
 - 665 Android-Probe-/Evidenztests: bestanden, 19,436 Sekunden, 0 übersprungen.
 - 3 Native-Runner-Orchestrierungstests: bestanden; ihre Fake-Engine prüft ausschließlich
   Fehlerfortsetzung und Ablehnung, niemals Grafik oder Gameplay.
 - 6 neue Delivery-/Receipt-Tests plus 5 Workflow-Tests: bestanden; synthetische
   Testfixtures werden ausdrücklich nicht als Render-/APK-Evidenz gespeichert.
 - Alle Shellblöcke des neuen Hostworkflows: `bash -n` erfolgreich.
+
+Der erste vollständige lokale Flutterlauf auf dem integrierten Arbeitsstand
+endete mit **2.427 PASS, 2 FAIL, 0 SKIPs**, Exitcode 1 und 530 echten PNGs. Beide
+Fehler lagen im Elternbericht-Privacytest: durch wiederholte Diagnosequalifizierung
+verdrängte die Promptgrenze zwei der acht erwarteten Themen. Der Fehler wurde
+Team B gemeldet; dieser fehlgeschlagene Gesamtbeleg bleibt erhalten unter
+`qa/host/full-acceptance-d4bcb495/`. Er ist keine Freigabe der danach geänderten Quellen.
+
+Die anschließend ergänzte Capture-Sammlung wurde separat tatsächlich ausgeführt:
+15 Tests bestanden, keine übersprungen, Exitcode 0; sechs aktuelle Lesebilder,
+zwei Lern-DNA-Bilder und ein Pokalbild liegen unter
+`qa/host/new-module-capture-acceptance-corrected/`. Der erste Versuch wies dem
+Pokalexport irrtümlich einen Ordner statt eines PNG-Dateinamens zu und scheiterte;
+der korrigierte Runner unterscheidet jetzt Ordner und Einzeldateien. Die vollständige
+Flutter-Suite muss am endgültigen CI-Commit erneut erfolgreich laufen.
 
 Die tatsächlichen lokalen Logs liegen in `qa/host/`. Die Anzahl bezieht sich auf
 diesen Werkzeugstand und wird nicht für später veränderte Quellen wiederverwendet.

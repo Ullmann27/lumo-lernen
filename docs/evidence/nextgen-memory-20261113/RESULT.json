@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "tests": 25,
+  "scope": "Memory model/widget/profile storage; no native 3D or Android performance claim",
+  "legacy_storage": "lumo_memory_v2 left unchanged and unassigned",
+  "files": {
+    "lib/features/games/memory/lumo_memory_game.dart": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+    "test/games/memory_profile_storage_test.dart": "19f2c236ebcd24d64866d90d98567f18e498da1063211b0f0f8e2a7e6839f869",
+    "test/games/memory_screen_test.dart": "80019bca1ed80345b04c6e37f7b0c123f2f2ce890d9b8a0ae4f1c71fe21474df"
+  }
+}

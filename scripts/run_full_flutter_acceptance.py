@@ -28,7 +28,11 @@ CAPTURE_DIRECTORIES = {
     'LUMO_SPATIAL_CAPTURES': 'reading',
     'LUMO_CAPTURE_DIR': 'modernization',
     'LUMO_CARD_FACE_EXPORT_DIR': 'card-face-exports',
+    'LUMO_NEXTGEN_READING_CAPTURES': 'nextgen-reading',
+    'LUMO_READING_CAPTURES': 'reading-passages',
+    'LUMO_ASSISTED_LEARNING_CAPTURES': 'assisted-learning',
 }
+CAPTURE_FILES = {'LUMO_CARDS_CUP_CAPTURE': 'cards-cup/trophy.png'}
 
 
 def summarize(events: list[dict], exit_code: int, errors: list[str]) -> dict:
@@ -76,6 +80,10 @@ def main() -> int:
     for key, directory in CAPTURE_DIRECTORIES.items():
         location = output / directory
         location.mkdir()
+        env[key] = str(location)
+    for key, relative in CAPTURE_FILES.items():
+        location = output / relative
+        location.parent.mkdir(parents=True, exist_ok=True)
         env[key] = str(location)
     command = [args.flutter, 'test', '--no-pub', '--machine', '--concurrency=2',
                '--timeout=60s', *args.tests]
@@ -130,7 +138,15 @@ def main() -> int:
     report['runner_errors'] = watchdog_errors
     if watchdog_errors:
         report['status'] = 'FAIL'
-    report['scope'] = args.tests or ['complete Flutter suite, all optional captures enabled']
+    report['scope'] = args.tests or ['complete Flutter suite; capture outputs recorded below']
+    report['capture_png_counts'] = {
+        key: {'directory': directory, 'pngs': sum(1 for _ in (output / directory).rglob('*.png'))}
+        for key, directory in CAPTURE_DIRECTORIES.items()
+    }
+    report['capture_file_outputs'] = {
+        key: {'path': relative, 'created': (output / relative).is_file()}
+        for key, relative in CAPTURE_FILES.items()
+    }
     report['rendered_png_count'] = sum(1 for _ in output.rglob('*.png'))
     (output / 'acceptance-summary.json').write_text(
         json.dumps(report, indent=2, ensure_ascii=False) + '\n')

@@ -277,9 +277,14 @@ class LearningDna {
     // The existing transport rejects messages over 1200 characters. Keep whole
     // observations and all data-quality instructions; never truncate a claim.
     for (final entry in skillObservations) {
+      // The common footer already limits fully independent observations.
+      // Repeat only qualifications that change this particular sample.
+      final qualification = entry.hasEnoughAnswersForGrouping &&
+              entry.independentEvidence.attempts == entry.answerCount
+          ? ''
+          : ' ${entry.sampleNote}.';
       final line = '${entry.subject} / ${entry.skillLabel}: '
-          '${entry.answerSummary}. '
-          '${entry.sampleNote}.\n';
+          '${entry.answerSummary}.$qualification\n';
       final omissionReserve =
           '\nWeitere ${skillObservations.length} Themen nicht einzeln aufgeführt.\n'
               .length;

@@ -1479,9 +1479,13 @@ class LumoAppState extends ChangeNotifier {
     );
   }
 
-  void wrongAnswer(String unit) {
+  void wrongAnswer(String unit, {bool independentEvidence = true}) {
     final weak = Map<String, int>.from(_state.weakSkills);
-    weak[unit] = (weak[unit] ?? 0) + 1;
+    // Guided attempts still receive encouragement and enter the attempt log.
+    // Only unaided evidence may influence the next task's legacy selection.
+    if (independentEvidence) {
+      weak[unit] = (weak[unit] ?? 0) + 1;
+    }
     final errors = _state.practiceErrors + 1;
     update(
       _state.copyWith(

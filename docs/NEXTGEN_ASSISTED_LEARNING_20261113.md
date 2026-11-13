@@ -96,3 +96,38 @@ Diese Bilder sind Flutter-Test-Rendererbilder, kein Galaxy-Z-Fold7-Gerätetest,
 keine Android-Lebenszyklusprüfung und kein 60-FPS-Nachweis. Den GitHub-Checkpoint,
 nativen Pin und integrierten APK-Kandidaten verantwortet der zentrale
 Integrationsstand; diese Bewertungstests allein stellen keinen Release dar.
+
+## Geprüfte Integrationsnachträge
+
+Die vollständige Host-Prüfung fand anschließend einen konkreten Platzfehler im
+Elternprompt: Wiederholte Qualifizierungen verdrängten zwei der acht vertraglich
+vorgesehenen Themen. Die gemeinsame Einschränkung steht nun einmal im Prompt;
+gemischte und kleine Stichproben behalten ihre individuellen Hinweise. Der
+unveränderte Datenschutztest übermittelt wieder alle acht Themen innerhalb von
+1200 Zeichen, ohne den lokalen Kindernamen zu übertragen.
+
+Der Screenshot-Test unterstützt nun `LUMO_ASSISTED_LEARNING_CAPTURES` für den
+gemeinsamen CI-Artefaktordner. Der bisherige Standardordner bleibt erhalten.
+Ein tatsächlicher Lauf mit abweichendem Ziel bestand mit sechs Tests und
+erzeugte beide PNGs im angegebenen Verzeichnis.
+
+Die Rückmeldungs-Engine hatte einen weiteren getrennten Fehler: Auch mit Hilfe
+gelöste Antworten erhöhten ihre sprachliche Erfolgsserie und konnten eine höhere
+Schwierigkeit oder Tempo-Abzeichen ankündigen. Sie lobt begleitete Antworten nun
+als gemeinsame Übung. Nur eigenständige Antworten verändern ihre Fähigkeits-,
+Erfolgs- und Fehlerserien. Fünf neue Tests reproduzierten zuvor den Fehler;
+danach bestanden 55 gezielte Tests einschließlich Bewertung, Belohnungen,
+Lern-DNA und Elternbericht. Die vier nachträglich geänderten Dateien bestehen
+die Dart-Analyse ohne Hinweise. Rohlogs und exakte Quellhashes stehen in
+[`FOLLOWUP.json`](evidence/assisted-learning-20261113/FOLLOWUP.json).
+
+Eine zusätzliche, nur lesende Prüfung der Lernhilfe-Aufrufe bestätigt die
+Markierung vor dem nativen Start und ihre Weitergabe an Antwort, Lernprofil,
+Antwortprotokoll und begleitete Lern-Evidenz. 56 bestehende Guided-/Native-/
+Transfer-Tests bestanden. Im aktuellen Stand existiert kein automatisch
+gestarteter nativer Lernwelt-Aufruf; beide Einstiegspunkte sind explizite
+Schaltflächen. Die vorhandene inline Erklärszene wählt ihre Methode nach einer
+bereits markierten Hilfeanfrage. Der separat gefundene alte
+`weakSkills`-/Fehlerklassifikationspfad wurde dem Besitzer von
+`learning_content.dart` zur Korrektur gemeldet; dieser Bericht behauptet keinen
+Testnachweis für dessen nachfolgende Änderungen.
