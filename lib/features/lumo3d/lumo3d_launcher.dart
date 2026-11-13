@@ -123,7 +123,7 @@ Future<bool> launchLumo3D(
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
       if (learning != null) 'learning': learning.toLaunchOptions(),
-      if (learning != null) ...{
+      if (learning != null || scene == 'build') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.
         'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
