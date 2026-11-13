@@ -54,8 +54,13 @@ def require_cards_authority_binding(services: str, package: str) -> dict:
         class_names.append(re.escape(service_class[len(package):]))
     component = re.escape(package) + r'/(?:' + '|'.join(class_names) + r')'
     blocks = re.split(r'(?m)(?=^[ \t]*\* ServiceRecord\{)', services)
+    # The recorded Android dump adds its defining package as `c:<package>`.
+    # Accept only that observed suffix and the legacy header. Match the whole
+    # header so a foreign component or a later line cannot supply its identity.
+    header = (r'^[ \t]*\* ServiceRecord\{[^\s{}]+ u\d+ ' + component +
+              r'(?: c:' + re.escape(package) + r')?\}[ \t]*(?:\r?\n|$)')
     matching = [block for block in blocks if re.match(
-        r'^[ \t]*\* ServiceRecord\{[^\n}]*\b' + component + r'\}', block)]
+        header, block)]
     if len(matching) != 1:
         raise RuntimeError('Expected one actual Android CardsAuthorityService record')
     block = matching[0]

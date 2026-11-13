@@ -44,4 +44,5 @@ if __name__ == '__main__':
         candidate_version=2018,
         baseline_native=BASELINE_NATIVE,
         candidate_native=native_source,
+        allow_2018_independent_evidence_migration=True,
     ))

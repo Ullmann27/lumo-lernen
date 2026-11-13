@@ -1,5 +1,6 @@
 """Evidence must reject stale acknowledgements, card loss and fabricated moves."""
 import copy
+import hashlib
 from pathlib import Path
 import sys
 import unittest
@@ -11,6 +12,60 @@ from nextgen_evidence import (require_cards_authority_binding, require_cards_dra
 
 
 class NextgenEvidenceTests(unittest.TestCase):
+    def actual_authority_dump(self):
+        path = Path(__file__).with_name('fixtures') / 'android_2018_cards_authority_recorded.txt'
+        raw = path.read_bytes()
+        self.assertEqual(hashlib.sha256(raw).hexdigest(),
+                         '196b4bd103984b65f63adf10cb1171405163dad2a07df27264ee71e079101aa5')
+        return raw.decode()
+
+    def test_actual_service_header_retains_real_process_and_binding_evidence(self):
+        # Original workflow43395154888/job131785002542. Its enclosing tour failed;
+        # parsing this recorded OS dump is not a new Android runtime acceptance.
+        package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+        report = require_cards_authority_binding(self.actual_authority_dump(), package)
+        self.assertEqual(report, {'main_process_pid': 5599, 'native_process_pid': 7348,
+                                 'service': 'dev.ullmann.lumo.lumo_lernen.CardsAuthorityService',
+                                 'bound': True})
+
+    def test_actual_service_unknown_suffix_foreign_component_or_duplicate_fails(self):
+        package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+        dump = self.actual_authority_dump()
+        for bad in (
+                dump.replace(' c:' + package + '}', ' c:other.app}'),
+                dump.replace(' c:' + package + '}', ' extra:' + package + '}'),
+                dump.replace(' c:' + package + '}', ' c:' + package + ' unexpected}'),
+                dump.replace(' u0 ' + package + '/', ' u0 other.' + package + '/', 1),
+                dump.replace(' u0 ' + package + '/', ' u0 other.app/OtherService\n' + package + '/', 1),
+                dump.replace(' c:' + package + '}', '} trailing-unobserved-data'),
+                dump + dump):
+            with self.subTest(header=bad.splitlines()[2]), self.assertRaises(RuntimeError):
+                require_cards_authority_binding(bad, package)
+
+    def test_actual_record_missing_binding_or_wrong_process_still_fails(self):
+        package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+        dump = self.actual_authority_dump()
+        for bad in (dump.replace('requested=true', 'requested=false'),
+                    dump.replace('received=true', 'received=false'),
+                    dump.replace('hasBound=true', 'hasBound=false'),
+                    dump.replace('7348:', '5599:'),
+                    dump.replace('7348:' + package + ':lumo_game/', '7348:other.app/'),
+                    dump.replace('5599:' + package + '/', '5599:' + package + ':lumo_game/'),
+                    dump.replace(' u0 CR ', ' u0 ')):
+            with self.subTest(dump=bad[-160:]), self.assertRaises(RuntimeError):
+                require_cards_authority_binding(bad, package)
+
+    def test_another_service_block_cannot_supply_missing_cards_binding_facts(self):
+        package = 'dev.ullmann.lumo.lumo_lernen.coachpreview'
+        dump = self.actual_authority_dump()
+        foreign = dump.replace('CardsAuthorityService', 'OtherService')
+        for missing in ('app=ProcessRecord', '* Client AppBindRecord',
+                        'requested=true received=true hasBound=true'):
+            incomplete = '\n'.join(line for line in dump.splitlines() if missing not in line) + '\n'
+            for combined in (incomplete + foreign, foreign + incomplete):
+                with self.subTest(missing=missing), self.assertRaises(RuntimeError):
+                    require_cards_authority_binding(combined, package)
+
     def test_native_speech_requires_local_profile_and_same_process_completion(self):
         start = 'I/LumoLearningSpeech( 1234): started id=4 profile=lumo-free-supertonic-de-v1\n'
         done = 'I/LumoLearningSpeech( 1234): completed id=4\n'

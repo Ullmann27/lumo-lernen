@@ -40,6 +40,10 @@ PROBE_FILES = frozenset({
     'tools/android_qa/native_surface_readiness.py',
     '.github/probes/creative_android_probe.py',
     '.github/probes/lumo_nextgen_surfaces_android_probe.py',
+    '.github/probes/lumo_2003_update_android_probe.py',
+    '.github/probes/lumo_2018_update_android_probe.py',
+    'tools/android_qa/update_preservation.py',
+    'tools/android_qa/nextgen_evidence.py',
 })
 ALLOWED_CHANGES = PROBE_FILES | frozenset({
     '.github/workflows/lumo-nextgen-2018-android-retest.yml',
@@ -47,10 +51,17 @@ ALLOWED_CHANGES = PROBE_FILES | frozenset({
     'scripts/tests/test_nextgen_retest.py',
     'tools/android_qa/tests/test_nextgen_cards_readiness.py',
     'tools/android_qa/tests/test_nextgen_responsive_surface.py',
+    'tools/android_qa/tests/test_update_preservation.py',
+    'tools/android_qa/tests/test_nextgen_evidence.py',
+    'tools/android_qa/tests/fixtures/android_2018_cards_authority_recorded.txt',
+    'tools/android_qa/tests/fixtures/android_2018_cards_authority_recorded.json',
+    'tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json',
+    'test/tutoring/build2018_update_migration_test.dart',
     'tools/android_qa/tests/fixtures/android_2018_learning_portrait_a31_00.png',
     'tools/android_qa/tests/fixtures/android_2018_learning_portrait_a31_36.png',
     'tools/android_qa/tests/fixtures/android_2018_learning_portrait_a31.json',
     'docs/qa/2026-11-13-build2018-portrait-probe.md',
+    'docs/qa/2026-11-13-build2018-update-preservation.md',
     'docs/evidence/build2018-portrait-recovery-20261113/contracts.log',
     'docs/evidence/build2018-portrait-recovery-20261113/RESULT.json',
 })

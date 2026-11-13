@@ -106,7 +106,9 @@ class NextgenRetestTests(unittest.TestCase):
         self.assertEqual(set(changed), RETEST.ALLOWED_CHANGES)
         for field in ('lib/app/app_shell.dart', 'pubspec.yaml', 'config/godot-source.json',
                       'tools/auto_install/LumoGameActivity.kt', 'scripts/verify_nextgen_delivery.py',
-                      'scripts/verify_unified_apk.py', '.github/probes/lumo_2018_update_android_probe.py'):
+                      'scripts/verify_unified_apk.py', 'lib/core/progress_repository.dart',
+                      'lib/domain/learning/independent_evidence.dart',
+                      'tools/android_qa/kart_tour_evidence.py'):
             changed_tree = dict(self.qa_tree, **{field: '100644 blob ' + '3' * 40})
             with self.subTest(field=field), self.assertRaises(ValueError):
                 RETEST.verify_tree_scope(RETEST.APK_SOURCE, QA_SOURCE,
@@ -345,12 +347,15 @@ class RecoveryWorkflowContracts(unittest.TestCase):
         self.assertIn("github.head_ref == '" + RETEST.QA_BRANCH + "'", self.workflow)
         self.assertIn("github.event.pull_request.head.repo.full_name == github.repository", self.workflow)
 
-    def test_emulator_explicit_cwd_and_original_update_validator_are_preserved(self):
+    def test_emulator_cwd_binds_apk_source_and_update_uses_reviewed_qa_helper(self):
         self.assertEqual(self.workflow.count('        working-directory: app'), 2)
         self.assertIn('.probe-venv/bin/python .github/probes/modernization_android_tour.py --apk', self.workflow)
         self.assertIn('"$GITHUB_WORKSPACE/acceptance/.github/probes/lumo_nextgen_surfaces_android_probe.py" --apk',
                       self.workflow)
-        self.assertIn('.probe-venv/bin/python .github/probes/lumo_2018_update_android_probe.py --baseline', self.workflow)
+        self.assertIn('.probe-venv/bin/python "$GITHUB_WORKSPACE/acceptance/.github/probes/lumo_2018_update_android_probe.py" --baseline', self.workflow)
+        self.assertNotIn('.probe-venv/bin/python .github/probes/lumo_2018_update_android_probe.py --baseline', self.workflow)
+        self.assertIn('"$GITHUB_WORKSPACE/acceptance/tools/android_qa/update_preservation.py"', self.workflow)
+        self.assertIn('-s "$GITHUB_WORKSPACE/acceptance/tools/android_qa/tests" -p test_update_preservation.py -v', self.workflow)
         self.assertIn('LUMO_CANDIDATE_SOURCE_SHA: ${{ env.APP_SOURCE_SHA }}', self.workflow)
         self.assertNotIn('LUMO_CANDIDATE_SOURCE_SHA: ${{ env.QA_SOURCE_SHA }}', self.workflow)
         self.assertNotIn('LUMO_CANDIDATE_SOURCE_SHA: ${{ github.sha }}', self.workflow)

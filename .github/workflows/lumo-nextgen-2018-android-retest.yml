@@ -196,8 +196,8 @@ jobs:
         grep -Fxq 'eng' tour/tesseract-installed-languages.txt
         python3 -m venv .probe-venv
         .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
-        python3 -m py_compile .github/probes/lumo_2003_update_android_probe.py .github/probes/lumo_2018_update_android_probe.py
-        .probe-venv/bin/python -m unittest discover -s tools/android_qa/tests -p test_update_preservation.py -v
+        python3 -m py_compile "$GITHUB_WORKSPACE/acceptance/.github/probes/lumo_2003_update_android_probe.py" "$GITHUB_WORKSPACE/acceptance/.github/probes/lumo_2018_update_android_probe.py" "$GITHUB_WORKSPACE/acceptance/tools/android_qa/update_preservation.py"
+        .probe-venv/bin/python -m unittest discover -s "$GITHUB_WORKSPACE/acceptance/tools/android_qa/tests" -p test_update_preservation.py -v
         sha256sum candidate/dist/x86_64/Lumo-Lernen-Neu.apk | tee tour/tested-apk-sha256.txt
     - name: Enable accelerated disposable emulator
       run: |
@@ -238,7 +238,7 @@ jobs:
         disable-animations: true
         emulator-boot-timeout: 300
         emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
-        script: .probe-venv/bin/python .github/probes/lumo_2018_update_android_probe.py --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
+        script: .probe-venv/bin/python "$GITHUB_WORKSPACE/acceptance/.github/probes/lumo_2018_update_android_probe.py" --baseline baseline/dist/x86_64/Lumo-Lernen-Neu.apk --candidate candidate/dist/x86_64/Lumo-Lernen-Neu.apk --out tour
         working-directory: app
     - uses: actions/upload-artifact@v4
       if: always()
