@@ -2,137 +2,137 @@
   "schema": 1,
   "status": "approved",
   "versionCode": 2019,
-  "native_revision": "703a8f3ff7714d079223c7f0a03ab2400ba6a36a",
-  "native_workflow_run_id": 43452283809,
-  "reviewed_by": "ChatGPT root; five original renderer PNGs actually inspected",
-  "reviewed_at": "2026-11-13T15:43:21.280577+00:00",
-  "notes": "Source703 checkpoint: completed Graphics run43452283809, all three jobs successful. Actual Home portrait and landscape, Winter and Crystal landmarks and drift-release effect inspected. This receipt approves only its exact703 native source. Newly published Studio76980 changes require fresh combined-source proof. No final APK, physical Android performance or later source is approved.",
+  "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "native_workflow_run_id": 43489950655,
+  "reviewed_by": "Root integration reviewer",
+  "reviewed_at": "2026-11-13T19:44:12.970959+00:00",
+  "notes": "Five original current 993c renderer captures directly inspected by Root: wide and portrait Home, Winter Sprint, Crystal Canyon and drift release. Findings describe only the visible static frames. Original graphics workflow, all three ZIPs, source stamps and logs are validated. No Android, natural-input or frame-rate approval is asserted.",
   "workflow_metadata_sha256": {
-    "run.json": "e69230dc53e47bc6de9bade95b975a77ade795937212b0880feccec1b84ac95a",
-    "jobs.json": "f9fd0fa2fe69be4476900ff8b56b2e49c221680108814abd7da0d14a33bae2f7"
+    "run.json": "c1239e5b6d618a12e00a5cbfc2bb24f14e4d5de0963be6f8aa8cd07e71e79d2c",
+    "jobs.json": "79974c2fe6ab69530cca26e6e5f6d9dd799811fc1b9522244f6fbc2768f054a3"
   },
   "artifacts": [
     {
       "area": "home",
-      "id": 14053942293,
+      "id": 14068903423,
       "name": "lumo-kart-experience-home",
-      "sha256": "908329fa4ce216d84ea0b121aff295325120a196a3961380c54c8b475acae229",
+      "sha256": "75559a06d3e330260a9b845d041eafa0f5944b7c3889da7fcb3877ed8ce39591",
       "metadata_sha256": {
-        "source-sha.txt": "97fecdf6d77a94e426e1aef3c8c430f1484813fa6a407a9626d31e6979ce4611",
-        "source-tree.txt": "ffcaeb150d8de4954610bfe4edda03e25e8767dc0770bcfb3d307970f00c2768",
+        "source-sha.txt": "36ca8f13d98ed1966f31b429208f16e92cb578e625fa7e2123bcb7ec0d198b66",
+        "source-tree.txt": "d15d941c1146a2cd7277913938d7b3ce6ed10428652bed13091c44b5b35ae233",
         "source-dirty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "engine.txt": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
-        "image-manifest.json": "85cdf85cec7c7ac9c8e087c8d1e02843c04e391fe005e245ea4156cea79e8f36",
-        "artifact.json": "0f26329288f569d27b5605ab63dc9e63ea99000d51045c021b83cb63067eb885",
+        "image-manifest.json": "d63585e5f6826192048c9a5fa1d145192596a3b91da3ca993fcc3e267743d383",
+        "artifact.json": "3a3ac20295106f02c83fe50b219138c686bdfa9f64fc9459eb582ca63a3e371f",
         "regression.log": "470556981f51f3da0f14526bb3cd2d667bb9355742e9b3b390496ef78d22d161",
         "preview-resolution.log": "81295738e3d80adac2d26ad102813f041d0865a004562aaf217d2ff3eca30fc1",
         "cards-header.log": "6aaf54424923fd7d7b472e55e52de02d1bd5040845c4982659844db4314121a8",
         "home-promenade.log": "47c1e7593d3e67f2364171e9586fd6e30b77c321dd829046dd67fd7fa55aaac8",
-        "preserved-spatial-menu.log": "08d740d1164edf6b0521731542d57c649c6b93d6bc0e42e1c871ffcdd47c1ad4",
+        "preserved-spatial-menu.log": "d6d69816d12e460f57abfe16ce6ccbb712ecf92764b1d7913f0d342a5cca526c",
         "preserved-garage.log": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
         "render.log": "faeec0ca6bc3cdb8a325b1008a31756175a7de4c378e5801175ef0204a6b85d8"
       }
     },
     {
       "area": "worlds",
-      "id": 14052525772,
+      "id": 14069811657,
       "name": "lumo-kart-experience-worlds",
-      "sha256": "801a5805776bbb0f521118b95109f4e747bd311796638ef02e06519fa3bf6931",
+      "sha256": "54ed82e4f47fc559cecf5471e9f7ad62546ff46df40fc93a18ae34cb2ee5add6",
       "metadata_sha256": {
-        "source-sha.txt": "97fecdf6d77a94e426e1aef3c8c430f1484813fa6a407a9626d31e6979ce4611",
-        "source-tree.txt": "ffcaeb150d8de4954610bfe4edda03e25e8767dc0770bcfb3d307970f00c2768",
+        "source-sha.txt": "36ca8f13d98ed1966f31b429208f16e92cb578e625fa7e2123bcb7ec0d198b66",
+        "source-tree.txt": "d15d941c1146a2cd7277913938d7b3ce6ed10428652bed13091c44b5b35ae233",
         "source-dirty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "engine.txt": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
         "image-manifest.json": "3bd07229111f5c41f503d2c781d0f3adfdf68ab6782435a1b106aced17ac40fc",
-        "artifact.json": "4833cf926d1586a907c4808b3300e81075b61715f45179e71aaced651f1090ea",
+        "artifact.json": "15659dcb66628636574886c94953e58e3b9019b61a9005fce17b7829dbc7813e",
         "regression.log": "22012b92813347135be6af3357e02955d76ff99f3e8a54bad1b34c99d0eaa969",
-        "winter-visibility.log": "41fc3934c636037b8ff86514b99cfe108728da7269d4ce058b634ffe18b7a2cf",
-        "render-winter_sprint.log": "98ec91b9edb1626e29cf407cef16e80b1ce416ccb49bf462ea1b014defc6a0c1",
-        "render-crystal_canyon.log": "24c693c4f63dd0975c393354931b27b3ab046d0cb747444b221a5558c779cc04"
+        "winter-visibility.log": "69e4aa9a61638ab94bae3de86a68fa174c7e9a6075f2e86adf9a267e6e73524d",
+        "render-winter_sprint.log": "7c99217a1d4b7b641661c7999e239a59ff9216a998ceac60c31545eed48ab95c",
+        "render-crystal_canyon.log": "1f823c5b24a37a515ea5f120c4499f622a8f89179416e93917056ad21acff208"
       }
     },
     {
       "area": "feedback",
-      "id": 14053200359,
+      "id": 14068797425,
       "name": "lumo-kart-experience-feedback",
-      "sha256": "26af4e03655a3a72adcdfde6d9e9b6df751368e88de7f49c885e5150339bc83f",
+      "sha256": "712d2f0803f52019768773b536cbcf66b99be3ad33199d083d1f35aa1e0c4d33",
       "metadata_sha256": {
-        "source-sha.txt": "97fecdf6d77a94e426e1aef3c8c430f1484813fa6a407a9626d31e6979ce4611",
-        "source-tree.txt": "ffcaeb150d8de4954610bfe4edda03e25e8767dc0770bcfb3d307970f00c2768",
+        "source-sha.txt": "36ca8f13d98ed1966f31b429208f16e92cb578e625fa7e2123bcb7ec0d198b66",
+        "source-tree.txt": "d15d941c1146a2cd7277913938d7b3ce6ed10428652bed13091c44b5b35ae233",
         "source-dirty.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
         "engine.txt": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
-        "image-manifest.json": "e2592588c1a9de6014cfa14387c731e8cb44071c63d132bd4927a9aa0eedd04e",
-        "artifact.json": "b22a33d6b9ee5de68eacbb4b2dd2941e1884cce79e6eadc33a34ce3b660ff073",
-        "regression.log": "bb8ee46711bc397dae3102d268bc02f4015d1baa40dc3c6723aa3dd4fbb1aec3",
+        "image-manifest.json": "ad3888b1295f76411013927d89131e127526ca9fa44f63e853090c56e445d6ce",
+        "artifact.json": "d75de02d03e57e96f09e94c0efc17950b6f83bb60f70a9682fbdce8b85aec32d",
+        "regression.log": "2636bef7d0964c9f837bc3e03063afdfa49bfe0e9b3a4f16cf768254bcc501f5",
         "render.log": "362def49c4a99bb2cf7112d2ae3724685da6a7c8eb3cf9e74265b839f24b73ac"
       }
     }
   ],
   "images": [
     {
-      "path": "docs/evidence/kart-graphics-2019-reviewed/winter_sprint/099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2-02_world_landmark.png",
-      "area": "winter_sprint",
-      "artifact_id": 14052525772,
-      "artifact_entry": "images/winter_sprint/02_world_landmark.png",
-      "native_revision": "703a8f3ff7714d079223c7f0a03ab2400ba6a36a",
-      "sha256": "099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2",
-      "dimensions": [
-        1280,
-        720
-      ],
-      "findings": "Fahrbahn, Leitplanken und leuchtende Streckenführung sind klar erkennbar. Seilbahnstation, mehrere Kabinen, schneebedeckte Berge und Bäume erscheinen in derselben aktuellen Produktionsszene. Menü, Pause, Streckenkarte und Fahrbedienelemente bleiben lesbar und innerhalb des Bildes. Gesichtet wurde die stehende Landmarkansicht."
-    },
-    {
-      "path": "docs/evidence/kart-graphics-2019-reviewed/crystal_canyon/e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe-02_world_landmark.png",
-      "area": "crystal_canyon",
-      "artifact_id": 14052525772,
-      "artifact_entry": "images/crystal_canyon/02_world_landmark.png",
-      "native_revision": "703a8f3ff7714d079223c7f0a03ab2400ba6a36a",
-      "sha256": "e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe",
-      "dimensions": [
-        1280,
-        720
-      ],
-      "findings": "Türkise und violette Kristalle, der dunkle Felsbogen und die anschließende Kurve sind zusammen sichtbar. Auch im Bogenschatten bleiben Fahrbahnmarkierung und seitliche Begrenzung erkennbar. HUD, Streckenkarte und Fahrbedienelemente sind vollständig im Bild; die Landmarkansicht zeigt keine abgeschnittenen Bedienbeschriftungen."
-    },
-    {
-      "path": "docs/evidence/kart-graphics-2019-reviewed/feedback/f591dfbfec59e9f485851b4a3def8b107802468c2cae30159ee2f05459828b5a-03_drift_release.png",
-      "area": "feedback",
-      "artifact_id": 14053200359,
-      "artifact_entry": "images/03_drift_release.png",
-      "native_revision": "703a8f3ff7714d079223c7f0a03ab2400ba6a36a",
-      "sha256": "f591dfbfec59e9f485851b4a3def8b107802468c2cae30159ee2f05459828b5a",
-      "dimensions": [
-        1280,
-        720
-      ],
-      "findings": "Lumo und Kart liegen vollständig innerhalb der Aufnahme. Zwei helle Turboauslässe mit gelben Schweifen sind an der Rückseite des Karts sichtbar; die zusätzlichen Geschwindigkeitslinien lassen den befahrbaren Streckenverlauf erkennbar. Der Hinweis zum orangen Drift-Turbo, Pause und die Fahrbedienelemente bleiben lesbar. Gesichtet wurde das tatsächliche aktuelle Drift-Release-Standbild."
-    },
-    {
       "path": "docs/evidence/kart-graphics-2019-reviewed/home/84bc4e149cac520df7aa704497b63067c7c359d5cff55a2c8b78cc8611aceae6-home-1280x720.png",
       "area": "home",
-      "artifact_id": 14053942293,
+      "artifact_id": 14068903423,
       "artifact_entry": "images/home-1280x720.png",
-      "native_revision": "703a8f3ff7714d079223c7f0a03ab2400ba6a36a",
+      "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
       "sha256": "84bc4e149cac520df7aa704497b63067c7c359d5cff55a2c8b78cc8611aceae6",
       "dimensions": [
         1280,
         720
       ],
-      "findings": "Die aktuelle Querformat-Aufnahme zeigt Lumo vollständig im Kart auf der beleuchteten Plattform vor dem Hafen. Die drei Rennmodi, alle fünf unteren Auswahlbereiche, Optionen, Rückkehr zur Spielewelt und der hervorgehobene Startknopf sind vollständig sichtbar und lesbar. Kart, Plattform und Bedienelemente haben klare räumliche Grenzen."
+      "findings": "Opened this current 993c Home original: Lumo with blue goggles and dark-blue jacket is visibly seated in the kart on the luminous platform. All three race-mode cards, five navigation controls, Spielewelt return and START are legible and separated in the wide frame. Harbour scenery remains visible. This static frame does not measure frame rate or execute navigation."
     },
     {
       "path": "docs/evidence/kart-graphics-2019-reviewed/home/cd3b8e20ca4bd26bf3c553202cceeaacf85cba2bd43e879d45d5a34e3e289e51-home-412x915.png",
       "area": "home",
-      "artifact_id": 14053942293,
+      "artifact_id": 14068903423,
       "artifact_entry": "images/home-412x915.png",
-      "native_revision": "703a8f3ff7714d079223c7f0a03ab2400ba6a36a",
+      "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
       "sha256": "cd3b8e20ca4bd26bf3c553202cceeaacf85cba2bd43e879d45d5a34e3e289e51",
       "dimensions": [
         412,
         915
       ],
-      "findings": "Die aktuelle Hochformat-Aufnahme hält Lumo und das Kart vollständig im Bild. Die Moduskarten Solo, Pokal und Zeit liegen oberhalb der sichtbar umgebrochenen Auswahlknöpfe. Rückkehr, Start und das obere Optionssymbol sind innerhalb des Bildes erreichbar dargestellt; keine der sichtbaren Beschriftungen ist abgeschnitten."
+      "findings": "Opened this current 993c portrait Home original: the central Lumo/kart stage remains visible above three compact mode cards and two rows of navigation controls. Back and START are separately readable at the bottom. Compact Solo/Pokal/Zeit labels and the gear icon are visible without text overlap. This observation is limited to the original static layout."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/winter_sprint/099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2-02_world_landmark.png",
+      "area": "winter_sprint",
+      "artifact_id": 14069811657,
+      "artifact_entry": "images/winter_sprint/02_world_landmark.png",
+      "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+      "sha256": "099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the actual current 993c original at 1280x720: snow mountains, cable-car supports and station are visible beside the winding track; HUD labels, pause/menu, minimap and driving controls are separated and legible. This landmark-camera frame is not a drive or device-performance measurement."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/crystal_canyon/e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe-02_world_landmark.png",
+      "area": "crystal_canyon",
+      "artifact_id": 14069811657,
+      "artifact_entry": "images/crystal_canyon/02_world_landmark.png",
+      "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+      "sha256": "e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the actual current 993c original at 1280x720: the road passes beneath the stone arch between cyan and purple crystal formations. The road outline, railings and displayed HUD controls are visible without label overlap in this frame. No frame-rate or physical-device claim."
+    },
+    {
+      "path": "docs/evidence/kart-graphics-2019-reviewed/feedback/dac762b90284ead2c3202a2d1bd3c110780a2eab25b0457cc96073ac891a5dca-03_drift_release.png",
+      "area": "feedback",
+      "artifact_id": 14068797425,
+      "artifact_entry": "images/03_drift_release.png",
+      "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+      "sha256": "dac762b90284ead2c3202a2d1bd3c110780a2eab25b0457cc96073ac891a5dca",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Opened the actual current 993c original at 1280x720: Lumo and kart are on the road, with bright paired yellow exhaust trails and coloured speed streaks below the Oranger Drift-Turbo caption. The display shows 86km/h; this is a UI observation, not an independent speed measurement. Minimap and driving controls remain readable."
     }
   ]
 }

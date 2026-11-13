@@ -1,13 +1,13 @@
 # Continue combined LUMO integration / candidate 2019
 
-Active drafts: Native PR160 and Host PR465. The executable Host code is the
-published checkpoint `5d44b479c2e73a5a5977777f0f94394c084c0e8d`, Tree
-`609c710fde1298f5503784ca6615b895c138b081` (local twin 7095479c). This following
-checkpoint adds original evidence and handoff documents only. Version,
-Native pins, current receipts and product/helper/test/workflow files remain
-unchanged. Host PR465 still points to
-`e5c8d6f931647b56368daefab5b924070a02f11f` until the complete accepted Native
-source and current reviewed receipts are ready.
+Active drafts: Native PR160 and Host PR465. This candidate builds on published
+Host evidence checkpoint 8b6f9f56c7aa69a45dca5301ebc104e7b232e0f6, tree
+568c834c1a1bdfb139c3286577223fec82717e0e (local twin b00a97ec), whose executable
+readiness repairs came from published 5d44b479. It connects the accepted 993c
+Native source through both current receipts and all three 2019 pins. The exact
+version remains 0.13.7+2019. Prior policies and the original 2018 receipt remain
+unchanged. Host PR465 is advanced only with the exact-tree expected-E5 lease;
+Android acceptance belongs to the newly published Host source.
 
 ## Current Native source and finished gates
 
@@ -35,15 +35,32 @@ The final review SHA256 is
 `2c383d58a58fed9b97c857ff88bf6f97c32ceda55baa6f9606b5a62fe503f293`;
 the prepared selection is
 `8d2ab7a70941b1567a4f946e4c7395fffd69d4e4b73a34daf1368737544f9e90`.
-No old 90d image review was transferred and no Host receipt has yet been written.
+The current Graphics receipt was produced by the existing recorder from these
+three original ZIPs and five actual Root observations. Its SHA256 is
+7b92eef83695cd35f1712b4095a6389e4d661eeabe5bf9ed03d8c0304608170a.
 
-The current Nextgen run 43489950659 is still executing its remaining modules.
-Preview, Gameplay, Build Touch and Treasure Touch have completed cleanly with
-new original artifacts. The final 22-image selection covers nine distinct
-production families, three Touch groups, all four Village frames and all six
-Puzzle-menu frames. Actual image views are being recorded against each new
-component and must later match the same original bytes in the complete bundle.
-A current-source final 43-contract bundle/release check remains mandatory.
+Nextgen run 43489950659 completed all eight jobs successfully at 19:42:56 UTC.
+Original bundle 14072020645 contains 176,663,366 bytes; SHA256:
+69b9112e524a6e204d8504c787768513e57e2c59a236d1488b8d6ec4e49cada0.
+The unchanged frozen Host 2fa parser passes 43 Core / 24 Studio / 4 Village /
+6 Puzzle-menu / 6 Touch pairs plus 32 Touch images. All four source trees are
+f13dd5fc. The complete bundle contains 146 decoded PNGs (136 current, 10 baseline)
+and 108 clean artifact logs. All eight full original job logs are retained.
+Release 444662111 / asset 744941184 has the same exact source and ZIP digest;
+the original archive job downloaded the public bytes and compared them with cmp.
+
+Root directly opened all 19 selected Worlds originals and three selected Touch
+originals. The resulting 22-image review covers nine distinct production families,
+three Touch groups, all four Village states and all six Puzzle-menu states.
+The separate final byte-binding record has SHA256
+feff0b8174365f97088729233fb656aa9cd7f47c4c94f8923eb93187c2cbbf96.
+Actual overflow, wrapping and ellipsized labels remain in the findings; static
+review does not claim natural input or device performance. The existing Native
+recorder produced config/nextgen-2019-visual-review.json with SHA256
+1ed85c672b956792498ab3cf3948dab0bc0417ccb071e13c51ef2f1840c78943.
+Complete original metadata/logs/indices and Root observations are preserved in
+native-993c-nextgen. Both current receipts approve precisely 993c; no older
+source or review is silently substituted.
 
 ## Geometry defect and historical correction
 
@@ -99,21 +116,34 @@ unapproved. No whole older Collector branch is substituted for stronger gates.
 
 ## Complete the actual Android connection
 
-Keep 993c fixed while its remaining Nextgen acceptance and final image review
-complete. Use the frozen Host 2fa 43 parser snapshot for the original source.
-Then record both actual current reviews with the existing recorders and update
-config/godot-source.json, APPROVED[2019] and the candidate 2019 test constant
-atomically to the accepted Native SHA. Publish the exact final Host tree to
-PR465 using the expected E5 lease. Actual ARM64/x86 builds, API35/API37 tours,
-APK/PCK/signature binding and 2017-to-2019 install-in-place preservation remain
-required independent gates. This integration branch does not publish an APK.
+All three 2019 pins now identify 993c145304c3e5f8aa947e1c7a949a8ef8685415.
+The actual verify_kart_graphics_delivery.verify_visual_acceptance call passed
+with both current receipts, original workflow metadata and the original complete
+Native ZIP. The strict pin CLI and 63 current/historical pin regressions also
+passed with no errors or skips. Exact commands, original logs, source identities
+and preserved-path verification are retained under host-993c-connection.
+No unchanged full-suite or Android run is inferred from these focused results.
+
+Publish the exact final Host tree to PR465 using the expected E5 lease, then
+observe LUMO Kart graphics 2019 Android candidate on that actual Host SHA.
+Required jobs are android-host-compile, verify-and-build, both android-tour
+matrix jobs (actual API35 and API37/Android17), update-2019-from-2017 and
+verify-reviewed-2019. ARM64/x86 APK bytes, signature, native PCK, source identity
+and real 2017-to-2019 learning-state preservation must agree across their proofs.
+The integration PR permits the internal completion job. A workflow_dispatch
+would skip that PR-exclusive completion job, so it is not an equivalent path.
+publish-reviewed-2019 requires the separate producer branch and remains skipped
+on integration/lumo-connections-20261113. No APK publication is authorized here.
 
 Main, live Host PR461 and producer dirty worktrees stay protected. Root alone
 stages/commits and moves its own refs. No unattended automation is enabled.
 The one-time 19:30:58 UTC Producer check found no new heads in Native 158/165 and
 Host 466/468/469; newer metadata timestamps were not treated as new source work.
 
-## Published graphics producer handoff
+## Historical published graphics producer handoff
+
+The following original producer notes are preserved as history. They do not
+replace the active combined integration source, acceptance or publication scope.
 
 The current isolated host branch is `chatgpt/lumo-kart-graphics-apk-20261113`,
 based on PR #461 recovery `8eab228433f124c1e2332e3d3c2ecf462ec8b136`.

@@ -1,0 +1,113 @@
+{
+  "schema": 1,
+  "status": "PASS",
+  "created_at_utc": "2026-11-13T19:57:24.334022+00:00",
+  "native_revision": "993c145304c3e5f8aa947e1c7a949a8ef8685415",
+  "base_host_remote_commit": "8b6f9f56c7aa69a45dca5301ebc104e7b232e0f6",
+  "version": "0.13.7+2019",
+  "checks": {
+    "actual_combined_visual_acceptance": "PASS",
+    "native_reviewed_original_images": 22,
+    "graphics_reviewed_original_images": 5,
+    "pin_cli": "PASS",
+    "pin_tests": 63,
+    "pin_errors": 0,
+    "pin_skips": 0,
+    "unchanged_baseline_tracked_blobs": 3207,
+    "reviewed_changed_baseline_files": 24
+  },
+  "archive": {
+    "path": "original-evidence.tar.gz",
+    "bytes": 138894,
+    "sha256": "007d7eb80401deb4a794437bd2d916504d5436d5ebdcb6733e9a73eb89902b89",
+    "members": 14,
+    "lossless_roundtrip_verified": true
+  },
+  "files": [
+    {
+      "path": "actual-visual-acceptance.json",
+      "bytes": 13328,
+      "sha256": "d1b27be684420ee919c7bffbfbdffb0fca07acb2634991cc1e9e92ceba3acbf4",
+      "source": "/workspace/scratch/b3485b7bb989/host-current-acceptance-993c/actual-visual-acceptance.json"
+    },
+    {
+      "path": "final-source/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "4e65ae74551b2f5b08624e6626d7f13e8a413183abb81feff64cd8d36297a13d",
+      "source": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/config/godot-source.json"
+    },
+    {
+      "path": "final-source/config/kart-graphics-2019-visual-review.json",
+      "bytes": 8728,
+      "sha256": "7b92eef83695cd35f1712b4095a6389e4d661eeabe5bf9ed03d8c0304608170a",
+      "source": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/config/kart-graphics-2019-visual-review.json"
+    },
+    {
+      "path": "final-source/config/nextgen-2019-visual-review.json",
+      "bytes": 19482,
+      "sha256": "1ed85c672b956792498ab3cf3948dab0bc0417ccb071e13c51ef2f1840c78943",
+      "source": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/config/nextgen-2019-visual-review.json"
+    },
+    {
+      "path": "final-source/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 16678,
+      "sha256": "bd2f2b1e6460f8562472bb85484f45a8c0e8cdc027e9b13d9b4329ef0bf6c877",
+      "source": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/scripts/tests/test_candidate_2011_pin.py"
+    },
+    {
+      "path": "final-source/scripts/verify_legacy_release_pin.py",
+      "bytes": 10415,
+      "sha256": "4ff7a1157b15a624f686d7a7d792493ba237aaa146afbaf092b89b5ad9eebe61",
+      "source": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/scripts/verify_legacy_release_pin.py"
+    },
+    {
+      "path": "graphics/root-record-graphics-receipt.json",
+      "bytes": 1705,
+      "sha256": "1333d8859881eb0b9e569b2344ccd85c72c66ec0d80344932566835bb6fa54b2",
+      "source": "/workspace/scratch/b3485b7bb989/pipeline-evidence/pr160-993c1453-graphics/root-record-graphics-receipt.json"
+    },
+    {
+      "path": "graphics/root-record-graphics-receipt.log",
+      "bytes": 139,
+      "sha256": "788856f0eb9abdd25969778de3f0dd013931aaff5b5f91b5a83b8b78cc9b8393",
+      "source": "/workspace/scratch/b3485b7bb989/pipeline-evidence/pr160-993c1453-graphics/root-record-graphics-receipt.log"
+    },
+    {
+      "path": "native/root-record-nextgen-receipt.json",
+      "bytes": 2030,
+      "sha256": "bb6c8266ab4b3346da6531c1de22835d5a2c3f3d29089057e98423ab6b59d40a",
+      "source": "/workspace/scratch/b3485b7bb989/godot-pr160-993c1453-nextgen-evidence/root-record-nextgen-receipt.json"
+    },
+    {
+      "path": "native/root-record-nextgen-receipt.log",
+      "bytes": 140,
+      "sha256": "4a919a63439731fcdd3415e397089c7c8f2552a21e92e07b48d713d3b1979a41",
+      "source": "/workspace/scratch/b3485b7bb989/godot-pr160-993c1453-nextgen-evidence/root-record-nextgen-receipt.log"
+    },
+    {
+      "path": "pin-cli.log",
+      "bytes": 97,
+      "sha256": "3a05f7486c49be36d893b83d341dae01efb7565edd93a1811d6d5e953f7ae922",
+      "source": "/workspace/scratch/b3485b7bb989/host-current-acceptance-993c/pin-cli.log"
+    },
+    {
+      "path": "pin-tests.log",
+      "bytes": 12098,
+      "sha256": "cd2dfbc5040031966532b2934b799a26e56390cf7780e876035338bc8c1620b7",
+      "source": "/workspace/scratch/b3485b7bb989/host-current-acceptance-993c/pin-tests.log"
+    },
+    {
+      "path": "pin-verification.json",
+      "bytes": 1133,
+      "sha256": "7ed6b1e48c112ce95bd518368ca6dee42e7c935043d4f5dda1e344c7db6d8a43",
+      "source": "/workspace/scratch/b3485b7bb989/host-current-acceptance-993c/pin-verification.json"
+    },
+    {
+      "path": "source-preservation.json",
+      "bytes": 476016,
+      "sha256": "34242c2beebbc5877480dfc30e49d74f92db86460dcad102cd48d4864d5c4e55",
+      "source": "/workspace/scratch/b3485b7bb989/host-current-acceptance-993c/source-preservation.json"
+    }
+  ],
+  "scope": "Current local source/visual/pin acceptance. This does not claim a fresh Android build, emulator tour, update or APK publication."
+}

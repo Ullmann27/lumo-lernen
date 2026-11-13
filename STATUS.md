@@ -1,31 +1,34 @@
 # Combined LUMO integration / candidate 2019
 
-Updated: 2026-11-13, 19:37 UTC. Active drafts: Native PR160 and Host PR465.
-This checkpoint adds source-bound original evidence and current handoff notes.
-Its executable Host code is unchanged from published 5d44b479 / tree 609c710f.
-Version, all three provisional Native pins and existing receipts are unchanged.
+Updated: 2026-11-13, 19:55 UTC. Active drafts: Native PR160 and Host PR465.
+The accepted Native source is 993c1453 / tree f13dd5fc. This Host candidate
+connects that exact source through all three 2019 pins and both current visual
+receipts. Version remains 0.13.7+2019; prior version policies are preserved.
 
-Current Native 993c1453 / tree f13dd5fc has thirteen clean auxiliary workflows
-and three clean Graphics jobs. The previously false-success geometry gate
-is genuinely clean in new CI: five counterchecks plus actual import/geometry
-execution, with complete original logs and exact checkout/source binding.
-Root opened all five current Graphics selections; current Nextgen module
-execution and the complete 22-image review remain in progress.
+All fifteen current Native workflows completed successfully. Their original
+logs are checked separately: thirteen auxiliary workflows, the three Graphics
+jobs and all eight Nextgen jobs. The repaired geometry gate is genuinely clean,
+including five counterchecks and actual engine execution. The frozen Nextgen
+contract passes 43 Core / 24 Studio / 4 Village / 6 Puzzle / 6 Touch probes plus
+32 Touch images. All four capture-source trees match f13dd5fc.
 
-Complete current auxiliary and Graphics metadata/log packs are retained under
-`docs/evidence/integration-20261113/native-993c-auxiliary/` and
-`native-993c-graphics/`. The separate completed prior 90d Nextgen proof is kept
-under `native-90d-checkpoint/`, with its exact 43-contract source and original
-logs. Its geometry failure prevents global approval of 90d and is explicitly
-retained; no predecessor result is relabelled as 993c proof.
+Root directly inspected 22 current Native originals and five current Graphics
+originals. Each selected Native image matches the final original bundle byte
+for byte. Both existing recorders passed, and the actual combined Host visual
+acceptance passed with the new pins. The pin CLI and 63 current/historical pin
+regressions pass without errors or skips. These are source, renderer and local
+contract results; actual Android acceptance remains pending on this Host source.
 
-Host PR465 stays at E5 until final Native acceptance. After the original current
-images are reviewed and bound to the final bundle, record both receipts, change
-the three 2019 pins together and publish the exact Host tree. Complete real
-ARM64/x86, API35/API37 and 2017-to-2019 update gates on that Host source.
-Main, PR461 and producer worktrees remain protected; this integration branch
-does not publish an APK. See [CONTINUE.md](CONTINUE.md) for exact identities,
-original evidence and the scoped 434/794 and 157 Host test results.
+Original evidence is retained under docs/evidence/integration-20261113/ in
+native-993c-nextgen, native-993c-graphics, native-993c-auxiliary and
+host-993c-connection. Earlier 90d proof remains separate in native-90d-checkpoint;
+its invalid historical geometry result is not relabelled as a clean result.
+
+The exact Host tree is ready for the integration PR and its real ARM64/x86 builds,
+API35/API37 tours, APK/PCK/signature checks and 2017-to-2019 preservation test.
+The integration branch performs internal verification and does not publish an
+APK. Main, live PR461 and producer worktrees remain protected. See CONTINUE.md
+for exact sources, evidence identities and the remaining Android gates.
 
 ## Earlier candidate-2017 history
 

@@ -137,10 +137,10 @@ APPROVED = {
     # APK, Android surfaces, preserved 2017 upgrade and review receipt
     # remain independent mandatory gates before immutable publication.
     2018: "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
-    # 2019: Studio source after measured puzzle HUD/input and caption repairs.
+    # 2019: integrated Nextgen source after exact native and visual review.
     # This approves source identity only. Fresh native renderer review, APK,
     # Android integration and preserved 2017 upgrade remain mandatory.
-    2019: "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+    2019: "993c145304c3e5f8aa947e1c7a949a8ef8685415",
 }
 
 def verify(pubspec_text: str, source_text: str) -> tuple[int, str]:
