@@ -23,6 +23,7 @@ GAMEPLAY_2016_REVISION = "b4ccf593d7833e8c259ff0f963494b00d245d03d"
 ACTION_STAGE_2017_REVISION = "1d5c5cb45a323228f627ec529e6ff1ddd86f1c57"
 NEXTGEN_2018_REVISION = "ada5ed81ad62339f15289da62670c0a4f9f7f2b9"
 STUDIO_2019_REVISION = "76980a941fa05d047574d8cc386d3249d93ffca3"
+NEXTGEN_2020_REVISION = "dc478230e0819a05f42de2fd59b93abebfb08406"
 SUPERSEDED_2017_CANDIDATES = {
     "460c94b10df6adae11def608068d72e99c0950db",
     "a16a4fc6791c3c7a594273f4544458382cc2c884",
@@ -48,9 +49,9 @@ class Candidate2011PinTests(unittest.TestCase):
         source = (ROOT / "config" / "godot-source.json").read_text(encoding="utf-8")
         # This is the actual failing build contract, not an invented mock.
         build, revision = POLICY.verify(pubspec, source)
-        self.assertEqual((build, revision), (2019, STUDIO_2019_REVISION))
+        self.assertEqual((build, revision), (2020, NEXTGEN_2020_REVISION))
         self.assertGreater(build, 2018)
-        self.assertIn("version: 0.13.7+2019\n", pubspec)
+        self.assertIn("version: 0.13.8+2020\n", pubspec)
 
     def test_new_candidate_has_exact_reviewed_native_identity(self):
         self.assertEqual(
@@ -103,7 +104,7 @@ class Candidate2011PinTests(unittest.TestCase):
                     POLICY.verify(version(2014), json.dumps(data))
 
     def test_all_existing_native_identities_are_unchanged(self):
-        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019)}
+        old = {k: v for k, v in POLICY.APPROVED.items() if k not in (2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020)}
         digest = hashlib.sha256(
             json.dumps(old, sort_keys=True, separators=(",", ":")).encode()
         ).hexdigest()
@@ -290,6 +291,21 @@ class Candidate2011PinTests(unittest.TestCase):
                 with self.assertRaisesRegex(ValueError, message):
                     POLICY.verify(version(2019), json.dumps(data))
 
+    def test_2020_accepts_only_integrated_native_and_preserves_2019(self):
+        self.assertEqual(POLICY.verify(version(2020), config(NEXTGEN_2020_REVISION)),
+                         (2020, NEXTGEN_2020_REVISION))
+        self.assertEqual(POLICY.verify(version(2019), config(STUDIO_2019_REVISION)),
+                         (2019, STUDIO_2019_REVISION))
+        for revision in (STUDIO_2019_REVISION, NEXTGEN_2018_REVISION, "0" * 40,
+                         NEXTGEN_2020_REVISION[:8]):
+            with self.subTest(revision=revision):
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(2020), config(revision))
+        for version_number in (2017, 2018, 2019):
+            with self.subTest(old=version_number):
+                with self.assertRaisesRegex(ValueError, "revision mismatch"):
+                    POLICY.verify(version(version_number), config(NEXTGEN_2020_REVISION))
+
     def test_2005_keeps_its_original_revision(self):
         self.assertEqual(POLICY.verify(version(2005), config(PREVIOUS_REVISION)),
                          (2005, PREVIOUS_REVISION))
@@ -317,7 +333,7 @@ class Candidate2011PinTests(unittest.TestCase):
             POLICY.verify(version(2011), json.dumps(data))
 
     def test_unreserved_and_private_checkpoint_versions_stay_closed(self):
-        for build in (2006, 2007, 2008, 2009, 2010, 2020, 9999):
+        for build in (2006, 2007, 2008, 2009, 2010, 2021, 9999):
             with self.subTest(build=build):
                 with self.assertRaisesRegex(ValueError, "no reviewed native pin"):
                     POLICY.verify(version(build), config())
