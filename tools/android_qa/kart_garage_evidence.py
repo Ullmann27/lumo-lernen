@@ -82,7 +82,10 @@ def stage_cup_target_observation(frame: dict, lines: list[dict]) -> dict:
         if words <= navigation_words and words & {'fahrer', 'garage'}:
             navigation.append(row)
             seen_navigation.update(words)
-        if normalize(row['text']) in aliases:
+        # Match the complete caption. Removing symbols turns OCR composites
+        # such as '= Grand Prix' into aliases with decoration-sized bounds.
+        caption = ''.join(unicodedata.normalize('NFKC', row['text']).casefold().split())
+        if caption in aliases:
             candidates.append(row)
     demand({'fahrer', 'garage'} <= seen_navigation,
            'Actual landing Fahrer/Garage navigation required before the cup choice')

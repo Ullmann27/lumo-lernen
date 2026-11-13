@@ -1,0 +1,2345 @@
+{
+  "scope": "All non-raster/non-APK/non-archive files from the frozen API37 and update evidence directories. Excluded original ZIP/raster payloads remain unchanged at the recorded workspace paths and original Actions artifacts; this archive is not a full pixel bundle.",
+  "archive_bytes": 3042633,
+  "archive_sha256": "50931db738e114c4b8833e20db362e769bbd9454b630e84bd97f778139392d30",
+  "roundtrip": "Every member byte-exact against frozen original",
+  "members": [
+    {
+      "path": "api37/README.md",
+      "bytes": 3996,
+      "sha256": "85de6525c4278d744171cad82dd58a5533b248e19390254a5686cd873281ffc0"
+    },
+    {
+      "path": "api37/SHA256SUMS",
+      "bytes": 50118,
+      "sha256": "f5ff16a73458fda4f0a4bc2a47419a703976ffdb621bc52dfac5da0a629f8dc6"
+    },
+    {
+      "path": "api37/artifact-member-index.json",
+      "bytes": 79393,
+      "sha256": "83e0405e07abd61f6baadda6930ab35cc4501bee1f55ee40816b102f3124777d"
+    },
+    {
+      "path": "api37/artifact-original/07_home_after_onboarding-render-readiness.json",
+      "bytes": 1726,
+      "sha256": "a8e54486ff92fab920ba81c672ceb3009baf5a0f47e0ad6f569c7bea05658004"
+    },
+    {
+      "path": "api37/artifact-original/10_lernen-render-readiness.json",
+      "bytes": 528,
+      "sha256": "8ecf5d56313941e2c6c0acf4f1b2509f331a7ed14fd5e0d52119aa20e71ff49b"
+    },
+    {
+      "path": "api37/artifact-original/10_start-render-readiness.json",
+      "bytes": 526,
+      "sha256": "59c7b1c88584020daeaec76a0f076edf8a5b66bc7e2c5a916c42637959ac529e"
+    },
+    {
+      "path": "api37/artifact-original/11_atelier_hub-render-readiness.json",
+      "bytes": 538,
+      "sha256": "597b18119d916b0e9aa6d455f4951d105417c8246d83540fd1d55e728f7321eb"
+    },
+    {
+      "path": "api37/artifact-original/12_atelier_beispiel-render-readiness.json",
+      "bytes": 548,
+      "sha256": "1bc25d0ddd523f460da32594e972d2a450554aeba9cae8ee3c2786c917ca25d8"
+    },
+    {
+      "path": "api37/artifact-original/13_atelier_zehnerbruecke-render-readiness.json",
+      "bytes": 558,
+      "sha256": "9232db4070cad67870087a58b102355320d76ff675999a8c02af359003bdac57"
+    },
+    {
+      "path": "api37/artifact-original/20_spiele-render-readiness.json",
+      "bytes": 528,
+      "sha256": "d3559192af54be556ed495ad568f6fce42c2e2c7980eed3f6a0ae8d5deb39eab"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-contrast.tsv",
+      "bytes": 6350,
+      "sha256": "4e3aa1d45cc161fd1c94695b844f481cd93cbf709e5d1347ca041b127c4e2b72"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-navy-latin-1x.tsv",
+      "bytes": 880,
+      "sha256": "571a03014ce4c117fd3ff7bfcbc498cef1dc2dbae4e2714c26d8b18184137303"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-navy-latin.tsv",
+      "bytes": 1379,
+      "sha256": "3ca8323c236ad3208e67f46b3e29d8f6a43cb2e4518497bd0b16f7b7058289a4"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-raw.tsv",
+      "bytes": 8015,
+      "sha256": "78b80b5e3d0ec8176d314548123b836fb66ce117991665cc2484a228321defb4"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-teal-text-1x.tsv",
+      "bytes": 9297,
+      "sha256": "2dc1aa84a3bb4101175131ef3c08ff89915c3b9a5b88716b8725af0885ff78cc"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-white-latin.tsv",
+      "bytes": 8984,
+      "sha256": "4331cd45fbd2bcbdd924efa4d8c22f21617d54d2f6c4994875335c81e5d32345"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr-white-text.tsv",
+      "bytes": 9156,
+      "sha256": "70be16083baf30b28e2f41e05c23d9bb5a024d784173d952ecc0a60b025539fd"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0-ocr.json",
+      "bytes": 44143,
+      "sha256": "8dd1b7ca7ccbff497c66479c446335b84c413f9bd5af15c275aaa381614286ef"
+    },
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-surface-readiness.json",
+      "bytes": 959,
+      "sha256": "ceb98ee659b1691ccfbd5d39719ff5a081a8b8ccad39b7087e5ce7e32a326d52"
+    },
+    {
+      "path": "api37/artifact-original/23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 468,
+      "sha256": "51ffbf072f8ae61c7245f12d6a367162a820f58db08e5312e5066d3ef8a796a8"
+    },
+    {
+      "path": "api37/artifact-original/23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "bytes": 6438,
+      "sha256": "3b84c62a92009a6275b16a534f6339b3d05b143b872e77f3035463a06c70e5c6"
+    },
+    {
+      "path": "api37/artifact-original/23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "bytes": 5113,
+      "sha256": "d3e5174b2590d0570931117f13824848cf7f8575a05b1f5df404239df1d9e69d"
+    },
+    {
+      "path": "api37/artifact-original/after-kart-preferences.xml",
+      "bytes": 2017,
+      "sha256": "46cf412adda1cb18d84b11c2244728b8bee59312736a0b52f6f918b463dab1e4"
+    },
+    {
+      "path": "api37/artifact-original/after-restart-preferences.xml",
+      "bytes": 2017,
+      "sha256": "158b4e81a4192e0a92a742913707cde5a0add77db3ca31491104431fccb64b4c"
+    },
+    {
+      "path": "api37/artifact-original/android-emulator-version.txt",
+      "bytes": 655,
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54"
+    },
+    {
+      "path": "api37/artifact-original/android-release.txt",
+      "bytes": 3,
+      "sha256": "54183f4323f377b737433a1e98229ead0fdc686f93bab057ecb612daa94002b5"
+    },
+    {
+      "path": "api37/artifact-original/android-sdk.txt",
+      "bytes": 3,
+      "sha256": "b58a3da5fde2680191877ec88a1aa7d06927cc3b30cdf0d0db8c39b488891576"
+    },
+    {
+      "path": "api37/artifact-original/atelier-after-return.xml",
+      "bytes": 34080,
+      "sha256": "ce0ae1ce2fd531f75f3684f8076e4897442e1fca33b38173d19b88d43410925d"
+    },
+    {
+      "path": "api37/artifact-original/atelier-build--1-0.xml",
+      "bytes": 22292,
+      "sha256": "ef611c6d521b3427b3c1ccab8a90a6b7b8e49fa19d2a688b337455fac9e3f441"
+    },
+    {
+      "path": "api37/artifact-original/atelier-enter-bridge--1-0.xml",
+      "bytes": 24559,
+      "sha256": "5595fad4768945cbff4662c56c8c317b2596690106b0a628827380c12a65d5f5"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-0.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-1.xml",
+      "bytes": 32795,
+      "sha256": "6ad3b44701acac22500fbfce0355a8c9204cbc54b18a6356db21994fec4a39be"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-10.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-11.xml",
+      "bytes": 32788,
+      "sha256": "73e384ed0607cb996296ede065fb84ff41bbb91be7899d2ffa2278f96a240eaa"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-12.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-13.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-14.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-15.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-16.xml",
+      "bytes": 32788,
+      "sha256": "73e384ed0607cb996296ede065fb84ff41bbb91be7899d2ffa2278f96a240eaa"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-17.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-18.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-2.xml",
+      "bytes": 32795,
+      "sha256": "6ad3b44701acac22500fbfce0355a8c9204cbc54b18a6356db21994fec4a39be"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-3.xml",
+      "bytes": 32795,
+      "sha256": "6ad3b44701acac22500fbfce0355a8c9204cbc54b18a6356db21994fec4a39be"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-4.xml",
+      "bytes": 32788,
+      "sha256": "d376309c31dd1b8660f22f6be72dd63e15afda43c26f7546ae972cb00ffe71eb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-5.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-6.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-7.xml",
+      "bytes": 32788,
+      "sha256": "73e384ed0607cb996296ede065fb84ff41bbb91be7899d2ffa2278f96a240eaa"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-8.xml",
+      "bytes": 32788,
+      "sha256": "73e384ed0607cb996296ede065fb84ff41bbb91be7899d2ffa2278f96a240eaa"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry--1-9.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry-1-0.xml",
+      "bytes": 32788,
+      "sha256": "592558641210c82b29b1f8914971e426ce424dfc629be729a30081d9cfad5dfb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry-1-1.xml",
+      "bytes": 36342,
+      "sha256": "fe1c139a743c6ad331bac687d52f686c7af8c7401ec7c6d8e9b847b6cb56d0d0"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry-1-2.xml",
+      "bytes": 34084,
+      "sha256": "3fd93c437b57bb6907603fb48a4cabb551161fb119a353441391dffa02bd06eb"
+    },
+    {
+      "path": "api37/artifact-original/atelier-home-entry-1-3.xml",
+      "bytes": 34082,
+      "sha256": "47dfba392d21277cbd442876eadbdb980077a1302e59d84bc06baef217b0daaf"
+    },
+    {
+      "path": "api37/artifact-original/atelier-hub-0.xml",
+      "bytes": 24559,
+      "sha256": "5595fad4768945cbff4662c56c8c317b2596690106b0a628827380c12a65d5f5"
+    },
+    {
+      "path": "api37/artifact-original/atelier-model-check-0.xml",
+      "bytes": 25430,
+      "sha256": "4e630ee66e5b401e539164a968fa0715ccd787dfddbf7c5a7a3c56f57fe32bd6"
+    },
+    {
+      "path": "api37/artifact-original/atelier-real-ten-frame-0.xml",
+      "bytes": 25430,
+      "sha256": "4e630ee66e5b401e539164a968fa0715ccd787dfddbf7c5a7a3c56f57fe32bd6"
+    },
+    {
+      "path": "api37/artifact-original/atelier-topic-list-0.xml",
+      "bytes": 24559,
+      "sha256": "5595fad4768945cbff4662c56c8c317b2596690106b0a628827380c12a65d5f5"
+    },
+    {
+      "path": "api37/artifact-original/atelier-worked-example-0.xml",
+      "bytes": 22292,
+      "sha256": "ef611c6d521b3427b3c1ccab8a90a6b7b8e49fa19d2a688b337455fac9e3f441"
+    },
+    {
+      "path": "api37/artifact-original/before-kart-preferences.xml",
+      "bytes": 1652,
+      "sha256": "bda3b2b0b1a7385643962336fc91df2e5bb47a17a4d8d99498d70caaeb100041"
+    },
+    {
+      "path": "api37/artifact-original/cold-start-launch.txt",
+      "bytes": 547,
+      "sha256": "f675fd5c189ec7f3ebdfbf9d0af7e56e95a3f3ec8c3e1f697802898aa31575a4"
+    },
+    {
+      "path": "api37/artifact-original/fatal-logcat.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/action-patch-manifest.json",
+      "bytes": 3491,
+      "sha256": "2939cd67df64cedbdd624f36d09ff47d35669fb439669cc3e2db0f5e5e730d4a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/avd.ini",
+      "bytes": 83,
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/bootcompleted.ini",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/emu-launch-params.txt",
+      "bytes": 260,
+      "sha256": "0eddf9b90736438f8c963b8c9bf746955ffdf6317cc33c015c512fb912ab6f83"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/emulator-user.ini",
+      "bytes": 113,
+      "sha256": "9837e64a85a11909254d2acd7bf3afb50a7ed44b27481f67d77726c298da5d0e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/hardware-qemu.ini",
+      "bytes": 4148,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml",
+      "bytes": 297,
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/modem_simulator/iccprofile_for_carrierapitests.xml",
+      "bytes": 16537,
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/modem_simulator/iccprofile_for_sim0.xml",
+      "bytes": 14747,
+      "sha256": "7c7996b576a53d7f9be538ec417c09825433f0fdf6561d9204afcdb2f54ba98a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml",
+      "bytes": 14474,
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/netsim.ini",
+      "bytes": 38,
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/qemu-version.txt",
+      "bytes": 1,
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/configuration/read-snapshot.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-after-action/snapshot.json",
+      "bytes": 9636,
+      "sha256": "e8a9d87b9f5ab1c605ac246c82cc515800c51c7bde4a08da560e8ef970bf1d2a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-before-boot/avd.ini",
+      "bytes": 83,
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-before-boot/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-before-boot/snapshot.json",
+      "bytes": 5782,
+      "sha256": "7c3f23e2dc11e7df2e803eb538404daac5fcaeacb96f70ce8292a54eeb2a0068"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/avd.ini",
+      "bytes": 83,
+      "sha256": "8f5b9f823df5b5d4e9c43f9ce2624ddec2b4b67e7fae2c994bddf40cba80cabd"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/config.ini",
+      "bytes": 3620,
+      "sha256": "8c7c7581039f4b244eaa9459eff4216cdc46c067b495ceb3be42a6942ac53cbe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/emu-launch-params.txt",
+      "bytes": 260,
+      "sha256": "0eddf9b90736438f8c963b8c9bf746955ffdf6317cc33c015c512fb912ab6f83"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/hardware-qemu.ini",
+      "bytes": 4148,
+      "sha256": "0e30db1472fa409bf9dd67d73b464a556b81b83bd9aa7e0b2f6486334b6a0d3a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/modem_simulator/etc/modem_simulator/files/numeric_operator.xml",
+      "bytes": 297,
+      "sha256": "c2557e604beea20b67642cdbb14ae7b792f804e4476b3f6cf47035690234f436"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_carrierapitests.xml",
+      "bytes": 16537,
+      "sha256": "dc4b5f5344f084fc44f89250bbcf2b12e452eb98c104e4ef3ec115366eb6ce32"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim0.xml",
+      "bytes": 14722,
+      "sha256": "7a70da249fedced82e5954c0144941849f93a5ef5a0b20a50a832c9c77e1c0b3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/modem_simulator/iccprofile_for_sim_tel_alaska.xml",
+      "bytes": 14474,
+      "sha256": "462cc26ddaa9d6c470a2d9415771c80e323b526b1863f099accb298955b14db3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/netsim.ini",
+      "bytes": 38,
+      "sha256": "c8fd846ec31ee1d607fc06f150e841e8c5287eb803ab0b2abf23abff6f39a080"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/qemu-version.txt",
+      "bytes": 1,
+      "sha256": "d4735e3a265e16eee03f59718b9b5d03019c07d8b6c51f90da3a666eec13ab35"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/configuration/read-snapshot.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-guard/snapshot.json",
+      "bytes": 9163,
+      "sha256": "a220b9cb1b981cc6d8f31dfc9b417c2535e4a5a6e9adbcaf52239d9a7ad1e339"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-original/avd.ini",
+      "bytes": 137,
+      "sha256": "b80fd70219467c62634f8c282f1e441af1446ff9c48f56045add3915d759dd98"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-original/configuration/config.ini",
+      "bytes": 3555,
+      "sha256": "858e0f30354c358913cc64907cd0c4acec70468851bc2882227c8ae50305d22a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/avd-original/snapshot.json",
+      "bytes": 5852,
+      "sha256": "dd574ceb636e9ecdfe17b05ed2f6323e101b88dd79af3b6f3acedd1723d5d72f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/01-original-cli-version/result.json",
+      "bytes": 296,
+      "sha256": "997bf8c9d06ba8b6b571e046acb2e79850b749a14687ddc92ca376b59ee8ff6b"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/01-original-cli-version/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/01-original-cli-version/stdout",
+      "bytes": 6,
+      "sha256": "73d0675fb2da2b7916637864fccdfd1e19a3d28c2cf31f1e4901a92f887c19e1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/02-install-same-sdk-packages/result.json",
+      "bytes": 481,
+      "sha256": "b824fb5de20e7d2e49d917300acd750c2b88960f5d7445dedf77ec9bc313201b"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/02-install-same-sdk-packages/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/02-install-same-sdk-packages/stdout",
+      "bytes": 15716,
+      "sha256": "fb3b6121d4b6ae00da1a8447947f343653cb24948d9f8d8635b83b52267d5807"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/03-original-emulator-version/result.json",
+      "bytes": 279,
+      "sha256": "a4d22468fe40e3b21713150fedb961af967b2c391e60e75167bea31fb055fec2"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/03-original-emulator-version/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/03-original-emulator-version/stdout",
+      "bytes": 655,
+      "sha256": "1a523c9091747b7bf48a755396278f2eca455352b40c281336f1c3e075607b54"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/04-original-real-avd/result.json",
+      "bytes": 1090,
+      "sha256": "c8ec3e69d8c2bc7d8c759ac1bf1b3f406baa4adee5468d74db5899bf91e54f7f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/04-original-real-avd/stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/04-original-real-avd/stdout",
+      "bytes": 761,
+      "sha256": "0bb87f5bb2598d9870378db5317c2a0f3e66f8b2bf8d44b2d8a80e9d0b5708c8"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/05-download-official-cli22/result.json",
+      "bytes": 484,
+      "sha256": "0b3253d7088b372c1ada926137131d37149a84f7245284c83ae2cb01a22ea9f4"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/05-download-official-cli22/stderr",
+      "bytes": 396,
+      "sha256": "e1c3d553abe4764a22dc730a553b95f4e1c0be5fbd7d6b94630c998ed8d2dd5a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/05-download-official-cli22/stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/06-installed-cli22-version/result.json",
+      "bytes": 296,
+      "sha256": "23e7bb1a8cfeb1ad480b05edbaf4a09616fa551e6edaaef6887534e537e12ba4"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/06-installed-cli22-version/stderr",
+      "bytes": 340,
+      "sha256": "33414add6da35520d5a84e032882487bbb8835eae8767d88e1853859f196bf15"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/commands/06-installed-cli22-version/stdout",
+      "bytes": 6,
+      "sha256": "39f79f7a6ad9a4128eeda6c3caeafd5ebda63edb99d50e35cd870cbe1196c821"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/observed-after-action.json",
+      "bytes": 14312,
+      "sha256": "cf8706d102b1ff5fe7f85221590543783dee0a37a025251692532abbe73c7a94"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/observed-before-boot.json",
+      "bytes": 10458,
+      "sha256": "b3520261e9a16de4f1d207fb9d83b36dadd25ccf8ace562753a152cf9ec860aa"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/observed-guard.json",
+      "bytes": 13839,
+      "sha256": "46874e946879cbfa41daebfff1d779e0fb265add49b0762b720fec141130c42c"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/original-source.properties",
+      "bytes": 86,
+      "sha256": "d4eb560d17731d9919dbb91bfecb2d90418cb60c21e07b6c02302a682fbb760e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/original-tools.json",
+      "bytes": 18323,
+      "sha256": "95dc66b01c290c69ae0e5e51135d11f4b5e8e636facae5cb68455316636f870a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/platform/package.xml",
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/platform/source.properties",
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/platform-tools/package.xml",
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-after-action/platform-tools/source.properties",
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/platform/package.xml",
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/platform/source.properties",
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/platform-tools/package.xml",
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-before-boot/platform-tools/source.properties",
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/platform/package.xml",
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/platform/source.properties",
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/platform-tools/package.xml",
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-guard/platform-tools/source.properties",
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/emulator/package.xml",
+      "bytes": 18320,
+      "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/emulator/source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/image/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/image/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/platform/package.xml",
+      "bytes": 18468,
+      "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/platform/source.properties",
+      "bytes": 343,
+      "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/platform-tools/package.xml",
+      "bytes": 18335,
+      "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/packages-original/platform-tools/source.properties",
+      "bytes": 38,
+      "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/prepared.json",
+      "bytes": 48082,
+      "sha256": "cf0a466845aa1780dd3c2fd550823e9f94caadcf8f0f752f0809abf818396ebf"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22/verified-guard.json",
+      "bytes": 37839,
+      "sha256": "926a7130e2c69b2e974c1394b0b0830d2e2b5c5c30b771c7851f6baf797bbfc1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22-avd-verify.json",
+      "bytes": 280,
+      "sha256": "93b116e5cc215905d4ca7a14b45c98726879f99a82687fa725be3d7d608a1ff8"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22-avd-verify.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22-avd-verify.stdout",
+      "bytes": 48,
+      "sha256": "2c812060f69e4cbe4f1b0e631317c59c9dd9343580f90d8e407c4d8b9f4b53ab"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/cli22-contracts.log",
+      "bytes": 2409,
+      "sha256": "bcdb25542201a2c2f9cb6e87d32bfcd5c47d1c1cc6223cf1397f92666904f175"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0001-data-filesystem.json",
+      "bytes": 412,
+      "sha256": "e1614725f4826b8789aa159661c2699c5ae1f286afd0b4a5a311046a960aee98"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0001-data-filesystem.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0001-data-filesystem.stdout",
+      "bytes": 120,
+      "sha256": "568add9fe2b52c3c5d14336409ced5cccd0b689cb923e56b029f92abcdc8611c"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0002-memory-info.json",
+      "bytes": 403,
+      "sha256": "afb6e90d860a3580dd453d3e78cc9e75f4881847580317105152ed4e595e1777"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0002-memory-info.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0002-memory-info.stdout",
+      "bytes": 1291,
+      "sha256": "58583b89b5b16d52e30d368f3eabec07c4286f84f94a290fa7619a1f68c4d1d1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0003-mounted-filesystems.json",
+      "bytes": 418,
+      "sha256": "2424c2e3c1cafbce903932d54f538a98a9d52b676cf756fd89e709e5dcb362a3"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0003-mounted-filesystems.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0003-mounted-filesystems.stdout",
+      "bytes": 13719,
+      "sha256": "849e4d04977c07f5f45ca447081fba748e9f3a812ff302a90fafb770f4e4a576"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0004-properties.json",
+      "bytes": 384,
+      "sha256": "6b3b0c7dd41bbe07f23263cf41182f9b08ef6b99aeeaa4d3516672c222c54c23"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0004-properties.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0004-properties.stdout",
+      "bytes": 23653,
+      "sha256": "f205c2d29c3ad45feac525215aaa71c192dbe0e4f53aacb18c863517e287560e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0005-pid-before.json",
+      "bytes": 403,
+      "sha256": "b3910cea01f0c25fd63afc075fcdbc4b7b50aea144a53e39bef67964b72f0508"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0005-pid-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0005-pid-before.stdout",
+      "bytes": 4,
+      "sha256": "5eac2d898682427b63fa106d573be06d9da64e8c42e6c8260e577521cdde9808"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0006-service-input.json",
+      "bytes": 416,
+      "sha256": "4a03374be423a574740a71192c398b5124e8485bd5942367deb6c9db03631a96"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0006-service-input.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0006-service-input.stdout",
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0007-service-settings.json",
+      "bytes": 425,
+      "sha256": "7a1f4357371d626028f4d123ea4fc59e53bf8f823e6b2b303f0b04ee451c3c8e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0007-service-settings.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0007-service-settings.stdout",
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0008-service-activity.json",
+      "bytes": 425,
+      "sha256": "8784561161befecdf329b87a287c5d8c21a57b9c79a7c595e0f5cf0491029c5f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0008-service-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0008-service-activity.stdout",
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0009-service-package.json",
+      "bytes": 422,
+      "sha256": "93e3b47ddf738659d4dfde0822b8d31d122c290146fb1cc3883c461e2bf2d4b9"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0009-service-package.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0009-service-package.stdout",
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0010-service-window.json",
+      "bytes": 419,
+      "sha256": "a8ff58f3389a15a8559185c2a4b2ade18f56513de8abec7c0b59bffa3844ae0f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0010-service-window.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0010-service-window.stdout",
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0011-settings-read.json",
+      "bytes": 434,
+      "sha256": "05367b3a9daee5a6c883576753e2be70bdf7d1c7867e48b32c7190e99d8e085b"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0011-settings-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0011-settings-read.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0012-package-read.json",
+      "bytes": 426,
+      "sha256": "07a7fbbdb8ba78f4e3f420ab045d29cd6d338f53cb63b0589d24d9a58a1346fe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0012-package-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0012-package-read.stdout",
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0013-window-read.json",
+      "bytes": 393,
+      "sha256": "8b6c09928bce8ee619449d68f31cd0b77b1dc3d4f09480ebec31c15834209a60"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0013-window-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0013-window-read.stdout",
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0014-pid-after.json",
+      "bytes": 401,
+      "sha256": "d6c16bf496c854662bbc0d5f12ed5e8e0e98b5358b755441e747ba65d575cee4"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0014-pid-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0014-pid-after.stdout",
+      "bytes": 4,
+      "sha256": "5eac2d898682427b63fa106d573be06d9da64e8c42e6c8260e577521cdde9808"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0015-count-after.json",
+      "bytes": 423,
+      "sha256": "0158c4ca69622cf553f30c38a12404bc97d77a5455c09b01de153aae511f9e8f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0015-count-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0015-count-after.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0016-properties.json",
+      "bytes": 384,
+      "sha256": "9a6ac9897a1039586e7c2dd11983aaf321135cd678d54b563ba25b6dd28f1938"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0016-properties.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0016-properties.stdout",
+      "bytes": 23911,
+      "sha256": "0bd28743c8a660221b707c0500b122d16ca01018afe5076d8fd581e7935809dd"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0017-pid-before.json",
+      "bytes": 403,
+      "sha256": "e9a56f802a48a88f4479e012799082f692744702901810fa5960610a4f924d70"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0017-pid-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0017-pid-before.stdout",
+      "bytes": 4,
+      "sha256": "5eac2d898682427b63fa106d573be06d9da64e8c42e6c8260e577521cdde9808"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0018-service-input.json",
+      "bytes": 416,
+      "sha256": "480c9212c18598a84f7d2d509848c8d8ec7baa5c0c9243a39b6a325cc326b6e2"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0018-service-input.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0018-service-input.stdout",
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0019-service-settings.json",
+      "bytes": 425,
+      "sha256": "6609a1b76d1ef86e64d08809e880e5fa25e165f955137687fa76eca0156a7774"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0019-service-settings.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0019-service-settings.stdout",
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0020-service-activity.json",
+      "bytes": 425,
+      "sha256": "b426df49c939af5ec7ebbd0a32296b2a5b0baff551a41f018637d6319268a862"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0020-service-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0020-service-activity.stdout",
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0021-service-package.json",
+      "bytes": 422,
+      "sha256": "7e64a04fccc17f48db68c6aaeded6115f7564f31bb294c9889a363b53b122f34"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0021-service-package.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0021-service-package.stdout",
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0022-service-window.json",
+      "bytes": 419,
+      "sha256": "90f24ce93207ef0ab4d42c244eaea37fbbdc1ce9c0697e03d913e5998ff8f95a"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0022-service-window.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0022-service-window.stdout",
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0023-settings-read.json",
+      "bytes": 434,
+      "sha256": "85f5f0abd1a7811a617d1f5131dc58ea97cc23639856a1eb443c5b35299fffc2"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0023-settings-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0023-settings-read.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0024-package-read.json",
+      "bytes": 426,
+      "sha256": "9ab078c0d3252df46d1f75b3379b24643de95d81745723f8280c4c41384bcc07"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0024-package-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0024-package-read.stdout",
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0025-window-read.json",
+      "bytes": 393,
+      "sha256": "c2fcd39ab370e130962ec7aef60c444e104b48567dedddf9b82bf70d368fe630"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0025-window-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0025-window-read.stdout",
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0026-pid-after.json",
+      "bytes": 401,
+      "sha256": "5c690bd9b9a979375300a6fbeef2bfd64fbf227d9e678fe2c4951bbc4d738466"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0026-pid-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0026-pid-after.stdout",
+      "bytes": 4,
+      "sha256": "5eac2d898682427b63fa106d573be06d9da64e8c42e6c8260e577521cdde9808"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0027-count-after.json",
+      "bytes": 423,
+      "sha256": "d4ffedb06036a56fb38db8debfb65929e3adde6dee6127579af19ec9fae97682"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0027-count-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0027-count-after.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0028-properties.json",
+      "bytes": 384,
+      "sha256": "d0dab5031f187359e0e4969cee01fc36bdc79eb05c89df8b685b53273a1f8293"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0028-properties.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0028-properties.stdout",
+      "bytes": 23999,
+      "sha256": "ac5a8b42fcf8d44c544bfa4cfb4ea7df9dda7047ad045540791abb04fb537fad"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0029-pid-before.json",
+      "bytes": 403,
+      "sha256": "4c19977632f3f26c54267223307b72d0fe72fa0efaaf65b01ccd63c9409efce9"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0029-pid-before.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0029-pid-before.stdout",
+      "bytes": 4,
+      "sha256": "5eac2d898682427b63fa106d573be06d9da64e8c42e6c8260e577521cdde9808"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0030-service-input.json",
+      "bytes": 416,
+      "sha256": "dd89e32ec61d3c3056d07655fda7c0b44c193cc496852e8a85766b0d09e1537d"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0030-service-input.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0030-service-input.stdout",
+      "bytes": 21,
+      "sha256": "8d7e963af98df4cc4353458b6e01667115c0c76037768d56557476dd4bc41d82"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0031-service-settings.json",
+      "bytes": 425,
+      "sha256": "7553f757e6d8a86b778b75588e96d72f8d64941182446bc361d33e22e83d25fa"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0031-service-settings.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0031-service-settings.stdout",
+      "bytes": 24,
+      "sha256": "89d3c8603d4bf4202263d2ae97afa2606b8ae78f73a6740956141310f73a2b81"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0032-service-activity.json",
+      "bytes": 425,
+      "sha256": "b606827ea9b51267bdc73d8c2d22faea015cf28d4f511e4dfc1d0095af8c3806"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0032-service-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0032-service-activity.stdout",
+      "bytes": 24,
+      "sha256": "31ace82959c4828f90008df4ae03b5261dd868182b482f43d7bb83b3a4d87233"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0033-service-package.json",
+      "bytes": 422,
+      "sha256": "325dfcee1a02e206bbf2d6d7f537d0c8dc18d23d38fec0ac9addbd1bfac567f7"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0033-service-package.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0033-service-package.stdout",
+      "bytes": 23,
+      "sha256": "5598fd9db814b7d972569280c6e31130f002df86c6b9ea983e023754f63843d1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0034-service-window.json",
+      "bytes": 419,
+      "sha256": "528ad7b1efea119ee9d2c8e7bd84f7385fd6c4c2d0e98dfb7cf4386eaaf45f40"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0034-service-window.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0034-service-window.stdout",
+      "bytes": 22,
+      "sha256": "70210c4a75114f6f2c5db818e40285d7b90777f154770a3dd5d8ed135381c7c0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0035-settings-read.json",
+      "bytes": 434,
+      "sha256": "9c6b779b4a018742e4deb832916c390dc66ab1c0038a2d2b6fe3a6d11f8041c6"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0035-settings-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0035-settings-read.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0036-package-read.json",
+      "bytes": 426,
+      "sha256": "b590c27875f91924fbd1dbd532dc288e66cb67823adc364cd7fa4a17d1383772"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0036-package-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0036-package-read.stdout",
+      "bytes": 44,
+      "sha256": "e4fe055d4057c9874d953f3dc0562a284b0f2af40526412bc51afcf3c458bcc1"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0037-window-read.json",
+      "bytes": 393,
+      "sha256": "025be3442e9f4a7eaedee08936c519a641441f6fb260a06e03832ec0607ca530"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0037-window-read.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0037-window-read.stdout",
+      "bytes": 25,
+      "sha256": "6a0d024ac988d4a822eecf8a50b478c72d7cf549940628bab00f68ba14c5b4fe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0038-pid-after.json",
+      "bytes": 401,
+      "sha256": "70c89f0914cbc8f6a594221ab8e017f391dc3f28a7b55d3654cbe27ee0c7aaf2"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0038-pid-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0038-pid-after.stdout",
+      "bytes": 4,
+      "sha256": "5eac2d898682427b63fa106d573be06d9da64e8c42e6c8260e577521cdde9808"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0039-count-after.json",
+      "bytes": 423,
+      "sha256": "1c99f91e275b88d78511350bd2658cc023c9aef90617dda20024ec9e7d322d8e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0039-count-after.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/commands/0039-count-after.stdout",
+      "bytes": 2,
+      "sha256": "4355a46b19d348dc2f57c046f8ef63d4538ebb936000f3c9ee954a27460dd865"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/framework-readiness.json",
+      "bytes": 25405,
+      "sha256": "a23aa5ffec16d148dec95ce5982c62b7e82727ef8414f35bedd1a8eac9b04b70"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/lib-emulator-manager.js.patch",
+      "bytes": 821,
+      "sha256": "df2e40cd69be8cdfe2d9eba69fc4c0b36de4267d71fb7d22bfe38bdfcd55e3c0"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/local-contracts.log",
+      "bytes": 1612,
+      "sha256": "efad2698456bc225ce63cd1a2173ddcf6421a903c8e46107dca8fb0b54b1e049"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/logcat-all.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/logcat-all.stdout",
+      "bytes": 4906248,
+      "sha256": "30aebd8cc537f3e432f7cf5ff4280aaa292b0061b174450b586d87a5168e6bbe"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/monitor-commands.json",
+      "bytes": 964,
+      "sha256": "ff3c25a9061577729f5546d63d60c458ba66cb38b7b9ae0c092cbbbacbe4876e"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/monitor-finished.json",
+      "bytes": 1072,
+      "sha256": "3e04b6dd89447199fbd4d243ec8771563a168be9a79f9b8bff5fd132a07af7c9"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/monitor-process.json",
+      "bytes": 471,
+      "sha256": "877311723c02a90293fd44ee6dc88761b293ab4cabe3ce369904815c9bfce05f"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/monitor-stop.json",
+      "bytes": 32473,
+      "sha256": "59330f4dea03d244c0c8e780ac4716d05c13637acab7e0814781d17d808e3f35"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/monitor.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/monitor.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/src-emulator-manager.ts.patch",
+      "bytes": 735,
+      "sha256": "12e3012906b0ce719e8b5874bd3676f6809fc0604b55123c3d92bb30042fb2c7"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/wait-for-device.stderr",
+      "bytes": 77,
+      "sha256": "d84aaa3222b49c6dfc6c07666347890c6ad2ff255b911fa83525c5814e54963c"
+    },
+    {
+      "path": "api37/artifact-original/framework-start/wait-for-device.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/artifact-original/home-to-games-0.xml",
+      "bytes": 32789,
+      "sha256": "2ee030ea2b2a52b76d0030aa34a34f2f62b63e723c342b40e67dc94b064d6a3f"
+    },
+    {
+      "path": "api37/artifact-original/install.txt",
+      "bytes": 139,
+      "sha256": "1390d6bf1768f46d74d98154f9ea28e13212a36d9d80cc04109ef8569ec76f0e"
+    },
+    {
+      "path": "api37/artifact-original/installed-package-uid.txt",
+      "bytes": 59,
+      "sha256": "8c11f53fb5d69c2fae19c1094597833ba9f8026215e061433eb3c3afab1806ff"
+    },
+    {
+      "path": "api37/artifact-original/installed-package.txt",
+      "bytes": 9112,
+      "sha256": "d801f7e5aeb160e20d309844d342d55d8f3683194659ac9336fa3196386cbc4a"
+    },
+    {
+      "path": "api37/artifact-original/launcher-recovery.json",
+      "bytes": 225,
+      "sha256": "968ae96c2e8ef4f31057c8fd1f63c181e1cb4dc56e720c8bb67b32120cb96f57"
+    },
+    {
+      "path": "api37/artifact-original/lernen-after-kart.xml",
+      "bytes": 32330,
+      "sha256": "a80a8003d9f2c04ae52fd2f5e87e6c52a206557573e348d3a2004d70492d7f77"
+    },
+    {
+      "path": "api37/artifact-original/lernen-before-kart.xml",
+      "bytes": 32326,
+      "sha256": "710e0aff36202cf7081f39ac8d8691cc73f0a77dc455d8166db9ff4c3b5fee27"
+    },
+    {
+      "path": "api37/artifact-original/logcat.txt",
+      "bytes": 2000002,
+      "sha256": "018323a6e131dcb9f878d9d750d5f6f83e1444919d173cc44447a9e02c491a32"
+    },
+    {
+      "path": "api37/artifact-original/mesa-renderer.txt",
+      "bytes": 1724,
+      "sha256": "4b006a416f66caec8e02ab8b0fb90e93711d5a511763b976cd4f08b36f4a8ff2"
+    },
+    {
+      "path": "api37/artifact-original/nav-lernen-6--1-0.xml",
+      "bytes": 34080,
+      "sha256": "ce0ae1ce2fd531f75f3684f8076e4897442e1fca33b38173d19b88d43410925d"
+    },
+    {
+      "path": "api37/artifact-original/nav-lernen-after-kart-6--1-0.xml",
+      "bytes": 29125,
+      "sha256": "ac729a7d3fabe97f62282ee653d80bb2aa0fa6fab5ebf49c1a3f20507b63925f"
+    },
+    {
+      "path": "api37/artifact-original/nav-spiele-7--1-0.xml",
+      "bytes": 32326,
+      "sha256": "710e0aff36202cf7081f39ac8d8691cc73f0a77dc455d8166db9ff4c3b5fee27"
+    },
+    {
+      "path": "api37/artifact-original/nav-start-5--1-0.xml",
+      "bytes": 29124,
+      "sha256": "e78310da58acef223d21eccfab5b7ab259e7c3877144a2279e4da1d27b5a64d1"
+    },
+    {
+      "path": "api37/artifact-original/nav-start-after-kart-5--1-0.xml",
+      "bytes": 32330,
+      "sha256": "a80a8003d9f2c04ae52fd2f5e87e6c52a206557573e348d3a2004d70492d7f77"
+    },
+    {
+      "path": "api37/artifact-original/onboard-age-next-0.xml",
+      "bytes": 25072,
+      "sha256": "ea8d94b97316387c2e06764a77b6f2b01fe07926defcd45fd7dad6a39a622932"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-1-keyboard-0.xml",
+      "bytes": 21900,
+      "sha256": "5c71383ccea151e459a5611758e6c32d0f2395dfc0bcd9e17a470c835e7ae15a"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-1-keyboard-1.xml",
+      "bytes": 21900,
+      "sha256": "5c71383ccea151e459a5611758e6c32d0f2395dfc0bcd9e17a470c835e7ae15a"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-1-keyboard-2.xml",
+      "bytes": 98347,
+      "sha256": "102c5b574d4b78a72eb18e8343e9161ec76c14bb156f8ad2666eb20d29fc45de"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-2-keyboard-0.xml",
+      "bytes": 96881,
+      "sha256": "345d4140fe5b34a8ae44fe9cdd6dd25112a8ec40eb011057726ac91a5b08a38c"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-3-keyboard-0.xml",
+      "bytes": 96888,
+      "sha256": "1be8c6039410ba328bc3bb36c374d73084110a455831101441930a1aaff489c9"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-4-keyboard-0.xml",
+      "bytes": 96893,
+      "sha256": "d874149c1428ebd858c0188b20f6af5853770060060c3fc723d5115e8306c4bc"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-5-keyboard-0.xml",
+      "bytes": 96892,
+      "sha256": "d443362fff944671f9a1e3ea6ae3efe6284b4bdf163179a784ebda2da2d20c01"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-5-keyboard-1.xml",
+      "bytes": 96900,
+      "sha256": "656a46756b8000ae7f11ab7a8c74fa684ae28af318c4f7d42379beae1dba14bf"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-6-keyboard-0.xml",
+      "bytes": 96899,
+      "sha256": "8d379a553e043f23567e6cbcc65cc43aaf3859713f528a093ffa407612847702"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-7-keyboard-0.xml",
+      "bytes": 96910,
+      "sha256": "f843d74bcfc06e5ff38847bcbb250820c3061069c89e97bcc62d889df7b1e51f"
+    },
+    {
+      "path": "api37/artifact-original/onboard-char-8-keyboard-0.xml",
+      "bytes": 96911,
+      "sha256": "f63c27647da6e56b72773410de1b68be50ce1b8c9c019c46fa1c396710ecaa0e"
+    },
+    {
+      "path": "api37/artifact-original/onboard-games-Spiele-0.xml",
+      "bytes": 29124,
+      "sha256": "e78310da58acef223d21eccfab5b7ab259e7c3877144a2279e4da1d27b5a64d1"
+    },
+    {
+      "path": "api37/artifact-original/onboard-grade-save-0.xml",
+      "bytes": 24266,
+      "sha256": "9f5eb5f35970743ae502513942d256d1e5a2ac09ce903ec5639199084b1c7738"
+    },
+    {
+      "path": "api37/artifact-original/onboard-home-0.xml",
+      "bytes": 32789,
+      "sha256": "2ee030ea2b2a52b76d0030aa34a34f2f62b63e723c342b40e67dc94b064d6a3f"
+    },
+    {
+      "path": "api37/artifact-original/onboard-ime-before-dismiss.xml",
+      "bytes": 96924,
+      "sha256": "97df396dbd6b9d0adf7c81670f51f974ae05205ebf492ba2bae1e01144a84292"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-next-0.xml",
+      "bytes": 23766,
+      "sha256": "7acdbbf763564aa565e9c9a1127dd4661a519a3049ec30009d14c4d39a85f6e1"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-1-0.xml",
+      "bytes": 96881,
+      "sha256": "b4008643bd7c6787e5ddab4063966e644f61c571d05cf9124ec60ece31b109da"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-2-0.xml",
+      "bytes": 96888,
+      "sha256": "1be8c6039410ba328bc3bb36c374d73084110a455831101441930a1aaff489c9"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-3-0.xml",
+      "bytes": 96893,
+      "sha256": "d874149c1428ebd858c0188b20f6af5853770060060c3fc723d5115e8306c4bc"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-4-0.xml",
+      "bytes": 96892,
+      "sha256": "d443362fff944671f9a1e3ea6ae3efe6284b4bdf163179a784ebda2da2d20c01"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-5-0.xml",
+      "bytes": 96899,
+      "sha256": "8d379a553e043f23567e6cbcc65cc43aaf3859713f528a093ffa407612847702"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-6-0.xml",
+      "bytes": 96910,
+      "sha256": "f843d74bcfc06e5ff38847bcbb250820c3061069c89e97bcc62d889df7b1e51f"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-7-0.xml",
+      "bytes": 96911,
+      "sha256": "f63c27647da6e56b72773410de1b68be50ce1b8c9c019c46fa1c396710ecaa0e"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name-written-8-0.xml",
+      "bytes": 96924,
+      "sha256": "97df396dbd6b9d0adf7c81670f51f974ae05205ebf492ba2bae1e01144a84292"
+    },
+    {
+      "path": "api37/artifact-original/onboard-name.xml",
+      "bytes": 23776,
+      "sha256": "566de6611dd2f747ea54e98d410d7018b2ebf63f0a535616a07d67ee51dc3ddf"
+    },
+    {
+      "path": "api37/artifact-original/onboard-welcome--1-0.xml",
+      "bytes": 18179,
+      "sha256": "2e971aeca9054c9d27e85b1d2a328c1518ac2b915ba030a042ee1fbb3c6cc735"
+    },
+    {
+      "path": "api37/artifact-original/onboard-welcome--1-1.xml",
+      "bytes": 23436,
+      "sha256": "c0f26bb08a6ed088095e58e3e857f2267517e0f0498d3feba5cde7379e87ad07"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-0.xml",
+      "bytes": 29121,
+      "sha256": "1d401aabed3fdb51ecc77089ca4e1059b86fe2f750079cc7cdf18bfa287cb89d"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-1.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-10.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-2.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-3.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-4.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-5.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-6.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-7.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-8.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/open-kart-47-1-9.xml",
+      "bytes": 29120,
+      "sha256": "8aac8cfab792d585481af5c4ecb3a78c15665ddbd8a2a905ca4b2bb69dc9652f"
+    },
+    {
+      "path": "api37/artifact-original/profile-ime-taps.json",
+      "bytes": 1779,
+      "sha256": "5d788f184e0e96c8dcdff119e5c4a710d904f4da893efde14bcc034989aa23c6"
+    },
+    {
+      "path": "api37/artifact-original/restart-0.xml",
+      "bytes": 32789,
+      "sha256": "31b5e3d5006dac0c148bca3588ac18794a92b46689aa00c1dbe31e1a5922c7a6"
+    },
+    {
+      "path": "api37/artifact-original/restart-after-kart-launch.txt",
+      "bytes": 545,
+      "sha256": "4882b002448ede0e87cbe29444aca684dff1861a227e66836221a89db4631b5a"
+    },
+    {
+      "path": "api37/artifact-original/rooted-emulator.json",
+      "bytes": 1522,
+      "sha256": "821f2121e2b284eea3f903d1177aa5eeb564fad99f75be3ad9d400bdaecf0279"
+    },
+    {
+      "path": "api37/artifact-original/start-after-kart-0.xml",
+      "bytes": 34084,
+      "sha256": "18fc4f42dff63686b5af467d37b40c4efa120b43f8d3db7858a195a7a6109c54"
+    },
+    {
+      "path": "api37/artifact-original/start-after-kart-1.xml",
+      "bytes": 34080,
+      "sha256": "e606580a55fc2402936103a806bbb694a8301afc01f010d181770487d64c8aa8"
+    },
+    {
+      "path": "api37/artifact-original/start-after-kart-2.xml",
+      "bytes": 35473,
+      "sha256": "6b9221643d94daf0c84904abf7e62e9b739f8a5b4d8e90afbcc3a876a87e9a21"
+    },
+    {
+      "path": "api37/artifact-original/start-after-kart-3.xml",
+      "bytes": 32789,
+      "sha256": "31b5e3d5006dac0c148bca3588ac18794a92b46689aa00c1dbe31e1a5922c7a6"
+    },
+    {
+      "path": "api37/artifact-original/tesseract-installed-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850"
+    },
+    {
+      "path": "api37/artifact-original/tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "4911cd0e796ef946104d2303d8d200f25e50a72428cc7359b5362c43d671dbf1"
+    },
+    {
+      "path": "api37/artifact-original/tour-result.json",
+      "bytes": 6234,
+      "sha256": "1ce611e34a1b4e569853bee893949410b83f5d82e165d091f26daf4d71dc5e43"
+    },
+    {
+      "path": "api37/artifact-original/uiautomator-config.json",
+      "bytes": 189,
+      "sha256": "3c2b165df27700f6d282f2c90f42d6f86de01328eed362defbc1f950e04ab8fe"
+    },
+    {
+      "path": "api37/artifact-original/xvfb.log",
+      "bytes": 4696,
+      "sha256": "7e8bd482a1d194c3fbc6b40b7ee1cb73794641aee10985e05e87173f9ae1aabc"
+    },
+    {
+      "path": "api37/artifact-png-index.json",
+      "bytes": 6673,
+      "sha256": "9206d48fe05256e8770a6965c6dac23b3d8b86dcb27127c71e34863e85404010"
+    },
+    {
+      "path": "api37/artifact-selection-derived.json",
+      "bytes": 1157,
+      "sha256": "44c3061e72ada70b0ef03079b38bc25d8af9181c0ab11e0265d752db8d1a8b87"
+    },
+    {
+      "path": "api37/build-binding/arm64-BUILD-PROVENANCE.json",
+      "bytes": 7589,
+      "sha256": "6ebeaf210275df854f2d151d0f6d5981ff7bf2e6196d9675f26a8ee761f01a9d"
+    },
+    {
+      "path": "api37/build-binding/verify-and-build-132151952145.log.gz",
+      "bytes": 230364,
+      "sha256": "bc3c13446f4203f412fac6f907509a61cc1cd2b0a800936a16eb607dc0654fa7"
+    },
+    {
+      "path": "api37/godot-integration-cup-observation.json",
+      "bytes": 2170,
+      "sha256": "e3a76156a3c027fbd8521de6a411052793e39974e11639d70515e887f956a4b8"
+    },
+    {
+      "path": "api37/handoff.json",
+      "bytes": 1082,
+      "sha256": "155aa72ddd77b9553f002f90119b0b6e065f0f06ba163443fadb33cd74af1d3b"
+    },
+    {
+      "path": "api37/jobs/api37-132181019099.log",
+      "bytes": 1292826,
+      "sha256": "68e542d1fbb83cdbf768785e04ca58c930e1d191fa2e490ab8f1ee535e0f2c29"
+    },
+    {
+      "path": "api37/manifest.json",
+      "bytes": 94034,
+      "sha256": "72693f3b0144ccae4e579d37671ce03f20e728eab655adcd7c5494e9548dedd5"
+    },
+    {
+      "path": "api37/native993c/scripts/games/kart_spatial_landing.gd",
+      "bytes": 10052,
+      "sha256": "68605b29c440eebf612a7e6c1d3c84563a0735ee3d716c9c0d570ba641786487"
+    },
+    {
+      "path": "api37/original-api/artifacts-final-api37.json",
+      "bytes": 8200,
+      "sha256": "acc10bfd46a3e5ceee5d889fb15ae846c7c034bd6880991e4f86117b5b55046a"
+    },
+    {
+      "path": "api37/original-api/commit-51e.json",
+      "bytes": 1207,
+      "sha256": "77c097692ef569801c8f8833e9ca56916a26a33c35d165b9f8395892578a1fe1"
+    },
+    {
+      "path": "api37/original-api/initial-20261113T212858Z/artifacts.json",
+      "bytes": 5975,
+      "sha256": "0e83b2f75d03fdb558859d144c5db2a9ecb635e23f1f07e0baf6babfb342a9fa"
+    },
+    {
+      "path": "api37/original-api/initial-20261113T212858Z/jobs.json",
+      "bytes": 19951,
+      "sha256": "5773b157ef4fa4637f2b672f5bf5801deadb13ee1c84c25f7b63a3750cab5cda"
+    },
+    {
+      "path": "api37/original-api/initial-20261113T212858Z/run.json",
+      "bytes": 12958,
+      "sha256": "66655a9857410041e88e2d3dc9b1f7bc80cd583ca380b39fe2ab05ab34f54250"
+    },
+    {
+      "path": "api37/original-api/jobs-20261113T213017Z.json",
+      "bytes": 21137,
+      "sha256": "8f3aada361a7d0f2aa801caa33f3234d53f8f3a6ed2f5b827c68ecf0d569e6ef"
+    },
+    {
+      "path": "api37/original-api/jobs-20261113T213148Z.json",
+      "bytes": 21266,
+      "sha256": "0870a3d2e2c3001bdb0cb9b552fd9796b7c28c13f7732b92ba9ad171997a5085"
+    },
+    {
+      "path": "api37/original-api/jobs-20261113T213346Z.json",
+      "bytes": 21266,
+      "sha256": "0870a3d2e2c3001bdb0cb9b552fd9796b7c28c13f7732b92ba9ad171997a5085"
+    },
+    {
+      "path": "api37/original-api/jobs-final-api37.json",
+      "bytes": 24328,
+      "sha256": "7b37ae2ced0fd0f25ea4c0fcd43d6ec20de4d78f895ac26c17d986b1abceb596"
+    },
+    {
+      "path": "api37/original-api/run-final.json",
+      "bytes": 12961,
+      "sha256": "0b12396babceb00060ffd6a2ea637ed39ff4aa57b1417ec5bb36629e08d515a7"
+    },
+    {
+      "path": "api37/selected-originals-index.json",
+      "bytes": 63413,
+      "sha256": "085f50d6bbb7306b257b5838da427d0821c6acb4b8466510677cb50ddf4ad143"
+    },
+    {
+      "path": "api37/source-manifest.json",
+      "bytes": 3740,
+      "sha256": "3840654a6528c52d2f9425bf9454f7f8cdf752f57af14d1ace042d5d7e2c510c"
+    },
+    {
+      "path": "api37/source-review-extensions.json",
+      "bytes": 822,
+      "sha256": "d7a0b34e1616f2e33ef06c79027aaa1ca5e83592ac183558fc0e902ea39a11d9"
+    },
+    {
+      "path": "api37/source51e/.github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e"
+    },
+    {
+      "path": "api37/source51e/.github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "bytes": 36488,
+      "sha256": "3c35cde09c2d7d7ac9c82d1fc0201386a24cc7dd018d7a4f2ffebf977be0864b"
+    },
+    {
+      "path": "api37/source51e/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801"
+    },
+    {
+      "path": "api37/source51e/.github/probes/modernization_android_tour.py",
+      "bytes": 61503,
+      "sha256": "ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1"
+    },
+    {
+      "path": "api37/source51e/.github/workflows/lumo-kart-graphics-2019.yml",
+      "bytes": 47725,
+      "sha256": "f470e6aa47b836aad97ceb2e0cb020b9e97d5eee1ae29916c06f928b5d8dcbe4"
+    },
+    {
+      "path": "api37/source51e/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "4e65ae74551b2f5b08624e6626d7f13e8a413183abb81feff64cd8d36297a13d"
+    },
+    {
+      "path": "api37/source51e/scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4"
+    },
+    {
+      "path": "api37/source51e/scripts/prepare_android37_cli22.py",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7"
+    },
+    {
+      "path": "api37/source51e/scripts/prepare_android37_emulator_action.py",
+      "bytes": 8453,
+      "sha256": "b82ebc4cf1424ad4ff62c083b1685a245cae70e0cada3f3755ebbed376462199"
+    },
+    {
+      "path": "api37/source51e/scripts/tests/test_android37_cli22.py",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26"
+    },
+    {
+      "path": "api37/source51e/scripts/tests/test_android_framework_ready.py",
+      "bytes": 11337,
+      "sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d"
+    },
+    {
+      "path": "api37/source51e/scripts/verify_kart_graphics_delivery.py",
+      "bytes": 13393,
+      "sha256": "af648591f65b214499c9a60416b996920b32b76eba2606b2a72c6d020c355ad8"
+    },
+    {
+      "path": "api37/source51e/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 11148,
+      "sha256": "07f7d5b0c76b3c3f62f5f57cd5675f536e4eee9fc1049469c7cb96f2dd810de1"
+    },
+    {
+      "path": "api37/source51e/tools/auto_install/CardsTableBridge.kt",
+      "bytes": 7302,
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572"
+    },
+    {
+      "path": "api37/source51e/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 12712,
+      "sha256": "6808e0ab858907aec1b1e149b53184aa3ad72d1a214ce4d252a8ddc91c01f5e2"
+    },
+    {
+      "path": "api37/verification.json",
+      "bytes": 5759,
+      "sha256": "f95b8f8af307c42b234ae5a9dbfee4305ff5fe2913c3f8b963db1cce95931074"
+    },
+    {
+      "path": "update/README.md",
+      "bytes": 3708,
+      "sha256": "1002d2eecedafec78c1212c5131c61c59865103c2ba60b6908b411e198daef94"
+    },
+    {
+      "path": "update/additional-originals.json",
+      "bytes": 1995,
+      "sha256": "6f117e851dcb11bd1c711dbf969f0fd4f76b1fe69f21140e705b4f16a471fded"
+    },
+    {
+      "path": "update/analysis-first-pass.log",
+      "bytes": 160,
+      "sha256": "92f7eb91b06a634d951a79561ae1ab5deac54647be785ff867bfaeec9331d4c4"
+    },
+    {
+      "path": "update/baseline-original/artifacts.json.gz",
+      "bytes": 1342,
+      "sha256": "2fe91fa1ceff888345d57c4b5ecd02cd72ba840e87a079ee93218bb4b03e978a"
+    },
+    {
+      "path": "update/baseline-original/build-apk-identities.json",
+      "bytes": 9398,
+      "sha256": "5bfd6def2a2c73d4a6c33b18d00c3661d4995c96460dc72ca639de9875f3273e"
+    },
+    {
+      "path": "update/baseline-original/jobs.json.gz",
+      "bytes": 2982,
+      "sha256": "0732b76954419a102bd3c00814d0faf441481e32b1d1ac6b9b2fa23b56cb9fef"
+    },
+    {
+      "path": "update/baseline-original/run.json.gz",
+      "bytes": 1706,
+      "sha256": "98ad418d1ed7a7b407024369cb9782294f05797da6b331a233f0454c7139f49a"
+    },
+    {
+      "path": "update/baseline-original/verify-and-build-131192088702.log.gz",
+      "bytes": 190318,
+      "sha256": "6914fe2ae000acb288329e0ee172c6b43e2d075d7d39aee6704bff55d5b6849d"
+    },
+    {
+      "path": "update/candidate-original/artifact.json.gz",
+      "bytes": 442,
+      "sha256": "233daa204c972a9e37ac1eb599b185bb7eb93d952b11fe979d4edd36a5a7f92c"
+    },
+    {
+      "path": "update/candidate-original/build-apk-identities.json.gz",
+      "bytes": 1733,
+      "sha256": "2b452ad75ebdb89773a3cd09e4b1b86ee59376147de5c1e35eb1c34eb7565d7f"
+    },
+    {
+      "path": "update/candidate-original/commit.json.gz",
+      "bytes": 513,
+      "sha256": "926c6e2ff72757009c50da77ae99d0afd59699bdf901d2768927a82df6b7a9a3"
+    },
+    {
+      "path": "update/candidate-original/verify-and-build-132151952145.log.gz",
+      "bytes": 230364,
+      "sha256": "bc3c13446f4203f412fac6f907509a61cc1cd2b0a800936a16eb607dc0654fa7"
+    },
+    {
+      "path": "update/final-job-originals/artifacts.json.gz",
+      "bytes": 1424,
+      "sha256": "5bf09f5d372db6d5242ec052df54e56e1853da48ae03d3d025c1f4cb8499e112"
+    },
+    {
+      "path": "update/final-job-originals/jobs.json.gz",
+      "bytes": 2894,
+      "sha256": "bc39438db1d431565bfe3ae3afa5b58975709a5236597907a832e7d47fe14c1c"
+    },
+    {
+      "path": "update/final-job-originals/run.json.gz",
+      "bytes": 1711,
+      "sha256": "0562d6c1d5f238f19b292e938fe68a185f582e36a7ace04b9cf6f6b9b8df4339"
+    },
+    {
+      "path": "update/initial-originals/artifacts.json.gz",
+      "bytes": 1223,
+      "sha256": "c224c8e8e98413ecaee46e1df62cd4d56ac00566bf77cc10e48ed1f7db35b937"
+    },
+    {
+      "path": "update/initial-originals/jobs.json.gz",
+      "bytes": 2631,
+      "sha256": "b2002b6d4a58c5a62414f7c2975e3e799cf4cdd6c7523ee1d026bf209eea3218"
+    },
+    {
+      "path": "update/initial-originals/run.json.gz",
+      "bytes": 1711,
+      "sha256": "0562d6c1d5f238f19b292e938fe68a185f582e36a7ace04b9cf6f6b9b8df4339"
+    },
+    {
+      "path": "update/manifest.json",
+      "bytes": 16250,
+      "sha256": "55c1b10ef7e157fecca6f92edbb37e8ad4e788504c6107a3171535cc62828a25"
+    },
+    {
+      "path": "update/original-zip-manifest.json",
+      "bytes": 32048,
+      "sha256": "0453f8ebae17b94a6a92bc56d80f0bfca78684f6127d42487e36a2e8d3db68b9"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-contrast.tsv",
+      "bytes": 5749,
+      "sha256": "bf535251879a7c1b6927ca1a6b9d9e04d467e7581ab27d419c7cea7529ca4ca6"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-navy-latin-1x.tsv",
+      "bytes": 1234,
+      "sha256": "29a3fcf3656103aee335b4eee237ae816a1ac52c7f01fb2b832a83390e1c7c58"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-navy-latin.tsv",
+      "bytes": 1760,
+      "sha256": "284fd88e0451011f266a834d7f8f3cfda90515e71fbe91ce0bba77ac9d692022"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-raw.tsv",
+      "bytes": 7554,
+      "sha256": "514354bc201062afcc2de2ee51ce36d449b2e8744d5d90ecf9772b51e21e17fa"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-teal-text-1x.tsv",
+      "bytes": 8805,
+      "sha256": "c95a2930a5fc9fda46b4afe525c042a458b786dd58471f393aeab40dc7cd7dd0"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-white-latin.tsv",
+      "bytes": 8492,
+      "sha256": "c237bb8ad944443a62836161c21120e8428a68c1c60b736167bda1a078d10d05"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr-white-text.tsv",
+      "bytes": 8632,
+      "sha256": "ee2ef2d8c7a108f524f9014cc0781fb5c9a1146ae7163300cdfd07c701450731"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0-ocr.json",
+      "bytes": 43285,
+      "sha256": "124d854817f68343a5d1b8287277e9ebb02e8831b221dece2fc6332154b218ea"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-surface-readiness.json",
+      "bytes": 958,
+      "sha256": "098a531ede25e29cd6ff719200f6cc7cd579f8e7e156be6a9d3550e7f69fcc06"
+    },
+    {
+      "path": "update/originals/after-update-preferences.xml",
+      "bytes": 4523,
+      "sha256": "ec369a3567bc55c8de7800ac155de247cc8b2a42104697bb45dacc3f6e1cec13"
+    },
+    {
+      "path": "update/originals/baseline-install.txt",
+      "bytes": 138,
+      "sha256": "a8a4b1d0e4de6c686287ea9918c8691156a85dc24ec9c91e69a7cd3d6623f433"
+    },
+    {
+      "path": "update/originals/baseline-learning/10-before-restart-preferences.xml",
+      "bytes": 4158,
+      "sha256": "29b66666002aabafdb75a9440f42c36ecd1445e12a2cfa9cb5cb0e06c7b90cb0"
+    },
+    {
+      "path": "update/originals/baseline-learning/11-after-restart-preferences.xml",
+      "bytes": 4158,
+      "sha256": "d1449d6f629483fe524add8508a1d900b9e415886e083a9a7b911028db7c000a"
+    },
+    {
+      "path": "update/originals/baseline-learning/learning-journey-result.json",
+      "bytes": 4215,
+      "sha256": "6fe97d2037cb1e21f27c487ba189448a793cff62c73ce6dbbe6302a2e22030c9"
+    },
+    {
+      "path": "update/originals/baseline-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+    },
+    {
+      "path": "update/originals/baseline-package.txt",
+      "bytes": 9963,
+      "sha256": "113be9ed2ddd84a9069cf634beea75d094b8e466a483190ee50b5ca587df3350"
+    },
+    {
+      "path": "update/originals/before-update-preferences.xml",
+      "bytes": 4371,
+      "sha256": "76188ae3e0ca798bd59a56b609b23637fe10330c0cd5431429d31a4595cbd8d0"
+    },
+    {
+      "path": "update/originals/rooted-emulator.json",
+      "bytes": 1545,
+      "sha256": "106d48f804a99929877460e716b7e5214cd69fdf9c17697d80ec5d0164bc73eb"
+    },
+    {
+      "path": "update/originals/tested-apk-sha256.txt",
+      "bytes": 108,
+      "sha256": "4911cd0e796ef946104d2303d8d200f25e50a72428cc7359b5362c43d671dbf1"
+    },
+    {
+      "path": "update/originals/update-install.txt",
+      "bytes": 139,
+      "sha256": "c64178dae19081e3147b2ed54ecd5e19df542c162d09f3fa8deb3ca60d694031"
+    },
+    {
+      "path": "update/originals/update-result.json",
+      "bytes": 26295,
+      "sha256": "9d14e8fdb68db22d0a71d2e73d464715c6b2e5bc7dc52be17ba8fc6ef3a0ee11"
+    },
+    {
+      "path": "update/originals/updated-offline-launch.txt",
+      "bytes": 547,
+      "sha256": "144d8a8503c80dddd4798435f0a563e8763866a1772be0c8c52845ac41347315"
+    },
+    {
+      "path": "update/originals/updated-package-uid.txt",
+      "bytes": 59,
+      "sha256": "c6d7ac58e2db4fcc5f605a5b4868778f7fdf77dd1beab39599c036865efd359a"
+    },
+    {
+      "path": "update/originals/updated-package.txt",
+      "bytes": 9337,
+      "sha256": "5d01defb1cb305c6bea6d0506f57ec8ca608f6a148bdbc21199d7d03eb429da7"
+    },
+    {
+      "path": "update/originals/updated-profile-offline-0.xml",
+      "bytes": 28472,
+      "sha256": "ed94ffb48b173a7608dffa95b66ff8b6516c19bac873d51eb4b24c3252c12495"
+    },
+    {
+      "path": "update/originals/updated-profile-offline-render-readiness.json",
+      "bytes": 556,
+      "sha256": "1fb0a54e635e3653911504fe381ee4f2c7996c0ad77036ed69a5be4bc8a78377"
+    },
+    {
+      "path": "update/review.json",
+      "bytes": 12210,
+      "sha256": "be65197869fbbaae57d707e3edff79a5a9bdfe7b54d0c17fb4d5c0951919af11"
+    },
+    {
+      "path": "update/review_saved_originals.py",
+      "bytes": 11699,
+      "sha256": "4d0ed91823378d13b21a7cedcfe30edf329c09a82887f37aeabfb1dc366d0f02"
+    },
+    {
+      "path": "update/saved-originals-verification.json",
+      "bytes": 12474,
+      "sha256": "de9ea0ce448bfb8631cc98b60dd265666960e93559b6096fe23d86f22ddf68fd"
+    },
+    {
+      "path": "update/saved-originals-verification.log",
+      "bytes": 160,
+      "sha256": "7284863f13458c8df369eaf0b5e1043fd4ab53f11ff53dc2083e2ebad0a4e4a6"
+    },
+    {
+      "path": "update/snapshots/20261113T213244Z-jobs.json.gz",
+      "bytes": 2811,
+      "sha256": "297e431bb9e01bb037e7a994b3156e99abf9966d75e21535c7872790c802173f"
+    },
+    {
+      "path": "update/source/.github/probes/creative_android_probe.py.gz",
+      "bytes": 15217,
+      "sha256": "f36b805f037ace956c1e1e04b17ae1f27e6c2f654aa4318e31ca2b335a5b44ca"
+    },
+    {
+      "path": "update/source/.github/probes/lumo_2003_update_android_probe.py.gz",
+      "bytes": 3538,
+      "sha256": "0f885f5d1886744f02e1c1379e0ca18fc660b3bfc91fb505c467e9bdce89b629"
+    },
+    {
+      "path": "update/source/.github/probes/lumo_2019_update_android_probe.py.gz",
+      "bytes": 963,
+      "sha256": "1185e2238798f9cec3c76af46c6e1507cac4eba01b85c550dac9de03860927be"
+    },
+    {
+      "path": "update/source/.github/probes/lumo_learning_journey_probe.py.gz",
+      "bytes": 5650,
+      "sha256": "407f132741644f3e1c1626151c63dfe8cc20c1cdaacd61d97b1d68d4c48c80f0"
+    },
+    {
+      "path": "update/source/.github/probes/modernization_android_tour.py.gz",
+      "bytes": 17531,
+      "sha256": "213be11d82de332212ff8e994f951d66b4fdb592fd222fb5beadb6c21905486a"
+    },
+    {
+      "path": "update/source/.github/workflows/lumo-kart-graphics-2019.yml.gz",
+      "bytes": 10226,
+      "sha256": "4242ee89725ec57d3f10011eeb34dd5e16e21ae02aac8a7a2c8fb26dad3140f6"
+    },
+    {
+      "path": "update/source/config/godot-source.json.gz",
+      "bytes": 141,
+      "sha256": "7f9329ace63fbf821417e7c5592a574762a4099062850313629b88a583f48e7f"
+    },
+    {
+      "path": "update/source/pubspec.yaml.gz",
+      "bytes": 825,
+      "sha256": "5477d6f4c7b90c8d1f8ca99b6069cd81de320d4165472255e9c7feb35d53c75b"
+    },
+    {
+      "path": "update/source/scripts/verify_legacy_release_pin.py.gz",
+      "bytes": 4337,
+      "sha256": "b30d7b5beadb2ec1d45b75e538559badeffcf97853b1ee44282ab3ffc360077f"
+    },
+    {
+      "path": "update/source/tools/android_qa/kart_garage_evidence.py.gz",
+      "bytes": 3282,
+      "sha256": "067aacdeeb0ff81f8ad701527fc883e4b3bcfca9099e52ce05cfcf232c10b88d"
+    },
+    {
+      "path": "update/source/tools/android_qa/kart_tour_evidence.py.gz",
+      "bytes": 3339,
+      "sha256": "a22aabe7fc43b8fb16519a51ebcc68830ae563356f266272a882489b5f699a26"
+    },
+    {
+      "path": "update/source/tools/android_qa/tests/test_update_preservation.py.gz",
+      "bytes": 4095,
+      "sha256": "c70ecb1d7c80e010c37c749f0a57a0745f49c681fbc168c2d639f5d73409d854"
+    },
+    {
+      "path": "update/source/tools/android_qa/update_artifact_identity.py.gz",
+      "bytes": 573,
+      "sha256": "ce635037be80f112ca161a6fee38c0887fe89314a7c317cbc18bb0cb3ef525ee"
+    },
+    {
+      "path": "update/source/tools/android_qa/update_preservation.py.gz",
+      "bytes": 3083,
+      "sha256": "39d0e3695cc086d0c8845d3aa656f40bb6c2fdbbf6de6d00b08e00fde68135e6"
+    },
+    {
+      "path": "update/source-binding.json",
+      "bytes": 5193,
+      "sha256": "56b119a37975968bc9bf7393a366fc81d9f8fe8b32cb937785f0b986011f0fac"
+    },
+    {
+      "path": "update/transferred-originals.json",
+      "bytes": 1331,
+      "sha256": "1f0eaad1ed5daacf5fc6768965af84143d468046a9c90f8c1d4b4e058b2af825"
+    },
+    {
+      "path": "update/update-job-132181019088.log.gz",
+      "bytes": 31017,
+      "sha256": "a863fac8963e3306d9d77f66c37430cbb80e8d8dda07246851e6d5156fc082b6"
+    }
+  ],
+  "excluded_payloads": [
+    {
+      "path": "api37/artifact-original/21_stage_mode_cup-0.png",
+      "bytes": 1094780,
+      "sha256": "73cf10437d3feccf4f0aa6a83384339da93a7ecdabed049332bd1602a2af7826"
+    },
+    {
+      "path": "api37/artifacts/14078303745.zip",
+      "bytes": 43440046,
+      "sha256": "7c125864835f2f91903f0942c4db7659c38aff6d5246eaba5ab8b53e7a949ef7"
+    },
+    {
+      "path": "update/originals/21_stage_mode_cup-0.png",
+      "bytes": 1090684,
+      "sha256": "f8cee7069945c7b0e91d359ec84bbed904a0d4818a034d8ca0179d61b00a2160"
+    },
+    {
+      "path": "update/originals/99_fehler.png",
+      "bytes": 1092785,
+      "sha256": "ffe80dbbff27719a69931ec736cc531f821246b50cbec400b4b1ead4f18fb3cf"
+    },
+    {
+      "path": "update/update-original-14078383602.zip",
+      "bytes": 49699411,
+      "sha256": "b9a34af78be372699f7d390b7ee09970e96c7bc50131dcf197f3a10ece38d447"
+    }
+  ]
+}

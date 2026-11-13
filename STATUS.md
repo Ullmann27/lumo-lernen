@@ -1,3 +1,43 @@
+# Integration follow-up: repair the real Android Cup selector
+
+Updated: 2026-11-13. This follows published Host51e92fb5/treea13ab981.
+Its immutable run43502594333 completed with successful Android Host compile,
+APK build,2512 Flutter tests,472 build contracts and812 Android-probe contracts
+without skips. API35, API37 and2017→2019 Update then failed on the same
+ambiguous Cup-caption target. Final Verify and Publisher correctly skipped.
+
+The current patch changes only the Cup matcher in the shared QA helper, plus
+seven focused tests and six exact original OCR/readiness fixtures with manifest.
+The matcher keeps decorative symbols instead of promoting '= Grand Prix' into
+a second real target. Existing geometry/IoU, two-frame stability, image hashes,
+actual race mode, progress and pause requirements remain. Twelve focused
+methods pass; original red cases remain archived. Root directly inspected the
+original API35 landing image; independent Native/source/fixture review passed.
+
+API37 SDK/CLI22/AVD/framework preparation genuinely passed. Initial actual
+2017→2019 install-r/offline learning preservation passed, but later Kart/restart/
+Fold checks were not reached; two older baseline language-navigation failures
+also remain explicit. New Cards lifecycle runtime acceptance was not reached.
+None of these partial results make the original Android run green.
+
+Native993c, all three2019 pins, both current visual receipts, original2018
+receipt, version0.13.7+2019, product code and workflow gates are unchanged.
+This repaired integration source needs its own fresh required PR CI.
+
+The completed51e auxiliary and bounded recent-work review were copied byte-exact
+from the separate published evidence checkpoint. All current failure and repair
+proofs are under docs/evidence/integration-20261113/host-51e-*.
+
+Separate DraftPR474 (QA6dcc5f5d/tree5b48c96a) runs additional creative controls
+against the unchanged51e APK. Its actual push run43513179062 started; the last
+observed21:48 status was in progress. Its APK source must never be confused
+with its QA source or any new integration source. Await the actual result and
+direct Jump-video review before making gameplay claims.
+
+Earlier integration context below is retained as historical evidence.
+
+---
+
 # Combined LUMO integration / candidate 2019
 
 Updated: 2026-11-13, 20:22 UTC. Active drafts: Native PR160 and Host PR465.

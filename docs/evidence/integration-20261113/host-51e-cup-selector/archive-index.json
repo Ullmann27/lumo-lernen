@@ -1,0 +1,137 @@
+{
+  "archive_bytes": 1143624,
+  "archive_sha256": "f93b73bd77371c11f9da6f27db6d79b5dd0f0d4ace28e4d4bdfc8d7c46bf37ea",
+  "members": [
+    {
+      "path": "patch-evidence/README.md",
+      "bytes": 2973,
+      "sha256": "8176b15340a95bbbf18c57042bfca432cb66c64fa6fb4bb9919811680c1cd395"
+    },
+    {
+      "path": "patch-evidence/SHA256SUMS",
+      "bytes": 2508,
+      "sha256": "aae02374c3efd815f9a147f81d2d839315a9ce4fce253375d4aaa64d62ef2bed"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 11374,
+      "sha256": "03b3b9b690b93b74a3a4e385efcb5e4f13de16a1d3f3a6a589bb8caefc0978f6"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/api35-ocr.json",
+      "bytes": 43609,
+      "sha256": "067a0c78f5621e356ae86260ca1d349fd6874062b0017de0d06dca1ddfd21dbc"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/api35-readiness.json",
+      "bytes": 959,
+      "sha256": "489dbf80654527505e167526e29d6dddfe62977d1f2703111d2fa30d34a57233"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/api37-ocr.json",
+      "bytes": 44143,
+      "sha256": "8dd1b7ca7ccbff497c66479c446335b84c413f9bd5af15c275aaa381614286ef"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/api37-readiness.json",
+      "bytes": 959,
+      "sha256": "ceb98ee659b1691ccfbd5d39719ff5a081a8b8ccad39b7087e5ce7e32a326d52"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/manifest.json",
+      "bytes": 3365,
+      "sha256": "ce8397d3ff06c4ca2b6b6b1aedf2c1d3cecb18332cdfcccd5736989d77869fae"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/update-ocr.json",
+      "bytes": 43285,
+      "sha256": "124d854817f68343a5d1b8287277e9ebb02e8831b221dece2fc6332154b218ea"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/fixtures/kart-cup-host51e/update-readiness.json",
+      "bytes": 958,
+      "sha256": "098a531ede25e29cd6ff719200f6cc7cd579f8e7e156be6a9d3550e7f69fcc06"
+    },
+    {
+      "path": "patch-evidence/after/tools/android_qa/tests/test_kart_cup_recorded_ocr.py",
+      "bytes": 5429,
+      "sha256": "a9c2b47565e29553f41eea3f2d84614fcc55fba0af030e6da02442d653a13d3e"
+    },
+    {
+      "path": "patch-evidence/before/.github/probes/modernization_android_tour.py",
+      "bytes": 61503,
+      "sha256": "ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1"
+    },
+    {
+      "path": "patch-evidence/before/tools/android_qa/kart_garage_evidence.py",
+      "bytes": 11148,
+      "sha256": "07f7d5b0c76b3c3f62f5f57cd5675f536e4eee9fc1049469c7cb96f2dd810de1"
+    },
+    {
+      "path": "patch-evidence/before/tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30190,
+      "sha256": "cc7913d2137909628235d6e558e1be33180ca950cef4fe6dcfaa6d9458b0c5a1"
+    },
+    {
+      "path": "patch-evidence/diff-check.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "patch-evidence/green-focused-cup.json",
+      "bytes": 5305,
+      "sha256": "4a3fa45cb899a1227c0e743ddaa0f5dc1ef72b0d9d43751cc3c05f3a5adaa9df"
+    },
+    {
+      "path": "patch-evidence/green-focused-cup.log",
+      "bytes": 2326,
+      "sha256": "a7cb5e557383405928c45365052e820f3de1932f942f678ed697397191e19ba9"
+    },
+    {
+      "path": "patch-evidence/manifest.json",
+      "bytes": 7011,
+      "sha256": "96e6b960ebbf4c829727ba177a18596d8feb73e9d4f5982cd74982d7c902cced"
+    },
+    {
+      "path": "patch-evidence/original-ci-references.json",
+      "bytes": 1861,
+      "sha256": "d16c78efcf592254cd5b7bada12c9f46088d48cfe3209b6d76819e1b6b769d2e"
+    },
+    {
+      "path": "patch-evidence/red-original-selector.json",
+      "bytes": 4318,
+      "sha256": "9138702b332f44fbe28957f78e2d21f9fd4f13ebe248a16561ee2d7b8c2a64c7"
+    },
+    {
+      "path": "patch-evidence/red-original-selector.log",
+      "bytes": 17025,
+      "sha256": "337cf014675c55072edbe22696326c41d6a6ef671461e050415d684909540c0b"
+    },
+    {
+      "path": "patch-evidence/selector.diff",
+      "bytes": 963,
+      "sha256": "d95c3aa5d5963d9bc8f1d1d363a7b878b149ff04a93dc5b646d4da5267773fba"
+    },
+    {
+      "path": "patch-evidence/source-after.json",
+      "bytes": 2498,
+      "sha256": "af9ed5ea8ba92b3f36b98e41dcdc3681b11bea1f819b71e9ca7f209b7c228583"
+    },
+    {
+      "path": "patch-evidence/source-before.json",
+      "bytes": 743,
+      "sha256": "7fb8c97981996380cacd5dfe0252de41f0fdffbe9d3f62ea3c40d839fe49765c"
+    },
+    {
+      "path": "root-image-review.json",
+      "bytes": 1012,
+      "sha256": "622e03ad18585af7e3735b6f962081d10a2392ecd2fa6732f4fed9161dad729e"
+    },
+    {
+      "path": "original-api35-landing.png",
+      "bytes": 1091325,
+      "sha256": "22e2e5a29031db9656037f5213fcc66d418e7ac76b17b26368ddf179e2b65fe5"
+    }
+  ],
+  "roundtrip": "All members byte-exact against preserved source"
+}
