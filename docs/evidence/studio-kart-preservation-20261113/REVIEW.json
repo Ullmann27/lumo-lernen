@@ -1,0 +1,38 @@
+{
+  "scope": "Three actual current Kart action renderer images and existing source-bound regression logs. Preservation evidence, no new-track development or target-device performance claim.",
+  "native_revision": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "run_id": 43434198014,
+  "artifact_id": 14042024118,
+  "artifact_sha256": "8974fe186e4a9b4f4f4c32164cbafe5b3723e45e05162c737718aedf3f73a78a",
+  "reviewed_at": "2026-11-13T13:48:19.064574+00:00",
+  "reviewed_by": "Root; three actual PNGs individually opened with view_image",
+  "images": [
+    {
+      "file": "ramp-407-speed-70.png",
+      "artifact_entry": "acceptance-evidence/action-stage/action-captures/ramp-407-speed-70.png",
+      "sha256": "e6a8715f86a0882b28ede969ea95874fd40fe70e74c94ae0ce736e6a3f8c72b5",
+      "findings": "Actual kart and original driver are visible with road, bridge/harbor geometry and readable controls; no missing driver mesh or new visible geometry blocker in this frame. Visible airborne kart and ramp message accompany the captured state.",
+      "result": "PASS"
+    },
+    {
+      "file": "ramp-1544-speed-48.png",
+      "artifact_entry": "acceptance-evidence/action-stage/action-captures/ramp-1544-speed-48.png",
+      "sha256": "a434cfc083dbc80bd8316bd2c382f34e6b86339faf24a12d27617c00c1ff90fa",
+      "findings": "Actual kart and original driver are visible with road, bridge/harbor geometry and readable controls; no missing driver mesh or new visible geometry blocker in this frame. Visible airborne kart and ramp message accompany the captured state.",
+      "result": "PASS"
+    },
+    {
+      "file": "lasso-catch.png",
+      "artifact_entry": "acceptance-evidence/action-stage/action-captures/lasso-catch.png",
+      "sha256": "04a2a84d8aced2d5d5f414154e3743b6bcbbd64ac05cf88b083bcfd42f510f55",
+      "findings": "Actual kart and original driver are visible with road, bridge/harbor geometry and readable controls; no missing driver mesh or new visible geometry blocker in this frame. Visible lasso warning and rope accompany the captured state.",
+      "result": "PASS"
+    }
+  ],
+  "archived_existing_gates": {
+    "RoadsideAction": 183,
+    "KartLasso": 34,
+    "KartLassoProduction": 26
+  },
+  "flight_observation": "Both existing ramps at20.5/48/70 m/s recorded one landing and zero resets per case; actual full logs retained in original ZIP."
+}
