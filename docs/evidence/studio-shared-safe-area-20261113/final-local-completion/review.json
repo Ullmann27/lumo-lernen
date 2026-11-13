@@ -1,0 +1,354 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-13T22:38:05.356288+00:00",
+  "status": "ALL_REQUESTED_LOCAL_COMPLETIONS_FINISHED_SOURCE_UNCHANGED_ANDROID_VALIDATION_PENDING",
+  "baseline_native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "published_native_commit": "20fd2880494c10f8f7d3a266956995e97f9011df",
+  "native_ci_run_started_by_root": 43520242403,
+  "ci_status_scope": "No outcome claimed for the new running GitHub workflow. These are local completion results.",
+  "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+  "source_files": 21,
+  "current_source_matches_freeze": true,
+  "historical_initial_checkpoint": {
+    "repository": "Ullmann27/lumo-godot",
+    "directory": "docs/evidence/shared-safe-area-20261113/initial-source-checkpoint",
+    "manifest_sha256": "2b9563bc7cf4fb45db5b3cd78d988ded43de40f85241c337fbf5567fd0cda62d",
+    "review_sha256": "d0dc6fdb130e1bbd2a80ab6461d67ef370a3a4072119e7b017a6f30b5d0baf10",
+    "completed_affected_local_gates": 13,
+    "new_cards_checks_included": 2,
+    "immutable_pending_status_not_rewritten": true
+  },
+  "completed_initial_results": [
+    {
+      "probe": "cards_safe_area_android_contract",
+      "exit_code": 0,
+      "pass_markers": [
+        "CARDS_ANDROID_INSETS_PASS checks=20 failures=0 scope=public_api_boundary_not_device"
+      ],
+      "log_sha256": "37c5c2a79205c1c00a28388a7ddf4a03b1df30827ce7f6fd258e1d681a408e04"
+    },
+    {
+      "probe": "cards_table_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "CARDS_TABLE_RUNTIME_PASS checks=208 failures=0"
+      ],
+      "log_sha256": "df7acb4d5f3e723a7c251587cb4203b70a356b4bc1d9b2d445398507142a0370"
+    },
+    {
+      "probe": "cards_safe_area_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "CARDS_SAFE_AREA_PASS checks=662 failures=0 profiles=5 images=0"
+      ],
+      "log_sha256": "d51605133e85b5aec07b9e40b396bc7a85d6e23a8b6aa24eccfc3141442e06f0"
+    },
+    {
+      "probe": "jump_nextgen_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[JumpNextgen] PASS 84 checks: actual variable jumps, coyote, buffer, original rig, pause, dp layouts and isolated saves"
+      ],
+      "log_sha256": "d9b281bc042b4978a0fced1a760668fffc6b892eae044121835ec4978c3d9444"
+    },
+    {
+      "probe": "build_nextgen_play_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout"
+      ],
+      "log_sha256": "5d965821ba7508d9a4d83eb5c3a22f7db90aa25f810b22ec348961974bdfd61d"
+    },
+    {
+      "probe": "puzzle_rotation_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[PuzzleRotation] PASS 4558 checks: orientation, legacy saves, real picking, touch rotation and resume"
+      ],
+      "log_sha256": "eb6e0efe8ad9f642c5d6cb53e35b175a2679ff50441ddd45859e531d80fd81d9"
+    },
+    {
+      "probe": "build_settlement_play_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts"
+      ],
+      "log_sha256": "bddad00b5183a4e10a69a2b12daefdf519c1f5daeb65a2912fb181d1f561bf9a"
+    },
+    {
+      "probe": "treasure_exploration_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[TreasureExploration] PASS 87 checks: branching, actual location questions, movement, legacy saves and original rewards"
+      ],
+      "log_sha256": "02d20b766c253672fea75aa6cc8744460cb1134dd54beeb4d73fa6b743825b76"
+    },
+    {
+      "probe": "puzzle_menu_lifecycle_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[PuzzleMenuLifecycle] PASS 720 behavioral checks; strict native log gate still required"
+      ],
+      "log_sha256": "661f94c08a44790f949ab961e19f751b58d12bd0673b7b8925da0bac91232a98"
+    },
+    {
+      "probe": "rhythm_tour_play_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[RhythmTourPlay] PASS checks=87: actual tour controls, touch/hold/slide/multitouch/pause, progress, profiles and responsive layout"
+      ],
+      "log_sha256": "d227dd4228251b5e9dd1523af71676e5f4ccd2928188843335c0203ed29fe4e9"
+    },
+    {
+      "probe": "learning_studio_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning"
+      ],
+      "log_sha256": "b7423794d3eb97f8034cadb641a9d3437e6908817585c029bcbf713ca7290f3b"
+    },
+    {
+      "probe": "kart_nextgen_garage_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[NextGenGarage] PASS 93 checks; captures=0"
+      ],
+      "log_sha256": "85548fd5a6e77accad5c6a73357b753849880e7c327e71ceb951dc6073a2f9ab"
+    },
+    {
+      "probe": "kart_loading_regression",
+      "exit_code": 0,
+      "pass_markers": [
+        "[KartLoading] PASS:78 real loading, rig, dp, timeout, Retry and existing Kart transition checks"
+      ],
+      "log_sha256": "c41200646cb437e382403bb4c06a6769a2dc38720621ef938e1e9b66522f9cba"
+    }
+  ],
+  "new_completions": [
+    {
+      "probe": "kart_workshop_density_regression",
+      "checks": 4129,
+      "profiles": 8,
+      "name": "workshop-final",
+      "started_utc": "2026-11-13T22:29:47.477589+00:00",
+      "duration_seconds": 181.07295227999566,
+      "process_exit": 0,
+      "required_marker": "[WorkshopDensity] PASS",
+      "required_found": true,
+      "engine_errors": [],
+      "command": [
+        "python3",
+        "tools/run_godot_probe.py",
+        "--log",
+        "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/workshop-final.log",
+        "--timeout",
+        "600",
+        "--required",
+        "[WorkshopDensity] PASS",
+        "--",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "scripts/tests/kart_workshop_density_regression.gd"
+      ],
+      "log": "workshop-final.log",
+      "log_sha256": "2bf2418d495133cbaa5d4c4a84e66c1be0f9b3bcf0c0a9dfe778897e30c74e62",
+      "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+      "pass": true,
+      "source_unchanged_after": true
+    },
+    {
+      "probe": "cards_safe_area_regression_renderer",
+      "checks": 671,
+      "profiles": 5,
+      "actual_pngs": 3,
+      "name": "cards-render-final",
+      "started_utc": "2026-11-13T22:29:47.478203+00:00",
+      "duration_seconds": 136.44505883200327,
+      "process_exit": 0,
+      "required_marker": "CARDS_SAFE_AREA_PASS",
+      "required_found": true,
+      "engine_errors": [],
+      "command": [
+        "python3",
+        "tools/run_local_renderer.py",
+        "--display",
+        "114",
+        "--output",
+        "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/cards-render-final",
+        "--timeout",
+        "600",
+        "--",
+        "--script",
+        "scripts/tests/cards_safe_area_regression.gd",
+        "--",
+        "--capture"
+      ],
+      "log": "cards-render-final/godot.log",
+      "log_sha256": "713efe194a318198fce7f166c1dd380710665d20dbf547e1c2160252393338de",
+      "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+      "pass": true,
+      "source_unchanged_after": true
+    }
+  ],
+  "shared_regression": {
+    "headless_checks": 112,
+    "rendered_checks": 124,
+    "rendered_exit": 0,
+    "pngs": 4,
+    "original_controls": 15,
+    "original_unsafe_controls": 9,
+    "new_unsafe_controls": 0,
+    "minimum_exposed_dp": 48.000005812872,
+    "local_platform_boundary_fixture": true
+  },
+  "cards_rendered_input_scope": {
+    "targets_measured": 81,
+    "injected_screen_touch_events": 36,
+    "minimum_target_side_dp": 52.0,
+    "rules_checked": "Pause/resume, pagination where present, draw, selected-card play, LUMO call and return in the real production table with scripted ScreenTouch events. The three image sidecars preserve settled projection and raw fixture provenance."
+  },
+  "warnings": {
+    "cards_renderer": [
+      "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.",
+      "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer.",
+      "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+    ],
+    "interpretation": "Local X11/software Compatibility renderer reports unsupported driver VSync, screen-space AA and volumetric fog capabilities. Warnings are retained, not suppressed; no GPU-performance or warning-free claim."
+  },
+  "interrupted_attempts": {
+    "reason": "The prior two sessions became unavailable after a tool/agent interruption. Their original partial logs had no required final PASS marker; no success was transferred. Only those two unfinished required executions were repeated on the same frozen sources.",
+    "originals_included": [
+      "interrupted-originals/workshop-partial.log",
+      "interrupted-originals/cards-render-partial.log"
+    ],
+    "workshop_budget": "The final 600 s budget is the existing native touch-harness headless budget. The initial bulk local runner used 240 s. No CI timeout or assertion was weakened.",
+    "partial_exit_status": "not available; not inferred"
+  },
+  "images": [
+    {
+      "path": "captures/cards/android35_portrait-paused.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/cards-render-final-captures/android35_portrait-paused.png",
+      "bytes": 1141738,
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "git_blob": "c66a502bab264045d448cc2c0f5520a13d0cfbd6",
+      "mode": "100644",
+      "size": [
+        1080,
+        2400
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Agent A final completion: this new frame opened individually",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "The paused state visibly shows Weiter and a readable centered Weiterspielen modal. Modal and header lie inside the supplied safe rectangle; no clipped interactive modal text found."
+    },
+    {
+      "path": "captures/cards/android35_portrait-playing.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/cards-render-final-captures/android35_portrait-playing.png",
+      "bytes": 1272873,
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "git_blob": "f27035bdf74da5b04f30b7aa8f5a0f4983c9aad4",
+      "mode": "100644",
+      "size": [
+        1080,
+        2400
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Agent A final completion: this new frame opened individually",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "Header/Zurück/Pause lie below the supplied top 136 px. Three front cards, pagination and draw action are visible; lower actions end above the supplied 63 px bottom band. Original fox and real 3D table visible. No additional blocking overlap found."
+    },
+    {
+      "path": "captures/cards/landscape_cutout_fixture-playing.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/cards-render-final-captures/landscape_cutout_fixture-playing.png",
+      "bytes": 1002645,
+      "sha256": "90b49f1abdfd70a5b835cc6a4432dc291a2ed748ecd2d8f53b47ab75b157bfa8",
+      "git_blob": "8bcf5a95bd1b76821313c247612f273e13e5db12",
+      "mode": "100644",
+      "size": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Agent A final completion: this new frame opened individually",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "Header begins beyond the supplied 136 px left band and below 63 px top; lower actions stay above 63 px bottom. Seven card fronts visible. The existing header partly covers the character head; no additional blocked required control found. No claim of full character-body visibility."
+    },
+    {
+      "path": "captures/shared/build-landscape-cutout.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/build-landscape-cutout.png",
+      "bytes": 2498645,
+      "sha256": "0de19dec49d0e71f40c5f3730f39c0f3703db5fb9e3e8aac5219637fa12eb995",
+      "git_blob": "c9ee44734cd6b12ebc048696c081708281f91c4a",
+      "mode": "100644",
+      "size": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Earlier shared renderer review by Agent A; also individually opened by B and Root. No new execution in this completion step.",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "Back/header and required build targets lie inside the true fixture bounds; the scrolling palette retains partially clipped offscreen content as expected."
+    },
+    {
+      "path": "captures/shared/jump-landscape-cutout.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/jump-landscape-cutout.png",
+      "bytes": 1858700,
+      "sha256": "86160414e34cfaa7ae5c7b0be20d965056e49b12621bf33f1bc7deda054b8d8a",
+      "git_blob": "c787739977d30e58b88f8766e6ee89d2429b3703",
+      "mode": "100644",
+      "size": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Earlier shared renderer review by Agent A; also individually opened by B and Root. No new execution in this completion step.",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "Back/pause, movement stick and jump target lie outside the supplied cutout/system bands. The original character and platforms remain visible."
+    },
+    {
+      "path": "captures/shared/puzzle-landscape-cutout.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/puzzle-landscape-cutout.png",
+      "bytes": 479664,
+      "sha256": "c7731af932d055c48a8f8c763508d63f0ccbbb110dac5c35f7c28a6f18e735e9",
+      "git_blob": "cb301a0e9ee778b86bcbc6a0327b145321f834bd",
+      "mode": "100644",
+      "size": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Earlier shared renderer review by Agent A; also individually opened by B and Root. No new execution in this completion step.",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "Header/back and puzzle menu targets clear the left/top bands; scroll content and menu stay within the available safe area."
+    },
+    {
+      "path": "captures/shared/treasure-landscape-cutout.png",
+      "original_path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/treasure-landscape-cutout.png",
+      "bytes": 2816313,
+      "sha256": "246681d37ca38df65dd15b06f982c8384e329d3da87834dfc7423775ff5c8b00",
+      "git_blob": "63f8800278d60336716e69c66c967f116692e1c1",
+      "mode": "100644",
+      "size": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "review_phase": "Earlier shared renderer review by Agent A; also individually opened by B and Root. No new execution in this completion step.",
+      "verdict": "NO_ADDITIONAL_BLOCKER_IN_THIS_FRAME",
+      "finding": "Back/pause, movement and action targets clear the fixture bands. The existing HUD partly obscures the scene/character; no additional required-input overlap found."
+    }
+  ],
+  "limitations": [
+    "All seven PNGs are genuine locally rendered Godot frames, not generated illustrations.",
+    "Portrait top 136/bottom 63 inputs derive from observed 318-API35 system logs. This is a desktop fixture, not a fresh Android screenshot or current measured Android SurfaceView. Other landscape/desktop cases are explicitly fixtures.",
+    "The public Java API adapter contract uses boundary stubs. It is not proof of successful JNI execution on the new APK.",
+    "New native workflow and actual API35/API37 app/system-bar gates remain separate mandatory acceptance steps.",
+    "No physical Fold7, 60 FPS, thermal, latency or release-approval claim.",
+    "Counts are scoped assertion counts, not a summed product-coverage metric."
+  ]
+}

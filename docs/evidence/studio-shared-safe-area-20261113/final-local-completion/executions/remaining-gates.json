@@ -1,0 +1,67 @@
+{
+  "scope": "Only two incomplete local executions repeated after session loss; same frozen sources; original 600s workshop headless budget retained",
+  "results": [
+    {
+      "name": "workshop-final",
+      "started_utc": "2026-11-13T22:29:47.477589+00:00",
+      "duration_seconds": 181.07295227999566,
+      "process_exit": 0,
+      "required_marker": "[WorkshopDensity] PASS",
+      "required_found": true,
+      "engine_errors": [],
+      "command": [
+        "python3",
+        "tools/run_godot_probe.py",
+        "--log",
+        "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/workshop-final.log",
+        "--timeout",
+        "600",
+        "--required",
+        "[WorkshopDensity] PASS",
+        "--",
+        "godot",
+        "--headless",
+        "--path",
+        ".",
+        "--audio-driver",
+        "Dummy",
+        "--script",
+        "scripts/tests/kart_workshop_density_regression.gd"
+      ],
+      "log": "workshop-final.log",
+      "log_sha256": "2bf2418d495133cbaa5d4c4a84e66c1be0f9b3bcf0c0a9dfe778897e30c74e62",
+      "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+      "pass": true,
+      "source_unchanged_after": true
+    },
+    {
+      "name": "cards-render-final",
+      "started_utc": "2026-11-13T22:29:47.478203+00:00",
+      "duration_seconds": 136.44505883200327,
+      "process_exit": 0,
+      "required_marker": "CARDS_SAFE_AREA_PASS",
+      "required_found": true,
+      "engine_errors": [],
+      "command": [
+        "python3",
+        "tools/run_local_renderer.py",
+        "--display",
+        "114",
+        "--output",
+        "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/cards-render-final",
+        "--timeout",
+        "600",
+        "--",
+        "--script",
+        "scripts/tests/cards_safe_area_regression.gd",
+        "--",
+        "--capture"
+      ],
+      "log": "cards-render-final/godot.log",
+      "log_sha256": "713efe194a318198fce7f166c1dd380710665d20dbf547e1c2160252393338de",
+      "source_freeze_sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+      "pass": true,
+      "source_unchanged_after": true
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 136.32574240899703,
+  "display": 114,
+  "project": "/workspace/scratch/5987865ae883/lumo-godot",
+  "godot_arguments": [
+    "--script",
+    "scripts/tests/cards_safe_area_regression.gd",
+    "--",
+    "--capture"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}
