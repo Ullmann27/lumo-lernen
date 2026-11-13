@@ -189,7 +189,7 @@ class MainActivity : FlutterActivity() {
                             .put("childKey", call.argument<String>("childKey")?.takeIf { it.matches(Regex("[A-Za-z0-9_-]{1,80}")) } ?: "standalone")
                         if (game == "learning") {
                             val learning = call.argument<Map<String, Any?>>("learning")
-                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "bridge_hundred", "fraction_parts", "syllables", "plant_parts")) {
+                            if (learning == null || learning["kind"] !in setOf("bridge_ten", "addition", "subtract_ten", "equal_groups", "equal_sharing", "bridge_hundred", "fraction_parts", "syllables", "plant_parts")) {
                                 result.error("invalid_learning", "Die Lernansicht ist nicht verfügbar.", null)
                                 return@setMethodCallHandler
                             }
