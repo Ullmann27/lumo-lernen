@@ -134,9 +134,27 @@ def local_voice_permission(out: Path) -> dict:
             'audible_quality_verified': False, 'lip_sync_verified': False}
 
 
+def _speech_logcat() -> str:
+    """Collect real native speech and Godot events without draining every system log.
+
+    CI emulators may return adb/logcat 255 on a disconnected logd stream.
+    A failed transport read is never speech evidence.
+    """
+    for attempt in range(3):
+        try:
+            return base.adb('logcat', '-d', '-v', 'brief', '-s',
+                            'LumoLearningSpeech:I', 'godot:I', 'Godot:I', '*:S',
+                            timeout=60)
+        except RuntimeError as error:
+            if "Command failed (255): ('adb', 'logcat'" not in str(error) or attempt == 2:
+                raise
+            time.sleep(1)
+    raise RuntimeError('Unreachable speech logcat retry state')
+
+
 def completed_native_speech(out: Path, *, after_final_move=False) -> dict:
     def observe():
-        log = base.adb('logcat', '-d', '-v', 'brief', timeout=60)
+        log = _speech_logcat()
         (out / 'learning-speech-logcat.txt').write_text(log)
         try:
             return require_learning_voice(log, after_final_move=after_final_move)
@@ -178,7 +196,7 @@ def learning_roundtrip(out: Path) -> dict:
     probe.native_text(out, 'gefüllt', 'learning-complete', settle=True,
                       orientation='responsive')
     probe.capture(out, '04_learning_native_thirteen')
-    movement_log = base.adb('logcat', '-d', '-v', 'brief', timeout=60)
+    movement_log = _speech_logcat()
     (out / 'learning-movement-logcat.txt').write_text(movement_log)
     moves = require_learning_bridge_moves(movement_log)
     final_voice = completed_native_speech(out, after_final_move=True)
