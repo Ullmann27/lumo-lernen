@@ -1,0 +1,59 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-13T23:14:25.550475+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "published_revision": "1dfd6e32577e79368a707a39c7a2b075cbe4109d",
+  "published_tree": "ca8bb4e86d52b299bb7afbfdf97d6318c596c4bc",
+  "local_directory": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "local_head": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "local_head_used_as_comparison_reference": false,
+  "result": "MATCHED_ALL_PUBLISHED_FILES_IN_SCOPE",
+  "prefixes": [
+    "lib/",
+    "test/",
+    "integration_test/",
+    "android/",
+    "tools/",
+    "scripts/",
+    "config/",
+    ".github/"
+  ],
+  "counts": {
+    "published_files_in_scope": 1271,
+    "existing_files_read": 1271,
+    "matching_blob_and_size": 1271,
+    "matching_mode": 1271,
+    "missing": 0,
+    "content_differences": 0,
+    "mode_differences": 0,
+    "changed_during_read": 0,
+    "by_directory": {
+      "lib": 440,
+      "test": 382,
+      "integration_test": 0,
+      "android": 0,
+      "tools": 187,
+      "scripts": 115,
+      "config": 4,
+      ".github": 143
+    }
+  },
+  "missing": [],
+  "content_differences": [],
+  "mode_differences": [],
+  "changed_during_read": [],
+  "limits": [
+    "This is a file identity check, not a test execution or a clean-tree claim.",
+    "No source was repaired, no workflow or GitHub state changed, and no tests were rerun.",
+    "Files outside the eight requested prefixes and unpublished files are outside this comparison.",
+    "Existing test success, Android performance and a new APK/Native visual receipt are not inferred from byte identity.",
+    "The published tree has no blob entries under android/ or integration_test/; these directories are explicitly counted as zero, not claimed to have been tested."
+  ],
+  "full_file_hash_report": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-runtime-preparation/local-vs-1dfd-all-source-files-review.json",
+    "bytes": 694946,
+    "sha256": "cbf4426ac6948ece196cdcf5b72076d76520455240e05d74f3e1d87a6f2a1295",
+    "git_blob": "d7f789434b71b3d652476a5ba6f871c83f72611d"
+  }
+}

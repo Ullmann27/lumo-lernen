@@ -1,0 +1,477 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-13T23:24:05.490944+00:00",
+  "scope": "Documentation-only correction; no product/test/CI changes or test execution",
+  "document_snapshot_utc": "2026-11-13T23:10:00Z",
+  "doc_native_result_still_open": true,
+  "prior_snapshot_directory": "qa/studio-final-scope/scope-v1-before-root-review",
+  "corrections": [
+    {
+      "kind": "exact_filenames",
+      "finding": "Global token replacement had altered HOST and NATIVE inside two legitimate filenames",
+      "resolved": [
+        "docs/STUDIO_LEARNING_HOST_20261113.md",
+        "docs/STUDIO_NATIVE_PROFILE_KEYS_20261113.md"
+      ],
+      "method": "Only the two exact damaged link strings were replaced; every blob/tree link was subsequently matched to the published trees"
+    },
+    {
+      "kind": "api35_scope",
+      "finding": "Three human visual inspections had to be distinguished from an accepted automated Cards phase",
+      "outcome": "Three visible card-front images were actually inspected; all three frame candidates were rejected at exact Pause OCR before projection/pixel checks and before the first draw. No automated card-front or gameplay PASS claimed",
+      "original_binding": {
+        "files": [
+          {
+            "path": "docs/evidence/studio-final-verification-31883868/api35/api35-cards-failure-review.json",
+            "bytes": 14970,
+            "sha256": "a51298abbc46a40669fdd27ccdb4159e1e11d511f1d31f1568c705ba58c38769",
+            "git_blob_sha": "cb87dd847aa3a54ddadd907358175f75305eb5c2",
+            "matched_published_host_commit": "1dfd6e32577e79368a707a39c7a2b075cbe4109d"
+          },
+          {
+            "path": "docs/evidence/studio-final-verification-31883868/api35/originals/nextgen/native-surfaces-result.json",
+            "bytes": 6443,
+            "sha256": "c9181bbf9680bb5d597e365c085e35081674882e2d5aa17cafdfeb7086d0d587",
+            "git_blob_sha": "10b6adb81b90a6fdabe047daed0ba155eed0c89d",
+            "matched_published_host_commit": "1dfd6e32577e79368a707a39c7a2b075cbe4109d"
+          }
+        ],
+        "original_fields": {
+          "cards_failure.frame_rejections": [
+            {
+              "source": "11_cards_real_table_before_draw-face-check-00.png",
+              "sha256": "059a25aad43399ffcb73809af6a8bbb1ada8fd309c7742cb9bdc49415fbae265",
+              "revision": 3,
+              "status": "REJECTED",
+              "error": "Current Cards frame still has a paused/modal transition",
+              "public_after_recorded": false
+            },
+            {
+              "source": "11_cards_real_table_before_draw-face-check-01.png",
+              "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+              "revision": 3,
+              "status": "REJECTED",
+              "error": "Current Cards frame still has a paused/modal transition",
+              "public_after_recorded": false
+            },
+            {
+              "source": "11_cards_real_table_before_draw-face-check-02.png",
+              "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+              "revision": 3,
+              "status": "REJECTED",
+              "error": "Current Cards frame still has a paused/modal transition",
+              "public_after_recorded": false
+            }
+          ],
+          "cards_failure.guard_site": ".github/probes/lumo_studio_surfaces_android_probe.py: fehlendes exaktes OCR-Wort Pause vor Seiten-/Pixel-/Folgezustandsprüfung",
+          "cards_failure.not_reached": [
+            "automatischer Projektions-/Kartenvorderseiten-Pixel-PASS",
+            "erstes Ziehen",
+            "zweites Ziehen nach mindestens35s sichtbarer Idle-Zeit",
+            "Pause mit Saveinvarianz",
+            "Rückkehr zu derselben Flutter-Partie",
+            "Wiederaufnahme mit neuem Mailboxtoken",
+            "abschließender TaskReturn"
+          ],
+          "images_opened_cards": [
+            {
+              "file": "originals/nextgen/11_cards_real_table_before_draw-face-check-00.png",
+              "sha256": "059a25aad43399ffcb73809af6a8bbb1ada8fd309c7742cb9bdc49415fbae265",
+              "actually_opened": true,
+              "review": "Aktiver räumlicher Kartentisch, sichtbarer Originalfuchs und Kartenvorderseiten 1/0/5; Seite 1/3, Ziehen und Pause sichtbar, keine Pausenmodalität. Android-Statusleistenicons überlagern oben die Pause-Beschriftung. Dies ist eine Sichtprüfung, keine bestandene automatische Kartenidentitäts-/Interaktionsprüfung."
+            },
+            {
+              "file": "originals/nextgen/11_cards_real_table_before_draw-face-check-01.png",
+              "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+              "actually_opened": true,
+              "review": "Aktiver räumlicher Kartentisch, sichtbarer Originalfuchs und Kartenvorderseiten 1/0/5; Seite 1/3, Ziehen und Pause sichtbar, keine Pausenmodalität. Android-Statusleistenicons überlagern oben die Pause-Beschriftung. Dies ist eine Sichtprüfung, keine bestandene automatische Kartenidentitäts-/Interaktionsprüfung."
+            },
+            {
+              "file": "originals/nextgen/11_cards_real_table_before_draw-face-check-02.png",
+              "sha256": "98fb217f3900898380b61fd3c9fcc69158bf03aa523eecc6e7209224057b0447",
+              "actually_opened": true,
+              "review": "Aktiver räumlicher Kartentisch, sichtbarer Originalfuchs und Kartenvorderseiten 1/0/5; Seite 1/3, Ziehen und Pause sichtbar, keine Pausenmodalität. Android-Statusleistenicons überlagern oben die Pause-Beschriftung. Dies ist eine Sichtprüfung, keine bestandene automatische Kartenidentitäts-/Interaktionsprüfung."
+            }
+          ],
+          "native_surfaces_result_status": "FAIL",
+          "native_surfaces_result_has_cards_group": false,
+          "native_surfaces_result_error": "TimeoutExpired: Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 1.1972953040001357 seconds"
+        }
+      }
+    },
+    {
+      "kind": "main",
+      "outcome": "Main wird durch diese Arbeit nicht verändert; keine Zusammenführung wurde ausgeführt.",
+      "limit": "No technical GitHub branch-protection rule claimed; current metadata was reported protected=false by the integrator"
+    }
+  ],
+  "link_validation": {
+    "status": "ALL_REFERENCED_BLOB_TREE_PATHS_MATCHED",
+    "unique_links": 42,
+    "occurrences": 46,
+    "host_tree": {
+      "path": "/workspace/scratch/5987865ae883/qa/fold-device-capture-20261113/published-host-tree.json",
+      "sha": "ca8bb4e86d52b299bb7afbfdf97d6318c596c4bc",
+      "commit": "1dfd6e32577e79368a707a39c7a2b075cbe4109d",
+      "truncated": false,
+      "entries": 4543,
+      "file_sha256": "b43371998f5ac712682092f2c354af9c76f9973e50d6c5ffd0e72652f39b377b"
+    },
+    "native_tree": {
+      "sha": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+      "commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "source_url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/dc24bfa8b3fac8812c88cfc8f8eab3af1479979c?recursive=1",
+      "truncated": false,
+      "entries": 2514,
+      "raw_response_characters": 657552
+    },
+    "method": "The complete, non-truncated exact Git trees were read; each path and blob/tree object type matches. Non-file commit/run/PR links are outside this path check; no individual HTTP rendering assertion.",
+    "rows": [
+      [
+        "Ullmann27/lumo-godot",
+        "blob",
+        "docs/NEXTGEN_KART_20261113.md",
+        "98d47d77976f25e7156b0fd3f44e94ad03189074",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "blob",
+        "docs/STUDIO_LEARNING_20261113.md",
+        "a2b3b2b48af0e98d23cacea36beb07c5233ce06a",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "blob",
+        "docs/design/studio-20261113/Learning-Studio.blend",
+        "defdd9406203d44417a90182ea96271397366c2d",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "blob",
+        "docs/evidence/studio-character-20261113/README.md",
+        "423bab1351d107af1a864890d2e03a892324d6e0",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "blob",
+        "docs/evidence/studio-runner-contract-20261113/README.md",
+        "9d291bbda1036e19325ed266dddfac63b5518599",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "blob",
+        "tools/lumo_animation/author_platform_clips.py",
+        "2fb2a93458eb372fe5c78958c54b3b5a0f052a26",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "tree",
+        "docs/evidence/studio-atelier-20261113",
+        "77df6380661ea26d657520bbf28fc919c10d24f5",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "tree",
+        "scripts/characters/lumo",
+        "a60dbb06e036848249304610611a0c34a6a8d28c",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-godot",
+        "tree",
+        "scripts/learning",
+        "d69c742301e772fc16e9c2435141e2d022e78558",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/NEXTGEN_AUDIT_20261113.md",
+        "872f0761434c82a5fdcb23ca22d05eba52dbc39c",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/STUDIO_ACCEPTANCE_31883868.md",
+        "66a20eb58e652024a9328797ebcfd264310d7dcf",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/STUDIO_EXECUTION_20261113.md",
+        "6a5562360a5fa9c4a3a4f0c07eb1ab4148c6be82",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/STUDIO_LEARNING_HOST_20261113.md",
+        "74ae72fa03c3ec10f6ccd485e730209203ac5cd9",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/STUDIO_LEARNING_INDEPENDENT_REVIEW_20261113.md",
+        "3b8b7ddfa59bab0402ee730ded6919de500d7797",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/STUDIO_NATIVE_PROFILE_KEYS_20261113.md",
+        "56e993067bb59932ce1ebf615eb3ab1c81b83607",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/fold-device-capture-20261113/independent-review.json",
+        "4d4882c6c003701de7d4d1907cbf0f1725d180af",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/fold-device-capture-20261113/source-freeze.json",
+        "58c0afc95b7d97fd18e63cb7c3a28944043cf6b1",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/fold-device-capture-20261113/synthetic-tests-final-19.log",
+        "26b483d1591e0a12d077f8a13287f540fa35135c",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-2019-review-notes/cards-796b-current-review.json",
+        "186d5f39a7d8fe0469845007080a63677eb785f0",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-2019-review-notes/learning-796b-current-review.json",
+        "ea74c22c307f65e902340b6407e0e7e4fcb93188",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-2019-review-notes/puzzle-treasure-796b-current-review.json",
+        "74df8f8bf9c10b3594f0a5b87e283d39798ca16b",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-2019-review-notes/selected-15-796b-review.json",
+        "c9dd5c836c62146afc0ff35c47ce3a1bcdc01007",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-2019-review-notes/treasure-touch-796b-current-review.json",
+        "7a250151cdefd0580c57151299af3ed25e8fb46f",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-animation-20261113/README.md",
+        "d413433113bed52820435da4b4d27368e246e2c1",
+        2,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-final-integration-796b/current-base-source-comparison.json",
+        "61ee4601e3a256181b6001ce9ffe4bf9be3485e9",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-final-verification-31883868/api35/cards-publisher-legacy-independent-review.json",
+        "cafefcb5f4bc50ceb50e0f475f9e0c885fc9d6c6",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-final-verification-31883868/api35/shared-safe-area-independent-review.json",
+        "def5936b49f3b845fdd8f2b89638c3a5d423e8ca",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-final-verification-31883868/creative-api35-2fdd038d/REVIEW.json",
+        "4a01d7c8f7daaf7d849d4ea74f67b25b7f48b52a",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-kart-current-20261113/README.md",
+        "654b6dd4a45f28d6ca3493124e15e57f23cab8c1",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-kart-current-20261113/source-and-review.json",
+        "aadc9d49b948fec09424b90fa94b6b942139258c",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-runtime-jump-20261113/README.md",
+        "8239dd6752c8b87c611bad487f3cef093c8a878f",
+        2,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-runtime-learning-20261113/README.md",
+        "36e6b4a217ff25c9eacd5dcc115035e22697438e",
+        2,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-runtime-puzzle-20261113/README.md",
+        "e9825b07ac192f130325ab188e8f54486203640c",
+        2,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "docs/evidence/studio-shared-safe-area-20261113/final-local-completion/README.md",
+        "b75359f89ac77ef214b3ec84be7f8ca212e8afda",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "lib/features/games/games_content.dart",
+        "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "lib/features/games/spielwelt/spielwelt_routes.dart",
+        "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "test/games/spielwelt_semantics_action_test.dart",
+        "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "blob",
+        "tools/android_qa/FOLD_DEVICE_CAPTURE.md",
+        "a5a356c078925e818ad571c2e22e35a556a47b5c",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "tree",
+        "docs/evidence/studio-final-verification-31883868",
+        "1219683969d7c9456370e46fc9b640463bbc2ee6",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "tree",
+        "docs/evidence/studio-final-verification-31883868/spielwelt-accessibility-fix",
+        "8073dcc17de3cf497d5ac2713ce297fc53a28fa7",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "tree",
+        "docs/evidence/studio-learning-20261113",
+        "935ceca5e36ac206ac7aa0d3c714dfe5e883b14e",
+        1,
+        "MATCHED"
+      ],
+      [
+        "Ullmann27/lumo-lernen",
+        "tree",
+        "docs/evidence/studio-native-profiles-20261113",
+        "6de0ca00d8e1954ef91620464874801b19d13c99",
+        1,
+        "MATCHED"
+      ]
+    ],
+    "row_columns": [
+      "repository",
+      "object_type",
+      "path",
+      "git_object_sha",
+      "occurrences",
+      "status"
+    ]
+  },
+  "document_sha256": "e259366a1ee0a75b8625ef830374439d534a8dfa44dcb794bafeab8c28030c1c"
+}

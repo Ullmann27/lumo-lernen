@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-13T23:25:29.483214+00:00",
+  "purpose": "Documentation-only publication snapshot; no tests or product sources changed",
+  "snapshot_utc": "2026-11-13T23:10:00Z",
+  "native_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "native_run": 43524051371,
+  "native_result": "OPEN_IN_THIS_SNAPSHOT",
+  "host_prep_commit": "1dfd6e32577e79368a707a39c7a2b075cbe4109d",
+  "host_prep_parent": "e16dfc3b0333be4abcb50d25d4f24196967f4d70",
+  "host_pr": 476,
+  "new_host_android_result": "NOT_COMPLETED",
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "path": "docs/STUDIO_NEXTGEN_SCOPE.md",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_NEXTGEN_SCOPE.md",
+      "bytes": 46893,
+      "sha256": "e259366a1ee0a75b8625ef830374439d534a8dfa44dcb794bafeab8c28030c1c",
+      "git_blob_sha": "0e2ddd6f920f073367cbb49cb6b90900523e59da",
+      "mode": "100644"
+    }
+  ],
+  "read_existing_sources": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-scope/ABNAHMETABELLE_STUDIO.md",
+      "bytes": 21720,
+      "sha256": "5d494cba28693aa343e2630b96efc9b7f6c0ef9e8a9c882b6e0a5919ac428f02"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-scope/device-and-data-gates.md",
+      "bytes": 15955,
+      "sha256": "0cec3526b34005c3be4ad79265918092969ca770b88ed4159edcdd1bca128f95"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-20fd-runner-test-fix/upload/docs/evidence/studio-runner-contract-20261113/README.md",
+      "bytes": 5119,
+      "sha256": "26df51f6f9ffc7a1a6f356aa9673b7c15d8f169c20a15f57b03cf537806c54d7"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/fold-device-capture-20261113/source-freeze.json",
+      "bytes": 4047,
+      "sha256": "712f62ffd06c1f01363429db33439b556a34a8afbab0b743bacf0371b8484acc"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-learning-20261113/README.md",
+      "bytes": 8898,
+      "sha256": "1faa0abdee37c4e3c117b01db62b948130baf721cbb3f0fda62d379101b27787"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-puzzle-20261113/README.md",
+      "bytes": 6973,
+      "sha256": "1a66111e297e5ba51440beebca3540af256ff0a1f28d69db19200f13fdbdf675"
+    }
+  ],
+  "source_boundary": "Stichtag 23:10 UTC and its still-open 803e result preserved. All 42 unique blob/tree paths matched to exact published Host 1dfd and Native 803e trees. Original API35 review/result matched bytewise by Git blob to Host 1dfd. No new tests, CI or product changes.",
+  "revision": 2,
+  "previous_version_preserved": {
+    "directory": "/workspace/scratch/5987865ae883/qa/studio-final-scope/scope-v1-before-root-review",
+    "document": {
+      "bytes": 46745,
+      "sha256": "223ea92485884179639bde5a096920d9c212df364882a4fd2a355ee1b59e9c06",
+      "git_blob_sha": "3819ea692d663098940470dfdc314e423eddc1a4",
+      "mode": "100644"
+    },
+    "manifest": {
+      "bytes": 2618,
+      "sha256": "178e9e4715949bc544d0954adfce2455eb9c623cff418a53e972ebd205376da8",
+      "git_blob_sha": "187a536467f0ab0b767cf8777d894936bbeaa751",
+      "mode": "100644"
+    }
+  },
+  "link_and_correction_review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-final-scope/scope-link-correction-review.json",
+    "bytes": 16606,
+    "sha256": "d7c4a53ef89069c0939245251bee734478095d2230909e7cb9130cf8d048183c",
+    "git_blob_sha": "cecd6e0b025177495d3e6fb7237000ee72ba5542",
+    "mode": "100644",
+    "unique_published_blob_tree_paths": 42,
+    "link_occurrences": 46,
+    "all_matched": true,
+    "only_changed_document_lines": [
+      22,
+      102,
+      172,
+      176
+    ]
+  }
+}
