@@ -6,17 +6,22 @@
 
 **Tech stack:** Existing Python standard-library review recorder and unittest regressions.
 
-**Scope:** scripts/record_nextgen_visual_review.py, one new test module, isolated support CI and this handoff. Base a31c0070; current native candidate ada5ed81. Main and product integration remain untouched.
+**Scope:** scripts/record_nextgen_visual_review.py, one new test module, isolated support CI and handoff documentation. Base a31c0070; current native candidate ada5ed81. Main and product integration remain untouched.
 
-## Steps
+## Executed steps
 
 - [x] Read live PRs, continuation constraints, recorder and verifier; verify new native artifact digest/CRC.
 - [x] Create isolated branch and exact-source reproduction workflow.
-- [ ] Run new tests against unchanged recorder and retain the actual failure log.
-- [ ] Replace ordinal-based image names with full content-hash names; keep existing destination collision checks.
-- [ ] Run all Nextgen contracts and the full available script suite; report failures or skips explicitly.
-- [ ] Verify real ada5 archive selection with unchanged release validator and inspect current original pictures.
-- [ ] Secure code, test outcomes, source hashes and a reviewable PR against the active development branch.
+- [x] Run new tests against unchanged recorder: actual four failing cases in run 43406783909; original log retained.
+- [x] Replace ordinal-based image names with full content-hash names; preserve collision and release validation checks.
+- [x] Run targeted Nextgen contracts: 22/22 passed in run 43407405933.
+- [x] Run the complete script suite: 312/312 passed with no skips in run 43407676499, including the targeted 22; source hashes and tracked diff unchanged.
+- [x] Inspect one genuine current portrait Cards image; no complete native visual review or Android claim.
+- [x] Secure code, exact run/job/artifact identities and draft PR463 against the active development branch.
+
+## Remaining boundaries
+
+Full real-image review and the new APK/Android/update acceptance belong to concurrent product integration #461, now at 3c712129. The local tool failure prevented further real-archive recorder execution; synthetic tests do not replace that visual review. Independent PR review and incorporation are still open. Do not cancel or restart the active APK build to incorporate this support-only patch.
 
 ## Review focus
 
