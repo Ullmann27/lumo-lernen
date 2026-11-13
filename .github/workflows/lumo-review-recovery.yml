@@ -1,0 +1,54 @@
+name: LUMO visual review recovery support
+
+on:
+  push:
+    branches: [chatgpt/lumo-2018-review-recovery-20261113]
+    paths:
+      - '.github/workflows/lumo-review-recovery.yml'
+      - 'scripts/record_nextgen_visual_review.py'
+      - 'scripts/tests/test_nextgen_review_recovery.py'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-review-recovery-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  reproduce:
+    if: github.repository == 'Ullmann27/lumo-lernen'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+      - name: Archive tracked exact source for isolated reproduction
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/lumo-review-source"
+          git rev-parse HEAD > "$RUNNER_TEMP/lumo-review-source/source-sha.txt"
+          git rev-parse 'HEAD^{tree}' > "$RUNNER_TEMP/lumo-review-source/source-tree.txt"
+          git status --porcelain --untracked-files=no > "$RUNNER_TEMP/lumo-review-source/source-dirty.txt"
+          test ! -s "$RUNNER_TEMP/lumo-review-source/source-dirty.txt"
+          git archive --format=tar HEAD | gzip -1 > "$RUNNER_TEMP/lumo-review-source/source.tar.gz"
+          cd "$RUNNER_TEMP/lumo-review-source"
+          sha256sum source.tar.gz > SHA256SUMS.txt
+      - name: Review recovery regression when present
+        run: |
+          set -euo pipefail
+          if test -f scripts/tests/test_nextgen_review_recovery.py; then
+            python3 -m unittest discover -s scripts/tests -p test_nextgen_review_recovery.py -v
+          else
+            echo 'Source reproduction only: no regression result claimed.'
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-review-recovery-source
+          path: ${{ runner.temp }}/lumo-review-source/
+          compression-level: 0
+          retention-days: 1
+          if-no-files-found: error
