@@ -1,0 +1,345 @@
+{
+  "schema_version": 1,
+  "reviewer": "games_worlds / Agent C",
+  "reviewed_at_utc": "2026-11-13T15:47:07.075799+00:00",
+  "scope": "Frische vier Bauwelt- und sechs Siedlungsbilder sowie zugehörige Produktions-, Regel- und Speicherprüfungen. Kein Produktpatch.",
+  "source": {
+    "repository": "Ullmann27/lumo-godot",
+    "branch": "chatgpt/lumo-studio-20261113",
+    "commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "tree": "8df22766bd0dbae31aacaa26c0228811c027686e",
+    "source_stamps": [
+      {
+        "scope": "nextgen-evidence/nextgen",
+        "source-sha.txt": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "source-dirty.txt": ""
+      },
+      {
+        "scope": "studio-evidence",
+        "source-sha.txt": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "source-tree.txt": "8df22766bd0dbae31aacaa26c0228811c027686e",
+        "source-dirty.txt": ""
+      },
+      {
+        "scope": "touch-evidence/workshop",
+        "source-sha.txt": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "source-tree.txt": "8df22766bd0dbae31aacaa26c0228811c027686e",
+        "source-dirty.txt": "",
+        "source-dirty-after.txt": ""
+      },
+      {
+        "scope": "touch-evidence/build",
+        "source-sha.txt": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "source-tree.txt": "8df22766bd0dbae31aacaa26c0228811c027686e",
+        "source-dirty.txt": "",
+        "source-dirty-after.txt": ""
+      },
+      {
+        "scope": "touch-evidence/treasure",
+        "source-sha.txt": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "source-tree.txt": "8df22766bd0dbae31aacaa26c0228811c027686e",
+        "source-dirty.txt": "",
+        "source-dirty-after.txt": ""
+      }
+    ],
+    "locally_read_sources_verified_against_remote_git_blobs": [
+      {
+        "path": "scripts/creative/build_world.gd",
+        "git_blob_sha": "879a2d0f6a5019343fbc342b9da9a7a45860e86c",
+        "url": "https://github.com/Ullmann27/lumo-godot/blob/76980a941fa05d047574d8cc386d3249d93ffca3/scripts/creative/build_world.gd",
+        "sha256": "e562577eb2e21cceaa31152c62d30a329204d069ea2f049f927a39550a16ef6c",
+        "local_matches_remote_76980": true
+      },
+      {
+        "path": "scripts/creative/build_settlement_world.gd",
+        "git_blob_sha": "5006410a5daf92afebd315645f8182d18c107c49",
+        "url": "https://github.com/Ullmann27/lumo-godot/blob/76980a941fa05d047574d8cc386d3249d93ffca3/scripts/creative/build_settlement_world.gd",
+        "sha256": "ae4e7b2631d44abf6035e52c561b07c81a58d706f0c2123f5479aec8ec07663b",
+        "local_matches_remote_76980": true
+      },
+      {
+        "path": "scripts/tests/build_nextgen_play_regression.gd",
+        "git_blob_sha": "f7d87b2f103042bd82eeecddf956d8385a70d0a7",
+        "url": "https://github.com/Ullmann27/lumo-godot/blob/76980a941fa05d047574d8cc386d3249d93ffca3/scripts/tests/build_nextgen_play_regression.gd",
+        "sha256": "dab756a7e255029eec566dd26b16fdd4e3ba624188cd790b5434ea3883fa2dff",
+        "local_matches_remote_76980": true
+      },
+      {
+        "path": "scripts/tests/build_settlement_play_regression.gd",
+        "git_blob_sha": "d18125af1e280738a458fbda087b4a38490913bf",
+        "url": "https://github.com/Ullmann27/lumo-godot/blob/76980a941fa05d047574d8cc386d3249d93ffca3/scripts/tests/build_settlement_play_regression.gd",
+        "sha256": "69857a76ecc995ccd89e8c4cf791e93baf7729a4957d4f24b322d2349c8a30d1",
+        "local_matches_remote_76980": true
+      },
+      {
+        "path": "scripts/tests/build_transform_regression.gd",
+        "git_blob_sha": "1c321c4647994ff7ac39b8b873e7f21fcfc7b1ff",
+        "url": "https://github.com/Ullmann27/lumo-godot/blob/76980a941fa05d047574d8cc386d3249d93ffca3/scripts/tests/build_transform_regression.gd",
+        "sha256": "7be827b313ee9ebb7d4755a850ad45df7a1ca548a310808feb848df63e321a96",
+        "local_matches_remote_76980": true
+      },
+      {
+        "path": "scripts/tests/build_settlement_regression.gd",
+        "git_blob_sha": "46598b497b64c88c9bc4f8f44567a25f92df6804",
+        "url": "https://github.com/Ullmann27/lumo-godot/blob/76980a941fa05d047574d8cc386d3249d93ffca3/scripts/tests/build_settlement_regression.gd",
+        "sha256": "d96bbb1ec0468aab68a105ce9755932660f2657e456e00d5a5790ceb7b1cc7f7",
+        "local_matches_remote_76980": true
+      }
+    ]
+  },
+  "original_artifact": {
+    "run_id": 43449903088,
+    "artifact_id": 14052637839,
+    "artifact_name": "lumo-studio-2019-native-evidence",
+    "github_metadata_independently_read": true,
+    "zip_path": "/workspace/scratch/5987865ae883/qa/studio-native-76980a94.zip",
+    "zip_bytes": 170742944,
+    "zip_sha256": "d7ebc000680f3c613e005b8c9eb91e82b488d6f326c36a038a3492459222178c",
+    "zip_independently_hashed": true
+  },
+  "renderer": {
+    "engine": "Godot 4.6.3.stable.official.7d41c59c4",
+    "backend": "OpenGL 4.5 / Compatibility / Mesa25.2.8 llvmpipe LLVM20.1.2",
+    "full_viewport_images": 9,
+    "full_viewport_size": [
+      1280,
+      720
+    ],
+    "native_dialog_viewport_images": 1,
+    "native_dialog_size": [
+      388,
+      390
+    ],
+    "image_generator_used": false
+  },
+  "images": [
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/01_build_selection.png",
+      "bytes": 1411643,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "c59441fbe23f5616094b9188453920223dba3847b231166c38b867610ca3cbce",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Echte Brücke mit cyanfarbener Auswahl-/Vorschaugeometrie und Bodenraster sichtbar; Bauauftrag, Toolbar und Kameratasten sind getrennt erkennbar.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "bytes": 1409926,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "05525893dd0d9a0351bccb8bd3d93d654f2f69c48cce01f805cfc86dcde0bfa8",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Brücke an neuer Position um 90 Grad gedreht; Status zeigt 90 Grad und bestätigt Versetzung. In diesem Zustand kein Auswahlraster mehr sichtbar.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "bytes": 1298706,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "f1264b5ae724829dfe520fcbeb096f155461f6151628717e45dc1a7606fdc543",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Original-Lumo im blauen Anzug am gebauten Mauerteil sichtbar. Linker Stick, Sprung und Ansehen getrennt, Figur und Hindernis im freien Spielfeld.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/04_build_jump.png",
+      "bytes": 1328589,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "20dc3b64cc439102292d53519dd7ef11b1be4cd82e3f509da60a2a6a46ddac6f",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Original-Lumo sichtbar oberhalb des Bodenstands neben dem Mauerteil. Sprung- und Stickflächen sowie Rückkehr zum Bauen bleiben frei.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/01_settlement_start.png",
+      "bytes": 742311,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "1ac257e0cad9d157ef4c125b7b7a263d5983e8dbbe81c71bf5754dc24f63fca5",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Neun Grundstücke der eigenen Siedlung sichtbar, Preise und Ausgangsressourcen lesbar, obere und untere Bedienflächen getrennt.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/02_settlement_purchases.png",
+      "bytes": 759987,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "c15154461473213eabd1f157df38210ef2a74aa8c9fe0653698134a0445c4a4f",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Wohnhaus und Bauernhof als verschiedene echte 3D-Bauten auf getrennten Grundstücken sichtbar; HUD-Ressourcen entsprechen dem geprüften Kaufzustand.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/03_settlement_rival_day.png",
+      "bytes": 632641,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "7bfa2cd19e7c106c7af4548c82fda460fbcebadfcdca6f795f24d3b833f11ed8",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Beide Siedlungen und der Fluss sichtbar; eigene zwei und gegnerische drei Gebäude erkennbar. Tages- und Ressourcenanzeige lesbar.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "bytes": 1097995,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "7a5202f598450e95bbdb45097c585515fef85e3c2fcab4e3f2bd137f70c14b28",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Original-Lumo in der begehbaren Siedlung sichtbar, mit klar getrenntem Bewegungsstick und Sprungknopf. Die 3D-Gebäude reichen perspektivisch hinter das HUD; die Bedienflächen selbst überdecken sich nicht.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/05_settlement_result.png",
+      "bytes": 790431,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "sha256": "ecf68b08c41419cce7f992ca7aef0de5f3b780148722d3ebfe89405ee6d0f691",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Abgeschlossene Runde mit sichtbarer entwickelter Nachbarsiedlung. Ergebnistext nennt Mira als Gewinnerin; Neue Runde ist lesbar und erreichbar dargestellt.",
+      "new_concrete_blocker": false
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "bytes": 57478,
+      "dimensions": [
+        388,
+        390
+      ],
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "zip_byte_equal": true,
+      "actually_opened_for_visual_review": true,
+      "observation": "Tatsächliches Dialog-Viewportbild 388×390: vollständige Erklärung zu einem ausziehenden Bewohner, zwei verbleibenden Bewohnern, Ressourcenrückgabe und Rückgängig. Haus behalten und Ja, umbauen vollständig sichtbar.",
+      "new_concrete_blocker": false
+    }
+  ],
+  "verified_gate_logs": [
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "sha256": "4f02d44a99debb7a5b7a8580c5c7ef215201906963f133e6d10c79d65d27c01c",
+      "zip_byte_equal": true,
+      "assertions": 62,
+      "pass_marker": "[BuildNextgen] PASS checks=62: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout",
+      "script_or_assertion_failure": false,
+      "renderer_warnings": []
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "sha256": "4439cc99723397dd2a4ead00eea92141438eb24a56c360d22aa9308b4ba78552",
+      "zip_byte_equal": true,
+      "assertions": 70,
+      "pass_marker": "[BuildNextgen] PASS checks=70: real touch, move/rotate/history/save, original Lumo walk/jump/collision/pause/layout",
+      "script_or_assertion_failure": false,
+      "renderer_warnings": [
+        "V-Sync nicht unterstützt",
+        "Screen-space AA in Compatibility nicht unterstützt",
+        "Volumetric fog in Compatibility nicht unterstützt"
+      ]
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "zip_byte_equal": true,
+      "assertions": 127,
+      "pass_marker": "[SettlementPlay] PASS checks=127: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts",
+      "script_or_assertion_failure": false,
+      "renderer_warnings": []
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "zip_byte_equal": true,
+      "assertions": 139,
+      "pass_marker": "[SettlementPlay] PASS checks=139: actual routes, plot touch, paid builds, fair visible AI, save isolation, pause and layouts",
+      "script_or_assertion_failure": false,
+      "renderer_warnings": [
+        "V-Sync nicht unterstützt",
+        "Screen-space AA in Compatibility nicht unterstützt",
+        "Volumetric fog in Compatibility nicht unterstützt"
+      ]
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/build_transform_regression-headless.log",
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "zip_byte_equal": true,
+      "assertions": 38,
+      "pass_marker": "[BuildTransform] PASS checks=38: identity, rotation, support graph, atomic history and v1 saves",
+      "script_or_assertion_failure": false,
+      "renderer_warnings": []
+    },
+    {
+      "path_in_original_zip": "nextgen-evidence/nextgen/build_settlement_regression-headless.log",
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "zip_byte_equal": true,
+      "assertions": 194,
+      "pass_marker": "[Settlement] PASS 194 checks; mirrored complete AI campaign 22 days",
+      "script_or_assertion_failure": false,
+      "renderer_warnings": []
+    }
+  ],
+  "interaction_and_save_review": {
+    "build": [
+      "Reale ScreenTouch-/ScreenDrag-Ereignisse wählen die vorhandene Brücke, aktivieren Verschieben, drehen die Vorschau und bestätigen die eingerastete Zielposition.",
+      "Undo und Redo werden über echte Toolbarberührungen ausgelöst und stellen den exakten vorherigen beziehungsweise gespeicherten Zustand wieder her.",
+      "save_world(false) und load_world(false) prüfen direkt die produktiven Speicher-APIs mit wirklicher v1-Datei; die Speicher-/Ladebuttons selbst werden in diesem Gate nicht durch Touch betätigt.",
+      "Abgebrochene Objektbewegung verändert den gespeicherten Bauzustand nicht. Laufen, Springen, Kollision, Inspektion und Pause erhalten die Konstruktion.",
+      "Originalfigur ist als nutzbarer 65-Bone-Rig in der produktiven Szene geprüft; tatsächliche Bewegung steuert den Animationszustand."
+    ],
+    "settlement": [
+      "Tatsächlicher Bauwelt-Button Wettbau und Rückkehr führen über den produktiven Router; Kindschlüssel und Projektplatz bleiben erhalten.",
+      "Grundstücksauswahl, Käufe, Undo/Redo, Rückbau, Abbrechen des geschützten Hauses, Neuer-Runden-Start und Umzugsbestätigung werden über echte ScreenTouch-Ereignisse geprüft.",
+      "Produktive _save-/restore_project-APIs schreiben und lesen wirkliche Dateien; beide Siedlungen, Ressourcen, Tag und Projektidentität werden exakt verglichen.",
+      "Freibaustand bleibt bei Eintritt, Wirtschaftsschritten und Rückkehr bytegleich. Getrennte Kindidentitäten, Spielvarianten und Slots werden beim Restore geprüft; unbekannte Dateiversion wird abgelehnt.",
+      "Beschädigte Siedlungsdatei wird nicht überschrieben. Abgeschlossene Runde bleibt beim Start eines freien neuen Platzes bytegleich erhalten; sechs belegte Plätze werden nicht ersetzt.",
+      "Geschützter Rückbau erklärt die tatsächliche Bewohnerzahl und Ressourcenrückgabe. Bestätigung, Undo und Redo erhalten den gemeinsamen Zustand von Bewohnern, Baukapital und Gebäuden.",
+      "Späte Dialogcallbacks nach Pause werden bewusst direkt ausgelöst, um die bestehende Schutzbedingung zu prüfen. Der vollständige Gegnerkampagnenlauf ruft produktive Tagesaktionen direkt auf; er wird nicht als vollständig manuell gespielte Touch-Kampagne ausgegeben."
+    ]
+  },
+  "limits": [
+    "Diese zehn Bilder zeigen die hier festgelegten Ansichten; sie sind kein Nachweis von 60 FPS oder Android-17-/Fold7-Laufzeitverhalten.",
+    "Die vorhandenen Layoutassertionen dieser älteren Spielproben prüfen logische Größen und weitere Viewportformate. Sie ersetzen keinen gesonderten physischen Dichtenachweis. Die zwölf Build-Touchbilder waren nicht Teil dieser erneuten Sichtung.",
+    "Original-Lumo ist sichtbar und integriert; vollständige Mimik, Blinzeln oder Lippen-/Sprachsynchronität werden aus diesen Bildern nicht behauptet. Die kleine Nachbarfigur bleibt eine vereinfachte Figur.",
+    "Die Landschaft und Siedlungsinszenierung bestehen aus echter Geometrie, erreichen aber mit diesem Teilnachweis keine vollständige AAA- oder Masterabnahme."
+  ],
+  "decision": {
+    "module_visual_review": "PASS innerhalb des beschriebenen Umfangs",
+    "new_concrete_blockers": [],
+    "images_actually_reviewed": 10,
+    "source_or_product_changed": false,
+    "normative_gates_replaced": false,
+    "overall_release_receipt": false,
+    "android_device_acceptance": false,
+    "status_note": "Die gesamte Kandidatenfreigabe bleibt getrennt. Die kontrollierte Wiederholung des ursprünglich fehlgeschlagenen Gameplayjobs ist kein Bestandteil dieser Bildabnahme."
+  }
+}

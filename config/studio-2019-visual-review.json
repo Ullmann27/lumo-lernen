@@ -1,0 +1,223 @@
+{
+  "schema": 1,
+  "status": "approved",
+  "versionCode": 2019,
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "native_workflow_run_id": 43449903088,
+  "native_artifact_id": 14052637839,
+  "native_artifact_sha256": "d7ebc000680f3c613e005b8c9eb91e82b488d6f326c36a038a3492459222178c",
+  "reviewed_by": "ChatGPT /root (integrator), /root/learning_worlds, /root/character_animation, /root/games_worlds",
+  "reviewed_at": "2026-11-13T16:02:33.030121+00:00",
+  "notes": "Actual scoped native review: 126 current renderer images were individually opened across the three real agents and integrator; eight are technical pose images and do not substitute for production scenes. This receipt preserves 19 original PNGs covering all nine production modules and the three repaired touch areas. Every selected image is byte-identical to original artifact 14052637839 and its detailed source-bound review. The 25 learning images in the full bundle match the separately inspected current preview. All eight required native jobs and the public original-archive job actually succeeded at 76980a941fa05d047574d8cc386d3249d93ffca3. The initial gameplay attempt failed on audio teardown; local controls and an isolated clean CI diagnostic did not reproduce it, and exactly one unchanged failed-job rerun succeeded. Product code, original assertions and the 3000 ms audio deadline were not changed; the first failure and its unknown cause remain documented. These are Linux OpenGL Compatibility software-renderer images and engine interaction tests. This approval is scoped to the documented native candidate and does not claim Android completion, physical Fold7 performance, facial/lip animation, full AAA quality, or completion of the entire master request. Known nonblocking presentation limits, directly invoked test methods and measured density fixtures are detailed in the individual review notes.",
+  "images": [
+    {
+      "path": "docs/evidence/studio-2019-reviewed/cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a-learning-sharing-complete-1280x720.png",
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Jede Gruppe besitzt sichtbar vier Würfel und den Zähler 4; kein Restvorrat bleibt. Die vollständige Erklärung 12 geteilt durch 3 ist 4 ist lesbar. Der Verteilknopf ist deaktiviert; Noch einmal und Zur Aufgabe bleiben frei. Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: sharing-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8-learning-sharing-first-round-412x915.png",
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Jede der drei Gruppen besitzt sichtbar einen Würfel und den Zähler 1. Neun verbleibende Würfel, Status 3/12 und die passende Erklärung der nächsten Verteilrunde sind sichtbar. Original-Lumo, räumliche Gruppen und die erforderlichen Bedienelemente sind sichtbar; kein zusätzlicher blockierender Material-, Text- oder HUD-Befund in diesem Bild. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: sharing-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8-learning-bridge_hundred-complete-2400x1080.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "findings": "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben. Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar. Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt. Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: learning-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0-learning-bridge_hundred-complete-412x915.png",
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Im oberen 3D-Text 10 Zehner = 100 sind die beiden Balken des Gleichheitszeichens sichtbar getrennt. Das zuvor als Rechteck erscheinende Zeichen ist in diesem aktuellen Bild behoben. Zehn Zehner im ersten Feld und drei weitere Zehner verdeutlichen den Übergang. Die untere Zerlegung 230 = 2 Hunderter + 3 Zehner bleibt vor ihrem dunklen Schild gut lesbar. Oberes Textfeld, untere Beschriftung und benötigte Lernobjekte werden vom Header und Footer nicht verdeckt. Original-Lumos Kopf und Körper mit Originalmaterial sind sichtbar. In diesem Bild kein zusätzlicher blockierender Materialfehler, unlesbarer Pflichttext oder vom HUD verdecktes erforderliches Ziel festgestellt. Im Hochformat liegt Lumos Fuß nahe am Beginn der oberen Beschriftung; der Text bleibt in der tatsächlich geöffneten Aufnahme lesbar. Kein zusätzlicher blockierender Überdeckungsbefund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: learning-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/18f41149a74e8b1790881d12ea0927ab438acec7c96b81c9f4eadbfa31ccf920-jump-jump_690x829_touch_ascent.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "18f41149a74e8b1790881d12ea0927ab438acec7c96b81c9f4eadbfa31ccf920",
+      "dimensions": [
+        690,
+        829
+      ],
+      "findings": "Lumo hebt sichtbar vom ersten Inselboden ab; beide Stiefel und der Schwanz bleiben als zusammenhängende Originalfigur erkennbar. Die freie Höhe unter dem Körper passt zum positiven vertikalen Geschwindigkeitswert und jump_rise. Fold-ähnliches Fensterformat bei simulierter Dichte 1,0: breite freie Spielmitte, klare getrennte Daumenflächen und vollständige Kopfzeile. Die untere Inselgeometrie kann hinter der Bedienung liegen, die Originalfigur bleibt unverdeckt. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: jump-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/b5ca42bacee7fc6e7b9ad1e16cd9a590a6d1dd51df502496642ee210f0e8ea90-jump-jump_412x915_landed.png",
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "b5ca42bacee7fc6e7b9ad1e16cd9a590a6d1dd51df502496642ee210f0e8ea90",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Lumo steht wieder auf dem Pflaster derselben ersten Insel, mit intakter Silhouette und erkennbarem Bodenschatten. Dies ist idle nach 60 weiteren Physikframes und damit kein Standbild des kurzen land-Aufprallclips. Telefonhochformat: Status bricht auf zwei Zeilen um. Spiele/Pause bleiben getrennt; Bewegungsstick und Sprungfläche sind vollständig sichtbar und überdecken Lumo nicht. Der vordere Inselrand liegt teils unter den unteren Bedienelementen, deren Beschriftung bleibt lesbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: jump-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/05525893dd0d9a0351bccb8bd3d93d654f2f69c48cce01f805cfc86dcde0bfa8-build-02_build_moved.png",
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "sha256": "05525893dd0d9a0351bccb8bd3d93d654f2f69c48cce01f805cfc86dcde0bfa8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Brücke an neuer Position um 90 Grad gedreht; Status zeigt 90 Grad und bestätigt Versetzung. In diesem Zustand kein Auswahlraster mehr sichtbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-build-settlement-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/8c733ef1efbb6e931aa1d7015d46c4a4d6725f6ef7984d7d5920c28b8e39d347-build-build-dialog-640x360-current-goal.png",
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "sha256": "8c733ef1efbb6e931aa1d7015d46c4a4d6725f6ef7984d7d5920c28b8e39d347",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Kleine Queransicht: Dialog innerhalb des Bildes mit vollständigem Titel, zweizeiliger Aufgabe, Testaktion und Abbrechen. Hintergrund ist weitgehend durch das Modal abgedeckt; alle für den geöffneten Dialog nötigen Beschriftungen sind lesbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: build-touch-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/e0b26f735c66fe56616aa91cf80e58c44c42a26335f7c77cd710fb999674d7a8-build-build-dialog-1080x2400-templates-bottom.png",
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "sha256": "e0b26f735c66fe56616aa91cf80e58c44c42a26335f7c77cd710fb999674d7a8",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "Brücke bis Leere Insel vollständig im unteren Scrollausschnitt sichtbar; Starter-Haus am oberen Rand teilweise abgeschnitten. Letzter Vorlageneintrag und Abbrechen haben getrennte sichtbare Flächen; kein abgeschnittener abschließender Dialogbutton. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: build-touch-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2-settlement-06_settlement_relocation.png",
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "dimensions": [
+        388,
+        390
+      ],
+      "findings": "Tatsächliches Dialog-Viewportbild 388×390: vollständige Erklärung zu einem ausziehenden Bewohner, zwei verbleibenden Bewohnern, Ressourcenrückgabe und Rückgängig. Haus behalten und Ja, umbauen vollständig sichtbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-build-settlement-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a-garage-garage-1280x720.png",
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Comet ist in der Fahrzeugliste ausgewählt und als blaues räumliches Kart auf der Werkstattplattform sichtbar. Lumo steht erkennbar daneben. Lack, Teile & Effekte, Rückkehr und Rennstart sind lesbar und voneinander getrennt. Listenfortsetzung wird am Scrollrand regulär begrenzt. Im Querformat liegen Auswahl und räumliche Vorschau nebeneinander; kein zusätzlicher blockierender HUD-Überdeckungsbefund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b-garage-workshop-1080x2400-refund.png",
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "findings": "Die vollständige Hochformat-Aufnahme zeigt den unteren Listenbereich einschließlich Goldglanz-Auswahl, Felgen, Neonfarben und Weiß-Beschriftung. Der komplette Rücksetztext mit Erstattung von 16 Sternen bleibt innerhalb der sichtbaren Fläche. Zurück, Guthaben, Leistungswerte und Original-Kartfuchs sind weiterhin sichtbar. Kein zusätzlicher blockierender Text-, Material- oder HUD-Befund in diesem tatsächlich geöffneten Bild. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: workshop-touch-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890-cards-cards-table-1280x720.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 7 Karten auf der angezeigten Seite 1/1. Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar. Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31-cards-cards-table-412x915.png",
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "dimensions": [
+        412,
+        915
+      ],
+      "findings": "Der räumliche Tisch, Nachziehstapel, rote Ablagekarte 5 und Lumo als Gegenüber sind sichtbar. Die eigene Hand zeigt 3 Karten auf der angezeigten Seite 1/3. Zahlen und Farbsymbole der Karten sind unterscheidbar; goldene Rahmen heben passende Karten hervor. Zurück, Pause, Seitensteuerung und Ziehen bleiben sichtbar. Karte legen ist im aufgenommenen Zustand deaktiviert, da noch keine Handkarte gewählt ist. Kein zusätzlicher blockierender Material-, Pflichttext- oder HUD-Befund. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/d004d9dab0542123d025bc1923aa3845ddf547fb0d73fc752d934722d401a420-rhythm-02_rhythm_slide.png",
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "d004d9dab0542123d025bc1923aa3845ddf547fb0d73fc752d934722d401a420",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Vier farblich getrennte Spuren, Zielmarken und vier Eingabefelder sind sichtbar. Die zusammenhängende Slide-Geometrie führt zur benachbarten Spur. Die Aufforderung Zur nächsten Spur, Punkte/Combo und Bühnenfortschritt sind lesbar; Pause und Rückkehr bleiben frei. Das Lumo-Motiv auf der Bühne ist sichtbar. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: worlds-rooms-learning-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/3ffc1c05538541410596c74b0305e406b3d7bab69c9be926d4e33c538b9108bd-puzzle-puzzle_rotation_640x360.png",
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "3ffc1c05538541410596c74b0305e406b3d7bab69c9be926d4e33c538b9108bd",
+      "dimensions": [
+        640,
+        360
+      ],
+      "findings": "Kleine Queransicht: Kopfzeile bis ungefähr y=164, Werkzeugleiste ab ungefähr y=282. Der verkleinerte Tisch und die sichtbaren Teile liegen dazwischen; die frühere Überdeckung durch den HUD-Bereich ist im Bild nicht erkennbar. Aufgabenhinweis und 1/6-Status lesbar. Werkzeugleiste zeigt sechs Aktionen und horizontalen Scrollbalken. Der Tisch ist in diesem Format deutlich kleiner als bei 1280×720. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: puzzle-treasure-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9-puzzle-puzzle_rotation_placed.png",
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Teil sitzt anders gedreht im oberen Zielbereich, Status 1/6 und Rückmeldung Das passt! Dein Bild wächst. stimmen zusammen. Fortschrittsbalken und Werkzeuge bleiben sichtbar; andere Teile liegen weiter in den seitlichen Ablagen. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: puzzle-treasure-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/32a72896dfb7329db09a8cfac6d72e3625092e7816ef9dbf87d8b78041e66304-treasure-treasure_choose_route.png",
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "32a72896dfb7329db09a8cfac6d72e3625092e7816ef9dbf87d8b78041e66304",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "findings": "Fuchsfigur, Schloss, Bäume, Blumen und Schatten bilden eine begehbare räumliche Umgebung; Figur und seitliche Touchflächen bleiben getrennt sichtbar. HUD nennt 3/7 gelöste Hinweise und die Wahl Kristallwächter oder Mondgarten; beide Funde werden für das Schloss verlangt. Der Umbruch von Entdeckungen 0/3 ist lesbar. Gefunden-Brückenwappen-Rückmeldung sichtbar; weiße Welt-Rückmeldung liegt direkt auf unterschiedlich hellem Gras, während die zentrale Aufgabenbeschreibung auf dunkler Platte steht. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: puzzle-treasure-76980-review.json."
+    },
+    {
+      "path": "docs/evidence/studio-2019-reviewed/e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7-treasure-treasure-2176x1812-complete.png",
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "findings": "Fold-Abschluss tatsächlich neu geöffnet: 7/7 Hinweise und 3/3 Entdeckungen im HUD. Abschluss nennt drei Sterne und 54 Erfahrungspunkte. Alle drei Abschlussaktionen Insel weiter erkunden, Neues Abenteuer und Zur Spielewelt sind vollständig sichtbar, getrennt und lesbar; kein abgeschnittener Abschlussbutton. Tatsächliche Einzelbildprüfung und Geltungsgrenzen: treasure-touch-76980-review.json."
+    }
+  ]
+}

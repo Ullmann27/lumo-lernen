@@ -1,0 +1,140 @@
+{
+  "status": "prepared_selection_only_not_final_approval",
+  "native_source": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "original_artifact_id": 14052637839,
+  "images": [
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "review_note": "sharing-76980-review.json",
+      "sha256": "cb24691851bed6f1f80d725a969f30bca87097510dcf7c4a5d06a0696116051a",
+      "bytes": 249525
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "review_note": "sharing-76980-review.json",
+      "sha256": "83b1274cc86d3e3b61d541e8ecdfcfff8de1d51561a87558dd516008ee9b68c8",
+      "bytes": 111652
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "review_note": "learning-76980-review.json",
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "bytes": 723952
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "review_note": "learning-76980-review.json",
+      "sha256": "38d569ebbf45570cdb5747e23293c87fe03d15e2621e2a3c597ba06a0eba00f0",
+      "bytes": 135397
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "review_note": "jump-76980-review.json",
+      "sha256": "18f41149a74e8b1790881d12ea0927ab438acec7c96b81c9f4eadbfa31ccf920",
+      "bytes": 605698
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "review_note": "jump-76980-review.json",
+      "sha256": "b5ca42bacee7fc6e7b9ad1e16cd9a590a6d1dd51df502496642ee210f0e8ea90",
+      "bytes": 473635
+    },
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "review_note": "worlds-build-settlement-76980-review.json",
+      "sha256": "05525893dd0d9a0351bccb8bd3d93d654f2f69c48cce01f805cfc86dcde0bfa8",
+      "bytes": 1409926
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "review_note": "build-touch-76980-review.json",
+      "sha256": "8c733ef1efbb6e931aa1d7015d46c4a4d6725f6ef7984d7d5920c28b8e39d347",
+      "bytes": 129640
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "review_note": "build-touch-76980-review.json",
+      "sha256": "e0b26f735c66fe56616aa91cf80e58c44c42a26335f7c77cd710fb999674d7a8",
+      "bytes": 1283500
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "review_note": "worlds-build-settlement-76980-review.json",
+      "sha256": "8243332b56d095fe5fe35019923426fed339d9df9ab80758659be3f07972c3f2",
+      "bytes": 57478
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "review_note": "worlds-rooms-learning-76980-review.json",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "bytes": 436821
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "review_note": "workshop-touch-76980-review.json",
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "bytes": 864319
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "review_note": "worlds-rooms-learning-76980-review.json",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "bytes": 568103
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "review_note": "worlds-rooms-learning-76980-review.json",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "bytes": 289390
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "review_note": "worlds-rooms-learning-76980-review.json",
+      "sha256": "d004d9dab0542123d025bc1923aa3845ddf547fb0d73fc752d934722d401a420",
+      "bytes": 655547
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "review_note": "puzzle-treasure-76980-review.json",
+      "sha256": "3ffc1c05538541410596c74b0305e406b3d7bab69c9be926d4e33c538b9108bd",
+      "bytes": 113801
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "review_note": "puzzle-treasure-76980-review.json",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "bytes": 509560
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "review_note": "puzzle-treasure-76980-review.json",
+      "sha256": "32a72896dfb7329db09a8cfac6d72e3625092e7816ef9dbf87d8b78041e66304",
+      "bytes": 1365759
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "review_note": "treasure-touch-76980-review.json",
+      "sha256": "e14559539b807df855d18061d8e312ab69739d2e815f2f7948130cd2b8619fd7",
+      "bytes": 4414005
+    }
+  ]
+}
