@@ -75,8 +75,8 @@ def _approved_migration_view(before: dict, after: dict,
     """
     if (type(versions) is not tuple or len(versions) != 2 or
             any(type(value) is not int for value in versions) or
-            versions != (2017, 2018)):
-        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018')
+            versions not in ((2017, 2018), (2017, 2019))):
+        raise RuntimeError('Independent evidence migration is approved only for 2017 to 2018 or 2019')
     owner = before.get(_LOCAL_STUDENT_KEY)
     if (type(owner) is not str or not re.fullmatch(r'local-[a-f0-9]{32}', owner) or
             after.get(_LOCAL_STUDENT_KEY) != owner):
@@ -160,7 +160,7 @@ def require_learning_preserved(before: dict, after: dict, *,
                   earned_stars=wallet['stars'], earned_xp=wallet['xp'])
     if migration_versions is not None:
         report['approved_migration'] = {
-            'from_version': 2017, 'to_version': 2018,
+            'from_version': migration_versions[0], 'to_version': migration_versions[1],
             'kind': 'independentEvidence-v1', 'records': migrated,
             'existing_fields_preserved': True,
         }

@@ -1,0 +1,194 @@
+{
+  "review_version": 1,
+  "reviewer": "Agent A / learning_worlds, independent of Agent C implementation",
+  "status": "READ_ONLY_SCHEMA_REVIEW_PASS_FOR_EXACT_2017_TO_2019_PAIR",
+  "scope": "Same narrow additive independentEvidence-v1 conversion; no actual 2019 Android update acceptance.",
+  "source_binding": {
+    "baseline_2017": "47889f74a651b073965def70743417cf320b1eb9",
+    "historical_2018": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+    "reviewed_2019_host": "399e75b8b5d5187579e5d75b9b71f882239e9991",
+    "native_candidate": "76980a941fa05d047574d8cc386d3249d93ffca3"
+  },
+  "source_files": [
+    {
+      "label": "baseline_2017",
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "47889f74a651b073965def70743417cf320b1eb9",
+      "path": "lib/core/progress_repository.dart",
+      "github_git_blob_sha1": "73331074d9f53238a9ec6ced1b2791c14a7c66d4",
+      "computed_git_blob_sha1": "73331074d9f53238a9ec6ced1b2791c14a7c66d4",
+      "sha256": "94fb4b127ac952fc353a73ea1133a9fc8f9adce36a22ff76dcfee2a28865092d",
+      "bytes": 12717,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/47889f74a651b073965def70743417cf320b1eb9/lib/core/progress_repository.dart",
+      "retrieval": "GitHub fetch_file at full immutable commit; returned blob SHA independently recomputed"
+    },
+    {
+      "label": "historical_2018",
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+      "path": "lib/core/progress_repository.dart",
+      "github_git_blob_sha1": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "computed_git_blob_sha1": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "bytes": 13839,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9/lib/core/progress_repository.dart",
+      "retrieval": "GitHub fetch_file at full immutable commit; returned blob SHA independently recomputed"
+    },
+    {
+      "label": "historical_2018",
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+      "path": "lib/domain/learning/independent_evidence.dart",
+      "github_git_blob_sha1": "6b19215fe6e410b5439467541453e2608537e041",
+      "computed_git_blob_sha1": "6b19215fe6e410b5439467541453e2608537e041",
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "bytes": 2855,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9/lib/domain/learning/independent_evidence.dart",
+      "retrieval": "GitHub fetch_file at full immutable commit; returned blob SHA independently recomputed"
+    },
+    {
+      "label": "current_2019",
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "399e75b8b5d5187579e5d75b9b71f882239e9991",
+      "path": "lib/core/progress_repository.dart",
+      "github_git_blob_sha1": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "computed_git_blob_sha1": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "bytes": 13839,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/399e75b8b5d5187579e5d75b9b71f882239e9991/lib/core/progress_repository.dart",
+      "retrieval": "GitHub fetch_file at full immutable commit; returned blob SHA independently recomputed"
+    },
+    {
+      "label": "current_2019",
+      "repository": "Ullmann27/lumo-lernen",
+      "source_commit": "399e75b8b5d5187579e5d75b9b71f882239e9991",
+      "path": "lib/domain/learning/independent_evidence.dart",
+      "github_git_blob_sha1": "6b19215fe6e410b5439467541453e2608537e041",
+      "computed_git_blob_sha1": "6b19215fe6e410b5439467541453e2608537e041",
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "bytes": 2855,
+      "url": "https://github.com/Ullmann27/lumo-lernen/blob/399e75b8b5d5187579e5d75b9b71f882239e9991/lib/domain/learning/independent_evidence.dart",
+      "retrieval": "GitHub fetch_file at full immutable commit; returned blob SHA independently recomputed"
+    }
+  ],
+  "production_equality": {
+    "progress_repository_entire_file_2018_equals_2019": true,
+    "independent_evidence_entire_file_2018_equals_2019": true,
+    "comparison": "Both exact UTF-8 contents and GitHub-returned Git blob IDs match."
+  },
+  "schema": {
+    "old_field_count": 10,
+    "old_fields": [
+      "skillId",
+      "subject",
+      "unit",
+      "correct",
+      "wrong",
+      "hintCount",
+      "currentStreak",
+      "currentMisses",
+      "difficulty",
+      "lastSeen"
+    ],
+    "added_field": "independentEvidence",
+    "new_field_count": 11,
+    "new_evidence_fields": [
+      "version",
+      "correct",
+      "wrong",
+      "correctStreak",
+      "wrongStreak"
+    ],
+    "new_evidence_version": 1,
+    "derivation_without_help": "correct and wrong remain historical counts; correctStreak is zero when old currentMisses > 0, otherwise min(currentStreak, correct); wrongStreak is zero when old currentStreak > 0, otherwise min(currentMisses, wrong). Accepted old streaks are already bounded to 1000, exactly matching Dart fromLegacy clamps.",
+    "derivation_with_help": "hintCount > 0 yields zero assessed counts/streaks because independent answers cannot be recovered from mixed practice. All ten historical practice fields are preserved.",
+    "references": [
+      "lib/core/progress_repository.dart:SkillRecord.assessed, normalized, toJson, fromJson",
+      "lib/domain/learning/independent_evidence.dart:IndependentEvidence.fromLegacy"
+    ]
+  },
+  "unchanged_safeguards": [
+    "Migration is opt-in and only exact integer tuples (2017, 2018) and (2017, 2019) are accepted. Other versions and non-integer lookalikes remain rejected.",
+    "The persisted primary owner must be the identical local-[a-f0-9]{32} value, with the same entire set of skill namespaces before and after.",
+    "Only that existing primary skill namespace may receive the additive conversion. Foreign child skill records remain byte exact and cannot be added, deleted or reassigned.",
+    "The old skill map must be nonempty and retain the identical skill membership. Map keys must equal each record skillId.",
+    "Every migrated record has exactly the ten old fields plus independentEvidence. Every old field retains its value and Python type.",
+    "The five new evidence values are exact integers matching the existing Dart derivation. Unexpected fields, duplicate JSON keys, NaN, malformed schemas and out-of-range old counters remain rejected.",
+    "The existing protected learning prefixes remain unchanged, including progress, writing progress, journal, reading sessions/story library, attempt log, wallet, school, learning and legacy data.",
+    "The same five active-profile identity fields id/name/age/grade/createdAt are compared; lastActiveAt is intentionally not historical learning data.",
+    "At least one actually earned correct answer plus positive earned stars and XP remain required. UID and firstInstallTime are preserved by the separate in-place installation gate.",
+    "After the initial update, each Kart/restart/fold snapshot must be byte exact relative to the actual after-update snapshot and still pass the transitive baseline history check.",
+    "The helper constructs a local comparison dictionary only after all schema checks; it never rewrites original Android preference evidence."
+  ],
+  "protection_scope_note": "This review preserves the existing gate scope; it does not claim every preference key is byte exact. In the historical fixture, daily_mission also differs and is outside the established protected-prefix set. No additional exemption is introduced by the 2019 pairing.",
+  "historical_fixture": {
+    "path": "tools/android_qa/tests/fixtures/update_2017_2018_independent_evidence.json",
+    "bytes": 7585,
+    "sha256": "8815f517552ebdde7908ff98b1bb389147a4857ccb4a75cabd65e2142eb3338a",
+    "git_blob_sha1": "dc3792760859e23561d13988350de3353d832577",
+    "metadata": {
+      "scope": "Exact read-only preferences of the fictional LumoTest child from a real 2017 APK lesson and real install -r 2018 offline launch. This failed gate stopped before Kart.",
+      "repository": "Ullmann27/lumo-lernen",
+      "workflow_run_id": 43395154888,
+      "qa_source": "2d97c8c3991dec6866c58847f3fffe44c9bdd912",
+      "baseline_source": "47889f74a651b073965def70743417cf320b1eb9",
+      "candidate_source": "a31c0070a9c1e9dfbea08f123d7ed77e5f0a8ad9",
+      "baseline_version": 2017,
+      "candidate_version": 2018,
+      "artifact_id": 14022392802,
+      "artifact_sha256": "63e14a7e65ea4d96a1f818c938f4b61ff96c1429654e6984b3c28ee492b0c6fa",
+      "xml_sha256": {
+        "before": "54755eb54ad0456c77ff6fcf213372c5ffee0263f197b4d83ce228d5ef19f5b0",
+        "after": "7dd2cb0d80addf99ada4f0cfbb30f78825dd5865c436bfde40822aa2527337ea"
+      },
+      "skill_preference_key": "flutter.lumo_progress_skills::local-2e3b805ede49a4861bb5ab164daef417",
+      "skill_raw_sha256": {
+        "before": "a69e2478309632326320f1fa30d9ee57d49636ca649e0494f2caee1250376fad",
+        "after": "200d56d22aab92ae8aed626a93f61cba9a5e98598a35f6fd9b0e7d6f64c6d49f"
+      },
+      "source_preferences_modified": false,
+      "snapshot_encoding": "Exact node.text mapping used by creative_android_probe.prefs; non-text XML values remain null and are outside the learning comparison."
+    },
+    "unchanged": true,
+    "not_new_2019_android_evidence": true
+  },
+  "reviewed_patch": {
+    "state_at_review": "Local Agent C patch; no new commit invented or asserted by this reviewer. Parent/root will bind the final commit.",
+    "files": [
+      {
+        "path": ".github/probes/lumo_2003_update_android_probe.py",
+        "bytes": 10533,
+        "sha256": "38573146ea7623a4b62759be88a982a1b8990d0beabf2c6c0df94927d16b68eb",
+        "git_blob_sha1": "0712dd5e583f6da5cef5b2dc06876a6455107e68"
+      },
+      {
+        "path": "tools/android_qa/update_preservation.py",
+        "bytes": 9134,
+        "sha256": "723828c1583f254617205d7094fb12b4a4b4d15596f2a58c62fd58e4909212c6",
+        "git_blob_sha1": "60e74d96e2766657138f52d28301c39e78b85015"
+      },
+      {
+        "path": "tools/android_qa/tests/test_update_preservation.py",
+        "bytes": 23444,
+        "sha256": "d292dd0ec9968bb6b5cd8836c3d0c170ef9d8fac7532d578d8bec26929db389a",
+        "git_blob_sha1": "b0f825dc3e077851f7a773cc295ea60170d045a4"
+      }
+    ],
+    "changes": "Two version-pair guards additionally accept only (2017, 2019); migration report uses its already validated actual from/to tuple. Existing fourteen migration test cases also run for 2019, plus two real-wrapper boundary tests. No preservation assertion is removed."
+  },
+  "test_execution": {
+    "new_tests_run_by_this_reviewer": false,
+    "existing_agent_c_log_read": "/tmp/lumo-studio-2019-update-green.log",
+    "existing_log_sha256": "303e3e2c1b151b503b14a92d493e9177ddba0e0235cbec9af2ec1bd3012b549b",
+    "observed_existing_summary": "Ran 35 tests in 0.073s; OK",
+    "scope": "Synthetic validator regressions and blocked Android-I/O boundary. No new device pass is inferred."
+  },
+  "conclusion": "No semantic contradiction found. Exact 2017 to 2019 may use the unchanged narrowly validated additive migration, because the actual production serializer and independent-evidence implementation match 2018 byte for byte. A fresh actual 2017 install -> earned learning -> install -r 2019 -> offline/restart/fold proof is still mandatory.",
+  "not_claimed": [
+    "Actual 2019 in-place Android update PASS",
+    "API35 or API37 runtime acceptance",
+    "APK/signature/ABI release acceptance",
+    "Physical Fold7 performance or 60 FPS",
+    "Final release receipt"
+  ]
+}

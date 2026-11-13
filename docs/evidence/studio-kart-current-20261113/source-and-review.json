@@ -1,0 +1,34 @@
+{
+  "status": "scoped visual preservation evidence",
+  "native_revision": "76980a941fa05d047574d8cc386d3249d93ffca3",
+  "workflow_run_id": 43449903088,
+  "run_attempt": 2,
+  "artifact_id": 14055920012,
+  "artifact_bytes": 37926628,
+  "artifact_sha256": "5fd9d11d61ac4196bb9c7f9f77b414d6c1bec82953ac4bde35ddffb22d66edf4",
+  "reviewed_at_utc": "2026-11-13T16:10:20.669496+00:00",
+  "images": [
+    {
+      "file": "lasso-catch.png",
+      "artifact_entry": "acceptance-evidence/action-stage/action-captures/lasso-catch.png",
+      "bytes": 625722,
+      "sha256": "66025e29a277623634cbc7b11bcee48f6a181b47ae78c995364b66e6577bd151",
+      "actually_viewed_by_root_and_agent_c": true
+    },
+    {
+      "file": "ramp-1544-speed-70.png",
+      "artifact_entry": "acceptance-evidence/action-stage/action-captures/ramp-1544-speed-70.png",
+      "bytes": 628185,
+      "sha256": "0af564c07a2ff5d18dc4288e2ec85a043ae40e18186d370a97fa5d23e15cbdd3",
+      "actually_viewed_by_root_and_agent_c": true
+    },
+    {
+      "file": "garage-1280x720.png",
+      "artifact_entry": "exports/spatial-menu/garage-1280x720.png",
+      "bytes": 445289,
+      "sha256": "5db7c05dd54642102c18d8bbf49a8dc6815a82ae476367ac8355032463a14c14",
+      "actually_viewed_by_root_and_agent_c": true
+    }
+  ],
+  "scope": "Actual Godot production frames produced by regression-driven physics/camera states. Preserves existing Kart mechanics; not a new redesign of twelve tracks, full manual race, Android capture or FPS measurement."
+}

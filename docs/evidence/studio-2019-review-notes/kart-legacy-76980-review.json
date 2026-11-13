@@ -1,0 +1,823 @@
+{
+  "schema_version": 1,
+  "reviewed_at_utc": "2026-11-13T16:07:05.374533+00:00",
+  "reviewer": "Agent C / games_worlds, unabhängige Sichtung",
+  "scope": "Aktuelle Kart-/Sonnenhafen-/Rampen-/Lasso- und Menü-Bestandsevidenz; keine Gesamtfreigabe des Masterauftrags",
+  "decision": "22 Originalbilder tatsächlich einzeln geöffnet; kein neuer konkreter visueller Bedienblocker. Bestehende Spielmechaniken durch aktuelle Originaltests bestätigt. Teardown-Ressourcenmeldungen bleiben ausdrücklich dokumentiert und teilweise ungeklärt.",
+  "source": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+    "branch": "chatgpt/lumo-studio-20261113",
+    "pull_request": 158,
+    "workflow_run_id": 43449903088,
+    "run_attempt": 2,
+    "gameplay_job_id": 131986576779,
+    "observed_job_conclusion": "success",
+    "source_stamps": [
+      {
+        "path": "acceptance-evidence/action-stage/source-sha.txt",
+        "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3"
+      },
+      {
+        "path": "acceptance-evidence/source-sha.txt",
+        "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3"
+      },
+      {
+        "path": "acceptance-evidence/technical-art/source-sha.txt",
+        "value": "76980a941fa05d047574d8cc386d3249d93ffca3",
+        "sha256": "939e14f3421d5a9aecc1053ed3030a56ed4fd824e25547e854f66de642e362a3"
+      }
+    ],
+    "source_file_bindings": [
+      {
+        "path": ".github/workflows/lumo-studio-2019.yml",
+        "git_blob_sha": "a004e56f149d2496962b65fbb5daf638421f41e1",
+        "sha256": "ef24a0668a05e92e8865ae0aaed618397d1de096939140df85d6040313825d3b",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "tools/validate_action_stage.sh",
+        "git_blob_sha": "d5c980624727b3b6b39bdc2c7f51c653dd5899ad",
+        "sha256": "aff17bc1c763cdd8d6a25852d9cf276bc403f5ce1c64e835a772831ed5582be9",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "tools/validate_2014.sh",
+        "git_blob_sha": "4fb01fdc83cf91ea09af56365c3ec325ebe999bc",
+        "sha256": "1dcb83e7ced02d374e67c23293559cf62f2803e96d598added7a3501ad51f215",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/tests/kart_roadside_action_regression.gd",
+        "git_blob_sha": "46a1a332a7aeaaa46debf5b25921ca8c276a4821",
+        "sha256": "98a613aaf0018b7d7088add0ba4458b04a4ad0d3519506db7358a3d60b41eb7d",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/tests/kart_spatial_menu_regression.gd",
+        "git_blob_sha": "8eea46ddb56b917949d4d50c013d6a6e84b4fe43",
+        "sha256": "4e9003906e5a0e54782c451fd3fea033a664d5395fd0219b5fb16b4e8b9b0510",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/tests/kart_lasso_production_regression.gd",
+        "git_blob_sha": "cb1a4bd050a7bb961e324678eb65d9af9d0731ff",
+        "sha256": "9f3c81acfa9c5f864e3032d1d7ec66d3e45b25e11df8c21b519785cf7e05fe3c",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/tests/kart_lasso_regression.gd",
+        "git_blob_sha": "4371cba091a56c71b76fe24692c458b6da4d3b52",
+        "sha256": "a3c3a4e3376f59dffad81fd53086738a5f868a71653281d4d49571bffb8188ee",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/tests/kart_player_full_route_regression.gd",
+        "git_blob_sha": "4c5909e270506a2792652e178342af2d44a01dcf",
+        "sha256": "6caa096bd489cccec530c0ab4c3fe98ad2e38333897741f16c12297b43d9b906",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/tests/kart_racecraft_regression.gd",
+        "git_blob_sha": "9da775e1e12fd1d307c939a71bd7394d456d6a9b",
+        "sha256": "8bb388d736776b08a352da368543308b253842dd714839be59b9f6c770cd89a3",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/games/kart_island.gd",
+        "git_blob_sha": "0db87de1c9f8ba0e3ae2459c667c8023bbb6d107",
+        "sha256": "6bbb84df4c7808b9135bd56ebbd7293df238e4f6308d80f6361072180521f5e4",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/games/kart_action_course.gd",
+        "git_blob_sha": "90dedefcd79cfb471031cc4ae8c0962e56844889",
+        "sha256": "af655ad7c5d8dcdf6f9792204d3fea5f913d50ab8b40a5e32077526c4d8cd335",
+        "matches_exact_github_source": true
+      },
+      {
+        "path": "scripts/games/kart_world.gd",
+        "git_blob_sha": "a782cf44677b08917cc0af77f4cbe7317ac25e43",
+        "sha256": "3c3643c2e36161e51a79a6f55a1c946faa67d31b6c1f5185a8a62c9a2341ce59",
+        "matches_exact_github_source": true
+      }
+    ],
+    "binding_method": "Die 12 Git-Blob-SHAs wurden vor der Notizerstellung über den öffentlichen GitHub-Git-Tree des exakten Commits gegen die gelesenen lokalen Bytes verglichen. Dieses Legacyarchiv enthält drei source-sha-Dateien, keinen eigenen dirty-source-Stempel."
+  },
+  "original_artifact": {
+    "id": 14055920012,
+    "name": "lumo-studio-2019-legacy-evidence",
+    "zip_path": "qa/studio-legacy-76980a94-attempt2.zip",
+    "size_bytes": 37926628,
+    "sha256": "5fd9d11d61ac4196bb9c7f9f77b414d6c1bec82953ac4bde35ddffb22d66edf4",
+    "regular_zip_entries": 1829,
+    "all_extracted_entries_byte_equal": true,
+    "renderer_png_count": 22,
+    "old_failed_artifact_id_not_used": 14049328375
+  },
+  "capture_provenance": {
+    "renderer": "Godot 4.6.3.stable.official.7d41c59c4; X11/OpenGL Compatibility; Mesa 25.2.8 llvmpipe LLVM 20.1.2",
+    "production_scene": "res://scenes/games/kart_island.tscn",
+    "ramp_lasso_generator": "scripts/tests/kart_roadside_action_regression.gd (_live_encounter, _fly, _capture)",
+    "menu_generator": "scripts/tests/kart_spatial_menu_regression.gd (_tap, _shot)",
+    "method": "Produktionsszene aufbauen; produktive Physik oder echte InputEventScreenTouch-Ereignisse ausführen; frame_post_draw abwarten; root.get_texture().get_image().save_png. Keine Konzeptgrafiken oder kopierten Baselinebilder. 7 Aktionsbilder und 15 Menübilder sind frisch im erfolgreichen Job erzeugt.",
+    "menu_formats": [
+      [
+        1280,
+        720
+      ],
+      [
+        412,
+        915
+      ],
+      [
+        690,
+        829
+      ],
+      [
+        640,
+        320
+      ],
+      [
+        2400,
+        1080
+      ]
+    ],
+    "display_density_2400x1080": 2.625,
+    "other_menu_case_density": 1.0,
+    "current_pngs_identical_to_compared_b5_pngs": 0,
+    "duplicate_png_hashes_within_artifact": 0
+  },
+  "images": [
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/lasso-catch.png",
+      "sha256": "66025e29a277623634cbc7b11bcee48f6a181b47ae78c995364b66e6577bd151",
+      "bytes": 625722,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Original-Lumo im Kart, echtes Seil und Fangring, Straßenrand-Dachs, lesbarer Abwehrhinweis; Fahrbahn, Minimap und Steuerung sichtbar. Das weltfeste LASSO-Schild wird teilweise von der Minimap verdeckt, der separate Spielhinweis und die Eingaben bleiben erkennbar."
+    },
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/ramp-1544-speed-20.png",
+      "sha256": "f7c08553266604eb0e01847e29c6328486e52305585cfcb4ee0436af8d9296d8",
+      "bytes": 633680,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Sonnenhafen-Verfolgerkamera mit Original-Lumo/Kart im tatsächlichen Flug, Schanze-Hinweis, Küstenwasser, Leitplanken und Brücken- oder Torarchitektur; HUD und Fahrbahn bleiben sichtbar. Capture nach Produktions-Physik, kein kompletter Touch-Fahrversuch."
+    },
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/ramp-1544-speed-48.png",
+      "sha256": "bbf3c2a07d907c7497a9a49ffd52f2cac1b1227697c841d97e6dbcea8c7e521a",
+      "bytes": 628421,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Sonnenhafen-Verfolgerkamera mit Original-Lumo/Kart im tatsächlichen Flug, Schanze-Hinweis, Küstenwasser, Leitplanken und Brücken- oder Torarchitektur; HUD und Fahrbahn bleiben sichtbar. Capture nach Produktions-Physik, kein kompletter Touch-Fahrversuch."
+    },
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/ramp-1544-speed-70.png",
+      "sha256": "0af564c07a2ff5d18dc4288e2ec85a043ae40e18186d370a97fa5d23e15cbdd3",
+      "bytes": 628185,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Sonnenhafen-Verfolgerkamera mit Original-Lumo/Kart im tatsächlichen Flug, Schanze-Hinweis, Küstenwasser, Leitplanken und Brücken- oder Torarchitektur; HUD und Fahrbahn bleiben sichtbar. Capture nach Produktions-Physik, kein kompletter Touch-Fahrversuch."
+    },
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/ramp-407-speed-20.png",
+      "sha256": "3418c0219cd8c1da9fcc7f3ae8441a4d7953fa37f658b4153ce25d91c9bc869f",
+      "bytes": 644465,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Sonnenhafen-Verfolgerkamera mit Original-Lumo/Kart im tatsächlichen Flug, Schanze-Hinweis, Küstenwasser, Leitplanken und Brücken- oder Torarchitektur; HUD und Fahrbahn bleiben sichtbar. Capture nach Produktions-Physik, kein kompletter Touch-Fahrversuch."
+    },
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/ramp-407-speed-48.png",
+      "sha256": "21bd1dbc754539bbd8d400fccf602c091fb8a4ca4eff7369724e84db05bacce2",
+      "bytes": 621720,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Sonnenhafen-Verfolgerkamera mit Original-Lumo/Kart im tatsächlichen Flug, Schanze-Hinweis, Küstenwasser, Leitplanken und Brücken- oder Torarchitektur; HUD und Fahrbahn bleiben sichtbar. Capture nach Produktions-Physik, kein kompletter Touch-Fahrversuch."
+    },
+    {
+      "path": "acceptance-evidence/action-stage/action-captures/ramp-407-speed-70.png",
+      "sha256": "d1897453dc6761ab42ff66029f922d1b120457759634e3db84188114f5f8212a",
+      "bytes": 615352,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Sonnenhafen-Verfolgerkamera mit Original-Lumo/Kart im tatsächlichen Flug, Schanze-Hinweis, Küstenwasser, Leitplanken und Brücken- oder Torarchitektur; HUD und Fahrbahn bleiben sichtbar. Capture nach Produktions-Physik, kein kompletter Touch-Fahrversuch."
+    },
+    {
+      "path": "exports/spatial-menu/garage-1280x720.png",
+      "sha256": "5db7c05dd54642102c18d8bbf49a8dc6815a82ae476367ac8355032463a14c14",
+      "bytes": 445289,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Ausgewähltes Gecko-Velo-Kart, Original-Lumo daneben, räumliche Werkstatt/Podest; Auswahlliste scrollt, Werkstattzugang und Start bleiben erreichbar. Angeschnittene nicht ausgewählte Listenzeilen liegen innerhalb des Scrollbereichs."
+    },
+    {
+      "path": "exports/spatial-menu/garage-2400x1080.png",
+      "sha256": "d85cc9d83daa864c916ce1850ea5d6b4cb0bf0195bdca4118109be08b940b925",
+      "bytes": 793215,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Ausgewähltes Gecko-Velo-Kart, Original-Lumo daneben, räumliche Werkstatt/Podest; Auswahlliste scrollt, Werkstattzugang und Start bleiben erreichbar. Angeschnittene nicht ausgewählte Listenzeilen liegen innerhalb des Scrollbereichs."
+    },
+    {
+      "path": "exports/spatial-menu/garage-412x915.png",
+      "sha256": "1f92e53607a820b9ddf845c4ac2e2361d71fb0954d918ed22966d459159dfffb",
+      "bytes": 212283,
+      "pixels": [
+        412,
+        915
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Ausgewähltes Gecko-Velo-Kart, Original-Lumo daneben, räumliche Werkstatt/Podest; Auswahlliste scrollt, Werkstattzugang und Start bleiben erreichbar. Angeschnittene nicht ausgewählte Listenzeilen liegen innerhalb des Scrollbereichs."
+    },
+    {
+      "path": "exports/spatial-menu/garage-640x320.png",
+      "sha256": "ded0fefce38dabdd08b20355cfdd80261978c4951a9c727075b3d5253cb9e0f4",
+      "bytes": 127699,
+      "pixels": [
+        640,
+        320
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Ausgewähltes Gecko-Velo-Kart, Original-Lumo daneben, räumliche Werkstatt/Podest; Auswahlliste scrollt, Werkstattzugang und Start bleiben erreichbar. Angeschnittene nicht ausgewählte Listenzeilen liegen innerhalb des Scrollbereichs."
+    },
+    {
+      "path": "exports/spatial-menu/garage-690x829.png",
+      "sha256": "9c8fd8c07a50bbe3783a09cb2c32863c49f223e6b25d289c6c9c55da13c9a7d4",
+      "bytes": 317698,
+      "pixels": [
+        690,
+        829
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Ausgewähltes Gecko-Velo-Kart, Original-Lumo daneben, räumliche Werkstatt/Podest; Auswahlliste scrollt, Werkstattzugang und Start bleiben erreichbar. Angeschnittene nicht ausgewählte Listenzeilen liegen innerhalb des Scrollbereichs."
+    },
+    {
+      "path": "exports/spatial-menu/landing-1280x720.png",
+      "sha256": "da90ee338bfe38e6a3bff0a563985a3e744a591d3810d2db797478e33dbd31ac",
+      "bytes": 497389,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte beleuchtete Werkstatt mit Original-Lumo im Kart; Rennmodi und Start-/Navigationsflächen sichtbar. Im kleinen Querformat wird die 3D-Bühne kompakt, wichtige Eingaben bleiben getrennt."
+    },
+    {
+      "path": "exports/spatial-menu/landing-2400x1080.png",
+      "sha256": "e4aae063cba8203f6f5a7c43d247298c42f558b9fab9ebf1b4a1af3169214e32",
+      "bytes": 806369,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte beleuchtete Werkstatt mit Original-Lumo im Kart; Rennmodi und Start-/Navigationsflächen sichtbar. Im kleinen Querformat wird die 3D-Bühne kompakt, wichtige Eingaben bleiben getrennt."
+    },
+    {
+      "path": "exports/spatial-menu/landing-412x915.png",
+      "sha256": "4e62a26e095e1c24712bbd7d4265537704f9cf692561659df9ffa3bf44fee1f7",
+      "bytes": 260299,
+      "pixels": [
+        412,
+        915
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte beleuchtete Werkstatt mit Original-Lumo im Kart; Rennmodi und Start-/Navigationsflächen sichtbar. Im kleinen Querformat wird die 3D-Bühne kompakt, wichtige Eingaben bleiben getrennt."
+    },
+    {
+      "path": "exports/spatial-menu/landing-640x320.png",
+      "sha256": "0cd258deab990d6c68eae77cbd1477da02b9c518954be1bb7c90f8ed0990d551",
+      "bytes": 101532,
+      "pixels": [
+        640,
+        320
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte beleuchtete Werkstatt mit Original-Lumo im Kart; Rennmodi und Start-/Navigationsflächen sichtbar. Im kleinen Querformat wird die 3D-Bühne kompakt, wichtige Eingaben bleiben getrennt."
+    },
+    {
+      "path": "exports/spatial-menu/landing-690x829.png",
+      "sha256": "b33fb56e928f2ebe912ba05e6f2df16254fb0b9ed9cd1dcb6d6c5dcd0f82253f",
+      "bytes": 393057,
+      "pixels": [
+        690,
+        829
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte beleuchtete Werkstatt mit Original-Lumo im Kart; Rennmodi und Start-/Navigationsflächen sichtbar. Im kleinen Querformat wird die 3D-Bühne kompakt, wichtige Eingaben bleiben getrennt."
+    },
+    {
+      "path": "exports/spatial-menu/tracks-1280x720.png",
+      "sha256": "52c917e392c59f578f21697be7c71ccf8afa693d2f6bbd2c8ea5a69c9640d198",
+      "bytes": 569901,
+      "pixels": [
+        1280,
+        720
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte räumliche Sonnenhafen-Streckenvorschau und scrollbare Streckenauswahl; Start und Navigation sichtbar. Dies zeigt eine Übersicht, nicht eine neue Detailüberarbeitung jeder Strecke."
+    },
+    {
+      "path": "exports/spatial-menu/tracks-2400x1080.png",
+      "sha256": "c8caa061ff30fc2f60df0f3b740947b096d8787d185f852561fb56305f4e0a10",
+      "bytes": 736178,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte räumliche Sonnenhafen-Streckenvorschau und scrollbare Streckenauswahl; Start und Navigation sichtbar. Dies zeigt eine Übersicht, nicht eine neue Detailüberarbeitung jeder Strecke."
+    },
+    {
+      "path": "exports/spatial-menu/tracks-412x915.png",
+      "sha256": "999de878da92eb0d0873188aacf40c3a8ca82f4daa7d9e569597017a0da738aa",
+      "bytes": 203503,
+      "pixels": [
+        412,
+        915
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte räumliche Sonnenhafen-Streckenvorschau und scrollbare Streckenauswahl; Start und Navigation sichtbar. Dies zeigt eine Übersicht, nicht eine neue Detailüberarbeitung jeder Strecke."
+    },
+    {
+      "path": "exports/spatial-menu/tracks-640x320.png",
+      "sha256": "4bdd6476f83043e9c8ab54dd40d822a9e591c58352a1b89b0cec8f87828d76ed",
+      "bytes": 138892,
+      "pixels": [
+        640,
+        320
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte räumliche Sonnenhafen-Streckenvorschau und scrollbare Streckenauswahl; Start und Navigation sichtbar. Dies zeigt eine Übersicht, nicht eine neue Detailüberarbeitung jeder Strecke."
+    },
+    {
+      "path": "exports/spatial-menu/tracks-690x829.png",
+      "sha256": "de46ea832ade2c9610590ea371a82861f8093c9462d8290ed2ad15bd2757ffc6",
+      "bytes": 380718,
+      "pixels": [
+        690,
+        829
+      ],
+      "individually_opened": true,
+      "observed_result": "Kein neuer konkreter visueller Bedienblocker im gezeigten Zustand",
+      "observation": "Echte räumliche Sonnenhafen-Streckenvorschau und scrollbare Streckenauswahl; Start und Navigation sichtbar. Dies zeigt eine Übersicht, nicht eine neue Detailüberarbeitung jeder Strecke."
+    }
+  ],
+  "preserved_mechanics": [
+    {
+      "topic": "Lasso",
+      "evidence": "34 Regelprüfungen und 26 Produktionsprüfungen PASS; reale Warnung/Fang, Spieler- und Gegnerbewegung, Abwehr, Pause, Rettung und Wiederaufbau eines gespeicherten Rennens. Gemessene Geschwindigkeit vor Fang 24.532, unmittelbar danach 16.682, nächster Physikschritt 16.591."
+    },
+    {
+      "topic": "Zwei vorhandene Sonnenhafen-Rampen",
+      "evidence": "183 RoadsideAction-Prüfungen PASS. Sechs echte Starts und Landungen bei 20.5/48/70 m/s; je eine Landung und null Rettungsresets. Gemessene Flughöhen 1.93/2.07/2.02 m an 407.4 sowie 2.06/2.48/2.63 m an 1544.4. Die Dateinamen speed-20 kürzen den tatsächlichen Testwert 20.5 ab."
+    },
+    {
+      "topic": "Vollständiger vorhandener Fahrweg",
+      "evidence": "PlayerFullRoute PASS: 3703.714 m, 16 Checkpoints, acht Sprünge/acht Landungen, zwei Loopings, ein Lasso-Fang, drei Ausweichmanöver, null Resets; KartFullField bestätigt kontinuierliche Fahrt des Felds über zwei Runden."
+    },
+    {
+      "topic": "Vorhandene Gegner und Rennregeln",
+      "evidence": "KartAI, Racecraft, RivalDrift, RivalFlight, LoopContact und StuntContinuity melden PASS für Schwierigkeitsreihenfolge ohne Teleport/Rubberband, Fahrstile, Kurvenbremsung, Verkehr/Überholen, Drift/Items, automatische Rampen und kontinuierlichen Loopkontakt."
+    },
+    {
+      "topic": "Garage, Touch und Wiederaufnahme",
+      "evidence": "SpatialMenu 594 Prüfungen in fünf Formaten PASS; sichtbares Original-Lumo und Karosserie, native Touchnavigation, ausgewählte Rennparameter. Garage3DTouch 27 PASS, GaragePresentation 66 PASS; aktuelle RaceBridge-/KartTests bestätigen Pause, Save/Resume und einmalige Belohnung."
+    }
+  ],
+  "original_logs": [
+    {
+      "path": "acceptance-evidence/action-stage/kart_lasso_production_regression.log",
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49",
+      "bytes": 1031,
+      "pass_markers": [
+        "[KartLassoProduction] PASS: 26 assertions; real warning/catch/rival motion, pause, rescue and saved-race rebuild"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/action-stage/kart_lasso_regression.log",
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a",
+      "bytes": 560,
+      "pass_markers": [
+        "[KartLasso] PASS: 34 assertions; 70 m/s sweeps, counterplay, bounded hold, equal rival rules"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/action-stage/kart_menu_flow_regression.log",
+      "sha256": "b2c789a4f2d251a056ece8698005830de32934d0cd4ac9869ed693154dc1c58b",
+      "bytes": 3675,
+      "pass_markers": [
+        "[KartMenuFlow] PASS: direct selected Cup start inside compact Android safe insets",
+        "[KartMenuFlow] PASS: five direct sections; 1280x720,800x480,640x320; safe controls >=44px"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/action-stage/kart_roadside_action_regression.log",
+      "sha256": "e582b58303683f6228689e133b1306e2d56bd35138051cce6c81e9ff91a9d57f",
+      "bytes": 1798,
+      "pass_markers": [
+        "[RoadsideAction] PASS: 183 assertions; two new drivable ramps at 20.5/48/70 m/s, visible fair encounter plans"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/action-stage/kart_spatial_menu_regression.log",
+      "sha256": "b43cf6b407e98d7555b1ccc377e52e8c6ee1dd669d25068fc4621eb8e0f0564f",
+      "bytes": 5531,
+      "pass_markers": [
+        "[SpatialMenu] PASS 594 checks; 5/5 cases; renderer=X11"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/build_sandbox_tools_regression.log",
+      "sha256": "62b94cf9adcc2b65a0b81c0e5780af8152e2f33d92a9beee28b1658f4caa055e",
+      "bytes": 539,
+      "pass_markers": [
+        "[BauweltSandboxTools] PASS larger world, atomic fill/copy/mirror, undo and save"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/build_sandbox_ui_regression.log",
+      "sha256": "df12e6cd24264f30e4b81b215caff309e233d3e0c2cf4c42e70bfe9f65070c82",
+      "bytes": 1269,
+      "pass_markers": [
+        "[BauweltSandboxUI] PASS 48dp tools, point workflow and atomic undo"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/creative_touch_layout_regression.log",
+      "sha256": "453eb1bb426577852ed112022cd9949220728cc89643a3fa1cafb280993e18e9",
+      "bytes": 1574,
+      "pass_markers": [
+        "[CreativeTouchLayout] PASS 300 checks: transformed dp, portrait, Fold and density"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/existing-gameplay.log",
+      "sha256": "9246459eee96513e4f035e5a14cfc60ec7d55dca95afc35154a79c1aba3396a7",
+      "bytes": 62172,
+      "pass_markers": [
+        "[KartTests] PASS: 8000 shared Jump questions; no Kart learning state; free steering; real full race; brake/drift; pause; save/resume; one award",
+        "[HostBridgeTests] PASS: actual JNI integer ACK, strict rejection, reward dedup/backup, return",
+        "[HostBridgeTests] PASS: native options, lifecycle save/pause, Back, resume identity, reward retry/once, games/learn return, fresh restart",
+        "[HostBridgeTests] PASS: jump native reward, question pause, save/resume identity, Back to games",
+        "[JumpTests] PASS: full twelve-island adventure, collisions, jump, three learning stops, save/resume",
+        "[LumoGait] PASS walk/run foot planting, idle settle, teleport, airborne",
+        "[LumoRenderKit] PASS one tier, Kart far unchanged, creative preset identical, Wolkeninseln tiers",
+        "[LumoEnvironmentApply] PASS creative_night/wolkeninseln/bauwelt_day/puzzle_atelier/rhythm_party/treasure_day",
+        "[CreativePresets] PASS describe/configure/apply, bauwelt_day/puzzle_atelier/rhythm_party/treasure_day, MultiMesh batches",
+        "[KartRaceBridge] PASS: no learning data, stable pause/return/resume ID, one reward, solved int, failed ACK keeps save, star cup without tasks, legacy learning-cup save finishes",
+        "[KartSplit] PASS: Wolkenweg raised 2.20 m while main lane stayed at 0.00 m",
+        "[KartPhysics] PASS: rail walls on every course at full turbo, sliding contact, blue/orange drift tiers, wrong-way warning, reverse line and jump-ahead give no lap, GAS/BREMSE pedals with reverse, on-screen pad, forward-facing boost chevrons, and a physical Wolkenweg split route",
+        "[KartJump] PASS: take-off, flight, landing turbo, cloud rescue past the gap, ordered checkpoints across the jump, rival arc, no ramp elsewhere",
+        "[KartTouchTests] PASS: real two-finger GUI, window Back countdown/race pause, touch resume, simultaneous steering+BREMSE, release outside, no learning panel, scaled safe areas",
+        "[KartLandingFit] PASS: all five choices readable above START on 4 Android sizes",
+        "[LumoCharacterTests] PASS: attached torso, proportionate visemes, expressions, live idle",
+        "[KartWorldTests] PASS: colours, spatial culling batches, transforms, background shadows",
+        "[KartPauseLayoutTests] PASS: actual compact/Fold matrix, safe-area controls, pause/results layout and touch navigation",
+        "[KartAI] PASS: no teleport, no rubber-band, difficulty order holds",
+        "[GarageTargets] PASS: 255 visible controls checked at >= 48x48 dp",
+        "[CompactKartSelection] PASS 355 checks; 6/6 cases; renderer=headless"
+      ],
+      "reported_errors": [
+        {
+          "line": 144,
+          "text": "ERROR: 8 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 905,
+          "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+        },
+        {
+          "line": 936,
+          "text": "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+        }
+      ]
+    },
+    {
+      "path": "acceptance-evidence/import.log",
+      "sha256": "ff310a512466aa1a2b417ff0040980fd6a5ce09ee78916162d91f7cd7238f861",
+      "bytes": 161102,
+      "pass_markers": [],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/jump_extras_regression.log",
+      "sha256": "3e75806bd652d776c9a02683c1826120070b0fc7f04c9eb860128b8faeeb6edb",
+      "bytes": 703,
+      "pass_markers": [
+        "[JumpExtras] PASS 12 checks: live platforms, pause, bounce and star resume"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_full_field_regression.log",
+      "sha256": "36fcf16fca865d97b923c6ba53388acb8bfc0b5d2e87e4b73f6bf7e192e20de5",
+      "bytes": 83415,
+      "pass_markers": [
+        "[KartFullField] PASS: continuous field two-lap drive with bounded movement"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_garage_3d_touch_regression.log",
+      "sha256": "adeb83e795ccb602c9f4b1d2b4147d5c490c9f4b1bc4c3ede4763ff9c16fbd9e",
+      "bytes": 1258,
+      "pass_markers": [
+        "[Garage3DTouch] PASS 27 checks: native input, legacy ray, pointer ownership"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_harbor_attraction_regression.log",
+      "sha256": "00a5c14f0534e154c87619cb3ad1c4427dad6ceb531e290f2ef00e70d5dd9bd3",
+      "bytes": 1656,
+      "pass_markers": [
+        "[HarborAttraction] PASS: LOW/HIGH placement, upright travel, pass-by, rearm, pause, reduced motion, distance culling"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_harbor_race_hook_regression.log",
+      "sha256": "016853fccfcd8005de021de86aa05a521359f82b18a43d5408fb05a24b3b5302",
+      "bytes": 1321,
+      "pass_markers": [
+        "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_loop_contact_regression.log",
+      "sha256": "408a8cf775584f33c18813904806183e6565b54d5d931b2f72ff2cd4f46677fd",
+      "bytes": 672,
+      "pass_markers": [
+        "[LoopContact] PASS: uniform physical travel, inversion and continuous road joins"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_menu_depth_2013_regression.log",
+      "sha256": "2baaeaf7ea0626ab2aea84ddae6b1ab727f4001b14803619c9fe449b67d57611",
+      "bytes": 1242,
+      "pass_markers": [
+        "[MenuDepth] PASS: 41 checks"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_player_full_route_regression.log",
+      "sha256": "e81a96beaa46ba89d795c2a12eaf3bd463d8adf4301c3bfa5c14eb3767a6c989",
+      "bytes": 21641,
+      "pass_markers": [
+        "[PlayerFullRoute] PASS {\"airborne\":false,\"brake\":0.0,\"checkpoints\":16,\"distance\":3703.71405977428,\"jumps\":8,\"landings\":8,\"lane\":-0.765062272548676,\"lasso_catches\":1,\"lasso_clock_seconds\":98.5166666666624,\"lasso_dodges\":3,\"lasso_factor\":1.0,\"loop_active\":false,\"loops\":2,\"precision_results\":{\"ziel\":2},\"resets\":0,\"road_distance\":0.346461836695653,\"seconds\":98.5166666666624,\"speed\":41.0,\"steering\":0.0} max_step=0.71434593200684"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_racecraft_regression.log",
+      "sha256": "a8052177816b24e88e9bd4c21049da8bdec15c5e5a350e451cdb526ee39ae008",
+      "bytes": 980,
+      "pass_markers": [
+        "[KartRacecraft] PASS: styles, traffic, curve braking, safe boost and real cone overtake"
+      ],
+      "reported_errors": [
+        {
+          "line": 17,
+          "text": "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+        }
+      ]
+    },
+    {
+      "path": "acceptance-evidence/kart_rival_drift_items_regression.log",
+      "sha256": "fc27dd163212a5dc2d079660d242cf25ed92bd1789a27bf28673abe40de09708",
+      "bytes": 743,
+      "pass_markers": [
+        "[KartRivalDrift] PASS: earned drift, gold pickup, fair pulse, shield and mini-turbo"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_rival_flight_regression.log",
+      "sha256": "812ac50b1731f00047e2d0c1498782e2d45d2acf9f604200b015663ff95aec27",
+      "bytes": 1779,
+      "pass_markers": [
+        "[RivalFlight] sonnenhafen: automatic AI approach, take-off and landing PASS",
+        "[RivalFlight] bergwelt: automatic AI approach, take-off and landing PASS",
+        "[RivalFlight] ramp reprojection cannot skip the take-off lip PASS",
+        "[RivalFlight] PASS: launch-speed physics, real misses, safe snapshots and automatic ramps"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_sonnenhafen_generation_regression.log",
+      "sha256": "9c807752c572e15d411562104cea5ae42470c5381fa122672d7af7015a384aad",
+      "bytes": 550,
+      "pass_markers": [
+        "[SonnenhafenGeneration] PASS: LOW/HIGH scenery, clear road, other tracks untouched"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_stunt_continuity_regression.log",
+      "sha256": "47810688cee982ffc2339e3fa7bb650e9eac48cf948618220f9ef587ff122ca6",
+      "bytes": 1645,
+      "pass_markers": [
+        "[StuntContinuity] PASS: continuous player contact and real AI loop traversal"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/kart_zauberwald_library_regression.log",
+      "sha256": "83bb911a70a054f7cd068868a401a911b2a16308b0cf6915c23e8e2c2e4ad50d",
+      "bytes": 1320,
+      "pass_markers": [
+        "[ZauberwaldLibrary] PASS checks=601"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/project-validation.log",
+      "sha256": "9ce4cc5c5d80ff2abf463f3328ea7ffa1aa612ad10f867910e7fc370f571da5e",
+      "bytes": 6124,
+      "pass_markers": [
+        "SUMMARY: 117 PASS / 7 WARN / 0 FAIL",
+        "RESULT: PASS (7 warnings)"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/puzzle_expansion_regression.log",
+      "sha256": "15e66dba4f57135ff127300eff8f6457f9a837ebe383a2528b3d3a32ce5075f4",
+      "bytes": 1191,
+      "pass_markers": [
+        "[PuzzleExpansion] PASS 1103 checks: all motifs/counts, saves and two played rounds"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/kart_air_trick_regression.log",
+      "sha256": "65af3dd144ebf0e2404429f8c8ab85c17894b293d8eb34abc596c636fc76ebc4",
+      "bytes": 494,
+      "pass_markers": [
+        "[AirTrick] PASS: 20 checks"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/kart_garage_presentation_regression.log",
+      "sha256": "ba5e0cdba9674ea37191b8f44d513df91fc5c53f7cf85fd5af6716e68ae36f7a",
+      "bytes": 1502,
+      "pass_markers": [
+        "[GaragePresentation] PASS 66 checks"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/kart_harbor_race_hook_regression.log",
+      "sha256": "b80d9ee2cea36de13d2645acbeb64efbaddb63e26a0d2d83874d4a61228eb656",
+      "bytes": 1329,
+      "pass_markers": [
+        "[HarborRaceHook] PASS: actual race physics, position, pause, resume, reduced motion, finish"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/kart_sonnenhafen_streetfronts_regression.log",
+      "sha256": "d36e9e933970ad56bb374bfd132e0d0571a0e23e1f302e4c483fbc2abadae749",
+      "bytes": 1661,
+      "pass_markers": [
+        "[Streetfronts] PASS: opaque materials, actual geometry budgets, spatial cells, optional GL motion"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+      "sha256": "50cbfbb16c1e6b786eaf620b0a7121caacf4e66b71fb4c2f2216877008392cc4",
+      "bytes": 1147,
+      "pass_markers": [
+        "[StreetfrontsWorld] PASS: integrated opaque kit, hard geometry budget, complete road clearance"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/lumo_attention_landing_regression.log",
+      "sha256": "237ed83a00e02270f0176c02a4e0d7df638fc691754a50c0bdceadb84fdf4bc9",
+      "bytes": 837,
+      "pass_markers": [],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/lumo_gesture_contact_regression.log",
+      "sha256": "ceedb097b20c07cf3fc5921a0bcc8ab5b0a3bba0aa4f08d2a1270a617b4f67e5",
+      "bytes": 1212,
+      "pass_markers": [
+        "[LumoGestureContact] PASS checks=200 failures=0"
+      ],
+      "reported_errors": []
+    },
+    {
+      "path": "acceptance-evidence/technical-art/lumo_kart_tick_cadence_regression.log",
+      "sha256": "a6e31559d2e5dbb33f509ec7751f1979272660e4425994c5aaad6dbd9b541e77",
+      "bytes": 2097,
+      "pass_markers": [
+        "[LumoKartTickCadence] PASS real rig cadence, contact, pause, hitch and variable frame duration"
+      ],
+      "reported_errors": []
+    }
+  ],
+  "known_limits_and_open_findings": [
+    "Diese Review bestätigt Bestandserhaltung auf dem neuen Quellstand. Sie behauptet keinen neuen Ausbau aller zwölf Rennstrecken und keine vollständige AAA-Produktionsqualität.",
+    "Die 22 Bilder stammen aus einem echten Software-Renderer auf Linux. Sie sind kein Android-Gerätetest, kein Fold7-Nachweis und keine 60-FPS-, GPU-, Temperatur- oder Eingabelatenzmessung.",
+    "Original-Lumo im Kart und neben dem Garagenkart ist sichtbar. Die Straßenrandfigur des Lasso-Moduls ist der vorhandene vereinfachte Dachs. Lippen-Synchronisation, neue Gesichts-Rigs und sämtliche Animationsclips werden durch diese Einzelbilder nicht nachgewiesen.",
+    "Aktuelle Original-Logs enthalten ObjectDB-/Ressourcenmeldungen beim Prozessende: nach KartTests 8, nach KartAI 4, nach GarageTargets 2 und bei Racecraft 4 Ressourcen. Alle jeweiligen Funktionsmarker und der Job bestanden. Die 4/2/Racecraft-4-Meldungen stehen bereits im verglichenen b5-Lauf; die KartTests-8-Meldung steht dort nicht. Weder Ursache noch ein reproduzierbarer Laufzeitleak sind damit belegt; keine Warnungsfreiheit behauptet.",
+    "tools/validate_2014.sh behandelt resources still in use at exit bereits im unveränderten vorhandenen Gate gesondert. Diese Review hat weder dieses Gate noch Audio-Freigabebedingungen verändert oder Meldungen aus den Originalbelegen entfernt.",
+    "V-Sync-, Screen-space-AA- und Volumetric-fog-Warnungen gehören zum verwendeten Compatibility-Renderer; Forward+/Mobile-Effekte und ihre Androidwirkung sind damit nicht bewertet.",
+    "Die sechs Rampenfahrten setzen Startposition und Starttempo kontrolliert und führen danach die produktive Physik aus. Sie ersetzen keinen vollständig von Hand oder ausschließlich per Touch gefahrenen Langzeittest.",
+    "Die laufenden APK-, Android-API35-/API37- und 2017→2019-Updategates sind nicht Gegenstand dieser Kartbild-Review."
+  ],
+  "historical_warning_comparison": [
+    {
+      "path": "qa/studio-legacy-b5bc6e7c/acceptance-evidence/existing-gameplay.log",
+      "sha256": "5eaaa0f697848e02e0f6e2d4f198379cb59cf584c80a5a66b1b4ae94d7d30c80",
+      "source_sha": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+      "exit_messages": [
+        "ERROR: 4 resources still in use at exit (run with --verbose for details).",
+        "ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ]
+    },
+    {
+      "path": "qa/studio-legacy-b5bc6e7c/acceptance-evidence/kart_racecraft_regression.log",
+      "sha256": "a8052177816b24e88e9bd4c21049da8bdec15c5e5a350e451cdb526ee39ae008",
+      "source_sha": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+      "exit_messages": [
+        "ERROR: 4 resources still in use at exit (run with --verbose for details)."
+      ]
+    }
+  ],
+  "mutations": {
+    "product_code_changed": false,
+    "ci_triggered": false,
+    "retry_started": false,
+    "only_new_review_note": "docs/evidence/studio-2019-review-notes/kart-legacy-76980-review.json"
+  }
+}

@@ -1,0 +1,116 @@
+{
+  "id": 132000524793,
+  "run_id": 43458978160,
+  "workflow_name": "LUMO Studio 2019 Android candidate",
+  "head_branch": "chatgpt/lumo-studio-20261113",
+  "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43458978160",
+  "run_attempt": 1,
+  "node_id": "CR_kwDOSNzcp88AAAAeu9gp-Q",
+  "head_sha": "399e75b8b5d5187579e5d75b9b71f882239e9991",
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132000524793",
+  "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43458978160/job/132000524793",
+  "status": "completed",
+  "conclusion": "success",
+  "created_at": "2026-11-13T16:04:27Z",
+  "started_at": "2026-11-13T16:04:29Z",
+  "completed_at": "2026-11-13T16:10:00Z",
+  "name": "android-host-compile",
+  "steps": [
+    {
+      "name": "Set up job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 1,
+      "started_at": "2026-11-13T16:04:30Z",
+      "completed_at": "2026-11-13T16:04:32Z"
+    },
+    {
+      "name": "Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 2,
+      "started_at": "2026-11-13T16:04:32Z",
+      "completed_at": "2026-11-13T16:05:09Z"
+    },
+    {
+      "name": "Run actions/setup-java@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 3,
+      "started_at": "2026-11-13T16:05:09Z",
+      "completed_at": "2026-11-13T16:05:09Z"
+    },
+    {
+      "name": "Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 4,
+      "started_at": "2026-11-13T16:05:09Z",
+      "completed_at": "2026-11-13T16:05:39Z"
+    },
+    {
+      "name": "Run android-actions/setup-android@9fc6c4e9069bf8d3d10b2204b1fb8f6ef7065407",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 5,
+      "started_at": "2026-11-13T16:05:39Z",
+      "completed_at": "2026-11-13T16:05:46Z"
+    },
+    {
+      "name": "Compile actual current Android host before native release pin approval",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 6,
+      "started_at": "2026-11-13T16:05:46Z",
+      "completed_at": "2026-11-13T16:09:55Z"
+    },
+    {
+      "name": "Run actions/upload-artifact@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 7,
+      "started_at": "2026-11-13T16:09:55Z",
+      "completed_at": "2026-11-13T16:09:56Z"
+    },
+    {
+      "name": "Post Run subosito/flutter-action@v2",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 12,
+      "started_at": "2026-11-13T16:09:56Z",
+      "completed_at": "2026-11-13T16:09:57Z"
+    },
+    {
+      "name": "Post Run actions/setup-java@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 13,
+      "started_at": "2026-11-13T16:09:57Z",
+      "completed_at": "2026-11-13T16:09:57Z"
+    },
+    {
+      "name": "Post Run actions/checkout@v4",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 14,
+      "started_at": "2026-11-13T16:09:57Z",
+      "completed_at": "2026-11-13T16:09:57Z"
+    },
+    {
+      "name": "Complete job",
+      "status": "completed",
+      "conclusion": "success",
+      "number": 15,
+      "started_at": "2026-11-13T16:09:57Z",
+      "completed_at": "2026-11-13T16:09:57Z"
+    }
+  ],
+  "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132000524793",
+  "labels": [
+    "ubuntu-latest"
+  ],
+  "runner_id": 1000016457,
+  "runner_name": "GitHub Actions 1000016457",
+  "runner_group_id": 0,
+  "runner_group_name": "GitHub Actions"
+}
