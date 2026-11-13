@@ -1,0 +1,13 @@
+diff --git a/lib/features/games/spielwelt/spielwelt_hub.dart b/lib/features/games/spielwelt/spielwelt_hub.dart
+index ef1b96ee..8097e469 100644
+--- a/lib/features/games/spielwelt/spielwelt_hub.dart
++++ b/lib/features/games/spielwelt/spielwelt_hub.dart
+@@ -468,6 +468,8 @@ class _GameTileState extends State<_GameTile> {
+         widget.reduceMotion ? Duration.zero : const Duration(milliseconds: 140);
+     return Semantics(
+       button: true,
++      enabled: open,
++      onTap: open ? widget.onTap : null,
+       label:
+           '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',
+       excludeSemantics: true,

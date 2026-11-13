@@ -1,0 +1,54 @@
+test_activity_change_during_ocr_cannot_authorize_a_flutter_capture (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_activity_change_during_ocr_cannot_authorize_a_flutter_capture) ... FAIL
+test_caption_sequence_must_restart_after_an_intervening_stale_frame (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_caption_sequence_must_restart_after_an_intervening_stale_frame) ... FAIL
+test_native_process_must_exit_before_any_capture (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_native_process_must_exit_before_any_capture) ... ok
+test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames) ... FAIL
+test_semantics_ready_does_not_accept_persistently_native_pixels (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_semantics_ready_does_not_accept_persistently_native_pixels) ... FAIL
+test_wrong_visible_caption_cannot_be_replaced_by_semantics (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_wrong_visible_caption_cannot_be_replaced_by_semantics) ... FAIL
+
+======================================================================
+FAIL: test_activity_change_during_ocr_cannot_authorize_a_flutter_capture (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_activity_change_during_ocr_cannot_authorize_a_flutter_capture)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_flutter_return.py", line 145, in test_activity_change_during_ocr_cannot_authorize_a_flutter_capture
+    with self.assertRaisesRegex(RuntimeError, 'Flutter.*pixel|Flutter.*activity'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_caption_sequence_must_restart_after_an_intervening_stale_frame (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_caption_sequence_must_restart_after_an_intervening_stale_frame)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_flutter_return.py", line 140, in test_caption_sequence_must_restart_after_an_intervening_stale_frame
+    self.assertEqual(len(captures), 4)
+AssertionError: 1 != 4
+
+======================================================================
+FAIL: test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_flutter_return.py", line 110, in test_original_api37_native_frame_is_rejected_before_two_fresh_flutter_frames
+    self.assertEqual((self.out / 'same-lesson.png').read_bytes(), self.flutter)
+AssertionError: b'\x8[99 chars]00\x04sBIT\x08\x08\x08\x08|\x08d\x88\x00\x00\x[1676695 chars]\x82' != b'\x8[99 chars]00\x01sRGB\x00\xae\xce\x1c\xe9\x00\x00\x00\x04[4377311 chars]\x82'
+
+======================================================================
+FAIL: test_semantics_ready_does_not_accept_persistently_native_pixels (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_semantics_ready_does_not_accept_persistently_native_pixels)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_flutter_return.py", line 121, in test_semantics_ready_does_not_accept_persistently_native_pixels
+    with self.assertRaisesRegex(RuntimeError, 'Flutter.*pixel|Flutter.*caption'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_wrong_visible_caption_cannot_be_replaced_by_semantics (tools.android_qa.tests.test_studio_flutter_return.StudioFlutterReturnTests.test_wrong_visible_caption_cannot_be_replaced_by_semantics)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_flutter_return.py", line 128, in test_wrong_visible_caption_cannot_be_replaced_by_semantics
+    with self.assertRaisesRegex(RuntimeError, 'Flutter.*pixel|Flutter.*caption'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.261s
+
+FAILED (failures=5)

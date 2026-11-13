@@ -1,0 +1,176 @@
+test_forged_but_consistently_hashed_measurements_do_not_replace_geometry (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_forged_but_consistently_hashed_measurements_do_not_replace_geometry) ... ok
+test_legacy_default_still_accepts_unchanged_no_layout_records (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_legacy_default_still_accepts_unchanged_no_layout_records) ... ok
+test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) ... 
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='absent-record') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='missing-file') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='symlink') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='path') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='hash') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='changed-raw-bytes') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='embedded-different') ... FAIL
+  test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='changed-during-frame') ... FAIL
+test_studio_recomputes_original_pixels_and_both_raw_layout_files (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_studio_recomputes_original_pixels_and_both_raw_layout_files) ... ERROR
+test_studio_requires_layout_even_when_legacy_pixel_report_is_valid (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_studio_requires_layout_even_when_legacy_pixel_report_is_valid) ... FAIL
+test_two_frame_layout_sequence_and_report_binding_cannot_be_changed (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_two_frame_layout_sequence_and_report_binding_cannot_be_changed) ... 
+  test_two_frame_layout_sequence_and_report_binding_cannot_be_changed (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_two_frame_layout_sequence_and_report_binding_cannot_be_changed) (field='layout_sha256') ... FAIL
+  test_two_frame_layout_sequence_and_report_binding_cannot_be_changed (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_two_frame_layout_sequence_and_report_binding_cannot_be_changed) (field='layout_sequence') ... FAIL
+
+======================================================================
+ERROR: test_studio_recomputes_original_pixels_and_both_raw_layout_files (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_studio_recomputes_original_pixels_and_both_raw_layout_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 122, in test_studio_recomputes_original_pixels_and_both_raw_layout_files
+    result = self.verify(cards, output)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 100, in verify
+    return delivery.verify_cards_front_faces(cards, output)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 193, in verify_cards_front_faces
+    require(measured == pixels and measured.get('page') == report.get('page'),
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='absent-record')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='missing-file')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='symlink')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='path')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='hash')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='changed-raw-bytes')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='embedded-different')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_missing_modified_symlinked_or_foreign_layout_files_are_rejected (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_missing_modified_symlinked_or_foreign_layout_files_are_rejected) (mutation='changed-during-frame')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 156, in test_missing_modified_symlinked_or_foreign_layout_files_are_rejected
+    with self.subTest(mutation=mutation), self.assertRaisesRegex(ValueError, 'layout'):
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_studio_requires_layout_even_when_legacy_pixel_report_is_valid (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_studio_requires_layout_even_when_legacy_pixel_report_is_valid)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 113, in test_studio_requires_layout_even_when_legacy_pixel_report_is_valid
+    with self.assertRaisesRegex(ValueError, 'layout'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+======================================================================
+FAIL: test_two_frame_layout_sequence_and_report_binding_cannot_be_changed (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_two_frame_layout_sequence_and_report_binding_cannot_be_changed) (field='layout_sha256')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 181, in test_two_frame_layout_sequence_and_report_binding_cannot_be_changed
+    with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'layout'):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+======================================================================
+FAIL: test_two_frame_layout_sequence_and_report_binding_cannot_be_changed (scripts.tests.test_studio_cards_delivery.StudioCardsDeliveryTests.test_two_frame_layout_sequence_and_report_binding_cannot_be_changed) (field='layout_sequence')
+----------------------------------------------------------------------
+ValueError: Cards pixel measurements were changed or belong to another hand page
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py", line 181, in test_two_frame_layout_sequence_and_report_binding_cannot_be_changed
+    with self.subTest(field=field), self.assertRaisesRegex(ValueError, 'layout'):
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: "layout" does not match "Cards pixel measurements were changed or belong to another hand page"
+
+----------------------------------------------------------------------
+Ran 6 tests in 10.558s
+
+FAILED (failures=11, errors=1)

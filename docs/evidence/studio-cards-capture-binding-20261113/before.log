@@ -1,0 +1,58 @@
+test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) ... 
+  test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) (filename='android35_portrait-playing.png') ... ERROR
+  test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) (filename='android35_portrait-paused.png') ... ERROR
+  test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) (filename='landscape_cutout_fixture-playing.png') ... ERROR
+test_existing_cards_images_cannot_replace_current_safe_area_review (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_existing_cards_images_cannot_replace_current_safe_area_review) ... FAIL
+
+======================================================================
+ERROR: test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) (filename='android35_portrait-playing.png')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 29, in test_current_safe_area_capture_is_actual_cards_production_scene
+    self.assertEqual(delivery.capture_module(PROBE + '/' + filename), 'cards')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 125, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+ERROR: test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) (filename='android35_portrait-paused.png')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 29, in test_current_safe_area_capture_is_actual_cards_production_scene
+    self.assertEqual(delivery.capture_module(PROBE + '/' + filename), 'cards')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 125, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+ERROR: test_current_safe_area_capture_is_actual_cards_production_scene (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_current_safe_area_capture_is_actual_cards_production_scene) (filename='landscape_cutout_fixture-playing.png')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 29, in test_current_safe_area_capture_is_actual_cards_production_scene
+    self.assertEqual(delivery.capture_module(PROBE + '/' + filename), 'cards')
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_delivery.py", line 125, in capture_module
+    require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py", line 36, in require
+    raise ValueError(reason)
+ValueError: Unknown production capture; a pose studio is not a product module
+
+======================================================================
+FAIL: test_existing_cards_images_cannot_replace_current_safe_area_review (scripts.tests.test_studio_cards_capture_binding.StudioCardsCaptureBindingTests.test_existing_cards_images_cannot_replace_current_safe_area_review)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_capture_binding.py", line 38, in test_existing_cards_images_cannot_replace_current_safe_area_review
+    with self.assertRaisesRegex(ValueError, 'current Cards safe-area capture'):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ValueError not raised
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.077s
+
+FAILED (failures=1, errors=3)

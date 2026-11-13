@@ -1,0 +1,168 @@
+{
+  "prepared_at_utc": "2026-11-13T22:01:36.453221+00:00",
+  "status": "FROZEN_FOR_ROOT_REVIEW_NOT_ANDROID_EXECUTED",
+  "worktree": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "local_git_head": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+  "local_clean_tree_claim": false,
+  "original_QA_source": "2fdd038d00ed7706971786400e3e1a42f5290c88",
+  "new_candidate_source": "Determined by the future exact Studio head checkout; no historical candidate SHA is accepted as a default.",
+  "source_files": [
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/workflows/lumo-studio-2019.yml",
+      "mode": "100644",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+      "git_blob": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512"
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/studio_creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 55952,
+      "sha256": "b46a5098615168fb0db1773ccbc1ae9d9fed3970fe4bb06d94afff43548255bb",
+      "git_blob": "9095cb600e8d241efa7e2320d98b767f82e26f70"
+    },
+    {
+      "path": "scripts/verify_studio_creative_android.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_studio_creative_android.py",
+      "mode": "100644",
+      "bytes": 9526,
+      "sha256": "a9788458c601b22406e7a7755c51a75c6ff343d47b71a948e056963d5cfd4f1c",
+      "git_blob": "347090ac420eb1fc0054241ed488187b6e65545d"
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_creative_android_probe.py",
+      "mode": "100644",
+      "bytes": 9707,
+      "sha256": "23bdf174ece40e32334f31d8f60de0af39ea7150d41c24b123d26a7ffb84d866",
+      "git_blob": "05615090bc63ef3c043ea53b2b6aa3e74f296122"
+    },
+    {
+      "path": "scripts/tests/test_studio_creative_delivery.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_creative_delivery.py",
+      "mode": "100644",
+      "bytes": 13138,
+      "sha256": "82db31fe93884013f027d07a35f6486858bf1215ff2cf393c117bc0c0139a3d5",
+      "git_blob": "90677d6363f2ac5a335d96ad5866c740c92c457b"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/fixtures/studio_creative_android/jump_1a4ddc9981f500ebde157d11_1_2b7e53f847a7.cfg",
+      "mode": "100644",
+      "bytes": 425,
+      "sha256": "dd4b43efa2202f92ddad79640ed4443880154c4e76b928fb4d72ad5aa067dd5c",
+      "git_blob": "4a373b848fc245cd14b1c95f0992377de54e2ff8"
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/serialize_jump_config.gd",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/fixtures/studio_creative_android/serialize_jump_config.gd",
+      "mode": "100644",
+      "bytes": 1410,
+      "sha256": "e48a43329efb453ad9cb23833575c258fb2a871a554440b36fbad23cdef9c450",
+      "git_blob": "964b11647c4df8d1b6e0ed2e0786d5a88e8dfbcf"
+    }
+  ],
+  "integration": {
+    "job": "creative-android",
+    "display_name": "Android API 35 additional creative gameplay",
+    "needs": [
+      "verify-and-build",
+      "android-host-compile"
+    ],
+    "candidate": "Current run artifact ID and digest exported by its actual upload-candidate step; direct extracted path via merge-multiple:true.",
+    "immutable_sources": "Current pull-request head/current manual-run SHA; native SHA from that exact source config; committed helper bytes checked against each current HEAD.",
+    "APK_and_PCK": "Unchanged candidate APK identity verifier, SHA sums/provenance/size and actual PCK member hash/size; same bytes required by main and creative tour reports.",
+    "publication": "All existing dependencies plus creative-android success; original media hashes and technical report checked by new independent delivery verifier before release creation.",
+    "pending_human_review": "RECORDED_REVIEW_REQUIRED remains a technical completion status; no runtime video approval or FPS is fabricated."
+  },
+  "verification": {
+    "creative_and_delivery_tests": {
+      "passed": 16,
+      "failed": 0,
+      "skipped": 0,
+      "log": "creative-contracts-final.log"
+    },
+    "actionlint": {
+      "exit_code": 0,
+      "version": "1.7.12",
+      "log": "actionlint-final.log"
+    },
+    "bash_syntax": {
+      "snippets": 50,
+      "failed": 0,
+      "report": "shell-syntax.json"
+    },
+    "python_compile": "PASS",
+    "diff_check": "PASS"
+  },
+  "preserved_scope": {
+    "workflow_unchanged_after_removing_only_documented_additions": true,
+    "unchanged_existing_jobs": [
+      "android-host-compile",
+      "android-tour",
+      "update-2019-from-2017"
+    ],
+    "build_all_prior_steps_and_gates_unchanged": true,
+    "publisher_all_prior_dependencies_conditions_steps_and_gates_retained": true,
+    "existing_probe_functions_changed": [
+      "verify_candidate_metadata",
+      "Tour.run",
+      "main"
+    ],
+    "existing_probe_functions_byte_identical": [
+      "sha",
+      "write",
+      "read_image",
+      "require",
+      "bounds",
+      "hub_choice",
+      "pieces",
+      "one_added_piece",
+      "one_quarter_turn",
+      "resume_equal",
+      "config_variant_values",
+      "parse_jump_save",
+      "components",
+      "stick_target",
+      "solve",
+      "puzzle_piece_target",
+      "build_targets",
+      "Tour.__init__",
+      "Tour.tag",
+      "Tour.shot",
+      "Tour.audit_adb",
+      "Tour.touch",
+      "Tour.native",
+      "Tour.observe",
+      "Tour.current_stick",
+      "Tour.move_stick",
+      "Tour.portal",
+      "Tour.enter",
+      "Tour.leave",
+      "Tour.saved",
+      "Tour.pause_save",
+      "Tour.toolbar",
+      "Tour.viewport",
+      "Tour.build",
+      "Tour.puzzle",
+      "Tour.treasure",
+      "Tour.jump_save",
+      "Tour.jump"
+    ],
+    "original_game_methods_byte_identical": {
+      "jump": true,
+      "build": true,
+      "puzzle": true,
+      "treasure": true
+    }
+  },
+  "limits": [
+    "No new Android run or APK build was launched by this agent.",
+    "Historical2fdd run still failed before all four native scenes; evidence remains separate and unchanged.",
+    "The protected main, source pins, native receipt, Kotlin and nextgen_evidence were not modified by this integration.",
+    "The shared candidate may receive separately owned Root/A/C changes; this manifest identifies only these seven source/test/fixture files."
+  ],
+  "official_download_action_review": "download-action-source-review.json"
+}

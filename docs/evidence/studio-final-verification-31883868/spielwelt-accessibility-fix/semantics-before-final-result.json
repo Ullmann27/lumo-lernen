@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter",
+    "expanded",
+    "test/games/spielwelt_semantics_action_test.dart"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "exit_code": 1,
+  "seconds": 8.271,
+  "source_sha256": "387199fa020b74d7494da66b431c4e1cc2648a006b005de3b438fed742d92e02",
+  "test_sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e"
+}

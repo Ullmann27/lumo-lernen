@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_cards_capture_binding",
+    "scripts.tests.test_studio_delivery",
+    "-v"
+  ],
+  "returncode": 1,
+  "seconds": 14.362815296990448,
+  "log_sha256": "33cc162e5faa31361789a3c4ee2dc5fabcc0b58c0fae3d00e9b6288bba8ed40b",
+  "scope": "Integrated current Studio release contracts, current mandatory layout sidecars and Cards capture receipt; synthetic fixtures only"
+}

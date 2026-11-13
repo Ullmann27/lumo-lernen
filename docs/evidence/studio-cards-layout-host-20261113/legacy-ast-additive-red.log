@@ -1,0 +1,15 @@
+test_all_established_cards_action_deadline_and_pixel_guards_are_unchanged (tools.android_qa.tests.test_cards_lifecycle_observation.CardsLifecycleObservationTest.test_all_established_cards_action_deadline_and_pixel_guards_are_unchanged) ... FAIL
+
+======================================================================
+FAIL: test_all_established_cards_action_deadline_and_pixel_guards_are_unchanged (tools.android_qa.tests.test_cards_lifecycle_observation.CardsLifecycleObservationTest.test_all_established_cards_action_deadline_and_pixel_guards_are_unchanged)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_cards_lifecycle_observation.py", line 183, in test_all_established_cards_action_deadline_and_pixel_guards_are_unchanged
+    self.assertEqual(functions(current), functions(original))
+AssertionError: {'car[26948 chars](id='previous_layout', ctx=Store())], value=Co[44356 chars][])"} != {'car[26948 chars](id='expected', ctx=Store())], value=Call(func[41331 chars][])"}
+Diff is 120545 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 1 test in 0.046s
+
+FAILED (failures=1)

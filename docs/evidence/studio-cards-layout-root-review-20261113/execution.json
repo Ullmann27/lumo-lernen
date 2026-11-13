@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_delivery",
+    "scripts.tests.test_studio_cards_capture_binding",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "started_utc": "2026-11-13T22:13:08.033025+00:00",
+  "exit_code": 0,
+  "elapsed_seconds": 14.616914400990936,
+  "all_source_and_C_manifest_bytes_unchanged": true,
+  "hashed_files": 46,
+  "log_sha256": "19f98222d06cbf2a37826e1ac46f4903787272314d87f5d5f5105deaeaacbad9",
+  "log_bytes": 7650,
+  "scope": "One integrated local unit/contract execution; no Android or visual receipt approval"
+}

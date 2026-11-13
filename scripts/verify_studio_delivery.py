@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """Bind Studio 2019 publication to its exact APK, Android and renderer evidence.
 
-The historical 2018 verifier and receipts remain immutable. This verifier does
-not approve images: it validates an explicitly recorded review against the
-downloaded original artifact, including all independent capture source stamps.
+Historical release receipts remain immutable; the shared verifier preserves
+its legacy behavior by default. Studio explicitly requires current native
+layout observations. This verifier validates an explicitly recorded image
+review against the original artifact and its independent source stamps.
 """
 from __future__ import annotations
 
@@ -44,6 +45,7 @@ TOUCH_CAPTURE_PROBES = frozenset({
     'touch-evidence/build/captures/build_dialog_density_regression',
 })
 PUZZLE_MENU_CAPTURE_PROBE = 'studio-evidence/captures/puzzle_menu_lifecycle_regression'
+CARDS_SAFE_AREA_CAPTURE_PROBE = 'studio-evidence/captures/cards_safe_area_regression'
 # Pose-studio images are useful technical evidence, but cannot stand in for an
 # actual production scene. The probe directory fixes the image's module.
 CAPTURE_MODULES = {
@@ -54,6 +56,7 @@ CAPTURE_MODULES = {
     'nextgen-evidence/nextgen/captures/build_settlement_play_regression': 'settlement',
     'nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression': 'garage',
     'nextgen-evidence/nextgen/captures/cards_table_capture': 'cards',
+    CARDS_SAFE_AREA_CAPTURE_PROBE: 'cards',
     'nextgen-evidence/nextgen/captures/rhythm_tour_play_regression': 'rhythm',
     'studio-evidence/captures/puzzle_rotation_regression': 'puzzle',
     PUZZLE_MENU_CAPTURE_PROBE: 'puzzle',
@@ -217,11 +220,14 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             'Visual review must include the current workshop, treasure and build touch captures')
     require(PUZZLE_MENU_CAPTURE_PROBE in capture_probes,
             'Visual review must include the current puzzle menu lifecycle capture')
+    require(CARDS_SAFE_AREA_CAPTURE_PROBE in capture_probes,
+            'Visual review must include the current Cards safe-area capture')
     require(orientations == {'portrait', 'landscape'}, 'Phone and landscape visual evidence are required')
     return {'native_revision': native, 'native_workflow_run_id': workflow['id'],
             'native_artifact_id': artifact['id'], 'native_artifact_sha256': digest,
             'native_capture_sources': sources, 'native_acceptance_jobs': sorted(NATIVE_JOBS),
             'reviewed_touch_capture_probes': sorted(TOUCH_CAPTURE_PROBES),
+            'reviewed_cards_safe_area_capture_probe': CARDS_SAFE_AREA_CAPTURE_PROBE,
             'reviewed_by': receipt['reviewed_by'], 'reviewed_at': receipt['reviewed_at'],
             'images': len(images), 'modules': sorted(modules)}
 
@@ -317,7 +323,7 @@ def verify_proofs(source: str, native: str, version_name: str, digest: str, size
             'Missing actual Android binding between native activity and Dart authority')
     require(host.get('status') == 'PASS' and host.get('flutter_source_commit') == source and
             COMPILED_CLASSES <= set(host.get('classes', {})), 'Current Android host bytecode not verified')
-    card_pixels = verify_cards_front_faces(cards, surface_evidence)
+    card_pixels = verify_cards_front_faces(cards, surface_evidence, require_layout=True)
     return {'package': PACKAGE_ID, 'versionName': version_name, 'versionCode': VERSION_CODE,
             'flutterSourceCommit': source, 'godotSourceCommit': native,
             'signingCertificateSha256': EXPECTED_CERT_SHA256, 'apkSha256': digest, 'apkBytes': size,

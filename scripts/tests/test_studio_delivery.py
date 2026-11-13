@@ -26,6 +26,7 @@ import test_nextgen_delivery as historical_tests
 import verify_nextgen_delivery as historical
 import verify_studio_delivery as delivery
 from record_studio_visual_review import record_review
+from test_studio_cards_delivery import attach_synthetic_layouts
 
 
 class StudioDeliveryTests(unittest.TestCase):
@@ -45,6 +46,7 @@ class StudioDeliveryTests(unittest.TestCase):
         for info in (args[5], args[6], args[7], args[8]['candidate'],
                      args[9]['steps'][0], args[10]['apk_identity']):
             info.update(versionCode=2019, versionName='0.13.7')
+        attach_synthetic_layouts(args[10]['cards'], args[12])
         return args
 
     def dual_platform_fixture(self):
@@ -135,6 +137,16 @@ class StudioDeliveryTests(unittest.TestCase):
         new = ast.parse(inspect.getsource(delivery.verify_proofs)).body[0]
         self.assertIn('VERSION_NAME', ast.dump(new.body[0]))
         new.body.pop(0)  # Additional exact 0.13.7 guard.
+        layout_calls = [node for node in ast.walk(new) if isinstance(node, ast.Call)
+                        and isinstance(node.func, ast.Name)
+                        and node.func.id == 'verify_cards_front_faces']
+        self.assertEqual(len(layout_calls), 1)
+        self.assertEqual([ast.dump(item) for item in layout_calls[0].keywords],
+                         [ast.dump(ast.keyword(arg='require_layout',
+                                               value=ast.Constant(value=True)))])
+        # Only this additional mandatory Studio layout binding is permitted;
+        # every existing identity/state/pixel/lifecycle assertion stays equal.
+        layout_calls[0].keywords = []
 
         class HistoricalBuild(ast.NodeTransformer):
             def visit_Name(self, node):
@@ -372,8 +384,9 @@ class StudioDeliveryTests(unittest.TestCase):
             'touch-evidence/treasure/captures/treasure_density_regression': 'treasure',
             'touch-evidence/build/captures/build_dialog_density_regression': 'build'}
         self.assertEqual(delivery.TOUCH_CAPTURE_PROBES, set(touch_modules))
-        self.assertEqual(len(delivery.CAPTURE_MODULES), 14)
+        self.assertEqual(len(delivery.CAPTURE_MODULES), 15)
         self.assertEqual(delivery.CAPTURE_MODULES[delivery.PUZZLE_MENU_CAPTURE_PROBE], 'puzzle')
+        self.assertEqual(delivery.CAPTURE_MODULES[delivery.CARDS_SAFE_AREA_CAPTURE_PROBE], 'cards')
         for probe, module in touch_modules.items():
             with self.subTest(probe=probe):
                 self.assertEqual(delivery.CAPTURE_MODULES[probe], module)
@@ -385,7 +398,9 @@ class StudioDeliveryTests(unittest.TestCase):
         self.assertEqual(set(result['native_acceptance_jobs']), delivery.NATIVE_JOBS)
         self.assertEqual(set(result['native_capture_sources']), set(delivery.CAPTURE_SOURCES))
         self.assertEqual(set(result['reviewed_touch_capture_probes']), delivery.TOUCH_CAPTURE_PROBES)
-        self.assertEqual(result['images'], 14)
+        self.assertEqual(result['images'], 15)
+        self.assertEqual(result['reviewed_cards_safe_area_capture_probe'],
+                         delivery.CARDS_SAFE_AREA_CAPTURE_PROBE)
 
     def test_current_puzzle_image_cannot_replace_the_menu_lifecycle_capture(self):
         args = self.review_fixture()
@@ -629,7 +644,8 @@ class StudioDeliveryTests(unittest.TestCase):
         fresh_png = historical_tests.fixture_png(*changed['dimensions'], 90)
         self.archive_change(args, {changed['artifact_entry']: fresh_png})
         second = self.record(args)
-        self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}), 15)
+        self.assertEqual(len(set(original_bytes) | {item['path'] for item in second['images']}),
+                         len(original_bytes) + 1)
         for relative, data in original_bytes.items():
             self.assertEqual((self.base / 'recorded' / relative).read_bytes(), data)
 

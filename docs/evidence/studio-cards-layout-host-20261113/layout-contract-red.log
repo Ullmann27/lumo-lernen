@@ -1,0 +1,217 @@
+test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) ... 
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='token') ... FAIL
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='roundId') ... FAIL
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='revision') ... FAIL
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='ack') ... FAIL
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='viewer') ... FAIL
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='paused') ... FAIL
+  test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='phase') ... FAIL
+test_fixture_never_masquerades_as_actual_android_observation (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_fixture_never_masquerades_as_actual_android_observation) ... FAIL
+test_missing_and_malformed_measurements_are_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_missing_and_malformed_measurements_are_rejected) ... FAIL
+test_new_projection_matches_actual_godot_unproject_readback (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_new_projection_matches_actual_godot_unproject_readback) ... FAIL
+test_original_projection_misses_the_actual_safe_area_hand_by_more_than_63_pixels (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_original_projection_misses_the_actual_safe_area_hand_by_more_than_63_pixels) ... ok
+test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements) ... FAIL
+test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected) ... FAIL
+test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) ... 
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='settled') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='pending') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='ui_visible') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='selected_card_id') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='page') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='page_size') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='layout_sequence') ... FAIL
+  test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='ticks_msec') ... FAIL
+test_wrong_insets_and_wrong_ui_rect_are_not_trusted (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_wrong_insets_and_wrong_ui_rect_are_not_trusted) ... FAIL
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='token')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='roundId')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='revision')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='ack')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='viewer')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='paused')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_another_session_or_changed_public_revision_cannot_supply_geometry (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_another_session_or_changed_public_revision_cannot_supply_geometry) (key='phase')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 84, in test_another_session_or_changed_public_revision_cannot_supply_geometry
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_fixture_never_masquerades_as_actual_android_observation (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_fixture_never_masquerades_as_actual_android_observation)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 111, in test_fixture_never_masquerades_as_actual_android_observation
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_missing_and_malformed_measurements_are_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_missing_and_malformed_measurements_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 118, in test_missing_and_malformed_measurements_are_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_new_projection_matches_actual_godot_unproject_readback (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_new_projection_matches_actual_godot_unproject_readback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 46, in test_new_projection_matches_actual_godot_unproject_readback
+    self.assertAlmostEqual(value, expected, delta=.002)
+AssertionError: 1560.868938243376 != 1497.71704101562 within 0.002 delta (63.15189722775608 difference)
+
+======================================================================
+FAIL: test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 70, in test_rotated_or_mismatched_screen_cannot_reuse_portrait_measurements
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 107, in test_swapped_ids_and_fabricated_or_nonfinite_polygons_are_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='settled')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='pending')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='ui_visible')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='selected_card_id')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='page')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='page_size')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='layout_sequence')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_unsettled_pending_hidden_or_selected_layout_is_rejected (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_unsettled_pending_hidden_or_selected_layout_is_rejected) (key='ticks_msec')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 94, in test_unsettled_pending_hidden_or_selected_layout_is_rejected
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+======================================================================
+FAIL: test_wrong_insets_and_wrong_ui_rect_are_not_trusted (tools.android_qa.tests.test_studio_cards_layout.StudioCardsLayoutTests.test_wrong_insets_and_wrong_ui_rect_are_not_trusted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py", line 66, in test_wrong_insets_and_wrong_ui_rect_are_not_trusted
+    with self.assertRaises(RuntimeError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: RuntimeError not raised
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.019s
+
+FAILED (failures=21)

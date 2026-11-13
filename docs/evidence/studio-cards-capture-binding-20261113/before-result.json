@@ -1,0 +1,13 @@
+{
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "scripts.tests.test_studio_cards_capture_binding",
+    "-v"
+  ],
+  "returncode": 1,
+  "seconds": 0.20430950199079234,
+  "log_sha256": "aa64bd4eae41485c15ae1e83bdff2343a6d9ebd13b7d2f4b281f0269e6073fc6",
+  "scope": "Synthetic release gate regression against exact unchanged318 verifier"
+}

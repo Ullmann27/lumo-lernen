@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-13T22:11:10.538570+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "base_source": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "scope": "Host Cards measured-layout capture/publication and fresh Flutter return pixels; no app/gameplay/save changes in this patch",
+  "files": [
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "git_blob": "c1105e64bce4c13300f0fbf41e103e4f53194419",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/nextgen_evidence.py"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes/lumo_studio_surfaces_android_probe.py"
+    },
+    {
+      "path": "tools/android_qa/tests/test_cards_lifecycle_observation.py",
+      "bytes": 11642,
+      "sha256": "d7fe7573b548c4f70fc30931b5ced837756722730cb7ff5fd8d1a1f6ed18bb6c",
+      "git_blob": "12f950bcfd1314c7403c5effaa13adb250a7c71b",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_cards_lifecycle_observation.py"
+    },
+    {
+      "path": "tools/android_qa/tests/test_studio_cards_layout.py",
+      "bytes": 17375,
+      "sha256": "536e8b8db30ba27b96f5ce0e70f7202fc33bf74f4a4e6a97cd4030a769784bbd",
+      "git_blob": "feef9435be5d4c308a33da615ac258690e1cb604",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_cards_layout.py"
+    },
+    {
+      "path": "tools/android_qa/tests/test_studio_flutter_return.py",
+      "bytes": 7508,
+      "sha256": "c560cdccbc0c00c70c3dc2ecb9ac2e075c607a0cb77eeb525cd69151cee5d51b",
+      "git_blob": "ff75eb69840c0c7c5fb64cc3ad8490eadb6c5270",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/test_studio_flutter_return.py"
+    },
+    {
+      "path": "scripts/verify_nextgen_delivery.py",
+      "bytes": 26986,
+      "sha256": "5b9f6658007ffc93f106e24a7fc001e68418dea450f46a4e4b3405b0afb3e44c",
+      "git_blob": "a732fa011ce387364e97e6e6cf8a8e0b7eda665a",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/verify_nextgen_delivery.py"
+    },
+    {
+      "path": "scripts/tests/test_studio_cards_delivery.py",
+      "bytes": 10124,
+      "sha256": "5c92f154787f6d9666d11d443df2c2d66371285371e5562a6970fd94701d26a1",
+      "git_blob": "c45a037b641964b8e8732b80c0196c9071331db5",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/tests/test_studio_cards_delivery.py"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing-ocr-contrast.tsv",
+      "bytes": 7142,
+      "sha256": "bbff4c1c05a766f9fcb73819f718aa58f8cbc69db9276df65d5484ea2f80e49c",
+      "git_blob": "2f34e4d474c756fe59d09ebd28f6b6371948e9f6",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing-ocr-contrast.tsv"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing.layout.json",
+      "bytes": 1278,
+      "sha256": "c487377a24237e5bcf2f5952fe31d6d53d407aa87c84337d65cfef3531a45ce3",
+      "git_blob": "8d1d95a722f808eff7b7426a304dc0fa56ff1a61",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing.layout.json"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing.png",
+      "bytes": 1272873,
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "git_blob": "f27035bdf74da5b04f30b7aa8f5a0f4983c9aad4",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/android35_portrait-playing.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing-ocr-contrast.tsv",
+      "bytes": 4189,
+      "sha256": "bbcdf5c03adab6fc9949f646f8e9382b2a0ec6051c7c1ea28236098018ba3726",
+      "git_blob": "8d127582a5c26a8d7430df6cd955ad47a3ac82bb",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing-ocr-contrast.tsv"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing.layout.json",
+      "bytes": 1955,
+      "sha256": "d8eb6951924c5caf03fb03d6516e591e040be67c983b7043ff8a1403276fa129",
+      "git_blob": "fb7d907cd32c8098ae2605cc28a9233e10f039fe",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing.layout.json"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing.png",
+      "bytes": 1002645,
+      "sha256": "90b49f1abdfd70a5b835cc6a4432dc291a2ed748ecd2d8f53b47ab75b157bfa8",
+      "git_blob": "8bcf5a95bd1b76821313c247612f273e13e5db12",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/landscape_cutout_fixture-playing.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/manifest.json",
+      "bytes": 3285,
+      "sha256": "7d61270fece35d835c1d39c8cf44a007a5c45c19c7b5f4a06f8986223c3280f5",
+      "git_blob": "3ced29ff1256c82146b605c4543f235d83e51475",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/manifest.json"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/observations.json",
+      "bytes": 1314,
+      "sha256": "7838ed31a7c6f463aeac4ed56a7c7969afb4501f36f026b2bbb9038a3f7e86f1",
+      "git_blob": "da52f293f457be2679d0fd8d03fdad435eaf55f9",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/observations.json"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/cards_safe_area_2019/public-fixture.json",
+      "bytes": 1489,
+      "sha256": "c0f0118dadcc08c5701c4a1c5aa4d717d15ba9c71d6908bc9463f69c200d25d7",
+      "git_blob": "933214c26bc728b92dbc000a6296380471c7a31a",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/cards_safe_area_2019/public-fixture.json"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_flutter_return_318/android35_current_flutter.png",
+      "bytes": 1509079,
+      "sha256": "d59786fbcbd8f4219f46c4fc0d52ed5c93c147d0c0eaa78a1e3b82cc7f9e8438",
+      "git_blob": "9958edda957fda02a4d2cf0efed8190462df1eb6",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/studio_flutter_return_318/android35_current_flutter.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_flutter_return_318/android37_stale_native.png",
+      "bytes": 582222,
+      "sha256": "0778858862aa6f56eab57f03b4574ffb7a9f65178d30133ad64498659bf1dd1e",
+      "git_blob": "0e8e5b287f11fe012d9216888fd3e527f1502475",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/studio_flutter_return_318/android37_stale_native.png"
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/studio_flutter_return_318/manifest.json",
+      "bytes": 931,
+      "sha256": "43b42df7db8a3bc2fe88983a465eabd05a29105645def42823325e8379807507",
+      "git_blob": "c361a37713f981a705f5b830a62a0d03e87c7034",
+      "mode": "100644",
+      "absolute_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa/tests/fixtures/studio_flutter_return_318/manifest.json"
+    }
+  ],
+  "source_files": 7,
+  "total_regular_files": 19,
+  "total_bytes": 4538509,
+  "github_mutation": false
+}

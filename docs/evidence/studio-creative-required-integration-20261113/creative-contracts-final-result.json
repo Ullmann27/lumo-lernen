@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_studio_creative*.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "exit_code": 0,
+  "seconds": 0.314
+}

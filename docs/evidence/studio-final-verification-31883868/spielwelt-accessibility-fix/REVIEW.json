@@ -1,0 +1,83 @@
+{
+  "reviewed_at_utc": "2026-11-13T21:47:18.354912+00:00",
+  "status": "LOCAL_FIX_VERIFIED_ANDROID_RECHECK_PENDING",
+  "original_tested_host": "31883868bac56699dbf3b3d60a7cdb7afc496a8b",
+  "original_source_git_blob": "ef1b96ee3b0f082281283d1db3751a6c4488fa81",
+  "original_source_sha256": "387199fa020b74d7494da66b431c4e1cc2648a006b005de3b438fed742d92e02",
+  "product_change": "Two additive properties on the existing outer _GameTileState.build Semantics node: enabled: open, onTap: open ? widget.onTap : null. Existing InkWell, navigation callback, labels, layout, unlock/domain rules and physical locked/coming-soon explanation path are unchanged.",
+  "source_files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "mode": "100644",
+      "bytes": 28438,
+      "sha256": "c23fc88187cfea258250262c510e599c71a42466cd2058f151f3fe5ab39cf146",
+      "git_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart",
+      "path": "test/games/spielwelt_semantics_action_test.dart",
+      "mode": "100644",
+      "bytes": 5847,
+      "sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e",
+      "git_blob": "b702778f7553fd1bbb3a40d87bfee1458a7ab0a4"
+    }
+  ],
+  "tests": {
+    "identical_final_test_sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e",
+    "before": {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/games/spielwelt_semantics_action_test.dart"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "exit_code": 1,
+      "seconds": 8.271,
+      "source_sha256": "387199fa020b74d7494da66b431c4e1cc2648a006b005de3b438fed742d92e02",
+      "test_sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e"
+    },
+    "before_result": "0 PASS, 4 FAIL: missing enabled/tap semantics; final rebuilding test directly rejects absent tap action.",
+    "after": {
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+        "test",
+        "--no-pub",
+        "--reporter",
+        "expanded",
+        "test/games/spielwelt_semantics_action_test.dart",
+        "test/games/spielwelt_routing_test.dart"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "exit_code": 0,
+      "seconds": 14.488,
+      "source_sha256": "c23fc88187cfea258250262c510e599c71a42466cd2058f151f3fe5ab39cf146",
+      "test_sha256": "0a36e6270c802223e373d8f86b817eb988f68c50650023327893978c2223531e"
+    },
+    "after_result": "7 PASS: 4 new semantics contracts and 3 existing routing contracts.",
+    "covered": [
+      "Actual SemanticsOwner.performAction(SemanticsAction.tap) invokes each of all ten public game portals exactly once.",
+      "Each existing InkWell touch callback still invokes exactly once.",
+      "Locked and coming-soon tiles expose disabled semantics and no tap action; explicit unsupported accessibility dispatch causes zero callbacks.",
+      "Existing physical touch callbacks for the domain explanation remain callable.",
+      "Rebuilding the same tile open -> closed -> open removes and restores the accessible action without a stale callback.",
+      "Existing production routing test reaches every original scene through the unchanged public route."
+    ],
+    "harness_correction": "First after-run failed only the end-of-test semantics-handle leak assertion: the test redundantly requested a handle although testWidgets already manages semantics. Removed that unnecessary handle; all assertions retained. Both earlier logs are preserved. Repeated red/green with the identical final test source."
+  },
+  "quality_checks": [
+    "git diff --check on owned source/test passed",
+    "dart format --output none --set-exit-if-changed on new test passed"
+  ],
+  "strict_qa_probe_sha256_unchanged": "0b7d0278094dbb6063514a6e6da1d6bcbc274cdd776adb7cc12c5af1f0413b90",
+  "limits": [
+    "These are actual local Flutter 3.44.9 widget tests, not a new APK or Android/TalkBack acceptance.",
+    "The original failed API35 run and all four unentered native scenes remain failures.",
+    "The strict clickable=true selector is unchanged.",
+    "Parent owns the new candidate integration and subsequent exact-APK Android run.",
+    "No Activity, native source, source pin, main branch or CI run was changed by this fix."
+  ]
+}

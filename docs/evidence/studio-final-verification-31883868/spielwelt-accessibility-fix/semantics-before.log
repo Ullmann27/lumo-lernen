@@ -1,0 +1,109 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart
+00:00 +0: all ten game portals dispatch each accessibility and touch tap once
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+memory
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart:92:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart line 92
+The test description was:
+  all ten game portals dispatch each accessibility and touch tap once
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -1: all ten game portals dispatch each accessibility and touch tap once [E]
+  Test failed. See exception logs above.
+  The test description was: all ten game portals dispatch each accessibility and touch tap once
+  
+00:00 +0 -1: unavailable playable has no accessible launch action
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart:130:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart line 130
+The test description was:
+  unavailable playable has no accessible launch action
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:00 +0 -2: unavailable playable has no accessible launch action [E]
+  Test failed. See exception logs above.
+  The test description was: unavailable playable has no accessible launch action
+  
+00:00 +0 -2: unavailable comingSoon has no accessible launch action
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: true
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart:130:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart line 130
+The test description was:
+  unavailable comingSoon has no accessible launch action
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -3: unavailable comingSoon has no accessible launch action [E]
+  Test failed. See exception logs above.
+  The test description was: unavailable comingSoon has no accessible launch action
+  
+00:01 +0 -3: rebuilding a tile removes and restores the accessible action
+══╡ EXCEPTION CAUGHT BY FLUTTER TEST FRAMEWORK ╞════════════════════════════════════════════════════
+The following TestFailure was thrown running a test:
+Expected: <true>
+  Actual: <false>
+
+When the exception was thrown, this was the stack:
+#4      main.<anonymous closure> (file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart:159:7)
+<asynchronous suspension>
+#5      testWidgets.<anonymous closure>.<anonymous closure> (package:flutter_test/src/widget_tester.dart:192:15)
+<asynchronous suspension>
+#6      TestWidgetsFlutterBinding._runTestBody (package:flutter_test/src/binding.dart:1952:5)
+<asynchronous suspension>
+<asynchronous suspension>
+(elided one frame from package:stack_trace)
+
+This was caught by the test expectation on the following line:
+  file:///workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart line 159
+The test description was:
+  rebuilding a tile removes and restores the accessible action
+════════════════════════════════════════════════════════════════════════════════════════════════════
+00:01 +0 -4: rebuilding a tile removes and restores the accessible action [E]
+  Test failed. See exception logs above.
+  The test description was: rebuilding a tile removes and restores the accessible action
+  
+00:01 +0 -4: Some tests failed.
+
+Failing tests:
+  /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: all ten game portals dispatch each accessibility and touch tap once
+  /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: rebuilding a tile removes and restores the accessible action
+  /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: unavailable comingSoon has no accessible launch action
+  /workspace/scratch/5987865ae883/lumo-studio-final-e3d/test/games/spielwelt_semantics_action_test.dart: unavailable playable has no accessible launch action
