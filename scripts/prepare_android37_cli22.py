@@ -22,6 +22,7 @@ import subprocess
 import tempfile
 import time
 import zipfile
+import xml.etree.ElementTree as ET
 
 TOOLS_URL = 'https://dl.google.com/android/repository/commandlinetools-linux-15859902_latest.zip'
 TOOLS_SHA256 = '4e4c464f145a7512b57d088ac6c278c03c9eea610886b35a5e0804e74eedf583'
@@ -155,6 +156,30 @@ def snapshot_avd(out: Path, name: str, avd_home: Path) -> dict:
     return result
 
 
+def installed_package(path: Path, expected_path: str) -> dict:
+    """Read the installed SDK descriptor; bundled properties are separate data."""
+    def name(element):
+        return element.tag.rsplit('}', 1)[-1]
+
+    packages = [element for element in ET.parse(path).getroot() if name(element) == 'localPackage']
+    if len(packages) != 1 or packages[0].get('path') != expected_path:
+        raise ValueError('Installed SDK descriptor must identify exactly the expected localPackage: ' + expected_path)
+    revisions = [element for element in packages[0] if name(element) == 'revision']
+    if len(revisions) != 1:
+        raise ValueError('Installed SDK descriptor needs exactly one package revision')
+    revision = dict.fromkeys(('major', 'minor', 'micro', 'preview'), 0)
+    seen = set()
+    for element in revisions[0]:
+        field, value = name(element), (element.text or '').strip()
+        if field not in revision or field in seen or len(element) or not re.fullmatch(r'[0-9]+', value):
+            raise ValueError('Malformed installed SDK package revision')
+        revision[field] = int(value)
+        seen.add(field)
+    if 'major' not in seen:
+        raise ValueError('Installed SDK package revision has no major component')
+    return {'path': packages[0].get('path'), 'revision': revision}
+
+
 def package_records(sdk: Path, destination: Path, *, enforce_versions=True) -> dict:
     destination.mkdir(parents=True, exist_ok=False)
     records = {}
@@ -170,11 +195,19 @@ def package_records(sdk: Path, destination: Path, *, enforce_versions=True) -> d
                 copied.write_bytes(path.read_bytes())
                 entry['files'][name] = file_record(path)
         records[label] = entry
+    # Preserve every original raw descriptor/property file before validation.
+    # The r08 image actually bundles Pkg.Revision=7; package.xml identifies the
+    # installed package revision8. Neither original field is rewritten.
+    write_json(destination / 'packages.json', records)
+    for label, package in (('platform', 'platforms;android-37.0'), ('image', IMAGE_PACKAGE),
+                           ('emulator', 'emulator'), ('platform-tools', 'platform-tools')):
+        records[label]['installed_package'] = installed_package(destination / label / 'package.xml', package)
     write_json(destination / 'packages.json', records)
     if enforce_versions and records['emulator']['properties'].get('Pkg.Revision') != EXPECTED_EMULATOR:
         raise ValueError('Actual emulator revision differs from the observed failing run; refuse a second configuration change')
-    if enforce_versions and records['image']['properties'].get('Pkg.Revision') != EXPECTED_IMAGE_REVISION:
-        raise ValueError('Actual image revision differs from the observed failing run')
+    if enforce_versions and records['image']['installed_package']['revision'] != {
+            'major': int(EXPECTED_IMAGE_REVISION), 'minor': 0, 'micro': 0, 'preview': 0}:
+        raise ValueError('Actual installed image package revision differs from the observed failing run')
     return records
 
 
@@ -320,6 +353,8 @@ def verify_current_avd(out: Path, phase: str = 'guard', avd_home: Path | None = 
     for label in ('image', 'emulator'):
         if packages[label]['properties'] != binding['packages'][label]['properties']:
             raise ValueError('Action changed the actual image/emulator properties')
+        if packages[label]['installed_package'] != binding['packages'][label]['installed_package']:
+            raise ValueError('Action changed the actual installed image/emulator package descriptor')
     observation['status'] = 'ACTUAL_CLI22_AVD_BINDING_VERIFIED'
     observation['official_tools_sha256'] = TOOLS_SHA256
     write_json(out / ('verified-' + phase + '.json'), observation)

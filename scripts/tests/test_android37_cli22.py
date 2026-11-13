@@ -1,5 +1,7 @@
 """Local parser/source counterexamples only; no SDK install or Android claim."""
 import importlib.util
+import copy
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -9,6 +11,7 @@ from types import SimpleNamespace
 import unittest
 from unittest.mock import patch
 import zipfile
+import xml.etree.ElementTree as ET
 
 ROOT = Path(__file__).resolve().parents[2]
 
@@ -22,6 +25,29 @@ def load(name, path):
 
 CLI = load('cli22_comparison', ROOT / 'scripts/prepare_android37_cli22.py')
 READY = load('cli22_framework_ready', ROOT / 'scripts/android_framework_ready.py')
+IMAGE_FIXTURE = ROOT / 'scripts/tests/fixtures/android37_image_43494312623'
+
+
+def metadata_sdk(sdk):
+    for relative, package, revision in [('emulator', 'emulator', '37.2.13'),
+            (CLI.IMAGE_RELATIVE, CLI.IMAGE_PACKAGE, '8'),
+            ('platforms/android-37.0', 'platforms;android-37.0', '2'),
+            ('platform-tools', 'platform-tools', '37.0.0')]:
+        folder = sdk / relative
+        folder.mkdir(parents=True, exist_ok=True)
+        (folder / 'source.properties').write_text('Pkg.Revision=' + revision + '\n')
+        parts = revision.split('.')
+        version = ''.join('<' + label + '>' + part + '</' + label + '>'
+                          for label, part in zip(('major', 'minor', 'micro'), parts))
+        (folder / 'package.xml').write_text('<repository><localPackage path="' + package +
+            '"><revision>' + version + '</revision></localPackage></repository>')
+    expected = {'source.properties': '1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e',
+                'package.xml': 'fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062'}
+    for name, digest in expected.items():
+        raw = (IMAGE_FIXTURE / name).read_bytes()
+        if hashlib.sha256(raw).hexdigest() != digest:
+            raise AssertionError('The original installed-image fixture was changed: ' + name)
+        (sdk / CLI.IMAGE_RELATIVE / name).write_bytes(raw)
 
 
 class ActualFileBindingTests(unittest.TestCase):
@@ -38,11 +64,7 @@ class ActualFileBindingTests(unittest.TestCase):
             target.parent.mkdir(parents=True, exist_ok=True)
             target.write_text(text)
         (self.sdk / 'cmdline-tools/latest').symlink_to('22.0')
-        for relative, revision in [('emulator', '37.2.13'), (CLI.IMAGE_RELATIVE, '8'),
-                                   ('platforms/android-37.0', '2'), ('platform-tools', '37.0.0')]:
-            folder = self.sdk / relative
-            folder.mkdir(parents=True, exist_ok=True)
-            (folder / 'source.properties').write_text('Pkg.Revision=' + revision + '\n')
+        metadata_sdk(self.sdk)
         self.avd = self.avds / 'test.avd'
         self.avd.mkdir(parents=True)
         (self.avds / 'test.ini').write_text('path=' + str(self.avd) + '\ntarget=android-37.0\n')
@@ -115,6 +137,54 @@ class ActualFileBindingTests(unittest.TestCase):
         (tools / 'bin/unreviewed-command').write_text('extra program')
         with self.assertRaisesRegex(ValueError, 'tool bytes changed'):
             CLI.require_official_tools(tools, expected)
+
+    def test_later_changed_properties_still_fail_with_same_package_descriptor(self):
+        path = self.sdk / CLI.IMAGE_RELATIVE / 'source.properties'
+        path.write_text(path.read_text().replace('Pkg.Revision=7', 'Pkg.Revision=8'))
+        with self.assertRaisesRegex(ValueError, 'image/emulator properties'):
+            CLI.verify_current_avd(self.out)
+
+    def test_later_changed_package_descriptor_fails_with_unchanged_properties(self):
+        path = self.sdk / CLI.IMAGE_RELATIVE / 'package.xml'
+        tree = ET.parse(path)
+        package = next(e for e in tree.getroot() if e.tag.split('}')[-1] == 'localPackage')
+        revision = next(e for e in package if e.tag.split('}')[-1] == 'revision')
+        next(iter(revision)).text = '9'
+        tree.write(path, encoding='utf-8')
+        with self.assertRaisesRegex(ValueError, 'package descriptor'):
+            CLI.verify_current_avd(self.out)
+
+
+class InstalledPackageMetadataTests(unittest.TestCase):
+    def test_official_r08_descriptor_is_distinct_from_embedded_properties(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            metadata_sdk(root / 'sdk')
+            observed = CLI.package_records(root / 'sdk', root / 'observed')
+            image = observed['image']
+            self.assertEqual(image['properties']['Pkg.Revision'], '7')
+            self.assertEqual(image['installed_package'], {'path': CLI.IMAGE_PACKAGE,
+                'revision': {'major': 8, 'minor': 0, 'micro': 0, 'preview': 0}})
+            for name in ('source.properties', 'package.xml'):
+                self.assertEqual((root / 'observed/image' / name).read_bytes(), (IMAGE_FIXTURE / name).read_bytes())
+
+    def test_other_revision_path_missing_or_ambiguous_descriptor_is_rejected(self):
+        for mutation in ('major', 'minor', 'path', 'missing', 'duplicate'):
+            with self.subTest(mutation=mutation), tempfile.TemporaryDirectory() as temporary:
+                root = Path(temporary)
+                metadata_sdk(root / 'sdk')
+                path = root / 'sdk' / CLI.IMAGE_RELATIVE / 'package.xml'
+                tree = ET.parse(path)
+                package = next(e for e in tree.getroot() if e.tag.split('}')[-1] == 'localPackage')
+                revision = next(e for e in package if e.tag.split('}')[-1] == 'revision')
+                if mutation == 'major': next(iter(revision)).text = '9'
+                if mutation == 'minor': ET.SubElement(revision, 'minor').text = '1'
+                if mutation == 'path': package.set('path', CLI.IMAGE_PACKAGE.replace('37.0', '35'))
+                if mutation == 'missing': tree.getroot().remove(package)
+                if mutation == 'duplicate': tree.getroot().append(copy.deepcopy(package))
+                tree.write(path, encoding='utf-8')
+                with self.assertRaises(ValueError):
+                    CLI.package_records(root / 'sdk', root / 'observed')
 
 
 class FrameworkBindingTests(unittest.TestCase):

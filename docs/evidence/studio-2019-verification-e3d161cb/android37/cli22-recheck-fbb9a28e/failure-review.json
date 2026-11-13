@@ -1,0 +1,207 @@
+{
+  "schema": "lumo-android37-cli22-setup-failure-v1",
+  "recorded_at_utc": "2026-11-13T19:47:19.285266+00:00",
+  "result": "FAIL_IMAGE_METADATA_EXPECTATION_BEFORE_AVD_OR_CLI22",
+  "global_release_receipt": false,
+  "github": {
+    "repository": "Ullmann27/lumo-lernen",
+    "probe_revision": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+    "probe_tree": "f10f7045728c0eeb3b12bfb912d5a067fb0b5a48",
+    "run_id": 43494312623,
+    "run_attempt": 1,
+    "job_id": 132123295003,
+    "job_conclusion": "failure",
+    "job_completed_at": "2026-11-13T19:42:36Z",
+    "artifact_id": 14071940754,
+    "artifact_name": "lumo-2019-android37-cli22-recheck-43494312623-1",
+    "artifact_digest": "sha256:e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570"
+  },
+  "original_archive": {
+    "path": "original-artifact.zip",
+    "bytes": 47501,
+    "sha256": "e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570",
+    "crc": "PASS",
+    "member_count": 29,
+    "all_extracted_bytes_match": true
+  },
+  "actual_setup_facts": {
+    "original_sdkmanager_version_stdout": "12.0",
+    "original_cli_source_properties_revision": "12.0",
+    "cli_version_command": {
+      "argv": [
+        "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager",
+        "--version"
+      ],
+      "environment_overrides": {},
+      "timeout_seconds": 180,
+      "started_at": "2026-11-13T19:41:35.153894+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 2.021060429000002
+    },
+    "installation_command": {
+      "argv": [
+        "/usr/local/lib/android/sdk/cmdline-tools/latest/bin/sdkmanager",
+        "--sdk_root=/usr/local/lib/android/sdk",
+        "--install",
+        "platform-tools",
+        "emulator",
+        "platforms;android-37.0",
+        "system-images;android-37.0;google_apis;x86_64",
+        "--channel=0"
+      ],
+      "environment_overrides": {},
+      "timeout_seconds": 600,
+      "started_at": "2026-11-13T19:41:37.175367+00:00",
+      "returncode": 0,
+      "timed_out": false,
+      "elapsed_seconds": 55.29060179000001
+    },
+    "installed_image_package_path": "system-images;android-37.0;google_apis;x86_64",
+    "installed_image_package_xml_revision": {
+      "major": "8"
+    },
+    "installed_image_embedded_source_properties_revision": "7",
+    "installer_archive_basename": "x86_64-37.0_r08.zip",
+    "installer_archive_name_evidence": "framework-start/cli22/commands/02-install-same-sdk-packages/stdout",
+    "emulator_source_properties_revision": "37.2.13",
+    "emulator_source_properties_build_id": "16740729",
+    "platform_source_properties_android_version": "17",
+    "image_source_properties_api_level": "37.0"
+  },
+  "failure": {
+    "step_number": 14,
+    "step_name": "Preserve original CLI AVD and install the fixed official CLI22 bytes",
+    "function": "package_records",
+    "source_file": "scripts/prepare_android37_cli22.py",
+    "source_git_blob": "71fb3892ebb80302da05d703e598187eac400080",
+    "source_expected_image_revision_literal": "8",
+    "source_compared_field": "image/source.properties: Pkg.Revision",
+    "reason": "The helper compared embedded source.properties revision 7 with literal 8 derived from the package revision. The same installed package.xml records major 8. These are different metadata values, not an 8 versus 8.0 formatting issue.",
+    "classification": "Parser/expectation error in diagnostic preparation; no Android runtime crash occurred in this run.",
+    "original_job_log_lines": [
+      {
+        "line": 883,
+        "text": "2026-11-13T19:42:32.5201750Z   File \"/home/runner/work/lumo-lernen/lumo-lernen/scripts/prepare_android37_cli22.py\", line 177, in package_records"
+      },
+      {
+        "line": 884,
+        "text": "2026-11-13T19:42:32.5202806Z     raise ValueError('Actual image revision differs from the observed failing run')"
+      },
+      {
+        "line": 885,
+        "text": "2026-11-13T19:42:32.5203368Z ValueError: Actual image revision differs from the observed failing run"
+      },
+      {
+        "line": 901,
+        "text": "2026-11-13T19:42:32.5799463Z Framework monitor was not started; no readiness claim."
+      }
+    ]
+  },
+  "raw_metadata_files": [
+    {
+      "original_zip_member": "framework-start/cli22/original-source.properties",
+      "path": "raw-metadata/original-cli-source.properties",
+      "bytes": 86,
+      "sha256": "d4eb560d17731d9919dbb91bfecb2d90418cb60c21e07b6c02302a682fbb760e"
+    },
+    {
+      "original_zip_member": "framework-start/cli22/packages-original/image/source.properties",
+      "path": "raw-metadata/image-source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "original_zip_member": "framework-start/cli22/packages-original/image/package.xml",
+      "path": "raw-metadata/image-package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "original_zip_member": "framework-start/cli22/packages-original/emulator/source.properties",
+      "path": "raw-metadata/emulator-source.properties",
+      "bytes": 103,
+      "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+    }
+  ],
+  "preserved_original_apk_preflight": {
+    "status": "PASS",
+    "probe_source": {
+      "revision": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+      "tree": "f10f7045728c0eeb3b12bfb912d5a067fb0b5a48",
+      "tracked_source_clean": true
+    },
+    "apk_source": {
+      "revision": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "tree": "2e05089253dcfa51f2541b94f88565e4c33b4609",
+      "tracked_source_clean": true
+    },
+    "original_apk": {
+      "apk_source_commit": "e3d161cb2f79b732ac2dbafc2764b151247f018b",
+      "native_source_commit": "76980a941fa05d047574d8cc386d3249d93ffca3",
+      "apk_bytes": 325277610,
+      "apk_sha256": "d2ffac6c1749284ae3c7e6439a6775f086bdcaec308595ae58b988dddf99bf93",
+      "pck_bytes": 66217416,
+      "pck_sha256": "a5bd0c24692b97acad1ce48522f5f34aa56643009af341a70c5aaaa01b71dfe3",
+      "versionCode": 2019,
+      "versionName": "0.13.7",
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "signature_from_original_verified_provenance": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "scope": "Exact original APK/PCK byte identity; no new APK build or new signing claim."
+    },
+    "measurement_scope": "Actual current CI identity report, not a new local x86 APK download/hash measurement."
+  },
+  "not_reached": {
+    "original_comparison_avd_created": false,
+    "cli22_downloaded_or_installed": false,
+    "cli22_version_measured": false,
+    "action_avd_created": false,
+    "actual_avd_target_known": false,
+    "emulator_booted": false,
+    "framework_guard_executed": false,
+    "runtime_sdk_release_measured": false,
+    "unlock_executed": false,
+    "apk_installed": false,
+    "app_tour_started": false,
+    "png_count": 0
+  },
+  "limits": [
+    "The requested and installed package metadata indicate API 37.0 / platform 17; no getprop runtime identity was observed because the emulator did not boot.",
+    "CLI 12.0 is directly measured for this fbb9 run only. This is not a retroactive measurement of the earlier e4ed runtime.",
+    "The original and CLI22 AVD targets remain unknown. CLI22 has not been evaluated by this failed preparation.",
+    "The FAIL JSON at the end of cli22-contracts.log is the expected negative unit-test fixture; it is not a framework-runtime observation.",
+    "No retry, workflow edit, GPU change or SDK/API gate relaxation was performed by this reviewer."
+  ],
+  "contract_results": {
+    "framework_readiness_unit_tests": {
+      "passed": 8,
+      "scope": "unit contracts"
+    },
+    "cli_avd_binding_unit_tests": {
+      "passed": 8,
+      "scope": "unit contracts"
+    },
+    "scroll_unit_tests": {
+      "passed": 6,
+      "scope": "unit contracts"
+    },
+    "apk_identity_unit_tests": {
+      "passed": 6,
+      "scope": "unit contracts"
+    },
+    "nextgen_unit_tests": {
+      "passed": 51,
+      "scope": "unit contracts, as logged in original job"
+    },
+    "studio_unit_tests": {
+      "passed": 6,
+      "scope": "unit contracts, as logged in original job"
+    }
+  },
+  "operations": {
+    "product_source_changed": false,
+    "workflow_changed": false,
+    "branch_changed": false,
+    "retry_started": false
+  }
+}

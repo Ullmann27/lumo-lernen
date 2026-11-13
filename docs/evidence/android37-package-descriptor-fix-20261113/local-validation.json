@@ -1,0 +1,142 @@
+{
+  "schema": 1,
+  "created_at": "2026-11-13T19:52:44.000205+00:00",
+  "status": "LOCAL_METADATA_CONTRACT_PASS_NOT_ANDROID_APPROVAL",
+  "published_base_source": "fbb9a28e76a08455fc796ed1915a7c5a2ef8226f",
+  "original_failure": {
+    "run": 43494312623,
+    "job": 132123295003,
+    "artifact": 14071940754,
+    "zip_sha256": "e603d7af1e6265a7a04834a828d5d973b4a3e39777e33ff136eb7e2043118570",
+    "source_properties_revision": "7",
+    "installed_localPackage_revision": {
+      "major": 8,
+      "minor": 0,
+      "micro": 0,
+      "preview": 0
+    },
+    "package": "system-images;android-37.0;google_apis;x86_64",
+    "reached_stage": "SDK installation only; original helper stopped before original AVD creation and CLI22 installation"
+  },
+  "changes": [
+    {
+      "path": "scripts/prepare_android37_cli22.py",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7",
+      "git_blob": "78c91d7ed9ec21a09dfe89e3094fc3888cf740cc",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_android37_cli22.py",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26",
+      "git_blob": "d319987972a6bb6c2efd344ea4a59bbed58cb7d2",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+      "git_blob": "8e0a9ce9cb7af106a9e8f55c06e83bfccbb67085",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062",
+      "git_blob": "c4178b5a3ef0ba6a49d990d4225f82813553402c",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/provenance.json",
+      "bytes": 1319,
+      "sha256": "9992208f99f00d47b6010e05769a681322b414f0dbbb22af1b784622df4843bb",
+      "git_blob": "11513ebf919b14a17a28bff3e4855b6029c512f8",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/fixtures/android37_image_43494312623/README.md",
+      "bytes": 833,
+      "sha256": "ef4638a25ee9d893ae2a20274e00701d4e2dfcdbdbab949fdb430b5cf6bde4ef",
+      "git_blob": "5cd60a1093368815a7b61296c14fadd4a5b95c4c",
+      "mode": "100644"
+    }
+  ],
+  "checkouts_byte_identical": [
+    "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed",
+    "/workspace/scratch/5987865ae883/lumo-studio-final-e3d"
+  ],
+  "unchanged": [
+    {
+      "file": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/.github/workflows/lumo-android37-cli22-recheck.yml",
+      "sha256": "c3d70c98771aaf1ef9d6856cf11d84df0d48ef008f0220396c48f6ca362a7fd7"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/android_framework_ready.py",
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/lumo-android37-cli22-recheck-e4ed/scripts/prepare_android37_emulator_action.py",
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa"
+    },
+    {
+      "file": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/workflows/lumo-studio-2019.yml",
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722"
+    }
+  ],
+  "other_helper_definitions_ast_identical": [
+    "Commands",
+    "digest",
+    "extract_verified_tools",
+    "file_record",
+    "main",
+    "memory_mb",
+    "observe_current_avd",
+    "prepare",
+    "properties",
+    "require_official_tools",
+    "snapshot_avd",
+    "tools_manifest",
+    "write_json"
+  ],
+  "tests": {
+    "red": {
+      "command": "python3 -B -m unittest scripts.tests.test_android37_cli22.InstalledPackageMetadataTests.test_official_r08_descriptor_is_distinct_from_embedded_properties -v",
+      "run": 1,
+      "errors": 1,
+      "exit_code": 1,
+      "helper_sha256": "2cbf5f613f329c1ab6a1e1bab1b60cbc09e44ae680f55dac6a3a73b1838f38ff",
+      "log": {
+        "path": "descriptor-red.log",
+        "bytes": 1330,
+        "sha256": "9b71da630b69c5ba9fcbc4ffb6f70f05a3caadfb0e65882bd796e35fba5951f7",
+        "git_blob": "d792c45fc4fb5f4457c001d14fdafd91a4ac3e6c",
+        "mode": "100644"
+      }
+    },
+    "green": {
+      "command": "python3 -B -m unittest discover -s scripts/tests -p test_android37_cli22.py -v",
+      "run": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "seconds": 0.114,
+      "exit_code": 0,
+      "log": {
+        "path": "descriptor-green.log",
+        "bytes": 2407,
+        "sha256": "f66039c536521568e6e70e3edbb0c0110501933c0ca6d8062a66058854c0faaa",
+        "git_blob": "8b5824312f453316d57160867cdefdbd396591ac",
+        "mode": "100644"
+      }
+    }
+  },
+  "scope": [
+    "Both original image metadata files are exactly equal to their original artifact ZIP members.",
+    "Installed package revision comes from the single expected localPackage descriptor; original properties remain separately recorded.",
+    "The later action verification compares the same normalized descriptor and all previous properties.",
+    "Target, GPU, partition settings, framework/PID readiness, keyevent and APK/Tour guards are unchanged.",
+    "No SDK or Android execution, workflow launch, GitHub commit or artifact approval was performed by this local correction."
+  ],
+  "note": "The FAIL JSON printed after the successful unittest summary is the intentional existing negative framework-binding case, not an emulator execution."
+}
