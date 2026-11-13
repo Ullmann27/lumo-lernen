@@ -1,0 +1,425 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-13T22:31:25.094278+00:00",
+  "reviewer": "character_animation independent source and original-render review",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_EXACT_21_FILE_FREEZE",
+  "baseline_native_commit": "796b2818ff729dc5389a92f8bf1f7fd7e6b6d93e",
+  "source_scope": "Local prepared working-tree bytes compared with the exact manifest and supplied 796b baseline files. This is not a claim of a new GitHub commit, clean tree, completed Native CI or Android APK acceptance.",
+  "freeze_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/native-source-freeze.json",
+    "bytes": 8627,
+    "sha256": "f19731f1814dab3a6e4dabc5f9cfca0dbfee233db607d6e26ebe707e06417a21",
+    "git_blob": "299b0527e46212b925e75f5f36af8a543b665166"
+  },
+  "exact_baseline_patch": {
+    "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/native-change-against-796b.patch",
+    "bytes": 88321,
+    "sha256": "dd1b0c2b8f43623f7897e74779ad48b6a77a26a4042dd4a2682220d4655aed2f",
+    "git_blob": "cd72253c4ffdfa284443662a02c6a278883fdd41"
+  },
+  "checked_files": [
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "git_blob": "9658440b3effad06358fe7cfe62f04a95ccbe279",
+      "mode": "100644",
+      "change": "added",
+      "baseline_sha256": null,
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/app/android_safe_area.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "git_blob": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "847408202daecd839e843a344bd32ed4a09c02be03656e46edd617d199dde1b2",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/app/mobile_runtime.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/creative/creative_runtime.gd",
+      "bytes": 3498,
+      "sha256": "b800c7d77c7a4fcc9a47081c2f25672fb2f2eefbb95c24fdc442f4f2df2185aa",
+      "git_blob": "45596983292c4f7c8fbcd847a5dca671b324ba5c",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "7f28fa392b7a3ae7aba144d2072bba937b5cc9578fb6bb8e4970de4f0cd7fd6c",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/creative/creative_runtime.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/creative/build_world.gd",
+      "bytes": 55131,
+      "sha256": "14469b5e2e483219c63aaef3b581b26341db64c6f16f9fff053cc0a1a009c96e",
+      "git_blob": "5ac587b4733948d7eaa4a8f2d4548f58f00e7a49",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "e562577eb2e21cceaa31152c62d30a329204d069ea2f049f927a39550a16ef6c",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/creative/build_world.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/creative/puzzle_world.gd",
+      "bytes": 31169,
+      "sha256": "fe07f9113556f7ff11994eb7d99811c25349ff4c12fa27a48ed6e014ca0447bb",
+      "git_blob": "231a1db11686d858d4e27e6aa24e19b5fcfd6b8c",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "1726e625cf0135e133fcdb3e0abb2202fd648c16ee72af19f9bfdb2d0c2ee10a",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/creative/puzzle_world.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "bytes": 24782,
+      "sha256": "c46d260fef1c4f6ee88db1b5e5704707b35771f2fc64522fc5927a25c3bd34cf",
+      "git_blob": "38da987abf4d152c1095a72ed1ac49ed30d9d381",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "d0012aad1c1be0959891588b89d84d5e0082427d95b0082686162d16ea9afb9f",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/creative/treasure_world.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "bytes": 34725,
+      "sha256": "c3ee8df70deaf9a10d2e093f1c618a01a3ee030c3841f75951a98f808d63790f",
+      "git_blob": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "ae4e7b2631d44abf6035e52c561b07c81a58d706f0c2123f5479aec8ec07663b",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/creative/build_settlement_world.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/creative/rhythm_world.gd",
+      "bytes": 30625,
+      "sha256": "2782420445115b1e303ea2e4e46cce114d981882afac0b52fac2d029432708f4",
+      "git_blob": "ae1050e4273076bdbc3907eb2623f545a93d0989",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "b1aecb909e950c11d543891ab53faf241c1fa631ac34363bb900d8d775f90944",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/creative/rhythm_world.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/games/jump_islands.gd",
+      "bytes": 36310,
+      "sha256": "1190ef1e717d6fd714ad53a4c5a5120018c6486627e75ebae37be564e119f1db",
+      "git_blob": "c4bf551b3b679554c8fe2b2d1307b0439870e8fe",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "4953e584f125d1269a6e3fce2b5281ed3ec4dc6602936c7d873f9c28bfc2f5d1",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/games/jump_islands.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/games/cards/cards_table.gd",
+      "bytes": 41353,
+      "sha256": "5abea79b066e16f32f3951eda277db5cfdeced51ed3cbd85685be1aac0ae62d1",
+      "git_blob": "d2d68ea69756e25936f3f44d59b01d0c1b17f2d4",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "43eb3d55b8572f0ff2da67e5bf080d100b64e9511419a03d409b3278878fde03",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/games/cards/cards_table.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "bytes": 45147,
+      "sha256": "715e0940904ea0e4fda789a7738b89896a9c86a6cecca015834e4abc30716d95",
+      "git_blob": "5ab38de47eaf8aa960423faae4fb11430f4136f4",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "327d222133c076a3cf5c7242e933bad2b9376c6c24a4179b03156a3fc71f411d",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/learning/learning_world.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/app/app_boot.gd",
+      "bytes": 18658,
+      "sha256": "991d189afa1af113a4791883da8c669bc1404ee384c07699c8e1bda87b4340c8",
+      "git_blob": "8456b1933098f0bc852bfb6c227d7a5f7f59756c",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "51b867e9898db4acca100f4dcdda5b681613ade573de954ee3fd79d4a69f2878",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/app/app_boot.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/games/kart_garage_menu.gd",
+      "bytes": 82990,
+      "sha256": "8fa0b96833c65b1f78f2612cbaf482d88815bd4c900fb830a177d5b517a3723c",
+      "git_blob": "35fe7c6b0dad531db4eebebae7e822509e1ebcdf",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "4741919d45b3c9faa4c47c3328108ce1b959d0156be991c549b52f91b26f7289",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/games/kart_garage_menu.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/games/kart_workshop.gd",
+      "bytes": 28208,
+      "sha256": "944a57897ef6d0cc98075500b71b137efc96b1f75fe34a77423314f88b656ea3",
+      "git_blob": "d4be69c12c56719e7e230319c8c9f72243abab08",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "c6c2b6a3b3acda5cfc4bf7e074e4d19c1617536f46165166994eb8cd329a6090",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/games/kart_workshop.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/games/kart_island.gd",
+      "bytes": 169697,
+      "sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+      "git_blob": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "6bbb84df4c7808b9135bd56ebbd7293df238e4f6308d80f6361072180521f5e4",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/games/kart_island.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/ui/mobile_safe_area.gd",
+      "bytes": 1519,
+      "sha256": "5a6a7f78075d216de1b799de39b7331ad2ae39f31612ddefc5dc135ae5927c9e",
+      "git_blob": "6e65b507b1503809cce5c2fc5f9852ccbdb5810f",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "54566e95ca0733a84205d8b31c9f2d42205026587ad410e76d97d05650024939",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/ui/mobile_safe_area.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/tests/cards_safe_area_android_contract.gd",
+      "bytes": 6711,
+      "sha256": "734cfcaa308b294c6017f5b040c9ccff49457ae32961c847acb170dca4d6f9e2",
+      "git_blob": "a375771d3a2bfd71481383052b236135cd37188a",
+      "mode": "100644",
+      "change": "added",
+      "baseline_sha256": null,
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/tests/cards_safe_area_android_contract.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/tests/cards_safe_area_regression.gd",
+      "bytes": 14531,
+      "sha256": "03dee7a9cc15df5be1132491289c79093e9d2a42e771caf54beac3bab5b557f2",
+      "git_blob": "a7000e7f6ccc75c6aef16cbbab67194b5b1ae3d8",
+      "mode": "100644",
+      "change": "added",
+      "baseline_sha256": null,
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/tests/cards_safe_area_regression.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/tests/fixtures/cards_safe_area_table.gd",
+      "bytes": 540,
+      "sha256": "1518dda4fdc09383d36cda8c95c28e68cf9bed34196bd2f0e830a0385d3f5bd2",
+      "git_blob": "73e5f8663e7bb458a9cd41e7bcaf3bdc3f55cdfd",
+      "mode": "100644",
+      "change": "added",
+      "baseline_sha256": null,
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/tests/fixtures/cards_safe_area_table.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "scripts/tests/mobile_safe_area_regression.gd",
+      "bytes": 17619,
+      "sha256": "bca22822a2df33a69bcac5071b16827cecef179b077a08d1b2b0372a68e6fa4f",
+      "git_blob": "61ded805fdbc70c3499814b4e8f74214079fc96c",
+      "mode": "100644",
+      "change": "added",
+      "baseline_sha256": null,
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/scripts/tests/mobile_safe_area_regression.gd",
+      "all_manifest_fields_match": true
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "bytes": 7230,
+      "sha256": "78d1cd6df60968c9d4d767b0c27c9b240df9968a817e703cec8d77294057b587",
+      "git_blob": "97e25c3ebef6f88a65ccee615ba144fe4b64b86a",
+      "mode": "100644",
+      "change": "modified",
+      "baseline_sha256": "236a4ccb73e19e5a2d8ec6fdfb9f56c223aef283dc0d2cb7a37a5570a19ffb31",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/tools/validate_studio.sh",
+      "all_manifest_fields_match": true
+    }
+  ],
+  "findings": [
+    {
+      "topic": "authoritative-android-insets",
+      "finding": "The shared adapter reads actual Android View/decor/system-bar/cutout geometry on the Android UI thread and defers its result to Godot. It is byte-identical to the prior Cards adapter except for the comment naming the shared cache. Confirmed observations are scaled once; CreativeRuntime and Kart skip the origin-zero Godot max operation when the Android observation path is authoritative."
+    },
+    {
+      "topic": "cache-and-rotation",
+      "finding": "Request generation and request identity are checked before clearing pending state. Window changes and application pause/resume invalidate the cache. A delayed result for an older window/generation cannot replace a newer observation or release its pending flag. Same-size 180-degree changes are still read by the bounded 0.20-second poll and emit only when actual raw values change."
+    },
+    {
+      "topic": "no-steady-state-layout-loop",
+      "finding": "The observation dictionary is compared before emitting safe_area_changed. Cards no longer owns a second JNI poll. Unchanged observations do not repeatedly relayout card meshes or invalidate their settled diagnostic file. This is a source-level bounded-work finding, not a measured Android CPU/GPU budget."
+    },
+    {
+      "topic": "scene-exit-and-deferred-layout",
+      "finding": "Jump/creative/Cards and the additional consumers disconnect their signals before runtime restoration. Relevant layout entry points guard tree membership. Build deferred camera/goal layouts and Puzzle pre-await menu fitting now reject exited-but-still-alive nodes. The regression queues those real callbacks, removes scenes without immediately freeing them, and emits again."
+    },
+    {
+      "topic": "additional-consumers",
+      "finding": "Learning, Boot, Garage, Workshop, Kart, Settlement and Rhythm now use their existing callbacks for asynchronous inset changes. Existing parent Kart safe-area metadata remains in effect, avoiding a second inset in nested Garage/Workshop. The public UI helper resolves the scene-tree autoload and removes its bound callback at tree exit."
+    },
+    {
+      "topic": "original-function-scope",
+      "finding": "Compared modified production paths against the supplied, hash-matched 796b copies. Existing changes outside Cards are layout/cache subscriptions and lifecycle guards; existing game/save/question functions are not replaced. The exact 796b Puzzle menu fix is retained."
+    },
+    {
+      "topic": "settled-cards-contract",
+      "finding": "The six telemetry functions listed below remain byte-identical to the previously reviewed Cards freeze. Input acceptance and layout changes invalidate the prior file; publication waits for visible UI, no pending request, two settling frames, zero camera-focus offset and completed hand tweens. The actual mesh corners/public state/window and Android observation are atomically written through a temporary file; teardown removes both files. Shared cache values preserve the schema and fixture-vs-Android distinction."
+    },
+    {
+      "topic": "additive-ci",
+      "finding": "Read the full validate_studio.sh and exact diff. All eleven original probe invocations and original thirty PNGs remain, with their original budgets. Three headless and two rendered calls add Cards/adapter/shared checks. The roster requires thirty-seven PNGs, including the four exact 2400x1080 shared names and actual Cards layout sidecars. The existing strict run_godot_probe.py path is retained."
+    }
+  ],
+  "cards_previous_freeze_source": {
+    "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/prior-cards-freeze/scripts/games/cards/cards_table.gd",
+    "bytes": 41579,
+    "sha256": "dd48d13f74957912c8bfde18a84cde6d6cc86c78e5a8aec00ce8b2217eddf3e4",
+    "git_blob": "723fa826e387fc11f42b4e59c780dc28cde04d09"
+  },
+  "cards_telemetry_functions_unchanged": [
+    "_mark_layout_changed",
+    "_vector_values",
+    "_rect_values",
+    "_observation_source",
+    "_face_quad",
+    "_publish_layout_observation"
+  ],
+  "existing_execution_logs_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/headless-v5.log",
+      "bytes": 8423,
+      "sha256": "8476fc767c35d90f0422e8ea7d73c51835c6d76cb67baddf6386fcd93cb07db8",
+      "git_blob": "c38c06e1156e4da97b00e4ef6d9507c88d621749",
+      "observed_marker": "MOBILE_SAFE_AREA_PASS checks=112 failures=0 controls=15 images=0",
+      "executed_by_this_reviewer": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1/godot.log",
+      "bytes": 9345,
+      "sha256": "11a1dd5c751822e28fd87c5a2100a859e84fd059011f4a57fb7f47eda31970b7",
+      "git_blob": "4f5b9a4e7cd9c904dd3f4d6a6fe542017a9c80fd",
+      "observed_marker": "MOBILE_SAFE_AREA_PASS checks=124 failures=0 controls=15 images=4",
+      "executed_by_this_reviewer": false
+    }
+  ],
+  "existing_execution_reports_read": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/headless-v5/mobile-safe-area.json",
+      "bytes": 11314,
+      "sha256": "63e04b694ee699aceb35edeb5484b83343029a3e553a35feba5b58b99b4d50d8",
+      "git_blob": "c009f90e182aa53d298f2fe931c9a46d96b0c31e"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/mobile-safe-area.json",
+      "bytes": 12524,
+      "sha256": "706e214400241ca596a784c68764bf41cca8e10d87b8c1782df65cf798183b79",
+      "git_blob": "ae947a2911cfe707ac60637baa9fb84278ab3199"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1/run.json",
+      "bytes": 355,
+      "sha256": "41e3a059941faaf5481e235d29ed39227a7fec673268d17e50ffd8411c5bfc34",
+      "git_blob": "6b10d45058e39b29f933ee40542cf25aee252921"
+    }
+  ],
+  "measured_controls": {
+    "count": 15,
+    "surface_pixels": [
+      2400,
+      1080
+    ],
+    "density": 2.625,
+    "platform_boundary_insets": [
+      136,
+      63,
+      0,
+      63
+    ],
+    "all_fully_inside": true,
+    "minimum_exposed_side_dp": 48.000005812872,
+    "report_and_log_counts_agree": true,
+    "android_device_execution": false
+  },
+  "images_opened_individually": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/jump-landscape-cutout.png",
+      "bytes": 1858700,
+      "sha256": "86160414e34cfaa7ae5c7b0be20d965056e49b12621bf33f1bc7deda054b8d8a",
+      "git_blob": "c787739977d30e58b88f8766e6ee89d2429b3703",
+      "module": "jump",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "findings": "Original fox is visible on the starting platform. Back, Pause, the movement stick and the separate Jump action are fully shown inside the inset boundaries. The status/instruction rows remain readable. This still image does not prove a new jump input, animation sequence or frame rate."
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/build-landscape-cutout.png",
+      "bytes": 2498645,
+      "sha256": "0de19dec49d0e71f40c5f3730f39c0f3703db5fb9e3e8aac5219637fa12eb995",
+      "git_blob": "c9ee44734cd6b12ebc048696c081708281f91c4a",
+      "module": "build",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "findings": "Back, Pause, walking-mode control and the visible toolbar/palette are readable. The left cutout reserve is preserved. The right ends of horizontal toolbar/palette content are scroll-clipped as expected; this frame is not evidence that an object was placed or that every off-screen action was touched."
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/puzzle-landscape-cutout.png",
+      "bytes": 479664,
+      "sha256": "c7731af932d055c48a8f8c763508d63f0ccbbb110dac5c35f7c28a6f18e735e9",
+      "git_blob": "cb301a0e9ee778b86bcbc6a0327b145321f834bd",
+      "module": "puzzle",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "findings": "The actual picture/count/mode/start selection menu is visible inside the safe region. Back and Pause remain fully shown. The last modal row is partially outside the visible vertical scroll region, with a visible scrollbar; this observation does not replace the separate real menu-scroll/input regression. No new safe-edge obstruction was seen."
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/shared-safe-area-796b/render-v1-captures/treasure-landscape-cutout.png",
+      "bytes": 2816313,
+      "sha256": "246681d37ca38df65dd15b06f982c8384e329d3da87834dfc7423775ff5c8b00",
+      "git_blob": "63f8800278d60336716e69c66c967f116692e1c1",
+      "module": "treasure",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "opened_with_view_image": true,
+      "findings": "Back, backpack, Pause, Jump, the movement stick and ANSEHEN are shown inside the reserved edges. The multiline clue text is readable; its discovery denominator wraps to a separate line. The first-frame clue panel covers part of the world/companion, but no measured target is covered by another target. No completed quest or original-rig animation is inferred."
+    }
+  ],
+  "actions_by_reviewer": {
+    "production_mutations": false,
+    "test_mutations": false,
+    "test_runs": 0,
+    "github_mutations": false,
+    "new_render_runs": 0
+  },
+  "limits": [
+    "Actual Java/UI-thread execution on Android is not proved by the public-API boundary fixture.",
+    "The measured fifteen controls and four original rasters do not establish every off-screen/modal control on every physical device.",
+    "The inspected local renderer is not a Fold7/Android17 hardware measurement and supplies no FPS, thermal or touch-latency approval.",
+    "Other author-owned existing tests and the final Cards recapture were still being finalized when the source freeze was handed off; this review does not pre-approve their outcomes.",
+    "A new exact native CI result and current Android candidate/tour evidence remain separate release gates."
+  ]
+}

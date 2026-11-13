@@ -1,0 +1,32 @@
+{
+  "group": "android-qa",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "started_utc": "2026-11-13T22:19:30.533869+00:00",
+  "process_exit_code": 0,
+  "elapsed_seconds": 41.43043145000411,
+  "tests": 788,
+  "unittest_seconds": 41.122,
+  "unittest_summary": "OK",
+  "skipped": 0,
+  "source_files": 1249,
+  "C_frozen_files": 40,
+  "source_unchanged": true,
+  "environment": {
+    "REQUIRE_ALL_TESTS": "true",
+    "GRADLE_HOME": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0",
+    "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib"
+  },
+  "toolchain_downloaded": false,
+  "log_bytes": 156139,
+  "log_sha256": "b73a5b62ea86008f729d9439193bf008eab3fd76fe55eac6d2c753ac986d767e",
+  "status": "PASS"
+}

@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-13T22:31:10.629330+00:00",
+  "scope": "Minimale Zuordnung der vier gemeinsamen Mobile-Safe-Area-Captures zu Jump, Bauwelt, Puzzle und Schatzsuche.",
+  "repository": "Ullmann27/lumo-lernen",
+  "checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "status": "FOCUSED_CONTRACTS_PASS",
+  "source_before": "source-before.json",
+  "source_after": "source-after.json",
+  "changed_files": [
+    "scripts/verify_studio_delivery.py",
+    "scripts/tests/test_studio_cards_capture_binding.py"
+  ],
+  "unchanged_owned_file": "scripts/tests/test_studio_delivery.py",
+  "changed_existing_verifier_definitions": [
+    "capture_module"
+  ],
+  "only_new_verifier_constant": "MOBILE_SAFE_AREA_CAPTURE_MODULES",
+  "all_previous_verifier_constants_ast_equal": true,
+  "all_other_existing_verifier_definitions_ast_equal": true,
+  "both_original_cards_test_methods_ast_equal": true,
+  "all_protected_sources_byte_equal": true,
+  "exact_capture_mappings": {
+    "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png": "jump",
+    "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png": "build",
+    "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png": "puzzle",
+    "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png": "treasure"
+  },
+  "negative_contracts": [
+    "Unbekannte oder abweichende Dateinamen werden weiter abgewiesen.",
+    "Eine andere Modulbezeichnung für einen bekannten Originalpfad wird abgewiesen.",
+    "Der verpflichtende neue Cards-Safe-Area-Nachweis kann weiterhin nicht durch andere Kartenbilder ersetzt werden."
+  ],
+  "positive_contracts": [
+    "Alle vier exakten Originalpfade werden dem jeweiligen Spiel zugeordnet.",
+    "Alle vier synthetischen Archivmitglieder durchlaufen den tatsächlichen Verifier und Receipt-Recorder mit identischen Dateibytes."
+  ],
+  "executions": [
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "scripts.tests.test_studio_cards_capture_binding",
+        "-v"
+      ],
+      "state": "Vorheriger Mapper mit neuen Gegenfällen",
+      "log": "mapper-red.log",
+      "exit_code": 1,
+      "test_methods": 5,
+      "errors": 5,
+      "duration_seconds": 0.175,
+      "interpretation": "Vier Modul-Subfälle plus ein Archiv-/Receipt-Fall scheitern am alten Unknown-production-capture-Guard.",
+      "log_bytes": 8690,
+      "log_sha256": "bb7319d3f18218602c05394b0f33493faa1bb0386c7d196c69566ed5ac37eb3d"
+    },
+    {
+      "command": [
+        "python",
+        "-m",
+        "unittest",
+        "scripts.tests.test_studio_cards_capture_binding",
+        "scripts.tests.test_studio_delivery",
+        "-v"
+      ],
+      "state": "Neuer minimaler Mapper",
+      "log": "mapper-integration-green.log",
+      "exit_code": 0,
+      "test_methods": 41,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "duration_seconds": 13.012,
+      "log_bytes": 8338,
+      "log_sha256": "68ddb9e195c8a192f936df29bd4131e680af6e389f6dffa1201a088c531f03d5"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check",
+        "--",
+        "scripts/verify_studio_delivery.py",
+        "scripts/tests/test_studio_cards_capture_binding.py"
+      ],
+      "log": "static-check.log",
+      "exit_code": 0,
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "preserved": [
+    "Alle bisherigen 15 dedizierten Capture-Verzeichniszuordnungen",
+    "Zwingender neuer Cards-Safe-Area-Nachweis",
+    "Zwingender Puzzle-Menü-/Touch-Nachweis",
+    "Original-Archiv-/SHA-/Source-/Receipt-Regeln",
+    "Studio require_layout=True und bisheriger AST-Erhaltvertrag",
+    "Workflow, Native-Pin und tatsächlicher Visual-Receipt unverändert"
+  ],
+  "prior_full_python_review": {
+    "absolute_manifest": "/workspace/scratch/5987865ae883/qa/host-cards-safe-area-318/full-python-groups/upload-manifest.json",
+    "manifest_sha256": "fab42b0031c80fe51423b149497cae94fa8684dea8473f52391a5914f1c49f42",
+    "scripts_tests": 426,
+    "android_qa_tests": 788,
+    "failures": 0,
+    "skips": 0,
+    "scope": "Unveränderter vollständiger Nachweis des vor diesem Mapper-Delta eingefrorenen Hoststands. Keine erneute vollständige Ausführung nach dem Delta behauptet."
+  },
+  "limitations": [
+    "Die Archiv-/Receipt-Fixtures sind synthetische Vertragstests, keine visuellen Abnahmen.",
+    "Native Quellpfade wurden nur zur exakten Dateinamenbindung gelesen, nicht geändert.",
+    "Keine neue Android-, APK-, Geräte-FPS- oder Gesamtfreigabe.",
+    "Keine weitere Pflicht für alle vier neuen Bilder stillschweigend in den Visual-Receipt aufgenommen; der native Capture-Harness erzwingt deren Erzeugung."
+  ]
+}

@@ -46,8 +46,13 @@ TOUCH_CAPTURE_PROBES = frozenset({
 })
 PUZZLE_MENU_CAPTURE_PROBE = 'studio-evidence/captures/puzzle_menu_lifecycle_regression'
 CARDS_SAFE_AREA_CAPTURE_PROBE = 'studio-evidence/captures/cards_safe_area_regression'
+MOBILE_SAFE_AREA_CAPTURE_MODULES = {
+    f'studio-evidence/captures/mobile_safe_area_regression/{module}-landscape-cutout.png': module
+    for module in ('jump', 'build', 'puzzle', 'treasure')
+}
 # Pose-studio images are useful technical evidence, but cannot stand in for an
-# actual production scene. The probe directory fixes the image's module.
+# actual production scene. Shared probes use the exact filename bindings above;
+# the existing dedicated probe directories continue to fix their own module.
 CAPTURE_MODULES = {
     'nextgen-evidence/nextgen/captures/learning_world_capture': 'learning',
     'studio-evidence/captures/learning_sharing_capture': 'learning',
@@ -124,7 +129,9 @@ def capture_module(entry: str) -> str:
     require(not path.is_absolute() and '..' not in path.parts and str(path) == entry and
             bool(re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*\.png', path.name)),
             'Only original current production-scene PNGs may be reviewed')
-    module = CAPTURE_MODULES.get(str(path.parent))
+    module = MOBILE_SAFE_AREA_CAPTURE_MODULES.get(entry)
+    if module is None:
+        module = CAPTURE_MODULES.get(str(path.parent))
     require(module in REVIEW_MODULES, 'Unknown production capture; a pose studio is not a product module')
     return module
 
