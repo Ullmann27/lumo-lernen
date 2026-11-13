@@ -14,11 +14,24 @@ identities and complete original logs are retained in the integration evidence.
 The earlier 55 Flutter tests remain supported by the unchanged whole lib/test/
 assets trees, both Pubspec files and twelve exact checked source files.
 
+Published Studio Host `e3d161cb2f79b732ac2dbafc2764b151247f018b` adds useful
+execution tests for the actual 2019 update wrapper and both artifact identities.
+Those tests are integrated into the existing 2019 test module. The combined
+Host preserves its distinct exact-version 2018/2019 opt-ins and all existing
+data invariants. The 37 update-preservation tests pass with 168 scoped source
+files unchanged. These tests stop at the mocked Android boundary; they do not
+claim a live update. Original source identities, patch and full output are in
+`docs/evidence/integration-20261113/studio-e3d-update-wrapper/`.
+
 Native PR #160 now checks `74c246d0b0af01c5d2d5438400ddd9ff3a3b0fef`, tree
 `05f547fd58ccdc1002d98ff1031d4208b992b0ee`, integrating published Studio 76980
-with the existing Village and graphics work. The current complete runs are
-Nextgen 43458898046 and Graphics 43458897683. They must finish on this exact
-source, then the current original images must be explicitly inspected.
+with the existing Village and graphics work. Graphics 43458897683 succeeded.
+Nextgen 43458898046 finished with Gameplay failed after the old Kart probe
+printed PASS before eight resources remained at exit. All other required jobs
+succeeded, but the original bundle is partial evidence and its archive is
+correctly skipped. The real Host verifier rejects that failed overall run.
+The next native repair requires actual scene/audio lifetime completion in the
+main Kart probe and twelve audited consumers before their final PASS.
 
 The predecessor 703 completed all 15 workflows: 37 Core PASS pairs / 24 Studio
 PNGs plus 6 Touch PASS pairs / 28 Touch PNGs, all three graphics jobs and original
@@ -27,6 +40,11 @@ inspected on that exact source. It cannot approve 74c. Root also observed the
 old upper extruded equals sign as one unresolved bright bar; the published
 learning fix therefore requires a fresh actual image review. No complete
 native visual receipt was created for 703.
+
+Root has now actually viewed the corrected equality, the short and portrait
+current-goal dialogs, and the five required Graphics selections from the new
+74c originals. These limited findings remain bound to 74c and do not approve
+its failed Gameplay run or the subsequent teardown repair.
 
 The current combined contract adds four actual current-goal Build images and
 requires 32 Touch PNGs, including 12 Build PNGs. The wider HUD-start guard replaces
