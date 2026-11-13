@@ -1,13 +1,66 @@
 # Continue combined LUMO integration / candidate 2019
 
-Active drafts: Native PR160 and Host PR465. This candidate builds on published
-Host evidence checkpoint 8b6f9f56c7aa69a45dca5301ebc104e7b232e0f6, tree
-568c834c1a1bdfb139c3286577223fec82717e0e (local twin b00a97ec), whose executable
-readiness repairs came from published 5d44b479. It connects the accepted 993c
-Native source through both current receipts and all three 2019 pins. The exact
-version remains 0.13.7+2019. Prior policies and the original 2018 receipt remain
-unchanged. Host PR465 is advanced only with the exact-tree expected-E5 lease;
-Android acceptance belongs to the newly published Host source.
+Active drafts: Native PR160 and Host PR465. This follow-up builds on published
+Host 38a49f7dda404923da3955592ccb213871f2027d, tree
+625b7940d9e8a4ddf32203126721efd97b3e8c2e (local twin 44dfd78d).
+It selectively connects Producer318 Cards lifecycle and Android17 preparation,
+and repairs the scroll assertion found by the actual 38a CI. Native source 993c,
+all three 2019 pins, both current visual receipts, version 0.13.7+2019 and the
+original 2018 receipt remain unchanged. Root publishes the exact new tree with
+expected parent 38a49f7d; after publication, any later update must use the
+actually observed current head. Android acceptance belongs to that new source.
+
+## Current published-producer connection and prior Host CI
+
+Producer PR466 was read at 20:04:08 UTC at
+31883868bac56699dbf3b3d60a7cdb7afc496a8b, tree
+5ca2eeee9ea3af3f67acbee83f19934942c1c5d5. Only its missing Cards lifecycle and
+API37 preparation are connected. The current final-scroll helper and historical
+APK verifier already matched. Producer pin/receipt/profile substitutions,
+older workflow guards and relative Native Venv were not imported.
+
+The Cards main-looper heartbeat renews every 500 ms only with visible Activity
+and actual service authority. Pause, stop, return, destruction or lost authority
+end it; stale callbacks cannot restart it. Render reads do not renew the lease.
+The existing complete window and Learning/Build speech blocks are preserved.
+Bounded lifecycle observations retain the original state result or exception;
+they cannot replace any original Cards readiness or pixel gate. The corrected
+delayed-engine fixture tests actual onStart and service binding before allowing
+an active pulse. Final Cards evidence is 20 JVM/window/return plus 12 diagnostic
+contracts, all passing without skips, with the original behavioral reds retained.
+
+Both 2019 workflows modify only android-tour. API35 uses exact upstream action
+a421e43855164a8197daf9d8d40fe71c6996bb0d; API37 uses that same checkout with
+the reviewed additive guard immediately after the original boot-property wait.
+The action's original keyevent, settings and cleanup remain. Official CLI22 ZIP
+and installed files are hash-bound; original and newly generated AVD settings
+are recorded. Actual API37/Android17 framework services and stable system_server
+must pass before the unchanged candidate probes. The original state/disk/image
+files are observed, never rewritten as a repair. Exact source and APK binding,
+failure diagnostics, numeric API35/API37 measurements and separate artifacts
+remain mandatory. Local 42 API37/delivery contracts and both actionlint checks
+pass; the old workflows first failed the missing connection tests. This is not
+an actual local SDK installation, boot or device-performance result.
+
+The old default-scroll assertion now checks 24 gestures, 13 observations in each
+direction and both final view positions. Seven existing voice/return and six
+final-scroll cases pass, with the actual original 26-versus-24 failure retained.
+No product scroll budget was increased. These 87 focused methods are disjoint;
+their original logs and source bindings live in host-318-connection, while the
+scroll-specific original repair is also retained in host-38a-auxiliary.
+
+Original Host run 43497829121 is FAILURE on 38a49f7d. Compile job 132135471404
+genuinely passed (actual AAR4.6.3 and nine required JVM classes). Build job
+132135471868 passed its complete 2,512-test Flutter suite without skips, then
+failed exactly one of 436 script tests: the obsolete scroll assertion. There
+was no APK build, emulator tour or update test; dependent jobs skipped.
+Auxiliary CI separately has eight current SUCCESS workflows, one Script-Recovery
+FAILURE on that same assertion, eight expected historical SKIPs and two replaced
+Change-Review CANCELLED runs. The two successful auxiliary full Flutter runs each
+have 2,316 passes and 196 skips; analyzers retain 103 infos and five warnings.
+Full original logs/metadata, exact failure and artifact identities are preserved
+under host-38a-android and host-38a-auxiliary. No prior-source green is transferred
+to the new candidate.
 
 ## Current Native source and finished gates
 
@@ -124,7 +177,7 @@ passed with no errors or skips. Exact commands, original logs, source identities
 and preserved-path verification are retained under host-993c-connection.
 No unchanged full-suite or Android run is inferred from these focused results.
 
-Publish the exact final Host tree to PR465 using the expected E5 lease, then
+Publish the exact final Host tree to PR465 using the observed expected head, then
 observe LUMO Kart graphics 2019 Android candidate on that actual Host SHA.
 Required jobs are android-host-compile, verify-and-build, both android-tour
 matrix jobs (actual API35 and API37/Android17), update-2019-from-2017 and
@@ -137,8 +190,9 @@ on integration/lumo-connections-20261113. No APK publication is authorized here.
 
 Main, live Host PR461 and producer dirty worktrees stay protected. Root alone
 stages/commits and moves its own refs. No unattended automation is enabled.
-The one-time 19:30:58 UTC Producer check found no new heads in Native 158/165 and
-Host 466/468/469; newer metadata timestamps were not treated as new source work.
+The 20:04:08 UTC Producer check found new source only in Host PR466 (31883868).
+Native 158/165 and Host 468/469 stayed at their previously reviewed heads;
+newer metadata timestamps were not treated as new source work.
 
 ## Historical published graphics producer handoff
 

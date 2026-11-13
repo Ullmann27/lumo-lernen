@@ -346,10 +346,15 @@ object CardsWindowRegression {
             }
             "delayed-engine" -> {
                 val activity=launch(cards)
+                activity.onStart()
+                check("bind" in Calls.events)
                 activity.engine=null
                 activity.onResume()
                 check(Calls.window().isEmpty()) { "Engine not available yet" }
-                check("pulse:false" in Calls.events) { "Unavailable engine must not suppress the existing authority pulse" }
+                check("pulse:true" !in Calls.events) { "Missing authority must not start an active Cards lease" }
+                activity.connection!!.onServiceConnected(ComponentName(), object : IBinder {})
+                check(activity.engine==null && Calls.window().isEmpty()) { "Authority binding must not invent an engine" }
+                check(Calls.events.last()=="pulse:true") { "Live authority must renew Cards even before the engine is available" }
                 activity.engine=Godot().apply { edge=true }
                 activity.onGodotMainLoopStarted()
                 check(Calls.window().isEmpty())

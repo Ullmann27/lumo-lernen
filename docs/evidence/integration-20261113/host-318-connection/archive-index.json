@@ -1,0 +1,641 @@
+{
+  "schema": 1,
+  "archive": "original-evidence.tar.gz",
+  "bytes": 583145,
+  "sha256": "337abcff02958d24736ee0871cd3c16e04734dd510335b2fc1d9b41ca35d2c65",
+  "members": 126,
+  "original_bytes": 2358484,
+  "roundtrip": "Every complete member reread and byte-equal to its frozen source",
+  "files": [
+    {
+      "path": "api37/actionlint.json",
+      "bytes": 290,
+      "sha256": "f181c55eb60bb216a6b5133686a4c86c5b9ec85c7b3ba2bce0cd1400a2c35014"
+    },
+    {
+      "path": "api37/actionlint.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "api37/before-lumo-kart-graphics-2019.yml",
+      "bytes": 42562,
+      "sha256": "34173a3f0d65ccaf0cb04b1626de8e7d9ca64bb415b05eae3e5daa8a43b41c23"
+    },
+    {
+      "path": "api37/before-lumo-studio-2019.yml",
+      "bytes": 36455,
+      "sha256": "1995fd13a01b50a147a48609024c5a46c030b750cce8d00c2a38a5145a5eb10a"
+    },
+    {
+      "path": "api37/focused-after.json",
+      "bytes": 532,
+      "sha256": "c02c5eb29ecf4ef8aafa801e7c9903c9c450f918297a128aa07cac1a8290a7ba"
+    },
+    {
+      "path": "api37/focused-after.log",
+      "bytes": 8612,
+      "sha256": "2ab35fcddcf34b8b48c3a2ed75341e0d8e670908fc43f9cb545fd86a56546b02"
+    },
+    {
+      "path": "api37/imported-originals.json",
+      "bytes": 4301,
+      "sha256": "db13497d35767f9f73b04ca53c30c6b577db9f36acd54610ffa03357aad11629"
+    },
+    {
+      "path": "api37/independent-review.json",
+      "bytes": 12643,
+      "sha256": "4ab0f8172b80ddc51248fd9fabc470f9f616fc3cf5615c2a50e356f4732c7723"
+    },
+    {
+      "path": "api37/source-preservation.json",
+      "bytes": 1048191,
+      "sha256": "36ec14011b867f28a3f02f72a45b8da0533a688249be4eca2dc3dee1edc5cc24"
+    },
+    {
+      "path": "api37/verification-summary.json",
+      "bytes": 947,
+      "sha256": "985cc97ffac7350159642d4f307e789d73c92d63a5c0f4af95df232476602875"
+    },
+    {
+      "path": "api37/workflow-connection-before.json",
+      "bytes": 101,
+      "sha256": "3bf39729418bc181b2a65068c0919ee41d6c96bf5b2490a4441ae968037ae5ef"
+    },
+    {
+      "path": "api37/workflow-connection-before.log",
+      "bytes": 4664,
+      "sha256": "75b80ca187b1c270a9d1419cc08f1e9b09002e565dc66e91e5f708bfb56ddfcd"
+    },
+    {
+      "path": "api37/workflow-integration.json",
+      "bytes": 1152,
+      "sha256": "125994474e05daeb82b10a8268ffed16bad85799ecc7b190c18295d58d8842b8"
+    },
+    {
+      "path": "cards/README.md",
+      "bytes": 5151,
+      "sha256": "e5a5352f64b7d9f4781a6cb0122303479f424cdd364bb97c72b0ab994610c6dc"
+    },
+    {
+      "path": "cards/SHA256SUMS",
+      "bytes": 4082,
+      "sha256": "12727808eb5f72b2bd3485a587fc1f10aee847fd84e165e2968a6447afd3ff04"
+    },
+    {
+      "path": "cards/activity-additive.diff",
+      "bytes": 7208,
+      "sha256": "782b8b20e46e05b6d794ddfa5c1a3d36f7bce26d1ce1d3733e7722cc85de676a"
+    },
+    {
+      "path": "cards/activity-preservation.json",
+      "bytes": 1199,
+      "sha256": "00f8f12bba50c3ef9e0167ecb1186f2cc5787df9304619880c93b51fc460fb57"
+    },
+    {
+      "path": "cards/activity-vs-producer.diff",
+      "bytes": 2974,
+      "sha256": "8a0128aecdbfef8412116c2cab9fb2609c38b28a1818c495ad065cca6d32b6f1"
+    },
+    {
+      "path": "cards/changes.diff",
+      "bytes": 42486,
+      "sha256": "9680a74b8b1dcff8b984a925f6a71f74f195e108faaf9629da24026e7440e0fd"
+    },
+    {
+      "path": "cards/dependencies/json-dependency.json",
+      "bytes": 219,
+      "sha256": "815d01c5db6192e440562631aab9af5d91d42f58a07184a7ae3862c983490051"
+    },
+    {
+      "path": "cards/existing-window-after.json",
+      "bytes": 453,
+      "sha256": "3f29ec5978e19d76ba4c8ffa4196c2fc9b9dc236df692037235ec8e24b74e57a"
+    },
+    {
+      "path": "cards/existing-window-before.json",
+      "bytes": 453,
+      "sha256": "3f29ec5978e19d76ba4c8ffa4196c2fc9b9dc236df692037235ec8e24b74e57a"
+    },
+    {
+      "path": "cards/existing-window-contract.json",
+      "bytes": 487,
+      "sha256": "ad742f7f57f1862e585662270b78b2c637e0340fc7ed6098df74ab39a9a8b416"
+    },
+    {
+      "path": "cards/existing-window-contract.log",
+      "bytes": 2563,
+      "sha256": "5013b9c8fafa52f8fe90ec11ed891fb31d198e06485d898f521ca92f97621f57"
+    },
+    {
+      "path": "cards/final-after-manifest.json",
+      "bytes": 2637,
+      "sha256": "5d59c1e965d1500e71db1015a7eab33dfad7cc270786f0b5c43488eab4d38da2"
+    },
+    {
+      "path": "cards/final-before-manifest.json",
+      "bytes": 2637,
+      "sha256": "5d59c1e965d1500e71db1015a7eab33dfad7cc270786f0b5c43488eab4d38da2"
+    },
+    {
+      "path": "cards/final-jvm-contracts.json",
+      "bytes": 733,
+      "sha256": "528a6cf698261fd465b3514694ddc056d44b065ca995be52fa67a0d233d73257"
+    },
+    {
+      "path": "cards/final-jvm-contracts.log",
+      "bytes": 4905,
+      "sha256": "76f2719efce424c73b19c593e61e6a6336d8f287f80c4281efa638c4685e8d50"
+    },
+    {
+      "path": "cards/final-observation-contracts.json",
+      "bytes": 662,
+      "sha256": "180ebdd9cb312b2f4a80a834a59c3d97aa648df3c2545ce375baeab7ebc7e2e6"
+    },
+    {
+      "path": "cards/final-observation-contracts.log",
+      "bytes": 2563,
+      "sha256": "f2de15e928f3808c2e2adc63bf6baeb4a88c57e0dd89269a2d73056394a5e6bc"
+    },
+    {
+      "path": "cards/final-runs.json",
+      "bytes": 1488,
+      "sha256": "b9f23f0cbf4ec46f2afd0730ef700fd66c43778e49fe89bdbcff1996927677a4"
+    },
+    {
+      "path": "cards/green-after-manifest.json",
+      "bytes": 2000,
+      "sha256": "a58ee3ec75f1de740b1bc0ce678c8a7b6b3c4722c3cfc7b387ebb9a3d26d8847"
+    },
+    {
+      "path": "cards/green-before-manifest.json",
+      "bytes": 2000,
+      "sha256": "a58ee3ec75f1de740b1bc0ce678c8a7b6b3c4722c3cfc7b387ebb9a3d26d8847"
+    },
+    {
+      "path": "cards/green-runs.json",
+      "bytes": 1334,
+      "sha256": "d27c6f0f415b624ea00e2501a8b9ca3c60faaee6f1c68a93574b15eda4b006e2"
+    },
+    {
+      "path": "cards/handoff.json",
+      "bytes": 4175,
+      "sha256": "f479fc490a979f1dd8518a21bc1a9a20c5d68624cf9924ff19d45ce12cf737c7"
+    },
+    {
+      "path": "cards/heartbeat-green.json",
+      "bytes": 593,
+      "sha256": "572246a1ae2f781af1a3af89cc19952cdb126c9ed1cce44e63b55da8b27f770e"
+    },
+    {
+      "path": "cards/heartbeat-green.log",
+      "bytes": 3047,
+      "sha256": "99b539ee25034433fa1d726a3f3e7724cdefcd7169c005f7eb132689dc2bb014"
+    },
+    {
+      "path": "cards/heartbeat-red.json",
+      "bytes": 645,
+      "sha256": "1bf2cd0ec4f1465c0a2c3d67e6eac67eae95878894752180e58d4466fe54179f"
+    },
+    {
+      "path": "cards/heartbeat-red.log",
+      "bytes": 13097,
+      "sha256": "e81455235a3c4c16da9fc642e7ed9c26a088df2b9d5a65249a74b8babd046f2a"
+    },
+    {
+      "path": "cards/independent-read-only-review.json",
+      "bytes": 1012,
+      "sha256": "8a8e8979b0bb20a2f8d9ddc85ba8648ed1067ab792ad86543de4cf463a5c4de1"
+    },
+    {
+      "path": "cards/manifest.json",
+      "bytes": 7153,
+      "sha256": "f0c675d610b9285538d91b80fc4a09c1b24b2692822ca13360bc01e637361710"
+    },
+    {
+      "path": "cards/observation-green.json",
+      "bytes": 652,
+      "sha256": "843e7d7fd1775f2bfd7d30630b963957696c7c395626d1d27cdea441d86b6d67"
+    },
+    {
+      "path": "cards/observation-green.log",
+      "bytes": 2563,
+      "sha256": "a922a80de5564ed0d01ec86f81092b1e41d1be07e4bab1454e8f164e7adc8b6c"
+    },
+    {
+      "path": "cards/observation-red-adapted-after.json",
+      "bytes": 1999,
+      "sha256": "4a06084c11f12ddb720de5a004cfe5e84adae84425ee325d1a0ae317db321613"
+    },
+    {
+      "path": "cards/observation-red-adapted-before.json",
+      "bytes": 1999,
+      "sha256": "4a06084c11f12ddb720de5a004cfe5e84adae84425ee325d1a0ae317db321613"
+    },
+    {
+      "path": "cards/observation-red-adapted.json",
+      "bytes": 693,
+      "sha256": "2e69a818afc641f3d065a607e70deea2f86b815ae405ce8a23578324b2940402"
+    },
+    {
+      "path": "cards/observation-red-adapted.log",
+      "bytes": 21135,
+      "sha256": "e6d99b981faf5f163b1e847036ca821f71bc65fe68a3fd2dcbff32bbfb3b028d"
+    },
+    {
+      "path": "cards/observation-red.json",
+      "bytes": 704,
+      "sha256": "832e663100125dff3655cebfff399fe76eb7b85bb14306f9046a27b2864c118a"
+    },
+    {
+      "path": "cards/observation-red.log",
+      "bytes": 22067,
+      "sha256": "f8d346287b6cb9b75222c8e248847cd4fa18999577f60c35c2207535acebc983"
+    },
+    {
+      "path": "cards/original-source-manifest.json",
+      "bytes": 857,
+      "sha256": "2a1ba36bd3569d4a078e249ed41974504a165a2edc5be56fe8da77856f7a972a"
+    },
+    {
+      "path": "cards/original-source/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 37089,
+      "sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c"
+    },
+    {
+      "path": "cards/original-source/scripts/tests/test_embedded_android.py",
+      "bytes": 20759,
+      "sha256": "7380ecc61731b3b802daa0f085a7a2c376ede8cbdce79e3fd509c22bcd176012"
+    },
+    {
+      "path": "cards/original-source/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 9980,
+      "sha256": "6ebebc7b30ef881f0a0aa732a3ce435b993768c72c973545d2d88d9920a30510"
+    },
+    {
+      "path": "cards/probe-preservation.json",
+      "bytes": 785,
+      "sha256": "a9bf6c07908e63bedbd16a73a4baf43a04af04c9b4f2185258604c1f40d8a961"
+    },
+    {
+      "path": "cards/red-after-manifest.json",
+      "bytes": 1998,
+      "sha256": "ad91554d29e632ac819906cebebd99648e97776c9c8a473233f7e6bf11997dcb"
+    },
+    {
+      "path": "cards/red-before-manifest.json",
+      "bytes": 1998,
+      "sha256": "ad91554d29e632ac819906cebebd99648e97776c9c8a473233f7e6bf11997dcb"
+    },
+    {
+      "path": "cards/red-runs.json",
+      "bytes": 1442,
+      "sha256": "7ee34a56ba8c16c0a8e1d3ebcc28cef6e424a41aea657c58568b7500212ef781"
+    },
+    {
+      "path": "cards/window-test-preservation.json",
+      "bytes": 662,
+      "sha256": "27e014194742a7d489ddcac14f27d7e1e700cd0bf7d2fd90466c470aafeac76b"
+    },
+    {
+      "path": "producer-recheck/SHA256SUMS",
+      "bytes": 734,
+      "sha256": "af5fe491e440b2a3e76d417d0b0442f271eeaddc0e13b17ddb388b79630d7759"
+    },
+    {
+      "path": "producer-recheck/check.json",
+      "bytes": 3553,
+      "sha256": "01c3bc9dac51e289fca5d1ebf2df49c753fd3ea5c233a02876a6ecbfa2ddfca0"
+    },
+    {
+      "path": "producer-recheck/manifest.json",
+      "bytes": 1193,
+      "sha256": "e2353cc1c9c416219a64b85537290307ce06cab833e4dfb465bc73aa4890cd2c"
+    },
+    {
+      "path": "producer-recheck/original/lumo-godot-pr158.json",
+      "bytes": 20862,
+      "sha256": "9454ce0ea0920b31008976a9d2a86fcbafd0e8d489e7dd6ae39bb1e63558517b"
+    },
+    {
+      "path": "producer-recheck/original/lumo-godot-pr165.json",
+      "bytes": 18952,
+      "sha256": "c286164a849e75ec8b3547ad2ac4e233f8727fc4d3888a6327a5ff1872615cbb"
+    },
+    {
+      "path": "producer-recheck/original/lumo-lernen-pr466.json",
+      "bytes": 24754,
+      "sha256": "d94ec4eb13d7ee586fb71f906a37deea08e263132b31f318c82f8b3dc53b08e0"
+    },
+    {
+      "path": "producer-recheck/original/lumo-lernen-pr468.json",
+      "bytes": 17706,
+      "sha256": "331d11c779abc4a0c6e324ff216c785848bcc9bb71443bec088fa4609b1f1c54"
+    },
+    {
+      "path": "producer-recheck/original/lumo-lernen-pr469.json",
+      "bytes": 19198,
+      "sha256": "dfa9409a16121c122f7520f6919edf79db0b12d4c83c6827412366b01cdc8a6e"
+    },
+    {
+      "path": "producer-recheck/previous-snapshot.json",
+      "bytes": 63651,
+      "sha256": "2eae7cce31463cf7b3694710e3f8ed4d02e446ba406e8f8f3a3a374bc2e9809a"
+    },
+    {
+      "path": "producer318/diffs/.github/probes/lumo_studio_surfaces_android_probe.py.diff",
+      "bytes": 5637,
+      "sha256": "305d2b9428855ef2fa429011cad9435fdb71e00896684a7df580787b834af108"
+    },
+    {
+      "path": "producer318/diffs/.github/workflows/lumo-1999-update-gate.yml.diff",
+      "bytes": 836,
+      "sha256": "b699b90fee1e4c528922a801e8de3d48073822ac08509c1e0efd2b20b91ecd5c"
+    },
+    {
+      "path": "producer318/diffs/.github/workflows/lumo-studio-2019.yml.diff",
+      "bytes": 8391,
+      "sha256": "84fd78f16223a4400127beb4d76c0aa0210a36268679384b07bc8b7765b08cd5"
+    },
+    {
+      "path": "producer318/diffs/scripts/record_studio_visual_review.py.diff",
+      "bytes": 7133,
+      "sha256": "f61b61e646d22b70ab4b824f41c97834fc8aeffd07dfd6c60a2618081dede8cb"
+    },
+    {
+      "path": "producer318/diffs/scripts/tests/test_android_voice_scroll.py.diff",
+      "bytes": 764,
+      "sha256": "e2fb5b627ef84d113ba5c072ace7033e997c645ac741fcb95e6d23f4eb84d382"
+    },
+    {
+      "path": "producer318/diffs/scripts/tests/test_candidate_2011_pin.py.diff",
+      "bytes": 1013,
+      "sha256": "8d7de7cab9b9d84ca695ab93bfcc534187a8dcd16104ed1daa5ef786c9598061"
+    },
+    {
+      "path": "producer318/diffs/scripts/tests/test_studio_delivery.py.diff",
+      "bytes": 2960,
+      "sha256": "ce9ed269265c76421318195b8217686f57b0aa8c2f37cd4b41a2773f8c245d67"
+    },
+    {
+      "path": "producer318/diffs/scripts/verify_legacy_release_pin.py.diff",
+      "bytes": 823,
+      "sha256": "52774a37e216a279d4eb74b6130e0de497fc7c2e953981a0773e6b2a5783a6e2"
+    },
+    {
+      "path": "producer318/diffs/scripts/verify_studio_delivery.py.diff",
+      "bytes": 28887,
+      "sha256": "46ca1ed093eb2e2c6d0ee3a1447cf120f8a47d0fef125ba4b98e15406b7e0750"
+    },
+    {
+      "path": "producer318/diffs/tools/auto_install/LumoGameActivity.kt.diff",
+      "bytes": 9244,
+      "sha256": "ca7cd744ea7da48101d750b2023d5954f54613a994bc50b6e4fc5546abc6c8cc"
+    },
+    {
+      "path": "producer318/integration44/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 37089,
+      "sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c"
+    },
+    {
+      "path": "producer318/integration44/.github/workflows/lumo-1999-update-gate.yml",
+      "bytes": 7430,
+      "sha256": "b93d551e00116f5e936be15afd5487a8cd206185a5c2e0e4b028891680a050ce"
+    },
+    {
+      "path": "producer318/integration44/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 36455,
+      "sha256": "1995fd13a01b50a147a48609024c5a46c030b750cce8d00c2a38a5145a5eb10a"
+    },
+    {
+      "path": "producer318/integration44/scripts/record_studio_visual_review.py",
+      "bytes": 6960,
+      "sha256": "dd8d73d72838186a51d494acb4d1b796bd12beebdd923e7bb48369f606bed64d"
+    },
+    {
+      "path": "producer318/integration44/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 7590,
+      "sha256": "b8b56d1673fd70db30e264db124663acd6a233c08c8460b62e5fd230f5ba806d"
+    },
+    {
+      "path": "producer318/integration44/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 16678,
+      "sha256": "bd2f2b1e6460f8562472bb85484f45a8c0e8cdc027e9b13d9b4329ef0bf6c877"
+    },
+    {
+      "path": "producer318/integration44/scripts/tests/test_studio_delivery.py",
+      "bytes": 39316,
+      "sha256": "a3a512e437bdc70b14e30b045a5798e677ec020ba6651322e71630cbc29d79ed"
+    },
+    {
+      "path": "producer318/integration44/scripts/verify_legacy_release_pin.py",
+      "bytes": 10415,
+      "sha256": "4ff7a1157b15a624f686d7a7d792493ba237aaa146afbaf092b89b5ad9eebe61"
+    },
+    {
+      "path": "producer318/integration44/scripts/verify_studio_delivery.py",
+      "bytes": 47035,
+      "sha256": "f5bfd40078087ec59442be19a400210ba18e4fd713b6f00bfe0853bf2de61ae4"
+    },
+    {
+      "path": "producer318/integration44/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 9980,
+      "sha256": "6ebebc7b30ef881f0a0aa732a3ce435b993768c72c973545d2d88d9920a30510"
+    },
+    {
+      "path": "producer318/metadata.json",
+      "bytes": 63651,
+      "sha256": "2eae7cce31463cf7b3694710e3f8ed4d02e446ba406e8f8f3a3a374bc2e9809a"
+    },
+    {
+      "path": "producer318/producer318/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 40745,
+      "sha256": "d1b2bb2072e6ae5bbbfafc2c03d3ad580a096b1b5729a19079587a5490045801"
+    },
+    {
+      "path": "producer318/producer318/.github/workflows/lumo-1999-update-gate.yml",
+      "bytes": 6865,
+      "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1"
+    },
+    {
+      "path": "producer318/producer318/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 41327,
+      "sha256": "64deb34a245f9ae55a5f4b7bc140717725ad1cd583e9a2041a78bb35c7c0a722"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-cards-heartbeat-20261113/after-final-contract.log",
+      "bytes": 3047,
+      "sha256": "5422e7fe644a91e716bce11b2b448082e0c9452151cfa39469bedb9b4e7bd70d"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-cards-heartbeat-20261113/source-and-tests.json",
+      "bytes": 9771,
+      "sha256": "0fdc595674e12da20f4483e76ee1f362ead7dc33fc908f001a10696d1e74290c"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-final-integration-796b/all-android-probe-contracts-result.json",
+      "bytes": 482,
+      "sha256": "99732e9fa5e84c0be16ab095bb5b990e487d7631f44db0fa4c22cf3d81a39338"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-final-integration-796b/all-script-contracts-result.json",
+      "bytes": 543,
+      "sha256": "96bc3c9277fc0b37efadcf9c10ad9dbb42559a90e4192bdf1d53906ef4418b90"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-final-integration-796b/android37-integration-review.json",
+      "bytes": 1777,
+      "sha256": "97a7569164a9564e65da4f715ee7b7ae2f429959cdd4286eb6b1da0bdf299b43"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-final-integration-796b/android37-package-descriptor-independent-review.json",
+      "bytes": 6981,
+      "sha256": "4faa7ecd8a2dc2e64a4210887a34fa18fa3d84a1e0c2a8a997dea861c4febf0a"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-final-integration-796b/cards-ci-exact-source-connection.json",
+      "bytes": 5791,
+      "sha256": "e267796f1fccc68318d798c6d20fd352bee99727e5e5b3d7779d5d4d87af0085"
+    },
+    {
+      "path": "producer318/producer318/docs/evidence/studio-final-integration-796b/final-workflow-and-heartbeat-independent-review.json",
+      "bytes": 10113,
+      "sha256": "5b09de54f1a08e1f214e3eed8846c7cec68e806e291e44371d393de3199d1276"
+    },
+    {
+      "path": "producer318/producer318/scripts/android_framework_ready.py",
+      "bytes": 18083,
+      "sha256": "aa2a0d0ee55191e6e57fa5631dcd9be1e5feebc7f2e5af185844b770fe0385e4"
+    },
+    {
+      "path": "producer318/producer318/scripts/prepare_android37_cli22.py",
+      "bytes": 21200,
+      "sha256": "83b8f30c9364124a97cf583a447bf08eb801c025a305df6b21602c768ab1abf7"
+    },
+    {
+      "path": "producer318/producer318/scripts/prepare_android37_emulator_action.py",
+      "bytes": 8434,
+      "sha256": "ac1e40c8bc07cca1cbb58a3ce4b9d990bee98a156e13f33231887a835a4cbdfa"
+    },
+    {
+      "path": "producer318/producer318/scripts/record_studio_visual_review.py",
+      "bytes": 6036,
+      "sha256": "ddf9355213d65cd4055265c5319baeedf51df257f3553ca1ab2d23da87d8b1c1"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android37_image_43494312623/README.md",
+      "bytes": 833,
+      "sha256": "ef4638a25ee9d893ae2a20274e00701d4e2dfcdbdbab949fdb430b5cf6bde4ef"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android37_image_43494312623/package.xml",
+      "bytes": 18753,
+      "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android37_image_43494312623/provenance.json",
+      "bytes": 1319,
+      "sha256": "9992208f99f00d47b6010e05769a681322b414f0dbbb22af1b784622df4843bb"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android37_image_43494312623/source.properties",
+      "bytes": 359,
+      "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/LICENSE",
+      "bytes": 11343,
+      "sha256": "0b64a565cedfa1ac8d2cd7cf40965e6098f97f260fe51a4df9f697a063d0a8db"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/README.md",
+      "bytes": 1776,
+      "sha256": "308c0ed63517568cc0ab514d2c7201c54b54d4c905f1038d9419d32ccb6c083d"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/action.yml",
+      "bytes": 3980,
+      "sha256": "a7c4de9a466ae7d70a599ffdc5a27b2bccadd7b2d602e24b44f8b490cb7bbdfe"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/lib/emulator-manager.js",
+      "bytes": 7155,
+      "sha256": "a63db8fe9ffb4fb3651e9a2c97f8bac5ca4ce0078a7bbe61ef2e02019082c577"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/lib/main.js",
+      "bytes": 11865,
+      "sha256": "8121ea56f1c89d470071e89f80e15f932b2d8d5f711c28fc99476f34a442bc35"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/src/emulator-manager.ts",
+      "bytes": 5396,
+      "sha256": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/fixtures/android_emulator_runner_a421/src/main.ts",
+      "bytes": 9407,
+      "sha256": "a52d9ff8ea3b544677bbfaeb995b1db4d0cf8f9b520f34e25b0532250123358d"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/test_android37_cli22.py",
+      "bytes": 12249,
+      "sha256": "669d390d24bdb44cf3b94c057824254f5ede1cec4fdfebe68f2f973bfb2c2c26"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/test_android_framework_ready.py",
+      "bytes": 11337,
+      "sha256": "e27c5bee071abbe89fdb60dd2461a6fd867282e5b40c2c83a5a12166da4e369d"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 7778,
+      "sha256": "abb6822c5bc721c97b210222433d273618f5e5b9ef0ebfea8a35025c0e9e794a"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 16790,
+      "sha256": "b67dfb412de165322794b493c22f83933e2785a1a02049247f9d4c79ad1b8bb0"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/test_cards_lifecycle_heartbeat.py",
+      "bytes": 16774,
+      "sha256": "0dec7101f0d345a62169e96a2f88562a04baf240574d429e5169d0f6dd6dfab1"
+    },
+    {
+      "path": "producer318/producer318/scripts/tests/test_studio_delivery.py",
+      "bytes": 40476,
+      "sha256": "4715fc13dcd5534f380ac90e2ca59a7c1dc20413a9d1e9123a0e71cd5ff47aad"
+    },
+    {
+      "path": "producer318/producer318/scripts/verify_legacy_release_pin.py",
+      "bytes": 10421,
+      "sha256": "6d7a692ae6ad0b1ff4860f7d681e34c0a0022c77084b84a98cf674eb5f4f723c"
+    },
+    {
+      "path": "producer318/producer318/scripts/verify_studio_delivery.py",
+      "bytes": 28318,
+      "sha256": "62e2e434677e036b0dc76809cc01c17aead83262c1ea3b9fb7556a23e8a9a101"
+    },
+    {
+      "path": "producer318/producer318/tools/android_qa/tests/test_cards_lifecycle_observation.py",
+      "bytes": 9288,
+      "sha256": "de3244764ed9606879323d9c75cc0c3f3391b90b12f7052685b1b1945f228d12"
+    },
+    {
+      "path": "producer318/producer318/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+    },
+    {
+      "path": "producer318/snapshot-manifest.json",
+      "bytes": 9165,
+      "sha256": "7ab2b02ef9ac294bc08516d30546b28c6b01c76236e246d5bdd6b419db3e411c"
+    },
+    {
+      "path": "producer318/source-review-manifest.json",
+      "bytes": 6134,
+      "sha256": "4c849e1331f113b07b1153cc84fd3175f352f26e982a3dcff8af84d9bfebc3e6"
+    }
+  ]
+}

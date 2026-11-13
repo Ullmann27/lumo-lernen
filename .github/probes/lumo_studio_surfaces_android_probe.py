@@ -11,6 +11,7 @@ import argparse
 import json
 from pathlib import Path
 import re
+import shlex
 import sys
 import time
 import traceback
@@ -232,6 +233,7 @@ class CardsMailbox:
         self.path = ''
         self.token = ''
         self.counter = 0
+        self.lifecycle_counter = 0
 
     def locate(self) -> bool:
         found = base.adb('shell', 'find', self.root, '-maxdepth', '2', '-type', 'f',
@@ -249,16 +251,72 @@ class CardsMailbox:
     def read(self, name='state') -> dict:
         if name not in ('state', 'request', 'lifecycle') or not self.path:
             raise RuntimeError('Read requires an observed Cards mailbox and known file')
-        raw = base.adb('exec-out', 'cat', self.path + '/' + name + '.json')
-        value = json.loads(raw)
-        if not isinstance(value, dict):
-            raise RuntimeError('Actual Cards mailbox is not an object')
-        if name != 'lifecycle' and value.get('token') != self.token:
-            raise RuntimeError('Cards mailbox identity changed')
-        self.counter += 1
-        (self.out / f'cards-mailbox-{self.counter:03d}-{name}.json').write_text(
-            json.dumps(value, indent=2, ensure_ascii=False))
-        return value
+        value, state_file, state_error = None, None, None
+        try:
+            raw = base.adb('exec-out', 'cat', self.path + '/' + name + '.json')
+            value = json.loads(raw)
+            if not isinstance(value, dict):
+                raise RuntimeError('Actual Cards mailbox is not an object')
+            if name != 'lifecycle' and value.get('token') != self.token:
+                raise RuntimeError('Cards mailbox identity changed')
+            self.counter += 1
+            state_file = f'cards-mailbox-{self.counter:03d}-{name}.json'
+            (self.out / state_file).write_text(json.dumps(value, indent=2, ensure_ascii=False))
+            return value
+        except Exception as error:
+            state_error = f'{type(error).__name__}: {error}'
+            raise
+        finally:
+            if name == 'state':
+                self._observe_lifecycle(state_file, value, state_error)
+
+    def _observe_lifecycle(self, state_file, state, state_error) -> None:
+        """Optional read-only evidence after a state read; never a readiness gate.
+
+        One bounded adb observation records device time around the actual lifecycle
+        file. It is deliberately not described as an atomic state/lifecycle pair.
+        A missing observation cannot repair or replace any original state failure.
+        """
+        started = time.monotonic()
+        self.lifecycle_counter += 1
+        tag = f'cards-lifecycle-{self.lifecycle_counter:03d}'
+        report = {'status': 'MISSING', 'sampled_after_state_read': True,
+                  'state_file': state_file, 'state_read_error': state_error,
+                  'state_revision': state.get('revision') if isinstance(state, dict) else None,
+                  'state_ack': state.get('ack') if isinstance(state, dict) else None,
+                  'state_paused': state.get('paused') if isinstance(state, dict) else None,
+                  'scope': 'Observed device clock and lifecycle only; no game-state writes or automatic resume'}
+        try:
+            if not re.fullmatch(re.escape(self.root) + r'/[a-f0-9]{32}', self.path):
+                raise RuntimeError('Lifecycle observation requires the located private session path')
+            command = ("date '+%s%3N'; cat " + shlex.quote(self.path + '/lifecycle.json') +
+                       "; printf '\\n'; date '+%s%3N'")
+            raw = base.adb('exec-out', command, timeout=.75)
+            (self.out / (tag + '.txt')).write_text(raw)
+            lines = raw.strip().splitlines()
+            if len(lines) != 3 or not all(re.fullmatch(r'[0-9]{13}', lines[i]) for i in (0, 2)):
+                raise RuntimeError('Device millisecond clock or lifecycle file was not observed')
+            before, after = int(lines[0]), int(lines[2])
+            lifecycle = json.loads(lines[1])
+            if (not isinstance(lifecycle, dict) or type(lifecycle.get('active')) is not bool or
+                    type(lifecycle.get('stamp')) is not int or
+                    type(lifecycle.get('pauseEpoch')) is not int):
+                raise RuntimeError('Observed lifecycle schema is incomplete')
+            report.update(status='OBSERVED', lifecycle=lifecycle,
+                          device_before_ms=before, device_after_ms=after,
+                          device_clock_ordered=after >= before,
+                          stamp_age_lower_ms=before - lifecycle['stamp'],
+                          stamp_age_upper_ms=after - lifecycle['stamp'], raw_source=tag + '.txt')
+        except Exception as error:
+            report['error'] = f'{type(error).__name__}: {error}'
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        try:
+            (self.out / (tag + '.json')).write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+        except Exception as error:
+            # The original state read/exception remains authoritative even if
+            # the optional diagnostic destination itself cannot be written.
+            print('Cards lifecycle observation missing: ' + json.dumps(
+                {'observation': report, 'write_error': f'{type(error).__name__}: {error}'}), file=sys.stderr)
 
     def saved(self, round_id: str) -> dict:
         values = probe.prefs(self.out, f'cards-save-{self.counter:03d}')

@@ -1,6 +1,6 @@
 # Combined LUMO integration / candidate 2019
 
-Updated: 2026-11-13, 19:55 UTC. Active drafts: Native PR160 and Host PR465.
+Updated: 2026-11-13, 20:22 UTC. Active drafts: Native PR160 and Host PR465.
 The accepted Native source is 993c1453 / tree f13dd5fc. This Host candidate
 connects that exact source through all three 2019 pins and both current visual
 receipts. Version remains 0.13.7+2019; prior version policies are preserved.
@@ -24,8 +24,31 @@ native-993c-nextgen, native-993c-graphics, native-993c-auxiliary and
 host-993c-connection. Earlier 90d proof remains separate in native-90d-checkpoint;
 its invalid historical geometry result is not relabelled as a clean result.
 
-The exact Host tree is ready for the integration PR and its real ARM64/x86 builds,
-API35/API37 tours, APK/PCK/signature checks and 2017-to-2019 preservation test.
+Published Host 38a49f7d / tree 625b7940 completed its real native Host compile,
+including all nine required JVM classes. Its full Android-build Flutter suite
+passed 2,512 tests without skips. The build then stopped at the existing scroll
+test's obsolete 24-observation assertion: 24 gestures now require 26 observations.
+That original failure remains recorded; no APK was built or emulator started in
+run 43497829121. Separately, eight current auxiliary workflows passed; their two
+full Flutter runs each passed 2,316 tests with 196 explicit skips. Their analyzer
+reported 103 infos, five warnings and no errors. Script-Recovery failed on the
+same obsolete assertion; eight historical workflows skipped and two replaced
+Change-Review runs were cancelled.
+
+This follow-up connects published Producer 31883868 selectively. Cards leases
+now renew from the Android main looper while the visible Activity has actual
+authority, independently of render frames. Existing window/edge-to-edge and
+Learning/Build speech behavior remains. Both 2019 tours now prepare the exact
+Android-17 SDK/CLI bytes and check source-bound AVD/framework readiness before
+the unchanged APK tour. The scroll test explicitly verifies all 24 gestures
+and both final views. Local evidence: 32 Cards, 42 API37/delivery and 13 scroll
+contracts pass without skips; both workflows pass actionlint. Original red
+cases remain separate. Native pins, visual receipts and version are unchanged.
+
+The new exact Host tree requires its own real ARM64/x86 builds, API35/API37 tours,
+APK/PCK/signature checks and 2017-to-2019 preservation test. Prior-source build
+and Flutter successes do not approve this follow-up. Source and original CI
+records are under host-318-connection, host-38a-auxiliary and host-38a-android.
 The integration branch performs internal verification and does not publish an
 APK. Main, live PR461 and producer worktrees remain protected. See CONTINUE.md
 for exact sources, evidence identities and the remaining Android gates.

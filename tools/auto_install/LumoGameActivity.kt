@@ -16,9 +16,58 @@ import org.godotengine.godot.GodotActivity
 import org.godotengine.godot.plugin.GodotPlugin
 import org.godotengine.godot.plugin.UsedByGodot
 
+/** Main-looper owner of the visible Cards lease; independent of render frames. */
+internal class CardsLifecycleHeartbeat(
+    private val schedule: (Runnable, Long) -> Unit,
+    private val cancel: (Runnable) -> Unit,
+    private val pulse: (Boolean) -> Boolean,
+    private val unavailable: () -> Unit
+) {
+    private var generation = 0L
+    private var running = false
+    private var closed = false
+    private var pending: Runnable? = null
+
+    fun start() {
+        if (closed) return
+        generation++
+        pending?.let(cancel)
+        pending = null
+        running = true
+        beat(generation)
+    }
+
+    private fun beat(lease: Long) {
+        if (!running || closed || lease != generation) return
+        pending = null
+        if (!pulse(true)) {
+            stop()
+            unavailable()
+            return
+        }
+        if (!running || closed || lease != generation) return
+        val next = Runnable { beat(lease) }
+        pending = next
+        schedule(next, 500)
+    }
+
+    fun stop() {
+        generation++
+        running = false
+        pending?.let(cancel)
+        pending = null
+        pulse(false)
+    }
+
+    fun close() {
+        closed = true
+        stop()
+    }
+}
+
 /** Godot is part of this APK. Its engine has an isolated process for repeatable launches. */
 class LumoGameActivity : GodotActivity() {
-    private var returning = false
+    @Volatile private var returning = false
     private var cardsEdgeToEdge = false
     @Volatile private var launchOptions = "{}"
     @Volatile private var learningSpeech: LumoLearningSpeech? = null
@@ -27,6 +76,15 @@ class LumoGameActivity : GodotActivity() {
     @Volatile private var cardsAuthority: IBinder? = null
     private var cardsBindingRequested = false
     private val cardsBindingHandler = Handler(Looper.getMainLooper())
+    private val cardsHeartbeat = CardsLifecycleHeartbeat(
+        schedule = { task, delay -> cardsBindingHandler.postDelayed(task, delay) },
+        cancel = { task -> cardsBindingHandler.removeCallbacks(task) },
+        pulse = { active -> writeCardsLifecycle(active) },
+        unavailable = {
+            releaseCardsAuthority()
+            returnToLearningApp("games")
+        }
+    )
     private val cardsBindingTimeout = Runnable {
         // Older supported Android releases do not deliver onNullBinding.
         // A dead/unavailable host must return to Flutter instead of trapping
@@ -41,11 +99,11 @@ class LumoGameActivity : GodotActivity() {
             if (!cardsBindingRequested) return
             cardsBindingHandler.removeCallbacks(cardsBindingTimeout)
             cardsAuthority = service
-            cardsPulse()
+            if (cardsActive && !returning) cardsHeartbeat.start()
         }
         override fun onServiceDisconnected(name: ComponentName) {
             cardsAuthority = null
-            cardsPulse()
+            cardsHeartbeat.stop()
             if (cardsBindingRequested) returnToLearningApp("games")
         }
         override fun onNullBinding(name: ComponentName) {
@@ -58,17 +116,32 @@ class LumoGameActivity : GodotActivity() {
         }
     }
 
-    fun cardsPulse(): Boolean {
-        val available = CardsAuthorityService.available(cardsAuthority, cardsToken())
-        val written = CardsTableBridge.pulse(filesDir, cardsToken(), cardsActive && available)
-        if (cardsAuthority != null && !available) returnToLearningApp("games")
-        return written && available
+    private fun writeCardsLifecycle(active: Boolean): Boolean {
+        val token = cardsToken()
+        if (!Regex("[a-f0-9]{32}").matches(token)) return false
+        val available = active && cardsActive && cardsBindingRequested && !returning &&
+            CardsAuthorityService.available(cardsAuthority, token)
+        val written = CardsTableBridge.pulse(filesDir, token, available)
+        return written && (!active || available)
+    }
+
+    fun cardsAuthorityAvailable(): Boolean {
+        if (returning) return false
+        val authority = cardsAuthority ?: return false
+        val available = CardsAuthorityService.available(authority, cardsToken())
+        if (!available) runOnUiThread {
+            if (cardsAuthority === authority) {
+                releaseCardsAuthority()
+                returnToLearningApp("games")
+            }
+        }
+        return available && cardsAuthority === authority
     }
 
     override fun onStart() {
         super.onStart()
         val token = cardsToken()
-        if (!Regex("[a-f0-9]{32}").matches(token) || cardsBindingRequested) return
+        if (returning || !Regex("[a-f0-9]{32}").matches(token) || cardsBindingRequested) return
         cardsBindingRequested = true
         val accepted = try {
             bindService(Intent(this, CardsAuthorityService::class.java).putExtra("cardsToken", token),
@@ -83,9 +156,9 @@ class LumoGameActivity : GodotActivity() {
     }
 
     private fun releaseCardsAuthority() {
+        cardsHeartbeat.stop()
         cardsBindingHandler.removeCallbacks(cardsBindingTimeout)
         cardsAuthority = null
-        cardsPulse()
         if (cardsBindingRequested) {
             cardsBindingRequested = false
             try { unbindService(cardsConnection) } catch (_: Exception) { }
@@ -93,6 +166,7 @@ class LumoGameActivity : GodotActivity() {
     }
 
     override fun onStop() {
+        cardsActive = false
         releaseCardsAuthority()
         super.onStop()
     }
@@ -101,13 +175,13 @@ class LumoGameActivity : GodotActivity() {
         super.onResume()
         updateCardsWindowAppearance()
         cardsActive = true
-        cardsPulse()
+        if (cardsAuthority != null && !returning) cardsHeartbeat.start()
         learningSpeech?.setActive(true)
     }
 
     override fun onPause() {
         cardsActive = false
-        cardsPulse()
+        cardsHeartbeat.stop()
         learningSpeech?.setActive(false)
         super.onPause()
     }
@@ -140,6 +214,9 @@ class LumoGameActivity : GodotActivity() {
     }
 
     override fun onDestroy() {
+        cardsActive = false
+        cardsHeartbeat.close()
+        releaseCardsAuthority()
         learningSpeech?.destroy()
         learningSpeech = null
         super.onDestroy()
@@ -180,6 +257,9 @@ class LumoGameActivity : GodotActivity() {
         returning = true
         learningSpeech?.stop()
         runOnUiThread {
+            cardsActive = false
+            cardsHeartbeat.close()
+            releaseCardsAuthority()
             setResult(Activity.RESULT_OK, Intent().putExtra("destination", target)
                 .putExtra("gamePid", android.os.Process.myPid())
                 .putExtra(GameEventStore.CALLER_RETURN_SESSION, callerSession))
@@ -216,7 +296,9 @@ class LumoHostPlugin(engine: Godot, private val host: LumoGameActivity) : GodotP
 
     @UsedByGodot
     fun getCardsState(): String {
-        if (!host.cardsPulse()) return "{}"
+        // Render stalls must not expire an otherwise visible Android activity.
+        // Only the main-looper lifecycle owner writes heartbeats and pause epochs.
+        if (!host.cardsAuthorityAvailable()) return "{}"
         val token = try { org.json.JSONObject(host.options()).optString("cardsToken", "") } catch (_: Exception) { "" }
         return CardsTableBridge.state(host.filesDir, token)
     }

@@ -1,0 +1,787 @@
+{
+  "schema": 1,
+  "created_at_utc": "2026-11-13T20:25:21.134693+00:00",
+  "scope": "Compact immutable transport of the failed Host 38a49f7d CI checkpoint. All included original bytes are preserved; all raster payloads and three large raster ZIPs remain in the full scratch checkpoint.",
+  "original_checkpoint": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence",
+  "run_id": 43497829121,
+  "head_sha": "38a49f7dda404923da3955592ccb213871f2027d",
+  "tree": "625b7940d9e8a4ddf32203126721efd97b3e8c2e",
+  "conclusion": "failure",
+  "original_handoff_sha256": "4084a3e52df583a37162ce367b4b46a52a07e711177531124f37a322a553e375",
+  "original_checkpoint_sums_sha256": "3dc57d9ce09a00153fc444bbbcb5fe49dc4450fb288da05dd0f0a8479237fab7",
+  "archive": {
+    "file": "original-evidence.tar.gz",
+    "bytes": 530565,
+    "sha256": "3e70c8fd9370488d5c10163dff18e50800a01a1a2b50bf37baef7355c93786f5",
+    "format": "sorted PAX tar, metadata normalized, deterministic gzip level 9 / mtime 0 / empty filename",
+    "members": 100,
+    "uncompressed_original_bytes": 3630608,
+    "all_members_roundtrip_byte_equal": true
+  },
+  "included": {
+    "final_raw_api_bodies": [
+      "proofs/run.json",
+      "proofs/jobs.json",
+      "proofs/artifacts.json"
+    ],
+    "complete_job_logs": [
+      "jobs/android-host-compile-132135471404.log",
+      "jobs/verify-and-build-132135471868.log"
+    ],
+    "small_original_compiler_zip": "archives/lumo-kart-graphics-2019-android-host-compile-14072647198.zip",
+    "artifact_member_indexes": "artifacts/*/verification.json (all 601 original members)",
+    "png_indexes": "raster-index.json (all 576 PNG digests and dimensions)",
+    "original_machine_log": "artifacts/14071969901/original/flutter-machine.jsonl",
+    "actual_results": {
+      "host_compilation": "PASS / 9 required classes",
+      "compile_preflight": "10 PASS / 0 skips",
+      "full_flutter": "2512 PASS / 0 skips / exit 0",
+      "build_contracts": "436 tests / 1 failure / exit 1"
+    },
+    "source": "24 immutable source files plus source manifests"
+  },
+  "excluded_payloads": {
+    "png_files": 576,
+    "png_policy": "No PNG re-encoding or raster payload duplication in this transport; originals remain at each raster-index.json path.",
+    "large_original_zips": [
+      {
+        "file": "archives/lumo-1983-quiz-studio-captures-14073346170.zip",
+        "absolute_path": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/archives/lumo-1983-quiz-studio-captures-14073346170.zip",
+        "artifact_id": 14073346170,
+        "name": "lumo-1983-quiz-studio-captures",
+        "bytes": 10605085,
+        "sha256": "5167f69f00a59c4de7aaff5ec4140982936eb6877bd75cdd5f6ce55e1abcf45f",
+        "api_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14073346170",
+        "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14073346170/zip"
+      },
+      {
+        "file": "archives/lumo-tutor-2001-actual-flutter-captures-14073097620.zip",
+        "absolute_path": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/archives/lumo-tutor-2001-actual-flutter-captures-14073097620.zip",
+        "artifact_id": 14073097620,
+        "name": "lumo-tutor-2001-actual-flutter-captures",
+        "bytes": 5790530,
+        "sha256": "f18219fc3a84f08a08f9d8c6b273fbc29a66e774ef780f6ac998f6a89de24cc4",
+        "api_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14073097620",
+        "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14073097620/zip"
+      },
+      {
+        "file": "archives/lumo-candidate-all-flutter-tests-and-captures-14071969901.zip",
+        "absolute_path": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/archives/lumo-candidate-all-flutter-tests-and-captures-14071969901.zip",
+        "artifact_id": 14071969901,
+        "name": "lumo-candidate-all-flutter-tests-and-captures",
+        "bytes": 333544762,
+        "sha256": "ad9522c62d92788a90448ca7f441a34527e0a6ec989c3289cb039d93d17ac57b",
+        "api_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14071969901",
+        "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14071969901/zip"
+      }
+    ]
+  },
+  "limits": [
+    "No APK was built and no Android API 35/37 or in-place update executed.",
+    "Publisher was actually skipped; the Integrationref is also excluded by its explicit publication condition.",
+    "No receipt or acceptance is transferred to a later source revision.",
+    "No product source, Git index, ref or CI attempt was changed by this packaging operation."
+  ],
+  "files": [
+    {
+      "member": "SHA256SUMS",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/SHA256SUMS",
+      "bytes": 91982,
+      "original_sha256": "3dc57d9ce09a00153fc444bbbcb5fe49dc4450fb288da05dd0f0a8479237fab7",
+      "roundtrip_sha256": "3dc57d9ce09a00153fc444bbbcb5fe49dc4450fb288da05dd0f0a8479237fab7"
+    },
+    {
+      "member": "archive-index.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/archive-index.json",
+      "bytes": 4891,
+      "original_sha256": "8f437270807b8a808b241157e608d1e6b9542441b0c6a2b3b62baa316a7820a0",
+      "roundtrip_sha256": "8f437270807b8a808b241157e608d1e6b9542441b0c6a2b3b62baa316a7820a0"
+    },
+    {
+      "member": "archives/lumo-kart-graphics-2019-android-host-compile-14072647198.zip",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/archives/lumo-kart-graphics-2019-android-host-compile-14072647198.zip",
+      "bytes": 5647,
+      "original_sha256": "f314232e86a54056bf498cd54419b6018b1c0b4131b3225d9e56ef28f239798e",
+      "roundtrip_sha256": "f314232e86a54056bf498cd54419b6018b1c0b4131b3225d9e56ef28f239798e"
+    },
+    {
+      "member": "artifacts/14071969901/artifact.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14071969901/artifact.json",
+      "bytes": 751,
+      "original_sha256": "b4ed6a24930e05fbca6f178fdbe748a6be481222efe1786e829f9443a73c2c01",
+      "roundtrip_sha256": "b4ed6a24930e05fbca6f178fdbe748a6be481222efe1786e829f9443a73c2c01"
+    },
+    {
+      "member": "artifacts/14071969901/original/acceptance-summary.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14071969901/original/acceptance-summary.json",
+      "bytes": 2118,
+      "original_sha256": "119e5ff6a7890f623cfbc663aac004bb655b3fb51a6afa72c6011fef3411b5cc",
+      "roundtrip_sha256": "119e5ff6a7890f623cfbc663aac004bb655b3fb51a6afa72c6011fef3411b5cc"
+    },
+    {
+      "member": "artifacts/14071969901/original/flutter-machine.jsonl",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14071969901/original/flutter-machine.jsonl",
+      "bytes": 1587138,
+      "original_sha256": "bf1952172904ddbe8fd431465990d180ca33fd36dbb69afbafc25d6f8f3e00b5",
+      "roundtrip_sha256": "bf1952172904ddbe8fd431465990d180ca33fd36dbb69afbafc25d6f8f3e00b5"
+    },
+    {
+      "member": "artifacts/14071969901/verification.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14071969901/verification.json",
+      "bytes": 378590,
+      "original_sha256": "b378564956bade4e453bea9e87f91ddc33a90f911269148efe49cef230a927bd",
+      "roundtrip_sha256": "b378564956bade4e453bea9e87f91ddc33a90f911269148efe49cef230a927bd"
+    },
+    {
+      "member": "artifacts/14072647198/artifact.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/artifact.json",
+      "bytes": 745,
+      "original_sha256": "2f41c6c4e742140053b100db3ad0fa8a434d9ff0c90a7413b8885439b1d9bc0f",
+      "roundtrip_sha256": "2f41c6c4e742140053b100db3ad0fa8a434d9ff0c90a7413b8885439b1d9bc0f"
+    },
+    {
+      "member": "artifacts/14072647198/original/cards-authority-registry.log",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/original/cards-authority-registry.log",
+      "bytes": 2556,
+      "original_sha256": "9e5ecd5a17d69998b9e6384a76e4e206ff59d3bf6c2b9c027d41e3ecf41a97da",
+      "roundtrip_sha256": "9e5ecd5a17d69998b9e6384a76e4e206ff59d3bf6c2b9c027d41e3ecf41a97da"
+    },
+    {
+      "member": "artifacts/14072647198/original/compile.log",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/original/compile.log",
+      "bytes": 33777,
+      "original_sha256": "d7501dbf0d9b1fceadfa14424c5dbd8e9efcd6a2a6c849b54f64f84d71394673",
+      "roundtrip_sha256": "d7501dbf0d9b1fceadfa14424c5dbd8e9efcd6a2a6c849b54f64f84d71394673"
+    },
+    {
+      "member": "artifacts/14072647198/original/flutter-version.txt",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/original/flutter-version.txt",
+      "bytes": 321,
+      "original_sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "roundtrip_sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800"
+    },
+    {
+      "member": "artifacts/14072647198/original/result.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/original/result.json",
+      "bytes": 2769,
+      "original_sha256": "3de6a1a0abfc18e800abba1d2e2bcc7ac1180074896608bd25f3f5edf8a48cd9",
+      "roundtrip_sha256": "3de6a1a0abfc18e800abba1d2e2bcc7ac1180074896608bd25f3f5edf8a48cd9"
+    },
+    {
+      "member": "artifacts/14072647198/original/source-sha.txt",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/original/source-sha.txt",
+      "bytes": 41,
+      "original_sha256": "c1fd101e296383a7560c133048dcfff69dc92c0eb053636d8fc46a9ee8ca5f38",
+      "roundtrip_sha256": "c1fd101e296383a7560c133048dcfff69dc92c0eb053636d8fc46a9ee8ca5f38"
+    },
+    {
+      "member": "artifacts/14072647198/verification.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14072647198/verification.json",
+      "bytes": 2846,
+      "original_sha256": "3cdb47fbcc5a50302fd1424592c30ea70d7b776e56d5eb11d0ddd0ac6245bd7e",
+      "roundtrip_sha256": "3cdb47fbcc5a50302fd1424592c30ea70d7b776e56d5eb11d0ddd0ac6245bd7e"
+    },
+    {
+      "member": "artifacts/14073097620/artifact.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073097620/artifact.json",
+      "bytes": 743,
+      "original_sha256": "1696b638767a7fac59d038798b4f102ed3912b5eb08d3a04c032d7e25e1f630a",
+      "roundtrip_sha256": "1696b638767a7fac59d038798b4f102ed3912b5eb08d3a04c032d7e25e1f630a"
+    },
+    {
+      "member": "artifacts/14073097620/verification.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073097620/verification.json",
+      "bytes": 8885,
+      "original_sha256": "a820e18217852e0d76e8b1f25d8319ef744967962d3a896932a0b44fd35bba37",
+      "roundtrip_sha256": "a820e18217852e0d76e8b1f25d8319ef744967962d3a896932a0b44fd35bba37"
+    },
+    {
+      "member": "artifacts/14073346170/artifact.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/artifact.json",
+      "bytes": 735,
+      "original_sha256": "acb0c838428f849d965e3c94e5bafd9fa0d93c280eba7387f8c8736d9f60eece",
+      "roundtrip_sha256": "acb0c838428f849d965e3c94e5bafd9fa0d93c280eba7387f8c8736d9f60eece"
+    },
+    {
+      "member": "artifacts/14073346170/original/1024px-scale-1.0-initial.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/1024px-scale-1.0-initial.json",
+      "bytes": 355,
+      "original_sha256": "9187820d66bb67b0743575231cfe02b8a1117d8160cb7ef13163070f95d79bf7",
+      "roundtrip_sha256": "9187820d66bb67b0743575231cfe02b8a1117d8160cb7ef13163070f95d79bf7"
+    },
+    {
+      "member": "artifacts/14073346170/original/1024px-scale-1.0-locking.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/1024px-scale-1.0-locking.json",
+      "bytes": 355,
+      "original_sha256": "969e82efd1fc0f52b627ba58fb1e0b1a4bc969ae006f6ccec27ae24c14773606",
+      "roundtrip_sha256": "969e82efd1fc0f52b627ba58fb1e0b1a4bc969ae006f6ccec27ae24c14773606"
+    },
+    {
+      "member": "artifacts/14073346170/original/1024px-scale-1.0-revealed.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/1024px-scale-1.0-revealed.json",
+      "bytes": 356,
+      "original_sha256": "b9ab21d87488d57b8eb37438a334de97b2fe3e6932bd8431f0114169f85225f9",
+      "roundtrip_sha256": "b9ab21d87488d57b8eb37438a334de97b2fe3e6932bd8431f0114169f85225f9"
+    },
+    {
+      "member": "artifacts/14073346170/original/1024px-scale-1.5-initial.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/1024px-scale-1.5-initial.json",
+      "bytes": 355,
+      "original_sha256": "dfddfe33a7b74ff1c4b5dc4393e3ef076d57cf7174fd2a6e31cd7bece4f10b59",
+      "roundtrip_sha256": "dfddfe33a7b74ff1c4b5dc4393e3ef076d57cf7174fd2a6e31cd7bece4f10b59"
+    },
+    {
+      "member": "artifacts/14073346170/original/1024px-scale-1.5-locking.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/1024px-scale-1.5-locking.json",
+      "bytes": 355,
+      "original_sha256": "9b9e79edb3a6b5a79fc72d7ce4399d9917f618e132656f704d3f3a4e81f79220",
+      "roundtrip_sha256": "9b9e79edb3a6b5a79fc72d7ce4399d9917f618e132656f704d3f3a4e81f79220"
+    },
+    {
+      "member": "artifacts/14073346170/original/1024px-scale-1.5-revealed.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/1024px-scale-1.5-revealed.json",
+      "bytes": 356,
+      "original_sha256": "ea4cba31657b0586a202a82661947a5b8d1f544db614fca9c142b3246ffaca5c",
+      "roundtrip_sha256": "ea4cba31657b0586a202a82661947a5b8d1f544db614fca9c142b3246ffaca5c"
+    },
+    {
+      "member": "artifacts/14073346170/original/320px-scale-1.0-initial.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/320px-scale-1.0-initial.json",
+      "bytes": 353,
+      "original_sha256": "9090d4b9b9a1b1d3a2525ebb1473bf42a449ddf2343db0325354fad2d7dc74e2",
+      "roundtrip_sha256": "9090d4b9b9a1b1d3a2525ebb1473bf42a449ddf2343db0325354fad2d7dc74e2"
+    },
+    {
+      "member": "artifacts/14073346170/original/320px-scale-1.0-locking.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/320px-scale-1.0-locking.json",
+      "bytes": 353,
+      "original_sha256": "7942715d1f30593593ce41da4af416d2f0b693ef6d29a9cfcc313ddcf423a35f",
+      "roundtrip_sha256": "7942715d1f30593593ce41da4af416d2f0b693ef6d29a9cfcc313ddcf423a35f"
+    },
+    {
+      "member": "artifacts/14073346170/original/320px-scale-1.0-revealed.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/320px-scale-1.0-revealed.json",
+      "bytes": 354,
+      "original_sha256": "0002540931f9699a5bf1f55e2b29b93fa352facef0bf92d3537999541db46c38",
+      "roundtrip_sha256": "0002540931f9699a5bf1f55e2b29b93fa352facef0bf92d3537999541db46c38"
+    },
+    {
+      "member": "artifacts/14073346170/original/320px-scale-1.5-initial.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/320px-scale-1.5-initial.json",
+      "bytes": 353,
+      "original_sha256": "8f8732ac434c506fd8964c0b22f116e43dfaf6d9d039d57c81f18e2b749b9dfb",
+      "roundtrip_sha256": "8f8732ac434c506fd8964c0b22f116e43dfaf6d9d039d57c81f18e2b749b9dfb"
+    },
+    {
+      "member": "artifacts/14073346170/original/320px-scale-1.5-locking.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/320px-scale-1.5-locking.json",
+      "bytes": 353,
+      "original_sha256": "6d5df05d41d0f3dec9e23e76f83e65b5b318a1d1a65366bc1192a50eddc846f2",
+      "roundtrip_sha256": "6d5df05d41d0f3dec9e23e76f83e65b5b318a1d1a65366bc1192a50eddc846f2"
+    },
+    {
+      "member": "artifacts/14073346170/original/320px-scale-1.5-revealed.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/320px-scale-1.5-revealed.json",
+      "bytes": 354,
+      "original_sha256": "a0fd998edfc7c6d7908357cdabb2a10df4ab4cc236ac2e34e9cd4b05b0e17b20",
+      "roundtrip_sha256": "a0fd998edfc7c6d7908357cdabb2a10df4ab4cc236ac2e34e9cd4b05b0e17b20"
+    },
+    {
+      "member": "artifacts/14073346170/original/420px-scale-1.0-initial.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/420px-scale-1.0-initial.json",
+      "bytes": 353,
+      "original_sha256": "5cbcb3cb728ccde20b66b96733d192af226369f7102b968dde233bd92393bf0f",
+      "roundtrip_sha256": "5cbcb3cb728ccde20b66b96733d192af226369f7102b968dde233bd92393bf0f"
+    },
+    {
+      "member": "artifacts/14073346170/original/420px-scale-1.0-locking.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/420px-scale-1.0-locking.json",
+      "bytes": 353,
+      "original_sha256": "0eca65d586720ac65ea73a9c6684c8656388be458b636ade44dc72dc3eb41f41",
+      "roundtrip_sha256": "0eca65d586720ac65ea73a9c6684c8656388be458b636ade44dc72dc3eb41f41"
+    },
+    {
+      "member": "artifacts/14073346170/original/420px-scale-1.0-revealed.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/420px-scale-1.0-revealed.json",
+      "bytes": 354,
+      "original_sha256": "f62dc6057ebd3a7b848ca365ac624f2491d43bcb84f6e65a81bc48fd080fe3e0",
+      "roundtrip_sha256": "f62dc6057ebd3a7b848ca365ac624f2491d43bcb84f6e65a81bc48fd080fe3e0"
+    },
+    {
+      "member": "artifacts/14073346170/original/420px-scale-1.5-initial.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/420px-scale-1.5-initial.json",
+      "bytes": 353,
+      "original_sha256": "e61e7086dd4b48453f169da1688625e4fc8383cb74392409f91656fd7b5148f6",
+      "roundtrip_sha256": "e61e7086dd4b48453f169da1688625e4fc8383cb74392409f91656fd7b5148f6"
+    },
+    {
+      "member": "artifacts/14073346170/original/420px-scale-1.5-locking.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/420px-scale-1.5-locking.json",
+      "bytes": 353,
+      "original_sha256": "31b5b6a3aba132cfd1a9a70d43bc80c4619d81770131cf853373e6cb67e5b3ab",
+      "roundtrip_sha256": "31b5b6a3aba132cfd1a9a70d43bc80c4619d81770131cf853373e6cb67e5b3ab"
+    },
+    {
+      "member": "artifacts/14073346170/original/420px-scale-1.5-revealed.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/original/420px-scale-1.5-revealed.json",
+      "bytes": 354,
+      "original_sha256": "9a00a98dc5b8c30400d7be24bf2c56abc0814a5920c67eedaabc312e9929e359",
+      "roundtrip_sha256": "9a00a98dc5b8c30400d7be24bf2c56abc0814a5920c67eedaabc312e9929e359"
+    },
+    {
+      "member": "artifacts/14073346170/verification.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/artifacts/14073346170/verification.json",
+      "bytes": 17877,
+      "original_sha256": "9affa2e166950cc9902e653540780c98c7ae6f5c4f86b1655dcd6e8e65a33139",
+      "roundtrip_sha256": "9affa2e166950cc9902e653540780c98c7ae6f5c4f86b1655dcd6e8e65a33139"
+    },
+    {
+      "member": "collector/preserve_artifact.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/collector/preserve_artifact.py",
+      "bytes": 4369,
+      "original_sha256": "8bedbc76e01d61a157cec1cfe93dc5ad8fbb750a54327e39545a83faaba1ae87",
+      "roundtrip_sha256": "8bedbc76e01d61a157cec1cfe93dc5ad8fbb750a54327e39545a83faaba1ae87"
+    },
+    {
+      "member": "failure-analysis.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/failure-analysis.json",
+      "bytes": 3400,
+      "original_sha256": "c1b2273eeeafa49826b9a92e448ad48d7997b73db8f4b51138f8549867714a7e",
+      "roundtrip_sha256": "c1b2273eeeafa49826b9a92e448ad48d7997b73db8f4b51138f8549867714a7e"
+    },
+    {
+      "member": "flutter-suite-verification.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/flutter-suite-verification.json",
+      "bytes": 1268,
+      "original_sha256": "5ca418e6e2b9912c1f66ecbd0564138ab8db242d14c4cfb07b37883f087c0f14",
+      "roundtrip_sha256": "5ca418e6e2b9912c1f66ecbd0564138ab8db242d14c4cfb07b37883f087c0f14"
+    },
+    {
+      "member": "handoff.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/handoff.json",
+      "bytes": 11159,
+      "original_sha256": "4084a3e52df583a37162ce367b4b46a52a07e711177531124f37a322a553e375",
+      "roundtrip_sha256": "4084a3e52df583a37162ce367b4b46a52a07e711177531124f37a322a553e375"
+    },
+    {
+      "member": "host-compile-verification.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/host-compile-verification.json",
+      "bytes": 4775,
+      "original_sha256": "c76a19ecdb97daba4d24c40b908841c5d94a9cd98c60eda66c53f04bc2648e73",
+      "roundtrip_sha256": "c76a19ecdb97daba4d24c40b908841c5d94a9cd98c60eda66c53f04bc2648e73"
+    },
+    {
+      "member": "jobs/android-host-compile-132135471404.log",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/jobs/android-host-compile-132135471404.log",
+      "bytes": 240022,
+      "original_sha256": "fa50eb62f36dbb57f3602c1fec0d1899e041d1eeeebf5aa12364c9800a179476",
+      "roundtrip_sha256": "fa50eb62f36dbb57f3602c1fec0d1899e041d1eeeebf5aa12364c9800a179476"
+    },
+    {
+      "member": "jobs/verify-and-build-132135471868.log",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/jobs/verify-and-build-132135471868.log",
+      "bytes": 204925,
+      "original_sha256": "3104a45ddf2e1edd19d7931182d5fc7940140185a84ac246ba55c5303bea77c2",
+      "roundtrip_sha256": "3104a45ddf2e1edd19d7931182d5fc7940140185a84ac246ba55c5303bea77c2"
+    },
+    {
+      "member": "proofs/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/proofs/artifacts.json",
+      "bytes": 3009,
+      "original_sha256": "18523d028e68ee8f4cf4e3586288a4e5165631f5d1452faa5dcb481a954e85dd",
+      "roundtrip_sha256": "18523d028e68ee8f4cf4e3586288a4e5165631f5d1452faa5dcb481a954e85dd"
+    },
+    {
+      "member": "proofs/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/proofs/jobs.json",
+      "bytes": 14678,
+      "original_sha256": "2998b9f951d716ae8bf3f66f76a742ddc1c455c8d88c7a0ee78026e0e6957a48",
+      "roundtrip_sha256": "2998b9f951d716ae8bf3f66f76a742ddc1c455c8d88c7a0ee78026e0e6957a48"
+    },
+    {
+      "member": "proofs/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/proofs/provenance.json",
+      "bytes": 1107,
+      "original_sha256": "76b4df62abcb38de906b5f6c6484f8f49493ad2c281f4b996c9fa6e42b7e9288",
+      "roundtrip_sha256": "76b4df62abcb38de906b5f6c6484f8f49493ad2c281f4b996c9fa6e42b7e9288"
+    },
+    {
+      "member": "proofs/run.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/proofs/run.json",
+      "bytes": 12969,
+      "original_sha256": "ce32f74678802e0d2225b342d69207e1fecd6fbbec54c51060082b11f7f59a53",
+      "roundtrip_sha256": "ce32f74678802e0d2225b342d69207e1fecd6fbbec54c51060082b11f7f59a53"
+    },
+    {
+      "member": "raster-index.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/raster-index.json",
+      "bytes": 402803,
+      "original_sha256": "a8041df8950f66261da89a23ddbc91d6ab6b9be440ae2984586ee4835cc5a7ab",
+      "roundtrip_sha256": "a8041df8950f66261da89a23ddbc91d6ab6b9be440ae2984586ee4835cc5a7ab"
+    },
+    {
+      "member": "snapshots/20261113T200442Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200442Z/artifacts.json",
+      "bytes": 767,
+      "original_sha256": "dfa99b5c979599bb7226fbc3e6607436f7a74cbec1a177b730347769c1938d29",
+      "roundtrip_sha256": "dfa99b5c979599bb7226fbc3e6607436f7a74cbec1a177b730347769c1938d29"
+    },
+    {
+      "member": "snapshots/20261113T200442Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200442Z/jobs.json",
+      "bytes": 9187,
+      "original_sha256": "1ca2eb4fd1c67b9ea89bd82acd856eb6ab84e729b72c31ad3508594f104b57f6",
+      "roundtrip_sha256": "1ca2eb4fd1c67b9ea89bd82acd856eb6ab84e729b72c31ad3508594f104b57f6"
+    },
+    {
+      "member": "snapshots/20261113T200442Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200442Z/provenance.json",
+      "bytes": 722,
+      "original_sha256": "a73e4a6f6f9b99c0a5e02e3d8984c5d97c5500e4d3128213b3b6a1419949b7b5",
+      "roundtrip_sha256": "a73e4a6f6f9b99c0a5e02e3d8984c5d97c5500e4d3128213b3b6a1419949b7b5"
+    },
+    {
+      "member": "snapshots/20261113T200659Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200659Z/artifacts.json",
+      "bytes": 767,
+      "original_sha256": "dfa99b5c979599bb7226fbc3e6607436f7a74cbec1a177b730347769c1938d29",
+      "roundtrip_sha256": "dfa99b5c979599bb7226fbc3e6607436f7a74cbec1a177b730347769c1938d29"
+    },
+    {
+      "member": "snapshots/20261113T200659Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200659Z/jobs.json",
+      "bytes": 9187,
+      "original_sha256": "1ca2eb4fd1c67b9ea89bd82acd856eb6ab84e729b72c31ad3508594f104b57f6",
+      "roundtrip_sha256": "1ca2eb4fd1c67b9ea89bd82acd856eb6ab84e729b72c31ad3508594f104b57f6"
+    },
+    {
+      "member": "snapshots/20261113T200659Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200659Z/provenance.json",
+      "bytes": 722,
+      "original_sha256": "cf0ff9a979d1bba6ab8a919b76f5c4200966fe16492afbe1c045d1daf9e42bf6",
+      "roundtrip_sha256": "cf0ff9a979d1bba6ab8a919b76f5c4200966fe16492afbe1c045d1daf9e42bf6"
+    },
+    {
+      "member": "snapshots/20261113T200951Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200951Z/artifacts.json",
+      "bytes": 1513,
+      "original_sha256": "75955f8266fd682631bc9d656c79a12c12579980caff96b5131211080ecd1001",
+      "roundtrip_sha256": "75955f8266fd682631bc9d656c79a12c12579980caff96b5131211080ecd1001"
+    },
+    {
+      "member": "snapshots/20261113T200951Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200951Z/jobs.json",
+      "bytes": 9555,
+      "original_sha256": "693ec5d6b951ac42e826403c6dfbf829b1c4f16d59745139d2674eea9b4552e2",
+      "roundtrip_sha256": "693ec5d6b951ac42e826403c6dfbf829b1c4f16d59745139d2674eea9b4552e2"
+    },
+    {
+      "member": "snapshots/20261113T200951Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T200951Z/provenance.json",
+      "bytes": 723,
+      "original_sha256": "2cb817f0429bf470c775994084a671e702953e1f7bae881c7180adae5566a505",
+      "roundtrip_sha256": "2cb817f0429bf470c775994084a671e702953e1f7bae881c7180adae5566a505"
+    },
+    {
+      "member": "snapshots/20261113T201159Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201159Z/artifacts.json",
+      "bytes": 1513,
+      "original_sha256": "75955f8266fd682631bc9d656c79a12c12579980caff96b5131211080ecd1001",
+      "roundtrip_sha256": "75955f8266fd682631bc9d656c79a12c12579980caff96b5131211080ecd1001"
+    },
+    {
+      "member": "snapshots/20261113T201159Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201159Z/jobs.json",
+      "bytes": 9555,
+      "original_sha256": "693ec5d6b951ac42e826403c6dfbf829b1c4f16d59745139d2674eea9b4552e2",
+      "roundtrip_sha256": "693ec5d6b951ac42e826403c6dfbf829b1c4f16d59745139d2674eea9b4552e2"
+    },
+    {
+      "member": "snapshots/20261113T201159Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201159Z/provenance.json",
+      "bytes": 723,
+      "original_sha256": "fac910f7bce2764b16868af2aa9f1d696ecb42733cdd6ec12e681b30acfeea81",
+      "roundtrip_sha256": "fac910f7bce2764b16868af2aa9f1d696ecb42733cdd6ec12e681b30acfeea81"
+    },
+    {
+      "member": "snapshots/20261113T201344Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201344Z/artifacts.json",
+      "bytes": 1513,
+      "original_sha256": "75955f8266fd682631bc9d656c79a12c12579980caff96b5131211080ecd1001",
+      "roundtrip_sha256": "75955f8266fd682631bc9d656c79a12c12579980caff96b5131211080ecd1001"
+    },
+    {
+      "member": "snapshots/20261113T201344Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201344Z/jobs.json",
+      "bytes": 9555,
+      "original_sha256": "693ec5d6b951ac42e826403c6dfbf829b1c4f16d59745139d2674eea9b4552e2",
+      "roundtrip_sha256": "693ec5d6b951ac42e826403c6dfbf829b1c4f16d59745139d2674eea9b4552e2"
+    },
+    {
+      "member": "snapshots/20261113T201344Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201344Z/provenance.json",
+      "bytes": 723,
+      "original_sha256": "7e24c8fa0ff4ce6ad1c31362765aa077af688aa9f8053d3977a9dc317926dbdb",
+      "roundtrip_sha256": "7e24c8fa0ff4ce6ad1c31362765aa077af688aa9f8053d3977a9dc317926dbdb"
+    },
+    {
+      "member": "snapshots/20261113T201612Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201612Z/artifacts.json",
+      "bytes": 3009,
+      "original_sha256": "18523d028e68ee8f4cf4e3586288a4e5165631f5d1452faa5dcb481a954e85dd",
+      "roundtrip_sha256": "18523d028e68ee8f4cf4e3586288a4e5165631f5d1452faa5dcb481a954e85dd"
+    },
+    {
+      "member": "snapshots/20261113T201612Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201612Z/jobs.json",
+      "bytes": 9856,
+      "original_sha256": "516adb4d9b24293669fcbe861a82e3212ff5da1ed13c87f81c0d16ba6bc5c2fa",
+      "roundtrip_sha256": "516adb4d9b24293669fcbe861a82e3212ff5da1ed13c87f81c0d16ba6bc5c2fa"
+    },
+    {
+      "member": "snapshots/20261113T201612Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201612Z/provenance.json",
+      "bytes": 723,
+      "original_sha256": "d6e1a75210178f08cfd9152cff33e4b55260c94c835f8b7d5eeee9060d4f8a9c",
+      "roundtrip_sha256": "d6e1a75210178f08cfd9152cff33e4b55260c94c835f8b7d5eeee9060d4f8a9c"
+    },
+    {
+      "member": "snapshots/20261113T201844Z/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201844Z/artifacts.json",
+      "bytes": 3009,
+      "original_sha256": "18523d028e68ee8f4cf4e3586288a4e5165631f5d1452faa5dcb481a954e85dd",
+      "roundtrip_sha256": "18523d028e68ee8f4cf4e3586288a4e5165631f5d1452faa5dcb481a954e85dd"
+    },
+    {
+      "member": "snapshots/20261113T201844Z/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201844Z/jobs.json",
+      "bytes": 14678,
+      "original_sha256": "2998b9f951d716ae8bf3f66f76a742ddc1c455c8d88c7a0ee78026e0e6957a48",
+      "roundtrip_sha256": "2998b9f951d716ae8bf3f66f76a742ddc1c455c8d88c7a0ee78026e0e6957a48"
+    },
+    {
+      "member": "snapshots/20261113T201844Z/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201844Z/provenance.json",
+      "bytes": 987,
+      "original_sha256": "297bbf476d10a5183687445511aa6e94fe820431c34696991da05920dc385883",
+      "roundtrip_sha256": "297bbf476d10a5183687445511aa6e94fe820431c34696991da05920dc385883"
+    },
+    {
+      "member": "snapshots/20261113T201844Z/run.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/20261113T201844Z/run.json",
+      "bytes": 12969,
+      "original_sha256": "ce32f74678802e0d2225b342d69207e1fecd6fbbec54c51060082b11f7f59a53",
+      "roundtrip_sha256": "ce32f74678802e0d2225b342d69207e1fecd6fbbec54c51060082b11f7f59a53"
+    },
+    {
+      "member": "snapshots/initial/artifacts.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/initial/artifacts.json",
+      "bytes": 32,
+      "original_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "roundtrip_sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c"
+    },
+    {
+      "member": "snapshots/initial/jobs.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/initial/jobs.json",
+      "bytes": 8929,
+      "original_sha256": "ffd09375902ca9e61108a472e2b1709c6eddaab41da0d262598173053d156773",
+      "roundtrip_sha256": "ffd09375902ca9e61108a472e2b1709c6eddaab41da0d262598173053d156773"
+    },
+    {
+      "member": "snapshots/initial/provenance.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/initial/provenance.json",
+      "bytes": 988,
+      "original_sha256": "208bf5713b211279393652073595c1ab42f5ace1e4260ef4f61e4a7534c85395",
+      "roundtrip_sha256": "208bf5713b211279393652073595c1ab42f5ace1e4260ef4f61e4a7534c85395"
+    },
+    {
+      "member": "snapshots/initial/run.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/snapshots/initial/run.json",
+      "bytes": 12966,
+      "original_sha256": "8c3c165f3aa73b77078fcc078eaf306ae2ab182c985ef0eda8f0b8f834f14e65",
+      "roundtrip_sha256": "8c3c165f3aa73b77078fcc078eaf306ae2ab182c985ef0eda8f0b8f834f14e65"
+    },
+    {
+      "member": "source/.github/probes/creative_android_probe.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "original_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "roundtrip_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e"
+    },
+    {
+      "member": "source/.github/probes/lumo_2003_update_android_probe.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/probes/lumo_2003_update_android_probe.py",
+      "bytes": 10588,
+      "original_sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7",
+      "roundtrip_sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7"
+    },
+    {
+      "member": "source/.github/probes/lumo_2019_update_android_probe.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/probes/lumo_2019_update_android_probe.py",
+      "bytes": 1894,
+      "original_sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0",
+      "roundtrip_sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+    },
+    {
+      "member": "source/.github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/probes/lumo_nextgen_surfaces_android_probe.py",
+      "bytes": 36488,
+      "original_sha256": "3c35cde09c2d7d7ac9c82d1fc0201386a24cc7dd018d7a4f2ffebf977be0864b",
+      "roundtrip_sha256": "3c35cde09c2d7d7ac9c82d1fc0201386a24cc7dd018d7a4f2ffebf977be0864b"
+    },
+    {
+      "member": "source/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 37089,
+      "original_sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c",
+      "roundtrip_sha256": "8bd1d84aeef0803852227b1e20776b0a0dc99cde86d95ebc3d6843a13efb832c"
+    },
+    {
+      "member": "source/.github/probes/modernization_android_tour.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/probes/modernization_android_tour.py",
+      "bytes": 61503,
+      "original_sha256": "ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1",
+      "roundtrip_sha256": "ff4b39d822b1f8fa9c542fbf3a677d2e628f8238deccd9c2c32067f28019acf1"
+    },
+    {
+      "member": "source/.github/workflows/lumo-kart-graphics-2019.yml",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/.github/workflows/lumo-kart-graphics-2019.yml",
+      "bytes": 42562,
+      "original_sha256": "34173a3f0d65ccaf0cb04b1626de8e7d9ca64bb415b05eae3e5daa8a43b41c23",
+      "roundtrip_sha256": "34173a3f0d65ccaf0cb04b1626de8e7d9ca64bb415b05eae3e5daa8a43b41c23"
+    },
+    {
+      "member": "source/config/godot-source.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/config/godot-source.json",
+      "bytes": 145,
+      "original_sha256": "4e65ae74551b2f5b08624e6626d7f13e8a413183abb81feff64cd8d36297a13d",
+      "roundtrip_sha256": "4e65ae74551b2f5b08624e6626d7f13e8a413183abb81feff64cd8d36297a13d"
+    },
+    {
+      "member": "source/config/kart-graphics-2019-visual-review.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/config/kart-graphics-2019-visual-review.json",
+      "bytes": 8728,
+      "original_sha256": "7b92eef83695cd35f1712b4095a6389e4d661eeabe5bf9ed03d8c0304608170a",
+      "roundtrip_sha256": "7b92eef83695cd35f1712b4095a6389e4d661eeabe5bf9ed03d8c0304608170a"
+    },
+    {
+      "member": "source/config/nextgen-2019-visual-review.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/config/nextgen-2019-visual-review.json",
+      "bytes": 19482,
+      "original_sha256": "1ed85c672b956792498ab3cf3948dab0bc0417ccb071e13c51ef2f1840c78943",
+      "roundtrip_sha256": "1ed85c672b956792498ab3cf3948dab0bc0417ccb071e13c51ef2f1840c78943"
+    },
+    {
+      "member": "source/pubspec.yaml",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/pubspec.yaml",
+      "bytes": 2675,
+      "original_sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "roundtrip_sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+    },
+    {
+      "member": "source/scripts/build_unified_apk.sh",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/build_unified_apk.sh",
+      "bytes": 4563,
+      "original_sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5",
+      "roundtrip_sha256": "fe3abd93e2b7c24403df25a41897588bedb2fdaf0ab83d9f1785ab83650094b5"
+    },
+    {
+      "member": "source/scripts/compile_android_host.sh",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/compile_android_host.sh",
+      "bytes": 3231,
+      "original_sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4",
+      "roundtrip_sha256": "0cb7b2b2ef189e96d92fb3bf6b8e5d051b1a12013bbfc09331f539f02f929cb4"
+    },
+    {
+      "member": "source/scripts/export_embedded_game.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/export_embedded_game.py",
+      "bytes": 8567,
+      "original_sha256": "fcef35e68e8487fa16357161adec6550b9c3c8c0c7bb8f84574ef7963f8a3fcc",
+      "roundtrip_sha256": "fcef35e68e8487fa16357161adec6550b9c3c8c0c7bb8f84574ef7963f8a3fcc"
+    },
+    {
+      "member": "source/scripts/release_pipeline_gates.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/release_pipeline_gates.py",
+      "bytes": 9853,
+      "original_sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946",
+      "roundtrip_sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946"
+    },
+    {
+      "member": "source/scripts/run_full_flutter_acceptance.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/run_full_flutter_acceptance.py",
+      "bytes": 6483,
+      "original_sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2",
+      "roundtrip_sha256": "ea70a6aa763887bda3c1d151132699c98f9b93d81054ecf752fb46705089fac2"
+    },
+    {
+      "member": "source/scripts/tests/test_android_voice_scroll.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/tests/test_android_voice_scroll.py",
+      "bytes": 7590,
+      "original_sha256": "b8b56d1673fd70db30e264db124663acd6a233c08c8460b62e5fd230f5ba806d",
+      "roundtrip_sha256": "b8b56d1673fd70db30e264db124663acd6a233c08c8460b62e5fd230f5ba806d"
+    },
+    {
+      "member": "source/scripts/verify_kart_graphics_delivery.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/verify_kart_graphics_delivery.py",
+      "bytes": 13393,
+      "original_sha256": "af648591f65b214499c9a60416b996920b32b76eba2606b2a72c6d020c355ad8",
+      "roundtrip_sha256": "af648591f65b214499c9a60416b996920b32b76eba2606b2a72c6d020c355ad8"
+    },
+    {
+      "member": "source/scripts/verify_legacy_release_pin.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/verify_legacy_release_pin.py",
+      "bytes": 10415,
+      "original_sha256": "4ff7a1157b15a624f686d7a7d792493ba237aaa146afbaf092b89b5ad9eebe61",
+      "roundtrip_sha256": "4ff7a1157b15a624f686d7a7d792493ba237aaa146afbaf092b89b5ad9eebe61"
+    },
+    {
+      "member": "source/scripts/verify_nextgen_delivery.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/verify_nextgen_delivery.py",
+      "bytes": 24332,
+      "original_sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196",
+      "roundtrip_sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196"
+    },
+    {
+      "member": "source/scripts/verify_studio_delivery.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/verify_studio_delivery.py",
+      "bytes": 47035,
+      "original_sha256": "f5bfd40078087ec59442be19a400210ba18e4fd713b6f00bfe0853bf2de61ae4",
+      "roundtrip_sha256": "f5bfd40078087ec59442be19a400210ba18e4fd713b6f00bfe0853bf2de61ae4"
+    },
+    {
+      "member": "source/scripts/verify_unified_apk.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/scripts/verify_unified_apk.py",
+      "bytes": 12075,
+      "original_sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+      "roundtrip_sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382"
+    },
+    {
+      "member": "source/tools/android_qa/update_preservation.py",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/tools/android_qa/update_preservation.py",
+      "bytes": 10258,
+      "original_sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a",
+      "roundtrip_sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a"
+    },
+    {
+      "member": "source/tools/auto_install/LumoGameActivity.kt",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 9980,
+      "original_sha256": "6ebebc7b30ef881f0a0aa732a3ce435b993768c72c973545d2d88d9920a30510",
+      "roundtrip_sha256": "6ebebc7b30ef881f0a0aa732a3ce435b993768c72c973545d2d88d9920a30510"
+    },
+    {
+      "member": "source-manifest.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source-manifest.json",
+      "bytes": 9784,
+      "original_sha256": "918267035b835002490ff98c64a284c3df5c86a655766926f6166e8ef5570ea1",
+      "roundtrip_sha256": "918267035b835002490ff98c64a284c3df5c86a655766926f6166e8ef5570ea1"
+    },
+    {
+      "member": "source-supplement.json",
+      "original_file": "/workspace/scratch/b3485b7bb989/host-pr465-38a49f7d-android-evidence/source-supplement.json",
+      "bytes": 1233,
+      "original_sha256": "a921e0da6532cae6c22a8fb87fafc09dd88c6a9fd281c19076c40e1a6d492549",
+      "roundtrip_sha256": "a921e0da6532cae6c22a8fb87fafc09dd88c6a9fd281c19076c40e1a6d492549"
+    }
+  ]
+}

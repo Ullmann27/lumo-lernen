@@ -348,6 +348,22 @@ jobs:
         with:
           persist-credentials: false
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Checkout exact upstream action only for Android 17
+        if: matrix.api == 37
+        uses: actions/checkout@v4
+        with:
+          repository: ReactiveCircus/android-emulator-runner
+          ref: a421e43855164a8197daf9d8d40fe71c6996bb0d
+          path: runner-actions/android-emulator-runner
+          persist-credentials: false
+      - name: Verify framework guard before the Android 17 emulator
+        if: matrix.api == 37
+        env:
+          LUMO_ACTION_TEST_SOURCE: ${{ github.workspace }}/runner-actions/android-emulator-runner
+        run: |
+          set -euo pipefail
+          mkdir -p tour/framework-start
+          python3 -B -m unittest discover -s scripts/tests -p test_android_framework_ready.py -v 2>&1 | tee tour/framework-start/local-contracts.log
       - uses: actions/download-artifact@v4
         with:
           name: lumo-kart-graphics-2019-candidate
@@ -389,8 +405,29 @@ jobs:
             sleep 0.25
           done
           grep -i 'OpenGL renderer string' tour/mesa-renderer.txt
+      - name: Verify the Android 17 CLI22 source and AVD counterexamples
+        if: matrix.api == 37
+        run: |
+          set -euo pipefail
+          python3 -B -m unittest discover -s scripts/tests -p test_android37_cli22.py -v 2>&1 | tee tour/framework-start/cli22-contracts.log
+      - name: Preserve original Android 17 CLI AVD and install fixed official CLI22 bytes
+        if: matrix.api == 37
+        timeout-minutes: 15
+        run: |
+          set -euo pipefail
+          python3 scripts/prepare_android37_cli22.py prepare --action-dir runner-actions/android-emulator-runner --out tour/framework-start/cli22
+      - name: Bind the Android 17 guard to this actual new graphics APK source
+        if: matrix.api == 37
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        run: |
+          set -euo pipefail
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          python3 scripts/prepare_android37_emulator_action.py --action-dir runner-actions/android-emulator-runner --out tour/framework-start --probe-source "$SOURCE_SHA" --workflow .github/workflows/lumo-kart-graphics-2019.yml --context graphics-matrix --apk-source "$SOURCE_SHA" --native-source "$native_revision"
+          node --check runner-actions/android-emulator-runner/lib/emulator-manager.js
       - name: Install and tour the exact APK
-        uses: reactivecircus/android-emulator-runner@v2
+        if: matrix.api == 35
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
         env:
           LUMO_NATIVE_STAGE_MENU: '1'
           DISPLAY: ':99'
@@ -415,6 +452,47 @@ jobs:
             "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
             .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
             .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
+      - name: Install and tour the exact APK after Android 17 framework readiness
+        if: matrix.api == 37
+        uses: ./runner-actions/android-emulator-runner
+        env:
+          LUMO_NATIVE_STAGE_MENU: '1'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          # SDK packages use 37.0; the measured runtime API remains integer 37.
+          api-level: ${{ matrix.api == 37 && '37.0' || matrix.api }}
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: ${{ matrix.api == 35 && '14472402' || '' }}
+          ram-size: ${{ matrix.api == 37 && '4096M' || '3072M' }}
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-port: 5554
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          pre-emulator-launch-script: |
+            python3 "$GITHUB_WORKSPACE/scripts/prepare_android37_cli22.py" inspect --out "$GITHUB_WORKSPACE/tour/framework-start/cli22" --phase before-boot
+            python3 "$GITHUB_WORKSPACE/scripts/android_framework_ready.py" start --out "$GITHUB_WORKSPACE/tour/framework-start" --serial emulator-5554
+          script: |
+            python3 "$GITHUB_WORKSPACE/scripts/android_framework_ready.py" stop --out "$GITHUB_WORKSPACE/tour/framework-start" --serial emulator-5554
+            adb shell getprop ro.build.version.sdk > tour/android-sdk.txt
+            adb shell getprop ro.build.version.release > tour/android-release.txt
+            "$ANDROID_HOME/emulator/emulator" -version > tour/android-emulator-version.txt 2>&1
+            .probe-venv/bin/python .github/probes/modernization_android_tour.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour
+            .probe-venv/bin/python .github/probes/lumo_studio_surfaces_android_probe.py --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --prior-tour tour/tour-result.json --expected-api ${{ matrix.api }} --out tour/nextgen
+      - name: Preserve actual Android 17 generated hardware and disk configuration
+        if: always() && matrix.api == 37
+        run: |
+          if [ -f tour/framework-start/cli22/prepared.json ]; then
+            python3 scripts/prepare_android37_cli22.py inspect --out tour/framework-start/cli22 --phase after-action
+          fi
+      - name: Preserve Android 17 startup diagnostics even after action failure
+        if: always() && matrix.api == 37
+        run: python3 scripts/android_framework_ready.py stop --out tour/framework-start --serial emulator-5554 --allow-not-started
       - uses: actions/upload-artifact@v4
         if: always()
         with:

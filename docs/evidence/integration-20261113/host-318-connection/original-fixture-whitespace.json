@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "full_check_exit_code": 2,
+  "original_output_file": "original-fixture-whitespace.log",
+  "original_output_sha256": "47e5309366f73934cd18b9314d7620bfd6277a548af1ce5560e577fc1ecd0e23",
+  "fixture": "scripts/tests/fixtures/android37_image_43494312623/source.properties",
+  "fixture_sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e",
+  "reason": "Official original SDK metadata has a final blank line. Preserve the verified source bytes; no formatting, Git attributes or broader whitespace exclusions were introduced.",
+  "remaining_paths_command": [
+    "git",
+    "diff",
+    "--cached",
+    "--check",
+    "--",
+    ".",
+    ":(exclude)scripts/tests/fixtures/android37_image_43494312623/source.properties"
+  ],
+  "remaining_paths_exit_code": 0,
+  "remaining_paths_output_bytes": 0
+}
