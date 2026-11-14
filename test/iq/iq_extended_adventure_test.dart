@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lumo_lernen/core/iq/iq_test_session.dart';
 import 'package:lumo_lernen/domain/iq/iq_puzzle.dart';
-import 'package:lumo_lernen/features/tests/iq_test_screen.dart';
 
 import 'iq_test_support.dart';
 

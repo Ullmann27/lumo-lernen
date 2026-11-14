@@ -15,7 +15,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'integration/lumo-agent-execution-20261114' ||
-      github.head_ref == 'integration/lumo-live-connections-20261114')
+      github.head_ref == 'integration/lumo-live-connections-20261114' ||
+      github.head_ref == 'repair/lumo-single-apk-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
@@ -111,7 +112,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'integration/lumo-agent-execution-20261114' ||
-      github.head_ref == 'integration/lumo-live-connections-20261114'))
+      github.head_ref == 'integration/lumo-live-connections-20261114' ||
+      github.head_ref == 'repair/lumo-single-apk-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -169,7 +171,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'integration/lumo-agent-execution-20261114' ||
-      github.head_ref == 'integration/lumo-live-connections-20261114'))
+      github.head_ref == 'integration/lumo-live-connections-20261114' ||
+      github.head_ref == 'repair/lumo-single-apk-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 90
     outputs:
@@ -447,6 +450,32 @@ jobs:
           cd "$native_source"
           LUMO_LIVE_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/live" bash tools/validate_live_connections.sh 2>&1 | tee "$native_logs/live-runner.log"
           LUMO_DISCOVERY_LOG_DIR="$GITHUB_WORKSPACE/acceptance-native/discovery" bash tools/validate_discovery_connections.sh 2>&1 | tee "$native_logs/discovery-runner.log"
+      - name: Verify repaired village saves and full region rendering
+        env:
+          LIBGL_ALWAYS_SOFTWARE: '1'
+        run: |
+          set -euo pipefail
+          export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"
+          native_revision="$(python3 -c 'import json; print(json.load(open("config/godot-source.json"))["revision"])')"
+          native_source="$RUNNER_TEMP/lumo-native-acceptance"
+          village_logs="$GITHUB_WORKSPACE/acceptance-native/village-support"
+          test "$(git -C "$native_source" rev-parse HEAD)" = "$native_revision"
+          mkdir -p "$village_logs/captures"
+          export XDG_DATA_HOME="$village_logs/user-data"
+          export XDG_CONFIG_HOME="$village_logs/user-config"
+          export XDG_CACHE_HOME="$village_logs/user-cache"
+          export LUMO_CAPTURE_DIR="$village_logs/captures"
+          export GODOT_SILENCE_ROOT_WARNING=1
+          mkdir -p "$XDG_DATA_HOME" "$XDG_CONFIG_HOME" "$XDG_CACHE_HOME"
+          cd "$native_source"
+          git rev-parse HEAD > "$village_logs/source-sha.txt"
+          git rev-parse 'HEAD^{tree}' > "$village_logs/source-tree.txt"
+          python3 tools/run_godot_probe.py --log "$village_logs/economy.log" --timeout 180 --required '[VillageEconomy] PASS 339 checks' -- \
+            godot --headless --path . --audio-driver Dummy --script scripts/tests/build_village_economy_regression.gd
+          python3 tools/run_godot_probe.py --log "$village_logs/scaling-headless.log" --timeout 180 --required '[VillageScaling] PASS 42 checks: full 2178-house model, camera and explorer' -- \
+            godot --headless --path . --audio-driver Dummy --script scripts/tests/build_village_scaling_regression.gd
+          python3 tools/run_godot_probe.py --log "$village_logs/scaling-rendered.log" --timeout 240 --required '[VillageScaling] PASS 46 checks: full 2178-house model, camera and explorer' -- \
+            xvfb-run -a -s '-screen 0 2560x2560x24' godot --path . --rendering-method gl_compatibility --audio-driver Dummy --script scripts/tests/build_village_scaling_regression.gd -- --capture
       - uses: actions/upload-artifact@v4
         if: always()
         with:
@@ -769,7 +798,8 @@ jobs:
       (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
       github.head_ref == 'work/lumo-play-quality-20261114' ||
       github.head_ref == 'integration/lumo-agent-execution-20261114' ||
-      github.head_ref == 'integration/lumo-live-connections-20261114') &&
+      github.head_ref == 'integration/lumo-live-connections-20261114' ||
+      github.head_ref == 'repair/lumo-single-apk-20261114') &&
       needs.verify-and-build.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.connect-four-runtime.result == 'success' &&

@@ -86,6 +86,7 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
     <List<Offset>>[],
     <List<Offset>>[],
   ];
+  int? _activeRow;
   List<Offset>? _activeStroke;
 
   bool _answerAccepted = false;
@@ -138,10 +139,37 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
   void _clearAllStrokes() {
     HapticFeedback.lightImpact();
     setState(() {
+      _activeRow = null;
       _activeStroke = null;
       for (final r in _rows) {
         r.clear();
       }
+    });
+  }
+
+  void _startStroke(int row, Offset position) {
+    setState(() {
+      _activeRow = row;
+      _activeStroke = [position];
+    });
+  }
+
+  void _updateStroke(int row, Offset position) {
+    final stroke = _activeStroke;
+    if (_activeRow != row || stroke == null || stroke.last == position) return;
+    setState(() => stroke.add(position));
+  }
+
+  void _finishStroke(int row, {required bool cancelled}) {
+    if (_activeRow != row) return;
+    final stroke = _activeStroke;
+    setState(() {
+      // A tap or cancelled contact is not a completed writing attempt.
+      if (!cancelled && stroke != null && stroke.length > 1) {
+        _rows[row].add(stroke);
+      }
+      _activeRow = null;
+      _activeStroke = null;
     });
   }
 
@@ -210,6 +238,8 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
       for (final r in _rows) {
         r.clear();
       }
+      _activeRow = null;
+      _activeStroke = null;
     });
     _entryCtrl.forward(from: 0);
     _sayWord();
@@ -381,27 +411,14 @@ class _WortDiktatScreenState extends State<WortDiktatScreen>
             Expanded(
               child: _WritingRow(
                 gradient: _gradient,
-                strokes: _rows[row],
-                onStart: (offset) {
-                  setState(() {
-                    _activeStroke = [offset];
-                    _rows[row].add(_activeStroke!);
-                  });
-                },
-                onUpdate: (offset) {
-                  final stroke = _activeStroke;
-                  if (stroke == null || !_rows[row].contains(stroke)) return;
-                  setState(() => stroke.add(offset));
-                },
-                onEnd: () => _activeStroke = null,
-                onCancel: () {
-                  final stroke = _activeStroke;
-                  if (stroke == null) return;
-                  setState(() {
-                    _rows[row].remove(stroke);
-                    _activeStroke = null;
-                  });
-                },
+                strokes: [
+                  ..._rows[row],
+                  if (_activeRow == row && _activeStroke != null) _activeStroke!,
+                ],
+                onStart: (position) => _startStroke(row, position),
+                onUpdate: (position) => _updateStroke(row, position),
+                onEnd: () => _finishStroke(row, cancelled: false),
+                onCancel: () => _finishStroke(row, cancelled: true),
               ),
             ),
             if (row < 3) const SizedBox(height: 8),

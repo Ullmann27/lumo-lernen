@@ -313,7 +313,8 @@ class BindingTests(unittest.TestCase):
         for branch in ('integration/lumo-c4-connections-20261114',
                        'work/lumo-play-quality-20261114',
                        'integration/lumo-agent-execution-20261114',
-                       'integration/lumo-live-connections-20261114'):
+                       'integration/lumo-live-connections-20261114',
+                       'repair/lumo-single-apk-20261114'):
             metadata = original_metadata()
             metadata[0]['head_branch'] = branch
             with self.subTest(branch=branch):
@@ -326,16 +327,21 @@ class BindingTests(unittest.TestCase):
         for branch in ('main', 'integration/lumo-agent-execution-20261114-copy',
                        'integration/lumo-agent-execution-20261115',
                        'work/lumo-play-quality-20261114-copy',
-                       'integration/lumo-live-connections-20261114-copy', ''):
+                       'integration/lumo-live-connections-20261114-copy',
+                       'repair/lumo-single-apk-20261114-copy',
+                       'repair/lumo-single-apk-20261115',
+                       'integration/lumo-single-apk-20261114', ''):
             metadata = original_metadata()
             metadata[0]['head_branch'] = branch
             with self.subTest(branch=branch), self.assertRaises(ValueError):
                 bind(metadata)
-        metadata = original_metadata()
-        metadata[0]['head_branch'] = 'integration/lumo-agent-execution-20261114'
-        metadata[0]['repository']['full_name'] = 'outside/fork'
-        with self.assertRaises(ValueError):
-            bind(metadata)
+        for branch in ('integration/lumo-agent-execution-20261114',
+                       'repair/lumo-single-apk-20261114'):
+            metadata = original_metadata()
+            metadata[0]['head_branch'] = branch
+            metadata[0]['repository']['full_name'] = 'outside/fork'
+            with self.subTest(branch=branch), self.assertRaises(ValueError):
+                bind(metadata)
 
     def test_rejects_wrong_source_workflow_attempt_artifact_and_job(self):
         alterations=(lambda x:x[0].update(head_sha='f'*40),
