@@ -1,0 +1,14 @@
+00:00 +0: loading /home/runner/work/lumo-lernen/lumo-lernen/frozen-host/test/games/connect_four_small_result_actions_qa.dart
+00:00 +0: 640x360 won-dialog scroll, restart and solo-mode actions reach Dart
+00:13 +0 -1: 640x360 won-dialog scroll, restart and solo-mode actions reach Dart [E]
+  Expected: true
+    Actual: <false>
+  
+  package:matcher                                            expect
+  package:flutter_test/src/widget_tester.dart 473:18         expect
+  test/games/connect_four_small_result_actions_qa.dart 90:7  main.<fn>
+  
+00:13 +0 -1: Some tests failed.
+
+Failing tests:
+  /home/runner/work/lumo-lernen/lumo-lernen/frozen-host/test/games/connect_four_small_result_actions_qa.dart: 640x360 won-dialog scroll, restart and solo-mode actions reach Dart

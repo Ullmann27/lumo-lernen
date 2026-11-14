@@ -1,0 +1,22 @@
+func _layout_matches(value: Variant) -> bool:
+	if not value is Dictionary:
+		return false
+	return (
+		value.get("settled") == true
+		and value.get("token") == table._token
+		and value.get("owner") == table._state.owner
+		and value.get("roundId") == table._state.roundId
+		and int(value.get("revision", -1)) == int(table._state.revision)
+		and int(value.get("ack", -1)) == int(table._state.ack)
+		and int(value.get("pending", -1)) == 0
+		and value.get("phase") == table._state.phase
+		and value.get("paused") == table._state.paused
+		and value.get("twoPlayers") == table._state.twoPlayers
+		and value.get("rewarded") == table._state.rewarded
+		and value.get("columns") == table._state.columns
+		and value.get("window_px") == [640, 360]
+		and value.get("viewport_px") == [640, 360]
+		and absf(float(value.get("density", 0.0)) - 1.0) < 0.0001
+		and value.get("safe_rect") == [0, 24, 640, 312]
+	)
+

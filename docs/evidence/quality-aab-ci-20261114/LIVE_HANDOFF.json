@@ -1,6 +1,6 @@
 {
   "schema": 1,
-  "recorded_at_utc": "2026-11-14T12:40:00Z",
+  "recorded_at_utc": "2026-11-14T12:49:00Z",
   "objective": "App Lumo: verified fresh Android candidate, preserve existing modules/data, progress toward Play release without unverified approval claims",
   "agent_tree": [
     "/root",
@@ -32,7 +32,46 @@
     "current_step_at_last_read": "Require actual gameplay gates on the exact pinned native source",
     "step_started_utc": "2026-11-14T12:03:05Z",
     "old_comparable_step_seconds": 2639,
-    "old_timing_is_not_current_success_or_eta": true
+    "old_timing_is_not_current_success_or_eta": true,
+    "last_observed_at_utc": "2026-11-14T12:46:31Z",
+    "jobs_snapshot": [
+      {
+        "id": 132435073772,
+        "name": "connect-four-runtime",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T11:36:53Z",
+        "completed_at": "2026-11-14T11:39:19Z",
+        "active_steps": []
+      },
+      {
+        "id": 132435074028,
+        "name": "android-host-compile",
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T11:36:53Z",
+        "completed_at": "2026-11-14T11:40:58Z",
+        "active_steps": []
+      },
+      {
+        "id": 132436033818,
+        "name": "verify-and-build",
+        "status": "in_progress",
+        "conclusion": null,
+        "started_at": "2026-11-14T11:40:59Z",
+        "completed_at": null,
+        "active_steps": [
+          {
+            "name": "Require actual gameplay gates on the exact pinned native source",
+            "status": "in_progress",
+            "conclusion": null,
+            "number": 31,
+            "started_at": "2026-11-14T12:03:05Z",
+            "completed_at": null
+          }
+        ]
+      }
+    ]
   },
   "completed_original_evidence": {
     "desktop_runtime": {
@@ -206,6 +245,181 @@
           "sha": "56577b1e2b799b9b531003bbb384bf9e862137e2"
         }
       ]
+    },
+    "r2_original_read": {
+      "local_path": "/workspace/scratch/2708c7907f28/r2-original-43595002861/original-artifact.zip",
+      "bytes": 1507887,
+      "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+      "archive_members": 95,
+      "pngs": 0,
+      "native_checks": 123,
+      "target_actions": 0,
+      "actual_error": "small_result_restart_before waits for the matching fresh settled layout",
+      "last_ack": 10,
+      "last_revision": 18,
+      "product_failure_proven": false,
+      "root_read_original_logs": true,
+      "root_read_original_native_and_dart_results": true,
+      "r3_preparation": "Only three expected geometry arrays become FLOAT literals plus branch identity strings; exact miniature engine reproduction and independent review pending."
+    },
+    "r2_original_review": {
+      "schema": "lumo.c4.small-result-actions.r2-original-review.v1",
+      "run": {
+        "id": 43595002861,
+        "attempt": 1,
+        "job_id": 132447521284,
+        "qa_head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+        "qa_tree": "767d74b03ea977547c83aa412bb0a96da9253b4f",
+        "conclusion": "failure"
+      },
+      "product": {
+        "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+        "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+        "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+        "native_tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+      },
+      "artifact": {
+        "id": 14113299183,
+        "name": "lumo-c4-small-result-actions-aab092",
+        "bytes": 1507887,
+        "sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+        "git_blob": "5ffcca7542bfd0c990e82630a6688a9764fc877c",
+        "official_download_count": 1,
+        "zip_crc_valid": true,
+        "canonical_unique_regular_paths": true,
+        "files": 95,
+        "png_files": 0,
+        "archive_code_executed": false
+      },
+      "runtime": {
+        "dart_exit_code": 1,
+        "godot_exit_code": 1,
+        "native_checks": 123,
+        "completed_target_actions": 0,
+        "native_error": "small_result_restart_before waits for the matching fresh settled layout",
+        "dart_failure": "test/games/connect_four_small_result_actions_qa.dart:90:7 expected native['passed'] true, received false",
+        "last_state": {
+          "revision": 18,
+          "ack": 10,
+          "phase": "won",
+          "paused": true,
+          "twoPlayers": true,
+          "rewarded": true
+        },
+        "observed_requests": 10,
+        "first_round_stars": 5,
+        "first_round_xp": 40,
+        "restart_requested": false,
+        "target_solo_mode_requested": false
+      },
+      "cause": {
+        "classification": "QA-only impossible geometry comparisons",
+        "qa_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+        "function": "_layout_matches",
+        "lines": [
+          128,
+          129,
+          131
+        ],
+        "reason": "Godot 4.6.3 JSON arrays contain FLOAT elements; the three expected literal arrays contain INT elements. Array equality uses type-sensitive Variant::hash_compare. Thus these predicates reject even numerically correct JSON geometry.",
+        "independent_review_blob": "653f6be25398506e27565bbaa32dfafaea6878af"
+      },
+      "source_review": {
+        "before_after_byte_identical": true,
+        "source_snapshot_blob": "6d2c38683631976dfa41a057da9059c50853b3cf",
+        "source_snapshot_sha256": "798649037b014221bc168aea241b0e77dccae9716cb4aefcc558cd37657313ae",
+        "host_entries_matched": 447,
+        "native_entries_matched": 1256,
+        "qa_entries_matched": 4,
+        "generated_uid_entries": 334,
+        "uid_source_blobs_and_reconstructed_uid_hashes_verified": true
+      },
+      "limitations": [
+        "No completed target result-dialog action, no PNG and no passed gameplay gate.",
+        "The original transient layout observation is absent: production _exit_tree deletes it. Exact observed geometry cannot be reconstructed from this archive.",
+        "Other _layout_matches predicates have not all been shown true; fixing the demonstrated impossible comparisons does not imply a successful future runtime.",
+        "This review executes no archive code, production tests, engine, rendering, Android tour or APK build. The separate later minimal QA reproduction must not be conflated with the failed R2 gameplay run."
+      ],
+      "supersedes_availability_only": "The earlier cb336ebb4fa867f21692d22dd6a95f3e526763c1 checkpoint correctly recorded unavailable local artifact access at its creation; original ZIP access and the failure diagnosis are now completed."
+    },
+    "r3_reproduction": {
+      "manifest_blob": "fff0b599f31e82141b091429024682381457d766",
+      "root_independent_review": {
+        "source_predicate_exact": true,
+        "full_reproduction_only_three_literal_changes": true,
+        "actual_inputs_and_expectations_identical": true,
+        "red": {
+          "checks": 15,
+          "failures": 1,
+          "failed_cases": [
+            "exact_geometry"
+          ]
+        },
+        "green": {
+          "checks": 15,
+          "failures": 0
+        },
+        "negative_cases": [
+          {
+            "name": "window_width_wrong",
+            "accepted": false
+          },
+          {
+            "name": "window_height_wrong",
+            "accepted": false
+          },
+          {
+            "name": "viewport_width_wrong",
+            "accepted": false
+          },
+          {
+            "name": "viewport_height_wrong",
+            "accepted": false
+          },
+          {
+            "name": "safe_left_wrong",
+            "accepted": false
+          },
+          {
+            "name": "safe_top_wrong",
+            "accepted": false
+          },
+          {
+            "name": "safe_width_wrong",
+            "accepted": false
+          },
+          {
+            "name": "safe_height_wrong",
+            "accepted": false
+          },
+          {
+            "name": "fractional_window",
+            "accepted": false
+          },
+          {
+            "name": "fractional_viewport",
+            "accepted": false
+          },
+          {
+            "name": "fractional_safe_rect",
+            "accepted": false
+          },
+          {
+            "name": "window_extra_element",
+            "accepted": false
+          },
+          {
+            "name": "safe_string_element",
+            "accepted": false
+          },
+          {
+            "name": "viewport_missing",
+            "accepted": false
+          }
+        ],
+        "gameplay_success_not_inferred": true
+      },
+      "runtime_status": "not yet triggered"
     }
   },
   "remaining": [
@@ -221,7 +435,22 @@
     "github_release_write_tool": false,
     "local_gh_authenticated": false,
     "confirmed_github_browser_session": false,
-    "do_not_reuse_historical_publishers": true
+    "do_not_reuse_historical_publishers": true,
+    "new_browser_observation": {
+      "observed": true,
+      "browser": "cdp",
+      "tab": "2",
+      "verified_url": "https://github.com/Ullmann27/lumo-lernen/releases",
+      "signed_in": false,
+      "signal": "GitHub visible Sign in and Sign up links; no authenticated repository release editor",
+      "auth_requested": false,
+      "created_or_uploaded_release": false,
+      "continuation": "browserAuth documentation read; secure user-assisted sign-in remains needed if no other authorized release capability becomes available. Complete actual candidate build/evidence before requesting user action."
+    },
+    "gh_auth_status": {
+      "exit_code": 1,
+      "authenticated_hosts": 0
+    }
   },
   "evidence": {
     "branch": "checkpoint/lumo-aab-ci-20261114-2708",
@@ -231,18 +460,29 @@
   },
   "resume": "Keep the candidate source frozen; ReleaseLead owns main/native artifact download, LearningLead owns additional QA artifact download, Root owns APK/Android/update/delivery. Use existing four agents. Read actual terminal outputs before any success claim.",
   "local_execution": {
-    "status": "exec_recovered_with_explicit_root_workdir",
-    "default_cwd": "/workspace/scratch/2708c7907f28",
-    "default_cwd_command_error": "No such file or directory",
-    "verified_command": {
-      "command": "pwd",
-      "workdir": "/",
-      "shell": "/bin/bash",
-      "login": false,
-      "exit_code": 0,
-      "stdout": "/\\n"
+    "status": "recovered",
+    "explicit_workdir": "/workspace/scratch/2708c7907f28",
+    "old_paths": "not present after recovery; actually checked /home and old scratch",
+    "host_checkout": "/workspace/scratch/2708c7907f28/lumo-host-current",
+    "host_head": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "host_tree": "baaa84b40b09e61d144f158e5b35a1c4dc5d2ef0",
+    "tracked_changes": "none",
+    "autosave_check_exit": 0,
+    "autosave_once_exit": 0,
+    "watcher_interval_seconds": 120,
+    "tools": {
+      "java": true,
+      "keytool": true,
+      "apksigner": false,
+      "flutter": false
     },
-    "files_presence": "being verified",
-    "diagnostic_ci": "Preparation paused; prefer original artifact download in recovered environment."
+    "diagnostic_ci": "Cancelled preparation; normal exact R2 artifact download succeeded.",
+    "autosave": {
+      "check_exit": 0,
+      "once_exit": 0,
+      "initial_detached_child_visible": false,
+      "active_exec_session": 87960,
+      "actual_start_output": "Watch mode active; checking at most once every 120s. Nothing new to save on work/lumo-play-quality-20261114."
+    }
   }
 }

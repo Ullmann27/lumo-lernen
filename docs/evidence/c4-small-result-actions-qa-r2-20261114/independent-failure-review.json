@@ -1,0 +1,146 @@
+{
+  "schema": "lumo.c4-small-result-actions.r2-independent-failure-review.v1",
+  "source_run": {
+    "id": 43595002861,
+    "attempt": 1,
+    "head": "c082ebe02254e15ff2779b5031b118c330dcdafe",
+    "artifact": 14113299183,
+    "archive_bytes": 1507887,
+    "archive_sha256": "f769c7ae1db1b19b39d8e2944e4d2c21b341669897978bfcfcfe06c97f0b9922",
+    "archive_provenance": "Downloaded and verified once by the parent; reviewer read only its supplied extracted original files"
+  },
+  "frozen_production": {
+    "host": "aab09275ec6b5808de9be539ca4e1a7e70921249",
+    "native": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73"
+  },
+  "actual_originals": [
+    {
+      "path": "runtime/original-godot.log",
+      "bytes": 1970,
+      "sha256": "d728c6e1b5bbdd32552043c1a97a47a57534c09df6ceb30b0c4ffd3efa9ead44"
+    },
+    {
+      "path": "runtime/original-dart.log",
+      "bytes": 764,
+      "sha256": "a3669dabc3c21920ca5f8961b877e20e61a24ec8f8a88de24dfffd7be6132135"
+    },
+    {
+      "path": "runtime/native-result.json",
+      "bytes": 9582,
+      "sha256": "a875e7e9621aa6707609035fd60d4462258aeabdcd11a60baad9b064e54251e7"
+    },
+    {
+      "path": "runtime/dart-result.json",
+      "bytes": 13458,
+      "sha256": "831c2a449fb4eea0c299144893dd9ca3df7f704b1bbe7bddcf05d38d546620a3"
+    }
+  ],
+  "observed_result": {
+    "native_passed": false,
+    "checks": 123,
+    "completed_target_actions": 0,
+    "errors": [
+      "small_result_restart_before waits for the matching fresh settled layout"
+    ],
+    "ack": 10,
+    "revision": 18,
+    "phase": "won",
+    "paused": true,
+    "twoPlayers": true,
+    "rewarded": true,
+    "columns": [
+      0,
+      6,
+      1,
+      6,
+      2,
+      5,
+      3
+    ],
+    "actual_received_requests": 10,
+    "actual_request_actions": [
+      "pause",
+      "mode",
+      "drop",
+      "drop",
+      "drop",
+      "drop",
+      "drop",
+      "drop",
+      "drop",
+      "pause"
+    ],
+    "actual_award": [
+      {
+        "stars": 5,
+        "xp": 40
+      }
+    ],
+    "png_count": 0
+  },
+  "exact_failure": {
+    "classification": "An impossible type-sensitive predicate in the QA capture barrier; not evidence of a production geometry/input failure",
+    "overlay_path": "tools/qa/connect_four_small_result_actions_qa.gd",
+    "overlay_git_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+    "function": "_layout_matches",
+    "comparisons": [
+      {
+        "line": 128,
+        "actual_expression": "value.get(\"window_px\")",
+        "expected_expression": "[640, 360]"
+      },
+      {
+        "line": 129,
+        "actual_expression": "value.get(\"viewport_px\")",
+        "expected_expression": "[640, 360]"
+      },
+      {
+        "line": 131,
+        "actual_expression": "value.get(\"safe_rect\")",
+        "expected_expression": "[0, 24, 640, 312]"
+      }
+    ],
+    "source_proof": [
+      "JSON::_get_token creates a double-valued Variant for every numeric JSON token.",
+      "Array::operator== delegates to recursive_equal, which compares each pair through Variant::hash_compare.",
+      "Variant::hash_compare returns false immediately for different Variant types.",
+      "The decoded JSON arrays therefore contain FLOAT values, while all three literal expected arrays contain INT values; each comparison is false even for numerically exact values.",
+      "The wait barrier returns before _capture and before either of the two intended result-action taps."
+    ],
+    "parent_notification": "Exact issue and narrow constant-type-only repair direction sent to parent and root; no source was changed by this review"
+  },
+  "evidence_limit": {
+    "missing_layout": "The provided original artifact contains no preserved connect_four_layout_v1.json. The production table's _exit_tree removes this ephemeral observation (production blob f2ae17e7edf8ac1b2d0d72a0d477d7e1459b1458, lines 79–82).",
+    "implication": "No exact actual layout field values or additional layout mismatches can be retrospectively established from this artifact. The source-level impossible comparisons are independently proved.",
+    "dart_result": "The Dart error at QA line 90:7 reports native passed:false; it does not demonstrate a separate controller failure.",
+    "result_actions": "Neither the result Restart nor result solo-mode action was submitted; the earlier mode request is setup for the first two-player round.",
+    "execution": "Reviewer performed only original file and official source reads. No new engine/test/import/renderer, source mutation, ref change or artifact download."
+  },
+  "primary_engine_sources": [
+    {
+      "repository": "godotengine/godot",
+      "ref": "4.6.3-stable",
+      "path": "core/io/json.cpp",
+      "git_blob": "857695e2b95441bf2196e38a40629aeaad554cce",
+      "lines": "385–391, 449–450",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/io/json.cpp"
+    },
+    {
+      "repository": "godotengine/godot",
+      "ref": "4.6.3-stable",
+      "path": "core/variant/array.cpp",
+      "git_blob": "56354107c095998a21e31b6f7d8863456b8d7062",
+      "lines": "129–161",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/variant/array.cpp"
+    },
+    {
+      "repository": "godotengine/godot",
+      "ref": "4.6.3-stable",
+      "path": "core/variant/variant.cpp",
+      "git_blob": "2b05c84cd8bd2e818a1d23ac85b537fa5c497c53",
+      "lines": "3172–3175",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/core/variant/variant.cpp"
+    }
+  ],
+  "proposed_minimal_repair_without_implementation": "Keep all three geometry values and all other assertions unchanged; make only the expected geometry arrays use FLOAT literals matching the documented JSON numeric representation, and retain the original failure evidence. A later actual QA execution is still required."
+}

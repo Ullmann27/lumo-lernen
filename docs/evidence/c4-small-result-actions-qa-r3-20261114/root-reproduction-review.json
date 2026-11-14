@@ -1,0 +1,75 @@
+{
+  "source_predicate_exact": true,
+  "full_reproduction_only_three_literal_changes": true,
+  "actual_inputs_and_expectations_identical": true,
+  "red": {
+    "checks": 15,
+    "failures": 1,
+    "failed_cases": [
+      "exact_geometry"
+    ]
+  },
+  "green": {
+    "checks": 15,
+    "failures": 0
+  },
+  "negative_cases": [
+    {
+      "name": "window_width_wrong",
+      "accepted": false
+    },
+    {
+      "name": "window_height_wrong",
+      "accepted": false
+    },
+    {
+      "name": "viewport_width_wrong",
+      "accepted": false
+    },
+    {
+      "name": "viewport_height_wrong",
+      "accepted": false
+    },
+    {
+      "name": "safe_left_wrong",
+      "accepted": false
+    },
+    {
+      "name": "safe_top_wrong",
+      "accepted": false
+    },
+    {
+      "name": "safe_width_wrong",
+      "accepted": false
+    },
+    {
+      "name": "safe_height_wrong",
+      "accepted": false
+    },
+    {
+      "name": "fractional_window",
+      "accepted": false
+    },
+    {
+      "name": "fractional_viewport",
+      "accepted": false
+    },
+    {
+      "name": "fractional_safe_rect",
+      "accepted": false
+    },
+    {
+      "name": "window_extra_element",
+      "accepted": false
+    },
+    {
+      "name": "safe_string_element",
+      "accepted": false
+    },
+    {
+      "name": "viewport_missing",
+      "accepted": false
+    }
+  ],
+  "gameplay_success_not_inferred": true
+}

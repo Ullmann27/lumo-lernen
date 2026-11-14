@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "passed": false,
+  "preflight_only": false,
+  "started_utc": "2026-11-14T12:30:21.879667+00:00",
+  "scope": "two real scrolled desktop result actions; local file transport and test preferences; no Android/FPS claim",
+  "godot_version": "4.6.3.stable.official.7d41c59c4",
+  "commands": {
+    "dart": [
+      "flutter",
+      "test",
+      "--no-pub",
+      "--reporter=expanded",
+      "test/games/connect_four_small_result_actions_qa.dart"
+    ],
+    "godot": [
+      "xvfb-run",
+      "-a",
+      "-s",
+      "-screen 0 960x540x24 -nolisten tcp",
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-lernen/lumo-lernen/frozen-native",
+      "--fixed-fps",
+      "24",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--resolution",
+      "640x360",
+      "--script",
+      "res://scripts/tests/connect_four_small_result_actions_qa.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "fixed_fps_argument_is_not_a_measurement": true,
+  "session": {
+    "token": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "owner": "c6fe0e38855f93fc20490eb88cdc5e23a5ff16cc8fa1330c4c299717bd8f8781",
+    "roundId": "a2f828a50b8ef03f11689af207963d59"
+  },
+  "error": "RuntimeError: C4 process failed: Dart=1, Godot=1",
+  "exit_codes": {
+    "dart": 1,
+    "godot": 1
+  },
+  "completed_utc": "2026-11-14T12:30:50.773127+00:00"
+}

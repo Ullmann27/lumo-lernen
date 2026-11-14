@@ -1,0 +1,357 @@
+{
+  "scope": "Only an isolated exact QA predicate with synthetic JSON; no application/renderer/input run",
+  "verified_red_green": true,
+  "before": {
+    "project.godot": {
+      "bytes": 86,
+      "sha256": "5703b82d2ab1ed223c4f45985d05dcc837c9a8fc7478c61cdc08bf2e32d37d7f",
+      "git_blob": "5a4240cd5596cbe01df75625d70c732fae1b6d78"
+    },
+    "old/int_expectations.gd": {
+      "bytes": 4199,
+      "sha256": "659577350392da5ecac0570f36eef44a77c7e8e069ae1bdfe643fc759c8f0645",
+      "git_blob": "63dc99552956af46190ec12d04e85ca3f290ba23"
+    },
+    "new/float_expectations.gd": {
+      "bytes": 4215,
+      "sha256": "3321d89383efffc2f58f17f0b0dd45366c435b9e3d03964ed91b787187b58a3b",
+      "git_blob": "ff6e1e860f7a4abf3199c74004fd9ebb160390a3"
+    },
+    "original-layout-matches.gd.txt": {
+      "bytes": 894,
+      "sha256": "5b0efac1bfb2c11969273f1141de8f7c24c81fe6702ab8906ffb5677ae178217",
+      "git_blob": "b298fa8bf5ad600865f5e28ef269dea4c870eae4"
+    },
+    "candidate-layout-matches.gd.txt": {
+      "bytes": 910,
+      "sha256": "b2675a234286f6c33d8cbd49d7032bdb61d520f774687df96408ce606d59d67b",
+      "git_blob": "bfd45e45237bde7a641bb7cf14a9387fab8ce597"
+    },
+    "run_reproduction.py": {
+      "bytes": 3800,
+      "sha256": "d9392e17a78febdb7fc3303c35b398c123102fcc696844c6eff0da74a067354d",
+      "git_blob": "dafdf5c8cfaf69f61129bd0940bd53be16f3942b"
+    }
+  },
+  "after": {
+    "project.godot": {
+      "bytes": 86,
+      "sha256": "5703b82d2ab1ed223c4f45985d05dcc837c9a8fc7478c61cdc08bf2e32d37d7f",
+      "git_blob": "5a4240cd5596cbe01df75625d70c732fae1b6d78"
+    },
+    "old/int_expectations.gd": {
+      "bytes": 4199,
+      "sha256": "659577350392da5ecac0570f36eef44a77c7e8e069ae1bdfe643fc759c8f0645",
+      "git_blob": "63dc99552956af46190ec12d04e85ca3f290ba23"
+    },
+    "new/float_expectations.gd": {
+      "bytes": 4215,
+      "sha256": "3321d89383efffc2f58f17f0b0dd45366c435b9e3d03964ed91b787187b58a3b",
+      "git_blob": "ff6e1e860f7a4abf3199c74004fd9ebb160390a3"
+    },
+    "original-layout-matches.gd.txt": {
+      "bytes": 894,
+      "sha256": "5b0efac1bfb2c11969273f1141de8f7c24c81fe6702ab8906ffb5677ae178217",
+      "git_blob": "b298fa8bf5ad600865f5e28ef269dea4c870eae4"
+    },
+    "candidate-layout-matches.gd.txt": {
+      "bytes": 910,
+      "sha256": "b2675a234286f6c33d8cbd49d7032bdb61d520f774687df96408ce606d59d67b",
+      "git_blob": "bfd45e45237bde7a641bb7cf14a9387fab8ce597"
+    },
+    "run_reproduction.py": {
+      "bytes": 3800,
+      "sha256": "d9392e17a78febdb7fc3303c35b398c123102fcc696844c6eff0da74a067354d",
+      "git_blob": "dafdf5c8cfaf69f61129bd0940bd53be16f3942b"
+    }
+  },
+  "runs": [
+    {
+      "label": "red",
+      "command": [
+        "/usr/local/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/scratch/2708c7907f28/c4-json-type-r3-2708",
+        "--script",
+        "res://old/int_expectations.gd"
+      ],
+      "started_utc": "2026-11-14T12:45:58.082893+00:00",
+      "elapsed_seconds": 0.452763,
+      "exit_code": 1,
+      "stdout": {
+        "bytes": 8626,
+        "sha256": "5a56fb6a6c6f8599a60c46c3feab6bfb75120ac200b09ab6e0e7a8885bc68ede",
+        "git_blob": "3a36777a5eeba17c56cd765b8c75d30576aeaec2"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "result": {
+        "cases": [
+          {
+            "accepted": false,
+            "expected": true,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "exact_geometry",
+            "passed": false
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[641,360]}",
+            "name": "window_width_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640,361]}",
+            "name": "window_height_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[639,360],\"window_px\":[640.0,360.0]}",
+            "name": "viewport_width_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640,359],\"window_px\":[640.0,360.0]}",
+            "name": "viewport_height_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[1,24,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_left_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,25,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_top_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,639,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_width_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,640,311],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_height_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.25,360]}",
+            "name": "fractional_window",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640,360.25],\"window_px\":[640.0,360.0]}",
+            "name": "fractional_viewport",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24.25,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "fractional_safe_rect",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640,360,0]}",
+            "name": "window_extra_element",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,640,\"312\"],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_string_element",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"window_px\":[640.0,360.0]}",
+            "name": "viewport_missing",
+            "passed": true
+          }
+        ],
+        "checks": 15,
+        "failures": 1,
+        "float_type_id": 3,
+        "input_number_type_ids": [
+          3,
+          3,
+          3
+        ],
+        "scope": "isolated JSON/type reproduction, synthetic layout values, no game/render/input",
+        "source_overlay_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+      }
+    },
+    {
+      "label": "green",
+      "command": [
+        "/usr/local/bin/godot",
+        "--headless",
+        "--path",
+        "/workspace/scratch/2708c7907f28/c4-json-type-r3-2708",
+        "--script",
+        "res://new/float_expectations.gd"
+      ],
+      "started_utc": "2026-11-14T12:45:58.536203+00:00",
+      "elapsed_seconds": 0.408284,
+      "exit_code": 0,
+      "stdout": {
+        "bytes": 8624,
+        "sha256": "da7ad81ef0a3bc68e31cf2d14fb1a56f5cbccd24f9df10f66d586c57f7348a03",
+        "git_blob": "793a00369883c15ffdacaec150252f3e5ac34952"
+      },
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+      },
+      "result": {
+        "cases": [
+          {
+            "accepted": true,
+            "expected": true,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "exact_geometry",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[641,360]}",
+            "name": "window_width_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640,361]}",
+            "name": "window_height_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[639,360],\"window_px\":[640.0,360.0]}",
+            "name": "viewport_width_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640,359],\"window_px\":[640.0,360.0]}",
+            "name": "viewport_height_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[1,24,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_left_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,25,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_top_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,639,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_width_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,640,311],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_height_wrong",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.25,360]}",
+            "name": "fractional_window",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640,360.25],\"window_px\":[640.0,360.0]}",
+            "name": "fractional_viewport",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24.25,640,312],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "fractional_safe_rect",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640,360,0]}",
+            "name": "window_extra_element",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0,24,640,\"312\"],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"viewport_px\":[640.0,360.0],\"window_px\":[640.0,360.0]}",
+            "name": "safe_string_element",
+            "passed": true
+          },
+          {
+            "accepted": false,
+            "expected": false,
+            "input_json": "{\"ack\":10.0,\"columns\":[0.0,6.0,1.0,6.0,2.0,5.0,3.0],\"density\":1.0,\"owner\":\"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb\",\"paused\":true,\"pending\":0.0,\"phase\":\"won\",\"revision\":18.0,\"rewarded\":true,\"roundId\":\"cccccccccccccccccccccccccccccccc\",\"safe_rect\":[0.0,24.0,640.0,312.0],\"settled\":true,\"token\":\"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa\",\"twoPlayers\":true,\"window_px\":[640.0,360.0]}",
+            "name": "viewport_missing",
+            "passed": true
+          }
+        ],
+        "checks": 15,
+        "failures": 0,
+        "float_type_id": 3,
+        "input_number_type_ids": [
+          3,
+          3,
+          3
+        ],
+        "scope": "isolated JSON/type reproduction, synthetic layout values, no game/render/input",
+        "source_overlay_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f"
+      }
+    }
+  ],
+  "source_before_after_identical": true
+}

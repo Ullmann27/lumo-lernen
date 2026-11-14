@@ -1,0 +1,201 @@
+{
+  "schema": "lumo.c4-small-result-actions.r3-json-array-reproduction.v1",
+  "performed": true,
+  "scope": "Two minimal headless SceneTree executions of the exact extracted QA _layout_matches predicate using synthetic JSON. No application scene, asset import, game input, screenshots, Android execution, or performance measurement.",
+  "source": {
+    "original_overlay_blob": "cc9ef04069bb2d73d2953a725e7ee5974e5b496f",
+    "candidate_full_overlay_expected_blob": "1b474002b3b93db9cae53a19c90fe75cb80c0604",
+    "candidate_full_overlay_sha256": "6a6370bc3a28da849d67cfaaf46768e2bf02298306972b0c6e716b0c7765dbf3",
+    "changes": [
+      {
+        "before": "and value.get(\"window_px\") == [640, 360]",
+        "after": "and value.get(\"window_px\") == [640.0, 360.0]"
+      },
+      {
+        "before": "and value.get(\"viewport_px\") == [640, 360]",
+        "after": "and value.get(\"viewport_px\") == [640.0, 360.0]"
+      },
+      {
+        "before": "and value.get(\"safe_rect\") == [0, 24, 640, 312]",
+        "after": "and value.get(\"safe_rect\") == [0.0, 24.0, 640.0, 312.0]"
+      }
+    ]
+  },
+  "engine": {
+    "argv": [
+      "/usr/local/bin/godot",
+      "--version"
+    ],
+    "path": "/opt/godot/4.6.3/Godot_v4.6.3-stable_linux.x86_64",
+    "bytes": 138981968,
+    "sha256": "f64d4ed19fc9df9440321653fcc80df8c6e365ba7b6de0a29e2cfa9fa71bfeb3",
+    "exit_code": 0,
+    "stdout": "4.6.3.stable.official.7d41c59c4\n",
+    "stderr": ""
+  },
+  "working_directory": "/workspace/scratch/2708c7907f28/c4-json-type-r3-2708",
+  "red": {
+    "exit_code": 1,
+    "checks": 15,
+    "failures": 1,
+    "failed_cases": [
+      "exact_geometry"
+    ],
+    "command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--path",
+      "/workspace/scratch/2708c7907f28/c4-json-type-r3-2708",
+      "--script",
+      "res://old/int_expectations.gd"
+    ],
+    "started_utc": "2026-11-14T12:45:58.082893+00:00",
+    "elapsed_seconds": 0.452763
+  },
+  "green": {
+    "exit_code": 0,
+    "checks": 15,
+    "failures": 0,
+    "command": [
+      "/usr/local/bin/godot",
+      "--headless",
+      "--path",
+      "/workspace/scratch/2708c7907f28/c4-json-type-r3-2708",
+      "--script",
+      "res://new/float_expectations.gd"
+    ],
+    "started_utc": "2026-11-14T12:45:58.536203+00:00",
+    "elapsed_seconds": 0.408284
+  },
+  "exact_original_conditions_preserved": true,
+  "json_case_names_expectations_and_input_bytes_identical": true,
+  "fourteen_negative_geometries_remain_rejected": true,
+  "source_before_after_identical": true,
+  "stderr_both_empty": true,
+  "actual_input_number_type_ids": [
+    3,
+    3,
+    3
+  ],
+  "actual_float_type_id": 3,
+  "evidence": [
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/project.godot",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5a4240cd5596cbe01df75625d70c732fae1b6d78",
+      "bytes": 86,
+      "sha256": "5703b82d2ab1ed223c4f45985d05dcc837c9a8fc7478c61cdc08bf2e32d37d7f"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/old/int_expectations.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "63dc99552956af46190ec12d04e85ca3f290ba23",
+      "bytes": 4199,
+      "sha256": "659577350392da5ecac0570f36eef44a77c7e8e069ae1bdfe643fc759c8f0645"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/new/float_expectations.gd",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ff6e1e860f7a4abf3199c74004fd9ebb160390a3",
+      "bytes": 4215,
+      "sha256": "3321d89383efffc2f58f17f0b0dd45366c435b9e3d03964ed91b787187b58a3b"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/original-layout-matches.gd.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b298fa8bf5ad600865f5e28ef269dea4c870eae4",
+      "bytes": 894,
+      "sha256": "5b0efac1bfb2c11969273f1141de8f7c24c81fe6702ab8906ffb5677ae178217"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/candidate-layout-matches.gd.txt",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "bfd45e45237bde7a641bb7cf14a9387fab8ce597",
+      "bytes": 910,
+      "sha256": "b2675a234286f6c33d8cbd49d7032bdb61d520f774687df96408ce606d59d67b"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/engine-identity-before.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a8a224b9574b14d73cdf545ff1c4e794be63708",
+      "bytes": 312,
+      "sha256": "ec110948ee195794492573cc93ce1c3b7da74dd2205c7c7a29a6867f00ffa283"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/run_reproduction.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dafdf5c8cfaf69f61129bd0940bd53be16f3942b",
+      "bytes": 3800,
+      "sha256": "d9392e17a78febdb7fc3303c35b398c123102fcc696844c6eff0da74a067354d"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/red.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "3a36777a5eeba17c56cd765b8c75d30576aeaec2",
+      "bytes": 8626,
+      "sha256": "5a56fb6a6c6f8599a60c46c3feab6bfb75120ac200b09ab6e0e7a8885bc68ede"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/red.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/green.stdout.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "793a00369883c15ffdacaec150252f3e5ac34952",
+      "bytes": 8624,
+      "sha256": "da7ad81ef0a3bc68e31cf2d14fb1a56f5cbccd24f9df10f66d586c57f7348a03"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/green.stderr.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/red.run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "84f9bcc8f75d9b2a8812a011c8ecad6b76e276b3",
+      "bytes": 10249,
+      "sha256": "dae2510914426cd45cb1f625b00f96fdd47dff30822144146566ed9c0b9e60f5"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/green.run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "79eff13f88534ff004cce98199c730eb05c3d718",
+      "bytes": 10251,
+      "sha256": "9622a4b88c66babc538b8b54ffed49bfcfb6f78a6e66801d3d330559d7a5d2f8"
+    },
+    {
+      "path": "docs/evidence/c4-small-result-actions-qa-r3-20261114/json-array-reproduction/reproduction.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "85b6d271cc1b2fb0a095359ae533bb1f4ef18f80",
+      "bytes": 24346,
+      "sha256": "3bfbc3112df643a37602c1312d34e3fa63ed8cbf1662a5e62cac615892c5ea65"
+    }
+  ],
+  "limitations": [
+    "The corrected predicate's acceptance of synthetic correct geometry does not establish the actual R2/R3 game layout, target reachability, or action success.",
+    "No full QA overlay or render/input probe was executed in these two minimal runs.",
+    "The separate actual two-action QA execution and its original capture review remain pending.",
+    "No production source or remote ref was changed by the reviewer."
+  ]
+}
