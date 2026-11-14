@@ -1,0 +1,2288 @@
+{
+  "schema": 1,
+  "status": "CURRENT_NEW_APKS_BUILT_ANDROID_ACCEPTANCE_PENDING",
+  "recorded_at": "2026-11-14 18:10:35 UTC",
+  "identity": {
+    "source": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+    "tree": "8b0c31a26207068c28658e14c6535c39a51cf95b",
+    "native": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+    "native_tree": "91cc8fc1c6f8a36336b7ac9a12585284a983a6f6",
+    "main_run": 43616038272,
+    "feature_run": 43616035099,
+    "native_run": 43613299144,
+    "attempt": 1
+  },
+  "original_log": {
+    "repository": "Ullmann27/lumo-lernen",
+    "commit": "c99a5a828ae69b1b83163cb2273096dabdb844a1",
+    "blob": "d123bb0e37019ebf301e89f7ca41bd6f0725db3b",
+    "sha256": "2fbe26c4332fd6d1d50e4631649028fc6debdecdf117ba192d22d6b55e191231",
+    "path": "docs/evidence/live-integration-20261114/final-6b3047b7/terminal-verify-and-build/job-132512734271-original.log",
+    "independently_read_by_root": true
+  },
+  "actual_original_apk_facts": [
+    {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "arm64-v8a"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 331367098,
+      "sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "engine": "4.6.3",
+        "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+        "bytes": 75401304
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "notices": {
+        "status": "verified",
+        "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+        "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "files": [
+          {
+            "source": "host",
+            "path": "assets/fonts/OFL.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+          },
+          {
+            "source": "native",
+            "path": "THIRD_PARTY_NOTICES.md",
+            "bytes": 1582,
+            "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+            "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+            "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+            "bytes": 1640,
+            "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+            "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+            "bytes": 2626,
+            "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+            "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/fonts/Nunito-LICENSE.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+          }
+        ],
+        "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+      }
+    },
+    {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "x86_64"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 334516947,
+      "sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "engine": "4.6.3",
+        "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+        "bytes": 75401304
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "notices": {
+        "status": "verified",
+        "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+        "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "files": [
+          {
+            "source": "host",
+            "path": "assets/fonts/OFL.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+          },
+          {
+            "source": "native",
+            "path": "THIRD_PARTY_NOTICES.md",
+            "bytes": 1582,
+            "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+            "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+            "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+            "bytes": 1640,
+            "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+            "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+            "bytes": 2626,
+            "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+            "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/fonts/Nunito-LICENSE.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+          }
+        ],
+        "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+      }
+    },
+    {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "arm64-v8a"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 331367098,
+      "sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "engine": "4.6.3",
+        "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+        "bytes": 75401304
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "notices": {
+        "status": "verified",
+        "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+        "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "files": [
+          {
+            "source": "host",
+            "path": "assets/fonts/OFL.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+          },
+          {
+            "source": "native",
+            "path": "THIRD_PARTY_NOTICES.md",
+            "bytes": 1582,
+            "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+            "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+            "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+            "bytes": 1640,
+            "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+            "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+            "bytes": 2626,
+            "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+            "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/fonts/Nunito-LICENSE.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+          }
+        ],
+        "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+      }
+    },
+    {
+      "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+      "versionCode": 2020,
+      "versionName": "0.13.8",
+      "minSdk": 24,
+      "targetSdk": 36,
+      "abis": [
+        "x86_64"
+      ],
+      "elf16KiBAligned": true,
+      "resourcesArscAligned": true,
+      "bytes": 334516947,
+      "sha256": "9c64ae2f866c1eee832a96baba56d8d3dc314cec79c69c7c1781bb803111a765",
+      "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+      "godot": {
+        "repository": "https://github.com/Ullmann27/lumo-godot.git",
+        "revision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "engine": "4.6.3",
+        "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+        "bytes": 75401304
+      },
+      "offlineVoice": {
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "speakerId": 1,
+        "sampleRate": 44100,
+        "onnxruntimeVersion": "1.23.1",
+        "clipCount": 155,
+        "modelSha256": {
+          "duration_predictor.int8.onnx": "c3eb91414d5ff8a7a239b7fe9e34e7e2bf8a8140d8375ffb14718b1c639325db",
+          "text_encoder.int8.onnx": "c7befd5ea8c3119769e8a6c1486c4edc6a3bc8365c67621c881bbb774b9902ff",
+          "vector_estimator.int8.onnx": "20cd86fa5c6effedfda0e7cffe5b0569ca401c440a0c3a1d72bf39286c0db3fd",
+          "vocoder.int8.onnx": "e923d60f53f95eb1ce235f1dc33ec56d9c057823c96fa6f8acf98f32b0da6152",
+          "tts.json": "42078d3aef1cd43ab43021f3c54f47d2d75ceb4e75f627f118890128b06a0d09",
+          "voice.bin": "67d5209b0ee8ce6c74105ffbe12fe6a7628aea3b4ba2fcb308a4a67938a93ce8",
+          "unicode_indexer.bin": "8402ca48e5189a8950138580b0fff64db6f072f24ac07cd54ba8b2fbb9883b30"
+        },
+        "modelLicenseSha256": "0d944a9110fed9a9602d60e0423a272903e7bd21ab060490774efc77c2275e9f",
+        "scope": "Actual APK package validation, not audible playback acceptance"
+      },
+      "notices": {
+        "status": "verified",
+        "policySha256": "aa03bf41ca5df0f4d32b7c6591c1988fe004398374c8614636c57e094dbfd4ac",
+        "nativeRevision": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604",
+        "files": [
+          {
+            "source": "host",
+            "path": "assets/fonts/OFL.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/host/assets/fonts/OFL.txt"
+          },
+          {
+            "source": "native",
+            "path": "THIRD_PARTY_NOTICES.md",
+            "bytes": 1582,
+            "sha256": "5c19d18596a311c336c8d5b8b1e3a225cc18586e32900c8205c7017bd0d6beb6",
+            "git_blob": "ceedc772859dd274b30d4d741a14fca55623e21c",
+            "entry": "assets/lumo_notices/native/THIRD_PARTY_NOTICES.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+            "bytes": 1640,
+            "sha256": "aebbc082bd8737234cddeb6d1ddc4202b807aafb1509a294f4a080615c62baca",
+            "git_blob": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_animated/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+            "bytes": 2626,
+            "sha256": "4bf37300273f8edc20b1557f7284da30d235ed1dc4f1999af4947bbb0056aa85",
+            "git_blob": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+            "entry": "assets/lumo_notices/native/assets/characters/lumo_facial/ATTRIBUTION.md"
+          },
+          {
+            "source": "native",
+            "path": "assets/fonts/Nunito-LICENSE.txt",
+            "bytes": 4385,
+            "sha256": "580df76c95a1ec5ab878ceb25bb3d85c6a076804e9c970c8c6972aea775fdf65",
+            "git_blob": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+            "entry": "assets/lumo_notices/native/assets/fonts/Nunito-LICENSE.txt"
+          }
+        ],
+        "scope": "Exact original outer-package assets; no rights or PCK-content approval"
+      }
+    }
+  ],
+  "facts_pair_equality": {
+    "arm64": true,
+    "x86_64": true
+  },
+  "source_and_release_catalog": {
+    "release_count": 228,
+    "page_counts": [
+      100,
+      100,
+      28
+    ],
+    "target_release_absent": true,
+    "highest_family": {
+      "id": 443025290,
+      "tag": "coachpreview-build-2017",
+      "n": 2017,
+      "draft": false,
+      "published": "2026-11-12T14:00:58Z",
+      "assets": [
+        {
+          "name": "Lumo-Lernen-Neu.apk",
+          "size": 318753461
+        },
+        {
+          "name": "PUBLISH-VERIFICATION.json",
+          "size": 1779
+        },
+        {
+          "name": "BUILD-PROVENANCE.json",
+          "size": 7589
+        },
+        {
+          "name": "GODOT-SOURCE.json",
+          "size": 145
+        },
+        {
+          "name": "Lumo-Lernen-Neu.apk.sha256",
+          "size": 86
+        },
+        {
+          "name": "RELEASE-FACTS.json",
+          "size": 1126
+        }
+      ]
+    },
+    "source_refs": {
+      "host_producer": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "host_integration": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "host_main": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+      "native_integration": "84789d0c2c6fb4b6ecd2897ce1951b89f958b604"
+    },
+    "pr": {
+      "number": 497,
+      "head": "6b3047b7979dfb86d837e74a21b0fd890e4f9e66",
+      "base": "057a4e8d067872c4f3514b126aa04c3706d2e5b5",
+      "mergeable": true
+    },
+    "metadata_retrieval_interval_utc": [
+      "2026-11-14T18:08:02Z",
+      "2026-11-14T18:09:34Z"
+    ]
+  },
+  "local_arm64_byte_verification": {
+    "owner": "android_qa",
+    "reported": true,
+    "apk_sha256": "822aec63fa23c6ab57980932a5d6b5465c7e78b1c6f774a790dfe1b272ea6d6d",
+    "bytes": 331367098,
+    "zip_crc_checked": true,
+    "apk_crc_checked": true,
+    "pck_sha256": "99c68b1d68e4c8701c7e7e69f13137ff2b7f4d4a204c1a4a8f1bb0766e2720a4",
+    "local_aapt_apksigner_executed": false
+  },
+  "pending": [
+    "Current exact APK Android main tour, direct Village and C4",
+    "Actual current 2017→2020 update and data preservation",
+    "Candidate and delivery jobs",
+    "Complete independent original replay",
+    "Public APK publication and actual unauthenticated download verification"
+  ],
+  "public_apk_available": false,
+  "main_written": false,
+  "release_catalog": [
+    {
+      "id": 410090222,
+      "tag": "untagged-6db1ba6deb498f674b1c",
+      "draft": true,
+      "prerelease": true,
+      "created_at": "2026-10-12T02:45:22Z",
+      "published_at": null
+    },
+    {
+      "id": 410882425,
+      "tag": "lumo-meister-test-2026-10-12",
+      "draft": true,
+      "prerelease": true,
+      "created_at": "2026-10-12T18:13:45Z",
+      "published_at": null
+    },
+    {
+      "id": 410060824,
+      "tag": "lumo-0.12.25-1932-download-draft",
+      "draft": true,
+      "prerelease": true,
+      "created_at": "2026-10-12T01:53:29Z",
+      "published_at": null
+    },
+    {
+      "id": 409795314,
+      "tag": "lumo-0.12.24-1931-download-draft",
+      "draft": true,
+      "prerelease": true,
+      "created_at": "2026-10-11T16:50:56Z",
+      "published_at": null
+    },
+    {
+      "id": 328463399,
+      "tag": "build-197",
+      "draft": true,
+      "prerelease": false,
+      "created_at": "2026-05-24T08:16:15Z",
+      "published_at": null
+    },
+    {
+      "id": 327847955,
+      "tag": "build-171",
+      "draft": true,
+      "prerelease": false,
+      "created_at": "2026-05-22T12:41:56Z",
+      "published_at": null
+    },
+    {
+      "id": 326541201,
+      "tag": "build-125",
+      "draft": true,
+      "prerelease": false,
+      "created_at": "2026-05-21T05:24:02Z",
+      "published_at": null
+    },
+    {
+      "id": 444943203,
+      "tag": "studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-11-13T23:55:37Z",
+      "published_at": "2026-11-14T02:08:01Z"
+    },
+    {
+      "id": 443025290,
+      "tag": "coachpreview-build-2017",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-11-12T12:43:46Z",
+      "published_at": "2026-11-12T14:00:58Z"
+    },
+    {
+      "id": 440286042,
+      "tag": "coachpreview-build-2012",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-11-10T10:23:35Z",
+      "published_at": "2026-11-10T11:39:54Z"
+    },
+    {
+      "id": 431715360,
+      "tag": "coachpreview-build-2004",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-30T16:29:43Z",
+      "published_at": "2026-11-02T16:48:38Z"
+    },
+    {
+      "id": 427837404,
+      "tag": "lumo-0.12.91-2003",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-29T11:46:32Z",
+      "published_at": "2026-10-29T12:27:54Z"
+    },
+    {
+      "id": 427685969,
+      "tag": "lumo-0.12.90-2002",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-29T09:05:18Z",
+      "published_at": "2026-10-29T09:48:56Z"
+    },
+    {
+      "id": 427838371,
+      "tag": "coachpreview-build-2003",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-29T11:46:32Z",
+      "published_at": "2026-10-29T12:28:51Z"
+    },
+    {
+      "id": 427815311,
+      "tag": "coachpreview-build-2002",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-29T09:05:18Z",
+      "published_at": "2026-10-29T12:06:08Z"
+    },
+    {
+      "id": 426998974,
+      "tag": "lumo-0.12.88-2000",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-28T17:00:08Z",
+      "published_at": "2026-10-28T17:48:54Z"
+    },
+    {
+      "id": 424431712,
+      "tag": "lumo-0.12.87-1999",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-26T14:46:47Z",
+      "published_at": "2026-10-26T15:35:12Z"
+    },
+    {
+      "id": 420554057,
+      "tag": "lumo-0.12.85-1997",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-22T09:24:12Z",
+      "published_at": "2026-10-22T09:55:17Z"
+    },
+    {
+      "id": 419390412,
+      "tag": "lumo-1993-20261021-direct-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-21T08:45:04Z",
+      "published_at": "2026-10-21T09:50:00Z"
+    },
+    {
+      "id": 418294664,
+      "tag": "lumo-v0.12.80-1992-modern-worlds-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-20T09:52:02Z",
+      "published_at": "2026-10-20T10:55:26Z"
+    },
+    {
+      "id": 417569820,
+      "tag": "lumo-v0.12.77-1989-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-19T17:09:37Z",
+      "published_at": "2026-10-19T17:41:54Z"
+    },
+    {
+      "id": 417204347,
+      "tag": "lumo-v0.12.76-1988-fair-cards",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-19T10:48:55Z",
+      "published_at": "2026-10-19T11:18:31Z"
+    },
+    {
+      "id": 417172689,
+      "tag": "lumo-v0.12.75-1987-denkprofil-knobel",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-19T10:09:28Z",
+      "published_at": "2026-10-19T10:40:00Z"
+    },
+    {
+      "id": 416974649,
+      "tag": "lumo-v0.12.74-1986-integrated-reading",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-19T05:59:23Z",
+      "published_at": "2026-10-19T06:29:55Z"
+    },
+    {
+      "id": 416915182,
+      "tag": "lumo-v0.12.73-1985-spatial-reading",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-19T04:25:38Z",
+      "published_at": "2026-10-19T04:57:00Z"
+    },
+    {
+      "id": 416727176,
+      "tag": "lumo-v0.12.72-1984-atelier-scenes",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-18T21:10:26Z",
+      "published_at": "2026-10-18T21:37:07Z"
+    },
+    {
+      "id": 416677664,
+      "tag": "lumo-v0.12.71-1983-immersive-quiz-studio",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-18T19:34:21Z",
+      "published_at": "2026-10-18T20:03:55Z"
+    },
+    {
+      "id": 416644287,
+      "tag": "lumo-v0.12.70-1982-meister-show",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-18T18:42:46Z",
+      "published_at": "2026-10-18T19:09:38Z"
+    },
+    {
+      "id": 416566305,
+      "tag": "lumo-v0.12.69-1981-reading-adventure",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-18T16:02:53Z",
+      "published_at": "2026-10-18T16:32:40Z"
+    },
+    {
+      "id": 416474516,
+      "tag": "lumo-v0.12.68-1980-mobile-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-18T12:56:57Z",
+      "published_at": "2026-10-18T13:46:16Z"
+    },
+    {
+      "id": 414251324,
+      "tag": "lumo-lernen-sonnenhafen-unified-test-20261015",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-15T20:27:09Z",
+      "published_at": "2026-10-15T20:38:27Z"
+    },
+    {
+      "id": 410850878,
+      "tag": "lumo-meister-2026-10-12-preview1",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-12T17:12:45Z",
+      "published_at": "2026-10-12T17:28:25Z"
+    },
+    {
+      "id": 409396093,
+      "tag": "lumo-0.12.21-1928-kart-technical-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-11T00:12:10Z",
+      "published_at": "2026-10-11T04:01:36Z"
+    },
+    {
+      "id": 409104667,
+      "tag": "lumo-0.12.20-1927-context-voice-technical-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-10T17:29:53Z",
+      "published_at": "2026-10-10T17:44:40Z"
+    },
+    {
+      "id": 409060516,
+      "tag": "lumo-0.12.19-1926-sulafat-test",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-10T16:13:17Z",
+      "published_at": "2026-10-10T16:21:26Z"
+    },
+    {
+      "id": 409028450,
+      "tag": "lumo-0.12.18-1925-voice-writing",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-10T15:13:49Z",
+      "published_at": "2026-10-10T15:21:49Z"
+    },
+    {
+      "id": 403927207,
+      "tag": "lumo-test-apk-2026-10-05-fold-kart",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-05T12:41:36Z",
+      "published_at": "2026-10-05T16:42:24Z"
+    },
+    {
+      "id": 401881465,
+      "tag": "build-269",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-10-02T14:11:54Z",
+      "published_at": "2026-10-02T14:19:50Z"
+    },
+    {
+      "id": 402007304,
+      "tag": "school-test-274",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-02T16:58:46Z",
+      "published_at": "2026-10-02T17:08:37Z"
+    },
+    {
+      "id": 401925971,
+      "tag": "school-test-270",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-02T15:07:48Z",
+      "published_at": "2026-10-02T15:14:57Z"
+    },
+    {
+      "id": 401874717,
+      "tag": "school-test-268",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-02T14:03:39Z",
+      "published_at": "2026-10-02T14:10:45Z"
+    },
+    {
+      "id": 401853136,
+      "tag": "school-test-265",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-02T13:37:04Z",
+      "published_at": "2026-10-02T13:43:00Z"
+    },
+    {
+      "id": 401843348,
+      "tag": "school-test-264",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-10-02T13:22:11Z",
+      "published_at": "2026-10-02T13:29:34Z"
+    },
+    {
+      "id": 340656326,
+      "tag": "build-260",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-17T09:45:03Z",
+      "published_at": "2026-06-17T09:51:39Z"
+    },
+    {
+      "id": 335595302,
+      "tag": "build-259",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-07T12:29:31Z",
+      "published_at": "2026-06-07T12:34:49Z"
+    },
+    {
+      "id": 335468782,
+      "tag": "build-258",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-06T19:45:12Z",
+      "published_at": "2026-06-06T19:50:34Z"
+    },
+    {
+      "id": 335414621,
+      "tag": "build-242",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-06T13:53:26Z",
+      "published_at": "2026-06-06T13:58:48Z"
+    },
+    {
+      "id": 335412571,
+      "tag": "build-241",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-06T13:41:38Z",
+      "published_at": "2026-06-06T13:46:58Z"
+    },
+    {
+      "id": 335411076,
+      "tag": "build-240",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-06T13:31:58Z",
+      "published_at": "2026-06-06T13:37:28Z"
+    },
+    {
+      "id": 335409151,
+      "tag": "build-239",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-06T13:21:43Z",
+      "published_at": "2026-06-06T13:27:06Z"
+    },
+    {
+      "id": 335407644,
+      "tag": "build-238",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-06T13:10:29Z",
+      "published_at": "2026-06-06T13:15:53Z"
+    },
+    {
+      "id": 335173459,
+      "tag": "build-237",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T20:37:39Z",
+      "published_at": "2026-06-05T20:43:10Z"
+    },
+    {
+      "id": 335168750,
+      "tag": "build-236",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T20:24:32Z",
+      "published_at": "2026-06-05T20:29:10Z"
+    },
+    {
+      "id": 335155005,
+      "tag": "build-235",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T19:55:53Z",
+      "published_at": "2026-06-05T20:01:16Z"
+    },
+    {
+      "id": 335135787,
+      "tag": "build-234",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T19:24:28Z",
+      "published_at": "2026-06-05T19:29:49Z"
+    },
+    {
+      "id": 335126369,
+      "tag": "build-233",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T19:05:18Z",
+      "published_at": "2026-06-05T19:11:18Z"
+    },
+    {
+      "id": 335031592,
+      "tag": "build-232",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T16:12:51Z",
+      "published_at": "2026-06-05T16:19:02Z"
+    },
+    {
+      "id": 335026592,
+      "tag": "build-231",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T16:03:04Z",
+      "published_at": "2026-06-05T16:08:37Z"
+    },
+    {
+      "id": 334853846,
+      "tag": "build-230",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-05T09:48:34Z",
+      "published_at": "2026-06-05T09:54:07Z"
+    },
+    {
+      "id": 334427068,
+      "tag": "build-229",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-04T15:27:25Z",
+      "published_at": "2026-06-04T15:33:18Z"
+    },
+    {
+      "id": 334102567,
+      "tag": "build-228",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-04T03:05:50Z",
+      "published_at": "2026-06-04T03:11:34Z"
+    },
+    {
+      "id": 334095283,
+      "tag": "build-227",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-04T02:38:50Z",
+      "published_at": "2026-06-04T02:44:46Z"
+    },
+    {
+      "id": 334091335,
+      "tag": "build-226",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-04T02:25:46Z",
+      "published_at": "2026-06-04T02:31:40Z"
+    },
+    {
+      "id": 334089579,
+      "tag": "build-225",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-04T02:16:08Z",
+      "published_at": "2026-06-04T02:22:11Z"
+    },
+    {
+      "id": 334087943,
+      "tag": "build-224",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-04T02:09:28Z",
+      "published_at": "2026-06-04T02:14:17Z"
+    },
+    {
+      "id": 333793170,
+      "tag": "build-223",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T14:51:43Z",
+      "published_at": "2026-06-03T14:57:19Z"
+    },
+    {
+      "id": 333788161,
+      "tag": "build-222",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T14:43:34Z",
+      "published_at": "2026-06-03T14:49:06Z"
+    },
+    {
+      "id": 333772429,
+      "tag": "build-221",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T14:17:41Z",
+      "published_at": "2026-06-03T14:23:34Z"
+    },
+    {
+      "id": 333668814,
+      "tag": "build-220",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T11:26:13Z",
+      "published_at": "2026-06-03T11:31:44Z"
+    },
+    {
+      "id": 333658777,
+      "tag": "build-219",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T11:05:36Z",
+      "published_at": "2026-06-03T11:10:50Z"
+    },
+    {
+      "id": 333653978,
+      "tag": "build-218",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T10:56:11Z",
+      "published_at": "2026-06-03T11:01:31Z"
+    },
+    {
+      "id": 333646420,
+      "tag": "build-217",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T10:40:33Z",
+      "published_at": "2026-06-03T10:45:48Z"
+    },
+    {
+      "id": 333639319,
+      "tag": "build-216",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T10:26:31Z",
+      "published_at": "2026-06-03T10:31:53Z"
+    },
+    {
+      "id": 333606393,
+      "tag": "build-215",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T09:24:49Z",
+      "published_at": "2026-06-03T09:30:02Z"
+    },
+    {
+      "id": 333596350,
+      "tag": "build-214",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-06-03T09:08:55Z",
+      "published_at": "2026-06-03T09:15:24Z"
+    },
+    {
+      "id": 329443703,
+      "tag": "build-213",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-26T13:56:46Z",
+      "published_at": "2026-05-26T14:02:16Z"
+    },
+    {
+      "id": 328464048,
+      "tag": "build-198",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-24T08:16:18Z",
+      "published_at": "2026-05-24T08:21:50Z"
+    },
+    {
+      "id": 328461836,
+      "tag": "build-196",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-24T07:58:08Z",
+      "published_at": "2026-05-24T08:03:56Z"
+    },
+    {
+      "id": 328458911,
+      "tag": "build-195",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-24T07:35:03Z",
+      "published_at": "2026-05-24T07:40:25Z"
+    },
+    {
+      "id": 328379045,
+      "tag": "build-194",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T19:22:52Z",
+      "published_at": "2026-05-23T19:28:11Z"
+    },
+    {
+      "id": 328376664,
+      "tag": "build-193",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T19:08:38Z",
+      "published_at": "2026-05-23T19:13:53Z"
+    },
+    {
+      "id": 328372023,
+      "tag": "build-192",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T18:42:48Z",
+      "published_at": "2026-05-23T18:48:22Z"
+    },
+    {
+      "id": 328311747,
+      "tag": "build-191",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T13:27:35Z",
+      "published_at": "2026-05-23T13:33:05Z"
+    },
+    {
+      "id": 328310265,
+      "tag": "build-190",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T13:17:00Z",
+      "published_at": "2026-05-23T13:22:05Z"
+    },
+    {
+      "id": 328301886,
+      "tag": "build-188",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T12:32:40Z",
+      "published_at": "2026-05-23T12:37:48Z"
+    },
+    {
+      "id": 328267333,
+      "tag": "build-187",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-23T08:34:36Z",
+      "published_at": "2026-05-23T08:39:33Z"
+    },
+    {
+      "id": 328037268,
+      "tag": "build-186",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T16:59:39Z",
+      "published_at": "2026-05-22T17:04:49Z"
+    },
+    {
+      "id": 328031327,
+      "tag": "build-185",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T16:53:07Z",
+      "published_at": "2026-05-22T16:58:05Z"
+    },
+    {
+      "id": 328015848,
+      "tag": "build-184",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T16:20:27Z",
+      "published_at": "2026-05-22T16:26:40Z"
+    },
+    {
+      "id": 327993758,
+      "tag": "build-183",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T15:47:53Z",
+      "published_at": "2026-05-22T15:52:54Z"
+    },
+    {
+      "id": 327979943,
+      "tag": "build-182",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T15:24:39Z",
+      "published_at": "2026-05-22T15:30:22Z"
+    },
+    {
+      "id": 327969860,
+      "tag": "build-181",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T15:12:16Z",
+      "published_at": "2026-05-22T15:17:12Z"
+    },
+    {
+      "id": 327956669,
+      "tag": "build-180",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T14:55:38Z",
+      "published_at": "2026-05-22T15:01:12Z"
+    },
+    {
+      "id": 327940618,
+      "tag": "build-179",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T14:40:35Z",
+      "published_at": "2026-05-22T14:45:57Z"
+    },
+    {
+      "id": 327912946,
+      "tag": "build-178",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T14:01:55Z",
+      "published_at": "2026-05-22T14:07:32Z"
+    },
+    {
+      "id": 327892872,
+      "tag": "build-177",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T13:44:21Z",
+      "published_at": "2026-05-22T13:49:29Z"
+    },
+    {
+      "id": 327888516,
+      "tag": "build-176",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T13:37:40Z",
+      "published_at": "2026-05-22T13:43:44Z"
+    },
+    {
+      "id": 327882000,
+      "tag": "build-175",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T13:26:39Z",
+      "published_at": "2026-05-22T13:31:36Z"
+    },
+    {
+      "id": 327865131,
+      "tag": "build-174",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T13:03:37Z",
+      "published_at": "2026-05-22T13:09:22Z"
+    },
+    {
+      "id": 327855806,
+      "tag": "build-173",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T12:53:46Z",
+      "published_at": "2026-05-22T12:58:59Z"
+    },
+    {
+      "id": 327850598,
+      "tag": "build-172",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T12:42:00Z",
+      "published_at": "2026-05-22T12:47:29Z"
+    },
+    {
+      "id": 327804107,
+      "tag": "build-170",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T11:23:21Z",
+      "published_at": "2026-05-22T11:28:26Z"
+    },
+    {
+      "id": 327796390,
+      "tag": "build-169",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T11:08:03Z",
+      "published_at": "2026-05-22T11:13:29Z"
+    },
+    {
+      "id": 327782800,
+      "tag": "build-168",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T10:40:18Z",
+      "published_at": "2026-05-22T10:45:36Z"
+    },
+    {
+      "id": 327748222,
+      "tag": "build-167",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T09:44:43Z",
+      "published_at": "2026-05-22T09:50:08Z"
+    },
+    {
+      "id": 327745525,
+      "tag": "build-166",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-22T09:38:41Z",
+      "published_at": "2026-05-22T09:43:48Z"
+    },
+    {
+      "id": 327287502,
+      "tag": "build-163",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T21:02:13Z",
+      "published_at": "2026-05-21T21:07:37Z"
+    },
+    {
+      "id": 327256751,
+      "tag": "build-162",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T20:12:00Z",
+      "published_at": "2026-05-21T20:17:29Z"
+    },
+    {
+      "id": 327251638,
+      "tag": "build-161",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T20:02:35Z",
+      "published_at": "2026-05-21T20:07:53Z"
+    },
+    {
+      "id": 327238832,
+      "tag": "build-160",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T19:38:52Z",
+      "published_at": "2026-05-21T19:44:23Z"
+    },
+    {
+      "id": 327234535,
+      "tag": "build-159",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T19:31:26Z",
+      "published_at": "2026-05-21T19:37:16Z"
+    },
+    {
+      "id": 327186564,
+      "tag": "build-157",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T18:37:05Z",
+      "published_at": "2026-05-21T18:43:16Z"
+    },
+    {
+      "id": 327179269,
+      "tag": "build-156",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T18:22:48Z",
+      "published_at": "2026-05-21T18:27:50Z"
+    },
+    {
+      "id": 327167176,
+      "tag": "build-155",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T17:55:41Z",
+      "published_at": "2026-05-21T18:00:50Z"
+    },
+    {
+      "id": 327151868,
+      "tag": "build-154",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T17:33:25Z",
+      "published_at": "2026-05-21T17:38:13Z"
+    },
+    {
+      "id": 327116412,
+      "tag": "build-153",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T16:52:11Z",
+      "published_at": "2026-05-21T16:57:38Z"
+    },
+    {
+      "id": 327086939,
+      "tag": "build-152",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T16:13:05Z",
+      "published_at": "2026-05-21T16:18:08Z"
+    },
+    {
+      "id": 327036521,
+      "tag": "build-151",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T15:15:00Z",
+      "published_at": "2026-05-21T15:20:33Z"
+    },
+    {
+      "id": 326988898,
+      "tag": "build-148",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T14:16:57Z",
+      "published_at": "2026-05-21T14:22:19Z"
+    },
+    {
+      "id": 326963487,
+      "tag": "build-147",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T13:48:47Z",
+      "published_at": "2026-05-21T13:54:09Z"
+    },
+    {
+      "id": 326958141,
+      "tag": "build-146",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T13:40:03Z",
+      "published_at": "2026-05-21T13:45:38Z"
+    },
+    {
+      "id": 326951809,
+      "tag": "build-145",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T13:30:42Z",
+      "published_at": "2026-05-21T13:35:53Z"
+    },
+    {
+      "id": 326938540,
+      "tag": "build-141",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T13:12:27Z",
+      "published_at": "2026-05-21T13:17:45Z"
+    },
+    {
+      "id": 326886935,
+      "tag": "build-140",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T12:28:39Z",
+      "published_at": "2026-05-21T12:33:49Z"
+    },
+    {
+      "id": 326878365,
+      "tag": "build-139",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T12:16:12Z",
+      "published_at": "2026-05-21T12:21:05Z"
+    },
+    {
+      "id": 326856211,
+      "tag": "build-138",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T11:47:33Z",
+      "published_at": "2026-05-21T11:52:53Z"
+    },
+    {
+      "id": 326832005,
+      "tag": "build-137",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T11:13:10Z",
+      "published_at": "2026-05-21T11:17:54Z"
+    },
+    {
+      "id": 326819727,
+      "tag": "build-136",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T10:53:49Z",
+      "published_at": "2026-05-21T10:58:50Z"
+    },
+    {
+      "id": 326791534,
+      "tag": "build-135",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T10:27:54Z",
+      "published_at": "2026-05-21T10:32:56Z"
+    },
+    {
+      "id": 326780273,
+      "tag": "build-134",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T10:15:20Z",
+      "published_at": "2026-05-21T10:20:17Z"
+    },
+    {
+      "id": 326766086,
+      "tag": "build-133",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T09:54:35Z",
+      "published_at": "2026-05-21T09:59:52Z"
+    },
+    {
+      "id": 326578586,
+      "tag": "build-132",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T05:57:14Z",
+      "published_at": "2026-05-21T06:02:59Z"
+    },
+    {
+      "id": 326563032,
+      "tag": "build-128",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T05:43:59Z",
+      "published_at": "2026-05-21T05:49:03Z"
+    },
+    {
+      "id": 326552593,
+      "tag": "build-127",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T05:32:09Z",
+      "published_at": "2026-05-21T05:37:10Z"
+    },
+    {
+      "id": 326546775,
+      "tag": "build-126",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T05:24:06Z",
+      "published_at": "2026-05-21T05:29:25Z"
+    },
+    {
+      "id": 326513767,
+      "tag": "build-124",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T04:58:47Z",
+      "published_at": "2026-05-21T05:03:31Z"
+    },
+    {
+      "id": 326439683,
+      "tag": "build-123",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T03:58:26Z",
+      "published_at": "2026-05-21T04:03:41Z"
+    },
+    {
+      "id": 326353368,
+      "tag": "build-122",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-21T00:14:13Z",
+      "published_at": "2026-05-21T00:18:56Z"
+    },
+    {
+      "id": 325706174,
+      "tag": "build-99",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T07:21:49Z",
+      "published_at": "2026-05-20T07:26:38Z"
+    },
+    {
+      "id": 325582014,
+      "tag": "build-98",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T03:54:27Z",
+      "published_at": "2026-05-20T03:59:16Z"
+    },
+    {
+      "id": 325549888,
+      "tag": "build-97",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T02:00:58Z",
+      "published_at": "2026-05-20T02:06:41Z"
+    },
+    {
+      "id": 326049835,
+      "tag": "build-121",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T14:59:39Z",
+      "published_at": "2026-05-20T15:04:48Z"
+    },
+    {
+      "id": 326034398,
+      "tag": "build-117",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T14:35:16Z",
+      "published_at": "2026-05-20T14:40:36Z"
+    },
+    {
+      "id": 326025364,
+      "tag": "build-116",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T14:23:08Z",
+      "published_at": "2026-05-20T14:28:04Z"
+    },
+    {
+      "id": 326008104,
+      "tag": "build-115",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T14:01:55Z",
+      "published_at": "2026-05-20T14:07:14Z"
+    },
+    {
+      "id": 325999122,
+      "tag": "build-114",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T13:49:04Z",
+      "published_at": "2026-05-20T13:54:51Z"
+    },
+    {
+      "id": 325986328,
+      "tag": "build-112",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T13:33:33Z",
+      "published_at": "2026-05-20T13:38:30Z"
+    },
+    {
+      "id": 325967456,
+      "tag": "build-111",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T13:07:49Z",
+      "published_at": "2026-05-20T13:13:09Z"
+    },
+    {
+      "id": 325950467,
+      "tag": "build-110",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T12:41:51Z",
+      "published_at": "2026-05-20T12:46:46Z"
+    },
+    {
+      "id": 325942361,
+      "tag": "build-109",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T12:27:46Z",
+      "published_at": "2026-05-20T12:33:00Z"
+    },
+    {
+      "id": 325931107,
+      "tag": "build-108",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T12:11:01Z",
+      "published_at": "2026-05-20T12:16:08Z"
+    },
+    {
+      "id": 325924956,
+      "tag": "build-107",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T12:04:41Z",
+      "published_at": "2026-05-20T12:09:37Z"
+    },
+    {
+      "id": 325840096,
+      "tag": "build-106",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T10:13:37Z",
+      "published_at": "2026-05-20T10:19:24Z"
+    },
+    {
+      "id": 325823437,
+      "tag": "build-105",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T09:59:18Z",
+      "published_at": "2026-05-20T10:04:16Z"
+    },
+    {
+      "id": 325803222,
+      "tag": "build-103",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T09:34:20Z",
+      "published_at": "2026-05-20T09:39:31Z"
+    },
+    {
+      "id": 325794472,
+      "tag": "build-101",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T09:21:27Z",
+      "published_at": "2026-05-20T09:26:22Z"
+    },
+    {
+      "id": 325785295,
+      "tag": "build-100",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-20T09:08:37Z",
+      "published_at": "2026-05-20T09:13:53Z"
+    },
+    {
+      "id": 325276511,
+      "tag": "build-94",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T19:02:04Z",
+      "published_at": "2026-05-19T19:07:17Z"
+    },
+    {
+      "id": 325256016,
+      "tag": "build-93",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T18:41:21Z",
+      "published_at": "2026-05-19T18:46:53Z"
+    },
+    {
+      "id": 325252208,
+      "tag": "build-92",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T18:41:21Z",
+      "published_at": "2026-05-19T18:41:35Z"
+    },
+    {
+      "id": 325248582,
+      "tag": "build-91",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T18:29:36Z",
+      "published_at": "2026-05-19T18:34:37Z"
+    },
+    {
+      "id": 325244413,
+      "tag": "build-90",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T18:22:16Z",
+      "published_at": "2026-05-19T18:27:23Z"
+    },
+    {
+      "id": 325234148,
+      "tag": "build-89",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T18:09:05Z",
+      "published_at": "2026-05-19T18:14:26Z"
+    },
+    {
+      "id": 325213863,
+      "tag": "build-88",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T17:41:19Z",
+      "published_at": "2026-05-19T17:46:23Z"
+    },
+    {
+      "id": 325185508,
+      "tag": "build-87",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T17:04:36Z",
+      "published_at": "2026-05-19T17:09:37Z"
+    },
+    {
+      "id": 325163334,
+      "tag": "build-85",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T16:29:08Z",
+      "published_at": "2026-05-19T16:34:02Z"
+    },
+    {
+      "id": 325141425,
+      "tag": "build-84",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T15:55:28Z",
+      "published_at": "2026-05-19T16:04:33Z"
+    },
+    {
+      "id": 325009829,
+      "tag": "build-83",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T13:03:03Z",
+      "published_at": "2026-05-19T13:08:03Z"
+    },
+    {
+      "id": 324997610,
+      "tag": "build-82",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T12:46:48Z",
+      "published_at": "2026-05-19T12:51:58Z"
+    },
+    {
+      "id": 324988347,
+      "tag": "build-81",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T12:32:19Z",
+      "published_at": "2026-05-19T12:37:24Z"
+    },
+    {
+      "id": 324981012,
+      "tag": "build-80",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T12:20:06Z",
+      "published_at": "2026-05-19T12:25:07Z"
+    },
+    {
+      "id": 324973549,
+      "tag": "build-79",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T12:06:11Z",
+      "published_at": "2026-05-19T12:11:26Z"
+    },
+    {
+      "id": 324959927,
+      "tag": "build-78",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T11:43:12Z",
+      "published_at": "2026-05-19T11:48:34Z"
+    },
+    {
+      "id": 324935232,
+      "tag": "build-77",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T10:55:28Z",
+      "published_at": "2026-05-19T11:00:29Z"
+    },
+    {
+      "id": 324929118,
+      "tag": "build-76",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T10:42:59Z",
+      "published_at": "2026-05-19T10:48:01Z"
+    },
+    {
+      "id": 324915417,
+      "tag": "build-73",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T10:15:19Z",
+      "published_at": "2026-05-19T10:20:25Z"
+    },
+    {
+      "id": 324904579,
+      "tag": "build-71",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T09:53:07Z",
+      "published_at": "2026-05-19T09:58:41Z"
+    },
+    {
+      "id": 324898802,
+      "tag": "build-70",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T09:47:36Z",
+      "published_at": "2026-05-19T09:52:38Z"
+    },
+    {
+      "id": 324893990,
+      "tag": "build-69",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-19T08:59:05Z",
+      "published_at": "2026-05-19T09:44:36Z"
+    },
+    {
+      "id": 324207006,
+      "tag": "build-59",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-18T10:23:34Z",
+      "published_at": "2026-05-18T10:31:19Z"
+    },
+    {
+      "id": 324184814,
+      "tag": "build-58",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-18T09:46:34Z",
+      "published_at": "2026-05-18T09:54:24Z"
+    },
+    {
+      "id": 324077032,
+      "tag": "build-57",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-18T06:24:47Z",
+      "published_at": "2026-05-18T06:32:11Z"
+    },
+    {
+      "id": 324041803,
+      "tag": "build-56",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-18T04:26:57Z",
+      "published_at": "2026-05-18T04:34:20Z"
+    },
+    {
+      "id": 324030336,
+      "tag": "build-55",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-18T03:39:03Z",
+      "published_at": "2026-05-18T03:46:51Z"
+    },
+    {
+      "id": 324020104,
+      "tag": "build-54",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T15:37:10Z",
+      "published_at": "2026-05-18T02:55:33Z"
+    },
+    {
+      "id": 323916610,
+      "tag": "build-53",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T15:37:10Z",
+      "published_at": "2026-05-17T15:45:38Z"
+    },
+    {
+      "id": 323911526,
+      "tag": "build-52",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T15:05:30Z",
+      "published_at": "2026-05-17T15:12:44Z"
+    },
+    {
+      "id": 323911452,
+      "tag": "build-51",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T15:05:30Z",
+      "published_at": "2026-05-17T15:12:17Z"
+    },
+    {
+      "id": 323911059,
+      "tag": "build-50",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T15:05:30Z",
+      "published_at": "2026-05-17T15:09:45Z"
+    },
+    {
+      "id": 323901003,
+      "tag": "build-49",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T14:08:10Z",
+      "published_at": "2026-05-17T14:15:52Z"
+    },
+    {
+      "id": 323900900,
+      "tag": "build-48",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T14:08:10Z",
+      "published_at": "2026-05-17T14:15:16Z"
+    },
+    {
+      "id": 323900557,
+      "tag": "build-47",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T14:08:10Z",
+      "published_at": "2026-05-17T14:12:58Z"
+    },
+    {
+      "id": 323897757,
+      "tag": "build-46",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T13:47:24Z",
+      "published_at": "2026-05-17T13:54:53Z"
+    },
+    {
+      "id": 323886250,
+      "tag": "build-45",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T12:28:34Z",
+      "published_at": "2026-05-17T12:40:18Z"
+    },
+    {
+      "id": 323885708,
+      "tag": "build-44",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T12:28:34Z",
+      "published_at": "2026-05-17T12:36:23Z"
+    },
+    {
+      "id": 323867359,
+      "tag": "build-43",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T08:47:49Z",
+      "published_at": "2026-05-17T10:48:23Z"
+    },
+    {
+      "id": 323852159,
+      "tag": "build-37",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T08:47:49Z",
+      "published_at": "2026-05-17T08:55:08Z"
+    },
+    {
+      "id": 323851664,
+      "tag": "build-36",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-17T08:47:49Z",
+      "published_at": "2026-05-17T08:50:51Z"
+    },
+    {
+      "id": 323866100,
+      "tag": "build-42",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-05-17T08:47:49Z",
+      "published_at": "2026-05-17T10:37:59Z"
+    },
+    {
+      "id": 323842406,
+      "tag": "build-31",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T19:58:40Z",
+      "published_at": "2026-05-17T07:44:49Z"
+    },
+    {
+      "id": 323842259,
+      "tag": "build-30",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T19:58:40Z",
+      "published_at": "2026-05-17T07:43:31Z"
+    },
+    {
+      "id": 323762809,
+      "tag": "build-28",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T19:58:40Z",
+      "published_at": "2026-05-16T20:07:09Z"
+    },
+    {
+      "id": 323762689,
+      "tag": "build-27",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T19:58:40Z",
+      "published_at": "2026-05-16T20:06:05Z"
+    },
+    {
+      "id": 323762365,
+      "tag": "build-26",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T19:58:40Z",
+      "published_at": "2026-05-16T20:03:34Z"
+    },
+    {
+      "id": 323746201,
+      "tag": "build-25",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T17:52:17Z",
+      "published_at": "2026-05-16T18:00:00Z"
+    },
+    {
+      "id": 323663007,
+      "tag": "build-24",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T11:21:54Z",
+      "published_at": "2026-05-16T11:29:48Z"
+    },
+    {
+      "id": 323662718,
+      "tag": "build-23",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T11:21:54Z",
+      "published_at": "2026-05-16T11:27:17Z"
+    },
+    {
+      "id": 323662149,
+      "tag": "build-22",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T11:21:54Z",
+      "published_at": "2026-05-16T11:22:51Z"
+    },
+    {
+      "id": 323563846,
+      "tag": "build-21",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T02:03:57Z",
+      "published_at": "2026-05-16T02:11:23Z"
+    },
+    {
+      "id": 323557624,
+      "tag": "build-19",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T01:28:48Z",
+      "published_at": "2026-05-16T01:35:53Z"
+    },
+    {
+      "id": 323557379,
+      "tag": "build-18",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-16T01:28:48Z",
+      "published_at": "2026-05-16T01:33:43Z"
+    },
+    {
+      "id": 323131500,
+      "tag": "build-17",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-15T08:57:29Z",
+      "published_at": "2026-05-15T09:04:46Z"
+    },
+    {
+      "id": 323110338,
+      "tag": "build-16",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-15T08:26:04Z",
+      "published_at": "2026-05-15T08:33:57Z"
+    },
+    {
+      "id": 323102913,
+      "tag": "build-15",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-15T08:14:34Z",
+      "published_at": "2026-05-15T08:22:40Z"
+    },
+    {
+      "id": 322942748,
+      "tag": "build-14",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-15T01:48:12Z",
+      "published_at": "2026-05-15T01:56:11Z"
+    },
+    {
+      "id": 322941359,
+      "tag": "build-13",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-15T01:48:12Z",
+      "published_at": "2026-05-15T01:52:14Z"
+    },
+    {
+      "id": 322712305,
+      "tag": "build-12",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-14T18:08:06Z",
+      "published_at": "2026-05-14T18:15:52Z"
+    },
+    {
+      "id": 320147914,
+      "tag": "build-11",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-10T15:44:02Z",
+      "published_at": "2026-05-10T15:51:06Z"
+    },
+    {
+      "id": 320114575,
+      "tag": "build-10",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-10T11:51:51Z",
+      "published_at": "2026-05-10T11:59:22Z"
+    },
+    {
+      "id": 319943701,
+      "tag": "build-9",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-09T11:00:43Z",
+      "published_at": "2026-05-09T13:31:45Z"
+    },
+    {
+      "id": 319916420,
+      "tag": "build-8",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-09T09:57:29Z",
+      "published_at": "2026-05-09T10:05:11Z"
+    },
+    {
+      "id": 319914337,
+      "tag": "build-7",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-09T09:57:29Z",
+      "published_at": "2026-05-09T10:00:38Z"
+    },
+    {
+      "id": 319913579,
+      "tag": "build-6",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-09T09:53:08Z",
+      "published_at": "2026-05-09T09:56:48Z"
+    },
+    {
+      "id": 319257285,
+      "tag": "build-3",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-08T00:01:08Z",
+      "published_at": "2026-05-08T00:08:38Z"
+    },
+    {
+      "id": 319053371,
+      "tag": "build-2",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-07T16:27:22Z",
+      "published_at": "2026-05-07T16:34:55Z"
+    },
+    {
+      "id": 318879256,
+      "tag": "build-1",
+      "draft": false,
+      "prerelease": false,
+      "created_at": "2026-05-07T10:45:37Z",
+      "published_at": "2026-05-07T10:53:48Z"
+    },
+    {
+      "id": 317803361,
+      "tag": "debug-latest",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-05-05T07:33:33Z",
+      "published_at": "2026-05-05T12:53:06Z"
+    },
+    {
+      "id": 317416795,
+      "tag": "lumo-lernen-debug-latest",
+      "draft": false,
+      "prerelease": true,
+      "created_at": "2026-05-04T19:52:25Z",
+      "published_at": "2026-05-04T20:11:34Z"
+    }
+  ]
+}
