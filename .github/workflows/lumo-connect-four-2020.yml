@@ -171,7 +171,7 @@ jobs:
       github.head_ref == 'integration/lumo-agent-execution-20261114' ||
       github.head_ref == 'integration/lumo-live-connections-20261114'))
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 150
     outputs:
       candidate-artifact-id: ${{ steps.upload-candidate.outputs.artifact-id }}
       candidate-artifact-digest: ${{ steps.upload-candidate.outputs.artifact-digest }}
