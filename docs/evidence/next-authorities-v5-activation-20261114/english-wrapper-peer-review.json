@@ -1,0 +1,182 @@
+{
+  "schema": 1,
+  "status": "NO_CONCRETE_SOURCE_BLOCKER_IN_SCOPED_READ_ONLY_REVIEW",
+  "reviewer": "flutter_integration",
+  "repository": "Ullmann27/lumo-godot",
+  "producer_pack": "/workspace/scratch/b3485b7bb989/native-2e023-english-wonder-camera-repair-20261114",
+  "base": {
+    "commit": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+    "tree": "0904821ed75ad1adbcc6a7057be2355c694f5dba"
+  },
+  "frozen_source": {
+    "bytes": 1059,
+    "sha256": "6fab09481fa1cd8c8ed11511db8cb891316eb0ceb8d8b89131f96ced40dfc4d8",
+    "git_blob": "8d815b74fd66b64a66aba32812387cdf3c325bcf"
+  },
+  "producer_manifest": {
+    "bytes": 6992,
+    "sha256": "f522b9a25f1ef88ebcdd1105017c6a9e7b95556d93a52d6ce7f5b1db45cc5ce5",
+    "git_blob": "474fa63a65541e4a8bbed9957700371738eba613",
+    "independently_verified_members": 27
+  },
+  "changed_source": {
+    "path": "scripts/learning/learning_wonder_world.gd",
+    "before": {
+      "bytes": 1347,
+      "sha256": "3bc752a0085b181363b5dd50f807938d5b4f26e9e1dcb395ae8436c28bb059ba",
+      "git_blob": "933d42907bc5011cdb681907f3a5a022ef38fd7d"
+    },
+    "after": {
+      "bytes": 1546,
+      "sha256": "9bf0e44c52045c89338cff26b8511afcbdfb4dc2d555af23e4d2509b0b1696fb",
+      "git_blob": "6027cc48be6862a9f01b98814b6345fa05d74a2e"
+    }
+  },
+  "verified_original_source_bytes": [
+    {
+      "path": "scripts/learning/learning_wonder_world.gd",
+      "pack_path": "before/scripts/learning/learning_wonder_world.gd",
+      "bytes": 1347,
+      "sha256": "3bc752a0085b181363b5dd50f807938d5b4f26e9e1dcb395ae8436c28bb059ba",
+      "git_blob": "933d42907bc5011cdb681907f3a5a022ef38fd7d",
+      "ci_both_phases_match": true
+    },
+    {
+      "path": "scenes/learning/learning_world.tscn",
+      "pack_path": "reference-source/scenes/learning/learning_world.tscn",
+      "bytes": 198,
+      "sha256": "5de6bf0e793a14be23a698698016d613a2097943e26e21e0c71264fff6fc7016",
+      "git_blob": "34591fe19b6141c769a8d09a14dcd5b85ea05f2b",
+      "ci_both_phases_match": true
+    },
+    {
+      "path": "project.godot",
+      "pack_path": "reference-source/project.godot",
+      "bytes": 1944,
+      "sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+      "git_blob": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+      "ci_both_phases_match": true
+    },
+    {
+      "path": "scripts/learning/learning_world.gd",
+      "pack_path": "reference-source/scripts/learning/learning_world.gd",
+      "bytes": 65242,
+      "sha256": "73bc9c38124445a5f96bb5fe04a1e8855ef4e9f0edc0bd91f35f5f652f4de5b0",
+      "git_blob": "0e6ae8f3a4900bb1089c291773be2b2ca7442196",
+      "ci_both_phases_match": true
+    },
+    {
+      "path": "scripts/learning/english_object_gallery.gd",
+      "pack_path": "reference-source/scripts/learning/english_object_gallery.gd",
+      "bytes": 13988,
+      "sha256": "9e18d9139748a5aa40e938e9800dd491b3909d69aa057080a1c2a4022445a093",
+      "git_blob": "1bc459bc88d10f48aa918014eedbb91071cd98a7",
+      "ci_both_phases_match": true
+    },
+    {
+      "path": "scripts/tests/learning_english_regression.gd",
+      "pack_path": "reference-source/scripts/tests/learning_english_regression.gd",
+      "bytes": 33455,
+      "sha256": "c6ce712d4b8539c6cb08e0accbd94853cc7c53aa87f43c16342055073f5578e9",
+      "git_blob": "0a86b01f2f1de7058f50f185e60746fb7d7564e1",
+      "ci_both_phases_match": true
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "pack_path": "reference-source/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob": "e4b6a6081a922a137f68491de66f51e096528510",
+      "ci_both_phases_match": true
+    }
+  ],
+  "source_binding_findings": [
+    {
+      "finding": "The production scene really loads the reviewed wrapper.",
+      "evidence": "scenes/learning/learning_world.tscn lines 3–6 bind ExtResource(1) to res://scripts/learning/learning_wonder_world.gd; wrapper line 1 extends the unchanged learning_world.gd base."
+    },
+    {
+      "finding": "The four-line addition is the entire source delta.",
+      "evidence": "Deleting the exact two comment lines plus english_objects condition/return recovers every original wrapper byte; independent unified diff equals integration.patch. The complete _ready function and both surrounding _layout byte ranges remain identical."
+    },
+    {
+      "finding": "Every original reference is bound to the actual failed run before and after.",
+      "evidence": "Seven full files were independently SHA256/Gitblob/byte checked against both native CI source inventories. Their commit/tree, mode 100644, actual_blob and materialized=true values match the frozen 2e023 source."
+    }
+  ],
+  "control_flow_review": [
+    {
+      "location": "scripts/learning/learning_wonder_world.gd:17–24",
+      "finding": "super._layout() still executes first, followed by the unchanged tree/camera/header validity guard. The new return applies solely to activity.kind == english_objects."
+    },
+    {
+      "location": "scripts/learning/learning_world.gd:875–918",
+      "finding": "The complete original base layout retains observation scheduling, safe-area/density handling, UI/header/footer placement, compact English action sizes and voice caption update. It then calls _layout_english and returns on the English branch."
+    },
+    {
+      "location": "scripts/learning/learning_world.gd:1471–1526",
+      "finding": "The unchanged English layout retains its existing model-count/dimension guards, camera reset, teacher and object arrangement, portrait spacing, measured content/teacher bounds, stage fit, offsets, landscape enlargement and teaching target. The derived guard does not bypass this call or its operations."
+    },
+    {
+      "location": "scripts/learning/learning_wonder_world.gd:25–33",
+      "finding": "The only code newly skipped for English computes viewport/free height and overwrites camera.size plus camera.v_offset with the generic garden frame. It contains no initialization, input, save, speech, observation or return work."
+    },
+    {
+      "location": "scripts/learning/learning_wonder_world.gd:7–14; learning_world.gd:228–296",
+      "finding": "The entire wrapper _ready remains byte-identical: super._ready runs, the real LearningGardenAtelier is checked, and the WonderGarden child is added if missing. The base still creates atelier, original Lumo, camera and Wisp node, then shifts the atelier behind the English gallery. This independent initialization is not inside the skipped camera tail."
+    },
+    {
+      "location": "scripts/learning/learning_world.gd:1237–1322, 1331–1441, 1572–1629, 1657–1781",
+      "finding": "The base file is byte-identical to the original 0e6ae8f3 blob, including restart/PCM speech, lifecycle/Wisp suspension, spatial picking/48dp containment, hints, actual host return and observation publication. The wrapper adds no override to those methods."
+    },
+    {
+      "location": "scripts/learning/learning_wonder_world.gd:23–33",
+      "finding": "For every non-English activity the original portrait/landscape flow is unchanged. English portrait previously returned at the aspect-ratio guard without these camera assignments; it now returns earlier after the same base layout. No later local variable is used outside this function."
+    }
+  ],
+  "original_failure": {
+    "run_id": 43627104987,
+    "attempt": 1,
+    "host": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+    "job_id": 132545372767,
+    "artifact_id": 14126257026,
+    "original_job": "originals/english-job.log",
+    "observed_line": 3810,
+    "exact_failure": "ERROR: [LearningEnglish] english-ruler-640x360-start: real object projection remains at least48dp across both axes",
+    "source_projection_cross_check": {
+      "window_px": [
+        640,
+        360
+      ],
+      "density": 1,
+      "header": [
+        12,
+        12,
+        616,
+        83
+      ],
+      "footer": [
+        12,
+        268,
+        616,
+        80
+      ],
+      "free_height": 173,
+      "wrapper_camera_size": 14.566473988439306,
+      "original_matrix_camera_size": 14.56647327578855,
+      "absolute_difference": 7.126507561849849e-7
+    },
+    "interpretation": "The actual 640x360 original projection matches the later generic garden camera-size assignment within 7.13e-7. This independently corroborates the source-level later override. The earlier enlargement helper return branch was not separately traced and is not claimed as directly observed.",
+    "historical_status": "FAILURE remains unchanged."
+  },
+  "preserved_thresholds_and_limits": [
+    "No English mesh, collision volume, 48dp minimum, containment, separation, action size or test expectation is edited.",
+    "No source snapshot, host/native pin, workflow, renderer option or authority input is changed by this one-file patch.",
+    "No import, engine, renderer, Android, Flutter, test, lint, package or CI execution was performed in this review.",
+    "No images were generated, altered or newly claimed as visually reviewed.",
+    "Fresh English qualification on the checkpointed wrapper remains necessary; this source review is not a runtime, Android, visual or FPS pass."
+  ],
+  "checkpoint_scope": "The new source Gitblob is independently calculated from frozen bytes. Root-reported target checkpoint f9d9772bb932d7ee8702eeb5bca6d98c286f3b98 was not independently fetched as part of this bounded review.",
+  "current_readiness": "Ready from the scoped source-review perspective for Root's combined qualification; no activation performed."
+}
+

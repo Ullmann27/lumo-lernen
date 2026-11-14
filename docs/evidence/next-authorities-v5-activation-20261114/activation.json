@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "scope": "Activate the unchanged five qualification groups on the combined strictly pinned source repairs.",
+  "pre_activation_host": {
+    "sha": "a8ee09f966165a27efe79e0a8ed8772eed5c9bb0",
+    "tree": "4d5f1d9ec0d40a1ad6a3ede35ef92cb64cdea48c"
+  },
+  "native": {
+    "sha": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "wrapper_blob": "6027cc48be6862a9f01b98814b6345fa05d74a2e"
+  },
+  "workflow": {
+    "path": ".github/workflows/lumo-next-table-authorities.yml",
+    "git_blob": "73f6ea13daf89c21d9ba497476c6bb1d0f91b0b3",
+    "sha256": "adcda65ec04244a6f30795f232d8fcb9e695167c6ff7168237b54f7b3c770d74",
+    "source_snapshot_sha256": "1ed0e3cd4c7839d9d3e3427767fb5eaadf0550a782885fb373bd694e2cc65760"
+  },
+  "previous_actual_run": {
+    "run_id": 43627104987,
+    "attempt": 1,
+    "host": "abb53125528bae174b26fcec4c1d6cb6b4a899b5",
+    "native": "2e023854b49979720fec7e176dfe3d7cbc7fc3c7",
+    "status": "FAILURE",
+    "android": "SUCCESS",
+    "flutter": "SUCCESS",
+    "quiz": "Actual pair PASS, then obsolete final binary-index comparison failed.",
+    "memory": "Actual presenter and pair PASS, then obsolete final binary-index comparison failed.",
+    "english": "Actual 640x360 object projection failed unchanged 48dp requirement."
+  },
+  "corrections": [
+    "Keep the fully measured English base camera when the production derived layout returns; all other activities keep their existing garden camera code.",
+    "Compare exact stage and flag hashes in the final inventory, matching the existing strict source snapshot. Preserve both original binary indices and their hashes."
+  ],
+  "completed_source_checks": {
+    "root_tuple_review_sha256": "fc775a9a2b4013f34712eaa50fb194d424141404a61a4ebd45201e49c42b6f5e",
+    "root_camera_review_sha256": "ec5eec302f86a4dbdf803dc3c00d5e4aff88b0242d7ee91979aeda3b8c87b4d8",
+    "peer_camera_review_sha256": "31d0d099eaa745d13a76d508ca7f738ae3a7f4aedacb3e907335508452fce3bf",
+    "inventory_reader_cases": 6,
+    "scope": "Only documented original-reader tests and source reviews; no new product result is asserted."
+  },
+  "unchanged": [
+    "Five groups and their full execution requirements",
+    "35-minute per-group deadline and fail-fast false",
+    "48dp and all visual/spatial/input/lifecycle/return checks",
+    "Strict full source/stage/flag and package binding",
+    "Actual source SHA derived from the triggering event",
+    "APK candidate Host5ad/Native2281 remains separately failed in Village return; this activation does not publish it"
+  ],
+  "next": "Collect actual jobs, complete logs and original artifacts once. All five groups must really pass before connecting these sources into the APK candidate."
+}
