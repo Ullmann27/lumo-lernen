@@ -1,7 +1,7 @@
 name: LUMO grades 1-4 learning source audit
 on:
   push:
-    branches: [chatgpt/lumo-learning-curriculum-audit-20261114]
+    branches: [chatgpt/lumo-learning-curriculum-audit-20261114, integration/lumo-agent-execution-20261114]
   workflow_dispatch:
 permissions:
   contents: read
@@ -21,6 +21,11 @@ jobs:
           cache: true
       - name: Resolve existing locked Flutter dependencies
         run: flutter pub get --enforce-lockfile
+      - name: Test shape tracing, retry and single-pointer ink handling
+        run: |
+          set -euo pipefail
+          mkdir -p audit/learning-all-grades
+          flutter test --no-pub --no-test-assets test/shape_trace_input_test.dart test/shape_trace_retry_test.dart test/lumo_ink_surface_regression_test.dart --reporter=expanded 2>&1 | tee audit/learning-all-grades/shape-input-tests.log
       - name: Test exact selection without changing legacy callers
         run: flutter test --no-pub test/learning/learning_exact_selection_test.dart --reporter=expanded
       - name: Sample every registered current-grade core lesson family
