@@ -549,7 +549,7 @@ class DreamRequiredStepTests(unittest.TestCase):
         step = build[begin:end]
         self.assertLess(build.index('LUMO_NEXTGEN_LOG_DIR='), begin)
         self.assertLess(end, build.index('      - name: Build unified real Android APK'))
-        self.assertIn('    timeout-minutes: 90\n', build)
+        self.assertIn('    timeout-minutes: 150\n', build)
         self.assertIn('set -euo pipefail', step)
         self.assertIn('export PATH="$GITHUB_WORKSPACE/.ci-python/bin:$PATH"', step)
         self.assertLess(step.index('export PATH='), step.index('cd "$native_source"'))
