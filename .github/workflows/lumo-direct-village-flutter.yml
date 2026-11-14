@@ -1,0 +1,31 @@
+name: LUMO direct village Flutter Android bridge
+on:
+  push:
+    branches: [chatgpt/lumo-direct-village-flutter-20261114]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: lumo-village-flutter-${{ github.ref }}
+  cancel-in-progress: false
+jobs:
+  village-host-contract:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Execute real Dart/Flutter village game route and Android bridge tests
+        run: flutter test --no-pub test/games/dorfwirtschaft_portal_test.dart --reporter=expanded
+      - uses: actions/upload-artifact@v4
+        if: failure()
+        with:
+          name: lumo-dorfwirtschaft-flutter-regression-failure
+          path: test/
+          retention-days: 7
