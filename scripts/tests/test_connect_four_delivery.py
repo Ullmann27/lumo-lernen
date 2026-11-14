@@ -67,6 +67,20 @@ class OriginalAcceptanceTests(unittest.TestCase):
         self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
         self.assertEqual(set(delivery.checked_artifacts(self.artifacts, self.binding)), set(delivery.ARTIFACT_NAMES))
 
+    def test_quality_branch_requires_the_same_current_pull_branch(self):
+        self.run['head_branch'] = 'work/lumo-play-quality-20261114'
+        self.pull['head']['ref'] = 'work/lumo-play-quality-20261114'
+        self.assertEqual(set(self.check()), set(delivery.REQUIRED_STEPS))
+        self.pull['head']['ref'] = delivery.BRANCH
+        with self.assertRaises(ValueError):
+            self.check()
+
+    def test_unapproved_branch_cannot_reuse_all_green_jobs(self):
+        self.run['head_branch'] = 'work/unapproved'
+        self.pull['head']['ref'] = 'work/unapproved'
+        with self.assertRaises(ValueError):
+            self.check()
+
     def test_each_failure_skip_cancel_and_foreign_attempt_blocks_delivery(self):
         for row in self.jobs['jobs'][:-1]:
             for field, value in [('conclusion', 'failure'), ('conclusion', 'skipped'),
@@ -506,10 +520,11 @@ class RealFilesAndCommandsTests(unittest.TestCase):
                   'github.head_ref': delivery.BRANCH,
                   **{'needs.'+name+'.result': 'success' for name in delivery.REQUIRED_STEPS}}
         def allowed(conditions):
-            code = expression.replace('&&', 'and')
+            code = expression.replace('&&', 'and').replace('||', 'or')
             for key in sorted(conditions, key=len, reverse=True): code = code.replace(key, repr(conditions[key]))
             return eval(code.strip(), {'__builtins__': {}}, {})
         self.assertTrue(allowed(values))
+        self.assertTrue(allowed({**values, 'github.head_ref':'work/lumo-play-quality-20261114'}))
         for key in values:
             with self.subTest(key=key): self.assertFalse(allowed({**values, key: 'different'}))
         self.assertNotIn('if: always()', head)

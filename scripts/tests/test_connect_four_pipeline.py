@@ -51,6 +51,8 @@ class WorkflowTests(unittest.TestCase):
         for name in ('connect-four-runtime','android-host-compile','verify-and-build'):
             block=job(self.workflow,name)
             self.assertTrue(condition(block,values))
+            self.assertTrue(condition(block,{**values,
+                'github.head_ref':'work/lumo-play-quality-20261114'}))
             for key,value in (('github.event_name','push'),('github.event_name','workflow_dispatch'),
                               ('github.event.pull_request.head.repo.full_name','outside/fork'),
                               ('github.head_ref','integration/lumo-connections-20261113')):
@@ -161,6 +163,9 @@ class WorkflowTests(unittest.TestCase):
         c4='integration/lumo-c4-connections-20261114'
         self.assertFalse(condition(block,{'github.head_ref':c4,'github.ref_name':'123/merge'}))
         self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':c4}))
+        quality='work/lumo-play-quality-20261114'
+        self.assertFalse(condition(block,{'github.head_ref':quality,'github.ref_name':'123/merge'}))
+        self.assertFalse(condition(block,{'github.head_ref':'','github.ref_name':quality}))
         self.assertTrue(condition(block,{'github.head_ref':'unrelated-existing-branch','github.ref_name':'123/merge'}))
         self.assertIn("assert int(version[1]) != 2018",block)
         self.assertIn("assert int(version[1]) != 2019",block)

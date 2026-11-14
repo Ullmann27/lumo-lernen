@@ -280,6 +280,35 @@ class ExerciseFactory {
 
   String? _childName;
 
+  /// Explicit grade/subject/unit selection for the curriculum audit and
+  /// progressively upgraded callers. The old mixed-task API remains intact.
+  /// Unrecognized input must never silently turn into a different lesson.
+  LumoTask nextExact({
+    required int grade,
+    required String subject,
+    required String unit,
+    bool currentGradeOnly = false,
+  }) {
+    if (grade < 1 || grade > 4) {
+      throw ArgumentError.value(grade, 'grade', 'Expected class 1 through 4');
+    }
+    if (!Curriculum.exerciseSubjectsForGrade(grade).contains(subject)) {
+      throw ArgumentError.value(subject, 'subject', 'Unknown explicit subject');
+    }
+    final available = Curriculum.unitsForGrade(
+      subject, grade, currentGradeOnly: currentGradeOnly,
+    );
+    if (unit == 'Alle' || !available.contains(unit)) {
+      throw ArgumentError.value(
+        unit, 'unit', 'Topic is not available in the selected subject and grade');
+    }
+    final task = next(grade: grade, subject: subject, unit: unit);
+    if (task.grade != grade || task.subject != subject || task.unit != unit) {
+      throw StateError('Generator changed an explicit grade, subject or unit');
+    }
+    return task;
+  }
+
   LumoTask next({
     required int grade,
     String subject = 'Alle',

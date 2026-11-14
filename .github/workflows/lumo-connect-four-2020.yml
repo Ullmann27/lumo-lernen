@@ -12,7 +12,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114'
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'work/lumo-play-quality-20261114')
     runs-on: ubuntu-latest
     timeout-minutes: 35
     outputs:
@@ -96,7 +97,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114')
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'work/lumo-play-quality-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 35
     steps:
@@ -151,7 +153,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       (github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114')
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'work/lumo-play-quality-20261114'))
     runs-on: ubuntu-latest
     timeout-minutes: 90
     outputs:
@@ -710,7 +713,8 @@ jobs:
       github.repository == 'Ullmann27/lumo-lernen' &&
       github.event_name == 'pull_request' &&
       github.event.pull_request.head.repo.full_name == github.repository &&
-      github.head_ref == 'integration/lumo-c4-connections-20261114' &&
+      (github.head_ref == 'integration/lumo-c4-connections-20261114' ||
+      github.head_ref == 'work/lumo-play-quality-20261114') &&
       needs.verify-and-build.result == 'success' &&
       needs.android-host-compile.result == 'success' &&
       needs.connect-four-runtime.result == 'success' &&
