@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "prepared_at": "2026-11-14T15:39:14.175833+00:00",
+  "host_parent": "036e33603e50774bd328d1dff71ddff1d468db6f",
+  "host_parent_tree": "9f3d845a2997faa5f4a16dc28fdaac4b65eeb0f1",
+  "previous_active_host": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "native_source": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "native_tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+  "native_parent": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+  "source_changes": [
+    {
+      "path": "config/godot-source.json",
+      "mode": "100644",
+      "before": {
+        "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a",
+        "bytes": 145,
+        "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50"
+      },
+      "after": {
+        "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201",
+        "bytes": 145,
+        "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04"
+      }
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "mode": "100644",
+      "before": {
+        "git_blob": "9cbc865858f3337ca2cef66bf0d90d29e2b8777c",
+        "bytes": 10687,
+        "sha256": "722028c30150beccc14f2169f2cea89c97c0f0c3305399029c4b5d9a3c8ea515"
+      },
+      "after": {
+        "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec",
+        "bytes": 10687,
+        "sha256": "6d79fb45a8ef7ba400289dc3d94f2d062131002aa19ebb441d73db28d38a7593"
+      }
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "mode": "100644",
+      "before": {
+        "git_blob": "77e84cbc276f1653c23e6ebd3b5bd06f3fc4aeec",
+        "bytes": 17393,
+        "sha256": "0e5c26ad2722735bb9b891827fb52f638363df3fc649162a8c95f99446be1c3e"
+      },
+      "after": {
+        "git_blob": "3b6eff95bb6e80094cca408624d49ef9191a8501",
+        "bytes": 17393,
+        "sha256": "2350a6482b4f00c92ec9d94bda91c30924a9c4496356f98c8cf93887809c2ce9"
+      }
+    }
+  ],
+  "historical_pin_count": 50,
+  "historical_pins_identical": true,
+  "native_export_acceptance_pending": true,
+  "prior_hub_run": {
+    "run": 43609106020,
+    "attempt": 1,
+    "source": "036e33603e50774bd328d1dff71ddff1d468db6f",
+    "status": "success",
+    "flutter_visible_pass": 6,
+    "flutter_fail": 0,
+    "flutter_skip": 0,
+    "android_host_compile": "success",
+    "scope": "Focused previous Host source; not complete Android APK acceptance on this new source"
+  },
+  "current_active_run": {
+    "run": 43604903064,
+    "attempt": 1,
+    "source": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+    "scope": "Unchanged separate predecessor; latest observed build native step still in progress; no transferred acceptance"
+  },
+  "validation_on_new_source": "not_started"
+}

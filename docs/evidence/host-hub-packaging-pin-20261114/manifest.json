@@ -1,0 +1,64 @@
+{
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 1163,
+      "sha256": "4878723f08bbdf3d5851a5a94b1051339b5f337417c11e56b0511c71ddb5b4d0",
+      "git_blob": "b25e1d7317cf717f690b4ed984006231e76795c1"
+    },
+    {
+      "path": "originals/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "45cd63779c5e9bfe2f4d7685f6e52ee7877ddaeea80e9b278620c09d4f804b50",
+      "git_blob": "8b7d98e2918ca2e808916f3d7a5592d2efc00f4a"
+    },
+    {
+      "path": "originals/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "0e5c26ad2722735bb9b891827fb52f638363df3fc649162a8c95f99446be1c3e",
+      "git_blob": "77e84cbc276f1653c23e6ebd3b5bd06f3fc4aeec"
+    },
+    {
+      "path": "originals/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "722028c30150beccc14f2169f2cea89c97c0f0c3305399029c4b5d9a3c8ea515",
+      "git_blob": "9cbc865858f3337ca2cef66bf0d90d29e2b8777c"
+    },
+    {
+      "path": "pin.patch",
+      "bytes": 1394,
+      "sha256": "2470c24dd5b5ed1f6b6c7af3cc55f4844a11dbdf0cb303ac232a289ae18eea23",
+      "git_blob": "25f5fe4a265dc043e8a014abcd65db9c60eb8e41"
+    },
+    {
+      "path": "preparation-observation.json",
+      "bytes": 429,
+      "sha256": "6f2930f8986a199bc72583a6f6421dcea59f18c61fd563b84237967687afd8b0",
+      "git_blob": "41184b5988145670c7846877902d7e9e7de73125"
+    },
+    {
+      "path": "proposed/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "468e061237ca974bd6ebe3bfb273c5f35672bc703062e9dd4800574db5d6cd04",
+      "git_blob": "6a7480c482d27e36b76e4cd9accab7058dc74201"
+    },
+    {
+      "path": "proposed/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "2350a6482b4f00c92ec9d94bda91c30924a9c4496356f98c8cf93887809c2ce9",
+      "git_blob": "3b6eff95bb6e80094cca408624d49ef9191a8501"
+    },
+    {
+      "path": "proposed/scripts/verify_legacy_release_pin.py",
+      "bytes": 10687,
+      "sha256": "6d79fb45a8ef7ba400289dc3d94f2d062131002aa19ebb441d73db28d38a7593",
+      "git_blob": "406a868b4c1bd896de214ca248a93c1e79bd91ec"
+    },
+    {
+      "path": "source-freeze.json",
+      "bytes": 2716,
+      "sha256": "9ac295c435175f3c53eccf6f59584a28dc457ea2a5351acacdb80445197623fa",
+      "git_blob": "8c6cc73ce0eee7fa0b4eea30d95649da04338d5f"
+    }
+  ]
+}

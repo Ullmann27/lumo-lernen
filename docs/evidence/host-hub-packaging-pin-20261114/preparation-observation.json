@@ -1,0 +1,7 @@
+{
+  "initial_preparation_exit": 1,
+  "initial_check_error": "Git-blob helper used literal backslash-zero instead of the NUL header separator; config identity check failed before writing any source/proposed file.",
+  "corrected_helper": "Uses bytes([0]) as Git blob header separator. Exact expected three original Git blobs now independently match.",
+  "tracked_source_changed": false,
+  "initial_check_was_product_test": false
+}
