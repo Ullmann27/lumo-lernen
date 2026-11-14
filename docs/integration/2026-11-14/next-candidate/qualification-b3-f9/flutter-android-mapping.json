@@ -1,0 +1,127 @@
+{
+  "schema": 1,
+  "binding": {
+    "run": 43629637557,
+    "attempt": 1,
+    "host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+    "host_tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+    "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "workflow_blob": "73f6ea13daf89c21d9ba497476c6bb1d0f91b0b3",
+    "jobs": {
+      "flutter": 132553186097,
+      "android": 132553186113
+    },
+    "status_authority": "godot_integration only"
+  },
+  "groups": {
+    "flutter": {
+      "root": "/tmp/host-b3c2bd-next-authorities-flutter-evidence-20261114",
+      "handoff": {
+        "bytes": 3661,
+        "sha256": "ffca43fb41aa7d95ba015c0d079af85eb2fc6efe67d15f82dcd92a97cb4e5b63",
+        "git_blob": "28c94a14730cad3815505fe5d7bb6ef3a118669a"
+      },
+      "manifest": {
+        "bytes": 16938,
+        "sha256": "ee6a2879f27d25424d9507c52f660e82ae35181f3c9d109d0a7e6ee636283eb5",
+        "git_blob": "cf4f5fa713824b47a5e8f41ba4f5ff472480bf86"
+      },
+      "archive": {
+        "bytes": 3542592,
+        "sha256": "5b3d851aa8d6625b363608769a23c3badcfe206dd160b70e43fac89e4c9d4188",
+        "git_blob": "b7e3cdb5dbb0b1318f4766447659ae0244285adc"
+      },
+      "archive_members": 16,
+      "archive_binding": {
+        "bytes": 537,
+        "sha256": "ff277ec6e55299e4b787a79508171dd63196df8cfb2391240da1d3b8ed4371e7",
+        "git_blob": "6162b37dc18fc7710e159d49bfd8d1748c66c6e9"
+      },
+      "original_log": {
+        "bytes": 145372,
+        "sha256": "f9c5284b948bf86db976c412368d91f8c10642cda5fb22c45b85c3982866104d",
+        "git_blob": "e506504fb43a4194754210b1ca328342f96e3b1d"
+      },
+      "result": {
+        "visible_passed": 53,
+        "failed": 0,
+        "skipped": 0,
+        "exit_code": 0,
+        "per_suite": [
+          {
+            "file": "test/games/memory_native_entry_test.dart",
+            "visible_passed": 8
+          },
+          {
+            "file": "test/games/memory_result_frame_test.dart",
+            "visible_passed": 1
+          },
+          {
+            "file": "test/quiz_native_roundtrip_lifecycle_test.dart",
+            "visible_passed": 4
+          },
+          {
+            "file": "test/reward_wallet_queue_zone_test.dart",
+            "visible_passed": 4
+          },
+          {
+            "file": "test/table_games_launcher_binding_test.dart",
+            "visible_passed": 10
+          },
+          {
+            "file": "test/table_games_wallet_profile_test.dart",
+            "visible_passed": 22
+          },
+          {
+            "file": "test/tutoring/native_english_activity_test.dart",
+            "visible_passed": 4
+          }
+        ],
+        "elapsed_wall_seconds": 18.406822927999997
+      }
+    },
+    "android": {
+      "root": "/tmp/host-b3c2bd-next-authorities-android-evidence-20261114",
+      "handoff": {
+        "bytes": 3222,
+        "sha256": "6823f3901206c9bd79cc2cffd15bce2b663874cb3f235dd73dcb7f29f0c4797c",
+        "git_blob": "7f6084c5cd5681c8349d806e1cbf7b281f556a05"
+      },
+      "manifest": {
+        "bytes": 24319,
+        "sha256": "368f4bb5371eef7fdcbd5c5aa5426919155f4b8e8f7fafdb3249127189129b21",
+        "git_blob": "fb198d0f0b4e507f7c58c7c4b6f216bae756902e"
+      },
+      "archive": {
+        "bytes": 3655687,
+        "sha256": "4a2cab48cf99592802d8d4218a8a098cb987e29829f3666b4675e56bbb70e959",
+        "git_blob": "ebea0d007887a0152c6ac126946ebfcd3a3bb829"
+      },
+      "archive_members": 16,
+      "archive_binding": {
+        "bytes": 537,
+        "sha256": "d29fc1693a1ff90ba17178a2ea403dabf1e75f020000c49d61db795a7092156a",
+        "git_blob": "7f9ee43d0e008310776a67c66e336340a17c4989"
+      },
+      "original_log": {
+        "bytes": 350605,
+        "sha256": "e73ac4b55c0e86b660eda7812de1d8bd26ec45ea5a6a69ab8abc1de05d7dcc86",
+        "git_blob": "a6d3d7c8f165a83924a98c48bdb98d71900e91f4"
+      },
+      "result": {
+        "compile_status": "PASS",
+        "required_class_reports": 15,
+        "actual_table_c4_class_files": 8,
+        "orchestrator_methods": 19,
+        "java_methods": 11,
+        "kotlin_methods": 8,
+        "failures": 0,
+        "errors": 0,
+        "skips": 0,
+        "all_actual_exits": 0,
+        "speech_class_artifact_limit": "Speech class bytes were verified live by the source-bound runner; the artifact retains their original report hashes, not separate copies of these four bytecode files."
+      }
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "schema": 1,
+  "source": ".github/probes/lumo_connect_four_android_probe.py",
+  "base": {
+    "bytes": 28988,
+    "sha256": "e57bec15a0c8e7f57085a33ecfa661fda882af89a92bee906b016d152de54bc2",
+    "git_blob": "f8d4ae7cdd3c38f0240a2bc20c4d78b6108f9f5d"
+  },
+  "final": {
+    "bytes": 29187,
+    "sha256": "df9148ab323e6e3255a23449d5342c5a033c9a20361d3d1e4a615b7eb5043583",
+    "git_blob": "585af5913ac8ec24216bd7eb877415da8c886025"
+  },
+  "changed_existing_definitions": [
+    "Probe.return_to_flutter"
+  ],
+  "unchanged_existing_definitions": [
+    "write",
+    "Probe.__init__",
+    "Probe.remaining",
+    "Probe.bounded_command",
+    "Probe.original",
+    "Probe.read_json",
+    "Probe.read_preferences",
+    "Probe.density",
+    "Probe.locate",
+    "Probe.observation",
+    "Probe.wait_observation",
+    "Probe.native_touch",
+    "Probe.transition",
+    "Probe.wait_for_flutter_control",
+    "Probe.flutter_touch",
+    "Probe.run",
+    "main"
+  ],
+  "unchanged_definition_count": 17,
+  "whole_file_prefix_suffix_outside_changed_function_byte_identical": true,
+  "final_equals_published_producer": true,
+  "patch": {
+    "bytes": 1610,
+    "sha256": "063e5c9bf5ee14ea8e51df30a1839a98e290080414617dac24f7e1ed8fc5c0b9",
+    "git_blob": "03486066901aadf5bd1ab555d8bee413c7687eaf"
+  },
+  "unchanged_runtime_contracts": [
+    "one original Back touch",
+    "45-second return deadline",
+    "900-second global deadline",
+    "native process exit and exact MainActivity resumed lines",
+    "strict empty complete mailbox listing",
+    "unchanged persisted round, paused UI, games navigation and original evidence writer"
+  ],
+  "original_diagnostic_truth_limit": "Historical FAIL remains FAIL. No later real empty answer or second completed return exists; controlled tests clearly label derived later answers and reused pre-touch preferences as synthetic.",
+  "new_test_count": 9,
+  "unchanged_test_count": 45
+}

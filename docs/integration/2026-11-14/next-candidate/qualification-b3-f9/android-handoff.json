@@ -1,0 +1,89 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ACTUAL_TERMINAL_JOB_ORIGINALS",
+  "group": "android",
+  "binding": {
+    "run": 43629637557,
+    "attempt": 1,
+    "host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+    "host_tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+    "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+    "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+    "workflow_blob": "73f6ea13daf89c21d9ba497476c6bb1d0f91b0b3"
+  },
+  "job": {
+    "id": 132553186113,
+    "status": "completed",
+    "conclusion": "success",
+    "completed_at": "2026-11-14T19:04:52Z"
+  },
+  "actual_result": {
+    "compile_status": "PASS",
+    "required_class_reports": 15,
+    "actual_table_c4_class_files": 8,
+    "orchestrator_methods": 19,
+    "java_methods": 11,
+    "kotlin_methods": 8,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "all_actual_exits": 0,
+    "speech_class_artifact_limit": "Speech class bytes were verified live by the source-bound runner; the artifact retains their original report hashes, not separate copies of these four bytecode files."
+  },
+  "source_observation": {
+    "host_records": 4708,
+    "native_records": 3757,
+    "tracked_records_unchanged": true,
+    "actual_stage_and_flag_bytes_unchanged": true,
+    "binary_index_originals_retained": true,
+    "binary_index_changed": {
+      "host": false,
+      "native": false
+    },
+    "untracked_after": {
+      "host": 12,
+      "native": 0
+    }
+  },
+  "package_observation": {
+    "count": 104,
+    "own_package": {
+      "name": "lumo_lernen",
+      "rootUri": "../",
+      "packageUri": "lib/",
+      "absolute_root_uri": "file:///home/runner/work/lumo-lernen/lumo-lernen/host-source/",
+      "absolute_package_uri": "file:///home/runner/work/lumo-lernen/lumo-lernen/host-source/lib/",
+      "resolved_root": "/home/runner/work/lumo-lernen/lumo-lernen/host-source",
+      "resolved_package": "/home/runner/work/lumo-lernen/lumo-lernen/host-source/lib",
+      "package_directory_exists": true
+    },
+    "all_three_pub_originals_byte_equal": true
+  },
+  "transport": {
+    "artifact_id": 14127412635,
+    "archive": {
+      "bytes": 3620051,
+      "sha256": "9238719fce5838eafd12905edf2de806ad49ea710b9887cc1d5a4c3f12548262",
+      "git_blob": "10d384103eb86330c93461ee3ee5dd8c947e6733"
+    },
+    "all_members_crc_sha256_checked": true,
+    "members": 79,
+    "expanded_bytes": 15286319
+  },
+  "original_log": {
+    "bytes": 350605,
+    "sha256": "e73ac4b55c0e86b660eda7812de1d8bd26ec45ea5a6a69ab8abc1de05d7dcc86",
+    "git_blob": "a6d3d7c8f165a83924a98c48bdb98d71900e91f4"
+  },
+  "independent_observation": {
+    "bytes": 25903,
+    "sha256": "dfaae511128081353321340f808f95e688276137426cb4e56b614e2e21311211",
+    "git_blob": "25908c665e6249cd99a9a7a68d868131ac9e18fd"
+  },
+  "scope": [
+    "Only this actual completed job is accepted; overall five-group status is not inferred.",
+    "No local product/test/engine/package execution, source mutation or CI/ref action.",
+    "The earlier static collector preparation typo is preserved separately; no byte transfer or product process ran in that attempt.",
+    "Full ZIP and terminal log retained; extracted members are indexed and reproducible byte-for-byte."
+  ]
+}

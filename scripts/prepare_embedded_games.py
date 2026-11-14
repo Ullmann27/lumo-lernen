@@ -81,6 +81,13 @@ def prepare(root: Path):
     app = doc.find('application')
     if app is None:
         raise ValueError('Missing Android application')
+    # Godot 4.6.3 retains an expansion-downloader fallback that posts notifications.
+    # This Android 13+ declaration does not request a runtime permission grant.
+    notification_permission = 'android.permission.POST_NOTIFICATIONS'
+    if not any(entry.get(attr('name')) == notification_permission
+               for entry in doc.findall('uses-permission')):
+        doc.insert(list(doc).index(app),
+                   ET.Element('uses-permission', {attr('name'): notification_permission}))
     # The available ANGLE/SwiftShader emulators crash in Flutter's Impeller
     # Vulkan path. Skia GLES also gives this app a compatible graphics path
     # when switching to the embedded Godot GLES engine.

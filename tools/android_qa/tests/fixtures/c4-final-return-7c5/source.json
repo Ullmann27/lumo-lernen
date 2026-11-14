@@ -1,0 +1,201 @@
+{
+  "schema": 1,
+  "source_type": "actual_failed_diagnostic_return",
+  "repository": "Ullmann27/lumo-lernen",
+  "diagnostic_source": "cd03e1e2da22efa2e982795cddc12217f821b14b",
+  "app_source": "51ec0ac43f3e2aaac065e285e13cf5db5b5875d2",
+  "observer_source": "7c5bef2bc39024fc2c1018523cabc651820cf76b",
+  "native_source": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "run_id": 43616584326,
+  "run_attempt": 1,
+  "job_id": 132512855551,
+  "artifact_id": 14122019894,
+  "artifact_bytes": 140850732,
+  "artifact_sha256": "03dbde65dba65c00d3b36f0283d3d66fee7778d9bd176005c66e470c16eeaaaa",
+  "full_archive_sha256_and_all_member_crcs_verified": true,
+  "c4_inventory_files_verified": 1335,
+  "status_of_original_diagnostic": "FAIL",
+  "session_token": "8a54abd67d7e9f0ea13f23f09d2708d9",
+  "round_id": "b20d2224f8417b12803c2034b431e3ca",
+  "native_pid_before_return": 7113,
+  "host_pid": 5689,
+  "files": [
+    {
+      "path": "0392-return-final-second-000-state.json",
+      "archive_path": "c4/commands/0392-return-final-second-000-state.json",
+      "bytes": 480,
+      "sha256": "72581bbb6598e4f49a14506aa964deac6553a4bf2683197d9260d0acba0dd007",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0392-return-final-second-000-state.stderr",
+      "archive_path": "c4/commands/0392-return-final-second-000-state.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0392-return-final-second-000-state.stdout",
+      "archive_path": "c4/commands/0392-return-final-second-000-state.stdout",
+      "bytes": 568,
+      "sha256": "c3a963e3717010e8050653c3a44908573ae1bd013bb7d2a07e9276ed7a0d99b2",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0400-return-final-second-000-preferences.json",
+      "archive_path": "c4/commands/0400-return-final-second-000-preferences.json",
+      "bytes": 444,
+      "sha256": "52b2af918140544eb32a3e6182b139e79fd7f82d68d42357009ac4503ca7254c",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0400-return-final-second-000-preferences.stderr",
+      "archive_path": "c4/commands/0400-return-final-second-000-preferences.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0400-return-final-second-000-preferences.stdout",
+      "archive_path": "c4/commands/0400-return-final-second-000-preferences.stdout",
+      "bytes": 2491,
+      "sha256": "0cd65d3aedbd34d5be92fb2345ce5ceb5b8d8c33cbe72bd4a3dd2e3b07e12f0c",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0404-return-final-touch.json",
+      "archive_path": "c4/commands/0404-return-final-touch.json",
+      "bytes": 404,
+      "sha256": "918cbf9d49f8ea4dd07bb3529712d0d00acfbfba9b1abe012808c067af473328",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0404-return-final-touch.stderr",
+      "archive_path": "c4/commands/0404-return-final-touch.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0404-return-final-touch.stdout",
+      "archive_path": "c4/commands/0404-return-final-touch.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0405-return-final-native-exit.json",
+      "archive_path": "c4/commands/0405-return-final-native-exit.json",
+      "bytes": 395,
+      "sha256": "58f56ec275c7dacaf48e3e7ca76771a13e05f09186c148ae5ccde5c2482ba849",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0405-return-final-native-exit.stderr",
+      "archive_path": "c4/commands/0405-return-final-native-exit.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0405-return-final-native-exit.stdout",
+      "archive_path": "c4/commands/0405-return-final-native-exit.stdout",
+      "bytes": 5,
+      "sha256": "8562db7f9631ec4394dbfacac8fef9b8bd4f6079acfe4e371785affc5c8bcce9",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0406-return-final-return-activity.json",
+      "archive_path": "c4/commands/0406-return-final-return-activity.json",
+      "bytes": 376,
+      "sha256": "8ad8ac5c642128d8f5e49f57134deaa9ea90a11292877e423138aae7774c8a10",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0406-return-final-return-activity.stderr",
+      "archive_path": "c4/commands/0406-return-final-return-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0406-return-final-return-activity.stdout",
+      "archive_path": "c4/commands/0406-return-final-return-activity.stdout",
+      "bytes": 39832,
+      "sha256": "a3417f122b4fb7e2dc8577e4878497e6ce823d1d651057217a788ce17d6234ed",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0407-return-final-native-exit.json",
+      "archive_path": "c4/commands/0407-return-final-native-exit.json",
+      "bytes": 395,
+      "sha256": "527ea87ecba81c0aa3b8e06dbcd3e040d297ec717ca0f04de7b0ac3ca392ba76",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0407-return-final-native-exit.stderr",
+      "archive_path": "c4/commands/0407-return-final-native-exit.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0407-return-final-native-exit.stdout",
+      "archive_path": "c4/commands/0407-return-final-native-exit.stdout",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0408-return-final-return-activity.json",
+      "archive_path": "c4/commands/0408-return-final-return-activity.json",
+      "bytes": 376,
+      "sha256": "088140bb2d5119abc2a358a1b0af0bed66dafc53db2de3959023675a938a25aa",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0408-return-final-return-activity.stderr",
+      "archive_path": "c4/commands/0408-return-final-return-activity.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0408-return-final-return-activity.stdout",
+      "archive_path": "c4/commands/0408-return-final-return-activity.stdout",
+      "bytes": 39921,
+      "sha256": "15ebca68cab4904bd893b15189bbd190e5effc2dd2441e2df64b4caadf458bb6",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0409-return-final-closed-mailbox.json",
+      "archive_path": "c4/commands/0409-return-final-closed-mailbox.json",
+      "bytes": 513,
+      "sha256": "e1101b651e0b723a5168f9f8798cf1240a0c864aba90c0ed380abd8fb874ffa3",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0409-return-final-closed-mailbox.stderr",
+      "archive_path": "c4/commands/0409-return-final-closed-mailbox.stderr",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_inventory_verified": true
+    },
+    {
+      "path": "0409-return-final-closed-mailbox.stdout",
+      "archive_path": "c4/commands/0409-return-final-closed-mailbox.stdout",
+      "bytes": 134,
+      "sha256": "48298a293602d6d5fc8d49b609fd08249f0a465a0eab3ea55bbc8cb224351fb6",
+      "original_inventory_verified": true
+    }
+  ],
+  "chronology": [
+    "0404: one actual stationary 120ms Back touch, returncode 0.",
+    "0405/0406: native process still present, first Activity observation.",
+    "0407: native process absent; pidof returncode 1, empty stdout and stderr.",
+    "0408: MainActivity resumed and focused.",
+    "0409: find returns the current session state.json path; returncode 0, stderr empty."
+  ],
+  "truth_limit": "This run contains no later mailbox query, empty-find response or completed second return. Any later successful cleanup response in a regression is synthetic.",
+  "pre_touch_fixture_scope": "0392 and0400 are the actual last pre-Back-touch state and matching valid preferences. Later reuse in any replay is synthetic, not an observed post-return read."
+}

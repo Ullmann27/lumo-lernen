@@ -1,0 +1,265 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T19:23:08.619887+00:00",
+  "files": [
+    {
+      "relative_path": "README.md",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/README.md",
+      "bytes": 1126,
+      "sha256": "acb70733ae33e81fcda70173c9a63f3b4361baf793e4fbea9ca37d29e9ecbe05",
+      "git_blob": "f6d5e5b42e1008aeaa0c3991c992301fbf4182f9"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/CardsAuthorityRegistry.java",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/CardsAuthorityRegistry.java",
+      "bytes": 1157,
+      "sha256": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a",
+      "git_blob": "dbc4a5df533828f36a9228f9b12696209ed899ea"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/CardsAuthorityService.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/CardsAuthorityService.kt",
+      "bytes": 2121,
+      "sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "git_blob": "85fa1dc9e0eccbf38073e1e5918fc934b8e91e41"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/CardsTableBridge.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/CardsTableBridge.kt",
+      "bytes": 7302,
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "git_blob": "4433cf840665bfeee3593f7620306ba79f87ad8a"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/ConnectFourAuthorityService.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/ConnectFourAuthorityService.kt",
+      "bytes": 1708,
+      "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+      "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/ConnectFourBridge.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/ConnectFourBridge.kt",
+      "bytes": 7788,
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/ConnectFourGameActivity.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/ConnectFourGameActivity.kt",
+      "bytes": 7355,
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/GameEventStore.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/GameEventStore.kt",
+      "bytes": 5560,
+      "sha256": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+      "git_blob": "39963b5ac6ff773e0d39505a355cca70d489b7a5"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/LumoGameActivity.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 12726,
+      "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+      "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/TableAuthorityService.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/TableAuthorityService.kt",
+      "bytes": 1945,
+      "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+      "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/TableGameActivity.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/TableGameActivity.kt",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/TableGameIntent.java",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/TableGameIntent.java",
+      "bytes": 3205,
+      "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+      "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433"
+    },
+    {
+      "relative_path": "current_dependency/tools/auto_install/TableGamesBridge.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_dependency/tools/auto_install/TableGamesBridge.kt",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461"
+    },
+    {
+      "relative_path": "current_preimage/scripts/prepare_embedded_games.py",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_preimage/scripts/prepare_embedded_games.py",
+      "bytes": 11694,
+      "sha256": "e31d0aadd76633b98182a4d2093d838adf9603c46c8ad191561d045d4a0d333e",
+      "git_blob": "e8fb95d785e5f5dea6ba3d0dd7718bb9ca6fc20b"
+    },
+    {
+      "relative_path": "current_preimage/scripts/tests/test_embedded_android.py",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/current_preimage/scripts/tests/test_embedded_android.py",
+      "bytes": 23636,
+      "sha256": "12668cc3df6ebfc3a424849dfa6360f16f222bfc755652594000eb348b29963c",
+      "git_blob": "df44794c5bc75837a11a6cec1272655db168e535"
+    },
+    {
+      "relative_path": "final-source/scripts/prepare_embedded_games.py",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/scripts/prepare_embedded_games.py",
+      "bytes": 12188,
+      "sha256": "bbf3cf70c2be8ac5016cb2751ec8b7fa300fb311fa257167f556b1a686359163",
+      "git_blob": "42c9ccc7df990577b945563417f9f0db61684b1f"
+    },
+    {
+      "relative_path": "final-source/scripts/tests/test_embedded_android.py",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/scripts/tests/test_embedded_android.py",
+      "bytes": 24053,
+      "sha256": "a9ff2374e19421542a4cc73688ed79487a5f1729addda4a2001cd8a3625fd1e3",
+      "git_blob": "1c59cbd729f51aef7c543aeb69316d53e82e9860"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/CardsAuthorityRegistry.java",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/CardsAuthorityRegistry.java",
+      "bytes": 1157,
+      "sha256": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a",
+      "git_blob": "dbc4a5df533828f36a9228f9b12696209ed899ea"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/CardsAuthorityService.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/CardsAuthorityService.kt",
+      "bytes": 2121,
+      "sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "git_blob": "85fa1dc9e0eccbf38073e1e5918fc934b8e91e41"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/CardsTableBridge.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/CardsTableBridge.kt",
+      "bytes": 7302,
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "git_blob": "4433cf840665bfeee3593f7620306ba79f87ad8a"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/ConnectFourAuthorityService.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/ConnectFourAuthorityService.kt",
+      "bytes": 1708,
+      "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+      "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/ConnectFourBridge.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/ConnectFourBridge.kt",
+      "bytes": 7788,
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/ConnectFourGameActivity.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/ConnectFourGameActivity.kt",
+      "bytes": 7355,
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/GameEventStore.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/GameEventStore.kt",
+      "bytes": 5560,
+      "sha256": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+      "git_blob": "39963b5ac6ff773e0d39505a355cca70d489b7a5"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/LumoGameActivity.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 12726,
+      "sha256": "ac43bed87efbecd7fd7535120b5eff2839cb05b19662eb9ac93c0bf7f9963287",
+      "git_blob": "81e96786d30c223e9ba145b4f50cbae737946c08"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/TableAuthorityService.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableAuthorityService.kt",
+      "bytes": 1945,
+      "sha256": "06a8b6323a6f76820e452b276649d262f245102d041c4b9207eaf0c2b0695ea0",
+      "git_blob": "7db61b3117a52a9ac93daad2de7d7c1b3ac21e08"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/TableGameActivity.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableGameActivity.kt",
+      "bytes": 6633,
+      "sha256": "e15923d2f0878733b41a4eae32eb5ea56cc5f067fa481c503bfee72c77440b2e",
+      "git_blob": "74e9f7476cb192e016f5bf42421c89a30f58ee28"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/TableGameIntent.java",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableGameIntent.java",
+      "bytes": 3205,
+      "sha256": "6d2af8dd20002c93311f0a823ea24eec3113bac13c10857e6bc3d2b701f3c77f",
+      "git_blob": "d14b09e3438164aea359d478d7af11f8c0fb5433"
+    },
+    {
+      "relative_path": "final-source/tools/auto_install/TableGamesBridge.kt",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/final-source/tools/auto_install/TableGamesBridge.kt",
+      "bytes": 8236,
+      "sha256": "40ec31c127830d948fd847a88518a07cb30329273ff4b8ff2cfdee97e00e2a60",
+      "git_blob": "4b25e208043ac9cd939e98eb955ef6a850315461"
+    },
+    {
+      "relative_path": "narrow-integration.patch",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/narrow-integration.patch",
+      "bytes": 2173,
+      "sha256": "eb357e5520455ae5a83ef2e77ebdd208d0ee69443f840a4b5ac0944ed236d179",
+      "git_blob": "bf0eb7d439e84604d34966cfcf35fde77199713d"
+    },
+    {
+      "relative_path": "producer_postimage/scripts/prepare_embedded_games.py",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/producer_postimage/scripts/prepare_embedded_games.py",
+      "bytes": 10871,
+      "sha256": "326b5b74f1b24c355e49fca5261cedf36a82b82a00f79e3505c9cff02a908076",
+      "git_blob": "9fb440d949dc509dc9b9790a5a11143d80655777"
+    },
+    {
+      "relative_path": "producer_postimage/scripts/tests/test_embedded_android.py",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/producer_postimage/scripts/tests/test_embedded_android.py",
+      "bytes": 22402,
+      "sha256": "86c374e7500b83b7ea6c6a2abb3d8740a3fd22dff9b53bd2c8bf624582e1b699",
+      "git_blob": "508449d5ffecd1b87e35b800df08d63a117c5d48"
+    },
+    {
+      "relative_path": "source-freeze.json",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/source-freeze.json",
+      "bytes": 6947,
+      "sha256": "49b31b28da7e0ef9051cba7d2b90277a26bd193c67683db7b98dfb8e81765698",
+      "git_blob": "6716630485e01550c9d03eadcd63603c0d5ec1cf"
+    },
+    {
+      "relative_path": "source-payload.json",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/source-payload.json",
+      "bytes": 146020,
+      "sha256": "e0b28f094f9647117b9dc98384da997ee1e556dddbbff7faab87c635b8c0889e",
+      "git_blob": "176a7ce1eee90a09c071a2cb5cad507746d968c1"
+    },
+    {
+      "relative_path": "validation-result.json",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/validation-result.json",
+      "bytes": 1406,
+      "sha256": "564f1c2e49289e9846515ad941080dd7228e0a6aff3556209a42767763167325",
+      "git_blob": "f2bb5bed185d4e1352c6574d7b483319f416d365"
+    },
+    {
+      "relative_path": "validation.stderr",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/validation.stderr",
+      "bytes": 274,
+      "sha256": "84f2fc7e58e553f4619b5a3c0c61dbecf0f53e6e1c2e155626172179dce1970d",
+      "git_blob": "6f7b83ddec32b8f9135cb81cf3290bf7c3500675"
+    },
+    {
+      "relative_path": "validation.stdout",
+      "local_path": "/tmp/host-pr502-notification-manifest-repair-20261114/validation.stdout",
+      "bytes": 162,
+      "sha256": "25677916f5ec9f4a49a844d0bb644561a00bcc3c5826d99a612458b20582e7ff",
+      "git_blob": "f2079eee669376aa609be369789c62bfc9deb933"
+    }
+  ]
+}

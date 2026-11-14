@@ -1,0 +1,661 @@
+{
+  "schema": 1,
+  "state": "FINAL_ORIGINALS_FROZEN_RUN_SUCCESS",
+  "run_id": 43629637557,
+  "attempt": 1,
+  "host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+  "host_tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "actual_final_api": [
+    {
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/final/run.json",
+      "bytes": 12485,
+      "sha256": "d2b6a751efeaeee2ae990f0450b74c74d4ea5b0fd656ac7cc58e854017e016c2",
+      "git_blob": "ee0825b04838be67dbaa4441204a23daefce3482"
+    },
+    {
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/snapshots/20261114T191250Z/jobs.json",
+      "bytes": 37582,
+      "sha256": "de05147df391af3154c2a2675767a5eb2d36cc3cbe175026fface98cbe2fba6e",
+      "git_blob": "59f675855c104a6d3772c6bd2c8a2cb53be5604d"
+    },
+    {
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/final/artifacts.json",
+      "bytes": 3845,
+      "sha256": "8d56d97d3a905f27caba4844156097ead6582339a936d4330cc4c07647a38570",
+      "git_blob": "a44d0af444b78358ba31c5ed946f1c7eb0b660b7"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 132553185981,
+      "name": "english exact source qualification",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T18:59:52Z",
+      "completed_at": "2026-11-14T19:11:34Z"
+    },
+    {
+      "id": 132553186093,
+      "name": "memory exact source qualification",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T18:59:52Z",
+      "completed_at": "2026-11-14T19:04:55Z"
+    },
+    {
+      "id": 132553186097,
+      "name": "flutter-contracts exact source qualification",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T18:59:51Z",
+      "completed_at": "2026-11-14T19:01:02Z"
+    },
+    {
+      "id": 132553186113,
+      "name": "android-host-compile exact source qualification",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T18:59:52Z",
+      "completed_at": "2026-11-14T19:04:52Z"
+    },
+    {
+      "id": 132553186129,
+      "name": "quiz exact source qualification",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T18:59:51Z",
+      "completed_at": "2026-11-14T19:02:26Z"
+    }
+  ],
+  "native_artifacts": [
+    {
+      "group": "english",
+      "id": 14128166249,
+      "job_id": 132553185981,
+      "name": "lumo-next-authorities-english-43629637557-1",
+      "bytes": 8676726,
+      "sha256": "3fa9664a5cb78c2f36bb81c23ee392cc93635c88c03144d4d5dafef1662716b0",
+      "git_blob": "822e999ec833bd3357477fdf85c908943dc4baf1",
+      "complete_crc_sha_members": 113,
+      "completely_decoded_pngs": 17,
+      "original_zip": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/original.zip",
+      "original_root": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals",
+      "expires_at": "2026-12-14T19:11:27Z",
+      "full_archive_verification": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/verification.json",
+        "bytes": 41706,
+        "sha256": "f8587589324d70dc6bd646d46cd046d2984da4534d0cf752a64ca2389a5beaae",
+        "git_blob": "a5e4b931dff5c055aaa2a5903fd894924d1b32c4"
+      },
+      "independent_record_pixel_binding": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/independent-original-binding.json",
+        "bytes": 8383,
+        "sha256": "6c22a91fe19a13d677f460c732972265e7d12baeffc16a51ec672a778594b595",
+        "git_blob": "98fa7652efe3a784491c06a18def32cabe41ea81"
+      },
+      "pillow_version_used_for_local_decode": "13.0.0",
+      "export_count": 1,
+      "job_log_fetch_count": 1
+    },
+    {
+      "group": "quiz",
+      "id": 14127776500,
+      "job_id": 132553186129,
+      "name": "lumo-next-authorities-quiz-43629637557-1",
+      "bytes": 5525408,
+      "sha256": "e1a769b1fecb8051643e0cb3be9d434cb18f56cce525255a2f53592c21f3531a",
+      "git_blob": "62635820c5e4bf42d87b5343805917c699be2af2",
+      "complete_crc_sha_members": 199,
+      "completely_decoded_pngs": 6,
+      "original_zip": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/original.zip",
+      "original_root": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals",
+      "expires_at": "2026-12-14T19:02:22Z",
+      "full_archive_verification": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/verification.json",
+        "bytes": 71436,
+        "sha256": "da6889b484266ff8c72f5109bffa317fca46262ad85ea6987f78d507f8d8c522",
+        "git_blob": "0692a78dd4ec6b077215a2014e2318cd179224a5"
+      },
+      "independent_record_pixel_binding": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/independent-original-binding.json",
+        "bytes": 4801,
+        "sha256": "5379edb6b1b69226df80708bf52441d30e66d4ad5fdf18fe3ac9333a503d65ac",
+        "git_blob": "df70a3e1b61ccc7b098ada336522bbf923b0b3f6"
+      },
+      "pillow_version_used_for_local_decode": "13.0.0",
+      "export_count": 1,
+      "job_log_fetch_count": 1
+    },
+    {
+      "group": "memory",
+      "id": 14127373006,
+      "job_id": 132553186093,
+      "name": "lumo-next-authorities-memory-43629637557-1",
+      "bytes": 9192238,
+      "sha256": "8dc127dd0688322402312b90a0b0905ef08d223420c8aebc7e9b4f0dae90fbf1",
+      "git_blob": "7737f0faaec5f18fda42da2f308c9fdcf3afbf17",
+      "complete_crc_sha_members": 258,
+      "completely_decoded_pngs": 28,
+      "original_zip": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/original.zip",
+      "original_root": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals",
+      "expires_at": "2026-12-14T19:04:48Z",
+      "full_archive_verification": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/verification.json",
+        "bytes": 97859,
+        "sha256": "b231d9f31ec85b535beec26e7f23df60f561e50808034a7ad0a210fd00ffd8a4",
+        "git_blob": "db5f138784a20578528bf70fa4d496ca5869fe30"
+      },
+      "independent_record_pixel_binding": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/independent-original-binding.json",
+        "bytes": 11640,
+        "sha256": "f5318eca7d3de2754566354b6d5ca884535bbb5a45b665b55699e944d0210fdc",
+        "git_blob": "01de00a2f79f5c7c0b3d76e70899ede96b1a2b92"
+      },
+      "pillow_version_used_for_local_decode": "13.0.0",
+      "export_count": 1,
+      "job_log_fetch_count": 1
+    }
+  ],
+  "source_bindings": [
+    {
+      "group": "english",
+      "repository": "host",
+      "head": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+      "tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+      "tracked_count": 4708,
+      "all_tracked_records_equal": true,
+      "before": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/host/source-inventory-before.json",
+        "bytes": 1913481,
+        "sha256": "2e987c00e3a811cfbbb8e38afa931bf10d5de949eacf5c38781f3ff1ef16f8b0",
+        "git_blob": "9d68393b0594bf4d05d9ba1c2fa67ef40f8ea2d5"
+      },
+      "after": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/host/source-inventory-after.json",
+        "bytes": 1913481,
+        "sha256": "2e987c00e3a811cfbbb8e38afa931bf10d5de949eacf5c38781f3ff1ef16f8b0",
+        "git_blob": "9d68393b0594bf4d05d9ba1c2fa67ef40f8ea2d5"
+      },
+      "raw_binary_index_before": "eb45918c51f13125d572ba0fae12cc9fed7566c65c3adf8984e1793f95d85e9c",
+      "raw_binary_index_after": "eb45918c51f13125d572ba0fae12cc9fed7566c65c3adf8984e1793f95d85e9c",
+      "raw_binary_index_equal": true,
+      "logical_stage_and_flags_equal": true,
+      "logical_and_binary_index_check_reference": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/independent-original-binding.json"
+    },
+    {
+      "group": "english",
+      "repository": "native",
+      "head": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+      "tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+      "tracked_count": 3757,
+      "all_tracked_records_equal": true,
+      "before": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/native/source-inventory-before.json",
+        "bytes": 1559426,
+        "sha256": "b03d19d3d753aa113c59443bcba3935b79756e736d4324cdbb8c6d8c86a23284",
+        "git_blob": "ee71884cfc59de9591ac4a54c7a07c272daa5d34"
+      },
+      "after": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/source/native/source-inventory-after.json",
+        "bytes": 1949697,
+        "sha256": "27210ba21fbc1ce34c62ea3549eb104add70f7ab056aa7544c737cc1490230cd",
+        "git_blob": "99b9772ac8df9f3ac272522a5250e8c280da4d4b"
+      },
+      "raw_binary_index_before": "7de82d0482050ef991d3b99409007da502285dc6f42cb90457fead72fceca999",
+      "raw_binary_index_after": "19745b72c006f7bf1c4de1b0d8f5ca89e38db0861f4699facef61e2ce7ddfef9",
+      "raw_binary_index_equal": false,
+      "logical_stage_and_flags_equal": true,
+      "logical_and_binary_index_check_reference": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/independent-original-binding.json"
+    },
+    {
+      "group": "quiz",
+      "repository": "host",
+      "head": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+      "tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+      "tracked_count": 4708,
+      "all_tracked_records_equal": true,
+      "before": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/source/host/source-inventory-before.json",
+        "bytes": 1913481,
+        "sha256": "568827680905f75fab49b5613136a3cf7d79c0f226b4920840bbf81a44d39ad1",
+        "git_blob": "0cb4b07910d0b3ecbae863911a3de0238954881f"
+      },
+      "after": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/source/host/source-inventory-after.json",
+        "bytes": 1913481,
+        "sha256": "568827680905f75fab49b5613136a3cf7d79c0f226b4920840bbf81a44d39ad1",
+        "git_blob": "0cb4b07910d0b3ecbae863911a3de0238954881f"
+      },
+      "raw_binary_index_before": "4a1706829e248944f11eb02decb749896d97ed662a4852bd18de0a0492ae316b",
+      "raw_binary_index_after": "4a1706829e248944f11eb02decb749896d97ed662a4852bd18de0a0492ae316b",
+      "raw_binary_index_equal": true,
+      "logical_stage_and_flags_equal": true,
+      "logical_and_binary_index_check_reference": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/independent-original-binding.json"
+    },
+    {
+      "group": "quiz",
+      "repository": "native",
+      "head": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+      "tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+      "tracked_count": 3757,
+      "all_tracked_records_equal": true,
+      "before": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/source/native/source-inventory-before.json",
+        "bytes": 1559426,
+        "sha256": "28b494639c359e3867e585b0293cccfb2e107ab7d7c553161afbffcab417d14f",
+        "git_blob": "8d76c36c9433a5b145767b7dfeacd39ea92a284f"
+      },
+      "after": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/source/native/source-inventory-after.json",
+        "bytes": 1949697,
+        "sha256": "87c4084ed3df9ec9c2df8c894e1f439c96b9e4f038dd8438bc867da36e480d9e",
+        "git_blob": "b7700e147354a7b45e69afde5200494b8312a76f"
+      },
+      "raw_binary_index_before": "98926cd05a9dc710e0b2603686afc114d4a075e13ebd7d1cf631140f22693309",
+      "raw_binary_index_after": "de2311049c95b5d76a5059e3486cf91dfccfb5f270007fdaf60da620dac3f6cf",
+      "raw_binary_index_equal": false,
+      "logical_stage_and_flags_equal": true,
+      "logical_and_binary_index_check_reference": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/independent-original-binding.json"
+    },
+    {
+      "group": "memory",
+      "repository": "host",
+      "head": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+      "tree": "4ebddcbe209191714dc64cba2815e5a67b64513b",
+      "tracked_count": 4708,
+      "all_tracked_records_equal": true,
+      "before": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/source/host/source-inventory-before.json",
+        "bytes": 1913481,
+        "sha256": "64ceeea9816d2f67b587ff567138ad223d714a71c6f1d6d141dcb902e437fa50",
+        "git_blob": "8b6933516ef0d5f2e6139fcdb1c76a4801700f3f"
+      },
+      "after": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/source/host/source-inventory-after.json",
+        "bytes": 1913481,
+        "sha256": "64ceeea9816d2f67b587ff567138ad223d714a71c6f1d6d141dcb902e437fa50",
+        "git_blob": "8b6933516ef0d5f2e6139fcdb1c76a4801700f3f"
+      },
+      "raw_binary_index_before": "08c8d3ba7cb85f47aab0d107907a1d9153e6a0205f8116aa1f24d3e91911afab",
+      "raw_binary_index_after": "08c8d3ba7cb85f47aab0d107907a1d9153e6a0205f8116aa1f24d3e91911afab",
+      "raw_binary_index_equal": true,
+      "logical_stage_and_flags_equal": true,
+      "logical_and_binary_index_check_reference": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/independent-original-binding.json"
+    },
+    {
+      "group": "memory",
+      "repository": "native",
+      "head": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+      "tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+      "tracked_count": 3757,
+      "all_tracked_records_equal": true,
+      "before": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/source/native/source-inventory-before.json",
+        "bytes": 1559426,
+        "sha256": "674c3792c2be77a57ce6057f0a25611a2a69730e22ff6a3552172ed1ac1ce122",
+        "git_blob": "aa3fbada8182c44987067c3bbc3cf6fcedbac410"
+      },
+      "after": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/source/native/source-inventory-after.json",
+        "bytes": 1949697,
+        "sha256": "9751f9dd6d4685764a90880206519b4862fd2ba6ff27d3ddd054a6bbcb75941e",
+        "git_blob": "ce568bdafd3022f8ab0b2cd89933ce1e6aaeba19"
+      },
+      "raw_binary_index_before": "6550a60c60eed672ea00adde34ee96fb6b8cdfc185d390c41908a5753bd11168",
+      "raw_binary_index_after": "c9c1bdb27731ce13cbab6c5d6f78073709280094a33aad9a77fa38f57b4ffb14",
+      "raw_binary_index_equal": false,
+      "logical_stage_and_flags_equal": true,
+      "logical_and_binary_index_check_reference": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/independent-original-binding.json"
+    }
+  ],
+  "actual_log_markers": [
+    {
+      "group": "english",
+      "job_id": 132553185981,
+      "log": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/jobs/english-132553185981.log",
+        "bytes": 396867,
+        "sha256": "75c60a334aa5c328a37bb51332b0bf71fc077e4619942454607c5cee5402f5fa",
+        "git_blob": "2bd706837f80ded5c41c497e50163252ac640d63"
+      },
+      "markers": [
+        {
+          "text": "LEARNING_ENGLISH_PASS checks=7635 captures=17 input_events=196 fixture=actual_dart_producer_report",
+          "line": 3892,
+          "original_line": "2026-11-14T19:11:23.0719073Z LEARNING_ENGLISH_PASS checks=7635 captures=17 input_events=196 fixture=actual_dart_producer_report"
+        },
+        {
+          "text": "SOURCE_AFTER_BOUND host=b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1 native=f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+          "line": 4110,
+          "original_line": "2026-11-14T19:11:27.7016854Z SOURCE_AFTER_BOUND host=b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1 native=f9d9772bb932d7ee8702eeb5bca6d98c286f3b98"
+        },
+        {
+          "text": "NEXT_AUTHORITY_QUALIFICATION_PASS group=english",
+          "line": 4160,
+          "original_line": "2026-11-14T19:11:27.7716915Z NEXT_AUTHORITY_QUALIFICATION_PASS group=english"
+        }
+      ]
+    },
+    {
+      "group": "quiz",
+      "job_id": 132553186129,
+      "log": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/jobs/quiz-132553186129.log",
+        "bytes": 385570,
+        "sha256": "e3f20dbf3cc6a6d139fa8ffe86ff520f01ea6faf18b6f239876e099d6d66d233",
+        "git_blob": "4a25199610639ae4529c05f37732919f4e9f1388"
+      },
+      "markers": [
+        {
+          "text": "[GodotQuiz] [QuizStudioRuntime] PASS checks=381 captures=6",
+          "line": 3793,
+          "original_line": "2026-11-14T19:02:19.9746866Z [GodotQuiz] [QuizStudioRuntime] PASS checks=381 captures=6"
+        },
+        {
+          "text": "[QuizNativePair] PASS",
+          "line": 3795,
+          "original_line": "2026-11-14T19:02:20.5346349Z [QuizNativePair] PASS"
+        },
+        {
+          "text": "SOURCE_AFTER_BOUND host=b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1 native=f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+          "line": 4013,
+          "original_line": "2026-11-14T19:02:22.7473682Z SOURCE_AFTER_BOUND host=b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1 native=f9d9772bb932d7ee8702eeb5bca6d98c286f3b98"
+        },
+        {
+          "text": "NEXT_AUTHORITY_QUALIFICATION_PASS group=quiz",
+          "line": 4063,
+          "original_line": "2026-11-14T19:02:22.8185767Z NEXT_AUTHORITY_QUALIFICATION_PASS group=quiz"
+        }
+      ]
+    },
+    {
+      "group": "memory",
+      "job_id": 132553186093,
+      "log": {
+        "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/jobs/memory-132553186093.log",
+        "bytes": 391518,
+        "sha256": "e794db6b82b2130625aa865c113d85ff56e27e36db5914077d8aeb0451112287",
+        "git_blob": "d3dc6d5d7d6d5c97abefd1bf270c107a96d88ed5"
+      },
+      "markers": [
+        {
+          "text": "MEMORY_VIEW_PASS checks=7020 captures=8",
+          "line": 3804,
+          "original_line": "2026-11-14T19:03:16.7321741Z MEMORY_VIEW_PASS checks=7020 captures=8"
+        },
+        {
+          "text": "[MemoryTableRuntime] PASS checks=243 inputs=57",
+          "line": 3856,
+          "original_line": "2026-11-14T19:04:45.2235688Z [GodotMemory] [MemoryTableRuntime] PASS checks=243 inputs=57"
+        },
+        {
+          "text": "[MemoryNativePair] PASS",
+          "line": 3857,
+          "original_line": "2026-11-14T19:04:45.6242181Z [MemoryNativePair] PASS"
+        },
+        {
+          "text": "SOURCE_AFTER_BOUND host=b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1 native=f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+          "line": 4075,
+          "original_line": "2026-11-14T19:04:48.0292581Z SOURCE_AFTER_BOUND host=b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1 native=f9d9772bb932d7ee8702eeb5bca6d98c286f3b98"
+        },
+        {
+          "text": "NEXT_AUTHORITY_QUALIFICATION_PASS group=memory",
+          "line": 4125,
+          "original_line": "2026-11-14T19:04:48.1061900Z NEXT_AUTHORITY_QUALIFICATION_PASS group=memory"
+        }
+      ]
+    }
+  ],
+  "actual_original_report_summaries": [
+    {
+      "artifact_id": 14128166249,
+      "entry": "english-native/learning-english-report.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/learning-english-report.json",
+      "bytes": 138952,
+      "sha256": "066379f06fc71295f2b8611238a3d6d3ab45f4300b12322c66cbbd71bd234e64",
+      "git_blob": "925e59d7225bd76d9357932302bf76a1f30abdb9",
+      "actual_fields": {
+        "checks": 7635,
+        "captures": 17,
+        "cases": 14,
+        "input_events": 196,
+        "scope": "actual production Godot scene; explicit platform/JNI/audio fixtures; no Android/FPS/mastery claim",
+        "audio_listened": false,
+        "english_pronunciation_verified": false
+      },
+      "failures": []
+    },
+    {
+      "artifact_id": 14127776500,
+      "entry": "quiz-pair/authority/authority-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/quiz-pair/authority/authority-result.json",
+      "bytes": 18251,
+      "sha256": "62ffe49bba57e5d3eb53b507c1d43f1f16b5add94bac038a949a45983446294f",
+      "git_blob": "9617900ee4b101fa6158ae3e6bfa33b296bfa160",
+      "actual_fields": {
+        "requests": 67,
+        "scope": "Production Dart engine/bank/controller/session plus actual Godot input; explicit QA disk/Binder boundary"
+      },
+      "failures": null
+    },
+    {
+      "artifact_id": 14127776500,
+      "entry": "quiz-pair/authority/native-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/quiz-pair/authority/native-result.json",
+      "bytes": 51,
+      "sha256": "1f03988160241ca82476416d241eb51a84c118aff8b284299be771b9f865e759",
+      "git_blob": "3ff9e32044d5332599f51ac4192d1d9a035db33d",
+      "actual_fields": {
+        "checks": 381
+      },
+      "failures": []
+    },
+    {
+      "artifact_id": 14127776500,
+      "entry": "quiz-pair/native/quiz-runtime-report.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/quiz-pair/native/quiz-runtime-report.json",
+      "bytes": 74055,
+      "sha256": "cd2c96a11aaf7b883ee48c20babcde61ce6994d47a1db582b7812672e56a055a",
+      "git_blob": "c4460bda5bb10ccdc9b283b86dde98ca8a8f5071",
+      "actual_fields": {
+        "checks": 381,
+        "captures": 6,
+        "inputs": 394,
+        "requests": 67,
+        "scope": "Original production Dart controller/session/question bank and disk persistence through a declared QA transport. The award callback is a QA ledger, not AppState/SharedPreferences. No Android Binder/device performance acceptance."
+      },
+      "failures": []
+    },
+    {
+      "artifact_id": 14127776500,
+      "entry": "quiz-pair/pair-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127776500/inspection/originals/quiz-pair/pair-result.json",
+      "bytes": 6075,
+      "sha256": "e2f15495cc76eb1df319f5ee15bf9a60c84af003870050f3a0182ce744709e22",
+      "git_blob": "5ecdbad60a22c12963b978a22a1e142629530918",
+      "actual_fields": {
+        "success": true,
+        "checks": 381,
+        "captures": 6,
+        "inputs": 394,
+        "requests": 67,
+        "scope": "Real production Dart bank/controller/session and Godot input with an explicit QA disk transport and award ledger. No Android/device performance claim."
+      },
+      "failures": null
+    },
+    {
+      "artifact_id": 14127373006,
+      "entry": "memory-pair/authority/authority-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/memory-pair/authority/authority-result.json",
+      "bytes": 43958,
+      "sha256": "caf49c268bf7ffdb47993122f21968d9ed17b9bc50122724080233593c659bad",
+      "git_blob": "3a87c5dd9dbbcf5b33080d099e7b394884773059",
+      "actual_fields": {
+        "success": true,
+        "requests": 19,
+        "scope": "Production Dart rules/controller/session with original dealer fixture, explicit QA disk store/transport, monotonic clock fixture and idempotent award ledger; no Android/device FPS claim."
+      },
+      "failures": null
+    },
+    {
+      "artifact_id": 14127373006,
+      "entry": "memory-pair/authority/native-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/memory-pair/authority/native-result.json",
+      "bytes": 16487,
+      "sha256": "2cfd9d33aedd649287c865a7de9dea154d1ed8069b028431161a2aaee5f7ead6",
+      "git_blob": "bf0896d69342684fffc4dce92671f2814aaefe22",
+      "actual_fields": {
+        "success": true,
+        "checks": 243,
+        "captures": 8,
+        "inputs": 57,
+        "motion_frames": 12,
+        "scope": "Actual production Godot ScreenTouch to Dart rules/session/persistence via explicit QA disk transport and monotonic clock fixture. No Android/device FPS claim."
+      },
+      "failures": []
+    },
+    {
+      "artifact_id": 14127373006,
+      "entry": "memory-pair/native/memory-runtime-report.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/memory-pair/native/memory-runtime-report.json",
+      "bytes": 19438,
+      "sha256": "fc632d21f493d6477b1f4bd0fcdaf0060b1c3ecab854df4331e9d6e4fab03610",
+      "git_blob": "cecbd2a46a7363fd804a7aee0b64d8edddcdc11b",
+      "actual_fields": {
+        "success": true,
+        "checks": 243,
+        "captures": 8,
+        "inputs": 57,
+        "motion_frames": 12,
+        "scope": "Actual production Godot ScreenTouch to Dart rules/session/persistence via explicit QA disk transport and monotonic clock fixture. No Android/device FPS claim."
+      },
+      "failures": []
+    },
+    {
+      "artifact_id": 14127373006,
+      "entry": "memory-pair/pair-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/memory-pair/pair-result.json",
+      "bytes": 9646,
+      "sha256": "4427a53e0605321fe09c1c5bb7eae20207c28d0c5373e7c978a725112f967569",
+      "git_blob": "e41c71f4dc8a09605615963c1b7f7336ffd696df",
+      "actual_fields": {
+        "success": true,
+        "checks": 243,
+        "captures": 8,
+        "inputs": 57,
+        "requests": 19,
+        "motion_frames": 12,
+        "durable_returns": 3,
+        "qa_award_calls": 1,
+        "scope": "Run actual Memory rules and Godot input with explicitly bounded QA adapters.\n\nThe production controller/session and original dealer run in Dart. Godot uses\nreal ScreenTouch events and renderer geometry. Disk transport, deterministic\nclock, private test deck plan and reward ledger are QA adapters. This does not\nprove Android Binder, SharedPreferences, physical-device timing or frame rate.\n"
+      },
+      "failures": null
+    },
+    {
+      "artifact_id": 14127373006,
+      "entry": "memory-view/memory-view-result.json",
+      "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14127373006/inspection/originals/memory-view/memory-view-result.json",
+      "bytes": 182227,
+      "sha256": "8b6a47585273a4871cb1bd16ab9256c221e05c01c3947218ec40c93152990ee5",
+      "git_blob": "18c42dc17116bdb53ec41debda8714a225098321",
+      "actual_fields": {
+        "status": "PASS",
+        "checks": 7020,
+        "captures": 8,
+        "inputs": 26,
+        "scope": "Production Godot presenter; synthetic public-state/transport fixture and actual ScreenTouch events; no Dart, Android, wallet or device FPS claim."
+      },
+      "failures": []
+    }
+  ],
+  "english_original_geometry": {
+    "path": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/english-geometry-original-check.json",
+    "bytes": 17817,
+    "sha256": "be00f241f63a87cd7eaf55192d64f9a80a22d87ef47c42584538f6f4c3750a20",
+    "git_blob": "59c21804f6ad05be99467f48ad7a8dfc81b070cb",
+    "scope": "Pure arithmetic replay of current original camera matrices/world corners and saved observations; no new engine/test/device/visual acceptance.",
+    "cases": 14,
+    "captures": 17,
+    "hint_layouts": 14,
+    "input_events": 196,
+    "reprojected_original_corners": 5512,
+    "maximum_projection_rounding_error_px": 0.0003268839095653675,
+    "minimum_object_edge_dp": 50.2452545166016,
+    "minimum_action_edge_dp": 52.0,
+    "minimum_lumo_height_dp": 119.38005065918,
+    "audio_listened": false,
+    "english_pronunciation_verified": false
+  },
+  "archive_total_members": 570,
+  "decoded_png_total": 51,
+  "polling_finished": true,
+  "terminal_original_blobs": {
+    "repository": "Ullmann27/lumo-lernen",
+    "run_id": 43629637557,
+    "attempt": 1,
+    "scope": "Unattached immutable original API/log blobs; no tree, commit, ref or CI mutation.",
+    "records": [
+      {
+        "key": "authority_b3_quiz_joblog",
+        "repository": "Ullmann27/lumo-lernen",
+        "bytes": 385570,
+        "sha256": "e3f20dbf3cc6a6d139fa8ffe86ff520f01ea6faf18b6f239876e099d6d66d233",
+        "git_blob": "4a25199610639ae4529c05f37732919f4e9f1388",
+        "full_text_readback_identical": true
+      },
+      {
+        "key": "authority_b3_memory_joblog",
+        "repository": "Ullmann27/lumo-lernen",
+        "bytes": 391518,
+        "sha256": "e794db6b82b2130625aa865c113d85ff56e27e36db5914077d8aeb0451112287",
+        "git_blob": "d3dc6d5d7d6d5c97abefd1bf270c107a96d88ed5",
+        "full_text_readback_identical": true
+      },
+      {
+        "key": "authority_b3_run-final",
+        "repository": "Ullmann27/lumo-lernen",
+        "bytes": 12485,
+        "sha256": "d2b6a751efeaeee2ae990f0450b74c74d4ea5b0fd656ac7cc58e854017e016c2",
+        "git_blob": "ee0825b04838be67dbaa4441204a23daefce3482",
+        "full_text_readback_identical": true
+      },
+      {
+        "key": "authority_b3_snapshot_2026-11-14T19:12:50.812Z_jobs",
+        "repository": "Ullmann27/lumo-lernen",
+        "bytes": 37582,
+        "sha256": "de05147df391af3154c2a2675767a5eb2d36cc3cbe175026fface98cbe2fba6e",
+        "git_blob": "59f675855c104a6d3772c6bd2c8a2cb53be5604d",
+        "full_text_readback_identical": true
+      },
+      {
+        "key": "authority_b3_artifacts-final",
+        "repository": "Ullmann27/lumo-lernen",
+        "bytes": 3845,
+        "sha256": "8d56d97d3a905f27caba4844156097ead6582339a936d4330cc4c07647a38570",
+        "git_blob": "a44d0af444b78358ba31c5ed946f1c7eb0b660b7",
+        "full_text_readback_identical": true
+      },
+      {
+        "key": "authority_b3_english_joblog",
+        "repository": "Ullmann27/lumo-lernen",
+        "bytes": 396867,
+        "sha256": "75c60a334aa5c328a37bb51332b0bf71fc077e4619942454607c5cee5402f5fa",
+        "git_blob": "2bd706837f80ded5c41c497e50163252ac640d63",
+        "full_text_readback_identical": true
+      }
+    ]
+  },
+  "limits": [
+    "Current results belong only to this exact Host/Native pair and this separate five-group desktop/compile qualification.",
+    "Android compilation is not Android Binder, physical-device, APK-release, audio-pronunciation, FPS or full C4/52-mode acceptance.",
+    "Memory/Quiz use the explicit QA transport, storage, clock and award-ledger boundaries stated in their unchanged original reports.",
+    "Original images were fully decoded; direct visual acceptance is separate and is not claimed by this collector.",
+    "No fresh product/test/engine execution, rerun or artifact redownload was performed by this archival operation.",
+    "Detailed Android and Flutter artifact inspection belongs to flutter_integration and is not duplicated here.",
+    "GitHub artifact expiry timestamps are preserved; the complete original ZIPs and extracted members remain local and outside the compact archive."
+  ],
+  "original_root": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114",
+  "created_utc": "2026-11-14T19:21:35.299604+00:00"
+}

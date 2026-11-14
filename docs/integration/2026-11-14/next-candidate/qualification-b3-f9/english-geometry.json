@@ -1,0 +1,481 @@
+{
+  "schema": 1,
+  "scope": "Pure arithmetic replay of current original camera matrices/world corners and saved observations; no new engine/test/device/visual acceptance.",
+  "run_id": 43629637557,
+  "attempt": 1,
+  "host": "b3c2bd008b4f1b07b4bfcb19f61839c4486b77e1",
+  "native": "f9d9772bb932d7ee8702eeb5bca6d98c286f3b98",
+  "native_tree": "4036a20ab80de78bcdf0d074b585be88c2946492",
+  "actual_original_checks": 7635,
+  "cases": 14,
+  "captures": 17,
+  "hint_layouts": 14,
+  "input_events": 196,
+  "original_failures": [],
+  "reprojected_original_corners": 5512,
+  "maximum_projection_rounding_error_px": 0.0003268839095653675,
+  "minimum_object_edge_dp": 50.2452545166016,
+  "minimum_action_edge_dp": 52.0,
+  "minimum_lumo_height_dp": 119.38005065918,
+  "layouts": [
+    {
+      "name": "english-ball-960x540-start",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-ball-960x540-start.png",
+      "png_bytes": 192978,
+      "png_sha256": "e0af34504e5832fe63cdaf4f512bdb4e401c9a83de12dd8325dba5ad3c74c3bb",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "91c7149c600f0eacf7d39501a99fba139d056e6828c2040e2800010a9dff4677"
+    },
+    {
+      "name": "english-ball-960x540-hint",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-ball-960x540-hint.png",
+      "png_bytes": 193659,
+      "png_sha256": "65b8bce7316c9d826c9f92e24bbd4724ec621270a6926819fb19fbd558eea005",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "9aa6f63c58402ba913e61c0db5cac19399069f63019414e81b0be21857c2c191"
+    },
+    {
+      "name": "english-ball-960x540-complete",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-ball-960x540-complete.png",
+      "png_bytes": 202883,
+      "png_sha256": "047dcb12a6624d09dc7b2ff6c9242c2c785b1d4386294fa52f372325cbc6f0ac",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "4b5ba69a66c83e6543b570c2a141a51487e499b94d87a3112a64acda5462cd50"
+    },
+    {
+      "name": "english-book-412x915-start",
+      "density": 1.0,
+      "window_px": [
+        412,
+        915
+      ],
+      "minimum_object_edge_dp": 117.059661865234,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.590148925781,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-book-412x915-start.png",
+      "png_bytes": 130314,
+      "png_sha256": "e6559b6db0ee3a8f0d905c492565a4c2b4403df3db8fed955dfdc3c5cf24ac60",
+      "camera_size_from_projection": 14.415885023261628,
+      "layout_sha256": "d470f39e82ccd52d05395b8f3fad32bf1a4f4bf918a869ef9fb7ce21b4318bac"
+    },
+    {
+      "name": "english-book-412x915-complete",
+      "density": 1.0,
+      "window_px": [
+        412,
+        915
+      ],
+      "minimum_object_edge_dp": 115.926788330078,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 255.097152709961,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-book-412x915-complete.png",
+      "png_bytes": 129215,
+      "png_sha256": "dab848819af0432ec8dd7376f73ebe4e8f4cc0bdc173260c1cb0eb0669d9f710",
+      "camera_size_from_projection": 14.556773135433684,
+      "layout_sha256": "3d29b5c50d93cd3fbe70d4a04d1e69a448c0fbb15c5123528bdab7abba85e4cc"
+    },
+    {
+      "name": "english-ruler-640x360-start",
+      "density": 1.0,
+      "window_px": [
+        640,
+        360
+      ],
+      "minimum_object_edge_dp": 62.1142120361328,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 147.580001831055,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-ruler-640x360-start.png",
+      "png_bytes": 108313,
+      "png_sha256": "b9e4f4a4bc1e8ce09b2d7eb8944e7dd7c279699a22814b9dd9a158c65165775c",
+      "camera_size_from_projection": 10.68905667199322,
+      "layout_sha256": "7da9494ad0cddfea7df0513482ff3b9005ea1db6ec40b94a128ce3e74585bdad"
+    },
+    {
+      "name": "english-car-2400x1080-start",
+      "density": 2.625,
+      "window_px": [
+        2400,
+        1080
+      ],
+      "minimum_object_edge_dp": 79.19959077380952,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 173.36279296875009,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-car-2400x1080-start.png",
+      "png_bytes": 753077,
+      "png_sha256": "c4e821516e1e346e532b827454618397ba96e5361a75bc93bcadf65c3c17e2b3",
+      "camera_size_from_projection": 10.399269760864682,
+      "layout_sha256": "7c09854dbb213c42ca2263c6a4182787c6395c168e403d795693f3d9076c11f6"
+    },
+    {
+      "name": "english-pen-1080x2400-start",
+      "density": 2.625,
+      "window_px": [
+        1080,
+        2400
+      ],
+      "minimum_object_edge_dp": 116.88369605654782,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.20284598214283,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-pen-1080x2400-start.png",
+      "png_bytes": 626565,
+      "png_sha256": "a2c8d3cb5c6187e4ed788f815af5dad86c65e695622fce80be9cde2b6b5ec0ee",
+      "camera_size_from_projection": 14.42632389719842,
+      "layout_sha256": "97285987288d5c4a149de8be924d9afa3463bac51e0458eb3bdcac3f4614c290"
+    },
+    {
+      "name": "english-sun-960x540-start",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 132.520446777344,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-sun-960x540-start.png",
+      "png_bytes": 191609,
+      "png_sha256": "efa195c291b170a6518f74712a0e9fe2a1877d90a82b364bde8daa17c49ed804",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "aae9c61a1c59f9327d150d7844f1c2d24c1058ba32972897f996d0ad8f415119"
+    },
+    {
+      "name": "english-apple-960x540-start",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 132.520446777344,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-apple-960x540-start.png",
+      "png_bytes": 190450,
+      "png_sha256": "3004c67973bfc2cd830be9a0d4c4172a46b61b68e6a3cb0bf757d89b1a16bedc",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "e97be64b61005ad08996ed318fafb22573ef2cba7f6f830ccdbccedae767b5a4"
+    },
+    {
+      "name": "english-bag-960x540-start",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-bag-960x540-start.png",
+      "png_bytes": 186947,
+      "png_sha256": "0bc0e67d4438535273b4cff4922b060a3bd7eedcba64e5ffd85271b2caa4b66d",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "1d06406e5230a6a88730740a6704ef63c47c306e1f3a7cd2236cea086a7127a1"
+    },
+    {
+      "name": "english-rubber-640x360-start",
+      "density": 1.0,
+      "window_px": [
+        640,
+        360
+      ],
+      "minimum_object_edge_dp": 62.2657775878906,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 147.580001831055,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-rubber-640x360-start.png",
+      "png_bytes": 108424,
+      "png_sha256": "253b3c5342549c88546afa1f96ae9fd443a4e96e3736007c11b94809c4314d12",
+      "camera_size_from_projection": 10.68905667199322,
+      "layout_sha256": "682aae9432dff41a910101596ca63dd4d218eaf16d8d9bcaf398dfb1702be221"
+    },
+    {
+      "name": "english-school-bag-412x915-start",
+      "density": 1.0,
+      "window_px": [
+        412,
+        915
+      ],
+      "minimum_object_edge_dp": 117.059753417969,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.590240478516,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-school-bag-412x915-start.png",
+      "png_bytes": 126103,
+      "png_sha256": "6d6be8e46b477cc61ad04f01a4031943383181fbe753d3e1ea4e62947938543b",
+      "camera_size_from_projection": 14.415885023261628,
+      "layout_sha256": "c5271d14090fdbd7f2e82b8385a5c4bac4bbe68bcce9c92dd4d31d77b673ef9e"
+    },
+    {
+      "name": "english-desk-960x540-start",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-desk-960x540-start.png",
+      "png_bytes": 186336,
+      "png_sha256": "73afe117c11bda354dbf92a3f1d764eb2dc9f44aa53f4fec2eb84b1b005a57e0",
+      "camera_size_from_projection": 8.475666871731363,
+      "layout_sha256": "2606d286c9cab96e072652770c82461daf65a0b09a4da0a578f1a83c5193a137"
+    },
+    {
+      "name": "english-chair-640x360-start",
+      "density": 1.0,
+      "window_px": [
+        640,
+        360
+      ],
+      "minimum_object_edge_dp": 62.4225463867188,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 147.580001831055,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-chair-640x360-start.png",
+      "png_bytes": 108718,
+      "png_sha256": "fd7552b3dd948d51244e577834c3af21d55ef0a5077535d96d57cc8bccd48cb5",
+      "camera_size_from_projection": 10.68905667199322,
+      "layout_sha256": "18f6cffee753b0ea21933da2761278811f1f86b8fec2ed8988f1bb5c4ab2584d"
+    },
+    {
+      "name": "english-pencil-case-1080x2400-start",
+      "density": 2.625,
+      "window_px": [
+        1080,
+        2400
+      ],
+      "minimum_object_edge_dp": 116.88371930803581,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.20286923363085,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "png_bytes": 647765,
+      "png_sha256": "b40358d793ae942cbe7ececa2f99998c9262a3f82e8da25d0f76c8d94e1c722d",
+      "camera_size_from_projection": 14.42632389719842,
+      "layout_sha256": "b610c94739c33426812158c84c813c4da67f8d57cf486a80f3e1846854ba2155"
+    },
+    {
+      "name": "english-paper-2400x1080-start",
+      "density": 2.625,
+      "window_px": [
+        2400,
+        1080
+      ],
+      "minimum_object_edge_dp": 73.32800874255962,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 173.36279296875009,
+      "stage_containment_and_separation": true,
+      "png": "/tmp/host-next-authorities-b3c2bd-native-evidence-20261114/artifacts/14128166249/inspection/originals/english-native/english-paper-2400x1080-start.png",
+      "png_bytes": 755107,
+      "png_sha256": "e37d5db15bd53c9f21e334035309078a7065b5487e94b822d1dd230191e9b8b9",
+      "camera_size_from_projection": 10.399269760864682,
+      "layout_sha256": "1cfab2aa290161e4183f577a021e53c5073f52c4f0757f6aa086a442a17387b2"
+    },
+    {
+      "name": "ball: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "book: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        412,
+        915
+      ],
+      "minimum_object_edge_dp": 117.059661865234,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.590148925781,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "ruler: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        640,
+        360
+      ],
+      "minimum_object_edge_dp": 50.2452545166016,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 119.38005065918,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "car: first hint layout",
+      "density": 2.625,
+      "window_px": [
+        2400,
+        1080
+      ],
+      "minimum_object_edge_dp": 79.19959077380952,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 173.36279296875009,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "pen: first hint layout",
+      "density": 2.625,
+      "window_px": [
+        1080,
+        2400
+      ],
+      "minimum_object_edge_dp": 116.88369605654782,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.20284598214283,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "sun: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 132.520446777344,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "apple: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 132.520446777344,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "bag: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "rubber: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        640,
+        360
+      ],
+      "minimum_object_edge_dp": 50.3678588867188,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 119.38005065918,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "school bag: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        412,
+        915
+      ],
+      "minimum_object_edge_dp": 117.059753417969,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 257.590209960938,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "desk: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        960,
+        540
+      ],
+      "minimum_object_edge_dp": 117.502563476562,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 279.179962158203,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "chair: first hint layout",
+      "density": 1.0,
+      "window_px": [
+        640,
+        360
+      ],
+      "minimum_object_edge_dp": 50.4946746826172,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 119.38005065918,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "pencil case: first hint layout",
+      "density": 2.625,
+      "window_px": [
+        1080,
+        2400
+      ],
+      "minimum_object_edge_dp": 114.9360584077379,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 252.9170154389882,
+      "stage_containment_and_separation": true
+    },
+    {
+      "name": "paper: first hint layout",
+      "density": 2.625,
+      "window_px": [
+        2400,
+        1080
+      ],
+      "minimum_object_edge_dp": 61.400111607142854,
+      "minimum_action_edge_dp": 52.0,
+      "lumo_height_dp": 145.16280691964266,
+      "stage_containment_and_separation": true
+    }
+  ],
+  "audio_listened": false,
+  "english_pronunciation_verified": false
+}
