@@ -1,0 +1,127 @@
+{
+  "blender_version": "4.3.2",
+  "source_hashes_before": {
+    "/workspace/scratch/5987865ae883/lumo-godot/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/Lumo-Studio-Actions.blend": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e"
+  },
+  "source_hashes_after": {
+    "/workspace/scratch/5987865ae883/lumo-godot/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+    "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/Lumo-Studio-Actions.blend": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e"
+  },
+  "sources_unchanged": true,
+  "helper_meshes": [
+    {
+      "name": "Icosphere",
+      "hide_render": false,
+      "collections": [
+        "glTF_not_exported"
+      ],
+      "used_as_custom_shape_by_bones": [
+        "Root",
+        "Pelvis",
+        "SpineLower",
+        "SpineUpper",
+        "Chest",
+        "Neck",
+        "Head",
+        "Crown",
+        "Clavicle.R",
+        "UpperArm.R",
+        "Forearm.R",
+        "Wrist.R",
+        "Hand.R",
+        "Finger_036",
+        "Finger_035",
+        "Finger_034",
+        "Finger_033",
+        "Finger_040",
+        "Finger_039",
+        "Finger_038",
+        "Finger_037",
+        "Finger_044",
+        "Finger_043",
+        "Finger_042",
+        "Finger_041",
+        "Finger_048",
+        "Finger_047",
+        "Finger_046",
+        "Finger_045",
+        "Clavicle.L",
+        "UpperArm.L",
+        "Forearm.L",
+        "Wrist.L",
+        "Hand.L",
+        "Finger_052",
+        "Finger_051",
+        "Finger_050",
+        "Finger_049",
+        "Finger_056",
+        "Finger_055",
+        "Finger_054",
+        "Finger_053",
+        "Finger_060",
+        "Finger_059",
+        "Finger_058",
+        "Finger_057",
+        "Finger_064",
+        "Finger_063",
+        "Finger_062",
+        "Finger_061",
+        "Thigh.R",
+        "Shin.R",
+        "Foot.R",
+        "Toe.R",
+        "ToeTip.R",
+        "Thigh.L",
+        "Shin.L",
+        "Foot.L",
+        "Toe.L",
+        "ToeTip.L",
+        "TailBase",
+        "Tail1",
+        "Tail2",
+        "Tail3",
+        "TailTip"
+      ]
+    }
+  ],
+  "head_influenced_vertices": 9448,
+  "head_weight_min": 0.01155550591647625,
+  "head_weight_max": 1.0,
+  "existing_blend_data_block_counts": {
+    "objects": 0,
+    "meshes": 0,
+    "armatures": 0,
+    "materials": 0,
+    "actions": 6,
+    "shape_keys": 0
+  },
+  "render": {
+    "engine": "Cycles",
+    "device": "CPU",
+    "samples": 24,
+    "denoising": false,
+    "dimensions": [
+      512,
+      512
+    ],
+    "camera": [
+      0.32,
+      -2.4,
+      1.52
+    ],
+    "scope": "Actual original surface. The second render disables textures/materials in memory to inspect geometry. No face animation or product change."
+  },
+  "images": [
+    {
+      "file": "original-face-textured.png",
+      "bytes": 413297,
+      "sha256": "66e3505958a9370c6ea880b314ff7c3b6dae7acd19166de3d3edcf9fe1b726b5"
+    },
+    {
+      "file": "original-face-geometry-only.png",
+      "bytes": 328660,
+      "sha256": "c0e0548325e3a9422cb4dfd62f660f08bdcb5152efed2c1099ade7133193e4f0"
+    }
+  ]
+}

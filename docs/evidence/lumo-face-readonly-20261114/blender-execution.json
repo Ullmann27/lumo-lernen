@@ -1,0 +1,13 @@
+{
+  "command": [
+    "/usr/bin/blender",
+    "--background",
+    "--factory-startup",
+    "--disable-autoexec",
+    "--python",
+    "/workspace/scratch/5987865ae883/qa/lumo-face-readonly-20261114/inspect_original_face.py"
+  ],
+  "exit_code": 0,
+  "wall_seconds": 2.0869582729937974,
+  "log_sha256": "2dded2cf2c5b1a93af71331e162761f6f920b24c55563ca83bf86678b41d356e"
+}
