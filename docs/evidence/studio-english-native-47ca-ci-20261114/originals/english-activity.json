@@ -1,0 +1,762 @@
+{
+  "kind": "actual Dart production contracts; synthetic child; no Android or reward claim",
+  "cases": 10,
+  "checks": 2955,
+  "failures": 0,
+  "examples": {
+    "pen": {
+      "prompt": "Was bedeutet „pen“?",
+      "answer": "Kugelschreiber",
+      "options": [
+        "Tasche",
+        "Kugelschreiber",
+        "Lineal",
+        "Buch"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "pen",
+        "meaning": "Kugelschreiber",
+        "objects": [
+          "bag",
+          "ruler",
+          "pen"
+        ]
+      }
+    },
+    "bag": {
+      "prompt": "Was bedeutet „bag“?",
+      "answer": "Tasche",
+      "options": [
+        "Radiergummi",
+        "Schreibtisch",
+        "Tasche",
+        "Buch"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "bag",
+        "meaning": "Tasche",
+        "objects": [
+          "desk",
+          "bag",
+          "rubber"
+        ]
+      }
+    },
+    "school bag": {
+      "prompt": "Was bedeutet „school bag“?",
+      "answer": "Schultasche",
+      "options": [
+        "Schultasche",
+        "Radiergummi",
+        "Schreibtisch",
+        "Lineal"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "school bag",
+        "meaning": "Schultasche",
+        "objects": [
+          "school bag",
+          "rubber",
+          "desk"
+        ]
+      }
+    },
+    "pencil case": {
+      "prompt": "Was bedeutet „pencil case“?",
+      "answer": "Federpennal",
+      "options": [
+        "Lineal",
+        "Federpennal",
+        "Schultasche",
+        "Papier"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "pencil case",
+        "meaning": "Federpennal",
+        "objects": [
+          "pencil case",
+          "ruler",
+          "school bag"
+        ]
+      }
+    },
+    "book": {
+      "prompt": "Was bedeutet „book“?",
+      "answer": "Buch",
+      "options": [
+        "Lineal",
+        "Buch",
+        "Federpennal",
+        "Schultasche"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "book",
+        "meaning": "Buch",
+        "objects": [
+          "ruler",
+          "pencil case",
+          "book"
+        ]
+      }
+    },
+    "chair": {
+      "prompt": "Was bedeutet „chair“?",
+      "answer": "Sessel",
+      "options": [
+        "Sessel",
+        "Papier",
+        "Federpennal",
+        "Tasche"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "chair",
+        "meaning": "Sessel",
+        "objects": [
+          "chair",
+          "paper",
+          "pencil case"
+        ]
+      }
+    },
+    "paper": {
+      "prompt": "Was bedeutet „paper“?",
+      "answer": "Papier",
+      "options": [
+        "Papier",
+        "Federpennal",
+        "Schreibtisch",
+        "Tasche"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "paper",
+        "meaning": "Papier",
+        "objects": [
+          "pencil case",
+          "desk",
+          "paper"
+        ]
+      }
+    },
+    "ruler": {
+      "prompt": "Was bedeutet „ruler“?",
+      "answer": "Lineal",
+      "options": [
+        "Papier",
+        "Federpennal",
+        "Lineal",
+        "Buch"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "ruler",
+        "meaning": "Lineal",
+        "objects": [
+          "ruler",
+          "paper",
+          "pencil case"
+        ]
+      }
+    },
+    "rubber": {
+      "prompt": "Was bedeutet „rubber“?",
+      "answer": "Radiergummi",
+      "options": [
+        "Federpennal",
+        "Radiergummi",
+        "Buch",
+        "Tasche"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "rubber",
+        "meaning": "Radiergummi",
+        "objects": [
+          "book",
+          "rubber",
+          "pencil case"
+        ]
+      }
+    },
+    "desk": {
+      "prompt": "Was bedeutet „desk“?",
+      "answer": "Schreibtisch",
+      "options": [
+        "Schreibtisch",
+        "Buch",
+        "Lineal",
+        "Tasche"
+      ],
+      "grade": 1,
+      "unit": "Schulsachen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "desk",
+        "meaning": "Schreibtisch",
+        "objects": [
+          "book",
+          "ruler",
+          "desk"
+        ]
+      }
+    },
+    "ball": {
+      "prompt": "Was bedeutet „ball“?",
+      "answer": "Ball",
+      "options": [
+        "Puzzle",
+        "Roller",
+        "Springschnur",
+        "Ball"
+      ],
+      "grade": 2,
+      "unit": "Spielzeug",
+      "activity": {
+        "kind": "english_objects",
+        "word": "ball",
+        "meaning": "Ball",
+        "objects": [
+          "book",
+          "pen",
+          "ball"
+        ]
+      }
+    },
+    "car": {
+      "prompt": "Was bedeutet „car“?",
+      "answer": "Auto",
+      "options": [
+        "Springschnur",
+        "Fahrrad",
+        "Ball",
+        "Auto"
+      ],
+      "grade": 2,
+      "unit": "Spielzeug",
+      "activity": {
+        "kind": "english_objects",
+        "word": "car",
+        "meaning": "Auto",
+        "objects": [
+          "ruler",
+          "car",
+          "ball"
+        ]
+      }
+    },
+    "sun": {
+      "prompt": "Was bedeutet „sun“?",
+      "answer": "Sonne",
+      "options": [
+        "Regen",
+        "Sonne",
+        "trocken",
+        "kühl"
+      ],
+      "grade": 3,
+      "unit": "Wetter",
+      "activity": {
+        "kind": "english_objects",
+        "word": "sun",
+        "meaning": "Sonne",
+        "objects": [
+          "bag",
+          "sun",
+          "apple"
+        ]
+      }
+    },
+    "apple": {
+      "prompt": "Was bedeutet „apple“?",
+      "answer": "Apfel",
+      "options": [
+        "Apfel",
+        "Ich habe Durst.",
+        "Ei",
+        "Kann ich etwas Wasser haben?"
+      ],
+      "grade": 3,
+      "unit": "Essen",
+      "activity": {
+        "kind": "english_objects",
+        "word": "apple",
+        "meaning": "Apfel",
+        "objects": [
+          "ruler",
+          "ball",
+          "apple"
+        ]
+      }
+    }
+  },
+  "school_examples": {
+    "1": {
+      "pen": {
+        "prompt": "Was bedeutet „pen“?",
+        "answer": "Kugelschreiber",
+        "options": [
+          "Tasche",
+          "Kugelschreiber",
+          "Lineal",
+          "Buch"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "pen",
+          "meaning": "Kugelschreiber",
+          "objects": [
+            "bag",
+            "ruler",
+            "pen"
+          ]
+        }
+      },
+      "bag": {
+        "prompt": "Was bedeutet „bag“?",
+        "answer": "Tasche",
+        "options": [
+          "Radiergummi",
+          "Schreibtisch",
+          "Tasche",
+          "Buch"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "bag",
+          "meaning": "Tasche",
+          "objects": [
+            "desk",
+            "bag",
+            "rubber"
+          ]
+        }
+      },
+      "school bag": {
+        "prompt": "Was bedeutet „school bag“?",
+        "answer": "Schultasche",
+        "options": [
+          "Schultasche",
+          "Radiergummi",
+          "Schreibtisch",
+          "Lineal"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "school bag",
+          "meaning": "Schultasche",
+          "objects": [
+            "school bag",
+            "rubber",
+            "desk"
+          ]
+        }
+      },
+      "pencil case": {
+        "prompt": "Was bedeutet „pencil case“?",
+        "answer": "Federpennal",
+        "options": [
+          "Lineal",
+          "Federpennal",
+          "Schultasche",
+          "Papier"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "pencil case",
+          "meaning": "Federpennal",
+          "objects": [
+            "pencil case",
+            "ruler",
+            "school bag"
+          ]
+        }
+      },
+      "book": {
+        "prompt": "Was bedeutet „book“?",
+        "answer": "Buch",
+        "options": [
+          "Lineal",
+          "Buch",
+          "Federpennal",
+          "Schultasche"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "book",
+          "meaning": "Buch",
+          "objects": [
+            "ruler",
+            "pencil case",
+            "book"
+          ]
+        }
+      },
+      "chair": {
+        "prompt": "Was bedeutet „chair“?",
+        "answer": "Sessel",
+        "options": [
+          "Sessel",
+          "Papier",
+          "Federpennal",
+          "Tasche"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "chair",
+          "meaning": "Sessel",
+          "objects": [
+            "chair",
+            "paper",
+            "pencil case"
+          ]
+        }
+      },
+      "paper": {
+        "prompt": "Was bedeutet „paper“?",
+        "answer": "Papier",
+        "options": [
+          "Papier",
+          "Federpennal",
+          "Schreibtisch",
+          "Tasche"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "paper",
+          "meaning": "Papier",
+          "objects": [
+            "pencil case",
+            "desk",
+            "paper"
+          ]
+        }
+      },
+      "ruler": {
+        "prompt": "Was bedeutet „ruler“?",
+        "answer": "Lineal",
+        "options": [
+          "Papier",
+          "Federpennal",
+          "Lineal",
+          "Buch"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "ruler",
+          "meaning": "Lineal",
+          "objects": [
+            "ruler",
+            "paper",
+            "pencil case"
+          ]
+        }
+      },
+      "rubber": {
+        "prompt": "Was bedeutet „rubber“?",
+        "answer": "Radiergummi",
+        "options": [
+          "Federpennal",
+          "Radiergummi",
+          "Buch",
+          "Tasche"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "rubber",
+          "meaning": "Radiergummi",
+          "objects": [
+            "book",
+            "rubber",
+            "pencil case"
+          ]
+        }
+      },
+      "desk": {
+        "prompt": "Was bedeutet „desk“?",
+        "answer": "Schreibtisch",
+        "options": [
+          "Schreibtisch",
+          "Buch",
+          "Lineal",
+          "Tasche"
+        ],
+        "grade": 1,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "desk",
+          "meaning": "Schreibtisch",
+          "objects": [
+            "book",
+            "ruler",
+            "desk"
+          ]
+        }
+      }
+    },
+    "2": {
+      "desk": {
+        "prompt": "Was bedeutet „desk“?",
+        "answer": "Schreibtisch",
+        "options": [
+          "Radiergummi",
+          "Sessel",
+          "Schreibtisch",
+          "Tasche"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "desk",
+          "meaning": "Schreibtisch",
+          "objects": [
+            "desk",
+            "rubber",
+            "chair"
+          ]
+        }
+      },
+      "book": {
+        "prompt": "Was bedeutet „book“?",
+        "answer": "Buch",
+        "options": [
+          "Sessel",
+          "Schultasche",
+          "Kugelschreiber",
+          "Buch"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "book",
+          "meaning": "Buch",
+          "objects": [
+            "school bag",
+            "book",
+            "chair"
+          ]
+        }
+      },
+      "paper": {
+        "prompt": "Was bedeutet „paper“?",
+        "answer": "Papier",
+        "options": [
+          "Schultasche",
+          "Buch",
+          "Sessel",
+          "Papier"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "paper",
+          "meaning": "Papier",
+          "objects": [
+            "book",
+            "paper",
+            "school bag"
+          ]
+        }
+      },
+      "pen": {
+        "prompt": "Was bedeutet „pen“?",
+        "answer": "Kugelschreiber",
+        "options": [
+          "Kugelschreiber",
+          "Radiergummi",
+          "Sessel",
+          "Lineal"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "pen",
+          "meaning": "Kugelschreiber",
+          "objects": [
+            "pen",
+            "rubber",
+            "chair"
+          ]
+        }
+      },
+      "chair": {
+        "prompt": "Was bedeutet „chair“?",
+        "answer": "Sessel",
+        "options": [
+          "Schultasche",
+          "Kugelschreiber",
+          "Schreibtisch",
+          "Sessel"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "chair",
+          "meaning": "Sessel",
+          "objects": [
+            "pen",
+            "chair",
+            "school bag"
+          ]
+        }
+      },
+      "rubber": {
+        "prompt": "Was bedeutet „rubber“?",
+        "answer": "Radiergummi",
+        "options": [
+          "Sessel",
+          "Radiergummi",
+          "Buch",
+          "Schreibtisch"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "rubber",
+          "meaning": "Radiergummi",
+          "objects": [
+            "book",
+            "rubber",
+            "chair"
+          ]
+        }
+      },
+      "ruler": {
+        "prompt": "Was bedeutet „ruler“?",
+        "answer": "Lineal",
+        "options": [
+          "Federpennal",
+          "Lineal",
+          "Buch",
+          "Kugelschreiber"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "ruler",
+          "meaning": "Lineal",
+          "objects": [
+            "pencil case",
+            "book",
+            "ruler"
+          ]
+        }
+      },
+      "bag": {
+        "prompt": "Was bedeutet „bag“?",
+        "answer": "Tasche",
+        "options": [
+          "Kugelschreiber",
+          "Radiergummi",
+          "Tasche",
+          "Lineal"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "bag",
+          "meaning": "Tasche",
+          "objects": [
+            "pen",
+            "rubber",
+            "bag"
+          ]
+        }
+      },
+      "pencil case": {
+        "prompt": "Was bedeutet „pencil case“?",
+        "answer": "Federpennal",
+        "options": [
+          "Radiergummi",
+          "Schreibtisch",
+          "Federpennal",
+          "Sessel"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "pencil case",
+          "meaning": "Federpennal",
+          "objects": [
+            "desk",
+            "pencil case",
+            "rubber"
+          ]
+        }
+      },
+      "school bag": {
+        "prompt": "Was bedeutet „school bag“?",
+        "answer": "Schultasche",
+        "options": [
+          "Radiergummi",
+          "Buch",
+          "Papier",
+          "Schultasche"
+        ],
+        "grade": 2,
+        "unit": "Schulsachen",
+        "activity": {
+          "kind": "english_objects",
+          "word": "school bag",
+          "meaning": "Schultasche",
+          "objects": [
+            "school bag",
+            "rubber",
+            "book"
+          ]
+        }
+      }
+    }
+  }
+}

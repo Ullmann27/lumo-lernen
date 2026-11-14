@@ -1,0 +1,84 @@
+[
+  {
+    "path": "originals/english-render.log",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-render.log",
+    "bytes": 6829,
+    "sha256": "25e58a18923a78ef4770e78bd1e8c88335cd9bbaef889a01bcbcfc1958ed2623",
+    "git_blob_sha": "85222d30879d8676a68b3b19b119e100ab5e99e8",
+    "lines": 74,
+    "warning_or_error_lines": [
+      {
+        "line": 2,
+        "text": "WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver."
+      },
+      {
+        "line": 6,
+        "text": "WARNING: Screen-space AA is only available when using the Forward+ or Mobile renderer."
+      },
+      {
+        "line": 8,
+        "text": "WARNING: Volumetric fog is only available when using the Forward+ renderer."
+      }
+    ]
+  },
+  {
+    "path": "originals/import.log",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/import.log",
+    "bytes": 165491,
+    "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+    "git_blob_sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e",
+    "lines": 2490,
+    "warning_or_error_lines": []
+  },
+  {
+    "path": "originals/project-validation.log",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/project-validation.log",
+    "bytes": 6138,
+    "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7",
+    "git_blob_sha": "681ee33a4718c6a87f5131d5fc8ef03bb5a78f61",
+    "lines": 129,
+    "warning_or_error_lines": [
+      {
+        "line": 51,
+        "text": "[WARN] asset: lumo_fox fehlt (assets/models/lumo_fox.glb) - AssetLoader nutzt Placeholder"
+      },
+      {
+        "line": 52,
+        "text": "[WARN] asset: hub_island fehlt (assets/models/hub_island.glb) - AssetLoader nutzt Placeholder"
+      },
+      {
+        "line": 53,
+        "text": "[WARN] asset: portal_learn fehlt (assets/models/portal_learn.glb) - AssetLoader nutzt Placeholder"
+      },
+      {
+        "line": 54,
+        "text": "[WARN] asset: portal_games fehlt (assets/models/portal_games.glb) - AssetLoader nutzt Placeholder"
+      },
+      {
+        "line": 55,
+        "text": "[WARN] asset: portal_parent fehlt (assets/models/portal_parent.glb) - AssetLoader nutzt Placeholder"
+      },
+      {
+        "line": 56,
+        "text": "[WARN] asset: star_collectible fehlt (assets/models/star_collectible.glb) - AssetLoader nutzt Placeholder"
+      },
+      {
+        "line": 115,
+        "text": "[WARN] tool: tools/build_web_bundle.sh nicht ausfuehrbar (chmod +x fehlt)"
+      }
+    ]
+  },
+  {
+    "path": "english-original-job.log",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/english-original-job.log",
+    "bytes": 307623,
+    "sha256": "b33b49301919d893c4166e83ba87a5ec29b62e12cdc601c9a27a7fb46bb2bd99",
+    "git_blob_sha": "b895c21efa8072f1c29385c4a30256a8007fd13c",
+    "runner_warnings": [
+      {
+        "line": 3326,
+        "text": "2026-11-14T15:05:15.6229827Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/"
+      }
+    ]
+  }
+]

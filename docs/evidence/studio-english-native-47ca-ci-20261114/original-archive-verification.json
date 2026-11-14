@@ -1,0 +1,389 @@
+{
+  "artifact_id": 14118967950,
+  "run_id": 43607369297,
+  "native_sha": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "archive_bytes": 4575912,
+  "archive_sha256": "661661bcfeeae342357466f7468e36801a0eea581ab5566264ccd529064a559a",
+  "all_entries_crc_checked": true,
+  "entry_count": 63,
+  "entries": [
+    {
+      "entry": "HOST-SOURCE.txt",
+      "bytes": 41,
+      "compressed_bytes": 42,
+      "crc32": "343aebe3"
+    },
+    {
+      "entry": "NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "compressed_bytes": 42,
+      "crc32": "0eeb812e"
+    },
+    {
+      "entry": "HOST-TREE.txt",
+      "bytes": 41,
+      "compressed_bytes": 41,
+      "crc32": "7530f7f7"
+    },
+    {
+      "entry": "NATIVE-TREE.txt",
+      "bytes": 41,
+      "compressed_bytes": 41,
+      "crc32": "02c9b48f"
+    },
+    {
+      "entry": "dart-version.txt",
+      "bytes": 81,
+      "compressed_bytes": 83,
+      "crc32": "a9679d22"
+    },
+    {
+      "entry": "english-activity.json",
+      "bytes": 16729,
+      "compressed_bytes": 1597,
+      "crc32": "b28aa979"
+    },
+    {
+      "entry": "english-authority.log",
+      "bytes": 755,
+      "compressed_bytes": 405,
+      "crc32": "ffcadeea"
+    },
+    {
+      "entry": "english-native/english-apple-960x540-start.json",
+      "bytes": 2836,
+      "compressed_bytes": 876,
+      "crc32": "0f8b95c0"
+    },
+    {
+      "entry": "english-native/english-apple-960x540-start.layout.json",
+      "bytes": 33638,
+      "compressed_bytes": 7882,
+      "crc32": "fc20b010"
+    },
+    {
+      "entry": "english-native/english-apple-960x540-start.png",
+      "bytes": 171183,
+      "compressed_bytes": 169939,
+      "crc32": "ab09c36d"
+    },
+    {
+      "entry": "english-native/english-bag-960x540-start.json",
+      "bytes": 2829,
+      "compressed_bytes": 871,
+      "crc32": "d2161411"
+    },
+    {
+      "entry": "english-native/english-bag-960x540-start.layout.json",
+      "bytes": 28991,
+      "compressed_bytes": 5587,
+      "crc32": "4368bf14"
+    },
+    {
+      "entry": "english-native/english-bag-960x540-start.png",
+      "bytes": 164035,
+      "compressed_bytes": 162875,
+      "crc32": "a8b74e81"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-complete.json",
+      "bytes": 2829,
+      "compressed_bytes": 891,
+      "crc32": "a69e038d"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 26878,
+      "compressed_bytes": 6163,
+      "crc32": "aa716574"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-hint.json",
+      "bytes": 2826,
+      "compressed_bytes": 880,
+      "crc32": "1835572b"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-complete.png",
+      "bytes": 170721,
+      "compressed_bytes": 169574,
+      "crc32": "3bb1cf0b"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 26879,
+      "compressed_bytes": 6160,
+      "crc32": "006d334a"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-hint.png",
+      "bytes": 171092,
+      "compressed_bytes": 169919,
+      "crc32": "a7d34cd8"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-start.json",
+      "bytes": 2824,
+      "compressed_bytes": 875,
+      "crc32": "420030cf"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-start.layout.json",
+      "bytes": 26058,
+      "compressed_bytes": 6002,
+      "crc32": "ae834111"
+    },
+    {
+      "entry": "english-native/english-ball-960x540-start.png",
+      "bytes": 170940,
+      "compressed_bytes": 169647,
+      "crc32": "1bd36ce4"
+    },
+    {
+      "entry": "english-native/english-book-412x915-complete.json",
+      "bytes": 2853,
+      "compressed_bytes": 888,
+      "crc32": "a1adbc4c"
+    },
+    {
+      "entry": "english-native/english-book-412x915-complete.layout.json",
+      "bytes": 48395,
+      "compressed_bytes": 11902,
+      "crc32": "0fa7eb07"
+    },
+    {
+      "entry": "english-native/english-book-412x915-complete.png",
+      "bytes": 119497,
+      "compressed_bytes": 118683,
+      "crc32": "6f54cdfd"
+    },
+    {
+      "entry": "english-native/english-book-412x915-start.json",
+      "bytes": 2847,
+      "compressed_bytes": 847,
+      "crc32": "23560f6e"
+    },
+    {
+      "entry": "english-native/english-book-412x915-start.layout.json",
+      "bytes": 47660,
+      "compressed_bytes": 11777,
+      "crc32": "cb31c68d"
+    },
+    {
+      "entry": "english-native/english-book-412x915-start.png",
+      "bytes": 119902,
+      "compressed_bytes": 119017,
+      "crc32": "93ee0cf1"
+    },
+    {
+      "entry": "english-native/english-car-2400x1080-start.json",
+      "bytes": 3074,
+      "compressed_bytes": 901,
+      "crc32": "41e8596b"
+    },
+    {
+      "entry": "english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 42944,
+      "compressed_bytes": 8917,
+      "crc32": "09256fc8"
+    },
+    {
+      "entry": "english-native/english-car-2400x1080-start.png",
+      "bytes": 694432,
+      "compressed_bytes": 687009,
+      "crc32": "f6b786ba"
+    },
+    {
+      "entry": "english-native/english-chair-640x360-start.json",
+      "bytes": 2840,
+      "compressed_bytes": 863,
+      "crc32": "0f64afda"
+    },
+    {
+      "entry": "english-native/english-chair-640x360-start.layout.json",
+      "bytes": 42458,
+      "compressed_bytes": 10854,
+      "crc32": "bf618a8b"
+    },
+    {
+      "entry": "english-native/english-chair-640x360-start.png",
+      "bytes": 95737,
+      "compressed_bytes": 95139,
+      "crc32": "94b52f88"
+    },
+    {
+      "entry": "english-native/english-desk-960x540-start.json",
+      "bytes": 2832,
+      "compressed_bytes": 875,
+      "crc32": "eff4887a"
+    },
+    {
+      "entry": "english-native/english-desk-960x540-start.layout.json",
+      "bytes": 41571,
+      "compressed_bytes": 9272,
+      "crc32": "6d295743"
+    },
+    {
+      "entry": "english-native/english-desk-960x540-start.png",
+      "bytes": 162734,
+      "compressed_bytes": 161343,
+      "crc32": "768d39ab"
+    },
+    {
+      "entry": "english-native/english-paper-2400x1080-start.json",
+      "bytes": 3099,
+      "compressed_bytes": 910,
+      "crc32": "3ebac87a"
+    },
+    {
+      "entry": "english-native/english-paper-2400x1080-start.layout.json",
+      "bytes": 44137,
+      "compressed_bytes": 10157,
+      "crc32": "5cb8db84"
+    },
+    {
+      "entry": "english-native/english-paper-2400x1080-start.png",
+      "bytes": 694192,
+      "compressed_bytes": 686460,
+      "crc32": "ff0028cf"
+    },
+    {
+      "entry": "english-native/english-pen-1080x2400-start.json",
+      "bytes": 2941,
+      "compressed_bytes": 865,
+      "crc32": "16f0e19c"
+    },
+    {
+      "entry": "english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 37001,
+      "compressed_bytes": 8614,
+      "crc32": "013d9c7c"
+    },
+    {
+      "entry": "english-native/english-pen-1080x2400-start.png",
+      "bytes": 596944,
+      "compressed_bytes": 587294,
+      "crc32": "6e5244e5"
+    },
+    {
+      "entry": "english-native/english-pencil-case-1080x2400-start.json",
+      "bytes": 3144,
+      "compressed_bytes": 895,
+      "crc32": "fcc95aa0"
+    },
+    {
+      "entry": "english-native/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 52566,
+      "compressed_bytes": 12057,
+      "crc32": "5ea76bc3"
+    },
+    {
+      "entry": "english-native/english-pencil-case-1080x2400-start.png",
+      "bytes": 611396,
+      "compressed_bytes": 601919,
+      "crc32": "7c1226e9"
+    },
+    {
+      "entry": "english-native/english-rubber-640x360-start.layout.json",
+      "bytes": 35886,
+      "compressed_bytes": 8915,
+      "crc32": "3fe976e5"
+    },
+    {
+      "entry": "english-native/english-rubber-640x360-start.json",
+      "bytes": 2843,
+      "compressed_bytes": 864,
+      "crc32": "5c4ba761"
+    },
+    {
+      "entry": "english-native/english-rubber-640x360-start.png",
+      "bytes": 95450,
+      "compressed_bytes": 94847,
+      "crc32": "cb269ae5"
+    },
+    {
+      "entry": "english-native/english-ruler-640x360-start.json",
+      "bytes": 2840,
+      "compressed_bytes": 862,
+      "crc32": "6d4200fd"
+    },
+    {
+      "entry": "english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 50818,
+      "compressed_bytes": 12901,
+      "crc32": "f34283d9"
+    },
+    {
+      "entry": "english-native/english-school-bag-412x915-start.json",
+      "bytes": 2864,
+      "compressed_bytes": 853,
+      "crc32": "d0a0bd0f"
+    },
+    {
+      "entry": "english-native/english-ruler-640x360-start.png",
+      "bytes": 95359,
+      "compressed_bytes": 94739,
+      "crc32": "70069d78"
+    },
+    {
+      "entry": "english-native/english-school-bag-412x915-start.layout.json",
+      "bytes": 33315,
+      "compressed_bytes": 6415,
+      "crc32": "ffd67302"
+    },
+    {
+      "entry": "english-native/english-school-bag-412x915-start.png",
+      "bytes": 117152,
+      "compressed_bytes": 116228,
+      "crc32": "584221ff"
+    },
+    {
+      "entry": "english-native/english-sun-960x540-start.json",
+      "bytes": 2825,
+      "compressed_bytes": 873,
+      "crc32": "b3e3f2ec"
+    },
+    {
+      "entry": "english-native/english-sun-960x540-start.layout.json",
+      "bytes": 33077,
+      "compressed_bytes": 6415,
+      "crc32": "51ca28bd"
+    },
+    {
+      "entry": "english-native/english-sun-960x540-start.png",
+      "bytes": 168374,
+      "compressed_bytes": 167045,
+      "crc32": "b85b0a1d"
+    },
+    {
+      "entry": "english-native/learning-english-report.json",
+      "bytes": 138919,
+      "compressed_bytes": 11859,
+      "crc32": "87bfae9d"
+    },
+    {
+      "entry": "english-render.log",
+      "bytes": 6829,
+      "compressed_bytes": 1092,
+      "crc32": "93feeb35"
+    },
+    {
+      "entry": "godot-version.txt",
+      "bytes": 32,
+      "compressed_bytes": 34,
+      "crc32": "12281f13"
+    },
+    {
+      "entry": "import.log",
+      "bytes": 165491,
+      "compressed_bytes": 11385,
+      "crc32": "be47ea4b"
+    },
+    {
+      "entry": "project-validation.log",
+      "bytes": 6138,
+      "compressed_bytes": 1397,
+      "crc32": "38dc876c"
+    }
+  ]
+}

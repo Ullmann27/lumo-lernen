@@ -1,0 +1,187 @@
+{
+  "schema": 1,
+  "success": true,
+  "scope": "Real production Dart bank/controller/session and Godot input with an explicit QA disk transport and award ledger. No Android/device performance claim.",
+  "capture_requested": true,
+  "source_before": {
+    "native": {
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+    },
+    "host": {
+      "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+    }
+  },
+  "versions": {
+    "godot": "4.6.3.stable.official.7d41c59c4",
+    "dart": "Dart SDK version: 3.12.2 (stable) (Tue Jun 9 01:11:39 2026 -0700) on \"linux_x64\""
+  },
+  "commands": {
+    "dart": [
+      "dart",
+      "/home/runner/work/lumo-godot/lumo-godot/host-source/tools/android_qa/quiz_native_authority.dart",
+      "/home/runner/work/lumo-godot/lumo-godot/authority-evidence/quiz-pair/authority"
+    ],
+    "godot": [
+      "godot",
+      "--path",
+      "/home/runner/work/lumo-godot/lumo-godot/native-source",
+      "--rendering-method",
+      "gl_compatibility",
+      "--audio-driver",
+      "Dummy",
+      "--script",
+      "res://scripts/tests/quiz_studio_runtime.gd",
+      "--",
+      "--capture"
+    ]
+  },
+  "source_after": {
+    "native": {
+      "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+      "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+    },
+    "host": {
+      "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+      "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+    }
+  },
+  "checks": 381,
+  "inputs": 454,
+  "captures": 6,
+  "requests": 67,
+  "confirmed_stars_in_qa_ledger": 5000,
+  "elapsed_wall_seconds": 50.904,
+  "process_exit_codes": {
+    "DartAuthority": 0,
+    "GodotQuiz": 0
+  },
+  "evidence": [
+    {
+      "path": "authority/authority-result.json",
+      "bytes": 18251,
+      "sha256": "fa714bd361166cdebdef0fc96f25ac832427719805ac57c638cc749b5550cbe3"
+    },
+    {
+      "path": "authority/closed.json",
+      "bytes": 44,
+      "sha256": "e7510f633fd2785b6ffe0f414d60cc45dbccaf4120080e41f4893020fc8143eb"
+    },
+    {
+      "path": "authority/lifecycle.json",
+      "bytes": 52,
+      "sha256": "96c181d2cc03d88f7cfcb24323ddc9fbbc92a6adaea5ba193cea51d33d427417"
+    },
+    {
+      "path": "authority/native-result.json",
+      "bytes": 51,
+      "sha256": "1f03988160241ca82476416d241eb51a84c118aff8b284299be771b9f865e759"
+    },
+    {
+      "path": "authority/private-test-control.json",
+      "bytes": 135,
+      "sha256": "d1dbb2764dad32467af3fb6b6ef814bbe3d4247a0028a5976bb5b79d1dd3a3ab"
+    },
+    {
+      "path": "authority/public-state.json",
+      "bytes": 807,
+      "sha256": "cf15736d36407378fb598a4b4f4f3a58d9ea2f3ee1377ec678ea14fab04c154a"
+    },
+    {
+      "path": "authority/request.json",
+      "bytes": 133,
+      "sha256": "f24b78aa48044a03f209b00be70b2d66df845046926f0215f7d8f4202e65a1e2"
+    },
+    {
+      "path": "authority/round-aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa.json",
+      "bytes": 5689,
+      "sha256": "d5469bbd7adde986397394d523ef12e6de914ed319e6b2919f7c1f3809679eae"
+    },
+    {
+      "path": "authority/wallet.json",
+      "bytes": 127,
+      "sha256": "d143d9d0a6cacfd3ab8613055bb8c7f0d248962e68b7e776d4300c366fecfd5d"
+    },
+    {
+      "path": "dart-authority.log",
+      "bytes": 54,
+      "sha256": "5036019ac334e734bd8340a9f1e21dabd6162d902a972afd8c293aa1381d3265"
+    },
+    {
+      "path": "godot-runtime.log",
+      "bytes": 1163,
+      "sha256": "df7c2975c1a506fef813dedd09e30976fa3481bb3f291ebb621c5b88b869fc8d"
+    },
+    {
+      "path": "native/quiz-dart-complete.layout.json",
+      "bytes": 4589,
+      "sha256": "183e8e529c7b776a946b07b39ad40750937c9fd5c4f1780645da832cdbb75cbe"
+    },
+    {
+      "path": "native/quiz-dart-complete.png",
+      "bytes": 114031,
+      "sha256": "73ad3ee978bad862cc1b6f6aa0a3b56fdb5b06a2c62f400f78d9e5498b3d074e"
+    },
+    {
+      "path": "native/quiz-dart-jokers.layout.json",
+      "bytes": 4676,
+      "sha256": "8dd779e9da4489a05e49edf5262861670704c2e7f568b0ab38617769d1ab29d6"
+    },
+    {
+      "path": "native/quiz-dart-jokers.png",
+      "bytes": 98303,
+      "sha256": "b0d27e583a34a663048a3aa09850ac1ea596be5642410828a724348b87f9ce50"
+    },
+    {
+      "path": "native/quiz-dart-paused.layout.json",
+      "bytes": 4450,
+      "sha256": "fabba1c9409a073d8630e8f70a790435288542f1deea51d7a3acf78fbecc8300"
+    },
+    {
+      "path": "native/quiz-dart-paused.png",
+      "bytes": 43068,
+      "sha256": "d5fd637b5a349177b6a188882cc4e1afe9ce5ac320d9a5e403c7c7ba9605765f"
+    },
+    {
+      "path": "native/quiz-dart-question.layout.json",
+      "bytes": 4526,
+      "sha256": "72c77c06991bdc3fe3055d3e2937a0ead291f0158aee667d55a2b1c3df27a66c"
+    },
+    {
+      "path": "native/quiz-dart-question.png",
+      "bytes": 87139,
+      "sha256": "403a353f906446acaffcda7f0f23f9689eedf1b74e1e7b95322bf4812febaf2a"
+    },
+    {
+      "path": "native/quiz-dart-revealed-small.layout.json",
+      "bytes": 4640,
+      "sha256": "b643c9cd3f2a8342f217b12b493f6b3b69ba8cb1f79274d92bf6f0d70031c8cf"
+    },
+    {
+      "path": "native/quiz-dart-revealed-small.png",
+      "bytes": 53434,
+      "sha256": "78a0041ee6bd72a6c429bf167bb29c3e1dbaf55c6dba43f06f03ddf3f3ef43f5"
+    },
+    {
+      "path": "native/quiz-dart-selected-phone.layout.json",
+      "bytes": 4650,
+      "sha256": "02a1ef3ddbdef8dc63352c6e24aa2d9ba2d4b9340812e73c27321b94e3fc6d37"
+    },
+    {
+      "path": "native/quiz-dart-selected-phone.png",
+      "bytes": 81333,
+      "sha256": "2369c2877ed7750303f91433b2fa4997bd005ba05b4deb174a303f2fd98a11b0"
+    },
+    {
+      "path": "native/quiz-runtime-report.json",
+      "bytes": 79541,
+      "sha256": "615cbb835598ed4cd47924f1bfae7aa10b7b9e5569d5b56293f3a6214387840b"
+    },
+    {
+      "path": "source-identity.json",
+      "bytes": 265,
+      "sha256": "8d6ec21c2d8ac57fa956c1b48b7b233d05b9f756f717668cac46fca026288984"
+    }
+  ]
+}

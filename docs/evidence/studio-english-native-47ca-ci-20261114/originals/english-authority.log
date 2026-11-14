@@ -1,0 +1,11 @@
+Running build hooks...Running build hooks...PASS actual generator and unchanged checked adapter reach all fourteen words
+PASS both first school grades retain all ten real school objects
+PASS multiword objects require the exact prompt and actual answer
+PASS fallback prompt remains bound to its actual German answer
+PASS unknown words, text injection and wrong meanings fail closed
+PASS missing, duplicate or misleading visible answer choices fail closed
+PASS stable task chooses stable positions without always revealing the first slot
+PASS launch maps cannot mutate retained task descriptor
+PASS existing arithmetic descriptors retain the same operands
+PASS existing German syllable descriptor remains exact
+NATIVE_ENGLISH_DART_PASS cases=10 checks=2955

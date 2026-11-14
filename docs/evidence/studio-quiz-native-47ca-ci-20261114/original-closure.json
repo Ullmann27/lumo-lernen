@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "observed_utc": "2026-11-14T15:00:50.783941+00:00",
+  "run": 43607369297,
+  "job": 132484813658,
+  "status": "SUCCESS_ORIGINALS_VERIFIED",
+  "host": {
+    "commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+    "tree": "59c469de6252d368470bb41b0bcef21151cec826"
+  },
+  "native": {
+    "commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+    "tree": "d370790b6949b1cd16cc5fbd2d2c655330110274"
+  },
+  "original_job_log_sha256": "075733da70b935151b190ab31a692712b065b5f1a9fe70abb5f99acd005c006d",
+  "artifact": {
+    "id": 14118662523,
+    "bytes": 509914,
+    "sha256": "d4f09cbaec3cb199b1a69635a2ab1417ad083c08a2e1f2ae3f57def9261ccbc4",
+    "members": 35,
+    "all_crc_pass": true
+  },
+  "actual_dart_contract": {
+    "cases": 28,
+    "checks": 1786,
+    "failures": 0,
+    "skips": 0
+  },
+  "actual_pair": {
+    "checks": 381,
+    "inputs": 454,
+    "request_counts": {
+      "joker": 3,
+      "select": 20,
+      "reveal": 20,
+      "next": 19,
+      "pause": 2,
+      "resume": 2,
+      "exit": 1
+    },
+    "durable_action_counts": {
+      "joker": 3,
+      "select": 20,
+      "reveal": 20,
+      "next": 19
+    },
+    "questions": 20,
+    "qa_ledger_stars": 5000,
+    "qa_ledger_unique_ids": 1,
+    "process_exit_codes": {
+      "DartAuthority": 0,
+      "GodotQuiz": 0
+    },
+    "elapsed_seconds": 50.904,
+    "captures": 6,
+    "file_hashes_rechecked": 25
+  },
+  "limits": [
+    "Production Dart and Godot processes with declared QA disk transport/award ledger, not Android Binder/APK or physical device.",
+    "The six new original images have been downloaded and hashed, not manually visually reviewed in this snapshot.",
+    "Other matrix jobs and full Studio pipeline are not approved by this Quiz-only report."
+  ]
+}

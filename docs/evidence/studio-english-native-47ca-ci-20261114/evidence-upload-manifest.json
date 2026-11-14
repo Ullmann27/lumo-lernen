@@ -1,0 +1,816 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T15:18:12.846361+00:00",
+  "status": "Final current CI original evidence; no source/ref mutation",
+  "repository": "Ullmann27/lumo-lernen",
+  "native_commit": "47ca642aad9290c9ba274b08e7dadfc953854d4f",
+  "host_commit": "50503fef8e93700d9a889e33c3d2c37fccb46e42",
+  "run_id": 43607369297,
+  "artifact_id": 14118967950,
+  "file_count": 80,
+  "bytes": 5956147,
+  "png_count": 17,
+  "archive_included": false,
+  "files": [
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/HOST-SOURCE.txt",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/HOST-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "49031b96beda83b0bec23c48d3f807dc063a143e12b3509ddf3ca0265587fa4c",
+      "git_blob_sha": "6891f842b08fd74985c5604fce020c965bcd8278",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/NATIVE-SOURCE.txt",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/NATIVE-SOURCE.txt",
+      "bytes": 41,
+      "sha256": "820181c17cda08fee4d82f5f6507177e001e729fa719ab6a9153960de24666ce",
+      "git_blob_sha": "30f37954f387ee0eca66a6c366486fa2b97653a9",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/HOST-TREE.txt",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/HOST-TREE.txt",
+      "bytes": 41,
+      "sha256": "719000255e57b9b48526e32fe4a0552d89ebae2094f638d8f2686912edb12d56",
+      "git_blob_sha": "27aea33ace12c0023fe2a198420836a192ef1850",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/NATIVE-TREE.txt",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/NATIVE-TREE.txt",
+      "bytes": 41,
+      "sha256": "7de1fb8b462a697335fff70d3b22c4ed02ce0f543a882a9ab4607aa66b1e0277",
+      "git_blob_sha": "a8c0933af085cd8764780bf3a41722d8be10d956",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/dart-version.txt",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/dart-version.txt",
+      "bytes": 81,
+      "sha256": "01ee0046c53587c5dfff459aad9c3ee1ec4b6d6d9273643444f243a30690b495",
+      "git_blob_sha": "3d7dbb79a18d38323f46ce208f30c6f7c1da454b",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-activity.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-activity.json",
+      "bytes": 16729,
+      "sha256": "e38d551679a26e23bc3fc048a49e3d3387b5c6af60ccafc2958c8077a36318ae",
+      "git_blob_sha": "7009224b7c10477fb94840aa344811656a3d48c8",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-authority.log",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-authority.log",
+      "bytes": 755,
+      "sha256": "8ab8432130b9df6535b0b2f8261dd50abca61b4dfaf1ac9ca0884362a0955573",
+      "git_blob_sha": "af4b4460735d0885ce513cbd066dd64dc476f8bc",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-apple-960x540-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-apple-960x540-start.json",
+      "bytes": 2836,
+      "sha256": "5e52c047d0bdbf4f456d8b94f279064e90bce992a0ced8a0cd1b4d721cd04af9",
+      "git_blob_sha": "91f0f50d6e37ef0b36930e8d0a54761eee04bbcb",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-apple-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-apple-960x540-start.layout.json",
+      "bytes": 33638,
+      "sha256": "04d38f65e86ac71d602d0b46f30d362e6568e83ee5da9021b2f0fc0aa0ab39c8",
+      "git_blob_sha": "cac49f4416bbf19269ae67a6f8022e5f0efe2481",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-apple-960x540-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-apple-960x540-start.png",
+      "bytes": 171183,
+      "sha256": "e1ebd2d8514f4108208aeb4f08fa198d9fd7b89791d505524f317eb8637458c0",
+      "git_blob_sha": "317a8b81c550c09f1fca0b3bb931be374926d63c",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.json",
+      "bytes": 2829,
+      "sha256": "886d7010d25b9b53fb4ffc06e6e243b2ac827b882fa08192ec77ffa0f26df214",
+      "git_blob_sha": "7f65398d1031278ce4423d58673baaa10aae5ebf",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.layout.json",
+      "bytes": 28991,
+      "sha256": "957d78397fb936c9e98721bdd71b9defecb65cf5263b3e9ea3f3418543dc95dd",
+      "git_blob_sha": "8dd7f0c2ebf4a09b77cb7c46c7420c8fdaa0a12f",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-bag-960x540-start.png",
+      "bytes": 164035,
+      "sha256": "dc4c3ed13d92c458912e1401a5b0f699b75ef022cef0f53260ed550f79a959d7",
+      "git_blob_sha": "be32d2a962b02b41f0b9e7f2b5481b0439799165",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-complete.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-complete.json",
+      "bytes": 2829,
+      "sha256": "f15b4708bd80ebcb0da4a096c5faee72a592524d4ba69f8fc5e7bc8bfee5406b",
+      "git_blob_sha": "36327e864306be08133bbc3aafa80e0258931b20",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-complete.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-complete.layout.json",
+      "bytes": 26878,
+      "sha256": "319a46b9264d9c0cdd7ea3790ec173fddae048903bbcf492d9edd980a14ff303",
+      "git_blob_sha": "d6e37191b70842309ee996f0ca4ef4e754b70162",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-hint.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-hint.json",
+      "bytes": 2826,
+      "sha256": "99db1535af25554a5c063dbbb335f865899451e15a92c692b2f9a27015d17d7a",
+      "git_blob_sha": "6277005afaab79276c841781457836e36237cf4e",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-complete.png",
+      "bytes": 170721,
+      "sha256": "975690ca2e9c79f76483aa90cc1ccdde895db6d6c31dd8e8c305708823e97694",
+      "git_blob_sha": "bf015d3fef4a6724beb4560ce454d8813dbd19f0",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-hint.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-hint.layout.json",
+      "bytes": 26879,
+      "sha256": "212f8f60e45c7a9f5c4169b39f4d6f0d14f9d27cefba4bc35194080d71caec3f",
+      "git_blob_sha": "7f59bcf8c5646ed7fe10f0f60694f00a5d843158",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-hint.png",
+      "bytes": 171092,
+      "sha256": "188db833652edf5dee41bdfccab25229804c512e2b9809980f3237b7aaeddb44",
+      "git_blob_sha": "0d80b2b713c95f637b208a7b628fb1b4278472a1",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-start.json",
+      "bytes": 2824,
+      "sha256": "f344c1a06ffa953a3ab46d458e68aba971fb791626330325a364d5e4d535fe20",
+      "git_blob_sha": "780fc13f7b588c2360723863b19fb1eb9e7c1ae0",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-start.layout.json",
+      "bytes": 26058,
+      "sha256": "247b0c1c1579043c793b05a49ac0fca69c57636bd5f594afce7ed7b04c0fe738",
+      "git_blob_sha": "4ba4dcca0768ddfb396db247a45b9d24a4736039",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ball-960x540-start.png",
+      "bytes": 170940,
+      "sha256": "82df8f267118601fa25555a41fd8f1dacf02a0631b2eb0dcce099612f764a906",
+      "git_blob_sha": "7db5839c3b545764848956b5e39bd5d2595c77cb",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-complete.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-complete.json",
+      "bytes": 2853,
+      "sha256": "e707271911284d4139479d31379e8797c7c16e66a570dff713e09db9e52f8916",
+      "git_blob_sha": "1908519dfb03d6c3d724a8962f1fd3c488beed90",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-complete.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-complete.layout.json",
+      "bytes": 48395,
+      "sha256": "f87146cb07acd64a8c6df1c790c12837ef2107837a4ae6da6f159e3c09f20a82",
+      "git_blob_sha": "7a91fcedbddbe7361323b27f257a11059219c610",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-complete.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-complete.png",
+      "bytes": 119497,
+      "sha256": "e796a8440ae7a5577aa1c5b29b4e1767df591761cfa08dd0c4d85a6534f2861c",
+      "git_blob_sha": "a946d11b09cf0a1dbcc6cdc92c014afdb170c345",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-start.json",
+      "bytes": 2847,
+      "sha256": "e181b883a51c47e22f80fbf97a776ed9fe94ef1f919bc6aaaa1c8ba667cfb407",
+      "git_blob_sha": "e1b02916491a1931972af81ba3e014f3c3babd7e",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-start.layout.json",
+      "bytes": 47660,
+      "sha256": "cfa0310dd9f65b46d76de9553a1abec7ff98787661645cfcbc54934d6fa36c43",
+      "git_blob_sha": "f49845ff672d2a1d7307169910edf05d817feaa0",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-book-412x915-start.png",
+      "bytes": 119902,
+      "sha256": "882c7d39a47d93c27f84a7acb7df4294450c352805f7bf30fe549c30cf05bd1a",
+      "git_blob_sha": "e5caad6c0f39cf9de9227a38d5c2edf1f0448f3b",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-car-2400x1080-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-car-2400x1080-start.json",
+      "bytes": 3074,
+      "sha256": "0e54eaa4966684b72fd63040dfc885b9a9580135b3c33272e1a999efb69b5fff",
+      "git_blob_sha": "244acb8d5eec80d99d93ffd06a715a3a4ba35933",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-car-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-car-2400x1080-start.layout.json",
+      "bytes": 42944,
+      "sha256": "79b62416967e41b672da384cbfa96d431a816b5bef6192ebe718894d3af5ef10",
+      "git_blob_sha": "bcc77c8df9acdcb95e899a48744ef42613d2061e",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-car-2400x1080-start.png",
+      "bytes": 694432,
+      "sha256": "e62f66bcabd08fcebd811b0254c0e1bc2dc3f26cfa52055ea5224b7a1d3bb02e",
+      "git_blob_sha": "16b189c737f2c938baf90b3d1be9edfaf12d0473",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-chair-640x360-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-chair-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "8c507cc727020c22b94e34b893e760039bbefe78f9fb5218f498d6847b45f12b",
+      "git_blob_sha": "089e619bdd5e590b4a8a172f85530dcd426f5ad8",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-chair-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-chair-640x360-start.layout.json",
+      "bytes": 42458,
+      "sha256": "fdd9b87fdff4cd8191e006bcdff48523a3f7cbf429a668a346148a8cebd79928",
+      "git_blob_sha": "2b61e82a2a74a137f7b164e698f26e93078fb5d4",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-chair-640x360-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-chair-640x360-start.png",
+      "bytes": 95737,
+      "sha256": "43f47164008700620b7d33ee6c7fc37e7eb89802b767f91a819f9581b775398d",
+      "git_blob_sha": "1fb75ca62ad823f88b8fd057c7f066f85415acec",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-desk-960x540-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-desk-960x540-start.json",
+      "bytes": 2832,
+      "sha256": "81e3e4edd9ed6f1d7c1626a260699a43250bbd1ae7ad1c38b09ec398d30ca354",
+      "git_blob_sha": "a0041eb94076b969998ae46e534caa23d299a6b6",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-desk-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-desk-960x540-start.layout.json",
+      "bytes": 41571,
+      "sha256": "16842c5895773b73565ceb59c18f27cc0a82e091e29d95faa00d9f0b1e8e2994",
+      "git_blob_sha": "4f36540c65b73552a31babcbf05bbb314ec8af29",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-desk-960x540-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-desk-960x540-start.png",
+      "bytes": 162734,
+      "sha256": "4baa2446b3a8e4da7090d603638ad48a7e83b88a8baa9dc90fd0ed932ff4992f",
+      "git_blob_sha": "5a1646f8bc5b6d95689921311112a6a70ad82323",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-paper-2400x1080-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-paper-2400x1080-start.json",
+      "bytes": 3099,
+      "sha256": "7598ab7257e7f878e04c9a4ef493518fd8e54aa17345ff143591873168890f90",
+      "git_blob_sha": "5f6913028afd03c6a12171ee45c73373b104fd5a",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-paper-2400x1080-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-paper-2400x1080-start.layout.json",
+      "bytes": 44137,
+      "sha256": "251e7bfb497d9bb817753e9f02dce7309358b7f8da1aef5d7afaa99c1cc0497f",
+      "git_blob_sha": "4b2c4a9a65d01b327c41f560f683cac1928c6d65",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-paper-2400x1080-start.png",
+      "bytes": 694192,
+      "sha256": "7ecad1f334955110981c63e5c147b56b343823062bf92143d24c67b479ec681a",
+      "git_blob_sha": "a3b2cb7cfabdf295ee55fdec48b7faa5d0632961",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-pen-1080x2400-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-pen-1080x2400-start.json",
+      "bytes": 2941,
+      "sha256": "4b2e7a123af03f903d67f20c01774f7a7ff9a0a18ae62ddf172f47f230ff880f",
+      "git_blob_sha": "94c885d2caaa2d73763d392a726fe7dda9da1911",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-pen-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-pen-1080x2400-start.layout.json",
+      "bytes": 37001,
+      "sha256": "157290346d919011db281a5b188665f0ec79de6ebcbced32830fd713de11309f",
+      "git_blob_sha": "3912fd21e0e166a277e80fe653489faa7699e9f8",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-pen-1080x2400-start.png",
+      "bytes": 596944,
+      "sha256": "270783d868cde686851731ee97854f7ebc870c0896cba83c58eb7382612f909d",
+      "git_blob_sha": "c0ce6c3ae0d878c6f68bd650139e78a59a4f9894",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.json",
+      "bytes": 3144,
+      "sha256": "8d9469b292c18539ca43544131aac781e03e503634bcb9899145c29d61b9d1b2",
+      "git_blob_sha": "ea7d3bd1c4175d2989615f992e3c4764628fdf44",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.layout.json",
+      "bytes": 52566,
+      "sha256": "57ce32e1948fcd7c7c58297d0eead728d5107e1ad005a9a2db0d252a58121a21",
+      "git_blob_sha": "38a2072f11f8fb8656a27414bab1da209743f41c",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-pencil-case-1080x2400-start.png",
+      "bytes": 611396,
+      "sha256": "73e8cb857bac1307e11110bd8c659706b38074ce486884154496b1773d162519",
+      "git_blob_sha": "c8e575e54b2cda0efbaf12cb208fbf7af688194a",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-rubber-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-rubber-640x360-start.layout.json",
+      "bytes": 35886,
+      "sha256": "634af54c2bfd3cb48373baebe0110ed50f0bc515a07cf0057f7d3078989568b2",
+      "git_blob_sha": "b0d97db16eafe976478d5f757a8ff7a388574008",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-rubber-640x360-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-rubber-640x360-start.json",
+      "bytes": 2843,
+      "sha256": "294c485ca476c1765d23afcd02f203124e608cc69cb68cc6686d8b3133aa315f",
+      "git_blob_sha": "93f6e870ec22296f5514882aa485ead93ed39527",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-rubber-640x360-start.png",
+      "bytes": 95450,
+      "sha256": "91c40a6d08db0408d83d78355eeccb5a8211347d7f665a121f799cb9dfc7a1d1",
+      "git_blob_sha": "c010efba94d4ebdfc5075cae0fe6925cde97c956",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ruler-640x360-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ruler-640x360-start.json",
+      "bytes": 2840,
+      "sha256": "9c5c1ac3d883c5b5f6f772f4e6d6f301f5c3e437bda6fe9e80e51645c9218f24",
+      "git_blob_sha": "de6285b9b883b1827e5e33e0b055ced2a05d3b51",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ruler-640x360-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ruler-640x360-start.layout.json",
+      "bytes": 50818,
+      "sha256": "dd8efbda2afb26fe039b2a5cc3919fa44e37fe8e8cd9ebdc310f8e2cb652e597",
+      "git_blob_sha": "3737ee8828fda31a7cad51712c0c637de8c84e4c",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-school-bag-412x915-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-school-bag-412x915-start.json",
+      "bytes": 2864,
+      "sha256": "8789e8ae15b932e97a1b5726ea100f3a135a8d649ab17fc46048ab17521dd1eb",
+      "git_blob_sha": "5d56b9d05b9547581ad2902bc2b32853174fbb45",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-ruler-640x360-start.png",
+      "bytes": 95359,
+      "sha256": "e9f12bd9bdab5b6fc97aeca51f7cd5031a731c0ae2f838ac841c4ad8564ea2fd",
+      "git_blob_sha": "5ab1d9fa54bb2d532b473d47a6dba975c615b669",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-school-bag-412x915-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-school-bag-412x915-start.layout.json",
+      "bytes": 33315,
+      "sha256": "b0c5bcd8e05ed18034a4755c0619fdd50b487395797208431d91d29ba993be5f",
+      "git_blob_sha": "c61b12e788b63afb79b72b26ff170c03cb0154ce",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-school-bag-412x915-start.png",
+      "bytes": 117152,
+      "sha256": "06e9e497af0d353cb39c379b64f48289941e8c37df03ae64f36c5526ff846d64",
+      "git_blob_sha": "0f5298bf2f07dd86525d8ff2c3988407d3e03c6e",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-sun-960x540-start.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-sun-960x540-start.json",
+      "bytes": 2825,
+      "sha256": "635e8c3f7db38c35f37b59005df00ef398b2c54ef67f88afbcd63143d411bfdf",
+      "git_blob_sha": "609c511c972678c1325f896d52e824e93326bc8a",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-sun-960x540-start.layout.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-sun-960x540-start.layout.json",
+      "bytes": 33077,
+      "sha256": "7f4eeedb2e262762e5841c85e2afe69d6773414e315963327ec53fdd05b7772b",
+      "git_blob_sha": "af3d2acdff64b079398a4c2b9afac4272e94c7d1",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/english-sun-960x540-start.png",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/english-sun-960x540-start.png",
+      "bytes": 168374,
+      "sha256": "7a5dfe69f8d30fb5d482d721f76917a09b070ea63a409dea3af06044473e6dcf",
+      "git_blob_sha": "19679242835dbff7ba4fc9811eff4ae4e4c636db",
+      "mode": "100644",
+      "kind": "binary_png"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-native/learning-english-report.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-native/learning-english-report.json",
+      "bytes": 138919,
+      "sha256": "5f52bbdf2b6df619f98fcea56879d62cac4f44686ec4394a39d2f24534312c3a",
+      "git_blob_sha": "f892ba83d4274b7acc94655aab4ceaa9aa8e5035",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/english-render.log",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/english-render.log",
+      "bytes": 6829,
+      "sha256": "25e58a18923a78ef4770e78bd1e8c88335cd9bbaef889a01bcbcfc1958ed2623",
+      "git_blob_sha": "85222d30879d8676a68b3b19b119e100ab5e99e8",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/godot-version.txt",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/godot-version.txt",
+      "bytes": 32,
+      "sha256": "1e07780c365549219ffd8e6bd120a818c80424e8295d4ee7451c10d0ed0fa84f",
+      "git_blob_sha": "24277fd09e8cc7154517b66aab4e8bef52babb7e",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/import.log",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/import.log",
+      "bytes": 165491,
+      "sha256": "cff81bc64e99888a3eca0e1ef611ce7e275ed363467f391617fa4ee22c1380cf",
+      "git_blob_sha": "4008a0ebbce83501a005b2b9d183a7c9b2b9f25e",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/originals/project-validation.log",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/originals/project-validation.log",
+      "bytes": 6138,
+      "sha256": "568ea0a47cb029675d191242bc84b97020e92d2fe3a8104639fdf080c5d04fe7",
+      "git_blob_sha": "681ee33a4718c6a87f5131d5fc8ef03bb5a78f61",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/README.md",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/README.md",
+      "bytes": 4253,
+      "sha256": "42f9aa47ef3e7482d08b3c48938889bd9b4e5139eecf7ae98cee1ce106f3acbd",
+      "git_blob_sha": "d5294b9cccf1a69c22e40137ce74fed6fbbbae63",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/artifacts-final-original.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/artifacts-final-original.json",
+      "bytes": 2273,
+      "sha256": "55a7e1c050a4fe0c2c07dc5835b84850718d9d8e11d9cd3f43e38fa59523c243",
+      "git_blob_sha": "e6b4f0e83697285cfba7527d798f96e751f5ac1b",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/diagnostics.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/diagnostics.json",
+      "bytes": 3394,
+      "sha256": "ec79ea08fd0f76d9a48c3c104bd54b5ad9e8b1ad38cb9683ae4134db1a760306",
+      "git_blob_sha": "f09c50804a657fb50ad1e4991d80d84b471e2197",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/english-original-job.log",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/english-original-job.log",
+      "bytes": 307623,
+      "sha256": "b33b49301919d893c4166e83ba87a5ec29b62e12cdc601c9a27a7fb46bb2bd99",
+      "git_blob_sha": "b895c21efa8072f1c29385c4a30256a8007fd13c",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/host50503-commit-original.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/host50503-commit-original.json",
+      "bytes": 1772,
+      "sha256": "d618ed4266319e166e088580dd36ce65440c5abdd4755628abe88a67de2c4b81",
+      "git_blob_sha": "e3f0a414c76fedcf1e9fd1846ae2213ce9e7117b",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/image-review.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/image-review.json",
+      "bytes": 29492,
+      "sha256": "87f42173eea7d512359dc3cae97cca329627992abc931f18672d3e884b0ca6de",
+      "git_blob_sha": "ad409529a4d0283f694cf857b0bf02acfa509d9a",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/jobs-final-original.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/jobs-final-original.json",
+      "bytes": 13303,
+      "sha256": "b4baf9333e8caf4375def01db9a2a7a02e57fbc5a67079260310859c0039f450",
+      "git_blob_sha": "fef4da6159eed80b0567c167b16e036630a9a335",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/jobs-initial-original.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/jobs-initial-original.json",
+      "bytes": 12720,
+      "sha256": "46d9be6fbe8b9228550f77a98bdba1d000da8e6231e850694ef58c214dc750ea",
+      "git_blob_sha": "2773fc75005608228b55976efc31a0bd52922363",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/original-archive-verification.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/original-archive-verification.json",
+      "bytes": 10111,
+      "sha256": "711ef525eb2a58bfa8f8c237decbfe9d6a43eef8f368fa8bc82a7ee41c9928ea",
+      "git_blob_sha": "ef72e865f00b50eebc8e6ed296cecbcea8e18fcd",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/published-source-tree-bindings.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/published-source-tree-bindings.json",
+      "bytes": 3052,
+      "sha256": "94dcac1e14a5389492141a93072fed97e624e13b5b73821f1f007bc9bd1f7d56",
+      "git_blob_sha": "3e29071c5b8a9dc0f0bb7c0647318091f17547aa",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/review.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/review.json",
+      "bytes": 4257,
+      "sha256": "9ddc63dba41208a519f33379b5f1d0bbeeccad307e0fe64d1c6da76897556ee7",
+      "git_blob_sha": "806ec65540eccf74b18b730b0b839280ce82c777",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/run-final-original.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/run-final-original.json",
+      "bytes": 13413,
+      "sha256": "d130979e0c086b22197473dce603aa37374fb985497f598040b089675b2b7417",
+      "git_blob_sha": "4a2a82413d9161445652328090c96ae195eb4ef8",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/runs-initial-original.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/runs-initial-original.json",
+      "bytes": 53647,
+      "sha256": "161968781769f7dfe9952af38b158c5baac946b3b107a43e2bd933a28a947922",
+      "git_blob_sha": "88cb97e884a82ae65fae520c0cf9d30f13f56c1c",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/source-and-artifact-binding.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/source-and-artifact-binding.json",
+      "bytes": 4521,
+      "sha256": "68717c4aa2d7c0d02cc574af065039aa888e6df3071b6ac069aa3bfdd4c8d5f2",
+      "git_blob_sha": "8c6511f594e1d8b1a0dd24846a3666b8d2c043f3",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/source-inspection-ref-correction.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/source-inspection-ref-correction.json",
+      "bytes": 558,
+      "sha256": "38045749de92914c4cb1ca173683fbea94ca032b248d1ff07ad02e52413886e2",
+      "git_blob_sha": "6cea1c178c00e86bde735b945cd70d0550b56d05",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/verified-original-extraction.json",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/verified-original-extraction.json",
+      "bytes": 26782,
+      "sha256": "3e5ab5f2f7898235495a1919137b93272f3b35005b9c03807f8ef03516e119b8",
+      "git_blob_sha": "a5dd253a39343b128f6fd8ab6517a045c9a68845",
+      "mode": "100644",
+      "kind": "utf8"
+    },
+    {
+      "repository": "Ullmann27/lumo-lernen",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-english-native-47ca-ci-20261114/workflow-at-native47ca.yml",
+      "path": "docs/evidence/studio-english-native-47ca-ci-20261114/workflow-at-native47ca.yml",
+      "bytes": 9280,
+      "sha256": "1c2402dd44a8f9abe13a5d1bdb72c655ef1bcada58e96bfb7f31cbbffc90fd6f",
+      "git_blob_sha": "b8698b092e7f46bcd319f31479f75e0d5e2536e0",
+      "mode": "100644",
+      "kind": "utf8"
+    }
+  ]
+}
