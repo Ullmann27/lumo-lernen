@@ -1,0 +1,20 @@
+{
+  "schema": 1,
+  "status": "COMMITTED_SNAPSHOT_PREPARATION",
+  "created_at": "2026-11-14T04:14:19.886719+00:00",
+  "local_parent": "c68b2158679ecea0f9f9a7de68c69d989d020f91",
+  "remote_parent": "0159e0019c5206cf8b12e9673f9ed44fe72c566e",
+  "source_path_count": 91,
+  "evidence_path_count": 32,
+  "actual_apk_source": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "native_source": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "historical_run43540111465": "FAIL",
+  "historical_runtime_run43551424080": "FAIL; API35 original main tour PASS, later Learning OCR FAIL",
+  "next_creative_device_run": "NOT_STARTED",
+  "runtime_logger_repairs": "Separate active work; deliberately absent from this earlier frozen Creative snapshot",
+  "superseded_owned_entries": {
+    ".github/probes/creative_android_probe.py": "Loading12-path freeze supersedes Creative63-path helper only",
+    ".github/probes/studio_creative_android_probe.py": "Root9-path adapter supersedes Creative63-path Tour adapter only"
+  },
+  "scope": "Frozen code, original counterexamples and explicit local proof. No Android/release/visual/FPS acceptance."
+}

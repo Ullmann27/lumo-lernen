@@ -24,6 +24,8 @@ import time
 
 SERVICES = ("input", "settings", "activity", "package", "window")
 STOP_REQUESTED = False
+DEFAULT_MONITOR_SECONDS = 450
+MAX_MONITOR_SECONDS = 7200
 
 
 def utc() -> str:
@@ -59,20 +61,29 @@ def monitor_alive(out: Path) -> bool:
     return bool(identity and identity[0] != "Z" and identity[1] == info["start_ticks"])
 
 
-def start_monitor(out: Path, serial: str) -> None:
+def monitor_budget(seconds: int) -> int:
+    if type(seconds) is not int or not 1 <= seconds <= MAX_MONITOR_SECONDS:
+        raise ValueError(f"Monitor duration must be an integer from 1 to {MAX_MONITOR_SECONDS} seconds")
+    return seconds
+
+
+def start_monitor(out: Path, serial: str, monitor_seconds: int = DEFAULT_MONITOR_SECONDS) -> None:
+    monitor_seconds = monitor_budget(monitor_seconds)
     out.mkdir(parents=True, exist_ok=True)
     if (out / "monitor-process.json").exists():
         raise ValueError("Refusing to replace existing framework start evidence")
-    command = [sys.executable, str(Path(__file__).resolve()), "_monitor", "--out", str(out), "--serial", serial]
+    command = [sys.executable, str(Path(__file__).resolve()), "_monitor", "--out", str(out), "--serial", serial,
+               "--monitor-seconds", str(monitor_seconds)]
     with (out / "monitor.stdout").open("xb") as stdout, (out / "monitor.stderr").open("xb") as stderr:
+        started_at = utc()
         process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr, start_new_session=True)
     identity = process_identity(process.pid)
     if identity is None:
         raise RuntimeError("Framework log monitor did not start")
-    write_json(out / "monitor-process.json", {"pid": process.pid, "start_ticks": identity[1], "command": command, "started_at": utc(), "serial": serial, "adb": adb_path(), "budget_seconds": 450})
+    write_json(out / "monitor-process.json", {"pid": process.pid, "start_ticks": identity[1], "command": command, "started_at": started_at, "serial": serial, "adb": adb_path(), "budget_seconds": monitor_seconds})
 
 
-def collect_monitor(out: Path, serial: str) -> int:
+def collect_monitor(out: Path, serial: str, monitor_seconds: int = DEFAULT_MONITOR_SECONDS) -> int:
     global STOP_REQUESTED
 
     def stop(_signum: int, _frame: object) -> None:
@@ -81,7 +92,7 @@ def collect_monitor(out: Path, serial: str) -> int:
 
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
-    deadline = time.monotonic() + 450
+    deadline = time.monotonic() + monitor_budget(monitor_seconds)
     commands = (("wait-for-device", [adb_path(), "-s", serial, "wait-for-device"]), ("logcat-all", [adb_path(), "-s", serial, "logcat", "-b", "all", "-v", "threadtime"]))
     records = []
     for name, command in commands:
@@ -163,14 +174,46 @@ class Recorder:
         return {**record, "stdout": stdout.decode("utf-8", errors="replace"), "stderr": stderr.decode("utf-8", errors="replace")}
 
 
-def interactive_surface(window_dump: str, anr_events: str) -> dict:
-    """Read actual WindowManager dump fields; unknown or conflicting states fail.
+def input_dispatch_state(input_dump: str) -> dict:
+    """Read only the current AOSP InputDispatcher section, never its ANR history."""
+    lines = input_dump.splitlines()
+    starts = [index for index, line in enumerate(lines)
+              if line.strip() == "Input Dispatcher State:"]
+    anr_state = any(line.strip() == "Input Dispatcher State at time of last ANR:"
+                    for line in lines)
+    values = {"DispatchEnabled": [], "DispatchFrozen": []}
+    if len(starts) == 1:
+        start = starts[0]
+        indent = len(lines[start]) - len(lines[start].lstrip())
+        for line in lines[start + 1:]:
+            if not line.strip():
+                continue
+            depth = len(line) - len(line.lstrip())
+            if depth <= indent:
+                break
+            for field in values:
+                match = re.fullmatch(r"\s*" + field + r":\s*(.*?)\s*", line)
+                if match:
+                    values[field].append(match[1])
+    enabled = values["DispatchEnabled"]
+    frozen = values["DispatchFrozen"]
+    return {"ready": len(starts) == 1 and enabled == ["true"] and frozen == ["false"]
+                     and not anr_state,
+            "enabled": enabled[0] if len(enabled) == 1 else None,
+            "frozen": frozen[0] if len(frozen) == 1 else None,
+            "current_section_count": len(starts), "anr_state_present": anr_state}
+
+
+def interactive_surface(window_dump: str, anr_events: str, input_dump: str = "") -> dict:
+    """Read actual window and dispatcher fields; unknown/conflicting states fail.
 
     The named fields come from WindowManagerService, DisplayContent, WindowState
-    and KeyguardServiceDelegate. These observations do not prove future emulator
-    stability or app input delivery. No coordinate or application name is assumed.
+    KeyguardServiceDelegate and InputDispatcher. These observations do not prove
+    future emulator stability or app input delivery. No coordinate or application
+    name is assumed. Missing credential security never authorizes an unlock.
     """
     errors = []
+    input_dispatch = input_dispatch_state(input_dump)
     event_lines = [line for line in anr_events.splitlines() if line.strip()
                    and not line.startswith("--------- beginning of ")]
     observed_anrs = [line for line in event_lines if re.search(r"\bam_anr\s*:", line)]
@@ -188,7 +231,8 @@ def interactive_surface(window_dump: str, anr_events: str) -> dict:
     no_window_anr = last_anr_lines == ["<no ANR has occurred since boot>"]
     window_anr = bool(last_anr_lines and not no_window_anr)
     error_window = bool(re.search(r"Application (?:Not Responding|Error)|AppNotRespondingDialog|AppErrorDialog", window_dump))
-    anr_observed = bool(observed_anrs or window_anr or error_window)
+    anr_observed = bool(observed_anrs or window_anr or error_window
+                        or input_dispatch["anr_state_present"])
     if anr_observed:
         errors.append("android_anr_or_error_window_observed")
     elif not no_window_anr:
@@ -211,17 +255,27 @@ def interactive_surface(window_dump: str, anr_events: str) -> dict:
                 if key in keyguard:
                     errors.append("ambiguous_keyguard_field:" + key)
                 keyguard[key] = value
-    fields = ("showing", "inputRestricted", "occluded", "secure", "dreaming",
-              "systemIsReady", "deviceHasKeyguard", "enabled", "bootCompleted")
-    keyguard_known = all(keyguard.get(key) in ("true", "false") for key in fields)
+    fields = ("showing", "inputRestricted", "occluded", "dreaming",
+              "deviceHasKeyguard", "enabled", "bootCompleted")
+    # Android 17's actual dump uses systemReady; older dumps use systemIsReady.
+    # Both may agree, but missing, malformed or conflicting values are unknown.
+    system_values = [keyguard[name] for name in ("systemReady", "systemIsReady")
+                     if name in keyguard]
+    system_ready = (system_values[0] if system_values
+                    and all(value == system_values[0] for value in system_values) else None)
+    keyguard_known = (all(keyguard.get(key) in ("true", "false") for key in fields)
+                      and system_ready in ("true", "false"))
     if not keyguard_known:
         errors.append("keyguard_state_not_observed")
+    credential_secure = {"true": True, "false": False}.get(keyguard.get("secure"))
+    if "secure" in keyguard and credential_secure is None:
+        errors.append("keyguard_credential_security_malformed")
     awake = (keyguard.get("screenState") == "SCREEN_STATE_ON"
              and keyguard.get("interactiveState") == "INTERACTIVE_STATE_AWAKE"
              and keyguard.get("dreaming") == "false")
     if not awake:
         errors.append("interactive_display_not_awake")
-    if keyguard.get("systemIsReady") != "true" or keyguard.get("bootCompleted") != "true":
+    if system_ready != "true" or keyguard.get("bootCompleted") != "true":
         errors.append("keyguard_framework_not_ready")
 
     focuses = re.findall(r"(?m)^\s*mCurrentFocus=(.+)$", window_dump)
@@ -241,8 +295,12 @@ def interactive_surface(window_dump: str, anr_events: str) -> dict:
     if not surface_ready:
         errors.append("focused_window_surface_not_ready")
     boot_display = re.findall(r"\bmSystemBooted=(true|false)\s+mDisplayEnabled=(true|false)", window_dump)
-    frozen = re.findall(r"\bmDisplayFrozen=(true|false)\b", window_dump)
-    if boot_display != [("true", "true")] or frozen != ["false"] or "mInputFreezeReason=" in window_dump:
+    frozen = re.findall(r"\bmDisplayFrozen=([^\s]*)", window_dump)
+    # Android 17 no longer emits mDisplayFrozen here. An explicit positive
+    # InputDispatcher sample replaces that observation; absence alone cannot.
+    # A legacy window freeze or freeze reason still vetoes readiness.
+    if (boot_display != [("true", "true")] or frozen not in ([], ["false"])
+            or "mInputFreezeReason=" in window_dump or not input_dispatch["ready"]):
         errors.append("display_dispatch_not_observed_unfrozen")
 
     # Only an explicitly visible, awake, nonsecure keyguard is eligible for one
@@ -250,7 +308,7 @@ def interactive_surface(window_dump: str, anr_events: str) -> dict:
     unlock_eligible = (not errors and keyguard_known and focused_window and surface_ready
                        and keyguard.get("showing") == "true"
                        and keyguard.get("inputRestricted") == "true"
-                       and keyguard.get("secure") == "false"
+                       and credential_secure is False
                        and keyguard.get("occluded") == "false"
                        and keyguard.get("enabled") == "true"
                        and keyguard.get("deviceHasKeyguard") == "true")
@@ -269,6 +327,7 @@ def interactive_surface(window_dump: str, anr_events: str) -> dict:
     if not application.startswith("ActivityRecord{") or not focus_component or focus_component != app_component:
         errors.append("focused_activity_not_consistent")
     return {"ready": not errors, "errors": errors, "keyguard": keyguard,
+            "credential_secure": credential_secure, "input_dispatch": input_dispatch,
             "focused_window": focus, "focused_application": application,
             "surface_ready": surface_ready, "anr_observed": anr_observed,
             "anr_events": observed_anrs, "window_last_anr_clear": no_window_anr,
@@ -282,6 +341,7 @@ def observe(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
                  ("package-read", ["cmd", "package", "path", "android"]),
                  ("window-read", ["wm", "size"]),
                  ("window-state", ["dumpsys", "window", "-a"]),
+                 ("input-state", ["dumpsys", "input"]),
                  ("events-anr", ["logcat", "-b", "events", "-d", "-v", "threadtime", "-s", "am_anr"]),
                  ("pid-after", ["pidof", "system_server"]),
                  ("count-after", ["getprop", "sys.system_server.start_count"])]
@@ -318,7 +378,8 @@ def observe(recorder: Recorder, deadline: float, clock=time.monotonic) -> dict:
     runtime = {"sdk": properties.get("ro.build.version.sdk", ""), "release": properties.get("ro.build.version.release", ""), "fingerprint": properties.get("ro.build.fingerprint", "")}
     if runtime["sdk"] != "37" or runtime["release"] != "17" or not runtime["fingerprint"]:
         errors.append("expected_android37_release17_not_observed")
-    interactive = interactive_surface(output("window-state"), output("events-anr"))
+    interactive = interactive_surface(output("window-state"), output("events-anr"),
+                                      output("input-state"))
     unlock_eligible = not errors and interactive["unlock_eligible"]
     errors += interactive["errors"]
     return {"observed_at": utc(), "ready": not errors, "errors": errors, "pid": pid,
@@ -451,16 +512,21 @@ def main() -> int:
     parser.add_argument("--minimum-samples", type=int, default=3)
     parser.add_argument("--cli22-proof", type=Path)
     parser.add_argument("--allow-not-started", action="store_true")
+    parser.add_argument("--monitor-seconds", type=int, default=DEFAULT_MONITOR_SECONDS)
     args = parser.parse_args()
     if not re.fullmatch(r"emulator-[0-9]+", args.serial):
         parser.error("Expected the exact emulator serial")
     if not 0 < args.stable_seconds < args.timeout <= 120 or args.minimum_samples < 3:
         parser.error("Readiness needs a positive bounded window and at least three observations")
+    try:
+        monitor_budget(args.monitor_seconds)
+    except ValueError as error:
+        parser.error(str(error))
     out = args.out.resolve()
     if args.mode == "start":
-        start_monitor(out, args.serial)
+        start_monitor(out, args.serial, args.monitor_seconds)
     elif args.mode == "_monitor":
-        return collect_monitor(out, args.serial)
+        return collect_monitor(out, args.serial, args.monitor_seconds)
     elif args.mode == "wait":
         return wait_for_framework(out, args.serial, args.timeout, args.stable_seconds, args.minimum_samples, args.cli22_proof)
     else:

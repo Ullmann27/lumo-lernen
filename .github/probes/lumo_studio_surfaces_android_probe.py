@@ -110,7 +110,8 @@ def capture_returned_flutter(out: Path, tag: str, captions: list[str], *, timeou
                     matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
                     if not matches:
                         lines = probe.image_lines(out, name + '-caption-' + str(len(found)), wanted,
-                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()))
+                            source_path=source, exact=True, timeout=max(.001, deadline-time.monotonic()),
+                            reject_captions=('Die Spielwelt wird geöffnet',))
                         matches = [line for line in lines if probe.normalized(line.get('text', '')) == wanted]
                     valid = []
                     for line in matches:
@@ -554,7 +555,12 @@ def read_cards_layout(out: Path, box: CardsMailbox, tag: str, *, timeout: float)
     source.write_text(raw)
     if len(raw.encode()) > 128 * 1024:
         raise RuntimeError('Native Cards layout observation exceeds its diagnostic bound')
-    layout = json.loads(raw)
+    try:
+        layout = json.loads(raw)
+    except json.JSONDecodeError as error:
+        raise RuntimeError(
+            'Native Cards layout not yet available as complete JSON; '
+            'original reply preserved in ' + source.name) from error
     if not isinstance(layout, dict) or layout.get('token') != box.token:
         raise RuntimeError('Native Cards layout belongs to another private session')
     return {'layout': layout, 'source': source.name, 'source_sha256': probe.digest(source)}

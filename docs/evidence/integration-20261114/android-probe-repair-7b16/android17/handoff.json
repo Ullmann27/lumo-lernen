@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "status": "FOCUSED_PARSER_REPAIR_TESTED; ACTUAL_API37_RUN_REMAINS_FAILED",
+  "host_original": "7b16f2f5ab16f3d913ee170aefd9807c87216260",
+  "run_id": 43540111465,
+  "job_id": 132298281316,
+  "actual_anr": "GMS persistent SIM_STATE_CHANGED broadcast; separate root-cause analysis remains open",
+  "source_freeze_sha256": "a23eaf3e0d1958c5e5bf4135c5d3ed9ca9c049c1d9f042736d72fba6a6d5307a",
+  "original_red": {
+    "tests": 1,
+    "failed_subtests": 4,
+    "exit_code": 1,
+    "json": "original-parser-red.json",
+    "log": "original-parser-red.log"
+  },
+  "focused_green": {
+    "tests": 29,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "exit_code": 0,
+    "json": "focused-green.json",
+    "log": "focused-green.log",
+    "source_files_stable": 24
+  },
+  "limits": [
+    "No dumpsys-input original was captured by the failed job. Replaying original window/event captures alone still fails closed.",
+    "Successful supplemental InputDispatcher cases are explicitly synthetic and are not Android runtime acceptance.",
+    "A missing secure field remains unknown and cannot authorize an unlock; simSecure is not used as a substitute.",
+    "Explicit disabled/frozen, malformed/ambiguous states and all event/window/input ANR history remain failure.",
+    "No emulator configuration change or actual device rerun was performed.",
+    "The 120-second deadline and 10-second/three-sample stability requirements remain unchanged."
+  ],
+  "changed_sources": [
+    "scripts/android_framework_ready.py",
+    "scripts/tests/fixtures/android37_window_7b16/0014-window-state.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0015-events-anr.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0028-window-state.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0029-events-anr.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0042-window-state.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0043-events-anr.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0056-window-state.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0057-events-anr.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0070-window-state.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/0071-events-anr.stdout",
+    "scripts/tests/fixtures/android37_window_7b16/manifest.json",
+    "scripts/tests/test_android_framework_ready.py",
+    "scripts/tests/test_android_framework_ready_android17.py"
+  ],
+  "patch_sha256": "27c85aee8692ecbbe6b4ceacef4e079fe3c181ab892278eaca7b6a055cf27273"
+}

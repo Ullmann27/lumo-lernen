@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-B",
+    "-m",
+    "unittest",
+    "-v",
+    "scripts.tests.test_android_framework_ready",
+    "scripts.tests.test_android_framework_ready_android17",
+    "scripts.tests.test_android37_cli22",
+    "scripts.tests.test_verify_android_runtime_anr",
+    "scripts.tests.test_verify_unchanged_apk_diagnostic",
+    "tools.android_qa.tests.test_kart_garage_evidence",
+    "tools.android_qa.tests.test_kart_driver_word_evidence"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-android-repair-7b16",
+  "environment_overrides": {
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "REQUIRE_ALL_TESTS": "true"
+  },
+  "started_at": "2026-11-14T03:16:08.223872+00:00",
+  "elapsed_seconds": 1.7062263099942356,
+  "exit_code": 1,
+  "source_count": 9,
+  "source_stable": true,
+  "tests": 80,
+  "zero_skips": false,
+  "log_bytes": 17742,
+  "log_sha256": "6e466725b0258329f290c67108b2170e0c859eed3563f1f9ec35538a6a5376be",
+  "scope": "The seven exact focused unittest modules used by the new CI preflight. Original observations plus explicitly synthetic counterexamples. No Android/APK/device execution."
+}
