@@ -1,0 +1,103 @@
+{
+  "source": {
+    "repository": "Ullmann27/lumo-lernen",
+    "head": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "run": 43596913225,
+    "attempt": 1,
+    "job": 132453271395,
+    "status": "success",
+    "home_tests": 13,
+    "world_tests": 8,
+    "visual_review_completed": false
+  },
+  "artifact": {
+    "id": 14115111878,
+    "name": "lumo-1989-original-learning-cards",
+    "size_in_bytes": 17097348,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115111878",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115111878/zip",
+    "expired": false,
+    "created_at": "2026-11-14T12:53:52Z",
+    "expires_at": "2026-12-14T12:53:50Z",
+    "updated_at": "2026-11-14T12:53:52Z",
+    "digest": "sha256:4681a6b646cfa2f643a75ff78f4e77a52090c125f4cdbfdab8b70596745742e3",
+    "workflow_run": {
+      "id": 43596913225,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+    }
+  },
+  "archive_bytes": 17097348,
+  "archive_sha256": "4681a6b646cfa2f643a75ff78f4e77a52090c125f4cdbfdab8b70596745742e3",
+  "all_member_crc_verified": true,
+  "png_count": 8,
+  "files": [
+    {
+      "path": "fold-cover-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "fold-open-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "fold-cover-start.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "fold-open-start.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/fold-open-start.png",
+      "bytes": 3568336,
+      "sha256": "a042b714f65154e417641405dee2cd8512b0d4f4bf926e72464a9af6748f9335",
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "large-text-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "large-text-start.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/large-text-start.png",
+      "bytes": 4718245,
+      "sha256": "ce8f8023d916627d90452fec77fac0156a2e18ddae04deb700e6b79ab4dc04e0",
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "phone-learning-cards.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "phone-start.png",
+      "local_path": "/dev/shm/lumo-final-1e22-909ddb52fe7b/home/original-pngs/phone-start.png",
+      "bytes": 1782974,
+      "sha256": "b52431571238dc314c626b800707eb84d6488ec26f644e59f8543ea6971f9c66",
+      "width": 786,
+      "height": 1704
+    }
+  ]
+}
