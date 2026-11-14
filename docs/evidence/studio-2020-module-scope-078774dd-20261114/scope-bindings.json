@@ -1,0 +1,744 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T09:51:36.366705+00:00",
+  "reviewer": "character_animation",
+  "kind": "read_only_current_module_scope_update",
+  "host_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "host_run": 43580228966,
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "native_run": 43570887024,
+  "native_artifact": 14105224381,
+  "native_artifact_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+  "historical_matrix_preserved": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/MODUL_ABNAHMEMATRIX.md",
+    "bytes": 23169,
+    "sha256": "ab9bcc0ad6fd5b18818002d9f06a0feae68a3ad99926c1ffd924a472c9123656",
+    "git_blob_sha": "2a4025597c34194b9cc248ca970e1ff5f5cf884d"
+  },
+  "entry_verification": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-module-scope-078774dd-20261114/entry-source-verification.json",
+    "bytes": 10947,
+    "sha256": "0cb3c449b08909657cf99da8a1d06b0cd465015656fa0cb19a8d9a0e414efbc1",
+    "git_blob_sha": "1a0d4dc8b4106c3c523320986b11d1f99167e329"
+  },
+  "entry_counts": {
+    "main_portals": 10,
+    "additional_settlement_modes": [
+      "settlement",
+      "rival"
+    ],
+    "academy_topic_ids": 20,
+    "flutter_learning_lab_topics": 5,
+    "level_game_types": 7
+  },
+  "actual_new_source_verification_scope": {
+    "previous_paths_compared": 23,
+    "unchanged_since86445": 21,
+    "changed_entry_sources_reread": 2,
+    "existing_staged_sources_compared": 6,
+    "unchanged_from_existing_staged_source": 5,
+    "source_code_tests_or_tours": 0
+  },
+  "current_completed_flutter": {
+    "passed": 2555,
+    "failed": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "archive_png_count": 546,
+    "all546_manually_viewed_claim": false
+  },
+  "current_separate_c4_fallback": {
+    "passed": 12,
+    "reviewed_images": 9,
+    "agent_b_actual_standard_image_reviews": 5,
+    "root_actual_fold_image_reviews": 4,
+    "counts_not_added_to_full_suite": true,
+    "android_claim": false
+  },
+  "native_receipt_module_counts": {
+    "learning": 12,
+    "jump": 3,
+    "build": 4,
+    "settlement": 1,
+    "garage": 2,
+    "cards": 5,
+    "rhythm": 1,
+    "puzzle": 9,
+    "treasure": 8,
+    "connect_four": 4
+  },
+  "native_selected_original_images": [
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-complete-1280x720.png",
+      "sha256": "f4fd4581a9bccd5ad0221baab0ee04fea174345b08ecc66f0c46196cc0673fa3",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/learning_sharing_capture/sharing-first-round-412x915.png",
+      "sha256": "928f386de806eb9aa96c7dbfe1f3e61b5692f87cd2c0c8f77a00615f88e80709",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "sha256": "7a4cf591f73638501c0864b52963f19f5c0c14fb92161fd38cce03debecbb075",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-412x915.png",
+      "sha256": "91bcfd6c2505e850165bc88d713b16159501e4488693d57877f0ac0d2959ca45",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_690x829_touch_ascent.png",
+      "sha256": "47932d51d210f1f3d31a1287e5c756dee1ce92de867598854ff408fcde610d75",
+      "dimensions": [
+        690,
+        829
+      ]
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_412x915_landed.png",
+      "sha256": "63b4814dbed8519b37118aa67b2a868568c57c4adb89d1b45401b5c50d489085",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/02_build_moved.png",
+      "sha256": "ecc773a30d7e4ebed871d904f9e60cf83044e7fc5dbdf2bea64d338fa948ca20",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "sha256": "f8d620a21d16f61f7707be06e45de4396039a564400838488c1a99a4185716e8",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-1080x2400-templates-bottom.png",
+      "sha256": "a7006ca3f7fe49c54c404ea8deec7f3580c8cfde3c818933ca38cbff0b802bed",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "settlement",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/06_settlement_relocation.png",
+      "sha256": "6824c6062589561b0ad965dba32b186ca550a514f789f62ee1198f4f22db30cc",
+      "dimensions": [
+        388,
+        390
+      ]
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "8019bd04cb84e5255a2063445c52cbb15d083fc22d4eac2ebe841bf8253ba8fe",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-refund.png",
+      "sha256": "d395d6b29c1b619e9d4cf66b1f996d8cd4362bbfd2793d7514cf4f2fccb14d7b",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "55089d40b1c3f7b7e7ff77066006fbba85df74d367744dae2bd454eb2d5d2377",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "86a462dbb002106e96dd943c546755e080a720db072944f32c0fb5bba9543e18",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "164656a0e4847d263b2d89c35745bc63ff7b9f01510a3caaabb266d570936473",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "sha256": "f08b8730f447a4a22e05a9a60c39f20da81cf919cfe0b51f013415c655122f77",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_exploration_regression/treasure_choose_route.png",
+      "sha256": "8d486b45c028da0ddda892594b0ddccb130eaa8eea450e5b35e52802176a1833",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-2176x1812-complete.png",
+      "sha256": "9e8a94a5a095a4cc2f1ea6a7c5b87724fd90ea75ada54d29d18053e62e5bf49b",
+      "dimensions": [
+        2176,
+        1812
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "sha256": "b2f59ca81a133f73f67d6fffcd2b94fd31cf7b5a30ae2761f5ee576b59ce2529",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "sha256": "925b835a509b160cea6a680d19593dbe45fe7d018b6c58833d1c545b5003955e",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "sha256": "ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "sha256": "bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "sha256": "e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "jump",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "sha256": "289a354bd987a21b01116cff3e9776f63d7bba49f8f5c66cdc07758d2b78a94b",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "build",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "sha256": "94d9fa2a55c224285c1763a78f26128d7e64a1403b6884c4fc77ace695fa17f4",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "sha256": "55796a46c5f831803e36e8cf751719c452a7e97d1f5d7b3da0fef89d136de1dc",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape.png",
+      "sha256": "679fd4b6574194c6945014e892e16437c57262851dcd75e74832b2febae37d43",
+      "dimensions": [
+        1920,
+        1080
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-portrait.png",
+      "sha256": "ac3adaae69494cb8903f39008c0ff2a9a532ab625bfe0fd817d3b242da05fcfd",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-fold.png",
+      "sha256": "bd94bfa43d8479470610815d24ddb4cee222175557cb48acfb06c077289f2bec",
+      "dimensions": [
+        2176,
+        1812
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "sha256": "23b058ffab7567daeb9296c40d067b81cbd6d90cc546b8b12bddd19ff9e5bc95",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "sha256": "2ea5e8514828623b00d4679856ec6fcce11161ba345b97a4243eb3eff4ff7800",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-compact.png",
+      "sha256": "1ab8b0fbe64aa4fd4bb1e4c16b4df4f18bf0bb76dc092f0818477555f501084a",
+      "dimensions": [
+        640,
+        320
+      ]
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "dimensions": [
+        640,
+        640
+      ]
+    },
+    {
+      "module": "treasure",
+      "artifact_entry": "studio-evidence/captures/treasure_title_contrast_regression/treasure-title-landscape-cutout.png",
+      "sha256": "9a74ce795a05310b19bb3168e6f5334827eb13820891de3fc935a64f6bd80570",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    }
+  ],
+  "references": [
+    {
+      "id": "H",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/host-entry-source-binding.json",
+          "bytes": 11367,
+          "sha256": "e6fab3889db31e865b261afc3cf3d7c5f841246e1ce95c14940b1d2496142ac9",
+          "git_blob_sha": "2aca0cbf537347dcc4d7600a0587c0d173048be6"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/entry-catalog-inventory.json",
+          "bytes": 5197,
+          "sha256": "2d2dec25e5af4d4ff633c9fe8c9178ea36577627a45fc21b13461213aa90d3e9",
+          "git_blob_sha": "e6f22ee136206d9a8f384c00d85698d12818568b"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-final-module-scope-20261114/staged-host-entry-deltas.json",
+          "bytes": 3076,
+          "sha256": "221a41d64c35cebc7895d985667629fa5595ed27227f1604285078ecd2c47be3",
+          "git_blob_sha": "0118a64579dd96258061b821b11c3913b2c75522"
+        }
+      ]
+    },
+    {
+      "id": "N",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/config/studio-2020-visual-review.json",
+          "bytes": 43034,
+          "sha256": "12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7",
+          "git_blob_sha": "c48adf68a2a28570a1156be13824c5772d74a51c"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/verified-original-extraction.json",
+          "bytes": 28849,
+          "sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef",
+          "git_blob_sha": "ac9fafebcd9cea65f152349c08b16fbf48223601"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/visual-review-binding.json",
+          "bytes": 2349,
+          "sha256": "d7bea5f3f9845269632284679513d2342cf86ef58eda991a1e53034a9c3ffb20",
+          "git_blob_sha": "5ee4dc341b612038fe1c5291afb6398f896ea85c"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-root.json",
+          "bytes": 10914,
+          "sha256": "36dc552bf97e3b279c293815495ccaee9c70aea63480863991ce4863439811af",
+          "git_blob_sha": "34379584eb11ca9b2dde9086441dfe14d8313d98"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-learning_worlds.json",
+          "bytes": 12212,
+          "sha256": "bc9d6b060566dd3d49da71a041a23afd2211927c96273e73e0ff3c8eef7fa581",
+          "git_blob_sha": "341dbf039a4f2d48b0147076a504cb53d6975389"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-character_animation.json",
+          "bytes": 37112,
+          "sha256": "80451f646c1417a31fc7497650283e1ccaeb8249f7b4bd2255f032c6df6e1d9b",
+          "git_blob_sha": "9626ea30fe8404bc06e8c97a5334d975a88b0b9b"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-games_worlds.json",
+          "bytes": 17581,
+          "sha256": "cd2bdfb57f17bfc086dbe5963bfcc2e635c3019883de688c5eb59dd066ff4291",
+          "git_blob_sha": "4ea0fce975b94ddd785ad948e52bc4242a64f73b"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-observation-20261114/final-jobs-original.json",
+          "bytes": 19902,
+          "sha256": "30acdaf1b306f882e7ddc91c1dc85aaa9f1904ea5ef8b4d609cc820cbd61c7b6",
+          "git_blob_sha": "04c9bac117b29a4156f4790ef6cc1e6551c9367b"
+        }
+      ]
+    },
+    {
+      "id": "F",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-flutter-originals/acceptance-summary.json",
+          "bytes": 2118,
+          "sha256": "1fadf1dd65cf6faedc0655fbdca6a5467c03205c3c431bd045a8b5c1844779b0",
+          "git_blob_sha": "92122aa59172f992b199bfda2f43b32a9c55f985"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-flutter-originals/independent-results-review.json",
+          "bytes": 3421,
+          "sha256": "a74f3882bd2e604b7281c246a6de8f84c431df2f1f430350f47e37e539bd48c8",
+          "git_blob_sha": "da98a36e1c9621f9545c89eddc91ed94f84c2662"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-flutter-originals/verified-original-archive-index.json",
+          "bytes": 87231,
+          "sha256": "9a064a1e3cca2bd2b2a3c4416d24fb70cc091e1ffe49e98cb93353285f6eefe9",
+          "git_blob_sha": "0d3d6ec31cd21d8e2b51ad00a0df3e13865583ae"
+        }
+      ]
+    },
+    {
+      "id": "C",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/verified-original-extraction.json",
+          "bytes": 6219,
+          "sha256": "d37a7808962956989b23d262d8623e7601844db0dad931243a8fe73cc9b40000",
+          "git_blob_sha": "9215a39b0033f56c30ec71eab1e399fb0398e415"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/review-root.json",
+          "bytes": 3870,
+          "sha256": "5fa74da952481999afb7378516c1ac115baa08f4fc6d2ca97e945274f739b221",
+          "git_blob_sha": "7ca0ef689dea8e40310f93d319ac9a69e8113319"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/review-character_animation.json",
+          "bytes": 8293,
+          "sha256": "2b9cd0329051feec08915ed790c1f0ac8755b750772114f4eb1d269e93be4c41",
+          "git_blob_sha": "782029f37e520fe3941b9b6af4807a92080f4989"
+        }
+      ]
+    },
+    {
+      "id": "B",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-character-scope-20261114/CHARAKTER_ANIMATION_ABNAHME.md",
+          "bytes": 11029,
+          "sha256": "e1a63887597c402dc9f2729903972ce53ca8ee38a62bf773aec6eb5089e4b6a3",
+          "git_blob_sha": "c428b7d9a8933dc31c892c1a602bb5583d9979bf"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-character-scope-20261114/evidence-bindings.json",
+          "bytes": 17671,
+          "sha256": "d88bafd17b36d64ecf3ffcbbe6ac4c44af52bf37139176ba3b672a0ce79f545e",
+          "git_blob_sha": "a8828222609dc4e275a8f6ec665b26c29803ebcb"
+        }
+      ]
+    },
+    {
+      "id": "T",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/README.md",
+          "bytes": 7739,
+          "sha256": "23a9222e00b362a96de9de7e8b55e7aeddc4e03d8f5b595a75c2761d129b678c",
+          "git_blob_sha": "cb823f99077c82ad7cdb37b333b7697ccf7b4e86"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/source-upload-manifest.json",
+          "bytes": 1517,
+          "sha256": "e218e73e7a54f2e0d64553ab9398716634aa0cb94efad4021e55ea54a4f14bb7",
+          "git_blob_sha": "6c503e3dbe56700c0d836554817bcbb518161182"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/capture-contract.json",
+          "bytes": 1699,
+          "sha256": "a0f07e40740771e7bc8b98fa61a89d9daceba16fc914e717a7d5a72ab17a70b3",
+          "git_blob_sha": "20b1ada582fa695577c5d4a07c96ef7df446521e"
+        }
+      ]
+    },
+    {
+      "id": "S",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/README.md",
+          "bytes": 2060,
+          "sha256": "c3ddcd3741f7c55eb2be26d3999d3edf58d10f7395575b4587b11f606411a0f8",
+          "git_blob_sha": "bc21d4f9cee0651f6bddc60b3ee75e0f3fc1d26b"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+          "bytes": 751,
+          "sha256": "5c14f61504781d4dbc45fefea077fb865f752b038bd73c65f8310e1350f18c7a",
+          "git_blob_sha": "dd66c09366a9070caa4ddfbc628311b933f839b5"
+        }
+      ]
+    },
+    {
+      "id": "K",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/review-chase-root.json",
+          "bytes": 11968,
+          "sha256": "225f7398874d3538b4c269e191b91c8d03bf2b9efb2ffa068c3c7835bd023271",
+          "git_blob_sha": "64a767bc13abc38a8fb9a4a4fdd628fc52c0c1c4"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/review-context-detail.json",
+          "bytes": 27272,
+          "sha256": "a29dd731d0fa4589a7a14867a66990d44eb27933b297617dd7a904d5f46736da",
+          "git_blob_sha": "09907e419f9f6eeaeebc7808781917c5a90d1363"
+        }
+      ]
+    },
+    {
+      "id": "L",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/STUDIO_LEARNING_HOST_20261113.md",
+          "bytes": 3318,
+          "sha256": "39790d887d0fad401fe212e3e018cee7f57223ca4b4ff0816730b6e6a8767704",
+          "git_blob_sha": "74ae72fa03c3ec10f6ccd485e730209203ac5cd9"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/STUDIO_EXECUTION_20261113.md",
+          "bytes": 111483,
+          "sha256": "1170915a16700425241bf887dd91d45fc14ea9aa30f7a2cb3e153a71099f6fcc",
+          "git_blob_sha": "6a5562360a5fa9c4a3a4f0c07eb1ab4148c6be82"
+        }
+      ]
+    }
+  ],
+  "boundaries": [
+    "No new tests, renders, downloads of media, image views, APK runs or Android tours for this matrix.",
+    "Current2555 Flutter tests and12 separate C4 tests overlap in scope and are not added.",
+    "Native49 is the selected manually reviewed receipt, not a count of all native artifact PNGs.",
+    "Older Android86445/803e passes and Creative failure are historical, not current078/785 Android acceptance.",
+    "Main unchanged; no technical branch-protection assertion.",
+    "No new native Memory, Quiz, full English worlds, all-track rebuild, AAA or physical Fold7 performance claim."
+  ],
+  "new_android_2020_approval": false,
+  "publisher_approval": false,
+  "main_modified": false,
+  "product_source_changes": false,
+  "git_mutations": false,
+  "all_referenced_files_before_after_hash_equal": true,
+  "new_test_runs": 0,
+  "new_render_runs": 0
+}

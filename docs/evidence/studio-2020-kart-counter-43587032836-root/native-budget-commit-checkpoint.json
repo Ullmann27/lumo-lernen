@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "commit": {
+    "sha": "34421df83566dd4773420cc2a225887956459435",
+    "node_id": "C_kwDOSpcSONoAKDM0NDIxZGY4MzU2NmRkNDc3MzQyMGNjMmEyMjU4ODc5NTY0NTk0MzU",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/34421df83566dd4773420cc2a225887956459435",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/commit/34421df83566dd4773420cc2a225887956459435",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T11:03:44Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T11:03:44Z"
+    },
+    "tree": {
+      "sha": "114117a210e5c7c83ca20e3c3f4c24dcf16954a5",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/114117a210e5c7c83ca20e3c3f4c24dcf16954a5"
+    },
+    "message": "fix(qa): allow measured software-renderer time for Treasure capture\n\nRaise only the complete Treasure contrast capture deadline from 600 to 900 seconds after the exact 785413 native run used 584.700 seconds and the Host run reached the final profile 16.061 seconds later. Keep all five profiles, ten states, 54 PNG/sidecar requirements, real inputs and success markers. Update the two existing harness contract expectations and document the original failures and unconfirmed interrupted local test.\n\nAll 2234 other existing source leaves remain identical; no product scene, save schema or Main ref is changed.",
+    "parents": [
+      {
+        "sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/785413d395292a243eaa0a0748671eb15d3f80ff",
+        "html_url": "https://github.com/Ullmann27/lumo-godot/commit/785413d395292a243eaa0a0748671eb15d3f80ff"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "tree_proof": {
+    "base_tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+    "new_tree": "114117a210e5c7c83ca20e3c3f4c24dcf16954a5",
+    "unchanged_existing_leaves": 2234,
+    "changed_existing": 2,
+    "new_files": 1,
+    "total_leaves": 2237,
+    "inputs": [
+      {
+        "path": "tools/validate_studio.sh",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "542e22df76ae8773d3c7de064a560a977fc9a033"
+      },
+      {
+        "path": "tools/tests/test_nextgen_runner.py",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d"
+      },
+      {
+        "path": "docs/evidence/studio-2020-treasure-render-budget-20261114/README.md",
+        "mode": "100644",
+        "type": "blob",
+        "sha": "3f8d474f8c91e037fe70de3717b8ad8625fa08e2"
+      }
+    ]
+  },
+  "ref_update": {
+    "success": true
+  },
+  "branch_readback": {
+    "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "node_id": "REF_kwDOSpcSONoALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "object": {
+      "sha": "34421df83566dd4773420cc2a225887956459435",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/34421df83566dd4773420cc2a225887956459435"
+    }
+  },
+  "native_run_id": 43588220125,
+  "created_at": "2026-11-14T11:06:48.232333+00:00",
+  "scope": "Only native renderer test deadline and two contract expectations; no product source/assets/save format change",
+  "local_test_at_commit": "bash -n exit 0; original 13-test run interrupted/unconfirmed. A separately restarted run later reported 13/13 PASS; preserve separate original execution evidence."
+}

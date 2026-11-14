@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_cards_layout_readiness.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab",
+  "started_at": "2026-11-14T02:24:35.390174+00:00",
+  "finished_at": "2026-11-14T02:24:36.581760+00:00",
+  "duration_seconds": 1.1916029419953702,
+  "exit_code": 0,
+  "raw_log": "cards-readiness.log",
+  "scope": "Local contract execution only; no emulator, APK build or Android PASS"
+}

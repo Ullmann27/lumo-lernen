@@ -1,0 +1,164 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T09:03:36.644434+00:00",
+  "scope": "read_only_completed_metadata_no_android_execution",
+  "source": {
+    "host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "version": "0.13.8+2020",
+    "run_id": 43576453139,
+    "attempt": 1
+  },
+  "run": {
+    "id": 43576453139,
+    "head_sha": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "updated_at": "2026-11-14T08:44:14Z"
+  },
+  "original_metadata": [
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/run-final-original.json",
+      "bytes": 13439,
+      "sha256": "afd2f7283ec852cf364e13237351f4aea8d424aec25605d11c9f966b982a52a2",
+      "git_blob": "3b4e08c0ec27dad7bfa5b61fee6e71ee6bcb9eb8",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/artifacts-final-original.json",
+      "bytes": 2246,
+      "sha256": "c641646d895ee182124e5c5e794e107cd91f0177106672890e0f9a1e9db2f867",
+      "git_blob": "87cc2ab6a24268ef5f6474814af6005648ff9960",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/polls/20261114084536Z-jobs-original.json",
+      "bytes": 15196,
+      "sha256": "a3e00907acdfd55776ede72d57e7ff453e0b15dc16533eb329017a6c42993573",
+      "git_blob": "0f75a791ef015e21e3bb950d8d8a8d0759f00119",
+      "mode": "100644"
+    }
+  ],
+  "workflow_sources": [
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/workflow-at-ae394.yml",
+      "bytes": 56929,
+      "sha256": "43c795cc9aff8b4c7479e559ff5e5bf48213dc79232b1528b406152de3b3bf7a",
+      "git_blob": "91900659c06ab2d6713b8bd24d37800eb533c470",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/godot-source-at-ae394.json",
+      "bytes": 145,
+      "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+      "git_blob": "fa2d703726599e61feadd58cebef0514fd4d049e",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/pubspec-at-ae394.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "mode": "100644"
+    }
+  ],
+  "jobs": [
+    {
+      "id": 132391630183,
+      "name": "android-host-compile",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T08:34:22Z",
+      "completed_at": "2026-11-14T08:38:37Z"
+    },
+    {
+      "id": 132391630593,
+      "name": "verify-and-build",
+      "status": "completed",
+      "conclusion": "failure",
+      "started_at": "2026-11-14T08:34:22Z",
+      "completed_at": "2026-11-14T08:44:13Z"
+    },
+    {
+      "id": 132393992830,
+      "name": "Android API ${{ matrix.api }} live application tour",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T08:44:14Z",
+      "completed_at": "2026-11-14T08:44:14Z"
+    },
+    {
+      "id": 132393993137,
+      "name": "Android API 35 additional creative gameplay",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T08:44:14Z",
+      "completed_at": "2026-11-14T08:44:14Z"
+    },
+    {
+      "id": 132393993278,
+      "name": "update-2020-from-2017",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T08:44:14Z",
+      "completed_at": "2026-11-14T08:44:14Z"
+    },
+    {
+      "id": 132393993377,
+      "name": "Publish visually reviewed Build 2020 ARM64 APK for direct Chrome download",
+      "status": "completed",
+      "conclusion": "skipped",
+      "started_at": "2026-11-14T08:44:14Z",
+      "completed_at": "2026-11-14T08:44:14Z"
+    }
+  ],
+  "builder_failed_steps": [
+    {
+      "number": 11,
+      "name": "Full Flutter regression suite including every capture",
+      "conclusion": "failure"
+    },
+    {
+      "number": 18,
+      "name": "Preserve the actual native-caption reader regression",
+      "conclusion": "failure"
+    }
+  ],
+  "artifact_inventory": [
+    {
+      "id": 14106885395,
+      "name": "lumo-studio-2020-android-host-compile",
+      "size_in_bytes": 5721,
+      "digest": "sha256:1416038e737029fad9a05538a68e9f776465089459f514cb652d083ae2a28f71",
+      "expired": false
+    },
+    {
+      "id": 14106751185,
+      "name": "lumo-candidate-all-flutter-tests-and-captures",
+      "size_in_bytes": 332604003,
+      "digest": "sha256:76c2882a7496df8e0c274a9330a778c9f72e5720d8732a845d31a5c5b3b85530",
+      "expired": false
+    },
+    {
+      "id": 14106488364,
+      "name": "lumo-1983-quiz-studio-captures",
+      "size_in_bytes": 10605085,
+      "digest": "sha256:762018e82b8e6894ae3a8219058c2851edb0b4c36333d949665ff6dfd4a63a43",
+      "expired": false
+    }
+  ],
+  "findings": [
+    "Android matrix was skipped before expansion; no separate API35/API37 emulator jobs executed.",
+    "C4 command inside that matrix did not execute.",
+    "2017-to-2020 update job skipped; no new install, UID, firstInstallTime, profile or learning-state preservation evidence.",
+    "Android host compile SUCCESS does not substitute for APK build/install/tour.",
+    "Builder metadata has failures in Full Flutter and subsequent caption-evidence preservation; Agent C owns original log attribution.",
+    "Native gameplay, actual Dart/Godot runtime, APK build/verification/upload steps skipped. Complete artifact listing contains three compile/Flutter artifacts and no candidate APK artifact."
+  ],
+  "limits": [
+    "No skipped job logs, APKs or Android artifacts downloaded.",
+    "No tests, reruns, source, workflow, pin, receipt or Git references changed.",
+    "No previous Android result transferred to ae394."
+  ]
+}

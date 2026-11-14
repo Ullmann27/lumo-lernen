@@ -1,0 +1,13 @@
+{
+  "source_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+  "method": "Identify equal position coordinates rounded to1e-6 without altering the asset. Count original indexed triangle edges on these position identities.",
+  "export_vertices": 21659,
+  "unique_position_vertices": 18140,
+  "triangles": 30000,
+  "unique_edges": 49589,
+  "boundary_edges_used_once": 9178,
+  "nonmanifold_edges_used_more_than_twice": 0,
+  "position_degenerate_triangles": 0,
+  "euler_v_minus_e_plus_f": -1449,
+  "limits": "This character-wide topology count does not establish anatomical eye sockets, lip loops, a mouth cavity or usable deformation weights."
+}

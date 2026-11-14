@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "test",
+    "--no-pub",
+    "--reporter=expanded",
+    "test/games/cards_german_feedback_test.dart",
+    "test/lumo_cards_rules_test.dart",
+    "test/lumo_cards_table_session_test.dart",
+    "test/lumo_cards_persistence_test.dart",
+    "test/games/cards_color_consistency_test.dart"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/host",
+  "environment_delta": {
+    "LUMO_CARDS_MESSAGE_EVIDENCE": "/workspace/scratch/5987865ae883/qa/cards-german-feedback-86445-803e/green-observations.json"
+  },
+  "exit_code": 0,
+  "elapsed_seconds": 4.461993256001733,
+  "source_sha256": "ef94f30fd339e46da6fb58a39989dfacdb0f2a8f5d881314f40afdfcf5503d13",
+  "test_sha256": "2b0be338ce21fe68a359d487c1e9b47233ed446667fd03fdf37006e980170829"
+}

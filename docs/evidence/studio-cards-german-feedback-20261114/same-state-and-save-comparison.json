@@ -1,0 +1,81 @@
+{
+  "method": "Exact production LumoCardsRound.encode output comparison for all observations actually reached in both unchanged baseline and patched runs. Red assertions stop a failed test before later loop cases; therefore only shared observed cases are claimed.",
+  "baseline_observations": 12,
+  "patched_observations": 51,
+  "shared_observations": 12,
+  "all_shared_production_save_values_identical": true,
+  "cases": [
+    {
+      "id": "api35-green-two",
+      "saved_round_sha256": "7cdf15f5f3e777b4b829e064d61a1961030e49433752f6fde0a7dfe5de658342",
+      "before_message": "Lumo legt green 2.",
+      "after_message": "Lumo legt Grün 2."
+    },
+    {
+      "id": "api37-whirlwind",
+      "saved_round_sha256": "eaa00e4caf987afc24494d54773cb050ae027aaed1503bba1092d10b4e9e59e3",
+      "before_message": "Wirbelwind! Du zieht 1 Karte.",
+      "after_message": "Wirbelwind! Du ziehst 1 Karte."
+    },
+    {
+      "id": "correct-Du",
+      "saved_round_sha256": "6e7f80c4a9cbf778f6d1783e38d81324c9d4b8fadcce365b6687eb956e725bf4",
+      "before_message": "Richtig! Du bekommt einen Stern und darf nochmal.",
+      "after_message": "Richtig! Du bekommst einen Stern und darfst nochmal."
+    },
+    {
+      "id": "draw-Du",
+      "saved_round_sha256": "f92340b6e4525935883d3a298a66a8b2eb77bacf42968179f1d71833fef33764",
+      "before_message": "Du zieht eine Karte.",
+      "after_message": "Du ziehst eine Karte."
+    },
+    {
+      "id": "native-view-number",
+      "saved_round_sha256": "7cdf15f5f3e777b4b829e064d61a1961030e49433752f6fde0a7dfe5de658342",
+      "before_message": "Lumo legt green 2.",
+      "after_message": "Lumo legt Grün 2."
+    },
+    {
+      "id": "number-Du-orange",
+      "saved_round_sha256": "36ccacb3072a0340e7b9e5155a9f0dd4c891685c08ff3835fb733d8f28f4203d",
+      "before_message": "Du legt orange 2.",
+      "after_message": "Du legst Rot 2."
+    },
+    {
+      "id": "question-Du",
+      "saved_round_sha256": "9e937ff66e9d6eaa48aa6ef45772cc1e1eedd5fbef7069208db45a6fc2d3f3c7",
+      "before_message": "Denkpause! Lumo hat eine kleine Frage fuer Du.",
+      "after_message": "Denkpause! Lumo hat eine kleine Frage für dich."
+    },
+    {
+      "id": "starRain-Du",
+      "saved_round_sha256": "b7d18d41daab98aeca5f9a58954df562e67c1ae10a8da9edf12dd5f54f02d9c9",
+      "before_message": "Sternenregen! Du zieht 2 Karten.",
+      "after_message": "Sternenregen! Du ziehst 2 Karten."
+    },
+    {
+      "id": "whirlwind-Lumo",
+      "saved_round_sha256": "7d2dd88ff7c0875f772e8a49f86342da3ecd2fa6b90638ae19c54c88d7f8d212",
+      "before_message": "Wirbelwind! Lumo zieht 1 Karte.",
+      "after_message": "Wirbelwind! Lumo zieht 1 Karte."
+    },
+    {
+      "id": "whirlwind-Mila",
+      "saved_round_sha256": "e250987eef0e686f22201eeae5dff10ef7881164bd2f743919b04d1487290763",
+      "before_message": "Wirbelwind! Mila zieht 1 Karte.",
+      "after_message": "Wirbelwind! Mila zieht 1 Karte."
+    },
+    {
+      "id": "wild-prompt-Du",
+      "saved_round_sha256": "d19ac90efafa507fad3aa433b802bd4482813bc7d34d1194904912bb14acfcdf",
+      "before_message": "Farbzauber! Du waehlt eine Farbe.",
+      "after_message": "Farbzauber! Du wählst eine Farbe."
+    },
+    {
+      "id": "win-Du",
+      "saved_round_sha256": "3cead8476adc1183f6b8cd9886e461a92b4f2b89701e8bc5cf943dc80977509d",
+      "before_message": "Du hat alle Karten abgelegt!",
+      "after_message": "Du hast alle Karten abgelegt!"
+    }
+  ]
+}

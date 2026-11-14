@@ -1,0 +1,147 @@
+{
+  "status": "LOCAL_TARGETED_FIX_VERIFIED_NOT_ANDROID_ACCEPTANCE",
+  "baseline_host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "baseline_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "original_failure": {
+    "run_id": 43549076631,
+    "job_id": 132324330212,
+    "artifact_id": 14099161487,
+    "archive_bytes": 478747334,
+    "archive_sha256": "c8b78ebfccf0db7f6a05db94208fcb6f95218fdd29accef175d68c82016b7347",
+    "transfer": "Full original body streamed and hashed; only selected members CRC checked; no full ZIP saved",
+    "first_tree_inventory_and_flutter_return_reached": true,
+    "failure_scope": "Second entry requested title not recognized over bright cloud; exact title remains mandatory"
+  },
+  "source_files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/creative/treasure_world.gd",
+      "path": "scripts/creative/treasure_world.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25074,
+      "sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+      "git_blob": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8",
+      "baseline_git_blob": "38da987abf4d152c1095a72ed1ac49ed30d9d381"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8982,
+      "sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+      "git_blob": "6e50ace998d896fd88f0006112152e490e7c64e3",
+      "baseline_git_blob": null
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/native/scripts/tests/fixtures/treasure_title_86445.json",
+      "path": "scripts/tests/fixtures/treasure_title_86445.json",
+      "repository": "Ullmann27/lumo-godot",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 317,
+      "sha256": "29bcc428329e2a6106f0608a3f0a53060d3073ca4c1fdffa5fd809848977ce73",
+      "git_blob": "78afb5e77187170a345940059da450eed02530cf",
+      "baseline_git_blob": null
+    }
+  ],
+  "executions": {
+    "initial_invalid_harness": "Initial test accessed a nonexistent internal model field; preserved separately, not a product failure or a passing test",
+    "meaningful_original_red": {
+      "checks": 121,
+      "failures": 4,
+      "exit_code": 1,
+      "same_test_sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d"
+    },
+    "patched_headless": {
+      "checks": 129,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "unchanged_existing_density": {
+      "checks": 1085,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "patched_real_renderer": {
+      "checks": 137,
+      "failures": 0,
+      "exit_code": 0,
+      "seconds": 98.72432061099971,
+      "renderer": "Godot4.6.3 OpenGL Compatibility Mesa llvmpipe/X11; not Android/FPS"
+    }
+  },
+  "images_opened": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-landscape.png",
+      "bytes": 2754869,
+      "sha256": "9dedbb2382d6f88b20434d7b3ee5ad8d6d2f9f316bcf7ece31c0443ab42ac82e",
+      "git_blob": "d89ec9c2ecf97f316af62e4dddea876046b00db0",
+      "profile": "landscape",
+      "actual_opened": true,
+      "image_px": [
+        1920,
+        1080
+      ],
+      "title_fully_visible": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-compact.png",
+      "bytes": 317999,
+      "sha256": "4b728bf98c4494a8460cae52a700d50b4d71303215c0a90588d90a9e8a1c6979",
+      "git_blob": "9e4ba50dbf65d56ed6f9a3f68f0cf65c2f107dce",
+      "profile": "compact",
+      "actual_opened": true,
+      "image_px": [
+        640,
+        320
+      ],
+      "title_fully_visible": true
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-portrait.png",
+      "bytes": 2156680,
+      "sha256": "24a8d89cf60208fea4a028ed0203a46d369a19b4dd843146cd21d49cf82e1704",
+      "git_blob": "33b705d6742504886b0d679479019a0ba4403180",
+      "profile": "portrait",
+      "actual_opened": true,
+      "image_px": [
+        1080,
+        2400
+      ],
+      "title_fully_visible": false
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-fold.png",
+      "bytes": 4289044,
+      "sha256": "5092f84494226a982de99794b5fef4060fc632ab1f92e5e4c2519070f79124f0",
+      "git_blob": "33d134dd94f6fd779f32d6f8d66dddde007919f9",
+      "profile": "fold",
+      "actual_opened": true,
+      "image_px": [
+        2176,
+        1812
+      ],
+      "title_fully_visible": true
+    }
+  ],
+  "touch_checks": "Real ScreenTouch press/release opens/closes inventory and pause in all four profiles; existing desktop pointer precondition only; header targets >=48dp and safe bounds retained",
+  "contrast": {
+    "worst_white_background_ratio": 14.4422647052388,
+    "threshold": 7.0,
+    "background_minimum_alpha": 0.9
+  },
+  "scope_limits": [
+    "Runtime loaded an explicitly declared copy of the original save in isolated test profile paths; no real Android save was written",
+    "Insets are explicit asynchronous platform-boundary fixtures, not device observations at capture time",
+    "Portrait retains pre-existing title ellipsis; this change does not claim a full portrait caption",
+    "Local unchanged OCR exact phrase succeeds on new landscape/Fold and still fails on original Android frame; compact OCR remains unsuccessful despite visible title",
+    "Local Tesseract5.5.0 has eng/osd only; missing German model disclosed, no model download",
+    "No Android rerun, physical Fold7 or60FPS claim"
+  ],
+  "primary_dependency_hashes_unchanged": 310,
+  "native_source_manifest_sha256": "ea075b909d8325ca9bcc682d531aa9b4876d76382f1da9ae4f29db85e095d1e9",
+  "ocr_result_sha256": "4d070db85c013f06b56585b0cec4321dc704e028ebfc0d6379288e9113d1502b"
+}

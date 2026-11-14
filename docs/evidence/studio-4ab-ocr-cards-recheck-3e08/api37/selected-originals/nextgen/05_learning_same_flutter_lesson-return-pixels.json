@@ -1,0 +1,110 @@
+{
+  "status": "PASS",
+  "expected_captions": [
+    "Erklärung lesen",
+    "Schritt 6 von 6"
+  ],
+  "frames": [
+    {
+      "status": "REJECTED",
+      "source": "05_learning_same_flutter_lesson-return-candidate-1.png",
+      "source_sha256": "715fec4cfa38dcd4e82c02e1674b46e2d752351102782a62c378de61cbca786e",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.213,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "error": "Flutter caption is not visible in the captured pixels: Erklärung lesen"
+    },
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "05_learning_same_flutter_lesson-return-candidate-2.png",
+      "source_sha256": "3840a0dc69fd666beb81b47ae1f8d6cc27d37badd21c50788c7521373029441f",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.128,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Erklärung lesen",
+          "ocr": {
+            "text": "Erklärung lesen",
+            "bounds": [
+              168.0,
+              1736.0,
+              445.0,
+              1771.0
+            ],
+            "variant": "contrast"
+          }
+        },
+        {
+          "expected": "Schritt 6 von 6",
+          "ocr": {
+            "text": "Schritt 6 von 6",
+            "bounds": [
+              97.0,
+              1109.0,
+              393.0,
+              1140.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    },
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "05_learning_same_flutter_lesson-return-candidate-3.png",
+      "source_sha256": "3840a0dc69fd666beb81b47ae1f8d6cc27d37badd21c50788c7521373029441f",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.128,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Erklärung lesen",
+          "ocr": {
+            "text": "Erklärung lesen",
+            "bounds": [
+              168.0,
+              1736.0,
+              445.0,
+              1771.0
+            ],
+            "variant": "contrast"
+          }
+        },
+        {
+          "expected": "Schritt 6 von 6",
+          "ocr": {
+            "text": "Schritt 6 von 6",
+            "bounds": [
+              97.0,
+              1109.0,
+              393.0,
+              1140.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+  "consecutive_confirmed_frames": 2,
+  "source": "05_learning_same_flutter_lesson.png",
+  "source_sha256": "3840a0dc69fd666beb81b47ae1f8d6cc27d37badd21c50788c7521373029441f",
+  "elapsed_seconds": 18.902452
+}

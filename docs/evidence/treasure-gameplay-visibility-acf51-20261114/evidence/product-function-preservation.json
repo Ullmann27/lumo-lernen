@@ -1,0 +1,36 @@
+{
+  "changed_existing": [
+    "_ui",
+    "_layout"
+  ],
+  "added": [
+    "_show_clue"
+  ],
+  "unchanged_existing": [
+    "_ready",
+    "_exit_tree",
+    "_landscape",
+    "_branch_trails",
+    "_layout_modal",
+    "_physics_process",
+    "_unhandled_input",
+    "_jump",
+    "_update",
+    "_open_modal",
+    "_close_modal",
+    "_interact",
+    "_answer",
+    "_save",
+    "_inventory",
+    "_pause_menu",
+    "_win",
+    "_new_adventure",
+    "_notification",
+    "_leave",
+    "_terrain_material",
+    "_terrain_mesh"
+  ],
+  "unchanged_count": 22,
+  "camera_constants_equal": true,
+  "data_format_changed": false
+}

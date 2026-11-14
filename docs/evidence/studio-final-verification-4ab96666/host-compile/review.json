@@ -1,0 +1,28 @@
+{
+  "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run": 43530667812,
+  "attempt": 1,
+  "job": 132247239767,
+  "artifact": 14086444645,
+  "original_archive_sha256": "b8aacb680c8cc30398fc8ac78d11a438a03fb172619148c29a425a2d35304861",
+  "original_archive_bytes": 5393,
+  "status": "PASS",
+  "scope": "Actual Android Kotlin/Java compilation only; no APK or runtime claim",
+  "compiled_classes": [
+    "MainActivity",
+    "LumoGameActivity",
+    "LumoHostPlugin",
+    "CardsTableBridge",
+    "CardsAuthorityService",
+    "CardsAuthorityRegistry",
+    "LumoLearningSpeech",
+    "LumoOfflineSpeechBridge",
+    "LumoOfflineSpeechEngine"
+  ],
+  "gradle": "BUILD SUCCESSFUL in 2m 41s; 107 actionable tasks: 102 executed, 5 up-to-date",
+  "limits": [
+    "No APK verification from this job",
+    "No runtime or device FPS claim"
+  ]
+}

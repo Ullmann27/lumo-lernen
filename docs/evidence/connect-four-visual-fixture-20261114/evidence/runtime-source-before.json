@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "source_files": [
+    {
+      "path": "project.godot",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/project.godot",
+      "bytes": 499,
+      "sha256": "cd2f3e39a1602fb7bcfe9eba83087e9ab6bae40136809f9a3ab11ee5e5a9a3e9",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+      "bytes": 5156596,
+      "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+      "read_only_asset_reference": true
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/assets/characters/lumo_animated/lumo_studio_clips.gd",
+      "bytes": 196296,
+      "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png",
+      "bytes": 1475490,
+      "sha256": "9e361a61a6c7478cd0e81aa83250db88c4f5d1a51dd754ad827b8f721671bf54",
+      "read_only_asset_reference": true
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png",
+      "bytes": 1137366,
+      "sha256": "477289ce9ae77e28e60be151a7999f5e16f9116e2fed7a60efdb8ac37fda19e5",
+      "read_only_asset_reference": true
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png.import",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png.import",
+      "bytes": 1085,
+      "sha256": "b4dc9c8010ccbfc915fac82922437f6ec43d6439c234bc1ac394bd834006141d",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png.import",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_2.png.import",
+      "bytes": 1086,
+      "sha256": "7f33807efbb1659fd21c804455a67a8ea455c6945c584ca5eebbdb893e630576",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/lumo_studio_clips.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/lumo_studio_clips.gd.uid",
+      "bytes": 19,
+      "sha256": "0f5010c96e417d47ef0177f35e86ffcc9d850c939c5c5b3b0d44c7f7adc89264",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile.glb.import",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb.import",
+      "bytes": 1097,
+      "sha256": "1d0dd292a3871b6383da9f5bede9800314204d8ae8a4e8f0c1b87ef046b993da",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png.import",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_0.png.import",
+      "bytes": 1086,
+      "sha256": "e45266554b418d69fd18ab3bceeab7c155f9c7b71627e4e949ae4e8feaf05f16",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/assets/characters/lumo_animated/Lumo-Animated-Mobile_Image_1.png",
+      "bytes": 922619,
+      "sha256": "e2495211d243143048b6e106b43d6c6e4e7ad6c67571d2b533f8db0a277b05e1",
+      "read_only_asset_reference": true
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/systems/host_bridge.gd",
+      "bytes": 5193,
+      "sha256": "56ecb470319ea047aa5d8c3aad92d55c99355ee07c533a6543fcf167f098abb7",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/systems/host_bridge.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/systems/host_bridge.gd.uid",
+      "bytes": 20,
+      "sha256": "30106a79f6a28c76fbc16877a1134427c9ef9be7c4cb55731e2f1c555d092b60",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/app/android_safe_area.gd.uid",
+      "bytes": 20,
+      "sha256": "38f85e2ddaffa34399b0706796fcc01389d47a308249577998a7f6163e22a087",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/app/android_safe_area.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/app/android_safe_area.gd",
+      "bytes": 5708,
+      "sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/app/mobile_runtime.gd",
+      "bytes": 7146,
+      "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/app/mobile_runtime.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/app/mobile_runtime.gd.uid",
+      "bytes": 20,
+      "sha256": "8a22c890649afa70f7f2ff9714e3eef34b5b1d2a4149b21e79fa532f48fd691c",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/characters/lumo/lumo_platform_pose.gd",
+      "bytes": 5002,
+      "sha256": "2f89ad0660ed3f74ff0cfe50837e18265bcf54fdccd24712de6a8b0d680c0a59",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/characters/lumo/lumo_walk_locomotion.gd.uid",
+      "bytes": 20,
+      "sha256": "b881c0ffb866a10951fb381eaf1aa3e37fd098380fd62592ac90e26000764d21",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_platform_pose.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/characters/lumo/lumo_platform_pose.gd.uid",
+      "bytes": 20,
+      "sha256": "23abb0121e010e53afbcf0d2b2e36746e269f299eac9d630c85b8c5ad321169e",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/characters/lumo/lumo_body_space_pose.gd",
+      "bytes": 2902,
+      "sha256": "043d9eb3cbd1d56f2be4ad62aff71b99753540b524f3d4b69c030fc9217dcd9e",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 10090,
+      "sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/characters/lumo/lumo_walk_locomotion.gd",
+      "bytes": 2736,
+      "sha256": "95366a2716a557b27383757771923ec73971a385651749c78da8f2cc14a24ec2",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_rigged_actor.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/characters/lumo/lumo_rigged_actor.gd.uid",
+      "bytes": 20,
+      "sha256": "9e88790abe54cf951b64b38664da766f656499e292f77de2bf92d4e886f36816",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_body_space_pose.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/characters/lumo/lumo_body_space_pose.gd.uid",
+      "bytes": 20,
+      "sha256": "80b071d48f21bfa951630178f5f209fa4e1bcc10a46ba5d5c54713f405ad6cdb",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd",
+      "source": "/workspace/scratch/5987865ae883/lumo-godot/scripts/characters/lumo/lumo_teacher_pose.gd",
+      "bytes": 4228,
+      "sha256": "1be589448b18f2c63faebfb72ff81639f4e014b828093d931f9e9c04c4ce2a6d",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/characters/lumo/lumo_teacher_pose.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/characters/lumo/lumo_teacher_pose.gd.uid",
+      "bytes": 20,
+      "sha256": "e84ffcf36b6d178f153c5d751089c8fa84c5f2f17ed13f8bc06f3b62610edc4c",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/games/connect_four/connect_four_table.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/games/connect_four/connect_four_table.gd",
+      "bytes": 30031,
+      "sha256": "76ab128b835bffd41b87274566408b8baab4073fe6733b2f5e3e990e0e027a72",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scripts/games/connect_four/connect_four_table.gd.uid",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/scripts/games/connect_four/connect_four_table.gd.uid",
+      "bytes": 19,
+      "sha256": "bdad8ce089d7acd7bf411738db2c24e9906990f18e6fa8e467c8fe51531e1c21",
+      "read_only_asset_reference": false
+    },
+    {
+      "path": "scenes/games/connect_four_table.tscn",
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scenes/games/connect_four_table.tscn",
+      "bytes": 204,
+      "sha256": "49d116bd0436200d01b1e03eac3601854b33bf75142969b69d2c588418dd3af2",
+      "read_only_asset_reference": false
+    }
+  ],
+  "imported_resources_reference": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/runtime/.godot/imported",
+  "note": "No editor/import execution. Original asset and imported resource bytes referenced read-only; no existing source or cache copied/modified."
+}

@@ -1,0 +1,53 @@
+[
+  {
+    "psm": 11,
+    "command": [
+      "tesseract",
+      "qa/ocr-original-scale-4ab/gold-region-experiment/api35-frame0-region0.png",
+      "qa/ocr-original-scale-4ab/gold-psm-experiment/psm11",
+      "--psm",
+      "11",
+      "-l",
+      "deu+eng",
+      "tsv"
+    ],
+    "exit": 0,
+    "elapsed": 0.17703543399693444,
+    "stderr": "Estimating resolution as 409\n",
+    "tsv": "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n1\t1\t0\t0\t0\t0\t0\t0\t452\t148\t-1\t\n"
+  },
+  {
+    "psm": 6,
+    "command": [
+      "tesseract",
+      "qa/ocr-original-scale-4ab/gold-region-experiment/api35-frame0-region0.png",
+      "qa/ocr-original-scale-4ab/gold-psm-experiment/psm6",
+      "--psm",
+      "6",
+      "-l",
+      "deu+eng",
+      "tsv"
+    ],
+    "exit": 0,
+    "elapsed": 0.20798425500106532,
+    "stderr": "",
+    "tsv": "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n1\t1\t0\t0\t0\t0\t0\t0\t452\t148\t-1\t\n2\t1\t1\t0\t0\t0\t44\t61\t363\t42\t-1\t\n3\t1\t1\t1\t0\t0\t44\t61\t363\t42\t-1\t\n4\t1\t1\t1\t1\t0\t44\t61\t363\t42\t-1\t\n5\t1\t1\t1\t1\t1\t44\t61\t57\t32\t96.891357\tEin\n5\t1\t1\t1\t1\t2\t120\t61\t140\t42\t96.364433\tObjekt\n5\t1\t1\t1\t1\t3\t275\t61\t132\t42\t95.722694\tzeigen\n"
+  },
+  {
+    "psm": 7,
+    "command": [
+      "tesseract",
+      "qa/ocr-original-scale-4ab/gold-region-experiment/api35-frame0-region0.png",
+      "qa/ocr-original-scale-4ab/gold-psm-experiment/psm7",
+      "--psm",
+      "7",
+      "-l",
+      "deu+eng",
+      "tsv"
+    ],
+    "exit": 0,
+    "elapsed": 0.1245769660017686,
+    "stderr": "",
+    "tsv": "level\tpage_num\tblock_num\tpar_num\tline_num\tword_num\tleft\ttop\twidth\theight\tconf\ttext\n1\t1\t0\t0\t0\t0\t0\t0\t452\t148\t-1\t\n2\t1\t1\t0\t0\t0\t44\t61\t363\t42\t-1\t\n3\t1\t1\t1\t0\t0\t44\t61\t363\t42\t-1\t\n4\t1\t1\t1\t1\t0\t44\t61\t363\t42\t-1\t\n5\t1\t1\t1\t1\t1\t44\t61\t57\t32\t96.891357\tEin\n5\t1\t1\t1\t1\t2\t120\t61\t140\t42\t96.364433\tObjekt\n5\t1\t1\t1\t1\t3\t275\t61\t132\t42\t95.722694\tzeigen\n"
+  }
+]

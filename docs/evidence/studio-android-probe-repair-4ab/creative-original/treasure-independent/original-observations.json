@@ -1,0 +1,469 @@
+{
+  "run": 43530667812,
+  "job": 132269951369,
+  "artifact": 14092241868,
+  "zip_bytes": 526570745,
+  "zip_sha256": "bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40",
+  "whole_zip_verification": "Original downloaded once and full SHA/CRC checked by agent B; this review independently compared each listed selected member byte-for-byte through ZipFile reads.",
+  "saved_positions": [
+    {
+      "file": "0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "e2d6a4ef4dc12c67594a2feef2b35d5e8c1c0850edc3a107b17acfef0ad0f188",
+      "position": [
+        0.0,
+        0.000156247988343239,
+        6.0
+      ],
+      "distance_to_first_clue_xz": 18.439088914585774,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0
+    },
+    {
+      "file": "0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "bb778b9a97cefa10486ff1e1b2c1778104cd55f2a725c89af4191d7336e97c0d",
+      "position": [
+        -0.763419568538666,
+        0.000156247988343239,
+        5.14553928375244
+      ],
+      "distance_to_first_clue_xz": 17.29352314750752,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 1.1458239625867739,
+      "distance_reduction": 1.1455657670782529,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "112",
+        "804",
+        "112",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 1659.823095978,
+      "observed_stick_capture": {
+        "file": "0126-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "0ae4be7b8321869166b55eb3e00ed73548f6eb58dd7c15eca28b1a6373f12cce"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "015748700cae1adfaac05a328ef1a8126d4d94ff450504beceeeeab196bcfd08",
+      "position": [
+        -1.7437447309494,
+        0.000156247988343239,
+        3.99248552322388
+      ],
+      "distance_to_first_clue_xz": 15.780065943102473,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 1.5134630483512588,
+      "distance_reduction": 1.5134572044050483,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "111",
+        "804",
+        "111",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 1714.531480874,
+      "observed_stick_capture": {
+        "file": "0132-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "3f39297fd52f298aab6c7b52a788903ab967734bb6d94bd72708f22d16dc5579"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "8ffb90682acfb6c73040d49dba809ed6d3dc0a935e681a47f4b8bcc9a1374f70",
+      "position": [
+        -2.23791074752808,
+        0.000156247988343239,
+        3.4138925075531
+      ],
+      "distance_to_first_clue_xz": 15.019165381178961,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 0.760900735789004,
+      "distance_reduction": 0.7609005619235116,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "111",
+        "804",
+        "111",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 1769.709249337,
+      "observed_stick_capture": {
+        "file": "0138-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "9ab3ac9597c80fe7009eab5c9de1b8bc37d1b90380094543c8b0fce33120f3f7"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "209d313dfe5bb8f1bf25906e2d5c5dd0fae7fb6e08d801cb30f6d610619eb78b",
+      "position": [
+        -2.73207688331604,
+        0.000156247988343239,
+        2.91611480712891
+      ],
+      "distance_to_first_clue_xz": 14.319775186055958,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 0.7014148621174201,
+      "distance_reduction": 0.6993901951230033,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "111",
+        "804",
+        "111",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 1826.68562307,
+      "observed_stick_capture": {
+        "file": "0144-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "b046992e8c221c451ecdbcf68d7589d5c2ce0dcb4033c68c9e81d30e86c4a2da"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "3e10fde9a1deb43b9b506f02ea41fe0bf0237d743e57c9a54562ee502b4645b4",
+      "position": [
+        -3.22509908676147,
+        0.000156247988343239,
+        2.41833710670471
+      ],
+      "distance_to_first_clue_xz": 13.621330115157427,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 0.7006094005434065,
+      "distance_reduction": 0.698445070898531,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "112",
+        "804",
+        "112",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 1882.819365564,
+      "observed_stick_capture": {
+        "file": "0150-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "fa1afecb0c56f7edf95a1b1e3f48212e9b96c557aa7209448cbd6bccd208aed9"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "19e0136b1fe9a68daa7b3e2e2e6ac09cdb93478374ba1219e6b8156045d56a03",
+      "position": [
+        -3.71125769615173,
+        0.000156247988343239,
+        1.92055952548981
+      ],
+      "distance_to_first_clue_xz": 12.927519107639739,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 0.6957964600689109,
+      "distance_reduction": 0.693811007517688,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "111",
+        "804",
+        "111",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 1946.153871477,
+      "observed_stick_capture": {
+        "file": "0156-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "747c609792ffdad06545071af78d389cf01aee4aec9e55b14686deb4ad4def3d"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "b280d83d64626eaa663cf330921bdc32a7c13d5e32ea8534f18dc83ab4496835",
+      "position": [
+        -4.2054238319397,
+        0.000156247988343239,
+        1.42278182506561
+      ],
+      "distance_to_first_clue_xz": 12.22882802898464,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 0.7014148621174342,
+      "distance_reduction": 0.6986910786550986,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "111",
+        "804",
+        "111",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 2005.909522937,
+      "observed_stick_capture": {
+        "file": "0162-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "8e01a79ef368fb8c6478023ee747a36b53b08c591521ebcd138e9e5dfd2bf826"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "3c2905af0fa88452fbfdeb119fbec80b73cc20bfe8f23ba3256d4be0db9abd96",
+      "position": [
+        -4.69958972930908,
+        0.000156247988343239,
+        0.925004124641418
+      ],
+      "distance_to_first_clue_xz": 11.530467845897485,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1500,
+      "movement": 0.7014146941449697,
+      "distance_reduction": 0.6983601830871553,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "111",
+        "804",
+        "111",
+        "804",
+        "1500"
+      ],
+      "input_dispatch_monotonic": 2061.645344722,
+      "observed_stick_capture": {
+        "file": "0168-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "a5032a6a292c8cb1638466ad27a7405766de83d326b7afc18b1b2065a429c803"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "a6c5b2fe87041077047e6b4444cd74a16e458769c9f5cf4c649f9c2ba28424b6",
+      "position": [
+        -5.1926121711731,
+        0.000156247988343239,
+        0.427226394414902
+      ],
+      "distance_to_first_clue_xz": 10.833220839380308,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1455,
+      "movement": 0.7006095894940513,
+      "distance_reduction": 0.697247006517177,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "112",
+        "803",
+        "112",
+        "803",
+        "1455"
+      ],
+      "input_dispatch_monotonic": 2118.695333237,
+      "observed_stick_capture": {
+        "file": "0174-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "8ddb18c48c1f151756d764f237d01c1c4b45a081283d2c0fcdd096f6687b075c"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "78993ee0eca06d2a6035780dc7e66cbc85944c023106b75699eecd0bebc202a2",
+      "position": [
+        -5.6776270866394,
+        0.000156247988343239,
+        -0.0705514699220657
+      ],
+      "distance_to_first_clue_xz": 10.141427574397547,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1339,
+      "movement": 0.6949980362912218,
+      "distance_reduction": 0.6917932649827616,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "112",
+        "803",
+        "112",
+        "803",
+        "1339"
+      ],
+      "input_dispatch_monotonic": 2182.102099479,
+      "observed_stick_capture": {
+        "file": "0180-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "4821c258679483e027167163ee6cff4bee2bbec73714f3c3407c013fabedd4ab"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "c944a255566e02a09572ba309b6ae82051a9b8bde3f02eb8025f764c6d2f7486",
+      "position": [
+        -6.16149806976318,
+        0.000156247988343239,
+        -0.568329334259033
+      ],
+      "distance_to_first_clue_xz": 9.450811270648348,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1224,
+      "movement": 0.6942002092574201,
+      "distance_reduction": 0.6906163037491986,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "113",
+        "802",
+        "113",
+        "802",
+        "1224"
+      ],
+      "input_dispatch_monotonic": 2241.008700055,
+      "observed_stick_capture": {
+        "file": "0186-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "6693119bc5081c8b584e5a4dd3c269dde963778c52c0f6e888023bfb6c16ba40"
+      },
+      "actual_velocity_or_fps_measured": false
+    },
+    {
+      "file": "0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "462f2d8d4c438e8827994324ad654c716b7033fa98041b7841f844c52ac0b810",
+      "position": [
+        -6.8268141746521,
+        0.000156247988343239,
+        -1.28388476371765
+      ],
+      "distance_to_first_clue_xz": 8.477502901834027,
+      "result_id": "a0cdf440-dcdd-4043-84a7-da72b6c65da3-1794619371110-6278600",
+      "solved_clues": [],
+      "chapter": 0,
+      "requested_hold_ms": 1108,
+      "movement": 0.9770696454461523,
+      "distance_reduction": 0.9733083688143207,
+      "input_arguments": [
+        "shell",
+        "input",
+        "swipe",
+        "114",
+        "802",
+        "114",
+        "802",
+        "1108"
+      ],
+      "input_dispatch_monotonic": 2300.646184417,
+      "observed_stick_capture": {
+        "file": "0192-observe-original-stick.png",
+        "width": 1920,
+        "height": 1080,
+        "sha256": "e6656d3840b817b719ef72d4c0319aa1acc76cafd7484b59a063f718fb313f52"
+      },
+      "actual_velocity_or_fps_measured": false
+    }
+  ],
+  "input_count": 12,
+  "requested_hold_total_ms": 17126,
+  "images": [
+    {
+      "file": "tour/0121-entered-schatzsuche.png",
+      "bytes": 2333440,
+      "sha256": "1e259ea994c2e30ae5924f62c5a90e46ee7d4d6d70a3b2859e117dc946b092dc",
+      "individually_opened": true,
+      "equal_to_original_zip_member": true
+    },
+    {
+      "file": "tour/0192-observe-original-stick.png",
+      "bytes": 2709944,
+      "sha256": "e6656d3840b817b719ef72d4c0319aa1acc76cafd7484b59a063f718fb313f52",
+      "individually_opened": true,
+      "equal_to_original_zip_member": true
+    },
+    {
+      "file": "tour/0198-treasure-failure.png",
+      "bytes": 2729533,
+      "sha256": "506b7506b00d76e951c7fadefbd6c3302ad0286d048666f4fb1faae6a6f903df",
+      "individually_opened": true,
+      "equal_to_original_zip_member": true
+    }
+  ],
+  "visual_findings": [
+    "All three images were individually opened during this review.",
+    "Initial and final images show the same active first-clue quest, 0/7 solved, visible original stick and visible action controls.",
+    "The final scene visibly differs from entry as the companion approached the left tree region; no screenshot establishes arrival or interaction.",
+    "No full-screen obstruction or covered joystick is visible in this selection."
+  ],
+  "not_proven": [
+    "first-clue interaction",
+    "answer or inventory reward",
+    "relaunch preservation for Treasure in this run",
+    "rendered FPS or physics tick rate",
+    "a product collision defect or an unreachable clue"
+  ]
+}

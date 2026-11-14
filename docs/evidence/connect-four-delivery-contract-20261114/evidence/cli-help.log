@@ -1,0 +1,38 @@
+usage: verify_studio_connect_four_android.py [-h] --source-sha SOURCE_SHA
+                                             --native-sha NATIVE_SHA
+                                             --artifact-digest ARTIFACT_DIGEST
+                                             --apk-sha256 APK_SHA256
+                                             --pck-sha256 PCK_SHA256
+                                             --build-run BUILD_RUN
+                                             --artifact-id ARTIFACT_ID
+                                             --native-source NATIVE_SOURCE
+                                             --metadata-dir METADATA_DIR
+                                             --api35 API35 --api37 API37
+                                             --main-tour35 MAIN_TOUR35
+                                             --main-tour37 MAIN_TOUR37
+                                             --runtime RUNTIME --out OUT
+
+Recheck current Studio2020 C4 originals before publication. No emulator, rule
+engine, APK installation or test process is started here. Current GitHub
+metadata binds the uploaded originals to the current jobs; recorded states,
+readbacks, pixels, touches, saves and leases are re-evaluated. The separate
+real Dart/Godot gate remains mandatory and is never replaced by the renderer-
+only Visualfixture or by a successful older Android candidate.
+
+options:
+  -h, --help            show this help message and exit
+  --source-sha SOURCE_SHA
+  --native-sha NATIVE_SHA
+  --artifact-digest ARTIFACT_DIGEST
+  --apk-sha256 APK_SHA256
+  --pck-sha256 PCK_SHA256
+  --build-run BUILD_RUN
+  --artifact-id ARTIFACT_ID
+  --native-source NATIVE_SOURCE
+  --metadata-dir METADATA_DIR
+  --api35 API35
+  --api37 API37
+  --main-tour35 MAIN_TOUR35
+  --main-tour37 MAIN_TOUR37
+  --runtime RUNTIME
+  --out OUT

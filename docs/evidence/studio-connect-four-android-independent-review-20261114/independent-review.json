@@ -1,0 +1,124 @@
+{
+  "schema": 1,
+  "reviewer": "/root/games_worlds",
+  "status": "READ_ONLY_REVIEW_NO_REMAINING_CONCRETE_BLOCKER_IN_INSPECTED_SCOPE",
+  "created_utc": "2026-11-14T05:30:08.843949+00:00",
+  "scope": "Independent source review of new real-input C4 Android probe plus narrow post-read deadline closure. No test execution or Android run by this reviewer.",
+  "candidate_baselines": {
+    "host": "86445f53af5d573549fc8cf03405261611f3cb7e",
+    "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "existing_86445_apk_contains_new_c4": false
+  },
+  "bindings": [
+    {
+      "path": "qa/connect-four-android-probe-86445/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 36232,
+      "sha256": "3859544988fb84345fc14f247a5c4ef55db0d65e6aac39b2b261875fd194a273"
+    },
+    {
+      "path": "qa/connect-four-android-probe-86445/tools/android_qa/tests/test_connect_four_android_probe.py",
+      "bytes": 17055,
+      "sha256": "149712bdaf8bf87b0c9d9046b4a80b2ce6dcbdaf4b37e00361eb5b261265d8f3"
+    },
+    {
+      "path": "qa/connect-four-android-probe-86445/tools/android_qa/tests/fixtures/connect_four_android/phone-playing.layout.json",
+      "bytes": 20990,
+      "sha256": "6bc6ec736379fae23fa641543704017a3514036c66de2d2c5e2badd436d867ff"
+    },
+    {
+      "path": "qa/connect-four-android-probe-86445/tools/android_qa/tests/fixtures/connect_four_android/origin.json",
+      "bytes": 587,
+      "sha256": "8b7ba4224d5f7f1a31ed449512a9b2a00a7e74e5ab787a6d7d0950a1fb71fba5"
+    },
+    {
+      "path": "qa/connect-four-android-probe-86445/source-upload-manifest.json",
+      "bytes": 1918,
+      "sha256": "8a2b90c8cd60471487ede963cf00aefaf415c3228c9165625fcfceda51c0bcbb"
+    },
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/.github/probes/lumo_connect_four_android_probe.py",
+      "bytes": 36483,
+      "sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e"
+    },
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/tools/android_qa/tests/test_connect_four_android_probe.py",
+      "bytes": 19270,
+      "sha256": "cdc678f97a8f60ea53d91e3682cf7e49e88151a8079de6a9d58f38b36dee0548"
+    },
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/source-upload-manifest.json",
+      "bytes": 1194,
+      "sha256": "8edf78c6379c2b3063df2ea0b50a3709f30fb3e6bbeb26fbe24277e9df7bb4f2"
+    }
+  ],
+  "source_checks": [
+    "The CLI binds its actual file and CWD to the clean candidate checkout and checks both full published source SHAs; it retains the original APK signature/version/ABI/source/PCK verifier and hashes the installed base.apk before and after.",
+    "Actual SDK/release, explicit emulator serial, prior normal 21-step tour, native checkout and observed screen density are required. Existing 86445 Android outcomes cannot satisfy new C4 evidence.",
+    "Private-file reads use a fixed observation allowlist; the script does not write saves, requests or synthetic success. Actions use current exposed visible bounds and actual ADB touches/Home/normal launcher.",
+    "Owner/token/round/revision/ack/PID and settled layout are bound across state, layout, screenshot and subsequent rereads. A layout change before input rejects the touch.",
+    "The independent projector reconstructs all 42 known world cells and camera projection; native centers and quads must match within one pixel. Occupied cyan/gold discs are independently sampled at projected positions.",
+    "Touch targets must be enabled, visible and at least48dp in their actual exposed safe-area intersection; fixture insets are rejected in the Android path.",
+    "Two real child drops each require legal history, positive acknowledged sequence and a subsequent Dart bot turn. Native pause/resume, Home/inactive lifecycle, unchanged background save, normal Flutter return and new-token same-round reopen remain mandatory.",
+    "Original strict two-frame Flutter caption/foreground/native-process-return checks are reused. Original learning data and source/binary identities are checked at the end."
+  ],
+  "deadline_finding": {
+    "prior_probe_sha256": "3859544988fb84345fc14f247a5c4ef55db0d65e6aac39b2b261875fd194a273",
+    "problem": "wait and snapshot could return a successful observation after the unchanged deadline when a final read itself ran long.",
+    "current_probe_sha256": "d9c72a9f4c98851ef37095441404947b178237fa4b560b3ae232759a6adf961e",
+    "closure": "wait validates the same monotonic deadline after observe/accept. snapshot validates it after capture plus final state/layout/foreground/PID rereads, before publishing success. Both failures remain preserved and ultimately fail the existing bounded loop.",
+    "changed_methods": [
+      "wait",
+      "snapshot"
+    ],
+    "other_androidprobe_methods_unchanged": 13,
+    "budgets_seconds": {
+      "wait_default": 45,
+      "snapshot": 45
+    },
+    "budgets_increased": false,
+    "actual_original_log_read": {
+      "path": "qa/connect-four-android-probe-deadline-86445/evidence/deadline-red.log",
+      "bytes": 6809,
+      "sha256": "ffabd761481a3391f14d7874d2f3d7e760c68dfcdad7748f5f1b7397a9fdd5fa"
+    },
+    "actual_green_log_read": {
+      "path": "qa/connect-four-android-probe-deadline-86445/evidence/deadline-green.log",
+      "bytes": 5204,
+      "sha256": "b5332ec223d108b595cdeda5e24bc324c90e925f7023761f4db443de0585a128"
+    },
+    "original_result": "27 tests, exactly2FAIL: both new clock counterexamples; unchanged25 passed.",
+    "corrected_result": "27/27PASS,0Skip; original raw unittest0.205s, execution wall0.349996081s. Read only, not rerun."
+  },
+  "limits": [
+    "No actual new C4 Android installation, device run, physical Fold7, FPS, heat or latency measurement has occurred in this review.",
+    "Pixel checks cover occupied discs; empty cells are reconstructed semantically/geometrically but are not each independently empty-pixel validated. The initial empty-board image alone produces no disc-pixel acceptance.",
+    "The original local v7 sidecar is a declared platform_fixture. Its1079x2400 image versus1080x2400 window mismatch is intentionally rejected by the Android contract, not silently accepted.",
+    "Two child/bot turns do not validate every bot strategy, all completed-game outcomes or real multi-child switches.",
+    "The local clock cases are synthetic observations of real helper methods; they are not emulator evidence. Original25-case freeze remains historical and unmodified."
+  ],
+  "tests_executed_by_this_reviewer": [],
+  "images_opened_by_this_review": [],
+  "source_changes_by_this_reviewer": [],
+  "supporting_evidence": [
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/evidence/deadline-only.patch",
+      "bytes": 1308,
+      "sha256": "dc753b133ec58401db4d8d4d1739232a5f6c8d707046733e3b44c996e1b3d4ac"
+    },
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/evidence/ast-preservation.json",
+      "bytes": 416,
+      "sha256": "111e5a40c38520a4106e0ff05f4b85a67cca0049ffc6dc2c1c8c1a24409e6440"
+    },
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/evidence/deadline-red-execution.json",
+      "bytes": 364,
+      "sha256": "5d0d6151690cefcdc3fc2c090902f2acf6e4c35c1cdc2550f7c4821795060a9f"
+    },
+    {
+      "path": "qa/connect-four-android-probe-deadline-86445/evidence/deadline-green-execution.json",
+      "bytes": 398,
+      "sha256": "3debd180e4def143329dffe792d8c55e32f543893c686504c6cc0a342f04599b"
+    }
+  ]
+}

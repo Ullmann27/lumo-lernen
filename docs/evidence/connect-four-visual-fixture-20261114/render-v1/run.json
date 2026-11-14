@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 9.549588726004004,
+  "display": 108,
+  "project": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/runtime",
+  "godot_arguments": [
+    "--fixed-fps",
+    "24",
+    "--resolution",
+    "960x540",
+    "--script",
+    "res://scripts/tests/connect_four_visual_capture.gd",
+    "--",
+    "--capture"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

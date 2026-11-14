@@ -1,0 +1,15 @@
+test_a_tile_boundary_cannot_turn_a_clipped_word_into_a_shorter_requested_caption (test_native_ocr_tiles.NativeOCRTileGuards.test_a_tile_boundary_cannot_turn_a_clipped_word_into_a_shorter_requested_caption) ... ok
+test_adjacent_words_use_only_the_requested_phrases_own_observed_bounds (test_native_ocr_tiles.NativeOCRTileGuards.test_adjacent_words_use_only_the_requested_phrases_own_observed_bounds) ... ok
+test_clipped_negative_or_nonpositive_bounds_cannot_generate_a_touch_target (test_native_ocr_tiles.NativeOCRTileGuards.test_clipped_negative_or_nonpositive_bounds_cannot_generate_a_touch_target) ... ok
+test_command_failure_keeps_raw_error_and_never_returns_a_match (test_native_ocr_tiles.NativeOCRTileGuards.test_command_failure_keeps_raw_error_and_never_returns_a_match) ... ok
+test_exact_observed_word_required_without_jtem_substring_or_low_confidence_alias (test_native_ocr_tiles.NativeOCRTileGuards.test_exact_observed_word_required_without_jtem_substring_or_low_confidence_alias) ... ok
+test_fallback_runs_only_after_all_five_whole_frame_variants_miss_requested_word (test_native_ocr_tiles.NativeOCRTileGuards.test_fallback_runs_only_after_all_five_whole_frame_variants_miss_requested_word) ... ok
+test_grid_covers_entire_current_frame_and_stays_inside_all_surface_sizes (test_native_ocr_tiles.NativeOCRTileGuards.test_grid_covers_entire_current_frame_and_stays_inside_all_surface_sizes) ... ok
+test_missing_caption_and_blank_reads_exhaust_six_tiles_without_visibility_pass (test_native_ocr_tiles.NativeOCRTileGuards.test_missing_caption_and_blank_reads_exhaust_six_tiles_without_visibility_pass) ... ok
+test_original_failed_cover_word_maps_scale_and_offset_to_actual_screen (test_native_ocr_tiles.NativeOCRTileGuards.test_original_failed_cover_word_maps_scale_and_offset_to_actual_screen) ... ok
+test_total_deadline_and_mutated_current_frame_fail_instead_of_using_stale_words (test_native_ocr_tiles.NativeOCRTileGuards.test_total_deadline_and_mutated_current_frame_fail_instead_of_using_stale_words) ... ok
+
+----------------------------------------------------------------------
+Ran 10 tests in 0.076s
+
+OK

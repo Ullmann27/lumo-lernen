@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "Four new docs-only read-only diagnosis records. No original logs or product sources duplicated. No tests or Git mutation.",
+  "file_count": 4,
+  "total_bytes": 49142,
+  "files": [
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-teardown-readonly-acf51-785413-20261114/README.md",
+      "bytes": 3012,
+      "sha256": "0ada4b509087f6a7d7ac2d73e5c7d7ae0567a36684607097b1729f7ea891905f",
+      "git_blob_sha": "938fe540b0c67c2db74a8d4820dbde896950d90e",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-teardown-readonly-acf51-785413-20261114/review.json",
+      "bytes": 29653,
+      "sha256": "74273aa694002cf9629915f98d1a204e4a8f1e369928849e5ef9d1ea41ad82dd",
+      "git_blob_sha": "94e2fa13cd55337cce1aa2c09df29bd22817ae1b",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/github-source-tree-selection.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-teardown-readonly-acf51-785413-20261114/github-source-tree-selection.json",
+      "bytes": 11945,
+      "sha256": "d96c405d7202a369a01d550c834608160a30fa9dc045f58707a554e409da73f0",
+      "git_blob_sha": "735e6f6e1d8afd27ed033eab09791336975413b2",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "path": "docs/evidence/kart-teardown-readonly-acf51-785413-20261114/official-engine-excerpts.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-teardown-readonly-acf51-785413-20261114/official-engine-excerpts.json",
+      "bytes": 4532,
+      "sha256": "118dc05e1bd5404dd5a2bc2bf9084277b2f647f9db54091718e9cbd5163e028c",
+      "git_blob_sha": "15b40b6793f8b3a3ac27e02ff98da507ff053646",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ]
+}

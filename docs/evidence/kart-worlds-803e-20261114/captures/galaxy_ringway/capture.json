@@ -1,0 +1,316 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 26.2365545654297,
+			"position": [
+				25.4360084533691,
+				4.97396230697632,
+				98.5737533569336
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 63.7173468017578,
+			"position": [
+				70.0972213745117,
+				5.49343967437744,
+				108.595855712891
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 101.198139038086,
+			"position": [
+				84.1706314086914,
+				7.22362232208252,
+				67.1296234130859
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 138.678931274414,
+			"position": [
+				123.618225097656,
+				10.3533058166504,
+				48.1432189941406
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 176.159723510742,
+			"position": [
+				100.13516998291,
+				14.8692951202393,
+				12.7291450500488
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 213.64051574707,
+			"position": [
+				108.945999145508,
+				18.1149406433105,
+				-35.5467567443848
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 251.121307983398,
+			"position": [
+				71.5989532470703,
+				17.1044883728027,
+				-60.0304641723633
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 288.602100219727,
+			"position": [
+				82.3000946044922,
+				12.9308214187622,
+				-102.258110046387
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 363.563684692383,
+			"position": [
+				3.5666766166687,
+				4.77016830444336,
+				-129.352127075195
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 401.044476928711,
+			"position": [
+				-30.0812168121338,
+				3.73578667640686,
+				-94.7402420043945
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 438.525269165039,
+			"position": [
+				-73.4460296630859,
+				4.82662439346313,
+				-114.385841369629
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 476.006061401367,
+			"position": [
+				-84.3477325439453,
+				6.84460401535034,
+				-73.5795288085938
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 513.486853637695,
+			"position": [
+				-118.937347412109,
+				8.76928520202637,
+				-45.4607963562012
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 550.967645874023,
+			"position": [
+				-97.0492095947266,
+				9.99732875823975,
+				-5.79019355773926
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 588.448438110352,
+			"position": [
+				-127.213363647461,
+				10.606575012207,
+				33.055477142334
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 625.92923034668,
+			"position": [
+				-87.7953338623047,
+				10.1413679122925,
+				61.2306709289551
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 700.890814819336,
+			"position": [
+				-39.783203125,
+				7.15617227554321,
+				103.453857421875
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 738.371607055664,
+			"position": [
+				-6.76422500610352,
+				5.59553480148315,
+				131.662796020508
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.jvntzxo5",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 244,
+	"reference_detail_theme": "galaxy_ringway",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "galaxy_ringway",
+	"track_length": 749.615844726562,
+	"user_data_path": "/tmp/lumo-theme-capture.jvntzxo5/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.155560657382011,
+				0.0,
+				0.987826347351074
+			],
+			"camera_basis_y": [
+				0.198105663061142,
+				0.979684054851532,
+				-0.0311972312629223
+			],
+			"camera_basis_z": [
+				-0.967757761478424,
+				0.200547069311142,
+				0.152400314807892
+			],
+			"camera_position": [
+				13.8465690612793,
+				8.51222038269043,
+				118.088577270508
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/galaxy_ringway/01_chase.png",
+			"player_distance": 14.2365545654297,
+			"player_position": [
+				18.1436138153076,
+				5.99222087860107,
+				117.411888122559
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.983391165733337,
+				0.0,
+				0.181498929858208
+			],
+			"camera_basis_y": [
+				0.0373418554663658,
+				0.978606402873993,
+				-0.202324330806732
+			],
+			"camera_basis_z": [
+				-0.177616015076637,
+				0.205741450190544,
+				0.962352871894836
+			],
+			"camera_position": [
+				22.0841407775879,
+				10.8565969467163,
+				116.734725952148
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/galaxy_ringway/02_context.png",
+			"player_distance": 14.2365545654297,
+			"player_position": [
+				18.1436138153076,
+				5.99222087860107,
+				117.411888122559
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.965107917785645,
+				0.0,
+				-0.261852383613586
+			],
+			"camera_basis_y": [
+				-0.066001333296299,
+				0.967712819576263,
+				-0.243260741233826
+			],
+			"camera_basis_z": [
+				0.253397911787033,
+				0.252055495977402,
+				0.933947324752808
+			],
+			"camera_position": [
+				28.2509212493896,
+				9.27396202087402,
+				108.948661804199
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/galaxy_ringway/03_detail.png",
+			"player_distance": 14.2365545654297,
+			"player_position": [
+				18.1436138153076,
+				5.99222087860107,
+				117.411888122559
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.jvntzxo5/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.jvntzxo5/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.jvntzxo5/userdata"
+}

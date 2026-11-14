@@ -1,0 +1,27 @@
+{
+  "started_at_utc": "2026-11-14T02:57:51.711434+00:00",
+  "finished_at_utc": "2026-11-14T02:58:14.071346+00:00",
+  "duration_seconds": 22.35995058399567,
+  "command": [
+    "curl",
+    "--disable",
+    "--fail",
+    "--location",
+    "--silent",
+    "--show-error",
+    "--proto",
+    "=https",
+    "--proto-redir",
+    "=https",
+    "--max-time",
+    "120",
+    "https://github.com/Ullmann27/lumo-godot/releases/download/studio-evidence-803e7a626ea6ef0aeeda9c37010e844033d3a8e3-14085523056/native-evidence.zip"
+  ],
+  "exit_code": 0,
+  "stderr": "",
+  "bytes_streamed": 199274727,
+  "sha256": "3b4fcac817efd007797658117f3c62185e3834cbdd624de02d6072fce688a798",
+  "archive_file_created": false,
+  "authentication_header_or_token_supplied": false,
+  "matches_original": true
+}

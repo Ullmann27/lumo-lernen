@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "scope": "Original nine-file diagnosis plus separate authorized canonical-import follow-up; original manifest unchanged",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/README.md",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/README.md",
+      "bytes": 1606,
+      "sha256": "b3295df504c9fbd9f089d00e5cab85408dcd43e745f4188ef33e0e2d313ca2f3",
+      "git_blob_sha": "759d4e954409dbc8b61311fc9b57964182ac66a0",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/after.glb.import",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/after.glb.import",
+      "bytes": 1341,
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob_sha": "0fc3016ba886172aaf2575db2984e81b5567455c",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/before.glb.import",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/before.glb.import",
+      "bytes": 1162,
+      "sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15",
+      "git_blob_sha": "3b65ce3c2d8e63efe4c2251261b047be37e383a0",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/import.log",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/import.log",
+      "bytes": 2254,
+      "sha256": "b874ae3f03c433d0c6432ca84973f7a27f79f620d8f01248f970eeb08b387580",
+      "git_blob_sha": "f66e9b4036f6205d99af1e8d8f1b0e4e69e7539c",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/import.patch",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/import.patch",
+      "bytes": 461,
+      "sha256": "9c9227044881ae3916be6dcd0735b4318054aa0a75b4e4170fca2149b040aaf6",
+      "git_blob_sha": "0dedd0a043c9cb1428bce802883a1f7c43c82bb6",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/minimal-project.godot",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/minimal-project.godot",
+      "bytes": 285,
+      "sha256": "60bf92a94e430a222145b974f6a1c61a9cdecc1c0a51bec4844481aa801d5270",
+      "git_blob_sha": "b5d2bccb96cd69f4157db149d4195b96bf99aeee",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/result.json",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/result.json",
+      "bytes": 2607,
+      "sha256": "393490e676bbc7d8a9d8a48fe4398098634a848b1a609ebefa04a1bc9e204395",
+      "git_blob_sha": "f32543c61e3e4f341692211c1dddcc8fc3e6dff0",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/review.json",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/review.json",
+      "bytes": 3359,
+      "sha256": "5c86075f8949f1ab9f928c4456432f32a23e50ae7f627bb5366614f271d86990",
+      "git_blob_sha": "dbe7d0f43b9dba210e7dff7032b30d9a64e94e8b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/evidence/setup.json",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/evidence/setup.json",
+      "bytes": 1273,
+      "sha256": "cc0bd89db5042ef7a2e1ddcd830939ab121ca6afb4a5ad833b1974e574da19d1",
+      "git_blob_sha": "5665b4ce0344f7e4d1685bcf3483bdc219f3100f",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-source-upload-manifest.json",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-source-upload-manifest.json",
+      "bytes": 836,
+      "sha256": "5f667434e06f028e2b961d6d04baacbad15ab8d56b6bdb440db84a0e16db6f06",
+      "git_blob_sha": "f2f4b6dadcc5dfa65a39392875351fe042c156ca",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence/README.md",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/README.md",
+      "bytes": 1269,
+      "sha256": "55b37c79cc2f952ef3f6fad54f79d6567042c2724e6bfc788f722d30c35aa570",
+      "git_blob_sha": "5b72840f192ffa436d7102b7caf33679f11a11b7",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence/canonical-import.patch",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/canonical-import.patch",
+      "bytes": 452,
+      "sha256": "4653ca107578015761f3226ae69b106b58f3eb609a28424738a348ecdce2e865",
+      "git_blob_sha": "388be3043dc5f7fea4a6a8b3903109cd16269595",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence/closure-review.json",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/closure-review.json",
+      "bytes": 2530,
+      "sha256": "ce4db018b5c7e40c29e15136b1182dd6208f7d71a15d0d5ae2b242193cc9c6a2",
+      "git_blob_sha": "e6e25051a995d01815169db5ffb278447fd7cd75",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence/second-after.glb.import",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/second-after.glb.import",
+      "bytes": 1341,
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob_sha": "0fc3016ba886172aaf2575db2984e81b5567455c",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence/second-import.log",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/second-import.log",
+      "bytes": 2254,
+      "sha256": "b874ae3f03c433d0c6432ca84973f7a27f79f620d8f01248f970eeb08b387580",
+      "git_blob_sha": "f66e9b4036f6205d99af1e8d8f1b0e4e69e7539c",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical-evidence/second-result.json",
+      "target": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/second-result.json",
+      "bytes": 1614,
+      "sha256": "cb56b0b8226edbd1cab5b7c95f386d1e531cb863f89917d1781d78605ae1ec62",
+      "git_blob_sha": "93ca67332965fcba3be5f9a403bd230ad0a44ef3",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 24644
+}

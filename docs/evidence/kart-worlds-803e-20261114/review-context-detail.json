@@ -1,0 +1,487 @@
+{
+  "reviewer": "/root/character_animation",
+  "reviewed_at_utc": "2026-11-14T00:49:26.301218+00:00",
+  "status": "COMPLETED_ACTUAL_VISUAL_REVIEW_WITH_QUALITY_LIMITS",
+  "native_content_commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "native_content_tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+  "expected_image_count": 21,
+  "reviewed_image_count": 21,
+  "source_binding": {
+    "before_file": "source-binding-production-before.json",
+    "before_sha256": "d5504d70c6458a0c59e9c3ac73c11cd00848ff034a4a05585cb891898cca723c",
+    "before_checked": 1175,
+    "before_differences": [],
+    "capture_runs_file": "capture-runs.json",
+    "capture_runs_sha256": "d9483e083ca7e97249eb952d106a93b4af96b368fcd62fe7cd75b0bc6a84cf9e",
+    "after_checked": 1175,
+    "after_source_changes": [],
+    "local_git_head_claim": "Original capture metadata retains older ada5ed81 local HEAD and clean_tracked_source=false; this is not a clean803 checkout. Content provenance is the external 1175-file published-blob comparison."
+  },
+  "limits_de": [
+    "Nur persönlich geöffnete 1280×720-PNGs der stationären Produktionsszene; Prozess und Physik waren eingefroren, reduced_motion=true.",
+    "Software-GL-Kompatibilitätsrenderer auf Linux; kein Android-Gerät, keine FPS-/Latenz-/Thermikmessung, kein gefahrener Rennlauf.",
+    "Kontext- und Detailkameras wurden zur Inspektion positioniert; sie beweisen keine entsprechende dynamische Spielkamera.",
+    "Die vorhandenen Umgebungen werden beurteilt. Diese Sichtprüfung implementiert keine neuen Strecken und ist keine vollständige AAA-Grafikabnahme.",
+    "HUD und Touch-Overlays bleiben im Bild; Einzelfotos beweisen keine erfolgreiche Eingabe, Kollisionsphysik oder Gegner-KI.",
+    "Laut unveränderten Capture-Logs sind VSync-Umschaltung, Screen-space-AA und volumetrischer Nebel in dieser Software-/Compatibility-Konfiguration nicht verfügbar; daraus werden keine Eigenschaften des Android-Renderers abgeleitet."
+  ],
+  "images": [
+    {
+      "path": "captures/bergwelt/02_context.png",
+      "track": "bergwelt",
+      "view": "02_context",
+      "sha256": "384b37a08f43e5c5c1fc569fd26ea926bead4b7d67d6b93247eec86aa83cc646",
+      "bytes": 810165,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Schwebende Grasinseln, hohe Wasserfälle, Fernburg und Brücken bilden eine räumlich lesbare Landschaft; vorne stehen polygonale Bäume, Felsen und ein blau-goldener Pavillon mit cyanfarbenem Kristall.",
+        "Die Produktionsoberfläche ist sichtbar: Runde 1/2, Platz 1/6, 0 km/h, Minikarte und Touch-Schaltflächen."
+      ],
+      "visible_limits_de": [
+        "In genau diesem Ausschnitt ist kein eindeutig alpines Wahrzeichen erkennbar; gemeinsame Insel-/Pavillonmotive dominieren. Daraus folgt keine Aussage über die gesamte Strecke.",
+        "Mehrere große helle Gebäudeflächen wirken schlicht; harte Schatten und stark gesättigte Flächen begrenzen den hier sichtbaren Materialdetailgrad."
+      ],
+      "capture_metadata_sha256": "b18fc5898d013bcc4856591639ebd61cc0bd8fb6928f57b7c0baa9073edeaff5",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/bergwelt/03_detail.png",
+      "track": "bergwelt",
+      "view": "03_detail",
+      "sha256": "b5487a506778013a020849e54d9e0350cc0d5bbc62b493d087ca03c16088bd7b",
+      "bytes": 777413,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Der blau-goldene zylindrische Pavillon und sein cyanfarbener Kristall besitzen sichtbare Geometrie und räumliche Staffelung vor Fels, Wasserfall und Wolkenfläche."
+      ],
+      "visible_limits_de": [
+        "Ein großer Laternenmast verdeckt den linken Teil; die helle Lampenkugel ist am oberen Bildrand abgeschnitten.",
+        "Pavillon und Fels zeigen überwiegend gleichmäßige Farbflächen. Diese Ansicht belegt weder detaillierte Materialoberflächen noch eine physische Abstützung oder Kollision."
+      ],
+      "capture_metadata_sha256": "b18fc5898d013bcc4856591639ebd61cc0bd8fb6928f57b7c0baa9073edeaff5",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/candy_cloud/02_context.png",
+      "track": "candy_cloud",
+      "view": "02_context",
+      "sha256": "547e2a686a0e72f2e3cb1628c9a5401d3e24d75cb5f46ce98196f888643ebb69",
+      "bytes": 808771,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Rosa Burg mit Türmen, großer cyanfarbener Ring mit Streuseln, kleines tortenartiges Gebäude und weiße Wolkenformen ergeben eine deutlich erkennbare Süßigkeitenwelt.",
+        "Gestaffelte Gebäude, Vordergrundgeländer und Schatten vermitteln echte räumliche Tiefe."
+      ],
+      "visible_limits_de": [
+        "Die Burg wird am oberen und rechten Rand angeschnitten; die sichtbare Fahrbahn beschränkt sich weitgehend auf den unteren Rand.",
+        "Große Wolken-/Gebäudeflächen bleiben nahezu einfarbig. Die Ansicht beweist keine bewegte Wolke oder fahrbare Ringroute."
+      ],
+      "capture_metadata_sha256": "b7615177cb888db5fb07bc9c606a0b23c15b2c0a41b0f2818f83b8119630ae0d",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/candy_cloud/03_detail.png",
+      "track": "candy_cloud",
+      "view": "03_detail",
+      "sha256": "a349b8b3b33ceec4d201cfaa980024b2930d1a1cfedd7cb966be1ab002233a90",
+      "bytes": 621663,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Das kleine Tortengebäude zeigt getrennte geometrische Sahne-/Kugelschichten, einen gestreiften Turm und einen umlaufenden Sockel; im Hintergrund stehen Burg und mehrere Ringobjekte."
+      ],
+      "visible_limits_de": [
+        "Der harte Gebäudeschatten hat sichtbar grobe Randstufen. Die umgebenden Wolken und Gebäudeflächen zeigen wenig Materialvariation.",
+        "Der gewählte Detailausschnitt enthält kaum Fahrbahn; die Fahrbarkeit des Rings oder das Kollisionsverhalten sind nicht zu beurteilen."
+      ],
+      "capture_metadata_sha256": "b7615177cb888db5fb07bc9c606a0b23c15b2c0a41b0f2818f83b8119630ae0d",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/crystal_canyon/02_context.png",
+      "track": "crystal_canyon",
+      "view": "02_context",
+      "sha256": "4858314340ed95c8af7e849efc3f47c3056a54d0d10202dd0054a6e507e17da6",
+      "bytes": 922725,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Eine blau beleuchtete, texturierte Fahrbahn und ein cyanfarbenes Geländer verlaufen diagonal vor großen violetten Felskörpern."
+      ],
+      "visible_limits_de": [
+        "Fahrbahn und eine fast bildfüllende Felswand dominieren; eine eigenständige Kristalllandschaft ist in diesem Kontextausschnitt kaum zu erkennen.",
+        "Die Kamerawahl vermittelt wenig Streckenverlauf oder Fernraum. Dieser Befund betrifft den Ausschnitt, nicht das Vorhandensein von Kristallen in der gesamten Szene."
+      ],
+      "capture_metadata_sha256": "8164bf6cde69bc411c2b23de974a4b97f45603d206bc26a13ed14afad46652e4",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/crystal_canyon/03_detail.png",
+      "track": "crystal_canyon",
+      "view": "03_detail",
+      "sha256": "b413de6a8a1a1dc2291bfdfc5780c0b28579ed3982af128b9aa7a68ef89f3337",
+      "bytes": 526694,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Eine deutlich erkennbare Gruppe facettierter cyanfarbener und violetter Kristalle steht auf einem geometrisch abgestuften Sockel; weitere Kristalle sind in einem kleinen Hintergrundspalt sichtbar."
+      ],
+      "visible_limits_de": [
+        "Die große gleichmäßig violette Felswand beherrscht weiterhin den Hintergrund.",
+        "Geländerschatten zeigen deutliche Rasterstufen auf Fels und Sockel; Reflexion, Transparenz und bewegte Beleuchtung werden durch dieses Standbild nicht nachgewiesen."
+      ],
+      "capture_metadata_sha256": "8164bf6cde69bc411c2b23de974a4b97f45603d206bc26a13ed14afad46652e4",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/desert_drift/02_context.png",
+      "track": "desert_drift",
+      "view": "02_context",
+      "sha256": "a712aed9e5358f8eb7e04545387b45051653fe4d19e55f920a57e55736e7b607",
+      "bytes": 802832,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Die texturierte Fahrbahn und ihr mehrteiliges Geländer verlaufen vor einem sehr hellen, sandfarbenen Geländekörper. Warme Lichtfarbe und Sandflächen unterscheiden diese Ansicht von den blauen Themen."
+      ],
+      "visible_limits_de": [
+        "Fahrbahn und nahezu einfarbige Sandwand füllen den Ausschnitt; eine eigenständige Wüstenlandmarke oder der weitere Streckenverlauf ist kaum sichtbar.",
+        "Sehr helle große Flächen zeigen wenig Oberflächendetail. Der Ausschnitt reicht nicht zur Bewertung einer abwechslungsreichen Wüstenumgebung."
+      ],
+      "capture_metadata_sha256": "651b130934466627b4cebbea09700e139eb57c81d6722512ae55dc7797a3e97d",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/desert_drift/03_detail.png",
+      "track": "desert_drift",
+      "view": "03_detail",
+      "sha256": "32a785c473d6ebe24e74d599e31c8586315d13d2b973c41e89573fd68d1043d5",
+      "bytes": 381486,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Ein goldfarbenes Säulenobjekt mit blauem Dach, rundem Becken und hängendem hellem Tropfen ist als räumliches Detail erkennbar. In der Ferne stehen Dünen, Palmen und eine gestufte Pyramidenform."
+      ],
+      "visible_limits_de": [
+        "Das Detail liegt im breiten Schatten einer großen darüberliegenden Geometrie; Gold- und Sandfarben trennen sich dort nur schwach.",
+        "Die sandfarbene Bodenfläche ist sehr gleichmäßig. Das einzelne Tropfenobjekt belegt keinen Wasser- oder Partikelablauf."
+      ],
+      "capture_metadata_sha256": "651b130934466627b4cebbea09700e139eb57c81d6722512ae55dc7797a3e97d",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/galaxy_ringway/02_context.png",
+      "track": "galaxy_ringway",
+      "view": "02_context",
+      "sha256": "5451756f078757cfa3e22821af93da722da70b6e3cdd2536ad6d1bd86383046d",
+      "bytes": 582831,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Ringplaneten und Sterne vor dunkelblauem Hintergrund kennzeichnen das Weltraumthema deutlich. Eine entfernte, erhöhte Streckenpassage mit vielen Stützen zeigt einen Höhenverlauf.",
+        "Vorne liegt ein kleines blau-weiß-goldenes Observatorium mit Kuppel und Teleskop neben dem Streckengeländer."
+      ],
+      "visible_limits_de": [
+        "Große dunkelblaue Zwischenflächen und ein sehr harter dunkler Gebäudeschatten wirken schlicht.",
+        "Die Stützen und Planeten haben deutlich einfache geometrische Oberflächen. Die sichtbare Höhenpassage ist kein Befahrbarkeits- oder Loopingnachweis."
+      ],
+      "capture_metadata_sha256": "8cdf86c31f58b2cef5482e8b63f6f4522fb99bac64fc5708a9e7b2ba6cb166b2",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/galaxy_ringway/03_detail.png",
+      "track": "galaxy_ringway",
+      "view": "03_detail",
+      "sha256": "de2a632d2be2431187b41ec0b78452b987487418878f3c14efef77e42d13fde8",
+      "bytes": 496044,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Kuppel, zylindrisches Teleskop, umlaufendes Geländer und eine kleine Kugel auf einer Plattform sind als getrennte geometrische Teile des Observatoriums lesbar.",
+        "Dahinter bleiben Planeten, Sterne und die erhöhte Strecke sichtbar; das Detail ist in seiner Umgebung erkennbar."
+      ],
+      "visible_limits_de": [
+        "Die Oberflächen bestehen weitgehend aus gleichmäßigen kräftigen Farbflächen. Der nahezu schwarze ovale Schatten ist auffällig hart.",
+        "Feine mechanische Details, bewegtes Teleskop und physikalische Materialreflexion lassen sich aus diesem Standbild nicht bestätigen."
+      ],
+      "capture_metadata_sha256": "8cdf86c31f58b2cef5482e8b63f6f4522fb99bac64fc5708a9e7b2ba6cb166b2",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/holo_city/02_context.png",
+      "track": "holo_city",
+      "view": "02_context",
+      "sha256": "4d7dd08f327b78376c7b2fde24ce3b6c816b4d93d4ef68a5005d5ad9bd2bfe43",
+      "bytes": 875561,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Hohe blaue Turmkörper mit wiederholten Fensterfeldern und vertikalen Lichtstreifen bilden eine klar erkennbare Neonstadt. Ein plastischer gelber Stern steht auf der Vordergrundfahrbahn.",
+        "Geländer, Fahrbahn und eng gestaffelte Fassaden erzeugen räumliche Tiefe."
+      ],
+      "visible_limits_de": [
+        "Die nahen Fassaden und die breite Fahrbahn lassen wenig Stadtgrundriss oder Fernraum erkennen.",
+        "Fensterfelder wiederholen sich stark; die sichtbare Umgebung enthält in diesem Ausschnitt wenig Straßenebenen-Detail."
+      ],
+      "capture_metadata_sha256": "34817eed66da3291f51ff7ca29195e0d6e085b62d23302caab2ce18f32faccd4",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/holo_city/03_detail.png",
+      "track": "holo_city",
+      "view": "03_detail",
+      "sha256": "593ecd2f3ade062524bfc205ef57b377c37743982fbd25c6691d100d1a50bfe5",
+      "bytes": 436480,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Eine nahe Turmfassade mit großen dunkelblauen Fensterfeldern und heller vertikaler Kante ist sichtbar; links verbleibt ein schmaler Blick auf weitere Türme und Stützen."
+      ],
+      "visible_limits_de": [
+        "Die Vordergrundfassade verdeckt den überwiegenden Teil des Detailbildes. Eine eigenständige Detailinstallation oder die Fahrbahn ist so nicht sinnvoll zu beurteilen.",
+        "Dies ist eine konkrete Verdeckung in der manuell positionierten Inspektionskamera; daraus folgt ohne gefahrenen Lauf kein Nachweis einer fehlerhaften Produktions-Fahrkamera."
+      ],
+      "capture_metadata_sha256": "34817eed66da3291f51ff7ca29195e0d6e085b62d23302caab2ce18f32faccd4",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/jungle_temple/02_context.png",
+      "track": "jungle_temple",
+      "view": "02_context",
+      "sha256": "ff8e6d0ff6a99110fdcde7d9157daa5423ec5850d80d6d9ddf557140353e7132",
+      "bytes": 919362,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Die texturierte Straße, das cyanfarbene Geländer und ein grüner Boden mit stark erkennbaren Vegetations-/Gebäudeschatten sind sichtbar."
+      ],
+      "visible_limits_de": [
+        "Der Blick ist stark nach unten gerichtet; Fahrbahn und grüne Bodenfläche dominieren. Der Tempel selbst ist in dieser Kontextansicht nicht ausreichend sichtbar.",
+        "Die Dschungelidentität ist hier hauptsächlich über Grünflächen und angeschnittene Vegetation angedeutet, nicht über eine lesbare dichte Landschaft."
+      ],
+      "capture_metadata_sha256": "60fee95ef85d8c0fec80d523753fcaf4651c0ae21122b6f95deda9b687d4fdf6",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/jungle_temple/03_detail.png",
+      "track": "jungle_temple",
+      "view": "03_detail",
+      "sha256": "937e3592ed3036eae9a4aadca659606d13b4e841d3db08dbd898ab07b01e5bdc",
+      "bytes": 582847,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Ein heller steinerner Tor-/Säulenaufbau mit abgestuftem Sockel und hängendem grünen Element steht als dreidimensionales Detail im Vordergrund. Dahinter sind Palmen, gestufte Tempelformen und eine erhöhte Streckenpassage zu sehen."
+      ],
+      "visible_limits_de": [
+        "Große flache grüne Zwischenflächen und weit auseinanderstehende Pflanzen lassen die Umgebung in diesem Ausschnitt dünn besetzt erscheinen.",
+        "Harte, teils rasterstufige Schatten laufen über den Steinaufbau; aus dem Foto ist kein bewegter Bewuchs oder interaktiver Tempelmechanismus belegt."
+      ],
+      "capture_metadata_sha256": "60fee95ef85d8c0fec80d523753fcaf4651c0ae21122b6f95deda9b687d4fdf6",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/learning_lab/02_context.png",
+      "track": "learning_lab",
+      "view": "02_context",
+      "sha256": "94f5b496ea2443dda3410977125dca997b76fe07c1ebd973113743b7b913fe11",
+      "bytes": 971328,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Blaue Fenster-Turmkörper und die texturierte Vordergrundfahrbahn sind räumlich gestaffelt. Unter dem Geländer ist ein kleiner farbiger Aufbau teilweise sichtbar."
+      ],
+      "visible_limits_de": [
+        "Das Geländer verdeckt einen wesentlichen Teil des kleinen thematischen Objekts. Die Laboridentität ist in dieser Kontextansicht gegenüber der ähnlich blauen Stadtarchitektur wenig ausgeprägt.",
+        "Große Fassaden und Fahrbahn dominieren; aus diesem Ausschnitt ist keine Lernfunktion abzulesen."
+      ],
+      "capture_metadata_sha256": "c2e604c925846b3a8ea7128892230986cb7aaf13a56915882d42f952cf9b6ac5",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/learning_lab/03_detail.png",
+      "track": "learning_lab",
+      "view": "03_detail",
+      "sha256": "7a2d23430685bd213927f85323f66838d691226240f97c7c670b9bc7c0a63843",
+      "bytes": 625476,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Ein heller quaderförmiger Sockel mit blauem Deckel, gestapelten farbigen Platten und einem molekülähnlichen Kugel-Stab-Aufbau ist sichtbar. Im Hintergrund wiederholen sich die blauen Turmkörper."
+      ],
+      "visible_limits_de": [
+        "Die große Sockelfront ist nahezu einfarbig; die Umgebung hat viel freie Bodenfläche und wiederholte Fassaden.",
+        "Ein sehr heller Fassadenreflex liegt direkt hinter dem oberen Detail. Die Ansicht enthält keine lesbare Erklärung und belegt keine interaktive Labor-/Lernaufgabe."
+      ],
+      "capture_metadata_sha256": "c2e604c925846b3a8ea7128892230986cb7aaf13a56915882d42f952cf9b6ac5",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/volcano_night/02_context.png",
+      "track": "volcano_night",
+      "view": "02_context",
+      "sha256": "7a5fd80df959fa01d6b2d138fe25fa5dba30a7e36e02447ddbb3480a84c16781",
+      "bytes": 850298,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Leuchtend orange Lavarisse, dunkle Felsinseln, hohe Steinspitzen und ein entfernter Vulkankegel bilden ein deutlich erkennbares Nachtthema. Eine Brücke und mehrere Streckenabschnitte sind in der Ferne sichtbar.",
+        "Ein kleines dunkles säulenartiges Detail sitzt vor dem großen Vordergrundfelsen."
+      ],
+      "visible_limits_de": [
+        "Das dunkle Vordergrunddetail hat gegenüber dem blauvioletten Fels wenig Kontrast und ist nur eingeschränkt lesbar.",
+        "Lava und orange Spitzen sind hell erkennbar; Fluss, Partikel, Wärmeeffekte oder eine aktive Streckengefahr sind durch das eingefrorene Bild nicht belegt."
+      ],
+      "capture_metadata_sha256": "6cddae511c8db06a3cf2019097ea8467f6fb96504c93a48dd9636b24d98b29bf",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/volcano_night/03_detail.png",
+      "track": "volcano_night",
+      "view": "03_detail",
+      "sha256": "3a463724de853a71e32e540c6c3111e6dcf070acc5bee5a27f55ce3927b1e927",
+      "bytes": 644170,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Ein dunkler Aufbau aus Dach-/Sockelformen, Stützen und einer facettierten Mitte steht vor einem großen violetten Felsen. Links bleibt ein Ausschnitt der leuchtenden Lavarissfläche sichtbar."
+      ],
+      "visible_limits_de": [
+        "Der Fels füllt den größten Teil des Bildes, und die sehr dunklen Detailflächen gehen darin teilweise unter. Der Anschluss des kleinen Sockels an den Fels ist visuell schwer zu lesen.",
+        "Rechts des Details sind sehr kleine helle Fragmente zu sehen; ihre Zuordnung ist aus diesem Standbild nicht eindeutig. Daraus wird kein bestätigter Geometrie- oder Kollisionsfehler abgeleitet."
+      ],
+      "capture_metadata_sha256": "6cddae511c8db06a3cf2019097ea8467f6fb96504c93a48dd9636b24d98b29bf",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/winter_sprint/02_context.png",
+      "track": "winter_sprint",
+      "view": "02_context",
+      "sha256": "a516e52d695cbc3a89ff9fea8ddee6ccc4e9ddaf3b766baf262a2584338f0041",
+      "bytes": 746561,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Blaue Fahrbahn, schneehelle Geländeformen und kühle Schatten machen das Winterthema erkennbar. Das Geländer und seine Pfosten besitzen klar lesbare Geometrie."
+      ],
+      "visible_limits_de": [
+        "Sehr große nahezu weiße Geländeformen nehmen den Hintergrund ein und verlieren im hellen Licht viele Konturen. Ein kleines Objekt hinter dem Geländer ist größtenteils verdeckt.",
+        "Die weiße Tastatur-Hinweiszeile hebt sich stellenweise nur durch ihre dunkle Kontur vom Schnee ab. Das Foto ist kein Nachweis einer Touch-/Lesbarkeitsprüfung auf Android."
+      ],
+      "capture_metadata_sha256": "49bcea87ad964048dc9b026caadd515eaba6b7bb9534b030ac399b3b17a961f4",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/winter_sprint/03_detail.png",
+      "track": "winter_sprint",
+      "view": "03_detail",
+      "sha256": "a82f5162aca9f287306a3703f4ac247bbbd6107e927683fde53cdfc9323ea108",
+      "bytes": 540751,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Ein kleiner gestufter Nadelbaum mit weißen Schneekappen steht vor einer großen Schneeform; weitere kleine Nadelbäume erscheinen in der Ferne."
+      ],
+      "visible_limits_de": [
+        "Die große helle Schneeform füllt den Hauptteil des Bildes, und das Detailensemble ist nur teilweise sichtbar. Sehr helle Flächen lassen wenige Material-/Formunterschiede erkennen.",
+        "Geländer-/Umgebungsschatten besitzen deutliche Rasterstufen. Schneepartikel, Eisverhalten oder Animation sind nicht belegt."
+      ],
+      "capture_metadata_sha256": "49bcea87ad964048dc9b026caadd515eaba6b7bb9534b030ac399b3b17a961f4",
+      "camera_source": "manual road-facing detail pose; production camera, world and lighting"
+    },
+    {
+      "path": "captures/zauberwald/02_context.png",
+      "track": "zauberwald",
+      "view": "02_context",
+      "sha256": "3b568042fdcd60a9e0446959c6a073b0f9ba93345dd6fba9d32ca1cabe1cf94a",
+      "bytes": 795664,
+      "dimensions": [
+        1280,
+        720
+      ],
+      "personally_opened_with": "tools.view_image",
+      "findings_de": [
+        "Viele räumlich gestaffelte Bäume mit polygonalen Kronen, violette Pilze, Bank, Laternen und ein Pflanzkasten ergeben eine gut erkennbare Waldumgebung.",
+        "Das zentrale Baumdetail mit sichtbaren Wurzelstücken, schräger Stütze, hängender gelber Leuchte und kleinen Pilzen ist als eigenständiger geometrischer Aufbau lesbar."
+      ],
+      "visible_limits_de": [
+        "Baumkronen und Boden besitzen vorwiegend einfache gleichmäßige Farbflächen; die Baumformen wiederholen sich.",
+        "Der hohe Laternenmast steht vor Teilen des Waldmotivs. Bewegung der Pflanzen oder eine Interaktion mit dem Baumdetail kann das eingefrorene Bild nicht zeigen."
+      ],
+      "capture_metadata_sha256": "5a51ae363780fc093192bc0673e6dedc77d621f1cb392564202919d6ad699a21",
+      "camera_source": "manual road-context pose; production camera, world and lighting"
+    }
+  ],
+  "image_bytes_binding": "All21 personally viewed original PNG hashes and byte counts re-read and equal capture-runs.json; images not modified.",
+  "overall_findings_de": [
+    "Alle elf Kontextansichten und zehn zugewiesenen Detailansichten wurden einzeln tatsächlich geöffnet; Zauberwald-Detail und sämtliche Chase-Ansichten gehören nicht zu dieser unabhängigen Sichtung.",
+    "Eindeutige dreidimensionale Themenobjekte sind unter anderem Bonbonschloss/Tortengebäude, Kristallgruppe, Observatorium und Waldbaumdetail.",
+    "Mehrere Kontextkameras zeigen überwiegend Fahrbahn und große Umgebungskörper statt des thematischen Details; Holo-City-Detail ist besonders stark durch eine Vordergrundfassade verdeckt.",
+    "Große einfache Farbflächen, harte teils rasterstufige Schatten, helle konturarme Schneeflächen und schwacher Detailkontrast im Vulkanbild sind sichtbare Qualitätsgrenzen.",
+    "Die Sichtung bestätigt vorhandene räumliche Gestaltung im eingefrorenen Godot-Renderer. Sie bestätigt keine neue Implementierung, komplette Streckenqualität, Fahrphysik, Gegner-KI, Android-Eignung oder stabile60FPS."
+  ],
+  "scope_result": "Observed production geometry and named image-specific quality gaps; no overall release/art/gameplay acceptance."
+}

@@ -1,0 +1,150 @@
+{
+  "schema": 1,
+  "scope": "Isolated 2020 Android-validator preparation, no new device or release evidence",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/README.md",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/README.md",
+      "bytes": 6392,
+      "sha256": "ad62d644311b9fe5cd6a64ba9f8fd24d2d3ec74c06c4bb9dc0b792db0f273923",
+      "git_blob_sha": "e2c757d4c5d294533f98c886e70c6fe8100bce31",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/baseline-binding.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/baseline-binding.json",
+      "bytes": 4078,
+      "sha256": "38d9f7ff122a632ab5101f30ded8599400370cd753abeeee9871122f05088c9e",
+      "git_blob_sha": "5375a69960b02af6f68081b90e60e080472c98b6",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/schema-source-binding.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/schema-source-binding.json",
+      "bytes": 1423,
+      "sha256": "56eb629f1768b0b6dbfa086b2a3301e8d75ef292ba6b0673f714bdb5a9cbea97",
+      "git_blob_sha": "f901845431b0dc8b549c2cfc73b5c3c82d195e45",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/test-support-files.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/test-support-files.json",
+      "bytes": 2131,
+      "sha256": "98ff57b7162344c251e8f5c1783934c7a85a584df484154b0299e38f5fbe6f21",
+      "git_blob_sha": "b3f6359fd2107a3c0099daa7576238bdea0338e5",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/surface-version-only.patch",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/surface-version-only.patch",
+      "bytes": 2063,
+      "sha256": "c6ad2895928aa670bb5db98754c01dbd2160196b2e5693558cc4d882e36c7fef",
+      "git_blob_sha": "617a983b5ab4183ec76c02578eacd53969615bbc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/version-contracts.patch",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/version-contracts.patch",
+      "bytes": 16577,
+      "sha256": "3567eb50ed26922e8f3b2b54cf0582ee3f6404e0b5df3f0ed17fc51d442b8b15",
+      "git_blob_sha": "a20dbc459a4a7eb5b84e1ce2d0b26e06a5bfd0e1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/source-upload-manifest.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/source-upload-manifest.json",
+      "bytes": 3529,
+      "sha256": "cc11a884c9ba2282181ccd82b18f35616582a05ce1e962b2703e4fa369adc69d",
+      "git_blob_sha": "074dd1f672754e69adf57ea53dcc929f263f5eea",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/ast-preservation.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/ast-preservation.json",
+      "bytes": 6396,
+      "sha256": "486a997023d65c5dd24e10dea139ffd4858bba74c039798a47be2672886ad6f0",
+      "git_blob_sha": "63decd464d8487c3b5e5a15825170fea4c39aef1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/execution-first.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/execution-first.json",
+      "bytes": 1543,
+      "sha256": "659d84725d6ee4c9b6324c68fe5bdd8ca2703b8311e571a988e93cb93fc1cda4",
+      "git_blob_sha": "485ec682bb1cf9e7ea0af385a050dc109d6623d1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/existing-creative-contracts.log",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/existing-creative-contracts.log",
+      "bytes": 1784,
+      "sha256": "405e1510ca208ebdb473bdb5be0a62905857ff390ae20012679a413fbd308fec",
+      "git_blob_sha": "37f1c0e2b8f3c47d502bc19c5272e45b5b2d664e",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/inspection-tooling-notes.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/inspection-tooling-notes.json",
+      "bytes": 551,
+      "sha256": "408023beebe6b6ab9b9529b0b12109087d48b2037285bd2b31d8c9d531ad2f53",
+      "git_blob_sha": "eb287b05c431eb49654ba776df9950894685cb25",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/studio-version-contracts.log",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/studio-version-contracts.log",
+      "bytes": 1698,
+      "sha256": "bafe1637b06e7733555ae57f9768d345772175829a069fd5017b4edd833ab4de",
+      "git_blob_sha": "a2cac2b28b9df1a90e3f8cd66dbe09e84c008c47",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/surface-composition.json",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/surface-composition.json",
+      "bytes": 590,
+      "sha256": "f3ad8bc29a099b3571b43720395915368399b663882fb90dbeb1e6635a80fd11",
+      "git_blob_sha": "5017a4f6222b47caff7bac3113ca4fc5e7bcee34",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/surface-composition.log",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/surface-composition.log",
+      "bytes": 193,
+      "sha256": "9f58c6e44f25e778a023d51f99e79d1e6418d090010e2b6bcb88203c4caf1529",
+      "git_blob_sha": "e0a1ab5c29845f753ddf3cb0ae072d6df6c9cb78",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/evidence/update-contracts.log",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/evidence/update-contracts.log",
+      "bytes": 11167,
+      "sha256": "859c8e4d8f84cf4968ec2d3b085c26eb4b94bb7ceeba3c963315b623fe93ef1f",
+      "git_blob_sha": "8cd4128311a8c5e441151dc120c13930241a751b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/schema-baseline/lib/core/progress_repository.dart",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/schema-baseline/lib/core/progress_repository.dart",
+      "bytes": 13839,
+      "sha256": "69723b57640dc7c2ea7f14a45ffcc34995505b3b02dd061142e10d48651063fd",
+      "git_blob_sha": "d41e9f90c9297188f8a924dfa04ce822d09126ee",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/schema-baseline/lib/domain/learning/independent_evidence.dart",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/schema-baseline/lib/domain/learning/independent_evidence.dart",
+      "bytes": 2855,
+      "sha256": "e85332677fa1a5acd4b3b5be7a8ba3fbcc6bba3974e68a4929c3847b0db9bb4d",
+      "git_blob_sha": "6b19215fe6e410b5439467541453e2608537e041",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-android-contracts-86445/schema-baseline/lib/domain/learning/lumo_learning_domain.dart",
+      "target": "docs/evidence/studio-2020-android-contracts-20261114/schema-baseline/lib/domain/learning/lumo_learning_domain.dart",
+      "bytes": 9458,
+      "sha256": "5c7ace9e4ed6471800a28d39be18095e3964d7a48c63a74bc3690bc569d615ec",
+      "git_blob_sha": "fb08dc6572828d21d94ca96844994797aaa68bd6",
+      "mode": "100644"
+    }
+  ]
+}

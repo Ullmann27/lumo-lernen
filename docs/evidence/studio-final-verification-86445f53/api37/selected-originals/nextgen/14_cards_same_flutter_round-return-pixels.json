@@ -1,0 +1,83 @@
+{
+  "status": "PASS",
+  "expected_captions": [
+    "Spiel pausiert"
+  ],
+  "frames": [
+    {
+      "status": "REJECTED",
+      "source": "14_cards_same_flutter_round-return-candidate-1.png",
+      "source_sha256": "2eeef19d8fb645dc28e206c8dddee010be3be6d15e527c2f461e8aa78ad00179",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.955,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "error": "Flutter caption is not visible in the captured pixels: Spiel pausiert"
+    },
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "14_cards_same_flutter_round-return-candidate-2.png",
+      "source_sha256": "81a58d26a36440064a55fcac5b90c1704a141ebc88fdd7ab8cf2f4ed48731dc4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.364,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Spiel pausiert",
+          "ocr": {
+            "text": "Spiel pausiert",
+            "bounds": [
+              308.0,
+              1018.0,
+              774.0,
+              1081.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    },
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "14_cards_same_flutter_round-return-candidate-3.png",
+      "source_sha256": "81a58d26a36440064a55fcac5b90c1704a141ebc88fdd7ab8cf2f4ed48731dc4",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.364,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Spiel pausiert",
+          "ocr": {
+            "text": "Spiel pausiert",
+            "bounds": [
+              308.0,
+              1018.0,
+              774.0,
+              1081.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+  "consecutive_confirmed_frames": 2,
+  "source": "14_cards_same_flutter_round.png",
+  "source_sha256": "81a58d26a36440064a55fcac5b90c1704a141ebc88fdd7ab8cf2f4ed48731dc4",
+  "elapsed_seconds": 22.751851
+}

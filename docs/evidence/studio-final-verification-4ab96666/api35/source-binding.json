@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "status": "SOURCE_BOUND_PENDING_ACTUAL_API35_EXECUTION",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43530667812,
+  "attempt": 1,
+  "source_files": [
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772"
+    },
+    {
+      "path": "tools/android_qa/nextgen_evidence.py",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+    }
+  ],
+  "expected_report": "nextgen/native-surfaces-result.json",
+  "required_face_stages": [
+    "11_cards_real_table_before_draw",
+    "12_cards_real_table_persisted_draw",
+    "12a_cards_real_table_before_late_draw",
+    "12b_cards_persisted_draw_after_visible_idle"
+  ],
+  "current_source_guards": [
+    "Each front-face stage requires two consecutive actual unpaused frames of one public state and one measured layout.",
+    "Current raw native layout is read before and after capture; source hashes, token, round and current state remain bound.",
+    "Exact Pause/page OCR, independent measured projection and actual front-face pixels remain mandatory.",
+    "Both real draw requests must be acknowledged by the Dart authority and followed by the bot turn.",
+    "The second draw follows at least35seconds of visible idle with observed authority binding.",
+    "Native pause must actually set paused=true and keep the saved round unchanged.",
+    "Both returns to Flutter require actual current activity/process state plus two fresh captures exposing the required Flutter captions.",
+    "Reopen must retain the original saved round and use a new private mailbox token."
+  ],
+  "historical_scope_correction": "Earlier API35 frames inspected visually are not automatic front-face PASS. That earlier run stopped at exact Pause OCR before accepted projection/pixels or a first draw. No old outcome is transferred to4ab.",
+  "changes_performed": [],
+  "large_artifact_downloads_performed": []
+}

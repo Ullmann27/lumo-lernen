@@ -1,0 +1,50 @@
+{
+  "schema": 1,
+  "source_url": "https://raw.githubusercontent.com/flutter/flutter/3.44.9/packages/flutter_test/lib/src/controller.dart",
+  "version": "3.44.9",
+  "retrieval": "GitHub read-only raw source; no SDK package or cache install",
+  "complete_source_read": {
+    "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/local-read-only-sdk-controller-original.dart.txt",
+    "bytes": 99355,
+    "sha256": "cc2a95fb9365d75bcce446e6063f84af7c37c311daa505e421467b3034afb87e",
+    "git_blob": "dd746a4dbef9d549f19c5cd699e9f33082bfbe8e",
+    "mode": "100644",
+    "type": "blob"
+  },
+  "excerpt": {
+    "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/flutter-3.44.9-sdk-excerpts.txt",
+    "bytes": 4593,
+    "sha256": "1ccac7cffaff3da425a8f5a1e049c8a92f844d6afe86943108677d5b863aa62d",
+    "git_blob": "46b47b3a6d5baead4b36eeed5a78e004b47fa38c",
+    "mode": "100644",
+    "type": "blob"
+  },
+  "sections": {
+    "getSize": [
+      2174,
+      2181
+    ],
+    "getRect": [
+      2344,
+      2347
+    ],
+    "getTopLeft": [
+      1955,
+      1969
+    ],
+    "getBottomRight": [
+      2006,
+      2020
+    ],
+    "getElementPoint": [
+      2086,
+      2131
+    ]
+  },
+  "findings": [
+    "getSize returns the laid-out RenderBox.size directly.",
+    "getRect constructs Rect.fromPoints(getTopLeft,getBottomRight).",
+    "The point helper maps local size-based points through localToGlobal."
+  ],
+  "full_local_source_in_upload": false
+}

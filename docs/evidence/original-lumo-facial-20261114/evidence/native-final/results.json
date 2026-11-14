@@ -1,0 +1,92 @@
+[
+  {
+    "name": "lumo_facial_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "qa/original-lumo-facial-studio-803e/runtime",
+      "--script",
+      "res://scripts/tests/lumo_facial_regression.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.46997271200234536,
+    "log_sha256": "9f8af38ec5d1ab8a78683c4d868591dd990709eb4866708b49ed4c43fa94285c",
+    "engine_errors": [],
+    "markers": [
+      "LUMO_FACIAL_PASS checks=101 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false"
+    ]
+  },
+  {
+    "name": "lumo_studio_motion_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "qa/original-lumo-facial-studio-803e/runtime",
+      "--script",
+      "res://scripts/tests/lumo_studio_motion_regression.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.4698262650053948,
+    "log_sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+    "engine_errors": [],
+    "markers": [
+      "[LumoStudioMotion] PASS checks=1047 Blender/Godot endpoint_error_m=0.000000733 segment_error_m=0.000000179; no physical Android claim"
+    ]
+  },
+  {
+    "name": "lumo_teacher_pose_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "qa/original-lumo-facial-studio-803e/runtime",
+      "--script",
+      "res://scripts/tests/lumo_teacher_pose_regression.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.4191798230021959,
+    "log_sha256": "348ade9cd8a258b3aa3380c94664ec9ed4529e6edf270c3e683981c2bb5da629",
+    "engine_errors": [],
+    "markers": [
+      "[LumoTeacherPose] PASS 34 checks: original gestures, bounded split gaze, owner exclusivity, pause and honest voice seam"
+    ]
+  },
+  {
+    "name": "lumo_rigged_animation_capture",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "qa/original-lumo-facial-studio-803e/runtime",
+      "--script",
+      "res://scripts/tests/lumo_rigged_animation_capture.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.9374769090063637,
+    "log_sha256": "7211cdab9979bcd87148b2c1a8568a8800ab33b3f56d550505ea7a4c1899aaac",
+    "engine_errors": [],
+    "markers": [
+      "[LumoRig] PASS checks=21 real exported rig and clips; physical Android not tested"
+    ]
+  },
+  {
+    "name": "learning_world_regression",
+    "command": [
+      "godot",
+      "--headless",
+      "--path",
+      "qa/original-lumo-facial-studio-803e/runtime",
+      "--script",
+      "res://scripts/tests/learning_world_regression.gd"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 19.644340714992722,
+    "log_sha256": "63d6dfe55ad0fa205abedfcfcceb4068e305f41fab57269daf8b8a0dcaf36838",
+    "engine_errors": [],
+    "markers": [
+      "[LearningWorld] PASS checks=5340"
+    ]
+  }
+]

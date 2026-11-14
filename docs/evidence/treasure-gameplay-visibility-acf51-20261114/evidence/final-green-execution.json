@@ -1,0 +1,23 @@
+{
+  "label": "final-green",
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-treasure-visibility-acf51/runtime",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/treasure_title_contrast_regression.gd"
+  ],
+  "exit_code": 0,
+  "seconds": 19.988159533997532,
+  "product_sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+  "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+  "script_errors": 0,
+  "markers": [
+    "[TreasureTitleContrast] PASS checks=3341 failures=0"
+  ]
+}

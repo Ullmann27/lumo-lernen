@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "reviewed_utc": "2026-11-14T05:33:09.332895+00:00",
+  "scope": "Independent read-only review of the C4 visual fixture reader and four-format schema in the current native roster; not a whole-harness or Android acceptance",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_READ_SCOPE",
+  "reviewed_originals": [
+    {
+      "path": "qa/studio-2020-integration/root/native/tools/validate_studio.sh",
+      "bytes": 22674,
+      "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1"
+    },
+    {
+      "path": "qa/studio-2020-integration/evidence/new-sidecars-red.json",
+      "bytes": 1181,
+      "sha256": "665d1f54e7bb532d3a9eddab0c6f6caed4129fa3d3b322ee37d8f1952a17cbe2"
+    },
+    {
+      "path": "qa/studio-2020-integration/evidence/new-sidecars-green.json",
+      "bytes": 1548,
+      "sha256": "320befafb1fafeef8f9786561b4d887eeeff41466909c0c12ff39b52fab9e2bd"
+    },
+    {
+      "path": "qa/connect-four-visual-fixture-20261114/render-v2/captures/visual-state.json",
+      "bytes": 172165,
+      "sha256": "39d5c2159143364e7f3c0e0b145e15d070df6a45d877c884c92fdbb8076a7676"
+    }
+  ],
+  "resolved_finding": {
+    "original": "The first roster incorrectly required Lumo visible in all four formats; the actual product hides the character below700px. This rejected the genuine412px original.",
+    "current_expected_visibility": [
+      true,
+      false,
+      true,
+      false
+    ],
+    "actual_replay_before": "new-sidecars-red.json: AssertionError c4-playing-phone.png, passed=false",
+    "actual_replay_after": "new-sidecars-green.json: same original v2 sidecar, passed=true, no errors; performed by B and read by A",
+    "later_harness_change": "Treasure title gate was added separately; current C4 reader was read again at ba194e2c."
+  },
+  "preserved_contracts": [
+    "Exactly four original fixture-source hashes and PNG names/dimensions",
+    "Real non-headless gl_compatibility and unchanged source-before/after",
+    "Known observed disc/win-ring counts and actual mesh/board geometry",
+    "Settled current production layout, correct captions, no accepted fixture-host action",
+    "Exposed48dp bounds and real ScreenTouch/ScreenDrag/menu reachability"
+  ],
+  "new_test_or_render_executions": 0,
+  "new_image_views": 0,
+  "historical_four_actual_image_views": "evidence/review.json in the original19-file frozen package",
+  "no_product_mutation": true,
+  "no_android_dart_or_device_fps_claim": true
+}

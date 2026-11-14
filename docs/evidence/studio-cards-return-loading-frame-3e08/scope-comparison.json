@@ -1,0 +1,29 @@
+{
+  "baseline": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "changed_definitions": [
+        "image_lines"
+      ],
+      "other_definitions_ast_equal": 22,
+      "old_sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "new_sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861"
+    },
+    {
+      "path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "changed_definitions": [
+        "capture_returned_flutter"
+      ],
+      "other_definitions_ast_equal": 17,
+      "old_sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "new_sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+    }
+  ],
+  "surfaces_ast_identical_after_removing_only_reject_captions_keyword": true,
+  "preserved_return_deadline_seconds": 30,
+  "preserved_max_observations": 12,
+  "preserved_required_consecutive_positive_frames": 2,
+  "no_product_or_workflow_edit": true,
+  "new_reader_opt_in_only": "capture_returned_flutter"
+}

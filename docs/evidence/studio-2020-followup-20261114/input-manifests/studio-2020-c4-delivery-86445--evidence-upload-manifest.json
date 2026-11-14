@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/README.md",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/README.md",
+      "bytes": 6699,
+      "sha256": "d8996482c01e7fade580eab1c9f76811fd032a53cf82c0e39bfaa302a8ff4239",
+      "git_blob_sha": "582186c8b3774a7be9016c8e37fe28bf70409e53",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/source-upload-manifest.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/source-upload-manifest.json",
+      "bytes": 1077,
+      "sha256": "234915e9085af10f742e6706bef14e798494b29225ff9cd5f5a2a68d306e600f",
+      "git_blob_sha": "b4abaa489828652c4467b8b2504141f18db0bcd9",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/review.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/review.json",
+      "bytes": 2510,
+      "sha256": "0e265144fc01e1c4a37806b80239c1a3ae1a8f3830c5d240d4599823cfb2d303",
+      "git_blob_sha": "f12c2dcbb1bf88eccf295b05aaf91a16617581fa",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/first-contracts.log",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/first-contracts.log",
+      "bytes": 5681,
+      "sha256": "698a914cb4f37dfb078c697e1e4a98f04fa6be352c6e1c088f64747a018826a2",
+      "git_blob_sha": "e9d59c6567b337a620d31e9b88609c9bb4e75746",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/first-contracts-execution.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/first-contracts-execution.json",
+      "bytes": 449,
+      "sha256": "64ec115bad9a66e13b5a7d0f41eccc859a9da53e96a7f648e48a6ca160d9cc5c",
+      "git_blob_sha": "069c2383a9f48748d077bbe12f7de64398cb9dbc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/unmodified-test-support-binding.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/unmodified-test-support-binding.json",
+      "bytes": 1871,
+      "sha256": "4edec8f86057c310cca81dbb9d54128eef9d6b64342f1fdcc133c4876b098843",
+      "git_blob_sha": "cd68c5be9dfe0bdeb4ccad012e75bf847e980d70",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/final-test-support-binding.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/final-test-support-binding.json",
+      "bytes": 2111,
+      "sha256": "4a0f059736a26304f4fff8600cd2c5356fbe0db2654c1327466437a282cf2014",
+      "git_blob_sha": "b4bffd031bdfdbf30e5398c0932813b37d1901b1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/final-contracts.log",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/final-contracts.log",
+      "bytes": 5907,
+      "sha256": "3f2003f657adb4f46aa20def6f6fd8fd7cfaa44e4e539ba84045a10821a6b28e",
+      "git_blob_sha": "ebbf8935448f8aa07155723d0e56531de41998d2",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/final-contracts-execution.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/final-contracts-execution.json",
+      "bytes": 1473,
+      "sha256": "68a6f2c6fa414cbd7aa2ac1829fc0f1208d3ea3e1dfab07b176fa67bd92ff021",
+      "git_blob_sha": "922b4133803287e2714a5cbefe41437bbd4eb4f5",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/cli-help.log",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/cli-help.log",
+      "bytes": 1819,
+      "sha256": "f201c02ef399e093587cacb09494bc0b99f4929ba1177f38839d1d7e938df1ab",
+      "git_blob_sha": "c1afeb7c99766aab69ba9709fdafb59c7b697fa3",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-c4-delivery-86445/evidence/cli-help-execution.json",
+      "target": "docs/evidence/connect-four-delivery-contract-20261114/evidence/cli-help-execution.json",
+      "bytes": 380,
+      "sha256": "a59120ab4017e61a0b09c97d0826507babdd8b0a1d58f7720b849e36cca8ad13",
+      "git_blob_sha": "16115e66ac94d9f559714cd762ec17bb0355ba30",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 29977
+}

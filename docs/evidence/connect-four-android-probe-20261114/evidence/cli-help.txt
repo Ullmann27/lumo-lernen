@@ -1,0 +1,30 @@
+usage: lumo_connect_four_android_probe.py [-h] --candidate-source
+                                          CANDIDATE_SOURCE --native-source
+                                          NATIVE_SOURCE --apk APK --provenance
+                                          PROVENANCE --sums SUMS --tour-result
+                                          TOUR_RESULT --out OUT
+                                          --expected-source EXPECTED_SOURCE
+                                          --expected-native EXPECTED_NATIVE
+                                          --serial SERIAL --expected-api
+                                          {35,37}
+
+Read actual C4 state/geometry and exercise only visible Android controls.
+Requires an already installed and normally toured, source-bound candidate on a
+disposable emulator. No installation, root request, save injection, IPC
+request write or product-state repair is performed here. Desktop fixtures are
+accepted only by explicit pure-function test arguments, never by the Android
+CLI.
+
+options:
+  -h, --help            show this help message and exit
+  --candidate-source CANDIDATE_SOURCE
+  --native-source NATIVE_SOURCE
+  --apk APK
+  --provenance PROVENANCE
+  --sums SUMS
+  --tour-result TOUR_RESULT
+  --out OUT
+  --expected-source EXPECTED_SOURCE
+  --expected-native EXPECTED_NATIVE
+  --serial SERIAL
+  --expected-api {35,37}

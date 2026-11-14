@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "scope": "Explicit local renderer evidence; no Android/Dart/rule/save approval",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/README.md",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/README.md",
+      "mode": "100644",
+      "bytes": 6082,
+      "sha256": "70f72f658842637499ff1dd2322c1dc16e6cbc302f6a6fed98524b69eb233276",
+      "git_blob_sha1": "2301a89c0bdd932adf360e802eb8c832900d9f14"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/source-upload-manifest.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 537,
+      "sha256": "7beab3b406c0c88157b8b955e0e679c33306d328962608d9c573f92c8f0cf55e",
+      "git_blob_sha1": "b57ffde73286b31b5894d7388010915e2c5f5003"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/fixture-source-binding.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/fixture-source-binding.json",
+      "mode": "100644",
+      "bytes": 10144,
+      "sha256": "275a386d133fce724aec739845875cc44a2c9307e522dd2a4b0861b1689e8972",
+      "git_blob_sha1": "ca67390c9df24adef50d39cbc240c7c26d1a1010"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/runtime-source-before.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/runtime-source-before.json",
+      "mode": "100644",
+      "bytes": 11055,
+      "sha256": "ce65c438d38e300129dabf866c18ee68cae7186b6961360e7bd80bd68895eddd",
+      "git_blob_sha1": "55d554f13f852a0ac79770d1ec5f4541eb17904d"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/runtime-source-after.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/runtime-source-after.json",
+      "mode": "100644",
+      "bytes": 11525,
+      "sha256": "9e280d500a4142aea64645ba24da9cfef7432af57875e249b439b2d212589e48",
+      "git_blob_sha1": "afdfb7c25ca3891b67cca7efe0f205192c01d28b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/headless-rejection.log",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-rejection.log",
+      "mode": "100644",
+      "bytes": 386,
+      "sha256": "781eab947dbfd64fc987c533e3962bc202b1943d991cabbe423fcdff28c028fc",
+      "git_blob_sha1": "38d74bd1afa41c57cfe8853c815a1bb1bed58d48"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/headless-rejection.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-rejection.json",
+      "mode": "100644",
+      "bytes": 405,
+      "sha256": "cce496765b355171e53c68f6b4b2197bb04fcaf98e2e74cc95a8d47ed19d36f5",
+      "git_blob_sha1": "de9fa13c699d50301c412d1f9e00232580a9c3db"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/headless-final.log",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-final.log",
+      "mode": "100644",
+      "bytes": 386,
+      "sha256": "eb58f6ecc664f8e3c31b898b8c521bb2f40675d94380b36a0a33268958ad1331",
+      "git_blob_sha1": "1fb9dc89fae497da694b092e99cfa4e368cec9ef"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/headless-final.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/headless-final.json",
+      "mode": "100644",
+      "bytes": 515,
+      "sha256": "0454fd345270562107648d49531d9ed8e34649cb7ff30d8869e31f735fe64a1e",
+      "git_blob_sha1": "b0e5f3bdb390f6e2ae01df6160d9593207f17d2f"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/evidence/review.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/evidence/review.json",
+      "mode": "100644",
+      "bytes": 5998,
+      "sha256": "0903847f70bbe8a78e7fd21bb6c16c1ff8c02f33d13bccca0d081763bf8cddc9",
+      "git_blob_sha1": "8f6d0f3ee632c2fe802098ced7759849867f317e"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v1/godot.log",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v1/godot.log",
+      "mode": "100644",
+      "bytes": 2974,
+      "sha256": "00c056b7c12e23220806621972805343bac203d9ef957d3967248127d7b6e37e",
+      "git_blob_sha1": "a3c4d3f7ee8c1b0791126ec792c0627d0557bf5f"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v1/run.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v1/run.json",
+      "mode": "100644",
+      "bytes": 461,
+      "sha256": "34a75893a1fca626ebb75bb154e54600df1a9ca7f6ee0d196c4ba7657b86e1e0",
+      "git_blob_sha1": "36623fbeffae4916b208f89ec05cae079906b64e"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/godot.log",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/godot.log",
+      "mode": "100644",
+      "bytes": 2974,
+      "sha256": "9151c9d490aadef0b70a4bdb5ad6c5c172a6196cc827daabdec63648904ae9b3",
+      "git_blob_sha1": "e8bb524a0db9229dbe4eafa8d639ee1e437c0a14"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/run.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/run.json",
+      "mode": "100644",
+      "bytes": 461,
+      "sha256": "c3a129e79708da42aa52a0803b15cdc4cd2603dff73cc2320a0b2b2e6baffd0e",
+      "git_blob_sha1": "1decbcb166964ee20882f9adcb966fd2dafb4720"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/captures/visual-state.json",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/visual-state.json",
+      "mode": "100644",
+      "bytes": 172165,
+      "sha256": "39d5c2159143364e7f3c0e0b145e15d070df6a45d877c884c92fdbb8076a7676",
+      "git_blob_sha1": "8e983da1da396e2b6cc80a2a53227d0b04561903"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/captures/c4-empty-landscape.png",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-empty-landscape.png",
+      "mode": "100644",
+      "bytes": 83161,
+      "sha256": "cdeff17141082e592e3db17251209319b54ee0204afaf3d00aac6be76a3d82fc",
+      "git_blob_sha1": "a7fcce651affe10c1908b09e1e39ca202f6d6a4c"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/captures/c4-playing-phone.png",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-playing-phone.png",
+      "mode": "100644",
+      "bytes": 67841,
+      "sha256": "efaf5d1739f04b95b41dd44476bcfa03dae34cc6bd812540993314ccd00780eb",
+      "git_blob_sha1": "a0d40e48707a3313656728e962f0aeea683f7e5f"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/captures/c4-win-landscape.png",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-win-landscape.png",
+      "mode": "100644",
+      "bytes": 85162,
+      "sha256": "d6ccec6f4cf435d329fc32d7280ea8467d5c966945dbceb2c9794e0782a10456",
+      "git_blob_sha1": "6a34e250ae1c3111b10997285d6d1627ad15d198"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-visual-fixture-20261114/render-v2/captures/c4-paused-small.png",
+      "path": "docs/evidence/connect-four-visual-fixture-20261114/render-v2/captures/c4-paused-small.png",
+      "mode": "100644",
+      "bytes": 29544,
+      "sha256": "2f5c7b8b6c52363db3ee2164fd8ba21f86866e155a1fff46d97330c63bfeda17",
+      "git_blob_sha1": "ab4d9717d8bbc6c51c32154d4a5906a304affeb3"
+    }
+  ],
+  "total_bytes": 491776
+}

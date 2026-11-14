@@ -1,0 +1,703 @@
+{
+  "schema": 1,
+  "observed_at": "2026-11-14T10:11:34.214900+00:00",
+  "original_logcat": {
+    "path": "/tmp/lumo-078-unified-failed-tour-originals/logcat.txt",
+    "bytes": 2000020,
+    "sha256": "dd91792638325970d5a7a679d5bbc3e42212d8d9276ab67e6d6bc063a1876030",
+    "git_blob_sha1": "8f95aa8dd95b257515725ca33a7f0020a16f7faf"
+  },
+  "original_tour_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/original-job.log",
+    "bytes": 1367789,
+    "sha256": "df02e81527516e537cb02a1d09140e9e1cdf2710a5073b4dc95881c9e495b092",
+    "git_blob_sha1": "801d12cae1e3ca44d84d0a7dec32e591828f317b"
+  },
+  "native_pid": 4961,
+  "render_thread_id": 4984,
+  "race_world_ready_device_time": "09:53:12.218",
+  "race_ready_probe_host_time": "2026-11-14T09:53:28.7966403Z",
+  "running_gate_failed_host_time": "2026-11-14T09:55:59.7206577Z",
+  "events": [
+    {
+      "line": 3056,
+      "original_line": "11-14 09:52:18.386  4961  4961 V Godot   : OnResume: GodotFragment{19b547d} (7f71ba7d-b7f6-452c-bbf6-c9c0ca7df9b2 id=0x7f080075)"
+    },
+    {
+      "line": 3110,
+      "original_line": "11-14 09:52:19.135  4961  4984 I godot   : Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org"
+    },
+    {
+      "line": 3619,
+      "original_line": "11-14 09:52:21.589  4961  4984 I godot   : OpenGL API OpenGL ES 3.1 (4.5 (Core Profile) Mesa 25.2.8-0ubuntu0.24.04.4) - Compatibility - Using Device: Google (Mesa) - Android Emulator OpenGL ES Translator (llvmpipe (LLVM 20.1.2, 256 bits))"
+    },
+    {
+      "line": 3638,
+      "original_line": "11-14 09:52:22.250  4961  4984 I godot   : [Perf] platform_detected:Android"
+    },
+    {
+      "line": 3645,
+      "original_line": "11-14 09:52:22.281  4961  4984 I godot   : [Perf] quality_profile:medium"
+    },
+    {
+      "line": 4008,
+      "original_line": "11-14 09:52:36.000  4961  4984 I godot   : [KartViewport] landscape surface=(2400, 1080) logical=(1600.0, 720.0)"
+    },
+    {
+      "line": 4085,
+      "original_line": "11-14 09:52:39.272  4961  4984 I godot   : [Kart] Holographic garage ready: five modes, twelve worlds, free steering"
+    },
+    {
+      "line": 4086,
+      "original_line": "11-14 09:52:40.004  4961  4984 E godot   : WARNING: Failed to load cached shader, recompiling."
+    },
+    {
+      "line": 4160,
+      "original_line": "11-14 09:53:12.218  4961  4984 I godot   : [Kart] race_world_ready: sonnenhafen mode=cup"
+    },
+    {
+      "line": 8892,
+      "original_line": "11-14 09:56:03.604  4961  4984 I godot   : [LumoHost] return: games"
+    },
+    {
+      "line": 8894,
+      "original_line": "11-14 09:56:03.613  4961  4961 V Godot   : OnPause: GodotFragment{19b547d} (7f71ba7d-b7f6-452c-bbf6-c9c0ca7df9b2 id=0x7f080075)"
+    }
+  ],
+  "egl_presentation_summaries_until_failure": [
+    {
+      "line": 4195,
+      "device_time": "09:53:25.301",
+      "average_ms": 27635.17,
+      "minimum_ms": 27635.17,
+      "maximum_ms": 27635.17,
+      "count": 1,
+      "original_line": "11-14 09:53:25.301  4961  4984 D EGL_emulation: app_time_stats: avg=27635.17ms min=27635.17ms max=27635.17ms count=1"
+    },
+    {
+      "line": 4205,
+      "device_time": "09:53:27.412",
+      "average_ms": 2110.96,
+      "minimum_ms": 2110.96,
+      "maximum_ms": 2110.96,
+      "count": 1,
+      "original_line": "11-14 09:53:27.412  4961  4984 D EGL_emulation: app_time_stats: avg=2110.96ms min=2110.96ms max=2110.96ms count=1"
+    },
+    {
+      "line": 4206,
+      "device_time": "09:53:30.905",
+      "average_ms": 3492.4,
+      "minimum_ms": 3492.4,
+      "maximum_ms": 3492.4,
+      "count": 1,
+      "original_line": "11-14 09:53:30.905  4961  4984 D EGL_emulation: app_time_stats: avg=3492.40ms min=3492.40ms max=3492.40ms count=1"
+    },
+    {
+      "line": 4212,
+      "device_time": "09:53:35.135",
+      "average_ms": 4230.09,
+      "minimum_ms": 4230.09,
+      "maximum_ms": 4230.09,
+      "count": 1,
+      "original_line": "11-14 09:53:35.135  4961  4984 D EGL_emulation: app_time_stats: avg=4230.09ms min=4230.09ms max=4230.09ms count=1"
+    },
+    {
+      "line": 4231,
+      "device_time": "09:53:36.797",
+      "average_ms": 1661.2,
+      "minimum_ms": 1661.2,
+      "maximum_ms": 1661.2,
+      "count": 1,
+      "original_line": "11-14 09:53:36.797  4961  4984 D EGL_emulation: app_time_stats: avg=1661.20ms min=1661.20ms max=1661.20ms count=1"
+    },
+    {
+      "line": 4324,
+      "device_time": "09:53:41.360",
+      "average_ms": 4562.8,
+      "minimum_ms": 4562.8,
+      "maximum_ms": 4562.8,
+      "count": 1,
+      "original_line": "11-14 09:53:41.360  4961  4984 D EGL_emulation: app_time_stats: avg=4562.80ms min=4562.80ms max=4562.80ms count=1"
+    },
+    {
+      "line": 4353,
+      "device_time": "09:53:42.597",
+      "average_ms": 1237.02,
+      "minimum_ms": 1237.02,
+      "maximum_ms": 1237.02,
+      "count": 1,
+      "original_line": "11-14 09:53:42.597  4961  4984 D EGL_emulation: app_time_stats: avg=1237.02ms min=1237.02ms max=1237.02ms count=1"
+    },
+    {
+      "line": 4397,
+      "device_time": "09:53:44.072",
+      "average_ms": 1474.54,
+      "minimum_ms": 1474.54,
+      "maximum_ms": 1474.54,
+      "count": 1,
+      "original_line": "11-14 09:53:44.072  4961  4984 D EGL_emulation: app_time_stats: avg=1474.54ms min=1474.54ms max=1474.54ms count=1"
+    },
+    {
+      "line": 4449,
+      "device_time": "09:53:46.688",
+      "average_ms": 2615.82,
+      "minimum_ms": 2615.82,
+      "maximum_ms": 2615.82,
+      "count": 1,
+      "original_line": "11-14 09:53:46.688  4961  4984 D EGL_emulation: app_time_stats: avg=2615.82ms min=2615.82ms max=2615.82ms count=1"
+    },
+    {
+      "line": 4476,
+      "device_time": "09:53:48.047",
+      "average_ms": 1359.12,
+      "minimum_ms": 1359.12,
+      "maximum_ms": 1359.12,
+      "count": 1,
+      "original_line": "11-14 09:53:48.047  4961  4984 D EGL_emulation: app_time_stats: avg=1359.12ms min=1359.12ms max=1359.12ms count=1"
+    },
+    {
+      "line": 4506,
+      "device_time": "09:53:49.520",
+      "average_ms": 1473.28,
+      "minimum_ms": 1473.28,
+      "maximum_ms": 1473.28,
+      "count": 1,
+      "original_line": "11-14 09:53:49.520  4961  4984 D EGL_emulation: app_time_stats: avg=1473.28ms min=1473.28ms max=1473.28ms count=1"
+    },
+    {
+      "line": 4547,
+      "device_time": "09:53:50.899",
+      "average_ms": 1378.37,
+      "minimum_ms": 1378.37,
+      "maximum_ms": 1378.37,
+      "count": 1,
+      "original_line": "11-14 09:53:50.899  4961  4984 D EGL_emulation: app_time_stats: avg=1378.37ms min=1378.37ms max=1378.37ms count=1"
+    },
+    {
+      "line": 4572,
+      "device_time": "09:53:52.152",
+      "average_ms": 1253.44,
+      "minimum_ms": 1253.44,
+      "maximum_ms": 1253.44,
+      "count": 1,
+      "original_line": "11-14 09:53:52.152  4961  4984 D EGL_emulation: app_time_stats: avg=1253.44ms min=1253.44ms max=1253.44ms count=1"
+    },
+    {
+      "line": 4606,
+      "device_time": "09:53:53.803",
+      "average_ms": 1650.28,
+      "minimum_ms": 1650.28,
+      "maximum_ms": 1650.28,
+      "count": 1,
+      "original_line": "11-14 09:53:53.803  4961  4984 D EGL_emulation: app_time_stats: avg=1650.28ms min=1650.28ms max=1650.28ms count=1"
+    },
+    {
+      "line": 4634,
+      "device_time": "09:53:55.141",
+      "average_ms": 1337.75,
+      "minimum_ms": 1337.75,
+      "maximum_ms": 1337.75,
+      "count": 1,
+      "original_line": "11-14 09:53:55.141  4961  4984 D EGL_emulation: app_time_stats: avg=1337.75ms min=1337.75ms max=1337.75ms count=1"
+    },
+    {
+      "line": 4682,
+      "device_time": "09:53:56.799",
+      "average_ms": 1657.65,
+      "minimum_ms": 1657.65,
+      "maximum_ms": 1657.65,
+      "count": 1,
+      "original_line": "11-14 09:53:56.799  4961  4984 D EGL_emulation: app_time_stats: avg=1657.65ms min=1657.65ms max=1657.65ms count=1"
+    },
+    {
+      "line": 4700,
+      "device_time": "09:53:58.415",
+      "average_ms": 1615.97,
+      "minimum_ms": 1615.97,
+      "maximum_ms": 1615.97,
+      "count": 1,
+      "original_line": "11-14 09:53:58.415  4961  4984 D EGL_emulation: app_time_stats: avg=1615.97ms min=1615.97ms max=1615.97ms count=1"
+    },
+    {
+      "line": 4743,
+      "device_time": "09:53:59.882",
+      "average_ms": 1467.19,
+      "minimum_ms": 1467.19,
+      "maximum_ms": 1467.19,
+      "count": 1,
+      "original_line": "11-14 09:53:59.882  4961  4984 D EGL_emulation: app_time_stats: avg=1467.19ms min=1467.19ms max=1467.19ms count=1"
+    },
+    {
+      "line": 4791,
+      "device_time": "09:54:01.545",
+      "average_ms": 1662.93,
+      "minimum_ms": 1662.93,
+      "maximum_ms": 1662.93,
+      "count": 1,
+      "original_line": "11-14 09:54:01.545  4961  4984 D EGL_emulation: app_time_stats: avg=1662.93ms min=1662.93ms max=1662.93ms count=1"
+    },
+    {
+      "line": 4849,
+      "device_time": "09:54:03.526",
+      "average_ms": 1980.99,
+      "minimum_ms": 1980.99,
+      "maximum_ms": 1980.99,
+      "count": 1,
+      "original_line": "11-14 09:54:03.526  4961  4984 D EGL_emulation: app_time_stats: avg=1980.99ms min=1980.99ms max=1980.99ms count=1"
+    },
+    {
+      "line": 4874,
+      "device_time": "09:54:04.649",
+      "average_ms": 1122.38,
+      "minimum_ms": 1122.38,
+      "maximum_ms": 1122.38,
+      "count": 1,
+      "original_line": "11-14 09:54:04.649  4961  4984 D EGL_emulation: app_time_stats: avg=1122.38ms min=1122.38ms max=1122.38ms count=1"
+    },
+    {
+      "line": 4902,
+      "device_time": "09:54:06.537",
+      "average_ms": 1888.12,
+      "minimum_ms": 1888.12,
+      "maximum_ms": 1888.12,
+      "count": 1,
+      "original_line": "11-14 09:54:06.537  4961  4984 D EGL_emulation: app_time_stats: avg=1888.12ms min=1888.12ms max=1888.12ms count=1"
+    },
+    {
+      "line": 5010,
+      "device_time": "09:54:10.711",
+      "average_ms": 4173.34,
+      "minimum_ms": 4173.34,
+      "maximum_ms": 4173.34,
+      "count": 1,
+      "original_line": "11-14 09:54:10.711  4961  4984 D EGL_emulation: app_time_stats: avg=4173.34ms min=4173.34ms max=4173.34ms count=1"
+    },
+    {
+      "line": 5060,
+      "device_time": "09:54:13.210",
+      "average_ms": 2499.72,
+      "minimum_ms": 2499.72,
+      "maximum_ms": 2499.72,
+      "count": 1,
+      "original_line": "11-14 09:54:13.210  4961  4984 D EGL_emulation: app_time_stats: avg=2499.72ms min=2499.72ms max=2499.72ms count=1"
+    },
+    {
+      "line": 5090,
+      "device_time": "09:54:14.754",
+      "average_ms": 1543.78,
+      "minimum_ms": 1543.78,
+      "maximum_ms": 1543.78,
+      "count": 1,
+      "original_line": "11-14 09:54:14.754  4961  4984 D EGL_emulation: app_time_stats: avg=1543.78ms min=1543.78ms max=1543.78ms count=1"
+    },
+    {
+      "line": 5126,
+      "device_time": "09:54:16.556",
+      "average_ms": 1801.81,
+      "minimum_ms": 1801.81,
+      "maximum_ms": 1801.81,
+      "count": 1,
+      "original_line": "11-14 09:54:16.556  4961  4984 D EGL_emulation: app_time_stats: avg=1801.81ms min=1801.81ms max=1801.81ms count=1"
+    },
+    {
+      "line": 5736,
+      "device_time": "09:54:18.554",
+      "average_ms": 1997.99,
+      "minimum_ms": 1997.99,
+      "maximum_ms": 1997.99,
+      "count": 1,
+      "original_line": "11-14 09:54:18.554  4961  4984 D EGL_emulation: app_time_stats: avg=1997.99ms min=1997.99ms max=1997.99ms count=1"
+    },
+    {
+      "line": 6035,
+      "device_time": "09:54:20.664",
+      "average_ms": 2109.71,
+      "minimum_ms": 2109.71,
+      "maximum_ms": 2109.71,
+      "count": 1,
+      "original_line": "11-14 09:54:20.664  4961  4984 D EGL_emulation: app_time_stats: avg=2109.71ms min=2109.71ms max=2109.71ms count=1"
+    },
+    {
+      "line": 6218,
+      "device_time": "09:54:22.986",
+      "average_ms": 2321.26,
+      "minimum_ms": 2321.26,
+      "maximum_ms": 2321.26,
+      "count": 1,
+      "original_line": "11-14 09:54:22.986  4961  4984 D EGL_emulation: app_time_stats: avg=2321.26ms min=2321.26ms max=2321.26ms count=1"
+    },
+    {
+      "line": 6367,
+      "device_time": "09:54:25.491",
+      "average_ms": 2504.48,
+      "minimum_ms": 2504.48,
+      "maximum_ms": 2504.48,
+      "count": 1,
+      "original_line": "11-14 09:54:25.491  4961  4984 D EGL_emulation: app_time_stats: avg=2504.48ms min=2504.48ms max=2504.48ms count=1"
+    },
+    {
+      "line": 6500,
+      "device_time": "09:54:28.062",
+      "average_ms": 2571.47,
+      "minimum_ms": 2571.47,
+      "maximum_ms": 2571.47,
+      "count": 1,
+      "original_line": "11-14 09:54:28.062  4961  4984 D EGL_emulation: app_time_stats: avg=2571.47ms min=2571.47ms max=2571.47ms count=1"
+    },
+    {
+      "line": 6692,
+      "device_time": "09:54:30.154",
+      "average_ms": 2091.32,
+      "minimum_ms": 2091.32,
+      "maximum_ms": 2091.32,
+      "count": 1,
+      "original_line": "11-14 09:54:30.154  4961  4984 D EGL_emulation: app_time_stats: avg=2091.32ms min=2091.32ms max=2091.32ms count=1"
+    },
+    {
+      "line": 6803,
+      "device_time": "09:54:34.993",
+      "average_ms": 4838.9,
+      "minimum_ms": 4838.9,
+      "maximum_ms": 4838.9,
+      "count": 1,
+      "original_line": "11-14 09:54:34.993  4961  4984 D EGL_emulation: app_time_stats: avg=4838.90ms min=4838.90ms max=4838.90ms count=1"
+    },
+    {
+      "line": 6869,
+      "device_time": "09:54:38.108",
+      "average_ms": 3115.49,
+      "minimum_ms": 3115.49,
+      "maximum_ms": 3115.49,
+      "count": 1,
+      "original_line": "11-14 09:54:38.108  4961  4984 D EGL_emulation: app_time_stats: avg=3115.49ms min=3115.49ms max=3115.49ms count=1"
+    },
+    {
+      "line": 6936,
+      "device_time": "09:54:40.794",
+      "average_ms": 2685.68,
+      "minimum_ms": 2685.68,
+      "maximum_ms": 2685.68,
+      "count": 1,
+      "original_line": "11-14 09:54:40.794  4961  4984 D EGL_emulation: app_time_stats: avg=2685.68ms min=2685.68ms max=2685.68ms count=1"
+    },
+    {
+      "line": 6988,
+      "device_time": "09:54:43.282",
+      "average_ms": 2487.87,
+      "minimum_ms": 2487.87,
+      "maximum_ms": 2487.87,
+      "count": 1,
+      "original_line": "11-14 09:54:43.282  4961  4984 D EGL_emulation: app_time_stats: avg=2487.87ms min=2487.87ms max=2487.87ms count=1"
+    },
+    {
+      "line": 7045,
+      "device_time": "09:54:45.990",
+      "average_ms": 2707.77,
+      "minimum_ms": 2707.77,
+      "maximum_ms": 2707.77,
+      "count": 1,
+      "original_line": "11-14 09:54:45.990  4961  4984 D EGL_emulation: app_time_stats: avg=2707.77ms min=2707.77ms max=2707.77ms count=1"
+    },
+    {
+      "line": 7088,
+      "device_time": "09:54:48.050",
+      "average_ms": 2058.88,
+      "minimum_ms": 2058.88,
+      "maximum_ms": 2058.88,
+      "count": 1,
+      "original_line": "11-14 09:54:48.050  4961  4984 D EGL_emulation: app_time_stats: avg=2058.88ms min=2058.88ms max=2058.88ms count=1"
+    },
+    {
+      "line": 7144,
+      "device_time": "09:54:50.066",
+      "average_ms": 2015.92,
+      "minimum_ms": 2015.92,
+      "maximum_ms": 2015.92,
+      "count": 1,
+      "original_line": "11-14 09:54:50.066  4961  4984 D EGL_emulation: app_time_stats: avg=2015.92ms min=2015.92ms max=2015.92ms count=1"
+    },
+    {
+      "line": 7196,
+      "device_time": "09:54:52.354",
+      "average_ms": 2287.99,
+      "minimum_ms": 2287.99,
+      "maximum_ms": 2287.99,
+      "count": 1,
+      "original_line": "11-14 09:54:52.354  4961  4984 D EGL_emulation: app_time_stats: avg=2287.99ms min=2287.99ms max=2287.99ms count=1"
+    },
+    {
+      "line": 7244,
+      "device_time": "09:54:54.735",
+      "average_ms": 2381.28,
+      "minimum_ms": 2381.28,
+      "maximum_ms": 2381.28,
+      "count": 1,
+      "original_line": "11-14 09:54:54.735  4961  4984 D EGL_emulation: app_time_stats: avg=2381.28ms min=2381.28ms max=2381.28ms count=1"
+    },
+    {
+      "line": 7302,
+      "device_time": "09:54:57.037",
+      "average_ms": 2301.14,
+      "minimum_ms": 2301.14,
+      "maximum_ms": 2301.14,
+      "count": 1,
+      "original_line": "11-14 09:54:57.037  4961  4984 D EGL_emulation: app_time_stats: avg=2301.14ms min=2301.14ms max=2301.14ms count=1"
+    },
+    {
+      "line": 7356,
+      "device_time": "09:54:59.092",
+      "average_ms": 2054.44,
+      "minimum_ms": 2054.44,
+      "maximum_ms": 2054.44,
+      "count": 1,
+      "original_line": "11-14 09:54:59.092  4961  4984 D EGL_emulation: app_time_stats: avg=2054.44ms min=2054.44ms max=2054.44ms count=1"
+    },
+    {
+      "line": 7433,
+      "device_time": "09:55:01.422",
+      "average_ms": 2329.82,
+      "minimum_ms": 2329.82,
+      "maximum_ms": 2329.82,
+      "count": 1,
+      "original_line": "11-14 09:55:01.422  4961  4984 D EGL_emulation: app_time_stats: avg=2329.82ms min=2329.82ms max=2329.82ms count=1"
+    },
+    {
+      "line": 7483,
+      "device_time": "09:55:03.812",
+      "average_ms": 2390.66,
+      "minimum_ms": 2390.66,
+      "maximum_ms": 2390.66,
+      "count": 1,
+      "original_line": "11-14 09:55:03.812  4961  4984 D EGL_emulation: app_time_stats: avg=2390.66ms min=2390.66ms max=2390.66ms count=1"
+    },
+    {
+      "line": 7526,
+      "device_time": "09:55:05.946",
+      "average_ms": 2133.61,
+      "minimum_ms": 2133.61,
+      "maximum_ms": 2133.61,
+      "count": 1,
+      "original_line": "11-14 09:55:05.946  4961  4984 D EGL_emulation: app_time_stats: avg=2133.61ms min=2133.61ms max=2133.61ms count=1"
+    },
+    {
+      "line": 7575,
+      "device_time": "09:55:08.372",
+      "average_ms": 2425.31,
+      "minimum_ms": 2425.31,
+      "maximum_ms": 2425.31,
+      "count": 1,
+      "original_line": "11-14 09:55:08.372  4961  4984 D EGL_emulation: app_time_stats: avg=2425.31ms min=2425.31ms max=2425.31ms count=1"
+    },
+    {
+      "line": 7639,
+      "device_time": "09:55:11.032",
+      "average_ms": 2660.62,
+      "minimum_ms": 2660.62,
+      "maximum_ms": 2660.62,
+      "count": 1,
+      "original_line": "11-14 09:55:11.032  4961  4984 D EGL_emulation: app_time_stats: avg=2660.62ms min=2660.62ms max=2660.62ms count=1"
+    },
+    {
+      "line": 7681,
+      "device_time": "09:55:13.067",
+      "average_ms": 2034.55,
+      "minimum_ms": 2034.55,
+      "maximum_ms": 2034.55,
+      "count": 1,
+      "original_line": "11-14 09:55:13.067  4961  4984 D EGL_emulation: app_time_stats: avg=2034.55ms min=2034.55ms max=2034.55ms count=1"
+    },
+    {
+      "line": 7721,
+      "device_time": "09:55:15.051",
+      "average_ms": 1984.05,
+      "minimum_ms": 1984.05,
+      "maximum_ms": 1984.05,
+      "count": 1,
+      "original_line": "11-14 09:55:15.051  4961  4984 D EGL_emulation: app_time_stats: avg=1984.05ms min=1984.05ms max=1984.05ms count=1"
+    },
+    {
+      "line": 7838,
+      "device_time": "09:55:17.255",
+      "average_ms": 2203.21,
+      "minimum_ms": 2203.21,
+      "maximum_ms": 2203.21,
+      "count": 1,
+      "original_line": "11-14 09:55:17.255  4961  4984 D EGL_emulation: app_time_stats: avg=2203.21ms min=2203.21ms max=2203.21ms count=1"
+    },
+    {
+      "line": 7950,
+      "device_time": "09:55:19.919",
+      "average_ms": 2663.98,
+      "minimum_ms": 2663.98,
+      "maximum_ms": 2663.98,
+      "count": 1,
+      "original_line": "11-14 09:55:19.919  4961  4984 D EGL_emulation: app_time_stats: avg=2663.98ms min=2663.98ms max=2663.98ms count=1"
+    },
+    {
+      "line": 8022,
+      "device_time": "09:55:22.030",
+      "average_ms": 2110.87,
+      "minimum_ms": 2110.87,
+      "maximum_ms": 2110.87,
+      "count": 1,
+      "original_line": "11-14 09:55:22.030  4961  4984 D EGL_emulation: app_time_stats: avg=2110.87ms min=2110.87ms max=2110.87ms count=1"
+    },
+    {
+      "line": 8070,
+      "device_time": "09:55:24.439",
+      "average_ms": 2409.5,
+      "minimum_ms": 2409.5,
+      "maximum_ms": 2409.5,
+      "count": 1,
+      "original_line": "11-14 09:55:24.439  4961  4984 D EGL_emulation: app_time_stats: avg=2409.50ms min=2409.50ms max=2409.50ms count=1"
+    },
+    {
+      "line": 8109,
+      "device_time": "09:55:26.445",
+      "average_ms": 2005.65,
+      "minimum_ms": 2005.65,
+      "maximum_ms": 2005.65,
+      "count": 1,
+      "original_line": "11-14 09:55:26.445  4961  4984 D EGL_emulation: app_time_stats: avg=2005.65ms min=2005.65ms max=2005.65ms count=1"
+    },
+    {
+      "line": 8158,
+      "device_time": "09:55:28.606",
+      "average_ms": 2161.21,
+      "minimum_ms": 2161.21,
+      "maximum_ms": 2161.21,
+      "count": 1,
+      "original_line": "11-14 09:55:28.606  4961  4984 D EGL_emulation: app_time_stats: avg=2161.21ms min=2161.21ms max=2161.21ms count=1"
+    },
+    {
+      "line": 8198,
+      "device_time": "09:55:30.608",
+      "average_ms": 2002.11,
+      "minimum_ms": 2002.11,
+      "maximum_ms": 2002.11,
+      "count": 1,
+      "original_line": "11-14 09:55:30.608  4961  4984 D EGL_emulation: app_time_stats: avg=2002.11ms min=2002.11ms max=2002.11ms count=1"
+    },
+    {
+      "line": 8244,
+      "device_time": "09:55:32.603",
+      "average_ms": 1994.76,
+      "minimum_ms": 1994.76,
+      "maximum_ms": 1994.76,
+      "count": 1,
+      "original_line": "11-14 09:55:32.603  4961  4984 D EGL_emulation: app_time_stats: avg=1994.76ms min=1994.76ms max=1994.76ms count=1"
+    },
+    {
+      "line": 8293,
+      "device_time": "09:55:34.974",
+      "average_ms": 2371.04,
+      "minimum_ms": 2371.04,
+      "maximum_ms": 2371.04,
+      "count": 1,
+      "original_line": "11-14 09:55:34.974  4961  4984 D EGL_emulation: app_time_stats: avg=2371.04ms min=2371.04ms max=2371.04ms count=1"
+    },
+    {
+      "line": 8351,
+      "device_time": "09:55:37.698",
+      "average_ms": 2723.91,
+      "minimum_ms": 2723.91,
+      "maximum_ms": 2723.91,
+      "count": 1,
+      "original_line": "11-14 09:55:37.698  4961  4984 D EGL_emulation: app_time_stats: avg=2723.91ms min=2723.91ms max=2723.91ms count=1"
+    },
+    {
+      "line": 8390,
+      "device_time": "09:55:39.697",
+      "average_ms": 1998.08,
+      "minimum_ms": 1998.08,
+      "maximum_ms": 1998.08,
+      "count": 1,
+      "original_line": "11-14 09:55:39.697  4961  4984 D EGL_emulation: app_time_stats: avg=1998.08ms min=1998.08ms max=1998.08ms count=1"
+    },
+    {
+      "line": 8431,
+      "device_time": "09:55:41.758",
+      "average_ms": 2061.02,
+      "minimum_ms": 2061.02,
+      "maximum_ms": 2061.02,
+      "count": 1,
+      "original_line": "11-14 09:55:41.758  4961  4984 D EGL_emulation: app_time_stats: avg=2061.02ms min=2061.02ms max=2061.02ms count=1"
+    },
+    {
+      "line": 8477,
+      "device_time": "09:55:44.029",
+      "average_ms": 2270.55,
+      "minimum_ms": 2270.55,
+      "maximum_ms": 2270.55,
+      "count": 1,
+      "original_line": "11-14 09:55:44.029  4961  4984 D EGL_emulation: app_time_stats: avg=2270.55ms min=2270.55ms max=2270.55ms count=1"
+    },
+    {
+      "line": 8520,
+      "device_time": "09:55:46.300",
+      "average_ms": 2270.91,
+      "minimum_ms": 2270.91,
+      "maximum_ms": 2270.91,
+      "count": 1,
+      "original_line": "11-14 09:55:46.300  4961  4984 D EGL_emulation: app_time_stats: avg=2270.91ms min=2270.91ms max=2270.91ms count=1"
+    },
+    {
+      "line": 8572,
+      "device_time": "09:55:48.823",
+      "average_ms": 2523.68,
+      "minimum_ms": 2523.68,
+      "maximum_ms": 2523.68,
+      "count": 1,
+      "original_line": "11-14 09:55:48.823  4961  4984 D EGL_emulation: app_time_stats: avg=2523.68ms min=2523.68ms max=2523.68ms count=1"
+    },
+    {
+      "line": 8619,
+      "device_time": "09:55:51.053",
+      "average_ms": 2229.79,
+      "minimum_ms": 2229.79,
+      "maximum_ms": 2229.79,
+      "count": 1,
+      "original_line": "11-14 09:55:51.053  4961  4984 D EGL_emulation: app_time_stats: avg=2229.79ms min=2229.79ms max=2229.79ms count=1"
+    },
+    {
+      "line": 8667,
+      "device_time": "09:55:53.434",
+      "average_ms": 2380.35,
+      "minimum_ms": 2380.35,
+      "maximum_ms": 2380.35,
+      "count": 1,
+      "original_line": "11-14 09:55:53.434  4961  4984 D EGL_emulation: app_time_stats: avg=2380.35ms min=2380.35ms max=2380.35ms count=1"
+    },
+    {
+      "line": 8714,
+      "device_time": "09:55:55.782",
+      "average_ms": 2348.25,
+      "minimum_ms": 2348.25,
+      "maximum_ms": 2348.25,
+      "count": 1,
+      "original_line": "11-14 09:55:55.782  4961  4984 D EGL_emulation: app_time_stats: avg=2348.25ms min=2348.25ms max=2348.25ms count=1"
+    },
+    {
+      "line": 8759,
+      "device_time": "09:55:58.012",
+      "average_ms": 2229.31,
+      "minimum_ms": 2229.31,
+      "maximum_ms": 2229.31,
+      "count": 1,
+      "original_line": "11-14 09:55:58.012  4961  4984 D EGL_emulation: app_time_stats: avg=2229.31ms min=2229.31ms max=2229.31ms count=1"
+    }
+  ],
+  "reported_summary_count": 69,
+  "reported_frame_count": 69,
+  "physics_source_model": {
+    "default_ticks_per_second": 60,
+    "default_max_steps_per_frame": 8,
+    "track_preview_seconds": 5.0,
+    "countdown_seconds": 3.5,
+    "first_active_snapshot_elapsed_seconds": 1.0,
+    "nominal_required_simulated_seconds": 9.5,
+    "nominal_69_frames_at_default_cap_seconds": 9.2,
+    "limits": "EGL counts are observed presentation summaries, not a physics-step trace. This conditional arithmetic explains compatibility with the engine cap but is not an exact measurement of elapsed simulation time, CPU/GPU timings, or proof excluding all focus events."
+  },
+  "lifecycle_limit": "Godot OnResume is observed at09:52:18.386. The first recorded Godot OnPause is09:56:03.613 after LumoHost return09:56:03.604. No per-step SceneTree.paused or window-focus telemetry is available."
+}

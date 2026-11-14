@@ -1,0 +1,381 @@
+{
+  "schema": 1,
+  "scope": "Explicit immutable evidence upload list; excludes original large ZIP, APKs and shader caches. Original ZIP and every member hash remain locally retained.",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43530667812,
+  "reviewed_at_utc": "2026-11-14T01:25:21.021301+00:00",
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 2903,
+      "sha256": "831a23ae9b76c75886cfce8396d4f0fbbb6a6cc828f29579b56ad9640727284a",
+      "git_blob": "de086ad67e96642ac89214b301a90dc5a951b585",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/README.md",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/README.md",
+      "mode": "100644"
+    },
+    {
+      "path": "independent-review.json",
+      "bytes": 12854,
+      "sha256": "89fc14084a6cf85a026f2e3c182eccc4fe649a4851591699f9d02fa14fc814c7",
+      "git_blob": "1a74e63e33f99d57d317fd9822939fc98bee1b3a",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/independent-review.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/independent-review.json",
+      "mode": "100644"
+    },
+    {
+      "path": "source-binding.json",
+      "bytes": 3221,
+      "sha256": "370ec57512c40777f4d9703dd9126b941827bf1ef05e7e8d2f927b25f58ecd90",
+      "git_blob": "931709938091134624212d9ae9ac27e7b6fb9341",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/source-binding.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/source-binding.json",
+      "mode": "100644"
+    },
+    {
+      "path": "artifact-byte-verification.json",
+      "bytes": 260542,
+      "sha256": "4b196be5e6cf06ee27dd5c9f87ea3b2e3619dfd297570d6713e9c07f3cca9ad6",
+      "git_blob": "727c6dba4a19a509ae084863be8d4ffd773a6399",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/artifact-byte-verification.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/artifact-byte-verification.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals-final-manifest.json",
+      "bytes": 9912,
+      "sha256": "7088b6a5db2a3e940d0d4be82afa368d3b3204c5648babbded3bbbf3697eafae",
+      "git_blob": "a78c25236b4135a31dd705542b712f2901da831e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals-final-manifest.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals-final-manifest.json",
+      "mode": "100644"
+    },
+    {
+      "path": "github-artifact-metadata.json",
+      "bytes": 863,
+      "sha256": "9cfede640cfb96fd3e54692dc7a44e1d30af00b7846464a51a4fbbae97fdd3e7",
+      "git_blob": "419ab626364b8fd7db0e0fc0b7ca905d57bbb4c5",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/github-artifact-metadata.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/github-artifact-metadata.json",
+      "mode": "100644"
+    },
+    {
+      "path": "completion-run-jobs-original.json",
+      "bytes": 25829,
+      "sha256": "4817a03adba5d9b755ddf6c01af1121f0bad5f0b646fc8b3099150ef01df05f6",
+      "git_blob": "d65c4a037e2b1b165e5beb7659c84b3b6f369b94",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/completion-run-jobs-original.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/completion-run-jobs-original.json",
+      "mode": "100644"
+    },
+    {
+      "path": "original-job.log",
+      "bytes": 1502217,
+      "sha256": "bbb3283f27dd4c859e1686bd7d8dc298a9a72914bfab4209e9812a9add4f7f07",
+      "git_blob": "54c9d0fa283c6de108c7d46c4828270e83c2bebe",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/original-job.log",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/original-job.log",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/21_race_drive_telemetry.json",
+      "bytes": 815,
+      "sha256": "82d130b218961269b3bc566df7d287266cb41b879f926c1ff3fc1de6f6420bb3",
+      "git_blob": "1778cd5fafa72bccb1f2847180590f74a3c69f45",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/21_race_drive_telemetry.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/21_race_drive_telemetry.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/21_stage_navigation.json",
+      "bytes": 707,
+      "sha256": "f0aca52581636e7096a3d5411e3227d454d2935d2bbd534b23097b6fc4ad7c90",
+      "git_blob": "36d49b34e0efc0c9b11a178adcabcb83119bfe30",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/21_stage_navigation.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/21_stage_navigation.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 468,
+      "sha256": "ae40bf47e997379dd06903cef13d4a192552092ae478dfaaa2a63b7fdd34a468",
+      "git_blob": "d032c01cd24a425e8ae6ec9efc8de33c39d1b79f",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/23_zurueck_in_flutter-flutter-return.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/23_zurueck_in_flutter-flutter-return.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/action-patch-manifest.json",
+      "bytes": 3475,
+      "sha256": "59340fab074ace09f790392d557b04f25b4c769af191a51ed0866cd0bc3ba9f7",
+      "git_blob": "62cad227b7e0c577a1884bede34b7640cae405ae",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/action-patch-manifest.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/action-patch-manifest.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/avd-after-action/snapshot.json",
+      "bytes": 9636,
+      "sha256": "b6ef2bc662ffdd9788c2c9e9fa655feeec5ef301175d10bce09eb80cb4e272f4",
+      "git_blob": "124520261dd70a1d32faa6dcf4e97ea6a606f0cb",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/avd-after-action/snapshot.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/avd-after-action/snapshot.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/avd-before-boot/snapshot.json",
+      "bytes": 5782,
+      "sha256": "7c3f23e2dc11e7df2e803eb538404daac5fcaeacb96f70ce8292a54eeb2a0068",
+      "git_blob": "6688587ef2b32f079e8c35b1b0f744f344d3c904",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/avd-before-boot/snapshot.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/avd-before-boot/snapshot.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/avd-guard/snapshot.json",
+      "bytes": 9163,
+      "sha256": "b97ca16d1c7c0632bb451402eac2e3c18818b3ef51fe2e58b23c8a4466b3bd05",
+      "git_blob": "01c9d82891914ef375535d3441338c134cff2bc5",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/avd-guard/snapshot.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/avd-guard/snapshot.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/avd-original/snapshot.json",
+      "bytes": 5852,
+      "sha256": "e71f8474621e3a552123ae2f9429c057f023b111cf7154b41e4a9ad9d404d37e",
+      "git_blob": "f8407cbf4d150582d5ff6a157d0c10131a08c146",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/avd-original/snapshot.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/avd-original/snapshot.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/original-source.properties",
+      "bytes": 86,
+      "sha256": "d4eb560d17731d9919dbb91bfecb2d90418cb60c21e07b6c02302a682fbb760e",
+      "git_blob": "5ad3e98273b008cfb7aa980ade80e96f8b3fd579",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/original-source.properties",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/original-source.properties",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/packages-guard/packages.json",
+      "bytes": 4327,
+      "sha256": "5422baf61d45f906e72012f0f46f82e9313904522042e481f57ab4e7e0c7e5e0",
+      "git_blob": "d1e410ed6142c232c4b536ab4d47183916afc522",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/packages-guard/packages.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/packages-guard/packages.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22/verified-guard.json",
+      "bytes": 37839,
+      "sha256": "6f948c4af8c7297b9af4de439d23af876c55b55d3a589cab539f42ef01ccc69d",
+      "git_blob": "3c45af8965f38effd1143010514b1ccec054a50a",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22/verified-guard.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22/verified-guard.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/cli22-avd-verify.json",
+      "bytes": 280,
+      "sha256": "93b116e5cc215905d4ca7a14b45c98726879f99a82687fa725be3d7d608a1ff8",
+      "git_blob": "dfcf4050fb5d08d42e3326c1dc52e24585fb1cdf",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/cli22-avd-verify.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/cli22-avd-verify.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/framework-start/framework-readiness.json",
+      "bytes": 32975,
+      "sha256": "3c070c9ad35558359623206c4f472afc3f09e145de89e793eeb5396a4b890b01",
+      "git_blob": "8d9fb64a020eba42a08cade9cd77b9d0e7797b7a",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/framework-start/framework-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/framework-start/framework-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "bytes": 555235,
+      "sha256": "c6abbbb6e9ea2de0fee2b3870d507147b9f1bf68b18c961c482a879283d22f7c",
+      "git_blob": "cec672ebeff4730ea058346b3decdca2c168ca07",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/guided-bridge-actual-target.json",
+      "bytes": 242,
+      "sha256": "f575d9fc8eb85c85c7f3ba198b64e1166585da5cffa8cae64aa6b96694156ddb",
+      "git_blob": "6ac3eabec98320342a9af3c7823f2b7e7e9580f4",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/guided-bridge-actual-target.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/guided-bridge-actual-target.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-0-ocr.json",
+      "bytes": 10432,
+      "sha256": "95a5d59c4fefa56460170c030739f0b2e7c81bd71891b1f9b6c3f32bd09d7200",
+      "git_blob": "d8d07aa48bbf0aea24bddf152c59d6a93fecc51e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-0-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-0-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-0.png",
+      "bytes": 555537,
+      "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "git_blob": "816498d883f8f481c754b06817e26af449f7112f",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-0.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-0.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-1-ocr.json",
+      "bytes": 10163,
+      "sha256": "1c8a55b540128c7abf57db3b1c13057c209792fd9703241a03c16acc85f8477a",
+      "git_blob": "c3c9cb6c557865aec69b6bd866d4bdd9294c6c5c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-1-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-1-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-2-ocr.json",
+      "bytes": 9778,
+      "sha256": "5e2f74458d4b7238218acec980f35de08d41dfaf9fa59c9af032d4526c745981",
+      "git_blob": "61cb0ba828b5c288eb6a1dd853b2153af1707eb4",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-2-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-2-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-3-ocr.json",
+      "bytes": 10172,
+      "sha256": "6d8e06b4e686284ffa22d24ee43f36b2d3c47bd792f00e03712bf0f6affc9339",
+      "git_blob": "f4804c30d08eb57f442d8082f17d7bcb614461b7",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-3-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-3-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-4-ocr.json",
+      "bytes": 10294,
+      "sha256": "bfa79d6e7851ee811be2481c531aaa38fa4c97e4bb81e7c244edb05d49b9cdec",
+      "git_blob": "56c039aa7f84f443a21be52ae5445986208020ae",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-4-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-4-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-5-ocr.json",
+      "bytes": 10276,
+      "sha256": "254d4e44b998b497f3ceab5aa0dd115aa23f615addde2cb7ff1e99490475524a",
+      "git_blob": "ddb9221ab85d3157355f2688f5a70a50cf803db0",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-5-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-5-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-6-ocr.json",
+      "bytes": 10445,
+      "sha256": "9e9d2034512d207273bc1bf2125c7daaf14258f6bc49b6a46e0cac689d3f58c2",
+      "git_blob": "ae965c4a6b1e1e89a82ff455cfa50c1261dc093e",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-6-ocr.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-6-ocr.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-6.png",
+      "bytes": 556003,
+      "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "git_blob": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-6.png",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-6.png",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "bytes": 5932,
+      "sha256": "349169d6790f73075c9fe24791239fde5eedcbb33818df095038d7bb49622ca3",
+      "git_blob": "63eb507e7df0b98a7d01ee865c305a5c4e0f58f4",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/native-surfaces-result.json",
+      "bytes": 4303,
+      "sha256": "e000d4a544f3c0e0c1727889fdd1979bd90135b297a6e0d0501b2cb296802e34",
+      "git_blob": "f0f932f1ad03b9b0991d1bb450cc1d22e5c1908f",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/native-surfaces-result.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/native-surfaces-result.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/nextgen/rooted-emulator.json",
+      "bytes": 1553,
+      "sha256": "c53457614fa79a44cedae8225c81df98a16529c1704aea5e832cf067c4b3be46",
+      "git_blob": "634a89ac335c3205f8b5134ba8462010f75812fb",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/nextgen/rooted-emulator.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/nextgen/rooted-emulator.json",
+      "mode": "100644"
+    },
+    {
+      "path": "selected-originals/tour-result.json",
+      "bytes": 9749,
+      "sha256": "53b439d4f66bc19c6657da71a58b8573bffbfe858f0bf79583eb7c31c50bcdeb",
+      "git_blob": "75dfe52850c2bc6a149c6d261bef7d8d77f2caee",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/selected-originals/tour-result.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/selected-originals/tour-result.json",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/.github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/source-snapshots/.github/probes/creative_android_probe.py",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/source-snapshots/.github/probes/creative_android_probe.py",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/source-snapshots/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/source-snapshots/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/.github/workflows/lumo-studio-2019.yml",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+      "git_blob": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/source-snapshots/.github/workflows/lumo-studio-2019.yml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/source-snapshots/.github/workflows/lumo-studio-2019.yml",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "e8d96e2bf2020df2510fad816e77e6e945419955fc31ad2e8cd76b83a3086417",
+      "git_blob": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/source-snapshots/config/godot-source.json",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/source-snapshots/config/godot-source.json",
+      "mode": "100644"
+    },
+    {
+      "path": "source-snapshots/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+      "git_blob": "40a3226d7b575cc414abc1494dfff5924a5de775",
+      "workspace_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/api37/source-snapshots/pubspec.yaml",
+      "repository_path": "docs/evidence/studio-final-verification-4ab96666/api37/source-snapshots/pubspec.yaml",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 41,
+  "total_bytes": 3841881
+}

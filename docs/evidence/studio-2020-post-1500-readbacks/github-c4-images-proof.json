@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "evidence_commit": "1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+  "artifact_id": 14108161604,
+  "host_sha": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "images": [
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/1200x896.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0da1025ad179f83d5c5a01be072ba6dee005b9cf",
+      "bytes": 705374,
+      "sha256": "e7ddd655f26b2c84c7ef2f9235c59f2cf399b547aec8ea8535006dfccbe9586d",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/1280x720.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "008692ccb7a1ca203e16f931cd3945702dfcddd1",
+      "bytes": 635882,
+      "sha256": "bb22f40bb2193e6d67aa43a5cec929eee8fd98a84c20e436ac4d191c8f1a2e12",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/360x800.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "1fa5a4b0c1cf6ee1aaeb1981e6c7f130c7ca552e",
+      "bytes": 199897,
+      "sha256": "4d8b0db20534914db8960081886236421357d13af0a2f8e09580ed0905b387f4",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/640x360.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8ba2b893fa81c2ea6869bf5cdffadcccfa4dbeff",
+      "bytes": 150801,
+      "sha256": "6f34ad2e2db979155137f6a9bb7d958aafb70079065ed61a9917e284ee057c2c",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/740x840.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e3361b726aab6eb7be483caad4fab2f7a2db64a0",
+      "bytes": 390737,
+      "sha256": "5990524a7235f52e3588acea53db98c8cccad1cde1bfcb43831122f5bb1d0a72",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/fold-320x480-text2.0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d5fef799c1e00bba28f7d7a59e41094fa2cf60c0",
+      "bytes": 115813,
+      "sha256": "6e0437716ce4cdeb3a526ec3fc373dd868b4494dc170318b6d0b9e39b49c09e0",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/fold-320x740-text1.0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d34dcf301ec08133cefc79b28631104ba7e5027a",
+      "bytes": 167247,
+      "sha256": "1f5ccb663263474ae30e5d648f6ef700e3624e99ed7b5518b55b0601a9f9f57d",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/fold-360x800-text1.0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e0614745838f8a65c8376bda1780bc41d090f30b",
+      "bytes": 192707,
+      "sha256": "60086a100648139977d072ade46bebc5e20b363f7661d5a0bafa4616d2f981e7",
+      "readback_bytes_exact": true
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-078-c4-originals/captures/fold-640x360-text1.0.png",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "53022131c5dd529698193b5a47d034c9258ac999",
+      "bytes": 147998,
+      "sha256": "5fb0d423a3ee6ad230d960dc79a153f9c10a6be1cf906e61a3ede7accfc6aa10",
+      "readback_bytes_exact": true
+    }
+  ],
+  "all_readback_exact": true,
+  "scope": "All nine originals are now immutable Git files; binary readback used fetch_file(base64), because generic fetch/fetch_blob decode UTF-8 and cannot return PNG bytes."
+}

@@ -1,0 +1,206 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T03:09:53.289621+00:00",
+  "scope": "Independent read-only inspection of exactly two actual saved return images, original OCR/XML/timing and the bounded return guard; no repair or test rerun.",
+  "qa_run": 43546627017,
+  "qa_job": 132299721937,
+  "qa_source_prefix": "3e08",
+  "apk_identity": {
+    "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "android_runtime": {
+    "sdk": 37,
+    "release": "17",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "original_archive": {
+    "bytes": 140451755,
+    "sha256": "3f143f91cd5b642e34ae1c087b1918a75f2f8b713071c19197c894adab181dfb",
+    "downloaded_again": false,
+    "selection_bytes_checked_against_archive": true,
+    "full_crc": "Already verified by owning agent; this review independently read the seven selected members."
+  },
+  "files": [
+    {
+      "artifact_entry": "nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "bytes": 2673455,
+      "sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        2,
+        59,
+        52
+      ],
+      "byte_equal_to_original_archive": true,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true
+    },
+    {
+      "artifact_entry": "nextgen/99_nextgen_failure.png",
+      "bytes": 520559,
+      "sha256": "8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        18
+      ],
+      "byte_equal_to_original_archive": true,
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_with_view_image": true
+    },
+    {
+      "artifact_entry": "nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "bytes": 942,
+      "sha256": "96f48212caf3403cdd81102ed9ab4eb57c990f9a75ce70078361af3311ed6ed0",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        16
+      ],
+      "byte_equal_to_original_archive": true
+    },
+    {
+      "artifact_entry": "nextgen/14_cards_same_flutter_round.xml",
+      "bytes": 34299,
+      "sha256": "f777993b228aac08c944b124b5c5519bd01a2693597801bb7d14541eac503913",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        2,
+        59,
+        46
+      ],
+      "byte_equal_to_original_archive": true
+    },
+    {
+      "artifact_entry": "nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr.json",
+      "bytes": 32262,
+      "sha256": "c65a2c94214d998146f4ce10275e5db49d14950afe24c4ca2ff39d1dfea2ae04",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        14
+      ],
+      "byte_equal_to_original_archive": true
+    },
+    {
+      "artifact_entry": "nextgen/logcat.txt",
+      "bytes": 1480490,
+      "sha256": "a956fbb6fd39d190dc520f3899532bce59059f6ea18650f6d2392f2d4c3b17bf",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        18
+      ],
+      "byte_equal_to_original_archive": true
+    },
+    {
+      "artifact_entry": "nextgen/native-surfaces-result.json",
+      "bytes": 6538,
+      "sha256": "09e2646853093f262932dee9f035990d36bc2673f3770c52729dbbf83dbac13b",
+      "zip_member_timestamp": [
+        2026,
+        11,
+        14,
+        3,
+        0,
+        18
+      ],
+      "byte_equal_to_original_archive": true
+    }
+  ],
+  "observations": [
+    {
+      "artifact_entry": "nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "finding": "The visible image is the Lumo Cards launch cover with Die Spielwelt wird geöffnet and Gleich geht dein Abenteuer los!, not the pause card. The expected Spiel pausiert caption is genuinely absent. Original OCR recognizes the actual launch texts and correctly rejects this image.",
+      "source_identity": "These exact launch strings and the cover widget are defined in the freshly read 4ab Flutter LumoGameEntryOverlay. This is not evidence that the Godot table itself remained visible."
+    },
+    {
+      "artifact_entry": "nextgen/99_nextgen_failure.png",
+      "finding": "The later exception-capture image visibly shows the complete Flutter pause card: Spiel pausiert, Dein aktueller Zug wartet auf dich., Fortsetzen, Zur Spieleauswahl, Neu starten. No visible clipping of the card or these controls. This image is recorded after the guard failure and is not either of the two required accepted frames."
+    },
+    {
+      "artifact_entry": "nextgen/14_cards_same_flutter_round.xml",
+      "finding": "The accessibility snapshot already exposes Spiel pausiert, Fortsetzen, Zur Spieleauswahl and Neu starten. Pixel and semantic observations differ during this return."
+    }
+  ],
+  "timing": {
+    "guard_budget_seconds": 30,
+    "reported_elapsed_seconds": 30.00421,
+    "saved_guard_candidates": 1,
+    "first_candidate_status": "REJECTED",
+    "second_candidate_status": "CHECKING",
+    "final_screencap_timeout_seconds": 0.7764820609997969,
+    "source_order": "returned_to_flutter verifies native-process exit/MainActivity, verifies semantics, then invokes the two-frame pixel guard. main records 99_nextgen_failure only after the exception.",
+    "member_timestamp_limit": "ZIP timestamps are file timestamps with two-second granularity, not render/scanout timestamps. Candidate1 is 02:59:52, OCR JSON 03:00:14, report 03:00:16 and exception image 03:00:18 UTC.",
+    "causal_limit": "The saved observations do not locate the actual first pause raster in time and do not prove the full 30-second budget was spent in widget loading or OCR alone."
+  },
+  "lifecycle_log_facts": [
+    "02:59:42.673 [LumoHost] return: games",
+    "02:59:42.748 MainActivity surface is assigned; 02:59:42.754-.755 MainActivity surfaces are created",
+    "02:59:43.341 isolated lumo_game pid 8371 has died",
+    "02:59:44.825 WindowManagerShell reports transition animations finished"
+  ],
+  "source_bindings": [
+    {
+      "url": "https://raw.githubusercontent.com/Ullmann27/lumo-lernen/4ab96666f954baf258422d6ed277fc297b7ddeef/lib/features/lumo3d/lumo_game_entry_overlay.dart",
+      "local_copy": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/independent-source/lumo_game_entry_overlay-4ab.dart",
+      "sha256": "ca75568750c8ea1efdc3ead7863f5d91b8330e565597173bed9af84bf4c32b74",
+      "git_blob": "3408e5f304003c91fc3172d03b4d22ad467d8ec0"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/.github/probes/creative_android_probe.py",
+      "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+    }
+  ],
+  "conclusion": "The actual pixel gate remains FAILED. The first image is correctly rejected; the later real image confirms eventual visible Flutter pause, not the required two-frame return acceptance. Further source/lifecycle analysis is needed to distinguish stale Flutter surface presentation from the entry widget remaining logically visible. No OCR or timeout relaxation is justified by this review.",
+  "new_host_86445_result": false,
+  "mutations": {
+    "source": false,
+    "git": false,
+    "run_retry": false,
+    "tests": false
+  }
+}

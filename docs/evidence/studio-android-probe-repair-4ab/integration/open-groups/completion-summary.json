@@ -1,0 +1,315 @@
+{
+  "created_utc": "2026-11-14T02:09:00.625697+00:00",
+  "result": "ALL_REQUESTED_REMAINING_GROUPS_PASSED_WITH_EXISTING_IMPORT_PATH",
+  "executed_only": [
+    "test_native_surface_readiness.py",
+    "test_native_ocr_tiles.py",
+    "test_native_dim_caption.py",
+    "actionlint"
+  ],
+  "tests_passed": 34,
+  "tests_skipped": 0,
+  "actionlint_exit_code": 0,
+  "results": [
+    {
+      "name": "existing-native-surface",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_native_surface_readiness.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "environment_overrides": {
+        "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OMP_THREAD_LIMIT": "1",
+        "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+      },
+      "started_utc": "2026-11-14T02:08:13.379024+00:00",
+      "elapsed_seconds": 0.41531925500021316,
+      "exit_code": 0,
+      "exception": null,
+      "test_count": 22,
+      "unittest_seconds": 0.265,
+      "skip_count": 0,
+      "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/existing-native-surface-corrected.log",
+      "log_bytes": 4552,
+      "log_sha256": "7c132348c320b26fbcb90637f502c44e856f214d0935290d5e0cbd92e7ee6568"
+    },
+    {
+      "name": "existing-native-ocr-tiles",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_native_ocr_tiles.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "environment_overrides": {
+        "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OMP_THREAD_LIMIT": "1",
+        "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+      },
+      "started_utc": "2026-11-14T02:08:13.366675+00:00",
+      "elapsed_seconds": 0.26456447699456476,
+      "exit_code": 0,
+      "exception": null,
+      "test_count": 10,
+      "unittest_seconds": 0.076,
+      "skip_count": 0,
+      "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/existing-native-ocr-tiles-corrected.log",
+      "log_bytes": 2117,
+      "log_sha256": "7965cc9a928d38777bae106117577c41929416a186da11134351401ec2bfb22c"
+    },
+    {
+      "name": "existing-native-dim",
+      "command": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tools/android_qa/tests",
+        "-p",
+        "test_native_dim_caption.py",
+        "-v"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "environment_overrides": {
+        "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OMP_THREAD_LIMIT": "1",
+        "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+      },
+      "started_utc": "2026-11-14T02:08:13.395031+00:00",
+      "elapsed_seconds": 5.652869835001184,
+      "exit_code": 0,
+      "exception": null,
+      "test_count": 2,
+      "unittest_seconds": 5.549,
+      "skip_count": 0,
+      "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/existing-native-dim-corrected.log",
+      "log_bytes": 422,
+      "log_sha256": "a6a11affe1b9986dba6d562159f28ce366641eb8d8402c54d1629f27afad14ed"
+    },
+    {
+      "name": "actionlint",
+      "command": [
+        "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+        ".github/workflows/lumo-studio-2019.yml"
+      ],
+      "cwd": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+      "environment_overrides": {
+        "PYTHONPATH": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.github/probes:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/tools/android_qa:/workspace/scratch/5987865ae883/lumo-studio-final-e3d/scripts/probes",
+        "PYTHONDONTWRITEBYTECODE": "1",
+        "OMP_THREAD_LIMIT": "1",
+        "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata"
+      },
+      "started_utc": "2026-11-14T02:08:13.377285+00:00",
+      "elapsed_seconds": 0.03431724201072939,
+      "exit_code": 0,
+      "exception": null,
+      "test_count": null,
+      "unittest_seconds": null,
+      "skip_count": 0,
+      "log": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-review/open-groups/actionlint-corrected.log",
+      "log_bytes": 0,
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "original_failure_retained": {
+    "file": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/existing-native-surface.log",
+    "sha256": "02c3b92d4d4008a6d0d4f3230aeda41daf9f2c63a7731fef8a3a1ed9e95759d0",
+    "cause": "The individually loaded helper imports its existing sibling flutter_surface_readiness before its own path additions. The targeted test loader lacks .github/probes on sys.path. Supplying that existing directory removes all14 import errors without changing any source."
+  },
+  "actual_ci_command": ".ci-python/bin/python -m unittest discover -s tools/android_qa/tests -p test_*.py -v",
+  "isolated_command_adjustment": "Explicit PYTHONPATH includes the unchanged .github/probes, tools/android_qa and scripts/probes directories; commands/environment/timing are recorded per result. No assertion, source or fixture changed.",
+  "already_passed_root_groups_not_repeated": [
+    {
+      "name": "scripts-repair-contracts",
+      "test_count": 79,
+      "source": "Unchanged original Root-run log; not re-executed here",
+      "log_sha256": "aeacba5d07f5b779cd038b5b70c15e3c34e352e5a5e39eea4d532150abf11605",
+      "exit_code": 0
+    },
+    {
+      "name": "puzzle-observed-menu",
+      "test_count": 6,
+      "source": "Unchanged original Root-run log; not re-executed here",
+      "log_sha256": "7a0833d99353eeb70a7d1f78ab997d04a26f2e99619914ba45edb0eb9f913975",
+      "exit_code": 0
+    },
+    {
+      "name": "real-original-caption-replay",
+      "test_count": 12,
+      "source": "Unchanged original Root-run log; not re-executed here",
+      "log_sha256": "f5d342b0dd8d15c7ec5d5f067aa08570c6609636022e8b4c4934fac6a5bff223",
+      "exit_code": 0
+    }
+  ],
+  "all_29_integrated_source_hashes_unchanged": true,
+  "sources_after": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "unchanged": true
+    },
+    {
+      "path": ".github/probes/studio_creative_android_probe.py",
+      "sha256": "f3438c5d56cc26f0945831f13458faf07f73f3dd9c35dca2365a85d8a4824fe8",
+      "unchanged": true
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-first.png",
+      "sha256": "92bd76f2d0058f02f74b999ac89a3941bee23a80e6dd4808a653d5b7fcc4dc34",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-ocr.json",
+      "sha256": "d315a1c0349ada7349e48ad3b9ce52de7366f9f448bfa2bea81839f639f8730a",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-second.png",
+      "sha256": "0d3d1d32e03384c951af53946850c0cdad19e1d130425f60efd56dc4fa56ee70",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "e2d6a4ef4dc12c67594a2feef2b35d5e8c1c0850edc3a107b17acfef0ad0f188",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "bb778b9a97cefa10486ff1e1b2c1778104cd55f2a725c89af4191d7336e97c0d",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "015748700cae1adfaac05a328ef1a8126d4d94ff450504beceeeeab196bcfd08",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "8ffb90682acfb6c73040d49dba809ed6d3dc0a935e681a47f4b8bcc9a1374f70",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "209d313dfe5bb8f1bf25906e2d5c5dd0fae7fb6e08d801cb30f6d610619eb78b",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "3e10fde9a1deb43b9b506f02ea41fe0bf0237d743e57c9a54562ee502b4645b4",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "19e0136b1fe9a68daa7b3e2e2e6ac09cdb93478374ba1219e6b8156045d56a03",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "b280d83d64626eaa663cf330921bdc32a7c13d5e32ea8534f18dc83ab4496835",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "3c2905af0fa88452fbfdeb119fbec80b73cc20bfe8f23ba3256d4be0db9abd96",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "a6c5b2fe87041077047e6b4444cd74a16e458769c9f5cf4c649f9c2ba28424b6",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "78993ee0eca06d2a6035780dc7e66cbc85944c023106b75699eecd0bebc202a2",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "c944a255566e02a09572ba309b6ae82051a9b8bde3f02eb8025f764c6d2f7486",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+      "sha256": "462f2d8d4c438e8827994324ad654c716b7033fa98041b7841f844c52ac0b810",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/provenance.json",
+      "sha256": "f0f97270f5b211b4c6301c0c0eea5b179b76609317d058569f04d863d6de393c",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/fixtures/treasure_movement_4ab/real-input-events.json",
+      "sha256": "cae3ad44ad68e76871b3630386926edee94c97a77ab589bd39260d62844cbbe8",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/test_studio_jump_orientation.py",
+      "sha256": "90c899c86a291e5e23c4570aa24d91fd08bac2fe5bb5e36268332ade53b6dbac",
+      "unchanged": true
+    },
+    {
+      "path": "scripts/tests/test_studio_treasure_movement.py",
+      "sha256": "d6401252f81e249751dc6d031efe2ceba91759255a0528496bbc249ef877fc8f",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+      "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+      "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+      "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+      "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/replay_native_caption_ocr.py",
+      "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce",
+      "unchanged": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_studio_puzzle_menu_selection.py",
+      "sha256": "745620771d6db0a8edf28774c0f3e918baea4466d3586f7e8a8a0bf5abf5c2b8",
+      "unchanged": true
+    }
+  ],
+  "all_five_original_metadata_logs_unchanged": true,
+  "scope": "Local targeted integration contracts and workflow lint only; no Android/Godot execution, no CI mutation and no product-source change."
+}

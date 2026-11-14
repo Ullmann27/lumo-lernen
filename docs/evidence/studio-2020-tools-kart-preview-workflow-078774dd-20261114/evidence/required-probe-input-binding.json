@@ -1,0 +1,25 @@
+{
+  "files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "source_commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+      "local_read_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/.github/probes/modernization_android_tour.py",
+      "bytes": 53786,
+      "sha256": "35a726e08e0614b22d6488ef8d6a57969078bf6e2fa1da8646b16324afcd1c53",
+      "git_blob": "481c19f8c9b9ed15ee205a534d1cfc8797d06aa8",
+      "read_only_input_not_in_this_source_delta": true
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_preview_skip.py",
+      "source_commit": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+      "local_read_path": "/workspace/scratch/5987865ae883/qa/unified-kart-preview-skip-078774dd-20261114/followup-v2/patched/tools/android_qa/tests/test_kart_preview_skip.py",
+      "bytes": 26899,
+      "sha256": "4e7bc4dc1b0af3430009705840e3ee52b1cec987cb2a5c802b6c74ccef358a1a",
+      "git_blob": "ca2477afc4708385e705645613d45e3374f829f7",
+      "read_only_input_not_in_this_source_delta": true
+    }
+  ],
+  "each_read_from_its_exact_published_github_blob": true,
+  "local_source_bytes_also_verified": true,
+  "mutated_by_this_work": false
+}

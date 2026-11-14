@@ -1,0 +1,85 @@
+{
+  "native_base": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "source_freeze_sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+  "headless": {
+    "script": "res://scripts/tests/lumo_facial_regression.gd",
+    "arguments": [
+      "--headless",
+      "--path",
+      ".",
+      "--script",
+      "res://scripts/tests/lumo_facial_regression.gd"
+    ],
+    "required_marker": "LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false",
+    "exit_code": 0,
+    "strict_engine_error_gate": true,
+    "actual_local_log": "evidence/native-final/lumo_facial_valid_lesson.log"
+  },
+  "rendered": {
+    "script": "res://scripts/tests/lumo_facial_capture.gd",
+    "arguments": [
+      "--path",
+      ".",
+      "--resolution",
+      "640x640",
+      "--fixed-fps",
+      "24",
+      "--write-movie",
+      "<capture-parent>/facial-runtime.avi",
+      "--script",
+      "res://scripts/tests/lumo_facial_capture.gd"
+    ],
+    "environment": {
+      "LUMO_FACE_CAPTURE_DIR": "<capture-parent>/captures/lumo_facial_capture"
+    },
+    "required_marker": "LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true",
+    "exit_code": 0,
+    "strict_engine_error_gate": true,
+    "headless_is_rejected": true,
+    "png_names": [
+      "teacher_scene.png",
+      "neutral.png",
+      "audio_jaw.png",
+      "blink.png",
+      "blink_intermediate.png",
+      "muted.png",
+      "gaze_left.png",
+      "stopped.png"
+    ],
+    "png_dimensions": [
+      640,
+      640
+    ],
+    "sidecar": "runtime-frames.json",
+    "sidecar_required": {
+      "lesson_kind": "syllables",
+      "lesson_word": "Apfel",
+      "word_source": "res://assets/audio/voice/words/apfel.wav",
+      "recording_fps": 24,
+      "rows": 144,
+      "observed_audible_jaw": true,
+      "observed_muted_closed": true,
+      "observed_stopped_closed": true,
+      "observed_blink": true,
+      "actual_max_jaw_weight_min_exclusive": 0.05
+    },
+    "row_requirements": [
+      "step indices0..143 in order",
+      "finite bounded actual_jaw_weight0..1 and blink0..1",
+      "8 finite bounded actual lid mesh weights per row",
+      "actual audible playback with positive changing playback position and nonzero jaw",
+      "muted rows67..75: audiblefalse, envelope0, actual_jaw_weight0",
+      "stopped rows112..143: stateidle, position0, envelope0, actual_jaw_weight0",
+      "blink>0.9 observed on actual mesh sequence"
+    ],
+    "actual_local_log": "evidence/godot-renderer-final-capture/godot.log",
+    "movie_policy": "Actual MovieMaker AVI, optionally transcode unchanged frames/audio to MP4, fully decode and preserve measured stream metadata. Do not relabel recording cadence as device performance."
+  },
+  "host_integration_owner": "Root: add LumoSpeechEnvelope.kt to prepare_android.py alongside narrow LumoLearningSpeech.kt delta; no C4/MainActivity edits by character agent.",
+  "remaining_acceptance": [
+    "Fresh shared NativeCI after integration",
+    "Real Android local speech playback/start-stop/mute test",
+    "Physical Fold7 performance and thermal/input-latency measurement",
+    "No phoneme-based lip animation claimed"
+  ]
+}

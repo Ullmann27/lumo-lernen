@@ -1,0 +1,17 @@
+{
+  "command": [
+    "blender",
+    "--background",
+    "--python",
+    "qa/original-lumo-facial-studio-803e/tools/author_face_geometry.py",
+    "--",
+    "--source",
+    "lumo-godot/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+    "--surface",
+    "qa/original-lumo-facial-studio-803e/evidence/eye-surface",
+    "--out",
+    "qa/original-lumo-facial-studio-803e/evidence/sculpt-v9"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 33.1736983830051
+}

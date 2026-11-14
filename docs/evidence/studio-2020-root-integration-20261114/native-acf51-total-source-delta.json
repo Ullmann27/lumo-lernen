@@ -1,0 +1,38 @@
+{
+  "base_files": 2220,
+  "current_files": 2235,
+  "changed": [
+    "scripts/app/app_boot.gd",
+    "scripts/app/scene_router.gd",
+    "scripts/characters/lumo/lumo_rigged_actor.gd",
+    "scripts/creative/treasure_world.gd",
+    "scripts/learning/learning_world.gd",
+    "scripts/systems/host_bridge.gd",
+    "scripts/tests/learning_world_regression.gd",
+    "scripts/tests/lumo_attention_landing_regression.gd",
+    "scripts/tests/lumo_rigged_animation_capture.gd",
+    "scripts/tests/lumo_studio_motion_regression.gd",
+    "scripts/tests/lumo_teacher_pose_regression.gd",
+    "tools/tests/test_nextgen_runner.py",
+    "tools/validate_studio.sh"
+  ],
+  "added": [
+    ".github/workflows/lumo-studio-2020.yml",
+    "assets/characters/lumo_facial/ATTRIBUTION.md",
+    "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+    "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+    "docs/studio-2020-ci-corrections.md",
+    "docs/studio-2020-implementation.md",
+    "scenes/games/connect_four_table.tscn",
+    "scripts/characters/lumo/lumo_facial_pose.gd",
+    "scripts/games/connect_four/connect_four_table.gd",
+    "scripts/tests/connect_four_runtime_regression.gd",
+    "scripts/tests/connect_four_visual_capture.gd",
+    "scripts/tests/fixtures/treasure_title_86445.json",
+    "scripts/tests/lumo_facial_capture.gd",
+    "scripts/tests/lumo_facial_regression.gd",
+    "scripts/tests/treasure_title_contrast_regression.gd"
+  ],
+  "preserved": 2207,
+  "removed": []
+}

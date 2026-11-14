@@ -1,0 +1,24 @@
+{
+  "command": [
+    "python3",
+    "lumo-godot/tools/run_local_renderer.py",
+    "--display",
+    "95",
+    "--output",
+    "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render",
+    "--timeout",
+    "300",
+    "--project",
+    "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/runtime",
+    "--",
+    "--script",
+    "res://scripts/tests/treasure_title_contrast_regression.gd",
+    "--",
+    "--capture"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 98.72432061099971,
+  "source_sha256": "ce7c7df90f85604f912ff1afc46077935053e883359db47c3f9e9d7dcc4fe65d",
+  "test_sha256": "1f0d170fbe05c89a36501463ec9307d3f830e10a4cb63a02f663f98a5e7b600d",
+  "log_sha256": "75f2541a67ad75c59ecb4af9cf3fe6f19988a2fc6df51fab02a90b96ee425f78"
+}

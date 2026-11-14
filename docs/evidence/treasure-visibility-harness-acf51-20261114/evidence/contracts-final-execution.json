@@ -1,0 +1,28 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native",
+  "exit_code": 0,
+  "elapsed_seconds": 38.68743666500086,
+  "log_sha256": "c704daae7b9f5074664f01caede380400a08271614fe30f3c7b803d88feaf648",
+  "sources": [
+    {
+      "path": "tools/validate_studio.sh",
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c"
+    }
+  ],
+  "scope": "Actual Python orchestration and fail-closed fixture tests. Engine calls use explicit fixture executables, not gameplay evidence. Final count bound3341 is the observed final complete headless path; extra3273 negative rejects earlier pre-spacing coverage."
+}

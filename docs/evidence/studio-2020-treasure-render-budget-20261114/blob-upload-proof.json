@@ -1,0 +1,32 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-godot",
+  "base_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "scope": "Only two immutable source blobs created; no tree, commit, ref or PR mutation.",
+  "files": [
+    {
+      "path": "tools/validate_studio.sh",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "542e22df76ae8773d3c7de064a560a977fc9a033",
+      "bytes": 25425,
+      "sha256": "a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b",
+      "git_blob_sha": "542e22df76ae8773d3c7de064a560a977fc9a033",
+      "readback_verified": true
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "bytes": 48638,
+      "sha256": "43018c096dc2315a94fdd589a013b0c7ff3e60afd8c96bfd1d602103aef4a9cc",
+      "git_blob_sha": "ea34d0d0b459f478af662ede47e472111ca9ae8d",
+      "readback_verified": true
+    }
+  ],
+  "readback": "Full UTF-8 text equality plus independent in-session SHA256/Gitblob calculation matched the locally measured pre-interruption hashes.",
+  "hash_checks": "SHA256/SHA1 implementations checked against empty/abc vectors and the published785 baseline before use.",
+  "local_test_status": "UNCONFIRMED: thirteen-case command was started before exec-server failure; available raw log has no terminal result and execution.json is absent. No rerun.",
+  "local_bash_syntax": "Executed before interruption: exit0; source a2be58f257220677b03384a2e2be998b4d479da80136bc4dd30d9f735b9cc88b"
+}

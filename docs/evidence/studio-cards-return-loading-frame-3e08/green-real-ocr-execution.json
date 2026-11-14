@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched",
+  "started_at": "2026-11-14T03:21:37.123313+00:00",
+  "elapsed_seconds": 4.2971589360095095,
+  "returncode": 0,
+  "environment": {
+    "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+    "OMP_THREAD_LIMIT": "1",
+    "LUMO_LOADING_REPLAY_DIR": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay"
+  },
+  "helper_sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+  "surfaces_sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+}

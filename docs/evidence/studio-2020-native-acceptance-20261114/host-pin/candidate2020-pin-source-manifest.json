@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "version": "0.13.8+2020",
+  "prior_native_visual_binding": "12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7",
+  "historical_pins_preserved": 50,
+  "baseline_files_verified": {
+    "pubspec.yaml": "40a3226d7b575cc414abc1494dfff5924a5de775",
+    "config/godot-source.json": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d",
+    "scripts/verify_legacy_release_pin.py": "5a3d71e7b8e382d46b9536734fd71dc81e88631a"
+  },
+  "files": [
+    {
+      "path": "pubspec.yaml",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob_sha": "7f504396071cf3af57164187a29ea74b74c62413",
+      "mode": "100644"
+    },
+    {
+      "path": "config/godot-source.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/config/godot-source.json",
+      "bytes": 145,
+      "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+      "git_blob_sha": "fa2d703726599e61feadd58cebef0514fd4d049e",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/verify_legacy_release_pin.py",
+      "bytes": 10697,
+      "sha256": "b92ac1213095251f87dcb86b6b8bbedf4b4ac7a115fe3225ade7656ea4c15818",
+      "git_blob_sha": "9650925af529def1b6ab2f2591d1eacac3db4653",
+      "mode": "100644"
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 19946,
+      "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+      "git_blob_sha": "b0fb033aa2b371ff2f64acd5183a52fadace2982",
+      "mode": "100644"
+    }
+  ],
+  "scope": "source identity activation after actual Native acceptance; not Android/APK release approval"
+}

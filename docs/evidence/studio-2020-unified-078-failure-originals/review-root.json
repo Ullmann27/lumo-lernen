@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "reviewed_at": "2026-11-14T10:20:46.711010+00:00",
+  "host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run": 43580229005,
+  "artifact": 14108983381,
+  "status": "FAILURE_IMAGES_REVIEWED_NO_GATE_RECLASSIFICATION",
+  "images": [
+    {
+      "artifact_entry": "21_kart_premium_start.png",
+      "bytes": 227990,
+      "sha256": "34e37f27f52124e2dc9682c4636ba050c323e185ef041992d8dd582b9106eb7b",
+      "git_blob_sha": "3d26fc83358f099b8a533c762fb2639c46486146",
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "findings": [
+        "Querformat-Kartmenü mit sichtbarem Grand-Prix-Auswahlrahmen und großer START-Fläche.",
+        "Der freie Mittelbereich zeigt keine sichtbare räumliche Kart-/Werkstattvorschau.",
+        "Kein Renncountdown und keine eigene gefahrene Bewegung im Standbild nachweisbar."
+      ]
+    },
+    {
+      "artifact_entry": "21_lumo_kart_real_race.png",
+      "bytes": 1936717,
+      "sha256": "628769b688062f62808fac49fb4ab39ee2486c269fae4ca7a867f6109bb1bb1c",
+      "git_blob_sha": "84752ac89cdb55562ae59a0ada5c995e41eff293",
+      "opened_individually_with_view_image": true,
+      "archive_member_byte_equal": true,
+      "findings": [
+        "Sonnenhafen-Straße, Brücke, Wasser und Vegetation werden räumlich aus erhöhter Vorschauperspektive dargestellt.",
+        "Halbtransparente Sonnenhafen-Streckeneinblendung mit schwachem Hinweis „Tippe zum Überspringen“ ist sichtbar.",
+        "Keine numerische Countdownzahl und kein eindeutig sichtbares eigenes Kart. Die Pause-Taste ist kein Pausenmodal.",
+        "Große Minimap liegt über einem Teil des SPEED-Bereichs; helle gesättigte Materialien und schwacher Introtext-Kontrast bleiben sichtbare Qualitätsgrenzen."
+      ]
+    }
+  ],
+  "limits": [
+    "Der Renn-Screenshot entstand vor dem anschließenden 150-Sekunden-Warten auf den Spielstand. Sein Inhalt ist kein Bildnachweis des Timeout-Zeitpunkts.",
+    "Standbilder beweisen weder Physikstillstand noch erfolgreiches Fahren noch Bildrate.",
+    "Originaler Unified-Tourlauf bleibt fehlgeschlagen; Studio43580228966 wird separat bewertet.",
+    "Keine Aussage zu physischen Fold7-Frames, hörbarer Sprache oder vollständigem Masterauftrag."
+  ]
+}

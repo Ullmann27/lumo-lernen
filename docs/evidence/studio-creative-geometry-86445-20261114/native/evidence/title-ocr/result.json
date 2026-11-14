@@ -1,0 +1,6797 @@
+{
+  "scope": "Local unchanged reader on original pixels; not a new Android tour. Local German OCR model absent.",
+  "unused_android_transport_import": "uiautomator2 import stub; no ADB or UI transport invoked",
+  "reader_sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+  "tesseract_version": "tesseract 5.5.0\n leptonica-1.84.1\n  libgif 5.2.2 : libjpeg 6b (libjpeg-turbo 2.1.5) : libpng 1.6.48 : libtiff 4.7.0 : zlib 1.3.1 : libwebp 1.5.0 : libopenjp2 2.5.3\n Found AVX512BW\n Found AVX512F\n Found AVX512VNNI\n Found AVX2\n Found AVX\n Found FMA\n Found SSE4.1\n Found OpenMP 201511\n Found libarchive 3.7.4 zlib/1.3.1 liblzma/5.8.1 bz2lib/1.0.8 liblz4/1.10.0 libzstd/1.5.7\n Found libcurl/8.14.1 OpenSSL/3.5.7 zlib/1.3.1 brotli/1.1.0 zstd/1.5.7 libidn2/2.3.8 libpsl/0.21.2 libssh2/1.11.1 nghttp2/1.64.0 nghttp3/1.8.0 librtmp/2.3 OpenLDAP/2.6.10\n",
+  "languages": "List of available languages in \"/usr/share/tesseract-ocr/5/tessdata/\" (2):\neng\nosd\n",
+  "models": {
+    "eng.traineddata": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2",
+    "osd.traineddata": "9cf5d576fcc47564f11265841e5ca839001e7e6f38ff7f7aacf46d15a96b00ff"
+  },
+  "observations": [
+    {
+      "name": "original-android",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/creative/streamed-original/selected-originals/tour/0199-native-lumossternenschatz-9.png",
+      "source_sha256": "54fc504bb8773097a3af74ad015c63b3a691b277732e92311a181867de625773",
+      "lines": [
+        {
+          "text": "Rucksack",
+          "bounds": [
+            1691.0,
+            82.0,
+            1795.0,
+            100.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Hinweise gelost: 1/7» Entdeckungen 0 /",
+          "bounds": [
+            154.0,
+            177.0,
+            672.0,
+            205.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            153.0,
+            223.0,
+            165.0,
+            241.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            1683.0,
+            238.0,
+            1704.0,
+            245.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "_",
+          "bounds": [
+            1522.0,
+            270.0,
+            1548.0,
+            272.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "——.",
+          "bounds": [
+            1557.0,
+            261.0,
+            1587.0,
+            262.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—-——",
+          "bounds": [
+            1573.0,
+            271.0,
+            1596.0,
+            272.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "———-",
+          "bounds": [
+            1618.0,
+            252.0,
+            1657.0,
+            253.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "4",
+          "bounds": [
+            118.0,
+            259.0,
+            134.0,
+            285.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ine",
+          "bounds": [
+            125.0,
+            284.0,
+            133.0,
+            288.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            154.0,
+            264.0,
+            619.0,
+            292.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Wasserfall.",
+          "bounds": [
+            152.0,
+            308.0,
+            292.0,
+            328.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            704.0,
+            302.0,
+            747.0,
+            332.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "+: Kristalwichtor",
+          "bounds": [
+            1344.0,
+            349.0,
+            1438.0,
+            361.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "eed",
+          "bounds": [
+            212.0,
+            381.0,
+            229.0,
+            387.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Mondgarten .",
+          "bounds": [
+            1739.0,
+            359.0,
+            1842.0,
+            383.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "tf",
+          "bounds": [
+            1910.0,
+            376.0,
+            1920.0,
+            385.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1058.0,
+            356.0,
+            1115.0,
+            398.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "}",
+          "bounds": [
+            1381.0,
+            368.0,
+            1389.0,
+            403.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "> al",
+          "bounds": [
+            501.0,
+            351.0,
+            793.0,
+            449.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1448.0,
+            399.0,
+            1471.0,
+            421.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1778.0,
+            382.0,
+            1920.0,
+            437.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "mj",
+          "bounds": [
+            1421.0,
+            455.0,
+            1487.0,
+            500.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": ":",
+          "bounds": [
+            1184.0,
+            580.0,
+            1185.0,
+            581.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a as",
+          "bounds": [
+            1632.0,
+            602.0,
+            1653.5,
+            616.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1640.0,
+            595.0,
+            1661.0,
+            607.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a.",
+          "bounds": [
+            222.0,
+            557.0,
+            313.0,
+            641.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Erkunde diqugsel. Folge dem goldenen Stern!",
+          "bounds": [
+            742.0,
+            590.0,
+            1290.0,
+            641.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            1641.0,
+            612.0,
+            1693.0,
+            634.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "aos",
+          "bounds": [
+            1695.0,
+            614.0,
+            1735.0,
+            636.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "4",
+          "bounds": [
+            1699.0,
+            632.0,
+            1728.0,
+            641.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "eee",
+          "bounds": [
+            1565.0,
+            665.0,
+            1626.0,
+            690.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1629.0,
+            671.0,
+            1675.0,
+            686.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Me ees",
+          "bounds": [
+            1457.0,
+            694.0,
+            1500.0,
+            713.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "A",
+          "bounds": [
+            1731.0,
+            679.0,
+            1775.0,
+            693.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "io",
+          "bounds": [
+            1464.0,
+            705.0,
+            1486.0,
+            718.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1595.0,
+            688.0,
+            1658.0,
+            715.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1694.0,
+            723.0,
+            1732.0,
+            746.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Springen",
+          "bounds": [
+            1762.0,
+            718.0,
+            1862.0,
+            742.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1442.0,
+            743.0,
+            1468.0,
+            768.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1585.0,
+            739.0,
+            1612.0,
+            764.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1644.0,
+            751.0,
+            1674.0,
+            777.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1686.0,
+            749.0,
+            1714.0,
+            763.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "wa,",
+          "bounds": [
+            1704.0,
+            763.0,
+            1733.0,
+            778.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1716.0,
+            747.0,
+            1745.0,
+            769.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1748.0,
+            761.0,
+            1777.0,
+            775.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "“a",
+          "bounds": [
+            1767.0,
+            762.0,
+            1815.0,
+            771.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            1669.5,
+            769.0,
+            1694.0,
+            795.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=.",
+          "bounds": [
+            1708.0,
+            775.0,
+            1738.0,
+            790.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1736.0,
+            769.0,
+            1765.0,
+            784.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1768.0,
+            775.0,
+            1800.0,
+            794.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ATX",
+          "bounds": [
+            1779.0,
+            767.0,
+            1811.0,
+            782.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "1474",
+          "bounds": [
+            211.0,
+            798.0,
+            235.0,
+            813.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "= ae",
+          "bounds": [
+            1436.0,
+            788.0,
+            1492.0,
+            815.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "4,",
+          "bounds": [
+            234.0,
+            817.0,
+            255.0,
+            850.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1462.0,
+            813.0,
+            1507.0,
+            842.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1639.0,
+            798.0,
+            1698.0,
+            829.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1659.0,
+            826.0,
+            1684.0,
+            857.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            165.0,
+            843.0,
+            176.0,
+            892.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1562.0,
+            862.0,
+            1587.5,
+            883.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "LA",
+          "bounds": [
+            1740.0,
+            859.0,
+            1779.0,
+            884.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ay",
+          "bounds": [
+            1399.0,
+            889.0,
+            1430.0,
+            912.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "I",
+          "bounds": [
+            1229.0,
+            884.0,
+            1242.0,
+            928.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=e",
+          "bounds": [
+            1413.0,
+            898.0,
+            1465.0,
+            936.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1450.0,
+            885.0,
+            1485.0,
+            940.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "TTS",
+          "bounds": [
+            1491.0,
+            895.0,
+            1595.0,
+            937.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Y",
+          "bounds": [
+            186.0,
+            923.0,
+            222.0,
+            958.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Po",
+          "bounds": [
+            210.0,
+            955.0,
+            231.0,
+            963.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            325.0,
+            949.0,
+            352.0,
+            962.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "yg",
+          "bounds": [
+            1387.0,
+            941.0,
+            1462.0,
+            976.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "NSEHEN",
+          "bounds": [
+            1735.0,
+            951.0,
+            1850.0,
+            970.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ie",
+          "bounds": [
+            1637.0,
+            1002.0,
+            1691.0,
+            1029.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ce",
+          "bounds": [
+            1672.5,
+            55.5,
+            1897.5,
+            160.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1491.0,
+            158.5,
+            1503.5,
+            161.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "——",
+          "bounds": [
+            1637.5,
+            191.0,
+            1651.5,
+            192.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Hinweise gelost: 1 / 7 - Entdeckungen 0 /",
+          "bounds": [
+            154.0,
+            177.0,
+            673.0,
+            205.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "as",
+          "bounds": [
+            1401.0,
+            212.0,
+            1415.0,
+            213.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ela",
+          "bounds": [
+            1515.0,
+            227.0,
+            1537.0,
+            234.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "meres",
+          "bounds": [
+            1570.5,
+            210.0,
+            1651.0,
+            226.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "aol",
+          "bounds": [
+            1625.0,
+            227.0,
+            1642.5,
+            228.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "er |",
+          "bounds": [
+            1742.5,
+            201.0,
+            1783.5,
+            228.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            152.5,
+            222.5,
+            165.5,
+            241.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ms",
+          "bounds": [
+            1500.5,
+            243.5,
+            1517.0,
+            249.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Eee",
+          "bounds": [
+            1540.5,
+            251.0,
+            1576.0,
+            252.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "fs 2a",
+          "bounds": [
+            1617.5,
+            243.5,
+            1656.5,
+            257.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oe",
+          "bounds": [
+            1523.0,
+            270.0,
+            1548.5,
+            271.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oa ES",
+          "bounds": [
+            1555.5,
+            252.5,
+            1588.5,
+            266.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "eo ~",
+          "bounds": [
+            1778.5,
+            259.0,
+            1838.0,
+            274.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Sa ——",
+          "bounds": [
+            1471.0,
+            273.0,
+            1522.5,
+            287.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1520.5,
+            289.0,
+            1539.5,
+            290.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "y eee",
+          "bounds": [
+            1770.0,
+            285.0,
+            1822.0,
+            298.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "‘ Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            118.0,
+            259.0,
+            619.0,
+            308.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "5g",
+          "bounds": [
+            1099.0,
+            250.0,
+            1138.5,
+            317.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "sa ES",
+          "bounds": [
+            1511.0,
+            308.5,
+            1528.5,
+            322.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "zis",
+          "bounds": [
+            1524.0,
+            308.0,
+            1538.0,
+            309.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1692.5,
+            297.5,
+            1729.5,
+            306.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Wasserfall.",
+          "bounds": [
+            152.0,
+            307.5,
+            292.5,
+            328.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "gel |",
+          "bounds": [
+            1268.0,
+            317.5,
+            1313.5,
+            336.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1536.5,
+            333.0,
+            1574.5,
+            337.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ey",
+          "bounds": [
+            1611.0,
+            328.5,
+            1621.5,
+            342.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "— kK.",
+          "bounds": [
+            1344.0,
+            349.0,
+            1363.0,
+            357.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "pice",
+          "bounds": [
+            1345.0,
+            339.0,
+            1360.5,
+            341.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Uw,",
+          "bounds": [
+            1387.0,
+            351.0,
+            1404.0,
+            359.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ES ie",
+          "bounds": [
+            1694.5,
+            364.0,
+            1725.5,
+            378.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "YS",
+          "bounds": [
+            1059.0,
+            364.0,
+            1083.0,
+            384.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "yn I",
+          "bounds": [
+            1284.0,
+            387.5,
+            1371.0,
+            401.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            1684.0,
+            372.0,
+            1703.5,
+            382.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "srl",
+          "bounds": [
+            1714.0,
+            384.0,
+            1734.0,
+            396.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "mdgarten",
+          "bounds": [
+            1760.0,
+            372.5,
+            1825.0,
+            383.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "2",
+          "bounds": [
+            1090.0,
+            409.0,
+            1095.0,
+            414.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            845.5,
+            417.0,
+            870.0,
+            428.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1433.0,
+            388.0,
+            1474.0,
+            423.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            841.0,
+            428.5,
+            859.0,
+            441.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=a",
+          "bounds": [
+            1307.0,
+            435.5,
+            1322.5,
+            443.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "kee x",
+          "bounds": [
+            1544.0,
+            442.5,
+            1562.0,
+            456.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "7a",
+          "bounds": [
+            1305.0,
+            453.0,
+            1320.5,
+            461.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Sas —",
+          "bounds": [
+            1533.0,
+            465.5,
+            1618.5,
+            480.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "SSE",
+          "bounds": [
+            1713.0,
+            457.5,
+            1810.0,
+            464.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "———",
+          "bounds": [
+            1773.0,
+            462.5,
+            1822.5,
+            469.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "_———",
+          "bounds": [
+            1533.0,
+            476.5,
+            1569.5,
+            480.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "—_ a",
+          "bounds": [
+            1601.0,
+            474.0,
+            1653.5,
+            489.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=I",
+          "bounds": [
+            1185.5,
+            521.0,
+            1215.0,
+            557.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "iE",
+          "bounds": [
+            1476.5,
+            533.5,
+            1530.5,
+            541.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "r=",
+          "bounds": [
+            1337.0,
+            569.0,
+            1367.5,
+            575.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ea",
+          "bounds": [
+            1345.0,
+            576.0,
+            1372.5,
+            579.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "aS",
+          "bounds": [
+            1628.0,
+            599.0,
+            1665.0,
+            613.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1692.0,
+            591.0,
+            1738.0,
+            618.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Erkunde",
+          "bounds": [
+            741.5,
+            603.5,
+            841.0,
+            623.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "el. Folge. dem Stern!",
+          "bounds": [
+            931.0,
+            604.0,
+            1291.0,
+            628.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "—s",
+          "bounds": [
+            1659.0,
+            609.0,
+            1687.5,
+            621.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "———",
+          "bounds": [
+            149.0,
+            640.5,
+            227.0,
+            659.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oS iro",
+          "bounds": [
+            1548.0,
+            630.5,
+            1751.0,
+            644.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "= =",
+          "bounds": [
+            1601.0,
+            646.0,
+            1643.0,
+            658.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1681.0,
+            648.0,
+            1703.0,
+            657.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "een oe,",
+          "bounds": [
+            1713.5,
+            641.0,
+            1756.5,
+            660.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ta",
+          "bounds": [
+            227.0,
+            672.0,
+            261.5,
+            679.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "“Sa,",
+          "bounds": [
+            1275.0,
+            653.0,
+            1307.5,
+            662.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=~ J",
+          "bounds": [
+            1531.0,
+            645.0,
+            1587.5,
+            665.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "= a",
+          "bounds": [
+            1531.5,
+            659.0,
+            1575.0,
+            673.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Soe ena",
+          "bounds": [
+            1636.5,
+            660.0,
+            1687.5,
+            678.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=:",
+          "bounds": [
+            1646.5,
+            644.0,
+            1678.0,
+            666.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=—",
+          "bounds": [
+            1696.0,
+            652.0,
+            1728.0,
+            666.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1699.0,
+            661.0,
+            1744.5,
+            674.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oN",
+          "bounds": [
+            1730.0,
+            650.0,
+            1762.5,
+            666.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            325.5,
+            687.5,
+            352.0,
+            697.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "~<a",
+          "bounds": [
+            333.0,
+            676.5,
+            376.5,
+            689.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "wey",
+          "bounds": [
+            1460.0,
+            688.0,
+            1475.0,
+            697.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a ee",
+          "bounds": [
+            1531.0,
+            677.0,
+            1578.0,
+            696.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Sa en",
+          "bounds": [
+            1502.5,
+            732.0,
+            1554.0,
+            754.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "LE",
+          "bounds": [
+            78.0,
+            785.0,
+            117.0,
+            809.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1640.0,
+            799.0,
+            1682.5,
+            825.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "I",
+          "bounds": [
+            367.0,
+            868.5,
+            373.0,
+            884.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1702.5,
+            914.5,
+            1703.0,
+            921.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "pu aly",
+          "bounds": [
+            257.5,
+            955.0,
+            297.0,
+            965.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=»",
+          "bounds": [
+            1388.5,
+            941.5,
+            1461.0,
+            975.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "NSEHEN",
+          "bounds": [
+            1734.5,
+            950.5,
+            1850.5,
+            970.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "he",
+          "bounds": [
+            1619.0,
+            1002.5,
+            1690.5,
+            1034.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Pr)",
+          "bounds": [
+            1516.0,
+            1049.0,
+            1608.5,
+            1080.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "mee",
+          "bounds": [
+            1659.5,
+            1044.0,
+            1769.0,
+            1080.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "4:43 (O",
+          "bounds": [
+            136.0,
+            11.0,
+            205.0,
+            29.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "«Spiele LUMOS STERNENSCHATSO™",
+          "bounds": [
+            154.0,
+            72.0,
+            780.0,
+            106.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Rucksack",
+          "bounds": [
+            1691.0,
+            82.0,
+            1796.0,
+            100.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "@",
+          "bounds": [
+            1821.0,
+            53.0,
+            1904.5,
+            127.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "| Hinweise geldst: 1 / 7 - Entdeckungen 0 /",
+          "bounds": [
+            0.0,
+            174.0,
+            672.0,
+            217.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "=,",
+          "bounds": [
+            1698.0,
+            216.0,
+            1712.0,
+            218.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            153.0,
+            223.0,
+            165.0,
+            241.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1778.0,
+            241.0,
+            1804.0,
+            242.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            154.0,
+            264.0,
+            619.0,
+            292.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Wasserfall.",
+          "bounds": [
+            152.0,
+            308.0,
+            292.0,
+            328.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "rm",
+          "bounds": [
+            1271.0,
+            336.0,
+            1286.0,
+            339.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1533.0,
+            272.0,
+            1618.0,
+            335.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "mz",
+          "bounds": [
+            1699.0,
+            323.0,
+            1741.0,
+            332.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1068.0,
+            350.0,
+            1089.0,
+            357.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "¢",
+          "bounds": [
+            1079.0,
+            364.0,
+            1083.0,
+            374.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "‘Sx",
+          "bounds": [
+            1440.0,
+            374.0,
+            1456.0,
+            383.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "we ee",
+          "bounds": [
+            1294.0,
+            386.0,
+            1342.0,
+            402.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Mz",
+          "bounds": [
+            1436.0,
+            404.0,
+            1451.0,
+            412.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "ET rer",
+          "bounds": [
+            1742.0,
+            413.0,
+            1805.5,
+            427.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "-—",
+          "bounds": [
+            1590.0,
+            458.0,
+            1609.0,
+            459.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "eee",
+          "bounds": [
+            632.0,
+            544.0,
+            680.0,
+            553.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            658.0,
+            553.0,
+            668.0,
+            557.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "¢",
+          "bounds": [
+            869.0,
+            495.0,
+            954.0,
+            571.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "ae ~",
+          "bounds": [
+            188.0,
+            606.0,
+            216.0,
+            621.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Erkunde dig jnsel. Folge dem goldenen Stern!",
+          "bounds": [
+            742.0,
+            580.0,
+            1291.0,
+            641.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Springen",
+          "bounds": [
+            1762.0,
+            718.0,
+            1862.0,
+            742.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "—- -— +.",
+          "bounds": [
+            1756.0,
+            784.5,
+            1822.0,
+            798.5
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "‘a",
+          "bounds": [
+            1684.0,
+            808.0,
+            1724.0,
+            832.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "all",
+          "bounds": [
+            1814.0,
+            831.0,
+            1847.0,
+            845.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "as",
+          "bounds": [
+            1740.0,
+            904.0,
+            1761.0,
+            915.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1751.0,
+            911.0,
+            1788.0,
+            927.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "i 4 jf",
+          "bounds": [
+            1795.0,
+            905.0,
+            1820.0,
+            923.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "4:43 (O",
+          "bounds": [
+            136.0,
+            11.0,
+            205.0,
+            29.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "«Spiele LUMOS STERNENSCHATSO™",
+          "bounds": [
+            154.0,
+            72.0,
+            780.0,
+            106.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Rucksack",
+          "bounds": [
+            1691.0,
+            82.0,
+            1796.0,
+            100.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "@",
+          "bounds": [
+            1821.0,
+            53.0,
+            1904.5,
+            127.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "| Hinweise geldst: 1 / 7 - Entdeckungen 0 /",
+          "bounds": [
+            0.0,
+            174.0,
+            672.0,
+            217.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "=,",
+          "bounds": [
+            1698.0,
+            216.0,
+            1712.0,
+            218.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            153.0,
+            223.0,
+            165.0,
+            241.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1778.0,
+            241.0,
+            1804.0,
+            242.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            154.0,
+            264.0,
+            619.0,
+            292.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Wasserfall.",
+          "bounds": [
+            152.0,
+            308.0,
+            292.0,
+            328.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "rm",
+          "bounds": [
+            1271.0,
+            336.0,
+            1286.0,
+            339.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1533.0,
+            272.0,
+            1618.0,
+            335.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "mz",
+          "bounds": [
+            1699.0,
+            323.0,
+            1741.0,
+            332.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1068.0,
+            350.0,
+            1089.0,
+            357.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "¢",
+          "bounds": [
+            1079.0,
+            364.0,
+            1083.0,
+            374.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "‘Sx",
+          "bounds": [
+            1440.0,
+            374.0,
+            1456.0,
+            383.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "we ee",
+          "bounds": [
+            1294.0,
+            386.0,
+            1342.0,
+            402.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Mz",
+          "bounds": [
+            1436.0,
+            404.0,
+            1451.0,
+            412.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "ET rer",
+          "bounds": [
+            1742.0,
+            413.0,
+            1805.5,
+            427.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "-—",
+          "bounds": [
+            1590.0,
+            458.0,
+            1609.0,
+            459.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "eee",
+          "bounds": [
+            632.0,
+            544.0,
+            680.0,
+            553.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            658.0,
+            553.0,
+            668.0,
+            557.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "¢",
+          "bounds": [
+            869.0,
+            495.0,
+            954.0,
+            571.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "ae ~",
+          "bounds": [
+            188.0,
+            606.0,
+            216.0,
+            621.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Erkunde dig jnsel. Folge dem goldenen Stern!",
+          "bounds": [
+            742.0,
+            580.0,
+            1291.0,
+            641.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Springen",
+          "bounds": [
+            1762.0,
+            718.0,
+            1862.0,
+            742.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "—- -— +.",
+          "bounds": [
+            1756.0,
+            784.5,
+            1822.0,
+            798.5
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "‘a",
+          "bounds": [
+            1684.0,
+            808.0,
+            1724.0,
+            832.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "all",
+          "bounds": [
+            1814.0,
+            831.0,
+            1847.0,
+            845.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "as",
+          "bounds": [
+            1740.0,
+            904.0,
+            1761.0,
+            915.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1751.0,
+            911.0,
+            1788.0,
+            927.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "i 4 jf",
+          "bounds": [
+            1795.0,
+            905.0,
+            1820.0,
+            923.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "iy",
+          "bounds": [
+            1673.0,
+            69.0,
+            1687.0,
+            81.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "ite",
+          "bounds": [
+            217.0,
+            89.0,
+            232.0,
+            99.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "‘NE",
+          "bounds": [
+            1776.0,
+            95.0,
+            1805.0,
+            108.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1797.0,
+            109.0,
+            1812.0,
+            112.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1875.0,
+            119.0,
+            1889.0,
+            122.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "1",
+          "bounds": [
+            557.0,
+            186.0,
+            558.0,
+            192.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            584.0,
+            188.0,
+            585.0,
+            198.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "‘wat",
+          "bounds": [
+            1735.0,
+            747.0,
+            1810.0,
+            760.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "By,",
+          "bounds": [
+            1673.0,
+            69.0,
+            1687.0,
+            81.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "cig",
+          "bounds": [
+            1724.0,
+            89.0,
+            1741.0,
+            100.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "1",
+          "bounds": [
+            557.0,
+            186.0,
+            558.0,
+            192.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "as.",
+          "bounds": [
+            1737.0,
+            692.0,
+            1780.0,
+            705.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "aN",
+          "bounds": [
+            1752.0,
+            705.0,
+            1789.0,
+            718.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "Sp",
+          "bounds": [
+            1765.0,
+            721.0,
+            1785.0,
+            733.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "eC",
+          "bounds": [
+            1835.0,
+            722.0,
+            1848.0,
+            736.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "7",
+          "bounds": [
+            1854.0,
+            725.0,
+            1863.0,
+            736.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "ot",
+          "bounds": [
+            1735.0,
+            729.0,
+            1793.0,
+            747.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "By,",
+          "bounds": [
+            1673.0,
+            69.0,
+            1687.0,
+            81.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "< Salale",
+          "bounds": [
+            154.0,
+            81.0,
+            236.0,
+            105.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "= =",
+          "bounds": [
+            1799.0,
+            112.0,
+            1837.0,
+            116.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Lilies",
+          "bounds": [
+            153.0,
+            177.0,
+            224.0,
+            198.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "get",
+          "bounds": [
+            320.0,
+            179.0,
+            349.0,
+            198.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "SLE |",
+          "bounds": [
+            356.0,
+            179.0,
+            449.0,
+            198.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            578.0,
+            183.0,
+            588.0,
+            199.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "iO",
+          "bounds": [
+            612.0,
+            179.0,
+            656.0,
+            198.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ey”",
+          "bounds": [
+            1280.0,
+            260.0,
+            1332.0,
+            279.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "| Gee",
+          "bounds": [
+            153.0,
+            264.0,
+            208.0,
+            292.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "kein",
+          "bounds": [
+            242.0,
+            264.0,
+            280.0,
+            285.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Wy",
+          "bounds": [
+            413.0,
+            270.0,
+            440.0,
+            285.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Ge meckein",
+          "bounds": [
+            539.0,
+            264.0,
+            620.0,
+            285.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "I,",
+          "bounds": [
+            277.0,
+            307.0,
+            286.0,
+            329.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "al Sp",
+          "bounds": [
+            294.0,
+            383.0,
+            351.0,
+            409.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ah",
+          "bounds": [
+            333.0,
+            366.0,
+            361.0,
+            389.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ie",
+          "bounds": [
+            716.0,
+            479.0,
+            724.0,
+            481.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Tr",
+          "bounds": [
+            1645.0,
+            435.0,
+            1755.0,
+            492.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            421.0,
+            513.0,
+            432.0,
+            517.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Seay",
+          "bounds": [
+            1414.0,
+            497.0,
+            1551.0,
+            550.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "\\ “ZA",
+          "bounds": [
+            1519.0,
+            471.0,
+            1676.0,
+            548.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "aA)",
+          "bounds": [
+            1578.0,
+            480.0,
+            1699.0,
+            546.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "py",
+          "bounds": [
+            1688.0,
+            448.0,
+            1895.0,
+            555.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "a=",
+          "bounds": [
+            1180.0,
+            578.0,
+            1205.0,
+            594.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1181.0,
+            552.0,
+            1207.0,
+            581.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1302.0,
+            569.0,
+            1317.0,
+            575.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Erkunde di S",
+          "bounds": [
+            741.0,
+            603.0,
+            925.0,
+            623.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "el. Folge dem goldenen Stern|",
+          "bounds": [
+            930.0,
+            587.0,
+            1291.0,
+            633.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "es",
+          "bounds": [
+            1366.0,
+            533.0,
+            1541.0,
+            619.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Cy",
+          "bounds": [
+            324.0,
+            601.0,
+            374.0,
+            646.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Ls",
+          "bounds": [
+            1452.0,
+            610.0,
+            1496.0,
+            639.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "rr.",
+          "bounds": [
+            1500.0,
+            620.0,
+            1537.0,
+            637.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "J",
+          "bounds": [
+            1244.0,
+            685.0,
+            1257.0,
+            716.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "7",
+          "bounds": [
+            1854.0,
+            725.0,
+            1863.0,
+            736.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1235.0,
+            733.0,
+            1288.0,
+            778.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "pra",
+          "bounds": [
+            37.0,
+            814.0,
+            157.0,
+            844.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": ">",
+          "bounds": [
+            1285.0,
+            809.0,
+            1386.0,
+            859.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "koa",
+          "bounds": [
+            1627.0,
+            950.0,
+            1659.0,
+            971.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Js",
+          "bounds": [
+            1363.0,
+            983.0,
+            1397.0,
+            1041.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "i ee",
+          "bounds": [
+            1635.0,
+            1010.0,
+            1820.0,
+            1027.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "SO",
+          "bounds": [
+            1659.0,
+            1037.0,
+            1830.0,
+            1060.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "wo!",
+          "bounds": [
+            1822.0,
+            1065.0,
+            1920.0,
+            1080.0
+          ],
+          "variant": "teal-text-1x"
+        }
+      ],
+      "exact_title_observed": false,
+      "actual_requested_phrase_observed": false,
+      "elapsed_seconds": 8.885836230998393,
+      "source_unchanged": true
+    },
+    {
+      "name": "new-landscape",
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-landscape.png",
+      "source_sha256": "9dedbb2382d6f88b20434d7b3ee5ad8d6d2f9f316bcf7ece31c0443ab42ac82e",
+      "lines": [
+        {
+          "text": "So =",
+          "bounds": [
+            1177.0,
+            0.0,
+            1213.0,
+            21.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ro!",
+          "bounds": [
+            1842.0,
+            2.0,
+            1861.0,
+            13.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "rir.",
+          "bounds": [
+            1825.0,
+            15.0,
+            1844.0,
+            24.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Pars",
+          "bounds": [
+            1329.0,
+            29.0,
+            1362.0,
+            46.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "aS",
+          "bounds": [
+            1803.0,
+            29.0,
+            1847.0,
+            37.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Rucksack",
+          "bounds": [
+            1691.0,
+            82.0,
+            1795.0,
+            100.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "5",
+          "bounds": [
+            1897.0,
+            81.0,
+            1920.0,
+            117.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1408.0,
+            155.0,
+            1421.0,
+            169.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Hinweise gelost: 1/7» Entdeckungen 0 /",
+          "bounds": [
+            154.0,
+            177.0,
+            672.0,
+            205.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            153.0,
+            223.0,
+            165.0,
+            241.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "[fT",
+          "bounds": [
+            1420.0,
+            241.0,
+            1475.0,
+            250.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1428.0,
+            251.0,
+            1467.0,
+            259.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a .",
+          "bounds": [
+            1430.0,
+            232.0,
+            1514.0,
+            243.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ss",
+          "bounds": [
+            1683.0,
+            238.0,
+            1703.0,
+            245.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "sme:",
+          "bounds": [
+            1725.0,
+            234.0,
+            1763.0,
+            243.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "as |",
+          "bounds": [
+            1575.5,
+            250.0,
+            1617.5,
+            266.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1879.0,
+            256.0,
+            1920.0,
+            276.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            154.0,
+            264.0,
+            619.0,
+            292.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "L ni",
+          "bounds": [
+            1441.0,
+            286.0,
+            1483.0,
+            301.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1681.0,
+            272.0,
+            1691.0,
+            288.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "cS",
+          "bounds": [
+            1894.0,
+            273.0,
+            1920.0,
+            293.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "7",
+          "bounds": [
+            1421.0,
+            305.0,
+            1448.0,
+            314.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "on",
+          "bounds": [
+            1708.5,
+            288.5,
+            1728.0,
+            309.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Wasserfall",
+          "bounds": [
+            152.0,
+            308.0,
+            284.0,
+            328.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ans",
+          "bounds": [
+            800.0,
+            317.0,
+            815.0,
+            325.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Lf",
+          "bounds": [
+            1422.0,
+            330.0,
+            1427.0,
+            345.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ma",
+          "bounds": [
+            1425.0,
+            324.0,
+            1445.0,
+            332.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "——",
+          "bounds": [
+            1603.0,
+            336.0,
+            1620.0,
+            339.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—_",
+          "bounds": [
+            1825.0,
+            325.0,
+            1844.0,
+            333.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "© Kristallwachter",
+          "bounds": [
+            1344.0,
+            349.0,
+            1437.0,
+            361.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ha Cy",
+          "bounds": [
+            1535.0,
+            337.0,
+            1574.0,
+            351.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1823.0,
+            337.0,
+            1841.0,
+            347.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Mondgarten >",
+          "bounds": [
+            1740.0,
+            370.0,
+            1843.0,
+            383.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "“Rar.",
+          "bounds": [
+            1327.0,
+            391.0,
+            1363.0,
+            397.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Shh",
+          "bounds": [
+            1566.0,
+            375.0,
+            1588.0,
+            386.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "aim",
+          "bounds": [
+            211.0,
+            431.0,
+            236.0,
+            439.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "“",
+          "bounds": [
+            227.0,
+            427.0,
+            232.0,
+            431.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "A",
+          "bounds": [
+            1637.0,
+            410.0,
+            1675.0,
+            431.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "——m i",
+          "bounds": [
+            1785.0,
+            394.0,
+            1920.0,
+            443.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "f",
+          "bounds": [
+            241.0,
+            439.0,
+            246.0,
+            447.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "FT",
+          "bounds": [
+            1517.0,
+            449.0,
+            1536.0,
+            456.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Fl",
+          "bounds": [
+            1576.0,
+            449.0,
+            1597.0,
+            457.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1479.0,
+            468.0,
+            1487.0,
+            482.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1208.0,
+            522.0,
+            1215.0,
+            557.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ail.",
+          "bounds": [
+            264.0,
+            578.0,
+            276.0,
+            585.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "f)",
+          "bounds": [
+            870.0,
+            493.0,
+            959.0,
+            569.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "7",
+          "bounds": [
+            1712.0,
+            591.0,
+            1729.0,
+            600.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "baad",
+          "bounds": [
+            1825.0,
+            590.0,
+            1857.0,
+            601.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—_,",
+          "bounds": [
+            222.0,
+            583.0,
+            290.0,
+            611.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "or",
+          "bounds": [
+            1548.0,
+            627.0,
+            1617.0,
+            638.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ct",
+          "bounds": [
+            1587.0,
+            633.0,
+            1607.0,
+            642.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "==",
+          "bounds": [
+            1620.0,
+            629.0,
+            1664.0,
+            644.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "an,",
+          "bounds": [
+            1633.0,
+            640.0,
+            1654.0,
+            649.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "se",
+          "bounds": [
+            1665.0,
+            628.0,
+            1695.0,
+            641.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Erkunde Folge dem goldenen Stern!",
+          "bounds": [
+            742.0,
+            628.0,
+            1291.0,
+            652.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "J",
+          "bounds": [
+            1531.0,
+            652.0,
+            1550.0,
+            661.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "<",
+          "bounds": [
+            1543.0,
+            635.0,
+            1599.0,
+            669.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1589.0,
+            654.0,
+            1610.0,
+            663.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1599.0,
+            642.0,
+            1619.5,
+            658.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Re",
+          "bounds": [
+            1610.0,
+            637.0,
+            1635.0,
+            668.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1623.0,
+            646.0,
+            1643.5,
+            662.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "eS toe",
+          "bounds": [
+            1657.0,
+            642.0,
+            1704.5,
+            660.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "= eee",
+          "bounds": [
+            1691.0,
+            643.0,
+            1755.0,
+            655.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Cs",
+          "bounds": [
+            1706.0,
+            650.0,
+            1759.0,
+            661.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1519.0,
+            661.0,
+            1539.0,
+            675.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Sn",
+          "bounds": [
+            1553.0,
+            661.0,
+            1572.5,
+            679.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "= ee",
+          "bounds": [
+            1604.0,
+            670.0,
+            1651.0,
+            688.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "= ess",
+          "bounds": [
+            1671.0,
+            653.0,
+            1754.0,
+            674.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ny",
+          "bounds": [
+            1492.0,
+            672.0,
+            1551.0,
+            695.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "aoe",
+          "bounds": [
+            1504.0,
+            726.0,
+            1526.5,
+            748.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Springen",
+          "bounds": [
+            1762.0,
+            742.0,
+            1862.0,
+            766.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Sense.",
+          "bounds": [
+            1683.0,
+            782.0,
+            1838.0,
+            824.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "1474",
+          "bounds": [
+            211.0,
+            822.0,
+            235.0,
+            837.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "sae~",
+          "bounds": [
+            234.0,
+            839.0,
+            287.0,
+            862.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "4",
+          "bounds": [
+            237.0,
+            853.0,
+            255.0,
+            874.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "~\\",
+          "bounds": [
+            301.0,
+            795.5,
+            372.0,
+            875.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=e",
+          "bounds": [
+            1457.0,
+            857.0,
+            1504.0,
+            890.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": ")",
+          "bounds": [
+            296.0,
+            853.0,
+            322.0,
+            928.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "I",
+          "bounds": [
+            1229.0,
+            885.0,
+            1242.0,
+            928.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1414.0,
+            898.0,
+            1466.0,
+            935.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1717.0,
+            915.0,
+            1742.0,
+            930.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "fo)",
+          "bounds": [
+            1767.0,
+            855.0,
+            1847.0,
+            919.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ft",
+          "bounds": [
+            1725.0,
+            928.0,
+            1788.0,
+            948.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "V",
+          "bounds": [
+            1790.0,
+            920.0,
+            1821.0,
+            958.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ne",
+          "bounds": [
+            184.0,
+            907.0,
+            259.0,
+            982.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            325.0,
+            973.0,
+            352.0,
+            986.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "NSEHEN",
+          "bounds": [
+            1735.0,
+            975.0,
+            1850.0,
+            994.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "is",
+          "bounds": [
+            1654.0,
+            1001.0,
+            1739.0,
+            1043.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            1673.0,
+            1043.0,
+            1770.0,
+            1080.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1443.5,
+            6.0,
+            1470.5,
+            10.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "rir",
+          "bounds": [
+            1385.5,
+            17.0,
+            1406.0,
+            23.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ested",
+          "bounds": [
+            1480.5,
+            51.0,
+            1533.5,
+            56.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "\"sone [LUMOSSTERNENSCHATZ",
+          "bounds": [
+            133.0,
+            30.0,
+            1664.5,
+            142.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "[LUMOSSTERNENSCHATZ",
+          "bounds": [
+            264.0,
+            32.0,
+            1664.5,
+            130.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ET",
+          "bounds": [
+            1357.5,
+            172.0,
+            1405.0,
+            181.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "jee,",
+          "bounds": [
+            1707.0,
+            159.5,
+            1739.0,
+            170.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Hinweise gelost: 1 / 7 - Entdeckungen 0 /",
+          "bounds": [
+            153.5,
+            177.0,
+            673.0,
+            205.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            152.0,
+            222.0,
+            166.0,
+            242.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Mm oss",
+          "bounds": [
+            1468.5,
+            230.5,
+            1527.5,
+            246.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "I",
+          "bounds": [
+            1597.0,
+            212.5,
+            1615.0,
+            225.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "BE",
+          "bounds": [
+            1725.0,
+            234.0,
+            1742.0,
+            242.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a ee",
+          "bounds": [
+            1855.0,
+            220.0,
+            1920.0,
+            244.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            1682.5,
+            237.5,
+            1704.0,
+            245.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a Sy as,",
+          "bounds": [
+            1517.0,
+            260.0,
+            1602.0,
+            276.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=:",
+          "bounds": [
+            1709.0,
+            265.5,
+            1737.0,
+            274.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "‘ Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            118.0,
+            259.0,
+            619.0,
+            308.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oo",
+          "bounds": [
+            1466.5,
+            315.5,
+            1482.5,
+            316.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Wasserfall.",
+          "bounds": [
+            151.5,
+            307.0,
+            292.5,
+            329.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "it",
+          "bounds": [
+            1462.0,
+            346.5,
+            1478.5,
+            347.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=)",
+          "bounds": [
+            1726.0,
+            321.0,
+            1775.0,
+            342.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "‘2",
+          "bounds": [
+            1853.0,
+            290.0,
+            1920.0,
+            354.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oo",
+          "bounds": [
+            1059.5,
+            358.5,
+            1082.5,
+            365.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "€",
+          "bounds": [
+            1344.0,
+            349.0,
+            1351.0,
+            355.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "\"i",
+          "bounds": [
+            1910.0,
+            370.5,
+            1920.0,
+            384.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "] »",
+          "bounds": [
+            1705.0,
+            365.5,
+            1843.0,
+            401.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Te",
+          "bounds": [
+            841.5,
+            429.0,
+            852.5,
+            437.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ea",
+          "bounds": [
+            1576.0,
+            449.0,
+            1597.5,
+            457.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "_",
+          "bounds": [
+            1840.5,
+            457.0,
+            1851.0,
+            471.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1479.5,
+            468.0,
+            1487.5,
+            482.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a =",
+          "bounds": [
+            1464.5,
+            527.0,
+            1562.0,
+            545.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1580.5,
+            546.0,
+            1615.5,
+            547.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "7",
+          "bounds": [
+            1297.5,
+            575.0,
+            1355.5,
+            591.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1692.5,
+            591.0,
+            1729.0,
+            600.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ii",
+          "bounds": [
+            898.5,
+            569.5,
+            924.5,
+            612.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "py",
+          "bounds": [
+            1628.0,
+            603.0,
+            1665.5,
+            613.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "eS ee",
+          "bounds": [
+            1668.5,
+            603.0,
+            1740.5,
+            620.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "oe",
+          "bounds": [
+            1402.0,
+            604.5,
+            1527.5,
+            632.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Sees",
+          "bounds": [
+            1681.5,
+            613.0,
+            1741.0,
+            633.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ous.",
+          "bounds": [
+            98.0,
+            635.0,
+            141.5,
+            650.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "<>",
+          "bounds": [
+            150.0,
+            645.5,
+            186.0,
+            662.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Erkunde diettel",
+          "bounds": [
+            741.5,
+            616.0,
+            949.5,
+            647.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            341.5,
+            661.5,
+            363.0,
+            667.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            361.0,
+            668.0,
+            379.5,
+            676.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": ". Folge dem goldenen",
+          "bounds": [
+            953.0,
+            628.0,
+            1210.5,
+            652.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Sa nen",
+          "bounds": [
+            1553.0,
+            661.0,
+            1601.0,
+            679.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Weg",
+          "bounds": [
+            1603.0,
+            664.0,
+            1624.0,
+            673.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1671.0,
+            653.0,
+            1695.5,
+            670.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1460.0,
+            688.0,
+            1475.5,
+            697.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "if",
+          "bounds": [
+            1531.0,
+            679.0,
+            1576.5,
+            693.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "\\—",
+          "bounds": [
+            1650.5,
+            670.0,
+            1669.0,
+            688.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ee.",
+          "bounds": [
+            240.5,
+            699.0,
+            271.5,
+            707.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=n",
+          "bounds": [
+            1633.0,
+            693.0,
+            1655.5,
+            703.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            1670.0,
+            691.0,
+            1721.5,
+            706.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1239.0,
+            729.5,
+            1362.0,
+            750.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "tex",
+          "bounds": [
+            1597.0,
+            723.0,
+            1624.5,
+            748.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1408.5,
+            750.0,
+            1438.5,
+            762.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "eee",
+          "bounds": [
+            1417.5,
+            768.0,
+            1479.5,
+            792.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "—_",
+          "bounds": [
+            265.0,
+            798.0,
+            289.5,
+            799.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1683.0,
+            783.0,
+            1725.5,
+            809.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Se ee",
+          "bounds": [
+            1726.5,
+            786.0,
+            1801.5,
+            815.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "‘(awe",
+          "bounds": [
+            1405.5,
+            799.0,
+            1445.0,
+            815.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ne",
+          "bounds": [
+            1607.0,
+            792.0,
+            1649.0,
+            818.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "&",
+          "bounds": [
+            1388.0,
+            945.0,
+            1421.5,
+            972.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "SEHEN,",
+          "bounds": [
+            1755.5,
+            974.5,
+            1857.0,
+            997.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "4s",
+          "bounds": [
+            1593.0,
+            1011.0,
+            1653.5,
+            1068.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "S",
+          "bounds": [
+            1659.0,
+            1048.5,
+            1701.0,
+            1080.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "> Ba",
+          "bounds": [
+            1772.5,
+            1050.0,
+            1885.5,
+            1080.0
+          ],
+          "variant": "raw"
+        }
+      ],
+      "exact_title_observed": true,
+      "actual_requested_phrase_observed": true,
+      "elapsed_seconds": 3.5290158209973015,
+      "source_unchanged": true
+    },
+    {
+      "name": "new-compact",
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-compact.png",
+      "source_sha256": "4b728bf98c4494a8460cae52a700d50b4d71303215c0a90588d90a9e8a1c6979",
+      "lines": [
+        {
+          "text": "&.",
+          "bounds": [
+            332.0,
+            4.0,
+            342.0,
+            15.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "HATZ",
+          "bounds": [
+            332.0,
+            3.0,
+            391.0,
+            45.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Rucksack i I",
+          "bounds": [
+            488.0,
+            25.0,
+            604.0,
+            53.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "‘ Spiele LUMOS STERN ENS",
+          "bounds": [
+            28.0,
+            11.0,
+            315.0,
+            69.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "adie:",
+          "bounds": [
+            427.0,
+            69.0,
+            482.0,
+            101.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "olge d",
+          "bounds": [
+            538.0,
+            81.0,
+            587.0,
+            102.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Hinweise gelost: 1/7-",
+          "bounds": [
+            28.0,
+            94.0,
+            217.0,
+            112.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "iy",
+          "bounds": [
+            620.0,
+            111.0,
+            636.0,
+            115.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            0.0,
+            91.0,
+            14.0,
+            133.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Entdeckungen 0/3",
+          "bounds": [
+            28.0,
+            123.0,
+            191.0,
+            141.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Folge dem Wasser zum",
+          "bounds": [
+            28.0,
+            152.0,
+            224.0,
+            170.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "leu",
+          "bounds": [
+            28.0,
+            181.0,
+            51.0,
+            195.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "enden Wasserfall.",
+          "bounds": [
+            82.0,
+            181.0,
+            234.0,
+            204.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            529.5,
+            206.0,
+            532.0,
+            212.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "_",
+          "bounds": [
+            71.0,
+            202.0,
+            115.0,
+            227.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "abe",
+          "bounds": [
+            465.0,
+            212.0,
+            484.0,
+            223.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "~",
+          "bounds": [
+            86.0,
+            226.0,
+            93.0,
+            233.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ct:",
+          "bounds": [
+            472.0,
+            233.0,
+            480.0,
+            245.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            522.0,
+            229.0,
+            531.0,
+            240.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "{",
+          "bounds": [
+            28.0,
+            232.0,
+            32.0,
+            253.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ris",
+          "bounds": [
+            460.0,
+            243.0,
+            482.0,
+            256.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            482.0,
+            247.0,
+            490.0,
+            257.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "oH:",
+          "bounds": [
+            499.0,
+            239.0,
+            522.0,
+            254.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "A",
+          "bounds": [
+            584.0,
+            244.0,
+            600.0,
+            256.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "t",
+          "bounds": [
+            400.0,
+            265.0,
+            404.0,
+            275.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "erp",
+          "bounds": [
+            452.0,
+            253.0,
+            481.0,
+            271.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "rest",
+          "bounds": [
+            503.0,
+            250.0,
+            531.0,
+            263.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            552.0,
+            254.0,
+            575.0,
+            261.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "es",
+          "bounds": [
+            553.0,
+            260.0,
+            592.0,
+            273.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Nee,",
+          "bounds": [
+            38.0,
+            255.0,
+            115.0,
+            279.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "td",
+          "bounds": [
+            447.0,
+            279.0,
+            468.0,
+            289.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "NSEHEN/",
+          "bounds": [
+            556.0,
+            280.0,
+            612.0,
+            288.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "les",
+          "bounds": [
+            492.0,
+            293.0,
+            525.0,
+            316.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=~ &",
+          "bounds": [
+            501.0,
+            309.0,
+            540.5,
+            320.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            547.0,
+            304.0,
+            565.0,
+            319.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ny",
+          "bounds": [
+            561.0,
+            308.0,
+            579.0,
+            320.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "LUMOS STERN",
+          "bounds": [
+            106.0,
+            28.0,
+            268.0,
+            45.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Ce",
+          "bounds": [
+            475.0,
+            13.0,
+            625.0,
+            59.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "==",
+          "bounds": [
+            495.5,
+            62.5,
+            528.5,
+            67.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            417.0,
+            69.0,
+            419.0,
+            71.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Hinweise gelost: 1 /7-",
+          "bounds": [
+            27.5,
+            94.0,
+            217.5,
+            112.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ged",
+          "bounds": [
+            552.5,
+            83.0,
+            585.5,
+            101.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "2",
+          "bounds": [
+            361.5,
+            118.0,
+            367.5,
+            119.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "db",
+          "bounds": [
+            456.0,
+            96.0,
+            476.0,
+            125.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Panera",
+          "bounds": [
+            599.5,
+            105.5,
+            625.5,
+            119.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Entdeckungen 0/3",
+          "bounds": [
+            27.5,
+            123.0,
+            191.0,
+            141.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "gol",
+          "bounds": [
+            419.5,
+            104.0,
+            454.5,
+            130.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Pee",
+          "bounds": [
+            521.0,
+            117.0,
+            640.0,
+            142.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Folge dem Wasser zum",
+          "bounds": [
+            27.5,
+            152.0,
+            224.0,
+            170.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Springen",
+          "bounds": [
+            535.0,
+            166.0,
+            601.5,
+            182.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "leuchte",
+          "bounds": [
+            27.0,
+            181.0,
+            88.0,
+            195.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "den Wasserfall",
+          "bounds": [
+            103.0,
+            181.0,
+            229.0,
+            195.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            482.0,
+            199.0,
+            508.5,
+            216.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ey",
+          "bounds": [
+            526.5,
+            212.0,
+            542.0,
+            222.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ne",
+          "bounds": [
+            532.0,
+            202.0,
+            558.0,
+            215.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "as",
+          "bounds": [
+            480.0,
+            255.0,
+            495.5,
+            264.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            514.0,
+            240.0,
+            533.5,
+            266.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "Saree",
+          "bounds": [
+            448.5,
+            266.0,
+            480.5,
+            277.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ahs",
+          "bounds": [
+            482.5,
+            268.0,
+            505.0,
+            276.5
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ANSEHEN,",
+          "bounds": [
+            536.5,
+            275.0,
+            605.0,
+            291.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "ina,",
+          "bounds": [
+            592.0,
+            308.0,
+            607.5,
+            320.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "&",
+          "bounds": [
+            332.0,
+            5.0,
+            341.0,
+            15.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "«Spiele",
+          "bounds": [
+            28.0,
+            30.0,
+            82.0,
+            46.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "LUMOS STERNENS",
+          "bounds": [
+            106.0,
+            28.0,
+            314.0,
+            45.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "OO ee ee",
+          "bounds": [
+            0.0,
+            49.0,
+            286.0,
+            68.5
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": ".",
+          "bounds": [
+            476.0,
+            54.0,
+            480.0,
+            59.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Rucksack i I",
+          "bounds": [
+            488.0,
+            29.0,
+            604.0,
+            53.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            314.0,
+            28.0,
+            393.0,
+            69.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "ff",
+          "bounds": [
+            542.0,
+            60.0,
+            553.0,
+            68.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Q",
+          "bounds": [
+            590.0,
+            87.0,
+            594.0,
+            92.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Hinweise gelost: 1/7-",
+          "bounds": [
+            28.0,
+            94.0,
+            217.0,
+            112.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "olg",
+          "bounds": [
+            538.0,
+            83.0,
+            562.0,
+            99.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "OSS",
+          "bounds": [
+            588.0,
+            95.0,
+            640.0,
+            100.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Entdeckungen 0/3",
+          "bounds": [
+            28.0,
+            123.0,
+            191.0,
+            141.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "‘goldenen",
+          "bounds": [
+            428.0,
+            108.0,
+            506.0,
+            126.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "ad",
+          "bounds": [
+            615.0,
+            125.0,
+            634.0,
+            131.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "Folge dem Wasser zum",
+          "bounds": [
+            28.0,
+            152.0,
+            224.0,
+            170.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "leuchtenden Wasserfall.",
+          "bounds": [
+            28.0,
+            181.0,
+            234.0,
+            197.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "| Springen",
+          "bounds": [
+            524.0,
+            166.0,
+            601.0,
+            196.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "4",
+          "bounds": [
+            634.0,
+            202.0,
+            640.0,
+            208.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "'",
+          "bounds": [
+            533.0,
+            259.0,
+            534.0,
+            263.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "VAN SEH EN-",
+          "bounds": [
+            540.0,
+            272.0,
+            610.0,
+            300.0
+          ],
+          "variant": "white-text"
+        },
+        {
+          "text": "&",
+          "bounds": [
+            332.0,
+            5.0,
+            341.0,
+            15.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "«Spiele",
+          "bounds": [
+            28.0,
+            30.0,
+            82.0,
+            46.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "LUMOS STERNENS",
+          "bounds": [
+            106.0,
+            28.0,
+            314.0,
+            45.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "OO ee ee",
+          "bounds": [
+            0.0,
+            49.0,
+            286.0,
+            68.5
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": ".",
+          "bounds": [
+            476.0,
+            54.0,
+            480.0,
+            59.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Rucksack i I",
+          "bounds": [
+            488.0,
+            29.0,
+            604.0,
+            53.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            314.0,
+            28.0,
+            393.0,
+            69.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "ff",
+          "bounds": [
+            542.0,
+            60.0,
+            553.0,
+            68.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Q",
+          "bounds": [
+            590.0,
+            87.0,
+            594.0,
+            92.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Hinweise gelost: 1/7-",
+          "bounds": [
+            28.0,
+            94.0,
+            217.0,
+            112.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "olg",
+          "bounds": [
+            538.0,
+            83.0,
+            562.0,
+            99.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "OSS",
+          "bounds": [
+            588.0,
+            95.0,
+            640.0,
+            100.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Entdeckungen 0/3",
+          "bounds": [
+            28.0,
+            123.0,
+            191.0,
+            141.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "‘goldenen",
+          "bounds": [
+            428.0,
+            108.0,
+            506.0,
+            126.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "ad",
+          "bounds": [
+            615.0,
+            125.0,
+            634.0,
+            131.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "Folge dem Wasser zum",
+          "bounds": [
+            28.0,
+            152.0,
+            224.0,
+            170.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "leuchtenden Wasserfall.",
+          "bounds": [
+            28.0,
+            181.0,
+            234.0,
+            197.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "| Springen",
+          "bounds": [
+            524.0,
+            166.0,
+            601.0,
+            196.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "4",
+          "bounds": [
+            634.0,
+            202.0,
+            640.0,
+            208.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "'",
+          "bounds": [
+            533.0,
+            259.0,
+            534.0,
+            263.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "VAN SEH EN-",
+          "bounds": [
+            540.0,
+            272.0,
+            610.0,
+            300.0
+          ],
+          "variant": "white-latin"
+        },
+        {
+          "text": "_",
+          "bounds": [
+            451.0,
+            47.0,
+            467.0,
+            55.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "1 |",
+          "bounds": [
+            538.0,
+            30.0,
+            550.0,
+            42.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            593.0,
+            31.0,
+            605.0,
+            42.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "Et",
+          "bounds": [
+            296.0,
+            180.0,
+            308.0,
+            189.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "ee iA",
+          "bounds": [
+            518.0,
+            169.0,
+            594.0,
+            194.0
+          ],
+          "variant": "navy-latin"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            595.0,
+            33.0,
+            603.0,
+            40.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "od",
+          "bounds": [
+            451.0,
+            47.0,
+            467.0,
+            55.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            296.0,
+            180.0,
+            308.0,
+            189.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            519.0,
+            169.0,
+            602.0,
+            194.0
+          ],
+          "variant": "navy-latin-1x"
+        },
+        {
+          "text": "ak",
+          "bounds": [
+            63.0,
+            30.0,
+            73.0,
+            42.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "hel",
+          "bounds": [
+            109.0,
+            28.0,
+            130.0,
+            45.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ey",
+          "bounds": [
+            216.0,
+            31.0,
+            241.0,
+            45.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            595.0,
+            33.0,
+            603.0,
+            40.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            478.0,
+            65.0,
+            554.0,
+            87.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ti",
+          "bounds": [
+            43.0,
+            98.0,
+            50.0,
+            108.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ui",
+          "bounds": [
+            43.0,
+            130.0,
+            47.0,
+            137.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ist",
+          "bounds": [
+            179.0,
+            156.0,
+            198.0,
+            166.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "ee",
+          "bounds": [
+            296.0,
+            180.0,
+            308.0,
+            189.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "Lon",
+          "bounds": [
+            232.0,
+            257.0,
+            281.0,
+            274.0
+          ],
+          "variant": "teal-text-1x"
+        },
+        {
+          "text": "BS",
+          "bounds": [
+            404.0,
+            275.0,
+            422.0,
+            289.0
+          ],
+          "variant": "teal-text-1x"
+        }
+      ],
+      "exact_title_observed": false,
+      "actual_requested_phrase_observed": false,
+      "elapsed_seconds": 3.2700952730083372,
+      "source_unchanged": true
+    },
+    {
+      "name": "new-fold",
+      "source": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-fold.png",
+      "source_sha256": "5092f84494226a982de99794b5fef4060fc632ab1f92e5e4c2519070f79124f0",
+      "lines": [
+        {
+          "text": "el",
+          "bounds": [
+            1706.0,
+            3.0,
+            1721.0,
+            6.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tat",
+          "bounds": [
+            1694.0,
+            25.0,
+            1724.0,
+            35.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ana",
+          "bounds": [
+            1695.0,
+            14.0,
+            1715.0,
+            24.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "I po",
+          "bounds": [
+            1712.0,
+            22.0,
+            1779.0,
+            29.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1841.5,
+            0.0,
+            1853.5,
+            18.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Lt",
+          "bounds": [
+            1698.0,
+            35.0,
+            1715.0,
+            46.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "oe a",
+          "bounds": [
+            1752.0,
+            42.0,
+            1789.0,
+            56.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "zee",
+          "bounds": [
+            1696.0,
+            49.0,
+            1724.0,
+            65.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Litt",
+          "bounds": [
+            1768.0,
+            75.0,
+            1803.0,
+            81.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tat Tait eo",
+          "bounds": [
+            1843.0,
+            74.5,
+            1921.0,
+            88.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "on",
+          "bounds": [
+            2138.0,
+            71.0,
+            2176.0,
+            76.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "at",
+          "bounds": [
+            1626.0,
+            94.0,
+            1659.0,
+            108.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a!",
+          "bounds": [
+            1710.0,
+            101.0,
+            1745.0,
+            112.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "an",
+          "bounds": [
+            1730.0,
+            77.0,
+            1760.0,
+            111.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "“TF",
+          "bounds": [
+            1794.0,
+            95.0,
+            1824.0,
+            102.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ott",
+          "bounds": [
+            1596.0,
+            120.0,
+            1634.0,
+            130.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "caer",
+          "bounds": [
+            1620.0,
+            112.0,
+            1644.0,
+            125.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Eta",
+          "bounds": [
+            1495.0,
+            149.0,
+            1522.0,
+            153.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ae",
+          "bounds": [
+            1573.0,
+            131.0,
+            1628.0,
+            162.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "rot",
+          "bounds": [
+            1777.0,
+            134.0,
+            1818.0,
+            149.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1783.0,
+            173.0,
+            1807.0,
+            184.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Bee",
+          "bounds": [
+            2126.0,
+            165.0,
+            2176.0,
+            204.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "LUMOS STERNENSCHATZ",
+          "bounds": [
+            239.0,
+            197.0,
+            880.0,
+            237.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "LUMOS STERNENSCHATZ",
+          "bounds": [
+            239.0,
+            197.0,
+            880.0,
+            237.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Rucksack",
+          "bounds": [
+            1833.0,
+            204.0,
+            1989.0,
+            230.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "<« Spiele",
+          "bounds": [
+            63.0,
+            202.0,
+            184.0,
+            241.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "sors",
+          "bounds": [
+            2136.0,
+            254.0,
+            2176.0,
+            259.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "re",
+          "bounds": [
+            1306.0,
+            263.0,
+            1360.0,
+            267.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1390.0,
+            263.0,
+            1428.0,
+            265.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "er",
+          "bounds": [
+            1492.0,
+            265.0,
+            1530.0,
+            287.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            1537.0,
+            263.0,
+            1588.0,
+            265.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ween tase",
+          "bounds": [
+            1636.0,
+            252.0,
+            1725.0,
+            280.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "es",
+          "bounds": [
+            1912.5,
+            270.0,
+            1940.5,
+            275.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "——",
+          "bounds": [
+            2080.0,
+            273.0,
+            2106.0,
+            278.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "<a",
+          "bounds": [
+            2150.0,
+            260.0,
+            2176.0,
+            265.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "TE",
+          "bounds": [
+            1736.5,
+            273.0,
+            1829.0,
+            301.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "rn a as |",
+          "bounds": [
+            1825.0,
+            268.0,
+            1963.5,
+            297.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1858.0,
+            293.0,
+            1923.0,
+            308.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            2045.0,
+            292.0,
+            2070.0,
+            297.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "— a",
+          "bounds": [
+            1660.0,
+            325.5,
+            1693.0,
+            339.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1871.0,
+            309.0,
+            1938.0,
+            324.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1996.0,
+            311.0,
+            2031.0,
+            316.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Cito",
+          "bounds": [
+            1790.0,
+            335.0,
+            1825.0,
+            340.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "RE",
+          "bounds": [
+            1934.0,
+            342.0,
+            1947.0,
+            356.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Hinweise gelost: 1 / 7 - Entdeckungen 0 /",
+          "bounds": [
+            63.0,
+            349.0,
+            840.0,
+            388.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1202.0,
+            390.0,
+            1265.0,
+            394.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "rect ff fT]",
+          "bounds": [
+            1799.0,
+            386.0,
+            1977.0,
+            410.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "of",
+          "bounds": [
+            2010.0,
+            397.0,
+            2039.0,
+            408.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "__ Sam",
+          "bounds": [
+            2080.0,
+            388.0,
+            2176.0,
+            413.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "vende",
+          "bounds": [
+            1466.0,
+            426.0,
+            1500.0,
+            435.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "jf",
+          "bounds": [
+            1864.5,
+            418.0,
+            1878.5,
+            441.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "— a ei",
+          "bounds": [
+            2047.0,
+            407.0,
+            2176.0,
+            423.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "3",
+          "bounds": [
+            60.0,
+            415.0,
+            79.0,
+            443.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Ber",
+          "bounds": [
+            1474.0,
+            447.0,
+            1508.0,
+            456.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Por",
+          "bounds": [
+            1777.0,
+            424.0,
+            1811.0,
+            440.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1787.0,
+            436.0,
+            1816.0,
+            446.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "af = mes",
+          "bounds": [
+            1855.0,
+            435.0,
+            2176.0,
+            456.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            1480.0,
+            462.0,
+            1503.0,
+            481.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=a!",
+          "bounds": [
+            1610.0,
+            476.0,
+            1627.0,
+            486.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "alt",
+          "bounds": [
+            1792.0,
+            447.0,
+            1839.0,
+            463.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "{of |",
+          "bounds": [
+            2016.0,
+            469.0,
+            2068.0,
+            492.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "on",
+          "bounds": [
+            1216.0,
+            490.0,
+            1232.0,
+            507.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "mer ard",
+          "bounds": [
+            1198.0,
+            484.5,
+            1224.0,
+            500.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=o",
+          "bounds": [
+            1609.0,
+            487.0,
+            1630.0,
+            497.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "= a",
+          "bounds": [
+            1739.0,
+            488.0,
+            1847.0,
+            512.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "nn",
+          "bounds": [
+            1775.0,
+            462.0,
+            1851.0,
+            493.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Folge dem Wasser zum leuchtenden",
+          "bounds": [
+            63.0,
+            479.0,
+            759.0,
+            518.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "pe",
+          "bounds": [
+            1481.0,
+            500.0,
+            1493.0,
+            513.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1657.0,
+            507.0,
+            1680.0,
+            530.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ma",
+          "bounds": [
+            1868.0,
+            543.0,
+            1903.0,
+            558.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "77",
+          "bounds": [
+            2132.0,
+            538.0,
+            2176.0,
+            554.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Wasserfall.",
+          "bounds": [
+            59.0,
+            545.0,
+            269.0,
+            574.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "|",
+          "bounds": [
+            1888.0,
+            557.0,
+            1901.0,
+            573.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            2049.0,
+            560.0,
+            2079.0,
+            563.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "© Kristaitwachter",
+          "bounds": [
+            1732.0,
+            586.0,
+            1889.0,
+            605.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "—",
+          "bounds": [
+            743.0,
+            615.0,
+            808.0,
+            630.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "SLIT",
+          "bounds": [
+            1704.0,
+            656.0,
+            1778.0,
+            666.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "BS",
+          "bounds": [
+            2096.0,
+            661.0,
+            2137.0,
+            696.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            2033.0,
+            713.0,
+            2070.0,
+            722.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            1978.0,
+            739.0,
+            2005.0,
+            749.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "oi SF",
+          "bounds": [
+            2038.0,
+            727.0,
+            2073.0,
+            742.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=;",
+          "bounds": [
+            2075.0,
+            753.0,
+            2099.0,
+            761.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "y",
+          "bounds": [
+            2144.5,
+            745.0,
+            2155.0,
+            753.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "© ES",
+          "bounds": [
+            2040.0,
+            759.0,
+            2076.0,
+            768.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "= oo",
+          "bounds": [
+            2120.0,
+            754.0,
+            2145.0,
+            764.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "im",
+          "bounds": [
+            1860.0,
+            765.5,
+            1928.0,
+            817.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "tt an",
+          "bounds": [
+            937.0,
+            862.0,
+            991.0,
+            878.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            2047.0,
+            1065.0,
+            2116.0,
+            1084.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "J aay",
+          "bounds": [
+            2037.0,
+            1104.0,
+            2081.0,
+            1124.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "S28 wen",
+          "bounds": [
+            2084.0,
+            1111.0,
+            2163.0,
+            1138.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Erkunde die Insel. Folge dem goldenen Stern!",
+          "bounds": [
+            677.0,
+            1105.0,
+            1500.0,
+            1143.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=n",
+          "bounds": [
+            2045.0,
+            1122.0,
+            2100.0,
+            1150.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a |",
+          "bounds": [
+            2129.0,
+            1144.0,
+            2176.0,
+            1171.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "my",
+          "bounds": [
+            1864.0,
+            1258.0,
+            1891.0,
+            1279.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "i",
+          "bounds": [
+            1859.0,
+            1277.0,
+            1864.0,
+            1293.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "mY",
+          "bounds": [
+            2140.0,
+            1277.0,
+            2176.0,
+            1300.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "my",
+          "bounds": [
+            1855.0,
+            1296.0,
+            1884.0,
+            1319.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Springen",
+          "bounds": [
+            1940.0,
+            1276.0,
+            2089.0,
+            1315.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "aay",
+          "bounds": [
+            1908.0,
+            1352.0,
+            1951.5,
+            1381.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=",
+          "bounds": [
+            2042.0,
+            1343.0,
+            2086.0,
+            1366.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "a",
+          "bounds": [
+            2149.0,
+            1360.0,
+            2176.0,
+            1386.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "5",
+          "bounds": [
+            1836.0,
+            1338.0,
+            1872.0,
+            1406.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "=,\"",
+          "bounds": [
+            1933.0,
+            1381.0,
+            1973.0,
+            1391.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ee,",
+          "bounds": [
+            2014.0,
+            1376.0,
+            2060.0,
+            1393.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "aa",
+          "bounds": [
+            2043.0,
+            1359.0,
+            2087.0,
+            1388.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "{\"",
+          "bounds": [
+            79.0,
+            1482.0,
+            114.0,
+            1523.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "I",
+          "bounds": [
+            1539.0,
+            1484.0,
+            1561.0,
+            1557.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "et RS",
+          "bounds": [
+            1871.0,
+            1531.5,
+            1974.0,
+            1565.5
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "“p>",
+          "bounds": [
+            1883.0,
+            1557.0,
+            1978.0,
+            1606.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "iN",
+          "bounds": [
+            105.0,
+            1576.0,
+            150.0,
+            1627.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "ea",
+          "bounds": [
+            307.0,
+            1622.0,
+            362.0,
+            1657.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "NSEHEN",
+          "bounds": [
+            1899.0,
+            1626.0,
+            2071.0,
+            1656.0
+          ],
+          "variant": "contrast"
+        }
+      ],
+      "exact_title_observed": true,
+      "actual_requested_phrase_observed": true,
+      "elapsed_seconds": 1.490336118004052,
+      "source_unchanged": true
+    }
+  ]
+}

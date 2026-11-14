@@ -1,0 +1,986 @@
+{
+  "schema": 1,
+  "checked_utc": "2026-11-14T06:18:37.794159+00:00",
+  "repository": "Ullmann27/lumo-lernen",
+  "actual_evidence_commit": "e423df58117c8f49bcd03c634e438392dc79c3ef",
+  "actual_evidence_tree": "61d1aa197fb28072ab9405039b0d171cb4ce1aea",
+  "actual_tree_entries": 6461,
+  "actual_tree_blob_entries": 5672,
+  "actual_tree_truncated": false,
+  "actual_tree_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/61d1aa197fb28072ab9405039b0d171cb4ce1aea?recursive=1",
+  "actual_tree_response_sha256": "54b5653b447b98ac93d0f425ff5d995d6c6c32b560a169df4fbf510de8464a76",
+  "B_manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-new-work-evidence-20261114/upload-manifest.json",
+  "B_manifest_sha256": "61b25094bcbe95ab9a8b2048ec6e213b69abbb971789e3acd43bdbe8d8b02e11",
+  "B_progress_snapshot_sha256": "ef8cd42bce5f739f57c30a241c9fa039f3cfada05cc76dc6b428b36bc6e9e706",
+  "B_confirmed_unique_blobs": 324,
+  "checked_targets": [
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/after.glb.import",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/before.glb.import",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/import.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/import.patch",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/minimal-project.godot",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/result.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/evidence/setup.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-source-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/canonical-import.patch",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/closure-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/second-after.glb.import",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/second-import.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-import-8be3-20261114/canonical-evidence/second-result.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/baseline/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/baseline/scripts/tests/lumo_attention_landing_regression.gd",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/green-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/green-patched-report.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/green-patched.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/import-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/import-original.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/import-source-changes.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/red-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/red-original-report.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/red-original.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/source-and-contract-preservation.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/test-only-against-8be3.patch",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/runtime-source-selection.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-attention-landing-8be3-20261114/source-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/expected-job-contract.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/workflow-at-8be3.yml",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/final-run-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/final-jobs-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/final-commit-workflows-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/final-artifacts-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/gameplay-failure/original-job.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/gameplay-failure/lumo_attention_landing_regression-at-8be3.gd",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/original-job.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/artifacts-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/artifact-inventory.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/read_sidecars.py",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/sidecar-transfer.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/artifacts-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/jobs-original.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/original-job.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/additional-workflows/stage2-failure/workflow-at-8be3.yml",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-decode.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-encode.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie-ffprobe.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/movie.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-native-8be3-observation-20261114/studio-failure/selected-originals/captures/lumo_facial_capture/runtime-frames.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/source-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/implementation-against-8be3.patch",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/baseline-harness-binding.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/engine-source-order.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/runtime-setup.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/runtime-source-after.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/unchanged-test-dependencies.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/strict-local-log-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/visual-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/decoded-frame-index.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-media-predicate-red.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-media-predicate-red.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/unchanged-face-report-green.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/replay-unchanged-movie-helper.py",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/movie-helper-green.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/movie-helper-green-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-godot.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-run.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-Xorg.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-render-server-stdout.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-initial-missing-workflow.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-initial-missing-workflow-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-final-green.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/contracts-final-green-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/audio_jaw.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/blink.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/blink_intermediate.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/facial-runtime.mp4",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/gaze_left.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-decode.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-encode.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-ffprobe-stderr.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie-ffprobe.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/movie.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/muted.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/neutral.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/runtime-frames.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/stopped.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-capture/teacher_scene.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-001-012.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-013-024.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-025-036.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-037-048.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-049-060.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-061-072.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-073-084.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-085-096.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-097-108.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-109-120.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-121-132.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-133-144.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/green-decoded-review/frames-145-148.png",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/original-job.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/sidecar-transfer.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-decode.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-encode.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-ffprobe-stderr.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie-ffprobe.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/movie.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-facial-movie-fix-8be3/original-ci/runtime-frames.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-movie-independent-review-20261114/engine-source-order-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-facial-movie-independent-review-20261114/independent-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/source-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/first-contracts.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/first-contracts-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/unmodified-test-support-binding.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/final-test-support-binding.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/final-contracts.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/final-contracts-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/cli-help.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/connect-four-delivery-contract-20261114/evidence/cli-help-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/source-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/contracts.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/contracts-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/cli-help.log",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-artifact-originals-contract-20261114/evidence/cli-help-execution.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-artifact-originals-independent-review-20261114/independent-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-final-host-workflow-review-20261114/review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-fixture-blobs-20261114/validated-upload-plan.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-fixture-blobs-20261114/upload-progress.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-fixture-blobs-20261114/create-blob-responses.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-host-fixture-blobs-20261114/upload-review.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-facial-import-8be3--canonical-evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/attention-landing-8be3-contract-fix-20261114--evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-native-8be3-observation-20261114--evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-facial-movie-8be3--evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-facial-movie-independent-review-20261114--evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-c4-delivery-86445--evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-artifact-originals-86445--evidence-upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-artifact-originals-independent-review-20261114--upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-final-host-workflow-review-20261114--upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/input-manifests/studio-2020-host-fixture-blobs-20261114--checkpoint-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/README.md",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/freeze.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/verified-input-files.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/base-overlap-checks.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/status-native-acf51-run.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    },
+    {
+      "path": "docs/evidence/studio-2020-followup-20261114/upload-manifest.json",
+      "in_actual_e423": false,
+      "in_B_manifest": false,
+      "result": "NEW_DOCUMENT_PATH"
+    }
+  ],
+  "same_target_identical_deduplications": [],
+  "conflicts": []
+}

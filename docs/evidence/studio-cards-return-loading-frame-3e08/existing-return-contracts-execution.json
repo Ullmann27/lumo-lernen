@@ -1,0 +1,19 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/android_qa/tests",
+    "-p",
+    "test_studio_flutter_return.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched",
+  "started_at": "2026-11-14T03:22:30.686001+00:00",
+  "elapsed_seconds": 1.6183102170034545,
+  "returncode": 0,
+  "scope": "Six unchanged existing return/process/caption contracts on original318 PNG fixtures; no Android run"
+}

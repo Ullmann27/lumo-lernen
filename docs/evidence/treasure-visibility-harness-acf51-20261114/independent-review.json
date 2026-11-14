@@ -1,0 +1,251 @@
+{
+  "schema": 1,
+  "reviewer": "learning_worlds; independent read-only review",
+  "created_utc": "2026-11-14T07:24:59.733362+00:00",
+  "status": "NO_ADDITIONAL_CONCRETE_BLOCKER_IN_REVIEWED_HARNESS_SCOPE; NEW_NATIVE_CI_STILL_REQUIRED",
+  "scope": "Lesende Prüfung genau der zwei eingefrorenen Harness-/Testdateien gegen acf51. Keine neue Testausführung, kein Engine-/Androidlauf, keine Quellenänderung oder Git-Mutation.",
+  "baseline": {
+    "repository": "Ullmann27/lumo-godot",
+    "commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+    "saved_original_tree": {
+      "path": "qa/treasure-gameplay-visibility-acf51/evidence/actual-acf51-tree.json",
+      "bytes": 806298,
+      "sha256": "371b9ec472891cedb4725fccfb98f71834e2a9c59c80fb4648de8e2a9a868581",
+      "git_blob_sha": "16bfc136f01c1dea1d5df718144d89c7ecfdbea0"
+    },
+    "baseline_sources": [
+      {
+        "path": "qa/treasure-visibility-harness-acf51-20261114/baseline/native/tools/validate_studio.sh",
+        "bytes": 22674,
+        "sha256": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+        "git_blob_sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+      },
+      {
+        "path": "qa/treasure-visibility-harness-acf51-20261114/baseline/native/tools/tests/test_nextgen_runner.py",
+        "bytes": 40545,
+        "sha256": "9e0252a70d1b9d961696eef1bd90499a2f111c63df51515cf815e46aa21778ca",
+        "git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963"
+      }
+    ],
+    "original_git_blobs_and_modes_independently_confirmed": true
+  },
+  "reviewed_sources": [
+    {
+      "path": "tools/validate_studio.sh",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/validate_studio.sh",
+      "bytes": 25171,
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+      "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "local_path": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+      "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "mode": "100644",
+      "type": "blob",
+      "previous_git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963"
+    }
+  ],
+  "bound_manifests": [
+    {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/source-upload-manifest.json",
+      "bytes": 1233,
+      "sha256": "8b3031348204a7cd5e9f94a3e0dd945306209e695955c9806cb3b79e95a07f06",
+      "git_blob_sha": "bc1991ac763b9526847e430db95e6fa3515d9a8b"
+    },
+    {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/evidence-upload-manifest.json",
+      "bytes": 14466,
+      "sha256": "3d8272698ecdd865776ec584e77f7f969a1c14ddcdaa40094b6e6573acbe1af6",
+      "git_blob_sha": "a54409dc37515bae5c04c44adb1a47bef1b49676"
+    }
+  ],
+  "preservation": {
+    "all_twenty_probe_invocations_budgets_and_full_shell_prefix_byte_identical": true,
+    "full_shell_suffix_and_failure_aggregation_byte_identical": true,
+    "full_png_processing_and_image_report_hash_binding_loop_byte_identical": true,
+    "changed_embedded_roster_functions": [
+      "treasure_title_report"
+    ],
+    "unchanged_embedded_roster_functions": [
+      "c4_report",
+      "face_report",
+      "finite",
+      "identity",
+      "verify_file"
+    ],
+    "face_c4_movie_validation_and_existing_rejection_test_bodies_preserved": true,
+    "old_37_core_images_plus_8_face_plus_4_c4_preserved": true,
+    "treasure_images": 5,
+    "total_required_png": 54,
+    "retained_probe_calls": [
+      "check_probe learning_sharing_regression '[LearningSharing] PASS' headless 180",
+      "check_probe learning_studio_regression '[LearningStudio] PASS' headless 180",
+      "check_probe lumo_studio_motion_regression '[LumoStudioMotion] PASS' headless 180",
+      "check_probe puzzle_rotation_regression '[PuzzleRotation] PASS' headless 180",
+      "check_probe puzzle_menu_lifecycle_regression '[PuzzleMenuLifecycle] PASS' headless 180",
+      "check_probe treasure_exploration_regression '[TreasureExploration] PASS' headless 180",
+      "check_probe cards_safe_area_android_contract 'CARDS_ANDROID_INSETS_PASS' headless 180",
+      "check_probe cards_safe_area_regression 'CARDS_SAFE_AREA_PASS' headless 180",
+      "check_probe mobile_safe_area_regression 'MOBILE_SAFE_AREA_PASS' headless 240",
+      "check_probe learning_sharing_capture '[LearningSharingCapture] PASS' rendered 600 \\",
+      "check_probe lumo_studio_motion_capture '[LumoStudioCapture] PASS' rendered 420",
+      "check_probe puzzle_rotation_regression '[PuzzleRotation] PASS' rendered 600",
+      "check_probe puzzle_menu_lifecycle_regression '[PuzzleMenuLifecycle] PASS' rendered 600 -- --capture",
+      "check_probe treasure_exploration_regression '[TreasureExploration] PASS' rendered 600",
+      "check_probe cards_safe_area_regression 'CARDS_SAFE_AREA_PASS' rendered 600 -- --capture",
+      "check_probe mobile_safe_area_regression 'MOBILE_SAFE_AREA_PASS' rendered 900 -- --capture",
+      "check_probe lumo_facial_regression 'LUMO_FACIAL_PASS checks=102' headless 180",
+      "check_probe lumo_facial_capture 'LUMO_FACIAL_CAPTURE_PASS frames=144' rendered 420 \\",
+      "check_probe connect_four_visual_capture 'CONNECT_FOUR_VISUAL_PASS' rendered 600 -- --capture",
+      "check_probe treasure_title_contrast_regression '[TreasureTitleContrast] PASS' rendered 600 -- --capture"
+    ]
+  },
+  "review_findings": [
+    "Genau fünf feste Profile mit tatsächlicher Bildgröße, Dichte und Insets-Fixture; jedes Profil verlangt Frischstart und den ausdrücklich benannten gespeicherten Ausgangszustand. Zehn eindeutige Paare sind Pflicht.",
+    "Der Reader verlangt checks als Integer >=3341 und eine leere Fehlerliste. Er verwirft den alten Vierbildstand sowie den Zwischenstand3273; der tatsächliche aktuelle Rendererbericht enthält3351.",
+    "Für jedes der zehn Paare werden positive endliche Avatarrechtecke und sechs eindeutige semantische HUD-Rollen verlangt. Größe, Bildschirm-/Safe-Area-Lage und Kontrast werden geprüft.",
+    "Avatar/HUD- sowie Toast/Bedienelement-Schnittmengen werden aus den Rechtecken erneut berechnet. Ein als Null angegebener overlap-Wert reicht nicht, wenn die tatsächlichen Rechtecke schneiden.",
+    "Interaktive Rechtecke verlangen mindestens47.99dp als numerische Rundungstoleranz. Im echten finalen Bericht beträgt die kleinste erneut berechnete Seite48.0dp. Die getrennte Engineprobe kontrolliert zusätzlich die durch Clipping-Vorfahren tatsächlich exponierte Tastfläche.",
+    "Vier Aufnahmen sind dem gespeicherten Zustand zugeordnet, die2400x1080-Cutout-Aufnahme dem Frischstart. Die übrigen fünf Zustandszeilen dürfen keine vollständigen oder partiellen Imagefelder enthalten.",
+    "Fünf exakt benannte reale PNG-Dateien, deren Dimensionen und SHA256 werden gegen den Bericht gebunden; der Bericht selbst wird mit Dateigröße und SHA256 in den Roster aufgenommen. Fehlende, zusätzliche, umbenannte oder anders gebundene Bilder scheitern.",
+    "Der unveränderte Pflichtaufruf führt die reale Treasure-GDScriptprobe mit Marker, Exitcode und600sBudget aus. Deren eingefrorene Quelleea6087ef enthält echte ScreenTouch-Eingaben für Hinweis und Weiter erkunden, vollständigen clue_label-Text, Pauseabwehr, Dialogschluss sowie Gleichheit des relevanten Quest-/Belohnungszustands. Der Roster allein ist kein zweiter unabhängiger Quest-Simulator."
+  ],
+  "read_only_arithmetic_on_actual_final_report": {
+    "observations": 10,
+    "avatar_hud_pairs_recomputed": 60,
+    "toast_input_pairs_recomputed": 34,
+    "positive_intersection_count": 0,
+    "minimum_reported_touch_side_dp": 48.0
+  },
+  "existing_execution_evidence_read_only": {
+    "python_contract_log": {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/evidence/contracts-final.log",
+      "bytes": 3251,
+      "sha256": "c704daae7b9f5074664f01caede380400a08271614fe30f3c7b803d88feaf648",
+      "git_blob_sha": "9eabf45bdc2a440f76cd923f72833c913da9a3bd"
+    },
+    "python_execution": {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/evidence/contracts-final-execution.json",
+      "bytes": 970,
+      "sha256": "dcf7c1d3ba45458966c126c0d0322d41de9d6fae11cdb69842d9c3d3238e9782",
+      "git_blob_sha": "c52e9e8951772775ba815702a729ae144a761849"
+    },
+    "reported_tests": 16,
+    "reported_pass": 16,
+    "reported_skip": 0,
+    "unittest_reported_seconds": 38.623,
+    "wrapper_wall_seconds": 38.68743666500086,
+    "exit_code": 0,
+    "additional_negative_fixture_variants": 32,
+    "contract_scope": "Ausgeführte synthetische Orchestrierungs-/Fehlerpfadtests des Autors; vom Reviewer ausschließlich gelesen.",
+    "actual_treasure_replay": {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/result.json",
+      "bytes": 5791,
+      "sha256": "c0f1707717a0a8424c0296fff6d83d5c130c9b41376cb1fa1b04dc68c30c779a",
+      "git_blob_sha": "31157a6fcb496c6eb0f97068d6a559e13243d743"
+    },
+    "replay_original_log": {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/original-acf51.log",
+      "bytes": 136,
+      "sha256": "1d4f1d747c81dea73591747ea823669a6642489c6edfbd326ec35759e1bd7a04",
+      "git_blob_sha": "23154a3d699cb9ef14f501346e5dd482733448b0"
+    },
+    "replay_extended_log": {
+      "path": "qa/treasure-visibility-harness-acf51-20261114/evidence/final-replay/extended.log",
+      "bytes": 46,
+      "sha256": "557aeec832a0229e337e97fcc4b59b7c00de56d1cfa3a27674147c635c3bc8ae",
+      "git_blob_sha": "77c2f999b7bcae511a035fcb53a2242cec0faa5c"
+    },
+    "old_roster_exit_code": 1,
+    "new_roster_exit_code": 0,
+    "actual_treasure_inputs": [
+      {
+        "path": "qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-report.json",
+        "bytes": 30295,
+        "sha256": "2eacc62e102f3b835fa938bab7966ac507b9be210c604120ab42d61c559d7f02"
+      },
+      {
+        "path": "qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-compact.png",
+        "bytes": 324217,
+        "sha256": "01fb3aa476f1c07950023cfdb2e6c8ee56af9ff902ed91a4ceab2e5812787fb9",
+        "size_px": [
+          640,
+          320
+        ]
+      },
+      {
+        "path": "qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-fold.png",
+        "bytes": 4225356,
+        "sha256": "e2913b19defe9a740494da0aab2eb63a008adb07f7de85d6cef2d1122d04099f",
+        "size_px": [
+          2176,
+          1812
+        ]
+      },
+      {
+        "path": "qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-landscape-cutout.png",
+        "bytes": 2622432,
+        "sha256": "a4ddd95b35a4253bca35863eb5f6a04b7cc24af731c2d314f774502fa769f328",
+        "size_px": [
+          2400,
+          1080
+        ]
+      },
+      {
+        "path": "qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-landscape.png",
+        "bytes": 2718314,
+        "sha256": "609ae9a2f31c55cac080e90ea98187bde3d8f75523e3cca768fd00ffb4a2c398",
+        "size_px": [
+          1920,
+          1080
+        ]
+      },
+      {
+        "path": "qa/treasure-gameplay-visibility-acf51/final-render/treasure-title-portrait.png",
+        "bytes": 2101916,
+        "sha256": "a9dd2fb6b1d56f94d67b74e5665acc328ba70a5d20c0bd2e49e2285767c4df7f",
+        "size_px": [
+          1080,
+          2400
+        ]
+      }
+    ],
+    "all_six_replay_input_byte_hashes_independently_rechecked": true,
+    "replay_scope": "Fünf echte abschließende Treasure-Raster plus echter10-Zeilen-Bericht; die übrigen49Rosterbilder und deren Sidecars sind ausdrücklich synthetische Vertragsfixtures. Der54-PNG-PASS-Marker dieses Replays ist keine neue54-Bilder-Engineaufnahme."
+  },
+  "related_product_and_visual_review": {
+    "test_source": {
+      "path": "qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c"
+    },
+    "source_review": {
+      "path": "qa/treasure-gameplay-visibility-independent-review-20261114/independent-source-review.json",
+      "bytes": 10906,
+      "sha256": "7b7c75d1f167dad57c267e2c6304e5b59d0c77d58e831554372252975fc9b2b3",
+      "git_blob_sha": "1d122af2076ddd23607c4fd63c263b0d1f3d5b59"
+    },
+    "actual_five_image_review": {
+      "path": "qa/treasure-gameplay-visibility-independent-review-20261114/independent-render-closure.json",
+      "bytes": 9365,
+      "sha256": "fe281ffdf249fe9782ae0c7c29fe0b55c453780f26e1dbbba04bd2e49fad11b9",
+      "git_blob_sha": "f6a69955b2fc1b29e614cf948fce8d2f6b811622"
+    },
+    "note": "Die fünf finalen Bilder wurden im getrennten Produktabschluss bereits tatsächlich einzeln geöffnet. Dieser Harnessreview startet keine weitere Bild-/Rendererprüfung."
+  },
+  "limitations": [
+    "Keine neue GitHub-CI-Abnahme: der integrierte neue Nativecommit und dessen vollständiger Pflichtlauf bleiben erforderlich.",
+    "Kein Android-, physischer Fold7-, FPS-, Temperatur- oder endgültiger Releasebeleg.",
+    "Die geometrische Rosterprüfung bindet berichtete Messrechtecke; die tatsächliche Erzeugung und Eingabe-/Questerhaltung müssen weiterhin durch den unveränderten, quellengebundenen Engine-Pflichtlauf bestehen.",
+    "Lokale Desktop-Insetfixtures bleiben explizit als Fixtures gekennzeichnet; daraus werden keine neuen Android-Insetsmessungen abgeleitet."
+  ],
+  "conclusion": "Keine zusätzliche konkrete Abschwächung oder Integrationsblockade in den exakt gelesenen finalen Harnessquellen festgestellt."
+}

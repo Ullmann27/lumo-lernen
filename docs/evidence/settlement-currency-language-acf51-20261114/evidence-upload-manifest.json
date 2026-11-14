@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "repository": "Ullmann27/lumo-lernen",
+  "scope": "docs_only",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/README.md",
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/README.md",
+      "mode": "100644",
+      "bytes": 2060,
+      "sha256": "c3ddcd3741f7c55eb2be26d3999d3edf58d10f7395575b4587b11f606411a0f8",
+      "git_blob_sha": "bc21d4f9cee0651f6bddc60b3ee75e0f3fc1d26b"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/source-binding.json",
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-binding.json",
+      "mode": "100644",
+      "bytes": 2731,
+      "sha256": "d9d4f994f1296b1a4d1bff03671dcf0b21de5a88b115f60688307152aa270288",
+      "git_blob_sha": "703d57ab274ff559d458694e76feb5a84faa15cc"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/patch-against-acf51.diff",
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/patch-against-acf51.diff",
+      "mode": "100644",
+      "bytes": 521,
+      "sha256": "695f7dd4920f46b5a53dc1e39d2d30fec45ee81faa5119da2e8dce84ecac457e",
+      "git_blob_sha": "e42ca7f58d66205346380d751f40edece45d05ac"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+      "path": "docs/evidence/settlement-currency-language-acf51-20261114/source-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 751,
+      "sha256": "5c14f61504781d4dbc45fefea077fb865f752b038bd73c65f8310e1350f18c7a",
+      "git_blob_sha": "dd66c09366a9070caa4ddfbc628311b933f839b5"
+    }
+  ],
+  "file_count": 4,
+  "total_bytes": 6063
+}

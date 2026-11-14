@@ -1,0 +1,19 @@
+{
+  "id": 14094167156,
+  "name": "lumo-studio-2019-android-host-compile",
+  "size_in_bytes": 5392,
+  "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14094167156",
+  "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14094167156/zip",
+  "expired": false,
+  "created_at": "2026-11-14T02:26:35Z",
+  "expires_at": "2026-12-14T02:26:34Z",
+  "updated_at": "2026-11-14T02:26:35Z",
+  "digest": "sha256:4d10b9d78de2b758710fc98646a1df841163c6c82d47f91f831ebe233d2e49c4",
+  "workflow_run": {
+    "id": 43545886722,
+    "repository_id": 1222433959,
+    "head_repository_id": 1222433959,
+    "head_branch": "chatgpt/lumo-studio-20261113",
+    "head_sha": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111"
+  }
+}

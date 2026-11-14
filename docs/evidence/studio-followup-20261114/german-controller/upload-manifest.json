@@ -1,0 +1,159 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ONE_PRODUCT_TEXT_FILE_WITH_ORIGINAL_EVIDENCE",
+  "base_host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "source_file_count": 1,
+  "evidence_file_count": 15,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/patched/lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "repo_path": "lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "role": "source",
+      "bytes": 17240,
+      "sha256": "f1b6469e120de3f62a39b280b28604cc9a800a0ef2548376dda607a61b742245",
+      "git_blob_sha1": "52beeb4f154045e54cf8f6a8e35a3bcb7255eda3",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/README.md",
+      "repo_path": "docs/evidence/cards-german-address-4ab/README.md",
+      "role": "evidence",
+      "bytes": 2273,
+      "sha256": "60b90e8ca2a436be199fbd5bca41852cb2fd649014fd56787f336a6e27b09338",
+      "git_blob_sha1": "b39f50caa8df14b60a15faeda10f1e4e272b1387",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/controller-against-4ab.patch",
+      "repo_path": "docs/evidence/cards-german-address-4ab/controller-against-4ab.patch",
+      "role": "evidence",
+      "bytes": 1098,
+      "sha256": "4b83ff859339710ca774b19d4d9df0229fd821a5167561a2c9abdb08294db102",
+      "git_blob_sha1": "d85d2bc435d70a41ef4f80fd5b343ef49290ab22",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/existing-tests.jsonl",
+      "repo_path": "docs/evidence/cards-german-address-4ab/existing-tests.jsonl",
+      "role": "evidence",
+      "bytes": 7521,
+      "sha256": "2e0d8d3cac633dcee92beb3f9d51be9f57f7cdab752aff1d6eb642e7c44c2daa",
+      "git_blob_sha1": "633ca1277207e4a33479e9b716f27f795953ca21",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/existing-tests.log",
+      "repo_path": "docs/evidence/cards-german-address-4ab/existing-tests.log",
+      "role": "evidence",
+      "bytes": 2637,
+      "sha256": "2259dce1c1dc49c43aa08ca1e49b6aa75aa9d6343642bc9913e1cf255ee4b9e7",
+      "git_blob_sha1": "a98ce4a98d7a93268bf9724c32289d53108ad20a",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/flutter-version.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/flutter-version.json",
+      "role": "evidence",
+      "bytes": 559,
+      "sha256": "de4f76979b458fcab585006c27960ecd0bdb87565bc698ba064ed7d67f4fdeb1",
+      "git_blob_sha1": "ed65e7e080e20317fea7d629aa91e4ba0c933570",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/isolated-package-graph.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/isolated-package-graph.json",
+      "role": "evidence",
+      "bytes": 549,
+      "sha256": "88671d074da80c628404e66777e2c010581c644cb666acb8538f6f7965623b91",
+      "git_blob_sha1": "1c9d3d0ed942e80f2ce54fbc628cee254484e4af",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/review.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/review.json",
+      "role": "evidence",
+      "bytes": 2861,
+      "sha256": "e4ef9d1a117f34e60318b84980b070f5134d955670d5b6bf242bf15b5f798004",
+      "git_blob_sha1": "8990f58fdca8d0be1a3516ce22f111ba943b0f8d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/setup-missing-package-graph-execution.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/setup-missing-package-graph-execution.json",
+      "role": "evidence",
+      "bytes": 826,
+      "sha256": "8fef5a983793dbc71f3efb0005ba7098c25b20ca58f0d8b8363998d87428b02b",
+      "git_blob_sha1": "44c0f48f4af09d32191ae9cab461505e0e46b25c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/setup-missing-package-graph.log",
+      "repo_path": "docs/evidence/cards-german-address-4ab/setup-missing-package-graph.log",
+      "role": "evidence",
+      "bytes": 515,
+      "sha256": "27771720d3c5558f6ce42fa3744aee63f8d089ad4f308af33dbe8b5c2da96f81",
+      "git_blob_sha1": "457ec61ad951f2ba756fdb2fa0d485f9ad209d26",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/source-binding-after.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/source-binding-after.json",
+      "role": "evidence",
+      "bytes": 917,
+      "sha256": "679eac7a9b02457518db3ac456b149fefe35f6e0584e79ddabbbae065c5a2693",
+      "git_blob_sha1": "945dcf1e8865b9627344a8d224202c2fae244c60",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/source-binding-before.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/source-binding-before.json",
+      "role": "evidence",
+      "bytes": 111647,
+      "sha256": "7823a0060178d7b1861987d3eb9cbbdd3e36b2f7998289fd7fa92ddb99d48f58",
+      "git_blob_sha1": "39c457845f3e79ae7a3867958b1cc034a846b0c4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/evidence/test-execution.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/test-execution.json",
+      "role": "evidence",
+      "bytes": 825,
+      "sha256": "a5544a3310cff4a40e298e2ac77ca2ebd97ed2e4356ee3d937c8a59448e62734",
+      "git_blob_sha1": "4900add3f271ac378d37c8ef4afc670bc55c054f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/baseline/lib/features/games/lumo_cards/lumo_cards_game_controller.dart",
+      "repo_path": "docs/evidence/cards-german-address-4ab/original-controller.dart",
+      "role": "evidence",
+      "bytes": 17154,
+      "sha256": "e0d590a021309f708a2e645b947fff54bf5eb398aaf8ca2865337b93b43caed0",
+      "git_blob_sha1": "6b6b22504cc0ff431cf03d4f3496b296282d24b4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/baseline/lib/l10n/app_de.arb",
+      "repo_path": "docs/evidence/cards-german-address-4ab/original-app-de.arb",
+      "role": "evidence",
+      "bytes": 11525,
+      "sha256": "ad896ab59dc8025589d0b2abb3acf6ad0b8feee4986417f71ca0b6dffd57a960",
+      "git_blob_sha1": "cf7830486a3f6164ccfa4e5a253348a138d25031",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/source-manifest.json",
+      "repo_path": "docs/evidence/cards-german-address-4ab/source-manifest.json",
+      "role": "evidence",
+      "bytes": 795,
+      "sha256": "c3ef81380bdc42872cbe767f25ffcec5619ad9fbf15e2de0fa60cea325a89e38",
+      "git_blob_sha1": "db2bcb0152ebf58eaeda6b929c3e7c5180837fa3",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 16,
+  "total_bytes": 178942,
+  "manifest_repo_path": "docs/evidence/cards-german-address-4ab/upload-manifest.json",
+  "manifest_additional": true,
+  "root_checkout_modified": false,
+  "new_tests_added": false
+}

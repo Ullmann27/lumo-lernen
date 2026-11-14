@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T09:30:01.877248+00:00",
+  "status": "no_concrete_static_guard_regression",
+  "before_host": "1453c7fd09cc91ee04dcddc2631dfd6028a37d56",
+  "after_host": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "after_tree": "3f048230ee41fe3c7f0c4dadb5147cb1f39fa61e",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run": 43580228966,
+  "attempt": 1,
+  "source_files": [
+    {
+      "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/published-before-test.dart.txt",
+      "bytes": 9473,
+      "sha256": "d81c02439db9ba9394e1ddb9f62245520b2781345a83e3df6a3bc2bf081961e2",
+      "git_blob": "3dfc352bb0cd000b79cf5111b10b0247f7add943",
+      "mode": "100644",
+      "type": "blob"
+    },
+    {
+      "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/published-after-test.dart.txt",
+      "bytes": 9683,
+      "sha256": "830e42e2569e729c06319c6d7428e2fea6f174772ad99b7e78a48d97af47b610",
+      "git_blob": "f33dfcebb8a635c2bba261b82bb71d3f0ce0d31d",
+      "mode": "100644",
+      "type": "blob"
+    }
+  ],
+  "published_comparison": {
+    "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/published-compare-original.json",
+    "bytes": 18240,
+    "sha256": "2b5ec710207c975f93e9c7d8eae3dc967c9326bcc1081bb99f1ddc6591a00052",
+    "git_blob": "a911088cf7476b0f7ab9e57f05c612f3aa86925e",
+    "mode": "100644",
+    "type": "blob"
+  },
+  "root_checkpoint": {
+    "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/root-checkpoint-original.json",
+    "bytes": 4345,
+    "sha256": "220165998dfa81f90de38039e2d11501647943020602fa28eb5b957f054b53dc",
+    "git_blob": "a72b8cdb4e02f2533b119e930217129332a9d870",
+    "mode": "100644",
+    "type": "blob"
+  },
+  "sdk_binding": {
+    "source_path": "qa/studio-2020-rect-precision-independent-review-20261114/sdk-source-binding.json",
+    "bytes": 1481,
+    "sha256": "759d4a6a1b5af6702b6a0357fd82147acaea83dd793c9d30ff200d6cb7709ad7",
+    "git_blob": "96727994e408c7c28bddc54ccb547e47cc1b8d03",
+    "mode": "100644",
+    "type": "blob"
+  },
+  "independently_confirmed": [
+    "The actual published comparison lists exactly two modified files: this test and its explanation document.",
+    "Published before/after test bytes match their Gitblobs; the new local Root test is byte-equal to published078.",
+    "Only _alignedTouchTargets changes; the complete prefix and suffix are byte-identical.",
+    "Both local size inequalities remain strict >=48, with no rounding, clamp or new tolerance.",
+    "Global getRect remains for control/cell alignment. The0.1dp global X-center tolerance is unchanged.",
+    "The complete _fullyVisible function is byte-identical: actual global control/viewport/screen intersection, existing48-0.001 exposure threshold and hitTestable.",
+    "Both actual pointer swipes, all four scenarios including320x480/text2.0, exact two-player counts and actual first/last target-cell assertions are unchanged.",
+    "No application, workflow, native pin or visual receipt is changed by the published two-file comparison."
+  ],
+  "precision_interpretation": "The new read measures the layout constraint directly, avoiding subtraction of two globally transformed double coordinates for that local-size assertion. It does not replace the independent global exposed-area and input checks.",
+  "limits": [
+    "Static source/metadata review only; no local Flutter, compiler, cache or package operation.",
+    "The0.001dp exposure tolerance already existed and is not a strict mathematical48 assertion; the separate local RenderBox-size assertion remains strict48.",
+    "The exposure checks target the actually tapped first/last columns; all seven columns retain size and global-center checks.",
+    "No Android, physical Fold7, native C4 or full-CI success is inferred.",
+    "Root separately reports the actual early12-test PASS artifact; this reviewer did not download or inspect its images here.",
+    "Root checkpoint full-tree mode proof was read; no fresh4240-file tree enumeration was repeated."
+  ]
+}

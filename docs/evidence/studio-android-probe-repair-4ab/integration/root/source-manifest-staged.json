@@ -1,0 +1,234 @@
+[
+  {
+    "path": ".github/probes/creative_android_probe.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/.github/probes/creative_android_probe.py",
+    "mode": "100644",
+    "bytes": 59166,
+    "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+    "blob_sha": "d377cee88da237025fd5bb57b6555451bf3f36a8"
+  },
+  {
+    "path": ".github/probes/studio_creative_android_probe.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/.github/probes/studio_creative_android_probe.py",
+    "mode": "100644",
+    "bytes": 64234,
+    "sha256": "f3438c5d56cc26f0945831f13458faf07f73f3dd9c35dca2365a85d8a4824fe8",
+    "blob_sha": "605852d86107bf5cded7d6ef6690e2d102967fd3"
+  },
+  {
+    "path": ".github/workflows/lumo-studio-2019.yml",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/.github/workflows/lumo-studio-2019.yml",
+    "mode": "100644",
+    "bytes": 49746,
+    "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+    "blob_sha": "4c1f4a5c2b963278b0d9c5facb8d4abfc74eb2be"
+  },
+  {
+    "path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-first.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/studio_creative_android/jump-portrait-first.png",
+    "mode": "100644",
+    "bytes": 1643589,
+    "sha256": "92bd76f2d0058f02f74b999ac89a3941bee23a80e6dd4808a653d5b7fcc4dc34",
+    "blob_sha": "316dadda4944bd7784d2e456b1990bcf419c4940"
+  },
+  {
+    "path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-ocr.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/studio_creative_android/jump-portrait-ocr.json",
+    "mode": "100644",
+    "bytes": 1496,
+    "sha256": "d315a1c0349ada7349e48ad3b9ce52de7366f9f448bfa2bea81839f639f8730a",
+    "blob_sha": "7dde3a925b23b985995b03d0878bbc39ad5d9c29"
+  },
+  {
+    "path": "scripts/tests/fixtures/studio_creative_android/jump-portrait-second.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/studio_creative_android/jump-portrait-second.png",
+    "mode": "100644",
+    "bytes": 1642110,
+    "sha256": "0d3d1d32e03384c951af53946850c0cdad19e1d130425f60efd56dc4fa56ee70",
+    "blob_sha": "8b903610aa76bba9105cfda31be3f7121827b93f"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0123-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 276,
+    "sha256": "e2d6a4ef4dc12c67594a2feef2b35d5e8c1c0850edc3a107b17acfef0ad0f188",
+    "blob_sha": "d80a72ff7e01f49bb5a9ed1ef5aed2282c9afc97"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0129-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 304,
+    "sha256": "bb778b9a97cefa10486ff1e1b2c1778104cd55f2a725c89af4191d7336e97c0d",
+    "blob_sha": "4002deccf685497afbf240fbaa7a9c3bbbe22aa5"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0135-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 302,
+    "sha256": "015748700cae1adfaac05a328ef1a8126d4d94ff450504beceeeeab196bcfd08",
+    "blob_sha": "7bfa10f941827ccd918a55045668301d990a4145"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0141-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 302,
+    "sha256": "8ffb90682acfb6c73040d49dba809ed6d3dc0a935e681a47f4b8bcc9a1374f70",
+    "blob_sha": "300396e84f42026372cd2b6eca2de8358dffe3b5"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0147-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 303,
+    "sha256": "209d313dfe5bb8f1bf25906e2d5c5dd0fae7fb6e08d801cb30f6d610619eb78b",
+    "blob_sha": "74b044344f1901308bbe65bc996511924148699c"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0153-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 303,
+    "sha256": "3e10fde9a1deb43b9b506f02ea41fe0bf0237d743e57c9a54562ee502b4645b4",
+    "blob_sha": "2c8d5d2bf02ce525faac502cc7774b401cd2e7e8"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0159-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 303,
+    "sha256": "19e0136b1fe9a68daa7b3e2e2e6ac09cdb93478374ba1219e6b8156045d56a03",
+    "blob_sha": "202a51ba17cfd9fea95716859e6002ecc72f6ccf"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0165-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 302,
+    "sha256": "b280d83d64626eaa663cf330921bdc32a7c13d5e32ea8534f18dc83ab4496835",
+    "blob_sha": "4bfa31f13ce575795fabb5fb920fcae8f83bac4d"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0171-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 304,
+    "sha256": "3c2905af0fa88452fbfdeb119fbec80b73cc20bfe8f23ba3256d4be0db9abd96",
+    "blob_sha": "a29f2f727dea9b832ad1533aaa3bf9d3458d2de9"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0177-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 303,
+    "sha256": "a6c5b2fe87041077047e6b4444cd74a16e458769c9f5cf4c649f9c2ba28424b6",
+    "blob_sha": "e1305e4529497ada49fa9f30c19c0f4aaebfc40d"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0183-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 305,
+    "sha256": "78993ee0eca06d2a6035780dc7e66cbc85944c023106b75699eecd0bebc202a2",
+    "blob_sha": "324f48d208da76a6c3f08ff635be057caa3beecb"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0189-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 305,
+    "sha256": "c944a255566e02a09572ba309b6ae82051a9b8bde3f02eb8025f764c6d2f7486",
+    "blob_sha": "263c3f026e56adbd4b3df74b60fea9d9dbdb6b60"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/0195-treasure-save-lumo_treasure_p_ec4e20ad83902c8997a69ed0b4402863.json",
+    "mode": "100644",
+    "bytes": 303,
+    "sha256": "462f2d8d4c438e8827994324ad654c716b7033fa98041b7841f844c52ac0b810",
+    "blob_sha": "8388ebb87ce51f8bbf471d1ae8425170e5a9f3a4"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/provenance.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/provenance.json",
+    "mode": "100644",
+    "bytes": 3272,
+    "sha256": "f0f97270f5b211b4c6301c0c0eea5b179b76609317d058569f04d863d6de393c",
+    "blob_sha": "ad1cc08c1e0c6d844dac44fad001d5df3cfb4965"
+  },
+  {
+    "path": "scripts/tests/fixtures/treasure_movement_4ab/real-input-events.json",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/fixtures/treasure_movement_4ab/real-input-events.json",
+    "mode": "100644",
+    "bytes": 67418,
+    "sha256": "cae3ad44ad68e76871b3630386926edee94c97a77ab589bd39260d62844cbbe8",
+    "blob_sha": "737cd03e0b20b401a090e3054240eac657ae9480"
+  },
+  {
+    "path": "scripts/tests/test_studio_jump_orientation.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/test_studio_jump_orientation.py",
+    "mode": "100644",
+    "bytes": 8108,
+    "sha256": "90c899c86a291e5e23c4570aa24d91fd08bac2fe5bb5e36268332ade53b6dbac",
+    "blob_sha": "dea8f309418bad27a2f7c2a5e5b45de48eff55ce"
+  },
+  {
+    "path": "scripts/tests/test_studio_treasure_movement.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/scripts/tests/test_studio_treasure_movement.py",
+    "mode": "100644",
+    "bytes": 12241,
+    "sha256": "d6401252f81e249751dc6d031efe2ceba91759255a0528496bbc249ef877fc8f",
+    "blob_sha": "910d8fd814654a82f09a7c915200e7ef6e2819d1"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+    "mode": "100644",
+    "bytes": 557393,
+    "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+    "blob_sha": "772eef801ef8cabc05c04dc61de9a530c5c73cc1"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+    "mode": "100644",
+    "bytes": 556055,
+    "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+    "blob_sha": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+    "mode": "100644",
+    "bytes": 555537,
+    "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+    "blob_sha": "816498d883f8f481c754b06817e26af449f7112f"
+  },
+  {
+    "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+    "mode": "100644",
+    "bytes": 556003,
+    "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+    "blob_sha": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c"
+  },
+  {
+    "path": "tools/android_qa/tests/replay_native_caption_ocr.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/tools/android_qa/tests/replay_native_caption_ocr.py",
+    "mode": "100644",
+    "bytes": 8918,
+    "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce",
+    "blob_sha": "5238a7a69190233590eefb50d647bcd244ecbc3f"
+  },
+  {
+    "path": "tools/android_qa/tests/test_studio_puzzle_menu_selection.py",
+    "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/tools/android_qa/tests/test_studio_puzzle_menu_selection.py",
+    "mode": "100644",
+    "bytes": 8681,
+    "sha256": "745620771d6db0a8edf28774c0f3e918baea4466d3586f7e8a8a0bf5abf5c2b8",
+    "blob_sha": "52cf6d9cfae97e9aaf7ede767bf7f9c142451f60"
+  }
+]

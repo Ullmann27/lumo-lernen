@@ -1,0 +1,20 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+IMPORT_MESH Mesh_0 resource_name=Lumo-Facial-Mobile_Mesh_0
+PROPERTY _surfaces type=28
+SURFACE_KEYS ["format", "primitive", "vertex_data", "vertex_count", "skin_data", "attribute_data", "aabb", "uv_scale", "index_data", "index_count", "lods", "bone_aabbs", "blend_shapes", "material", "name"]
+LOD_COUNT 4
+IMPORT_MESH LumoEyelids resource_name=Lumo-Facial-Mobile_LumoEyelids
+PROPERTY _surfaces type=28
+SURFACE_KEYS ["format", "primitive", "vertex_data", "vertex_count", "skin_data", "attribute_data", "aabb", "uv_scale", "index_data", "index_count", "lods", "bone_aabbs", "blend_shapes", "material", "name"]
+LOD_COUNT 6
+SURFACE_KEYS ["format", "primitive", "vertex_data", "vertex_count", "skin_data", "attribute_data", "aabb", "uv_scale", "index_data", "index_count", "lods", "bone_aabbs", "blend_shapes", "material", "name"]
+LOD_COUNT 10
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[Perf] quality_profile:medium

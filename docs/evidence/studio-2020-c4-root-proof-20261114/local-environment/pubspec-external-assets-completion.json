@@ -1,0 +1,15 @@
+{
+  "schema": 1,
+  "host_commit": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "reason": "Complete the exact published pubspec asset contract; first local launches stopped at asset bundling before any test. No source/test weakening.",
+  "files": [
+    {
+      "path": "docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp",
+      "bytes": 356822,
+      "git_blob_sha": "8495b34a2e7fef546d9dbe67690d106beb0375de",
+      "sha256": "b5a4916015e152e28d2fe7aa27f13ba31b54bd6537e3cdc5c1903ccd0d7147da",
+      "source": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/lumo_game_specs/2026-10-05/03_cards/lumo_cards_key_art.webp"
+    }
+  ],
+  "all_declared_asset_paths_present": true
+}

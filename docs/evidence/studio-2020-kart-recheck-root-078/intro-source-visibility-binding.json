@@ -1,0 +1,17 @@
+{
+  "schema": 1,
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "source_path": "scripts/games/kart_island.gd",
+  "source_sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+  "verified_source_statements": [
+    "preview_skip.text = \"Tippen zum Überspringen\"",
+    "var fade_in: float = clampf(t / 0.08, 0.0, 1.0)",
+    "preview_card.modulate.a = minf(fade_in, fade_out)"
+  ],
+  "inference": "At5.0seconds preview duration, fade-in reaches full alpha after0.4physicsseconds. This is source arithmetic, not measured emulator/physical elapsed time. A first-frame absence in OCR does not establish that the cue stays absent.",
+  "original_cue_ocr_scope": "Exact078 reader algorithm, local5.5.0eng only; no identity to CI5.3.4deu+eng claimed.",
+  "reader_git_blobs": {
+    "creative_android_probe.py": "45ff0d24400ee21673c707b4b6448f914c85ee87",
+    "native_ocr_tiles.py": "f5aecc82db6bac1420ab1622f240cf4fa59faadd"
+  }
+}

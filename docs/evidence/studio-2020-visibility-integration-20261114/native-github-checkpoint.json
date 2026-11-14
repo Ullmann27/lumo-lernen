@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "commit": {
+    "sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "node_id": "C_kwDOSpcSONoAKDc4NTQxM2QzOTUyOTJhMjQzZWFhMGEwNzQ4NjcxZWIxNWQzZjgwZmY",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/785413d395292a243eaa0a0748671eb15d3f80ff",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/commit/785413d395292a243eaa0a0748671eb15d3f80ff",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:23:23Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:23:23Z"
+    },
+    "tree": {
+      "sha": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/635cf3d68631ed62ba3b3ce6f2c1fc5448768787"
+    },
+    "message": "fix: keep Treasure avatar visible and preserve accessible hints\n\nKeep compact hints in the existing scrollable dialog, give messages contrast and clearance from controls, and verify fresh and restored states in five renderer formats. Preserve prior Studio gates and require the additional cutout image. Correct the singular coin label without changing settlement rules.",
+    "parents": [
+      {
+        "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/acf51d3bd2997c4b731e9a48e1791e05e756a132",
+        "html_url": "https://github.com/Ullmann27/lumo-godot/commit/acf51d3bd2997c4b731e9a48e1791e05e756a132"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref_readback": {
+    "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "node_id": "REF_kwDOSpcSONoALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+    "object": {
+      "sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/785413d395292a243eaa0a0748671eb15d3f80ff"
+    }
+  },
+  "tree_proof": {
+    "base": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+    "preserved_files": 2230,
+    "modified_files": 5,
+    "new_files": 1,
+    "total_files": 2236,
+    "total_tree_entries": 2532,
+    "truncated": false
+  },
+  "refs_before": {
+    "candidate": {
+      "ref": "refs/heads/chatgpt/lumo-studio-2020-20261114",
+      "node_id": "REF_kwDOSpcSONoALHJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDIwLTIwMjYxMTE0",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-2020-20261114",
+      "object": {
+        "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/acf51d3bd2997c4b731e9a48e1791e05e756a132"
+      }
+    },
+    "previous": {
+      "ref": "refs/heads/chatgpt/lumo-studio-20261113",
+      "node_id": "REF_kwDOSpcSONoAJ3JlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby0yMDI2MTExMw",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/chatgpt/lumo-studio-20261113",
+      "object": {
+        "sha": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/803e7a626ea6ef0aeeda9c37010e844033d3a8e3"
+      }
+    },
+    "main": {
+      "ref": "refs/heads/main",
+      "node_id": "REF_kwDOSpcSOK9yZWZzL2hlYWRzL21haW4",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/refs/heads/main",
+      "object": {
+        "sha": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4",
+        "type": "commit",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "scripts/creative/treasure_world.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/creative/treasure_world.gd",
+      "bytes": 26887,
+      "sha256": "e68fc85498b76fb7b482417a1bf6b64410a53d2f018fec7771e263ea60fa5447",
+      "git_blob_sha": "aae80484834823c8cf063df6bfb2607313f39ef7",
+      "mode": "100644",
+      "baseline_blob": "fdddd40fdf9958b7bc0bff50b75ccd4e8a2458b8"
+    },
+    {
+      "path": "scripts/tests/treasure_title_contrast_regression.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-gameplay-visibility-acf51/patched/native/scripts/tests/treasure_title_contrast_regression.gd",
+      "bytes": 15261,
+      "sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+      "git_blob_sha": "73939c37e38bdbaca77220f79227e3dcde26e59c",
+      "mode": "100644",
+      "baseline_blob": "6e50ace998d896fd88f0006112152e490e7c64e3"
+    },
+    {
+      "path": "scripts/creative/build_settlement_world.gd",
+      "source": "/workspace/scratch/5987865ae883/qa/settlement-currency-language-acf51-20261114/native/scripts/creative/build_settlement_world.gd",
+      "bytes": 34831,
+      "sha256": "f1c1633dfa9b35895c2c51e943fead257e9621169b0c618e3b8ce8bfbc9850a0",
+      "git_blob_sha": "a0b2b6c34d2242075f9f735adae481b7e3ecc3c5",
+      "mode": "100644",
+      "baseline_blob": "a4c55b4daba91f19b5cd8f846cdb62f9a727466c"
+    },
+    {
+      "path": "docs/studio-2020-visibility-corrections.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native-visibility/docs/studio-2020-visibility-corrections.md",
+      "bytes": 5778,
+      "sha256": "d805bb0cd1b1ec9360672f0446e3747ed88c0b4d9363d1d2c892484c14fbc786",
+      "git_blob_sha": "2c55747e7fe45dec183b7de6170d020f630462ca",
+      "mode": "100644",
+      "baseline_blob": null
+    },
+    {
+      "path": "tools/validate_studio.sh",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/validate_studio.sh",
+      "bytes": 25171,
+      "sha256": "39f9861fef67028bbe7cfd96afd25d7d1c305ad33b4a38e51ac4240fc73989bd",
+      "git_blob_sha": "82d44dc717f93f7292aba69f686a7c8367bc76e1",
+      "mode": "100644",
+      "baseline_blob": "3b41626b54845e70e3ac9046e5120f7aa0eb7907"
+    },
+    {
+      "path": "tools/tests/test_nextgen_runner.py",
+      "source": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native/tools/tests/test_nextgen_runner.py",
+      "bytes": 48638,
+      "sha256": "a17fac7fc503cfee6ff781e50406c95339ad15cc5bf01c2d0e18958db1e94c1c",
+      "git_blob_sha": "80855965a767fb966bc2cdd496ec0b931dd07154",
+      "mode": "100644",
+      "baseline_blob": "603c13b63d6ba64bbcef036f1505c370ec9a8963"
+    }
+  ]
+}

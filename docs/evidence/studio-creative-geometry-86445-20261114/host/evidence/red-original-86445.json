@@ -1,0 +1,16 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/test_creative_geometry_readiness.py",
+    "-v"
+  ],
+  "environment": {
+    "LUMO_CREATIVE_PROBE_SOURCE": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/baseline/host/.github/probes/studio_creative_android_probe.py"
+  },
+  "exit_code": 1,
+  "elapsed_seconds": 0.5520712169964099,
+  "source_sha256": "f3438c5d56cc26f0945831f13458faf07f73f3dd9c35dca2365a85d8a4824fe8",
+  "log_sha256": "5b7f601612b6beec922d347f3d123160e757f6ec2859624cc24458137a72eb6b"
+}

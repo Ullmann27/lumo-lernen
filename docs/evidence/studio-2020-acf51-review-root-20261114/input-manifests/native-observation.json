@@ -1,0 +1,135 @@
+{
+  "schema": 1,
+  "scope": "Explicit docs-only final CI metadata and original completed logs; no ZIP, images or product source.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/README.md",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/README.md",
+      "bytes": 3798,
+      "sha256": "d8152caadb1ca5f321ba8aca504f9df32baa9f4533e4f6a04f03b3abf7dd9cf8",
+      "git_blob_sha": "e4584dd7ae5a99110da6a100c6f7c306b7ff160b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/review.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/review.json",
+      "bytes": 4131,
+      "sha256": "afd7a8731ea09515d50c7cec52ea4af1ef5cea26e7da4640d24631bb13c5431e",
+      "git_blob_sha": "72bd42203c96c14eda36f83502a45a1dc961a245",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/source-workflow-binding.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/source-workflow-binding.json",
+      "bytes": 396,
+      "sha256": "ec1663c660b90d0fb4cda28b47c8ad8373dd3ad8a70738cef36208645f698f9c",
+      "git_blob_sha": "e31a43169413c6bf98cbe6a21625d36d24e4e5ee",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/expected-job-contract.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/expected-job-contract.json",
+      "bytes": 1803,
+      "sha256": "f03826ff774e58893349b9bde2fb5c54dcbfae4d55b8cac048ed43aa72516905",
+      "git_blob_sha": "3df68322e879e395d50320a3f769253760d081e6",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/workflow-at-acf51.yml",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/workflow-at-acf51.yml",
+      "bytes": 19772,
+      "sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+      "git_blob_sha": "fcf5fec5a43eda65b7d2c077af281fa5497635ae",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-run-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-run-original.json",
+      "bytes": 13373,
+      "sha256": "ff0df79b15b8412b646777b68fe53de6763de924ae0ef0ac85788661c8d0f8e1",
+      "git_blob_sha": "57bde1cb00261d446277d4fa9adccfbf08d39ecb",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-jobs-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-jobs-original.json",
+      "bytes": 19902,
+      "sha256": "8ba78136fe0a6b4a964436d036e6c948087e65d64589d6f86f5b9bea64ea7cc3",
+      "git_blob_sha": "373a1de415f67d76b217ecbabbad8f26f632457f",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-artifacts-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-artifacts-original.json",
+      "bytes": 5880,
+      "sha256": "b2655da4f50191ed41da98d034aba9d23a2aecc46ae1f843db3449282fe8300c",
+      "git_blob_sha": "54f93ba7ea0c9cf42d24c9f122cab5e8a27619b8",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-artifact-selected.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-artifact-selected.json",
+      "bytes": 815,
+      "sha256": "40c46c6e51bf149dd81fb6589d9e06e34684b81061766a598faf8b8052f4ecc0",
+      "git_blob_sha": "7d40de01c62bc14b9c2b49bb168f8bffdc08e4a4",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-release-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-release-original.json",
+      "bytes": 7922,
+      "sha256": "129b5a50108efcba4c4e5f26316466278603cea5f03745e9b9fdf955748d17b2",
+      "git_blob_sha": "fea9c7b3e62f40e89d468f9afc78375ed71aa814",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-release-ref-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-release-ref-original.json",
+      "bytes": 567,
+      "sha256": "a5d45e339eb5b22221bcaf94f13b979b7abc19e895923778d4e85a6345afcd1c",
+      "git_blob_sha": "1b5aa76302d748cfe33194f375452d0fcd2b194b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/final-commit-workflows-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/final-commit-workflows-original.json",
+      "bytes": 93859,
+      "sha256": "46594ca4468f0b72c06d55d137c0756f534147b3394d871889390a697e91fdae",
+      "git_blob_sha": "8b3063c504629ee0735f7aa1ded7494e6cdcdb46",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/archive-original-job.log",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/archive-original-job.log",
+      "bytes": 9649,
+      "sha256": "199d9a687bba847f29aeb2ae6107af67dba119629cd589b888d2b17ca23ee504",
+      "git_blob_sha": "3cb63b6f732ed9ed802f2a68d922325306f76edc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/completed-success/studio-original-job.log",
+      "bytes": 369464,
+      "sha256": "12af7f939bc5db2a9c03af0d207fb5f3a3b6bc5a0551d48319f6a0edcb7960e0",
+      "git_blob_sha": "db7cfeaae76417752f28d3472d7547edf60ca30d",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/completed-success/gameplay-original-job.log",
+      "bytes": 528847,
+      "sha256": "1202bb4bdf2aedca7cb71efb6d65db1e029959cbf947c7be8b03e228105d6563",
+      "git_blob_sha": "2c8228fee5f621a1f361469df357f0ec7254f4b3",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-observation-20261114/additional-workflows/stage2-success-jobs-original.json",
+      "target": "docs/evidence/studio-native-acf51-observation-20261114/additional-workflows/stage2-success-jobs-original.json",
+      "bytes": 6084,
+      "sha256": "f743df2e7c699d780e64c8f2e4c5a7e4f9ba79dffe21fea4049e607521094cff",
+      "git_blob_sha": "226302b28b8483ad9b93e1a96b45bad221c92e83",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 1086262
+}

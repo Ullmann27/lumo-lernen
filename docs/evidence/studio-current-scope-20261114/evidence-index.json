@@ -1,0 +1,287 @@
+{
+  "schema": 1,
+  "recorded_at_utc": "2026-11-14T03:14:04.076228+00:00",
+  "new_tests_or_image_reviews": false,
+  "entries": [
+    {
+      "id": "scope",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_NEXTGEN_SCOPE.md",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_NEXTGEN_SCOPE.md",
+      "bytes": 46893,
+      "sha256": "e259366a1ee0a75b8625ef830374439d534a8dfa44dcb794bafeab8c28030c1c",
+      "scope": "Historische vollständige Inventur vom 13.11.2026, 23:10 UTC; spätere Ergebnisstände sind ausdrücklich überholt."
+    },
+    {
+      "id": "integration",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_INTEGRATION_803E.md",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_INTEGRATION_803E.md",
+      "bytes": 8627,
+      "sha256": "5d7faef90047eb49b09d575e5c0bd19a42a23bae19f36a20798336bec754816c",
+      "scope": "Spätere Native803-Abnahme; damals noch offene Androidphase wird nur durch die nachstehenden Originale aktualisiert."
+    },
+    {
+      "id": "native",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/REVIEW.json",
+      "workspace_relative_path": "qa/studio-native-803e-review/REVIEW.json",
+      "bytes": 8895,
+      "sha256": "1f7de860d361a62b3cf46a674b73bd69a430505643101b68e3700225cd6af48f",
+      "scope": "Acht Pflichtjobs, Archiv, CRC und saubere Sourcebindung. Der damalige lokale ZIP-Bestand ist inzwischen durch den geprüften öffentlichen Doppelkopieabbau überholt."
+    },
+    {
+      "id": "native_visual_root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/root-visual-review-final.json",
+      "workspace_relative_path": "qa/studio-native-803e-review/root-visual-review-final.json",
+      "bytes": 14827,
+      "sha256": "d9f3306c7a29be0a6013974fe1a12d238d0abacb53de8704236a997f52eee5be",
+      "scope": "19 tatsächlich von Root geöffnete aktuelle Originalbilder; keine neue Sichtung bei dieser Matrix."
+    },
+    {
+      "id": "native_visual_b",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-native-803e-review/character-animation-803e-visual-review.json",
+      "workspace_relative_path": "qa/studio-native-803e-review/character-animation-803e-visual-review.json",
+      "bytes": 35428,
+      "sha256": "09b7f3f18cd673917103f4dadf6b92b74ea0dd3b6a6ba52ca7e4ea525f437350",
+      "scope": "13 tatsächlich von B geöffnete aktuelle Originalbilder; keine neue Sichtung bei dieser Matrix."
+    },
+    {
+      "id": "learning_host",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_LEARNING_HOST_20261113.md",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_LEARNING_HOST_20261113.md",
+      "bytes": 3318,
+      "sha256": "39790d887d0fad401fe212e3e018cee7f57223ca4b4ff0816730b6e6a8767704",
+      "scope": "Fachliche Hoständerungen und Grenzen; kein neuer Testlauf für diese Übersicht."
+    },
+    {
+      "id": "learning_review",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_LEARNING_INDEPENDENT_REVIEW_20261113.md",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_LEARNING_INDEPENDENT_REVIEW_20261113.md",
+      "bytes": 8285,
+      "sha256": "e883edfbd45e0ddfac60a4e2923274d0321b04effb69a947e7fbe5b0b6f5e29c",
+      "scope": "Unabhängige Lern-/Payloadprüfung."
+    },
+    {
+      "id": "learning_native",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/docs/STUDIO_LEARNING_20261113.md",
+      "workspace_relative_path": "lumo-godot/docs/STUDIO_LEARNING_20261113.md",
+      "bytes": 3834,
+      "sha256": "529ca7ce3121f5795bcf44fb90fd993f7e45fa404ec4c8524f49be5afd3ac820",
+      "scope": "Neue Division und gemeinsame 3D-Lernwelt, getrennt vom vorherigen Bestand."
+    },
+    {
+      "id": "character",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/README.md",
+      "workspace_relative_path": "lumo-godot/docs/evidence/studio-character-20261113/README.md",
+      "bytes": 7185,
+      "sha256": "20c7b84a6e92c7c408bcbe760d9ca55bd3bb5d1f67d8ab5af2dbd7db88e261c6",
+      "scope": "Sechs neue Blender-Clips, Originalmodell unverändert; Grenzen des Gesichtsrigs."
+    },
+    {
+      "id": "profile",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/STUDIO_NATIVE_PROFILE_KEYS_20261113.md",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/STUDIO_NATIVE_PROFILE_KEYS_20261113.md",
+      "bytes": 8630,
+      "sha256": "1fdbc173114befe1207b9058635ca6a65255b05e315a315a84f34b5d4ee03cdf",
+      "scope": "Stabile native Eigentümerbindung und explizite Altstand-Wiederaufnahme."
+    },
+    {
+      "id": "profile_results",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/docs/evidence/studio-native-profiles-20261113/RESULT.json",
+      "workspace_relative_path": "lumo-studio-final-e3d/docs/evidence/studio-native-profiles-20261113/RESULT.json",
+      "bytes": 2459,
+      "sha256": "ef7e073878b8bb4d51a5a7756e9acb1cc96af1aaa2a1420c81babb2516bed04b",
+      "scope": "Gezielte lokale Profil-/Lease-/UI-Prüfungen; keine pauschale Mehrkind-Geräteabnahme."
+    },
+    {
+      "id": "puzzle_treasure",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-godot/docs/STUDIO_PUZZLE_TREASURE_20261113.md",
+      "workspace_relative_path": "lumo-godot/docs/STUDIO_PUZZLE_TREASURE_20261113.md",
+      "bytes": 7347,
+      "sha256": "2cba55f0cdd424f4022fd196eac63e18c4a05e4a68f5d8505729bc522ebb4b7e",
+      "scope": "Tatsächlicher Vorher-/Neu-Unterschied von Puzzle und Schatzsuche."
+    },
+    {
+      "id": "english",
+      "local_path": "/workspace/scratch/5987865ae883/qa/english-3d-readonly-4ab-803e/ENGLISH_3D_READONLY_FINDING.md",
+      "workspace_relative_path": "qa/english-3d-readonly-4ab-803e/ENGLISH_3D_READONLY_FINDING.md",
+      "bytes": 7726,
+      "sha256": "c4630f9c69690822ee656cd2802ab2c769f367f7e82b65e1df8f7a0fb8f93418",
+      "scope": "23 quellengebundene Dateien: Englisch-Aufgaben vorhanden, nativer Deskriptor und englischer Sprachvertrag fehlen."
+    },
+    {
+      "id": "english_binding",
+      "local_path": "/workspace/scratch/5987865ae883/qa/english-3d-readonly-4ab-803e/source-binding.json",
+      "workspace_relative_path": "qa/english-3d-readonly-4ab-803e/source-binding.json",
+      "bytes": 14016,
+      "sha256": "064f4c79c91a7331c00c0dfa5952b541454b95be9f4d927492b0766b1b0ae227",
+      "scope": "Originale Quellenbindung der Englischprüfung an Host4ab/Native803."
+    },
+    {
+      "id": "future_games",
+      "local_path": "/workspace/scratch/5987865ae883/qa/next-native-games-interface-4ab-20261114/READ_ONLY_INTEGRATION.md",
+      "workspace_relative_path": "qa/next-native-games-interface-4ab-20261114/READ_ONLY_INTEGRATION.md",
+      "bytes": 14724,
+      "sha256": "9b2432f3d79af88e9a22af1fc92a02e1fe079a9389bb6eb1a191b639cce2a11e",
+      "scope": "Lesender Vorschlag für Memory/Vier Gewinnt/Quiz; ausdrücklich keine Implementierung."
+    },
+    {
+      "id": "future_games_binding",
+      "local_path": "/workspace/scratch/5987865ae883/qa/next-native-games-interface-4ab-20261114/source-binding.json",
+      "workspace_relative_path": "qa/next-native-games-interface-4ab-20261114/source-binding.json",
+      "bytes": 10495,
+      "sha256": "1c679e04f137669587ef1bf369ce14f3f4a7ee31a333a05ea9e0b92816b0a661",
+      "scope": "20 maßgebliche Hostdateien exakt an4ab gebunden."
+    },
+    {
+      "id": "kart_audit",
+      "local_path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/README.md",
+      "workspace_relative_path": "qa/kart-theme-source-803e-20261114/README.md",
+      "bytes": 7455,
+      "sha256": "e76f7cea0a8e18f6808283b9df0d8cb3a1a7c68348167e8f245727c175333ed2",
+      "scope": "33 tatsächliche Bilder von elf vorhandenen Strecken; stationäre Inspektion, kein neuer Streckenbau oder Fahrtest."
+    },
+    {
+      "id": "creative4ab",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/creative/creative-original-review.json",
+      "workspace_relative_path": "qa/studio-final-4ab96666/creative/creative-original-review.json",
+      "bytes": 22550,
+      "sha256": "b9c5a9f2f5bba9587996f46d20d7b95edb21d05461547551287c9b928dc92605",
+      "scope": "Originalgesamtstatus FAIL. Bauwelt-Aktionsvertrag bestand; Puzzle, Treasure und Jump erreichten jeweils begrenzte andere Stufen."
+    },
+    {
+      "id": "treasure_original",
+      "local_path": "/workspace/scratch/5987865ae883/qa/creative-repair-4ab/treasure/evidence/review.json",
+      "workspace_relative_path": "qa/creative-repair-4ab/treasure/evidence/review.json",
+      "bytes": 3631,
+      "sha256": "fb8f0e46c12a728869b5a50c02058a48cc086290222f0d6c55b6a9c0961f4b9d",
+      "scope": "13 Original-Saves/zwölf Bewegungssegmente; keine Behauptung eines bewiesenen Produktionsfehlers."
+    },
+    {
+      "id": "update4ab",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-4ab96666/update/independent-review.json",
+      "workspace_relative_path": "qa/studio-final-4ab96666/update/independent-review.json",
+      "bytes": 17132,
+      "sha256": "80bdd12883e55f5b9f26bc386d8d021c4a7944698aaee776a0475e7e2867b253",
+      "scope": "Tatsächliche Ein-Kind-Updateprüfung2017→2019; keine automatische Übertragung auf einen neuen APK-Build."
+    },
+    {
+      "id": "qa3e08",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/github-checkpoint.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/github-checkpoint.json",
+      "bytes": 755,
+      "sha256": "b74915c8faa88180a64f55770678be6b9bf1922d4963371fb2a4c633dd636730",
+      "scope": "Getrennter Prüfcommit; getestete APK-Quelle bleibt4ab."
+    },
+    {
+      "id": "api35_artifact",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/artifact-metadata-original.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/artifact-metadata-original.json",
+      "bytes": 900,
+      "sha256": "21262b425201d981171f5965ae9774387e4c65ab51eebe5e5b047929a26da885",
+      "scope": "Aktuelles originales API35-Artefakt14094852782."
+    },
+    {
+      "id": "api35_binding",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-original-byte-binding.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-original-byte-binding.json",
+      "bytes": 16639,
+      "sha256": "bff265454edd4a2e4016fa6f65eac2df2e62b5589906db9c03e880b91596cba2",
+      "scope": "Selektive Originaldateien an einmalige ZIP gebunden; hier keine weitere Kopie."
+    },
+    {
+      "id": "api35_result",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/result.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/result.json",
+      "bytes": 3124,
+      "sha256": "8e00956cae492d6d46377ce630ac681906f26c969532802593ab0d768c868f85",
+      "scope": "Tatsächlich erfolgreicher API35-Nachtest; beide Originalbefehle aus dem APK-Quellcheckout."
+    },
+    {
+      "id": "api35_tour",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/tour-result.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/tour-result.json",
+      "bytes": 9658,
+      "sha256": "62a1d615c798daaa909d60c220b2882f25bd19bf894c007b81f5e1458cc9d15b",
+      "scope": "Normale21/21-Tour getrennt vom zusätzlichen Learning/Cards-Vertrag."
+    },
+    {
+      "id": "api35_surfaces",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/native-surfaces-result.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/native-surfaces-result.json",
+      "bytes": 211165,
+      "sha256": "a881665c9af2ada9ead176241e42523c9cee3c8ce1f2cf3c6c4e8c7e80cd40c0",
+      "scope": "Fünf Lernbewegungen; vier Cards-Frontphasen mit je zwei akzeptierten stabilen Frames; zwei Ziehaktionen, Pause/Save/Reopen."
+    },
+    {
+      "id": "api35_visual_root",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/root-four-image-review.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/root-four-image-review.json",
+      "bytes": 2708,
+      "sha256": "9468dfdfb90a0df948d83e6c43154557e79d8514ead67499359a217863d855fb",
+      "scope": "Root hat vier Bilder tatsächlich geöffnet, einschließlich wirklicher abschließender Flutter-Pauseansicht. Die Pause-PNG selbst zeigt noch Speichern/Übergang."
+    },
+    {
+      "id": "api37_result",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/recheck/result.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/recheck/result.json",
+      "bytes": 2606,
+      "sha256": "b67682c5734bd40e1e3e7afd6cf816acf0a5264a566caf87e271d128c75e21e5",
+      "scope": "Derselbe getrennte Nachtest bleibt auf API37 fehlgeschlagen; keine Gesamtfreigabe."
+    },
+    {
+      "id": "api37_surfaces",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/native-surfaces-result.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/native-surfaces-result.json",
+      "bytes": 6538,
+      "sha256": "09e2646853093f262932dee9f035990d36bc2673f3770c52729dbbf83dbac13b",
+      "scope": "Learning vollständig; Cards-Rückkehraufnahme scheitert mit screencap-Timeout. Die genaue Ursache bleibt Gegenstand einer getrennten Untersuchung."
+    },
+    {
+      "id": "c081",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-android-probe-repair-integrated/github-source-checkpoint.json",
+      "workspace_relative_path": "qa/studio-android-probe-repair-integrated/github-source-checkpoint.json",
+      "bytes": 822,
+      "sha256": "42b729b6fc9ec7f95a6f57f5295c0f99514f3063048493a7570220973510fc66",
+      "scope": "Veröffentlichter integrierter Produkt-/Prüfstandc081; nicht die alte getestete4ab-APK."
+    },
+    {
+      "id": "host86445",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/github-checkpoint.json",
+      "workspace_relative_path": "qa/studio-c081-voice-scroll-contract-fix/github-checkpoint.json",
+      "bytes": 596,
+      "sha256": "edb1361119978f59ad4d0ff22086454da197987353b814c6e227b6120f4e1674",
+      "scope": "Aktueller Hostcommit86445: nur zwei erwartete Mockargumente gegenüberc081 angepasst;4144 andere Blobs/Modi unverändert."
+    },
+    {
+      "id": "local86445",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/README.md",
+      "workspace_relative_path": "qa/studio-86445-contract-evidence-20261114/README.md",
+      "bytes": 3646,
+      "sha256": "c8142230548260e336bb2804616778b008b1a939175e2d5fd442ebb55feb69c2",
+      "scope": "445 und819 vollständige lokale Verträge getrennt; ursprüngliche Fehler bleiben erhalten; keine Androidtouren."
+    },
+    {
+      "id": "archive_retrievability",
+      "local_path": "/workspace/scratch/5987865ae883/qa/native803-duplicate-check-20261114/independent-local-copy-review.json",
+      "workspace_relative_path": "qa/native803-duplicate-check-20261114/independent-local-copy-review.json",
+      "bytes": 3072,
+      "sha256": "e8f16948a82d5179d7746a35897efc99aa6f93452bffbdf7feff5a73f08b96df",
+      "scope": "Öffentlich gestreamte exakte NativeZIP bestätigt;32 Bilder/61 Belege bleiben. immutable:false ist keine Dauerverfügbarkeitsgarantie."
+    },
+    {
+      "id": "api35_review",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/review.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api35/review.json",
+      "bytes": 36186,
+      "sha256": "65ae7e26baca7524cea433d0aaed05383f1452372732ab0b90641e9303196c47",
+      "scope": "Abgeschlossener unabhängiger API35-Originalreview von A, echte Identität/Spiel-/Save-/Lifecycle-Nachweise, ausdrücklich keine Gesamtfreigabe."
+    },
+    {
+      "id": "api37_return_review",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/independent-return-pixels-review.json",
+      "workspace_relative_path": "qa/android-ocr-cards-recheck-4ab/android-3e08/api37/independent-return-pixels-review.json",
+      "bytes": 8361,
+      "sha256": "4e710152684a44b0f545dc5bfff51dea0a0df6387c9d998f96b1d543242933eb",
+      "scope": "B hat exakt zwei aktuelle Returnbilder tatsächlich gesehen und Quellen/OCR/Zeitfolge geprüft; Gate bleibt rot. Keine kausale Produktfehlerbehauptung."
+    }
+  ]
+}

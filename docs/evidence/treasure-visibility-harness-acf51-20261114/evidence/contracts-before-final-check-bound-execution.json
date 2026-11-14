@@ -1,0 +1,18 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/treasure-visibility-harness-acf51-20261114/native",
+  "exit_code": 0,
+  "elapsed_seconds": 45.861075674998574,
+  "log_sha256": "3fb8ea3c18408544b8f0f52adaf6c6b1bf0200dc7cd888ffd2c76cf605f82412",
+  "scope": "Actual Python orchestration and fail-closed fixture tests. Engine calls use explicit fixture executables, not gameplay evidence."
+}

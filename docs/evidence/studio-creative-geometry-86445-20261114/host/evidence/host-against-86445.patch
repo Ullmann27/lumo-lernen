@@ -1,0 +1,110 @@
+--- a/.github/probes/studio_creative_android_probe.py
++++ b/.github/probes/studio_creative_android_probe.py
+@@ -384,7 +384,7 @@
+     for group in groups:
+         x0, y0, x1, y1 = group['bounds']
+         w, h = x1 - x0, y1 - y0
+-        if not (.80 < w / h < 1.22 and w / scale >= max(65, image.height * .13)
++        if not (.80 < w / h < 1.22 and w / scale >= max(65, min(image.size) * .13)
+                 and .12 < group['area'] / (w * h) < .70):
+             continue
+         cx, cy = (x0 + x1) / 2, (y0 + y1) / 2
+@@ -420,8 +420,11 @@
+     require(image.width > image.height and saved.get('count') == 6
+             and saved.get('motif') == 1, 'This observed-board probe requires six-piece motif1 landscape')
+     groups, scale = components(image,
+-        lambda r, g, b: 8 <= r <= 36 and 20 <= g <= 55 and 55 <= b <= 115
+-        and b > g * 1.5,
++        # The exact803 unshaded1a2748 felt is tone-mapped to roughly
++        # 47/55/87 in the original Android frame. Retain a bounded navy hue,
++        # the unique central contour and the independently observed tray hit.
++        lambda r, g, b: 18 <= r <= 65 and 28 <= g <= 80 and 60 <= b <= 125
++        and b > g * 1.32 and b > r * 1.45,
+         (.15, .27, .85, .88))
+     candidates = []
+     for group in groups:
+@@ -656,6 +659,75 @@
+                 time.sleep(.8)
+         raise RuntimeError('Current live hub tile not available: ' + title)
+ 
++    def scene_entry(self, header, *, orientation='landscape'):
++        """Observe an actual stable scene before any subsequent Back input.
++
++        Boot intentionally uses the game's title above its loading artwork.
++        A title alone is therefore insufficient. Keep a bounded120s budget
++        and at most the original ten observations; never tap a guessed point.
++        """
++        tag = self.tag('scene-entry-' + self.probe.normalized(header))
++        report = {'header': header, 'status': 'OBSERVING', 'frames': [],
++                  'timeout_seconds': 120, 'maximum_observations': 10,
++                  'orientation': orientation, 'input_sent': False}
++        started = time.monotonic()
++        deadline = started + 120
++        previous = None
++        wanted = self.probe.normalized(header)
++        loading_captions = tuple(self.probe.normalized(text) for text in (
++            'Spielwelt wird vorbereitet', 'Dein Spiel wird vorbereitet',
++            'Dein nächstes Abenteuer', 'Rennwelt wird vorbereitet'))
++        try:
++            for attempt in range(10):
++                remaining = deadline - time.monotonic()
++                if remaining <= 0:
++                    break
++                frame_tag = f'{tag}-{attempt}'
++                shot = self.probe.capture(self.out, frame_tag, timeout=min(45, remaining))
++                path = self.out / shot['file']
++                frame = self.probe.inspect_surface(path, orientation=orientation)
++                observed = {'capture': shot, 'surface': frame,
++                            'stable_observed_target': False}
++                report['frames'].append(observed)
++                if not frame['acceptable_for_target_sampling']:
++                    previous = None
++                    observed['reason'] = 'Current scene surface is not complete'
++                else:
++                    remaining = deadline - time.monotonic()
++                    if remaining <= 0:
++                        break
++                    lines = self.probe.image_lines(self.out, frame_tag, wanted,
++                        source_path=path, timeout=min(45, remaining))
++                    covers = [line for line in lines if any(
++                        marker in self.probe.normalized(line['text'])
++                        for marker in loading_captions)]
++                    matches = [line for line in lines
++                               if wanted in self.probe.normalized(line['text'])]
++                    observed['loading_captions'] = covers
++                    if covers or not matches:
++                        previous = None
++                        observed['reason'] = ('Actual loading cover is still visible' if covers
++                                              else 'Actual scene title is not yet observed')
++                    else:
++                        target = min(matches, key=lambda line: len(line['text']))
++                        state = self.probe.target_observation(frame, target['bounds'], previous)
++                        observed.update(target=target, target_observation=state,
++                                        stable_observed_target=state['stable_observed_target'])
++                        previous = state
++                        if state['stable_observed_target'] and time.monotonic() < deadline:
++                            report['status'] = 'READY'
++                            return report
++                remaining = deadline - time.monotonic()
++                if remaining > 0:
++                    time.sleep(min(2, remaining))
++            raise RuntimeError('Current production scene did not become fully visible and stable: ' + header)
++        except Exception as error:
++            report.update(status='FAIL', error=str(error))
++            raise
++        finally:
++            report['elapsed_seconds'] = time.monotonic() - started
++            write(self.out / (tag + '-readiness.json'), report)
++
+     def enter(self, title, header):
+         self.portal(title)
+         for _ in range(60):
+@@ -669,7 +741,7 @@
+             raise RuntimeError('Requested game Activity never appeared: ' + title)
+         require(bool(self.base.adb('shell', 'pidof', PACKAGE + ':lumo_game', check=False).strip()),
+                 'Native process absent')
+-        self.native(header)
++        self.scene_entry(header, orientation='responsive' if title == 'Jump & Run' else 'landscape')
+         self.shot('entered-' + self.probe.normalized(title))
+ 
+     def leave(self, label='Zur Spielewelt', already_pause=False, *, orientation='landscape'):

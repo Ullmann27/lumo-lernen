@@ -1,0 +1,229 @@
+{
+  "schema": 1,
+  "status": "TOUCH_SENT",
+  "countercheck_scope": "OBSERVED_UI_TOUCH_ONLY",
+  "caption": "Tippen zum Überspringen",
+  "deadline_policy": "original race-world-ready55s",
+  "initial_remaining_seconds": 32.851609302999975,
+  "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+  "initial_capture": {
+    "source": "21_lumo_kart_real_race.png",
+    "source_sha256": "126fcea663e62c6f09f1597b441a6ec1bdae74e0b98fd6cd139c4100af36e941",
+    "scope": "Context only; never a touch prerequisite"
+  },
+  "foreground_before_touch": "    topResumedActivity=ActivityRecord{abb2fab u0 dev.ullmann.lumo.lumo_lernen.coachpreview/dev.ullmann.lumo.lumo_lernen.LumoGameActivity t8}",
+  "readiness": {
+    "status": "TOUCH_SENT",
+    "label": "Tippen zum Überspringen",
+    "timeout_seconds": 32.63008108099996,
+    "exact_caption_required": true,
+    "orientation_policy": "landscape",
+    "scope": "Observed touch prerequisites; post-action assertions still required",
+    "frames": [
+      {
+        "source": "21_kart_preview_skip_touch-0.png",
+        "source_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+        "source_bytes": 1902122,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 2.093651,
+        "target": {
+          "surface_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            1124.0,
+            404.0,
+            1410.0,
+            431.0
+          ],
+          "anchor": "",
+          "reasons": [
+            "waiting for second stable observed target bounds"
+          ],
+          "target_geometry_valid": true,
+          "stable_observed_target": false
+        }
+      },
+      {
+        "source": "21_kart_preview_skip_touch-1.png",
+        "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+        "source_bytes": 1944037,
+        "pixels": [
+          2400,
+          1080
+        ],
+        "orientation_policy": "landscape",
+        "sample_rows": [
+          130,
+          238,
+          346,
+          454,
+          562,
+          670,
+          778,
+          886
+        ],
+        "blank_edge_columns": {
+          "left": 0,
+          "right": 0
+        },
+        "blank_threshold_rgb_max": 8,
+        "blank_required_rows": 7,
+        "acceptable_for_target_sampling": true,
+        "reasons": [],
+        "scope": "Reject observed partial surface; no scene/gameplay PASS",
+        "captured_after_seconds": 7.830741,
+        "target": {
+          "surface_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+          "pixels": [
+            2400,
+            1080
+          ],
+          "bounds": [
+            1124.0,
+            402.0,
+            1410.0,
+            434.0
+          ],
+          "anchor": "",
+          "reasons": [],
+          "target_geometry_valid": true,
+          "stable_observed_target": true
+        }
+      }
+    ],
+    "final_observed_bounds": [
+      1124.0,
+      402.0,
+      1410.0,
+      434.0
+    ],
+    "touch": [
+      1267,
+      418
+    ],
+    "elapsed_seconds": 11.008732
+  },
+  "cue_witnesses": [
+    {
+      "source": "21_kart_preview_skip_touch-0.png",
+      "source_sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+      "ocr_file": "21_kart_preview_skip_touch-0-ocr.json",
+      "ocr_sha256": "bbc1ca62baa0ec569432a493f97aba88f48d471a80f0de5246114fb0c95e24a6",
+      "observed_matches": [
+        {
+          "text": "Tippen zum Überspringen",
+          "bounds": [
+            1124.0,
+            404.0,
+            1410.0,
+            431.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tippen zum Überspringen",
+          "bounds": [
+            1124.0,
+            404.0,
+            1410.0,
+            431.0
+          ],
+          "variant": "contrast"
+        }
+      ]
+    },
+    {
+      "source": "21_kart_preview_skip_touch-1.png",
+      "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+      "ocr_file": "21_kart_preview_skip_touch-1-ocr.json",
+      "ocr_sha256": "e142712e766cb35541d9daf9b872fd977de3b0a0acd62c39c00319495884c0ed",
+      "observed_matches": [
+        {
+          "text": "Tippen zum Uberspringen",
+          "bounds": [
+            1124.0,
+            402.0,
+            1410.0,
+            434.0
+          ],
+          "variant": "contrast"
+        },
+        {
+          "text": "Tippen zum Uberspringen",
+          "bounds": [
+            1124.0,
+            402.0,
+            1410.0,
+            434.0
+          ],
+          "variant": "contrast"
+        }
+      ]
+    }
+  ],
+  "cue": {
+    "source": "21_kart_preview_skip_touch-1.png",
+    "source_sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+    "ocr_file": "21_kart_preview_skip_touch-1-ocr.json",
+    "ocr_sha256": "e142712e766cb35541d9daf9b872fd977de3b0a0acd62c39c00319495884c0ed",
+    "observed_matches": [
+      {
+        "text": "Tippen zum Uberspringen",
+        "bounds": [
+          1124.0,
+          402.0,
+          1410.0,
+          434.0
+        ],
+        "variant": "contrast"
+      },
+      {
+        "text": "Tippen zum Uberspringen",
+        "bounds": [
+          1124.0,
+          402.0,
+          1410.0,
+          434.0
+        ],
+        "variant": "contrast"
+      }
+    ]
+  },
+  "touch": [
+    1267,
+    418
+  ],
+  "after_capture": {
+    "file": "21_kart_preview_after_touch.png",
+    "width": 2400,
+    "height": 1080,
+    "sha256": "3e146c1124f5173efe93b92fb0954bf50d2a04ed7f01d2b09a813779092570b1"
+  },
+  "elapsed_seconds": 12.396425
+}

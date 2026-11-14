@@ -1,0 +1,1529 @@
+{
+  "run_id": 43587032836,
+  "artifact_id": 14110986739,
+  "artifact_bytes": 71743019,
+  "artifact_sha256": "568844700a939578ca358ddc1ecd40c499d0ab673a4c16088849827e62470b4d",
+  "zip_crc_all_entries_ok": true,
+  "entry_count": 253,
+  "checked_at": "2026-11-14T11:03:47.523986+00:00",
+  "entries": [
+    {
+      "path": "01_erster_start.png",
+      "bytes": 201246,
+      "compressed_bytes": 186163,
+      "crc": 3767862923
+    },
+    {
+      "path": "07_home_after_onboarding-render-candidate-1.png",
+      "bytes": 21457,
+      "compressed_bytes": 6165,
+      "crc": 4131500460
+    },
+    {
+      "path": "07_home_after_onboarding-render-readiness.json",
+      "bytes": 947,
+      "compressed_bytes": 400,
+      "crc": 3251665888
+    },
+    {
+      "path": "07_home_after_onboarding.png",
+      "bytes": 1558620,
+      "compressed_bytes": 1551863,
+      "crc": 1877512728
+    },
+    {
+      "path": "08_games_after_navigation.png",
+      "bytes": 881028,
+      "compressed_bytes": 878456,
+      "crc": 1632745085
+    },
+    {
+      "path": "10_lernen-render-readiness.json",
+      "bytes": 527,
+      "compressed_bytes": 321,
+      "crc": 3763867950
+    },
+    {
+      "path": "10_lernen.png",
+      "bytes": 1894003,
+      "compressed_bytes": 1892762,
+      "crc": 1363140800
+    },
+    {
+      "path": "10_start-render-readiness.json",
+      "bytes": 526,
+      "compressed_bytes": 320,
+      "crc": 637224857
+    },
+    {
+      "path": "10_start.png",
+      "bytes": 3102199,
+      "compressed_bytes": 3101072,
+      "crc": 3301775047
+    },
+    {
+      "path": "11_atelier_hub-render-readiness.json",
+      "bytes": 538,
+      "compressed_bytes": 328,
+      "crc": 3752833814
+    },
+    {
+      "path": "11_atelier_hub.png",
+      "bytes": 469039,
+      "compressed_bytes": 459343,
+      "crc": 428731078
+    },
+    {
+      "path": "12_atelier_beispiel-render-readiness.json",
+      "bytes": 548,
+      "compressed_bytes": 329,
+      "crc": 4211448998
+    },
+    {
+      "path": "12_atelier_beispiel.png",
+      "bytes": 347750,
+      "compressed_bytes": 309589,
+      "crc": 2255370920
+    },
+    {
+      "path": "13_atelier_zehnerbruecke-render-readiness.json",
+      "bytes": 558,
+      "compressed_bytes": 335,
+      "crc": 1330204849
+    },
+    {
+      "path": "20_spiele-render-readiness.json",
+      "bytes": 528,
+      "compressed_bytes": 322,
+      "crc": 1418405040
+    },
+    {
+      "path": "13_atelier_zehnerbruecke.png",
+      "bytes": 679658,
+      "compressed_bytes": 658592,
+      "crc": 4234549215
+    },
+    {
+      "path": "20_spiele.png",
+      "bytes": 1937608,
+      "compressed_bytes": 1936366,
+      "crc": 904788743
+    },
+    {
+      "path": "21_kart_premium_start.png",
+      "bytes": 883462,
+      "compressed_bytes": 880768,
+      "crc": 2475349165
+    },
+    {
+      "path": "21_kart_preview_after_touch.png",
+      "bytes": 2049226,
+      "compressed_bytes": 2049009,
+      "crc": 4046185647
+    },
+    {
+      "path": "21_kart_preview_skip.json",
+      "bytes": 6260,
+      "compressed_bytes": 1480,
+      "crc": 3937242681
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr-contrast.tsv",
+      "bytes": 6816,
+      "compressed_bytes": 1935,
+      "crc": 1221814754
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0-ocr.json",
+      "bytes": 5652,
+      "compressed_bytes": 870,
+      "crc": 848319923
+    },
+    {
+      "path": "21_kart_preview_skip_touch-0.png",
+      "bytes": 1902122,
+      "compressed_bytes": 1901073,
+      "crc": 3923888072
+    },
+    {
+      "path": "21_kart_preview_skip_touch-1-ocr-contrast.tsv",
+      "bytes": 7619,
+      "compressed_bytes": 2182,
+      "crc": 40657756
+    },
+    {
+      "path": "21_kart_preview_skip_touch-1-ocr.json",
+      "bytes": 5915,
+      "compressed_bytes": 921,
+      "crc": 705566132
+    },
+    {
+      "path": "21_kart_preview_skip_touch-1.png",
+      "bytes": 1944037,
+      "compressed_bytes": 1943222,
+      "crc": 2978865727
+    },
+    {
+      "path": "21_kart_preview_skip_touch-surface-readiness.json",
+      "bytes": 2797,
+      "compressed_bytes": 795,
+      "crc": 1332171986
+    },
+    {
+      "path": "21_kart_race_frame_check.json",
+      "bytes": 7703,
+      "compressed_bytes": 1771,
+      "crc": 3337253570
+    },
+    {
+      "path": "21_kart_real_touches.json",
+      "bytes": 349,
+      "compressed_bytes": 203,
+      "crc": 2659363900
+    },
+    {
+      "path": "21_lumo_kart_12s.png",
+      "bytes": 2663650,
+      "compressed_bytes": 2664204,
+      "crc": 4234854720
+    },
+    {
+      "path": "21_lumo_kart_20s.png",
+      "bytes": 885137,
+      "compressed_bytes": 882115,
+      "crc": 2192895300
+    },
+    {
+      "path": "21_lumo_kart_pause.png",
+      "bytes": 821783,
+      "compressed_bytes": 809621,
+      "crc": 1679387397
+    },
+    {
+      "path": "21_lumo_kart_real_race.png",
+      "bytes": 1922269,
+      "compressed_bytes": 1921281,
+      "crc": 4131671840
+    },
+    {
+      "path": "21_pause_first-session.cfg",
+      "bytes": 2040,
+      "compressed_bytes": 981,
+      "crc": 3499819730
+    },
+    {
+      "path": "21_pause_resume-0-ocr-contrast.tsv",
+      "bytes": 2072,
+      "compressed_bytes": 758,
+      "crc": 501526300
+    },
+    {
+      "path": "21_pause_resume-0-ocr.json",
+      "bytes": 1562,
+      "compressed_bytes": 342,
+      "crc": 2612776296
+    },
+    {
+      "path": "21_pause_resume-0.png",
+      "bytes": 823266,
+      "compressed_bytes": 811259,
+      "crc": 4246375898
+    },
+    {
+      "path": "21_pause_title-0-ocr-components.json",
+      "bytes": 6223,
+      "compressed_bytes": 931,
+      "crc": 1320039642
+    },
+    {
+      "path": "21_pause_second-session.cfg",
+      "bytes": 2040,
+      "compressed_bytes": 981,
+      "crc": 3499819730
+    },
+    {
+      "path": "21_pause_title-0-ocr-contrast.tsv",
+      "bytes": 8911,
+      "compressed_bytes": 2528,
+      "crc": 857720243
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-0.png",
+      "bytes": 129928,
+      "compressed_bytes": 129968,
+      "crc": 3664323194
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-0.tsv",
+      "bytes": 699,
+      "compressed_bytes": 340,
+      "crc": 3420926816
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-1.png",
+      "bytes": 12264,
+      "compressed_bytes": 12269,
+      "crc": 4156838358
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-1.tsv",
+      "bytes": 237,
+      "compressed_bytes": 129,
+      "crc": 1731452384
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-10.png",
+      "bytes": 4059,
+      "compressed_bytes": 4064,
+      "crc": 1047857812
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-10.tsv",
+      "bytes": 320,
+      "compressed_bytes": 163,
+      "crc": 1059456479
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-11.png",
+      "bytes": 3510,
+      "compressed_bytes": 3515,
+      "crc": 3748078429
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-11.tsv",
+      "bytes": 109,
+      "compressed_bytes": 82,
+      "crc": 1235272999
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-12.png",
+      "bytes": 4278,
+      "compressed_bytes": 4283,
+      "crc": 1105939708
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-12.tsv",
+      "bytes": 109,
+      "compressed_bytes": 82,
+      "crc": 2413680189
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-13.png",
+      "bytes": 1767,
+      "compressed_bytes": 1772,
+      "crc": 1659838128
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-13.tsv",
+      "bytes": 109,
+      "compressed_bytes": 83,
+      "crc": 872772645
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-14.png",
+      "bytes": 4219,
+      "compressed_bytes": 4224,
+      "crc": 1280711668
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-14.tsv",
+      "bytes": 222,
+      "compressed_bytes": 114,
+      "crc": 3004367408
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-15.png",
+      "bytes": 2994,
+      "compressed_bytes": 2999,
+      "crc": 3107633581
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-15.tsv",
+      "bytes": 220,
+      "compressed_bytes": 113,
+      "crc": 606456987
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-2.png",
+      "bytes": 20703,
+      "compressed_bytes": 20713,
+      "crc": 1882917658
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-2.tsv",
+      "bytes": 232,
+      "compressed_bytes": 114,
+      "crc": 3980805249
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-3.png",
+      "bytes": 10851,
+      "compressed_bytes": 10856,
+      "crc": 3277813455
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-3.tsv",
+      "bytes": 227,
+      "compressed_bytes": 122,
+      "crc": 1921649174
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-4.png",
+      "bytes": 8374,
+      "compressed_bytes": 8379,
+      "crc": 875821264
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-4.tsv",
+      "bytes": 230,
+      "compressed_bytes": 122,
+      "crc": 3282968823
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-5.png",
+      "bytes": 9636,
+      "compressed_bytes": 9641,
+      "crc": 292583275
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-5.tsv",
+      "bytes": 110,
+      "compressed_bytes": 83,
+      "crc": 770139753
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-6.png",
+      "bytes": 4922,
+      "compressed_bytes": 4927,
+      "crc": 2612124208
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-6.tsv",
+      "bytes": 226,
+      "compressed_bytes": 117,
+      "crc": 1256876110
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-7.png",
+      "bytes": 5764,
+      "compressed_bytes": 5769,
+      "crc": 3533788999
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-7.tsv",
+      "bytes": 488,
+      "compressed_bytes": 234,
+      "crc": 740210546
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-8.png",
+      "bytes": 2632,
+      "compressed_bytes": 2637,
+      "crc": 2730045974
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-8.tsv",
+      "bytes": 226,
+      "compressed_bytes": 118,
+      "crc": 535082742
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-9.png",
+      "bytes": 1121,
+      "compressed_bytes": 1126,
+      "crc": 101877777
+    },
+    {
+      "path": "21_pause_title-0-ocr-gold-component-9.tsv",
+      "bytes": 221,
+      "compressed_bytes": 115,
+      "crc": 2971204573
+    },
+    {
+      "path": "21_pause_title-0-ocr-navy-latin-1x.tsv",
+      "bytes": 1345,
+      "compressed_bytes": 406,
+      "crc": 1865141651
+    },
+    {
+      "path": "21_pause_title-0-ocr-navy-latin.tsv",
+      "bytes": 1523,
+      "compressed_bytes": 462,
+      "crc": 3668366531
+    },
+    {
+      "path": "21_pause_title-0-ocr-raw.tsv",
+      "bytes": 8528,
+      "compressed_bytes": 2431,
+      "crc": 1912311643
+    },
+    {
+      "path": "21_pause_title-0-ocr-teal-text-1x.tsv",
+      "bytes": 4343,
+      "compressed_bytes": 1392,
+      "crc": 4094179771
+    },
+    {
+      "path": "21_pause_title-0-ocr-tiles.json",
+      "bytes": 4863,
+      "compressed_bytes": 745,
+      "crc": 440804992
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-0.png",
+      "bytes": 80027,
+      "compressed_bytes": 74779,
+      "crc": 4063169521
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1517,
+      "compressed_bytes": 506,
+      "crc": 2238928970
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-1.png",
+      "bytes": 104041,
+      "compressed_bytes": 99461,
+      "crc": 860932317
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 2267,
+      "compressed_bytes": 648,
+      "crc": 2301674468
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-2.png",
+      "bytes": 147586,
+      "compressed_bytes": 140809,
+      "crc": 3193178246
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 4239,
+      "compressed_bytes": 1296,
+      "crc": 3042709542
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-3.png",
+      "bytes": 119363,
+      "compressed_bytes": 114009,
+      "crc": 1513515097
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 3318,
+      "compressed_bytes": 983,
+      "crc": 809887339
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-4.png",
+      "bytes": 71957,
+      "compressed_bytes": 66942,
+      "crc": 2675265009
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 1591,
+      "compressed_bytes": 543,
+      "crc": 1588272968
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 6058,
+      "compressed_bytes": 1794,
+      "crc": 104682076
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-dim-tile-5.png",
+      "bytes": 85586,
+      "compressed_bytes": 79366,
+      "crc": 2589864098
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-0.png",
+      "bytes": 74398,
+      "compressed_bytes": 69423,
+      "crc": 3960905168
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-0.tsv",
+      "bytes": 1715,
+      "compressed_bytes": 521,
+      "crc": 147232431
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-1.png",
+      "bytes": 89187,
+      "compressed_bytes": 84608,
+      "crc": 1214499042
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-1.tsv",
+      "bytes": 1672,
+      "compressed_bytes": 504,
+      "crc": 3290689039
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-2.png",
+      "bytes": 128230,
+      "compressed_bytes": 121254,
+      "crc": 1283177070
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-2.tsv",
+      "bytes": 3259,
+      "compressed_bytes": 1051,
+      "crc": 1576293413
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-3.png",
+      "bytes": 92403,
+      "compressed_bytes": 87008,
+      "crc": 592284848
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-3.tsv",
+      "bytes": 2331,
+      "compressed_bytes": 727,
+      "crc": 2412322767
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-4.png",
+      "bytes": 57041,
+      "compressed_bytes": 52781,
+      "crc": 2259717193
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-4.tsv",
+      "bytes": 961,
+      "compressed_bytes": 364,
+      "crc": 2597557431
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-5.png",
+      "bytes": 70933,
+      "compressed_bytes": 65110,
+      "crc": 2649932379
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin-tile-5.tsv",
+      "bytes": 3685,
+      "compressed_bytes": 1183,
+      "crc": 1050798522
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-latin.tsv",
+      "bytes": 8396,
+      "compressed_bytes": 2407,
+      "crc": 2239842816
+    },
+    {
+      "path": "21_pause_title-0-ocr-white-text.tsv",
+      "bytes": 8340,
+      "compressed_bytes": 2408,
+      "crc": 3097194063
+    },
+    {
+      "path": "21_pause_title-0-ocr.json",
+      "bytes": 29014,
+      "compressed_bytes": 3546,
+      "crc": 3329500508
+    },
+    {
+      "path": "21_pause_title-0.png",
+      "bytes": 1928965,
+      "compressed_bytes": 1928254,
+      "crc": 237648994
+    },
+    {
+      "path": "21_pause_title-1-ocr-contrast.tsv",
+      "bytes": 2072,
+      "compressed_bytes": 758,
+      "crc": 501526300
+    },
+    {
+      "path": "21_pause_title-1-ocr.json",
+      "bytes": 1426,
+      "compressed_bytes": 333,
+      "crc": 4143156349
+    },
+    {
+      "path": "21_pause_title-1.png",
+      "bytes": 821730,
+      "compressed_bytes": 809510,
+      "crc": 4229693516
+    },
+    {
+      "path": "21_race_after_gas_pulse_0-session.cfg",
+      "bytes": 2031,
+      "compressed_bytes": 974,
+      "crc": 3877684159
+    },
+    {
+      "path": "21_race_after_gas_pulse_1-session.cfg",
+      "bytes": 2031,
+      "compressed_bytes": 974,
+      "crc": 3877684159
+    },
+    {
+      "path": "21_race_after_gas_pulse_2-session.cfg",
+      "bytes": 2030,
+      "compressed_bytes": 976,
+      "crc": 3127989960
+    },
+    {
+      "path": "21_race_before_gas.png",
+      "bytes": 1981024,
+      "compressed_bytes": 1981396,
+      "crc": 165407734
+    },
+    {
+      "path": "21_race_drive_telemetry.json",
+      "bytes": 806,
+      "compressed_bytes": 292,
+      "crc": 256453344
+    },
+    {
+      "path": "21_race_driving_late_0.png",
+      "bytes": 1992347,
+      "compressed_bytes": 1992162,
+      "crc": 3790734033
+    },
+    {
+      "path": "21_race_driving_late_1.png",
+      "bytes": 1872344,
+      "compressed_bytes": 1872244,
+      "crc": 1833283535
+    },
+    {
+      "path": "21_race_driving_late_2.png",
+      "bytes": 1884812,
+      "compressed_bytes": 1883237,
+      "crc": 4209691099
+    },
+    {
+      "path": "21_race_driving_mid_0.png",
+      "bytes": 1951608,
+      "compressed_bytes": 1951824,
+      "crc": 2554938440
+    },
+    {
+      "path": "21_race_driving_mid_2.png",
+      "bytes": 1923287,
+      "compressed_bytes": 1923211,
+      "crc": 3213835571
+    },
+    {
+      "path": "21_race_hud.png",
+      "bytes": 2028767,
+      "compressed_bytes": 2029145,
+      "crc": 807195413
+    },
+    {
+      "path": "21_race_hud_0-focused-hud.json",
+      "bytes": 127,
+      "compressed_bytes": 119,
+      "crc": 364664844
+    },
+    {
+      "path": "21_race_driving_mid_1.png",
+      "bytes": 1898484,
+      "compressed_bytes": 1898464,
+      "crc": 124048406
+    },
+    {
+      "path": "21_race_hud_0.png",
+      "bytes": 1949434,
+      "compressed_bytes": 1949805,
+      "crc": 61351969
+    },
+    {
+      "path": "21_race_hud_1.png",
+      "bytes": 2062979,
+      "compressed_bytes": 2063427,
+      "crc": 1374203549
+    },
+    {
+      "path": "21_race_hud_2-gas-ocr-contrast.tsv",
+      "bytes": 9901,
+      "compressed_bytes": 2741,
+      "crc": 167423336
+    },
+    {
+      "path": "21_race_hud_1-focused-hud.json",
+      "bytes": 130,
+      "compressed_bytes": 124,
+      "crc": 1108079970
+    },
+    {
+      "path": "21_race_hud_2-gas-ocr.json",
+      "bytes": 7907,
+      "compressed_bytes": 1120,
+      "crc": 2610177056
+    },
+    {
+      "path": "21_race_hud_2.png",
+      "bytes": 2028767,
+      "compressed_bytes": 2029145,
+      "crc": 807195413
+    },
+    {
+      "path": "21_race_running_0-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_1-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_10-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_11-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_12-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_13-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_15-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_14-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_16-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_17-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_18-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_19-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_2-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_20-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_21-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_22-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_23-session.cfg",
+      "bytes": 2031,
+      "compressed_bytes": 974,
+      "crc": 3877684159
+    },
+    {
+      "path": "21_race_running_3-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_4-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_6-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_5-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_8-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_7-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "21_race_running_9-session.cfg",
+      "bytes": 1875,
+      "compressed_bytes": 868,
+      "crc": 3680787224
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-return.json",
+      "bytes": 467,
+      "compressed_bytes": 306,
+      "crc": 4260615689
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr.json",
+      "bytes": 4607,
+      "compressed_bytes": 711,
+      "crc": 1125712176
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0-ocr-contrast.tsv",
+      "bytes": 5884,
+      "compressed_bytes": 1633,
+      "crc": 3373299598
+    },
+    {
+      "path": "23_zurueck_in_flutter-flutter-visible-0.png",
+      "bytes": 1916904,
+      "compressed_bytes": 1915498,
+      "crc": 4216955467
+    },
+    {
+      "path": "23_zurueck_in_flutter.png",
+      "bytes": 1929117,
+      "compressed_bytes": 1927868,
+      "crc": 1721816552
+    },
+    {
+      "path": "24_lernen_nach_kart.png",
+      "bytes": 1894072,
+      "compressed_bytes": 1892777,
+      "crc": 4272158531
+    },
+    {
+      "path": "25_start_nach_kart.png",
+      "bytes": 3099591,
+      "compressed_bytes": 3098491,
+      "crc": 3754360914
+    },
+    {
+      "path": "26_neustart.png",
+      "bytes": 3102672,
+      "compressed_bytes": 3101607,
+      "crc": 4188484871
+    },
+    {
+      "path": "30_fold_aussen.png",
+      "bytes": 2563324,
+      "compressed_bytes": 2562703,
+      "crc": 2600614516
+    },
+    {
+      "path": "30_fold_offen.png",
+      "bytes": 4267642,
+      "compressed_bytes": 4264972,
+      "crc": 1717488381
+    },
+    {
+      "path": "30_quer.png",
+      "bytes": 1825250,
+      "compressed_bytes": 1821983,
+      "crc": 3812683051
+    },
+    {
+      "path": "after-kart-preferences.xml",
+      "bytes": 2011,
+      "compressed_bytes": 728,
+      "crc": 1253167439
+    },
+    {
+      "path": "after-restart-preferences.xml",
+      "bytes": 2011,
+      "compressed_bytes": 730,
+      "crc": 1785208919
+    },
+    {
+      "path": "atelier-after-return.xml",
+      "bytes": 33519,
+      "compressed_bytes": 2211,
+      "crc": 3012457530
+    },
+    {
+      "path": "atelier-build--1-0.xml",
+      "bytes": 21728,
+      "compressed_bytes": 1508,
+      "crc": 190279818
+    },
+    {
+      "path": "atelier-enter-bridge--1-0.xml",
+      "bytes": 23993,
+      "compressed_bytes": 1628,
+      "crc": 1515747353
+    },
+    {
+      "path": "atelier-home-entry--1-0.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-10.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-11.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-1.xml",
+      "bytes": 32229,
+      "compressed_bytes": 2122,
+      "crc": 3306232387
+    },
+    {
+      "path": "atelier-home-entry--1-12.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-13.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-14.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-15.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-16.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-17.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-18.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry--1-2.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2119,
+      "crc": 2363438244
+    },
+    {
+      "path": "atelier-home-entry--1-3.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-4.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-5.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-6.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-7.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-8.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry--1-9.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 537525136
+    },
+    {
+      "path": "atelier-home-entry-1-0.xml",
+      "bytes": 32222,
+      "compressed_bytes": 2110,
+      "crc": 2401190643
+    },
+    {
+      "path": "atelier-home-entry-1-1.xml",
+      "bytes": 34914,
+      "compressed_bytes": 2258,
+      "crc": 2471618348
+    },
+    {
+      "path": "atelier-home-entry-1-2.xml",
+      "bytes": 31783,
+      "compressed_bytes": 2113,
+      "crc": 472550580
+    },
+    {
+      "path": "atelier-home-entry-1-3.xml",
+      "bytes": 33516,
+      "compressed_bytes": 2217,
+      "crc": 3077521747
+    },
+    {
+      "path": "atelier-hub-0.xml",
+      "bytes": 23993,
+      "compressed_bytes": 1628,
+      "crc": 1515747353
+    },
+    {
+      "path": "atelier-model-check-0.xml",
+      "bytes": 24869,
+      "compressed_bytes": 1724,
+      "crc": 2952338374
+    },
+    {
+      "path": "atelier-real-ten-frame-0.xml",
+      "bytes": 24869,
+      "compressed_bytes": 1724,
+      "crc": 2952338374
+    },
+    {
+      "path": "atelier-topic-list-0.xml",
+      "bytes": 23993,
+      "compressed_bytes": 1628,
+      "crc": 1515747353
+    },
+    {
+      "path": "atelier-worked-example-0.xml",
+      "bytes": 21728,
+      "compressed_bytes": 1508,
+      "crc": 190279818
+    },
+    {
+      "path": "before-kart-preferences.xml",
+      "bytes": 1646,
+      "compressed_bytes": 603,
+      "crc": 3509585
+    },
+    {
+      "path": "build-metadata/artifact.json",
+      "bytes": 824,
+      "compressed_bytes": 441,
+      "crc": 3252882580
+    },
+    {
+      "path": "build-metadata/build-job.json",
+      "bytes": 10155,
+      "compressed_bytes": 1728,
+      "crc": 779207967
+    },
+    {
+      "path": "build-metadata/failed-tour-job.json",
+      "bytes": 3284,
+      "compressed_bytes": 732,
+      "crc": 2906392516
+    },
+    {
+      "path": "build-metadata/run.json",
+      "bytes": 15037,
+      "compressed_bytes": 2143,
+      "crc": 1510967066
+    },
+    {
+      "path": "cold-start-launch.txt",
+      "bytes": 547,
+      "compressed_bytes": 223,
+      "crc": 2249473509
+    },
+    {
+      "path": "dependencies.txt",
+      "bytes": 232,
+      "compressed_bytes": 168,
+      "crc": 2539010933
+    },
+    {
+      "path": "home-to-games-0.xml",
+      "bytes": 32224,
+      "compressed_bytes": 2112,
+      "crc": 1048091797
+    },
+    {
+      "path": "install.txt",
+      "bytes": 181,
+      "compressed_bytes": 150,
+      "crc": 3948724383
+    },
+    {
+      "path": "fatal-logcat.txt",
+      "bytes": 0,
+      "compressed_bytes": 2,
+      "crc": 0
+    },
+    {
+      "path": "installed-package-uid.txt",
+      "bytes": 59,
+      "compressed_bytes": 57,
+      "crc": 4023478105
+    },
+    {
+      "path": "installed-package.txt",
+      "bytes": 8744,
+      "compressed_bytes": 2285,
+      "crc": 182147445
+    },
+    {
+      "path": "lernen-after-kart.xml",
+      "bytes": 31766,
+      "compressed_bytes": 2098,
+      "crc": 1418578438
+    },
+    {
+      "path": "lernen-before-kart.xml",
+      "bytes": 31765,
+      "compressed_bytes": 2105,
+      "crc": 1950466816
+    },
+    {
+      "path": "logcat.txt",
+      "bytes": 2000022,
+      "compressed_bytes": 254773,
+      "crc": 2909576709
+    },
+    {
+      "path": "mesa-renderer.txt",
+      "bytes": 1724,
+      "compressed_bytes": 559,
+      "crc": 1332541612
+    },
+    {
+      "path": "nav-lernen-6--1-0.xml",
+      "bytes": 33519,
+      "compressed_bytes": 2211,
+      "crc": 3012457530
+    },
+    {
+      "path": "nav-lernen-after-kart-6--1-0.xml",
+      "bytes": 28555,
+      "compressed_bytes": 1929,
+      "crc": 1064868411
+    },
+    {
+      "path": "nav-start-5--1-0.xml",
+      "bytes": 28553,
+      "compressed_bytes": 1942,
+      "crc": 3029068961
+    },
+    {
+      "path": "nav-spiele-7--1-0.xml",
+      "bytes": 31765,
+      "compressed_bytes": 2105,
+      "crc": 1950466816
+    },
+    {
+      "path": "nav-start-after-kart-5--1-0.xml",
+      "bytes": 31766,
+      "compressed_bytes": 2098,
+      "crc": 1418578438
+    },
+    {
+      "path": "ocr-work.png",
+      "bytes": 196782,
+      "compressed_bytes": 182511,
+      "crc": 4231309595
+    },
+    {
+      "path": "onboard-age-next-0.xml",
+      "bytes": 24507,
+      "compressed_bytes": 1605,
+      "crc": 1476145137
+    },
+    {
+      "path": "onboard-games-Spiele-0.xml",
+      "bytes": 28553,
+      "compressed_bytes": 1942,
+      "crc": 3029068961
+    },
+    {
+      "path": "onboard-grade-save-0.xml",
+      "bytes": 23701,
+      "compressed_bytes": 1600,
+      "crc": 1897921013
+    },
+    {
+      "path": "onboard-home-0.xml",
+      "bytes": 32224,
+      "compressed_bytes": 2112,
+      "crc": 1048091797
+    },
+    {
+      "path": "onboard-ime-before-dismiss.xml",
+      "bytes": 96369,
+      "compressed_bytes": 4124,
+      "crc": 3214355176
+    },
+    {
+      "path": "onboard-name-next-0.xml",
+      "bytes": 23201,
+      "compressed_bytes": 1576,
+      "crc": 4262350007
+    },
+    {
+      "path": "onboard-name-written-1-0.xml",
+      "bytes": 96408,
+      "compressed_bytes": 4171,
+      "crc": 432668278
+    },
+    {
+      "path": "onboard-name-written-2-0.xml",
+      "bytes": 96345,
+      "compressed_bytes": 4115,
+      "crc": 1775137514
+    },
+    {
+      "path": "onboard-name-written-3-0.xml",
+      "bytes": 96349,
+      "compressed_bytes": 4119,
+      "crc": 691399415
+    },
+    {
+      "path": "onboard-name-written-4-0.xml",
+      "bytes": 96352,
+      "compressed_bytes": 4117,
+      "crc": 1708983927
+    },
+    {
+      "path": "onboard-name-written-5-0.xml",
+      "bytes": 96355,
+      "compressed_bytes": 4120,
+      "crc": 1750276654
+    },
+    {
+      "path": "onboard-name-written-6-0.xml",
+      "bytes": 96356,
+      "compressed_bytes": 4121,
+      "crc": 1624744311
+    },
+    {
+      "path": "onboard-name-written-7-0.xml",
+      "bytes": 96362,
+      "compressed_bytes": 4126,
+      "crc": 4055637542
+    },
+    {
+      "path": "onboard-name-written-8-0.xml",
+      "bytes": 96363,
+      "compressed_bytes": 4128,
+      "crc": 2652765649
+    },
+    {
+      "path": "onboard-name.xml",
+      "bytes": 23216,
+      "compressed_bytes": 1565,
+      "crc": 2410420475
+    },
+    {
+      "path": "onboard-welcome--1-0.xml",
+      "bytes": 22876,
+      "compressed_bytes": 1586,
+      "crc": 3242985323
+    },
+    {
+      "path": "open-kart-47-1-0.xml",
+      "bytes": 28554,
+      "compressed_bytes": 1935,
+      "crc": 112051931
+    },
+    {
+      "path": "preview-skip-contracts.log",
+      "bytes": 4069,
+      "compressed_bytes": 813,
+      "crc": 1495987078
+    },
+    {
+      "path": "recheck/after.json",
+      "bytes": 4404,
+      "compressed_bytes": 1581,
+      "crc": 2906905525
+    },
+    {
+      "path": "recheck/before.json",
+      "bytes": 4404,
+      "compressed_bytes": 1581,
+      "crc": 2906905525
+    },
+    {
+      "path": "recheck/preflight.json",
+      "bytes": 4984,
+      "compressed_bytes": 1763,
+      "crc": 868639800
+    },
+    {
+      "path": "recheck/result.json",
+      "bytes": 3550,
+      "compressed_bytes": 1279,
+      "crc": 1877416314
+    },
+    {
+      "path": "restart-0.xml",
+      "bytes": 32225,
+      "compressed_bytes": 2104,
+      "crc": 3172134119
+    },
+    {
+      "path": "restart-after-kart-launch.txt",
+      "bytes": 547,
+      "compressed_bytes": 223,
+      "crc": 3242165953
+    },
+    {
+      "path": "source-binding-contracts.log",
+      "bytes": 3927,
+      "compressed_bytes": 775,
+      "crc": 1018613133
+    },
+    {
+      "path": "rooted-emulator.json",
+      "bytes": 1545,
+      "compressed_bytes": 416,
+      "crc": 812385900
+    },
+    {
+      "path": "start-after-kart-0.xml",
+      "bytes": 33520,
+      "compressed_bytes": 2203,
+      "crc": 1321579863
+    },
+    {
+      "path": "start-after-kart-1.xml",
+      "bytes": 31782,
+      "compressed_bytes": 2103,
+      "crc": 1661694824
+    },
+    {
+      "path": "start-after-kart-2.xml",
+      "bytes": 34003,
+      "compressed_bytes": 2253,
+      "crc": 2384484954
+    },
+    {
+      "path": "start-after-kart-3.xml",
+      "bytes": 34909,
+      "compressed_bytes": 2248,
+      "crc": 342844647
+    },
+    {
+      "path": "tesseract-version.txt",
+      "bytes": 551,
+      "compressed_bytes": 315,
+      "crc": 2853675433
+    },
+    {
+      "path": "tour-result.json",
+      "bytes": 16848,
+      "compressed_bytes": 3828,
+      "crc": 1660487946
+    },
+    {
+      "path": "start-after-kart-4.xml",
+      "bytes": 32225,
+      "compressed_bytes": 2104,
+      "crc": 3172134119
+    },
+    {
+      "path": "tesseract-installed-languages.txt",
+      "bytes": 87,
+      "compressed_bytes": 81,
+      "crc": 3548727056
+    },
+    {
+      "path": "uiautomator-config.json",
+      "bytes": 189,
+      "compressed_bytes": 118,
+      "crc": 3154613881
+    },
+    {
+      "path": "xvfb.log",
+      "bytes": 4696,
+      "compressed_bytes": 296,
+      "crc": 4020111049
+    }
+  ]
+}

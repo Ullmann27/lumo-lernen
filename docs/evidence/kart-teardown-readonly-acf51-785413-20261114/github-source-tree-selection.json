@@ -1,0 +1,281 @@
+{
+  "schema": 1,
+  "scope": "Read-only selected entries from complete exact GitHub native trees; no refs or sources changed.",
+  "fetched_trees": [
+    {
+      "query": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/dc24bfa8b3fac8812c88cfc8f8eab3af1479979c?recursive=1",
+      "tree_sha": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+      "truncated": false,
+      "complete_entry_count": 2514,
+      "selected_entries": [
+        {
+          "path": "scripts/games/kart_audio.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f8256867f410aafe7602734b3d59615c1c8a896a",
+          "size": 5383,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f8256867f410aafe7602734b3d59615c1c8a896a"
+        },
+        {
+          "path": "scripts/games/kart_island.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+          "size": 169697,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/8319609143cc6de2b2f618a4c262cf1903fd290c"
+        },
+        {
+          "path": "scripts/games/kart_rival_flight.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "adbbf596e6b10cb23a046b248d1b8641a53bf721",
+          "size": 8352,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/adbbf596e6b10cb23a046b248d1b8641a53bf721"
+        },
+        {
+          "path": "scripts/games/kart_rival_racecraft.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6adefb8d084d669218f124ffced9dd8f8162ca0f",
+          "size": 5546,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/6adefb8d084d669218f124ffced9dd8f8162ca0f"
+        },
+        {
+          "path": "scripts/games/kart_rival_stunts.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3dc6f95395bfe6b300623d0d6dc27253745e0057",
+          "size": 5082,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/3dc6f95395bfe6b300623d0d6dc27253745e0057"
+        },
+        {
+          "path": "scripts/games/kart_roadside_lasso.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "070e8b28049b90a54a9ab4a1b00ed33aed5a881d",
+          "size": 12014,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/070e8b28049b90a54a9ab4a1b00ed33aed5a881d"
+        },
+        {
+          "path": "scripts/games/kart_world.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a782cf44677b08917cc0af77f4cbe7317ac25e43",
+          "size": 80202,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/a782cf44677b08917cc0af77f4cbe7317ac25e43"
+        },
+        {
+          "path": "scripts/tests/kart_ai_behavior_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48203354c8a1fcd2aed96cacfacbec191aabf1ae",
+          "size": 10477,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/48203354c8a1fcd2aed96cacfacbec191aabf1ae"
+        },
+        {
+          "path": "scripts/tests/kart_full_field_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "33c4c28025092097111ba5c87b70d89bf27b4c0d",
+          "size": 11238,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/33c4c28025092097111ba5c87b70d89bf27b4c0d"
+        },
+        {
+          "path": "scripts/tests/kart_harbor_race_hook_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "deab9cb9ab7725ba32723548ecd6512f8732eca4",
+          "size": 3585,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/deab9cb9ab7725ba32723548ecd6512f8732eca4"
+        },
+        {
+          "path": "scripts/tests/kart_racecraft_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9da775e1e12fd1d307c939a71bd7394d456d6a9b",
+          "size": 6842,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/9da775e1e12fd1d307c939a71bd7394d456d6a9b"
+        },
+        {
+          "path": "tools/validate_2014.sh",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4fb01fdc83cf91ea09af56365c3ec325ebe999bc",
+          "size": 2738,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/4fb01fdc83cf91ea09af56365c3ec325ebe999bc"
+        },
+        {
+          "path": "tools/validate_project.sh",
+          "mode": "100755",
+          "type": "blob",
+          "sha": "c518204f1e64410052a8fb31956f786cceb091a9",
+          "size": 5195,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/c518204f1e64410052a8fb31956f786cceb091a9"
+        },
+        {
+          "path": "tools/validate_technical_art.sh",
+          "mode": "100755",
+          "type": "blob",
+          "sha": "f3e102c31215e5b9b9bff973ef2c4129d3c5112d",
+          "size": 2275,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f3e102c31215e5b9b9bff973ef2c4129d3c5112d"
+        }
+      ]
+    },
+    {
+      "query": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/635cf3d68631ed62ba3b3ce6f2c1fc5448768787?recursive=1",
+      "tree_sha": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+      "truncated": false,
+      "complete_entry_count": 2532,
+      "selected_entries": [
+        {
+          "path": "scripts/games/kart_audio.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "f8256867f410aafe7602734b3d59615c1c8a896a",
+          "size": 5383,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f8256867f410aafe7602734b3d59615c1c8a896a"
+        },
+        {
+          "path": "scripts/games/kart_island.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8319609143cc6de2b2f618a4c262cf1903fd290c",
+          "size": 169697,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/8319609143cc6de2b2f618a4c262cf1903fd290c"
+        },
+        {
+          "path": "scripts/games/kart_rival_flight.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "adbbf596e6b10cb23a046b248d1b8641a53bf721",
+          "size": 8352,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/adbbf596e6b10cb23a046b248d1b8641a53bf721"
+        },
+        {
+          "path": "scripts/games/kart_rival_racecraft.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6adefb8d084d669218f124ffced9dd8f8162ca0f",
+          "size": 5546,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/6adefb8d084d669218f124ffced9dd8f8162ca0f"
+        },
+        {
+          "path": "scripts/games/kart_rival_stunts.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3dc6f95395bfe6b300623d0d6dc27253745e0057",
+          "size": 5082,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/3dc6f95395bfe6b300623d0d6dc27253745e0057"
+        },
+        {
+          "path": "scripts/games/kart_roadside_lasso.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "070e8b28049b90a54a9ab4a1b00ed33aed5a881d",
+          "size": 12014,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/070e8b28049b90a54a9ab4a1b00ed33aed5a881d"
+        },
+        {
+          "path": "scripts/games/kart_world.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a782cf44677b08917cc0af77f4cbe7317ac25e43",
+          "size": 80202,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/a782cf44677b08917cc0af77f4cbe7317ac25e43"
+        },
+        {
+          "path": "scripts/tests/kart_ai_behavior_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "48203354c8a1fcd2aed96cacfacbec191aabf1ae",
+          "size": 10477,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/48203354c8a1fcd2aed96cacfacbec191aabf1ae"
+        },
+        {
+          "path": "scripts/tests/kart_full_field_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "33c4c28025092097111ba5c87b70d89bf27b4c0d",
+          "size": 11238,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/33c4c28025092097111ba5c87b70d89bf27b4c0d"
+        },
+        {
+          "path": "scripts/tests/kart_harbor_race_hook_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "deab9cb9ab7725ba32723548ecd6512f8732eca4",
+          "size": 3585,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/deab9cb9ab7725ba32723548ecd6512f8732eca4"
+        },
+        {
+          "path": "scripts/tests/kart_racecraft_regression.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9da775e1e12fd1d307c939a71bd7394d456d6a9b",
+          "size": 6842,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/9da775e1e12fd1d307c939a71bd7394d456d6a9b"
+        },
+        {
+          "path": "tools/validate_2014.sh",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4fb01fdc83cf91ea09af56365c3ec325ebe999bc",
+          "size": 2738,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/4fb01fdc83cf91ea09af56365c3ec325ebe999bc"
+        },
+        {
+          "path": "tools/validate_project.sh",
+          "mode": "100755",
+          "type": "blob",
+          "sha": "c518204f1e64410052a8fb31956f786cceb091a9",
+          "size": 5195,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/c518204f1e64410052a8fb31956f786cceb091a9"
+        },
+        {
+          "path": "tools/validate_technical_art.sh",
+          "mode": "100755",
+          "type": "blob",
+          "sha": "f3e102c31215e5b9b9bff973ef2c4129d3c5112d",
+          "size": 2275,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/f3e102c31215e5b9b9bff973ef2c4129d3c5112d"
+        }
+      ]
+    }
+  ],
+  "new_commit": {
+    "sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "node_id": "C_kwDOSpcSONoAKDc4NTQxM2QzOTUyOTJhMjQzZWFhMGEwNzQ4NjcxZWIxNWQzZjgwZmY",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/785413d395292a243eaa0a0748671eb15d3f80ff",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/commit/785413d395292a243eaa0a0748671eb15d3f80ff",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:23:23Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T07:23:23Z"
+    },
+    "tree": {
+      "sha": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/635cf3d68631ed62ba3b3ce6f2c1fc5448768787"
+    },
+    "message": "fix: keep Treasure avatar visible and preserve accessible hints\n\nKeep compact hints in the existing scrollable dialog, give messages contrast and clearance from controls, and verify fresh and restored states in five renderer formats. Preserve prior Studio gates and require the additional cutout image. Correct the singular coin label without changing settlement rules.",
+    "parents": [
+      {
+        "sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/acf51d3bd2997c4b731e9a48e1791e05e756a132",
+        "html_url": "https://github.com/Ullmann27/lumo-godot/commit/acf51d3bd2997c4b731e9a48e1791e05e756a132"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  }
+}

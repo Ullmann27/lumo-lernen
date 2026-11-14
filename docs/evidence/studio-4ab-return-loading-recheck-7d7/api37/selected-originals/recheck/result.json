@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "commands": [
+    {
+      "command": [
+        "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+        "-B",
+        "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+        "--apk",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "--provenance",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "--sums",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "--out",
+        "/home/runner/work/lumo-lernen/lumo-lernen/tour"
+      ],
+      "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+      "started_at": "2026-11-14T03:46:34.239091+00:00",
+      "returncode": 0,
+      "finished_at": "2026-11-14T03:55:39.398558+00:00"
+    },
+    {
+      "command": [
+        "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+        "-B",
+        "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py",
+        "--apk",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "--provenance",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "--sums",
+        "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "--prior-tour",
+        "/home/runner/work/lumo-lernen/lumo-lernen/tour/tour-result.json",
+        "--expected-api",
+        "37",
+        "--out",
+        "/home/runner/work/lumo-lernen/lumo-lernen/tour/nextgen"
+      ],
+      "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+      "started_at": "2026-11-14T03:55:39.398591+00:00",
+      "returncode": 0,
+      "finished_at": "2026-11-14T04:06:42.109219+00:00"
+    }
+  ],
+  "expected_qa_source": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_api": 37,
+  "diagnostic_github_run": "43552809452",
+  "diagnostic_github_attempt": "1",
+  "runtime_reports": {
+    "android_runtime": {
+      "sdk": 37,
+      "release": "17",
+      "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+      "model": "sdk_gphone64_x86_64"
+    },
+    "tour": {
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/tour-result.json",
+      "bytes": 9771,
+      "sha256": "bc524ca740a4396c3c5009160893b98445efdbe38433ae6fec887870fb9ef269"
+    },
+    "surfaces": {
+      "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/nextgen/native-surfaces-result.json",
+      "bytes": 204840,
+      "sha256": "c237b150cd1f09694084abbb92873d83a3f7e7900c1c462d591b14b9d78af6f7"
+    }
+  },
+  "finished_at": "2026-11-14T04:06:45.500139+00:00",
+  "before_binding_verified": true,
+  "after_binding_matches": true
+}

@@ -1,0 +1,334 @@
+{
+	"accepted_sites": [
+		{
+			"distance": 15.4973629760742,
+			"position": [
+				14.2376689910889,
+				-1.20000004768372,
+				44.0956039428711
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 37.6364529418945,
+			"position": [
+				43.0996398925781,
+				-1.20000004768372,
+				64.8420104980469
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 59.7755429077149,
+			"position": [
+				48.9352645874023,
+				-1.20000004768372,
+				33.7957992553711
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 81.9146328735352,
+			"position": [
+				80.3559341430664,
+				-1.20000004768372,
+				28.8462333679199
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 104.053722839355,
+			"position": [
+				57.3428192138672,
+				-1.20000004768372,
+				5.56337738037109
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 126.192812805176,
+			"position": [
+				78.4656295776367,
+				-1.20000004768372,
+				-24.7044162750244
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 148.331902770996,
+			"position": [
+				44.2429428100586,
+				-1.20000004768372,
+				-36.2992057800293
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 170.470992736816,
+			"position": [
+				54.7475204467773,
+				-1.20000004768372,
+				-65.6759338378906
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 192.610082702637,
+			"position": [
+				24.4066123962402,
+				-1.20000004768372,
+				-54.6032638549805
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 214.749172668457,
+			"position": [
+				3.83512353897095,
+				-1.20000004768372,
+				-79.8602752685547
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 236.888262634277,
+			"position": [
+				-14.8660297393799,
+				-1.20000004768372,
+				-48.1306228637695
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 259.027352600098,
+			"position": [
+				-42.8530120849609,
+				-1.20000004768372,
+				-72.3837356567383
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 281.166442565918,
+			"position": [
+				-48.4317283630371,
+				-1.20000004768372,
+				-41.3210029602051
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 303.305532531738,
+			"position": [
+				-78.0289993286133,
+				-1.20000004768372,
+				-32.9210739135742
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 325.444622497559,
+			"position": [
+				-55.862720489502,
+				-1.20000004768372,
+				-9.52412128448486
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 347.583712463379,
+			"position": [
+				-82.8660202026367,
+				-1.20000004768372,
+				14.0233058929443
+			],
+			"radius": 4.3
+		},
+		{
+			"distance": 369.722802429199,
+			"position": [
+				-50.4122619628906,
+				-1.20000004768372,
+				29.298023223877
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 391.861892395019,
+			"position": [
+				-53.8526763916016,
+				-1.20000004768372,
+				61.859806060791
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 414.00098236084,
+			"position": [
+				-24.1003684997559,
+				-1.20000004768372,
+				49.0408363342285
+			],
+			"radius": 1.8
+		},
+		{
+			"distance": 436.14007232666,
+			"position": [
+				-4.7708911895752,
+				-1.20000004768372,
+				74.5181884765625
+			],
+			"radius": 1.8
+		}
+	],
+	"actual_detail": "full",
+	"actual_lightweight": false,
+	"capture_kind": "stationary production scene inspection; no driven race",
+	"capture_root": "/tmp/lumo-theme-capture.kb1iftaj",
+	"graphics_profile": "high",
+	"isolation_check": "single-use marker, exact XDG paths, user:// containment and no existing kart state checked before scene load",
+	"process_frozen": true,
+	"reduced_motion": true,
+	"reference_detail_count": 322,
+	"reference_detail_theme": "holo_city",
+	"requested_detail": "full",
+	"seed": 1923,
+	"selected_site_index": 0,
+	"source": {
+		"clean_tracked_source": false,
+		"engine": "4.6.3-stable (official)",
+		"physical_android_device": false,
+		"renderer": "gl_compatibility",
+		"source_commit": "ada5ed81ad62339f15289da62670c0a4f9f7f2b9",
+		"tracked_differences": "scripts/app/app_boot.gd\nscripts/app/mobile_runtime.gd\nscripts/characters/lumo/lumo_platform_pose.gd\nscripts/characters/lumo/lumo_rigged_actor.gd\nscripts/characters/lumo/lumo_walk_locomotion.gd\nscripts/creative/build_settlement_world.gd\nscripts/creative/build_world.gd\nscripts/creative/creative_runtime.gd\nscripts/creative/puzzle_state.gd\nscripts/creative/puzzle_world.gd\nscripts/creative/rhythm_world.gd\nscripts/creative/treasure_state.gd\nscripts/creative/treasure_world.gd\nscripts/games/cards/cards_table.gd\nscripts/games/jump_islands.gd\nscripts/games/kart_garage_menu.gd\nscripts/games/kart_island.gd\nscripts/games/kart_workshop.gd\nscripts/learning/learning_activity.gd\nscripts/learning/learning_atelier.gd\nscripts/learning/learning_world.gd\nscripts/tests/learning_world_capture.gd\nscripts/tests/lumo_65bone_walk_gait_regression.gd\nscripts/ui/mobile_safe_area.gd\ntools/tests/test_nextgen_runner.py\ntools/validate_nextgen.sh",
+		"visual_acceptance": "Manual reference review required; render success is not art approval"
+	},
+	"status": "captured",
+	"track_id": "holo_city",
+	"track_length": 442.781799316406,
+	"user_data_path": "/tmp/lumo-theme-capture.kb1iftaj/userdata/godot/app_userdata/Lumo 3D/",
+	"viewport": [
+		1280,
+		720
+	],
+	"views": [
+		{
+			"camera_basis_x": [
+				0.062492348253727,
+				0.0,
+				0.998045444488525
+			],
+			"camera_basis_y": [
+				0.200155109167099,
+				0.979684054851532,
+				-0.0125326588749886
+			],
+			"camera_basis_z": [
+				-0.977769255638123,
+				0.200547114014626,
+				0.0612227618694305
+			],
+			"camera_position": [
+				0.650196075439453,
+				11.6194915771484,
+				62.3293876647949
+			],
+			"camera_source": "production _update_camera; stationary player placed 12 m before accepted site",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "01_chase",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/holo_city/01_chase.png",
+			"player_distance": 3.49736297607422,
+			"player_position": [
+				4.9916934967041,
+				9.09949207305908,
+				62.057544708252
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.958507239818573,
+				0.0,
+				0.285068184137344
+			],
+			"camera_basis_y": [
+				0.166225358843803,
+				0.812395095825195,
+				-0.558912634849548
+			],
+			"camera_basis_z": [
+				-0.231587991118431,
+				0.583107352256775,
+				0.778686583042145
+			],
+			"camera_position": [
+				8.98023414611816,
+				14.0375108718872,
+				61.7730903625488
+			],
+			"camera_source": "manual road-context pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "02_context",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/holo_city/02_context.png",
+			"player_distance": 3.49736297607422,
+			"player_position": [
+				4.9916934967041,
+				9.09949207305908,
+				62.057544708252
+			]
+		},
+		{
+			"camera_basis_x": [
+				0.987370193004608,
+				0.0,
+				-0.158430367708206
+			],
+			"camera_basis_y": [
+				-0.0399332419037819,
+				0.967712759971619,
+				-0.248872071504593
+			],
+			"camera_basis_z": [
+				0.153315097093582,
+				0.252055525779724,
+				0.955490708351135
+			],
+			"camera_position": [
+				15.9407949447632,
+				3.10000014305115,
+				54.709831237793
+			],
+			"camera_source": "manual road-facing detail pose; production camera, world and lighting",
+			"far": 450.0,
+			"fov_degrees": 55.0,
+			"image_size": [
+				1280,
+				720
+			],
+			"name": "03_detail",
+			"near": 0.0500000007450581,
+			"path": "/workspace/scratch/5987865ae883/qa/kart-theme-source-803e-20261114/captures/holo_city/03_detail.png",
+			"player_distance": 3.49736297607422,
+			"player_position": [
+				4.9916934967041,
+				9.09949207305908,
+				62.057544708252
+			]
+		}
+	],
+	"visual_review": "pending original-reference review",
+	"xdg_cache_home": "/tmp/lumo-theme-capture.kb1iftaj/cache",
+	"xdg_config_home": "/tmp/lumo-theme-capture.kb1iftaj/config",
+	"xdg_data_home": "/tmp/lumo-theme-capture.kb1iftaj/userdata"
+}

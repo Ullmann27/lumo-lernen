@@ -1,0 +1,33 @@
+{
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+    "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/host/.github/workflows/lumo-studio-2020.yml"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-2020-ffmpeg-workflow-078774dd-20261114/host",
+  "started_at": "2026-11-14T11:04:47.006483+00:00",
+  "elapsed_seconds": 0.005609615996945649,
+  "exit_code": 0,
+  "version": "1.7.12\ninstalled by downloading from release page\nbuilt with go1.26.1 compiler for linux/amd64",
+  "binary": {
+    "bytes": 6074530,
+    "sha256": "c872d6db8c6bf83a8eaa704fc93999f027d55dffbc63b8a6abdccb47df5f4cd4",
+    "git_blob": "c05eefe53e04b5c305c24310faa6aaf0080df955"
+  },
+  "shellcheck_on_path": null,
+  "workflow": {
+    "bytes": 58784,
+    "sha256": "c333c4d33c37fd1f08bfce9b750f348e2ecd8fb16f3c25a6adc7543f546d30a6",
+    "git_blob": "bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4"
+  },
+  "stdout": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "stderr": {
+    "bytes": 0,
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "git_blob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+  },
+  "scope": "one existing actionlint invocation, no install, CI, runtime, unit test or artifact creation"
+}

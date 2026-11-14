@@ -1,0 +1,312 @@
+{
+  "schema": 1,
+  "reviewer": "games_worlds",
+  "reviewed_utc": "2026-11-14T06:52:54.347374+00:00",
+  "status": "VISUAL_SELECTION_REVIEWED_WITH_EXPLICIT_LIMITS",
+  "native_commit": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "native_tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+  "run_id": 43565059832,
+  "run_attempt": 1,
+  "artifact_id": 14103142984,
+  "archive": {
+    "path": "/tmp/lumo-studio-2020-acf51-native-evidence.zip",
+    "bytes": 225382332,
+    "sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+    "full_archive_sha_crc_and_five_source_stamps_verified_by": "root",
+    "selected_15_png_member_crc_and_exact_bytes_independently_verified_by": "games_worlds",
+    "new_download_performed": false
+  },
+  "extraction_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/verified-original-extraction.json",
+    "sha256": "faff9fcf4c6974fa4ab1229e5b870ba3358519d6dfa29568fdceead9a9813608"
+  },
+  "selection": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-games_worlds.json",
+    "sha256": "445e46222ff9ae414c3ccdf1d303499a2de80dece0b41b6d1272a7a8ee233eef",
+    "images": 15,
+    "modules": {
+      "cards": 5,
+      "puzzle": 9,
+      "rhythm": 1
+    }
+  },
+  "images": [
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "bytes": 568103,
+      "sha256": "55089d40b1c3f7b7e7ff77066006fbba85df74d367744dae2bd454eb2d5d2377",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Räumlicher grüner Tisch mit sichtbaren Stapelkanten, beleuchtetem Raum und sieben unterscheidbaren Kartenfronten. Zugtext, Zurück, Pause, Seitenwechsel und Ziehen sind lesbar und frei. Keine sichtbare Überdeckung der Hauptbedienung; die vorhandene WILD-Textur bleibt englisch beschriftet.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "bytes": 289390,
+      "sha256": "86a462dbb002106e96dd943c546755e080a720db072944f32c0fb5bba9543e18",
+      "dimensions": [
+        412,
+        915
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Hochformat zeigt drei gut lesbare Handkarten und die ausdrückliche Seite 1/3. Tisch, Nachziehstapel und Ablage bleiben räumlich erkennbar. Zurück/Pause sowie beide Seitenpfeile und Ziehen vollständig im Bild, keine sichtbare Beschneidung dieser Bedienung.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655521,
+      "sha256": "3d6758fba0bf7647fec4dcb1672ceb580053cf31c3429d1d53629365561a332f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Vier farblich getrennte räumliche Bahnen, Bühnenlicht und Lumo im Hintergrund sind erkennbar. Stern und Verbindung zur nächsten Spur visualisieren die Gleitaufgabe; alle vier unteren Eingabefelder, Punktestand, Hinweis und Pause bleiben lesbar. Keine Timing- oder Latenzaussage aus diesem Standbild.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_640x360.png",
+      "bytes": 113827,
+      "sha256": "b32ce5d3e553468fb19cb6bfa9eec649c2553364b30e224d59573be50faff88e",
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Bei 640×360 liegen Brett, seitliche Teile und markierter Zielbereich im freien Streifen zwischen Kopfanzeige und Werkzeugleiste. Drehknopf und Hilfe sind sichtbar; Status 1/6 und Hinweis passen. Weitere rechte Werkzeugaktionen liegen im ausdrücklich horizontal scrollbaren Bereich.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Ein Teil ist auf dem zentralen Brett sichtbar eingesetzt; Status 1/6 und „Das passt! Dein Bild wächst.“ stimmen visuell dazu. Seitliche Teile, Brettkanten, Speichern und Neues Puzzle bleiben frei. Die Stillaufnahme allein ersetzt keinen Drag- oder Speicherbeleg.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "dimensions": [
+        960,
+        540
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Das Startmenü zeigt Motiv, sechs Teile, Drehpuzzle-Modus sowie Start- und Rückkehraktion vollständig. Deutlich abgesetzte Schaltflächen; die Hauptüberschrift ist lesbar. Hintergrundanzeige bleibt hinter dem halbtransparenten Dialog sichtbar, überdeckt aber keinen Menütext.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "dimensions": [
+        960,
+        540
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Leeres mittleres Brett und beide Teilablagen sind sichtbar. Der aktive Drehknopf und „Eine Vierteldrehung. Vergleiche Bild und Form.“ passen zum Drehmodus. Alle unteren Aktionen einschließlich Speichern und Neues Puzzle liegen im Bild.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302215,
+      "sha256": "46e89995c1e94e9087ef18ebb15e3317e3605f34fd92cfcfd9a375939f2f0e72",
+      "dimensions": [
+        960,
+        540
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Klassische Spielansicht mit einem platzierten Teil und Status 1/6. Die Werkzeugleiste enthält keine Drehaktion; Brett, seitliche Restteile und Rückkehr/Pause sind frei. Die Erfolgsanzeige ist vollständig lesbar.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Das kompakte Startmenü zeigt Motiv, Teilezahl, Drehmodus und Start vollständig. Ein vertikaler Scrollbalken ist sichtbar; „Zur Spielewelt“ ist am unteren Scrollrand nur teilweise dargestellt. Daraus wird keine vollständige Touch-Erreichbarkeit dieses letzten Eintrags abgeleitet; der separate Spiele-Zugang oben bleibt erkennbar.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109711,
+      "sha256": "83b92e07bb5d4b940e5e101a43257813fad6bd2bdf0025153dc6ed1b173749c2",
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Im kleinen Querformat stehen Brett und beide Teilablagen frei zwischen HUD und Toolbar. Drehknopf und Vierteldrehung-Hinweis sind vollständig lesbar. Die horizontale Werkzeugleiste zeigt ihren Scrollbalken; rechts liegende Aktionen sind in diesem Ausschnitt nicht sämtlich sichtbar.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109554,
+      "sha256": "d3a39bffc0a62ebe56aab89ff9b462af6a6e5e22f02888ac56074dd98692c023",
+      "dimensions": [
+        640,
+        360
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Ein platziertes Teil und 1/6-Anzeige sind im kleinen Querformat klar erkennbar. Brett und Ablagen bleiben unterhalb des HUD und oberhalb der Werkzeugleiste. Speichern ist sichtbar, die äußerste rechte Aktion liegt teilweise außerhalb des horizontalen Scrollausschnitts.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "bytes": 1272865,
+      "sha256": "ae53121f34679850bd86163c6a1f3245accd8369710cd5815efd7a6c12145a8d",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Die echte Rendereraufnahme mit Android-Randfixture zeigt freien Abstand oberhalb der Kopfzeile und unterhalb der unteren Aktionen. Kartenfronten, Seite 1/3, Zurück, Pause und Ziehen sind vollständig lesbar. Der Dateiname ist kein Beleg einer Android-Geräteausführung.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "bytes": 1141701,
+      "sha256": "bc1a5465f83736f8c0db00a7188075a02503f6d33eecaf58e2ece62d813e1a45",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Pausenzustand mit deutlich lesbarem zentralem Dialog „Dein Zug wartet auf dich.“ und vollständig sichtbarem Weiterspielen-Knopf; oben steht Weiter. Der Dialog bleibt innerhalb des Bildes und verdrängt keine erforderliche Dialogaktion. Stillbild belegt weder angehaltene Uhr noch Resume-Verhalten.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "bytes": 1002653,
+      "sha256": "e97b23764222326565d07e46023869467c2333861c4f9e19223a9b6eaf4fb93b",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Querformat mit linkem Safe-Area-Abstand: Zurück/Pause, sieben Kartenfronten, Seitenpfeile und Ziehen sind frei und vollständig sichtbar. Der Header liegt teilweise vor dem oberen Bereich der dekorativen Lumofigur, das Gesicht und die spielrelevanten Karten bleiben erkennbar. Fixture, keine tatsächlichen Android-Systemleisten.",
+      "visible_blocker_in_this_image": false
+    },
+    {
+      "module": "puzzle",
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "bytes": 479283,
+      "sha256": "6622d8c3ab667f13e83b827f560168b254e768beb0b280f076a3d31c5323d719",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "actually_opened_individually": true,
+      "selected_archive_member_crc_and_byte_equality_verified": true,
+      "findings": "Die linke Safe-Area wird sichtbar freigehalten; Spiele und Pause liegen innerhalb des sicheren Bereichs. Großes Menü mit Motiv, zwölf Teilen, Bilderpuzzle-Modus und Start ist lesbar. „Zur Spielewelt“ ist unten teilweise im vertikal scrollbaren Dialog abgeschnitten; der Scrollbalken ist sichtbar. Dies ist eine Randfixture, kein Android-Bediennachweis.",
+      "visible_blocker_in_this_image": false
+    }
+  ],
+  "associated_original_reports_read": [
+    {
+      "artifact_entry": "studio-evidence/captures/puzzle_menu_lifecycle_regression/puzzle-menu-lifecycle.json",
+      "bytes": 37700,
+      "sha256": "f0fd4f759aca7be0a5d3f1dbf2d5118fd0dbe9e70d0a813c7b507568020a6c11"
+    },
+    {
+      "artifact_entry": "studio-evidence/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c"
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/mobile_safe_area_regression/mobile-safe-area.json",
+      "bytes": 12524,
+      "sha256": "680eed82aae85a0ce69fa155ad1cb48423019fb1f2f90ae025cfda4ac255410f"
+    },
+    {
+      "artifact_entry": "studio-evidence/mobile_safe_area_regression-rendered.log",
+      "bytes": 9354,
+      "sha256": "34cd4b52e5893a519d38554b0148dd7392c2606439b7de8855034659c3633268"
+    }
+  ],
+  "existing_input_evidence": {
+    "puzzle_checks": 732,
+    "puzzle_display": "X11",
+    "puzzle_touch_labels_read": [
+      "Anderes Puzzle",
+      "Bild:",
+      "Modus:",
+      "Neues Puzzle beginnen",
+      "Weiterpuzzeln",
+      "classic matching slot release",
+      "classic piece pick",
+      "count",
+      "release selection",
+      "select real piece",
+      "Ⅱ",
+      "↻ Drehen"
+    ],
+    "last_menu_exit_entry_tap_claimed": false,
+    "comment": "Vorhandener aktueller CI-Bericht belegt Count/Modus/Motiv/Start, echte Teileauswahl, Drehen, Klassik-Drag, Pause/Weiterpuzzeln. Kein eigener neuer Testlauf und kein behaupteter Tap auf den teilweise sichtbaren letzten Menüeintrag.",
+    "mobile_checks": 124,
+    "mobile_scope": "production cache and scenes with asynchronous Android boundary fixture; not device execution"
+  },
+  "conclusion": "Kein neuer blockierender Bildbefund in diesen 15 einzeln geöffneten Aufnahmen. Kompakte Puzzlemenüs und Werkzeugleisten bleiben bewusst scrollbare Ausschnitte; nicht jede Aktion ist gleichzeitig sichtbar. Diese Teilprüfung erteilt keine Gesamtfreigabe; Roots separat gemeldeter Treasure-Überdeckungsbefund bleibt offen.",
+  "limits": [
+    "Native Desktop-Rendererbilder; die drei Cards-Safe-Area- und das Puzzle-Cutout-Bild verwenden explizite Plattformrandfixtures.",
+    "Keine neue Android-/Fold7-/60-FPS-Freigabe, keine Touchlatenz-, KI-, Save- oder Animationsmessung aus Standbildern.",
+    "Keine neue Testausführung oder Quellmutation. Bestehende CI-Ergebnisse werden getrennt von persönlich ausgeführter Bildsichtung ausgewiesen.",
+    "Vorhandene englische WILD/CHOOSE COLOR-Kartentextur bleibt sichtbar; keine vollständige deutsche Textur-Lokalisierung behauptet.",
+    "Die vollständige aktuelle Native-Abnahme ist durch Roots separaten Treasure-Sichtbefund noch blockiert."
+  ]
+}

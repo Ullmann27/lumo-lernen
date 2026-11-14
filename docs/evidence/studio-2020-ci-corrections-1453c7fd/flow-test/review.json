@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T09:04:49.145230+00:00",
+  "scope": "read_only_initial_C4_flow_test_delta",
+  "source_host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "status": "no_additional_concrete_blocker_in_read_scope",
+  "source_files": [
+    {
+      "path": "qa/studio-2020-ci-corrections-20261114/agent-c/baseline/test/games/games_screen_flow_test.dart",
+      "bytes": 10189,
+      "sha256": "5fb9b1253d79f851516c2bc37b326e29d8ab80bf1414f30203e9a8315a456172",
+      "git_blob": "92190a24410646e27d321a5f87ed06f6dbf9e005",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/studio-2020-ci-corrections-20261114/agent-c/host/test/games/games_screen_flow_test.dart",
+      "bytes": 11691,
+      "sha256": "d13b42f24be5965b35e4528a20f4c9e3a7a6db56ebbc8624aea976bf0595015a",
+      "git_blob": "31793fa489756398b656c63b86f7e5dcfe953006",
+      "mode": "100644"
+    },
+    {
+      "path": "qa/studio-2020-integration/assembled/host/lib/features/games/connect_four/connect_four_table_session.dart",
+      "bytes": 9737,
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+      "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "mode": "100644"
+    }
+  ],
+  "preserved_complete_suffix_from_var_turns": true,
+  "findings": [
+    "Only services import and initial native-unavailable setup/readiness observation are added.",
+    "Handler throws MissingPluginException instead of returning synthetic success; it counts the actual open call.",
+    "Production NativeConnectFourTransport.open really invokes that same channel method open.",
+    "Exactly one native open attempt is required; missing or duplicate path is rejected.",
+    "Readiness waits at most50 pumps of100ms and requires no loading indicator, no visible pause caption and seven distinct actual enabled IconButtons.",
+    "Absence of connect-open-native additionally binds the unavailable-native branch.",
+    "Handler cleanup is registered with addTearDown.",
+    "Entire existing complete-game/reward/replay/pause/restart test suffix is byte-identical, including original limits and assertions."
+  ],
+  "limits": [
+    "No Flutter test, compiler or Android execution by this reviewer.",
+    "Five seconds refers to bounded WidgetTester-pumped time, not a measured physical-device deadline.",
+    "Existing post-start flow is preserved, not newly proven successful.",
+    "Separate geometry/swipe/clipped48dp regression is still required."
+  ]
+}

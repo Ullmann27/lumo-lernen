@@ -1,0 +1,18 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 22.298335400002543,
+  "display": 98,
+  "project": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/runtime",
+  "godot_arguments": [
+    "--resolution",
+    "640x640",
+    "--fixed-fps",
+    "24",
+    "--write-movie",
+    "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/facial-runtime.avi",
+    "--script",
+    "res://scripts/tests/lumo_facial_capture.gd"
+  ],
+  "timed_out": false,
+  "scope": "Local software renderer; not physical Android performance"
+}

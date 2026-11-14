@@ -1,0 +1,155 @@
+{
+  "status": "READ",
+  "scope": "Independent OCR; no gameplay or visibility PASS",
+  "source": "learning-move-1-0.png",
+  "source_sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+  "surface": [
+    1080,
+    2400
+  ],
+  "wanted": "einobjektzeigen",
+  "confidence_minimum": 15,
+  "timeout_seconds": 15,
+  "components": [
+    {
+      "index": 0,
+      "bounds": [
+        60,
+        1968,
+        512,
+        2116
+      ],
+      "image": "original-frame-ocr-gold-component-0.png",
+      "tsv": "original-frame-ocr-gold-component-0.tsv",
+      "psm": 6,
+      "scale": 1,
+      "output": "",
+      "matches": [
+        {
+          "text": "Ein Objekt zeigen",
+          "bounds": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "variant": "gold-component-0",
+          "confidence": 95.722694
+        }
+      ]
+    }
+  ],
+  "matches": [
+    {
+      "text": "Ein Objekt zeigen",
+      "bounds": [
+        104.0,
+        2029.0,
+        467.0,
+        2071.0
+      ],
+      "variant": "gold-component-0",
+      "confidence": 95.722694
+    }
+  ],
+  "observed_component_boxes": [
+    [
+      60,
+      1968,
+      512,
+      2116
+    ],
+    [
+      368,
+      852,
+      1080,
+      936
+    ],
+    [
+      196,
+      1336,
+      844,
+      1580
+    ],
+    [
+      452,
+      780,
+      1080,
+      860
+    ],
+    [
+      376,
+      708,
+      1080,
+      788
+    ],
+    [
+      360,
+      924,
+      1080,
+      1004
+    ],
+    [
+      24,
+      624,
+      364,
+      788
+    ],
+    [
+      0,
+      852,
+      240,
+      936
+    ],
+    [
+      0,
+      780,
+      256,
+      860
+    ],
+    [
+      0,
+      924,
+      224,
+      1004
+    ],
+    [
+      0,
+      1276,
+      140,
+      1360
+    ],
+    [
+      0,
+      1064,
+      140,
+      1148
+    ],
+    [
+      0,
+      992,
+      140,
+      1076
+    ],
+    [
+      0,
+      1704,
+      140,
+      1788
+    ],
+    [
+      0,
+      1776,
+      140,
+      1856
+    ],
+    [
+      0,
+      1632,
+      140,
+      1712
+    ]
+  ],
+  "matched": true,
+  "elapsed_seconds": 0.1791
+}

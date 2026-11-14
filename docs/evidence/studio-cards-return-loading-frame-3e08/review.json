@@ -1,0 +1,171 @@
+{
+  "schema": 1,
+  "frozen_at_utc": "2026-11-14T03:24:36.483801+00:00",
+  "status": "FROZEN_LOCAL_RED_GREEN_PASS_INDEPENDENTLY_REVIEWED",
+  "baseline_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "triggering_original": {
+    "qa": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+    "run": 43546627017,
+    "job": 132299721937,
+    "artifact": 14095356997,
+    "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "zip_sha256": "3f143f91cd5b642e34ae1c087b1918a75f2f8b713071c19197c894adab181dfb",
+    "result": "FAIL at first Cards returned-frame deadline; original remains failed"
+  },
+  "changes": [
+    "image_lines adds an empty-by-default keyword-only reject_captions tuple.",
+    "Exact actually observed normalized caption spans, existing word confidence floor and in-image bounds are checked after each existing variant, before positive early exit.",
+    "Original observed rows and a hash-bound negative sidecar are saved before RuntimeError rejects only the current frame.",
+    "Only capture_returned_flutter opts in for the existing exact loading caption. No separate preliminary negative-caption OCR search."
+  ],
+  "unchanged": [
+    "30-second deadline,12-observation maximum,2consecutive genuinely positive frames.",
+    "Original positive caption matching,bounds,pixel readiness,foreground/process checks before and after inspection.",
+    "Cards save/state/round/authority assertions and original APK identity/version/pin gates.",
+    "All existing image_lines callers without the opt-in; leave orientation preserved from86445.",
+    "No product/Dart/native/Kotlin/workflow/branch modification; no CI retrigger."
+  ],
+  "source_scope_comparison": "scope-comparison.json",
+  "tests": [
+    {
+      "name": "red-real-ocr",
+      "tests_run": 6,
+      "failures": 2,
+      "skips": 0,
+      "execution": {
+        "command": [
+          "python3",
+          "-B",
+          "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+          "-v"
+        ],
+        "cwd": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched",
+        "started_at": "2026-11-14T03:20:52.005908+00:00",
+        "elapsed_seconds": 11.56086726799549,
+        "returncode": 1,
+        "environment": {
+          "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+          "OMP_THREAD_LIMIT": "1",
+          "LUMO_LOADING_REPLAY_DIR": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay"
+        },
+        "helper_sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff"
+      },
+      "log_sha256": "0f28e0eda9eaf3be12e7f4dceba86090d16af4620e455da3bda06433c987cd9a"
+    },
+    {
+      "name": "green-real-ocr",
+      "tests_run": 6,
+      "failures": 0,
+      "skips": 0,
+      "execution": {
+        "command": [
+          "python3",
+          "-B",
+          "tools/android_qa/tests/replay_flutter_loading_frame_ocr.py",
+          "-v"
+        ],
+        "cwd": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched",
+        "started_at": "2026-11-14T03:21:37.123313+00:00",
+        "elapsed_seconds": 4.2971589360095095,
+        "returncode": 0,
+        "environment": {
+          "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+          "OMP_THREAD_LIMIT": "1",
+          "LUMO_LOADING_REPLAY_DIR": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay"
+        },
+        "helper_sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "surfaces_sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+      },
+      "log_sha256": "e9cd0d0d6974023a59f5bc2de9548d133c688b7a7332e08ea7796ac8a75b8149"
+    },
+    {
+      "name": "green-return-contracts",
+      "tests_run": 6,
+      "failures": 0,
+      "skips": 0,
+      "execution": {
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/android_qa/tests",
+          "-p",
+          "test_flutter_loading_frame_rejection.py",
+          "-v"
+        ],
+        "cwd": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched",
+        "started_at": "2026-11-14T03:21:41.420988+00:00",
+        "elapsed_seconds": 10.712392567991628,
+        "returncode": 0,
+        "environment": {
+          "TESSDATA_PREFIX": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata",
+          "OMP_THREAD_LIMIT": "1",
+          "LUMO_LOADING_REPLAY_DIR": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay"
+        },
+        "helper_sha256": "32b8de48487126a434cdb5611ab3f794a62e82616247f60360a10f19afa43861",
+        "surfaces_sha256": "1955f18342512f5fd79eb1d643653bea744179534dff88a25bd1eee764dd2c34"
+      },
+      "log_sha256": "12aee508ee59e136579d90c594bb49673a0e335228fb53d718732ef7c15096b8"
+    },
+    {
+      "name": "existing-return-contracts",
+      "tests_run": 6,
+      "failures": 0,
+      "skips": 0,
+      "execution": {
+        "command": [
+          "python3",
+          "-B",
+          "-m",
+          "unittest",
+          "discover",
+          "-s",
+          "tools/android_qa/tests",
+          "-p",
+          "test_studio_flutter_return.py",
+          "-v"
+        ],
+        "cwd": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/patched",
+        "started_at": "2026-11-14T03:22:30.686001+00:00",
+        "elapsed_seconds": 1.6183102170034545,
+        "returncode": 0,
+        "scope": "Six unchanged existing return/process/caption contracts on original318 PNG fixtures; no Android run"
+      },
+      "log_sha256": "dba0809139586d2a60d0d269982c953035835eedf21f24f6cc8273a70ec9af77"
+    }
+  ],
+  "first_loading_frame_actual_ocr_cost": [
+    {
+      "phase": "red-replay",
+      "actual_tesseract_calls": 22,
+      "actual_tesseract_seconds_sum": 5.5401139369787415,
+      "measurement_scope": "Local OCR subprocess durations only, not UI delay/FPS/device performance",
+      "raw": "red-replay/test_actual_loading_caption_rejects_after_first_pass/executed-ocr.json"
+    },
+    {
+      "phase": "green-replay",
+      "actual_tesseract_calls": 1,
+      "actual_tesseract_seconds_sum": 0.5429901099996641,
+      "measurement_scope": "Local OCR subprocess durations only, not UI delay/FPS/device performance",
+      "raw": "green-replay/test_actual_loading_caption_rejects_after_first_pass/executed-ocr.json"
+    }
+  ],
+  "known_limits": [
+    "Local actual OCR usesTesseract5.5.0 with hash-bound existingdeu/eng; CI5.3.4 must execute the explicit replay before a new Android claim.",
+    "Boundary/scheduler tests replay original images and their original OCR rows through controlled capture/clock adapters. They are not a new emulator run.",
+    "The negative exception cannot authorize acceptance. Persistently loading frames fail at the original bound.",
+    "The earlier exception image shows eventual pause but cannot measure when the first pause raster became available.",
+    "No physicalFold7/FPS/heat/lipsync or later-APK claim."
+  ],
+  "independent_review_pending": false,
+  "independent_review": {
+    "file": "independent-review.json",
+    "sha256": "a2649a70ced80299f8d9442bb668aa2e3e292f1b9081e0c9a1f3a2de5b468e5b",
+    "scope": "Read-only source and seven original fixture bytes verified; no additional tests by independent reviewer.",
+    "concrete_blockers": 0
+  }
+}

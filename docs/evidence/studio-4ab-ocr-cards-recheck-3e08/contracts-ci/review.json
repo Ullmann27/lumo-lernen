@@ -1,0 +1,82 @@
+{
+  "status": "CI_CONTRACT_JOB_SUCCESS_ANDROID_RESULTS_STILL_PENDING",
+  "reviewed_at": "2026-11-14T02:32:57.990067+00:00",
+  "qa_source": "3e08c7953b84aed6fff30e9e55665de75f79ec77",
+  "qa_tree": "0774003dfb399641044cf83b654335bd91ad4373",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run": 43546627017,
+  "run_attempt": 1,
+  "job": 132299378978,
+  "job_name": "Original Android captions and read-only Cards readiness contracts",
+  "started_at": "2026-11-14T02:29:57Z",
+  "completed_at": "2026-11-14T02:31:03Z",
+  "original_job_log": {
+    "bytes": 37386,
+    "sha256": "62a5544f526b2729c62fa7d98703a9971236992f5c2e99427a77c0c2144db361"
+  },
+  "artifact": 14093674287,
+  "artifact_bytes": 3121,
+  "artifact_sha256": "528eb10497b0d5b97cf99f34361db7073ecd42db69b341f00c40f32b64683658",
+  "archive_crc_and_member_bytes": "PASS; see artifact-byte-verification.json",
+  "tests": [
+    {
+      "original_log": "original-artifact/original-caption-replay.log",
+      "tests": 12,
+      "seconds_from_unittest": 19.292,
+      "status": "PASS",
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "original_log": "original-artifact/cards-layout-readiness.log",
+      "tests": 6,
+      "seconds_from_unittest": 1.281,
+      "status": "PASS",
+      "skipped": 0,
+      "failures": 0
+    },
+    {
+      "original_log": "original-artifact/source-binding-counterexamples.log",
+      "tests": 18,
+      "seconds_from_unittest": 0.926,
+      "status": "PASS",
+      "skipped": 0,
+      "failures": 0
+    }
+  ],
+  "tools": {
+    "tesseract": "5.3.4",
+    "languages": [
+      "deu",
+      "eng",
+      "osd"
+    ],
+    "Pillow": "12.3.0"
+  },
+  "warnings": [
+    {
+      "kind": "Node deprecation",
+      "code": "DEP0040",
+      "observed": "punycode during artifact upload"
+    },
+    {
+      "kind": "Node deprecation",
+      "code": "DEP0169",
+      "observed": "url.parse during artifact upload"
+    }
+  ],
+  "expected_negative_output": {
+    "synthetic_fail_json_objects": 3,
+    "reason": "Intentional rejection tests for failing tours, changed post-binding and stale reports; each corresponding unittest is OK"
+  },
+  "android_jobs_pending_at_this_observation": {
+    "35": 132299721965,
+    "37": 132299721937
+  },
+  "limits": [
+    "Contract CI only, not a completed live Android tour",
+    "Caption replays use historical exact 4ab images; Cards fixtures use synthetic transport and time",
+    "No fresh APK download, no product c081 proof, no Fold7 device/FPS claim"
+  ]
+}

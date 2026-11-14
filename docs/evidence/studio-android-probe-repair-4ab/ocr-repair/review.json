@@ -1,0 +1,235 @@
+{
+  "schema": 1,
+  "status": "LOCAL_OCR_REPAIR_VERIFIED_ANDROID_RECHECK_REQUIRED",
+  "frozen_source": {
+    "schema": 1,
+    "tested_apk_host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "tested_apk_native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "apk_bytes_unchanged": true,
+    "source_paths": [
+      {
+        "path": ".github/probes/creative_android_probe.py",
+        "bytes": 59073,
+        "sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c"
+      },
+      {
+        "path": "tools/android_qa/tests/test_native_caption_ocr.py",
+        "bytes": 8918,
+        "sha256": "d88710941a4d36918d25de72927ecf9e2f12652946322cc1e3663f54382e59ce"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-first.png",
+        "bytes": 557393,
+        "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api35-last.png",
+        "bytes": 556055,
+        "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-first.png",
+        "bytes": 555537,
+        "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843"
+      },
+      {
+        "path": "tools/android_qa/tests/fixtures/native_caption_ocr/learning-api37-last.png",
+        "bytes": 556003,
+        "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435"
+      }
+    ],
+    "active_checkout_reader_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+    "frozen_at_utc": "2026-11-14T01:36:37.428403+00:00"
+  },
+  "original_run_id": 43530667812,
+  "original_attempt": 1,
+  "original_jobs": {
+    "api35": 132269951320,
+    "api37": 132269951372
+  },
+  "original_artifacts": {
+    "35": {
+      "id": 14090824265,
+      "sha256": "a8ef0dbf1fa44ec6bde2fdd4107067a8b842f4dd17651808bffa65bd8aaa5b7e",
+      "bytes": 93626609
+    },
+    "37": {
+      "id": 14090694722,
+      "sha256": "b5b6e08f0cfb1776556b2ae9a7f533698ccff6f32204b91d352ee16f04443549",
+      "bytes": 96104456
+    }
+  },
+  "actual_fault": "Sichtbare exakte Goldschaltflächenbeschriftung wird vom bisherigen Vollbild-/Sparse-Text-Leser nicht erkannt; kein gesendeter Touch. API35 endet am Restbudget des achten OCR-Prozesses, API37 am äußeren120s-Limit. Cards blieb in beiden Originalen unerreicht.",
+  "minimal_change": "Erst nach erfolglosen unveränderten Ganzbildvarianten werden bis zu16 tatsächlich im gesamten Frame gefundene Goldfarbkomponenten geprüft. Die unveränderten RGB-Crops werden von Tesseract als Textblock (PSM6) gelesen. Wörter, Konfidenz, vollständige Crop-/Frame-Bounds und exakte Beschriftung kommen aus dessen TSV.",
+  "preserved": [
+    "20 bestehende Top-Level-Definitionen einschließlich native_tap/native_text AST-bytegleich",
+    "120s-Gesamtlimit",
+    "zwei stabile vollständige aktuelle Aufnahmen vor einer Eingabe",
+    "bestehende Wort-Konfidenzgrenze15 und interne Cropkantenprüfung",
+    "alte Ganzbild- und Kachel-Fallbacks",
+    "alle fachlichen Nachaktions-, Cards-, Pixel-, Layout-, Speicher- und Rückkehrprüfungen",
+    "unveränderte Original-APK- und Native-Bytes"
+  ],
+  "bounded_new_work": {
+    "maximum_observed_components": 16,
+    "maximum_component_scan_edge": 600,
+    "component_reader_total_seconds": 15,
+    "per_process_seconds_max": 10,
+    "clamped_to_original_remaining_deadline": true
+  },
+  "real_tests": [
+    {
+      "log": "logs/final-red-original-four.log",
+      "source": "exact4ab reader2b4da491",
+      "tests": 4,
+      "failures": 4,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 23.834,
+      "exit_code": 1
+    },
+    {
+      "log": "logs/final-green-caption-contracts.log",
+      "source_sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c",
+      "tests": 12,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 15.795,
+      "exit_code": 0
+    },
+    {
+      "log": "logs/existing-ocr-surface-contracts.log",
+      "modules": [
+        "test_native_ocr_tiles",
+        "test_native_surface_readiness",
+        "test_native_dim_caption"
+      ],
+      "tests": 34,
+      "failures": 0,
+      "errors": 0,
+      "skips": 0,
+      "elapsed_seconds": 5.906,
+      "exit_code": 0
+    }
+  ],
+  "actual_original_replays": [
+    {
+      "api": 35,
+      "frame": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 4.184681,
+      "source_sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "unchanged_source": true,
+      "matches": [
+        {
+          "text": "Ein Objekt zeigen",
+          "bounds": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "variant": "gold-component-0",
+          "confidence": 95.722694
+        }
+      ]
+    },
+    {
+      "api": 35,
+      "frame": 7,
+      "exit_code": 0,
+      "elapsed_seconds": 3.660164,
+      "source_sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+      "unchanged_source": true,
+      "matches": [
+        {
+          "text": "Ein Objekt zeigen",
+          "bounds": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "variant": "gold-component-0",
+          "confidence": 95.722694
+        }
+      ]
+    },
+    {
+      "api": 37,
+      "frame": 0,
+      "exit_code": 0,
+      "elapsed_seconds": 4.159034,
+      "source_sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "unchanged_source": true,
+      "matches": [
+        {
+          "text": "Ein Objekt zeigen",
+          "bounds": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "variant": "gold-component-0",
+          "confidence": 95.722694
+        }
+      ]
+    },
+    {
+      "api": 37,
+      "frame": 6,
+      "exit_code": 0,
+      "elapsed_seconds": 4.005449,
+      "source_sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "unchanged_source": true,
+      "matches": [
+        {
+          "text": "Ein Objekt zeigen",
+          "bounds": [
+            104.0,
+            2029.0,
+            467.0,
+            2071.0
+          ],
+          "variant": "gold-component-0",
+          "confidence": 95.722694
+        }
+      ]
+    }
+  ],
+  "ineffective_options_not_added": "Mit beiden tatsächlich vorhandenen Sprachmodellen wurden raw1x/contrast1x auf allen vier Originalen nochmals geprüft: acht OCR-Prozesse erfolgreich, achtmal kein exakter Beschriftungstreffer. Keine dieser wirkungslosen Varianten wurde ergänzt.",
+  "local_environment": {
+    "local_tesseract": "tesseract 5.5.0",
+    "ci_tesseract_package": "5.3.4-1build5",
+    "language_listing": "List of available languages in \"/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/\" (3):\ndeu\neng\nosd\n",
+    "models": [
+      {
+        "name": "deu.traineddata",
+        "path": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/deu.traineddata",
+        "bytes": 1525436,
+        "sha256": "19d219bbb6672c869d20a9636c6816a81eb9a71796cb93ebe0cb1530e2cdb22d"
+      },
+      {
+        "name": "eng.traineddata",
+        "path": "/workspace/scratch/e0abce7d2838/qa/host-a31c0070/tessdata/eng.traineddata",
+        "bytes": 4113088,
+        "sha256": "7d4322bd2a7749724879683fc3912cb542f19906c83bcc1a52132556427170b2"
+      }
+    ],
+    "prior_experiment_limit": "Earlier local runs without TESSDATA_PREFIX emitted missing-deu diagnostics and used available English. They remain saved but are not language-identical CI reproductions. All final red/green replays use this explicitly verified existing model directory."
+  },
+  "independent_read_only_review": {
+    "agent": "/root/character_animation",
+    "scope": "Tatsächlichen Diff, observed_matches, vier Replayresultate und zwölf Testdefinitionen gelesen; keine Testwiederholung oder persönliche Bildfreigabe behauptet.",
+    "finding": "Kein weiterer konkreter Blocker; Android-Gesamtabnahme bleibt offen."
+  },
+  "remaining_limits": [
+    "Lokaler Tesseract5.5.0 gegenüber CI-Paket5.3.4-1build5; echter neuer GitHub-/Androidlauf erforderlich.",
+    "Frühe lokale Experimente hatten fehlendes deutsches Systemmodell; diese sind nicht die finalen Rot-/Grünbelege. Final wurden vorhandene deu/eng-Dateien explizit verwendet und gehasht.",
+    "Offline-Replay führt keine Android-Touches aus und beweist weder Objektbewegung noch Cards-/Rückkehrerfolg.",
+    "Abgeleitete Crop-PNGs sind ausschließlich OCR-Eingaben, keine neuen Rendererbilder."
+  ],
+  "product_or_ci_mutations": []
+}

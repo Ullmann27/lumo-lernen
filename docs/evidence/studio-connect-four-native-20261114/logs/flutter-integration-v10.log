@@ -1,0 +1,47 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart
+00:00 +0: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Two stable child IDs have distinct durable rounds, even with the same presentation
+00:00 +1: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Class/name changes do not change stable ID save keys
+00:00 +2: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Completed round reopens without a second reward; repeated result is idempotent
+00:00 +3: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Process interruption after wallet commit before round ACK retries the same result ID
+00:00 +4: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Failed move save never installs a visible piece or advances its turn
+00:00 +5: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Profile switch during a held bot write cannot replace either child round
+00:00 +6: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Profile switch during reward allows no stale round ACK or foreign ownership
+00:00 +7: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Native bot uses unchanged leicht policy and legal replay
+00:00 +8: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Native bot uses unchanged mittel policy and legal replay
+00:00 +9: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Native bot uses unchanged schlau policy and legal replay
+00:00 +10: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Corrupt, post-win and foreign-owner saves fail without modifying bytes
+00:00 +11: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Existing unrelated preferences remain byte-identical
+00:00 +12: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: AppState rejects foreign result ID, stale lease and changed reward amounts
+00:00 +13: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Actual session drop is durable before ACK; duplicate sequence cannot add a piece
+00:00 +14: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Pause, stale heartbeat and explicit resume preserve bot/round history
+00:00 +15: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Render stall with fresh lifecycle keeps authoritative session live
+00:00 +16: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Pause epoch while no render poll requires explicit resume
+00:00 +17: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Foreign token, round, revision, opcode, column cannot change existing board
+00:00 +18: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Save failure gives negative result, no ACK, and explicit retry is safe
+00:00 +19: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Accepted drop invalidated by Activity pause releases slot for Resume
+00:00 +20: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Old profile lease closes transport before processing pending human/bot input
+00:00 +21: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_session_test.dart: Exit stores same round; reopen has new session token and explicit active lease
+00:00 +22: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +23: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +24: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +25: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +26: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:00 +27: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +28: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +29: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +30: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +31: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +32: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +33: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +34: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +35: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +36: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +37: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:01 +38: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_native_route_test.dart: Actual Android Flutter route opens independent C4, returns paused and reopens exact round
+00:02 +39: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps
+00:02 +40: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: tapping the board selects its column and locks repeated taps
+00:02 +41: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_fold_controls_test.dart: Fold outer-screen at 320dp: all seven real 48dp column buttons remain reachable
+00:03 +42: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: double taps are locked and paused bot never advances
+00:03 +43: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: local two-player win rewards once and replay preserves wallet
+00:03 +44: /workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/test/games/connect_four_interaction_test.dart: restart mid-fall invalidates old animation and bot callbacks
+00:04 +45: All tests passed!

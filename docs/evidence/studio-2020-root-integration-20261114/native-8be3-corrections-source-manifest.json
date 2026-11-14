@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "baseline_native": "8be3a95d5d948d457c4c39bc6694138d60b70027",
+  "baseline_tree": "9edd7afed143c83fec5d2dc89949ca9325e042ce",
+  "scope": "Four exact source corrections from the actual failed combined CI plus one explanatory document; no production default or asset change",
+  "input_manifests": [
+    {
+      "path": "qa/studio-2020-facial-import-8be3/canonical-source-upload-manifest.json",
+      "sha256": "5f667434e06f028e2b961d6d04baacbad15ab8d56b6bdb440db84a0e16db6f06"
+    },
+    {
+      "path": "qa/attention-landing-8be3-contract-fix-20261114/source-upload-manifest.json",
+      "sha256": "21f006e3cca6bdf72439f862f52bbd45e906c898fe8c458fdbb5990a9f1e5d7d"
+    },
+    {
+      "path": "qa/studio-2020-facial-movie-8be3/source-upload-manifest.json",
+      "sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2"
+    }
+  ],
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-import-8be3/canonical/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "target": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb.import",
+      "bytes": 1341,
+      "sha256": "ea8637187b5af2f1315958c27117d05d594873c61727f6bdf0e2d910581dfb5a",
+      "git_blob_sha": "0fc3016ba886172aaf2575db2984e81b5567455c",
+      "mode": "100644",
+      "baseline_blob": "3b65ce3c2d8e63efe4c2251261b047be37e383a0",
+      "baseline_sha256": "fb3244345f930d628253b8f687646566273c8adb77aa276b46815e5861304b15"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/patched/scripts/tests/lumo_attention_landing_regression.gd",
+      "target": "scripts/tests/lumo_attention_landing_regression.gd",
+      "bytes": 9389,
+      "sha256": "84789b1e8d4404a637481b5df0f099a7fa4d7fe437dc4a48b35c1c1735a81e53",
+      "git_blob_sha": "38c094550554cc806ec65a9d6b32bd8c78fdd561",
+      "mode": "100644",
+      "baseline_blob": "dce46931a81eef51cc2251d4de29d87c493b567b",
+      "baseline_sha256": "7c56887fd79b6f18514922104ce97f5239f10f6d5208c73fed99d337839f50ea"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/scripts/tests/lumo_facial_capture.gd",
+      "target": "scripts/tests/lumo_facial_capture.gd",
+      "mode": "100644",
+      "bytes": 9009,
+      "sha256": "d5c519844281ec83d2965e2cfdf4b0157f8304fb1e9f093d705356315ee924a5",
+      "git_blob_sha": "55304d9eb68ecc2f335bb66288446945c84d27cd",
+      "baseline_blob": "e272be6f0aed98fdc5b5a1bfca58bb7f0d0edba9",
+      "baseline_sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-facial-movie-8be3/patched/native/tools/tests/test_nextgen_runner.py",
+      "target": "tools/tests/test_nextgen_runner.py",
+      "mode": "100644",
+      "bytes": 40545,
+      "sha256": "9e0252a70d1b9d961696eef1bd90499a2f111c63df51515cf815e46aa21778ca",
+      "git_blob_sha": "603c13b63d6ba64bbcef036f1505c370ec9a8963",
+      "baseline_blob": "7b7b9049889848354abc64d0e4028bcb943c2811",
+      "baseline_sha256": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/native-corrections/docs/studio-2020-ci-corrections.md",
+      "target": "docs/studio-2020-ci-corrections.md",
+      "mode": "100644",
+      "bytes": 4411,
+      "sha256": "06c6140237d24e7f66f31a5c1052242acb2999588046421a523e07a3ecfaca81",
+      "git_blob_sha": "91ba01e6673677b2006f5afb6e52b5cc90b96736",
+      "baseline_blob": null
+    }
+  ],
+  "total_bytes": 64695,
+  "new_full_ci_claimed": false
+}

@@ -1,0 +1,89 @@
+{
+  "total_count": 1,
+  "jobs": [
+    {
+      "id": 132292477601,
+      "run_id": 43544492259,
+      "workflow_name": "Archive original failed Studio Creative evidence",
+      "head_branch": "chatgpt/lumo-studio-evidence-archive-20261114",
+      "run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/runs/43544492259",
+      "run_attempt": 1,
+      "node_id": "CR_kwDOSNzcp88AAAAezT8CoQ",
+      "head_sha": "995e5eebf789f667920a5027919db27ea1d2dcfc",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/jobs/132292477601",
+      "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43544492259/job/132292477601",
+      "status": "completed",
+      "conclusion": "success",
+      "created_at": "2026-11-14T02:07:13Z",
+      "started_at": "2026-11-14T02:07:15Z",
+      "completed_at": "2026-11-14T02:08:20Z",
+      "name": "archive-failed-evidence",
+      "steps": [
+        {
+          "name": "Set up job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 1,
+          "started_at": "2026-11-14T02:07:15Z",
+          "completed_at": "2026-11-14T02:07:16Z"
+        },
+        {
+          "name": "Bind the exact failed attempt and original artifact",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 2,
+          "started_at": "2026-11-14T02:07:16Z",
+          "completed_at": "2026-11-14T02:07:18Z"
+        },
+        {
+          "name": "Download and validate original ZIP without repacking",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 3,
+          "started_at": "2026-11-14T02:07:18Z",
+          "completed_at": "2026-11-14T02:07:42Z"
+        },
+        {
+          "name": "Preserve any existing archive and create at most one separate prerelease",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 4,
+          "started_at": "2026-11-14T02:07:42Z",
+          "completed_at": "2026-11-14T02:08:01Z"
+        },
+        {
+          "name": "Verify the public original bytes without a download token",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 5,
+          "started_at": "2026-11-14T02:08:01Z",
+          "completed_at": "2026-11-14T02:08:18Z"
+        },
+        {
+          "name": "Preserve the small archival verification reports",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 6,
+          "started_at": "2026-11-14T02:08:18Z",
+          "completed_at": "2026-11-14T02:08:19Z"
+        },
+        {
+          "name": "Complete job",
+          "status": "completed",
+          "conclusion": "success",
+          "number": 7,
+          "started_at": "2026-11-14T02:08:19Z",
+          "completed_at": "2026-11-14T02:08:19Z"
+        }
+      ],
+      "check_run_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/check-runs/132292477601",
+      "labels": [
+        "ubuntu-24.04"
+      ],
+      "runner_id": 1000017072,
+      "runner_name": "GitHub Actions 1000017072",
+      "runner_group_id": 0,
+      "runner_group_name": "GitHub Actions"
+    }
+  ]
+}

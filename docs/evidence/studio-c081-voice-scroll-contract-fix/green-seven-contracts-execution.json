@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-p",
+    "test_android_voice_scroll.py",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/5987865ae883/qa/studio-c081-voice-scroll-contract-fix/patched",
+  "exit_code": 0,
+  "elapsed_seconds": 0.183888122002827,
+  "scope": "All seven tests in the narrow existing file; real helpers parsed unchanged, input/transport mocked. No emulator or application execution."
+}

@@ -1,0 +1,112 @@
+{
+  "status": "READ_ONLY_COMPLETE",
+  "source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "tree": "f3ffc295cec299bdc6126fcddffbc130c6629e54",
+  "source_files": 20,
+  "source_changes": false,
+  "tests_run": false,
+  "new_implementation": false,
+  "hashes": [
+    {
+      "path": "lib/app/app_state.dart",
+      "before": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f",
+      "after": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f"
+    },
+    {
+      "path": "lib/domain/games/memory_board.dart",
+      "before": "d4780c694fec21967a1da0e4b6efacd4f2cd87f97be6fd65ee2d85e47b27d948",
+      "after": "d4780c694fec21967a1da0e4b6efacd4f2cd87f97be6fd65ee2d85e47b27d948"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_question_bank.dart",
+      "before": "645a1c4f7984d6e7048d8c788076d8a6026a1f94684c9189aae4c9a5e9620a6d",
+      "after": "645a1c4f7984d6e7048d8c788076d8a6026a1f94684c9189aae4c9a5e9620a6d"
+    },
+    {
+      "path": "lib/domain/quiz/quiz_show.dart",
+      "before": "e950665c9386204c1f6f4bb9e4b7a9ac9f239304d9b42c3fea8d06d842ea8c4b",
+      "after": "e950665c9386204c1f6f4bb9e4b7a9ac9f239304d9b42c3fea8d06d842ea8c4b"
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "before": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334",
+      "after": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334"
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "before": "1d213441a1f9cf597ae4f4c2d645068f4094409e836aef7b3e1733770577d3c4",
+      "after": "1d213441a1f9cf597ae4f4c2d645068f4094409e836aef7b3e1733770577d3c4"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_screen.dart",
+      "before": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945",
+      "after": "a4eea82732cf5f09dd87d19302edc9a4f1e703e88d18809c6410fa2d53423945"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_session.dart",
+      "before": "cd19945680da64379a571f32218684079427de884f926ef1580f88f02d241daa",
+      "after": "cd19945680da64379a571f32218684079427de884f926ef1580f88f02d241daa"
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_table_session.dart",
+      "before": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee",
+      "after": "feff3a6895eca621696dffbd6ad69694dcafb26a6b4704cdec10eaaededfd8ee"
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "before": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+      "after": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4"
+    },
+    {
+      "path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+      "before": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+      "after": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6"
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "before": "8f99b8b313e1bb30d8caaf9ecba63b0c2587aa19f773cdcc16b9f3f3fc2f8587",
+      "after": "8f99b8b313e1bb30d8caaf9ecba63b0c2587aa19f773cdcc16b9f3f3fc2f8587"
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "before": "1c95ed40a9bd31ced69f40e298c7b771d183d9a37519bfbce2f397872871d393",
+      "after": "1c95ed40a9bd31ced69f40e298c7b771d183d9a37519bfbce2f397872871d393"
+    },
+    {
+      "path": "tools/auto_install/CardsAuthorityRegistry.java",
+      "before": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a",
+      "after": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a"
+    },
+    {
+      "path": "tools/auto_install/CardsAuthorityService.kt",
+      "before": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "after": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc"
+    },
+    {
+      "path": "tools/auto_install/CardsTableBridge.kt",
+      "before": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "after": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572"
+    },
+    {
+      "path": "tools/auto_install/LumoGameActivity.kt",
+      "before": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "after": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674"
+    },
+    {
+      "path": "tools/auto_install/MainActivity.kt",
+      "before": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953",
+      "after": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953"
+    },
+    {
+      "path": "lib/core/reward_wallet_repository.dart",
+      "before": "b9a89763484ef701cb68b8b306cc946a82e412bc6f588a8bd1c97c87b370f01f",
+      "after": "b9a89763484ef701cb68b8b306cc946a82e412bc6f588a8bd1c97c87b370f01f"
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "before": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c",
+      "after": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c"
+    }
+  ],
+  "primary_task": "Actual API35 run43530667812 remains pending and takes priority when its job exists"
+}

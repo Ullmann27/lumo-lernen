@@ -1,0 +1,9 @@
+# Host078: ffmpeg vor dem tatsächlichen Native-Gate — v1
+
+Diese isolierte Fassung ist ausschließlich gegen Host `078774ddaf64808addaa4c6406f6a3c85b1f239a` gebunden. Der fehlgeschlagene Run43580228966 meldete im Builder den fehlenden externen ffmpeg-Aufruf nach der tatsächlichen Facial-AVI-Aufnahme.
+
+Der Diff ergänzt ffmpeg in der vorhandenen apt-Installation des Jobs `verify-and-build`. Nach dem bereits vorhandenen Logverzeichnis werden ffmpeg und ffprobe über `command -v` geprüft und beide tatsächlich mit `-version` aufgerufen. Ihre kompletten Ausgaben gehen über tee nach `acceptance-native/ffmpeg-version.txt` und `ffprobe-version.txt`. Die vorhandene Kombination `set -euo pipefail` lässt Fehler in Programmstart, Versionkommando oder tee weiterhin scheitern. Alle Aufrufe liegen vor Checkout und sämtlichen nativen Prüfern. Der separate Creativejob bleibt unverändert.
+
+Die gesamte Originaldatei wird durch die inverse Entfernung genau dieser Ergänzungen bytegleich wiederhergestellt. PyYAML6.0.3/BaseLoader hat die vollständigen YAML-Strukturen gelesen; nach Rückersatz des einen run-Werts sind alle anderen Knoten identisch. BaseLoader liest Skalare als Strings und simuliert keine GitHub-Ausführung. Actionlint1.7.12 wurde einmal auf genau diese Datei ausgeführt: Exit0, leere stdout/stderr. Dies ist ausschließlich statische Prüfung, keine Installation oder tatsächliche ffmpeg-/ffprobe-Ausführung. Das muss der nächste reale CI-Lauf belegen.
+
+Die Datei wurde als unveränderlicher GitHub-Blob `bc1d497ab87a5211c13b0cafeb2a6e5493fe04d4` hochgeladen und vollständig bytegleich zurückgelesen. Keine Quelle außerhalb des isolierten Workflows, keine Pins, Tests, Git-Refs oder CI-Runs wurden geändert. v1 bleibt als eigener Freeze erhalten; der danach beauftragte optionale Kart-Preview-Aufruf erhält einen getrennten v2-Freeze.

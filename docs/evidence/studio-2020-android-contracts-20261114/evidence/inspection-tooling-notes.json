@@ -1,0 +1,5 @@
+{
+  "scope": "Metadata inspection only; no test or product failure",
+  "first_inspection": "An overbroad no-removed-definition assertion also matched the intentionally renamed historical test method. Production definitions were not removed. The comparison now records that exact test-method rename.",
+  "second_inspection": "The metadata writer initially addressed the package evidence folder while the first test runner had written logs inside patched/evidence. Logs were copied byte-for-byte to the package evidence folder; tests were not rerun."
+}

@@ -1,0 +1,15 @@
+{
+  "status": "PUBLISHED_DEVELOPMENT_SOURCE",
+  "repository": "Ullmann27/lumo-lernen",
+  "branch": "chatgpt/lumo-studio-20261113",
+  "pr": 466,
+  "commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "parent": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "tree": "2389b97232041bb77307e47ecc0e550772339a4e",
+  "one_changed_file": "scripts/tests/test_android_voice_scroll.py",
+  "git_blob": "71287cd09024988f7d3cf212c2ed6d79b7bacc15",
+  "unchanged_other_blobs": 4144,
+  "main_modified": false,
+  "native_pin": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "acceptance": "NEW_FULL_CI_REQUIRED"
+}

@@ -1,0 +1,239 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_utc": "2026-11-14T08:31:38.752117+00:00",
+  "status": "READ_ONLY_REVIEW_NO_CONCRETE_BLOCKER",
+  "scope": "Vier freigegebene Quell-/Konfigurationsdateien gegen gebundene Host86445-Basis und aktueller 49-Bilder-Receipt; keine Testausführung oder Quelländerung durch den Reviewer.",
+  "baseline_host_revision": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "candidate_version": "0.13.8+2020",
+  "candidate_native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "files": [
+    {
+      "relative_path": "pubspec.yaml",
+      "baseline_86445": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/baseline/host/pubspec.yaml",
+        "bytes": 2675,
+        "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+        "git_blob_sha": "40a3226d7b575cc414abc1494dfff5924a5de775"
+      },
+      "current_root": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/pubspec.yaml",
+        "bytes": 2675,
+        "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+        "git_blob_sha": "7f504396071cf3af57164187a29ea74b74c62413"
+      },
+      "identical_copies": {
+        "assembled/host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/pubspec.yaml",
+          "bytes": 2675,
+          "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+          "git_blob_sha": "7f504396071cf3af57164187a29ea74b74c62413"
+        },
+        "test-host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host/pubspec.yaml",
+          "bytes": 2675,
+          "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+          "git_blob_sha": "7f504396071cf3af57164187a29ea74b74c62413"
+        }
+      }
+    },
+    {
+      "relative_path": "config/godot-source.json",
+      "baseline_86445": {
+        "path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/config/godot-source.json",
+        "bytes": 145,
+        "sha256": "e8d96e2bf2020df2510fad816e77e6e945419955fc31ad2e8cd76b83a3086417",
+        "git_blob_sha": "b98e91c96a678eeed1fb6929bd8079cd0cdb156d"
+      },
+      "current_root": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/config/godot-source.json",
+        "bytes": 145,
+        "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+        "git_blob_sha": "fa2d703726599e61feadd58cebef0514fd4d049e"
+      },
+      "identical_copies": {
+        "assembled/host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/config/godot-source.json",
+          "bytes": 145,
+          "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+          "git_blob_sha": "fa2d703726599e61feadd58cebef0514fd4d049e"
+        },
+        "test-host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host/config/godot-source.json",
+          "bytes": 145,
+          "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+          "git_blob_sha": "fa2d703726599e61feadd58cebef0514fd4d049e"
+        }
+      }
+    },
+    {
+      "relative_path": "scripts/verify_legacy_release_pin.py",
+      "baseline_86445": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/baseline/host/scripts/verify_legacy_release_pin.py",
+        "bytes": 10421,
+        "sha256": "30413b1418821e0f3177005c8a1eb93028deca9a3887bcf533b5d859e2098f0d",
+        "git_blob_sha": "5a3d71e7b8e382d46b9536734fd71dc81e88631a"
+      },
+      "current_root": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/scripts/verify_legacy_release_pin.py",
+        "bytes": 10697,
+        "sha256": "b92ac1213095251f87dcb86b6b8bbedf4b4ac7a115fe3225ade7656ea4c15818",
+        "git_blob_sha": "9650925af529def1b6ab2f2591d1eacac3db4653"
+      },
+      "identical_copies": {
+        "assembled/host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/verify_legacy_release_pin.py",
+          "bytes": 10697,
+          "sha256": "b92ac1213095251f87dcb86b6b8bbedf4b4ac7a115fe3225ade7656ea4c15818",
+          "git_blob_sha": "9650925af529def1b6ab2f2591d1eacac3db4653"
+        },
+        "test-host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host/scripts/verify_legacy_release_pin.py",
+          "bytes": 10697,
+          "sha256": "b92ac1213095251f87dcb86b6b8bbedf4b4ac7a115fe3225ade7656ea4c15818",
+          "git_blob_sha": "9650925af529def1b6ab2f2591d1eacac3db4653"
+        }
+      }
+    },
+    {
+      "relative_path": "scripts/tests/test_candidate_2011_pin.py",
+      "baseline_86445": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/baseline/host/scripts/tests/test_candidate_2011_pin.py",
+        "bytes": 17192,
+        "sha256": "66fa4655dc43a732a367a3605fe7fff4c34a4a60ed44ba224ec0f68f57b68a7e",
+        "git_blob_sha": "9cddd063bfa3f6fc6459d7fd8a35d551a5a71d37"
+      },
+      "current_root": {
+        "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/scripts/tests/test_candidate_2011_pin.py",
+        "bytes": 19946,
+        "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+        "git_blob_sha": "b0fb033aa2b371ff2f64acd5183a52fadace2982"
+      },
+      "identical_copies": {
+        "assembled/host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/tests/test_candidate_2011_pin.py",
+          "bytes": 19946,
+          "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+          "git_blob_sha": "b0fb033aa2b371ff2f64acd5183a52fadace2982"
+        },
+        "test-host": {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/test-host/scripts/tests/test_candidate_2011_pin.py",
+          "bytes": 19946,
+          "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+          "git_blob_sha": "b0fb033aa2b371ff2f64acd5183a52fadace2982"
+        }
+      }
+    }
+  ],
+  "source_manifest": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-source-manifest.json",
+    "bytes": 2125,
+    "sha256": "4e38b9b227cecfba954f25a2da351cf9c0949c52ada74d0c9db1279bff86e749",
+    "git_blob_sha": "05be0b3d103186d88a8e468edb729c438059588c"
+  },
+  "findings": [
+    {
+      "id": "minimal_version_and_pin",
+      "finding": "pubspec.yaml ändert ausschließlich 0.13.7+2019 auf 0.13.8+2020. config/godot-source.json ändert ausschließlich die Revision 803e7a… auf 785413…; Origin und Godot4.6.3 bleiben gleich."
+    },
+    {
+      "id": "historical_identity_preservation",
+      "finding": "Alle 50 APPROVED-Einträge der 86445-Basis sind in Schlüssel und vollständigem SHA identisch erhalten. Die einzige neue Bindung ist 2020→785413d395292a243eaa0a0748671eb15d3f80ff. Die Verifierfunktionen selbst sind AST-identisch zur Basis.",
+      "baseline_count": 50,
+      "current_count": 51,
+      "historical_mapping_sha256": "8e30ba078ed723765449a46f8b6bbd5cb786c2bb641dfa9395e5fb19f309ae00"
+    },
+    {
+      "id": "strict_rejection_preserved",
+      "finding": "Unbekannte Buildnummern finden weiterhin keinen APPROVED-Eintrag und werden abgewiesen. Origin, exakte drei Konfigurationsschlüssel, Godot-Version und vollständige SHA-Gleichheit bleiben im unveränderten Verifier zwingend. Die neuen 2020-Fälle prüfen darüber hinaus fremde Origin, andere Engine, Zusatzschlüssel, ältere Pins, leere/verkürzte/erfundene SHA sowie die konkret verworfenen 8be3- und acf51-Stände.",
+      "explicit_rejected_2020_revisions": [
+        "8be3a95d5d948d457c4c39bc6694138d60b70027",
+        "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+      ],
+      "unknown_build_cases": [
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2021,
+        9999
+      ]
+    },
+    {
+      "id": "test_delta",
+      "finding": "Keiner der 24 bisherigen Testmethodennamen wurde entfernt; zwei 2020-Verträge kommen hinzu. Änderungen an drei vorhandenen Methoden aktualisieren nur den aktuellen Kandidaten, schließen 2020 aus dem historischen Teilmengenhash aus und ersetzen den jetzt ausdrücklich vergebenen unbekannten Build2020 durch2021. Der eigene 2019-Gegenfall für796b bleibt vorhanden.",
+      "before_methods": 24,
+      "after_methods": 26,
+      "added_methods": [
+        "test_2020_accepts_its_exact_source_and_preserves_all_historical_pins",
+        "test_2020_update_wrapper_requires_the_current_exact_source"
+      ],
+      "changed_existing_methods": [
+        "test_current_candidate_identity_exceeds_existing_2008_and_reserved_2010",
+        "test_all_existing_native_identities_are_unchanged",
+        "test_unreserved_and_private_checkpoint_versions_stay_closed"
+      ]
+    },
+    {
+      "id": "stage_consistency",
+      "finding": "Alle vier Dateien sowie der Receipt sind zwischen root/host, assembled/host und test-host bytegleich. Damit bezieht sich der gelesene Root-Testlauf auf dieselben hier geprüften Bytes."
+    },
+    {
+      "id": "receipt_source_binding",
+      "finding": "Alle49 Receiptzeilen haben eindeutige Pfade/Archiveinträge und stimmen in Modul, SHA256 und Abmessungen mit dem aktuellen785413-Originalextraktionsindex überein. Version2020, Quelle, Run43570887024, Artefakt14105224381 und ZIP-SHA31c926ae… sind konsistent. Der Reviewer hat in dieser Aufgabe keine49Bilder neu angesehen; seine separate persönliche12er-Sichtprüfung und die übrigen ownergebundenen Sichtprüfungen bleiben eigenständige Evidenz."
+    },
+    {
+      "id": "identity_is_not_release_approval",
+      "finding": "Policykommentar und Testmoduldokumentation begrenzen die Bindung ausdrücklich auf Sourceidentität. Der Receipt bezeichnet nur die Native-Renderersichtung als angenommen und lässt genaueAPK-/Android35/37-/Creative-/C4-/Update- sowie physische Fold7-Abnahmen getrennt offen. Der Verifier bestätigt die Buildnummer/Quelle; die aktuelle Marketingversion0.13.8+2020 wird im realen pubspec-Test zusätzlich exakt geprüft."
+    }
+  ],
+  "receipt": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/root/host/config/studio-2020-visual-review.json",
+    "bytes": 43034,
+    "sha256": "12ffaba3dac821f480aaeb3a9392f2f6fbfdf669535d6b6351026ec22fef70b7",
+    "git_blob_sha": "c48adf68a2a28570a1156be13824c5772d74a51c",
+    "images": 49,
+    "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "run_id": 43570887024,
+    "artifact_id": 14105224381,
+    "archive_sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+    "all49_metadata_rows_equal_current_original_index": true,
+    "original_index": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/verified-original-extraction.json",
+      "bytes": 28849,
+      "sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef",
+      "git_blob_sha": "ac9fafebcd9cea65f152349c08b16fbf48223601"
+    },
+    "approved_scope": "Native renderer review only; no APK/Android publication approval"
+  },
+  "existing_test_execution_read_only": {
+    "execution": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-contracts-execution.json",
+      "bytes": 650,
+      "sha256": "2c654c8b812ac75bc00271d3f016f2b8883a3de1467dc51292668f6a96ae018f",
+      "git_blob_sha": "2faad8477f770133459a394edae0f7bba25b7e32"
+    },
+    "log": {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/candidate2020-pin-contracts.log",
+      "bytes": 4393,
+      "sha256": "729c523e5c53680c83bd1d486d4221a456f4e876573e1ed15d666ed72e0e5034",
+      "git_blob_sha": "005ab9738a8346458fd3c640b456a9719ec4338b"
+    },
+    "performed_by": "root",
+    "tests": 26,
+    "exit_code": 0,
+    "skip_reported": false,
+    "unittest_reported_seconds": 0.015,
+    "process_seconds": 0.22736231499584392,
+    "rerun_by_reviewer": false
+  },
+  "blocking_issues": [],
+  "product_files_changed": [],
+  "tests_executed_by_reviewer": 0,
+  "git_mutations": 0,
+  "limitations": [
+    "Dies ist ein enger Quellen-/Identitätsreview, kein neuer Compiler-, Android-, Update- oder Publikationslauf.",
+    "Die aktuelle CI- und Bildfreigabe wird anhand des bereits gebundenen Receipts und Originalindex zugeordnet; keine fremden Sichtprüfungen als persönliche Bildprüfung ausgegeben."
+  ]
+}

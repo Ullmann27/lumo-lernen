@@ -1,0 +1,139 @@
+{
+  "platform": {
+    "path": "/usr/local/lib/android/sdk/platforms/android-37.0",
+    "properties": {
+      "Pkg.Desc": "Android SDK Platform 17",
+      "Pkg.UserSrc": "false",
+      "Platform.Version": "17",
+      "Platform.CodeName": "",
+      "Pkg.Revision": "2",
+      "AndroidVersion.ApiLevel": "37.0",
+      "AndroidVersion.CodeName": "",
+      "AndroidVersion.ExtensionLevel": "22",
+      "AndroidVersion.IsBaseSdk": "true",
+      "AndroidVersion.PreviewSdkInt": "0",
+      "AndroidVersion.BetaVersion": "",
+      "Layoutlib.Api": "15",
+      "Layoutlib.Revision": "1",
+      "Platform.MinToolsRev": "22"
+    },
+    "files": {
+      "source.properties": {
+        "path": "/usr/local/lib/android/sdk/platforms/android-37.0/source.properties",
+        "bytes": 343,
+        "sha256": "fa89029fc0cee414cb5e44a37cd3033771217eeecb5086577bb6d9b1b03b5b5f"
+      },
+      "package.xml": {
+        "path": "/usr/local/lib/android/sdk/platforms/android-37.0/package.xml",
+        "bytes": 18468,
+        "sha256": "5c3863d674d541fdaefcfa9e48f5257543662d6aca5eacf97440da44f7f06609"
+      }
+    },
+    "installed_package": {
+      "path": "platforms;android-37.0",
+      "revision": {
+        "major": 2,
+        "minor": 0,
+        "micro": 0,
+        "preview": 0
+      }
+    }
+  },
+  "image": {
+    "path": "/usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64",
+    "properties": {
+      "Pkg.Desc": "System Image x86_64 with Google APIs.",
+      "Pkg.Revision": "7",
+      "Pkg.Dependencies": "emulator#37.2.11",
+      "AndroidVersion.ApiLevel": "37.0",
+      "AndroidVersion.ExtensionLevel": "22",
+      "AndroidVersion.IsBaseSdk": "true",
+      "SystemImage.Abi": "x86_64",
+      "SystemImage.TagId": "google_apis",
+      "SystemImage.TagDisplay": "Google APIs",
+      "SystemImage.GpuSupport": "true",
+      "Addon.VendorId": "google",
+      "Addon.VendorDisplay": "Google Inc."
+    },
+    "files": {
+      "source.properties": {
+        "path": "/usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/source.properties",
+        "bytes": 359,
+        "sha256": "1f50787fdc2c40508ba14e4bfb1e402c8a71bf435a59f9301e0f841807a07f8e"
+      },
+      "package.xml": {
+        "path": "/usr/local/lib/android/sdk/system-images/android-37.0/google_apis/x86_64/package.xml",
+        "bytes": 18753,
+        "sha256": "fab86f3ea14657cb035acaaa1da9c41be83cc89095dd7ef5aef68c3be40ad062"
+      }
+    },
+    "installed_package": {
+      "path": "system-images;android-37.0;google_apis;x86_64",
+      "revision": {
+        "major": 8,
+        "minor": 0,
+        "micro": 0,
+        "preview": 0
+      }
+    }
+  },
+  "emulator": {
+    "path": "/usr/local/lib/android/sdk/emulator",
+    "properties": {
+      "Pkg.UserSrc": "false",
+      "Pkg.Revision": "37.2.13",
+      "Pkg.Path": "emulator",
+      "Pkg.Desc": "Android Emulator",
+      "Pkg.BuildId": "16740729"
+    },
+    "files": {
+      "source.properties": {
+        "path": "/usr/local/lib/android/sdk/emulator/source.properties",
+        "bytes": 103,
+        "sha256": "f7562ee75ef359fc20b64727a0977c6306c6bac2dab60c8d7ced7c9e372a7cc7"
+      },
+      "package.xml": {
+        "path": "/usr/local/lib/android/sdk/emulator/package.xml",
+        "bytes": 18320,
+        "sha256": "d36a40443227111339b39ac38d698e987034b4485a1a9c0f9e6ba4114f74268a"
+      }
+    },
+    "installed_package": {
+      "path": "emulator",
+      "revision": {
+        "major": 37,
+        "minor": 2,
+        "micro": 13,
+        "preview": 0
+      }
+    }
+  },
+  "platform-tools": {
+    "path": "/usr/local/lib/android/sdk/platform-tools",
+    "properties": {
+      "Pkg.UserSrc": "false",
+      "Pkg.Revision": "37.0.1"
+    },
+    "files": {
+      "source.properties": {
+        "path": "/usr/local/lib/android/sdk/platform-tools/source.properties",
+        "bytes": 38,
+        "sha256": "2dccd788c0234d8cf7f7457377e57f57527a86a629c6ed54feb8af0f549dac38"
+      },
+      "package.xml": {
+        "path": "/usr/local/lib/android/sdk/platform-tools/package.xml",
+        "bytes": 18335,
+        "sha256": "26465ee68290f3af08a0fa759d5711573b8787c5ed2a0cd5ecb727ba65a91bb3"
+      }
+    },
+    "installed_package": {
+      "path": "platform-tools",
+      "revision": {
+        "major": 37,
+        "minor": 0,
+        "micro": 1,
+        "preview": 0
+      }
+    }
+  }
+}

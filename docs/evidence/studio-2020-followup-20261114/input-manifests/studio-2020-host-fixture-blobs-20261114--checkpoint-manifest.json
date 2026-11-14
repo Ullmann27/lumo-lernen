@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "scope": "Local upload protocol only; not uploaded to GitHub",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-fixture-blobs-20261114/validated-upload-plan.json",
+      "path": "validated-upload-plan.json",
+      "bytes": 45842,
+      "sha256": "27bc9f3ce51b1b501dfa6c60d4d54573cc43da07d77f0cce1aea068ed769713d",
+      "git_blob_sha": "0fa9c190022c966f51fe6795611f64e1ebff390a",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-fixture-blobs-20261114/upload-progress.json",
+      "path": "upload-progress.json",
+      "bytes": 2406,
+      "sha256": "e59cac014c1db2823483556f39f83b6586db6cbf4519a13dcb182b11db9d66b9",
+      "git_blob_sha": "710220da02f0d8b94cb3735ab17ce38d21aed4f1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-fixture-blobs-20261114/create-blob-responses.json",
+      "path": "create-blob-responses.json",
+      "bytes": 1877,
+      "sha256": "99b98b26a10909c1a40a366e959af52e0abbee5d5d2ba0f49412bb39dece0c70",
+      "git_blob_sha": "d4e6fbb7cb96bec861de14a7d1a36b2b823da440",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-host-fixture-blobs-20261114/upload-review.json",
+      "path": "upload-review.json",
+      "bytes": 3278,
+      "sha256": "9bc2ffa4abda4d63f5e698bd4c3fbc38e6e239070e3785dd23fbac5d9f77fdcb",
+      "git_blob_sha": "22446b9fc76200d9393fe4d39991b18c0476e27e",
+      "mode": "100644"
+    }
+  ],
+  "count": 4,
+  "bytes": 53403
+}

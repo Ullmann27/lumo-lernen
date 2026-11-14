@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "kind": "actual_godot_movie",
+  "recording_fps": 24,
+  "scope": "Actual MovieMaker frames and original local audio; not Android/device FPS or phoneme lip sync",
+  "source_avi": {
+    "file": "facial-runtime.avi",
+    "bytes": 7678592,
+    "sha256": "e12b636171923d8668692a3c4039dfa4e995e4a5721667fceef1bd177e19c166"
+  },
+  "encoded_movie": {
+    "file": "facial-runtime.mp4",
+    "bytes": 1178093,
+    "sha256": "498f3670e0148ffdd0bd581147b5d312c0dac82d3cd4e3b4fab58747c87765d0"
+  },
+  "ffprobe": {
+    "file": "movie-ffprobe.json",
+    "bytes": 4643,
+    "sha256": "bb3485d15c70397912257176362fa36cf8d35d2299f60407d2ff86005f8946f3"
+  },
+  "encode_exit_code": 0,
+  "decode_exit_code": 0,
+  "probe_exit_code": 0
+}

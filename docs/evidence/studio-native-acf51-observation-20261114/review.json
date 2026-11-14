@@ -1,0 +1,139 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-11-14T06:48:18.740812+00:00",
+  "source": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "tree": "625d501c8517fa88787a0a415cd5d5b2e75ac845",
+  "run_id": 43565059832,
+  "attempt": 1,
+  "run_status": "completed",
+  "run_conclusion": "success",
+  "jobs": [
+    {
+      "id": 132356963309,
+      "name": "studio",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132356963350,
+      "name": "touch-workshop",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132356963356,
+      "name": "learning-preview",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132356963390,
+      "name": "touch-build",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132356963393,
+      "name": "gameplay",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132356963462,
+      "name": "touch-treasure",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132360620371,
+      "name": "new-worlds",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132365328812,
+      "name": "bundle-evidence",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    },
+    {
+      "id": 132365478747,
+      "name": "archive-evidence",
+      "conclusion": "success",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    }
+  ],
+  "additional_pr_runs": [
+    {
+      "id": 43565062637,
+      "name": "Verify committed Kart vehicle geometry",
+      "conclusion": "success"
+    },
+    {
+      "id": 43565062741,
+      "name": "Lumo original 65-bone grounded walk gait QA",
+      "conclusion": "success"
+    },
+    {
+      "id": 43565062663,
+      "name": "Lumo Kart and Bauwelt integration QA",
+      "conclusion": "success"
+    },
+    {
+      "id": 43565062665,
+      "name": "Lumo native lifecycle and Bauwelt play proof",
+      "conclusion": "success"
+    },
+    {
+      "id": 43565062655,
+      "name": "Verify Lumo Kart Stage 2",
+      "conclusion": "success"
+    },
+    {
+      "id": 43565062672,
+      "name": "Sonnenhafen 2027 stunt integration",
+      "conclusion": "success"
+    }
+  ],
+  "native_artifact": {
+    "id": 14103142984,
+    "name": "lumo-studio-2020-native-evidence",
+    "bytes": 225382332,
+    "sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+    "workflow_run": {
+      "id": 43565059832,
+      "repository_id": 1251414584,
+      "head_repository_id": 1251414584,
+      "head_branch": "chatgpt/lumo-studio-2020-20261114",
+      "head_sha": "acf51d3bd2997c4b731e9a48e1791e05e756a132"
+    }
+  },
+  "public_archive": {
+    "release_id": 445082804,
+    "asset_id": 746588807,
+    "url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-2020-evidence-acf51d3bd2997c4b731e9a48e1791e05e756a132-14103142984/native-evidence.zip",
+    "bytes": 225382332,
+    "sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+    "draft": false,
+    "prerelease": true,
+    "immutable": false,
+    "tag_ref_verified": true,
+    "original_ci_sha_and_public_cmp_passed": true
+  },
+  "metadata_paths": {
+    "workflow_run": "final-run-original.json",
+    "jobs": "final-jobs-original.json",
+    "artifact": "final-artifact-selected.json",
+    "full_artifact_list": "final-artifacts-original.json",
+    "release": "final-release-original.json",
+    "tag_ref": "final-release-ref-original.json"
+  },
+  "local_archive_downloaded": false,
+  "local_full_crc_checked": false,
+  "source_stamps_read_from_archive": false,
+  "images_opened": [],
+  "git_or_workflow_mutations": false,
+  "visual_acceptance": "pending separate original archive review",
+  "android_acceptance": "not part of this native workflow",
+  "actual_physical_fps_measured": false
+}

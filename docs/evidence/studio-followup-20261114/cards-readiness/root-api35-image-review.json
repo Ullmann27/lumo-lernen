@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T02:12:04.212242+00:00",
+  "reviewer": "root",
+  "workflow_run": 43542310963,
+  "job_id": 132285770589,
+  "original_artifact_id": 14093032556,
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "actual_images_viewed": 3,
+  "files": [
+    {
+      "member": "nextgen/04_learning_native_thirteen.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/04_learning_native_thirteen.png",
+      "bytes": 581143,
+      "sha256": "6e8b9643b2eef59b06b2466b85485a750c2df25a7075bba60a4e21b7ccf54739",
+      "root_directly_viewed": true,
+      "observation": "Original Godot scene shows Lumo, eight blue blocks plus two yellow blocks filling ten, and three yellow remainder blocks. Caption 8 + 5 = 10 + 3 = 13 is legible; completion controls remain inside viewport. Hard shadows and simple environment remain visible; no AAA or device-FPS claim."
+    },
+    {
+      "member": "nextgen/05_learning_same_flutter_lesson.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509007,
+      "sha256": "630495be79a5699b798c016cec8b5b7ad46f74c03af0ad5124ec444523735f18",
+      "root_directly_viewed": true,
+      "observation": "Actual Flutter lesson Acht und fünf is visible after native return, with 8 + 5, step 6 of 6, zero stars and zero XP. Visual return agrees with report; single frame alone does not establish profile identity or full data migration."
+    },
+    {
+      "member": "nextgen/11_cards_real_table_before_draw.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-recheck-4ab/android-results/api35-selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 1163505,
+      "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9",
+      "root_directly_viewed": true,
+      "observation": "Actual spatial table, card thickness/deck, three readable child front cards, first-of-three page and Ziehen/Pause controls are visible before draw. Seated Lumo face presentation is not proof of a full original 3D facial rig. Header has existing grammar error Du fängt an. No post-draw or return acceptance."
+    }
+  ],
+  "overall_android_result": "FAILURE",
+  "physical_device_performance_verified": false
+}

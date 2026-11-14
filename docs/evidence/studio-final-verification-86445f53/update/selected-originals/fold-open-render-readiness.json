@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "fold-open",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "fold-open-render-candidate-1.png",
+      "sha256": "a9b63ee5ba95ddacd0c674040c004b0121f83d79d8b79bd36b6e0a2ac0fd142e",
+      "width": 1812,
+      "height": 2176,
+      "content_entropy_bits": 7.07,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 1.791
+}

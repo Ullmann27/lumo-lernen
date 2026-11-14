@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "scope": "read_only_review_no_product_or_test_execution",
+  "files": [
+    {
+      "path": "qa/connect-four-layout-blob-review-20261114/review.json",
+      "bytes": 4984,
+      "sha256": "465fbf470c01f55d69bc4c6c58b1704989221013ced4d6278e2a5b2f3c025e05",
+      "git_blob": "9f68c14e0f51a502e1ddd4f37fa2904ff9e2690a",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-layout-blob-review-20261114/review.json"
+    },
+    {
+      "path": "qa/connect-four-layout-blob-review-20261114/baseline.dart.txt",
+      "bytes": 42692,
+      "sha256": "db6a9bce9c93d680a7e0a67c3c37d64600b44e974943d9d765937bb81cc2b075",
+      "git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-layout-blob-review-20261114/baseline.dart.txt"
+    },
+    {
+      "path": "qa/connect-four-layout-blob-review-20261114/proposed.dart.txt",
+      "bytes": 44491,
+      "sha256": "e87ed2d4a8c80739acdae34136686defc08e6473b99d6fde77293936f65b9135",
+      "git_blob": "6b587b94f9f094b5785f08afff348f399ace4523",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-layout-blob-review-20261114/proposed.dart.txt"
+    },
+    {
+      "path": "qa/connect-four-layout-blob-review-20261114/source-diff.txt",
+      "bytes": 20227,
+      "sha256": "4a73adaa134cd34bb99e69c094dad58a635a6091258fde1a0e8fbdbac7fd27ff",
+      "git_blob": "40cae62f7531fdd62cc212b21078c27948d73d5a",
+      "mode": "100644",
+      "target_path": "docs/evidence/connect-four-layout-blob-review-20261114/source-diff.txt"
+    }
+  ]
+}

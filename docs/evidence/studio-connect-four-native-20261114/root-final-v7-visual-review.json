@@ -1,0 +1,37 @@
+{
+  "reviewer": "Root",
+  "scope": "Four original final-v7 PNGs actually viewed separately; no Android/FPS claim",
+  "findings": [
+    "Seven column controls visible in phone portrait; genuine human and bot discs show distinct board positions.",
+    "Landscape board exposes original Lumo, board thickness and four winning rings.",
+    "Small-landscape overlay shows complete resume control after actual scroll; controls remain separate.",
+    "Original empty board and final win are distinct actual renderer states."
+  ],
+  "limits": [
+    "Portrait framing does not show Lumo beside the board.",
+    "Scene is readable but its sparse room/background and simple lighting are not a complete AAA visual treatment.",
+    "Local IPC and test SharedPreferences do not establish Android Binder or process-restart persistence."
+  ],
+  "images": [
+    {
+      "path": "qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_phone_bot_response.png",
+      "bytes": 240961,
+      "sha256": "ed70f08ef80e17a1fddd0307acc61c519f9676db748285ff1bb82c082a4689d5"
+    },
+    {
+      "path": "qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_win.png",
+      "bytes": 85166,
+      "sha256": "abc6a8a19b9cd450e1be7c3ca78440f67bbe730d9138205bf4330387727c8d0d"
+    },
+    {
+      "path": "qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_small_landscape.png",
+      "bytes": 23044,
+      "sha256": "2f7f4cda46d7d88b99bae3df558af0e79a4e9de3b898e67aec541381efc6ca5c"
+    },
+    {
+      "path": "qa/connect-four-native-86445-803e/runtime-final-v7/connect_four_empty.png",
+      "bytes": 83439,
+      "sha256": "155b8aff298a362f50866805be50596d91a70ff24baec8b50e20584844486bf6"
+    }
+  ]
+}

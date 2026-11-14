@@ -1,0 +1,15 @@
+{
+  "command": [
+    "python3",
+    "-W",
+    "error::ResourceWarning",
+    "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/patched/scripts/tests/test_studio_creative_android_probe.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.3027241479867371,
+  "test_sha256": "23bdf174ece40e32334f31d8f60de0af39ea7150d41c24b123d26a7ffb84d866",
+  "original_test_unchanged": true,
+  "probe_sha256": "d18afe3b68113f9932ba17819dfcc2f0dfd0dd5047b84070ebd03d84d02b10d9",
+  "log_sha256": "3197f4a3ea996bc81dacd00ac9c2854d7522025bdfe8245a2db8734071611281"
+}

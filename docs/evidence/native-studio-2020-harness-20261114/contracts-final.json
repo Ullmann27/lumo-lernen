@@ -1,0 +1,24 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "qa/studio-2020-integration/root/native/tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 28.444253459994798,
+  "log_sha256": "158140b2ec70b7bbdab44a72f7aeb89ceb97fe4ff44697cfc9acc91c49a23a06",
+  "source_files": {
+    ".github/workflows/lumo-studio-2020.yml": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+    "tools/validate_studio.sh": "ba194e2cdb3b39e95249a347b1e53a2b146ffe2eda1380877743156ebd2fd8b1",
+    "tools/tests/test_nextgen_runner.py": "9dc3ed010222305ff100b6d7c9cc0118ea690e4f4b8a498ce0b113aa245bbf7d"
+  },
+  "source_unchanged_after": true,
+  "scope": "Synthetic pure orchestration/roster contracts; no new engine/Android run.",
+  "completed_utc": "2026-11-14T05:24:04.928253+00:00"
+}

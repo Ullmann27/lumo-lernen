@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "selected_mode": "cup",
+  "sections": [
+    {
+      "section": "garage",
+      "visible_label": "Garage",
+      "return_caption": "Kart-Men\u00fc",
+      "return_touch": [
+        717,
+        916
+      ],
+      "touch_evidence": "21_stage_garage-open-surface-readiness.json"
+    },
+    {
+      "section": "driver",
+      "visible_label": "Fahrer",
+      "return_caption": "Kart-Men\u00fc",
+      "return_touch": [
+        717,
+        916
+      ],
+      "touch_evidence": "21_stage_driver-open-surface-readiness.json"
+    }
+  ],
+  "mode_touch_evidence": "21_stage_mode_cup-surface-readiness.json",
+  "scope": "Live Android OCR touches; no injected Godot selection or coordinates"
+}

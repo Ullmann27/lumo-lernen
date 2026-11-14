@@ -1,0 +1,149 @@
+{
+  "schema": 1,
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T09:27:42.533134+00:00",
+  "host_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "workflow_run": 43580228966,
+  "artifact_id": 14108161604,
+  "archive": {
+    "path": "/tmp/lumo-078-c4-original-evidence.zip",
+    "bytes": 2703376,
+    "sha256": "486db99ad34a051e16bb9d24d99574b9dcecfe992f45b1c54cfc257c1cea8e93",
+    "crc_entries_verified_by_reviewer": 14,
+    "all_selected_original_bytes_equal_zip_members": true
+  },
+  "index_sha256": "d37a7808962956989b23d262d8623e7601844db0dad931243a8fe73cc9b40000",
+  "original_test_log": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078-c4-originals/flutter.log",
+    "sha256": "3c9eab378ab1747cee5b0fcc1c76c812301da74f5843ebb6a64419c1cd8a21b5",
+    "passed_tests": 12,
+    "failed_tests": 0,
+    "test_exit_code": 0,
+    "log_exit_code": 0,
+    "scope": "Three games_screen_flow cases, five standard visual formats, four new Fold controls cases; original CI log read, no new local test execution."
+  },
+  "images": [
+    {
+      "artifact_entry": "captures/1200x896.png",
+      "local_path": "/tmp/lumo-078-c4-originals/captures/1200x896.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "e7ddd655f26b2c84c7ef2f9235c59f2cf399b547aec8ea8535006dfccbe9586d",
+      "git_blob": "0da1025ad179f83d5c5a01be072ba6dee005b9cf",
+      "dimensions_px": [
+        1200,
+        896
+      ],
+      "bytes": 705374,
+      "reviewed": true,
+      "review_method": "Each newly extracted 078 original was opened individually with view_image, then decoded and byte-compared with its own original ZIP member.",
+      "same_image_sha256_as_1453": true,
+      "findings": [
+        "Das vollständige Brett und die sieben zugeordneten Pfeilknöpfe bleiben frei sichtbar. Drei cyanfarbene und drei goldene gesetzte Steine sind klar unterscheidbar.",
+        "Rechts stehen Moduswahl, Zughinweis und die vollständige Figur ohne gegenseitige Überdeckung. Die Reservebereiche und die Anleitung sind lesbar.",
+        "Unterhalb bleibt freier Raum. Die Bezeichnungen Du und Lumo bleiben bei aktivem Zweispielermodus erhalten; aus dem Standbild wird kein Regelfehler abgeleitet."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/1280x720.png",
+      "local_path": "/tmp/lumo-078-c4-originals/captures/1280x720.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "bb22f40bb2193e6d67aa43a5cec929eee8fd98a84c20e436ac4d191c8f1a2e12",
+      "git_blob": "008692ccb7a1ca203e16f931cd3945702dfcddd1",
+      "dimensions_px": [
+        1280,
+        720
+      ],
+      "bytes": 635882,
+      "reviewed": true,
+      "review_method": "Each newly extracted 078 original was opened individually with view_image, then decoded and byte-compared with its own original ZIP member.",
+      "same_image_sha256_as_1453": true,
+      "findings": [
+        "Das vollständige Brett mit sieben Spalten, sechs Reihen und sechs gesetzten Steinen ist links dargestellt; die Pfeilreihe folgt visuell denselben Spaltenmitten.",
+        "Der vollständige Fuchs, die Moduswahl und der Zughinweis sind rechts ohne Überdeckung des Bretts oder der Pfeilknöpfe sichtbar.",
+        "Beide Reservebereiche sowie die Richtungsanleitung sind lesbar. Unter aktivem Zu zweit heißen die Reserven weiterhin Du und Lumo."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/360x800.png",
+      "local_path": "/tmp/lumo-078-c4-originals/captures/360x800.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "4d8b0db20534914db8960081886236421357d13af0a2f8e09580ed0905b387f4",
+      "git_blob": "1fa5a4b0c1cf6ee1aaeb1981e6c7f130c7ca552e",
+      "dimensions_px": [
+        360,
+        800
+      ],
+      "bytes": 199897,
+      "reviewed": true,
+      "review_method": "Each newly extracted 078 original was opened individually with view_image, then decoded and byte-compared with its own original ZIP member.",
+      "same_image_sha256_as_1453": true,
+      "findings": [
+        "Die aktuelle Hochformataufnahme zeigt sechs gesetzte Steine und die aktive Moduswahl Zu zweit. Kopfzeile und Zughinweis sind frei lesbar.",
+        "Die linke erste Brettspalte und der erste Pfeilknopf sind in dieser aufgenommenen horizontalen Endscrollposition angeschnitten; der Beschnitt betrifft den gemeinsamen Brett-/Knopfinhalt. Die weiteren Knöpfe stehen sichtbar unter ihren Spalten.",
+        "Der Fuchs ist vollständig im unteren Bildteil sichtbar und verdeckt keine Eingabetaste. Die Reservebezeichnungen Du und Lumo bleiben trotz Zweispielermodus stehen."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/640x360.png",
+      "local_path": "/tmp/lumo-078-c4-originals/captures/640x360.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "6f34ad2e2db979155137f6a9bb7d958aafb70079065ed61a9917e284ee057c2c",
+      "git_blob": "8ba2b893fa81c2ea6869bf5cdffadcccfa4dbeff",
+      "dimensions_px": [
+        640,
+        360
+      ],
+      "bytes": 150801,
+      "reviewed": true,
+      "review_method": "Each newly extracted 078 original was opened individually with view_image, then decoded and byte-compared with its own original ZIP member.",
+      "same_image_sha256_as_1453": true,
+      "findings": [
+        "Sieben Brettspalten und sechs Reihen sind in der kompakten höhenadaptiven Fassung sichtbar; die sechs gesetzten Steine bleiben getrennt erkennbar und rund.",
+        "Die sieben Pfeile stehen unter den Spalten. Kopfzeile, Moduswahl und Zughinweis bleiben lesbar; die kurze Spielanleitung ist vollständig dargestellt.",
+        "Der kompakte Fuchs rechts ist klein, aber vollständig sichtbar und liegt außerhalb der Bedienelemente. Die große Reserveansicht ist hier nicht dargestellt."
+      ],
+      "blocking_issue": false
+    },
+    {
+      "artifact_entry": "captures/740x840.png",
+      "local_path": "/tmp/lumo-078-c4-originals/captures/740x840.png",
+      "module": "connect_four_flutter_fallback",
+      "sha256": "5990524a7235f52e3588acea53db98c8cccad1cde1bfcb43831122f5bb1d0a72",
+      "git_blob": "e3361b726aab6eb7be483caad4fab2f7a2db64a0",
+      "dimensions_px": [
+        740,
+        840
+      ],
+      "bytes": 390737,
+      "reviewed": true,
+      "review_method": "Each newly extracted 078 original was opened individually with view_image, then decoded and byte-compared with its own original ZIP member.",
+      "same_image_sha256_as_1453": true,
+      "findings": [
+        "Das vollständige Brett ist über der vollständig sichtbaren Pfeilreihe zentriert. Alle sechs gesetzten Steine sind sichtbar.",
+        "Kopfzeile, beide Modusknöpfe und Zughinweis sind lesbar. Der Fuchs ist unterhalb der Eingabetasten vollständig sichtbar.",
+        "Die Reservetabletts sind frei sichtbar und weiterhin mit Du und Lumo beschriftet, während Zu zweit ausgewählt ist. Kein zusätzlicher sichtbarer Layoutblocker erkannt."
+      ],
+      "blocking_issue": false
+    }
+  ],
+  "reviewed_images": 5,
+  "blocking_visual_issues": 0,
+  "limits": [
+    "These are actual current Flutter widget/fallback framebuffers, not Android captures or Godot renderer frames.",
+    "The five standard image hashes equal the previous 1453 files; all five current 078 originals were nevertheless individually reopened and bound to this new archive.",
+    "The four new fold-prefixed PNGs are assigned to Root and are not included in this agent image review; their four test results are present in the actual current log.",
+    "The fox shown here is the Flutter image-based companion; no facial/body animation is proved by these still images.",
+    "The 360x800 end-scroll crop is explicitly recorded. Successful gesture assertions belong to the new four Fold tests and are not inferred solely from this still image.",
+    "No full Flutter-suite, APK, Android, native-source acceptance, physical Fold7 performance, FPS or release approval follows from this small early gate.",
+    "The earlier failed 1453 run and its original evidence remain unchanged."
+  ],
+  "mutations": {
+    "source": false,
+    "original_images": false,
+    "refs": false
+  }
+}

@@ -1,0 +1,654 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ISOLATED_PATCH_EVIDENCE",
+  "source_base": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "file_count": 80,
+  "total_bytes": 343792,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/README.md",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/README.md",
+      "bytes": 4819,
+      "sha256": "6b4e836da12f8edf4ba8d887383790ed34641075ded11cda4deec0ccb005a827",
+      "git_blob": "10b4d257e2455a0f6263fd25f0100b9a5d1de3d5",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/source-baseline.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/source-baseline.json",
+      "bytes": 1389,
+      "sha256": "8b8434d5f249744a9a070fc377991b2c70a3a584307456f69a0fe1c4c3276ad8",
+      "git_blob": "aa107ae8f9d42dc8130b422593fcdad01292af21",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/baseline-difference.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/baseline-difference.json",
+      "bytes": 233,
+      "sha256": "2980c92e2d63f707c04f0403ba32510a18aac1c9353289300956f6d4d0f90eff",
+      "git_blob": "b702e5847acba0985eb2014c55b5887eaec22047",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/scope-comparison.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/scope-comparison.json",
+      "bytes": 1108,
+      "sha256": "bc8c66ff430f8732f5bcce582693ba8f8d20b6058ff66c4eb2d671a584a1a518",
+      "git_blob": "19540dabfc6f69721f5eae9cc0ece42dbc6ceae7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/source.patch",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/source.patch",
+      "bytes": 4156,
+      "sha256": "f0ee7a656bad268bdb9193446b41fee20ca065e9d0cc392ddd408c914442424e",
+      "git_blob": "efac9a94ad614ab3fdc5af0806b6181f5db97338",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/ocr-environment.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/ocr-environment.json",
+      "bytes": 1307,
+      "sha256": "acc0297f9d15ba43532323139c6c1eb8265f9b8cb98fa41806ea92763921419e",
+      "git_blob": "3b84c6a252489d034c4cf915c5ca67bf8aef844c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/review.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/review.json",
+      "bytes": 7527,
+      "sha256": "c7469536cfd06da7979dc5ee3baad7e256c86b1d385d9eafd65af817d5a73780",
+      "git_blob": "6d9097fe29af82f22ae523c6be8143e8b32a51df",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/independent-review.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/independent-review.json",
+      "bytes": 7580,
+      "sha256": "a2649a70ced80299f8d9442bb668aa2e3e292f1b9081e0c9a1f3a2de5b468e5b",
+      "git_blob": "d9222ef34838ba0f203fd17b8fe0e27c5a4329f9",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/source-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/source-upload-manifest.json",
+      "bytes": 7417,
+      "sha256": "97252ab20f05bac5e19649a71ea3e7337cd071e66447962c0184777a5c509e10",
+      "git_blob": "fb7f5fb93456abe43d6b423e1d19d25591a83458",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-real-ocr.log",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-real-ocr.log",
+      "bytes": 2495,
+      "sha256": "0f28e0eda9eaf3be12e7f4dceba86090d16af4620e455da3bda06433c987cd9a",
+      "git_blob": "8f6381010ee885cfd9af6e7479582b0e6ee63ee4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-real-ocr-execution.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-real-ocr-execution.json",
+      "bytes": 656,
+      "sha256": "619113bec20933689dc1c397e2028771abdd62e69807394c778ae54decba87e1",
+      "git_blob": "61980d5d5581f49c3aae7ddc9d78d75d4091c734",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-real-ocr.log",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-real-ocr.log",
+      "bytes": 996,
+      "sha256": "e9cd0d0d6974023a59f5bc2de9548d133c688b7a7332e08ea7796ac8a75b8149",
+      "git_blob": "273d29c2386a055dec6b64ea7f5670530886b8af",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-real-ocr-execution.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-real-ocr-execution.json",
+      "bytes": 748,
+      "sha256": "d194f1a3bdf004e2fd64aae371950d94fa85ef1c39c25a64e0ea891e528afe38",
+      "git_blob": "06ae18261ed290205e5df3d727b0e14020903fb7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-return-contracts.log",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-return-contracts.log",
+      "bytes": 1124,
+      "sha256": "12aee508ee59e136579d90c594bb49673a0e335228fb53d718732ef7c15096b8",
+      "git_blob": "7a42e3ec602f71b12f52e6da69cea9de16e08d01",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-return-contracts-execution.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-return-contracts-execution.json",
+      "bytes": 821,
+      "sha256": "003b2c7ab1e953a3d2daddabef85d2c49a3a5a36bcd4a214bee11408a5dfe9a5",
+      "git_blob": "bee899df74bfb6338302c5cc12457854ea9e74bd",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/existing-return-contracts.log",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/existing-return-contracts.log",
+      "bytes": 1232,
+      "sha256": "dba0809139586d2a60d0d269982c953035835eedf21f24f6cc8273a70ec9af77",
+      "git_blob": "8118eb420c12e618180580b6a7ea954157e829c7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/existing-return-contracts-execution.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/existing-return-contracts-execution.json",
+      "bytes": 499,
+      "sha256": "6cdc75ef6eb31b20bdec4c4be893fe668f34e619a1dc9732b4046542d3afed31",
+      "git_blob": "664733b5352caadf2e2d6666c3f98281ffc5b1ca",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/baseline/.github/probes/creative_android_probe.py",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/baseline/.github/probes/creative_android_probe.py",
+      "bytes": 59166,
+      "sha256": "11405ef5997cf26d3d5f81299a09b2e67eff8b14a7c5fad90ee267471bcf5bff",
+      "git_blob": "d377cee88da237025fd5bb57b6555451bf3f36a8",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/baseline/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/baseline/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api35_final_pause_still_matches/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api35_final_pause_still_matches/executed-ocr.json",
+      "bytes": 907,
+      "sha256": "5996f820a889ba64f282d79e1b06dff15cfb5e7f3ba112faa73dc6f6286aa8a3",
+      "git_blob": "bc6113098670daa2726c5fd0c07472660f4a3e36",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api35_final_pause_still_matches/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api35_final_pause_still_matches/frame-ocr-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78",
+      "git_blob": "752b0e82eecc7f3dee6c2106e13ad044590aa83e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api35_final_pause_still_matches/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api35_final_pause_still_matches/frame-ocr.json",
+      "bytes": 989,
+      "sha256": "56e6528a2fe1ba889fd9790d5676be08e286823cf8b30c733cfe45a7ae295694",
+      "git_blob": "c3b18d42c73ef9e418edf1476cdf618cd9d52f1c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api35_first_pause_still_matches/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api35_first_pause_still_matches/executed-ocr.json",
+      "bytes": 907,
+      "sha256": "050daa2916f4f3fe4a0977a3907b13630435468a930bf587d5efe50b7c6aa6f2",
+      "git_blob": "b4894a6857ec2e4631faa092304ffdf32309d450",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api35_first_pause_still_matches/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api35_first_pause_still_matches/frame-ocr-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e",
+      "git_blob": "5123bc5603466b885147057a0dc2da437fc4022e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api35_first_pause_still_matches/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api35_first_pause_still_matches/frame-ocr.json",
+      "bytes": 989,
+      "sha256": "259e2d7bf3478d493f139fe869fa5212242de0ec289b702d4bcd260538c6acd3",
+      "git_blob": "8881368a809957e853a2c0038872bf18ad57fef2",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api37_eventual_pause_still_matches/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api37_eventual_pause_still_matches/executed-ocr.json",
+      "bytes": 913,
+      "sha256": "359a8155bfa16f2dc3540d31b505cf948cc6a5f42b48e8790c0e24cce89da190",
+      "git_blob": "3b45d9d4fbfdf88bdca1cc47eee7730631c3cdca",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr-contrast.tsv",
+      "bytes": 1530,
+      "sha256": "11928100dc3c2b368eb2122ab21d68e9fedec7eaa2652f9ab45471877453cecf",
+      "git_blob": "247dde8b33c7f7f167240ed62acc31288c9997eb",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr.json",
+      "bytes": 1110,
+      "sha256": "9dd5efd8bc5abb3a4f6129790e724c2b0307c0ffa18c7dd68974dab676299e0d",
+      "git_blob": "5c7456e1155350aa4734e65da15ed41d1d8fd59c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/executed-ocr.json",
+      "bytes": 14344,
+      "sha256": "5e63c2f36d469d5cfdbcfa87ecd82a40093cd024104d364f6f47577db9852796",
+      "git_blob": "23afe87dc85cab6345d0dacb0e0bf156706bf702",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-components.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-components.json",
+      "bytes": 1465,
+      "sha256": "8f25cb7771030bbf874e50ae21c435b4b27fd7e94c6fc6933c4c2483aec98697",
+      "git_blob": "c83caab8edb501154b09079792d2e2680c8284a5",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-contrast.tsv",
+      "bytes": 5878,
+      "sha256": "a83295bf18a6854955ffd2699af8db6ba08bc0eb5c670ba286d4597b2b6d82a6",
+      "git_blob": "130b888cd98c0f9b3fa8c55cbf73f38c5a009194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-0.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-0.tsv",
+      "bytes": 110,
+      "sha256": "19bb51b144123887c01406bb191671a2a915ce79114a8602ed76bb90c491144e",
+      "git_blob": "86847f506dfe8961f476d1c002fe323f9bda3612",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-1.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-1.tsv",
+      "bytes": 222,
+      "sha256": "33ed1a2c5716791b3e817d54cecda6edc2f688671a84759183687e1591409c87",
+      "git_blob": "34cfed0d59c0ce0776cc6c90976a6f78ad100555",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-2.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-gold-component-2.tsv",
+      "bytes": 221,
+      "sha256": "523e70947d3b994efa08218be5ed688dbf24bef95e6a59730e72b98b84bafcc6",
+      "git_blob": "f2eea3ba7cdbfc5d392d61236eaaa8b252299949",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-navy-latin-1x.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-navy-latin-1x.tsv",
+      "bytes": 5391,
+      "sha256": "194e84541454b03e2dd9dfddc3855deee7a57afca3d948b62ab479b9a40d3eda",
+      "git_blob": "9b4d75eb6e535f136c4ce47992b62a38d2098245",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-navy-latin.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-navy-latin.tsv",
+      "bytes": 5465,
+      "sha256": "2145d49dabdde13980a0e247ff835e78ca08b67890791761db885c3eee5e0503",
+      "git_blob": "e2dc950423fc2391d28dfe12133086e23043a131",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-raw.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-raw.tsv",
+      "bytes": 7631,
+      "sha256": "29ab66cd64dec229df962e428d835594ec0b9cc3b28434a23af2a0e873dcebc5",
+      "git_blob": "de0c37a7cff1596465a6cc8fd0c26d039ef7a628",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-teal-text-1x.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-teal-text-1x.tsv",
+      "bytes": 6357,
+      "sha256": "1c76d1e8ebff8cebdd6abe77fb9c5654ad3ba697c8d2c3f667c91e08af702e5c",
+      "git_blob": "bebc80592356ad54c771a6107f590c908bacc472",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-tiles.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-tiles.json",
+      "bytes": 4603,
+      "sha256": "4d26a782b1acbfbe2f5b5429b5bcf0d995a1805e6dd2634fa20be6a09493e709",
+      "git_blob": "bf64a749c0270c17cf798b50bd049e45efb059f4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-0.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-0.tsv",
+      "bytes": 1783,
+      "sha256": "fc7635a7612c893c850ae1c5d76e0fa648cdfc228ab623045ffad9c0bead5738",
+      "git_blob": "df1e2613a70d42e9ca6ed0c56139892a8bacb3b5",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-1.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-1.tsv",
+      "bytes": 748,
+      "sha256": "291591c47d89ecd5527ccfd6bca76391b66f23e74bec96cd8ee0780916e64cc4",
+      "git_blob": "3ef5349490ef1b1103533674e2e510f62a66bcda",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-2.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-2.tsv",
+      "bytes": 2794,
+      "sha256": "6fa21db5c24a983e56c88fd7f1c30edfa9553d25f5545a3a2331dbdfce6fc152",
+      "git_blob": "6dec8cf363ca6a06e5c0e24689e9c32e86d1aadc",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-3.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-3.tsv",
+      "bytes": 1981,
+      "sha256": "a355059b693a7c5b45bfc16b34784df370f795aca6de9900c8b37043d74f87e6",
+      "git_blob": "c633d95a1db73808ec1a94233965c47e44e22491",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-4.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-4.tsv",
+      "bytes": 2694,
+      "sha256": "d2b88a6e8fe88657f95c2ae89b7559b3a0d32e33b2a16e9d427533b0e2393ba2",
+      "git_blob": "afb322287cda8b90c8d2cfa78b980c823f6e952c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-5.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-dim-tile-5.tsv",
+      "bytes": 1847,
+      "sha256": "2aa46c1cd5c7d54c570f72c6876ee462b0c2f7ea28a12c5851a6f7b4164fbb18",
+      "git_blob": "508cd1e4824e0ca6eb8a1cba48c0f51c7d6cb13d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-0.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-0.tsv",
+      "bytes": 1269,
+      "sha256": "7df1ec733be39ca6651e8afded835594ce4e6b12033981ce077b70ee8e8521de",
+      "git_blob": "64b5dde87226b4d996006ddfffd460380d03258c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-1.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-1.tsv",
+      "bytes": 882,
+      "sha256": "7a4188f94cc3fa9e03de390c2a68d761ce9a6564730939145d11e6b8168d0abd",
+      "git_blob": "f94c34c80fdba3226572fe3ef8570a59cb6f2c00",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-2.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-2.tsv",
+      "bytes": 1762,
+      "sha256": "308fb87e5ac44475c9ef8b263e9b702469d8c4f04bd20ea823a5d411d8e182e5",
+      "git_blob": "266bee44540fd9835a5faa0dbda28ee5ec2b9c45",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-3.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-3.tsv",
+      "bytes": 1397,
+      "sha256": "d580f8ca2eb19d5dbb92aaae40a2d1a791e46b58f8e48a09f20697741de2af72",
+      "git_blob": "e9e60fb7ff73ded3f735139ab1c75e4f757db1b4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-4.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-4.tsv",
+      "bytes": 2685,
+      "sha256": "c8ea592fbe6a81c6d7379b863abb51f7fb6c4e19f4422fb75820dffb7ca15b36",
+      "git_blob": "e77a3582951cdfb91fc6e94ab5d0b4c03209b88f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-5.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin-tile-5.tsv",
+      "bytes": 860,
+      "sha256": "d997f8d605e0f5d3f978ad10c3a3d01ddc9e1975d2fdd0026b03790fd510fe5c",
+      "git_blob": "b36375cedd7772b3e5ce411ea6c245a6c97fb1eb",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-latin.tsv",
+      "bytes": 5571,
+      "sha256": "b52122127ab4d60c2a1255234ba85279bf05721033dd37a29689410ad3a38cf1",
+      "git_blob": "26f3bd6ba33c5ef16f6d36eb594fb1c5d47320d6",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-text.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-white-text.tsv",
+      "bytes": 5493,
+      "sha256": "1dfc10b27b56943fa19bee5294592c2f0a435b98a297cc27a6a99468f846d8ff",
+      "git_blob": "c62687b32bb3e8d061f34fb434f01741b1ae3caf",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr.json",
+      "bytes": 30517,
+      "sha256": "33098f4d868cc0b127dd89e8ff2f6f8fc949e7963b6a510513878e4e07f96343",
+      "git_blob": "8e5deb6f042a5e8616eb4f93e6cc3fbdf6397bcc",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/executed-ocr.json",
+      "bytes": 958,
+      "sha256": "dee67328c4c5627964367dba22f5343c37b3593011b976cff997073000af62d2",
+      "git_blob": "44b4ad8da3db529d41ac7798389f8e3a76c067bd",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-contrast.tsv",
+      "bytes": 5878,
+      "sha256": "a83295bf18a6854955ffd2699af8db6ba08bc0eb5c670ba286d4597b2b6d82a6",
+      "git_blob": "130b888cd98c0f9b3fa8c55cbf73f38c5a009194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr.json",
+      "bytes": 4453,
+      "sha256": "fd54e9d3d5bec5ff895b3188bed6978b56db3099228d869b05f00d43cda573fc",
+      "git_blob": "8483527c720a887f47afc142ae8ed5f412b811f4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_default_reader_does_not_apply_loading_rejection/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_default_reader_does_not_apply_loading_rejection/executed-ocr.json",
+      "bytes": 925,
+      "sha256": "b88dabc88ee0f7b6c95a0d163240ce245a53f8b25a82aa18191b61341f7fef57",
+      "git_blob": "6a7eb9bdcfb8ac9f00b973b92f63652b60dcc689",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr-contrast.tsv",
+      "bytes": 5878,
+      "sha256": "a83295bf18a6854955ffd2699af8db6ba08bc0eb5c670ba286d4597b2b6d82a6",
+      "git_blob": "130b888cd98c0f9b3fa8c55cbf73f38c5a009194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/red-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/red-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr.json",
+      "bytes": 4453,
+      "sha256": "fd54e9d3d5bec5ff895b3188bed6978b56db3099228d869b05f00d43cda573fc",
+      "git_blob": "8483527c720a887f47afc142ae8ed5f412b811f4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api35_final_pause_still_matches/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api35_final_pause_still_matches/executed-ocr.json",
+      "bytes": 911,
+      "sha256": "b43c0a63fffa7c043a335e0891f04ef589307f07bc0a06580bcb0ec76ec54c54",
+      "git_blob": "14a87f97f5e04b5c560222f0168122b7c2ecc45c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api35_final_pause_still_matches/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api35_final_pause_still_matches/frame-ocr-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "e73b5be3297013f6d68a2dc138decdc40b0cd061c8769061075824fb03dbeb78",
+      "git_blob": "752b0e82eecc7f3dee6c2106e13ad044590aa83e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api35_final_pause_still_matches/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api35_final_pause_still_matches/frame-ocr.json",
+      "bytes": 989,
+      "sha256": "56e6528a2fe1ba889fd9790d5676be08e286823cf8b30c733cfe45a7ae295694",
+      "git_blob": "c3b18d42c73ef9e418edf1476cdf618cd9d52f1c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api35_first_pause_still_matches/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api35_first_pause_still_matches/executed-ocr.json",
+      "bytes": 911,
+      "sha256": "3c58ffa4be888b76fee322bc028db97cd1b2136d89a724323f2ef2df6d47f5f3",
+      "git_blob": "ecaaf7c4bc35e297f84682d20a9253cf27b1eafb",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api35_first_pause_still_matches/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api35_first_pause_still_matches/frame-ocr-contrast.tsv",
+      "bytes": 1441,
+      "sha256": "6d6b684e4812a6409c8fcfed8f1fef6bba8a403259c7bc651a13f985c392963e",
+      "git_blob": "5123bc5603466b885147057a0dc2da437fc4022e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api35_first_pause_still_matches/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api35_first_pause_still_matches/frame-ocr.json",
+      "bytes": 989,
+      "sha256": "259e2d7bf3478d493f139fe869fa5212242de0ec289b702d4bcd260538c6acd3",
+      "git_blob": "8881368a809957e853a2c0038872bf18ad57fef2",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api37_eventual_pause_still_matches/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api37_eventual_pause_still_matches/executed-ocr.json",
+      "bytes": 917,
+      "sha256": "d539831dbcf7c19b90e70e57bbb89def6adf7390e77399d9e4ebfa39718b52ec",
+      "git_blob": "71508ea02f38c341fb0b596023fa24bc931ac5aa",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr-contrast.tsv",
+      "bytes": 1530,
+      "sha256": "11928100dc3c2b368eb2122ab21d68e9fedec7eaa2652f9ab45471877453cecf",
+      "git_blob": "247dde8b33c7f7f167240ed62acc31288c9997eb",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_api37_eventual_pause_still_matches/frame-ocr.json",
+      "bytes": 1110,
+      "sha256": "9dd5efd8bc5abb3a4f6129790e724c2b0307c0ffa18c7dd68974dab676299e0d",
+      "git_blob": "5c7456e1155350aa4734e65da15ed41d1d8fd59c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/executed-ocr.json",
+      "bytes": 928,
+      "sha256": "9714cf816d6d307209c75be978500740e7fc086886b48095013433e53a837a58",
+      "git_blob": "31f5c8d96026ca879de38607b9bfed55efe5a85d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-contrast.tsv",
+      "bytes": 5878,
+      "sha256": "a83295bf18a6854955ffd2699af8db6ba08bc0eb5c670ba286d4597b2b6d82a6",
+      "git_blob": "130b888cd98c0f9b3fa8c55cbf73f38c5a009194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-rejected.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr-rejected.json",
+      "bytes": 684,
+      "sha256": "f0115cb5e0cd4248855d0bea5399f7d8d8ac92f0b3c665351ffc1bb7639eeb34",
+      "git_blob": "9c079816ff6d10aa47c2fadc9d95a8bf28b47876",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_caption_rejects_after_first_pass/frame-ocr.json",
+      "bytes": 4473,
+      "sha256": "50e63b2a911ca53aeead121aa7c9b5e7870db0a44c6c6366e95d32d7b96108cc",
+      "git_blob": "bec18740fd6c924964728091ab592fcf6e2f67c4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/executed-ocr.json",
+      "bytes": 963,
+      "sha256": "219aa5ca6aee6405c2545138368e588a093e789278ffee4e815999259037bb28",
+      "git_blob": "391ecb704530aca865527c340969ff60328f7441",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-contrast.tsv",
+      "bytes": 5878,
+      "sha256": "a83295bf18a6854955ffd2699af8db6ba08bc0eb5c670ba286d4597b2b6d82a6",
+      "git_blob": "130b888cd98c0f9b3fa8c55cbf73f38c5a009194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-rejected.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr-rejected.json",
+      "bytes": 684,
+      "sha256": "f0115cb5e0cd4248855d0bea5399f7d8d8ac92f0b3c665351ffc1bb7639eeb34",
+      "git_blob": "9c079816ff6d10aa47c2fadc9d95a8bf28b47876",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_actual_loading_has_priority_even_over_an_observed_positive_title/frame-ocr.json",
+      "bytes": 4608,
+      "sha256": "7116f5a2d7a326698bb0500a576d2ad13e83d062cd23b435091ef3d0a1c1ab0f",
+      "git_blob": "1e02fcd8d27549e51355dfd3e767b0e541b3f205",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_default_reader_does_not_apply_loading_rejection/executed-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_default_reader_does_not_apply_loading_rejection/executed-ocr.json",
+      "bytes": 928,
+      "sha256": "787636e9afdc4f207f5c4dc1e58ed05469e0a0c5873edb570d2aad817c3abc8c",
+      "git_blob": "fe1e1db7e4fa0226dbc600ad61a7a96bec13eab7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr-contrast.tsv",
+      "bytes": 5878,
+      "sha256": "a83295bf18a6854955ffd2699af8db6ba08bc0eb5c670ba286d4597b2b6d82a6",
+      "git_blob": "130b888cd98c0f9b3fa8c55cbf73f38c5a009194",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-return-loading-frame-3e08/green-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr.json",
+      "repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/green-replay/test_default_reader_does_not_apply_loading_rejection/frame-ocr.json",
+      "bytes": 4453,
+      "sha256": "fd54e9d3d5bec5ff895b3188bed6978b56db3099228d869b05f00d43cda573fc",
+      "git_blob": "8483527c720a887f47afc142ae8ed5f412b811f4",
+      "mode": "100644"
+    }
+  ],
+  "source_manifest": "source-upload-manifest.json",
+  "source_manifest_sha256": "97252ab20f05bac5e19649a71ea3e7337cd071e66447962c0184777a5c509e10",
+  "original_pngs_location": "Exactly four new byte-bound fixture PNGs in the separate12-file source manifest; no duplicate image copies in this docs-only upload.",
+  "no_android_pass_claim": true,
+  "manifest_repository_path": "docs/evidence/studio-cards-return-loading-frame-3e08/evidence-upload-manifest.json"
+}

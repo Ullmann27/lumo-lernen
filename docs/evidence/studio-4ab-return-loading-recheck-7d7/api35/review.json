@@ -1,0 +1,660 @@
+{
+  "reviewed_utc": "2026-11-14T04:17:35.422812+00:00",
+  "status": "PASS_WITHIN_DIAGNOSTIC_SCOPE",
+  "run": 43552809452,
+  "attempt": 1,
+  "job": 132319256065,
+  "qa_source": "7d7b703f18100b82ce59591ce48fe2d90852ec5e",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "artifact": {
+    "id": 14097214798,
+    "name": "lumo-studio-4ab-ocr-cards-recheck-api-35-43552809452",
+    "size_in_bytes": 148289539,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14097214798",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14097214798/zip",
+    "expired": false,
+    "created_at": "2026-11-14T04:09:54Z",
+    "expires_at": "2026-12-14T04:09:48Z",
+    "updated_at": "2026-11-14T04:09:54Z",
+    "digest": "sha256:35c55b50a6ae1616651b75922b6d84fc3ca8d5d9373f1b94d18b9e44ebd332cc",
+    "workflow_run": {
+      "id": 43552809452,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "chatgpt/lumo-studio-4ab-ocr-recheck-20261114",
+      "head_sha": "7d7b703f18100b82ce59591ce48fe2d90852ec5e"
+    }
+  },
+  "original_job_log": {
+    "bytes": 2069025,
+    "sha256": "769cd5b9ba8bcd48057323a6decc9c1db617b2e1cd0b4ed1973b317d6ef5afa7",
+    "git_blob": "235b4a91029a1a0bb3ebd7fc5a36d388a4298a70"
+  },
+  "source_and_binary": {
+    "before_after_binding_equal": true,
+    "approved_delta_paths": 26,
+    "unchanged_other_git_entries": 4111,
+    "binary": {
+      "host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+      "native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "apk": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+        "bytes": 325295610,
+        "sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6"
+      },
+      "pck_bytes": 66234596,
+      "pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+      "provenance": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+        "bytes": 7586,
+        "sha256": "bb50fe23c109e063fe4f3c6fa4b55d3c6387e15ab2665f8cd2cae22f6d26fbf5"
+      },
+      "sums": {
+        "path": "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+        "bytes": 98,
+        "sha256": "4b9e9df9d23a8cf0eb32c0dd6b26175235fc008e1ec1c621f77c35164d565837"
+      },
+      "signature_scope": "Exact original signed APK bytes; certificate from original verified build provenance. No new signing claim."
+    },
+    "original_build": {
+      "original_run": 43530667812,
+      "original_build_job": 132247240154,
+      "original_artifact": 14089507933,
+      "artifact_archive_digest_from_github_metadata": "2bc81726454a0b79e3e7ab9c0668c9359745e4d308e5af6f8b49072e7600ae7c",
+      "original_run_conclusion": "failure",
+      "original_metadata_files": [
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/artifact.json",
+          "bytes": 806,
+          "sha256": "62410d2d5a462c45f38bf9cb0f09108d526e280d802a32705a949030059af6ef"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/run.json",
+          "bytes": 14516,
+          "sha256": "04bf9879b3b18ee2bf4ce8244cc51f8debb58d093c8c2c7fc93766b7ece70323"
+        },
+        {
+          "path": "/home/runner/work/lumo-lernen/lumo-lernen/tour/build-metadata/build-job.json",
+          "bytes": 10144,
+          "sha256": "2d7cb4f520a17ada660edd9e8fe06990ac9efc3fd3ccd99b9bc7d4209b250dfd"
+        }
+      ]
+    },
+    "executed_tours": [
+      {
+        "command": [
+          "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+          "-B",
+          "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/modernization_android_tour.py",
+          "--apk",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+          "--provenance",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+          "--sums",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+          "--out",
+          "/home/runner/work/lumo-lernen/lumo-lernen/tour"
+        ],
+        "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+        "started_at": "2026-11-14T03:45:12.241694+00:00",
+        "returncode": 0,
+        "finished_at": "2026-11-14T03:56:54.929686+00:00"
+      },
+      {
+        "command": [
+          "/home/runner/work/lumo-lernen/lumo-lernen/.probe-venv/bin/python",
+          "-B",
+          "/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py",
+          "--apk",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/Lumo-Lernen-Neu.apk",
+          "--provenance",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/x86_64/BUILD-PROVENANCE.json",
+          "--sums",
+          "/home/runner/work/lumo-lernen/lumo-lernen/candidate/dist/ANDROID-TOUR-SHA256SUMS.txt",
+          "--prior-tour",
+          "/home/runner/work/lumo-lernen/lumo-lernen/tour/tour-result.json",
+          "--expected-api",
+          "35",
+          "--out",
+          "/home/runner/work/lumo-lernen/lumo-lernen/tour/nextgen"
+        ],
+        "cwd": "/home/runner/work/lumo-lernen/lumo-lernen/candidate-source",
+        "started_at": "2026-11-14T03:56:54.929709+00:00",
+        "returncode": 0,
+        "finished_at": "2026-11-14T04:09:38.501512+00:00"
+      }
+    ]
+  },
+  "android_runtime": {
+    "sdk": 35,
+    "release": "15",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:15/AE3A.240806.043/12960925:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "modernization_steps_passed": 21,
+  "learning": {
+    "moves": {
+      "moved_objects": 5,
+      "ten_filled_after": 2,
+      "remainder": 3,
+      "target_indices": [
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "complete": true
+    },
+    "preservation": {
+      "profile": {
+        "id": "1794627988101024",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T03:46:28.101024"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    "same_lesson_after_return": true,
+    "speech": {
+      "initial": {
+        "native_process_pid": 7287,
+        "completed_utterance_ids": [
+          3
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "result": {
+        "native_process_pid": 7287,
+        "completed_utterance_ids": [
+          18
+        ],
+        "profile": "lumo-free-supertonic-de-v1",
+        "preset": "F2",
+        "audible_quality_verified": false,
+        "lip_sync_verified": false
+      },
+      "native_process_gone_on_return": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "illustration_did_not_award_mastery": true
+  },
+  "cards": {
+    "four_front_phases": [
+      {
+        "stage": "11_cards_real_table_before_draw",
+        "status": "PASS",
+        "accepted_frames": 2,
+        "rejected_frames": 0,
+        "rejected_reasons": [],
+        "revision": 3,
+        "elapsed_seconds": 9.903324,
+        "layout_source": "android_window_insets",
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        }
+      },
+      {
+        "stage": "12_cards_real_table_persisted_draw",
+        "status": "PASS",
+        "accepted_frames": 2,
+        "rejected_frames": 7,
+        "rejected_reasons": [
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-01-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-02-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-03-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-04-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-05-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12_cards_real_table_persisted_draw-face-check-06-before-layout.json"
+        ],
+        "revision": 5,
+        "elapsed_seconds": 15.09934,
+        "layout_source": "android_window_insets",
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        }
+      },
+      {
+        "stage": "12a_cards_real_table_before_late_draw",
+        "status": "PASS",
+        "accepted_frames": 2,
+        "rejected_frames": 0,
+        "rejected_reasons": [],
+        "revision": 5,
+        "elapsed_seconds": 10.64026,
+        "layout_source": "android_window_insets",
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        }
+      },
+      {
+        "stage": "12b_cards_persisted_draw_after_visible_idle",
+        "status": "PASS",
+        "accepted_frames": 2,
+        "rejected_frames": 8,
+        "rejected_reasons": [
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-01-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-02-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-03-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-04-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-05-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-06-before-layout.json",
+          "Native Cards layout not yet available as complete JSON; original reply preserved in 12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json"
+        ],
+        "revision": 7,
+        "elapsed_seconds": 14.713664,
+        "layout_source": "android_window_insets",
+        "android_observation": {
+          "decor_size": [
+            1080.0,
+            2400.0
+          ],
+          "insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "render_rect": [
+            0.0,
+            0.0,
+            1080.0,
+            2400.0
+          ],
+          "system_insets": [
+            0.0,
+            136.0,
+            0.0,
+            63.0
+          ],
+          "view_size": [
+            1080.0,
+            2400.0
+          ]
+        }
+      }
+    ],
+    "draw": {
+      "round_id": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+      "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+      "cards_conserved": 112,
+      "sequence": 1,
+      "revision_before": 3,
+      "revision_after": 5,
+      "child_cards_added": 1,
+      "draw_count_before": 97,
+      "draw_count_after": 96
+    },
+    "draw_after_visible_idle": {
+      "round_id": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+      "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+      "cards_conserved": 112,
+      "sequence": 2,
+      "revision_before": 5,
+      "revision_after": 7,
+      "child_cards_added": 2,
+      "draw_count_before": 96,
+      "draw_count_after": 94
+    },
+    "visible_idle_seconds": 35.224998159999814,
+    "pause_saved_state_unchanged": true,
+    "reopened_same_round": true,
+    "new_mailbox_token": true,
+    "android_authority_binding": [
+      {
+        "main_process_pid": 6253,
+        "native_process_pid": 8020,
+        "service": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+        "bound": true
+      },
+      {
+        "main_process_pid": 6253,
+        "native_process_pid": 8020,
+        "service": "dev.ullmann.lumo.lumo_lernen.CardsAuthorityService",
+        "bound": true
+      }
+    ],
+    "learning_preservation": {
+      "profile": {
+        "id": "1794627988101024",
+        "name": "LumoTest",
+        "age": 7,
+        "grade": 1,
+        "createdAt": "2026-11-14T03:46:28.101024"
+      },
+      "learning_keys_compared": 2,
+      "learning_keys_added": []
+    },
+    "independent_save_records": [
+      {
+        "source": "nextgen/cards-save-001-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          10,
+          5
+        ],
+        "draw_count": 94,
+        "discard_count": 3,
+        "canonical_record_sha256": "828527d6c2eaa3d1955a16a8bc83f9f6a220cb08d474bd3688748cf8242fe97b"
+      },
+      {
+        "source": "nextgen/cards-save-005-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          7,
+          7
+        ],
+        "draw_count": 97,
+        "discard_count": 1,
+        "canonical_record_sha256": "84980e8f63ac6674fbf8a29b62ac40ef44b1772f5e8bafbf9ea7b25c6c441e57"
+      },
+      {
+        "source": "nextgen/cards-save-019-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          8,
+          6
+        ],
+        "draw_count": 96,
+        "discard_count": 2,
+        "canonical_record_sha256": "0326f7e31341224ead4bd420cdf9a69710703939b98bc3f406d24b8930b422a8"
+      },
+      {
+        "source": "nextgen/cards-save-024-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          8,
+          6
+        ],
+        "draw_count": 96,
+        "discard_count": 2,
+        "canonical_record_sha256": "0326f7e31341224ead4bd420cdf9a69710703939b98bc3f406d24b8930b422a8"
+      },
+      {
+        "source": "nextgen/cards-save-038-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          10,
+          5
+        ],
+        "draw_count": 94,
+        "discard_count": 3,
+        "canonical_record_sha256": "828527d6c2eaa3d1955a16a8bc83f9f6a220cb08d474bd3688748cf8242fe97b"
+      },
+      {
+        "source": "nextgen/cards-save-039-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          10,
+          5
+        ],
+        "draw_count": 94,
+        "discard_count": 3,
+        "canonical_record_sha256": "828527d6c2eaa3d1955a16a8bc83f9f6a220cb08d474bd3688748cf8242fe97b"
+      },
+      {
+        "source": "nextgen/cards-save-040-preferences.xml",
+        "key": "flutter.lumo.cards.round.v1.b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d.1.solo",
+        "round": "cards-0fac1f5e866edfaaccdc19323bdd46e8",
+        "owner": "b4403e72eb1b3cc04224101cbf8cd7a471a053762765b1d2f7a09f3e94ad4c6d",
+        "counts": [
+          10,
+          5
+        ],
+        "draw_count": 94,
+        "discard_count": 3,
+        "canonical_record_sha256": "828527d6c2eaa3d1955a16a8bc83f9f6a220cb08d474bd3688748cf8242fe97b"
+      }
+    ]
+  },
+  "actual_return_pixel_results": [
+    {
+      "stage": "05_learning_same_flutter_lesson",
+      "status": "PASS",
+      "elapsed_seconds": 5.333132,
+      "consecutive_confirmed_frames": 2,
+      "frames": [
+        {
+          "status": "CONFIRMED_FLUTTER_PIXELS",
+          "source": "05_learning_same_flutter_lesson-return-candidate-1.png",
+          "source_sha256": "ec53e692479e972ee10b12f3c04cbde70407a74abaa6d3901804b6b802fb8f90"
+        },
+        {
+          "status": "CONFIRMED_FLUTTER_PIXELS",
+          "source": "05_learning_same_flutter_lesson-return-candidate-2.png",
+          "source_sha256": "ec53e692479e972ee10b12f3c04cbde70407a74abaa6d3901804b6b802fb8f90"
+        }
+      ]
+    },
+    {
+      "stage": "14_cards_same_flutter_round",
+      "status": "PASS",
+      "elapsed_seconds": 13.050072,
+      "consecutive_confirmed_frames": 2,
+      "frames": [
+        {
+          "status": "REJECTED",
+          "source": "14_cards_same_flutter_round-return-candidate-1.png",
+          "source_sha256": "a98ff0758347d551426607d0671b77b7d1b71244c322794068347009f7e06dc6",
+          "error": "Rejected captured Flutter frame: observed caption Die Spielwelt wird geöffnet"
+        },
+        {
+          "status": "CONFIRMED_FLUTTER_PIXELS",
+          "source": "14_cards_same_flutter_round-return-candidate-2.png",
+          "source_sha256": "e8e5de020d7705cfcca4455a95834631a291b8fddd1b2f471386524841df27be"
+        },
+        {
+          "status": "CONFIRMED_FLUTTER_PIXELS",
+          "source": "14_cards_same_flutter_round-return-candidate-3.png",
+          "source_sha256": "6c29bf13e6a1d178418b368ce1537fc6e8c74218703910e84c35d20b6c8d6172"
+        }
+      ]
+    },
+    {
+      "stage": "16_cards_final_flutter_return",
+      "status": "PASS",
+      "elapsed_seconds": 8.65043,
+      "consecutive_confirmed_frames": 2,
+      "frames": [
+        {
+          "status": "CONFIRMED_FLUTTER_PIXELS",
+          "source": "16_cards_final_flutter_return-return-candidate-1.png",
+          "source_sha256": "b262bc2f16c175b46c1918e2e065534b3299ed8474849de33c7cb5c7e5e32614"
+        },
+        {
+          "status": "CONFIRMED_FLUTTER_PIXELS",
+          "source": "16_cards_final_flutter_return-return-candidate-2.png",
+          "source_sha256": "0520355ab9d7663daeff751a5cad57198be4f510fff54cdbdff9712cc39238f3"
+        }
+      ]
+    }
+  ],
+  "visually_inspected": [
+    {
+      "file": "selected-originals/nextgen/04_learning_native_thirteen.png",
+      "bytes": 583228,
+      "sha256": "dfc0674027001e6e2bb6abff5dc6686dd9ce5851669c91e11c4c3680923768c4",
+      "git_blob": "8cb33c4ab00daf151ff7fb378a222d7eece82408",
+      "actually_opened_individually": true,
+      "finding": "13 räumliche Würfel sichtbar: acht türkis, zwei gold im vollen Zehnerfeld und drei weitere gold. Original-Lumo und Abschlussgleichung sichtbar; Header und Aktionen außerhalb der Systemleisten."
+    },
+    {
+      "file": "selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "bytes": 1509036,
+      "sha256": "ec53e692479e972ee10b12f3c04cbde70407a74abaa6d3901804b6b802fb8f90",
+      "git_blob": "eb75402016059d30089b80b463702e7de6913c55",
+      "actually_opened_individually": true,
+      "finding": "Tatsächliche Flutter-Lernansicht mit Acht und fünf, Schritt 6 von 6, Erklärung lesen und unverändert 0 Sternen/0 XP sichtbar."
+    },
+    {
+      "file": "selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "bytes": 947036,
+      "sha256": "81564098b64415252495ab4d35a69dbe81ce5ee89b1fc4e4144e0739befe716e",
+      "git_blob": "d84fb887c56b6e91207153fe8332257f3cfb9751",
+      "actually_opened_individually": true,
+      "finding": "Räumlicher Tisch und Original-Lumo, drei erkennbare Kartenfronten, Ablage und 7/7 Karten. Zurück/Pause unterhalb der Statusleiste; Ziehen oberhalb der Navigationsleiste. Alte 4ab-Formulierung Du fängt an. sichtbar."
+    },
+    {
+      "file": "selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+      "bytes": 935465,
+      "sha256": "dfe4750f0cabce5727aabff2482d767619c6a871c5796947a0014e7bf8e8281d",
+      "git_blob": "274a7576ae94e8194018633ec75801bab1c49ee8",
+      "actually_opened_individually": true,
+      "finding": "Nach erster Ziehaktion 8/6 Karten; sichtbare passende neue Ablage. Kartenfronten und Touchaktionen sichtbar."
+    },
+    {
+      "file": "selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "bytes": 928967,
+      "sha256": "ad25e923aac4f4c9276eecf09ae1f654499fce10a2a3f26c82857616398d8e69",
+      "git_blob": "be40299849f84d7c5acb1358a3493e43ef4781b0",
+      "actually_opened_individually": true,
+      "finding": "Nach sichtbarer Wartephase 10/5 Karten, grüner Wirbelwind auf Ablage. Alte 4ab-Formulierung Wirbelwind! Du zieht 1 Karte. sichtbar; zwei neue Handkarten sind im Rohzustand dokumentiert."
+    },
+    {
+      "file": "selected-originals/nextgen/13_cards_native_pause.png",
+      "bytes": 814994,
+      "sha256": "b7e0d89f37a20ba32f35abaab10b3273fac9f5e61d1593604e5fc5f35e919d0e",
+      "git_blob": "d2c4fe6c210d33e2200a1456c7486a44e6706520",
+      "actually_opened_individually": true,
+      "finding": "Echte native Pause mit Dein Zug wartet auf dich./Weiterspielen; Ziehen/Karte legen deaktiviert. Dies ist noch keine Flutter-Rückkehr."
+    },
+    {
+      "file": "selected-originals/nextgen/14_cards_same_flutter_round.png",
+      "bytes": 525779,
+      "sha256": "6c29bf13e6a1d178418b368ce1537fc6e8c74218703910e84c35d20b6c8d6172",
+      "git_blob": "6f72f0d2ae9e35fa003ae5de344570a103ab2d6e",
+      "actually_opened_individually": true,
+      "finding": "Vollständig sichtbarer Flutterdialog Spiel pausiert mit Fortsetzen, Zur Spieleauswahl und Neu starten."
+    },
+    {
+      "file": "selected-originals/nextgen/15_cards_reopened_same_round.png",
+      "bytes": 929069,
+      "sha256": "8b0b382f7ecd92be14fa6555637d04147bbd4b9fd5f5f7119d218ee41bbc811f",
+      "git_blob": "a49a2a1f572fb57479af5b108d2f6681db8ad25c",
+      "actually_opened_individually": true,
+      "finding": "Wiedergeöffneter nativer Tisch mit 10/5 Karten und denselben drei sichtbaren Handkarten sowie grünem Wirbelwind auf der Ablage."
+    },
+    {
+      "file": "selected-originals/nextgen/16_cards_final_flutter_return.png",
+      "bytes": 530250,
+      "sha256": "0520355ab9d7663daeff751a5cad57198be4f510fff54cdbdff9712cc39238f3",
+      "git_blob": "6cc2c874196778659c78f347958f1dc842d2a464",
+      "actually_opened_individually": true,
+      "finding": "Vollständig sichtbarer Flutterdialog Spiel pausiert nach erneuter nativer Rückkehr; kein Ladehinweis."
+    },
+    {
+      "file": "selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "bytes": 2674027,
+      "sha256": "a98ff0758347d551426607d0671b77b7d1b71244c322794068347009f7e06dc6",
+      "git_blob": "b478130fd3a11d6eebd136ad92cdbfadbfb8940a",
+      "actually_opened_individually": true,
+      "finding": "Tatsächlicher Flutter-Ladebildschirm mit Die Spielwelt wird geöffnet/Gleich geht dein Abenteuer los!, korrekt verworfener Übergangsframe; kein positiver Rückkehrbeleg."
+    }
+  ],
+  "warnings_file": "warning-excerpts.json",
+  "limits": [
+    "Diagnostischer Same-APK-Lauf auf genau 4ab/803. Kein Nachweis für c081, 86445 oder eine spätere C4-/Mimik-APK und keine Publikationsfreigabe.",
+    "Ein frisches Test-Kinderprofil; keine Zwei-Kind-, Journal-, Upgrade- oder Altspielstandmigration aus diesem Lauf.",
+    "x86_64-Emulator; kein physisches Fold7, keine GPU-/60-FPS-/Wärme-/Touchlatenzmessung. Gerätemodell nicht mit tatsächlichem Samsunggerät gleichsetzen.",
+    "Vier Kartenfrontphasen prüfen nichtuniforme farbige Vorderseiten anhand unabhängiger Projektion und aktueller Layout-/Zustandsbindung; kein OCR-Beweis sämtlicher Kartenidentitäten.",
+    "Zehn ausgewählte Bilder tatsächlich einzeln gesehen. Keine Sichtprüfung aller ZIP-Bilder oder Behauptung fotorealistischer Materialien: einfache Raumoberflächen und harte/jagged Schatten sichtbar.",
+    "Lokale Sprachpipeline meldet Abschluss; Emulatorlauf ohne hörbaren Audioausgabebeweis. Keine Phonem-, Lippen- oder neue Facialrig-Abnahme.",
+    "Originale Warnungen, vorübergehend fehlende Layout-JSONs und verworfene Ladeframes bleiben erhalten; nur anschließend vollständig akzeptierte Zustände zählen."
+  ]
+}

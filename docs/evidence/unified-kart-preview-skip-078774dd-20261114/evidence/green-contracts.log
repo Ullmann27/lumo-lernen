@@ -1,0 +1,24 @@
+test_exact078_identity_session_hud_and_driving_contracts_are_unchanged (__main__.OriginalGatePreservationTests.test_exact078_identity_session_hud_and_driving_contracts_are_unchanged) ... ok
+test_main_preserves_all_original_pause_save_return_and_learning_checks (__main__.OriginalGatePreservationTests.test_main_preserves_all_original_pause_save_return_and_learning_checks) ... ok
+test_running_gate_only_adds_diagnostic_after_its_original_terminal_condition (__main__.OriginalGatePreservationTests.test_running_gate_only_adds_diagnostic_after_its_original_terminal_condition) ... ok
+test_changed_cue_file_is_rejected_before_input (__main__.PreviewSkipTests.test_changed_cue_file_is_rejected_before_input) ... ok
+test_existing55s_deadline_is_not_restarted_after_slow_race_capture (__main__.PreviewSkipTests.test_existing55s_deadline_is_not_restarted_after_slow_race_capture) ... ok
+test_expired_initial_budget_cannot_sample_or_touch (__main__.PreviewSkipTests.test_expired_initial_budget_cannot_sample_or_touch) ... ok
+test_failed_timeout_capture_preserves_original_clock_failure (__main__.PreviewSkipTests.test_failed_timeout_capture_preserves_original_clock_failure) ... ok
+test_late_after_capture_cannot_report_success (__main__.PreviewSkipTests.test_late_after_capture_cannot_report_success) ... ok
+test_late_ocr_result_cannot_authorize_touch (__main__.PreviewSkipTests.test_late_ocr_result_cannot_authorize_touch) ... ok
+test_late_touch_helper_result_cannot_report_success (__main__.PreviewSkipTests.test_late_touch_helper_result_cannot_report_success) ... ok
+test_legacy_default_sends_no_added_touch_or_ocr (__main__.PreviewSkipTests.test_legacy_default_sends_no_added_touch_or_ocr) ... ok
+test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch (__main__.PreviewSkipTests.test_missing_cue_is_explicitly_not_isolated_and_sends_no_touch) ... ok
+test_one_frame_or_failed_touch_journal_never_reports_success (__main__.PreviewSkipTests.test_one_frame_or_failed_touch_journal_never_reports_success) ... ok
+test_opt_in_skips_actual_observed_cue_before_reporting_start (__main__.PreviewSkipTests.test_opt_in_skips_actual_observed_cue_before_reporting_start) ... ok
+test_partial_or_different_caption_never_authorizes_skip (__main__.PreviewSkipTests.test_partial_or_different_caption_never_authorizes_skip) ... ok
+test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper (__main__.PreviewSkipTests.test_remaining_budget_is_passed_to_unmodified_two_frame_touch_helper) ... ok
+test_running_clock_still_requires_countdown_over_and_full_elapsed_second (__main__.PreviewSkipTests.test_running_clock_still_requires_countdown_over_and_full_elapsed_second) ... ok
+test_timeout_captures_current_frame_after_failure_without_new_state_acceptance (__main__.PreviewSkipTests.test_timeout_captures_current_frame_after_failure_without_new_state_acceptance) ... ok
+test_wrong_foreground_is_rejected_before_input (__main__.PreviewSkipTests.test_wrong_foreground_is_rejected_before_input) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.274s
+
+OK

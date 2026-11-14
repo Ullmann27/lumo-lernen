@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "integrated_at": "2026-11-14T02:19:48.577585+00:00",
+  "checkout": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d",
+  "checkout_git_head_is_not_source_identity": true,
+  "files_verified": 37,
+  "additional_files_applied": [
+    ".github/probes/lumo_studio_surfaces_android_probe.py",
+    "tools/android_qa/tests/test_cards_layout_readiness.py",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+    "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+    "lib/features/games/lumo_cards/lumo_cards_game_controller.dart"
+  ],
+  "additional_modified_existing": 2,
+  "native_pin_version_and_saves_changed": false
+}

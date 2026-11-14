@@ -1,0 +1,19 @@
+{
+  "command": [
+    "godot",
+    "--headless",
+    "--path",
+    "/tmp/lumo-treasure-visibility-acf51/runtime",
+    "--audio-driver",
+    "Dummy",
+    "--rendering-method",
+    "gl_compatibility",
+    "--script",
+    "res://scripts/tests/treasure_title_contrast_regression.gd"
+  ],
+  "exit_code": 1,
+  "seconds": 19.81116366799688,
+  "product_sha256": "36004959166262bb64e81cf33512f57f5a259e9f0072203cafdae649d47ab88f",
+  "test_sha256": "ea6087ef56a96d585382f4228661d753121152aa249c4a5afdc99d2e946941ea",
+  "scope": "New exact toast-versus-touch guard against the first visually rejected candidate, not original acf51"
+}

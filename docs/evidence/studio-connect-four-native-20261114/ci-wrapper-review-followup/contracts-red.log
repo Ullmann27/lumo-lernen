@@ -1,0 +1,116 @@
+test_empty_original_log_cannot_prove_an_error_free_run (test_connect_four_runtime_gate.OriginalLogContracts.test_empty_original_log_cannot_prove_an_error_free_run) ... ERROR
+test_engine_error_is_rejected_without_a_nonzero_exit_code (test_connect_four_runtime_gate.OriginalLogContracts.test_engine_error_is_rejected_without_a_nonzero_exit_code) ... ERROR
+test_render_backend_warning_is_preserved_but_not_an_error (test_connect_four_runtime_gate.OriginalLogContracts.test_render_backend_warning_is_preserved_but_not_an_error) ... ERROR
+test_script_error_is_rejected_even_with_later_success_marker (test_connect_four_runtime_gate.OriginalLogContracts.test_script_error_is_rejected_even_with_later_success_marker) ... ERROR
+test_child_exiting_before_handshake_is_not_success (test_connect_four_runtime_gate.ProcessContracts.test_child_exiting_before_handshake_is_not_success) ... ok
+test_existing_evidence_is_never_overwritten (test_connect_four_runtime_gate.ProcessContracts.test_existing_evidence_is_never_overwritten) ... ok
+test_hung_pair_is_bounded_and_owned_processes_are_terminated (test_connect_four_runtime_gate.ProcessContracts.test_hung_pair_is_bounded_and_owned_processes_are_terminated) ... ok
+test_malformed_session_is_rejected_without_waiting_for_timeout (test_connect_four_runtime_gate.ProcessContracts.test_malformed_session_is_rejected_without_waiting_for_timeout) ... ok
+test_native_failure_is_observed_while_other_process_is_running (test_connect_four_runtime_gate.ProcessContracts.test_native_failure_is_observed_while_other_process_is_running) ... ok
+test_two_actual_successful_processes_are_both_required (test_connect_four_runtime_gate.ProcessContracts.test_two_actual_successful_processes_are_both_required) ... ok
+test_different_round_owner_cannot_be_accepted (test_connect_four_runtime_gate.ResultCounterexamples.test_different_round_owner_cannot_be_accepted) ... ERROR
+test_duplicate_reward_total_cannot_be_accepted (test_connect_four_runtime_gate.ResultCounterexamples.test_duplicate_reward_total_cannot_be_accepted) ... ERROR
+test_matching_final_owners_must_still_equal_original_handshake (test_connect_four_runtime_gate.ResultCounterexamples.test_matching_final_owners_must_still_equal_original_handshake) ... ERROR
+test_nan_target_cannot_be_counted_as_large_enough (test_connect_four_runtime_gate.ResultCounterexamples.test_nan_target_cannot_be_counted_as_large_enough) ... ERROR
+test_positive_labels_cannot_hide_a_missing_exit_ack (test_connect_four_runtime_gate.ResultCounterexamples.test_positive_labels_cannot_hide_a_missing_exit_ack) ... ERROR
+test_changed_executable_mode_is_rejected (test_connect_four_runtime_gate.SourceContracts.test_changed_executable_mode_is_rejected) ... ok
+test_empty_path_scope_cannot_claim_source_binding (test_connect_four_runtime_gate.SourceContracts.test_empty_path_scope_cannot_claim_source_binding) ... ok
+test_exact_tracked_bytes_and_modes_are_bound (test_connect_four_runtime_gate.SourceContracts.test_exact_tracked_bytes_and_modes_are_bound) ... ok
+test_generated_capture_does_not_hide_source_mutation (test_connect_four_runtime_gate.SourceContracts.test_generated_capture_does_not_hide_source_mutation) ... ok
+test_symlink_cannot_substitute_even_identical_source (test_connect_four_runtime_gate.SourceContracts.test_symlink_cannot_substitute_even_identical_source) ... ok
+
+======================================================================
+ERROR: test_empty_original_log_cannot_prove_an_error_free_run (test_connect_four_runtime_gate.OriginalLogContracts.test_empty_original_log_cannot_prove_an_error_free_run)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 212, in test_empty_original_log_cannot_prove_an_error_free_run
+    gate.validate_native_log(path)
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'c4_runtime_gate' has no attribute 'validate_native_log'
+
+======================================================================
+ERROR: test_engine_error_is_rejected_without_a_nonzero_exit_code (test_connect_four_runtime_gate.OriginalLogContracts.test_engine_error_is_rejected_without_a_nonzero_exit_code)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 194, in test_engine_error_is_rejected_without_a_nonzero_exit_code
+    gate.validate_native_log(path)
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'c4_runtime_gate' has no attribute 'validate_native_log'
+
+======================================================================
+ERROR: test_render_backend_warning_is_preserved_but_not_an_error (test_connect_four_runtime_gate.OriginalLogContracts.test_render_backend_warning_is_preserved_but_not_an_error)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 201, in test_render_backend_warning_is_preserved_but_not_an_error
+    result = gate.validate_native_log(path)
+             ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'c4_runtime_gate' has no attribute 'validate_native_log'
+
+======================================================================
+ERROR: test_script_error_is_rejected_even_with_later_success_marker (test_connect_four_runtime_gate.OriginalLogContracts.test_script_error_is_rejected_even_with_later_success_marker)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 187, in test_script_error_is_rejected_even_with_later_success_marker
+    gate.validate_native_log(path)
+    ^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: module 'c4_runtime_gate' has no attribute 'validate_native_log'
+
+======================================================================
+ERROR: test_different_round_owner_cannot_be_accepted (test_connect_four_runtime_gate.ResultCounterexamples.test_different_round_owner_cannot_be_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 167, in test_different_round_owner_cannot_be_accepted
+    self.validate()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 152, in validate
+    return gate.validate_results(self.root, self.session)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_results() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_duplicate_reward_total_cannot_be_accepted (test_connect_four_runtime_gate.ResultCounterexamples.test_duplicate_reward_total_cannot_be_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 172, in test_duplicate_reward_total_cannot_be_accepted
+    self.validate()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 152, in validate
+    return gate.validate_results(self.root, self.session)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_results() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_matching_final_owners_must_still_equal_original_handshake (test_connect_four_runtime_gate.ResultCounterexamples.test_matching_final_owners_must_still_equal_original_handshake)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 178, in test_matching_final_owners_must_still_equal_original_handshake
+    self.validate()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 152, in validate
+    return gate.validate_results(self.root, self.session)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_results() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_nan_target_cannot_be_counted_as_large_enough (test_connect_four_runtime_gate.ResultCounterexamples.test_nan_target_cannot_be_counted_as_large_enough)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 157, in test_nan_target_cannot_be_counted_as_large_enough
+    self.validate()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 152, in validate
+    return gate.validate_results(self.root, self.session)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_results() takes 1 positional argument but 2 were given
+
+======================================================================
+ERROR: test_positive_labels_cannot_hide_a_missing_exit_ack (test_connect_four_runtime_gate.ResultCounterexamples.test_positive_labels_cannot_hide_a_missing_exit_ack)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 162, in test_positive_labels_cannot_hide_a_missing_exit_ack
+    self.validate()
+  File "/workspace/scratch/5987865ae883/qa/studio-c4-gate-integration-86445/host/scripts/tests/test_connect_four_runtime_gate.py", line 152, in validate
+    return gate.validate_results(self.root, self.session)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: validate_results() takes 1 positional argument but 2 were given
+
+----------------------------------------------------------------------
+Ran 20 tests in 0.467s
+
+FAILED (errors=9)

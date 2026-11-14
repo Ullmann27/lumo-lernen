@@ -1,0 +1,166 @@
+{
+  "schema": 1,
+  "scope": "docs_only_current_original_image_review_and_derived_video_review_sheets",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "artifact_id": 14103142984,
+  "archive_sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+  "no_original_media_duplicated": true,
+  "no_source_changes": true,
+  "no_final_receipt_claimed": true,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/selection-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/selection-character_animation.json",
+      "bytes": 5422,
+      "sha256": "c6448513856d377722d6313a91f3358ff64414a5b3df43116d5e086ddd7a4af5",
+      "git_blob_sha": "43deb9c483273776ff451b1cd1dcfc0afabca93c",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/review-character_animation.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/review-character_animation.json",
+      "bytes": 26372,
+      "sha256": "39141d394bee9fa34de20516348f9e06aeaa780eaf629f9758a194b280499dcb",
+      "git_blob_sha": "f92404f3127bcf822e5a43e06e6fe55616218d80",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/decode-result.json",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/decode-result.json",
+      "bytes": 6999,
+      "sha256": "4b8d14320037a665af36a9b7a779fb9015a3a7b21a42d9032a24bce9ce8d43b3",
+      "git_blob_sha": "ffaf4f3ae2b0e674ac6f619c78053fac76657902",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-decode-stderr.log",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-decode-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-001-012.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-001-012.png",
+      "bytes": 213523,
+      "sha256": "b91e675445835e6964afbb2b07478acda0b26362219c6b909a14570c43d23818",
+      "git_blob_sha": "a6f0be7995e4f5deb8f8955abfc06090ed2f579b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-013-024.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-013-024.png",
+      "bytes": 192181,
+      "sha256": "e3518873b86312fc6d716078eff0d5a5412b75b6a0940ce86f7f2de601a72a8d",
+      "git_blob_sha": "10abe8b9c992618cbf1b97b4a6df7865840580b8",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-025-036.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-025-036.png",
+      "bytes": 586807,
+      "sha256": "c393e9d3cab494cedeba83a5909a5c064538503f6aadd2c3c27f387d92944a63",
+      "git_blob_sha": "b47c2a38b263ae81c3c4f57ab318114645b124d9",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-037-048.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-037-048.png",
+      "bytes": 595145,
+      "sha256": "365bfa0671fca7c908e291b94fb0e9a3b32fca76928d1b9f20c076e77d7bfc6a",
+      "git_blob_sha": "2319ff39825caac190bec96079eba100d19b792c",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-049-060.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-049-060.png",
+      "bytes": 601600,
+      "sha256": "32a7bc34496b59e24e88122a436027290759604fff1b448c77569efc8e68205d",
+      "git_blob_sha": "dda192e1c3b713cc13a526609e710eaf972046df",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-061-072.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-061-072.png",
+      "bytes": 602380,
+      "sha256": "75adf0ee389392216e62e52a5efee337cee7d83f0ec65957865151d67e128544",
+      "git_blob_sha": "f072f45a57544f72af348c18b530281f41d69e24",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-073-084.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-073-084.png",
+      "bytes": 572182,
+      "sha256": "d21210120fd5183c8702db3948047902db39d0a52add83d0b94993cc21bde903",
+      "git_blob_sha": "05cc4fe135c10a528be657b9693fe6164f648bbc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-085-096.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-085-096.png",
+      "bytes": 590037,
+      "sha256": "7b81ea81393fc882b8659a1266bf3f6d734cee91894b4a6c5c3e17ef2082f267",
+      "git_blob_sha": "7c7e98b793f3d2fc6dd2bdc506e06c9fec6c0f92",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-097-108.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-097-108.png",
+      "bytes": 588387,
+      "sha256": "fde5e0681e082d098b4fad6a53b1856cc7ea99cd12f14ad0f3699a3ed2346426",
+      "git_blob_sha": "e0cb8c044af8a381527d650521638ff8d5f3598a",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-109-120.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-109-120.png",
+      "bytes": 563626,
+      "sha256": "63d9ccdf60d5e16c4ff3dd2694b388723ff17234c4dfedb0989960644bfa2b4c",
+      "git_blob_sha": "b77f373317c0d8291e99a3c48585933f1ea6edbc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-121-132.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-121-132.png",
+      "bytes": 582743,
+      "sha256": "41546306ac4acc3d84d387f36606fd23012d80a88b787abc3fd3a1094a147152",
+      "git_blob_sha": "1d03894ff802cbf67d447977bfb405f9e0ffafec",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-133-144.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-133-144.png",
+      "bytes": 584249,
+      "sha256": "cfb20a1d796ca2a4ffe77698690023dc11acf22e571e35450821db9950302428",
+      "git_blob_sha": "bfc4029aa33ce40e0eb10cd421f847ee1524732d",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/frames-145-148.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/frames-145-148.png",
+      "bytes": 64066,
+      "sha256": "5dbf1304da95bd07c8721652af1598c97abd8388e222e65cb59605fa205a540f",
+      "git_blob_sha": "46d9cad74f090b0fe9a543af9f8bad3090247cf4",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-frame-015.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-015.png",
+      "bytes": 266542,
+      "sha256": "12c5b12698a3216921d52f7613fba29a1002ac94e664cb19438df9ad0dd61602",
+      "git_blob_sha": "e3aedbda4f0e6d8f429641bca4496271e2277e95",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/full-frame-019.png",
+      "path": "docs/evidence/studio-2020-native-acf51-review-20261114/decoded-face-review-character_animation/full-frame-019.png",
+      "bytes": 266917,
+      "sha256": "ed5e900168c8d35d58a9be4776907a19de8c9bb18548285f24726ae16c3b5b52",
+      "git_blob_sha": "876b6426688950f04f25a2016102871730dbe145",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 19,
+  "total_bytes": 6909178
+}

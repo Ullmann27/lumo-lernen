@@ -1,0 +1,14 @@
+{
+  "time_utc": "2026-11-14T05:41:59.489509+00:00",
+  "scope": "Relocate an old temporary downloaded Flutter artifact onto the separate temporary filesystem; all archive bytes and selected evidence retained. No product/source/image/log changes.",
+  "source": "/workspace/scratch/5987865ae883/qa/studio-full-flutter-e3d161cb.zip",
+  "target": "/tmp/lumo-studio-temporary-archive-relocation-20261114/studio-full-flutter-e3d161cb.zip",
+  "bytes": 333193668,
+  "sha256": "5f072ab9ab1d46a38106acfa81d5153ca41d77934e025cecf66e82bd4dd04fd8",
+  "before_workspace_free": 82685952,
+  "before_tmp_free": 1635098624,
+  "byte_identical_destination_verified": true,
+  "source_removed_after_verified_copy": true,
+  "after_workspace_free": 415883264,
+  "after_tmp_free": 1301901312
+}

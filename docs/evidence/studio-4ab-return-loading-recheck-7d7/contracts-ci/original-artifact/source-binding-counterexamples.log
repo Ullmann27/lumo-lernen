@@ -1,0 +1,77 @@
+test_both_bound_clis_use_absolute_qa_paths_and_product_cwd (test_studio_4ab_recheck.ExecutionBoundaryTests.test_both_bound_clis_use_absolute_qa_paths_and_product_cwd) ... ok
+test_declared_artifact_path_cannot_create_a_source_directory_exception (test_studio_4ab_recheck.ExecutionBoundaryTests.test_declared_artifact_path_cannot_create_a_source_directory_exception) ... Only the workflow's explicit, separate product/artifact/output paths are accepted
+ok
+test_failed_first_original_tour_never_invokes_cards_tour (test_studio_4ab_recheck.ExecutionBoundaryTests.test_failed_first_original_tour_never_invokes_cards_tour) ... ok
+test_failed_tour_still_records_actual_post_binding (test_studio_4ab_recheck.ExecutionBoundaryTests.test_failed_tour_still_records_actual_post_binding) ... {
+  "status": "FAIL",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "commands": [],
+  "expected_qa_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_api": 37,
+  "diagnostic_github_run": "43552809452",
+  "diagnostic_github_attempt": "1",
+  "error": "RuntimeError: original tour failed",
+  "finished_at": "2026-11-14T03:41:15.086852+00:00",
+  "before_binding_verified": true,
+  "after_binding_matches": true
+}
+ok
+test_post_execution_identity_change_cannot_pass (test_studio_4ab_recheck.ExecutionBoundaryTests.test_post_execution_identity_change_cannot_pass) ... {
+  "status": "FAIL",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "commands": [],
+  "expected_qa_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_api": 37,
+  "diagnostic_github_run": "43552809452",
+  "diagnostic_github_attempt": "1",
+  "error": "RuntimeError: Sources, original metadata or binary bytes changed during the tour",
+  "finished_at": "2026-11-14T03:41:15.089409+00:00",
+  "before_binding_verified": true,
+  "after_binding_matches": false
+}
+ok
+test_stale_reports_and_source_output_do_not_trigger_android (test_studio_4ab_recheck.ExecutionBoundaryTests.test_stale_reports_and_source_output_do_not_trigger_android) ... {
+  "status": "FAIL",
+  "diagnostic_only": true,
+  "build_or_publish_performed": false,
+  "physical_fold7_performance_measured": false,
+  "commands": [],
+  "expected_qa_source": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "requested_api": 37,
+  "diagnostic_github_run": "43552809452",
+  "diagnostic_github_attempt": "1",
+  "error": "RuntimeError: Old runtime reports cannot be reused",
+  "finished_at": "2026-11-14T03:41:15.091704+00:00",
+  "before_binding_verified": true,
+  "after_binding_matches": false
+}
+Original diagnostic result already exists; use a fresh output
+Only the workflow's explicit, separate product/artifact/output paths are accepted
+ok
+test_assume_unchanged_cannot_hide_actual_dirty_source (test_studio_4ab_recheck.GitBindingTests.test_assume_unchanged_cannot_hide_actual_dirty_source) ... ok
+test_committed_mode_change_is_not_a_qa_exception (test_studio_4ab_recheck.GitBindingTests.test_committed_mode_change_is_not_a_qa_exception) ... ok
+test_committed_reviewed_paths_cannot_authorize_wrong_source_or_fixture_bytes (test_studio_4ab_recheck.GitBindingTests.test_committed_reviewed_paths_cannot_authorize_wrong_source_or_fixture_bytes) ... ok
+test_exact_twenty_six_file_delta_and_real_worktree_pass (test_studio_4ab_recheck.GitBindingTests.test_exact_twenty_six_file_delta_and_real_worktree_pass) ... ok
+test_output_growth_does_not_change_bound_source_identity (test_studio_4ab_recheck.GitBindingTests.test_output_growth_does_not_change_bound_source_identity) ... ok
+test_product_change_outside_allowlist_is_rejected (test_studio_4ab_recheck.GitBindingTests.test_product_change_outside_allowlist_is_rejected) ... ok
+test_wrong_candidate_head_and_undeclared_source_are_rejected (test_studio_4ab_recheck.GitBindingTests.test_wrong_candidate_head_and_undeclared_source_are_rejected) ... ok
+test_changed_pck_rejected_even_with_new_matching_outer_apk_digest (test_studio_4ab_recheck.MetadataAndBinaryTests.test_changed_pck_rejected_even_with_new_matching_outer_apk_digest) ... ok
+test_failed_later_original_gates_do_not_disguise_successful_builder (test_studio_4ab_recheck.MetadataAndBinaryTests.test_failed_later_original_gates_do_not_disguise_successful_builder) ... ok
+test_foreign_artifact_run_attempt_and_failed_build_are_rejected (test_studio_4ab_recheck.MetadataAndBinaryTests.test_foreign_artifact_run_attempt_and_failed_build_are_rejected) ... ok
+test_foreign_provenance_signature_and_duplicate_sums_are_rejected (test_studio_4ab_recheck.MetadataAndBinaryTests.test_foreign_provenance_signature_and_duplicate_sums_are_rejected) ... ok
+test_real_small_zip_bytes_are_measured_and_later_tampering_fails (test_studio_4ab_recheck.MetadataAndBinaryTests.test_real_small_zip_bytes_are_measured_and_later_tampering_fails) ... ok
+
+----------------------------------------------------------------------
+Ran 18 tests in 1.449s
+
+OK

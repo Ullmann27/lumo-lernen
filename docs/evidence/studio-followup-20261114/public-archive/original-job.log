@@ -1,0 +1,362 @@
+﻿2026-11-14T02:07:15.8108694Z Current runner version: '2.338.2'
+2026-11-14T02:07:15.8133595Z ##[group]Runner Image Provisioner
+2026-11-14T02:07:15.8134426Z Hosted Compute Agent
+2026-11-14T02:07:15.8135415Z Version: 20261103.629
+2026-11-14T02:07:15.8136085Z Commit: 15dbd9ccb5dbf34fae002b6ed1a2670f52df37bc
+2026-11-14T02:07:15.8136773Z Build Date: 2026-11-03T17:26:59Z
+2026-11-14T02:07:15.8137426Z Worker ID: {777dd8e7-e98b-46ef-8484-6c9d25b3a697}
+2026-11-14T02:07:15.8138133Z Region: centralus
+2026-11-14T02:07:15.8138672Z Cloud: Azure
+2026-11-14T02:07:15.8139372Z ##[endgroup]
+2026-11-14T02:07:15.8140676Z ##[group]Operating System
+2026-11-14T02:07:15.8141257Z Ubuntu
+2026-11-14T02:07:15.8141730Z 24.04.5
+2026-11-14T02:07:15.8142190Z LTS
+2026-11-14T02:07:15.8142695Z ##[endgroup]
+2026-11-14T02:07:15.8143270Z ##[group]Runner Image
+2026-11-14T02:07:15.8143837Z Image: ubuntu-24.04
+2026-11-14T02:07:15.8144358Z Version: 20261111.370.1
+2026-11-14T02:07:15.8145554Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261111.370/images/ubuntu/Ubuntu2404-Readme.md
+2026-11-14T02:07:15.8146993Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261111.370
+2026-11-14T02:07:15.8147889Z ##[endgroup]
+2026-11-14T02:07:15.8149079Z ##[group]GITHUB_TOKEN Permissions
+2026-11-14T02:07:15.8151314Z Actions: read
+2026-11-14T02:07:15.8151891Z Contents: write
+2026-11-14T02:07:15.8152396Z Metadata: read
+2026-11-14T02:07:15.8152941Z ##[endgroup]
+2026-11-14T02:07:15.8154832Z Secret source: Actions
+2026-11-14T02:07:15.8155691Z Cache mode: write
+2026-11-14T02:07:15.8156585Z Prepare workflow directory
+2026-11-14T02:07:15.8673970Z Prepare all required actions
+2026-11-14T02:07:15.8722004Z Getting action download info
+2026-11-14T02:07:16.1353925Z Download action repository 'actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-11-14T02:07:16.4191345Z Complete job name: archive-failed-evidence
+2026-11-14T02:07:16.4882953Z ##[group]Run set -euo pipefail
+2026-11-14T02:07:16.4883860Z [36;1mset -euo pipefail[0m
+2026-11-14T02:07:16.4884442Z [36;1mmkdir -p evidence[0m
+2026-11-14T02:07:16.4885104Z [36;1mgh api "repos/$REPOSITORY" > evidence/repository.json[0m
+2026-11-14T02:07:16.4886499Z [36;1mgh api "repos/$REPOSITORY/actions/runs/$SOURCE_RUN_ID/attempts/1" > evidence/source-run.json[0m
+2026-11-14T02:07:16.4887944Z [36;1mgh api --paginate --slurp "repos/$REPOSITORY/actions/runs/$SOURCE_RUN_ID/attempts/1/jobs?per_page=100" > evidence/source-jobs-pages.json[0m
+2026-11-14T02:07:16.4889725Z [36;1mgh api "repos/$REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID" > evidence/source-artifact.json[0m
+2026-11-14T02:07:16.4890686Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T02:07:16.4891244Z [36;1mimport json, os, re[0m
+2026-11-14T02:07:16.4891812Z [36;1mfrom pathlib import Path[0m
+2026-11-14T02:07:16.4892355Z [36;1m[0m
+2026-11-14T02:07:16.4892825Z [36;1mdef require(condition, message):[0m
+2026-11-14T02:07:16.4893560Z [36;1m    if not condition:[0m
+2026-11-14T02:07:16.4894151Z [36;1m        raise RuntimeError(message)[0m
+2026-11-14T02:07:16.4894801Z [36;1m[0m
+2026-11-14T02:07:16.4895382Z [36;1mdef validate_metadata(repository, run, pages, artifact):[0m
+2026-11-14T02:07:16.4896193Z [36;1m    host = '4ab96666f954baf258422d6ed277fc297b7ddeef'[0m
+2026-11-14T02:07:16.4897148Z [36;1m    require(repository['id'] == 1222433959 and repository['full_name'] == 'Ullmann27/lumo-lernen'[0m
+2026-11-14T02:07:16.4898251Z [36;1m            and repository['private'] is False, 'Wrong or non-public archive repository')[0m
+2026-11-14T02:07:16.4899608Z [36;1m    require(run['id'] == 43530667812 and run['run_attempt'] == 1 and run['head_sha'] == host,[0m
+2026-11-14T02:07:16.4900528Z [36;1m            'Wrong original run, attempt or product source')[0m
+2026-11-14T02:07:16.4901509Z [36;1m    require(run['repository']['id'] == 1222433959 and run['head_repository']['id'] == 1222433959,[0m
+2026-11-14T02:07:16.4902418Z [36;1m            'Foreign original repository')[0m
+2026-11-14T02:07:16.4903423Z [36;1m    require(run['path'].split('@')[0] == '.github/workflows/lumo-studio-2019.yml'[0m
+2026-11-14T02:07:16.4904434Z [36;1m            and run['status'] == 'completed' and run['conclusion'] == 'failure',[0m
+2026-11-14T02:07:16.4905339Z [36;1m            'The original failed Studio run must remain explicitly failed')[0m
+2026-11-14T02:07:16.4906307Z [36;1m    jobs = [job for page in pages for job in page['jobs'] if job['id'] == 132269951369][0m
+2026-11-14T02:07:16.4907341Z [36;1m    require(len(jobs) == 1, 'Missing or ambiguous original Creative job')[0m
+2026-11-14T02:07:16.4908101Z [36;1m    job = jobs[0][0m
+2026-11-14T02:07:16.4909010Z [36;1m    require(job['run_id'] == 43530667812 and job['run_attempt'] == 1 and job['head_sha'] == host,[0m
+2026-11-14T02:07:16.4909968Z [36;1m            'Foreign Creative job source or attempt')[0m
+2026-11-14T02:07:16.4910802Z [36;1m    require(job['name'] == 'Android API 35 additional creative gameplay'[0m
+2026-11-14T02:07:16.4911960Z [36;1m            and job['status'] == 'completed' and job['conclusion'] == 'failure',[0m
+2026-11-14T02:07:16.4912795Z [36;1m            'Expected the actual failed Creative job')[0m
+2026-11-14T02:07:16.4913802Z [36;1m    require(artifact['id'] == 14092241868 and artifact['name'] == 'lumo-studio-2019-creative-android'[0m
+2026-11-14T02:07:16.4915014Z [36;1m            and artifact['expired'] is False and artifact['size_in_bytes'] == 526570745,[0m
+2026-11-14T02:07:16.4915932Z [36;1m            'Wrong, expired or resized original artifact')[0m
+2026-11-14T02:07:16.4917025Z [36;1m    require(artifact['digest'] == 'sha256:bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40',[0m
+2026-11-14T02:07:16.4918091Z [36;1m            'Original GitHub artifact digest changed')[0m
+2026-11-14T02:07:16.4918843Z [36;1m    provenance = artifact['workflow_run'][0m
+2026-11-14T02:07:16.4919878Z [36;1m    require(provenance['id'] == 43530667812 and provenance['head_sha'] == host[0m
+2026-11-14T02:07:16.4920998Z [36;1m            and provenance['repository_id'] == 1222433959 and provenance['head_repository_id'] == 1222433959,[0m
+2026-11-14T02:07:16.4922273Z [36;1m            'Foreign artifact run, repository or source')[0m
+2026-11-14T02:07:16.4922954Z [36;1m    return job[0m
+2026-11-14T02:07:16.4923485Z [36;1m[0m
+2026-11-14T02:07:16.4924002Z [36;1mdirectory = Path('evidence')[0m
+2026-11-14T02:07:16.4924760Z [36;1mload = lambda name: json.loads((directory / name).read_text())[0m
+2026-11-14T02:07:16.4925714Z [36;1mjob = validate_metadata(load('repository.json'), load('source-run.json'),[0m
+2026-11-14T02:07:16.4926709Z [36;1m                        load('source-jobs-pages.json'), load('source-artifact.json'))[0m
+2026-11-14T02:07:16.4927724Z [36;1mrequire(re.fullmatch('[a-f0-9]{40}', os.environ['ARCHIVER_SOURCE']) is not None,[0m
+2026-11-14T02:07:16.4928608Z [36;1m        'Missing actual archival workflow source')[0m
+2026-11-14T02:07:16.4929483Z [36;1mbinding = {[0m
+2026-11-14T02:07:16.4930340Z [36;1m    'schema': 1, 'purpose': 'FAILED TEST EVIDENCE; NOT AN APK; NOT A RELEASE APPROVAL',[0m
+2026-11-14T02:07:16.4931376Z [36;1m    'original_conclusion': 'failure', 'repository': 'Ullmann27/lumo-lernen',[0m
+2026-11-14T02:07:16.4932311Z [36;1m    'host_source': '4ab96666f954baf258422d6ed277fc297b7ddeef',[0m
+2026-11-14T02:07:16.4933167Z [36;1m    'native_source': '803e7a626ea6ef0aeeda9c37010e844033d3a8e3',[0m
+2026-11-14T02:07:16.4934126Z [36;1m    'original_run': 43530667812, 'original_attempt': 1, 'original_job': job['id'],[0m
+2026-11-14T02:07:16.4935073Z [36;1m    'original_artifact': 14092241868, 'bytes': 526570745,[0m
+2026-11-14T02:07:16.4936034Z [36;1m    'sha256': 'bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40',[0m
+2026-11-14T02:07:16.4937004Z [36;1m    'archive_workflow_source': os.environ['ARCHIVER_SOURCE'],[0m
+2026-11-14T02:07:16.4937829Z [36;1m    'archive_workflow_run': int(os.environ['ARCHIVER_RUN']),[0m
+2026-11-14T02:07:16.4938714Z [36;1m    'build_or_android_rerun_performed': False, 'acceptance_granted': False,[0m
+2026-11-14T02:07:16.4939818Z [36;1m}[0m
+2026-11-14T02:07:16.4940536Z [36;1m(directory / 'archive-binding.json').write_text(json.dumps(binding, indent=2) + '\n')[0m
+2026-11-14T02:07:16.4941514Z [36;1m(directory / 'creative-failed-evidence.zip.sha256').write_text([0m
+2026-11-14T02:07:16.4942400Z [36;1m    binding['sha256'] + '  creative-failed-evidence.zip\n')[0m
+2026-11-14T02:07:16.4943091Z [36;1mPY[0m
+2026-11-14T02:07:16.4961565Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T02:07:16.4962544Z env:
+2026-11-14T02:07:16.4966070Z   GH_TOKEN: ***
+2026-11-14T02:07:16.4966567Z   REPOSITORY: Ullmann27/lumo-lernen
+2026-11-14T02:07:16.4967297Z   PRODUCT_SHA: 4ab96666f954baf258422d6ed277fc297b7ddeef
+2026-11-14T02:07:16.4968006Z   NATIVE_SHA: 803e7a626ea6ef0aeeda9c37010e844033d3a8e3
+2026-11-14T02:07:16.4968662Z   SOURCE_RUN_ID: 43530667812
+2026-11-14T02:07:16.4969387Z   SOURCE_ARTIFACT_ID: 14092241868
+2026-11-14T02:07:16.4970140Z   ARCHIVE_SHA256: bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40
+2026-11-14T02:07:16.4971349Z   ARCHIVE_TAG: studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-14T02:07:16.4972364Z   ARCHIVER_SOURCE: 995e5eebf789f667920a5027919db27ea1d2dcfc
+2026-11-14T02:07:16.4973101Z   ARCHIVER_RUN: 43544492259
+2026-11-14T02:07:16.4973607Z ##[endgroup]
+2026-11-14T02:07:18.3485018Z ##[group]Run set -euo pipefail
+2026-11-14T02:07:18.3486690Z [36;1mset -euo pipefail[0m
+2026-11-14T02:07:18.3489582Z [36;1mgh api "repos/$REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID/zip" > creative-failed-evidence.zip[0m
+2026-11-14T02:07:18.3492782Z [36;1msha256sum -c evidence/creative-failed-evidence.zip.sha256[0m
+2026-11-14T02:07:18.3494906Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T02:07:18.3496358Z [36;1mimport json, zipfile[0m
+2026-11-14T02:07:18.3497962Z [36;1mfrom pathlib import Path, PurePosixPath[0m
+2026-11-14T02:07:18.3500147Z [36;1mpath = Path('creative-failed-evidence.zip')[0m
+2026-11-14T02:07:18.3502481Z [36;1massert path.stat().st_size == 526570745, 'Original ZIP byte count changed'[0m
+2026-11-14T02:07:18.3504689Z [36;1mwith zipfile.ZipFile(path) as archive:[0m
+2026-11-14T02:07:18.3506314Z [36;1m    names = archive.namelist()[0m
+2026-11-14T02:07:18.3508299Z [36;1m    assert len(names) == len(set(names)), 'Duplicate original member paths'[0m
+2026-11-14T02:07:18.3511509Z [36;1m    assert all(not PurePosixPath(name).is_absolute() and '..' not in PurePosixPath(name).parts for name in names)[0m
+2026-11-14T02:07:18.3514902Z [36;1m    assert not any(name.lower().endswith(('.apk', '.aab', '.apks')) for name in names), 'Application package found'[0m
+2026-11-14T02:07:18.3517781Z [36;1m    assert archive.testzip() is None, 'Original member CRC failure'[0m
+2026-11-14T02:07:18.3519973Z [36;1m    host = '4ab96666f954baf258422d6ed277fc297b7ddeef'[0m
+2026-11-14T02:07:18.3521846Z [36;1m    native = '803e7a626ea6ef0aeeda9c37010e844033d3a8e3'[0m
+2026-11-14T02:07:18.3524565Z [36;1m    for name, expected in [('apk-source-sha.txt', host), ('probe-source-sha.txt', host), ('native-source-sha.txt', native)]:[0m
+2026-11-14T02:07:18.3527824Z [36;1m        assert archive.read(name).decode().strip() == expected, 'Original source stamp mismatch'[0m
+2026-11-14T02:07:18.3530598Z [36;1m    result = json.loads(archive.read('tour/creative-result.json'))[0m
+2026-11-14T02:07:18.3533242Z [36;1m    assert result['host_source'] == result['probe_source'] == host and result['native_source'] == native[0m
+2026-11-14T02:07:18.3536049Z [36;1m    assert result['status'] == 'FAIL', 'Original failed result may not be relabelled'[0m
+2026-11-14T02:07:18.3538479Z [36;1mPath('evidence/zip-verification.json').write_text(json.dumps({[0m
+2026-11-14T02:07:18.3540995Z [36;1m    'original_zip_bytes': path.stat().st_size, 'members': len(names),[0m
+2026-11-14T02:07:18.3543154Z [36;1m    'all_member_crc': 'PASS', 'source_stamps_match': True,[0m
+2026-11-14T02:07:18.3545536Z [36;1m    'application_package_members': 0, 'creative_result': 'FAIL', 'archive_repacked': False,[0m
+2026-11-14T02:07:18.3547864Z [36;1m}, indent=2) + '\n')[0m
+2026-11-14T02:07:18.3549315Z [36;1mPY[0m
+2026-11-14T02:07:18.3565567Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T02:07:18.3567255Z env:
+2026-11-14T02:07:18.3577434Z   GH_TOKEN: ***
+2026-11-14T02:07:18.3578690Z   REPOSITORY: Ullmann27/lumo-lernen
+2026-11-14T02:07:18.3580726Z   PRODUCT_SHA: 4ab96666f954baf258422d6ed277fc297b7ddeef
+2026-11-14T02:07:18.3582497Z   NATIVE_SHA: 803e7a626ea6ef0aeeda9c37010e844033d3a8e3
+2026-11-14T02:07:18.3584065Z   SOURCE_RUN_ID: 43530667812
+2026-11-14T02:07:18.3585331Z   SOURCE_ARTIFACT_ID: 14092241868
+2026-11-14T02:07:18.3587248Z   ARCHIVE_SHA256: bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40
+2026-11-14T02:07:18.3590491Z   ARCHIVE_TAG: studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-14T02:07:18.3593222Z   ARCHIVER_SOURCE: 995e5eebf789f667920a5027919db27ea1d2dcfc
+2026-11-14T02:07:18.3594890Z   ARCHIVER_RUN: 43544492259
+2026-11-14T02:07:18.3596096Z ##[endgroup]
+2026-11-14T02:07:40.9418322Z creative-failed-evidence.zip: OK
+2026-11-14T02:07:42.1789730Z ##[group]Run set -euo pipefail
+2026-11-14T02:07:42.1790281Z [36;1mset -euo pipefail[0m
+2026-11-14T02:07:42.1790886Z [36;1mgh api "repos/$REPOSITORY/git/matching-refs/tags/$ARCHIVE_TAG" > evidence/refs-before.json[0m
+2026-11-14T02:07:42.1791637Z [36;1mgh api --paginate --slurp "repos/$REPOSITORY/releases?per_page=100" > evidence/releases-before.json[0m
+2026-11-14T02:07:42.1792221Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T02:07:42.1792595Z [36;1mimport json, os[0m
+2026-11-14T02:07:42.1792951Z [36;1mfrom pathlib import Path[0m
+2026-11-14T02:07:42.1793322Z [36;1m[0m
+2026-11-14T02:07:42.1793684Z [36;1mdef archive_mode(refs, pages):[0m
+2026-11-14T02:07:42.1794321Z [36;1m    tag = 'studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868'[0m
+2026-11-14T02:07:42.1795018Z [36;1m    matching_refs = [ref for ref in refs if ref['ref'] == 'refs/tags/' + tag][0m
+2026-11-14T02:07:42.1795769Z [36;1m    releases = [release for page in pages for release in page if release['tag_name'] == tag][0m
+2026-11-14T02:07:42.1796334Z [36;1m    if not matching_refs and not releases:[0m
+2026-11-14T02:07:42.1796760Z [36;1m        return 'create'[0m
+2026-11-14T02:07:42.1797286Z [36;1m    assert len(matching_refs) == len(releases) == 1, 'Partial or ambiguous archive exists; preserve it'[0m
+2026-11-14T02:07:42.1797999Z [36;1m    assert matching_refs[0]['object']['type'] == 'commit' and matching_refs[0]['object']['sha'] == \[0m
+2026-11-14T02:07:42.1798751Z [36;1m        '4ab96666f954baf258422d6ed277fc297b7ddeef', 'Existing tag belongs to another source; do not replace it'[0m
+2026-11-14T02:07:42.1799650Z [36;1m    release = releases[0][0m
+2026-11-14T02:07:42.1800244Z [36;1m    assert release['draft'] is False and release['prerelease'] is True, 'Existing release is not the evidence prerelease'[0m
+2026-11-14T02:07:42.1801000Z [36;1m    expected = {'creative-failed-evidence.zip', 'creative-failed-evidence.zip.sha256',[0m
+2026-11-14T02:07:42.1801631Z [36;1m                'source-artifact.json', 'archive-binding.json'}[0m
+2026-11-14T02:07:42.1802281Z [36;1m    assert len(release['assets']) == len(expected) and {item['name'] for item in release['assets']} == expected[0m
+2026-11-14T02:07:42.1803109Z [36;1m    assert all(item['state'] == 'uploaded' for item in release['assets']), 'Incomplete assets; never fill or overwrite them'[0m
+2026-11-14T02:07:42.1803861Z [36;1m    archive = next(item for item in release['assets'] if item['name'] == 'creative-failed-evidence.zip')[0m
+2026-11-14T02:07:42.1804423Z [36;1m    assert archive['size'] == 526570745[0m
+2026-11-14T02:07:42.1804881Z [36;1m    if archive.get('digest') is not None:[0m
+2026-11-14T02:07:42.1805507Z [36;1m        assert archive['digest'] == 'sha256:bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40'[0m
+2026-11-14T02:07:42.1806308Z [36;1m    return 'verify-existing'[0m
+2026-11-14T02:07:42.1806723Z [36;1m[0m
+2026-11-14T02:07:42.1807108Z [36;1mdirectory = Path('evidence')[0m
+2026-11-14T02:07:42.1807667Z [36;1mmode = archive_mode(json.loads((directory / 'refs-before.json').read_text()),[0m
+2026-11-14T02:07:42.1808264Z [36;1m                    json.loads((directory / 'releases-before.json').read_text()))[0m
+2026-11-14T02:07:42.1808812Z [36;1m(directory / 'archive-mode.txt').write_text(mode + '\n')[0m
+2026-11-14T02:07:42.1809557Z [36;1m(directory / 'archive-notes.md').write_text([0m
+2026-11-14T02:07:42.1810094Z [36;1m    'FAILED TEST EVIDENCE — NOT AN APK — NOT A RELEASE APPROVAL\n\n'[0m
+2026-11-14T02:07:42.1811149Z [36;1m    'This is the unmodified original ZIP of failed Creative job 132269951369, '[0m
+2026-11-14T02:07:42.1811747Z [36;1m    'run 43530667812, attempt 1. Its original failures remain failures.\n\n'[0m
+2026-11-14T02:07:42.1812324Z [36;1m    'Host source: `4ab96666f954baf258422d6ed277fc297b7ddeef`\n\n'[0m
+2026-11-14T02:07:42.1812895Z [36;1m    'Native source: `803e7a626ea6ef0aeeda9c37010e844033d3a8e3`\n\n'[0m
+2026-11-14T02:07:42.1813570Z [36;1m    'Original artifact: 14092241868; 526,570,745 bytes; SHA256 '[0m
+2026-11-14T02:07:42.1814172Z [36;1m    '`bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40`.\n\n'[0m
+2026-11-14T02:07:42.1814870Z [36;1m    'Original run: https://github.com/Ullmann27/lumo-lernen/actions/runs/43530667812\n\n'[0m
+2026-11-14T02:07:42.1815542Z [36;1m    'This archive does not build or install an app, rerun gameplay, grant acceptance, '[0m
+2026-11-14T02:07:42.1816194Z [36;1m    'or modify Main. This workflow never replaces an existing tag, release, or asset. '[0m
+2026-11-14T02:07:42.1816858Z [36;1m    'GitHub platform immutability is recorded separately from this no-overwrite policy.\n')[0m
+2026-11-14T02:07:42.1817417Z [36;1mPY[0m
+2026-11-14T02:07:42.1817809Z [36;1mif [ "$(cat evidence/archive-mode.txt)" = create ]; then[0m
+2026-11-14T02:07:42.1818329Z [36;1m  gh release create "$ARCHIVE_TAG" creative-failed-evidence.zip \[0m
+2026-11-14T02:07:42.1819284Z [36;1m    evidence/creative-failed-evidence.zip.sha256 evidence/source-artifact.json evidence/archive-binding.json \[0m
+2026-11-14T02:07:42.1819967Z [36;1m    --repo "$REPOSITORY" --target "$PRODUCT_SHA" \[0m
+2026-11-14T02:07:42.1820560Z [36;1m    --title "Failed Studio Creative original evidence — artifact 14092241868" \[0m
+2026-11-14T02:07:42.1821160Z [36;1m    --notes-file evidence/archive-notes.md --prerelease --latest=false[0m
+2026-11-14T02:07:42.1821608Z [36;1mfi[0m
+2026-11-14T02:07:42.1836050Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T02:07:42.1836556Z env:
+2026-11-14T02:07:42.1839139Z   GH_TOKEN: ***
+2026-11-14T02:07:42.1839531Z   REPOSITORY: Ullmann27/lumo-lernen
+2026-11-14T02:07:42.1839972Z   PRODUCT_SHA: 4ab96666f954baf258422d6ed277fc297b7ddeef
+2026-11-14T02:07:42.1840462Z   NATIVE_SHA: 803e7a626ea6ef0aeeda9c37010e844033d3a8e3
+2026-11-14T02:07:42.1840925Z   SOURCE_RUN_ID: 43530667812
+2026-11-14T02:07:42.1841288Z   SOURCE_ARTIFACT_ID: 14092241868
+2026-11-14T02:07:42.1841764Z   ARCHIVE_SHA256: bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40
+2026-11-14T02:07:42.1842530Z   ARCHIVE_TAG: studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-14T02:07:42.1843186Z   ARCHIVER_SOURCE: 995e5eebf789f667920a5027919db27ea1d2dcfc
+2026-11-14T02:07:42.1843633Z   ARCHIVER_RUN: 43544492259
+2026-11-14T02:07:42.1844001Z ##[endgroup]
+2026-11-14T02:08:01.7748545Z https://github.com/Ullmann27/lumo-lernen/releases/tag/studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-14T02:08:01.7800747Z ##[group]Run set -euo pipefail
+2026-11-14T02:08:01.7801226Z [36;1mset -euo pipefail[0m
+2026-11-14T02:08:01.7801752Z [36;1mgh api "repos/$REPOSITORY/releases/tags/$ARCHIVE_TAG" > evidence/release-after.json[0m
+2026-11-14T02:08:01.7802384Z [36;1mgh api "repos/$REPOSITORY/git/matching-refs/tags/$ARCHIVE_TAG" > evidence/refs-after.json[0m
+2026-11-14T02:08:01.7803207Z [36;1mpublic="https://github.com/$REPOSITORY/releases/download/$ARCHIVE_TAG"[0m
+2026-11-14T02:08:01.7803887Z [36;1mcurl --disable --fail --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 300 \[0m
+2026-11-14T02:08:01.7804545Z [36;1m  "$public/creative-failed-evidence.zip" --output public-creative-failed-evidence.zip[0m
+2026-11-14T02:08:01.7805229Z [36;1mcmp -- creative-failed-evidence.zip public-creative-failed-evidence.zip[0m
+2026-11-14T02:08:01.7805859Z [36;1mfor name in creative-failed-evidence.zip.sha256 source-artifact.json archive-binding.json; do[0m
+2026-11-14T02:08:01.7806653Z [36;1m  curl --disable --fail --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 60 \[0m
+2026-11-14T02:08:01.7807195Z [36;1m    "$public/$name" --output "evidence/public-$name"[0m
+2026-11-14T02:08:01.7807593Z [36;1mdone[0m
+2026-11-14T02:08:01.7807889Z [36;1mpython3 - <<'PY'[0m
+2026-11-14T02:08:01.7808229Z [36;1mimport hashlib, json, os[0m
+2026-11-14T02:08:01.7808587Z [36;1mfrom pathlib import Path[0m
+2026-11-14T02:08:01.7808914Z [36;1mdirectory = Path('evidence')[0m
+2026-11-14T02:08:01.7809513Z [36;1mload = lambda name: json.loads((directory / name).read_text())[0m
+2026-11-14T02:08:01.7809963Z [36;1mrelease = load('release-after.json')[0m
+2026-11-14T02:08:01.7810524Z [36;1massert release['tag_name'] == os.environ['ARCHIVE_TAG'] and release['draft'] is False and release['prerelease'] is True[0m
+2026-11-14T02:08:01.7811248Z [36;1mrefs = [ref for ref in load('refs-after.json') if ref['ref'] == 'refs/tags/' + os.environ['ARCHIVE_TAG']][0m
+2026-11-14T02:08:01.7811976Z [36;1massert len(refs) == 1 and refs[0]['object']['type'] == 'commit' and refs[0]['object']['sha'] == os.environ['PRODUCT_SHA'][0m
+2026-11-14T02:08:01.7812563Z [36;1martifact = load('public-source-artifact.json')[0m
+2026-11-14T02:08:01.7813058Z [36;1massert artifact['id'] == 14092241868 and artifact['size_in_bytes'] == 526570745[0m
+2026-11-14T02:08:01.7813592Z [36;1massert artifact['digest'] == 'sha256:' + os.environ['ARCHIVE_SHA256'][0m
+2026-11-14T02:08:01.7814241Z [36;1massert artifact['workflow_run']['id'] == 43530667812 and artifact['workflow_run']['head_sha'] == os.environ['PRODUCT_SHA'][0m
+2026-11-14T02:08:01.7814862Z [36;1mbinding = load('public-archive-binding.json')[0m
+2026-11-14T02:08:01.7815451Z [36;1massert binding['host_source'] == os.environ['PRODUCT_SHA'] and binding['native_source'] == os.environ['NATIVE_SHA'][0m
+2026-11-14T02:08:01.7816132Z [36;1massert binding['original_artifact'] == 14092241868 and binding['original_run'] == 43530667812[0m
+2026-11-14T02:08:01.7816732Z [36;1massert binding['original_job'] == 132269951369 and binding['original_attempt'] == 1[0m
+2026-11-14T02:08:01.7817359Z [36;1massert binding['original_conclusion'] == 'failure' and binding['acceptance_granted'] is False[0m
+2026-11-14T02:08:01.7817905Z [36;1massert binding['build_or_android_rerun_performed'] is False[0m
+2026-11-14T02:08:01.7818502Z [36;1massert binding['bytes'] == 526570745 and binding['sha256'] == os.environ['ARCHIVE_SHA256'][0m
+2026-11-14T02:08:01.7819669Z [36;1massert (directory / 'public-creative-failed-evidence.zip.sha256').read_bytes() == (directory / 'creative-failed-evidence.zip.sha256').read_bytes()[0m
+2026-11-14T02:08:01.7820392Z [36;1mpath = Path('public-creative-failed-evidence.zip')[0m
+2026-11-14T02:08:01.7820817Z [36;1mwith path.open('rb') as stream:[0m
+2026-11-14T02:08:01.7821226Z [36;1m    digest = hashlib.file_digest(stream, 'sha256').hexdigest()[0m
+2026-11-14T02:08:01.7821860Z [36;1massert path.stat().st_size == 526570745 and digest == os.environ['ARCHIVE_SHA256'][0m
+2026-11-14T02:08:01.7822459Z [36;1m(directory / 'public-roundtrip.json').write_text(json.dumps({[0m
+2026-11-14T02:08:01.7822940Z [36;1m    'status': 'ORIGINAL_FAILED_EVIDENCE_ARCHIVED_AND_BYTE_EQUAL',[0m
+2026-11-14T02:08:01.7823437Z [36;1m    'release_url': release['html_url'], 'release_id': release['id'],[0m
+2026-11-14T02:08:01.7824035Z [36;1m    'release_immutable_reported_by_github': release.get('immutable'),[0m
+2026-11-14T02:08:01.7824505Z [36;1m    'public_download_authenticated': False, 'cmp_exit_code': 0,[0m
+2026-11-14T02:08:01.7824976Z [36;1m    'bytes': path.stat().st_size, 'sha256': digest,[0m
+2026-11-14T02:08:01.7825423Z [36;1m    'original_conclusion': 'failure', 'acceptance_granted': False,[0m
+2026-11-14T02:08:01.7825956Z [36;1m    'existing_release_modified': False, 'main_modified': False,[0m
+2026-11-14T02:08:01.7826379Z [36;1m}, indent=2) + '\n')[0m
+2026-11-14T02:08:01.7826665Z [36;1mPY[0m
+2026-11-14T02:08:01.7840110Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+2026-11-14T02:08:01.7841012Z env:
+2026-11-14T02:08:01.7843387Z   GH_TOKEN: ***
+2026-11-14T02:08:01.7843748Z   REPOSITORY: Ullmann27/lumo-lernen
+2026-11-14T02:08:01.7844146Z   PRODUCT_SHA: 4ab96666f954baf258422d6ed277fc297b7ddeef
+2026-11-14T02:08:01.7844566Z   NATIVE_SHA: 803e7a626ea6ef0aeeda9c37010e844033d3a8e3
+2026-11-14T02:08:01.7844988Z   SOURCE_RUN_ID: 43530667812
+2026-11-14T02:08:01.7845304Z   SOURCE_ARTIFACT_ID: 14092241868
+2026-11-14T02:08:01.7845726Z   ARCHIVE_SHA256: bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40
+2026-11-14T02:08:01.7846409Z   ARCHIVE_TAG: studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-14T02:08:01.7846994Z   ARCHIVER_SOURCE: 995e5eebf789f667920a5027919db27ea1d2dcfc
+2026-11-14T02:08:01.7847449Z   ARCHIVER_RUN: 43544492259
+2026-11-14T02:08:01.7847747Z ##[endgroup]
+2026-11-14T02:08:02.3302163Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-14T02:08:02.3302977Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-14T02:08:02.3303377Z 
+2026-11-14T02:08:02.4908471Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:02.4909364Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:02.5525332Z 
+2026-11-14T02:08:03.5417820Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:04.5418160Z   7  502M    7 39.7M    0     0  32.8M      0  0:00:15  0:00:01  0:00:14 40.1M
+2026-11-14T02:08:05.5835283Z  15  502M   15 76.0M    0     0  34.3M      0  0:00:14  0:00:02  0:00:12 38.1M
+2026-11-14T02:08:06.5418492Z  23  502M   23  120M    0     0  36.9M      0  0:00:13  0:00:03  0:00:10 39.6M
+2026-11-14T02:08:07.6559361Z  30  502M   30  155M    0     0  36.9M      0  0:00:13  0:00:04  0:00:09 39.0M
+2026-11-14T02:08:08.5417287Z  37  502M   37  190M    0     0  35.6M      0  0:00:14  0:00:05  0:00:09 37.2M
+2026-11-14T02:08:09.5437381Z  44  502M   44  221M    0     0  35.6M      0  0:00:14  0:00:06  0:00:08 36.3M
+2026-11-14T02:08:10.5623906Z  52  502M   52  261M    0     0  36.2M      0  0:00:13  0:00:07  0:00:06 37.0M
+2026-11-14T02:08:11.5763804Z  59  502M   59  296M    0     0  35.9M      0  0:00:13  0:00:08  0:00:05 35.3M
+2026-11-14T02:08:12.5470386Z  67  502M   67  340M    0     0  36.7M      0  0:00:13  0:00:09  0:00:04 36.6M
+2026-11-14T02:08:13.6913188Z  73  502M   73  370M    0     0  36.2M      0  0:00:13  0:00:10  0:00:03 36.8M
+2026-11-14T02:08:14.6718450Z  81  502M   81  410M    0     0  36.0M      0  0:00:13  0:00:11  0:00:02 36.6M
+2026-11-14T02:08:15.5457205Z  87  502M   87  440M    0     0  35.6M      0  0:00:14  0:00:12  0:00:02 34.8M
+2026-11-14T02:08:16.5182632Z  95  502M   95  477M    0     0  36.1M      0  0:00:13  0:00:13 --:--:-- 36.4M
+2026-11-14T02:08:16.5183471Z 100  502M  100  502M    0     0  35.3M      0  0:00:14  0:00:14 --:--:-- 32.8M
+2026-11-14T02:08:16.7404220Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-14T02:08:16.9347280Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-14T02:08:16.9347715Z 
+2026-11-14T02:08:16.9348081Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:16.9348684Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:17.0218887Z 
+2026-11-14T02:08:17.0219945Z 100    95  100    95    0     0    337      0 --:--:-- --:--:-- --:--:--   337
+2026-11-14T02:08:17.0287688Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-14T02:08:17.0288583Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-14T02:08:17.0289156Z 
+2026-11-14T02:08:17.2036410Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:17.2037930Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:17.3093026Z 
+2026-11-14T02:08:17.3100807Z 100   730  100   730    0     0   2600      0 --:--:-- --:--:-- --:--:--  2600
+2026-11-14T02:08:17.3162603Z   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+2026-11-14T02:08:17.3163715Z                                  Dload  Upload   Total   Spent    Left  Speed
+2026-11-14T02:08:17.3164222Z 
+2026-11-14T02:08:17.4965268Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:17.4966161Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:17.5420332Z 
+2026-11-14T02:08:17.6087621Z   0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+2026-11-14T02:08:17.6088779Z 100   706  100   706    0     0   2413      0 --:--:-- --:--:-- --:--:-- 10696
+2026-11-14T02:08:18.0493379Z ##[group]Run actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+2026-11-14T02:08:18.0493857Z with:
+2026-11-14T02:08:18.0494242Z   name: studio-failed-creative-archive-verification-43544492259
+2026-11-14T02:08:18.0494704Z   path: evidence/
+2026-11-14T02:08:18.0495032Z   if-no-files-found: error
+2026-11-14T02:08:18.0495368Z   retention-days: 30
+2026-11-14T02:08:18.0495664Z   compression-level: 6
+2026-11-14T02:08:18.0495939Z   overwrite: false
+2026-11-14T02:08:18.0496265Z   include-hidden-files: false
+2026-11-14T02:08:18.0496661Z env:
+2026-11-14T02:08:18.0498889Z   GH_TOKEN: ***
+2026-11-14T02:08:18.0499363Z   REPOSITORY: Ullmann27/lumo-lernen
+2026-11-14T02:08:18.0499716Z   PRODUCT_SHA: 4ab96666f954baf258422d6ed277fc297b7ddeef
+2026-11-14T02:08:18.0500155Z   NATIVE_SHA: 803e7a626ea6ef0aeeda9c37010e844033d3a8e3
+2026-11-14T02:08:18.0500576Z   SOURCE_RUN_ID: 43530667812
+2026-11-14T02:08:18.0500908Z   SOURCE_ARTIFACT_ID: 14092241868
+2026-11-14T02:08:18.0501435Z   ARCHIVE_SHA256: bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40
+2026-11-14T02:08:18.0502096Z   ARCHIVE_TAG: studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+2026-11-14T02:08:18.0502692Z   ARCHIVER_SOURCE: 995e5eebf789f667920a5027919db27ea1d2dcfc
+2026-11-14T02:08:18.0503050Z   ARCHIVER_RUN: 43544492259
+2026-11-14T02:08:18.0503372Z ##[endgroup]
+2026-11-14T02:08:18.3653427Z (node:2091) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-11-14T02:08:18.3654550Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-11-14T02:08:18.3739545Z With the provided path, there will be 17 files uploaded
+2026-11-14T02:08:18.3744239Z Artifact name is valid!
+2026-11-14T02:08:18.3745082Z Root directory input is valid!
+2026-11-14T02:08:18.6656085Z Beginning upload of artifact content to blob storage
+2026-11-14T02:08:18.7175267Z (node:2091) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-11-14T02:08:19.1952161Z Uploaded bytes 99443
+2026-11-14T02:08:19.2399676Z Finished uploading artifact content to blob storage!
+2026-11-14T02:08:19.2400583Z SHA256 digest of uploaded artifact zip is 3d70ee459abcb9ff9fab2df77b58b95cd6d45f9d805204d8d59f222405c0e109
+2026-11-14T02:08:19.2401304Z Finalizing artifact upload
+2026-11-14T02:08:19.6209955Z Artifact studio-failed-creative-archive-verification-43544492259.zip successfully finalized. Artifact ID 14093033426
+2026-11-14T02:08:19.6211901Z Artifact studio-failed-creative-archive-verification-43544492259 has been successfully uploaded! Final size is 99443 bytes. Artifact ID is 14093033426
+2026-11-14T02:08:19.6217668Z Artifact download URL: https://github.com/Ullmann27/lumo-lernen/actions/runs/43544492259/artifacts/14093033426
+2026-11-14T02:08:19.6398113Z Cleaning up orphan processes
+2026-11-14T02:08:19.6712252Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

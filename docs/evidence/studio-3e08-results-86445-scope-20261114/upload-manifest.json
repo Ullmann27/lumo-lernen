@@ -1,0 +1,1444 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ORIGINAL_API35_PASS_API37_FAIL_NEW_86445_BUILD_PENDING",
+  "base_evidence_commit": "a95de19cd9c77a38342d5aa6aabc943a24944525",
+  "base_evidence_tree": "57e0c9a8114506f9faa25d70d640d418724d3e9d",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/completion-jobs-original.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/completion-jobs-original.json",
+      "mode": "100644",
+      "bytes": 11796,
+      "sha256": "e3e0ce1bbb0c6e2b41d11f3e638d6fbd0146b07e2f3d930e3163a822c71b8ac3",
+      "git_blob": "5c40b364d39b5dfd51a382cf8afc626c06abec7f",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/artifact-metadata-original.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/artifact-metadata-original.json",
+      "mode": "100644",
+      "bytes": 900,
+      "sha256": "21262b425201d981171f5965ae9774387e4c65ab51eebe5e5b047929a26da885",
+      "git_blob": "637587751732cbfdd6519e7c7e19214dc21b7d27",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/original-artifact-inventory.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/original-artifact-inventory.json",
+      "mode": "100644",
+      "bytes": 205940,
+      "sha256": "c95cc7f336961af2e833770946c2171384d7c57c88cd79476c558044e8cd4eb8",
+      "git_blob": "fdbbcc5cd151b4d833fa6f79af38383d39ce579f",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/original-job.log",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/original-job.log",
+      "mode": "100644",
+      "bytes": 2035947,
+      "sha256": "0977667c471e13516238ca04567932e1c277a7277cabf36aa532b126fc90f6ee",
+      "git_blob": "020dbedee2ad6886cac077063bfdde027b36518e",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-original-byte-binding.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-original-byte-binding.json",
+      "mode": "100644",
+      "bytes": 16639,
+      "sha256": "bff265454edd4a2e4016fa6f65eac2df2e62b5589906db9c03e880b91596cba2",
+      "git_blob": "c268df71d7dd26e2b804fcf7a83bd6ca1edaa6ce",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/additional-input-byte-binding.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/additional-input-byte-binding.json",
+      "mode": "100644",
+      "bytes": 4549,
+      "sha256": "780a9e5251664d260601058b642dc9e7c64e17a5a10d4e7d88490b72aca9a6eb",
+      "git_blob": "8255ac4f90bd711568a835447c6ce88a042dad0c",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/root-four-image-review.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/root-four-image-review.json",
+      "mode": "100644",
+      "bytes": 2708,
+      "sha256": "9468dfdfb90a0df948d83e6c43154557e79d8514ead67499359a217863d855fb",
+      "git_blob": "145f1ca588d9290adc537ce7162a8ce97c9f00ba",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/review.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/review.json",
+      "mode": "100644",
+      "bytes": 36186,
+      "sha256": "65ae7e26baca7524cea433d0aaed05383f1452372732ab0b90641e9303196c47",
+      "git_blob": "f62b99f4e4954d3bf672c833ab2b6d328b707085",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/README.md",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/README.md",
+      "mode": "100644",
+      "bytes": 4662,
+      "sha256": "b647f897a42ffc8e35711cd361336621db8340449d252c44562ad3454fa3d63a",
+      "git_blob": "2a6fa1fe87dd82e96aff03536e5ded0632ca0b53",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "mode": "100644",
+      "bytes": 553917,
+      "sha256": "3006a596dbc722317ecd684744ba219bc751212ac6e2191a1ce342572f3fbe25",
+      "git_blob": "3bbdc3977dff3af51f513e8127fc952dc8e11087",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/04_learning_native_thirteen.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/04_learning_native_thirteen.png",
+      "mode": "100644",
+      "bytes": 582010,
+      "sha256": "d7743d5d374816d130e78a91aa267d08a817684de2176691df7e3523692708d5",
+      "git_blob": "08a350c0a6fc16df248e1e0f5de513bde79970a6",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "mode": "100644",
+      "bytes": 2623,
+      "sha256": "265b515b98f6cc3da0c67191e27332e00c1016d186560eb0ba1dfedf7dd608f6",
+      "git_blob": "d9af27c71c9f4bbe98bf409f630efadf825e47fd",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "mode": "100644",
+      "bytes": 1509160,
+      "sha256": "289c07a49454ed0eb38d88543362815bab2aa7c1402ede64fc211f0ff2ba72b7",
+      "git_blob": "79fc78b77ebab72a7456a7d22be2a3a3205447ce",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/11_cards_real_table_before_draw-face-check-01-before-layout.json",
+      "mode": "100644",
+      "bytes": 1326,
+      "sha256": "d8998559a91937fbc67913b4282430da72dd09f53cdedf5a97255dcd61bd4ab9",
+      "git_blob": "161a64fb135f293648708a997e2ff2629e0df2a5",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "mode": "100644",
+      "bytes": 959284,
+      "sha256": "a9629a4138e4a5fd2ba0731bcc8662bdf9fbd3a9c9ddde8ce2144408c59401ba",
+      "git_blob": "93cd87215e9293a40503c1f73caff18ffe99863b",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-00-before-layout.json",
+      "mode": "100644",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-06-before-layout.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-check-06-before-layout.json",
+      "mode": "100644",
+      "bytes": 1326,
+      "sha256": "50ea3de55c3d9991850d670e42cbc45f09118bfb19678257b6ea47c90154788a",
+      "git_blob": "097d6ead3e6940d64ae683f238730741004a9538",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+      "mode": "100644",
+      "bytes": 945600,
+      "sha256": "3adcd65fc170b9089143ae33bcfcf2fee0aecd3d00ff11f8cf76d23cb161c65a",
+      "git_blob": "149a9fba9887dceada58b6ae9c6099077b45e272",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-00-before-layout.json",
+      "mode": "100644",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-check-07-before-layout.json",
+      "mode": "100644",
+      "bytes": 1329,
+      "sha256": "c213ad3ed8f56bfaec85d3a5a36cca4b0435ae9a99e5f615b8f80127b70de5e3",
+      "git_blob": "e363980a7b97b35efb9722b0becf72605005b949",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "mode": "100644",
+      "bytes": 939477,
+      "sha256": "96a1752cc85139e82ef00b20bdf6bb380ffae8f44bbbbbf5626f40ff6356bdbe",
+      "git_blob": "3d46c1eab9c4d41ba97e41a8a50b09a8010b4cde",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/13_cards_native_pause.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/13_cards_native_pause.png",
+      "mode": "100644",
+      "bytes": 940465,
+      "sha256": "b72f2f2d14ea7b0642263590d98a439a842f9ce4f9ce1c27a13a991bc8954b6d",
+      "git_blob": "9c636b2ef4bfcd6a6a36e52d525b07065a5b093a",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "mode": "100644",
+      "bytes": 2543,
+      "sha256": "ddfee66833b01fd7dd773ae88a72d8c9f5377f1353fb0674d1e15a5503885768",
+      "git_blob": "0262e68d006c74a2b359549c88554e5cef9b03fa",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/14_cards_same_flutter_round.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/14_cards_same_flutter_round.png",
+      "mode": "100644",
+      "bytes": 519056,
+      "sha256": "bdb7ee1e84a45e467df088f705c455e20ae23e83863953a57b1f0a5ab6aad5f9",
+      "git_blob": "395f6df8112fe13e85d2a2438bcae90e8be4297b",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/15_cards_reopened_same_round.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/15_cards_reopened_same_round.png",
+      "mode": "100644",
+      "bytes": 939945,
+      "sha256": "1c92ac231288a6ba4e654a726e0b1e1ba1dd7d736445acc854f566c02aa5f3f2",
+      "git_blob": "57fba7f4a493d6d3a2c51b082fbf367a181ca0f5",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return-return-pixels.json",
+      "mode": "100644",
+      "bytes": 2006,
+      "sha256": "ccc6d4a82f4c5aa8163265353c89dd53aa5f6cb97e1a2ec4a2bc6fb10862fac5",
+      "git_blob": "56d8ba646b55892c49e63b8ffdb26bd8e7970c5f",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return.png",
+      "mode": "100644",
+      "bytes": 519505,
+      "sha256": "4283c19ae6f0d19e9679c7ecc818a40a5763a0f0406289f06bb9c5ac5cf30880",
+      "git_blob": "079ef467b495fbeee65dde5577e56f1e31037079",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/16_cards_final_flutter_return.xml",
+      "mode": "100644",
+      "bytes": 34267,
+      "sha256": "21ae6f029a4c9f847282b937bae13ab12116f679326179f899cdbb74f3d51e1a",
+      "git_blob": "d8f2d03b7b32a7d2a3d820aecfb49ee66fcb61da",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-actual-display-density.txt",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-actual-display-density.txt",
+      "mode": "100644",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "git_blob": "b00b54f87f5ee457733bff2bb30bbb5204919d94",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-001-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-001-state.json",
+      "mode": "100644",
+      "bytes": 1911,
+      "sha256": "2918397836ce77ed82f39f695a12e597c7d17ad4aed8c8e52e66a27d4ac74df4",
+      "git_blob": "ca6e9394f050d1703335c6a74c364670ae1d7727",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-002-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-002-state.json",
+      "mode": "100644",
+      "bytes": 1646,
+      "sha256": "635a5f2ce8603c3c4571a3e147b970e34185e697f79a6dc97c05085b767b0a14",
+      "git_blob": "7ae45de14cb0853bdc231c395541b20fbf2bc280",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "mode": "100644",
+      "bytes": 103,
+      "sha256": "11113763bb759e0569b4775b99d879055ce18a0c872b1b0f88898ba3106c1773",
+      "git_blob": "24e5b51c32c2e6faf846fa086a1e233c4805cb4a",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-008-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-008-state.json",
+      "mode": "100644",
+      "bytes": 1759,
+      "sha256": "b288d751aefd745c9a55c11bce82ee5f4606c399f02a74f144a076f254da3183",
+      "git_blob": "0e539597a92bb4f08974fc6e331f360b9b4ed42e",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-022-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-022-state.json",
+      "mode": "100644",
+      "bytes": 1759,
+      "sha256": "b288d751aefd745c9a55c11bce82ee5f4606c399f02a74f144a076f254da3183",
+      "git_blob": "0e539597a92bb4f08974fc6e331f360b9b4ed42e",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-023-request.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-023-request.json",
+      "mode": "100644",
+      "bytes": 103,
+      "sha256": "ac908073029388b9a6aff35252acb9ff83dc0e7d566586993908ca28b5327360",
+      "git_blob": "00c90760a1772a57c4ce7b6f3637c42aa7dd5a14",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-026-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-026-state.json",
+      "mode": "100644",
+      "bytes": 1911,
+      "sha256": "111ad4f3bc7e331eca816fc5ba49b008f65aac6fd7abc7234d98048a1f0d88e2",
+      "git_blob": "f119bd699a3047a7deab111c8c9144f0b2e2bbce",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-036-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-036-state.json",
+      "mode": "100644",
+      "bytes": 1911,
+      "sha256": "111ad4f3bc7e331eca816fc5ba49b008f65aac6fd7abc7234d98048a1f0d88e2",
+      "git_blob": "f119bd699a3047a7deab111c8c9144f0b2e2bbce",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-037-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-037-state.json",
+      "mode": "100644",
+      "bytes": 1912,
+      "sha256": "dd1b96158ae905a1acfb94c65248a6b3ade6719d02916129b3614cb4b0003ddc",
+      "git_blob": "d3195e39c01471a30117dff06f9d0232b62ef191",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-mailbox-038-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-mailbox-038-state.json",
+      "mode": "100644",
+      "bytes": 1912,
+      "sha256": "dd1b96158ae905a1acfb94c65248a6b3ade6719d02916129b3614cb4b0003ddc",
+      "git_blob": "d3195e39c01471a30117dff06f9d0232b62ef191",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-back-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-native-back-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2749,
+      "sha256": "1e519ab5181ee01a5ddef8fd5326ae8ab8290b0293c19863e6e4c76348ac3320",
+      "git_blob": "8ca04dfec27377a3692af133aaa2d5fe6ce9ab98",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2757,
+      "sha256": "0986d7c136764308a78fb3649ffdc9b1afe758dc7404fc46d8bfcad0cfa1048e",
+      "git_blob": "ad0f022e7b236594bc9aef33ae9fd8c1524a5dac",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-late-draw-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-native-late-draw-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2767,
+      "sha256": "8a20421ff63546ad73e2aaae33f4c75fa0be642af390409ac7b51936539ad1a1",
+      "git_blob": "db2951206f6c3480b85b6b28de9b3b9e24981f38",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-native-pause-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-native-pause-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2755,
+      "sha256": "58268e417f3bed0ff2725ac9640009520f8afed14a387be91a7aaed60fae8f8b",
+      "git_blob": "3e77bb8aa1dddd06c81d373797b04a0738ed516c",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-reopened-back-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-reopened-back-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2753,
+      "sha256": "482f933443ae37cb434721ef9997a2ebf1921b1f79a92ab12d8bbc3dfc270a84",
+      "git_blob": "34d16c8d07a9df63239e5e755fb26af9cc022235",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-001-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-save-001-preferences.xml",
+      "mode": "100644",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "git_blob": "56b25b4812ef7d9fa5f8fd8e231c4316fe7f2a59",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-005-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-save-005-preferences.xml",
+      "mode": "100644",
+      "bytes": 5978,
+      "sha256": "502fa9a6949c23386bf5931e13deaf7e48d48b8398d886071b91bc125b504444",
+      "git_blob": "7d85da126cac9912bda3afedec53657e3a9a451f",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-022-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-save-022-preferences.xml",
+      "mode": "100644",
+      "bytes": 5978,
+      "sha256": "8f3d549b9dac4789b06a5754cf91d1dbf44d52573520f9d3c2877211cd300187",
+      "git_blob": "e94860929220c89809292a448af3b5c2baaebaba",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-036-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-save-036-preferences.xml",
+      "mode": "100644",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "git_blob": "56b25b4812ef7d9fa5f8fd8e231c4316fe7f2a59",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-037-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-save-037-preferences.xml",
+      "mode": "100644",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "git_blob": "56b25b4812ef7d9fa5f8fd8e231c4316fe7f2a59",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/cards-save-038-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/cards-save-038-preferences.xml",
+      "mode": "100644",
+      "bytes": 5978,
+      "sha256": "dff740d98a9653460303fc63a2aac63a771a224f0006c3c4fafb957086e2c306",
+      "git_blob": "56b25b4812ef7d9fa5f8fd8e231c4316fe7f2a59",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2766,
+      "sha256": "bf091a2857dbd398af81f1cec1c08ef6ab2033e42d3828695f41c4ee07be407c",
+      "git_blob": "f7b8d410e4d35383d918f1a3661e17bf6c7dd453",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 3560,
+      "sha256": "f8324dfe5f8e73f8c60eb5a89854d544c2e40e42b8a7346ad6f4e496201f6c0e",
+      "git_blob": "d29e81c5dc470a914e2a8cec0397aa18d4aa3c0b",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2766,
+      "sha256": "c745189d55b31548bb7d12ef4d509c3ecef95e74b766aa63c5451d8c96d0d907",
+      "git_blob": "34bc3602d86b3151485b87c72fdc5440de346579",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 3559,
+      "sha256": "3310a96f76a3c08295f949f778214f5321f3f310bf2973f756becab75441affb",
+      "git_blob": "7f6cd6da38c4f934dab296abfd8a8e74159c9a50",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 3560,
+      "sha256": "0c081e439ec05ed4d8fa86f2becf4df5e6fa65b0e29900f4508ea196be795ca4",
+      "git_blob": "4b875aee814b8ada86720f516135fbea2e0414f7",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/learning-return-academy.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/learning-return-academy.xml",
+      "mode": "100644",
+      "bytes": 28416,
+      "sha256": "b519a03326ec9fac103b92dbdd77ffd1b5a43256f5845f656a75d53ba58dee45",
+      "git_blob": "6c3b019926c289acfd2caed2b52f1254d95a345e",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/nextgen/native-surfaces-result.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/nextgen/native-surfaces-result.json",
+      "mode": "100644",
+      "bytes": 211165,
+      "sha256": "a881665c9af2ada9ead176241e42523c9cee3c8ce1f2cf3c6c4e8c7e80cd40c0",
+      "git_blob": "f2266177378157f5eb8945217151922eb7493908",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/after.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/recheck/after.json",
+      "mode": "100644",
+      "bytes": 10906,
+      "sha256": "63e7d8a0639e7a9ff62eec3be39b09d78f8dcb824ef951db19ca958197a73fd2",
+      "git_blob": "e0591c07a1ad0907bba381665ab8fd7c1fcb0384",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/before.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/recheck/before.json",
+      "mode": "100644",
+      "bytes": 10906,
+      "sha256": "63e7d8a0639e7a9ff62eec3be39b09d78f8dcb824ef951db19ca958197a73fd2",
+      "git_blob": "e0591c07a1ad0907bba381665ab8fd7c1fcb0384",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/preflight.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/recheck/preflight.json",
+      "mode": "100644",
+      "bytes": 11387,
+      "sha256": "c1e3450ca8da49881a2fba07f02656f450648652f8bda159db019bb2a098492c",
+      "git_blob": "3aa570384a0a6dc1c19d69f0cfc9c2d7fe2b60e9",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/recheck/result.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/recheck/result.json",
+      "mode": "100644",
+      "bytes": 3124,
+      "sha256": "8e00956cae492d6d46377ce630ac681906f26c969532802593ab0d768c868f85",
+      "git_blob": "16c9aa9a6d086b81689e16e4ecdc7fb76a5af581",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/selected-originals/tour-result.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/selected-originals/tour-result.json",
+      "mode": "100644",
+      "bytes": 9658,
+      "sha256": "62a1d615c798daaa909d60c220b2882f25bd19bf894c007b81f5e1458cc9d15b",
+      "git_blob": "010e79a99e98e9b8d05320032857179352f4dda4",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api35/evidence-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api35/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 32022,
+      "sha256": "d62c041062d5936e82eab3aae6c2182a310545cf8ca55bc51492c6a502060b18",
+      "git_blob": "6a80c00fd969f29dea5e0555ca3f3c4138daa279",
+      "package": "api35-original-success"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/completion-jobs-original.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/completion-jobs-original.json",
+      "mode": "100644",
+      "bytes": 12250,
+      "sha256": "3e65b7a36d96f88d57126fd913e1d45c9f9f8bed5a6de3cf89fa5ddfe7bae510",
+      "git_blob": "3122d38f285a8e5945d4be2ffcaaf1d10d71a136",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/artifact-metadata-original.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/artifact-metadata-original.json",
+      "mode": "100644",
+      "bytes": 900,
+      "sha256": "88ca89aa742efa39046015fa164a759b8547c016d23e6c55f94ca50a2542d0cb",
+      "git_blob": "b11795a8a1ff9b9aacffae8bfb02cf460639a38c",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/original-artifact-inventory.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/original-artifact-inventory.json",
+      "mode": "100644",
+      "bytes": 274377,
+      "sha256": "dcb6bc18686f03f0679976f712cbfce8784a82cc243cd18a6f95389b0ae51419",
+      "git_blob": "1460777b76652e32dad059fcc571249f6a296915",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/original-job.log",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/original-job.log",
+      "mode": "100644",
+      "bytes": 1668889,
+      "sha256": "3fd4cf8c9d6cd03985c53183f337986e6dc546d8adc2653f0de7e4d70da21851",
+      "git_blob": "e16f89e04c2a72e6dd36fa9fa7863da588a63983",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-original-byte-binding.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-original-byte-binding.json",
+      "mode": "100644",
+      "bytes": 16078,
+      "sha256": "bb3bd57a77ca656e4c8c670e2c0ea3e8ea2ef59849fb03af397417e80b5e633f",
+      "git_blob": "d0baec4eac0ec2b533c8085b0c0e79b66f110a3d",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/additional-input-byte-binding.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/additional-input-byte-binding.json",
+      "mode": "100644",
+      "bytes": 5085,
+      "sha256": "a96096d81ce94e1568eec68d92bd359b17710ae9e29da2e083bb37d6cd466199",
+      "git_blob": "244be1399532a11c58a57097d3a848c85fe35501",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/independent-return-pixels-review.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/independent-return-pixels-review.json",
+      "mode": "100644",
+      "bytes": 8361,
+      "sha256": "4e710152684a44b0f545dc5bfff51dea0a0df6387c9d998f96b1d543242933eb",
+      "git_blob": "b6c79693019049581a8cae245d69ebde1f0b4788",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/independent-negative-ocr-assessment.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/independent-negative-ocr-assessment.json",
+      "mode": "100644",
+      "bytes": 13771,
+      "sha256": "32fde1d0a9fed65821b584ca4ec2e5044af7ace755b130db5f31141c4d058720",
+      "git_blob": "78c7a52f7952b8146aea93edef1bf6f0d04e8d8d",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/review.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/review.json",
+      "mode": "100644",
+      "bytes": 42412,
+      "sha256": "c1a8fe06abe095a17d940d3735dd640404b7dc249389fd8846aa9c99e365670a",
+      "git_blob": "49810e1568235b0020412c642bb2a5c59aba6a8c",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/README.md",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/README.md",
+      "mode": "100644",
+      "bytes": 5159,
+      "sha256": "d9be0eb81172676a7d356475d7de9a05bfcb7f51d482d9b34611018108e2433e",
+      "git_blob": "1bc6dc75bcf46042e752494d85812828fd9127e1",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/framework-start/framework-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/framework-start/framework-readiness.json",
+      "mode": "100644",
+      "bytes": 32975,
+      "sha256": "7e6e2a894591d28e85ba37bb035b5d2d00dda288897afa54c1a2c433722403ad",
+      "git_blob": "99f4edbcc7fff28b48335d7d7da34197aff4cf0b",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/02_learning_native_eight_plus_five.png",
+      "mode": "100644",
+      "bytes": 552637,
+      "sha256": "db9bc900524342c66c5ef5688ca7cf74d0c20b7bb25d10332ea078b6c50909da",
+      "git_blob": "e64d16215c9686093d5a71733ac2606fae5e3291",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/04_learning_native_thirteen.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/04_learning_native_thirteen.png",
+      "mode": "100644",
+      "bytes": 582815,
+      "sha256": "013f92464e0d13e059146f145b0128a4ce3eaf15b8ed17c64f6bd99c98389841",
+      "git_blob": "35ab4db2d400af09d1e16c305447f93b1bce5b4a",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/05_learning_same_flutter_lesson-return-pixels.json",
+      "mode": "100644",
+      "bytes": 3191,
+      "sha256": "155d0d5e403a2e732f78cbbe669b8cd346aedb1e41abeacc460bdaff6b4235f8",
+      "git_blob": "ac650351bd1d9796b953c4bd274a373e0cf8ba51",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/05_learning_same_flutter_lesson.png",
+      "mode": "100644",
+      "bytes": 1508505,
+      "sha256": "3840a0dc69fd666beb81b47ae1f8d6cc27d37badd21c50788c7521373029441f",
+      "git_blob": "238061d7e895fd774146d5d7b77a1f493460bef3",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/11_cards_real_table_before_draw-face-evidence.json",
+      "mode": "100644",
+      "bytes": 33288,
+      "sha256": "bfcb4ce8be1136003e445739442ff5b657a361c8be5a5df580e944a4d3b03629",
+      "git_blob": "40ecee2fc32f09ff1c64017b2ef3833854907501",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/11_cards_real_table_before_draw.png",
+      "mode": "100644",
+      "bytes": 958752,
+      "sha256": "834e8ba0b221b073811f63b2482aa30e5473eb30b331ac5f0c7d2325c45e3666",
+      "git_blob": "ae48f78bcb35065938ac61a4a7e6f1dba03773ed",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/12_cards_real_table_persisted_draw-face-evidence.json",
+      "mode": "100644",
+      "bytes": 41721,
+      "sha256": "7b1218ec2fe836c26b1090df38881acedf54b69ec8e301e47cba67ffe0a4fd81",
+      "git_blob": "21f64679df1787245aae1259166db7484260f1a3",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/12_cards_real_table_persisted_draw.png",
+      "mode": "100644",
+      "bytes": 946834,
+      "sha256": "caef4436ef5b92f9926c047940d918746a4aee9e522aa8ef41907327aeec25da",
+      "git_blob": "9071ade50270027f0e37a3a5b9e9893fe2a98f7e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/12a_cards_real_table_before_late_draw-face-evidence.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/12a_cards_real_table_before_late_draw-face-evidence.json",
+      "mode": "100644",
+      "bytes": 33948,
+      "sha256": "de373918981d9686f3a8ebbe386b8f7392672b6d23de30a7c188cbb0bf792c48",
+      "git_blob": "3dddebe517ae7b12544c6e076ed4385b1eee769e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-evidence.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle-face-evidence.json",
+      "mode": "100644",
+      "bytes": 45806,
+      "sha256": "adc6b55638165639b8766b936e5a0806e6a1d6d513d1d1c47ca0fcca0b7ca7fc",
+      "git_blob": "e93e11f14272efdb5ae34d594a92407035f894fb",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/12b_cards_persisted_draw_after_visible_idle.png",
+      "mode": "100644",
+      "bytes": 937046,
+      "sha256": "ed158e1029615342425104510269f11efe80a2f41adca2d25151a93a93cc01cb",
+      "git_blob": "02255e445782e99a0cdb57b6ce411e0f6302c48e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/13_cards_native_pause.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/13_cards_native_pause.png",
+      "mode": "100644",
+      "bytes": 941878,
+      "sha256": "4b0fd8f4077973b3049ceb771e51bb4f7ba620410943271b5069b448f3ed7f98",
+      "git_blob": "4d6e102fe146db9d87ba16f23efc1155df6aa732",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-components.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-components.json",
+      "mode": "100644",
+      "bytes": 1815,
+      "sha256": "51287924b68e31ebfb594046f5d4db597943935db65c00c6159e06040c722e3d",
+      "git_blob": "7f91ddc385c9c9471ab9782b4c7f9afb297f2281",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr-contrast.tsv",
+      "mode": "100644",
+      "bytes": 6071,
+      "sha256": "8e8271a857d5197ab201d68c2d5455b5bd72c226564580417e523affa1f48a56",
+      "git_blob": "a5b02c00874f623724f11b7eaaaa50b949f6c726",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1-caption-0-ocr.json",
+      "mode": "100644",
+      "bytes": 32262,
+      "sha256": "c65a2c94214d998146f4ce10275e5db49d14950afe24c4ca2ff39d1dfea2ae04",
+      "git_blob": "f5b7aa92c5fcd95855ef6fe8e123a0a8d9de30ee",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-candidate-1.png",
+      "mode": "100644",
+      "bytes": 2673455,
+      "sha256": "c47ac13048c0b878ef669554aff16875b1295da0396ebc30743bbda54500cfcf",
+      "git_blob": "87ac5dcf26440b0142c9425a49e1c5c0a5f4856e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round-return-pixels.json",
+      "mode": "100644",
+      "bytes": 942,
+      "sha256": "96f48212caf3403cdd81102ed9ab4eb57c990f9a75ce70078361af3311ed6ed0",
+      "git_blob": "9ead67679e33b77d0a1b8ead0d92218ac259042c",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/14_cards_same_flutter_round.xml",
+      "mode": "100644",
+      "bytes": 34299,
+      "sha256": "f777993b228aac08c944b124b5c5519bd01a2693597801bb7d14541eac503913",
+      "git_blob": "6e34bad586289fbc74f83f1e6bf1c7e662217c65",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/99_nextgen_failure.png",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/99_nextgen_failure.png",
+      "mode": "100644",
+      "bytes": 520559,
+      "sha256": "8d3c5afffbcd4abebbd58155dccc06accc40a580a4e5c4b1257cd01395a89d71",
+      "git_blob": "c59914e7412dc42ae223bf9ea9ff146906784605",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-actual-display-density.txt",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-actual-display-density.txt",
+      "mode": "100644",
+      "bytes": 44,
+      "sha256": "0a17eaf0deeb48603ff4903c4da16fb9fe0c3b0f702657f6f07621fd98886eee",
+      "git_blob": "b00b54f87f5ee457733bff2bb30bbb5204919d94",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-001-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-001-state.json",
+      "mode": "100644",
+      "bytes": 1655,
+      "sha256": "03623aebf37b43a5b0ed75d56aebb56b22443dda208fc9d73487b257682dbcbb",
+      "git_blob": "b355ec74a872207babdd843c96d9cf5d99e1eeca",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-002-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-002-state.json",
+      "mode": "100644",
+      "bytes": 1655,
+      "sha256": "03623aebf37b43a5b0ed75d56aebb56b22443dda208fc9d73487b257682dbcbb",
+      "git_blob": "b355ec74a872207babdd843c96d9cf5d99e1eeca",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-003-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-003-state.json",
+      "mode": "100644",
+      "bytes": 1655,
+      "sha256": "03623aebf37b43a5b0ed75d56aebb56b22443dda208fc9d73487b257682dbcbb",
+      "git_blob": "b355ec74a872207babdd843c96d9cf5d99e1eeca",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-006-request.json",
+      "mode": "100644",
+      "bytes": 103,
+      "sha256": "a391a64136c04def6a2b832abb794b4007b8eba1a6c61833f722c1118c26ebc1",
+      "git_blob": "94940344177ae959489fd411655aa7f1fc98f85e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-022-request.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-022-request.json",
+      "mode": "100644",
+      "bytes": 103,
+      "sha256": "dfddda0a18e44071dc5cce9f2132a6ed89096663f409629503bea44c829ea5a5",
+      "git_blob": "ce3ff4a2904797ec6e32d58979bc8277e2882e2e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-030-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-030-state.json",
+      "mode": "100644",
+      "bytes": 1890,
+      "sha256": "b4b2a6c29e979e0fbb98761eb04df83de6fc1d6794785bee9b8d513e09ca642f",
+      "git_blob": "1f61cd54b0d27c300857254bbb85273d36bddb0e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-031-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-031-state.json",
+      "mode": "100644",
+      "bytes": 1890,
+      "sha256": "b4b2a6c29e979e0fbb98761eb04df83de6fc1d6794785bee9b8d513e09ca642f",
+      "git_blob": "1f61cd54b0d27c300857254bbb85273d36bddb0e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-032-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-032-state.json",
+      "mode": "100644",
+      "bytes": 1890,
+      "sha256": "b4b2a6c29e979e0fbb98761eb04df83de6fc1d6794785bee9b8d513e09ca642f",
+      "git_blob": "1f61cd54b0d27c300857254bbb85273d36bddb0e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-033-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-033-state.json",
+      "mode": "100644",
+      "bytes": 1892,
+      "sha256": "4f216c1e847bb61ad98ecc0b4842efdf0612e7a1825d4c0f5798b1e713eac751",
+      "git_blob": "92542f43d5b641fef7db2d6795aaaf4943f189b3",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-mailbox-034-state.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-mailbox-034-state.json",
+      "mode": "100644",
+      "bytes": 1892,
+      "sha256": "4f216c1e847bb61ad98ecc0b4842efdf0612e7a1825d4c0f5798b1e713eac751",
+      "git_blob": "92542f43d5b641fef7db2d6795aaaf4943f189b3",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-back-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-native-back-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2748,
+      "sha256": "76fa862342308c45ef5185ec7491d107bc30c85d7dfe45b9d7a0043c55d1b94c",
+      "git_blob": "cea09f6c47f557ebf2db3bc214ad2fe5da3fe4d3",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-native-draw-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2758,
+      "sha256": "0eccfdd39f43e17e7c50ee0fb020eef7339c27b53d0a760473786c4442e36348",
+      "git_blob": "f4cfc965d402fd315bbdc3afcc94fc944e094f19",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-late-draw-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-native-late-draw-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2768,
+      "sha256": "14f698bd48af1ee3f90a52925c62069a0c8c270e5f3b1cbfe1985521443b7715",
+      "git_blob": "f28b6537d8cd7082fc0e1b8be4d60b3c8d7d0c95",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-native-pause-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-native-pause-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2753,
+      "sha256": "1fd5ef306d478c650027b254091eb9efd795671736b473b450449f07171cbef9",
+      "git_blob": "f979714bdfe4e872e022674c06c49d56f10237a1",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-save-005-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-save-005-preferences.xml",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "84f1d9a4a1255b98f8f59938987bcb6915cc4ac1eb3fa58cf477c6c2d8acd659",
+      "git_blob": "0cfdacd50384059bf4ea28bde2e7c8b761be7e0e",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-save-016-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-save-016-preferences.xml",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "e7f399df6588f99975d9e6d8fb9221b716c794a51ecc39737a8d78b9e3485b85",
+      "git_blob": "143faab1fbf4577714f08814bc1c5e00ec8d39fd",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-save-021-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-save-021-preferences.xml",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "e7f399df6588f99975d9e6d8fb9221b716c794a51ecc39737a8d78b9e3485b85",
+      "git_blob": "143faab1fbf4577714f08814bc1c5e00ec8d39fd",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-save-032-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-save-032-preferences.xml",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "e4bdc09f1f9baacdb3f3f59c0061d5057f36f8b0db6f145d9ec3a46b73fe6ba7",
+      "git_blob": "8d1e655d53065127474a017bbb95941b621289f6",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-save-033-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-save-033-preferences.xml",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "e4bdc09f1f9baacdb3f3f59c0061d5057f36f8b0db6f145d9ec3a46b73fe6ba7",
+      "git_blob": "8d1e655d53065127474a017bbb95941b621289f6",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/cards-save-034-preferences.xml",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/cards-save-034-preferences.xml",
+      "mode": "100644",
+      "bytes": 5980,
+      "sha256": "e4bdc09f1f9baacdb3f3f59c0061d5057f36f8b0db6f145d9ec3a46b73fe6ba7",
+      "git_blob": "8d1e655d53065127474a017bbb95941b621289f6",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/learning-move-1-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2766,
+      "sha256": "f3c393f10ab6f341a497ef43823bb6d30e5ffb2bfb890ee0c13a72e4f8c7bfe9",
+      "git_blob": "dcd7b6dbf74df6cd31cbf5deb6393892745cbc6c",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/learning-move-2-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2766,
+      "sha256": "840a9f9a98b2faaef626dbd7f8c35b425545731fdd0595bc073e3ebbd2ee2f55",
+      "git_blob": "822f6f7ac6fce99b5f4b2b379572ef01285545d3",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/learning-move-3-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 2766,
+      "sha256": "92c313fad34441d9dd196918ac7f8bc3e2e01cd77899e5a71da67161e6f34ee5",
+      "git_blob": "9b44cfd96240eea9f62dd0acffb2255be88de55f",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/learning-move-4-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 3560,
+      "sha256": "73bf84e52d2c7e72ddacbf4f4163b14981ee4279a3e0517831c3acb880bf4c03",
+      "git_blob": "1eb95106dfdbfe11c9345ad83e7956e60eeea12a",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/learning-move-5-surface-readiness.json",
+      "mode": "100644",
+      "bytes": 3560,
+      "sha256": "d60bdd4ff18a1cba55efb691b730f9169724fe2800c108595bbc32d29bb376c7",
+      "git_blob": "117f54cafa7ee3fcafe8b8b5d261ea59eca77788",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/logcat.txt",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/logcat.txt",
+      "mode": "100644",
+      "bytes": 1480490,
+      "sha256": "a956fbb6fd39d190dc520f3899532bce59059f6ea18650f6d2392f2d4c3b17bf",
+      "git_blob": "95eeff6d2bdc92bab4e54d5a3a95389cf31e121d",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/nextgen/native-surfaces-result.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/nextgen/native-surfaces-result.json",
+      "mode": "100644",
+      "bytes": 6538,
+      "sha256": "09e2646853093f262932dee9f035990d36bc2673f3770c52729dbbf83dbac13b",
+      "git_blob": "69658ec8236bad1a20bb30698cd2c9bdbc259dcc",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/recheck/after.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/recheck/after.json",
+      "mode": "100644",
+      "bytes": 10906,
+      "sha256": "02f1ed6a2c4b645be6c372dae1a351a417db808149dfca796034ba4774b68c12",
+      "git_blob": "3ad59513556412c662e488010d7bc1369edf8610",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/recheck/before.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/recheck/before.json",
+      "mode": "100644",
+      "bytes": 10906,
+      "sha256": "02f1ed6a2c4b645be6c372dae1a351a417db808149dfca796034ba4774b68c12",
+      "git_blob": "3ad59513556412c662e488010d7bc1369edf8610",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/recheck/preflight.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/recheck/preflight.json",
+      "mode": "100644",
+      "bytes": 11387,
+      "sha256": "d5dd8caa472aa840c16788a2b5426bf0128a6bec3cce8da00f3cba3585490320",
+      "git_blob": "97079218edb11c6ae14bbdbb520dfa57dcf51059",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/recheck/result.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/recheck/result.json",
+      "mode": "100644",
+      "bytes": 2606,
+      "sha256": "b67682c5734bd40e1e3e7afd6cf816acf0a5264a566caf87e271d128c75e21e5",
+      "git_blob": "e47041e28863da4b06228f746db7e4e89353f3f2",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/selected-originals/tour-result.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/selected-originals/tour-result.json",
+      "mode": "100644",
+      "bytes": 9654,
+      "sha256": "755520f8f004efc011f791170fd7aff9edfa9b0cf19c6377f7bc4e581cdcc4a2",
+      "git_blob": "c2e6a54f3e32c2b406f2efb43f2532ba2f5948cd",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/independent-source/lumo_game_entry_overlay-4ab.dart",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/independent-source/lumo_game_entry_overlay-4ab.dart",
+      "mode": "100644",
+      "bytes": 13559,
+      "sha256": "ca75568750c8ea1efdc3ead7863f5d91b8330e565597173bed9af84bf4c32b74",
+      "git_blob": "3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/android-ocr-cards-recheck-4ab/android-3e08/api37/evidence-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-4ab-ocr-cards-recheck-3e08/api37/evidence-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 33005,
+      "sha256": "a25635f4f7f3ed6b6b1d6b900be93fa930b8fd61a87d657dbe2a01e721302176",
+      "git_blob": "c984969d321092949211efe00fad8ebfa1d62317",
+      "package": "api37-original-return-failure"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/CURRENT_SCOPE.md",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/CURRENT_SCOPE.md",
+      "mode": "100644",
+      "bytes": 23049,
+      "sha256": "a773134df742dd2842fdc33ec43502ab8ab95f70278d145e000361517fa65e6c",
+      "git_blob": "32640f17aba584a237993d2897e0d5636ab6a4be",
+      "package": "current-scope"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/scope-matrix.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/scope-matrix.json",
+      "mode": "100644",
+      "bytes": 31798,
+      "sha256": "d8f5495471a593c42b6d907a9a3091fcd9596aac97c69030513d7a705864c77a",
+      "git_blob": "33c685bfb346c6b04557399d8daab0cab136a6f8",
+      "package": "current-scope"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/evidence-index.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/evidence-index.json",
+      "mode": "100644",
+      "bytes": 17310,
+      "sha256": "176d390b551c2f53804500dedfc85f61bcac02df6b22142fc742eca6e7a94ffe",
+      "git_blob": "7a9d860c4f5455335eddeccfbfa1b1d51feb9371",
+      "package": "current-scope"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/source-reference-checks.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/source-reference-checks.json",
+      "mode": "100644",
+      "bytes": 25075,
+      "sha256": "fd5abcdef1b68edaf2e0e019ea8e3efc0f099edff21a8ef90410e3861d52aec5",
+      "git_blob": "e9ba9f32ff3a95b1e1eb6b84f9186d933e08573b",
+      "package": "current-scope"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-current-scope-20261114/upload-manifest.json",
+      "repository_path": "docs/evidence/studio-current-scope-20261114/upload-manifest.json",
+      "mode": "100644",
+      "bytes": 2152,
+      "sha256": "8e52aec648e3e5250dc2fe4a677ed193174f2e07dabce2a1e618fa6f13fb51de",
+      "git_blob": "4f0a55bfee5a6c79439d6965f2d2b973c558b343",
+      "package": "current-scope"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/README.md",
+      "repository_path": "docs/evidence/studio-86445-host-compile/README.md",
+      "mode": "100644",
+      "bytes": 1749,
+      "sha256": "a5f0784c110b6214dead4668cc3efe9b2e1c8ea49b648f7f45d464218a6378a8",
+      "git_blob": "8cc8d19dc752ee82d248a9a75dd02001aa9b7b08",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/artifact-members.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/artifact-members.json",
+      "mode": "100644",
+      "bytes": 714,
+      "sha256": "2f27f2b072b34126cc0e622e0f62b688d1bc201d5c37fb0fa31936c81a1d4de6",
+      "git_blob": "9f380e42a36a9042a1307b84a9777c2d4f985960",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/artifact-metadata-normalized.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/artifact-metadata-normalized.json",
+      "mode": "100644",
+      "bytes": 763,
+      "sha256": "fe5697883c75cf1b574785aef1ff5abd3a6cd452349c92ed242657a094f9f456",
+      "git_blob": "931471615cee7da45bcef0d45b31476e0ebe4447",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/jobs-completed-original.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/jobs-completed-original.json",
+      "mode": "100644",
+      "bytes": 9832,
+      "sha256": "289b3015d2cd78b7ea60ab6364be9088c1d26b7491fdb64b495bf00a14154086",
+      "git_blob": "47f9ea88937ebd8d05ff7f4237298385a98eb393",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/original-artifact.zip",
+      "repository_path": "docs/evidence/studio-86445-host-compile/original-artifact.zip",
+      "mode": "100644",
+      "bytes": 5390,
+      "sha256": "7775b9346f9a065b5f036de12c3f8407b847b4b561deb264a125eedc0d4bdca8",
+      "git_blob": "5b4d6445f81fd75c4364c6e50aed393e9e4dadfc",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/original-job.log",
+      "repository_path": "docs/evidence/studio-86445-host-compile/original-job.log",
+      "mode": "100644",
+      "bytes": 238082,
+      "sha256": "4e5e05c78a29b6e3dd5e73ac4ca9c04ed781a126e44933675f1c2173ca4eb5d5",
+      "git_blob": "ba786373295dc471dbab85643e938e7373471f50",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/cards-authority-registry.log",
+      "repository_path": "docs/evidence/studio-86445-host-compile/originals/cards-authority-registry.log",
+      "mode": "100644",
+      "bytes": 1325,
+      "sha256": "29e65be1e0d6e34fdbf44ee1c53cfc837581fcded91598a24c4dbd9b94f654c3",
+      "git_blob": "9d75ed9911a0d839740cee65636a194f75e1cc7d",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/compile.log",
+      "repository_path": "docs/evidence/studio-86445-host-compile/originals/compile.log",
+      "mode": "100644",
+      "bytes": 33778,
+      "sha256": "a47ee890f571e79f7e23d1080cb6069436350f5d5b84aa32d205ad947a6d91f5",
+      "git_blob": "5f77e917cd2c6ad6df7d3c9ce57616991633f286",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/flutter-version.txt",
+      "repository_path": "docs/evidence/studio-86445-host-compile/originals/flutter-version.txt",
+      "mode": "100644",
+      "bytes": 321,
+      "sha256": "11b87dd29f06b7d49d00cc2e9edca59e5e5669eae7567863b82e2ba4d5a66800",
+      "git_blob": "d13b832a1c2d27b024cba7e0f9737c467c7b8b9b",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/result.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/originals/result.json",
+      "mode": "100644",
+      "bytes": 2769,
+      "sha256": "ed50d8c3ecc1a7b4ac2d9a5bc5900e5e673ae71881f38a2c5d5dc5df5d9aa0a1",
+      "git_blob": "065690cd6dd94fa3a0cc3ab233d194d171a42eb3",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/originals/source-sha.txt",
+      "repository_path": "docs/evidence/studio-86445-host-compile/originals/source-sha.txt",
+      "mode": "100644",
+      "bytes": 41,
+      "sha256": "3a2ed8a36ceb65cd3ec95f675000e55cea3ed77b56bf95119da3b49cf6c11382",
+      "git_blob": "6c7dd1320f33c98b8e547453fa21c8acbd339f9d",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/review.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/review.json",
+      "mode": "100644",
+      "bytes": 9502,
+      "sha256": "39ef7d20d51821af84df3e85b46e1b27b8c206fe574683c814b7a7d4690e6b8d",
+      "git_blob": "ed0e4565cc111c07d9e248c0a0a661876de4fd80",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/run-metadata-original.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/run-metadata-original.json",
+      "mode": "100644",
+      "bytes": 13396,
+      "sha256": "08420362afb9b24d97693ef2135d141d488738ea778e6d96bd3294cd8b001f97",
+      "git_blob": "08711fd92de6605be909e1460109be7787fe0964",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/source/lumo-studio-2019.yml",
+      "repository_path": "docs/evidence/studio-86445-host-compile/source/lumo-studio-2019.yml",
+      "mode": "100644",
+      "bytes": 49746,
+      "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+      "git_blob": "4c1f4a5c2b963278b0d9c5facb8d4abfc74eb2be",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/source-transfer-binding.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/source-transfer-binding.json",
+      "mode": "100644",
+      "bytes": 387,
+      "sha256": "96851ff6b03f614587f3ba9d4cede76ca268a8d69484f9f4023eda5af6099d0d",
+      "git_blob": "65754bc42ad04440f0f499320695f87835c6afe7",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-86445f53/host-compile/upload-manifest.json",
+      "repository_path": "docs/evidence/studio-86445-host-compile/upload-manifest.json",
+      "mode": "100644",
+      "bytes": 6387,
+      "sha256": "5b69f8668574f76e9b4e1d6ea1937b17c9cca3f04921c2b82f272af7e4524161",
+      "git_blob": "cd34c103d77d22812a3fa66c813685c504cf6205",
+      "package": "86445-original-host-compile"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/independent-review.json",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/independent-review.json",
+      "mode": "100644",
+      "bytes": 20334,
+      "sha256": "2e98c61a36e45afd3c306838e5b4304ebdb51eb78daaff23de9590c35ad1a37f",
+      "git_blob": "6d0673fe239228a866121a73c3c76f11f66828e4",
+      "package": "independent-local-contract-review"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/independent-review-upload-manifest.json",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/independent-review-upload-manifest.json",
+      "mode": "100644",
+      "bytes": 797,
+      "sha256": "ddd2d5a722e4ee9a1092cc4c42be8c28fe0e9b577b0f192b73a32cfc742cc8ff",
+      "git_blob": "ffa7f2b044df2a4b953bceabe4d24071b6bd0c69",
+      "package": "independent-local-contract-review"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/github-checkpoint.json",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/publication/github-checkpoint.json",
+      "mode": "100644",
+      "bytes": 560,
+      "sha256": "e0ac1411493a563b93fe968a96d0ac98b1395ea3d10e0a1e0bd6282c21c3d31e",
+      "git_blob": "a0cdfc84041bcc6af8b0a477c46ed9abee06a623",
+      "package": "prior-evidence-publication"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/github-created-tree.json",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/publication/github-created-tree.json",
+      "mode": "100644",
+      "bytes": 195,
+      "sha256": "1bbd70754952ac6d2ba977b07edc820fe5312119cc400924753e347c01434bff",
+      "git_blob": "6f7808c769aeb2f6f9e6539e108bd4a8129ddabb",
+      "package": "prior-evidence-publication"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/github-tree-verification.json",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/publication/github-tree-verification.json",
+      "mode": "100644",
+      "bytes": 372,
+      "sha256": "48bc0cc2fa141d8c365fda29d3504d3a4a4045c8be7261f1a096f27f344eac39",
+      "git_blob": "82eb7aad85186395f0bcad5ff7583afa6f0b4083",
+      "package": "prior-evidence-publication"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-86445-contract-evidence-20261114/github-upload-progress.json",
+      "repository_path": "docs/evidence/studio-86445-contract-followup-20261114/publication/github-upload-progress.json",
+      "mode": "100644",
+      "bytes": 12336,
+      "sha256": "32b61749e3a853c0af142fbf4ef5adc3f7fd0c33d3c43a6db8e2dc116bb96359",
+      "git_blob": "3d82660261b114a262b074a3ef7d1c59f0900e74",
+      "package": "prior-evidence-publication"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/old-arm64-duplicate-check-20261114/current-artifact-metadata.json",
+      "repository_path": "docs/evidence/old-arm64-duplicate-check-20261114/current-artifact-metadata.json",
+      "mode": "100644",
+      "bytes": 697,
+      "sha256": "b341570c3f84f36e272034415765fd62b5b1a5fdea6cf483af253c74f5f13849",
+      "git_blob": "3b85decbd3938ef9d2d179d553ff7d650d27e505",
+      "package": "current-duplicate-readback"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/old-arm64-duplicate-check-20261114/current-stream-readback.json",
+      "repository_path": "docs/evidence/old-arm64-duplicate-check-20261114/current-stream-readback.json",
+      "mode": "100644",
+      "bytes": 432,
+      "sha256": "b8915a8bffee0bd6b366890bbd69ecece3ce800761ac4419ca770dd2d92edf3b",
+      "git_blob": "7b3717aa65f504c035dc42dcaa7678ae5a62d0a1",
+      "package": "current-duplicate-readback"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/old-arm64-duplicate-check-20261114/root-local-duplicate-cleanup.json",
+      "repository_path": "docs/evidence/old-arm64-duplicate-check-20261114/root-local-duplicate-cleanup.json",
+      "mode": "100644",
+      "bytes": 842,
+      "sha256": "6574a5e17ab7b4f3a889352d85a1a7cc5c39b936c6b21aec8e420e997b695ff5",
+      "git_blob": "80136ac289dd3d82d12c2eefc8ec664e5b535bf7",
+      "package": "current-duplicate-readback"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-3e08-results-86445-scope-20261114/README.md",
+      "repository_path": "docs/evidence/studio-3e08-results-86445-scope-20261114/README.md",
+      "mode": "100644",
+      "bytes": 4048,
+      "sha256": "256c31d1b4fb9408284b318804e882e65583e2d114fb3a6ab4689b7350ab532e",
+      "git_blob": "de88858d86f950da9b033536ee438d9cbd51c377",
+      "package": "collection"
+    }
+  ],
+  "file_count": 159,
+  "total_bytes": 25278112,
+  "contains_product_source_installation": false,
+  "contains_apk_or_large_original_zip": false,
+  "additional_manifest_path": "docs/evidence/studio-3e08-results-86445-scope-20261114/upload-manifest.json"
+}

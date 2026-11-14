@@ -1,0 +1,36 @@
+--- a/scripts/tests/lumo_facial_capture.gd
++++ b/scripts/tests/lumo_facial_capture.gd
+@@ -53,6 +53,12 @@
+ 		var index: int = int(seconds * 50.0)
+ 		var amplitude: float = envelope[index] if audible and index >= 0 and index < envelope.size() else 0.0
+ 		return JSON.stringify({"id": id, "state": state, "positionMs": seconds * 1000.0, "durationMs": player.stream.get_length() * 1000.0, "audible": audible, "envelopeAvailable": true, "envelope": amplitude})
++
++func _init() -> void:
++	# MovieMaker chooses its target before SceneTree._initialize/deferred work.
++	# --resolution sets the window but does not replace these project values.
++	ProjectSettings.set_setting("display/window/size/window_width_override", 640)
++	ProjectSettings.set_setting("display/window/size/window_height_override", 640)
+ 
+ func _initialize() -> void:
+ 	_run.call_deferred()
+--- a/tools/tests/test_nextgen_runner.py
++++ b/tools/tests/test_nextgen_runner.py
+@@ -233,6 +233,8 @@
+             state['observed_muted_closed'] = False
+         elif mutation == 'face-wrong-video-rate':
+             media['streams'][0]['r_frame_rate'] = '60/1'
++        elif mutation == 'face-wrong-video-size':
++            media['streams'][0].update(width=720, height=1280)
+         elif mutation == 'face-truncated-video':
+             media['streams'][0]['nb_read_frames'] = '140'
+         elif mutation == 'face-no-recorded-audio':
+@@ -572,7 +574,8 @@
+                 'face-repeated-step', 'face-stale-render-frame', 'face-nonfinite-weight',
+                 'face-no-actual-blink', 'face-no-audio-jaw', 'face-muted-motion',
+                 'face-stop-still-playing', 'face-false-positive-flag',
+-                'face-wrong-video-rate', 'face-truncated-video', 'face-no-recorded-audio',
++                'face-wrong-video-rate', 'face-wrong-video-size',
++                'face-truncated-video', 'face-no-recorded-audio',
+                 'face-wrong-movie-hash', 'face-movie-decode-failure',
+                 'face-missing-movie', 'face-missing-movie-proof'):
+             with self.subTest(mutation=mutation):

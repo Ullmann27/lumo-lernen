@@ -1,0 +1,69 @@
+{
+  "status": "PASS",
+  "expected_captions": [
+    "Spiel pausiert"
+  ],
+  "frames": [
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "16_cards_final_flutter_return-return-candidate-1.png",
+      "source_sha256": "b262bc2f16c175b46c1918e2e065534b3299ed8474849de33c7cb5c7e5e32614",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.346,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Spiel pausiert",
+          "ocr": {
+            "text": "Spiel pausiert",
+            "bounds": [
+              308.0,
+              1018.0,
+              774.0,
+              1081.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    },
+    {
+      "status": "CONFIRMED_FLUTTER_PIXELS",
+      "source": "16_cards_final_flutter_return-return-candidate-2.png",
+      "source_sha256": "0520355ab9d7663daeff751a5cad57198be4f510fff54cdbdff9712cc39238f3",
+      "render_readiness": {
+        "width": 1080,
+        "height": 2400,
+        "content_entropy_bits": 6.385,
+        "threshold_bits": 3.0,
+        "visually_ready": true,
+        "scope": "Rendered content readiness, not an accessibility or gameplay check"
+      },
+      "captions": [
+        {
+          "expected": "Spiel pausiert",
+          "ocr": {
+            "text": "Spiel pausiert",
+            "bounds": [
+              308.0,
+              1018.0,
+              774.0,
+              1081.0
+            ],
+            "variant": "contrast"
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Unmodified consecutive Android captures plus actual OCR; no input or state repair",
+  "consecutive_confirmed_frames": 2,
+  "source": "16_cards_final_flutter_return.png",
+  "source_sha256": "0520355ab9d7663daeff751a5cad57198be4f510fff54cdbdff9712cc39238f3",
+  "elapsed_seconds": 8.65043
+}

@@ -1,0 +1,4451 @@
+{
+  "schema": 1,
+  "source_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+  "scope": "Paths explicitly named by original verbose logs; tracked paths bind to original before/after snapshots. Generated imported binary hashes were not measured and are not claimed. Whole tracked graph remains bound.",
+  "unique_logged_resources": 156,
+  "tracked": 96,
+  "generated": 60,
+  "resources": [
+    {
+      "resource": "res://scripts/tests/kart_ai_behavior_regression.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 19
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/tests/kart_ai_behavior_regression.gd",
+        "bytes": 10477,
+        "sha256": "19b6dcb13d282a10931b30da1dca4966d2f4d0e41383b969f76f9da81881176b",
+        "git_blob_sha": "48203354c8a1fcd2aed96cacfacbec191aabf1ae"
+      }
+    },
+    {
+      "resource": "res://scenes/default_env.tres",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 21
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 25
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 21
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 52
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scenes/default_env.tres",
+        "bytes": 1700,
+        "sha256": "659c707ad122dc81f36e11a872ade3a0eabdb2bc548cea50521d72ffc8976fa3",
+        "git_blob_sha": "67cff9c763ea80bd6a43adc66f4abe31f7c240f9"
+      }
+    },
+    {
+      "resource": "res://scripts/systems/event_bus.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 22
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 26
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 22
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 55
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/systems/event_bus.gd",
+        "bytes": 2299,
+        "sha256": "b809f381eb919f7b9c6cba5c13be737612c853f5fdfb688b8c20c5983ec9f340",
+        "git_blob_sha": "b754dae939c4837288b8baa6862c68e75e670c20"
+      }
+    },
+    {
+      "resource": "res://scripts/systems/settings_store.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 23
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 27
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 23
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 56
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/systems/settings_store.gd",
+        "bytes": 1673,
+        "sha256": "dc0ac7f96f8e47d7c9735b6593ec3da69cff4d5aad9505590cd201ab426b2b82",
+        "git_blob_sha": "930181998c72b62004ec43c66e8b1c674f6eb193"
+      }
+    },
+    {
+      "resource": "res://scripts/systems/performance_manager.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 24
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 28
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 24
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 57
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/systems/performance_manager.gd",
+        "bytes": 5167,
+        "sha256": "a5de6bc948e15d84f117f8f137d4d1bb7b844e194b19bb29a579b13e9902a8c0",
+        "git_blob_sha": "b81a5c2202cc832cdd6c773a459bb90ab6520d53"
+      }
+    },
+    {
+      "resource": "res://scripts/app/mobile_runtime.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 25
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 29
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 25
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 58
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/app/mobile_runtime.gd",
+        "bytes": 7146,
+        "sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+        "git_blob_sha": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f"
+      }
+    },
+    {
+      "resource": "res://scripts/app/scene_router.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 26
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 30
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 26
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 59
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/app/scene_router.gd",
+        "bytes": 4457,
+        "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+        "git_blob_sha": "0e28e5c797af076d2a2410143e42605982e8d1d5"
+      }
+    },
+    {
+      "resource": "res://scripts/systems/asset_loader.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 27
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 31
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 27
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 60
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/systems/asset_loader.gd",
+        "bytes": 6824,
+        "sha256": "e51ab8ee60a6c86b9f6e610141de74636c987f7f4b40c56642ee0dc58fd9b436",
+        "git_blob_sha": "5436978a86ea21c70ee3affed30eec1219d6a571"
+      }
+    },
+    {
+      "resource": "res://scripts/systems/audio_manager.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 28
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 32
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 28
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 61
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/systems/audio_manager.gd",
+        "bytes": 5507,
+        "sha256": "286e18ee8b728cd52de7defab64670d602e4ef25231a6695a7879873eb423bd0",
+        "git_blob_sha": "36462f609a2a27d02a91fc12177f1c441054911a"
+      }
+    },
+    {
+      "resource": "res://scripts/systems/progress_store.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 29
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 33
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 29
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 62
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/systems/progress_store.gd",
+        "bytes": 5664,
+        "sha256": "9e61f231e9a207be2d49f6917fbec66a5236c4f5f9f05d726a25939d961c5811",
+        "git_blob_sha": "c197f75e913373bcc74f36cde9ac8b58cd56e275"
+      }
+    },
+    {
+      "resource": "res://scenes/games/kart_island.tscn",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 38
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 42
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 38
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 229
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 302
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 373
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 447
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 523
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 71
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scenes/games/kart_island.tscn",
+        "bytes": 181,
+        "sha256": "4299a4c5654bb0e41eeeddf6514545767f5391c309c039e9ea3b0c061bf954b0",
+        "git_blob_sha": "f03cdb78a6c8c800deed68f0fc214b4cb61167af"
+      }
+    },
+    {
+      "resource": "res://scripts/games/kart_island.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 39
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 43
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 39
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 72
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/games/kart_island.gd",
+        "bytes": 169697,
+        "sha256": "11cc762f98c7520d31d15bae16fc3dfcd2e6cde82bc2746fd71043dad379c37c",
+        "git_blob_sha": "8319609143cc6de2b2f618a4c262cf1903fd290c"
+      }
+    },
+    {
+      "resource": "res://assets/fonts/Nunito-Black.ttf",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 40
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 44
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 40
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 73
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/fonts/Nunito-Black.ttf",
+        "bytes": 39260,
+        "sha256": "3a373c4d17cffecdc9f3c351e2ce9ec83edb0622925a59d802be24fd442346f8",
+        "git_blob_sha": "9e7743ebb7efc2bda51e99eda079cb9b2061f566"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/Nunito-Black.ttf-880f0c283166815ed56080446388b042.fontdata",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 41
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 45
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 41
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 74
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/fonts/Nunito-Bold.ttf",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 42
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 46
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 42
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 75
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/fonts/Nunito-Bold.ttf",
+        "bytes": 39284,
+        "sha256": "5d6ac65faf73856810797d4e6843a57c7444ee6089b764399c3ebfa85d61e448",
+        "git_blob_sha": "e289ba049b167e4fd0e5ba5f537fa3f4b94a92fb"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/Nunito-Bold.ttf-e301dd6fbe168d4b494ffe849f591c35.fontdata",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 43
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 47
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 43
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 76
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/shaders/kart_menu_platform.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 44
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 48
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 44
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 77
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_menu_platform.gdshader",
+        "bytes": 1313,
+        "sha256": "1d80c8b2f4ecdac82280ef6742efca07ba32a37602e003c86b9d5f3f3656ade3",
+        "git_blob_sha": "6b60b5353bf262aab2410e1d5e30478206b7d25d"
+      }
+    },
+    {
+      "resource": "res://assets/kart/controls/steering.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 45
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 49
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 45
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 78
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/steering.svg",
+        "bytes": 946,
+        "sha256": "4a8824fed65e170c89c8a4cfb0b814443bda2eb4e52ed19bc37496db981a07cd",
+        "git_blob_sha": "ee4b4474f2071265a28766d49800d2857785aa07"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/steering.svg-e3b23eb8bc44ee503818025dd24d9a41.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 46
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 50
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 46
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 79
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/menu/lumo-world.webp",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 47
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 51
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 47
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 80
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/menu/lumo-world.webp",
+        "bytes": 263468,
+        "sha256": "0bdf969d0a3662367a7473820e05044e5bd8b3ab8df12e209db256d4db94e8dd",
+        "git_blob_sha": "4f70c62237a4c57041669f4e268d284664d25e93"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/lumo-world.webp-e25d3f16b9195f237ed8ceb0c556337e.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 48
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 52
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 48
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 81
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/shaders/kart_cinema_stylized.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 49
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 53
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 49
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 82
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_cinema_stylized.gdshader",
+        "bytes": 2445,
+        "sha256": "110274e870ec3781ebca31fe46afe6b0553ac38bb6f14b39d52c69b7247328d8",
+        "git_blob_sha": "2f3f864f0b0925d92e58578b2a6fd566a6c95c6a"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_basalt.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 50
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 54
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 50
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 83
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_basalt.gdshader",
+        "bytes": 480,
+        "sha256": "a1b354cb7f951c819d96649ae91c1ac3114a43fb58eb822b9d788c30cdfafe94",
+        "git_blob_sha": "bff50d435d2a32c8b56367804a33dc77e1fd4e5d"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_city_glass.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 51
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 55
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 51
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 84
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_city_glass.gdshader",
+        "bytes": 1023,
+        "sha256": "1f2a34ea41660e42d7b60804b1ca9c919c702b90d3b5246556bd826a10b1b2fe",
+        "git_blob_sha": "88d6ec7b72b2386dc14fe3855456069168b9f78a"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_stylized_vertex_tint.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 52
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 56
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 52
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 85
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_stylized_vertex_tint.gdshader",
+        "bytes": 1722,
+        "sha256": "2691f7b1d9e8aa31f7b03635dd1463b776f85fcf74cca122c742aff0c6849f5d",
+        "git_blob_sha": "0b32b6efbe0002c753c96a9deb4d43b761041cae"
+      }
+    },
+    {
+      "resource": "res://assets/materials/kart_terrain_grain.tres",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 53
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 57
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 53
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 86
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/materials/kart_terrain_grain.tres",
+        "bytes": 308,
+        "sha256": "c7b3f6ed2539cea30ea7802dba567d70f7ba04d0da124a72e4daa333dd5c325b",
+        "git_blob_sha": "cf123f87998da3092713247bebede579fdfb255d"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_water.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 54
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 58
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 54
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 87
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_water.gdshader",
+        "bytes": 1959,
+        "sha256": "c9a0c0a616f9db96b2e47fa3d5c6e973894ca98647b0fa9cee86da12d8b53e74",
+        "git_blob_sha": "891185bedcb54d0c3aec43ecd49c64204618a907"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_asphalt.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 55
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 59
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 55
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 88
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_asphalt.gdshader",
+        "bytes": 2927,
+        "sha256": "58cd7a1add235399ad1c432fe124fe2ecc32efc81e5010dbc9c35b916fe65be6",
+        "git_blob_sha": "6779dfdd97c30a148e76496fce7cf22abf36b3e9"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_candy_road.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 56
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 60
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 56
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 89
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_candy_road.gdshader",
+        "bytes": 556,
+        "sha256": "ea4e9422b522a43307c922c0b1dbb389e6809a79e8a0b8b0480c5433d6d7306e",
+        "git_blob_sha": "f563676d56daca91eac7549236c7e1e71994ffd2"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_waterfall.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 57
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 61
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 57
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 90
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_waterfall.gdshader",
+        "bytes": 1390,
+        "sha256": "dd11f9e30f19ee5964e326da161395ca1e935a07121b70e1db81d52a60615f25",
+        "git_blob_sha": "df06d19b434e3199a0bb0234b5caa545970e1dda"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_lava.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 58
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 62
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 58
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 91
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_lava.gdshader",
+        "bytes": 1142,
+        "sha256": "38b99a403df0166ae523b91f871a6271cd08cc0fd616c9c5a5bc6c645e9e0262",
+        "git_blob_sha": "8bb06a621b0ee0fd25d522a16f753d5d74129b97"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_cloud_sea.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 59
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 63
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 59
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 92
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_cloud_sea.gdshader",
+        "bytes": 1324,
+        "sha256": "ae3cb16ddb62ca060d0346cd3f31d304c5d1bc7ba67e3e49884722512ad0a7c3",
+        "git_blob_sha": "9a6cc3ed7c5507627473650f58b69927e38a2ea7"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_candy_sky.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 60
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 64
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 60
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 93
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_candy_sky.gdshader",
+        "bytes": 1215,
+        "sha256": "dedbd991243eb7aec2751ad6c6366e8912dc630a3e9d98e5d1eec4401683961b",
+        "git_blob_sha": "71f85af4147cccf0c23a87aabbdf33c28145785e"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_night_sky.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 61
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 65
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 61
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 94
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_night_sky.gdshader",
+        "bytes": 1662,
+        "sha256": "8910218cec95e2d0ae957359a00647be490f446bfc8b9c8ec36612a239f0968f",
+        "git_blob_sha": "2388508e0007cc2dd7d809ef3d86bd8e82b78a06"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_stunt_loop.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 62
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 20
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 62
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 95
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_stunt_loop.gdshader",
+        "bytes": 1250,
+        "sha256": "907e99178de9aeede99c7c221db284bf84d51ae59546ee4b80314086fee88836",
+        "git_blob_sha": "6fa946c4f2e01035f2b32f9068e85215229a64e6"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_balloon.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 63
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 21
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 63
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 96
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_balloon.gdshader",
+        "bytes": 905,
+        "sha256": "bf5945947c53b8cd4521de4bf75b48c951fa17cd3f134e7c435e2857fa3b5437",
+        "git_blob_sha": "8a473125295c07343658c72fe644d9384f7bba95"
+      }
+    },
+    {
+      "resource": "res://assets/kart/stunt/lumo_balloon_emblem.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 64
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 22
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 64
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 97
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/stunt/lumo_balloon_emblem.png",
+        "bytes": 94898,
+        "sha256": "7ec4f4ab0c1fc2a667c54f204eecf2e243b1bb254df23b3db40448d0a0f6eec0",
+        "git_blob_sha": "9d56fc9d8b16f9566e9ffbb8f8d731594fa89483"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/lumo_balloon_emblem.png-6e2da3d9255fcc6433c61b7a2be44438.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 65
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 23
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 65
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 98
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://scenes/games/props/harbor_wave_pavilion.tscn",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 66
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 66
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 66
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 99
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scenes/games/props/harbor_wave_pavilion.tscn",
+        "bytes": 958,
+        "sha256": "2b71c1c6a4c1f5452eb6853302d3483eda25c9816db6611cd284c131a8c4300b",
+        "git_blob_sha": "77534efc7e78931e195c6329d86670b34decef4f"
+      }
+    },
+    {
+      "resource": "res://assets/kart/harbor_pavilion/wave_pavilion_lod0.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 67
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 67
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 67
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 100
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/harbor_pavilion/wave_pavilion_lod0.glb",
+        "bytes": 135164,
+        "sha256": "cc45ba2f6bc891922a44c89eb996e0207b2dd5251048c73b80e39e7deca4eccb",
+        "git_blob_sha": "2fad1341e2afd14946ee50f5fae95519b12a6646"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/wave_pavilion_lod0.glb-e33d2aa3d076781898e76dd4450bfc96.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 68
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 68
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 68
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 101
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/harbor_pavilion/wave_pavilion_lod1.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 69
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 69
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 69
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 102
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/harbor_pavilion/wave_pavilion_lod1.glb",
+        "bytes": 59548,
+        "sha256": "8da0d4f47f5352b18833d9b33362cf770cfae6f573a0416928888cdb698d8863",
+        "git_blob_sha": "b238a54a00006588ec4581fdec20d75511838ecc"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/wave_pavilion_lod1.glb-d10deda67b7727a99611e30bafd236e9.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 70
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 70
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 70
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 103
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/harbor_pavilion/wave_pavilion_lod2.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 71
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 71
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 71
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 104
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/harbor_pavilion/wave_pavilion_lod2.glb",
+        "bytes": 26224,
+        "sha256": "3b12d1cbf0d1c4a794a8c16883cf2ba2e8f45c32c570572742bac98d4c238049",
+        "git_blob_sha": "f7387b9810b759df6e7275718d5743c30dec923d"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/wave_pavilion_lod2.glb-7d15bffa5592d0683aa3d3860eec0f26.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 72
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 72
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 72
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 105
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/shaders/kart_sonnenhafen_darkride.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 73
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 73
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 73
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 106
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_sonnenhafen_darkride.gdshader",
+        "bytes": 4896,
+        "sha256": "d26884b51d1db01cb9e8188df5413f3d7fac359c14263cac0fcfd526c990f1cd",
+        "git_blob_sha": "e66460a9caaa0085609c8d58c659023cad13f613"
+      }
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/strata_shelf_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 74
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 74
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 74
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 107
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/strata_shelf_mobile.glb",
+        "bytes": 25972,
+        "sha256": "978449a8b5170eb64e8f114cf029b08994222cdde22a298ee9b326cb86abd5e3",
+        "git_blob_sha": "0f42ac5dfeadae3952775319ee3a141b11b0f28e"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/strata_shelf_mobile.glb-1e3532fce27663228609923e11ff0753.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 75
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 75
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 75
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 108
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/strata_shelf_high.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 76
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 76
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 76
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 109
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/strata_shelf_high.glb",
+        "bytes": 71404,
+        "sha256": "692bbbe6c3300fc6c8cb66c314d5cc554afd04a18ea61796bece13a34a1293e6",
+        "git_blob_sha": "5bc7e6e66df8df9f5e32c35305730da1a467a1bf"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/strata_shelf_high.glb-2fec30ea9ab851f5a481abf38a995fe6.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 77
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 77
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 77
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 110
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/split_ledge_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 78
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 78
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 78
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 111
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/split_ledge_mobile.glb",
+        "bytes": 20136,
+        "sha256": "5b2ab7ba67bec21a023cc8486ccaeb5099d37acde08ab7074c73d696fa952821",
+        "git_blob_sha": "76e4f71c1d498f318b4d75852345e29258928bca"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/split_ledge_mobile.glb-2ea14ac918a9f2c950451a01b68696af.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 79
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 79
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 79
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 112
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/split_ledge_high.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 80
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 80
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 80
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 113
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/split_ledge_high.glb",
+        "bytes": 56500,
+        "sha256": "535c57172b2dc3753fd5cda2daa39793d6c86514149770bfedab10d98ac1c482",
+        "git_blob_sha": "14ac8aa3cb20ae90baf4277e90f35ab86b80f01e"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/split_ledge_high.glb-ec098fdb3b6ef0551b8cf632a3811329.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 81
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 81
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 81
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 114
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/hanging_canopy_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 82
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 82
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 82
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 115
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/hanging_canopy_mobile.glb",
+        "bytes": 26892,
+        "sha256": "504cb9b923740d761bdcc3ca113bb952489920c566c944213b5ceb6f7dd79fc7",
+        "git_blob_sha": "0d5812539e7fbdfca9b4e9a16c524e2745ca97ea"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/hanging_canopy_mobile.glb-c0e0b916cdcecf1a4200c02265837e9c.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 83
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 83
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 83
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 116
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/hanging_canopy_high.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 84
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 84
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 84
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 117
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/hanging_canopy_high.glb",
+        "bytes": 74404,
+        "sha256": "42b367f00022f92d7fbbf66be2647ae6eef634dfb51633d3aa814eca3f3cc3cb",
+        "git_blob_sha": "a9396f08764200c9d5964adbf40d3f6e72d874f9"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/hanging_canopy_high.glb-05fc3f5760619a4e7b08a2c90d1815bf.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 85
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 85
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 85
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 118
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/crystal_fan_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 86
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 86
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 86
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 119
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/crystal_fan_mobile.glb",
+        "bytes": 12528,
+        "sha256": "747cfe4a9613e6e9f0fdb0cacfb324ab4c55b383590f573ddb251b6cf85d43ac",
+        "git_blob_sha": "fa39b37331bd0ae55840b517b9c914684c3252bb"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/crystal_fan_mobile.glb-86a30bf1a601cda70bcb96d9bde8e298.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 87
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 87
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 87
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 120
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/crystal_fan_high.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 88
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 88
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 88
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 121
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/crystal_fan_high.glb",
+        "bytes": 32812,
+        "sha256": "c37c9b6ea7a2f833514cbac00d1507552f21272f3255fabc50722cc046974ba3",
+        "git_blob_sha": "8604d39e071579fd689ab34170f3733b65de9bbf"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/crystal_fan_high.glb-4bb94fd8925960ddbe51364980b35c36.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 89
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 89
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 89
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 122
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/crystal_spire_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 90
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 90
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 90
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 123
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/crystal_spire_mobile.glb",
+        "bytes": 8044,
+        "sha256": "588da95a533cb6d1bf2c9577197ce92578616cb7be4cf680f4b500b6e299227c",
+        "git_blob_sha": "1c615edd095891e9abdce1a2db696698abf34c8a"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/crystal_spire_mobile.glb-6eab6506691d14d60e8fbccc8494dfef.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 91
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 91
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 91
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 124
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/crystal_spire_high.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 92
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 92
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 92
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 125
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/crystal_spire_high.glb",
+        "bytes": 23820,
+        "sha256": "bb7af11c32f7157e6660d4062f3c3e79ce37262addd724b57924687d787aceab",
+        "git_blob_sha": "e3dc8c543408fcc2be988b9b76a889ba5aa29cb1"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/crystal_spire_high.glb-55f08b8c7ea8f429a564bcc1c5cc20c9.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 93
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 93
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 93
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 126
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/crystal_rosette_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 94
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 94
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 94
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 127
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/crystal_rosette_mobile.glb",
+        "bytes": 12540,
+        "sha256": "930a6eb2d80df15e195f47c03eebf770a9e9e212bcbd5ee990aabcc86ded9742",
+        "git_blob_sha": "dc248913898997f20360beeccffcf1e6d33b178d"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/crystal_rosette_mobile.glb-8720c760b56b9ea7b3ecff8a084cc72e.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 95
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 95
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 95
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 128
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/cavern/mineral_kit/crystal_rosette_high.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 96
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 96
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 96
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 129
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/cavern/mineral_kit/crystal_rosette_high.glb",
+        "bytes": 41828,
+        "sha256": "02116501a978afb9392b5ee850e2e64cdc18c58623986130cfd95f2b1ec425a9",
+        "git_blob_sha": "c0fee9df25fd06a259a90137cdf54211598e42c9"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/crystal_rosette_high.glb-4b70e0046fd8639475e751a258848afa.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 97
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 97
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 97
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 130
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/shaders/kart_lumo_cinema_high.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 98
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 98
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 98
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 131
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_lumo_cinema_high.gdshader",
+        "bytes": 3921,
+        "sha256": "85881b8a48a4b4f48e772d4518f846b4e3934eeaf418d52a9db33e37104c49f4",
+        "git_blob_sha": "c72e2d6d510c5b2c32b323d173b7798196c56cc7"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_lumo_cinema_mobile.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 99
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 99
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 99
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 132
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_lumo_cinema_mobile.gdshader",
+        "bytes": 2254,
+        "sha256": "928e51083968d94e4361f6aa75f84c60a7c21141f3130a3901fc445c58582536",
+        "git_blob_sha": "0107cdef09f8106c86f38c8483a0037750e2981b"
+      }
+    },
+    {
+      "resource": "res://assets/shaders/kart_aquarium.gdshader",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 100
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 100
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 100
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 133
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/shaders/kart_aquarium.gdshader",
+        "bytes": 491,
+        "sha256": "88b002617763986a880bf190a2c3424ec8c906eb47ba7814943d00698caf18c6",
+        "git_blob_sha": "5b899ac950c533a09dd46535fd0b58d70b6f07bd"
+      }
+    },
+    {
+      "resource": "res://assets/kart/controls/gas.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 101
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 101
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 101
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 134
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/gas.svg",
+        "bytes": 813,
+        "sha256": "23674887ee88bca0f84090a55d5e3d588e076661610f67684c1c40700719d9ab",
+        "git_blob_sha": "d65f7a4f5410c8920e6d81e037b665961fb4621f"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/gas.svg-914dfa80dabe318dd57e56052e1053de.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 102
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 102
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 102
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 135
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/boost.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 103
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 103
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 103
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 136
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/boost.svg",
+        "bytes": 1056,
+        "sha256": "2869fc2721b9d585d5709cc15a819e56e4383663548419c9c8912143de0a9330",
+        "git_blob_sha": "5f6dc2f7e5aaba1982daa8c451a596753167bfb8"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/boost.svg-dcf3fc14a70f817a73df0cacee513580.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 104
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 104
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 104
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 137
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/drift.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 105
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 105
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 105
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 138
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/drift.svg",
+        "bytes": 1032,
+        "sha256": "417cb6879b6a90d1ac45a8d2d8c4e375a0a371a1ea8702d0058c4af8d36ed0c2",
+        "git_blob_sha": "681c04f903e92b11e7f670a34f8548534c86c05f"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/drift.svg-f59a3355d3d2135e53b0b1cf3f9eed55.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 106
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 106
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 106
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 139
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/brake.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 107
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 107
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 107
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 140
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/brake.svg",
+        "bytes": 731,
+        "sha256": "789dc074270fe1d2d81e1643c7904377c16e777185c2b5cd5016fd0115e4a4e7",
+        "git_blob_sha": "de75558ff6e48a89bd15bf8f9548556d28b9dada"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/brake.svg-b56fcf26ab1ae99ba005eb2f6b9ef722.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 108
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 108
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 108
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 141
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/item.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 109
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 109
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 109
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 142
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/item.svg",
+        "bytes": 905,
+        "sha256": "220ba6d09575a9242ed5f95b4d095f0ff1d39cf0183a1350a2f5a425237a6080",
+        "git_blob_sha": "e982e1c815ee019ac699845ef87bcb28592e2c7e"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/item.svg-39c87303f983f95f10f0f5180f09d306.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 110
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 110
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 110
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 143
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/drift_normal.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 111
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 111
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 111
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 144
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/drift_normal.png",
+        "bytes": 228995,
+        "sha256": "8bac60aa96e3b6d75b6337756357c7fee52ad52fdc3e26746a75a7278fcc47b7",
+        "git_blob_sha": "6108a7d227fc05665f06ad8a42d8a58e545e5456"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/drift_normal.png-4b2f3b5ae5829667e0f75e1796929924.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 112
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 112
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 112
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 145
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/drift_pressed.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 113
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 113
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 113
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 146
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/drift_pressed.png",
+        "bytes": 232017,
+        "sha256": "465e4847f66bddb29a7f5fd8fb5deadc4803e88e35a38cafb768b2a2c9576920",
+        "git_blob_sha": "dfa63873fa7b44b3a4f62aef7854cc7a0f19859f"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/drift_pressed.png-bfaf92cafbdda6fd78c9ae0a1f6e7d6b.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 114
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 114
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 114
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 147
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/drift_disabled.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 115
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 115
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 115
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 148
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/drift_disabled.png",
+        "bytes": 244800,
+        "sha256": "64370ab1d0408e0ba6d44b6942fdea47dc3512ce302ea19fbe4d574cf8e2b361",
+        "git_blob_sha": "cc1294393d75b080ac80c097b9466e11d1fd76f4"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/drift_disabled.png-d9660acf73eec7f356c001f24f129ab9.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 116
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 116
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 116
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 149
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/gas_normal.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 117
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 117
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 117
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 150
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/gas_normal.png",
+        "bytes": 248981,
+        "sha256": "ce7af81ab3da7efe717b3e81f9ae1f020c21658c59cd452dd5157114a89dfc97",
+        "git_blob_sha": "2216c5847abbdecf0f9861a84745e33ab45c364b"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/gas_normal.png-b9eeff57c9ff87d6cf577311a39c684b.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 118
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 118
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 118
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 151
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/gas_pressed.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 119
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 119
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 119
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 152
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/gas_pressed.png",
+        "bytes": 253740,
+        "sha256": "662e79b1900228259093bea7b61925fb856a6b9c32820978e3cee6d195b4a342",
+        "git_blob_sha": "81596c67f596bf8cd0ed7cf583c60e9dbdb2ab9c"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/gas_pressed.png-effa69e7749875a11c66e4826b7e6b34.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 120
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 120
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 120
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 153
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/gas_disabled.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 121
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 121
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 121
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 154
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/gas_disabled.png",
+        "bytes": 316722,
+        "sha256": "6c619503418d338c178139ad750cfedb998ccfa72cc403db8d58dbf2f08e0ece",
+        "git_blob_sha": "114f1482763e5d44c1789d988faa94be18e4a6d4"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/gas_disabled.png-c74904825386ef540dabe6b4b4bec66a.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 122
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 122
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 122
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 155
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/bremse_normal.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 123
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 123
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 123
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 156
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/bremse_normal.png",
+        "bytes": 258309,
+        "sha256": "c214c6a838701698c249c90d391cce29ef83ca2ccd8cbfa8a5b099ec7ab11f00",
+        "git_blob_sha": "352b2a1bf544c3499b0f1e2b10be7f1ed49c2fdd"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/bremse_normal.png-17d79e585cbb64aa102f07ab36f89c30.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 124
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 124
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 124
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 157
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/bremse_pressed.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 125
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 125
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 125
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 158
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/bremse_pressed.png",
+        "bytes": 256109,
+        "sha256": "270e3c96a96b9b0d1411c8b92dba3a5d2181965970aedb9bc408a520aa1dad35",
+        "git_blob_sha": "11ef6be9a5ae5b396d097bfb2af3a7d029d921bd"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/bremse_pressed.png-42d61aa24cad4bd30e998c3fa5b34d84.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 126
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 126
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 126
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 159
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/bremse_disabled.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 127
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 127
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 127
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 160
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/bremse_disabled.png",
+        "bytes": 269939,
+        "sha256": "af4a3b149eec5af057bffac8f6a8e6edbc3e4ab582671dedaaa4c1b686a7aa74",
+        "git_blob_sha": "f5a0173605232db7a4a7e37ae4cf632bba2e84ae"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/bremse_disabled.png-16d3e95ba3b98c5f6be4b8bd3bf27c53.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 128
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 128
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 128
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 161
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/speed_normal.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 129
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 129
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 129
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 162
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/speed_normal.png",
+        "bytes": 284192,
+        "sha256": "942a93918d0d993adc64e436cad9945f53f80f7bf5ffdaf8bc103190fa1a5f28",
+        "git_blob_sha": "48cce3059bd447f647d1243e29ee20e06b9a0821"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/speed_normal.png-06762b3753a232b6eafc5b70652830ad.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 130
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 130
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 130
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 163
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/speed_pressed.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 131
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 131
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 131
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 164
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/speed_pressed.png",
+        "bytes": 291699,
+        "sha256": "1ad35bbd97b07d2820d10ae774cc458bb17b00c2b504319e8a30279bbeb55129",
+        "git_blob_sha": "ca8a45bb96b99c8f6f21bfc600755919ae859d27"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/speed_pressed.png-2815c6cbc7065304baa945df4ae0f6c7.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 132
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 132
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 132
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 165
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/speed_disabled.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 133
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 133
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 133
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 166
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/speed_disabled.png",
+        "bytes": 274111,
+        "sha256": "7648a3c1f94744d68941cdb0ee785a295641e4fa50830a95eea9995ab5b5bd23",
+        "git_blob_sha": "8f8a3366bab042e942f9d57bbae43ff2df97fc63"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/speed_disabled.png-1f3947290f7d8b31552dd6bf8c5d0af9.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 134
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 134
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 134
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 167
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/item_normal.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 135
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 135
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 135
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 168
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/item_normal.png",
+        "bytes": 251399,
+        "sha256": "f8b7647c123cfbdfb5b987090a58904657f95e12d6fad88de196e51879069b74",
+        "git_blob_sha": "6a1eaa899cbb9447d9935867f0e5cd0ef83550c0"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/item_normal.png-362eca5066a4737f521cd9d1c81ee115.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 136
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 136
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 136
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 169
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/item_pressed.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 137
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 137
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 137
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 170
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/item_pressed.png",
+        "bytes": 252547,
+        "sha256": "ef15af959600718a28a2938e61e8376997440eae49f5b4038e862739d09a054d",
+        "git_blob_sha": "2d07bb7eaa2dfce8957998f01b69fbacd9d9abd4"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/item_pressed.png-db16c4ab6f04234c802b2c5141b15fd1.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 138
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 138
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 138
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 171
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/item_disabled.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 139
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 139
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 139
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 172
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/item_disabled.png",
+        "bytes": 259235,
+        "sha256": "942a1af13c344591cb95ee61cf56e908ecd8935eceae2831adc666a2462367bf",
+        "git_blob_sha": "19bdee46a70ee6b2bca8da2aec55daf52566f43b"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/item_disabled.png-f2205c97afc933e0d4f8f452a61163b7.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 140
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 140
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 140
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 173
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/hud/icon_shield.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 141
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 141
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 141
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 174
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/hud/icon_shield.png",
+        "bytes": 47165,
+        "sha256": "d339766055262afa8cf759dea301f323568974f89c9d46deac5ff72871912353",
+        "git_blob_sha": "1f7d476cb9e52fe96ce64ff04394a9e92a0dcfb2"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/icon_shield.png-502f3c6bc05f0df8c2d13d38faa2c957.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 142
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 142
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 142
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 175
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/hud/icon_pulse.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 143
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 143
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 143
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 176
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/hud/icon_pulse.png",
+        "bytes": 92765,
+        "sha256": "15a2ccbf76989f203157b1ffdf7f16f38147a9940d6d46082c1078e77cdad9b4",
+        "git_blob_sha": "cbcae7c4ea3d8c94c8687d637fb9b639d1ea4235"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/icon_pulse.png-aeb91fa9be73310a019e02f562fadefa.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 144
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 144
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 144
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 177
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/hud/icon_wind.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 145
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 145
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 145
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 178
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/hud/icon_wind.png",
+        "bytes": 58271,
+        "sha256": "ba608466f9a79af607c15536f4ccf2097e645d15f68e2559787b0fc85d88e170",
+        "git_blob_sha": "b161e84de02b281dcc38aed13c7e22150b86b195"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/icon_wind.png-7e73538f9c5aefaf64cf34ea279506d8.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 146
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 146
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 146
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 179
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/stick_basis.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 147
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 147
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 147
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 180
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/stick_basis.png",
+        "bytes": 1023296,
+        "sha256": "71a61749cf29ffd6ec4e7813e815b6405365ac4e0a671ef0f1706bc81a45b773",
+        "git_blob_sha": "91094fea6985b44c1d0c0b71fa71df42dd53c7a5"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/stick_basis.png-deb9a6762bca020b82922e26b6edc3d2.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 148
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 148
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 148
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 181
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/stick_knopf_normal.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 149
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 149
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 149
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 182
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/stick_knopf_normal.png",
+        "bytes": 149841,
+        "sha256": "5128df0c2309856ad728f3b2bf0dfc5f6d80ea62c2ef27b228d2269506926271",
+        "git_blob_sha": "2802d966812e6a414ee76ed483b1419d4f1127c1"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/stick_knopf_normal.png-da4db6c3b525b78c03edd2d338c5cf84.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 150
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 150
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 150
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 183
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/controls/reference/stick_knopf_pressed.png",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 151
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 151
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 151
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 184
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/controls/reference/stick_knopf_pressed.png",
+        "bytes": 162274,
+        "sha256": "9b2b6edef18ab5cbf6f1b5ebaca0ee0c67ca27bc880ec359935f68d2a6f880bd",
+        "git_blob_sha": "79181609f99db9fb6835e264a57d68bcec8f88b1"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/stick_knopf_pressed.png-b3fc6786154c89e2052a1e3d30f95b09.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 152
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 152
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 152
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 185
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/audio/kart/garage.ogg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 153
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 153
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 153
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 230
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 303
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 374
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 448
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 524
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 186
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/audio/kart/garage.ogg",
+        "bytes": 1173363,
+        "sha256": "15ce91004e4c0c5b3aed152be5c3147af0610797ac700221019f563f3a92dd0f",
+        "git_blob_sha": "5072ce323a487eae0c7c8c4891a74eadb3b2708c"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/garage.ogg-e4680e06f68e5389a72f23266d1621aa.oggvorbisstr",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 154
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 154
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 154
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 231
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 304
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 375
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 449
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 525
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 187
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/menu/race.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 155
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 155
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 155
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 232
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 305
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 376
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 450
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 526
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 188
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/menu/race.svg",
+        "bytes": 377,
+        "sha256": "757b34049cdebaa9d21bfb4562a46679fcadb389ea2b11dcb8703256004dfa0e",
+        "git_blob_sha": "a4a559ea5df96302eeeae6e5638a53e5fe3ff5eb"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/race.svg-aee843503549d595ff1412168c0afa41.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 156
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 156
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 156
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 233
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 306
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 377
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 451
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 527
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 189
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/menu/clock.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 157
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 157
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 157
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 234
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 307
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 378
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 452
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 528
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 190
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/menu/clock.svg",
+        "bytes": 397,
+        "sha256": "10b32b91f2becbb0d309b59529cc0aa9c036280d6f1457e01584d5d1ef7de164",
+        "git_blob_sha": "fd18ea84c2a4c3d6ceb5639de5b5bc9da04c2f44"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/clock.svg-21627f753afcb3a2da11eb08a79e3005.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 158
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 158
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 158
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 235
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 308
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 379
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 453
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 529
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 191
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/menu/arena.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 159
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 159
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 159
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 236
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 309
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 380
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 454
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 530
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 192
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/menu/arena.svg",
+        "bytes": 398,
+        "sha256": "4bfed5b06d7c3a8df250c413526d9a79b616636e2122877b1b2fa5f36506cfa6",
+        "git_blob_sha": "c1d17ec5cb571870a7c0c2ef21e5101e36c30e1a"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/arena.svg-dc0ccb0baedddcefa8f49e6d5875723c.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 160
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 160
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 160
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 237
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 310
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 381
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 455
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 531
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 193
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/menu/cup.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 161
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 161
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 161
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 238
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 311
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 382
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 456
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 532
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 194
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/menu/cup.svg",
+        "bytes": 489,
+        "sha256": "b64ab169c9f7a6f91cc04ffed0e70234ec9f2cc853a8c7f973b9afd63a2e3145",
+        "git_blob_sha": "1439012c7469947f20024c0a219213e7211d6d8f"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/cup.svg-ca6000eef9703987fa085ff67392fb2c.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 162
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 162
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 162
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 239
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 312
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 383
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 457
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 533
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 195
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/menu/practice.svg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 163
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 163
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 163
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 240
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 313
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 384
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 458
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 534
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 196
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/menu/practice.svg",
+        "bytes": 323,
+        "sha256": "a53f2f9659f3022fc2138878b9d55c4778cfcd42909848252d21501366f8df16",
+        "git_blob_sha": "25b5fbbb8d6571132080b1ac9f1a392b3b2c46c9"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/practice.svg-76ebe0161637b7e4d8f02bba9b85bc02.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 164
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 164
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 164
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 241
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 314
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 385
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 459
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 535
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 197
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 165
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 165
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 165
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 198
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+        "bytes": 8408740,
+        "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+        "git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/Lumo-Facial-Mobile.glb-990aa22f389583ec1c7266cfb13484d8.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 166
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 166
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 166
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 199
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 169
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 169
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 169
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 243
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 316
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 387
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 461
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 537
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 202
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/gates/lumo_kart_start_finish_gate_mobile.glb",
+        "bytes": 4444536,
+        "sha256": "8c8891062888eda5b553ae77390eda1a733368fc0bf73b86aefe2a7a666a565d",
+        "git_blob_sha": "46e1a6d2246f150c60410885dbaa11153a53a627"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/lumo_kart_start_finish_gate_mobile.glb-84a49864a9a151eceeb5cb82b917f010.scn",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 170
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 170
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 170
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 244
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 317
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 388
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 462
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 538
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 203
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 171
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 171
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 171
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 245
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 318
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 389
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 463
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 539
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 204
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg",
+        "bytes": 239229,
+        "sha256": "8684453a405b4f92bf26a1eaf528e82fe945921d1340d3e288629c2799142066",
+        "git_blob_sha": "94465437a65a357bebe2f5c26be8aba24ef8fd74"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/lumo_kart_start_finish_gate_mobile_LumoBaseColor.jpg-57426a748210127b9386992ef016d3d3.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 172
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 172
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 172
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 246
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 319
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 390
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 464
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 540
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 205
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 173
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 173
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 173
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 247
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 320
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 391
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 465
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 541
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 206
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg",
+        "bytes": 84848,
+        "sha256": "83615787c85a9b1a0264649e5169453379556c8e93fc68a02789b709a275c150",
+        "git_blob_sha": "597e0f8c8b857caa30119aea381e51cc520056d9"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/lumo_kart_start_finish_gate_mobile_LumoMetallicRoughness.jpg-5f3c8cd6f2dec1b19a4920d996fe1bbe.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 174
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 174
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 174
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 248
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 321
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 392
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 466
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 542
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 207
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 175
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 175
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 175
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 249
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 322
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 393
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 467
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 543
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 208
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/kart/gates/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg",
+        "bytes": 77454,
+        "sha256": "11eeb5a161a785b8bc40ba80a5354b5ab6bb1b89798a1fde0d18387789df69ae",
+        "git_blob_sha": "0d4f3c86a440637c7bf782f2be23e35ba4589d3b"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/lumo_kart_start_finish_gate_mobile_LumoNormal.jpg-7818598fbcc0e653558aeaed89bf198c.ctex",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 176
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 176
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 176
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 250
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 323
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 394
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 468
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 544
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 209
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/audio/kart/sonnenhafen.ogg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 177
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 177
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 177
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 251
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 324
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 395
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 469
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 545
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 210
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/audio/kart/sonnenhafen.ogg",
+        "bytes": 986951,
+        "sha256": "7fc9e3315985e700c78dff722a40ca678aba67c116003b452e09d2e6af44acc9",
+        "git_blob_sha": "9371306617522a8e676ff02cfdb31e18573b231b"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/sonnenhafen.ogg-b2daf4a1be388ef18205be3b13b50a39.oggvorbisstr",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_ai_behavior_regression.log",
+          "line": 178
+        },
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 178
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 178
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 252
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 325
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 396
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 470
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 546
+        },
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 211
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://scripts/tests/kart_racecraft_regression.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_racecraft_regression.log",
+          "line": 19
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/tests/kart_racecraft_regression.gd",
+        "bytes": 6842,
+        "sha256": "8bb388d736776b08a352da368543308b253842dd714839be59b9f6c770cd89a3",
+        "git_blob_sha": "9da775e1e12fd1d307c939a71bd7394d456d6a9b"
+      }
+    },
+    {
+      "resource": "res://scripts/tests/kart_full_field_regression.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 19
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/tests/kart_full_field_regression.gd",
+        "bytes": 11238,
+        "sha256": "c8a8b42a534605286a6537a3fdb22f4edacccee35c5bcd4028e077b4cce5fdf8",
+        "git_blob_sha": "33c4c28025092097111ba5c87b70d89bf27b4c0d"
+      }
+    },
+    {
+      "resource": "res://assets/audio/kart/item.ogg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 297
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 515
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/audio/kart/item.ogg",
+        "bytes": 8598,
+        "sha256": "e6c35d39cf0735afd2e50fe7db637dd4e71458700de8130925eec73cacf6cebd",
+        "git_blob_sha": "a44b3fd8343b536298170211d7ff3d8c8eddd7b1"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/item.ogg-8a20883571a45e6d1a048b74055ef2a9.oggvorbisstr",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 298
+        },
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 516
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://assets/audio/kart/collision.ogg",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 520
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "assets/audio/kart/collision.ogg",
+        "bytes": 5910,
+        "sha256": "6e2b4310e2a3650e20f067eddcef863cecfa5730d45d859246db469cc9111be7",
+        "git_blob_sha": "ea2ee4fb8bc8ebe17272b6808ad2cb1f2def7739"
+      }
+    },
+    {
+      "resource": "res://.godot/imported/collision.ogg-cc4a3c96b994e4294aa47f538287d4fa.oggvorbisstr",
+      "category": "generated_import",
+      "references": [
+        {
+          "log": "kart_full_field_regression.log",
+          "line": 521
+        }
+      ],
+      "generated_binary_hash": "not measured; private cache unavailable after environment recovery"
+    },
+    {
+      "resource": "res://scripts/tests/kart_harbor_race_hook_regression.gd",
+      "category": "tracked_source",
+      "references": [
+        {
+          "log": "kart_harbor_race_hook_regression.log",
+          "line": 48
+        }
+      ],
+      "original_before_after_identity": {
+        "path": "scripts/tests/kart_harbor_race_hook_regression.gd",
+        "bytes": 3585,
+        "sha256": "1c458ba60d7a80bb0d5cb3677d5d479a8219b11e12aa8d52a1031f27ea9a3db0",
+        "git_blob_sha": "deab9cb9ab7725ba32723548ecd6512f8732eca4"
+      }
+    }
+  ]
+}

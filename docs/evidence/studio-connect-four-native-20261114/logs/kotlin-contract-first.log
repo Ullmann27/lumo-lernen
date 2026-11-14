@@ -1,0 +1,44 @@
+test_authority (test_connect_four_native_contract.ConnectFourNativeContractTest.test_authority) ... ok
+test_bind_timeout (test_connect_four_native_contract.ConnectFourNativeContractTest.test_bind_timeout) ... ok
+test_bridge_intents (test_connect_four_native_contract.ConnectFourNativeContractTest.test_bridge_intents) ... ok
+test_closed_mailbox (test_connect_four_native_contract.ConnectFourNativeContractTest.test_closed_mailbox) ... ok
+test_invalid_intents (test_connect_four_native_contract.ConnectFourNativeContractTest.test_invalid_intents) ... FAIL
+test_pause_stale (test_connect_four_native_contract.ConnectFourNativeContractTest.test_pause_stale) ... ok
+test_pending_terminal (test_connect_four_native_contract.ConnectFourNativeContractTest.test_pending_terminal) ... ok
+test_plugin_isolation (test_connect_four_native_contract.ConnectFourNativeContractTest.test_plugin_isolation) ... ok
+test_render_stall (test_connect_four_native_contract.ConnectFourNativeContractTest.test_render_stall) ... ok
+test_return_durable (test_connect_four_native_contract.ConnectFourNativeContractTest.test_return_durable) ... ok
+test_return_write_failure (test_connect_four_native_contract.ConnectFourNativeContractTest.test_return_write_failure) ... ok
+test_stop_resume (test_connect_four_native_contract.ConnectFourNativeContractTest.test_stop_resume) ... ok
+
+======================================================================
+FAIL: test_invalid_intents (test_connect_four_native_contract.ConnectFourNativeContractTest.test_invalid_intents)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/tests/test_connect_four_native_contract.py", line 328, in <lambda>
+    lambda self, name=_scenario: self.scenario(name))
+                                 ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/tests/test_connect_four_native_contract.py", line 318, in scenario
+    result = self.run_checked([self.java, '-cp', self.classpath,
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/scripts/tests/test_connect_four_native_contract.py", line 314, in run_checked
+    raise AssertionError(result.stdout + result.stderr)
+AssertionError: Exception in thread "main" java.lang.IllegalStateException: Check failed.
+	at dev.ullmann.lumo.ConnectFourRegression.main(ConnectFourRegression.kt:59)
+
+
+----------------------------------------------------------------------
+Ran 12 tests in 7.454s
+
+FAILED (failures=1)
+CONNECT_FOUR_NATIVE_PASS authority
+CONNECT_FOUR_NATIVE_PASS bind-timeout
+CONNECT_FOUR_NATIVE_PASS bridge-intents
+CONNECT_FOUR_NATIVE_PASS closed-mailbox
+CONNECT_FOUR_NATIVE_PASS pause-stale
+CONNECT_FOUR_NATIVE_PASS pending-terminal
+CONNECT_FOUR_NATIVE_PASS plugin-isolation
+CONNECT_FOUR_NATIVE_PASS render-stall
+CONNECT_FOUR_NATIVE_PASS return-durable
+CONNECT_FOUR_NATIVE_PASS return-write-failure
+CONNECT_FOUR_NATIVE_PASS stop-resume

@@ -1,0 +1,319 @@
+--- a/scripts/creative/treasure_world.gd
++++ b/scripts/creative/treasure_world.gd
+@@ -17,6 +17,7 @@
+ var top: HBoxContainer
+ var title_label: Label
+ var clue_panel: PanelContainer
++var clue_button: Button
+ var jump_button: Button
+ var player: CharacterBody3D
+ var fox: Node3D
+@@ -269,10 +270,17 @@
+ 	clue_label = KIT.label("", 18)
+ 	clue_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ 	clue_panel.add_child(clue_label)
++	clue_button = KIT.button("Hinweis", _show_clue, 110)
++	safe_ui.add_child(clue_button)
+ 	toast = KIT.label("Erkunde die Insel. Folge dem goldenen Stern!", 17)
++	var toast_backdrop := KIT.panel()
++	toast_backdrop.set_content_margin_all(8)
++	toast.add_theme_stylebox_override("normal", toast_backdrop)
+ 	toast.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+ 	toast.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
++	toast.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+ 	safe_ui.add_child(toast)
++	toast.minimum_size_changed.connect(func(): _layout.call_deferred())
+ 	joystick = STICK.new()
+ 	joystick.set_anchors_and_offsets_preset(Control.PRESET_BOTTOM_LEFT)
+ 	joystick.position = Vector2(20, -208)
+@@ -327,15 +335,47 @@
+ 		clue_width = minf(clue_width, available.x * 0.53)
+ 	clue_panel.position = Vector2(14, 76)
+ 	clue_panel.size = Vector2(clue_width, 0)
++	# A full quest card covers the avatar in a short landscape view. Keep the
++	# same complete text behind a real 48dp control instead of shrinking it.
++	clue_panel.visible = not short_landscape
++	clue_button.visible = short_landscape
+ 	title_label.add_theme_font_size_override("font_size", 19 if available.x < 600 else 24)
++	var toast_font_size := 15 if short_landscape else 17
++	if toast.get_theme_font_size("font_size") != toast_font_size:
++		toast.add_theme_font_size_override("font_size", toast_font_size)
+ 	if short_landscape:
+-		toast.position = Vector2(clue_width + 28, 76)
+-		toast.size = Vector2(available.x - clue_width - 42, 0)
++		var info_top := maxf(68, top.position.y + maxf(48, top.size.y) + 8)
++		clue_button.position = Vector2(14, info_top)
++		clue_button.size = Vector2(110, 48)
++		toast.position = Vector2(136, info_top)
++		toast.size = Vector2(available.x - 150, 48)
+ 	else:
+ 		var width := minf(560, available.x - 28)
+-		toast.position = Vector2((available.x - width) * 0.5, available.y - maxf(stick_side, action_side + 60) - 80)
+-		toast.size = Vector2(width, 0)
++		var gap_left := joystick.position.x + stick_side + 12
++		var gap_right := action.position.x - 12
++		if gap_right - gap_left >= 360:
++			# Wide/tall views have room between the thumb controls. Keep the
++			# message below the companion instead of across its lower body.
++			width = minf(width, gap_right - gap_left)
++			toast.size = Vector2(width, 48)
++			toast.position = Vector2((gap_left + gap_right - width) * 0.5, available.y - 16 - toast.size.y)
++		else:
++			toast.size = Vector2(width, 0)
++			var controls_top := minf(joystick.position.y, jump_button.position.y)
++			var preferred_top := available.y - maxf(stick_side, action_side + 60) - 80
++			toast.position = Vector2((available.x - width) * 0.5,
++				minf(preferred_top, controls_top - toast.size.y - 12))
+ 	_layout_modal()
++
++
++func _show_clue() -> void:
++	if paused:
++		return
++	_open_modal("Dein nächster Hinweis")
++	var text := KIT.label(clue_label.text, 19)
++	text.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
++	modal_box.add_child(text)
++	modal_box.add_child(KIT.button("Weiter erkunden", _close_modal))
+ 
+ 
+ func _layout_modal() -> void:
+--- a/scripts/tests/treasure_title_contrast_regression.gd
++++ b/scripts/tests/treasure_title_contrast_regression.gd
+@@ -7,6 +7,7 @@
+ 	[Vector2i(640, 320), 1.0, Rect2(), "compact"],
+ 	[Vector2i(1080, 2400), 2.625, Rect2(0, 136, 0, 63), "portrait"],
+ 	[Vector2i(2176, 1812), 2.25, Rect2(0, 136, 0, 63), "fold"],
++	[Vector2i(2400, 1080), 2.625, Rect2(136, 63, 0, 63), "landscape-cutout"],
+ ]
+ 
+ var checks := 0
+@@ -62,6 +63,16 @@
+ 	return null
+ 
+ 
++func _exposed(control: Control) -> Rect2:
++	var rect := _physical(control)
++	var ancestor := control.get_parent()
++	while ancestor != null:
++		if ancestor is Control and ancestor.clip_contents:
++			rect = rect.intersection(_physical(ancestor))
++		ancestor = ancestor.get_parent()
++	return rect.intersection(_physical(game.safe_ui))
++
++
+ func _tap(control: Button) -> void:
+ 	_check(is_instance_valid(control), "Real button exists")
+ 	if not is_instance_valid(control):
+@@ -69,9 +80,12 @@
+ 	var rect := _physical(control)
+ 	_check(minf(rect.size.x, rect.size.y) / density >= 47.99, control.text + " remains at least48dp")
+ 	_check(_physical(game.safe_ui).grow(0.51).encloses(rect), control.text + " remains inside safe area")
++	var exposed := _exposed(control)
++	_check(minf(exposed.size.x, exposed.size.y) / density >= 47.95,
++		control.text + " exposes a real 48dp touch surface through all clipping ancestors")
+ 	# Establish the desktop pointer only for X11's synthetic-touch prerequisite.
+ 	# The action itself still comes from an actual ScreenTouch press/release.
+-	for point in [Vector2.ZERO, rect.get_center()]:
++	for point in [Vector2.ZERO, exposed.get_center()]:
+ 		var motion := InputEventMouseMotion.new()
+ 		motion.position = point
+ 		Input.parse_input_event(motion)
+@@ -79,7 +93,7 @@
+ 	for down in [true, false]:
+ 		var touch := InputEventScreenTouch.new()
+ 		touch.index = 0
+-		touch.position = rect.get_center()
++		touch.position = exposed.get_center()
+ 		touch.pressed = down
+ 		Input.parse_input_event(touch)
+ 		await _settle(2)
+@@ -102,19 +116,124 @@
+ 	return value
+ 
+ 
+-func _case(profile: Array, index: int) -> void:
++func _rect_values(rect: Rect2) -> Array:
++	return [rect.position.x, rect.position.y, rect.size.x, rect.size.y]
++
++
++func _avatar_pixels() -> Rect2:
++	# Project every corner of the actual visible companion meshes. A hard-coded
++	# screen point would miss the original body/face occlusion at compact sizes.
++	var result := Rect2()
++	var first := true
++	var factor := Vector2(root.size) / root.get_visible_rect().size
++	for node in game.fox.find_children("*", "MeshInstance3D", true, false):
++		if node.mesh == null or not node.is_visible_in_tree():
++			continue
++		var bounds: AABB = node.get_aabb()
++		for index in range(8):
++			var world: Vector3 = node.global_transform * bounds.get_endpoint(index)
++			_check(not game.camera.is_position_behind(world), "Actual fox mesh remains in front of camera")
++			var point: Vector2 = game.camera.unproject_position(world) * factor
++			if first:
++				result = Rect2(point, Vector2.ZERO)
++				first = false
++			else:
++				result = result.expand(point)
++	_check(not first and result.has_area(), "Actual fox mesh provides a nonempty projected silhouette bound")
++	return result
++
++
++func _gameplay_view(label: String) -> Dictionary:
++	var avatar := _avatar_pixels()
++	_check(Rect2(Vector2.ZERO, Vector2(root.size)).encloses(avatar), label + " entire fox remains within the view")
++	var regions: Array[Dictionary] = []
++	var controls := [
++		{"role": "header", "control": game.top},
++		{"role": "clue", "control": game.clue_panel},
++		{"role": "toast", "control": game.toast},
++		{"role": "joystick", "control": game.joystick},
++		{"role": "action", "control": game.action},
++		{"role": "jump", "control": game.jump_button},
++	]
++	var hint := _button("Hinweis")
++	if is_instance_valid(hint):
++		controls.append({"role": "hint", "control": hint})
++	var toast_rect := _physical(game.toast)
++	for entry in controls:
++		var control: Control = entry.control
++		if not control.is_visible_in_tree():
++			continue
++		var rect := _physical(control)
++		var overlap := rect.intersection(avatar)
++		regions.append({"role": entry.role, "name": str(control.name), "rect_px": _rect_values(rect),
++			"overlap_px": _rect_values(overlap)})
++		_check(not rect.intersects(avatar), label + " HUD does not cover actual fox: " + str(control.name))
++		if entry.role in ["joystick", "action", "jump", "hint"]:
++			_check(not rect.intersects(toast_rect), label + " message does not cover touch control: " + str(entry.role))
++	var background = game.toast.get_theme_stylebox("normal")
++	var contrast := 0.0
++	_check(background is StyleBoxFlat, label + " secondary message has a real backdrop")
++	if background is StyleBoxFlat:
++		_check(background.bg_color.a >= 0.90, label + " secondary backdrop resists bright scenery")
++		var color: Color = background.bg_color
++		var white := Color(color.r * color.a + 1.0 - color.a,
++			color.g * color.a + 1.0 - color.a, color.b * color.a + 1.0 - color.a)
++		contrast = (_luminance(game.toast.get_theme_color("font_color")) + 0.05) / (_luminance(white) + 0.05)
++		_check(contrast >= 7.0, label + " secondary text retains at least 7:1 contrast")
++	_check(_physical(game.safe_ui).grow(0.51).encloses(_physical(game.toast)), label + " entire message is inside safe area")
++	_check(game.toast.get_visible_line_count() == game.toast.get_line_count(), label + " full secondary message remains visible")
++	return {"avatar_rect_px": _rect_values(avatar), "hud_rects": regions,
++		"secondary_white_backdrop_contrast": contrast}
++
++
++func _hint_input() -> void:
++	var compact: bool = game.safe_ui.size.y < 480 and game.safe_ui.size.x >= 600
++	var hint := _button("Hinweis")
++	if not compact:
++		_check(game.clue_panel.is_visible_in_tree(), "Tall format keeps its existing visible clue")
++		_check(not is_instance_valid(hint), "Tall format does not duplicate the clue control")
++		return
++	_check(not game.clue_panel.is_visible_in_tree(), "Compact format removes the obstructing permanent clue panel")
++	_check(is_instance_valid(hint), "Compact format exposes a real full-clue button")
++	if not is_instance_valid(hint):
++		return
++	var before := _progress()
++	var full_text: String = game.clue_label.text
++	await _tap(hint)
++	_check(game.paused and game.modal.visible, "Actual clue touch opens the existing modal and pauses exploration")
++	var found := false
++	for child in game.modal_box.get_children():
++		if child is Label and child.text == full_text:
++			found = true
++	_check(found, "Clue dialog retains the complete existing progress and clue text")
++	_check(game.modal_scroll.is_visible_in_tree(), "Full clue uses the existing bounded scroll container")
++	await _tap(hint)
++	var after_background_tap := false
++	for child in game.modal_box.get_children():
++		if child is Label and child.text == full_text:
++			after_background_tap = true
++	_check(game.paused and game.modal.visible and after_background_tap,
++		"Background clue touch cannot replace or dismiss the active dialog")
++	await _tap(_button("Weiter erkunden"))
++	_check(not game.paused and not game.modal.visible, "Actual clue close restores exploration")
++	_check(_progress() == before, "Opening and closing clue does not alter quest or reward identity")
++
++
++func _case(profile: Array, index: int, restored: bool) -> void:
+ 	root.size = profile[0]
+ 	density = profile[1]
+ 	insets = profile[2]
+ 	await _settle()
+ 	mobile.request_safe_area_refresh()
+ 	await _settle()
+-	var child := "treasure-title-contrast-%d" % index
++	var child := "treasure-title-contrast-%d-%s" % [index, "restored" if restored else "spawn"]
+ 	var save_path := "user://lumo_treasure_" + child + ".json"
+-	var raw := FileAccess.get_file_as_string("res://scripts/tests/fixtures/treasure_title_86445.json")
+-	var file := FileAccess.open(save_path, FileAccess.WRITE)
+-	file.store_string(raw)
+-	file.close()
++	DirAccess.remove_absolute(save_path)
++	if restored:
++		var raw := FileAccess.get_file_as_string("res://scripts/tests/fixtures/treasure_title_86445.json")
++		var file := FileAccess.open(save_path, FileAccess.WRITE)
++		file.store_string(raw)
++		file.close()
+ 	var options := {"displayDensity": density, "soundEnabled": false,
+ 		"reduceAnimations": true, "childKey": child}
+ 	root.get_node("HostBridge")._options = options
+@@ -122,7 +241,8 @@
+ 	game = load("res://scenes/creative/treasure_world.tscn").instantiate()
+ 	root.add_child(game)
+ 	await _settle(30)
+-	_check(game.model.to_data().get("solved_clues", []).has("tree"), "Declared original saved-position fixture loaded")
++	_check(game.model.to_data().get("solved_clues", []).has("tree") == restored,
++		"Declared original saved-position fixture or genuine fresh start loaded")
+ 	_check(game.title_label.text == "LUMOS STERNENSCHATZ", "Exact existing title unchanged")
+ 	_check(_physical(game.safe_ui).grow(0.51).encloses(_physical(game.title_label)), "Title remains inside safe UI")
+ 	var background = game.title_label.get_theme_stylebox("normal")
+@@ -142,12 +262,17 @@
+ 			_check(_physical(game.safe_ui).grow(0.51).encloses(rect), "Header stays in safe area: " + control.text)
+ 			_check(not rect.intersects(_physical(game.title_label)), "Title does not cover header input: " + control.text)
+ 	var before := _progress()
++	var view := _gameplay_view(str(profile[3]) + (" restored" if restored else " spawn"))
+ 	var item := {"profile": profile[3], "window_px": [root.size.x, root.size.y],
+ 		"density": density, "insets_fixture": [insets.position.x, insets.position.y, insets.size.x, insets.size.y],
+ 		"title_rect": [_physical(game.title_label).position.x, _physical(game.title_label).position.y,
+ 			_physical(game.title_label).size.x, _physical(game.title_label).size.y],
+-		"worst_white_backdrop_contrast": contrast, "initial_state_fixture": "original86445 first tree save"}
+-	if capture:
++		"worst_white_backdrop_contrast": contrast,
++		"initial_state_fixture": "original86445 first tree save" if restored else "production fresh start",
++		"gameplay_view": view}
++	# Preserve the four original restored-position capture names. The new
++	# exact 2400x1080 case records the fresh spawn from the reported failure.
++	if capture and (restored if index < 4 else not restored):
+ 		_check(DisplayServer.get_name() != "headless", "PNG requires a real renderer")
+ 		await RenderingServer.frame_post_draw
+ 		var image := root.get_texture().get_image()
+@@ -156,6 +281,7 @@
+ 		item["image"] = path
+ 		item["image_sha256"] = FileAccess.get_sha256(path)
+ 		item["image_px"] = [image.get_width(), image.get_height()]
++	await _hint_input()
+ 	await _tap(_button("Rucksack"))
+ 	_check(game.paused and game.modal.visible, "Actual inventory touch still opens its dialog")
+ 	await _tap(_button("Weiter erkunden"))
+@@ -165,6 +291,7 @@
+ 	await _tap(_button("Weiter erkunden"))
+ 	_check(not game.paused and not game.modal.visible, "Actual pause close resumes scene")
+ 	_check(_progress() == before, "Quest progress and identity unchanged by all four real taps")
++	_gameplay_view(str(profile[3]) + " after dialog close")
+ 	observations.append(item)
+ 	game.queue_free()
+ 	await _settle()
+@@ -184,8 +311,9 @@
+ 	mobile.set_process(true)
+ 	Input.emulate_touch_from_mouse = true
+ 	for index in range(PROFILES.size()):
+-		await _case(PROFILES[index], index)
+-	_check(observations.size() == PROFILES.size() and checks >= 100,
++		for restored in [false, true]:
++			await _case(PROFILES[index], index, restored)
++	_check(observations.size() == PROFILES.size() * 2 and checks >= 100,
+ 		"Every declared profile and its actual input checks completed")
+ 	mobile._safe_area_reader = prior_reader
+ 	mobile._android_safe_area_enabled = prior_enabled

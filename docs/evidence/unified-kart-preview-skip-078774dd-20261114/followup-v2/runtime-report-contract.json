@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "opt_in_cli": "--skip-observed-kart-preview",
+  "default": false,
+  "source_paths": [
+    ".github/probes/modernization_android_tour.py",
+    "tools/android_qa/tests/test_kart_preview_skip.py"
+  ],
+  "result_path": "tour-result.json",
+  "result_location": "steps[step == start-kart-race].preview_skip",
+  "standalone_report": "21_kart_preview_skip.json",
+  "required_isolated_status": "TOUCH_SENT",
+  "required_scope": "OBSERVED_UI_TOUCH_ONLY",
+  "unobserved_status": "FAIL",
+  "unobserved_scope": "NOT_ISOLATED",
+  "required_runtime_fields": {
+    "caption": "Tippen zum Überspringen",
+    "cue": {
+      "source": "last current target frame source, not necessarily21_lumo_kart_real_race.png",
+      "source_sha256": "actual same current PNG SHA-256",
+      "ocr_file": "same source stem + -ocr.json",
+      "ocr_sha256": "actual original OCR JSON SHA-256",
+      "observed_matches": "Exact original OCR rows whose normalized text and bounds match that frame target; never built from the label"
+    },
+    "foreground_before_touch": "Actual foreground() response containing LumoGameActivity",
+    "readiness_file": "21_kart_preview_skip_touch-surface-readiness.json",
+    "readiness": "Unchanged native_tap journal object, copied verbatim as parsed JSON",
+    "touch": "Actual readiness.touch [x,y]",
+    "after_capture": "Actual capture() metadata for21_kart_preview_after_touch.png",
+    "deadline_policy": "original race-world-ready55s",
+    "elapsed_seconds": "Actual monotonic elapsed time",
+    "cue_witnesses": "Two final consecutive target frames and their original OCR witness entries. cue is the final entry.",
+    "initial_capture": "Initial race PNG metadata only; not an input precondition."
+  },
+  "readiness_required_fields": {
+    "status": "TOUCH_SENT",
+    "label": "Tippen zum Überspringen",
+    "exact_caption_required": true,
+    "orientation_policy": "landscape",
+    "frames": "Actual captured frames; earlier frames may be rejected or lack a target. Both final frames must be acceptable with valid targets; final target stable=true.",
+    "frames[*].source": "Current raw PNG filename",
+    "frames[*].source_sha256": "SHA-256 of same PNG bytes",
+    "frames[*].pixels": "Actual raw screenshot dimensions",
+    "frames[*].acceptable_for_target_sampling": true,
+    "frames[*].target": "Existing native_surface_readiness.target_observation result",
+    "final_observed_bounds": "Existing last target bounds",
+    "touch": "Existing ADB120ms touch coordinates",
+    "elapsed_seconds": "Unchanged helper timing"
+  },
+  "input_log": "21_kart_real_touches.json adds preview-skip only after actual TOUCH_SENT readiness and bounded after-capture. Existing premium-start row retained.",
+  "countercheck_rule": "Only TOUCH_SENT with two current OCR witnesses and all original HARD_STEPS can isolate the countercheck. Missing/expired cue remains FAIL/NOT_ISOLATED; no blind touch or later acceptance.",
+  "timeout_diagnostic": {
+    "png": "21_race_running_timeout.png",
+    "json": "21_race_running_timeout.json",
+    "status": "GATE_ALREADY_FAILED",
+    "capture_budget_seconds": 10,
+    "scope": "Pure after-failure capture. Original150s gate already failed; no extra state read, input, new success or acceptance-time extension."
+  },
+  "supersedes": "v1 static initial-frame OCR precondition"
+}

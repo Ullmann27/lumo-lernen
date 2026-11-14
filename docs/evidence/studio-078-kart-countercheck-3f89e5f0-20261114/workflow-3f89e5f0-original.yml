@@ -1,0 +1,130 @@
+name: Exact Studio 078 APK Kart intro-skip countercheck
+on:
+  push:
+    branches: [chatgpt/lumo-studio-078-kart-recheck-20261114]
+    paths:
+      - .github/workflows/lumo-studio-078-kart-recheck.yml
+      - .github/probes/modernization_android_tour.py
+      - tools/android_qa/tests/test_kart_preview_skip.py
+      - scripts/recheck_studio_078_kart.py
+      - scripts/tests/test_studio_078_kart_recheck.py
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: read
+
+concurrency:
+  group: lumo-studio-078-kart-recheck-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  android-recheck:
+    name: Unchanged 078 APK actual intro touch and all existing tour gates
+    runs-on: ubuntu-24.04
+    timeout-minutes: 50
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: ${{ github.sha }}
+          fetch-depth: 2
+      - name: Separate immutable product source for the original APK identity check
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          ref: 078774ddaf64808addaa4c6406f6a3c85b1f239a
+          path: candidate-source
+      - name: Preserve the original failed run and successful APK build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const params = {owner: 'Ullmann27', repo: 'lumo-lernen', run_id: 43580229005};
+            const run = (await github.rest.actions.getWorkflowRun(params)).data;
+            const artifacts = (await github.rest.actions.listWorkflowRunArtifacts({...params, per_page: 100})).data.artifacts;
+            const jobs = (await github.rest.actions.listJobsForWorkflowRun({...params, per_page: 100, filter: 'latest'})).data.jobs;
+            const artifact = artifacts.filter(x => x.id === 14109135482);
+            const builder = jobs.filter(x => x.id === 132403230395);
+            const failed = jobs.filter(x => x.id === 132408947901);
+            if (run.run_attempt !== 1 || artifact.length !== 1 || builder.length !== 1 || failed.length !== 1) {
+              throw new Error('Exact original attempt, artifact and jobs are required');
+            }
+            fs.mkdirSync('tour/build-metadata', {recursive: true});
+            for (const [name, data] of Object.entries({
+              'run.json': run, 'artifact.json': artifact[0],
+              'build-job.json': builder[0], 'failed-tour-job.json': failed[0]
+            })) {
+              fs.writeFileSync('tour/build-metadata/' + name, JSON.stringify(data, null, 2) + '\n');
+            }
+      - uses: actions/download-artifact@v4
+        with:
+          github-token: ${{ github.token }}
+          run-id: 43580229005
+          artifact-ids: 14109135482
+          merge-multiple: true
+          path: candidate/dist/
+      - name: Install actual UI readers and run targeted regression contracts
+        timeout-minutes: 8
+        run: |
+          set -euo pipefail
+          sudo apt-get -o Acquire::Retries=2 update -qq
+          sudo apt-get -o Acquire::Retries=2 install -y xvfb mesa-utils libegl1 libgl1-mesa-dri libglx-mesa0 libpulse0 tesseract-ocr tesseract-ocr-deu tesseract-ocr-eng
+          tesseract --version > tour/tesseract-version.txt 2>&1
+          tesseract --list-langs 2>&1 | tee tour/tesseract-installed-languages.txt
+          grep -Fxq deu tour/tesseract-installed-languages.txt
+          grep -Fxq eng tour/tesseract-installed-languages.txt
+          python3 -m venv .probe-venv
+          .probe-venv/bin/python -m pip install --disable-pip-version-check uiautomator2==3.7.0 Pillow==12.3.0
+          .probe-venv/bin/python -m pip freeze > tour/dependencies.txt
+          .probe-venv/bin/python -B -m unittest discover -s tools/android_qa/tests -p test_kart_preview_skip.py -v 2>&1 | tee tour/preview-skip-contracts.log
+          .probe-venv/bin/python -B -m unittest discover -s scripts/tests -p test_studio_078_kart_recheck.py -v 2>&1 | tee tour/source-binding-contracts.log
+          .probe-venv/bin/python -B scripts/recheck_studio_078_kart.py --qa-source . --candidate-source candidate-source --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour --expected-qa-source "$GITHUB_SHA" --verify-only
+      - name: Enable accelerated disposable emulator
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+          sudo udevadm settle
+          sudo chmod a+rw /dev/kvm
+      - name: Start software display with the original tour renderer settings
+        env:
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        run: |
+          set -euo pipefail
+          Xvfb :99 -screen 0 1920x1080x24 -nolisten tcp +extension GLX > tour/xvfb.log 2>&1 &
+          for attempt in $(seq 1 20); do
+            if glxinfo -B > tour/mesa-renderer.txt 2>&1; then break; fi
+            sleep 0.25
+          done
+          grep -i 'OpenGL renderer string:.*llvmpipe' tour/mesa-renderer.txt
+      - name: Install the unchanged APK and execute observed intro touch then original gates
+        uses: reactivecircus/android-emulator-runner@a421e43855164a8197daf9d8d40fe71c6996bb0d
+        env:
+          LUMO_NATIVE_STAGE_MENU: '0'
+          DISPLAY: ':99'
+          LIBGL_ALWAYS_SOFTWARE: 'true'
+          GALLIUM_DRIVER: llvmpipe
+          LP_NUM_THREADS: '2'
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_5
+          emulator-build: '14472402'
+          ram-size: 3072M
+          heap-size: 512M
+          disable-animations: true
+          emulator-boot-timeout: 300
+          emulator-options: -no-window -accel on -gpu host -no-snapshot -noaudio -no-boot-anim -camera-back none -camera-front none
+          script: .probe-venv/bin/python -B scripts/recheck_studio_078_kart.py --qa-source . --candidate-source candidate-source --apk candidate/dist/x86_64/Lumo-Lernen-Neu.apk --provenance candidate/dist/x86_64/BUILD-PROVENANCE.json --sums candidate/dist/ANDROID-TOUR-SHA256SUMS.txt --out tour --expected-qa-source "$GITHUB_SHA"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: lumo-studio-078-kart-countercheck-${{ github.run_id }}-${{ github.run_attempt }}
+          path: tour/
+          if-no-files-found: error
+          retention-days: 30

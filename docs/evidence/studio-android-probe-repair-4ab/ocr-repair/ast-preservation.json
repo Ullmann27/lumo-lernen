@@ -1,0 +1,15 @@
+{
+  "baseline_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+  "patched_sha256": "43e827583ba9e12d842f652707d49e5d235701434bac7082c2785d82511fb71c",
+  "changed_existing_definitions": [
+    "image_lines"
+  ],
+  "added_definitions": [
+    "gold_caption_boxes",
+    "read_component_caption"
+  ],
+  "unchanged_existing_definition_count": 20,
+  "native_tap_exact_ast_unchanged": true,
+  "native_text_exact_ast_unchanged": true,
+  "active_checkout_sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e"
+}

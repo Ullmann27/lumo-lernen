@@ -1,0 +1,908 @@
+{
+  "status": "FAIL",
+  "label": "Pause",
+  "timeout_seconds": 120,
+  "exact_caption_required": true,
+  "orientation_policy": "landscape",
+  "scope": "Observed touch prerequisites; post-action assertions still required",
+  "frames": [
+    {
+      "source": "0012-native-pause-0.png",
+      "source_sha256": "92bd76f2d0058f02f74b999ac89a3941bee23a80e6dd4808a653d5b7fcc4dc34",
+      "source_bytes": 1643589,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 2.308151
+    },
+    {
+      "source": "0012-native-pause-1.png",
+      "source_sha256": "0d3d1d32e03384c951af53946850c0cdad19e1d130425f60efd56dc4fa56ee70",
+      "source_bytes": 1642110,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 5.953398
+    },
+    {
+      "source": "0012-native-pause-2.png",
+      "source_sha256": "321511b3eb5e872141b226c751d163b3be0e0e6b1a20ec8187a2854815609979",
+      "source_bytes": 1640997,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 11.227728
+    },
+    {
+      "source": "0012-native-pause-3.png",
+      "source_sha256": "c068d2cc4e7bcf60e0d22283bc7c9e92e77c9a3448051d6628affc1bccce1e96",
+      "source_bytes": 1651472,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 15.803381
+    },
+    {
+      "source": "0012-native-pause-4.png",
+      "source_sha256": "d7b7d56d50a32896b3242207b0b8c32e33569867d5858d2d8b80fdede1ab8d58",
+      "source_bytes": 1650150,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 19.581887
+    },
+    {
+      "source": "0012-native-pause-5.png",
+      "source_sha256": "ea27184a35861b1b986109d010f0fba65e2414a26436905ccf36fafc0717a667",
+      "source_bytes": 1650955,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 23.80504
+    },
+    {
+      "source": "0012-native-pause-6.png",
+      "source_sha256": "6ebc1411e3d40a68c765c83fcf7b51120a01a53fd38c19784125f6f735cafc1d",
+      "source_bytes": 1650225,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 28.242333
+    },
+    {
+      "source": "0012-native-pause-7.png",
+      "source_sha256": "9fedfe53d4d899769a743415d554380cae0cdfb96ddbc471587c9a11e6530754",
+      "source_bytes": 1648376,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 33.202033
+    },
+    {
+      "source": "0012-native-pause-8.png",
+      "source_sha256": "09268358350b487a69d2b1b40cd13a95a49bbbb46b3560f9ed37d975ea56f8d2",
+      "source_bytes": 1650507,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 36.936086
+    },
+    {
+      "source": "0012-native-pause-9.png",
+      "source_sha256": "cc328d136b3ab52fb8ab0c83b29157f7f66514e7bd5c2e3945df1bdf81866220",
+      "source_bytes": 1649560,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 41.29845
+    },
+    {
+      "source": "0012-native-pause-10.png",
+      "source_sha256": "e9f19fbfae4c0935de6299240071c003a197bfbde97ea0e094187a2f4e983799",
+      "source_bytes": 1641546,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 45.551093
+    },
+    {
+      "source": "0012-native-pause-11.png",
+      "source_sha256": "49fdd7d5a40add88ece21b402ad0511e31a0ffc1f55328a1322f56ad09e290c7",
+      "source_bytes": 1642083,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 49.216905
+    },
+    {
+      "source": "0012-native-pause-12.png",
+      "source_sha256": "387e496259837a912c032de464a126f252d5a0b3f44f17c143de3e702448332d",
+      "source_bytes": 1643941,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 53.556568
+    },
+    {
+      "source": "0012-native-pause-13.png",
+      "source_sha256": "3989bf0e5f63dac93c6b39cde6a2699b22fb4ce3b5ee4ccc8fb48611fd0ceb31",
+      "source_bytes": 1642381,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 58.18973
+    },
+    {
+      "source": "0012-native-pause-14.png",
+      "source_sha256": "069e319c98aea11e4abf3f009746605d8ba0865a7eba600d288997ab9039d392",
+      "source_bytes": 1646485,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 62.435087
+    },
+    {
+      "source": "0012-native-pause-15.png",
+      "source_sha256": "f016844941076abbdf22da8b8569661651c4e843a9761e69662887ef49c7539c",
+      "source_bytes": 1649188,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 66.977342
+    },
+    {
+      "source": "0012-native-pause-16.png",
+      "source_sha256": "8bfb0a89d1f571e7cb5a659cd2c0cbfe5fa8b82a5a5a6e9edf8e1697d53cd0d3",
+      "source_bytes": 1648666,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 71.520458
+    },
+    {
+      "source": "0012-native-pause-17.png",
+      "source_sha256": "78aec1656772748cac56ad1f19b9a624ed6f32dff63c49c619121a626c1a689a",
+      "source_bytes": 1649745,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 75.941459
+    },
+    {
+      "source": "0012-native-pause-18.png",
+      "source_sha256": "b36c5b09ff2f21cbc6028f21fe75258897df21793dca79ceadcfe56010d3f9c4",
+      "source_bytes": 1649403,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 81.063165
+    },
+    {
+      "source": "0012-native-pause-19.png",
+      "source_sha256": "56831ae0a93dd6eeee3b7aec828db7b60229442c6147559bed98625246983543",
+      "source_bytes": 1646694,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 85.837652
+    },
+    {
+      "source": "0012-native-pause-20.png",
+      "source_sha256": "4e746ef5257c1737deb7135fb6f964c4f25d07326e4c4c759b0e327a9ab983e6",
+      "source_bytes": 1650019,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 90.179193
+    },
+    {
+      "source": "0012-native-pause-21.png",
+      "source_sha256": "37755f80c49ac7cc288a3a9816b3ac0bc4ca3bce99499fc0cd3e71dff13cec42",
+      "source_bytes": 1642398,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 94.316703
+    },
+    {
+      "source": "0012-native-pause-22.png",
+      "source_sha256": "4bf44b5468a354db7148ea702cbee211fc26a88bbc0f1627371000fbc5fc6b54",
+      "source_bytes": 1640866,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 97.559938
+    },
+    {
+      "source": "0012-native-pause-23.png",
+      "source_sha256": "0f9d22f84f065a5350fa53a8514d9c84c3764a4e1e044cee4641ca933d09cf7b",
+      "source_bytes": 1642032,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 101.183792
+    },
+    {
+      "source": "0012-native-pause-24.png",
+      "source_sha256": "c3ccc774129a3db4fc9b0f4192d31e719fc5ceabd6c584cb83791b0cd95b535d",
+      "source_bytes": 1643317,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 104.81643
+    },
+    {
+      "source": "0012-native-pause-25.png",
+      "source_sha256": "013cc459f5b1787ca439e079e56d818b2d4bcd08a8815f67aa88b71a8fbabafa",
+      "source_bytes": 1642035,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 109.572541
+    },
+    {
+      "source": "0012-native-pause-26.png",
+      "source_sha256": "68e4672b1f04c41fc3487c63155ae29a6f0dfa351f5ce5fba9632cf47ab72075",
+      "source_bytes": 1648717,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 113.137557
+    },
+    {
+      "source": "0012-native-pause-27.png",
+      "source_sha256": "d44c798c56b8ecc1bf841a69da7c6cd18df681b2528139b127453a0e495cb773",
+      "source_bytes": 1650214,
+      "pixels": [
+        1080,
+        1920
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        230,
+        422,
+        614,
+        806,
+        998,
+        1190,
+        1382,
+        1574
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": false,
+      "reasons": [
+        "native landscape surface has not arrived"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 118.025809
+    }
+  ],
+  "error": "Command '['adb', 'exec-out', 'screencap', '-p']' timed out after 0.47129786699997567 seconds",
+  "elapsed_seconds": 120.003531
+}

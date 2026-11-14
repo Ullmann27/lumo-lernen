@@ -1,0 +1,148 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T10:11:34.214900+00:00",
+  "reviewer": "games_worlds",
+  "status": "FAILURE_DIAGNOSED_TO_SOURCE_MECHANISM_NO_RETRY_OR_PATCH",
+  "run_id": 43580229005,
+  "job_id": 132408947901,
+  "build_job_id": 132403230395,
+  "workflow": ".github/workflows/lumo-unified-integration-2026.yml",
+  "separate_studio_run_id": 43580228966,
+  "artifact": {
+    "id": 14108983381,
+    "bytes": 42844151,
+    "sha256": "8ebe012f6da4d113b5c51ce69854c27175ac603da1b2c850c192fe992d77e83b",
+    "originals_root": "/tmp/lumo-078-unified-failed-tour-originals",
+    "root_verified_extraction_index": "qa/studio-2020-host-078-unified-tour-originals/verified-original-extraction.json",
+    "whole_zip_verification_performed_by": "root",
+    "whole_zip_reverification_by_this_agent": false
+  },
+  "identity_from_original_tour_result": {
+    "step": "apk-identity",
+    "ok": true,
+    "apk_sha256": "51af20ad5f0ac6a7196e1f703877805509b39a0ac27303619bc8adde5e0d00fe",
+    "flutter_source_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "godot_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "godot_pck_sha256": "aafe4afc0c5c38656b08b86ec382762d0af6b1ae7116b1187db4f2b04bb949a3",
+    "versionName": "0.13.8",
+    "versionCode": 2020,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "original_failure": {
+    "step": "race-running",
+    "ok": false,
+    "error": "RuntimeError: Saved race never showed a running race clock: {'countdown': 3.5, 'elapsed': 0.0, 'distance': 0.0}"
+  },
+  "confirmed_observations": [
+    "One actual START tap at [1791,916] is recorded; there is no intro-skip tap in the original input report or the published controller.",
+    "The exact published game initializes menu_active=false, paused=false, preview_left=5.0 and countdown=3.5, then saves before emitting race_world_ready.",
+    "The native physics path updates only preview during preview_left>0 and returns before countdown/autosave. Later the first active snapshot is saved only at elapsed>=1.0.",
+    "All67 saved snapshots are byte-identical initial cup/sonnenhafen state. No paused, racing or preview_left field exists in these files.",
+    "The actual game process continues reporting EGL frame presentation summaries throughout the wait; its renderer reports llvmpipe.",
+    "The only opened-race PNG was captured before the150-second persisted-state wait. Root and character_animation independently see the original track-preview card. It is not an image from the timeout endpoint.",
+    "The150-second running gate is still failed. Race HUD/driving/pause gates were not reached. Actual later Flutter return and learning-state preservation passed in this original tour."
+  ],
+  "source_mechanism": {
+    "native": "scripts/games/kart_island.gd",
+    "native_sections": {
+      "preview_constant": 80,
+      "begin_race": 768,
+      "physics_preview_countdown_save": 1430,
+      "actual_touch_skip": 2802,
+      "update_preview": 2825,
+      "end_preview": 2854,
+      "save_schema": 3777,
+      "lifecycle_pause": 3974
+    },
+    "host": ".github/probes/modernization_android_tour.py",
+    "host_sections": {
+      "actual_start": 373,
+      "wait_persisted_running": 490
+    },
+    "engine_source": "https://github.com/godotengine/godot/blob/4.6.3-stable/main/main.cpp",
+    "engine_lines": [
+      2201,
+      2202,
+      4834,
+      4856,
+      4859,
+      4902
+    ],
+    "inference": "The observed slow software-emulator presentation sequence is consistent with the engine limiting physics advance per frame:69 reported frames at8/60 corresponds nominally to9.2 simulated seconds, below5+3.5+1=9.5 needed for the first active save. This is a source-based explanation, not an observed physics trace or categorical exclusion of other lifecycle effects."
+  },
+  "smallest_proposed_controlled_correction": {
+    "scope": "Testcontroller only, if parent authorizes. Exact same APK/source/native.",
+    "action": "Observe the current legitimate Tippen zum Überspringen caption and issue a real Android touch on its recognized exposed bounds. Capture before/after and wait for its actual dismissal. Then retain the existing countdown<=0 and elapsed>=1.0 persisted-state gate,150-second bound, driving/HUD/pause/return/data checks unchanged.",
+    "forbidden_shortcuts": [
+      "No save writes",
+      "No setting countdown/preview_left/racing",
+      "No increasing deadlines",
+      "No bypassing identity or data gates",
+      "No success inferred solely from a changed or colourful image"
+    ]
+  },
+  "not_proven": [
+    "No direct SceneTree.paused trace",
+    "No actual physics-step count",
+    "No late race screenshot at the failure deadline",
+    "No exact emulator CPU/GPU time decomposition",
+    "No proven real-device performance issue",
+    "No rerun or successful race completion"
+  ],
+  "images_opened_by_this_agent": [],
+  "independent_image_review": "qa/studio-2020-host-078-unified-tour-originals/review-character_animation.json",
+  "source_binding": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/source-bindings.json",
+    "bytes": 6816,
+    "sha256": "54638b66c624a29b8ebcbc025b21b8bacf456d68e60f774c57f7008137647b4f",
+    "git_blob_sha1": "7e019e95071c6034139bffec7fe009a847d1b195"
+  },
+  "snapshot_analysis": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/session-snapshot-analysis.json",
+    "bytes": 20096,
+    "sha256": "496bf11538cc140041fe33e186f52a48c8972c5b90e63a89fdca3c0d3c32ea30",
+    "git_blob_sha1": "876490563c87dca75f1a892c266068b792508bf8"
+  },
+  "runtime_analysis": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-host-078774dd-ci-20261114/unified-failure/runtime-timeline-analysis.json",
+    "bytes": 25371,
+    "sha256": "43bc88023bab89838eaed94b286d95e157762d042833a4ee50d396b99e16a363",
+    "git_blob_sha1": "84874093c61320c3957a7433f2502664e1fdf340"
+  },
+  "original_inputs": [
+    {
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/21_kart_real_touches.json",
+      "bytes": 104,
+      "sha256": "2e75eca77219b2a929582a3fb76353114353b4c815b8e4e607926a83222ce919",
+      "git_blob_sha1": "e9c5552108aae10771d22cb2b51a2a2a9f4a60a1"
+    },
+    {
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/21_kart_race_frame_check.json",
+      "bytes": 684,
+      "sha256": "6efda0d02a76ae8a6d40e149a1197000df0594e44c02640f44227c5c0c9abdfc",
+      "git_blob_sha1": "60eb8cee050174b5dd6c43b4047cad2c1d71951c"
+    },
+    {
+      "path": "/tmp/lumo-078-unified-failed-tour-originals/tour-result.json",
+      "bytes": 7169,
+      "sha256": "b8bdaae4138f314f85fdb86e31795c23d739ee5350f95a95f32e2385133b27ef",
+      "git_blob_sha1": "05d331963c699cbfffbc0f1ccb8d9976760a2cf1"
+    }
+  ],
+  "actions": {
+    "source_changed": false,
+    "ci_rerun": false,
+    "apk_downloaded_by_this_agent": false,
+    "local_runtime_started": false
+  }
+}

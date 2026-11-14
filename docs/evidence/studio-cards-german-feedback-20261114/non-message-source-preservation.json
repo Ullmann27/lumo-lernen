@@ -1,0 +1,52 @@
+{
+  "scope": "Exact byte comparison after removing the one pure formatting helper and replacing only named lastActionMessage expressions. This is not an AST parser or an Android test.",
+  "baseline_sha256": "b7fac3db86b229aaf75e1a3cace448c16dffe8146715ba292f67539b23496b35",
+  "patched_sha256": "ef94f30fd339e46da6fb58a39989dfacdb0f2a8f5d881314f40afdfcf5503d13",
+  "all_non_message_source_bytes_equal": true,
+  "presentation_arguments": 15,
+  "changed_message_arguments": 10,
+  "changed_expressions": [
+    {
+      "old": "lastActionMessage:\n            '${state.currentPlayer.name} hat alle Karten abgelegt!',",
+      "new": "lastActionMessage:\n            '${_subject(state.currentPlayer, 'hast', 'hat')} alle Karten abgelegt!',"
+    },
+    {
+      "old": "lastActionMessage:\n              '${state.currentPlayer.name} legt ${card.color.name} ${card.number}.',",
+      "new": "lastActionMessage:\n              '${_subject(state.currentPlayer, 'legst', 'legt')} ${card.color.displayName} ${card.number}.',"
+    },
+    {
+      "old": "lastActionMessage:\n                'Sternenregen! ${state.players[nextIdxRain].name} zieht 2 Karten.',",
+      "new": "lastActionMessage:\n                'Sternenregen! ${_subject(state.players[nextIdxRain], 'ziehst', 'zieht')} 2 Karten.',"
+    },
+    {
+      "old": "lastActionMessage:\n              'Farbzauber! ${state.currentPlayer.name} waehlt eine Farbe.',",
+      "new": "lastActionMessage:\n              'Farbzauber! ${_subject(state.currentPlayer, 'wählst', 'wählt')} eine Farbe.',"
+    },
+    {
+      "old": "lastActionMessage:\n              'Super-Sternenregen! ${state.players[nextIdxSuper].name} zieht 4 Karten - jetzt Farbe waehlen.',",
+      "new": "lastActionMessage:\n              'Super-Sternenregen! ${_subject(state.players[nextIdxSuper], 'ziehst', 'zieht')} 4 Karten - jetzt Farbe wählen.',"
+    },
+    {
+      "old": "lastActionMessage:\n                'Wirbelwind! ${state.otherPlayer.name} zieht 1 Karte.',",
+      "new": "lastActionMessage:\n                'Wirbelwind! ${_subject(state.otherPlayer, 'ziehst', 'zieht')} 1 Karte.',"
+    },
+    {
+      "old": "lastActionMessage:\n              'Denkpause! Lumo hat eine kleine Frage fuer ${state.currentPlayer.name}.',",
+      "new": "lastActionMessage:\n              'Denkpause! Lumo hat eine kleine Frage für ${state.currentPlayer.name == 'Du' ? 'dich' : state.currentPlayer.name}.',"
+    },
+    {
+      "old": "lastActionMessage: '${state.currentPlayer.name} waehlt ${chosen.name}.',",
+      "new": "lastActionMessage:\n            '${_subject(state.currentPlayer, 'wählst', 'wählt')} ${chosen.displayName}.',"
+    },
+    {
+      "old": "lastActionMessage:\n            'Richtig! ${state.currentPlayer.name} bekommt einen Stern und darf nochmal.',",
+      "new": "lastActionMessage:\n            'Richtig! ${_subject(state.currentPlayer, 'bekommst', 'bekommt')} einen Stern und ${state.currentPlayer.name == 'Du' ? 'darfst' : 'darf'} nochmal.',"
+    },
+    {
+      "old": "lastActionMessage: '${state.currentPlayer.name} zieht eine Karte.',",
+      "new": "lastActionMessage:\n          '${_subject(state.currentPlayer, 'ziehst', 'zieht')} eine Karte.',"
+    }
+  ],
+  "added_helper": "  /// Only the visible pronoun \"Du\" takes the second person. A named child\n  /// uses the same third-person grammar as a named bot; no player ID changes.\n  static String _subject(LumoPlayer player, String addressed, String named) =>\n      '${player.name} ${player.name == 'Du' ? addressed : named}';\n\n",
+  "model_deck_serializer_controller_native_sources_changed": false
+}

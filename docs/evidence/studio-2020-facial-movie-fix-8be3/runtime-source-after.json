@@ -1,0 +1,16 @@
+{
+  "source_count": 56,
+  "expected_only_change": [
+    {
+      "path": "scripts/tests/lumo_facial_capture.gd",
+      "before_sha256": "cd223ad265b46626a09350583466d3cbcb70c1d7061170c753f58d24269aba38",
+      "after": {
+        "bytes": 9009,
+        "sha256": "d5c519844281ec83d2965e2cfdf4b0157f8304fb1e9f093d705356315ee924a5",
+        "git_blob_sha": "55304d9eb68ecc2f335bb66288446945c84d27cd"
+      }
+    }
+  ],
+  "project_godot_byte_equal_to_8be3": true,
+  "scope": "Generated import/cache files are separately inventoried, not falsely counted as a clean full checkout."
+}

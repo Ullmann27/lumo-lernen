@@ -1,0 +1,21 @@
+{
+  "command": [
+    "python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "qa/studio-2020-integration/root/native/tools/tests",
+    "-p",
+    "test_nextgen_runner.py",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 19.238410209989524,
+  "log_sha256": "e927310844e20699884072de62fee96e80fb4cb832ebf8563b0143fd65156664",
+  "source_files": {
+    ".github/workflows/lumo-studio-2020.yml": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13",
+    "tools/validate_studio.sh": "7fe252aae499b1fcb0932ac259a535946cde6e9bf4ba0a088c1c8a5e2fcd5752",
+    "tools/tests/test_nextgen_runner.py": "8cef480f04a8cef32593d6f279b7eaab677ea95a38ade226b4f1828b88c4a529"
+  }
+}

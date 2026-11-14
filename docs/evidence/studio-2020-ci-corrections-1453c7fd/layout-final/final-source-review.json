@@ -1,0 +1,85 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T09:10:29.170455+00:00",
+  "scope": "final_static_Dart_layout_source_review_no_execution",
+  "status": "no_additional_concrete_source_blocker",
+  "source": {
+    "path": "qa/studio-2020-ci-corrections-20261114/root/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+    "bytes": 44247,
+    "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+    "git_blob": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+    "mode": "100644"
+  },
+  "frozen_copy": {
+    "path": "qa/connect-four-layout-blob-review-20261114/final-4a68c5b8.dart.txt",
+    "bytes": 44247,
+    "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+    "git_blob": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+    "mode": "100644"
+  },
+  "root_boundary_proof_read": {
+    "path": "qa/studio-2020-ci-corrections-20261114/root/layout-source-boundary-proof.json",
+    "bytes": 464,
+    "sha256": "d35316582415e3f5c0731304266ef35e106c4c38cedc7f3868e81b4316fc16fb",
+    "git_blob": "09f0be5890b53781c934834fdb22ebef451cdeba",
+    "mode": "100644"
+  },
+  "previous_review": {
+    "path": "qa/connect-four-layout-blob-review-20261114/review.json",
+    "bytes": 4984,
+    "sha256": "465fbf470c01f55d69bc4c6c58b1704989221013ced4d6278e2a5b2f3c025e05",
+    "git_blob": "9f68c14e0f51a502e1ddd4f37fa2904ff9e2690a",
+    "mode": "100644"
+  },
+  "baseline_git_blob": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+  "previous_proposal_git_blob": "6b587b94f9f094b5785f08afff348f399ace4523",
+  "source_comparison": {
+    "lexical_tokens_unchanged_except_single_primary_false": true,
+    "comparison_tokens": 6890,
+    "not_a_Dart_parser_or_compiler": true,
+    "controller_native_rules_persistence_byte_equal_to_baseline": true,
+    "header_modes_companion_tray_byte_equal_to_baseline": true,
+    "disc_rendering_byte_equal_to_baseline": true
+  },
+  "primary_scroll_resolution": {
+    "inner_vertical_primary_false": true,
+    "finding": "The short-wide inner fallback no longer inherits the companion route PrimaryScrollController. Portrait outer vertical scroll remains responsible for header, modes, turn label and play content."
+  },
+  "sliver_and_text_scale_analysis": {
+    "preceding_extent": "All preceding slivers are finite SliverToBoxAdapter/SliverPadding children. precedingScrollExtent represents their complete laid-out extents, not remainingPaintExtent or the visible fraction. Larger text therefore reserves its actual preceding height without making playHeight oscillate while scrolling.",
+    "floor": "Portrait playHeight remains at least168.8+84=252.8dp. All seven controls live inside finite content; the 48dp row is not compressed by large preceding text.",
+    "footer_budget": "companionH+22 exactly reserves the next companion with6+16dp padding.",
+    "paint_hit_agreement": "Flutter3.44.9 RenderSliverToBoxAdapter calculates paintExtent from scrollOffset/remainingPaintExtent and assigns the same paintedChildSize to hitTestExtent. RenderSliver.hitTest rejects positions outside that visible extent; its child transform uses the same scroll offset.",
+    "reachability": "A control outside the current painted viewport must first be scrolled into view. The normal scroll extent includes the complete finite play child and following companion; there is no new overlay or separate pointer coordinate system.",
+    "runtime_limit": "This is source reasoning for a text scaler of2.0 and larger preceding widgets. No actual2.0 layout, pixel, exposed-target or touch result was measured by this reviewer."
+  },
+  "retained_render_boundary": "Horizontal overflow may clip decorative pedestal overhang, outer glow or right board edge. Core cells/buttons stay in the common content. No clip removal or input-overlay change introduced.",
+  "framework_sources": [
+    {
+      "url": "https://raw.githubusercontent.com/flutter/flutter/3.44.9/packages/flutter/lib/src/rendering/sliver.dart",
+      "sections": [
+        "333-356 precedingScrollExtent",
+        "1500-1525 hitTest bounds",
+        "1573-1586 calculatePaintOffset",
+        "2013-2056 paint/child offset",
+        "2092-2117 RenderSliverToBoxAdapter layout"
+      ]
+    },
+    {
+      "url": "https://raw.githubusercontent.com/flutter/flutter/3.44.9/packages/flutter/lib/src/widgets/single_child_scroll_view.dart",
+      "sections": [
+        "253-259 primary inheritance",
+        "298-302 descendant isolation",
+        "455-459 constraints",
+        "529-565 clipping"
+      ]
+    }
+  ],
+  "limits": [
+    "No Flutter test, compilation, package download, renderer or Android execution.",
+    "No product/source/ref/pin/receipt mutation.",
+    "No new screenshot or numerical device measurement.",
+    "The next actual CI run must establish compilation and the required pointer/48dp/geometry behavior.",
+    "No further optional checks requested or performed."
+  ]
+}

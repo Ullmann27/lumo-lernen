@@ -1,0 +1,51 @@
+{
+  "observed_at_utc": "2026-11-14T01:02:04.930159+00:00",
+  "source_host": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "source_native": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43530667812,
+  "job_id": 132247240154,
+  "job_conclusion": "success",
+  "job_started_at": "2026-11-13T23:55:47Z",
+  "job_completed_at": "2026-11-14T00:57:01Z",
+  "original_decoded_job_log_sha256": "0f80d456ff9bf8787da504c69e07429a32bf15683af7407f264d3efd0e0df302",
+  "original_decoded_job_log_bytes": 1576063,
+  "python_suites": [
+    {
+      "scope": "build-and-preservation Python contracts",
+      "tests": 430,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 131.128,
+      "original_excerpt": [
+        "2026-11-14T00:09:12.7527750Z ----------------------------------------------------------------------",
+        "2026-11-14T00:09:12.7528198Z Ran 430 tests in 131.128s",
+        "2026-11-14T00:09:12.7528387Z ",
+        "2026-11-14T00:09:12.7528485Z OK",
+        "2026-11-14T00:09:12.7528617Z "
+      ]
+    },
+    {
+      "scope": "Android-probe Python regression",
+      "tests": 807,
+      "errors": 0,
+      "failures": 0,
+      "skipped": 0,
+      "seconds": 46.372,
+      "original_excerpt": [
+        "2026-11-14T00:10:04.4774204Z ----------------------------------------------------------------------",
+        "2026-11-14T00:10:04.4774518Z Ran 807 tests in 46.372s",
+        "2026-11-14T00:10:04.4785872Z ",
+        "2026-11-14T00:10:04.4785999Z OK",
+        "2026-11-14T00:10:04.5135269Z ##[group]Run set -euo pipefail"
+      ]
+    }
+  ],
+  "limits": [
+    "These are the actual suites from this4ab job, not historical426/788 or402/764 results.",
+    "The two Python counts are separate suites and are not added to Flutter or native gate rows.",
+    "Android-probe suite includes synthetic contracts; it is not the new live emulator result.",
+    "Full Flutter2514 PASS and Native host gate25/16 proofs are linked separately; no duplicate aggregate count.",
+    "API35/API37/update/creative and publisher are pending at this report time."
+  ]
+}

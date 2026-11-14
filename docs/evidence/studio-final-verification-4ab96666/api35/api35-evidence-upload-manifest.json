@@ -1,0 +1,667 @@
+{
+  "schema": 1,
+  "scope": "Unveränderte kuratierte API35-Fehlerbelege; kein OriginalZIP, keine Quelländerung",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "file_count": 73,
+  "total_bytes": 3879808,
+  "files": [
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/README.md",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1998,
+      "sha256": "81f4d3974e5a9c4b12aba32b1019b7065ba68f5f16dd30c8071c4a39a88caa18",
+      "git_blob_sha": "a1216d2cd068ebd1906c9a709f3abe38bd036b44"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/artifacts-at-job-end-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/artifacts-at-job-end-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 8067,
+      "sha256": "ae0567cd62914e51784775dd6bd1f44bad02399f5cf4ff7bf81da76e9c05b192",
+      "git_blob_sha": "068633f871a59e62643b702f5b71c8952ce2d417"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/expected-apk-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/expected-apk-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2459,
+      "sha256": "f73e32a429023740c6befa6c1d777b2b59571a7a0a0a6765ce494794abe24222",
+      "git_blob_sha": "d3cc0d1408024da50cb42142b45ea8d730eef6f5"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/jobs-completed-original.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/jobs-completed-original.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25808,
+      "sha256": "091285e8d9db06e3068a336c4dfdb8714a033aded752b1d4b47b4101594e9483",
+      "git_blob_sha": "0b482e4616fd4083b70d3693c4d1b443334b7951"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/android-emulator-version.txt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/android-emulator-version.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 655,
+      "sha256": "0db3b7136e8bef389a3d7d9261221475ec77cdcde4e774d052cadd0aab7852cc",
+      "git_blob_sha": "c9e6d971ccc5a12583a491dd316e484387e4444a"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/android-release.txt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/android-release.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3,
+      "sha256": "238903180cc104ec2c5d8b3f20c5bc61b389ec0a967df8cc208cdc7cd454174f",
+      "git_blob_sha": "60d3b2f4a4cd5f1637eba020358bfe5ecb5edcf2"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/android-sdk.txt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/android-sdk.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3,
+      "sha256": "90d7ec0f0acef104d8b6252794295f661a0149634868d02a1ae0c358099638f5",
+      "git_blob_sha": "8f92bfdd49766b1907d4aec8d3b0f9ed6129d0e6"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2906,
+      "sha256": "6d362fcc5b13bf44e7df57b69ef72eac01e92f7150f58d4b147ab8ffa6b520ac",
+      "git_blob_sha": "8e0676f7e29ea5b9d92a3bf4c2b730da7f821cd4"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-navy-latin-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893",
+      "git_blob_sha": "58481c41c63d663811900a94bbe328bd3b45d81d"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-navy-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 246,
+      "sha256": "d8c211f576d9a28b8f2f35714d47c84d32f524f5e08d7b67fca3ec8db562bc3d",
+      "git_blob_sha": "f248d624f7d444c39f8f445b8df339425e17d23a"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-raw.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3371,
+      "sha256": "79edb90a3a5527c401426dec30d21895eab3221fbac421d36896bac51e8362df",
+      "git_blob_sha": "b2727460cf24002327d14542e6a312dc1d3d28d4"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-teal-text-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4109,
+      "sha256": "e72d6aefc052eba507f9e68ddd979457b42d8a4b751443bbfd5351c34cdfd612",
+      "git_blob_sha": "4a5aa478d881b650fa702a1aade0aa2206261d04"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-tiles.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5062,
+      "sha256": "df57577d1cd8b7a72290c26ea4d22e53f7cc2b6d033d81df93601b748276af73",
+      "git_blob_sha": "a0cf66c0d92709273d9e347da85c13669238c5e5"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1445,
+      "sha256": "0c12f78809fcf8a85d2640a267f05b76eed8a9ca80d712234f3fca7cb82c0856",
+      "git_blob_sha": "8c2a1efc8fa5c5687525bc255c4d521b83341905"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1009,
+      "sha256": "aebcddcb0ed78780fe38d8de9aee56831f7fb872b0a98dea9bdc1ee46fae3424",
+      "git_blob_sha": "955261437228c71518acef7d4954591a60360884"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1225,
+      "sha256": "116e7efb181c8b156f13fd4b53810015326c517dd408dceb7f1858b4fd5a772e",
+      "git_blob_sha": "cf447811972f00035dec53ea818ff4d05ad08068"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 705,
+      "sha256": "c2bed00571cfe60865cc00068c68bcacd137b8472f77c72aa09c3420ba79c817",
+      "git_blob_sha": "968a7dd0b7f237b64c831ef9d676b0cbd4e64980"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 783,
+      "sha256": "081da59dd555cec540947a7f4802864db060df97dbfb7b07d931b55af6ab87b6",
+      "git_blob_sha": "007be3f02b75781b8f3968aba9a3d00f53bb197b"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-dim-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 424,
+      "sha256": "46ffd33dfa9034daf5346469bec12d0977bd14cf49ca369f908401ab76a3f180",
+      "git_blob_sha": "a239b0ef618ebc969902af42231d4e93a96a448c"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1489,
+      "sha256": "d3af58f017de1d6339c5d19927e9e0f64b84bd7f74ee297bb6dcc19d30b0036f",
+      "git_blob_sha": "30e1d5aec3447a3b766735e8a942eb29229f5524"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 575,
+      "sha256": "1a007b768f9c4775cbfae1f78052052de6fbd4509a84bee77e1bc57985ca2d96",
+      "git_blob_sha": "1d452ec291c7e247efde873f79313b5bb601fb5b"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1045,
+      "sha256": "84c702b0b45946631d81243c9df8ca5f280607f0ab73321ebd53643fd6194cb4",
+      "git_blob_sha": "4c62a41945f97d82bf18215b52d1816faba59dab"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 704,
+      "sha256": "f9a02dee15ea6374735055650ccb9fec83a9b91714b16bf22494643010796f38",
+      "git_blob_sha": "2937b9e91a5a2bf363435de7ebfb5e601f0bfae7"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 989,
+      "sha256": "88ada34d529e37c6fe369beb03908cabc4dcb891f6bf7de501774daf5b24610b",
+      "git_blob_sha": "0e9a3c952f3c6f6b486e82402381e20c1306ec5d"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 428,
+      "sha256": "4d163844962e7047e703035f23fac2fffab12a8422423ea588ca7d84c8dfb709",
+      "git_blob_sha": "4ca264829abbef05b9e5fd3fa8e4a1d9d667d798"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2784,
+      "sha256": "62dfd321fd81abe9ec922af5199b75be4c23a862529f5edc5481cbe83e33b3e4",
+      "git_blob_sha": "c65cb59135c82fa99f05011a0a11e7fc6a94b741"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr-white-text.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2826,
+      "sha256": "f1381716e69b83b68e9005fe434b527891629688683771dc2d7ae3a4c16877d0",
+      "git_blob_sha": "bd69c18632abadb4d14e6b21e989e7ec245aa973"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9809,
+      "sha256": "7f53a275db075671cc321d5271ad3fbe70b0ccdf33f09a86a99416eccd770ae2",
+      "git_blob_sha": "53b69427860f47a4731942ac7c06819dc4ef9f52"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0.png",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-0.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 557393,
+      "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "git_blob_sha": "772eef801ef8cabc05c04dc61de9a530c5c73cc1"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-1-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-1-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10318,
+      "sha256": "f51a91c698fdfafb33e6862f7c083876f4bb86774155ac58e3dcaa9cc9cf02ad",
+      "git_blob_sha": "75a5a89fd71c4765a71e4a39fd8d743ce1636ec7"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-2-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-2-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9835,
+      "sha256": "1c98d133f17f92d8d39e2be41a6204ed72f4da364526ae6bec6b0a821661573a",
+      "git_blob_sha": "1a1377dbbdb70811a976d9bd95ae0e3d71e239d4"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-3-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-3-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10067,
+      "sha256": "c23b802f15cd51f509fe2f9be5fb3559f5b37b196d70009729ff9410f317771f",
+      "git_blob_sha": "3bf44a4cf3603ff34c08a8a84111b30cb260aec4"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-4-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-4-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 11776,
+      "sha256": "b48f18497309f743c00213896d449a8404ffda8a21f7c94652e5ae3e056186a6",
+      "git_blob_sha": "48c901a9921d956223f96c3ae57cf5dbdb7cb16a"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-5-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-5-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 10342,
+      "sha256": "ecd6eef7f3c9cbd35dfcdeccafb183d812d75a01df40b2fd8130989f1dac4185",
+      "git_blob_sha": "10c78f698ab0268b484e1a19b7a92735a9d5b567"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 3335,
+      "sha256": "12d8ceea3ecd86573455672dc4ca7de6cab7c875485249931a89aa7eb4e97f9b",
+      "git_blob_sha": "1b2059d08999c8ecf5abaad3ec7c2f6ad2915fcb"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-navy-latin-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-navy-latin-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 113,
+      "sha256": "2594e011c45befda539958f1fb3661e4d26438dd5706f070f87d6152a6a74893",
+      "git_blob_sha": "58481c41c63d663811900a94bbe328bd3b45d81d"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-navy-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-navy-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 113,
+      "sha256": "d69fbd7737ffb11d9322aee50de163859af4d659af6a1bc94260edf21bd54d9c",
+      "git_blob_sha": "6dd102b2534a3a17d3074a1c5c0ea5e6bfd2b3c6"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-raw.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2805,
+      "sha256": "2e4fd78e2a56057f1f3b3b375481c956aebb7cf2261acc399416090e53914e09",
+      "git_blob_sha": "bff958129716b096915a54fc5e28eba0f744c7a8"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-teal-text-1x.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-teal-text-1x.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 4386,
+      "sha256": "35f80e32d4629e5a44dbf9acc9ec12f31e50dc143d3486e72570f9b79391e8dc",
+      "git_blob_sha": "9aebabf88e6c62cddf2c95abcbe258daccf25ee1"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-tiles.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-tiles.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5103,
+      "sha256": "7c1aedbff7bfb5159a17f862cc5e5b518a484028625c32d9556c222f46091c87",
+      "git_blob_sha": "9442d1cf0ea8acd25bb2cfbe90580f9ee63e453d"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1533,
+      "sha256": "677c6f6e763e466cacefb8b0a256f4444c07203b1d5021b555e161d6584c7da6",
+      "git_blob_sha": "0be0251e7c03414287324a0ad891898520778c24"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1009,
+      "sha256": "aebcddcb0ed78780fe38d8de9aee56831f7fb872b0a98dea9bdc1ee46fae3424",
+      "git_blob_sha": "955261437228c71518acef7d4954591a60360884"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1044,
+      "sha256": "e773471d2e641332bf571a97354a46f91b5e8f6e12dd042da7455ad11de08877",
+      "git_blob_sha": "4cad214e21029cf8904dd3e7ca47e3b6924c4934"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 705,
+      "sha256": "c2bed00571cfe60865cc00068c68bcacd137b8472f77c72aa09c3420ba79c817",
+      "git_blob_sha": "968a7dd0b7f237b64c831ef9d676b0cbd4e64980"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 783,
+      "sha256": "081da59dd555cec540947a7f4802864db060df97dbfb7b07d931b55af6ab87b6",
+      "git_blob_sha": "007be3f02b75781b8f3968aba9a3d00f53bb197b"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-dim-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 424,
+      "sha256": "46ffd33dfa9034daf5346469bec12d0977bd14cf49ca369f908401ab76a3f180",
+      "git_blob_sha": "a239b0ef618ebc969902af42231d4e93a96a448c"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-0.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-0.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1484,
+      "sha256": "438fd7ced829d2dde8b04f9c212eb0620e47b653bf6e98ce5929cb37fe90625a",
+      "git_blob_sha": "06aeca4aab477da0361375fd7dd4425404786c69"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-1.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-1.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 575,
+      "sha256": "1a007b768f9c4775cbfae1f78052052de6fbd4509a84bee77e1bc57985ca2d96",
+      "git_blob_sha": "1d452ec291c7e247efde873f79313b5bb601fb5b"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-2.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-2.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1045,
+      "sha256": "fa0afd1e10336fa729b498a8f8d5ac0e86188a502448e49e956779d8fdc9520f",
+      "git_blob_sha": "5d6dcd2aec5eab2f2e67fb33db4a8d30287ee9c6"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-3.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-3.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 704,
+      "sha256": "f9a02dee15ea6374735055650ccb9fec83a9b91714b16bf22494643010796f38",
+      "git_blob_sha": "2937b9e91a5a2bf363435de7ebfb5e601f0bfae7"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-4.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-4.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 989,
+      "sha256": "88ada34d529e37c6fe369beb03908cabc4dcb891f6bf7de501774daf5b24610b",
+      "git_blob_sha": "0e9a3c952f3c6f6b486e82402381e20c1306ec5d"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-5.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin-tile-5.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 428,
+      "sha256": "4d163844962e7047e703035f23fac2fffab12a8422423ea588ca7d84c8dfb709",
+      "git_blob_sha": "4ca264829abbef05b9e5fd3fa8e4a1d9d667d798"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-latin.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2790,
+      "sha256": "12f47dd3096ccbcd013a626b7d5316265912e421f4b1d52c492f7a334435cf5b",
+      "git_blob_sha": "18aab194a7ef9f09623ba4152d4727b0aa8e51e0"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-text.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr-white-text.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2869,
+      "sha256": "f13e13b316dc59f6ec2f7265d81c69d7ae08cebca458bd14b361a4af6a1c088e",
+      "git_blob_sha": "9e2b67d559307e191d206ff797c4744f38deae9d"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-6-ocr.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9959,
+      "sha256": "4cbc3a89c028b452156b750e35f064e59a837ac8238c0f7acb56ba820f600f7f",
+      "git_blob_sha": "8f2beb8d9332b160b7c78f5e0d304c2105796c3f"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-7-ocr-contrast.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-7-ocr-contrast.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2950,
+      "sha256": "d95761d04b20d1477b3d0322e781d21b2b4ab765932688dbfcac855e73de8030",
+      "git_blob_sha": "be38a0cd5bfbc3cd4ec146a8821818f2d26d5fad"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-7-ocr-raw.tsv",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-7-ocr-raw.tsv",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 83,
+      "sha256": "4e2c6c2dfca00003e4b505ad08bd3bc9e53a70aa34ba9f06d98d3e444af7c9e8",
+      "git_blob_sha": "377119e501f5c9ab4fb5e58ad6a495d48904bd8b"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-7.png",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-7.png",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 556055,
+      "sha256": "1f8324a6ff73aff74f556b3dc585e580b9c8cac1e7321b08ee777fccab607108",
+      "git_blob_sha": "49566dbbef40cc7dc17a38bb67f1dbee508c77ed"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-surface-readiness.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-move-1-surface-readiness.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 6859,
+      "sha256": "7f78dab6f5d0e3325f314f40bbbdec6b6e4d076f94e50b36f4a4d1858347c8f5",
+      "git_blob_sha": "fc5e33952cffed998bd737fa6aee5e3ee8babfbf"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-speech-logcat.txt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/learning-speech-logcat.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1628,
+      "sha256": "c8a137cf2fc68df772a7e650c9a28b6b19f6253d34880c9d264953cd48174c4a",
+      "git_blob_sha": "3737a2715cb04536e064a5594be7614f18124117"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/logcat.txt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/logcat.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 699192,
+      "sha256": "2b3cbbbeab7cdfa0b1cc232adc788a24415613afd83585e3276fe0c50666f317",
+      "git_blob_sha": "1f9ea9a3a28d0b110fa3f92c8aa5a32e03b25c18"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/native-surfaces-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/nextgen/native-surfaces-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 5816,
+      "sha256": "042189e510fea8ae7113e247991d0caf80a5464402922439a41101a1d7ce77e4",
+      "git_blob_sha": "666fb8e61dcbdfb867f43475bc6b184179042dab"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/tested-apk-sha256.txt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/tested-apk-sha256.txt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 108,
+      "sha256": "26a2c31742e7c61df9071a15204b73be4099bd8fcd39c6eee07e95baecb42332",
+      "git_blob_sha": "9b1562e6ad50aedfb671733340a147293df782cd"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original/tour-result.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original/tour-result.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 9995,
+      "sha256": "5cfc7d56a7c92b8d1f63d44142d7d94bc18c35e9f77cc022f38ea6b459c89c37",
+      "git_blob_sha": "487d43c516a2f98e1937b8057e98a92646b66ec8"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original-archive-inventory.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original-archive-inventory.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 118826,
+      "sha256": "5984bc298e66a2bb8d57b252cce7cf8fc8281aad8fcdbe76977e517e999e1371",
+      "git_blob_sha": "bbac7e3d49e85ba9c0f3b75ab98e4c8077de3388"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/original-job.log",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/original-job.log",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 1528151,
+      "sha256": "86c1f3878267546d3a1a1f33174190d1516d0d529dde7fa870ef9883506a9e15",
+      "git_blob_sha": "4eac07d5349178f521b4abf64fccad84648c6411"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/review.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/review.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 25306,
+      "sha256": "5622d9edcc3a5310bbc862436707c1c0d259847bf61826607b9464cc44f0abf0",
+      "git_blob_sha": "3a6d843eafba444be5329b09551429e6c9a57169"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/source-binding.json",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/source-binding.json",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 2464,
+      "sha256": "951cb6b01b70d985af8f358e45bfa7f09ad3a7fa6bac8668bdf3cbc3ff8ec52e",
+      "git_blob_sha": "fd5fbbc067597b3e2510377c9d6e4a4b3503e0cd"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/tested-source/.github/probes/creative_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/tested-source/.github/probes/creative_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob_sha": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/tested-source/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/tested-source/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 47960,
+      "sha256": "9f2ceaa25b356f01377681fd8aba5fc6cd04bde74fbdc56d9ddffe57dc29ded6",
+      "git_blob_sha": "3263e051efb35835b32df8d3df074c7db4db6a68"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/tested-source/.github/workflows/lumo-studio-2019.yml",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/tested-source/.github/workflows/lumo-studio-2019.yml",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 48718,
+      "sha256": "1df347d88bf1da49bb22d50dc84c4a989752e84fbb9a04056d57037b6101c772",
+      "git_blob_sha": "977e0c37f9bc93630ebbf1dc97b8257e0efc3512"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/tested-source/tools/android_qa/nextgen_evidence.py",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/tested-source/tools/android_qa/nextgen_evidence.py",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 28512,
+      "sha256": "0fdba9381b25cdc69e6a97bdc613f1b04aa8d792edae376a2883b4bb232f21e8",
+      "git_blob_sha": "c1105e64bce4c13300f0fbf41e103e4f53194419"
+    },
+    {
+      "path": "docs/evidence/studio-final-verification-4ab96666/api35/tested-source/tools/auto_install/LumoGameActivity.kt",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-final-verification-4ab96666/api35/tested-source/tools/auto_install/LumoGameActivity.kt",
+      "mode": "100644",
+      "type": "blob",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "git_blob_sha": "b9f48afed517b6123b13e7c77b81e00a1b908e13"
+    }
+  ]
+}

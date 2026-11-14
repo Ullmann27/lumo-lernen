@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "reviewer": "root",
+  "host_sha": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "artifact_id": 14108161604,
+  "artifact_sha256": "486db99ad34a051e16bb9d24d99574b9dcecfe992f45b1c54cfc257c1cea8e93",
+  "source_index_sha256": "d37a7808962956989b23d262d8623e7601844db0dad931243a8fe73cc9b40000",
+  "images": [
+    {
+      "archive_member": "captures/fold-320x480-text2.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-320x480-text2.0.png",
+      "bytes": 115813,
+      "sha256": "6e0437716ce4cdeb3a526ec3fc373dd868b4494dc170318b6d0b9e39b49c09e0",
+      "git_blob_sha": "d5fef799c1e00bba28f7d7a59e41094fa2cf60c0",
+      "size": [
+        320,
+        480
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "After vertical/horizontal test scrolling, status top edge and rightmost board column are outside this viewport. Six visible column controls remain aligned with visible cells; the gold leftmost disc is visible. Full fox and both reserve trays are visible. The right reserve label wraps as Lum/o at 2.0 text scale. This is a documented compact-layout limitation, not a missing control acceptance claim."
+    },
+    {
+      "archive_member": "captures/fold-320x740-text1.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-320x740-text1.0.png",
+      "bytes": 167247,
+      "sha256": "1f5ccb663263474ae30e5d648f6ef700e3624e99ed7b5518b55b0601a9f9f57d",
+      "git_blob_sha": "d34dcf301ec08133cefc79b28631104ba7e5027a",
+      "size": [
+        320,
+        740
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Left horizontal end position shows six board columns and aligned controls; seventh is outside the scroll viewport. Gold disc is visible in column0. Top navigation, two-player selection and status are legible; full fox and reserve trays fit."
+    },
+    {
+      "archive_member": "captures/fold-360x800-text1.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-360x800-text1.0.png",
+      "bytes": 192707,
+      "sha256": "60086a100648139977d072ade46bebc5e20b363f7661d5a0bafa4616d2f981e7",
+      "git_blob_sha": "e0614745838f8a65c8376bda1780bc41d090f30b",
+      "size": [
+        360,
+        800
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "Left horizontal end position shows gold column0 and a partly visible cyan column6 at the right viewport edge; controls share the board offset. Full fox, navigation and reserve trays are visible."
+    },
+    {
+      "archive_member": "captures/fold-640x360-text1.0.png",
+      "path": "/tmp/lumo-078-c4-originals/captures/fold-640x360-text1.0.png",
+      "bytes": 147998,
+      "sha256": "5fb0d423a3ee6ad230d960dc79a153f9c10a6be1cf906e61a3ede7accfc6aa10",
+      "git_blob_sha": "53022131c5dd529698193b5a47d034c9258ac999",
+      "size": [
+        640,
+        360
+      ],
+      "actually_opened_with_view_image": true,
+      "finding": "All42cells and seven controls visible with gold leftmost and cyan rightmost discs. Short board preserves round discs; compact fox stays below modes/status and above instruction text, without covering controls."
+    }
+  ],
+  "actual_ci_results": {
+    "pass": 12,
+    "fail": 0,
+    "skip": 0,
+    "flutter_log_sha256": "3c9eab378ab1747cee5b0fcc1c76c812301da74f5843ebb6a64419c1cd8a21b5",
+    "flutter_exit": 0,
+    "tee_exit": 0
+  },
+  "limitations": [
+    "Flutter widget fallback captures, not native Android screenshots.",
+    "Static PNGs do not independently prove swipes; the passing exact-source Fold tests execute real pointer drags, size/exposed-area assertions and subsequent manual moves.",
+    "Large-text right tray label wraps; horizontal end positions intentionally clip the opposite board edge until scrolled.",
+    "No physical Fold7 timing, thermal or60FPS measurement."
+  ]
+}

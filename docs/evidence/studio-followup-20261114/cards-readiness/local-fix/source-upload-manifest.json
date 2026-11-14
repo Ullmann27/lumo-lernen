@@ -1,0 +1,79 @@
+{
+  "status": "FROZEN",
+  "qa_patch_basis": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "original_reader_git_blob": "3263e051efb35835b32df8d3df074c7db4db6a68",
+  "apk_unchanged": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_unchanged": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "scope": "Only read_cards_layout converts a persisted non-JSON response to RuntimeError. All existing capture/session/state/layout/pixel gates remain unchanged. New tests use original historical fixtures and synthetic transport/clock, not a new Android execution.",
+  "file_count": 7,
+  "total_bytes": 1257092,
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/.github/probes/lumo_studio_surfaces_android_probe.py",
+      "repository_path": ".github/probes/lumo_studio_surfaces_android_probe.py",
+      "bytes": 48183,
+      "sha256": "5d802f475d0b844bd720e67b53798816ff61f034a21bafb2a74d247e4c5137ed",
+      "git_blob": "77f96e02602277c8c1f82c72bfe3b49672fe8aad",
+      "mode": "100644",
+      "change": "modified"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/test_cards_layout_readiness.py",
+      "repository_path": "tools/android_qa/tests/test_cards_layout_readiness.py",
+      "bytes": 9037,
+      "sha256": "e4e1617794a3026a947d135e0883f82664f220a6c430ce0721e611f7b0bd1dc0",
+      "git_blob": "9d2b4a75bc3353dd579f261c1c99229af30c07c1",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/cards-before-original.png",
+      "bytes": 1163505,
+      "sha256": "952586b28ef93fd26bedd29d406e49ab98347af6b534d9bef147ac61dd8609c9",
+      "git_blob": "9c20cac7b42fb285cac1d476bbdf840662a68e2b",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/face-evidence-original.json",
+      "bytes": 33358,
+      "sha256": "b36efd207308604078e9ead899796fda1b2197b7d8ec19157027ff2d1378c6ef",
+      "git_blob": "befd8c7c5147beb3754bde89ca4ea18a10b44a7c",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/layout-original.json",
+      "bytes": 1329,
+      "sha256": "626a29902fbb78b9a6d45ba8f380a5273ee3e10206f932f1bbf739d354cc91a1",
+      "git_blob": "e24a002fcefa4e000ad2336880b639b636131af8",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/manifest.json",
+      "bytes": 1567,
+      "sha256": "3a2345f16439c7dba61fb19aecb611c7a230b8c9e90150543338ec00c5009dca",
+      "git_blob": "e2040ad2c440daafd36972f98462f052a19bd6f9",
+      "mode": "100644",
+      "change": "new"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/patched/tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+      "repository_path": "tools/android_qa/tests/fixtures/cards_layout_readiness_a446/missing-layout-original.txt",
+      "bytes": 113,
+      "sha256": "0054bf61f03f13e08b83292429123c21f2b3470100987ad033e67ed1dbb1e679",
+      "git_blob": "8c5735507c17ecfe1d516e044a0587fd8266ba5e",
+      "mode": "100644",
+      "change": "new"
+    }
+  ],
+  "red_execution": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/red-original-a446-execution.json",
+  "green_execution": "/workspace/scratch/5987865ae883/qa/cards-layout-readiness-a446/green-six-contracts-execution.json",
+  "green_test_count": 6,
+  "new_android_pass_claimed": false
+}

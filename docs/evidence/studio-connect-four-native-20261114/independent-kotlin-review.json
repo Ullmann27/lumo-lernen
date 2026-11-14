@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T03:39:46.224548+00:00",
+  "reviewer": "character_animation",
+  "scope": "Independent read-only review of the four frozen C4 Kotlin/MainActivity files. Adjacent Dart/manifest code was inspected only as an unfinished integration dependency; no compile, test or Android run was performed by this reviewer.",
+  "status": "NO_ADDITIONAL_KOTLIN_API_BLOCKER_FOUND; CONFIRMED_PENDING_REQUEST_INTEGRATION_BUG_REPORTED_TO_OWNER",
+  "host_baseline": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "native_baseline": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "frozen_sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/ConnectFourBridge.kt",
+      "bytes": 7788,
+      "sha256": "02ce58b8863197c9d4395b192f238d52a4e2b049ce59d01e451a0189088433cd",
+      "git_blob": "f6e41ada005cc01f3b75d05370e5098048188d37"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/ConnectFourAuthorityService.kt",
+      "bytes": 1708,
+      "sha256": "7fb5ecdfd6e0b8c64f678258d3722483220d3e1574cc300916da6da50ccd2289",
+      "git_blob": "0b687707c7a1a0627eab8fa8bf47b06ba72aead3"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/ConnectFourGameActivity.kt",
+      "bytes": 7355,
+      "sha256": "02ea7fb0f3909da8013e6a97b52901dd8e2981ae13e5c1a74ac1e03979364fe5",
+      "git_blob": "d49a93cf8588b3fdad7ce1bb693843febc7e7984"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/host/tools/auto_install/MainActivity.kt",
+      "bytes": 17568,
+      "sha256": "79e7b8f58cb841c9a3a120429860d0c329656300164b67416c7a38ab8e51f758",
+      "git_blob": "ed589d9bbc5a99e7b37e606bc45cf932b5ce9257"
+    }
+  ],
+  "verified_baseline_references": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/baseline/host/tools/auto_install/MainActivity.kt",
+      "bytes": 16810,
+      "sha256": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953",
+      "git_blob": "d57bb538f745aca436fcd9bc547e692f055e82fa"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/baseline/host/tools/auto_install/LumoGameActivity.kt",
+      "bytes": 11695,
+      "sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+      "git_blob": "b9f48afed517b6123b13e7c77b81e00a1b908e13"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/baseline/host/tools/auto_install/CardsTableBridge.kt",
+      "bytes": 7302,
+      "sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+      "git_blob": "4433cf840665bfeee3593f7620306ba79f87ad8a"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/baseline/host/tools/auto_install/CardsAuthorityService.kt",
+      "bytes": 2121,
+      "sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+      "git_blob": "85fa1dc9e0eccbf38073e1e5918fc934b8e91e41"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/baseline/host/tools/auto_install/GameEventStore.kt",
+      "bytes": 5560,
+      "sha256": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+      "git_blob": "39963b5ac6ff773e0d39505a355cca70d489b7a5"
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/baseline/host/scripts/prepare_embedded_games.py",
+      "bytes": 9425,
+      "sha256": "3d1bcbe466e1b74ae8edd0b8d06a56b274ddde36bead7ba6b18d3b5ef7c4a7ad",
+      "git_blob": "a8f747e77ba24cc74a19b509541bab2146607938"
+    }
+  ],
+  "upstream_api_references": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/GodotHost.java",
+      "bytes": 6338,
+      "sha256": "437cd367f70a419500e4281024f7e4ca45f8d6b6821944ee5fdf365c47a9f94f",
+      "git_blob": "e8be6e886a8e15a3501f3b5599963bc3e43aaf3b",
+      "url": "https://api.github.com/repos/godotengine/godot/contents/platform/android/java/lib/src/main/java/org/godotengine/godot/GodotHost.java?ref=4.6.3-stable",
+      "expected_blob_checked": true
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/GodotPlugin.java",
+      "bytes": 15948,
+      "sha256": "5234c631643504aec3c1729693777b45d9a43696251504a483979eadeb3e2c1b",
+      "git_blob": "5c70f9574b3c4c4bce141757933beed49dc919e5",
+      "url": "https://api.github.com/repos/godotengine/godot/contents/platform/android/java/lib/src/main/java/org/godotengine/godot/plugin/GodotPlugin.java?ref=4.6.3-stable",
+      "expected_blob_checked": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/review-upstream/UsedByGodot.java",
+      "bytes": 2709,
+      "sha256": "75665364c8a0c012174a75c1c33334dea6aed94a56dfb6632be9096da2106e12",
+      "git_blob": "8beb28ab9aa81b94ca9be1c4dc05996bfc6f8f76",
+      "url": "https://api.github.com/repos/godotengine/godot/contents/platform/android/java/lib/src/main/java/org/godotengine/godot/plugin/UsedByGodot.java?ref=4.6.3-stable",
+      "expected_blob_checked": false
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/godot-463-android-safe-area-sources/platform/android/java/lib/src/main/java/org/godotengine/godot/GodotActivity.kt",
+      "bytes": 9845,
+      "sha256": "60631f5f3035b2abb1cd3f35983f9a23a5425e3d301b7d1401e31ba96b17256e",
+      "git_blob": "e2fc0c5426ac5050ee44d6e562cc0cd51f71bd2f",
+      "url": "https://github.com/godotengine/godot/blob/4.6.3-stable/platform/android/java/lib/src/main/java/org/godotengine/godot/GodotActivity.kt"
+    }
+  ],
+  "findings": [
+    {
+      "id": "C4-API",
+      "result": "compatible-in-read-scope",
+      "detail": "Godot4.6.3-stable declares GodotHost.getHostPlugins(Godot), GodotActivity.getCommandLine(), onGodotForceQuit(Godot), and onGodotRestartRequested(Godot) with the used signatures. The GodotPlugin constructor accepts Godot, getPluginName is abstract String, and UsedByGodot retains public method reflection at runtime. The new API shape also matches the existing published LumoGameActivity. This is source verification, not a new Kotlin compilation."
+    },
+    {
+      "id": "C4-PRIVATE-CHANNEL",
+      "result": "bounded",
+      "detail": "A separate MethodChannel and app-private directory are used. Session token32hex, owner64hex, round32hex, bounded integer revision/sequence, request2048B and state32768B are checked. Files use per-process synchronization plus a cross-process FileLock, temporary-file replacement, and durable writes before success. Only the main-process registered live authority can publish. The staged manifest keeps the Activity non-exported in :lumo_game and the bound service non-exported in the main process; it does not create a started background service."
+    },
+    {
+      "id": "C4-LIFECYCLE",
+      "result": "bounded",
+      "detail": "The heartbeat is scheduled on the Android main looper, not render frames. start/stop generation and close prevent stale queued beats reviving a stopped lease. Pause writes inactive state/pauseEpoch and releases timers/service on stop/destroy. The renderer reads/submits only while active and with the main-process authority responding for the exact token. A stale token does not become the newly opened token."
+    },
+    {
+      "id": "C4-RETURN",
+      "result": "identity-preserved-with-integration-limit",
+      "detail": "A durable GameEventStore return is recorded before finish/result. The caller session must match both the launch options and valid UUID extra; the PID is reported and only the isolated game process is killed after finish. MainActivity adds connect_four to the existing caller-owned return path without changing its result/session/process-end logic. Normal save ACK enforcement is owned by Dart and the new Godot scene; Kotlin returnToApp alone is not a proof that a game save was acknowledged."
+    },
+    {
+      "id": "C4-ACK-SLOT",
+      "result": "concrete-code-path-bug-confirmed-by-author",
+      "detail": "Bridge permits exactly one request with sequence above max(ack,rejected). The initially inspected WIP Dart _consume returned without either terminal marker when an already accepted request became stale, inactive or canDrop=false. A drop accepted just before Activity pause could therefore permanently occupy the slot and block the next Resume. Author independently confirmed this and is adding a negative rejected outcome plus a focused accepted-drop/pause/resume regression. The four reviewed Kotlin hashes remain unchanged. No Android reproduction is claimed by this review."
+    },
+    {
+      "id": "C4-PROFILE",
+      "result": "no-cross-child-write-found-in-read-scope",
+      "detail": "The inspected Dart controller uses a captured LearningProfileLease, current cached selection, guarded serial save operations and owner-specific new storage key. The native token routes to that one controller; the renderer does not supply rewards or mutate the board. Because those Dart files are still under development, this observation does not certify their final freeze or runtime behavior."
+    }
+  ],
+  "limits": [
+    "The new C4 feature is not accepted as compiled, rendered, touch-tested or Android-tested by this read-only review.",
+    "The confirmed request-slot correction and its actual test result require the author final source binding.",
+    "Godot scene normal exit after Dart exit ACK, complete pause/resume and wrong-child scenarios require the final integration review/tests; they were not replaced by Kotlin source inspection.",
+    "No existing Cards or LumoGameActivity source was edited by this reviewer. No source, branch, pin, CI run or Android state was mutated."
+  ]
+}

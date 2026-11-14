@@ -1,0 +1,62 @@
+[
+  {
+    "command": [
+      "python",
+      "-W",
+      "error::ResourceWarning",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_studio_connect_four_android_delivery.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 2.8979201070033014,
+    "log": "qa/studio-2020-integration/evidence/integrated-test_studio_connect_four_android_delivery.py.log",
+    "sha256": "907c0db3c3d7d84dc73b450e74943362263700682ac5c6f37fa86f26635ff18f"
+  },
+  {
+    "command": [
+      "python",
+      "-W",
+      "error::ResourceWarning",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_studio_artifact_originals.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.12452742199820932,
+    "log": "qa/studio-2020-integration/evidence/integrated-test_studio_artifact_originals.py.log",
+    "sha256": "2fd183bc6d59a6106fea0da8903cbefdaaf612633d6335d50bd66b8978bf887c"
+  },
+  {
+    "command": [
+      "python",
+      "-W",
+      "error::ResourceWarning",
+      "-B",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/tools/android_qa/tests",
+      "-p",
+      "test_connect_four_android_probe.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.23414042399963364,
+    "log": "qa/studio-2020-integration/evidence/integrated-test_connect_four_android_probe.py.log",
+    "sha256": "868779604f48f59c99fdef434c9eb96ed5676f3ac2afdfa9588d83b7e7e7dfc8"
+  }
+]

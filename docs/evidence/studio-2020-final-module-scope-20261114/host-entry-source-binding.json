@@ -1,0 +1,217 @@
+{
+  "schema": 1,
+  "host_source": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "source_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/86445f53af5d573549fc8cf03405261611f3cb7e?recursive=1",
+  "api_response_sha": "86445f53af5d573549fc8cf03405261611f3cb7e",
+  "truncated": false,
+  "scope": "Read-only binding of selected actual entry/catalog/module files; 23/23 local files match the exact published commit's returned blobs. Not a claim that the whole local checkout is clean.",
+  "files": [
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/spielwelt/spielwelt_routes.dart",
+      "bytes": 6340,
+      "sha256": "086df3ad460485fe309c53ada07743b83880f6e79bd140159ed9dd92e67ca64c",
+      "git_blob": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "published_git_blob": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/spielwelt/spielwelt_hub.dart",
+      "bytes": 28438,
+      "sha256": "c23fc88187cfea258250262c510e599c71a42466cd2058f151f3fe5ab39cf146",
+      "git_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "published_git_blob": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/games/games_content.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/games_content.dart",
+      "bytes": 59951,
+      "sha256": "4e155fe8681944ffe29be3c5e348845332b988bee580a667a5db6a98a7bdf577",
+      "git_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "published_git_blob": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "matches_published": true
+    },
+    {
+      "path": "lib/domain/games/game_world.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/domain/games/game_world.dart",
+      "bytes": 7403,
+      "sha256": "6abf5476e12b003b007222618266858ac304ffc313e390f6addee1f3fc2254a6",
+      "git_blob": "50f8faad50d563e5a87bdf7fc91ecc1be973435c",
+      "published_git_blob": "50f8faad50d563e5a87bdf7fc91ecc1be973435c",
+      "matches_published": true
+    },
+    {
+      "path": "lib/domain/games/game_level_model.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/domain/games/game_level_model.dart",
+      "bytes": 3388,
+      "sha256": "d1ea9231973b2fdc67fea5c485f49e2e26d7ed41c88fad611ebbd25caeb1380d",
+      "git_blob": "ba41fed8e610f9fd83955be58da85cdbc07a64b5",
+      "published_git_blob": "ba41fed8e610f9fd83955be58da85cdbc07a64b5",
+      "matches_published": true
+    },
+    {
+      "path": "lib/domain/games/game_level_catalog.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/domain/games/game_level_catalog.dart",
+      "bytes": 12497,
+      "sha256": "dcc2fafeb808b87f554d11e49635914673cbd5a3a079f96ec3c7ecbdd3cc4976",
+      "git_blob": "fff54683c5c1d16bf581b16f446852166de255bb",
+      "published_git_blob": "fff54683c5c1d16bf581b16f446852166de255bb",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_registry.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/learning_modules/learning_module_registry.dart",
+      "bytes": 4664,
+      "sha256": "a8c272577b4ff6d33bfe5c97327243d36ffdc77b1b2cf7d5a5fa5f05b0eec890",
+      "git_blob": "201bd14851ea86c1ac46c8459b586f258024d8a3",
+      "published_git_blob": "201bd14851ea86c1ac46c8459b586f258024d8a3",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "bytes": 45646,
+      "sha256": "0fe548e965b96313ddfb186b7e04fabf601a6c7220a3c7100de2c019a0bc3450",
+      "git_blob": "845efa5601e0ca314af227502a7e34f303c68858",
+      "published_git_blob": "845efa5601e0ca314af227502a7e34f303c68858",
+      "matches_published": true
+    },
+    {
+      "path": "lib/core/curriculum/academy_topic_units.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/core/curriculum/academy_topic_units.dart",
+      "bytes": 1942,
+      "sha256": "8bbd138dc33431f273cc4fa611e8dac34b762049decd84822c7a987601b102d7",
+      "git_blob": "2d43df044bb2fee5a0101a6896ca89c0f7a84676",
+      "published_git_blob": "2d43df044bb2fee5a0101a6896ca89c0f7a84676",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_catalog.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/learning/lab/learning_lab_catalog.dart",
+      "bytes": 12930,
+      "sha256": "7e864a4a596bcaca1c66c5d8ec2a017963699f85c7e46d434ca10e208b22ca8d",
+      "git_blob": "d09ecd651ec33c223ace42929f0c88af99bb7851",
+      "published_git_blob": "d09ecd651ec33c223ace42929f0c88af99bb7851",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_hub.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/learning/lab/learning_lab_hub.dart",
+      "bytes": 12485,
+      "sha256": "ada36784b1150e118fac63c7624b0558857c283a652af16a022c33309c8afbf6",
+      "git_blob": "afb6ca1f7a82e881c78040b92fb3bbaf89af8b9d",
+      "published_git_blob": "afb6ca1f7a82e881c78040b92fb3bbaf89af8b9d",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/learning/lab/learning_lab_screen.dart",
+      "bytes": 18174,
+      "sha256": "cc07662eeb6d4169cb14f602ecef52bac0316a49546ceaad8eff10edb5f43bb7",
+      "git_blob": "9bc3850a7dbf058201b6fef968b5deb8f93941bb",
+      "published_git_blob": "9bc3850a7dbf058201b6fef968b5deb8f93941bb",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/home/home_content.dart",
+      "bytes": 47310,
+      "sha256": "37c66dc5ddd7ab70210f275bc624e32100c25b6214dfe979fd0e5026e203affa",
+      "git_blob": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "published_git_blob": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/story/lumo_quest_hub_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/story/lumo_quest_hub_screen.dart",
+      "bytes": 13560,
+      "sha256": "f41cf32d4f2217eca728800b44c33844f73e703dd43c5d39c16cdc4262e0dcb5",
+      "git_blob": "51a34ce776e436cf460d69d21770498cda1d1feb",
+      "published_git_blob": "51a34ce776e436cf460d69d21770498cda1d1feb",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/magic_hub/lumo_magic_hub_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/magic_hub/lumo_magic_hub_screen.dart",
+      "bytes": 22163,
+      "sha256": "8a64dbdaddb250efc1c2b7124f75be373d89e95c0ae350ddc9cd0a14b0531a7e",
+      "git_blob": "8821648399a519f736bc1a28aa0357dc4a90bd04",
+      "published_git_blob": "8821648399a519f736bc1a28aa0357dc4a90bd04",
+      "matches_published": true
+    },
+    {
+      "path": "lib/domain/tutoring/guided_lesson_catalog.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/domain/tutoring/guided_lesson_catalog.dart",
+      "bytes": 33657,
+      "sha256": "4abfbd2fb3bd5deaa3062ff8fa0dacf48dacfd278fff8fe7e8c5ac17a2759e7f",
+      "git_blob": "ddecbdbd033adbafca495a678ed66b2a1f11b251",
+      "published_git_blob": "ddecbdbd033adbafca495a678ed66b2a1f11b251",
+      "matches_published": true
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/domain/tutoring/native_learning_activity.dart",
+      "bytes": 7307,
+      "sha256": "eafc477d639b59a1d5215a8934c1088e4563d84aaffc2795e57b7299085632ed",
+      "git_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "published_git_blob": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/tutoring/guided_lesson_screen.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/tutoring/guided_lesson_screen.dart",
+      "bytes": 29394,
+      "sha256": "b615bc8448841aecb3eee6343ef273a992613bdf63a16d2ddabb04e436629818",
+      "git_blob": "8bf3ed80b59184c5aae261a905b91f401909aca2",
+      "published_git_blob": "8bf3ed80b59184c5aae261a905b91f401909aca2",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/learning/learning_content.dart",
+      "bytes": 134562,
+      "sha256": "4f485a351e787c2411783c2542c5fa15bf7b875b12ab72257eea26d31057b692",
+      "git_blob": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "published_git_blob": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/memory/lumo_memory_game.dart",
+      "bytes": 52550,
+      "sha256": "28c5f0d7348354bb55f6c1ad8cb1d712360fbbe27fcf7cc36424003568c846f4",
+      "git_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "published_git_blob": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 36066,
+      "sha256": "1d213441a1f9cf597ae4f4c2d645068f4094409e836aef7b3e1733770577d3c4",
+      "git_blob": "7211b1d17a289b6935348d2bb66c7f05243a732d",
+      "published_git_blob": "7211b1d17a289b6935348d2bb66c7f05243a732d",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/quiz/quiz_show_content.dart",
+      "bytes": 52217,
+      "sha256": "1c95ed40a9bd31ced69f40e298c7b771d183d9a37519bfbce2f397872871d393",
+      "git_blob": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+      "published_git_blob": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+      "matches_published": true
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "local_path": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10035,
+      "sha256": "8f99b8b313e1bb30d8caaf9ecba63b0c2587aa19f773cdcc16b9f3f3fc2f8587",
+      "git_blob": "4a37e8e275503d6a89ce1130859b2f67cb25bbd5",
+      "published_git_blob": "4a37e8e275503d6a89ce1130859b2f67cb25bbd5",
+      "matches_published": true
+    }
+  ]
+}

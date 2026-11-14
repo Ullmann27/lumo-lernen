@@ -1,0 +1,60 @@
+{
+  "count": 6,
+  "elapsed": 0.131415666666667,
+  "hints": 0,
+  "motif": 4,
+  "moves": 0,
+  "pieces": [
+    {
+      "id": 0,
+      "locked": false,
+      "tray": true,
+      "turn": 1,
+      "x": -7.0,
+      "z": -2.2
+    },
+    {
+      "id": 1,
+      "locked": false,
+      "tray": true,
+      "turn": 0,
+      "x": -7.0,
+      "z": 0.0
+    },
+    {
+      "id": 2,
+      "locked": false,
+      "tray": true,
+      "turn": 3,
+      "x": -7.0,
+      "z": 2.2
+    },
+    {
+      "id": 3,
+      "locked": false,
+      "tray": true,
+      "turn": 2,
+      "x": 7.0,
+      "z": -2.2
+    },
+    {
+      "id": 4,
+      "locked": false,
+      "tray": true,
+      "turn": 1,
+      "x": 7.0,
+      "z": 0.0
+    },
+    {
+      "id": 5,
+      "locked": false,
+      "tray": true,
+      "turn": 0,
+      "x": 7.0,
+      "z": 2.2
+    }
+  ],
+  "result_id": "f7e074b8-dc10-4d2a-b45d-3011e513c1ec-1794619299641-151332084",
+  "rotation_enabled": true,
+  "version": 1
+}

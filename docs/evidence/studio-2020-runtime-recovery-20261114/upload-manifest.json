@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "base_commit": "dd7a7c16a79b50596731612e5a5b70063f2bfdee",
+  "scope": "documentation; no product, active pin or release change",
+  "files": [
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/previous-dd7a-commit-checkpoint.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/previous-dd7a-commit-checkpoint.json",
+      "bytes": 10105,
+      "sha256": "8efc7769c86477f25744f5a9070172b568d94d13e4842c603a8ecb79fbec066c",
+      "git_blob_sha": "c917a1ff743a63ff8a09bfbd7b3339d53130aacd",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/exec-recovery-source-check.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/exec-recovery-source-check.json",
+      "bytes": 2058,
+      "sha256": "73081da4c9d302c8799d73ac62360e20b0dded66b0318e21430566ab1d706965",
+      "git_blob_sha": "90dc003677046d2a837d3847f1b3e1a6b33bc3df",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/candidate2020-pin-test-preparation.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/candidate2020-pin-test-preparation.json",
+      "bytes": 752,
+      "sha256": "912303da633e7558b19f883da2a69665e405b219ea7d5506aa8cd089539149d0",
+      "git_blob_sha": "ffe671e0ec06b9fb1ccc22922cf47c6888def17f",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/candidate2020-pin-test-preparation.diff",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/candidate2020-pin-test-preparation.diff",
+      "bytes": 975,
+      "sha256": "91e7dbf62f96c037ca822ed7a516fdf0cc62f28080de8918189b806e52f5ff30",
+      "git_blob_sha": "82126189c4f484d185b64dec2a042753e17e1265",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/prepared-candidate2020-pin-test.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/prepared-candidate2020-pin-test.py",
+      "bytes": 19946,
+      "sha256": "4a6b91f1097d828afb0fa75138bf56117379cdccfcfb0e9656a7be43daf2e4cd",
+      "git_blob_sha": "b0fb033aa2b371ff2f64acd5183a52fadace2982",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/prepared-original-archive-extractor.py",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/prepared-original-archive-extractor.py",
+      "bytes": 6501,
+      "sha256": "403f86c2b67451c4f4dcfcf5e548c0a76ef6c47f33e5e7d23bd5e982e4afa9df",
+      "git_blob_sha": "2584bd08ceb5d3c7c07885de624e71482b8e9f7e",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/agent-a-confirmed-tree-inputs.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/agent-a-confirmed-tree-inputs.json",
+      "bytes": 6771,
+      "sha256": "1ca8ee05960f4fe86ce96dced962f7ef78ca71408a7e82938978cc1e875e804b",
+      "git_blob_sha": "e0e219eeaae060d1b06e277152d9dcffd70edb29",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/agent-a-blob-upload-completion.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/agent-a-blob-upload-completion.json",
+      "bytes": 2030,
+      "sha256": "a3dca030ae525af21aa2d2bbd56f444275facd385e415cd108bdf8d816ed43d7",
+      "git_blob_sha": "aa1766f1ccb464b65dadba146847a76550f2e448",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/agent-a-blob-upload-manifest.json",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/agent-a-blob-upload-manifest.json",
+      "bytes": 15096,
+      "sha256": "4a4dba234418fd35fea4a4be8952b21a6507a4f2f997922b9e084cbb2967fff9",
+      "git_blob_sha": "04832d8cd4e8cb4b9d6a58c9de5ee41e64a3c444",
+      "mode": "100644"
+    },
+    {
+      "path": "docs/evidence/studio-2020-runtime-recovery-20261114/README.md",
+      "source": "/workspace/scratch/5987865ae883/qa/studio-2020-runtime-recovery-evidence-20261114/frozen/README.md",
+      "bytes": 1577,
+      "sha256": "6497bcf61cdc0f53b9751238f440675c22cb5c0db7eae455cd09d8fc4716d620",
+      "git_blob_sha": "c6e5fbec994bcdeb37b2b01fcf9edd6c76f702e0",
+      "mode": "100644"
+    }
+  ]
+}

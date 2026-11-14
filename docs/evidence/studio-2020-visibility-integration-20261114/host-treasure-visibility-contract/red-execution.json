@@ -1,0 +1,14 @@
+{
+  "command": [
+    "python3",
+    "-B",
+    "-m",
+    "unittest",
+    "test_studio_2020_delivery.Studio2020DeliveryTests.test_treasure_cutout_visibility_cannot_reuse_only_four_title_views",
+    "-v"
+  ],
+  "exit_code": 1,
+  "elapsed_seconds": 0.33918496199476067,
+  "result": "actual expected failure: old requirement accepts only four Treasure title images",
+  "log_sha256": "a41c2c6931ad631e71cd6758f7a521c3530e5c39c9300d6064552614f97eb1d5"
+}

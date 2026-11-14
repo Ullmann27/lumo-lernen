@@ -1,0 +1,51 @@
+{
+  "artifact": 14096273382,
+  "zip_bytes": 3919,
+  "zip_sha256": "caf33e8eacfac57e456728847a4570132ac89f46c609b041862f215697d240bc",
+  "original_github_digest_matches": true,
+  "zip_crc": "PASS",
+  "members": [
+    {
+      "member": "cards-layout-readiness.log",
+      "bytes": 1302,
+      "sha256": "3cb77b5636d7e075788591afbbc69723d36d6bf46d8bad6ccd8581c0f786e32d",
+      "crc32": "9026999c"
+    },
+    {
+      "member": "loading-frame-boundaries.log",
+      "bytes": 1124,
+      "sha256": "2761f9a6db1161adef5046e6ff3e999443ce2170a0bef828cd34d8328e0496b1",
+      "crc32": "af36b5c9"
+    },
+    {
+      "member": "loading-frame-original-ocr.log",
+      "bytes": 996,
+      "sha256": "023eb4630bb3363ba21fcfc0d43858a5fb300bc86c1a401773664f6b14ba108a",
+      "crc32": "f325cfa6"
+    },
+    {
+      "member": "original-caption-replay.log",
+      "bytes": 2036,
+      "sha256": "94f7c672bf8e975c7813d30a83ac222bdfdfe99e8b0546f37d348b2eea54c377",
+      "crc32": "0645acc5"
+    },
+    {
+      "member": "source-binding-counterexamples.log",
+      "bytes": 5357,
+      "sha256": "a0ec7c6a410783952af78d354cbf58bd6c68dea63882c4e2bb94795723b3b116",
+      "crc32": "f52ed3ae"
+    },
+    {
+      "member": "tesseract-languages.txt",
+      "bytes": 87,
+      "sha256": "05771d70662e924b1e70dd4b9f0e58b0944c02d8fdc99cdeebd9401655844850",
+      "crc32": "d3854710"
+    },
+    {
+      "member": "tesseract-version.txt",
+      "bytes": 502,
+      "sha256": "649d4af0dc5137c789d882b38f8ba28de18715a70ef271ba2a8bb6064f10d205",
+      "crc32": "1281cc5c"
+    }
+  ]
+}

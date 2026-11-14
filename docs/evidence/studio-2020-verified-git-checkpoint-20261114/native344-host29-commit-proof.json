@@ -1,0 +1,26 @@
+{
+  "commit": "ae1ba5e68438e0acc89b4df92650d28c9328bed4",
+  "tree": "9d2eed6883ca3f80347dc97980e0336b109e4cae",
+  "branch": "chatgpt/lumo-studio-2020-20261114",
+  "parent": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "commit_time": "2026-11-14T11:54:29Z",
+  "ref_verified": true,
+  "proof": {
+    "base_commit": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+    "base_tree": "3f048230ee41fe3c7f0c4dadb5147cb1f39fa61e",
+    "new_tree": "9d2eed6883ca3f80347dc97980e0336b109e4cae",
+    "unchanged": 4233,
+    "modified": 7,
+    "added": 22,
+    "total": 4262,
+    "full_recursive_tree_compared": true,
+    "main_unchanged": {
+      "host": "b24474875fe6eb02d4de01030eab9fa4a4aa6007",
+      "native": "aebfcd7634fc64dbe20b462bcb6e6bffaa2721b4"
+    }
+  },
+  "source_manifest": "host-integration-source-manifest.json",
+  "fresh_tests": "26 pin +11 Studio2020 delivery +23 preview-skip PASS, zero skips",
+  "receipt_status": "49 current original images reviewed; recorder/verifier PASS",
+  "host_ci": "pending, no current APK acceptance claim"
+}

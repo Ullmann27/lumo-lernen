@@ -1,0 +1,15 @@
+Godot Engine v4.6.3.stable.official.7d41c59c4 - https://godotengine.org
+
+[EventBus] online - signals registered
+[Settings] no settings.cfg yet, defaults used
+[Perf] platform_detected:Linux
+[Mobile] runtime ready screen:(64, 64) safe-area:[P: (16.0, 32.0), S: (16.0, 48.0)]
+[AssetLoader] manifest loaded: 6 models, 13 materials, 175 textures, 0 audio
+[Audio] manager ready (muted:false)
+[Progress] no save file (first run) - starting fresh
+[LumoGestureContact] {"case":"finish-nod-60","cpu_samples":48,"cpu_step_mean_ms":0.0847708333333333,"cpu_step_p95_ms":0.147,"left_mm":1.03174499236047,"right_mm":1.09685899224132}
+[LumoGestureContact] {"case":"menu-nod-60","cpu_samples":48,"cpu_step_mean_ms":0.0769791666666667,"cpu_step_p95_ms":0.129,"left_mm":1.06404779944569,"right_mm":1.09685899224132}
+[LumoGestureContact] {"case":"finish-nod-120","cpu_samples":48,"cpu_step_mean_ms":0.0624791666666667,"cpu_step_p95_ms":0.129,"left_mm":1.08879839535803,"right_mm":1.14605738781393}
+[LumoGestureContact] {"case":"menu-nod-120","cpu_samples":48,"cpu_step_mean_ms":0.0600833333333333,"cpu_step_p95_ms":0.126,"left_mm":1.04618701152503,"right_mm":1.14605738781393}
+[Perf] quality_profile:medium
+[LumoGestureContact] PASS checks=200 failures=0

@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "proof": {
+    "schema": 1,
+    "parent": "1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+    "parent_tree": "99c6505f3fac8744a2262e94c97d9262d179f023",
+    "tree": "0d9de5b4be47573e1642335d3d2604fa63764ece",
+    "previous_leaves": 6661,
+    "new_leaves": 6670,
+    "new_entries": 7658,
+    "new_files": 9,
+    "all_prior_mode_type_sha_preserved": true,
+    "groups": {
+      "studio-2020-host-078-flutter-originals": 5,
+      "studio-2020-post-1500-readbacks": 2,
+      "studio-2020-character-scope-20261114": 2
+    }
+  },
+  "commit": {
+    "sha": "218eb65fdbe73da4267410e85808cf73479741f7",
+    "node_id": "C_kwDOSNzcp9oAKDIxOGViNjVmZGJlNzNkYTQyNjc0MTBlODU4MDhjZjczNDc5NzQxZjc",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/218eb65fdbe73da4267410e85808cf73479741f7",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/218eb65fdbe73da4267410e85808cf73479741f7",
+    "author": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T09:42:02Z"
+    },
+    "committer": {
+      "name": "Ullmann27",
+      "email": "64243701+Ullmann27@users.noreply.github.com",
+      "date": "2026-11-14T09:42:02Z"
+    },
+    "tree": {
+      "sha": "0d9de5b4be47573e1642335d3d2604fa63764ece",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/0d9de5b4be47573e1642335d3d2604fa63764ece"
+    },
+    "message": "docs: bind 2555 passing Flutter tests to current 078 originals\n\nKeep the complete machine log, original acceptance summary, verified full\nartifact index and independent test-event counts. Preserve nine-image\nGit readback proof and actual character/animation acceptance boundaries.\n\nAll previous 6661 evidence files are unchanged. This does not declare\nAndroid, APK, phoneme lip sync or physical Fold7 performance acceptance.",
+    "parents": [
+      {
+        "sha": "1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+        "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b",
+        "html_url": "https://github.com/Ullmann27/lumo-lernen/commit/1500c4e5dc5b18b44eafd805cc59a07f0dfa5f2b"
+      }
+    ],
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "ref": {
+    "ref": "refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "node_id": "REF_kwDOSNzcp9oAOXJlZnMvaGVhZHMvY2hhdGdwdC9sdW1vLXN0dWRpby00YWI5NjY2Ni1ldmlkZW5jZS0yMDI2MTExNA",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/refs/heads/chatgpt/lumo-studio-4ab96666-evidence-20261114",
+    "object": {
+      "sha": "218eb65fdbe73da4267410e85808cf73479741f7",
+      "type": "commit",
+      "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/commits/218eb65fdbe73da4267410e85808cf73479741f7"
+    }
+  }
+}

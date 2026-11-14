@@ -1,0 +1,169 @@
+{
+  "source_commit": "c081cfaaa3e7ddedbca21a46f63dbe4a8cc0d111",
+  "run_id": 43545886722,
+  "publication_review_frozen": true,
+  "ci_still_running": true,
+  "observed_at_utc": "2026-11-14T02:26:36Z",
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/family-download-gates-original.log",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/family-download-gates-original.log",
+      "bytes": 24655,
+      "sha256": "8b73fe98822e8dcf57cfbf1036eb62cbdde384c9a8bace4ce6d16779419c4630",
+      "git_blob": "c92c9ab5739d812f3b4faede6cc7c8039d47104e",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/jobs-43545886815-observed.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/jobs-43545886815-observed.json",
+      "bytes": 2060,
+      "sha256": "fab547a95ef8a5b985f428bc406f53b314e82ee2c8b1047b33f0e1d844119cf1",
+      "git_blob": "c6a110d838dedeef169ccae0443882778d49b38d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/jobs-43545886845-observed.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/jobs-43545886845-observed.json",
+      "bytes": 1845,
+      "sha256": "dae3e8738390d3ed6328bd8a2b692f239081b7a49ec3945d5fd7a64ab8a900dd",
+      "git_blob": "bea18e59d90f826bdc7ca4e1a763a2f55b0692b0",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/jobs-43545886858-observed.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/jobs-43545886858-observed.json",
+      "bytes": 6552,
+      "sha256": "8bd3ec63a45e7fbed06200cb5087cb44b9f253e7bdf9a28043e1993a948062ed",
+      "git_blob": "395bc9a9a02cc3f45b1514ec4c867f6e9828a8bc",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/jobs-43545886948-observed.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/jobs-43545886948-observed.json",
+      "bytes": 1968,
+      "sha256": "7e1cba6d72817989c4e31b4f3be62639dac3b50a4c6f63c7bed29a93ead25422",
+      "git_blob": "36f619090341389eabee83b3baf547007af558c8",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/publication-guard-review.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/publication-guard-review.json",
+      "bytes": 13146,
+      "sha256": "c5afdb4b51b785bbbc7dd5b80c39afdb7bedc16f01c80c2bb6c972ee59f9ece4",
+      "git_blob": "e60f8463825375aba686d0584fb535a528a6be41",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/reference-cards-original.log",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/reference-cards-original.log",
+      "bytes": 65147,
+      "sha256": "881fe3fbecb32562415518e1c43b4c2996289cb4ce9d606bbb85af46af37c31e",
+      "git_blob": "b9cdfe47774ecf618d71a826e7d64d6e9b816120",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/runs-initial.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/runs-initial.json",
+      "bytes": 212049,
+      "sha256": "53fd244a6dabc6997fad94fa5c96413d853c8e6168664e1ba581ae0ae91c6819",
+      "git_blob": "ac8710b968a2aa4689cd35ebe2d3d3a09401c0a0",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-1965-cards-reference-hub.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-1965-cards-reference-hub.yml",
+      "bytes": 2563,
+      "sha256": "220c643421e6c93da07e174c8a66b66ea68aec8c02247410f084f181970c2ebd",
+      "git_blob": "675b2f715003331fd328df068f1a14fe32ac13b4",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-1999-update-gate.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-1999-update-gate.yml",
+      "bytes": 6865,
+      "sha256": "bd5cc6b336c8d6a986cb057abf15aa5711c9b0270ffbed9e4911edbed468c6e1",
+      "git_blob": "744f805b60382529b329aa6070d3863a8ac0dea5",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-astra-script-recovery.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-astra-script-recovery.yml",
+      "bytes": 1918,
+      "sha256": "19b5544720c3d03def287d1cecffcad4d8f9daa65f0b35c6aaea027c5ca6bbac",
+      "git_blob": "a8505cd4ae888cc943c73999df6d30de5f6b7110",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-family-draft-release.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-family-draft-release.yml",
+      "bytes": 7667,
+      "sha256": "5fd9d6faac4e42cb14a32217ddbe5bfc81cd299a7bd9b9f4465bf279579e2bed",
+      "git_blob": "d05e35bd852830775e7af0fc045c481d3a5706ab",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-living-intelligence-core.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-living-intelligence-core.yml",
+      "bytes": 3287,
+      "sha256": "98871f913900c8dcd7de71b60dc323ba4372fbe681ab254165628fd44c59bcdd",
+      "git_blob": "89bbe8c1b936f943cc3e9ac42a44012262cbd7f7",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-living-workshop-visual-qa.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-living-workshop-visual-qa.yml",
+      "bytes": 3101,
+      "sha256": "87c6ce0c11fff9931b7c23360162d0241882eea3619ef80212ac85454f1db64a",
+      "git_blob": "7d3b36b81dcade16cd38fb17ea3498e7cce4eb50",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-studio-2019.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-studio-2019.yml",
+      "bytes": 49746,
+      "sha256": "7cc0d3355ee80bdc58e1648e5e41259ca15994c283a5572ad8841d94953cf8d8",
+      "git_blob": "4c1f4a5c2b963278b0d9c5facb8d4abfc74eb2be",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source/lumo-unified-integration-2026.yml",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source/lumo-unified-integration-2026.yml",
+      "bytes": 81391,
+      "sha256": "a93cd262dc3c22517d86cd19e57e7a163b209a336b2bdd372058c3231bbf58b6",
+      "git_blob": "b393e64d87874794742be4a44052fb188aef6b95",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source-binding.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source-binding.json",
+      "bytes": 2522,
+      "sha256": "44d8f26682dd5f836bebbc4cf7dc5b5f7f31cea1a936c95a5481fd32fd674e83",
+      "git_blob": "b9eaddfc348639764df4943a248f0cfb7a056d60",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/source-fetch.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/source-fetch.json",
+      "bytes": 1416,
+      "sha256": "02131a8aee4e78fea9d04a5e31709b0531e2726a6a681f482148666304812b0d",
+      "git_blob": "07d57417de4749437babf066500faa7afbc93deb",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/studio-jobs-initial.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/studio-jobs-initial.json",
+      "bytes": 8771,
+      "sha256": "1d8d650ff30da3a7a7c2397e4ac8a872b3a6658272d0ef486a59cc382d365cef",
+      "git_blob": "72b67aeadc984c6ab3de3d53eb91eb28e283fcaa",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-final-c081cfaa/ci-publication-review/studio-status-022636.json",
+      "repository_path": "docs/evidence/studio-c081-publication-guards/studio-status-022636.json",
+      "bytes": 9351,
+      "sha256": "dcea57d7b8748dd55c76300b081fd39a0003df1fd4ef899b3509e35b5f9d41a4",
+      "git_blob": "643ca27e45ca8324940249cdcc0af0acc9fec28e",
+      "mode": "100644"
+    }
+  ]
+}

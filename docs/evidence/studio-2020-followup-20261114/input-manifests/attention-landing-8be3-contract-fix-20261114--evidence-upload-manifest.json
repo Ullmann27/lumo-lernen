@@ -1,0 +1,143 @@
+{
+  "schema": 1,
+  "scope": "Explicit docs-only records; one source file is separately listed for controlled native integration.",
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/README.md",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/README.md",
+      "bytes": 3728,
+      "sha256": "28e670cac72eb9d3d2f47348f462208fbd3d1d2907da92117ab778112077ba6c",
+      "git_blob_sha": "0d04e9ba0d7f2a1ed7d7942a2e418b920a1c930e",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/baseline/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/baseline/scripts/characters/lumo/lumo_rigged_actor.gd",
+      "bytes": 11313,
+      "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+      "git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/baseline/scripts/tests/lumo_attention_landing_regression.gd",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/baseline/scripts/tests/lumo_attention_landing_regression.gd",
+      "bytes": 8486,
+      "sha256": "7c56887fd79b6f18514922104ce97f5239f10f6d5208c73fed99d337839f50ea",
+      "git_blob_sha": "dce46931a81eef51cc2251d4de29d87c493b567b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/green-execution.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/green-execution.json",
+      "bytes": 1350,
+      "sha256": "0436915971a85f2fe5d2c7d68c65b3bbb1d6fddc8bf8ab3c6551571b15ea1c4e",
+      "git_blob_sha": "e73fbdf12f44c14064e0a506345dfc31367bb6f8",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/green-patched-report.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/green-patched-report.json",
+      "bytes": 683,
+      "sha256": "cdba25b6e5dabc3bd38ebfde4797b7dbd02a88685bf5fad59562c716ba93ad5d",
+      "git_blob_sha": "b98550a045f1fb872224ad854de3efa67d67528f",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/green-patched.log",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/green-patched.log",
+      "bytes": 1129,
+      "sha256": "5b3a48c81fa1cfbdf4b9e88d82a48c8d6647e01fe92b573617fc3cddd590fc94",
+      "git_blob_sha": "dc9e0bec52792ac63c329df7f9576d69558153b1",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/import-execution.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/import-execution.json",
+      "bytes": 454,
+      "sha256": "03cbed106e3e4d87d1312e3fdc784123deea3bbb2d5429e0a8dd6a562e10068b",
+      "git_blob_sha": "4c8ca2f62002e9875ab3be4c1df846a507a03ffa",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/import-original.log",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/import-original.log",
+      "bytes": 131379,
+      "sha256": "a0360b6542f0a3da8a6d12d97b2f0aedecb5bc7f96060b2c8f61dba118249d9d",
+      "git_blob_sha": "af623b9d2cf9b12a1c6b12baa9ac81ea72e9d51b",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/import-source-changes.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/import-source-changes.json",
+      "bytes": 402,
+      "sha256": "f9f8616ed406758b08650c9512c019bcd9292cd983f9474a919396a9118d5b16",
+      "git_blob_sha": "9ec3cf9a55a807bf0647940c91cc650978cbe15a",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/red-execution.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/red-execution.json",
+      "bytes": 1116,
+      "sha256": "107c36a2c351fe10583e99a5c0a561fedc5f6f9ca7b8632414c1318ad53f0db5",
+      "git_blob_sha": "797564ba51efa62ae59f1c9bcaac2f08a59c7912",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/red-original-report.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/red-original-report.json",
+      "bytes": 382,
+      "sha256": "6dba8869ed523ec194aa5cf09f55dc92ffdf2a5e23b66d83bfcbe41b2e485d1f",
+      "git_blob_sha": "3ba128efa6f611610c0c1f343227c59301a6a4d6",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/red-original.log",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/red-original.log",
+      "bytes": 1175,
+      "sha256": "519710e891ab7c3eb571be5c1a24d1ae5410e617d9d66dc0e74efb2b804afc60",
+      "git_blob_sha": "54b2ac75a22c5bb0e556632b2522434425c5e805",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/review.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/review.json",
+      "bytes": 2517,
+      "sha256": "c639a290c457ddf51af777befdb24f9930ccbd2e702cb0b46286bad285d49e23",
+      "git_blob_sha": "d93dccdd3ac1834dc5d183dac98deaf7382a8150",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/source-and-contract-preservation.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/source-and-contract-preservation.json",
+      "bytes": 1338,
+      "sha256": "2e7fd66f0e6613ffe54de0d57612b4067851cf7e9be0cc3828b9cfed02a48e10",
+      "git_blob_sha": "ca58881415774401a491410ab51f51daf80c2986",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/evidence/test-only-against-8be3.patch",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/evidence/test-only-against-8be3.patch",
+      "bytes": 2815,
+      "sha256": "cde8b22c95d8a9f518b973df2856e39b91a26fe6f011f2b74e551c3c675089a0",
+      "git_blob_sha": "dd97fcb1b550f69a6a0537df43a3e77e61a76080",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/runtime-source-selection.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/runtime-source-selection.json",
+      "bytes": 527650,
+      "sha256": "fa2b80cff891ad598e09faa120497d710ac6004ad0272777298525b108a94e3f",
+      "git_blob_sha": "80f44d8938f13605810df84feaf086aa2efa5fce",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/attention-landing-8be3-contract-fix-20261114/source-upload-manifest.json",
+      "target": "docs/evidence/studio-attention-landing-8be3-20261114/source-upload-manifest.json",
+      "bytes": 815,
+      "sha256": "21f006e3cca6bdf72439f862f52bbd45e906c898fe8c458fdbb5990a9f1e5d7d",
+      "git_blob_sha": "825959eea58aa52b05f2c3afc75730f47f6bc334",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 696732
+}

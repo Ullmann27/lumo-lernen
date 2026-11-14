@@ -1,0 +1,454 @@
+{
+  "schema": 1,
+  "status": "CURRENT_ORIGINALS_REVIEWED_WITH_NOTED_LIMITS_NOT_FINAL_RECEIPT",
+  "reviewer": "character_animation",
+  "reviewed_at_utc": "2026-11-14T06:55:41.280946+00:00",
+  "native": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+  "run_id": 43565059832,
+  "artifact_id": 14103142984,
+  "archive": {
+    "path": "/tmp/lumo-studio-2020-acf51-native-evidence.zip",
+    "bytes": 225382332,
+    "sha256": "4c1e6705f952efe789b0f5eb17d0bcf26cc369c4411b52a6ec5a4567a9b26aac",
+    "download_url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-2020-evidence-acf51d3bd2997c4b731e9a48e1791e05e756a132-14103142984/native-evidence.zip",
+    "all5064_member_crc_scope": "Root original archive validation, retained in the unchanged extraction index. B independently compared every selected12PNG and eight facial extras byte-for-byte with actual ZIP members.",
+    "index_sha256": "faff9fcf4c6974fa4ab1229e5b870ba3358519d6dfa29568fdceead9a9813608"
+  },
+  "actual_completed_ci_metadata": {
+    "run_status": "completed",
+    "run_conclusion": "success",
+    "run_attempt": 1,
+    "successful_jobs": 9,
+    "all_metadata_sources_match": true
+  },
+  "scope": {
+    "original_pngs_individually_opened": 12,
+    "learning_face_pngs": 8,
+    "c4_fixture_pngs": 4,
+    "original_media_unchanged": true,
+    "production_source_changed": false,
+    "pin_receipt_ref_changed": false,
+    "overall_receipt_or_hostpin_authorized": false,
+    "android_or_device_performance_claimed": false,
+    "audio_listening_performed": false
+  },
+  "images": [
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "findings": "Produktive Apfel-Silbenlektion im räumlichen Atelier: Original-Lumo steht links, zwei leere Zielfächer und die tatsächlich sichtbaren Silben fel/Ap passen zum Status0/2 und zur Aufforderung, zuerst Ap zu wählen. Aufgabenleiste und alle drei unteren Aktionen sind vollständig lesbar und frei. Dieses Bild zeigt die Ausgangslektion, keinen abgeschlossenen Lernerfolg.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "bytes": 113407,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "findings": "Kopf- und Blickrichtung sind gegenüber der neutralen Aufnahme sichtbar verschoben; Augen und Brille bleiben am Kopf. Geschlossene Schnauze und Originalidentität bleiben erhalten. Das Standbild allein misst keine isolierte Pupillenbewegung oder Blickverfolgungspräzision.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "bytes": 295200,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "findings": "Bei640×360 sind die vollständige Pausenerklärung, Fortsetzen und Neue Runde im sichtbaren Scrollausschnitt lesbar. Der rechte Scrollindikator ist vorhanden; Brett und weitere Menüeinträge sind hier teilweise verdeckt bzw. außerhalb dieses Ausschnitts. Zurück bleibt frei, Pause und sieben Spaltentasten erscheinen deaktiviert. Kein behaupteter simultaner Sichtnachweis aller Menüpunkte.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "bytes": 29411,
+      "dimensions": [
+        640,
+        360
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "findings": "Erkennbarer Original-Lumo mit orangeweißem Fell, Schutzbrille und cyanfarbenem Anzug. Augen sind offen, die Schnauze geschlossen; Nahaufnahme zeigt keine abgelösten Gesichtsteile. Der Körper ist durch den gewählten Nahbildausschnitt absichtlich nicht vollständig sichtbar.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "bytes": 283007,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "findings": "Nahaufnahme mit der sichtbaren Kennzeichnung stumm und geschlossener Schnauze. Keine grobe Gesichtsverformung sichtbar. Die Beschriftung ist allein kein Audiohörbeweis; der tatsächliche Sidecar dokumentiert den stummen Zustand und das Abklingen des kleinen Restgewichts.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/muted.png",
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "bytes": 303002,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "findings": "Beide Lider sind deutlich abgesenkt und weitgehend geschlossen. Eine feine helle Restlinie an den Lidkanten bleibt sichtbar; daher keine Behauptung einer vollständig lichtdichten Schließung. Der aktuelle Film zeigt zusätzlich das Schließen und Wiederöffnen.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/blink.png",
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "bytes": 301312,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "findings": "Leeres räumliches Brett mit sieben Spalten und sechs Lochreihen, Sockel, Tischfläche und Schatten; Original-Lumo steht rechts. Zurück/Pause, Status und alle sieben Spaltentasten sind lesbar und frei. Dies ist eine Produktionsszene mit ausdrücklich kontrolliertem Hostzustand, kein Android-Savebeweis.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "sha256": "58f7190e27b29d8ba8299d5024e05ac86a66cbe4f0b91cc375a74f27f4f6ff58",
+      "bytes": 82117,
+      "dimensions": [
+        960,
+        540
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "findings": "Pause/geschlossen ist lesbar; Schnauze geschlossen, Kopf und Blick bleiben stabil verbunden. Kein sichtbares offenes Maul nach dem Stopzustand. Die Wirkung von Android-MediaPlayer-Stop ist aus diesem Desktopbild nicht abgenommen.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "bytes": 299811,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "findings": "Vier zusammenhängende cyanfarbene Steine unten links sind jeweils mit einem hellen Ring hervorgehoben; drei gelbe Steine liegen rechts. Cyan gewinnt ist eindeutig lesbar, Spaltentasten erscheinen deaktiviert und Lumo steht rechts mit erhobenem Arm. Das Bild belegt die Gewinninszenierung der Fixture, keinen hier erneut gespielten Android-Sieg.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "sha256": "15a19cb6938d5a1b8b6697e5d40a01e057a004575cc5500d6c37ee6be9dd9f86",
+      "bytes": 83783,
+      "dimensions": [
+        960,
+        540
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "connect_four",
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "findings": "Hochformat412×915 zeigt das vollständige Brett, einen cyanfarbenen und darüber einen gelben Stein in derselben mittleren Spalte. Zurück/Pause sowie sieben getrennte Spaltentasten bleiben sichtbar; Status Cyan ist dran passt zur dargestellten Zweizug-Fixture. Große obere/untere Freiräume und fehlende Lumo-Figur sind erkennbare Layoutgrenzen, keine behauptete Vollbildinszenierung.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "bytes": 67672,
+      "dimensions": [
+        412,
+        915
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "findings": "Beide orangefarbenen Lidschalen verdecken die Augen teilweise, Pupillen bleiben noch sichtbar: ein erkennbarer Zwischenzustand. Geometrische Lidkanten sind in dieser starken Nahaufnahme sichtbar; kein Anspruch auf vollständig geglättete Filmcharakter-Qualität.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "bytes": 302531,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    },
+    {
+      "module": "learning",
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "findings": "Originalkopf frontal, Augen offen und Schnauze weiterhin geschlossen. Die Artikulation ist dezent; keine offene Mundhöhle und keine phonemgenauen Lippenformen sichtbar. Ein Standbild beweist keine Audiosynchronität; der aktuelle Film und seine getrennt gebundenen Playback-/Meshwerte ergänzen diese Grenze.",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "bytes": 306464,
+      "dimensions": [
+        640,
+        640
+      ],
+      "opened_individually_with_view_image": true,
+      "old_image_findings_reused": false,
+      "additional_visual_blocker_observed": false
+    }
+  ],
+  "selected_original_byte_bindings": [
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/teacher_scene.png",
+      "bytes": 113407,
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/gaze_left.png",
+      "bytes": 295200,
+      "sha256": "cfa79ca698ac1ed501f8f109eae56e5858f0a5ea2c93c3b64aa4f5b6686a6163",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-paused-small.png",
+      "bytes": 29411,
+      "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/neutral.png",
+      "bytes": 283007,
+      "sha256": "9094791de91814b8f12ab3ce06f92c6111d0d162c37d4ea3448b80fde6367703",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/muted.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/muted.png",
+      "bytes": 303002,
+      "sha256": "b9ca19a0418fdf2b9ad46886bbfa99651236f517df477c6b181e53880c97e2a1",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/blink.png",
+      "bytes": 301312,
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-empty-landscape.png",
+      "bytes": 82117,
+      "sha256": "58f7190e27b29d8ba8299d5024e05ac86a66cbe4f0b91cc375a74f27f4f6ff58",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/stopped.png",
+      "bytes": 299811,
+      "sha256": "d415d7d2401164e3661508c04a73c1b5a2f65812b4f9fe4a655d35aab8129b52",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-win-landscape.png",
+      "bytes": 83783,
+      "sha256": "15a19cb6938d5a1b8b6697e5d40a01e057a004575cc5500d6c37ee6be9dd9f86",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/connect_four_visual_capture/c4-playing-phone.png",
+      "bytes": 67672,
+      "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/blink_intermediate.png",
+      "bytes": 302531,
+      "sha256": "b2ff356a282b59ed961e80f16b8e8fd7007bf32266232022338e2cb221ab9554",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/original-images/studio-evidence/captures/lumo_facial_capture/audio_jaw.png",
+      "bytes": 306464,
+      "sha256": "9b015897147a7301434c915601be8a90cb3f67b40ba9ad500d641d496b6fd2c9",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+      "bytes": 1067731,
+      "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/facial-runtime.avi",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/facial-runtime.avi",
+      "bytes": 7678592,
+      "sha256": "e12b636171923d8668692a3c4039dfa4e995e4a5721667fceef1bd177e19c166",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/movie-decode.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/movie-decode.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/movie-encode.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/movie-encode.log",
+      "bytes": 6182,
+      "sha256": "182d738b5c905fe902d3bc489a0bfa8221cb59c506fefc28fc7db08153f71aa5",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/movie-ffprobe-stderr.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/movie-ffprobe.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/movie-ffprobe.json",
+      "bytes": 4552,
+      "sha256": "090726a5c7031a5e25dd7e778089ee322e84835d36db726f0940fc313ae44cab",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/movie.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/movie.json",
+      "bytes": 732,
+      "sha256": "47d7c024f20a7dd68eae5e45f3cdbe37df652de7e601a6b43314e690e5bb7ca3",
+      "byte_equal_to_original_zip_member": true
+    },
+    {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+      "local_path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/facial-originals/studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "byte_equal_to_original_zip_member": true
+    }
+  ],
+  "current_c4_sidecar": {
+    "artifact_entry": "studio-evidence/captures/connect_four_visual_capture/visual-state.json",
+    "bytes": 172223,
+    "sha256": "91a9f13f4eb0313539c5cfb6639bea211a17757421fc216ab07af4650b046736",
+    "kind": "connect_four_visual_fixture",
+    "checks": 303,
+    "errors": [],
+    "input_events": 30,
+    "read_only_fixture_host": true,
+    "source_revision": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "captures": [
+      {
+        "file": "c4-empty-landscape.png",
+        "sha256": "58f7190e27b29d8ba8299d5024e05ac86a66cbe4f0b91cc375a74f27f4f6ff58",
+        "disc_count": 0,
+        "win_ring_count": 0,
+        "original_lumo_visible": true
+      },
+      {
+        "file": "c4-playing-phone.png",
+        "sha256": "332d15a61e7eb1e93cbc49f9fedaa7b1e67f985b1d0fd9f97334a093678fbe6c",
+        "disc_count": 2,
+        "win_ring_count": 0,
+        "original_lumo_visible": false
+      },
+      {
+        "file": "c4-win-landscape.png",
+        "sha256": "15a19cb6938d5a1b8b6697e5d40a01e057a004575cc5500d6c37ee6be9dd9f86",
+        "disc_count": 7,
+        "win_ring_count": 4,
+        "original_lumo_visible": true
+      },
+      {
+        "file": "c4-paused-small.png",
+        "sha256": "502a673e160d5a9f3f95883ddf1e259f568819de67731340681d2666d7282195",
+        "disc_count": 3,
+        "win_ring_count": 0,
+        "original_lumo_visible": false
+      }
+    ],
+    "boundary": "Renderer fixture proves the shown production layout/geometry; no actual Android IPC, durable game save, bot, or full game win was performed by this review."
+  },
+  "current_facial_sidecar": {
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+    "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+    "rows": 144,
+    "lesson_kind": "syllables",
+    "lesson_word": "Apfel",
+    "local_word_source": "res://assets/audio/voice/words/apfel.wav",
+    "max_actual_jaw_weight": 0.699060499668121,
+    "max_blink": 0.954545454545413,
+    "audible_rows": 40,
+    "idle_rows": 87,
+    "idle_max_jaw_weight": 0.0,
+    "playing_muted_rows": 10,
+    "playing_muted_max_jaw_weight": 0.0255176480859518,
+    "playing_muted_min_jaw_weight": 0.0,
+    "boundary": "Actual recorded player/mesh values, not listening. Small damped residual0.02552 occurs in muted transition; no instant exact-zero mute claim. Closed-muzzle amplitude articulation, not phoneme visemes."
+  },
+  "current_movie": {
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+    "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+    "bytes": 1067731,
+    "video_codec": "h264",
+    "width": 640,
+    "height": 640,
+    "recording_frame_rate": "24/1",
+    "duration_seconds": "6.166667",
+    "all_video_frames_decoded_locally": 148,
+    "decode_exit_code": 0,
+    "audio_codec": "aac",
+    "audio_stream_decoded_to_null": true,
+    "audio_listening_performed": false,
+    "visual_inspection": "All148 frames actually inspected on13contact sheets at216×216 perframe. The12 assigned original PNGs were separately viewed at their full supplied sizes; full-size filmframes15/19 additionally checked. No playback-speed smoothness or audio-hearing assessment claimed.",
+    "visual_sequence": [
+      "Frames1–25 show the real Apfel lesson and teacher; source task/header/actions remain legible in the full-size sample frames15/19.",
+      "From frame26 the camera cuts to the real character close-up; gaze/head direction changes and subtle closed-muzzle changes are visible.",
+      "Blinks are visible around frames45 and135; orange lid edges remain noticeable in close-up.",
+      "Muted and stopped captions/closed muzzle occur in the later sequence; sidecar separates actual playback states.",
+      "Frame145 still contains the character; frames146–148 are dark ending frames, retained unmodified."
+    ],
+    "limitations": [
+      "24fps is only the recording format, not Android/Fold7 performance.",
+      "No audible playback listened to, no phoneme synchronization claimed.",
+      "Camera cuts are a verification sequence, not a final in-game cinematic.",
+      "Small facial seam/light lines remain visible in extreme close-up."
+    ],
+    "decode_and_contact_manifest": "/workspace/scratch/5987865ae883/qa/studio-2020-native-acf51-review/decoded-face-review-character_animation/decode-result.json"
+  },
+  "global_limits": [
+    "No additional visual blocker found in these twelve selected images. This is not an overall release approval.",
+    "Root retains overall Hostpin/receipt decision and separately reported a Treasure spawn occlusion outside this twelve-image ownership.",
+    "C4 phone intentionally omits Lumo and leaves broad free space; paused small image exposes only the current scroll segment.",
+    "No physical Fold7 run, touch latency, thermal test, GPU/CPU frame-time measurement, or Android2020 acceptance."
+  ]
+}

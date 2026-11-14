@@ -1,0 +1,87 @@
+[
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_studio_2020_android_contracts.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.19900860599591397,
+    "log": "qa/studio-2020-integration/evidence/composed-test_studio_2020_android_contracts.py.log",
+    "log_sha256": "db3a72803b197c3e35a68ab73acb3151ba4878d0ee0e6463e75e0130e590d47a"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/scripts/tests",
+      "-p",
+      "test_connect_four_runtime_gate.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.37143482400279026,
+    "log": "qa/studio-2020-integration/evidence/composed-test_connect_four_runtime_gate.py.log",
+    "log_sha256": "c88742c22065da674d1327b581065b865d85cf167f33c34366e2d7b1a62f8ca0"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/tools/android_qa/tests",
+      "-p",
+      "test_connect_four_android_probe.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.2144429640029557,
+    "log": "qa/studio-2020-integration/evidence/composed-test_connect_four_android_probe.py.log",
+    "log_sha256": "54c1bf3e8e3fef38813a519ccc3ec73a0fd55dff2118c96bb8a38b05a8565d26"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/tools/android_qa/tests",
+      "-p",
+      "test_update_preservation.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 0.14175984699977562,
+    "log": "qa/studio-2020-integration/evidence/composed-test_update_preservation.py.log",
+    "log_sha256": "eedbd654e25a63976707be8d8ec0720eac6a32f9cf32d80f29e2b7a74ecbe3fb"
+  },
+  {
+    "command": [
+      "python",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "qa/studio-2020-integration/test-host/tools/android_qa/tests",
+      "-p",
+      "test_flutter_loading_frame*.py",
+      "-v"
+    ],
+    "exit_code": 0,
+    "elapsed_seconds": 10.787367484997958,
+    "log": "qa/studio-2020-integration/evidence/composed-test_flutter_loading_frameall.py.log",
+    "log_sha256": "c845c768e2cc60348fca2bccba139bbed6e506fbe1197c4615490e41b862654f"
+  }
+]

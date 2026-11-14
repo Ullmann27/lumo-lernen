@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "files": [
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/README.md",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/README.md",
+      "bytes": 1424,
+      "sha256": "621122a424fa58283bee5b174361c2f6d414592007b590a56e14c5db65a37561",
+      "git_blob_sha": "d6df363b06b2375881ffc2fe70dfb2b0ff9f84dc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/source-upload-manifest.json",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/source-upload-manifest.json",
+      "bytes": 1194,
+      "sha256": "8edf78c6379c2b3063df2ea0b50a3709f30fb3e6bbeb26fbe24277e9df7bb4f2",
+      "git_blob_sha": "22a42b7f75b37feadb4e0d29e4d2165ead671a62",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence/ast-preservation.json",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/evidence/ast-preservation.json",
+      "bytes": 416,
+      "sha256": "111e5a40c38520a4106e0ff05f4b85a67cca0049ffc6dc2c1c8c1a24409e6440",
+      "git_blob_sha": "b2b79eaa7fd8623f798a4bf7c64da9a38b410e23",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence/deadline-green-execution.json",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-green-execution.json",
+      "bytes": 398,
+      "sha256": "3debd180e4def143329dffe792d8c55e32f543893c686504c6cc0a342f04599b",
+      "git_blob_sha": "da8e0b1a458b808d12cbd120e2ae48b2e9bfb509",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence/deadline-green.log",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-green.log",
+      "bytes": 5204,
+      "sha256": "b5332ec223d108b595cdeda5e24bc324c90e925f7023761f4db443de0585a128",
+      "git_blob_sha": "08eb4e6c5339e36c8556fb43bd03e592653e4dcd",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence/deadline-only.patch",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-only.patch",
+      "bytes": 1308,
+      "sha256": "dc753b133ec58401db4d8d4d1739232a5f6c8d707046733e3b44c996e1b3d4ac",
+      "git_blob_sha": "c1fcd56bcd3286562e338e10477960abc9aa22cc",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence/deadline-red-execution.json",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-red-execution.json",
+      "bytes": 364,
+      "sha256": "5d0d6151690cefcdc3fc2c090902f2acf6e4c35c1cdc2550f7c4821795060a9f",
+      "git_blob_sha": "77992e3c4ae4513ef7cbcc852c6d20f46853de96",
+      "mode": "100644"
+    },
+    {
+      "source": "/workspace/scratch/5987865ae883/qa/connect-four-android-probe-deadline-86445/evidence/deadline-red.log",
+      "target": "docs/evidence/connect-four-android-deadline-20261114/evidence/deadline-red.log",
+      "bytes": 6809,
+      "sha256": "ffabd761481a3391f14d7874d2f3d7e760c68dfcdad7748f5f1b7397a9fdd5fa",
+      "git_blob_sha": "2b10d5065b3e1e98a3ef08d8cad369b4795457cb",
+      "mode": "100644"
+    }
+  ],
+  "total_bytes": 17117
+}

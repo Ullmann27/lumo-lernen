@@ -1,0 +1,97 @@
+{
+  "schema": 1,
+  "reviewed_at": "2026-11-14T11:06:14.414428+00:00",
+  "qa_source": "3f89e5f045171424e9187ebdfb9ec1900ab16df3",
+  "apk_source": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "native_source": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43587032836,
+  "artifact_id": 14110986739,
+  "artifact_sha256": "568844700a939578ca358ddc1ecd40c499d0ab673a4c16088849827e62470b4d",
+  "archive_crc_entries": 253,
+  "all_pngs_fully_decoded": 69,
+  "manual_visual_review_count": 6,
+  "images": [
+    {
+      "file": "21_kart_preview_skip_touch-0.png",
+      "bytes": 1902122,
+      "sha256": "76278d18d59e1de7d63a7d4398e4d75582f3030cd4a8c5521339548e65fed38f",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "visually_opened_by_root": true,
+      "observation": "Actual Android Godot harbor intro; caption Tippen zum Überspringen is visible; bridge, water, controls and intro panel present."
+    },
+    {
+      "file": "21_kart_preview_skip_touch-1.png",
+      "bytes": 1944037,
+      "sha256": "fe38736f79d5ac1d0898cf359d76c87f3acba09e967759833d59335a9bede095",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "visually_opened_by_root": true,
+      "observation": "Second actual fresh frame; same readable skip caption and observed stable bounds, while camera/world differ."
+    },
+    {
+      "file": "21_race_hud_2.png",
+      "bytes": 2028767,
+      "sha256": "fe1ddcf7ca35ea45c40ab9c917f72310d3ce2a15e24920152b7ee43e741450d4",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "visually_opened_by_root": true,
+      "observation": "Actual third-person 3D Lumo and opponent karts at start line, race HUD round 1/2 place 6/6; intro panel gone."
+    },
+    {
+      "file": "21_race_driving_late_2.png",
+      "bytes": 1884812,
+      "sha256": "06aa6d89b9bdbf7397a3df8dcf83c68d7e02865b7adf92682d1b479e1dcfcb8e",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "visually_opened_by_root": true,
+      "observation": "Actual later 3D track/camera position with Lumo kart, buildings, road and 172 km/h HUD. Telemetry separately proves distance gain; image is not a frame-time measurement."
+    },
+    {
+      "file": "21_lumo_kart_pause.png",
+      "bytes": 821783,
+      "sha256": "12f9038e8d8db12c83032549b04ed54ee3fad0d043d9693b2549abcc6724fd03",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "visually_opened_by_root": true,
+      "observation": "Actual readable pause overlay and continue/return buttons over scene; lower audio content is within a scrollable region."
+    },
+    {
+      "file": "23_zurueck_in_flutter.png",
+      "bytes": 1929117,
+      "sha256": "300d481904539b221197c733d57e0f6311781ecfda67221ae3605f00559e9ee4",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "visually_opened_by_root": true,
+      "observation": "Actual portrait Flutter game selector, navigation and original Lumo art after native scene return; no full-screen stretching in this settled capture."
+    }
+  ],
+  "actual_outcome": {
+    "tour_steps": 21,
+    "all_steps_ok": true,
+    "after_binding_matches": true,
+    "original_failure_replaced": false,
+    "gas_pulses": 3,
+    "distance_gain": 107.19,
+    "elapsed_gain": 5.02
+  },
+  "limitations": [
+    "API35 disposable x86_64 software-renderer emulator; no physical Fold7, API37, measured 60 FPS, thermals or input latency claim.",
+    "The first two gas telemetry samples retained 0 gain; the third recorded movement. This is not a measured low-latency control acceptance.",
+    "The running-race screenshot shows a crowded right HUD/minimap area; this review proves the observed actions and scene, not a complete visual redesign.",
+    "No complete two-lap race/reward, new tournament, sound listening or full save/profile migration coverage.",
+    "The original Unified failure and the separate Studio main-run failure remain failures. This exact-APK diagnostic does not publish/release an APK."
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T01:55:06.354922+00:00",
+  "status": "OCR_AND_BINDER_CI_PASS_ONLY",
+  "repository": "Ullmann27/lumo-lernen",
+  "qa_source": "a446f3c1a320ad5297e17606727d801c5e993ce1",
+  "apk_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "run_id": 43542310963,
+  "run_attempt": 1,
+  "job_id": 132285430053,
+  "job_name": "Original Android PNG captions on CI Tesseract",
+  "job_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43542310963/job/132285430053",
+  "job_conclusion": "success",
+  "started_at": "2026-11-14T01:43:46Z",
+  "completed_at": "2026-11-14T01:44:53Z",
+  "original_job_log": {
+    "path": "original-job.log",
+    "bytes": 36842,
+    "sha256": "112b623abf2a2ebc52501ff16006242b5b5897a260d2ebb79c691f11631b0b1d",
+    "git_blob_sha1": "c14f4144d7796e483da5fca58af3f12d890f1029",
+    "mode": "100644",
+    "preservation": "Vollständiger vom GitHub-Connector dekodierter Originaltext; als UTF-8 einschließlich initialem BOM gespeichert, keine Kürzung."
+  },
+  "source_binding_evidence": [
+    "run-attempt-jobs-original.json: jobs[id=132285430053].head_sha",
+    "original-job.log: checkout ref, git fetch/checkout und git log bestätigen a446f3c1a320ad5297e17606727d801c5e993ce1",
+    "artifact-metadata-original.json: workflow_run.head_sha"
+  ],
+  "original_artifact": {
+    "id": 14091419071,
+    "name": "lumo-studio-4ab-original-caption-replay-43542310963",
+    "path": "original-artifact.zip",
+    "bytes": 2613,
+    "github_digest": "sha256:54b7887130b9868e70132439c6604b59b233111cc7e4818a90fce3340b842687",
+    "sha256": "54b7887130b9868e70132439c6604b59b233111cc7e4818a90fce3340b842687",
+    "git_blob_sha1": "f0cbcfd3c0f26c1dde7288f00a269c7520693843",
+    "mode": "100644",
+    "crc_all_members": "PASS",
+    "member_count": 4,
+    "all_extracted_bytes_equal_original_zip": true,
+    "verification": "artifact-byte-verification.json"
+  },
+  "environment": {
+    "runner": "ubuntu-24.04",
+    "reported_os": "Ubuntu 24.04.5 LTS",
+    "tesseract": "tesseract 5.3.4",
+    "languages": [
+      "deu",
+      "eng",
+      "osd"
+    ],
+    "pillow_installed": "12.3.0"
+  },
+  "results": {
+    "caption": {
+      "result": "PASS",
+      "tests": 12,
+      "skipped": 0,
+      "seconds": 22.18,
+      "original_log": "original-artifact/original-caption-replay.log",
+      "test_names": [
+        "test_actual_reader_exception_is_preserved_in_the_journal",
+        "test_colour_components_follow_observed_pixels_in_unrelated_locations",
+        "test_decorative_gold_without_letters_does_not_fabricate_requested_caption",
+        "test_exact_observed_text_and_confidence_cannot_be_replaced_by_requested_text",
+        "test_internal_crop_edge_cannot_create_an_accepted_short_caption",
+        "test_modified_source_cannot_be_used_as_a_touch_target",
+        "test_outside_word_bounds_are_a_hard_failure",
+        "test_remaining_total_budget_cannot_return_a_match_after_expiry",
+        "test_original_api35_first_frame",
+        "test_original_api35_last_frame",
+        "test_original_api37_first_frame",
+        "test_original_api37_last_frame"
+      ]
+    },
+    "binder": {
+      "result": "PASS",
+      "tests": 17,
+      "skipped": 0,
+      "seconds": 2.34,
+      "original_log": "original-artifact/source-binding-counterexamples.log",
+      "test_names": [
+        "test_both_unchanged_clis_use_absolute_qa_paths_and_product_cwd",
+        "test_declared_artifact_path_cannot_create_a_source_directory_exception",
+        "test_failed_first_original_tour_never_invokes_cards_tour",
+        "test_failed_tour_still_records_actual_post_binding",
+        "test_post_execution_identity_change_cannot_pass",
+        "test_stale_reports_and_source_output_do_not_trigger_android",
+        "test_assume_unchanged_cannot_hide_actual_dirty_source",
+        "test_committed_mode_change_is_not_a_qa_exception",
+        "test_exact_nine_file_delta_and_real_worktree_pass",
+        "test_output_growth_does_not_change_bound_source_identity",
+        "test_product_change_outside_allowlist_is_rejected",
+        "test_wrong_candidate_head_and_undeclared_source_are_rejected",
+        "test_changed_pck_rejected_even_with_new_matching_outer_apk_digest",
+        "test_failed_later_original_gates_do_not_disguise_successful_builder",
+        "test_foreign_artifact_run_attempt_and_failed_build_are_rejected",
+        "test_foreign_provenance_signature_and_duplicate_sums_are_rejected",
+        "test_real_small_zip_bytes_are_measured_and_later_tampering_fails"
+      ]
+    }
+  },
+  "caption_scope": {
+    "actual_original_android_png_replays": 4,
+    "boundary_cases": 8,
+    "actual_reader": "Echte vorhandene Readerdefinitionen und Tesseract; vier gebundene Original-PNGs. Kein Android- oder Gameplaytest in diesem Job."
+  },
+  "binder_scope": "17 isolierte Quellen-/Datei-/Metadaten-/ZIP-/Aufrufverträge, einschließlich künstlicher Gegenfälle. Sie sind keine tatsächliche Installation oder Android-Tour.",
+  "warnings": [
+    {
+      "source": "original-job.log",
+      "finding": "Node.js 20 für checkout@v4 und upload-artifact@v4 veraltet; Runner führte sie unter Node.js 24 aus."
+    },
+    {
+      "source": "original-job.log",
+      "finding": "upload-artifact meldete DEP0040 (punycode) und DEP0169 (url.parse) DeprecationWarning; Upload und Gesamtjob erfolgreich."
+    }
+  ],
+  "expected_negative_output": "Drei FAIL-JSONs im Binderlog sind die erwarteten Gegenfälle für Tourfehler, nachträgliche Identitätsänderung und alte Ergebnisdateien. Die zugehörigen Tests enden jeweils ok; kein produktiver Android-FAIL oder -PASS wird daraus abgeleitet.",
+  "limits": [
+    "Keine API35-/API37-Live-Logs im Rahmen dieser Prüfung gelesen.",
+    "Kein APK heruntergeladen oder neu gebaut.",
+    "Keine neue Bildsichtung und keine manuelle Freigabe aller Bilder behauptet.",
+    "Kein Touch-, Lernrückkehr-, Cards-, Geräte- oder Gesamtfreigabenachweis aus diesem Job.",
+    "Die ursprünglichen fehlgeschlagenen 4ab-Androidprüfungen werden durch dieses Ergebnis nicht rückwirkend zu PASS."
+  ],
+  "performed_actions": [
+    "Originalabschlussmetadaten und vollständigen Joblog gesichert.",
+    "Original-ZIP gegen GitHub-Größe und SHA256 geprüft; alle vier Mitglieder auf CRC und bytegleiche Extraktion geprüft.",
+    "Alle vier Artefakttexte und die ausgeführten Testnamen/Ergebnisse gelesen.",
+    "Keine Tests erneut ausgeführt; keine Produkt-, Workflow-, Branch- oder CI-Änderung."
+  ]
+}

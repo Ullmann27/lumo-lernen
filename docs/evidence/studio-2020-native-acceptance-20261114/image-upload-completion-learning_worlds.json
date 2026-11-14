@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "completed_utc": "2026-11-14T08:17:53.285116+00:00",
+  "status": "complete_immutable_images_only",
+  "native": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "run_id": 43570887024,
+  "artifact_id": 14105224381,
+  "image_count": 9,
+  "total_bytes": 13212008,
+  "tree_inputs": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-tree-inputs-learning_worlds.json",
+    "bytes": 8876,
+    "sha256": "12bdee72f72210d00f0b5e9a32e4d6c34e00aecf2812faf0fd825236b3793a36",
+    "git_blob_sha": "1a400a31c0537611f959507c3c2480cef911efaf"
+  },
+  "review": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-learning_worlds.json",
+    "bytes": 12212,
+    "sha256": "bc9d6b060566dd3d49da71a041a23afd2211927c96273e73e0ff3c8eef7fa581",
+    "git_blob_sha": "341dbf039a4f2d48b0147076a504cb53d6975389"
+  },
+  "progress": {
+    "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/image-upload-progress-learning_worlds.json",
+    "bytes": 5079,
+    "sha256": "1aa374fc92c943cd794b2676448d13cffe5fb986686b3f436ce8e35e1c60649d",
+    "git_blob_sha": "4b022ef450e76da99c586444e96d995e9c326aec"
+  },
+  "before_after_all_equal": true,
+  "no_other_owner_files_touched": true,
+  "no_source_tree_commit_ref_receipt_pin_mutation": true
+}

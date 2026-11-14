@@ -1,0 +1,36 @@
+{
+  "scope": "Replay actual preserved local sidecars through the new pure roster readers.\nNo new scene is rendered and no Android/CI PASS is inferred.\n",
+  "harness_sha256": "7fe252aae499b1fcb0932ac259a535946cde6e9bf4ba0a088c1c8a5e2fcd5752",
+  "errors": [],
+  "face": [
+    {
+      "path": "studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/runtime-frames.json",
+      "bytes": 83168,
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3"
+    },
+    {
+      "path": "studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/facial-runtime.mp4",
+      "bytes": 1178091,
+      "sha256": "3bbc2a491e59a4fd971d95479713cf1e9fff0c59b7cc6de63290512bfdd6b1ac",
+      "proof": {
+        "path": "studio-2020-integration/evidence/new-media-sidecar-original-replay/facial/movie.json",
+        "bytes": 732,
+        "sha256": "e05e049610301c631f4918550bcc603d6d9b1b682e3af1a605deebdff007b768"
+      }
+    }
+  ],
+  "face_original_sidecar_sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+  "c4_sidecar": {
+    "path": "connect-four-visual-fixture-20261114/render-v2/captures/visual-state.json",
+    "bytes": 172165,
+    "sha256": "39d5c2159143364e7f3c0e0b145e15d070df6a45d877c884c92fdbb8076a7676"
+  },
+  "c4_capture_names": [
+    "c4-empty-landscape.png",
+    "c4-paused-small.png",
+    "c4-playing-phone.png",
+    "c4-win-landscape.png"
+  ],
+  "c4_original_sidecar_sha256": "39d5c2159143364e7f3c0e0b145e15d070df6a45d877c884c92fdbb8076a7676",
+  "passed": true
+}

@@ -1,0 +1,119 @@
+{
+  "checks": 137,
+  "failures": [],
+  "observations": [
+    {
+      "density": 1.5,
+      "image": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-landscape.png",
+      "image_px": [
+        1920,
+        1080
+      ],
+      "image_sha256": "9dedbb2382d6f88b20434d7b3ee5ad8d6d2f9f316bcf7ece31c0443ab42ac82e",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        112.0,
+        36.0,
+        0.0,
+        24.0
+      ],
+      "profile": "landscape",
+      "title_rect": [
+        262.0,
+        58.5,
+        1402.49987792969,
+        63.0
+      ],
+      "window_px": [
+        1920,
+        1080
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 1.0,
+      "image": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-compact.png",
+      "image_px": [
+        640,
+        320
+      ],
+      "image_sha256": "4b728bf98c4494a8460cae52a700d50b4d71303215c0a90588d90a9e8a1c6979",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "profile": "compact",
+      "title_rect": [
+        100.0,
+        15.0,
+        370.0,
+        42.0
+      ],
+      "window_px": [
+        640,
+        320
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.625,
+      "image": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-portrait.png",
+      "image_px": [
+        1080,
+        2400
+      ],
+      "image_sha256": "24a8d89cf60208fea4a028ed0203a46d369a19b4dd843146cd21d49cf82e1704",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "portrait",
+      "title_rect": [
+        262.773742675781,
+        183.264785766602,
+        370.510955810547,
+        91.9037246704102
+      ],
+      "window_px": [
+        1080,
+        2400
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    },
+    {
+      "density": 2.25,
+      "image": "/workspace/scratch/5987865ae883/qa/creative-geometry-readiness-86445/treasure-green-render-captures/treasure-title-fold.png",
+      "image_px": [
+        2176,
+        1812
+      ],
+      "image_sha256": "5092f84494226a982de99794b5fef4060fc632ab1f92e5e4c2519070f79124f0",
+      "initial_state_fixture": "original86445 first tree save",
+      "insets_fixture": [
+        0.0,
+        136.0,
+        0.0,
+        63.0
+      ],
+      "profile": "fold",
+      "title_rect": [
+        225.025848388672,
+        169.763977050781,
+        1568.43017578125,
+        94.5391311645508
+      ],
+      "window_px": [
+        2176,
+        1812
+      ],
+      "worst_white_backdrop_contrast": 14.4422647052388
+    }
+  ],
+  "scope": "Production HUD, real ScreenTouch, declared saved-position and Android-boundary fixture; not device execution"
+}

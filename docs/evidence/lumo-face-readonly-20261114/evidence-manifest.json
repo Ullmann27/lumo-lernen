@@ -1,0 +1,106 @@
+{
+  "schema": 1,
+  "scope": "Read-only original face asset/rig investigation; no facial animation implemented, no product source or asset saved",
+  "original_glb_sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+  "existing_blend_sha256": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e",
+  "actual_blender_runs": 2,
+  "actual_new_renders": 2,
+  "original_texture_extractions": 1,
+  "individually_opened_images": [
+    "original-base-color.png",
+    "original-face-textured.png",
+    "original-face-geometry-only.png"
+  ],
+  "files": [
+    {
+      "file": "FACE_RIG_FINDINGS.md",
+      "bytes": 8677,
+      "sha256": "a8266b2411b945ea7f0829b5bc868f460666aa3f980dd29a07092d0e8553438d",
+      "git_blob": "3e74ca99a8d0753d7240992212138a87c0b3d778"
+    },
+    {
+      "file": "blender-execution.json",
+      "bytes": 368,
+      "sha256": "7e2a81477633c994ba7d27883473e336c447c2fcac373686b65771e21aad156a",
+      "git_blob": "969331fb3aa8f0fdccffac0758e3a33aced5a489"
+    },
+    {
+      "file": "blender-face-inventory.json",
+      "bytes": 117313,
+      "sha256": "221a96e71775e7021c2e9ff7a1e0d43a6039702a2642da5bdafd070929f84a2c",
+      "git_blob": "8dfe4d3e6fb332f16a9335bf202fe23cd6560f46"
+    },
+    {
+      "file": "blender-inventory.log",
+      "bytes": 420,
+      "sha256": "2dded2cf2c5b1a93af71331e162761f6f920b24c55563ca83bf86678b41d356e",
+      "git_blob": "1fd8d9f8931b0045a84d1b3ac0919a7342ea5920"
+    },
+    {
+      "file": "blender-surface-inspection.log",
+      "bytes": 11191,
+      "sha256": "9d59d3029cf3687ad83e68adfa8a84bb40ab4f649a88e5d5be62d883fa7f41e0",
+      "git_blob": "81be72efd0b340d5dd690e01b0b183c31a834c58"
+    },
+    {
+      "file": "inspect_face_surface.py",
+      "bytes": 4647,
+      "sha256": "3ca22f400566441b4d0e1761f0d5d940fe0bd9627d656d4c1f1f29ade66e4732",
+      "git_blob": "b714ec12f89cc3ea5ed0bfe334706fb7917631ab"
+    },
+    {
+      "file": "inspect_original_face.py",
+      "bytes": 5065,
+      "sha256": "6de6daf12fc1d345478ab02c6989fcf21659bd36b5f01ad3d26d2c0dcb061b76",
+      "git_blob": "b1ad0a93a3f6ac4214dea9f8823d23ff8e1bd7c3"
+    },
+    {
+      "file": "original-base-color.png",
+      "bytes": 1475490,
+      "sha256": "9e361a61a6c7478cd0e81aa83250db88c4f5d1a51dd754ad827b8f721671bf54",
+      "git_blob": "d75ed3e723e8a82583dbaf7487a3efd57f563aa3"
+    },
+    {
+      "file": "original-face-geometry-only.png",
+      "bytes": 328660,
+      "sha256": "c0e0548325e3a9422cb4dfd62f660f08bdcb5152efed2c1099ade7133193e4f0",
+      "git_blob": "2977916a508cbd4354d040f7bea78a96aac4cfce"
+    },
+    {
+      "file": "original-face-textured.png",
+      "bytes": 413297,
+      "sha256": "66e3505958a9370c6ea880b314ff7c3b6dae7acd19166de3d3edcf9fe1b726b5",
+      "git_blob": "c770fa585c2196473d8a9ab9019d074c51bdb1b6"
+    },
+    {
+      "file": "original-glb-inventory.json",
+      "bytes": 44790,
+      "sha256": "1d8f543deeb94f32e7e69204ad3d54e8ededc482b131bae7e9c7cfe18602b499",
+      "git_blob": "92ed1708d90cd50d121236c9c0aa2910ab0e94fb"
+    },
+    {
+      "file": "position-topology.json",
+      "bytes": 670,
+      "sha256": "2d47005da44aa0e46424532c0ac4cb65425e6a39eb7b49a7914447f8170e8737",
+      "git_blob": "73b90e7c80d25c3ea5b809243631d9dcd2a4a1b1"
+    },
+    {
+      "file": "runtime-source-binding.json",
+      "bytes": 1811,
+      "sha256": "d1f8303c050e75fbb6d572782463aa2e59e20c8f4bfbbf8c031805ce134d97cc",
+      "git_blob": "c4a2df7d7812be0452b4483eca4b0610755e80a4"
+    },
+    {
+      "file": "surface-execution.json",
+      "bytes": 366,
+      "sha256": "b7027b9a1f3aa4307a71ef906da3e9757d4535c1152d0379e05d7864730a6941",
+      "git_blob": "74bcd0bd3949f30a8f856a3114b748db7145c75a"
+    },
+    {
+      "file": "surface-inspection.json",
+      "bytes": 3348,
+      "sha256": "26905bd94a46f2e17e3f933341876c6f735dd4f3b9f4adea5451be55418c330e",
+      "git_blob": "93d761cacb0bf36b3d6b4fbcd262496dbf279829"
+    }
+  ]
+}

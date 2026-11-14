@@ -1,0 +1,149 @@
+{
+  "status": "TOUCH_SENT",
+  "label": "Ein Objekt zeigen",
+  "timeout_seconds": 120,
+  "exact_caption_required": true,
+  "orientation_policy": "responsive",
+  "scope": "Observed touch prerequisites; post-action assertions still required",
+  "frames": [
+    {
+      "source": "learning-move-2-0.png",
+      "source_sha256": "abf4fe5b3da548dd8b550636a14bb381a812a9d6471a96e2df8dfa0f7e747ed4",
+      "source_bytes": 554152,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 1.8004
+    },
+    {
+      "source": "learning-move-2-1.png",
+      "source_sha256": "a322dc8d2d508316dd3fbf408f7edd4318fd675677b142122f5ac55da1a5a0bf",
+      "source_bytes": 558182,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 20.334444,
+      "target": {
+        "surface_sha256": "a322dc8d2d508316dd3fbf408f7edd4318fd675677b142122f5ac55da1a5a0bf",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "bounds": [
+          105.0,
+          2030.0,
+          467.0,
+          2071.0
+        ],
+        "anchor": "",
+        "reasons": [
+          "waiting for second stable observed target bounds"
+        ],
+        "target_geometry_valid": true,
+        "stable_observed_target": false
+      }
+    },
+    {
+      "source": "learning-move-2-2.png",
+      "source_sha256": "1baf6184b4d46a0f0564794f2958b78c8908e363481824b3b8923925d7f8f8ba",
+      "source_bytes": 557912,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 27.140376,
+      "target": {
+        "surface_sha256": "1baf6184b4d46a0f0564794f2958b78c8908e363481824b3b8923925d7f8f8ba",
+        "pixels": [
+          1080,
+          2400
+        ],
+        "bounds": [
+          105.0,
+          2030.0,
+          467.0,
+          2071.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    }
+  ],
+  "final_observed_bounds": [
+    105.0,
+    2030.0,
+    467.0,
+    2071.0
+  ],
+  "touch": [
+    286,
+    2050
+  ],
+  "elapsed_seconds": 32.953354
+}

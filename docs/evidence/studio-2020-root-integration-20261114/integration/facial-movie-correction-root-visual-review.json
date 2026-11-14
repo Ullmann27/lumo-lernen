@@ -1,0 +1,23 @@
+{
+  "schema": 1,
+  "reviewer": "/root",
+  "reviewed_at": "2026-11-14T06:15:40.246079+00:00",
+  "source_manifest_sha256": "4e5e85902a32660e67057917e4071d9e0d8ff8014adcff507da27fdc8f15f8f2",
+  "scope": "Root personally opened two new local renderer PNGs only; B separately reviewed the full sequence. This is not the future acf51 CI archive review.",
+  "images": [
+    {
+      "file": "qa/studio-2020-facial-movie-8be3/green-capture/teacher_scene.png",
+      "sha256": "bd9aefcd0216b9504d252ea09e78fbba6261144e1ee4d4509098e8c0823d0c55",
+      "bytes": 113407,
+      "actually_opened": true,
+      "findings": "Original-Lumo steht links im tatsächlichen 3D-Lernraum. Apfel-Aufgabe, zwei leere Zielplätze und getrennte Silben fel/Ap sind sichtbar; Aufgabe noch0/2. Titel und drei untere Aktionen sind lesbar. Orthografische Lerninszenierung, keine abgeschlossene Aufgabe oder AAA-Gesamtqualität daraus abgeleitet."
+    },
+    {
+      "file": "qa/studio-2020-facial-movie-8be3/green-capture/blink.png",
+      "sha256": "dab68e04c832a6b7b15a6f62d0b6ca146df035683c5de64c10387302b32aa973",
+      "bytes": 301312,
+      "actually_opened": true,
+      "findings": "Originalfigur mit Brille, Ohren, Körpermaterial und nahezu geschlossenen geometrischen Lidern in echter640²-Aufnahme. Eine schmale Lidkante bleibt sichtbar. Dies bestätigt einen sichtbaren Blinkzustand, keine vollständige phonemgenaue Lippenanimation."
+    }
+  ]
+}

@@ -1,0 +1,290 @@
+{
+  "sources": [
+    {
+      "repo": "Ullmann27/lumo-lernen",
+      "commit": "86445f53af5d573549fc8cf03405261611f3cb7e",
+      "root": "lumo-studio-final-e3d",
+      "tree": "2389b97232041bb77307e47ecc0e550772339a4e",
+      "files": [
+        {
+          "path": "AGENTS.md",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5d0b03ecefa91698a22a766589e30e8d5a037b2f",
+          "size": 6312,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/5d0b03ecefa91698a22a766589e30e8d5a037b2f",
+          "local_sha256": "79b2088274f4fa71f05baabb802b6d9c23759c23e0b1d884013e81748a61fd84",
+          "bytes": 6312
+        },
+        {
+          "path": "pubspec.yaml",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "40a3226d7b575cc414abc1494dfff5924a5de775",
+          "size": 2675,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/40a3226d7b575cc414abc1494dfff5924a5de775",
+          "local_sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613",
+          "bytes": 2675
+        },
+        {
+          "path": "lib/features/games/connect_four/connect_four_engine.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+          "size": 9755,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/0ad49aeaab65ea34ceb387e73788cdb886a210db",
+          "local_sha256": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334",
+          "bytes": 9755
+        },
+        {
+          "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7211b1d17a289b6935348d2bb66c7f05243a732d",
+          "size": 36066,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/7211b1d17a289b6935348d2bb66c7f05243a732d",
+          "local_sha256": "1d213441a1f9cf597ae4f4c2d645068f4094409e836aef7b3e1733770577d3c4",
+          "bytes": 36066
+        },
+        {
+          "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "84c5ff9949a216331d228128f02415a47833396b",
+          "size": 10519,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/84c5ff9949a216331d228128f02415a47833396b",
+          "local_sha256": "d8d0909567cb0726a55b6108a6bc78ed2ac2b384026becdaa1b3f01a3ec3a190",
+          "bytes": 10519
+        },
+        {
+          "path": "lib/features/games/shared/lumo_game_pause_scope.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9ffc5f25494bb03c64a68cd704d5069aae41013e",
+          "size": 12273,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/9ffc5f25494bb03c64a68cd704d5069aae41013e",
+          "local_sha256": "2098bb9090936ab041905054beaced3133edeb941880757a654d303d51e039e6",
+          "bytes": 12273
+        },
+        {
+          "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4a37e8e275503d6a89ce1130859b2f67cb25bbd5",
+          "size": 10035,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/4a37e8e275503d6a89ce1130859b2f67cb25bbd5",
+          "local_sha256": "8f99b8b313e1bb30d8caaf9ecba63b0c2587aa19f773cdcc16b9f3f3fc2f8587",
+          "bytes": 10035
+        },
+        {
+          "path": "lib/features/lumo3d/lumo_game_entry_overlay.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+          "size": 13559,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/3408e5f304003c91fc3172d03b4d22ad467d8ec0",
+          "local_sha256": "ca75568750c8ea1efdc3ead7863f5d91b8330e565597173bed9af84bf4c32b74",
+          "bytes": 13559
+        },
+        {
+          "path": "lib/app/app_state.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b8de55e3037e1b224e5c9ab4e563a19f4260006a",
+          "size": 53380,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/b8de55e3037e1b224e5c9ab4e563a19f4260006a",
+          "local_sha256": "2afbe473e96ba798181be8b8e89722738f3ee65be9f020f51da1633f9e98940f",
+          "bytes": 53380
+        },
+        {
+          "path": "lib/core/legacy_learning_data.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6de6467fe67ae52e1ac08393c438a4c63311feb1",
+          "size": 13768,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/6de6467fe67ae52e1ac08393c438a4c63311feb1",
+          "local_sha256": "4a97ae4829b7f64a7f68ca61d77e97951d4cb0fef5c5b8806bf3595ac6955ea3",
+          "bytes": 13768
+        },
+        {
+          "path": "lib/core/reward_wallet_repository.dart",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+          "size": 13187,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/63a3d4c4fe6c5c9249f3531e685cc541646747ee",
+          "local_sha256": "b9a89763484ef701cb68b8b306cc946a82e412bc6f588a8bd1c97c87b370f01f",
+          "bytes": 13187
+        },
+        {
+          "path": "tools/auto_install/MainActivity.kt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d57bb538f745aca436fcd9bc547e692f055e82fa",
+          "size": 16810,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/d57bb538f745aca436fcd9bc547e692f055e82fa",
+          "local_sha256": "7930a0eec8566bbd85c509f09cd15a9508b5781ce09e53a158d43e26c4567953",
+          "bytes": 16810
+        },
+        {
+          "path": "tools/auto_install/LumoGameActivity.kt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b9f48afed517b6123b13e7c77b81e00a1b908e13",
+          "size": 11695,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/b9f48afed517b6123b13e7c77b81e00a1b908e13",
+          "local_sha256": "0b3f2deebc7360b4a4f52fb863cfc1b984457a9059fd17ddedaa3e72413c6674",
+          "bytes": 11695
+        },
+        {
+          "path": "tools/auto_install/CardsTableBridge.kt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4433cf840665bfeee3593f7620306ba79f87ad8a",
+          "size": 7302,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/4433cf840665bfeee3593f7620306ba79f87ad8a",
+          "local_sha256": "ef5f702ecf6f89aae1b8cc8e4cc640b3b481a01d24a510ff393de100d800e572",
+          "bytes": 7302
+        },
+        {
+          "path": "tools/auto_install/CardsAuthorityService.kt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "85fa1dc9e0eccbf38073e1e5918fc934b8e91e41",
+          "size": 2121,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/85fa1dc9e0eccbf38073e1e5918fc934b8e91e41",
+          "local_sha256": "271cd63897272579a362d520741779be97d1d2f38e88615184f5e45cc19f37cc",
+          "bytes": 2121
+        },
+        {
+          "path": "tools/auto_install/CardsAuthorityRegistry.java",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dbc4a5df533828f36a9228f9b12696209ed899ea",
+          "size": 1157,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/dbc4a5df533828f36a9228f9b12696209ed899ea",
+          "local_sha256": "e7076a168a9f3c8b19dda22af6311a28d0a170899f9092b6c2bb65c8174a6e4a",
+          "bytes": 1157
+        },
+        {
+          "path": "tools/auto_install/GameEventStore.kt",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "39963b5ac6ff773e0d39505a355cca70d489b7a5",
+          "size": 5560,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/39963b5ac6ff773e0d39505a355cca70d489b7a5",
+          "local_sha256": "8157a28412e82720f52b933ba433058b307ecebbd68dcdbea53b8bdf59b034af",
+          "bytes": 5560
+        },
+        {
+          "path": "scripts/prepare_embedded_games.py",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "a8f747e77ba24cc74a19b509541bab2146607938",
+          "size": 9425,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/blobs/a8f747e77ba24cc74a19b509541bab2146607938",
+          "local_sha256": "3d1bcbe466e1b74ae8edd0b8d06a56b274ddde36bead7ba6b18d3b5ef7c4a7ad",
+          "bytes": 9425
+        }
+      ]
+    },
+    {
+      "repo": "Ullmann27/lumo-godot",
+      "commit": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+      "root": "lumo-godot",
+      "tree": "dc24bfa8b3fac8812c88cfc8f8eab3af1479979c",
+      "files": [
+        {
+          "path": "project.godot",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "296b8b1752ebfd526aedd019907ac88efbfd0c02",
+          "size": 1944,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/296b8b1752ebfd526aedd019907ac88efbfd0c02",
+          "local_sha256": "eac3b969cc475e9b9047d420eb6012a1b98b127c1a8706a9eb88e0e83f33b280",
+          "bytes": 1944
+        },
+        {
+          "path": "scripts/app/scene_router.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9cfea6e6d7f0ab5322a1e0d0b140a7109f9a6307",
+          "size": 4394,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/9cfea6e6d7f0ab5322a1e0d0b140a7109f9a6307",
+          "local_sha256": "f584c0a1dd894819ab9301478bf95356a4207dfa89719a0419a81c12967c67d8",
+          "bytes": 4394
+        },
+        {
+          "path": "scripts/app/app_boot.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8456b1933098f0bc852bfb6c227d7a5f7f59756c",
+          "size": 18658,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/8456b1933098f0bc852bfb6c227d7a5f7f59756c",
+          "local_sha256": "991d189afa1af113a4791883da8c669bc1404ee384c07699c8e1bda87b4340c8",
+          "bytes": 18658
+        },
+        {
+          "path": "scripts/systems/host_bridge.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7d0c4e67ace04af02f91738368648380d573bcd3",
+          "size": 5177,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/7d0c4e67ace04af02f91738368648380d573bcd3",
+          "local_sha256": "11abed8d8bb15a048ff3934b958c5aa39c1de233146f8bc9b47c8be0854099bc",
+          "bytes": 5177
+        },
+        {
+          "path": "scripts/app/mobile_runtime.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+          "size": 7146,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/53c6974ef2e1ba82bbb1fff71c9be4d9c16a911f",
+          "local_sha256": "eec90f6187525eda2c330718e93c592cabc523ee93406b4c02e739286a8fd517",
+          "bytes": 7146
+        },
+        {
+          "path": "scripts/app/android_safe_area.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9658440b3effad06358fe7cfe62f04a95ccbe279",
+          "size": 5708,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/9658440b3effad06358fe7cfe62f04a95ccbe279",
+          "local_sha256": "28077c1eca89e7e915fc346973c6397d2c1b545fca9592f16394b2d9d2b04564",
+          "bytes": 5708
+        },
+        {
+          "path": "scripts/games/cards/cards_table.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d2d68ea69756e25936f3f44d59b01d0c1b17f2d4",
+          "size": 41353,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/d2d68ea69756e25936f3f44d59b01d0c1b17f2d4",
+          "local_sha256": "5abea79b066e16f32f3951eda277db5cfdeced51ed3cbd85685be1aac0ae62d1",
+          "bytes": 41353
+        },
+        {
+          "path": "scripts/characters/lumo/lumo_rigged_actor.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "dea775d2f26877c858bb79079a01b3b464e4d88f",
+          "size": 10090,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/dea775d2f26877c858bb79079a01b3b464e4d88f",
+          "local_sha256": "f262df70dd22937058b698e570eafabc8e05bba539036f89eda059166b68f3d0",
+          "bytes": 10090
+        },
+        {
+          "path": "scripts/creative/creative_runtime.gd",
+          "mode": "100644",
+          "type": "blob",
+          "sha": "45596983292c4f7c8fbcd847a5dca671b324ba5c",
+          "size": 3498,
+          "url": "https://api.github.com/repos/Ullmann27/lumo-godot/git/blobs/45596983292c4f7c8fbcd847a5dca671b324ba5c",
+          "local_sha256": "b800c7d77c7a4fcc9a47081c2f25672fb2f2eefbb95c24fdc442f4f2df2185aa",
+          "bytes": 3498
+        }
+      ]
+    }
+  ]
+}

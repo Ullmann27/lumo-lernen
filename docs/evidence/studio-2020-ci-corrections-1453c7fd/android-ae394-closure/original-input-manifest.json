@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "source_host": "ae394f55c606ce66999df5b72acd1f8d34ec3ee4",
+  "build_run": 43576453139,
+  "status": "completed_failure_android_not_executed",
+  "files": [
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/closure-review.json",
+      "bytes": 5831,
+      "sha256": "73f112743578cfdc580cd331b9c1dd839e707ed4a1f1936138841bc2e725035c",
+      "git_blob": "6910f17f70c42db55d652b54895e0346e3e49f1a",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/closure-review.json"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/closure-README.md",
+      "bytes": 1411,
+      "sha256": "112ca842ae2491d50b82547b27d2cd502bc7ae126eb99af2d1ced572f32f45ba",
+      "git_blob": "cd4e27474cfc49c61c0668f94e05b1605a5af822",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/closure-README.md"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/run-final-original.json",
+      "bytes": 13439,
+      "sha256": "afd2f7283ec852cf364e13237351f4aea8d424aec25605d11c9f966b982a52a2",
+      "git_blob": "3b4e08c0ec27dad7bfa5b61fee6e71ee6bcb9eb8",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/run-final-original.json"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/artifacts-final-original.json",
+      "bytes": 2246,
+      "sha256": "c641646d895ee182124e5c5e794e107cd91f0177106672890e0f9a1e9db2f867",
+      "git_blob": "87cc2ab6a24268ef5f6474814af6005648ff9960",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/artifacts-final-original.json"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/polls/20261114084536Z-jobs-original.json",
+      "bytes": 15196,
+      "sha256": "a3e00907acdfd55776ede72d57e7ff453e0b15dc16533eb329017a6c42993573",
+      "git_blob": "0f75a791ef015e21e3bb950d8d8a8d0759f00119",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/polls/20261114084536Z-jobs-original.json"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/workflow-at-ae394.yml",
+      "bytes": 56929,
+      "sha256": "43c795cc9aff8b4c7479e559ff5e5bf48213dc79232b1528b406152de3b3bf7a",
+      "git_blob": "91900659c06ab2d6713b8bd24d37800eb533c470",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/workflow-at-ae394.yml"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/godot-source-at-ae394.json",
+      "bytes": 145,
+      "sha256": "50391734f3d5522ba97e15d45c5f3827b037c32f1771493987ace35905d5e414",
+      "git_blob": "fa2d703726599e61feadd58cebef0514fd4d049e",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/godot-source-at-ae394.json"
+    },
+    {
+      "path": "qa/studio-2020-host-ae394-android-20261114/pubspec-at-ae394.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "mode": "100644",
+      "target_path": "docs/evidence/studio-2020-host-ae394-android-20261114/pubspec-at-ae394.yaml"
+    }
+  ]
+}

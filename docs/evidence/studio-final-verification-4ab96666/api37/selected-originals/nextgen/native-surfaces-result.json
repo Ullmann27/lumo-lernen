@@ -1,0 +1,114 @@
+{
+  "status": "FAIL",
+  "physical_fold7_performance_measured": false,
+  "apk_identity": {
+    "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "android_runtime": {
+    "sdk": 37,
+    "release": "17",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "emulator_root_readiness": {
+    "status": "PASS",
+    "attempts": [
+      {
+        "arguments": [
+          "get-serialno"
+        ],
+        "elapsed_seconds": 0.0,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "emulator-5554"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "root"
+        ],
+        "elapsed_seconds": 0.002,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "adbd is already running as root"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "wait-for-device"
+        ],
+        "elapsed_seconds": 0.007,
+        "status": "PASS",
+        "return_code": 0,
+        "output": ""
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "id",
+          "-u"
+        ],
+        "elapsed_seconds": 0.009,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "0"
+      },
+      {
+        "arguments": [
+          "-s",
+          "emulator-5554",
+          "shell",
+          "getprop",
+          "sys.boot_completed"
+        ],
+        "elapsed_seconds": 0.027,
+        "status": "PASS",
+        "return_code": 0,
+        "output": "1"
+      }
+    ],
+    "root_transport_recovered": false,
+    "initial_offline_recovered": false,
+    "initial_missing_recovered": false,
+    "verification": "actual shell id -u == 0 and sys.boot_completed == 1",
+    "scope": "disposable emulator setup; this does not pass installation or gameplay",
+    "serial": "emulator-5554",
+    "last_shell_uid": "0",
+    "last_boot_completed": "1",
+    "shell_uid": 0,
+    "boot_completed": true,
+    "elapsed_seconds": 0.042
+  },
+  "offline": true,
+  "local_voice_permission": {
+    "local_model_assent": true,
+    "voice_enabled": true,
+    "auto_read": true,
+    "unrelated_permissions_unchanged": true,
+    "no_audio_emulator": true,
+    "audible_quality_verified": false,
+    "lip_sync_verified": false
+  },
+  "error": "TimeoutError: Current native surface/target did not settle before touch: Ein Objekt zeigen",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 820, in main\n    result['learning'] = learning_roundtrip(out)\n                         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 269, in learning_roundtrip\n    probe.native_text(out, 'Ein Objekt zeigen', f'learning-move-{index + 1}',\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 458, in native_text\n    return native_tap(out, label, tag, exact=exact, orientation=orientation)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 444, in native_tap\n    raise TimeoutError('Current native surface/target did not settle before touch: ' + label)\nTimeoutError: Current native surface/target did not settle before touch: Ein Objekt zeigen\n"
+}

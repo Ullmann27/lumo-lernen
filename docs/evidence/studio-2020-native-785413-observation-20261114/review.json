@@ -1,0 +1,213 @@
+{
+  "schema": 1,
+  "status": "NATIVE_CI_SUCCESS_VISUAL_REVIEW_PENDING",
+  "reviewer": "/root/games_worlds",
+  "reviewed_at_utc": "2026-11-14T08:12:37.732505+00:00",
+  "source": {
+    "commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "tree": "635cf3d68631ed62ba3b3ce6f2c1fc5448768787",
+    "parent": "acf51d3bd2997c4b731e9a48e1791e05e756a132",
+    "workflow": ".github/workflows/lumo-studio-2020.yml",
+    "workflow_sha256": "7e52ff0e8667ad22e443cd1b12cecf7649fb66ea10043a149d5178ec16a4ac13"
+  },
+  "workflow": {
+    "id": 43570887024,
+    "attempt": 1,
+    "event": "push",
+    "status": "completed",
+    "conclusion": "success",
+    "html_url": "https://github.com/Ullmann27/lumo-godot/actions/runs/43570887024"
+  },
+  "jobs": [
+    {
+      "id": 132374803702,
+      "name": "learning-preview",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:23:37Z",
+      "completed_at": "2026-11-14T07:35:17Z"
+    },
+    {
+      "id": 132374803847,
+      "name": "touch-build",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:23:37Z",
+      "completed_at": "2026-11-14T07:40:22Z"
+    },
+    {
+      "id": 132374803862,
+      "name": "gameplay",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:23:37Z",
+      "completed_at": "2026-11-14T07:42:54Z"
+    },
+    {
+      "id": 132374803908,
+      "name": "studio",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:23:37Z",
+      "completed_at": "2026-11-14T07:48:26Z"
+    },
+    {
+      "id": 132374803941,
+      "name": "touch-treasure",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:23:37Z",
+      "completed_at": "2026-11-14T07:36:23Z"
+    },
+    {
+      "id": 132374804144,
+      "name": "touch-workshop",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:23:37Z",
+      "completed_at": "2026-11-14T07:52:07Z"
+    },
+    {
+      "id": 132380605786,
+      "name": "new-worlds",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T07:48:28Z",
+      "completed_at": "2026-11-14T08:06:43Z"
+    },
+    {
+      "id": 132384851591,
+      "name": "bundle-evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T08:06:45Z",
+      "completed_at": "2026-11-14T08:07:09Z"
+    },
+    {
+      "id": 132384958222,
+      "name": "archive-evidence",
+      "status": "completed",
+      "conclusion": "success",
+      "started_at": "2026-11-14T08:07:10Z",
+      "completed_at": "2026-11-14T08:07:34Z"
+    }
+  ],
+  "mandatory_before_archive": 8,
+  "additional_pr_workflows": [
+    {
+      "id": 43570890827,
+      "name": "Verify Lumo Kart Stage 2",
+      "event": "pull_request",
+      "head_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43570890760,
+      "name": "Lumo original 65-bone grounded walk gait QA",
+      "event": "pull_request",
+      "head_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43570890772,
+      "name": "Verify committed Kart vehicle geometry",
+      "event": "pull_request",
+      "head_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43570890771,
+      "name": "Lumo Kart and Bauwelt integration QA",
+      "event": "pull_request",
+      "head_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43570890812,
+      "name": "Lumo native lifecycle and Bauwelt play proof",
+      "event": "pull_request",
+      "head_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 43570890804,
+      "name": "Sonnenhafen 2027 stunt integration",
+      "event": "pull_request",
+      "head_sha": "785413d395292a243eaa0a0748671eb15d3f80ff",
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "artifact": {
+    "id": 14105224381,
+    "name": "lumo-studio-2020-native-evidence",
+    "size_in_bytes": 227410428,
+    "sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+    "expired": false,
+    "workflow_source_verified": true
+  },
+  "release": {
+    "id": 445134233,
+    "asset_id": 746782779,
+    "tag": "studio-2020-evidence-785413d395292a243eaa0a0748671eb15d3f80ff-14105224381",
+    "tag_source_commit": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "draft": false,
+    "prerelease": true,
+    "immutable": false,
+    "size_in_bytes": 227410428,
+    "sha256": "31c926ae589073839dd4e89c955a0b59644c23e355e7685a4e31149d22d32c4e",
+    "public_url": "https://github.com/Ullmann27/lumo-godot/releases/download/studio-2020-evidence-785413d395292a243eaa0a0748671eb15d3f80ff-14105224381/native-evidence.zip"
+  },
+  "original_logs": {
+    "gameplay-132374803862-original.log": {
+      "bytes": 528941,
+      "sha256": "8069ec161d5e2cf38673687789ed1f8fca0748d6f3a73d68f06e2ab7e1be1ff8",
+      "actual_engine_error_lines": [
+        "2026-11-14T07:37:17.0801121Z ERROR: 2 resources still in use at exit (run with --verbose for details).",
+        "2026-11-14T07:37:48.6992902Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+        "2026-11-14T07:37:52.8905845Z ERROR: 4 resources still in use at exit (run with --verbose for details).",
+        "2026-11-14T07:38:39.5418603Z ERROR: 2 resources still in use at exit (run with --verbose for details)."
+      ]
+    },
+    "studio-132374803908-original.log": {
+      "bytes": 370134,
+      "sha256": "4943ffc5da3738255342a248e73dc0005f05159ebd1e68e8e91f3ed01e18d266",
+      "actual_engine_error_lines": []
+    },
+    "new-worlds-132380605786-original.log": {
+      "bytes": 577665,
+      "sha256": "2dc28fe083df9e50ebfbd16fcd19751bdf3c3b46c9229ff349060a86688aaf58",
+      "actual_engine_error_lines": []
+    },
+    "archive-132384958222-original.log": {
+      "bytes": 9326,
+      "sha256": "ef2f7697994f8d1e22c3b4d3b77829ee75cf5514a42cccbce52e8ec1221da064",
+      "actual_engine_error_lines": []
+    }
+  },
+  "observed_new_treasure_marker": "[TreasureTitleContrast] PASS checks=3351 failures=0",
+  "archive_job_digest_check_observed": true,
+  "archive_job_completed_after_public_roundtrip_comparison": true,
+  "local_original_archive_downloaded_by_this_agent": false,
+  "local_archive_crc_or_source_stamps_inspected_by_this_agent": false,
+  "new_images_opened_by_this_agent": [],
+  "limits": [
+    "The successful GitHub jobs are not a visual acceptance, Android installation, physical Fold7 performance result, or full master-delivery approval.",
+    "Root owns the one original archive download, full byte/CRC/source-stamp verification and the subsequent fresh image review.",
+    "The successful Gameplay original log retains four shutdown resource ERROR lines. The previous acf51 original had the same message class at three teardown locations. No common retaining owner or harmlessness is asserted; see the preserved comparison.",
+    "The Release metadata says immutable=false. The actual artifact ID and SHA-256 must remain binding in subsequent verification.",
+    "No old acf51 execution result or screenshot is counted as a new785413 result.",
+    "During monitoring there were two local transport availability interruptions; GitHub was independent. The known failed snapshot write was read back as absent and was not fabricated afterward."
+  ],
+  "monitoring_mutations": {
+    "source_changes": 0,
+    "git_refs_or_commits": 0,
+    "workflow_reruns": 0,
+    "large_downloads": 0
+  }
+}

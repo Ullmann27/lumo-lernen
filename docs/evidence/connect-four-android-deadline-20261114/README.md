@@ -1,0 +1,7 @@
+# C4: strikter Abschluss der vorhandenen Deadlines
+
+Die ursprüngliche C4-Probe bleibt unverändert unter `qa/connect-four-android-probe-86445`; ihr altes Vier-Dateien-Manifest ist historisch erhalten. Dieses Paket ersetzt ausschließlich Probe und zugehörigen Test. Die ursprünglichen beiden Fixturedateien bleiben bytegleich.
+
+Der unabhängige Quellenreview fand zwei konkrete Grenzen: `wait` konnte einen erst nach Ablauf abgeschlossenen letzten Read akzeptieren; `snapshot` konnte nach langsamen State-/Layout-/Foreground-Nachreads noch einen erfolgreichen PNG-Beleg publizieren. Die neue Fassung prüft unmittelbar vor erfolgreicher Rückgabe erneut dieselbe monotone Deadline. Budgets, 45-s-Standard, Captures, Pixel-, Quellen-, Save-, Owner- und 48-dp-Gates bleiben unverändert. Ein verspäteter Read erzeugt eine echte Fehler-/Rejected-Datei und keinen PASS.
+
+Die zwei neuen künstlichen Clock-Gegenfälle laufen gegen die unveränderte alte Probe rot: **27 Fälle, genau 2 Fehler, bisherige 25 grün**. Gegen den engen Nachtrag laufen **27/27 PASS, 0 Skip**. Rohlogs und AST-Vergleich liegen daneben. Es gab keinen Androidlauf und keine Änderung von Produktquellen, Pins oder Workflows. Die leere Anfangsrunde wird weiterhin nur in Zustand/Geometrie geprüft; eine pixelweise Farbprüfung jeder leeren Zelle wird nicht behauptet. Die später vorhandenen Steine bleiben unabhängig projiziert und pixelgeprüft.

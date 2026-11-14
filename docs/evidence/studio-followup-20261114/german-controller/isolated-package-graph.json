@@ -1,0 +1,8 @@
+{
+  "source": "/workspace/scratch/5987865ae883/lumo-studio-final-e3d/.dart_tool/package_graph.json",
+  "destination": "/workspace/scratch/5987865ae883/qa/cards-german-address-4ab/test-workspace/.dart_tool/package_graph.json",
+  "bytes": 18672,
+  "sha256": "b720b3e2855d370cdf1b61b064d738f20c822b7f5379780993edb3d916408ca5",
+  "byte_equal_to_existing_cache": true,
+  "reason": "The current Flutter SDK requires the existing package graph even with --no-pub. The first setup exited before executing any tests; its original failure log is retained."
+}

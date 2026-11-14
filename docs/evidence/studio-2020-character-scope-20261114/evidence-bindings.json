@@ -1,0 +1,407 @@
+{
+  "schema": 1,
+  "created_utc": "2026-11-14T09:36:30.510031+00:00",
+  "reviewer": "character_animation",
+  "scope": "Existing Character/Animation sources and acceptance evidence; no new execution",
+  "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+  "native_run": 43570887024,
+  "native_artifact": 14105224381,
+  "host_revision_context": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "host_run_context": 43580228966,
+  "host_status_scope": "No new Android2020 or complete host acceptance asserted; task-time context from parent",
+  "source_owner": "character_animation: authored body clips, derived face and animator/speech deltas; root: integration and release gates",
+  "independent_reviewers": [
+    "learning_worlds: speech source review",
+    "games_worlds: native face and Movie follow-up review",
+    "root: integration and actual image review"
+  ],
+  "references": [
+    {
+      "id": "N1",
+      "scope": "Aktuelle Native-Jobs",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-observation-20261114/final-jobs-original.json",
+          "bytes": 19902,
+          "sha256": "30acdaf1b306f882e7ddc91c1dc85aaa9f1904ea5ef8b4d609cc820cbd61c7b6",
+          "git_blob_sha": "04c9bac117b29a4156f4790ef6cc1e6551c9367b"
+        }
+      ]
+    },
+    {
+      "id": "N2",
+      "scope": "Aktueller Studio-Originaljoblog; 1047 Motion/102 Facial/144 Capture",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-observation-20261114/studio-132374803908-original.log",
+          "bytes": 370134,
+          "sha256": "4943ffc5da3738255342a248e73dc0005f05159ebd1e68e8e91f3ed01e18d266",
+          "git_blob_sha": "10d161082698b477ef6d8b2e0c74b1b491496e78"
+        }
+      ]
+    },
+    {
+      "id": "N3",
+      "scope": "Aktueller Gameplay-Originaljoblog; getrennte Original-/Facialbindung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-observation-20261114/gameplay-132374803862-original.log",
+          "bytes": 528941,
+          "sha256": "8069ec161d5e2cf38673687789ed1f8fca0748d6f3a73d68f06e2ab7e1be1ff8",
+          "git_blob_sha": "26ffdfffae97872d0c4f4e1a342a66094fee71f1"
+        }
+      ]
+    },
+    {
+      "id": "N4",
+      "scope": "Bereits erfolgte aktuelle Sichtprüfung und Originalarchivbindung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/review-character_animation.json",
+          "bytes": 37112,
+          "sha256": "80451f646c1417a31fc7497650283e1ccaeb8249f7b4bd2255f032c6df6e1d9b",
+          "git_blob_sha": "9626ea30fe8404bc06e8c97a5334d975a88b0b9b"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/verified-original-extraction.json",
+          "bytes": 28849,
+          "sha256": "8549474e622f91c320d87e4134045ae76cd82ec6090773ec9e265b98f2c652ef",
+          "git_blob_sha": "ac9fafebcd9cea65f152349c08b16fbf48223601"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-native-785413-review/visual-review-binding.json",
+          "bytes": 2349,
+          "sha256": "d7bea5f3f9845269632284679513d2342cf86ef58eda991a1e53034a9c3ffb20",
+          "git_blob_sha": "5ee4dc341b612038fe1c5291afb6398f896ea85c"
+        }
+      ]
+    },
+    {
+      "id": "B1",
+      "scope": "Historischer Original-Lumo-Bodybefund und Blenderlauf",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/README.md",
+          "bytes": 7185,
+          "sha256": "20c7b84a6e92c7c408bcbe760d9ca55bd3bb5d1f67d8ab5af2dbd7db88e261c6",
+          "git_blob_sha": "423bab1351d107af1a864890d2e03a892324d6e0"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/motion_build.json",
+          "bytes": 41859,
+          "sha256": "4513ca5eb16f37d31c2f06c9ce6043059223da3fb6d42b110322aa124a3f4637",
+          "git_blob_sha": "69a0688789c8bcbdfabb297e3c7fbc283ecbf948"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/assets/characters/lumo_animated/Lumo-Animated-Mobile.glb",
+          "bytes": 5156596,
+          "sha256": "3559f700784bc1006905ee3aae01e8bcfbffb95b4f621f7430ce771ba0e3efd5",
+          "git_blob_sha": "53cb01bfbd23a2962da5428a08b8aee313d5e152"
+        }
+      ]
+    },
+    {
+      "id": "B2",
+      "scope": "Tatsächlich exportierte sechs Bodyclips",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/assets/characters/lumo_animated/lumo_studio_clips.gd",
+          "bytes": 196296,
+          "sha256": "c0b4be7f094b4f69942d92ad25d54c8c45f01b6cb8471c00e7d5a0513ee8df18",
+          "git_blob_sha": "10b38ae0590626db40b24080e8a55edcb47ecf2b"
+        }
+      ]
+    },
+    {
+      "id": "B3",
+      "scope": "Blender-Bodyautorenquelle und ausgeführter Generator",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/Lumo-Studio-Actions.blend",
+          "bytes": 271095,
+          "sha256": "9c4d1695b86214b44ce97fc844abdf6a36316fc38d99c769f3a068ff803b2b9e",
+          "git_blob_sha": "6a92e4827a55767cbdc82c60a6e4bccca2f94f51"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/tools/lumo_animation/author_platform_clips.py",
+          "bytes": 14998,
+          "sha256": "cbb0823ac359ac45d323a9037f6cc7c10a903e44dff6c374689ba84a3ec429c3",
+          "git_blob_sha": "2fb2a93458eb372fe5c78958c54b3b5a0f052a26"
+        }
+      ]
+    },
+    {
+      "id": "B4",
+      "scope": "Historischer 2020-Erhaltungsgegencheck der Motiondaten",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/native-final/lumo_studio_motion_regression.log",
+          "bytes": 603,
+          "sha256": "90e7ef7f3e42090afcbd835cea00564edfa18fd49e0153177d65d739da0bfd2b",
+          "git_blob_sha": "d06b4aa8600722e4474cd7584db3ac81f134d1e4"
+        }
+      ]
+    },
+    {
+      "id": "F1",
+      "scope": "Gemessener Facial-Autorenreport",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/authoring-report.json",
+          "bytes": 2553,
+          "sha256": "071a74c9b77e6b200ae6a1141a69090e3cce614233258a8d21b34b67db7d829d",
+          "git_blob_sha": "5dc4cc20a4c91251cae1f4c2b657755f09ba13d6"
+        }
+      ]
+    },
+    {
+      "id": "F2",
+      "scope": "Blender-Facialquelle, Generator, Assetprüfer und abgeleitetes Asset",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/sculpt-v9/Lumo-Facial-Authoring.blend",
+          "bytes": 5746571,
+          "sha256": "4209c4d6d76f84aac77c25d2d5ee204b0d5826addd74a122d3909ac34e09afe9",
+          "git_blob_sha": "7e031a8fa118e5b5842dc3bd1118cf815125d752"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/author_face_geometry.py",
+          "bytes": 16114,
+          "sha256": "10ce21b97ab7b333790baf0dccbf9217ec930a88747fc5ff6f18abd5c378805c",
+          "git_blob_sha": "e0f80e5e433050734d9a15c191d57890bc6555e6"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/tools/verify_face_asset.py",
+          "bytes": 6478,
+          "sha256": "c84daeadc819327750e81ea01352ddd4713ab385a524fb246af2a2e1f5fe9944",
+          "git_blob_sha": "e1a25c76c2e4926142d138d05cf1a95ec43081e1"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/assets/characters/lumo_facial/Lumo-Facial-Mobile.glb",
+          "bytes": 8408740,
+          "sha256": "e14aea79eb9918f5184c8ded64e8c1343bf71f553772a4f59298ada6862d9524",
+          "git_blob_sha": "4d18f240a34a5aa6320ecd61c0ab0fa719c0b0ad"
+        }
+      ]
+    },
+    {
+      "id": "F3",
+      "scope": "Produktiver Actor und tatsächlich gebundene Gesichtsmorphsteuerung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/characters/lumo/lumo_rigged_actor.gd",
+          "bytes": 11313,
+          "sha256": "caad03c39ac9098443cda2db937e2a412cecc4365cde238b465bc98e13a6b610",
+          "git_blob_sha": "e4b6a6081a922a137f68491de66f51e096528510"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/characters/lumo/lumo_facial_pose.gd",
+          "bytes": 6120,
+          "sha256": "2d89319ccb622cad1b54c36113bda8594706c024d77f2a0605ec057d51a0f6ef",
+          "git_blob_sha": "91b8a8cd25f21dab84b77f178aa82d06673b54f9"
+        }
+      ]
+    },
+    {
+      "id": "F4",
+      "scope": "Gesichtsregression und ursprünglicher Sourcefreeze; spätere Movie-/Importkorrekturen nicht überschrieben",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/tests/lumo_facial_regression.gd",
+          "bytes": 7102,
+          "sha256": "dc98c2521543d5b28238f37ed064b0ccd105378d124e44bbefd668c1b16cc03e",
+          "git_blob_sha": "9834e1c8cbef59f86f8ec1840895357cb429b624"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/source-freeze.json",
+          "bytes": 6334,
+          "sha256": "ee7abfc2eee1d932e50042432be720ea8c4c25311752dafdce35f3f4e563acfe",
+          "git_blob_sha": "d79f3bd878d865473408ca09c99083e6bfd09e45"
+        }
+      ]
+    },
+    {
+      "id": "F5",
+      "scope": "Produktive Lernwelt mit apply_speech_sample und Äußerungsbindung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/native/scripts/learning/learning_world.gd",
+          "bytes": 45446,
+          "sha256": "1ec88577645b89d11d13191a0dcc987af9beb6b3d2b2e7f0379525470711921a",
+          "git_blob_sha": "25e41d3d81e091e7e357400ff8ba76a18d6d2890"
+        }
+      ]
+    },
+    {
+      "id": "H1",
+      "scope": "Integrierter Host-Playbackadapter",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/auto_install/LumoLearningSpeech.kt",
+          "bytes": 8902,
+          "sha256": "13bf313696c626a3453cddacdd8e95fb20b4075d84ddaeb8a5c0054d68e43f8d",
+          "git_blob_sha": "d9adf0665b3a037c090299091340fdae76af9e3a"
+        }
+      ]
+    },
+    {
+      "id": "H2",
+      "scope": "Integrierte echte PCM-Hüllkurvenauswertung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/tools/auto_install/LumoSpeechEnvelope.kt",
+          "bytes": 4697,
+          "sha256": "c4fb7009b6b162c2db5b62d09bf02f8c035d945b2f55156c46891afe602962c8",
+          "git_blob_sha": "5721274734e111e96d55762d86b3d3e830fc26e8"
+        }
+      ]
+    },
+    {
+      "id": "H3",
+      "scope": "Unabhängiger Speech-Quellenreview; kein Androidhörbeweis",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/original-lumo-facial-studio-803e/evidence/independent-speech-source-review.json",
+          "bytes": 4074,
+          "sha256": "cd461814c55ea8ac924ba92c2789760a16f2e45a0af68e2dccb23159a150861f",
+          "git_blob_sha": "00e7c39c7f3b66a78c20b9db18c667fad3a8f033"
+        }
+      ]
+    },
+    {
+      "id": "H4",
+      "scope": "Hostintegration und tatsächlich bestätigtes Quellenmanifest",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/scripts/prepare_android.py",
+          "bytes": 8826,
+          "sha256": "e80c31269ba8d15fc5db171dd46e1c45cb418f1ff799b03292e89e45b7e4dc6f",
+          "git_blob_sha": "83d6421d0fe26848962c8a2433b0b78182596261"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/evidence/host2020-final-source-manifest.json",
+          "bytes": 72800,
+          "sha256": "73a80a2378d11eed3e9f129be05c7008da99f09bc7a18954fcfe371092c769d3",
+          "git_blob_sha": "e68ff05a3aec360044babd3fe66fc2d78954a049"
+        }
+      ]
+    },
+    {
+      "id": "V1",
+      "scope": "Historischer Blenderfilm und dessen genaue Frameprovenienz",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-animation-20261113/video_provenance.json",
+          "bytes": 13601,
+          "sha256": "2d12f686907154e93a7b1d34faf8e666ce5a75ad665ffbc59942f6fe63426ee0",
+          "git_blob_sha": "0b37b5b6de8f60717bc9bcb02810cb66f01c98d6"
+        }
+      ]
+    },
+    {
+      "id": "V2",
+      "scope": "Historischer tatsächlicher Jumpfilm, Quellen und eng abgegrenzte Bildsichtung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-jump-20261113/README.md",
+          "bytes": 3643,
+          "sha256": "80323fcb0cea10f8b9f71d7a7350fc255409626ef47c30403daab7354a5c4c7e",
+          "git_blob_sha": "8239dd6752c8b87c611bad487f3cef093c8a878f"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-jump-20261113/source-manifest.json",
+          "bytes": 37467,
+          "sha256": "29ed7dd908679124814aa37ce8778b51c36c0de419f25528308f4c57eb421f53",
+          "git_blob_sha": "ecf512f1668ba00286795b3b63c4c102f47822d0"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-lernen/docs/evidence/studio-runtime-jump-20261113/visual-review.json",
+          "bytes": 10000,
+          "sha256": "836e9debd2dcf617f738404a101f5d11c656f408208ef90b5e39e14b821139fb",
+          "git_blob_sha": "825fb445dbdff918533b5994d6248d4fb41c858d"
+        }
+      ]
+    },
+    {
+      "id": "P1",
+      "scope": "Historische lokale CPU-Gegenprobe; keine Gesicht-/GPU-/Fold7-Messung",
+      "files": [
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/performance_cpu_comparison.md",
+          "bytes": 5792,
+          "sha256": "bf5e76dd774c29c0d4370343d9f930b1a94b3a07cae242bf4767e391c550ea2c",
+          "git_blob_sha": "c60e96376222bdc5b42a5689ff8adf9dcc73f35b"
+        },
+        {
+          "path": "/workspace/scratch/5987865ae883/lumo-godot/docs/evidence/studio-character-20261113/performance_cpu_comparison.json",
+          "bytes": 15395,
+          "sha256": "b76b60b74b4b0509a8bdb43c0c6c03f5d3f26f9da7139d6c6126093133f182b9",
+          "git_blob_sha": "68300dc4bf095040c2fc40dcc63939e6127d568b"
+        }
+      ]
+    }
+  ],
+  "current_movie_existing_review": {
+    "artifact_entry": "studio-evidence/captures/lumo_facial_capture/facial-runtime.mp4",
+    "sha256": "2f36e8ccb788bfb67aa132dc964f9ed82dd4f7da77126c76bd2b576572cb2fe0",
+    "bytes": 1067731,
+    "fully_decoded_video_and_audio": true,
+    "decode_exit_code": 0,
+    "video": {
+      "codec": "h264",
+      "dimensions": [
+        640,
+        640
+      ],
+      "frames": 148,
+      "recording_fps": "24/1",
+      "duration_seconds": 6.166667
+    },
+    "audio": {
+      "codec": "aac",
+      "sample_rate_hz": 48000,
+      "channels": 2,
+      "duration_seconds": 6.166,
+      "listened_to": false,
+      "limitation": "Der Audiostream wurde vollständig dekodiert, aber nicht angehört. Keine Aussage zu wahrgenommener Aussprache oder akustischer Synchronität."
+    },
+    "visual_scope": "Alle 148 frisch dekodierten Frames auf 13 einzeln geöffneten Kontaktbögen angesehen; zusätzlich Frames 16, 38 und 45 in originaler 640×640-Auflösung geöffnet. Keine zeitlich interpolierten oder generierten Frames. Kein Anspruch auf Wiedergabe in Echtzeit.",
+    "runtime_sidecar": {
+      "artifact_entry": "studio-evidence/captures/lumo_facial_capture/runtime-frames.json",
+      "sha256": "387e88b82304292e01a2dad27104da394a21d4507f5d245aeecee2563c6c31e3",
+      "rows": 144,
+      "step_range": [
+        0,
+        143
+      ],
+      "lesson_kind": "syllables",
+      "lesson_word": "Apfel",
+      "word_source": "res://assets/audio/voice/words/apfel.wav",
+      "actual_max_jaw_weight": 0.699060499668121,
+      "max_muted_playing_jaw_weight": 0.0255176480859518,
+      "max_idle_jaw_weight": 0.0,
+      "observed_flags": {
+        "observed_audible_jaw": true,
+        "observed_blink": true,
+        "observed_muted_closed": true,
+        "observed_stopped_closed": true
+      },
+      "measurement_scope": "Player-/Geometriewerte des tatsächlichen aktuellen Godot-Laufs; keine akustische Abhörung, keine phonembasierte Lippenabnahme und keine Android-Messung."
+    }
+  },
+  "source_hashes_unchanged_after_aggregation": true,
+  "source_files_hashed": 34,
+  "new_tests": 0,
+  "new_renders": 0,
+  "new_image_views": 0,
+  "new_audio_listening": false,
+  "product_source_changes": false,
+  "git_mutations": false,
+  "release_or_android_approval": false,
+  "important_superseded_historical_statements": [
+    "2019 body README no-face statement describes that historical milestone; 2020 adds actual facial geometry.",
+    "Original facial README staged/CI-open status is superseded by successful Native785413 and published Host2020 integration.",
+    "Historical zero-muted-sample claim is not copied to current785413; actual current maximum transient jaw weight while muted is0.0255176480859518.",
+    "Historical CPU results are not current full-game, facial, Android or Fold7 performance measurements."
+  ]
+}
