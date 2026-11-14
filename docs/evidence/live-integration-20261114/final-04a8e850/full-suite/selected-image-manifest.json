@@ -1,0 +1,111 @@
+{
+  "source_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "run_id": 43628840534,
+  "attempt": 1,
+  "job_id": 132551912578,
+  "artifact_id": 14127492329,
+  "archive_sha256": "a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+  "images": [
+    {
+      "path": "home-premium/fold-cover-start.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/home-premium/fold-cover-start.png",
+      "bytes": 1355033,
+      "sha256": "d7ef4b21860e3741864b3aa3fab754dab490faa55aac6d08823f697446caf4e0",
+      "git_blob": "9519df4252e74e6e1391a56dd823d8ba666bc5a0",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/fold-cover-learning-cards.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/home-premium/fold-cover-learning-cards.png",
+      "bytes": 684983,
+      "sha256": "daacd2d4a91d121022bf63cd43b3d9778f24ac9522b1f30778581dd412b39bab",
+      "git_blob": "47aaba500deb38822027d019430dabab5a0c7f59",
+      "width": 640,
+      "height": 1480
+    },
+    {
+      "path": "home-premium/phone-learning-cards.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/home-premium/phone-learning-cards.png",
+      "bytes": 946745,
+      "sha256": "d942ce36645ad2127b78951fe5148c300898469681e0b8dbf1a4273d3a3bc073",
+      "git_blob": "1568527a699870f48c8598cf646dc59f5b335566",
+      "width": 786,
+      "height": 1704
+    },
+    {
+      "path": "home-premium/fold-open-learning-cards.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/home-premium/fold-open-learning-cards.png",
+      "bytes": 1804878,
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8",
+      "git_blob": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515",
+      "width": 1680,
+      "height": 1920
+    },
+    {
+      "path": "home-premium/large-text-learning-cards.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/home-premium/large-text-learning-cards.png",
+      "bytes": 2275791,
+      "sha256": "e2c082d2df2bb1a57fe19e77e10d28fca7e871c95987f8f5eeeceacf3f130930",
+      "git_blob": "827490346fdc3e8033345952fa74706070cd889d",
+      "width": 1800,
+      "height": 2400
+    },
+    {
+      "path": "village/village-fold-cover.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/village/village-fold-cover.png",
+      "bytes": 337946,
+      "sha256": "fa00127e0316de2b083ba8d55578f79e01197203cacc2ad5ff3431d0a47b6361",
+      "git_blob": "a965cb7e56c44af30bf2aee36ede7e3ddc62fe25",
+      "width": 344,
+      "height": 882
+    },
+    {
+      "path": "village/village-fold-landscape.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/village/village-fold-landscape.png",
+      "bytes": 1102593,
+      "sha256": "213edb9568f70aa0cb1673d06cc5ce242a37385cc29803b69fe5371698ee92ac",
+      "git_blob": "2c3942884d85b5989fd7d27dee7ef0ae897cd12b",
+      "width": 1200,
+      "height": 900
+    },
+    {
+      "path": "village/village-fold-open-large-text.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/village/village-fold-open-large-text.png",
+      "bytes": 600959,
+      "sha256": "a2397df28ac69a41b918a0ea6ffb741bc92b2b7c7cb833874881652bf6ec6d18",
+      "git_blob": "8602020dec10da3f5b6119955e52f3a6e905205d",
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "village/village-fold-open.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/village/village-fold-open.png",
+      "bytes": 595416,
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f",
+      "git_blob": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed",
+      "width": 690,
+      "height": 829
+    },
+    {
+      "path": "village/village-fold-wide-min.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/village/village-fold-wide-min.png",
+      "bytes": 555532,
+      "sha256": "a3593c4b81d93ea955f5502b1a50dcad759312c753ebd4b8a4d3bc28ab42e9e9",
+      "git_blob": "f79c4cd22905a8a7ebf9aef4429fd7f63a40a4b2",
+      "width": 640,
+      "height": 829
+    },
+    {
+      "path": "village/village-phone.png",
+      "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/originals/village/village-phone.png",
+      "bytes": 401998,
+      "sha256": "12e3d0ca6f514f12b58106ddb1a197bdaa09a773a2703e5d4708db8d6e710dc7",
+      "git_blob": "0a4702d753a41185aa207931e8492f6413bdf8f1",
+      "width": 412,
+      "height": 915
+    }
+  ],
+  "scope": "Eleven byte-identical selected original images, not a visual review of all 566 PNGs. Image inspection is recorded separately."
+}

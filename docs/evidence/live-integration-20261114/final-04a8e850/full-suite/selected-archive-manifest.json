@@ -1,0 +1,39 @@
+{
+  "source_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "run_id": 43628840534,
+  "attempt": 1,
+  "original_artifact_id": 14127492329,
+  "original_artifact_sha256": "a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+  "archives": [
+    {
+      "name": "selected-home-premium-originals.zip",
+      "bytes": 7068222,
+      "sha256": "a17dd8933c0d368a70931f7cb46ebf10e087a39f791ccf5a6b14c9e641ee04a1",
+      "git_blob": "a22b2d3562ed02c40925683d696fc43422b39e9a",
+      "original_image_members": [
+        "home-premium/fold-cover-start.png",
+        "home-premium/fold-cover-learning-cards.png",
+        "home-premium/phone-learning-cards.png",
+        "home-premium/fold-open-learning-cards.png",
+        "home-premium/large-text-learning-cards.png"
+      ],
+      "all_original_members_revalidated_after_packaging": true
+    },
+    {
+      "name": "selected-village-originals.zip",
+      "bytes": 3595304,
+      "sha256": "6ea916712b59596afc737f0efeed49f59f33507df24261ef852464e3b195c8df",
+      "git_blob": "0c04d782db44b911cee7a48419f84df83f9e1f41",
+      "original_image_members": [
+        "village/village-fold-cover.png",
+        "village/village-fold-landscape.png",
+        "village/village-fold-open-large-text.png",
+        "village/village-fold-open.png",
+        "village/village-fold-wide-min.png",
+        "village/village-phone.png"
+      ],
+      "all_original_members_revalidated_after_packaging": true
+    }
+  ],
+  "scope": "These are new storage containers for unchanged selected original PNG bytes, not the original complete Actions artifact ZIP."
+}

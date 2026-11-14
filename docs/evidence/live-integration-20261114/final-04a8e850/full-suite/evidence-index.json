@@ -1,0 +1,184 @@
+{
+  "schema": 1,
+  "kind": "complete-current-flutter-originals-and-independent-recount",
+  "repository": "Ullmann27/lumo-lernen",
+  "source_sha": "04a8e850d4c198e16ff758df614ce6e53eab4524",
+  "source_tree": "80a797c2b547ed72fc496600f7959f6ac4f5f9e6",
+  "run_id": 43628840534,
+  "attempt": 1,
+  "job_id": 132551912578,
+  "artifact_id": 14127492329,
+  "result": {
+    "passed": 2651,
+    "failed": 0,
+    "skipped": 0,
+    "rendered_pngs": 566,
+    "safari_delayed_cases": 8,
+    "prior_diktat_cases": 3,
+    "village_capture_variants": 6
+  },
+  "files": [
+    {
+      "name": "originals/acceptance-summary.json",
+      "bytes": 2382,
+      "sha256": "cb14619f303fd22a19b9148e593886f75662960bbd10c440a9bc5ce4b93ffa12",
+      "git_blob": "74e2bfcc2400832fe55afc7fee5da97f6d2a92a0",
+      "chars": 2382
+    },
+    {
+      "name": "original-run-job-binding.json",
+      "bytes": 39516,
+      "sha256": "0fc08ed295f3f0721f4d91907f707a68928ebdf58624da3e440179457ec15bcf",
+      "git_blob": "3e11c9198e7ab43f37913ec465e4c65adb26ead5",
+      "chars": 39516
+    },
+    {
+      "name": "original-source-commit.json",
+      "bytes": 1374,
+      "sha256": "847ca6cd3d1d02faa59eac6c18ed23c4bbc5c4854ac99cb2f481436638b5159d",
+      "git_blob": "02f93151d38444446bdc627aa4136bdf0191b4c4",
+      "chars": 1374
+    },
+    {
+      "name": "original-artifact-metadata.json",
+      "bytes": 839,
+      "sha256": "ef881f28f96fb99a55639e822d0801bcaca729cbc4f16c03dfb2119276d92acf",
+      "git_blob": "74d568847b01e44450c0dff92339688827b58be3",
+      "chars": 839
+    },
+    {
+      "name": "archive-manifest.json",
+      "bytes": 167446,
+      "sha256": "2bb9427109391ba61afc9f372a2dad57250dc48ced3b9ba0a3df5677499430d6",
+      "git_blob": "52be56d4b7466fdb605d1d3b365effb140afddc6",
+      "chars": 167446
+    },
+    {
+      "name": "independent-recount.json",
+      "bytes": 17606,
+      "sha256": "74746706f668d4657323fcf961c726c21774fa834ee7bfd333fd4f3955a328e4",
+      "git_blob": "5d2a2a35f72857c30672fd8cb29c50373ae7cd35",
+      "chars": 17605
+    },
+    {
+      "name": "recount_full_original.py",
+      "bytes": 7821,
+      "sha256": "1fc9f6cce9dd6637e6041456f9e13210a1e2bff124e8820825b9a0f032c4cf24",
+      "git_blob": "aad6c8ccd7b84573bf69e3e7cad94fea03447682",
+      "chars": 7820
+    },
+    {
+      "name": "collect_full_artifact.py",
+      "bytes": 5114,
+      "sha256": "5cb35a18c0611473140e3c55e92f867319295aadb8c081bc3e2538f7b841c2e6",
+      "git_blob": "44bccbc77d19ae77ab699ee0cda7af7c02877dba",
+      "chars": 5114
+    },
+    {
+      "name": "collection-execution.json",
+      "bytes": 1246,
+      "sha256": "ab26536a62bc3c2e2019c9472e0efd4c47db20bd1938dbd45fb69ac88ece5f54",
+      "git_blob": "2874ae12b415b8773c6f4c45e331ce2bd22c9550",
+      "chars": 1246
+    },
+    {
+      "name": "recount-execution.json",
+      "bytes": 434,
+      "sha256": "02df4ce82a6604bb39ffe5454bc030c03094748e132776593784869cadd1a70b",
+      "git_blob": "aeef12d36e79aaab1576753b59896c4d362ea11e",
+      "chars": 434
+    },
+    {
+      "name": "selected-image-manifest.json",
+      "bytes": 4749,
+      "sha256": "55f12310470c577d9b40f84560250c1c4ad88a761f2d9b15c45b4f1d6b4bc820",
+      "git_blob": "9bdab1e2b3cf7f65f35535d41e0f144004982c3d",
+      "chars": 4749
+    },
+    {
+      "name": "selected-archive-manifest.json",
+      "bytes": 1594,
+      "sha256": "af5acd373fffac054738d4cb7c253b756f8505076517b80170c79025a2b0843a",
+      "git_blob": "2d2cf096f1309721146e436d04157350b2cd40fc",
+      "chars": 1594
+    },
+    {
+      "name": "village-visual-review.json",
+      "bytes": 5768,
+      "sha256": "fdb208a69569aa6159cca7494d7a97638f6b3a01a0369f4f952e962463db7723",
+      "git_blob": "0ce6f4643f695b316ee6d41e319a5a9a6a8395e8",
+      "chars": 5768
+    },
+    {
+      "name": "originals/flutter-machine.jsonl",
+      "bytes": 1788100,
+      "sha256": "8e118985775e09e12c690b0106d9193c6832c962623a8ea466067bc6e25c1ff4",
+      "git_blob": "bb360287151003e32feb6e7cc9ecc54ac22d68f9",
+      "chars": 1787532
+    }
+  ],
+  "selected_original_image_archives": [
+    {
+      "name": "selected-home-premium-originals.zip",
+      "bytes": 7068222,
+      "sha256": "a17dd8933c0d368a70931f7cb46ebf10e087a39f791ccf5a6b14c9e641ee04a1",
+      "git_blob": "a22b2d3562ed02c40925683d696fc43422b39e9a",
+      "original_image_members": [
+        "home-premium/fold-cover-start.png",
+        "home-premium/fold-cover-learning-cards.png",
+        "home-premium/phone-learning-cards.png",
+        "home-premium/fold-open-learning-cards.png",
+        "home-premium/large-text-learning-cards.png"
+      ],
+      "all_original_members_revalidated_after_packaging": true
+    },
+    {
+      "name": "selected-village-originals.zip",
+      "bytes": 3595304,
+      "sha256": "6ea916712b59596afc737f0efeed49f59f33507df24261ef852464e3b195c8df",
+      "git_blob": "0c04d782db44b911cee7a48419f84df83f9e1f41",
+      "original_image_members": [
+        "village/village-fold-cover.png",
+        "village/village-fold-landscape.png",
+        "village/village-fold-open-large-text.png",
+        "village/village-fold-open.png",
+        "village/village-fold-wide-min.png",
+        "village/village-phone.png"
+      ],
+      "all_original_members_revalidated_after_packaging": true
+    }
+  ],
+  "full_original_artifact": {
+    "bytes": 363820201,
+    "sha256": "a7f4184021a42782bef47380ecc0514ade032dfa44d455acf9dcfa27716a2868",
+    "local_path": "/tmp/lumo-flutter04-909ddb52fe7b/full-suite/original-artifact-14127492329.zip",
+    "downloaded_once": true,
+    "all_568_zip_members_crc_and_sha256_checked": true
+  },
+  "limits": [
+    "The complete Actions ZIP remains at the named local path and in the source Actions artifact; this evidence commit preserves all original text plus eleven selected original PNGs, not a Git copy of all 566 images.",
+    "Six village images were actually opened and reviewed here. Five Home originals are preserved for the separate independent review.",
+    "The four legacy Connect Four fixture files are excluded as proof of moves or victory; dedicated current board evidence has its own later artifact.",
+    "No Android, native process-return, update, APK delivery or full-job result is inferred from this Flutter result.",
+    "Source commit metadata, actual run/attempt/job/artifact metadata, and the original JSONL are bound separately."
+  ],
+  "independent_home_review": {
+    "commit": "2a57ae7914feed015055633994256d55a311e19a",
+    "path": "docs/evidence/live-integration-20261114/final-04a8e850/home-original-visual-review.json",
+    "blob": "b01e927ca4c9d7db7b984d5be849831b9f46c341"
+  },
+  "root_requested_image_identities": [
+    {
+      "archive": "selected-home-premium-originals.zip",
+      "member": "home-premium/fold-open-learning-cards.png",
+      "original_png_git_blob_identity": "efdb7159ba2c4a6707129cfa3a5b330ea96d1515",
+      "sha256": "63cc52a93abbb90ea3e7b793bb83d857f06c0a53fbd109a47671dd168a18a6f8"
+    },
+    {
+      "archive": "selected-village-originals.zip",
+      "member": "village/village-fold-open.png",
+      "original_png_git_blob_identity": "8d52f1bce929ab0f6f81b221a0d51705d6f9c2ed",
+      "sha256": "1d8823b786a96532bc69f6703f78dfac9ddb2459cfe7b2746dd93fa5daffff2f"
+    }
+  ]
+}
