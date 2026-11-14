@@ -158,38 +158,64 @@ void main() {
 
   testWidgets('Delayed old-child write cannot overwrite the newly selected child',
       (tester) async {
+    const aRaw = '{"difficulty":"leicht","best":{"leicht":7}}';
+    const bRaw = '{"difficulty":"mittel","best":{"mittel":11}}';
     final store = _DeferredStore({
       'lumo_memory_v2': _legacy,
-      _key(_a): '{"difficulty":"leicht","best":{"leicht":7}}',
-      _key(_b): '{"difficulty":"mittel","best":{"mittel":11}}',
+      _key(_a): aRaw,
+      _key(_b): bRaw,
     });
     SharedPreferencesStorePlatform.instance = store;
     final app = await _app();
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    await _open(tester, app);
     final gate = Completer<void>();
-    store.blockedKey = 'flutter.${_key(_a)}';
-    store.gate = gate;
-    await _choose(tester, MemoryDifficulty.profi);
-    expect(store.writes, hasLength(1));
-    await app.school.setActiveStudent(_b);
-    await tester.pump();
-    expect(_backs(), findsNothing);
-    expect(find.textContaining('Dein Rekord:'), findsNothing);
-    await _open(tester, app);
-    expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
-    await _choose(tester, MemoryDifficulty.knifflig);
-    gate.complete();
-    await tester.pump();
-    await tester.pump();
-    final disk = await store.disk();
-    expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
-        {'difficulty': 'profi', 'best': {'leicht': 7}});
-    expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
-        {'difficulty': 'knifflig', 'best': {'mittel': 11}});
-    expect(disk['flutter.lumo_memory_v2'], _legacy);
-    await tester.pumpWidget(const SizedBox.shrink());
+    try {
+      await _open(tester, app);
+      expect(store.writes, [(key: 'flutter.${_key(_a)}', value: aRaw)],
+          reason: 'Loading existing stats requires its own exact same-value ACK');
+      final writesBeforeChoice = store.writes.length;
+      store.blockedKey = 'flutter.${_key(_a)}';
+      store.gate = gate;
+      await _choose(tester, MemoryDifficulty.profi);
+      final pending = store.writes.skip(writesBeforeChoice).toList();
+      expect(pending, hasLength(1));
+      expect(pending.single,
+          (key: 'flutter.${_key(_a)}',
+           value: jsonEncode({'difficulty': 'profi', 'best': {'leicht': 7}})));
+      expect((await store.disk())['flutter.${_key(_a)}'], aRaw,
+          reason: 'The held user write has not been acknowledged');
+      await app.school.setActiveStudent(_b);
+      await tester.pump();
+      expect(_backs(), findsNothing);
+      expect(find.textContaining('Dein Rekord:'), findsNothing);
+      await _open(tester, app);
+      expect(find.text('Dein Rekord: 11 Züge'), findsOneWidget);
+      await _choose(tester, MemoryDifficulty.knifflig);
+      gate.complete();
+      await tester.pump();
+      await tester.pump();
+      expect(store.writes.skip(writesBeforeChoice).toList(), [
+        (key: 'flutter.${_key(_a)}',
+         value: jsonEncode({'difficulty': 'profi', 'best': {'leicht': 7}})),
+        (key: 'flutter.${_key(_b)}', value: bRaw),
+        (key: 'flutter.${_key(_b)}',
+         value: jsonEncode({'difficulty': 'knifflig', 'best': {'mittel': 11}})),
+      ], reason: 'Each child keeps its captured payload; B has a separate load ACK');
+      final disk = await store.disk();
+      expect(jsonDecode(disk['flutter.${_key(_a)}']! as String),
+          {'difficulty': 'profi', 'best': {'leicht': 7}});
+      expect(jsonDecode(disk['flutter.${_key(_b)}']! as String),
+          {'difficulty': 'knifflig', 'best': {'mittel': 11}});
+      expect(disk['flutter.lumo_memory_v2'], _legacy);
+    } finally {
+      // A failed assertion must not strand this owner's real serial write in
+      // this WidgetTester zone and prevent later tests from opening the child.
+      if (!gate.isCompleted) gate.complete();
+      await tester.idle();
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.idle();
+    }
   });
 
   testWidgets('Delayed identity load cannot expose old best after profile switch',
@@ -219,29 +245,48 @@ void main() {
 
   testWidgets('Pending successive choices retain captured snapshots and final order',
       (tester) async {
-    final store = _DeferredStore({
-      _key(_a): '{"difficulty":"leicht","best":{"leicht":7}}',
-    });
+    const aRaw = '{"difficulty":"leicht","best":{"leicht":7}}';
+    final store = _DeferredStore({_key(_a): aRaw});
     SharedPreferencesStorePlatform.instance = store;
     final app = await _app();
     addTearDown(app.dispose);
     addTearDown(() => tester.binding.setSurfaceSize(null));
-    await _open(tester, app);
     final gate = Completer<void>();
-    store.blockedKey = 'flutter.${_key(_a)}';
-    store.gate = gate;
-    await _choose(tester, MemoryDifficulty.mittel);
-    await _choose(tester, MemoryDifficulty.profi);
-    expect(store.writes, hasLength(1), reason: 'Second write waits for the first');
-    expect(jsonDecode(store.writes.single.value)['difficulty'], 'mittel');
-    gate.complete();
-    await tester.pump();
-    await tester.pump();
-    expect(store.writes, hasLength(2));
-    expect(jsonDecode(store.writes.last.value)['difficulty'], 'profi');
-    expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
-        {'difficulty': 'profi', 'best': {'leicht': 7}});
-    await tester.pumpWidget(const SizedBox.shrink());
+    try {
+      await _open(tester, app);
+      expect(store.writes, [(key: 'flutter.${_key(_a)}', value: aRaw)],
+          reason: 'The initial positive stats ACK is distinct from user choices');
+      final writesBeforeChoice = store.writes.length;
+      store.blockedKey = 'flutter.${_key(_a)}';
+      store.gate = gate;
+      await _choose(tester, MemoryDifficulty.mittel);
+      await _choose(tester, MemoryDifficulty.profi);
+      final pending = store.writes.skip(writesBeforeChoice).toList();
+      expect(pending, hasLength(1), reason: 'Second write waits for the first');
+      expect(pending.single,
+          (key: 'flutter.${_key(_a)}',
+           value: jsonEncode({'difficulty': 'mittel', 'best': {'leicht': 7}})));
+      expect((await store.disk())['flutter.${_key(_a)}'], aRaw,
+          reason: 'Neither queued choice may commit before the held ACK');
+      gate.complete();
+      await tester.pump();
+      await tester.pump();
+      final choices = store.writes.skip(writesBeforeChoice).toList();
+      expect(choices, hasLength(2));
+      expect(choices, [
+        (key: 'flutter.${_key(_a)}',
+         value: jsonEncode({'difficulty': 'mittel', 'best': {'leicht': 7}})),
+        (key: 'flutter.${_key(_a)}',
+         value: jsonEncode({'difficulty': 'profi', 'best': {'leicht': 7}})),
+      ]);
+      expect(jsonDecode((await store.disk())['flutter.${_key(_a)}']! as String),
+          {'difficulty': 'profi', 'best': {'leicht': 7}});
+    } finally {
+      if (!gate.isCompleted) gate.complete();
+      await tester.idle();
+      await tester.pumpWidget(const SizedBox.shrink());
+      await tester.idle();
+    }
   });
 
   testWidgets('Unreadable existing child stats are preserved instead of reset',

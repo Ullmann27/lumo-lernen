@@ -211,13 +211,24 @@ void main() {
     expect(retried.stars, 2);
     expect(retried.xp, 16);
     expect(retried.gameResultIds, ['retry-round']);
-    await wallet.awardGameResult(
-      resultId: 'retry-round',
-      stars: 2,
-      xp: 16,
-    );
-    expect(store.writes, hasLength(2));
-    expect(await store.persisted(), retried.toJson());
+    expect(store.writes, [retried.toJson(), retried.toJson()]);
+    final replayEvents = <RewardWallet>[];
+    final replaySubscription = wallet.changes.listen(replayEvents.add);
+    try {
+      final replay = await wallet.awardGameResult(
+        resultId: 'retry-round',
+        stars: 2,
+        xp: 16,
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(replay.toJson(), retried.toJson());
+      expect(store.writes,
+          [retried.toJson(), retried.toJson(), retried.toJson()]);
+      expect(replayEvents, isEmpty);
+      expect(await store.persisted(), retried.toJson());
+    } finally {
+      await replaySubscription.cancel();
+    }
   });
 
   test('An older completion cannot release a younger pending durable write',
@@ -282,14 +293,27 @@ void main() {
     expect(wallet.snapshot.totalEarnedStars, 10);
     expect(wallet.snapshot.xp, 80);
     expect(await store.persisted(), wallet.snapshot.toJson());
+    final writesBeforeReplay = List<Map<String, dynamic>>.of(store.writes);
+    expect(writesBeforeReplay, hasLength(3));
+    final confirmed = wallet.snapshot.toJson();
     final reopened = RewardWalletRepository();
-    final replay = await reopened.awardGameResult(
-      resultId: 'second',
-      stars: 5,
-      xp: 40,
-    );
-    expect(replay.stars, 10);
-    expect(replay.gameResultIds, ['first', 'second', 'third']);
-    expect(store.writes, hasLength(3));
+    final replayEvents = <RewardWallet>[];
+    final replaySubscription = reopened.changes.listen(replayEvents.add);
+    try {
+      final replay = await reopened.awardGameResult(
+        resultId: 'second',
+        stars: 5,
+        xp: 40,
+      );
+      await Future<void>.delayed(Duration.zero);
+      expect(replay.stars, 10);
+      expect(replay.gameResultIds, ['first', 'second', 'third']);
+      expect(replay.toJson(), confirmed);
+      expect(store.writes, [...writesBeforeReplay, confirmed]);
+      expect(await store.persisted(), confirmed);
+      expect(replayEvents, isEmpty);
+    } finally {
+      await replaySubscription.cancel();
+    }
   });
 }
