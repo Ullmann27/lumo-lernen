@@ -1,0 +1,165 @@
+{
+  "schema": 1,
+  "kind": "actual_original_current_build_and_preservation_contracts",
+  "status": "PASS",
+  "source": {
+    "host_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+    "host_tree": "7fcc3748f8178bff91176ff27f11f7e86ca165ca",
+    "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+    "run_id": 43596913210,
+    "run_attempt": 1,
+    "job_id": 132454178537,
+    "branch": "integration/lumo-live-connections-20261114",
+    "repository": "Ullmann27/lumo-lernen",
+    "workflow": ".github/workflows/lumo-connect-four-2020.yml",
+    "workflow_blob": "4acbf17dd2635f75b8e7b8d8280d43364c8d08c6",
+    "workflow_sha256": "b250e610afea7f42cdf2f6ade9f25a41f4df8c100080a577c05119b6a6175877",
+    "actual_command": ".ci-python/bin/python -m unittest discover -s scripts/tests -v 2>&1 | tee .ci-results/build-contracts.log",
+    "required_steps": [
+      {
+        "name": "Save source identity and validate exact Godot integration pin",
+        "number": 3,
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T12:56:34Z",
+        "completed_at": "2026-11-14T12:56:34Z"
+      },
+      {
+        "name": "Verify all build and preservation contracts",
+        "number": 20,
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T13:10:51Z",
+        "completed_at": "2026-11-14T13:16:57Z"
+      },
+      {
+        "name": "Preserve the complete original script contracts for PCM delivery replay",
+        "number": 21,
+        "status": "completed",
+        "conclusion": "success",
+        "started_at": "2026-11-14T13:16:57Z",
+        "completed_at": "2026-11-14T13:16:58Z"
+      }
+    ],
+    "provenance_basis": "Exact artifact workflow_run source identity, attempt-specific original job metadata, successful source/script/upload steps, and the exact committed workflow. The complete still-running job log has deliberately not been fetched."
+  },
+  "artifact": {
+    "id": 14115283964,
+    "node_id": "MDg6QXJ0aWZhY3QxNDExNTI4Mzk2NA==",
+    "name": "lumo-connect-four-2020-build-contracts",
+    "size_in_bytes": 28654,
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115283964",
+    "archive_download_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14115283964/zip",
+    "expired": false,
+    "digest": "sha256:d311e9f9873e5bcfc9dfeace93db92695f75d1981f1a5ae6fcef7c8582a9d51c",
+    "created_at": "2026-11-14T13:16:58Z",
+    "updated_at": "2026-11-14T13:16:58Z",
+    "expires_at": "2026-12-14T13:16:57Z",
+    "workflow_run": {
+      "id": 43596913210,
+      "repository_id": 1222433959,
+      "head_repository_id": 1222433959,
+      "head_branch": "integration/lumo-live-connections-20261114",
+      "head_sha": "1e22d2455937e2640d1e44e153d290746f3afe49"
+    }
+  },
+  "tests": 932,
+  "seconds": 364.84,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "original_summary": [
+    {
+      "line": 1045,
+      "text": "Ran 932 tests in 364.840s"
+    },
+    {
+      "line": 1047,
+      "text": "OK"
+    }
+  ],
+  "archive_verification": {
+    "artifact_id": 14115283964,
+    "archive_bytes": 28654,
+    "archive_sha256": "d311e9f9873e5bcfc9dfeace93db92695f75d1981f1a5ae6fcef7c8582a9d51c",
+    "all_zip_crc_verified": true,
+    "archive_members": [
+      {
+        "path": "build-contracts.log",
+        "bytes": 184440,
+        "compressed_bytes": 28502,
+        "crc32": "74d2d9f4"
+      }
+    ],
+    "original_log_bytes": 184440,
+    "original_log_sha256": "7fc3ee79f5a9ba97e4f674006ddcde92b92c4b1174f4349898d8e17702ee6bfc",
+    "original_log_git_blob": "cfedf4c06d5f2024a47e15cd05f7ace816accf38",
+    "summary": [
+      {
+        "line": 1045,
+        "text": "Ran 932 tests in 364.840s"
+      },
+      {
+        "line": 1047,
+        "text": "OK"
+      }
+    ],
+    "error_rows": [],
+    "skip_rows": [],
+    "local_archive": "/workspace/scratch/909ddb52fe7b/current-build-contracts-1e22/original-artifact-14115283964.zip",
+    "local_log": "/workspace/scratch/909ddb52fe7b/current-build-contracts-1e22/build-contracts.log",
+    "artifact_downloads": 1,
+    "main_joblog_downloaded": false,
+    "log_prefix": [
+      {
+        "line": 1,
+        "text": "test_actual_initial_pincheck_accepts_the_current_reviewed_pin (test_action_2017_delivery.Action2017InitialPincheckTests.test_actual_initial_pincheck_accepts_the_current_reviewed_pin) ... ok"
+      },
+      {
+        "line": 2,
+        "text": "test_actual_initial_pincheck_rejects_measured_android_layout_failure (test_action_2017_delivery.Action2017InitialPincheckTests.test_actual_initial_pincheck_rejects_measured_android_layout_failure) ... ok"
+      },
+      {
+        "line": 3,
+        "text": "test_2017_update_wrapper_requires_the_exact_reviewed_new_candidate (test_action_2017_delivery.Action2017PinTests.test_2017_update_wrapper_requires_the_exact_reviewed_new_candidate) ... ok"
+      },
+      {
+        "line": 4,
+        "text": "test_every_1950_through_2016_policy_entry_stays_unchanged (test_action_2017_delivery.Action2017PinTests.test_every_1950_through_2016_policy_entry_stays_unchanged) ... ok"
+      },
+      {
+        "line": 5,
+        "text": "test_any_arm64_identity_byte_or_signature_mismatch_fails_closed (test_action_2017_delivery.Action2017PublicationTests.test_any_arm64_identity_byte_or_signature_mismatch_fails_closed) ... ok"
+      },
+      {
+        "line": 6,
+        "text": "test_existing_release_or_version_tag_cannot_be_replaced (test_action_2017_delivery.Action2017PublicationTests.test_existing_release_or_version_tag_cannot_be_replaced) ... ok"
+      },
+      {
+        "line": 7,
+        "text": "test_matching_measured_bytes_and_both_live_android_proofs_are_bound (test_action_2017_delivery.Action2017PublicationTests.test_matching_measured_bytes_and_both_live_android_proofs_are_bound) ... ok"
+      },
+      {
+        "line": 8,
+        "text": "test_old_source_failed_upgrade_missing_menu_and_other_tested_apk_are_rejected (test_action_2017_delivery.Action2017PublicationTests.test_old_source_failed_upgrade_missing_menu_and_other_tested_apk_are_rejected) ... ok"
+      },
+      {
+        "line": 9,
+        "text": "test_public_receipt_requires_exact_tag_commit_size_and_direct_asset (test_action_2017_delivery.Action2017PublicationTests.test_public_receipt_requires_exact_tag_commit_size_and_direct_asset) ... ok"
+      },
+      {
+        "line": 10,
+        "text": "test_same_source_completed_release_selects_verification_without_asset_mutation (test_action_2017_delivery.Action2017PublicationTests.test_same_source_completed_release_selects_verification_without_asset_mutation) ... ok"
+      }
+    ]
+  },
+  "archive_git_blob": "5be1573f9a167b27d97bee418e451d877684283d",
+  "log_git_blob": "cfedf4c06d5f2024a47e15cd05f7ace816accf38",
+  "complete_main_joblog_downloaded": false,
+  "other_runs_started": false,
+  "source_files_modified": false,
+  "limitations": [
+    "The overall verify-and-build job is still running; successful script contracts do not approve the APK or remaining Native, Android, update or delivery gates.",
+    "Original test-log text contains no standalone Git checkout header; its source is bound by the original artifact/run/attempt-step metadata and the exact workflow. The complete job log will supply the actual checkout stdout once terminal."
+  ]
+}

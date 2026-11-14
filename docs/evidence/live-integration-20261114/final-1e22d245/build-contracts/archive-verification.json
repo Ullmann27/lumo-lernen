@@ -1,0 +1,75 @@
+{
+  "artifact_id": 14115283964,
+  "archive_bytes": 28654,
+  "archive_sha256": "d311e9f9873e5bcfc9dfeace93db92695f75d1981f1a5ae6fcef7c8582a9d51c",
+  "all_zip_crc_verified": true,
+  "archive_members": [
+    {
+      "path": "build-contracts.log",
+      "bytes": 184440,
+      "compressed_bytes": 28502,
+      "crc32": "74d2d9f4"
+    }
+  ],
+  "original_log_bytes": 184440,
+  "original_log_sha256": "7fc3ee79f5a9ba97e4f674006ddcde92b92c4b1174f4349898d8e17702ee6bfc",
+  "original_log_git_blob": "cfedf4c06d5f2024a47e15cd05f7ace816accf38",
+  "summary": [
+    {
+      "line": 1045,
+      "text": "Ran 932 tests in 364.840s"
+    },
+    {
+      "line": 1047,
+      "text": "OK"
+    }
+  ],
+  "error_rows": [],
+  "skip_rows": [],
+  "local_archive": "/workspace/scratch/909ddb52fe7b/current-build-contracts-1e22/original-artifact-14115283964.zip",
+  "local_log": "/workspace/scratch/909ddb52fe7b/current-build-contracts-1e22/build-contracts.log",
+  "artifact_downloads": 1,
+  "main_joblog_downloaded": false,
+  "log_prefix": [
+    {
+      "line": 1,
+      "text": "test_actual_initial_pincheck_accepts_the_current_reviewed_pin (test_action_2017_delivery.Action2017InitialPincheckTests.test_actual_initial_pincheck_accepts_the_current_reviewed_pin) ... ok"
+    },
+    {
+      "line": 2,
+      "text": "test_actual_initial_pincheck_rejects_measured_android_layout_failure (test_action_2017_delivery.Action2017InitialPincheckTests.test_actual_initial_pincheck_rejects_measured_android_layout_failure) ... ok"
+    },
+    {
+      "line": 3,
+      "text": "test_2017_update_wrapper_requires_the_exact_reviewed_new_candidate (test_action_2017_delivery.Action2017PinTests.test_2017_update_wrapper_requires_the_exact_reviewed_new_candidate) ... ok"
+    },
+    {
+      "line": 4,
+      "text": "test_every_1950_through_2016_policy_entry_stays_unchanged (test_action_2017_delivery.Action2017PinTests.test_every_1950_through_2016_policy_entry_stays_unchanged) ... ok"
+    },
+    {
+      "line": 5,
+      "text": "test_any_arm64_identity_byte_or_signature_mismatch_fails_closed (test_action_2017_delivery.Action2017PublicationTests.test_any_arm64_identity_byte_or_signature_mismatch_fails_closed) ... ok"
+    },
+    {
+      "line": 6,
+      "text": "test_existing_release_or_version_tag_cannot_be_replaced (test_action_2017_delivery.Action2017PublicationTests.test_existing_release_or_version_tag_cannot_be_replaced) ... ok"
+    },
+    {
+      "line": 7,
+      "text": "test_matching_measured_bytes_and_both_live_android_proofs_are_bound (test_action_2017_delivery.Action2017PublicationTests.test_matching_measured_bytes_and_both_live_android_proofs_are_bound) ... ok"
+    },
+    {
+      "line": 8,
+      "text": "test_old_source_failed_upgrade_missing_menu_and_other_tested_apk_are_rejected (test_action_2017_delivery.Action2017PublicationTests.test_old_source_failed_upgrade_missing_menu_and_other_tested_apk_are_rejected) ... ok"
+    },
+    {
+      "line": 9,
+      "text": "test_public_receipt_requires_exact_tag_commit_size_and_direct_asset (test_action_2017_delivery.Action2017PublicationTests.test_public_receipt_requires_exact_tag_commit_size_and_direct_asset) ... ok"
+    },
+    {
+      "line": 10,
+      "text": "test_same_source_completed_release_selects_verification_without_asset_mutation (test_action_2017_delivery.Action2017PublicationTests.test_same_source_completed_release_selects_verification_without_asset_mutation) ... ok"
+    }
+  ]
+}
