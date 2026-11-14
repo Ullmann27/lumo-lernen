@@ -1,0 +1,64 @@
+{
+  "schema": 1,
+  "kind": "remote_preservation_of_completed_budget_reviews",
+  "authorized_branch": "evidence/lumo-budget-reviews-20261114",
+  "parent": "e168f6ae96c4a1a50fb7c4313963425d0b15a1eb",
+  "only_evidence_changes": true,
+  "skip_ci": true,
+  "recovery": {
+    "local_transport": "exec-server transport disconnected; recovery timed out after 45s",
+    "environment": "unavailable",
+    "local_retry_performed": false,
+    "source": "Exact previously read-back strings retained in functions.store",
+    "note": "These files preserve the completed assessment and independent follow-up review. The old pack manifest and sums are unchanged contextual originals; their external evidence members are not all re-uploaded here. This branch is not a claim to contain the full original local evidence pack."
+  },
+  "preserved": [
+    {
+      "path": "docs/evidence/combined-budgets-independent-20261114/budget-review.json",
+      "store_key": "host-outer-budget-assessment-final-strings[review.json]",
+      "bytes": 13182,
+      "sha256": "af4e8dfd9bae68ca2ddd34376b685cb7213e7881d2b54b9312abee23a96bb698",
+      "git_blob": "6ab42ac32cc84fa6d064f4976a3c8519eabcb5bc"
+    },
+    {
+      "path": "docs/evidence/combined-budgets-independent-20261114/budget-pack-manifest.original.json",
+      "store_key": "host-outer-budget-assessment-final-strings[manifest.json]",
+      "bytes": 2144,
+      "sha256": "90d23c3d5b2ab2b12070f4d410797abcc8b8d466eb34eb41e0d1153fcbd5b8a2",
+      "git_blob": "e8d31e67627daf8df1b2fb7f26e4c040311a1d85"
+    },
+    {
+      "path": "docs/evidence/combined-budgets-independent-20261114/budget-pack-readme.original.md",
+      "store_key": "host-outer-budget-assessment-final-strings[README.md]",
+      "bytes": 1161,
+      "sha256": "aeb521a6d2476db564240f3cc87179d95da1c6bbc2a3a6d3260d40b1fc41605c",
+      "git_blob": "d13b4986ec6a6c7f66d13233b930e78bfb8b9626"
+    },
+    {
+      "path": "docs/evidence/combined-budgets-independent-20261114/budget-pack-sha256sums.original.txt",
+      "store_key": "host-outer-budget-assessment-final-strings[SHA256SUMS]",
+      "bytes": 936,
+      "sha256": "44bf61a5dd1ab052db14d6f652d7b943e9cf8882c8ee833bb049bbbc0e438a53",
+      "git_blob": "eba89703caa620bcf1dff305b7522ed7a496f598"
+    },
+    {
+      "path": "docs/evidence/combined-budgets-independent-20261114/source-followup-review.json",
+      "store_key": "host-budget-followup-final-review-json",
+      "bytes": 3269,
+      "sha256": "92c5fc37447451e38b7b9f2117cb269c860d7206abff251821d132cff020e782",
+      "git_blob": "def89ae25e82bea1d90e9058914c3f1bf4908ea9"
+    }
+  ],
+  "original_external_packs": [
+    "/tmp/host-combined-outer-budget-assessment-20261114",
+    "/tmp/host-combined-budget-independent-review-20261114"
+  ],
+  "unchanged_source_scope": [
+    "all product files",
+    "all workflows",
+    "all tests",
+    "all pins",
+    "all active integration refs",
+    "all running CI"
+  ]
+}
