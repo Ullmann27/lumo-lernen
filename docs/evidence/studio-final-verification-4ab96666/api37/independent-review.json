@@ -1,0 +1,354 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T01:25:21.021301+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "BLOCKED_CURRENT_STUDIO_LEARNING_OCR_BEFORE_FIRST_TOUCH",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "job": {
+    "id": 132269951372,
+    "name": "Android API 37 live application tour",
+    "head_sha": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "run_id": 43530667812,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "failure",
+    "started_at": "2026-11-14T00:57:03Z",
+    "completed_at": "2026-11-14T01:16:00Z",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43530667812/job/132269951372"
+  },
+  "artifact": {
+    "id": 14090694722,
+    "name": "lumo-studio-2019-android-17-tour",
+    "bytes": 96104456,
+    "sha256": "b5b6e08f0cfb1776556b2ae9a7f533698ccff6f32204b91d352ee16f04443549",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14090694722",
+    "full_zip_retained": "original-artifact.zip",
+    "all_members_crc_and_sha256_read": true,
+    "members": 1089,
+    "uncompressed_bytes": 111177516,
+    "verification": {
+      "path": "artifact-byte-verification.json",
+      "bytes": 260542,
+      "sha256": "4b196be5e6cf06ee27dd5c9f87ea3b2e3619dfd297570d6713e9c07f3cca9ad6",
+      "git_blob": "727c6dba4a19a509ae084863be8d4ffd773a6399"
+    }
+  },
+  "read_only_review": true,
+  "new_app_or_test_execution_by_reviewer": false,
+  "original_log": {
+    "path": "original-job.log",
+    "bytes": 1502217,
+    "sha256": "bbb3283f27dd4c859e1686bd7d8dc298a9a72914bfab4209e9812a9add4f7f07",
+    "git_blob": "54c9d0fa283c6de108c7d46c4828270e83c2bebe"
+  },
+  "apk_identity": {
+    "apk_sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "godot_revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "godot_pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "versionName": "0.13.7",
+    "versionCode": 2019,
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "checks": {
+      "sha256_matches_provenance": true,
+      "sha256_matches_build_sums": true,
+      "flutter_source_is_this_commit": true,
+      "tracked_source_clean": true,
+      "godot_revision_is_pinned": true,
+      "signing_certificate": true,
+      "version_matches_pubspec": true,
+      "x86_64_native_code": true
+    }
+  },
+  "android_runtime": {
+    "sdk": 37,
+    "release": "17",
+    "fingerprint": "google/sdk_gphone64_x86_64/emu64xa:17/CE2A.260420.051.A3/16571990:userdebug/dev-keys",
+    "model": "sdk_gphone64_x86_64"
+  },
+  "framework_start": {
+    "status": "PASS",
+    "required_stable_seconds": 10.0,
+    "observed_stable_seconds": 12.003176357999962,
+    "consecutive_ready_samples": 4,
+    "pid_samples": [
+      "627",
+      "627",
+      "627",
+      "627"
+    ],
+    "system_server_start_count_samples": [
+      "1",
+      "1",
+      "1",
+      "1"
+    ],
+    "services_in_every_sample": [
+      "input",
+      "settings",
+      "activity",
+      "package",
+      "window"
+    ],
+    "observed_restart": false,
+    "readiness_report": "selected-originals/framework-start/framework-readiness.json",
+    "actual_avd_binding_status": "ACTUAL_CLI22_AVD_BINDING_VERIFIED",
+    "original_cli_properties": "selected-originals/framework-start/cli22/original-source.properties",
+    "original_avd_target": "android-0",
+    "original_avd_data_partition": "800M",
+    "current_avd_target": "android-37.0",
+    "current_avd_data_partition": "10G",
+    "scope": "Real pre-app emulator framework observation; no physical-device FPS or guarantee of later app behavior"
+  },
+  "normal_application_tour": {
+    "status": "PASS",
+    "steps": 21,
+    "all_step_ok": true,
+    "step_names": [
+      "apk-identity",
+      "launch",
+      "onboarding",
+      "navigate-start",
+      "atelier-roundtrip",
+      "navigate-lernen",
+      "navigate-spiele",
+      "open-kart",
+      "start-kart-race",
+      "race-running",
+      "race-hud",
+      "race-drive",
+      "pause-menu",
+      "return-from-kart",
+      "learning-state-after-kart",
+      "lernen-usable-after-kart",
+      "profile-after-kart",
+      "restart-keeps-learning-state",
+      "display-fold_offen",
+      "display-fold_aussen",
+      "display-quer"
+    ],
+    "source": "selected-originals/tour-result.json",
+    "scope": "Contains Flutter atelier/learning navigation, native Kart driving/pause/Flutter return and a baseline data comparison. It does not replace the later real 3D learning roundtrip or Cards gates.",
+    "normal_tour_fatal_crashes": 0,
+    "not_tested": [
+      "physical Samsung Fold",
+      "device GPU frame times / 60 FPS",
+      "audio output",
+      "complete two-lap race and reward (kart_complete_android_probe)"
+    ]
+  },
+  "studio_surface_failure": {
+    "status": "FAIL",
+    "error": "TimeoutError: Current native surface/target did not settle before touch: Ein Objekt zeigen",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 820, in main\n    result['learning'] = learning_roundtrip(out)\n                         ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/lumo_studio_surfaces_android_probe.py\", line 269, in learning_roundtrip\n    probe.native_text(out, 'Ein Objekt zeigen', f'learning-move-{index + 1}',\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 458, in native_text\n    return native_tap(out, label, tag, exact=exact, orientation=orientation)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/runner/work/lumo-lernen/lumo-lernen/.github/probes/creative_android_probe.py\", line 444, in native_tap\n    raise TimeoutError('Current native surface/target did not settle before touch: ' + label)\nTimeoutError: Current native surface/target did not settle before touch: Ein Objekt zeigen\n",
+    "exact_target": "Ein Objekt zeigen",
+    "exact_caption_required": true,
+    "frames_observed": 7,
+    "all_frames_acceptable_for_target_sampling": true,
+    "all_frame_reasons": [
+      [
+        "actual requested caption not observed"
+      ],
+      [
+        "actual requested caption not observed"
+      ],
+      [
+        "actual requested caption not observed"
+      ],
+      [
+        "actual requested caption not observed"
+      ],
+      [
+        "actual requested caption not observed"
+      ],
+      [
+        "actual requested caption not observed"
+      ],
+      [
+        "actual requested caption not observed"
+      ]
+    ],
+    "elapsed_seconds": 120.000543,
+    "touch_sent": false,
+    "missing_touch_basis": "No frame has a target and no readiness touch field; the exact published native_tap function sends input only after observed stable matching targets.",
+    "readiness_original": "selected-originals/nextgen/learning-move-1-surface-readiness.json",
+    "ocr_original_comparisons": [
+      {
+        "original_file": "nextgen/learning-move-1-0-ocr.json",
+        "line_count": 77,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| tin zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      },
+      {
+        "original_file": "nextgen/learning-move-1-1-ocr.json",
+        "line_count": 75,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| Em zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      },
+      {
+        "original_file": "nextgen/learning-move-1-2-ocr.json",
+        "line_count": 72,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| Em zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      },
+      {
+        "original_file": "nextgen/learning-move-1-3-ocr.json",
+        "line_count": 75,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| Em zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      },
+      {
+        "original_file": "nextgen/learning-move-1-4-ocr.json",
+        "line_count": 76,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| tin zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      },
+      {
+        "original_file": "nextgen/learning-move-1-5-ocr.json",
+        "line_count": 76,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| Em zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      },
+      {
+        "original_file": "nextgen/learning-move-1-6-ocr.json",
+        "line_count": 77,
+        "exact_caption_matches": 0,
+        "observed_button_region_misreads": [
+          {
+            "text": "“| tin zeigen |",
+            "bounds": [
+              0.0,
+              1970.0,
+              516.0,
+              2114.0
+            ],
+            "variant": "teal-text-1x"
+          }
+        ]
+      }
+    ],
+    "cards_reached": false,
+    "learning_completed": false,
+    "learning_flutter_return_verified": false,
+    "no_product_failure_inferred_from_ocr_alone": true,
+    "api35_distinction": "API37 ends in native_tap readiness TimeoutError. API35 separately ends in a Tesseract subprocess timeout; only original image/recognition observations are compared, not silently equated."
+  },
+  "local_voice_and_offline": {
+    "offline": true,
+    "permission_report": {
+      "local_model_assent": true,
+      "voice_enabled": true,
+      "auto_read": true,
+      "unrelated_permissions_unchanged": true,
+      "no_audio_emulator": true,
+      "audible_quality_verified": false,
+      "lip_sync_verified": false
+    },
+    "audible_audio_and_lipsync_not_verified": true
+  },
+  "actually_opened_images": [
+    {
+      "path": "selected-originals/nextgen/learning-move-1-0.png",
+      "bytes": 555537,
+      "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "git_blob": "816498d883f8f481c754b06817e26af449f7112f",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "finding": "Der goldene Knopf Ein Objekt zeigen ist vollständig sichtbar und lesbar. Aufgabe 8 + 5, 0/5 Objekte bewegt. Keine sichtbare Systemleistenüberdeckung dieses Knopfes; keine Aussage über noch nicht ausgeführte Eingabewirkung."
+    },
+    {
+      "path": "selected-originals/nextgen/learning-move-1-6.png",
+      "bytes": 556003,
+      "sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "git_blob": "c3bb9c0eeccbf241080e249cb6d7e57cbd9c406c",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "finding": "Letzter echter Frame: gleicher vollständig lesbarer Goldknopf, weiterhin 0/5. Lumo-Pose ist verändert; die Szene ist nicht als eingefroren bewiesen. Kein Touch erfolgt und kein Lernergebnis akzeptiert."
+    }
+  ],
+  "original_log_cautions": [
+    "The earlier printed actual_cli22_avd_binding_not_verified FAIL at 00:58:25 is output from a passed negative contract test, not this emulator startup result.",
+    "Node deprecation warnings and emulator-cleanup stop: Not implemented messages are retained. No log-error-free assertion."
+  ],
+  "scope_limits": [
+    "Only two current learning screenshots personally opened for this review; no full artifact visual acceptance",
+    "No successful current native learning completion/Flutter return",
+    "Cards draw/pause/resume not reached",
+    "No physical Fold7,60FPS,GPU,temperature or input-latency result",
+    "No CI rerun or source/helper change by reviewer"
+  ],
+  "no_overall_candidate_release": true
+}

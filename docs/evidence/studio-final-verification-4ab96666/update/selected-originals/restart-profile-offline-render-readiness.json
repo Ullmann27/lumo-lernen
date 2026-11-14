@@ -1,0 +1,19 @@
+{
+  "schema": "lumo-flutter-render-readiness",
+  "version": 1,
+  "name": "restart-profile-offline",
+  "status": "PASS",
+  "attempts": [
+    {
+      "capture": "restart-profile-offline-render-candidate-1.png",
+      "sha256": "47315506d9fdec001ae7a257f6d81bb128b4914c3cdbe8b32cbe5f33c7c8c7b5",
+      "width": 1080,
+      "height": 2400,
+      "content_entropy_bits": 7.023,
+      "threshold_bits": 3.0,
+      "visually_ready": true,
+      "scope": "Rendered content readiness, not an accessibility or gameplay check"
+    }
+  ],
+  "elapsed_seconds": 1.624
+}

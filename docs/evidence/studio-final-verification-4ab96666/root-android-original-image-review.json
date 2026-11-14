@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "reviewer": "Root",
+  "reviewed_at_utc": "2026-11-14T01:32:26.630255+00:00",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "scope": "Five actually opened original screenshots; independent limited visual observations, no additional app executions or device-performance claims",
+  "images": [
+    {
+      "file": "api35/original/nextgen/learning-move-1-0.png",
+      "sha256": "761ded680660bcb672d15168b01f788ddcda6f57b3d676ba81c9add3f471355e",
+      "bytes": 557393,
+      "actually_opened": true,
+      "finding": "Original API35 frame actually opened before this resumed context. Gold caption Ein Objekt zeigen readable; eight teal cubes and five gold reserves; 0/5 moved. This is no completed interaction."
+    },
+    {
+      "file": "api37/selected-originals/nextgen/learning-move-1-0.png",
+      "sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "bytes": 555537,
+      "actually_opened": true,
+      "finding": "Original API37 frame opened individually at this review. Entire gold button and its three words legible; 0/5 moved; original Lumo and two ten-frames present. No status/navigation-bar overlap on the button."
+    },
+    {
+      "file": "update/selected-originals/updated-profile-offline.png",
+      "sha256": "480f0d1f86cccf707ad17c7c1b5591a9f263fdd09add4eb367ed3e72f6bfe48c",
+      "bytes": 3099501,
+      "actually_opened": true,
+      "finding": "Original new-update Flutter home actually opened before this resumed context. LumoTest, class1, 1 star and 5 XP visible; airplane icon visible. One screenshot cannot prove all saved data."
+    },
+    {
+      "file": "update/selected-originals/23_zurueck_in_flutter.png",
+      "sha256": "9973a1f5e4ff25551c6cfeb923d08ba8a607cff6304f2ebbb01e052f3979d0d8",
+      "bytes": 1927156,
+      "actually_opened": true,
+      "finding": "Original returned Flutter Spielewelt actually opened before this resumed context. Game routes, normal navigation and 1 star visible; no native Godot surface remains in this frame."
+    },
+    {
+      "file": "update/selected-originals/21_race_driving_late_1.png",
+      "sha256": "8492a5ec3e31c8fd84b0a6e45a7726d2f3469fcfb7058c37e8b52954eb301b79",
+      "bytes": 1891163,
+      "actually_opened": true,
+      "finding": "Original update Kart frame individually opened now after an earlier tool output was discarded. Genuine Sonnenhafen race scene, kart beside left rail, HUD round1/2 place6/6 and 169km/h, visible touch controls. A static image does not prove motion, a complete race, sound, collision quality or device FPS."
+    }
+  ]
+}

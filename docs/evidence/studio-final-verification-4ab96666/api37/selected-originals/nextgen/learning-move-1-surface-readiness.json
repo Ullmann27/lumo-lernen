@@ -1,0 +1,236 @@
+{
+  "status": "FAIL",
+  "label": "Ein Objekt zeigen",
+  "timeout_seconds": 120,
+  "exact_caption_required": true,
+  "orientation_policy": "responsive",
+  "scope": "Observed touch prerequisites; post-action assertions still required",
+  "frames": [
+    {
+      "source": "learning-move-1-0.png",
+      "source_sha256": "36ee08a760694952bdbcdc13b7919bf34d82874e0dd35c83f4a66a13401ac843",
+      "source_bytes": 555537,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 2.020344
+    },
+    {
+      "source": "learning-move-1-1.png",
+      "source_sha256": "a69fdc2300fe9cdfe5f03362f50c90f10db227beeeaa701ad8179f160b6b43a6",
+      "source_bytes": 555004,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 19.590327
+    },
+    {
+      "source": "learning-move-1-2.png",
+      "source_sha256": "ee8da91e30ebbeac321d9bca060ede87979d6ac9d1ab78ec4e0cacda47ec9f1f",
+      "source_bytes": 556459,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 38.019903
+    },
+    {
+      "source": "learning-move-1-3.png",
+      "source_sha256": "11c99626045237862361eee94ffde877fc3d217708586c670617c0366c97f7fa",
+      "source_bytes": 555517,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 55.884569
+    },
+    {
+      "source": "learning-move-1-4.png",
+      "source_sha256": "db938f6c049d4c42c985e22e3002b118f21e6377058bf1d17051ea2cec46c040",
+      "source_bytes": 555864,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 72.395
+    },
+    {
+      "source": "learning-move-1-5.png",
+      "source_sha256": "e91a638e7627d70080fc71daacd28d0094ff450e1c18dbf5106c3d1c5d91f85c",
+      "source_bytes": 555792,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 90.163601
+    },
+    {
+      "source": "learning-move-1-6.png",
+      "source_sha256": "1ed7f16afc03cba564df016f08f9dfec053a7e6ae12213561a54ea08d3e0c435",
+      "source_bytes": 556003,
+      "pixels": [
+        1080,
+        2400
+      ],
+      "orientation_policy": "responsive",
+      "sample_rows": [
+        288,
+        528,
+        768,
+        1008,
+        1248,
+        1488,
+        1728,
+        1968
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [
+        "actual requested caption not observed"
+      ],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "captured_after_seconds": 106.471486
+    }
+  ],
+  "error": "Current native surface/target did not settle before touch: Ein Objekt zeigen",
+  "elapsed_seconds": 120.000543
+}

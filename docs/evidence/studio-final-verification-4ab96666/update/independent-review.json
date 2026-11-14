@@ -1,0 +1,529 @@
+{
+  "schema": 1,
+  "reviewed_at_utc": "2026-11-14T01:25:21.021301+00:00",
+  "reviewer": "Agent A / learning_worlds",
+  "status": "PASS_WITH_EXPLICIT_SINGLE_PROFILE_SCOPE_AND_BASELINE_NAVIGATION_LIMITATIONS",
+  "host_source": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+  "native_source": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+  "job": {
+    "id": 132269951387,
+    "name": "update-2019-from-2017",
+    "head_sha": "4ab96666f954baf258422d6ed277fc297b7ddeef",
+    "run_id": 43530667812,
+    "run_attempt": 1,
+    "status": "completed",
+    "conclusion": "success",
+    "started_at": "2026-11-14T00:57:03Z",
+    "completed_at": "2026-11-14T01:12:11Z",
+    "html_url": "https://github.com/Ullmann27/lumo-lernen/actions/runs/43530667812/job/132269951387"
+  },
+  "artifact": {
+    "id": 14091240196,
+    "name": "lumo-2019-in-place-update-proof",
+    "bytes": 105702437,
+    "sha256": "3c5360e2b650893e48499ce512d062dd458de3b32080b3101a6abcc6246fb8ae",
+    "url": "https://api.github.com/repos/Ullmann27/lumo-lernen/actions/artifacts/14091240196",
+    "full_zip_retained": "original-artifact.zip",
+    "all_members_crc_and_sha256_read": true,
+    "members": 448,
+    "uncompressed_bytes": 118852218,
+    "verification": {
+      "path": "artifact-byte-verification.json",
+      "bytes": 106939,
+      "sha256": "0c0ac074cf4304dc969cb0d1b8f5a15b039ea216c465821d18bcd8c549320ea8",
+      "git_blob": "54a8345cbd9b259ff40c43911bb9b000d5e5dd44"
+    }
+  },
+  "read_only_review": true,
+  "new_app_or_test_execution_by_reviewer": false,
+  "original_log": {
+    "path": "original-job.log",
+    "bytes": 294496,
+    "sha256": "633f74649f45a7b7559c4e7f2a3220626c18c5255fa017f5842465620cb67430",
+    "git_blob": "1ca72631282f85827f3c98a52025afb736afd029"
+  },
+  "original_result": {
+    "path": "selected-originals/update-result.json",
+    "bytes": 39956,
+    "sha256": "e7270844feffe9f0546affaf6cf91bfa76ed8dee21238e2c129b22ac3a7972dc",
+    "git_blob": "09be8a137e3625af93f00efda09ae7051937869c"
+  },
+  "apk_identity": {
+    "package": "dev.ullmann.lumo.lumo_lernen.coachpreview",
+    "versionCode": 2019,
+    "versionName": "0.13.7",
+    "bytes": 325295610,
+    "sha256": "7c647296c57ffce9950e117889685360ec024407dead35486eecc1331db3f9b6",
+    "signingCertificateSha256": "a6b1ef61bf59db4e0794c742aeb3b5506d130f4d21175c9975140e6acdb80702",
+    "abis": [
+      "x86_64"
+    ],
+    "flutter_source_commit": "4ab96666f954baf258422d6ed277fc297b7ddeef"
+  },
+  "native_pck": {
+    "revision": "803e7a626ea6ef0aeeda9c37010e844033d3a8e3",
+    "engine": "4.6.3",
+    "pck_sha256": "28032ec5f08db510d5baa1e10b7cbf8cade072081c5d8be8f40181c65d7aa01e",
+    "bytes": 66234596
+  },
+  "candidate_compared_with_current_build": {
+    "report": "../build/apk-verification-reports-from-original-job.json",
+    "all_comparison_fields": {
+      "package": true,
+      "versionCode": true,
+      "versionName": true,
+      "bytes": true,
+      "sha256": true,
+      "signingCertificateSha256": true,
+      "abis": true
+    },
+    "native_and_pck_match": true,
+    "no_local_second_apk_copy": true
+  },
+  "baseline": {
+    "versionCode": 2017,
+    "versionName": "0.13.5",
+    "bytes": 321904250,
+    "sha256": "03063cdc0956b3c1df00f604de504841e1a5fed4cabf31c9418a9167a11140e8",
+    "flutter_source_commit": "47889f74a651b073965def70743417cf320b1eb9"
+  },
+  "installation": {
+    "original_result": {
+      "before_version": 2017,
+      "after_version": 2019,
+      "userId": "10209",
+      "firstInstallTime": "2026-11-14 01:01:38"
+    },
+    "commands_read_from_exact_candidate_source": [
+      [
+        "adb",
+        "install",
+        "-r",
+        "--no-streaming",
+        "baseline"
+      ],
+      [
+        "adb",
+        "install",
+        "-r",
+        "--no-streaming",
+        "candidate"
+      ]
+    ],
+    "both_actual_install_outputs": "Success",
+    "original_package_identity": {
+      "baseline-package.txt": [
+        "versionCode=2017 minSdk=24 targetSdk=36",
+        "versionName=0.13.5",
+        "lastUpdateTime=2026-11-14 01:01:38",
+        "firstInstallTime=2026-11-14 01:01:38"
+      ],
+      "updated-package.txt": [
+        "versionCode=2019 minSdk=24 targetSdk=36",
+        "versionName=0.13.7",
+        "lastUpdateTime=2026-11-14 01:04:44",
+        "firstInstallTime=2026-11-14 01:01:38"
+      ]
+    },
+    "basis": [
+      "selected-originals/baseline-install.txt",
+      "selected-originals/update-install.txt",
+      "selected-originals/baseline-package.txt",
+      "selected-originals/updated-package.txt",
+      "source-snapshots/.github/probes/lumo_2003_update_android_probe.py"
+    ]
+  },
+  "preserved_data": {
+    "fixture_profiles": 1,
+    "profile": {
+      "id": "1794618134669740",
+      "name": "LumoTest",
+      "age": 7,
+      "grade": 1,
+      "createdAt": "2026-11-14T01:02:14.669740"
+    },
+    "compared_profile_fields": [
+      "id",
+      "name",
+      "age",
+      "grade",
+      "createdAt"
+    ],
+    "local_owner_unchanged": true,
+    "protected_learning_keys": [
+      "flutter.lumo_attempt_log_v1",
+      "flutter.lumo_learning_local_student_id_v1",
+      "flutter.lumo_progress_daily::local-bce423a41cf22b39261c5e059dcdab9d",
+      "flutter.lumo_progress_journey_v1::local-bce423a41cf22b39261c5e059dcdab9d",
+      "flutter.lumo_progress_last::local-bce423a41cf22b39261c5e059dcdab9d",
+      "flutter.lumo_progress_skills::local-bce423a41cf22b39261c5e059dcdab9d",
+      "flutter.lumo_reward_wallet_v1"
+    ],
+    "protected_key_count": 7,
+    "correct_answers": 1,
+    "stars": 1,
+    "xp": 5,
+    "approved_migration": {
+      "from_version": 2017,
+      "to_version": 2019,
+      "kind": "independentEvidence-v1",
+      "records": [
+        {
+          "preference_key": "flutter.lumo_progress_skills::local-bce423a41cf22b39261c5e059dcdab9d",
+          "skill_id": "mathematik::plus bis 10",
+          "added_independent_evidence": {
+            "version": 1,
+            "correct": 1,
+            "wrong": 0,
+            "correctStreak": 1,
+            "wrongStreak": 0
+          }
+        }
+      ],
+      "existing_fields_preserved": true
+    },
+    "all_ten_old_skill_field_values_and_types_equal": {
+      "skillId": true,
+      "subject": true,
+      "unit": true,
+      "correct": true,
+      "wrong": true,
+      "hintCount": true,
+      "currentStreak": true,
+      "currentMisses": true,
+      "difficulty": true,
+      "lastSeen": true
+    },
+    "later_exact_comparison_stages": [
+      "after-kart",
+      "after-restart",
+      "fold-cover",
+      "fold-open",
+      "fold-landscape"
+    ],
+    "all_later_protected_values_equal": true,
+    "original_xml_is_not_wholly_byte_identical": "Daily-mission lastSeenAt changes; the permitted skill evidence field is added; first current native use adds save salt and profile-key registry. The seven protected keys and five profile identity fields are the bounded comparison."
+  },
+  "actual_follow_up": {
+    "offline": true,
+    "restart": "force-stop plus relaunch; not physical-device reboot",
+    "native_kart_result": {
+      "race": {
+        "touches": [
+          {
+            "step": "premium-start",
+            "button": "START",
+            "tap": [
+              1824,
+              916
+            ]
+          }
+        ],
+        "expected_mode": "cup",
+        "expected_track": "sonnenhafen",
+        "garage_replaced": {
+          "changed_fraction": 0.844,
+          "mean_channel_delta": 106.44
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "detail": [
+            {
+              "colour_bins": 617,
+              "bright_fraction": 0.915
+            },
+            {
+              "colour_bins": 593,
+              "bright_fraction": 0.827
+            },
+            {
+              "colour_bins": 1065,
+              "bright_fraction": 0.795
+            }
+          ]
+        },
+        "spatial_menu_navigation": {
+          "status": "PASS",
+          "selected_mode": "cup",
+          "sections": [
+            {
+              "section": "garage",
+              "visible_label": "Garage",
+              "return_caption": "Kart-Menü",
+              "return_touch": [
+                717,
+                916
+              ],
+              "touch_evidence": "21_stage_garage-open-surface-readiness.json"
+            },
+            {
+              "section": "driver",
+              "visible_label": "Fahrer",
+              "return_caption": "Kart-Menü",
+              "return_touch": [
+                717,
+                916
+              ],
+              "touch_evidence": "21_stage_driver-open-surface-readiness.json"
+            }
+          ],
+          "mode_touch_evidence": "21_stage_mode_cup-surface-readiness.json",
+          "scope": "Live Android OCR touches; no injected Godot selection or coordinates"
+        }
+      },
+      "hud": {
+        "capture": "21_race_hud_2",
+        "race_state": {
+          "round": [
+            1,
+            2
+          ],
+          "place": [
+            6,
+            6
+          ]
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1.0,
+            0.998,
+            1.0
+          ],
+          "detail": [
+            {
+              "colour_bins": 913,
+              "bright_fraction": 0.836
+            },
+            {
+              "colour_bins": 1156,
+              "bright_fraction": 0.852
+            },
+            {
+              "colour_bins": 1248,
+              "bright_fraction": 0.68
+            }
+          ]
+        },
+        "hud_lines": [
+          "RUNDE 1/2 PLATZ6/6 Okm/h x0"
+        ],
+        "focused_hud": null
+      },
+      "drive": {
+        "gas_touch": [
+          2242,
+          936
+        ],
+        "hold_ms": 9000,
+        "gas_pulses": 2,
+        "world_moved": {
+          "changed_fraction": 0.689,
+          "mean_channel_delta": 61.1
+        },
+        "rendered_frame": {
+          "size": [
+            2400,
+            1080
+          ],
+          "visible_fractions": [
+            1.0,
+            1.0,
+            1.0
+          ],
+          "detail": [
+            {
+              "colour_bins": 948,
+              "bright_fraction": 0.871
+            },
+            {
+              "colour_bins": 929,
+              "bright_fraction": 0.91
+            },
+            {
+              "colour_bins": 1150,
+              "bright_fraction": 0.696
+            }
+          ]
+        },
+        "native_progress": {
+          "result_id": "860524dd-1a29-4501-ac8c-35a240a01413-1794618448275-140805401",
+          "distance_gain": 75.73,
+          "elapsed_gain": 5.02,
+          "checkpoint_index": 0
+        }
+      },
+      "pause": {
+        "result_id": "860524dd-1a29-4501-ac8c-35a240a01413-1794618448275-140805401",
+        "distance": 78.78203358274186,
+        "elapsed": 6.16666666666665,
+        "checkpoint_index": 0,
+        "finished": false
+      },
+      "return": {
+        "file": "23_zurueck_in_flutter.png",
+        "width": 1080,
+        "height": 2400,
+        "sha256": "9973a1f5e4ff25551c6cfeb923d08ba8a607cff6304f2ebbb01e052f3979d0d8"
+      }
+    },
+    "display_modes": [
+      "904x2316@420",
+      "1812x2176@420",
+      "2400x1080@420"
+    ],
+    "fatal_crashes_reported_by_probe": 0,
+    "native_kart_reported_stages": [
+      "race",
+      "hud",
+      "drive",
+      "pause",
+      "return"
+    ],
+    "native_kart_status_scope": "The original enclosing update result is PASS; native_tour itself has no separate status field."
+  },
+  "baseline_optional_navigation_failures": {
+    "t1-deutsch": "FAIL: Kein Bedienelement beginnt mit: Deutsch. ",
+    "t2-englisch": "FAIL: Kein Bedienelement beginnt mit: Englisch. "
+  },
+  "baseline_menu_visual_limit": "baseline-learning/12-restored-learning-menu.png has blank main content. This does not negate the bounded data comparison, but is not accepted as a complete old learning-menu/faculty pass.",
+  "independent_original_data_comparison": {
+    "path": "independent-data-comparison.json",
+    "bytes": 9400,
+    "sha256": "fac93bff51b50d28f7ce8f4cfae806d3d22c83273fc650be6b17118607c7ce53",
+    "git_blob": "a9a5fecbf35753ead3eef91aa86dbfa81f768b35"
+  },
+  "actually_opened_images": [
+    {
+      "path": "selected-originals/baseline-learning/07-feedback.png",
+      "bytes": 1996753,
+      "sha256": "a3af0b58e636271c4ee9eafb4448ce0ac8e433c836aca6a2120e08b3f656ed0b",
+      "git_blob": "8e1b1c798ab16790f893eb08eecbaa76b9525b64",
+      "pixels": [
+        1080,
+        2340
+      ],
+      "actually_opened": true,
+      "finding": "Alte 2017-Aufgabe 1 + 9, Antwort 10 als richtig; sichtbare 1 Stern / 5 XP. Keine vollständige Fächerabnahme."
+    },
+    {
+      "path": "selected-originals/baseline-learning/12-restored-learning-menu.png",
+      "bytes": 2426723,
+      "sha256": "1fdbeabddf1f6b8de57c0bbfb0e651f9a19750068aefb69a826bacde22481bc6",
+      "git_blob": "354b012d3ba63eedebbc3363ad3398a4ea4c6582",
+      "pixels": [
+        1080,
+        2340
+      ],
+      "actually_opened": true,
+      "finding": "Alte 2017-Rückkehr zeigt 1 Stern / 5 XP im Header, aber leeren Hauptinhalt. Dieses Bild belegt kein vollständig wiederhergestelltes Lernmenü."
+    },
+    {
+      "path": "selected-originals/updated-profile-offline.png",
+      "bytes": 3099501,
+      "sha256": "480f0d1f86cccf707ad17c7c1b5591a9f263fdd09add4eb367ed3e72f6bfe48c",
+      "git_blob": "1aecc4779215322bbffae00dcc489f5cfff88a09",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "finding": "Aktuelle 4ab-Startansicht: LumoTest, 1 Stern / 5 XP, Flugmodus-Symbol und lesbare Bedienelemente."
+    },
+    {
+      "path": "selected-originals/21_race_driving_late_1.png",
+      "bytes": 1891163,
+      "sha256": "8492a5ec3e31c8fd84b0a6e45a7726d2f3469fcfb7058c37e8b52954eb301b79",
+      "git_blob": "44afed9f9f915931aaeec04aded59c0681d49a92",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "finding": "Echtes Sonnenhafen-Rennbild mit Kart/Fuchs/HUD und sichtbaren Eingabeflächen. Die Bildsichtung ist kein FPS-Nachweis; Fahrfortschritt steht separat in Originaltelemetrie."
+    },
+    {
+      "path": "selected-originals/23_zurueck_in_flutter.png",
+      "bytes": 1927156,
+      "sha256": "9973a1f5e4ff25551c6cfeb923d08ba8a607cff6304f2ebbb01e052f3979d0d8",
+      "git_blob": "6383244c25380f5c36b267b53915e483f04447c2",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "finding": "Aktueller Flutter-Spielehub nach nativer Rückkehr sichtbar; keine native Abschlussfläche anstelle des Flutter-Hubs."
+    },
+    {
+      "path": "selected-originals/restart-profile-offline.png",
+      "bytes": 3098968,
+      "sha256": "47315506d9fdec001ae7a257f6d81bb128b4914c3cdbe8b32cbe5f33c7c8c7b5",
+      "git_blob": "71d92304afa450e777e4badaa9b07220bafa8bdd",
+      "pixels": [
+        1080,
+        2400
+      ],
+      "actually_opened": true,
+      "finding": "Nach force-stop und neuem Appstart wieder aktuelle Startansicht mit LumoTest, 1 Stern / 5 XP."
+    },
+    {
+      "path": "selected-originals/fold-cover.png",
+      "bytes": 2583028,
+      "sha256": "e230a37e8424a2a1111a116072929813ec6edb99b4fe08c818fdda399fdca923",
+      "git_blob": "dd825ce5190ea646652bced01fe050d0915ca3c0",
+      "pixels": [
+        904,
+        2316
+      ],
+      "actually_opened": true,
+      "finding": "Simuliertes 904×2316-Format: sichtbare Startansicht, Profil und 1 Stern / 5 XP; kein physischer Fold-Zustand."
+    },
+    {
+      "path": "selected-originals/fold-open.png",
+      "bytes": 4266669,
+      "sha256": "b35bbe77870f0b31d09b044a0ae67665b35ab8123c497332bce0e0c0ec3a6691",
+      "git_blob": "6b014194dbc21c80c33ac76554c3a858176bde10",
+      "pixels": [
+        1812,
+        2176
+      ],
+      "actually_opened": true,
+      "finding": "Simuliertes 1812×2176-Format: sichtbare Startansicht, Profil und 1 Stern / 5 XP; kein physischer Fold-Zustand."
+    },
+    {
+      "path": "selected-originals/fold-landscape.png",
+      "bytes": 1771410,
+      "sha256": "7af9aa5fd473b5d39939195a0e8c9ac20378a14f334a347d64eea9a762880457",
+      "git_blob": "5c3d2851d333e9e14618df4417a0559227d32bae",
+      "pixels": [
+        2400,
+        1080
+      ],
+      "actually_opened": true,
+      "finding": "Simuliertes 2400×1080-Format: sichtbare Seitenleiste, Start-/Fortschrittsbereich und 1 Stern / 5 XP. Keine vollständige Interaktionsprüfung aller scrollbaren Inhalte."
+    }
+  ],
+  "not_proven": [
+    "Two-child isolation or switching",
+    "Existing journal/writing/reading-session content migration (absent fixture domains)",
+    "Migration of pre-existing native saves",
+    "Physical Fold7 hinge/display behavior",
+    "Physical ARM64 execution",
+    "GPU/CPU frame-time or60FPS, thermal or touch-latency measurements",
+    "Audible voice quality or lipsync",
+    "Complete race reward",
+    "Complete Deutsch/Englisch or all-subject acceptance"
+  ],
+  "no_overall_candidate_release": true
+}
