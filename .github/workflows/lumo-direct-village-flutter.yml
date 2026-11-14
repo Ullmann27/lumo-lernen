@@ -23,6 +23,12 @@ jobs:
         run: flutter pub get --enforce-lockfile
       - name: Execute real Dart/Flutter village game route and Android bridge tests
         run: flutter test --no-pub test/games/dorfwirtschaft_portal_test.dart --reporter=expanded
+      - name: Preserve existing Spielewelt, Cards, Fold7 and Rhythm portal behavior
+        run: flutter test --no-pub test/games/games_world_layout_test.dart --reporter=expanded
+      - name: Preserve the existing native game lifecycle and child-profile guarding
+        run: flutter test --no-pub test/lumo3d_launcher_lifecycle_test.dart --reporter=expanded
+      - name: Static Flutter analysis of all modified production and UI code
+        run: flutter analyze --no-fatal-infos --no-fatal-warnings
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
