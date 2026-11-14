@@ -1,0 +1,197 @@
+[
+  {
+    "path": ".github/probes/modernization_android_tour.py",
+    "unchanged_definitions": [
+      "diagnostic_logcat_context",
+      "logcat_fatal",
+      "alive",
+      "godot_alive",
+      "try_tap",
+      "labels",
+      "_atelier_roundtrip",
+      "_simplify",
+      "_screencap",
+      "_shot",
+      "verify_apk_identity",
+      "_read_garage_footer",
+      "_select_stage_driver",
+      "_stage_cup_text",
+      "_return_stage_kart_menu",
+      "_inspect_spatial_kart_menu",
+      "_previous_kart_race_id",
+      "_confirm_stage_selection",
+      "_start_actual_embedded_race",
+      "RaceSession.__init__",
+      "RaceSession.in_folder",
+      "RaceSession.read",
+      "wait_race_running",
+      "_pause_actual_race",
+      "_continue_actual_race",
+      "wait_race_hud",
+      "find_gas",
+      "drive_with_gas",
+      "log_images",
+      "main"
+    ],
+    "changed_definitions": [
+      "_stage_kart_scroll_recovery",
+      "_select_stage_kart"
+    ],
+    "removed_definitions": [],
+    "added_definitions": []
+  },
+  {
+    "path": "tools/android_qa/kart_garage_evidence.py",
+    "unchanged_definitions": [
+      "demand",
+      "require_selected_race",
+      "selected_race_readiness",
+      "require_resumed_progress",
+      "normalize",
+      "stage_cup_target_observation",
+      "stage_driver_word_observations",
+      "stage_driver_target_observation",
+      "stage_garage_word_observations"
+    ],
+    "changed_definitions": [
+      "stage_garage_scroll_observation"
+    ],
+    "removed_definitions": [],
+    "added_definitions": [
+      "_observed_caption",
+      "_workshop_outline",
+      "_observed_scrollbar",
+      "stage_kart_target_observation"
+    ]
+  },
+  {
+    "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+    "unchanged_definitions": [
+      "race",
+      "config",
+      "list_frame",
+      "list_lines",
+      "driver_lines",
+      "GarageSelectionEvidenceTests.test_only_the_requested_free_vehicle_in_a_new_real_race_is_accepted",
+      "GarageSelectionEvidenceTests.test_only_the_previous_snapshot_can_wait_before_the_first_new_identity",
+      "GarageSelectionEvidenceTests.test_continue_requires_same_race_and_vehicle_plus_new_distance_and_time",
+      "DriverObservedTargetTests.setUp",
+      "DriverObservedTargetTests.capture",
+      "DriverObservedTargetTests.test_logo_first_reader_reproduces_old_mistouch_but_driver_card_is_selected",
+      "DriverObservedTargetTests.test_driver_requires_current_tabs_footer_and_one_exact_left_card",
+      "DriverObservedTargetTests.test_ocr_variants_of_one_card_and_merged_tab_text_remain_one_observed_target",
+      "DriverObservedTargetTests.test_missing_wrong_or_ambiguous_driver_never_sends_a_touch",
+      "DriverObservedTargetTests.test_driver_touch_refuses_screenshot_replacement_after_ocr",
+      "DriverObservedTargetTests.test_moved_driver_needs_two_new_stable_bounds",
+      "DriverObservedTargetTests.test_unsettled_driver_target_times_out_without_touch",
+      "CupObservedLabelTests.setUp",
+      "CupObservedLabelTests.lines",
+      "CupObservedLabelTests.capture",
+      "CupObservedLabelTests.test_actual_wide_and_compact_cup_captions_both_require_two_observed_targets",
+      "CupObservedLabelTests.test_missing_wrong_or_conflicting_cup_captions_never_trigger_a_fallback_touch",
+      "CupObservedLabelTests.test_caption_change_needs_two_new_observations_even_at_identical_bounds",
+      "CupObservedLabelTests.test_landing_return_accepts_only_the_observed_caption_without_an_extra_touch",
+      "CupObservedLabelTests.test_replaced_cup_screenshot_prevents_the_touch",
+      "CurrentGarageProbeWiringTests.test_current_mandatory_pause_phase_requires_continue_and_a_second_real_pause",
+      "CurrentGarageProbeWiringTests.test_selection_wait_reads_old_and_new_snapshots_without_accepting_wrong_new_car",
+      "CurrentGarageProbeWiringTests.test_raw_session_is_read_only_and_later_selection_or_identity_changes_fail",
+      "CurrentGarageProbeWiringTests.test_previous_race_identity_comes_only_from_an_existing_read_only_save",
+      "CurrentGarageProbeWiringTests.test_continue_requires_touch_then_physical_drive_and_retains_original_evidence",
+      "CurrentGarageProbeWiringTests.test_continue_does_not_pass_for_a_static_or_replaced_saved_race"
+    ],
+    "changed_definitions": [
+      "GarageObservedScrollTests.test_actual_scroll_needs_two_stable_frames_and_unchanged_screenshot"
+    ],
+    "removed_definitions": [
+      "GarageObservedScrollTests.test_current_hidden_title_layout_uses_only_the_tab_footer_and_left_card",
+      "GarageObservedScrollTests.test_missing_anchors_incomplete_frames_and_right_preview_are_rejected",
+      "CurrentGarageProbeWiringTests.test_selection_needs_a_successful_observed_native_touch_receipt"
+    ],
+    "added_definitions": [
+      "GarageObservedScrollTests.test_current_hidden_title_layout_uses_the_observed_clip_not_only_tab_and_footer",
+      "GarageObservedScrollTests.test_missing_current_context_and_incomplete_frames_are_rejected",
+      "CurrentGarageProbeWiringTests.test_selection_reports_success_only_after_the_observed_input_succeeds"
+    ]
+  },
+  {
+    "path": "tools/android_qa/tests/test_kart_garage_scroll_recovery.py",
+    "unchanged_definitions": [],
+    "changed_definitions": [],
+    "removed_definitions": [],
+    "added_definitions": [
+      "original_observation",
+      "gesture_is_inside",
+      "empty_word_observation",
+      "OriginalGarageViewportTests.assert_safe_scroll",
+      "OriginalGarageViewportTests.test_both_original_layouts_keep_every_scroll_point_inside_the_real_clip",
+      "OriginalGarageViewportTests.test_actual_old_drag_crosses_the_clip_even_though_tabs_and_footer_enclose_it",
+      "OriginalGarageViewportTests.test_both_actual_anchorless_frames_produce_scroll_evidence_without_a_card_tap",
+      "OriginalGarageViewportTests.test_missing_or_foreign_surface_binding_cannot_authorize_scroll",
+      "OriginalGarageViewportTests.test_actual_current_menu_context_is_required_even_when_scroll_pixels_exist",
+      "OriginalGarageViewportTests.test_missing_or_two_current_scrollbar_tracks_do_not_authorize_a_drag",
+      "OriginalGarageViewportTests.test_correct_dimensions_and_file_hash_do_not_make_a_jpeg_a_capture_png",
+      "ObservedGarageScrollBoundaryTests.setUp",
+      "ObservedGarageScrollBoundaryTests.observation",
+      "ObservedGarageScrollBoundaryTests.test_a_new_horizontal_layout_requires_its_own_second_current_observation",
+      "ObservedGarageScrollBoundaryTests.test_a_missing_intervening_frame_cannot_reuse_the_prior_scroll_observation",
+      "ObservedGarageScrollBoundaryTests.test_replaced_previous_png_invalidates_the_pair_even_when_current_png_is_unchanged",
+      "ObservedGarageScrollBoundaryTests.test_expired_deadline_refuses_an_otherwise_stable_real_scroll",
+      "ObservedGarageScrollBoundaryTests.test_deadline_expiring_during_real_pixel_analysis_prevents_input",
+      "GarageExactTargetTests.current",
+      "GarageExactTargetTests.test_multiple_original_ocr_variants_of_one_complete_card_are_one_target",
+      "GarageExactTargetTests.test_actual_anchorless_and_partial_ocr_never_name_the_selected_vehicle",
+      "GarageExactTargetTests.test_a_caption_outside_or_straddling_the_actual_clip_is_not_a_target",
+      "GarageExactTargetTests.test_two_distinct_exact_card_regions_are_not_reduced_to_the_first_match",
+      "GarageExactTargetTests.test_prefix_suffix_and_partial_captions_do_not_authorize_a_selection",
+      "GarageObservationReplay.__init__",
+      "GarageObservationReplay.capture",
+      "GarageObservationReplay.ocr",
+      "GarageObservationReplay.adb",
+      "GarageObservationReplay.sleep",
+      "GarageObservationReplay.installed",
+      "GarageSelectionObservationTests.setUp",
+      "GarageSelectionObservationTests.test_comet_selection_reads_later_original_variants_that_contain_the_workshop",
+      "GarageSelectionObservationTests.test_anchorless_view_can_scroll_but_only_two_new_complete_frames_allow_the_tap",
+      "GarageSelectionObservationTests.test_one_old_complete_frame_and_one_new_frame_do_not_form_a_stable_target_pair",
+      "GarageSelectionObservationTests.test_actual_missing_and_partial_captions_never_become_a_vehicle_tap",
+      "GarageSelectionObservationTests.test_current_png_replacement_after_ocr_cannot_authorize_scroll_or_tap",
+      "GarageSelectionObservationTests.test_capture_or_ocr_crossing_the_selection_deadline_cannot_send_a_tap",
+      "GarageSelectionObservationTests.test_ambiguous_complete_targets_fail_in_the_real_selection_caller"
+    ]
+  },
+  {
+    "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+    "unchanged_definitions": [
+      "digest",
+      "GarageOriginalWordSequenceTests.setUp",
+      "GarageOriginalWordSequenceTests.recovered",
+      "GarageOriginalWordSequenceTests.tsv_rows",
+      "GarageOriginalWordSequenceTests.write_rows",
+      "GarageOriginalWordSequenceTests.synthetic_words",
+      "GarageOriginalWordSequenceTests.test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job",
+      "GarageOriginalWordSequenceTests.test_known_complete_names_keep_case_whitespace_and_longest_caption",
+      "GarageOriginalWordSequenceTests.test_partial_interrupted_cross_line_and_word_number_gap_are_rejected",
+      "GarageOriginalWordSequenceTests.test_distant_columns_or_disjoint_word_rows_are_not_joined",
+      "GarageOriginalWordSequenceTests.test_word_confidence_and_original_tsv_presence_remain_mandatory",
+      "GarageOriginalWordSequenceTests.test_invalid_or_outside_word_rectangles_are_rejected",
+      "GarageOriginalWordSequenceTests.test_right_preview_header_and_footer_captions_cannot_be_scroll_cards",
+      "GarageOriginalWordSequenceTests.test_missing_anchors_or_incomplete_surface_never_activate_word_recovery"
+    ],
+    "changed_definitions": [
+      "GarageOriginalWordSequenceTests.controller",
+      "GarageOriginalWordSequenceTests.observe",
+      "GarageOriginalWordSequenceTests.test_original_boru_frame_recovers_only_scroll_after_two_bound_frames",
+      "GarageOriginalWordSequenceTests.test_duplicate_real_regions_and_conflicting_names_are_ambiguous",
+      "GarageOriginalWordSequenceTests.test_same_card_ocr_variants_remain_one_region_and_top_card_order_is_preserved",
+      "GarageOriginalWordSequenceTests.test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe",
+      "GarageOriginalWordSequenceTests.test_five_gesture_limit_remains_hard_after_word_recovery"
+    ],
+    "removed_definitions": [
+      "GarageOriginalWordSequenceTests.test_original_line_failure_and_existing_exact_comet_path_are_preserved"
+    ],
+    "added_definitions": [
+      "GarageOriginalWordSequenceTests.fresh_observation",
+      "GarageOriginalWordSequenceTests.test_original_line_gap_and_exact_comet_path_use_the_current_clip"
+    ]
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "original_diagnostic_native": "bebf7bba48f09afc834469db0ea3c5541a184f55",
+  "current_native": "2281d990fb584db6f2cf786da8fec3badc2d9585",
+  "files": [
+    {
+      "path": "scripts/games/kart_fleet.gd",
+      "old_blob": "4fc6ac6baf85159a0c48fb2733de50be440ad52d",
+      "current_blob": "4fc6ac6baf85159a0c48fb2733de50be440ad52d",
+      "bytes_equal": true,
+      "diagnostic_bytes": 16092,
+      "diagnostic_sha256": "0aa63caf22f5fd6aaa841b889415e794420518f7ce3f388b9ee4a346e5ef0377",
+      "current_bytes": 16092,
+      "current_sha256": "0aa63caf22f5fd6aaa841b889415e794420518f7ce3f388b9ee4a346e5ef0377"
+    },
+    {
+      "path": "scripts/games/kart_spatial_menu.gd",
+      "old_blob": "90de80bb86a115aae46b9802d8c216c6ca413c3f",
+      "current_blob": "90de80bb86a115aae46b9802d8c216c6ca413c3f",
+      "bytes_equal": true,
+      "diagnostic_bytes": 24450,
+      "diagnostic_sha256": "7b60bf28a915fc16de2aa6aae8b641d2b28be221b2bd1efd4a5b3672a5fe6ca6",
+      "current_bytes": 24450,
+      "current_sha256": "7b60bf28a915fc16de2aa6aae8b641d2b28be221b2bd1efd4a5b3672a5fe6ca6"
+    },
+    {
+      "path": "scripts/games/kart_garage_menu.gd",
+      "old_blob": "69181cb383de72a2058d2a1d64d629d825b1d871",
+      "current_blob": "69181cb383de72a2058d2a1d64d629d825b1d871",
+      "bytes_equal": true,
+      "diagnostic_bytes": 84428,
+      "diagnostic_sha256": "bb34f1b3d138362a780acc3eefbfd791cc3af286d6c68786cf292d67938d738f",
+      "current_bytes": 84428,
+      "current_sha256": "bb34f1b3d138362a780acc3eefbfd791cc3af286d6c68786cf292d67938d738f"
+    }
+  ],
+  "current_tree": "d7e0128afbda641cb92e29c41a8839d901ef5b43",
+  "local_inventory_reference": {
+    "path": "/workspace/scratch/b3485b7bb989/native2281-packaging-export-20261114/after-2281/before/snapshot.json",
+    "sha256": "ecefebf3d03004bdd2f248651cb73ccb2e0a62fd72183fe57f80a1b334fc3a6a"
+  },
+  "fleet_caption_order": {
+    "published_native_names": [
+      "Comet",
+      "Gecko Velo",
+      "Boru Rally",
+      "Glider",
+      "Nala Comet",
+      "Noa Tide",
+      "Iva Aurora",
+      "Aurora GT",
+      "Zuri Volt",
+      "Blitz",
+      "Terra",
+      "Koloss",
+      "Phantom",
+      "Stella"
+    ],
+    "matches_proposed_observer_constant": true
+  }
+}

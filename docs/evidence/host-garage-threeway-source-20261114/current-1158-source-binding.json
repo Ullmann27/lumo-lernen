@@ -1,0 +1,38 @@
+{
+  "host": "1158c620b1dedba5dfeaab049948ef4cc6458bab",
+  "comparison": "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62",
+  "files": [
+    {
+      "path": ".github/probes/modernization_android_tour.py",
+      "bytes": 72474,
+      "sha256": "aaea18ac1db213f8370714de0de0f06a1e22da74d658b85b6fcac7547882d477",
+      "git_blob": "10d5caa657552a0168e5d90cf5bac2ec94b90521",
+      "same_as_0b7": true,
+      "immutable_read_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/.github/probes/modernization_android_tour.py?ref=1158c620b1dedba5dfeaab049948ef4cc6458bab"
+    },
+    {
+      "path": "tools/android_qa/kart_garage_evidence.py",
+      "bytes": 20777,
+      "sha256": "84edc6c93aaa06d6af1e9883805935b0bda89a98cc635411fb811c46029f3b31",
+      "git_blob": "bc71fd6556418bd71a99b24af047ea0f7e51d7c3",
+      "same_as_0b7": true,
+      "immutable_read_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/tools/android_qa/kart_garage_evidence.py?ref=1158c620b1dedba5dfeaab049948ef4cc6458bab"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_garage_evidence.py",
+      "bytes": 30218,
+      "sha256": "3f797163b5868772b1a9c255898f129c433afc1ef63b7400fd750fa377f157ae",
+      "git_blob": "66bede79ae3ec7eb01a65a1f692e747bac9d5b0d",
+      "same_as_0b7": true,
+      "immutable_read_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/tools/android_qa/tests/test_kart_garage_evidence.py?ref=1158c620b1dedba5dfeaab049948ef4cc6458bab"
+    },
+    {
+      "path": "tools/android_qa/tests/test_kart_scroll_word_evidence.py",
+      "bytes": 15159,
+      "sha256": "ba200d7b4ef67ab4deff3bfba7d836192ea8c3a981609c09e47be202823a9cd4",
+      "git_blob": "12e64855f461ad1cf146a1beedaca1c4b0b12710",
+      "same_as_0b7": true,
+      "immutable_read_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/contents/tools/android_qa/tests/test_kart_scroll_word_evidence.py?ref=1158c620b1dedba5dfeaab049948ef4cc6458bab"
+    }
+  ]
+}

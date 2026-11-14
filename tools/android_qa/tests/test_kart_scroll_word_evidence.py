@@ -58,7 +58,7 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
         function = next(node for node in module.body if isinstance(node, ast.FunctionDef)
                         and node.name == '_stage_kart_scroll_recovery')
         scope = {'garage_evidence': evidence, 'probe': SimpleNamespace(digest=digest),
-                 'base': SimpleNamespace(adb=self.adb), 'time': self.clock}
+                 'base': SimpleNamespace(adb=self.adb), 'time': self.clock, 'Path': Path}
         exec(compile(ast.Module(body=[function], type_ignores=[]), str(TOUR), 'exec'), scope)
         return scope['_stage_kart_scroll_recovery']()
 
@@ -67,7 +67,18 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
 
     def observe(self):
         return evidence.stage_garage_scroll_observation(
-            self.frame, self.lines, caption_words=self.recovered()['captions'])
+            self.frame, self.lines, source=self.source,
+            caption_words=self.recovered()['captions'])
+
+    def fresh_observation(self, number):
+        # Distinct replay paths model two captures of the unchanged original.
+        # They are controlled observations, never a second claimed Android PNG.
+        tag = f'current-word-observation-{number}'
+        for source in list(self.out.glob(TAG + '*')):
+            destination = self.out / (tag + source.name[len(TAG):])
+            shutil.copyfile(source, destination)
+        source = self.out / (tag + '.png')
+        return dict(self.frame, source=source.name), source
 
     def tsv_rows(self):
         source = self.out / (TAG + '-ocr-raw.tsv')
@@ -94,25 +105,32 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
         return rows
 
     def test_original_boru_frame_recovers_only_scroll_after_two_bound_frames(self):
-        # Replaying the same original as two controlled observations tests the
-        # production callback. It does not invent a second Android capture.
         callback = self.controller()
-        first = callback(self.frame, self.lines, self.source, deadline=10,
+        first_frame, first_source = self.fresh_observation(1)
+        second_frame, second_source = self.fresh_observation(2)
+        first = callback(first_frame, self.lines, first_source, deadline=10,
                          previous_missing_frame=None)
         self.assertEqual(first['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
         self.adb.assert_not_called()
-        second = callback(self.frame, self.lines, self.source, deadline=10,
-                          previous_missing_frame=copy.deepcopy(self.frame))
+        second = callback(second_frame, self.lines, second_source, deadline=10,
+                          previous_missing_frame=first_frame)
         self.assertEqual(second['status'], 'SWIPE_SENT')
         self.assertEqual(second['card']['text'], 'Boru Rally')
         self.assertEqual(second['card']['bounds'], [314.5, 593.0, 511.0, 629.0])
-        self.assertEqual(second['gesture'], [413, 611, 413, 431])
+        self.assertEqual(second['direction'], 'backward')
+        x0, y0, x1, y1 = second['gesture']
+        self.assertEqual(x0, x1)
+        self.assertLess(y0, y1)
+        self.assertGreaterEqual(y1 - y0, 15)
+        self.assertLess(y1 - y0, 40)
+        # The unchanged original has its clipped list between y416 and665.
+        self.assertTrue(42 < x0 < 750 and 416 < y0 < y1 < 665)
         self.assertEqual(second['caption_source'], 'original_tsv_word_sequences')
         self.assertEqual(len(second['ocr_sources']), 7)
         for source in second['ocr_sources']:
             self.assertEqual(source['sha256'], digest(self.out / source['file']))
-        self.adb.assert_called_once_with('shell', 'input', 'swipe', '413', '611',
-                                         '413', '431', '650', timeout=10)
+        self.adb.assert_called_once_with('shell', 'input', 'swipe',
+                                         *map(str, second['gesture']), '650', timeout=10)
 
     def test_all_original_fixture_bytes_and_pixels_are_bound_to_the_failed_job(self):
         provenance = json.loads((FIXTURES / 'provenance.json').read_text())
@@ -132,13 +150,23 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
                     self.assertEqual(image.size, (2400, 1080))
                     image.verify()
 
-    def test_original_line_failure_and_existing_exact_comet_path_are_preserved(self):
-        with self.assertRaisesRegex(RuntimeError, 'No currently visible vehicle card'):
-            evidence.stage_garage_scroll_observation(self.frame, self.lines)
+    def test_original_line_gap_and_exact_comet_path_use_the_current_clip(self):
+        current = evidence.stage_garage_scroll_observation(
+            self.frame, self.lines, source=self.source)
+        self.assertEqual(current['visible_cards'], [])
+        self.assertIsNone(current['card'])
+        self.assertIsNone(evidence.stage_kart_target_observation(
+            self.frame, self.lines, 'gecko_velo', current['viewport_bounds']))
+        # Exact Comet lines remain useful for direction, but the old long
+        # gesture is no longer accepted as the geometry of this actual list.
         lines = json.loads((FIXTURES / '21_stage_select_gecko_velo-0-ocr.json').read_text())
-        current = evidence.stage_garage_scroll_observation(self.frame, lines)
+        readiness = json.loads((FIXTURES / '21_stage_select_gecko_velo-surface-readiness.json').read_text())
+        current = evidence.stage_garage_scroll_observation(
+            readiness['frames'][0], lines, source=FIXTURES / '21_stage_select_gecko_velo-0.png')
         self.assertEqual(current['card']['text'], 'Comet')
-        self.assertEqual(current['gesture'], [374, 486, 374, 351])
+        self.assertEqual(current['direction'], 'forward')
+        self.assertNotEqual(current['gesture'], [374, 486, 374, 351])
+        self.assertLess(351, current['viewport_bounds'][1])
 
     def test_known_complete_names_keep_case_whitespace_and_longest_caption(self):
         for caption in ('Comet', 'Gecko Velo', 'Boru Rally', 'Glider', 'Nala Comet', 'Noa Tide'):
@@ -217,7 +245,7 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
 
     def test_duplicate_real_regions_and_conflicting_names_are_ambiguous(self):
         original = self.tsv_rows()
-        duplicate = [dict(row, block_num='999', top=str(int(row['top']) + 200))
+        duplicate = [dict(row, block_num='999', top=str(int(row['top']) - 160))
                      for row in original if row['level'] == '5' and row['text'] in ('Boru', 'Rally')]
         self.write_rows(original + duplicate)
         with self.assertRaisesRegex(RuntimeError, 'Ambiguous repeated vehicle caption'):
@@ -231,49 +259,56 @@ class GarageOriginalWordSequenceTests(unittest.TestCase):
         self.assertEqual(len(captions), 1)
         second = dict(captions[0], variant='contrast', bounds=[315.0, 593.0, 511.0, 629.0])
         proof = evidence.stage_garage_scroll_observation(
-            self.frame, self.lines, caption_words=captions + [second])
+            self.frame, self.lines, source=self.source, caption_words=captions + [second])
         self.assertEqual(proof['card']['text'], 'Boru Rally')
         comet = {'text': 'Comet', 'bounds': [314.0, 472.0, 434.0, 499.0], 'variant': 'contrast'}
         proof = evidence.stage_garage_scroll_observation(
-            self.frame, self.lines, caption_words=captions + [comet])
+            self.frame, self.lines, source=self.source, caption_words=captions + [comet])
         self.assertEqual(proof['card'], comet)
 
     def test_unstable_words_need_a_new_pair_and_changed_png_or_deadline_never_swipe(self):
         callback = self.controller()
-        callback(self.frame, self.lines, self.source, deadline=10, previous_missing_frame=None)
+        first_frame, first_source = self.fresh_observation(1)
+        callback(first_frame, self.lines, first_source, deadline=10, previous_missing_frame=None)
         rows = self.tsv_rows()
         for row in rows:
             if row['level'] == '5' and row['text'] in ('Boru', 'Rally'):
                 row['left'] = str(int(row['left']) + 40)
         self.write_rows(rows)
-        observed = callback(self.frame, self.lines, self.source, deadline=10,
-                            previous_missing_frame=self.frame)
+        second_frame, second_source = self.fresh_observation(2)
+        observed = callback(second_frame, self.lines, second_source, deadline=10,
+                            previous_missing_frame=first_frame)
         self.assertEqual(observed['status'], 'WAITING_FOR_SECOND_LIST_FRAME')
         self.adb.assert_not_called()
-        self.source.write_bytes(b'changed after observation')
-        with self.assertRaisesRegex(RuntimeError, 'screenshot changed'):
-            callback(self.frame, self.lines, self.source, deadline=10,
-                     previous_missing_frame=self.frame)
+        third_frame, third_source = self.fresh_observation(3)
+        third_source.write_bytes(b'changed after observation')
+        with self.assertRaisesRegex(RuntimeError, 'screenshot.*changed'):
+            callback(third_frame, self.lines, third_source, deadline=10,
+                     previous_missing_frame=second_frame)
         self.adb.assert_not_called()
-        shutil.copyfile(FIXTURES / (TAG + '.png'), self.source)
+        fourth_frame, fourth_source = self.fresh_observation(4)
         self.clock.monotonic = lambda: 10.0
         with self.assertRaisesRegex(RuntimeError, 'bounded deadline'):
-            callback(self.frame, self.lines, self.source, deadline=10,
-                     previous_missing_frame=self.frame)
+            callback(fourth_frame, self.lines, fourth_source, deadline=10,
+                     previous_missing_frame=second_frame)
         self.adb.assert_not_called()
 
     def test_five_gesture_limit_remains_hard_after_word_recovery(self):
         callback = self.controller()
         for number in range(1, 6):
-            callback(self.frame, self.lines, self.source, deadline=10,
+            first_frame, first_source = self.fresh_observation(number * 2)
+            second_frame, second_source = self.fresh_observation(number * 2 + 1)
+            callback(first_frame, self.lines, first_source, deadline=10,
                      previous_missing_frame=None)
-            result = callback(self.frame, self.lines, self.source, deadline=10,
-                              previous_missing_frame=self.frame)
+            result = callback(second_frame, self.lines, second_source, deadline=10,
+                              previous_missing_frame=first_frame)
             self.assertEqual(result['swipe_number'], number)
-        callback(self.frame, self.lines, self.source, deadline=10, previous_missing_frame=None)
+        first_frame, first_source = self.fresh_observation(12)
+        second_frame, second_source = self.fresh_observation(13)
+        callback(first_frame, self.lines, first_source, deadline=10, previous_missing_frame=None)
         with self.assertRaisesRegex(RuntimeError, 'after five observed list gestures'):
-            callback(self.frame, self.lines, self.source, deadline=10,
-                     previous_missing_frame=self.frame)
+            callback(second_frame, self.lines, second_source, deadline=10,
+                     previous_missing_frame=first_frame)
         self.assertEqual(self.adb.call_count, 5)
 
     def test_missing_anchors_or_incomplete_surface_never_activate_word_recovery(self):
