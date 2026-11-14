@@ -1,0 +1,120 @@
+{
+  "schema": 1,
+  "run_id": 43612493152,
+  "attempt": 1,
+  "qa_source": "4017a94dd4a859f7b571e9b6a1f0208695e5e815",
+  "apk_source": "1e22d2455937e2640d1e44e153d290746f3afe49",
+  "native_source": "e9a9f60f20403ffa6b2b26d1437f958b2704d2aa",
+  "original_log_receipt_checkpoint": "46a20216790ac6c54db44edb1e0f853105fdcaac",
+  "scope": "Unchanged original PNG bytes and all UTF-8 original artifact member bytes; selection ZIPs are new containers, not original GitHub ZIPs.",
+  "pngs_actually_viewed": 13,
+  "original_text_members": 1370,
+  "entries": [
+    {
+      "case": "main",
+      "path": "original-text-evidence-selection.zip",
+      "bytes": 1079933,
+      "sha256": "58129596b047da42325c2725129c6ff751569accdbb99cdeacee3687890eee9e",
+      "git_blob": "72c1c56f0a5a35d3aa2356c301206ef1e31e2498"
+    },
+    {
+      "case": "main",
+      "path": "originals/main/13_atelier_zehnerbruecke.png",
+      "bytes": 679683,
+      "sha256": "6b0d9c5c20daee82829acb7b6d754de4cb3610a9128bac5d0352dcd33f8a4338",
+      "git_blob": "d83d66afec53b77b25dfb3835d7d1297a48b924f"
+    },
+    {
+      "case": "main",
+      "path": "originals/main/21_stage_select_gecko_velo-7.png",
+      "bytes": 775109,
+      "sha256": "5dc35ab076c6b7a3e16e28da29880b3de3f523fd79bfe51dd5d0564f2898853f",
+      "git_blob": "597ca2f6be330703ccc8fd69e8f5eb289c70c778"
+    },
+    {
+      "case": "main",
+      "path": "originals/main/21_lumo_kart_real_race.png",
+      "bytes": 1948645,
+      "sha256": "5aeaf977e6c714c5aa3c045b643dc3c9f3f1fc21d407da2030bc958dcbcbf932",
+      "git_blob": "76f091012c693e8ee1bdb250b5db673b95bd7094"
+    },
+    {
+      "case": "main",
+      "path": "originals/main/21_continue/21_race_driving_late_2.png",
+      "bytes": 1929016,
+      "sha256": "20d34754bf6be0d44369abeb3665c7ffb7872a095ed2b3b5707f7875e24a3c01",
+      "git_blob": "150ad1e1c717ef144a8d4e929c0bb15b5134d488"
+    },
+    {
+      "case": "main",
+      "path": "originals/main/23_zurueck_in_flutter.png",
+      "bytes": 1927456,
+      "sha256": "b005170f24649b8ccdc254f44fae93af7e9e8d5e5adc70be23632b16fcbf6b3d",
+      "git_blob": "a30ec8264f4f149abc0aa0997d5ab44fc124e215"
+    },
+    {
+      "case": "update2017",
+      "path": "original-text-evidence-selection.zip",
+      "bytes": 2326339,
+      "sha256": "3a9d62077d5ff75cbfb8b39847d7328f643fbe3931997ebf733b81f9fa2f19b6",
+      "git_blob": "89f5c6dcbcc482003b877a32a63ded215dfe4b08"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/21_stage_select_gecko_velo-7.png",
+      "bytes": 769905,
+      "sha256": "486dfd4af9efb7198f838078c4b1c5baf624f3f288409e969748b0348017815b",
+      "git_blob": "fca532b41f7c9d987e9b0a4c24421fa4f411fc21"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/21_race_hud_0.png",
+      "bytes": 1996785,
+      "sha256": "761598510125dbd1b2380746350085c120249b9d91747293918804fff9aa3148",
+      "git_blob": "c90e81bc1fda6335cfc14b7c8f2c6d57c424dbfa"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/21_race_driving_late_2.png",
+      "bytes": 1880629,
+      "sha256": "96c5161ad1f97ef89302a7379ca7d309214bf58571e223e995baaf474551b987",
+      "git_blob": "25ac9653d6cabde5b8cd34ea0b9d9bfff7222400"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/23_zurueck_in_flutter.png",
+      "bytes": 1926277,
+      "sha256": "3ce4ff9bc72cfc7da3421c79bd5ec392acc242afebff0f13f11e9f3db8971528",
+      "git_blob": "871d126e41c6fa3cd38923eeab4c5ea9abf8642f"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/updated-profile-offline.png",
+      "bytes": 3090823,
+      "sha256": "efa3ee3e0653f593eb51d3049492bf66ddd0179dc663bfd0831d64c035c0b1b3",
+      "git_blob": "e5ad63335eef2fc18fc8ec313c88df807ca4d27d"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/fold-cover.png",
+      "bytes": 2579959,
+      "sha256": "e65eb8d94cc934ecd1b948220a3ec30a667751c9f8510b2cd3c25ea394642900",
+      "git_blob": "78cdf170d3a8e95cc19d6449410ea9678e515335"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/fold-open.png",
+      "bytes": 4247955,
+      "sha256": "d63ad2fad6b80ce84d8f6a45cdbd0183aec43e0d7079436f1052fdf84945e845",
+      "git_blob": "bc017def911d821f6d6a84f058ac029c068fae0a"
+    },
+    {
+      "case": "update2017",
+      "path": "originals/update/fold-landscape.png",
+      "bytes": 1764748,
+      "sha256": "8221a7b41f5994f9e4611092802fb84f0481c6ba3e6f5ed12f89482cecbf78db",
+      "git_blob": "e0d98d8bb63fd9d03eecf7bd524efff8b9bfb4e4"
+    }
+  ],
+  "seven_job_acceptance": false
+}
