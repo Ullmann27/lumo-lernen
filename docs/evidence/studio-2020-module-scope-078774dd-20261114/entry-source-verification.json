@@ -1,0 +1,311 @@
+{
+  "schema": 1,
+  "host_revision": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "host_tree_url": "https://api.github.com/repos/Ullmann27/lumo-lernen/git/trees/078774ddaf64808addaa4c6406f6a3c85b1f239a?recursive=1",
+  "tree_response_sha": "078774ddaf64808addaa4c6406f6a3c85b1f239a",
+  "truncated": false,
+  "scope": "Published blob comparison of the23 previously examined entry/catalog paths and six existing Studio2020 library deltas; only two changed entry sources reread. No fresh execution audit.",
+  "compared": [
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_routes.dart",
+      "before": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "current": "92d99ab795f70c111e3c42dde5d39ac652c0f7b8",
+      "changed": false
+    },
+    {
+      "path": "lib/features/games/spielwelt/spielwelt_hub.dart",
+      "before": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "current": "8097e4695614b8215e59025707ec9cc1b12c4d80",
+      "changed": false
+    },
+    {
+      "path": "lib/features/games/games_content.dart",
+      "before": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "current": "07de5a90749e5d5199b3ee3bad6b7ab284cf0d5b",
+      "changed": false
+    },
+    {
+      "path": "lib/domain/games/game_world.dart",
+      "before": "50f8faad50d563e5a87bdf7fc91ecc1be973435c",
+      "current": "50f8faad50d563e5a87bdf7fc91ecc1be973435c",
+      "changed": false
+    },
+    {
+      "path": "lib/domain/games/game_level_model.dart",
+      "before": "ba41fed8e610f9fd83955be58da85cdbc07a64b5",
+      "current": "ba41fed8e610f9fd83955be58da85cdbc07a64b5",
+      "changed": false
+    },
+    {
+      "path": "lib/domain/games/game_level_catalog.dart",
+      "before": "fff54683c5c1d16bf581b16f446852166de255bb",
+      "current": "fff54683c5c1d16bf581b16f446852166de255bb",
+      "changed": false
+    },
+    {
+      "path": "lib/features/learning_modules/learning_module_registry.dart",
+      "before": "201bd14851ea86c1ac46c8459b586f258024d8a3",
+      "current": "201bd14851ea86c1ac46c8459b586f258024d8a3",
+      "changed": false
+    },
+    {
+      "path": "lib/features/teacher_mode/lumo_akademie_screen.dart",
+      "before": "845efa5601e0ca314af227502a7e34f303c68858",
+      "current": "845efa5601e0ca314af227502a7e34f303c68858",
+      "changed": false
+    },
+    {
+      "path": "lib/core/curriculum/academy_topic_units.dart",
+      "before": "2d43df044bb2fee5a0101a6896ca89c0f7a84676",
+      "current": "2d43df044bb2fee5a0101a6896ca89c0f7a84676",
+      "changed": false
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_catalog.dart",
+      "before": "d09ecd651ec33c223ace42929f0c88af99bb7851",
+      "current": "d09ecd651ec33c223ace42929f0c88af99bb7851",
+      "changed": false
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_hub.dart",
+      "before": "afb6ca1f7a82e881c78040b92fb3bbaf89af8b9d",
+      "current": "afb6ca1f7a82e881c78040b92fb3bbaf89af8b9d",
+      "changed": false
+    },
+    {
+      "path": "lib/features/learning/lab/learning_lab_screen.dart",
+      "before": "9bc3850a7dbf058201b6fef968b5deb8f93941bb",
+      "current": "9bc3850a7dbf058201b6fef968b5deb8f93941bb",
+      "changed": false
+    },
+    {
+      "path": "lib/features/home/home_content.dart",
+      "before": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "current": "9d980f6c2663ebe965195af3c15d8533867503ba",
+      "changed": false
+    },
+    {
+      "path": "lib/features/story/lumo_quest_hub_screen.dart",
+      "before": "51a34ce776e436cf460d69d21770498cda1d1feb",
+      "current": "51a34ce776e436cf460d69d21770498cda1d1feb",
+      "changed": false
+    },
+    {
+      "path": "lib/features/magic_hub/lumo_magic_hub_screen.dart",
+      "before": "8821648399a519f736bc1a28aa0357dc4a90bd04",
+      "current": "8821648399a519f736bc1a28aa0357dc4a90bd04",
+      "changed": false
+    },
+    {
+      "path": "lib/domain/tutoring/guided_lesson_catalog.dart",
+      "before": "ddecbdbd033adbafca495a678ed66b2a1f11b251",
+      "current": "ddecbdbd033adbafca495a678ed66b2a1f11b251",
+      "changed": false
+    },
+    {
+      "path": "lib/domain/tutoring/native_learning_activity.dart",
+      "before": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "current": "83463a26665cd0b58aa776c28f6dec1600552e3d",
+      "changed": false
+    },
+    {
+      "path": "lib/features/tutoring/guided_lesson_screen.dart",
+      "before": "8bf3ed80b59184c5aae261a905b91f401909aca2",
+      "current": "8bf3ed80b59184c5aae261a905b91f401909aca2",
+      "changed": false
+    },
+    {
+      "path": "lib/features/learning/learning_content.dart",
+      "before": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "current": "652bb8de1ad15ed348fbece1ffce1faf5b82b6f6",
+      "changed": false
+    },
+    {
+      "path": "lib/features/games/memory/lumo_memory_game.dart",
+      "before": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "current": "033e3a70bd7fff21506bea014cc16a8ee1558c06",
+      "changed": false
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "before": "7211b1d17a289b6935348d2bb66c7f05243a732d",
+      "current": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+      "changed": true
+    },
+    {
+      "path": "lib/features/quiz/quiz_show_content.dart",
+      "before": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+      "current": "ca4fa2aa5c8b4328b58cd0a56ddde9f7c43446de",
+      "changed": false
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "before": "4a37e8e275503d6a89ce1130859b2f67cb25bbd5",
+      "current": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "changed": true
+    }
+  ],
+  "stage": [
+    {
+      "path": "lib/app/app_state.dart",
+      "old_staged": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "current": "038a70e2ce3e9d7dd306f1e5ae91c0600df11045",
+      "changed_since_staged": false
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "old_staged": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "current": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "changed_since_staged": false
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "old_staged": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "current": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "changed_since_staged": false
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "old_staged": "1275d6616c6cb850ad55633e51a9450d5887dd34",
+      "current": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+      "changed_since_staged": true
+    },
+    {
+      "path": "lib/features/games/lumo_cards/lumo_cards_rules.dart",
+      "old_staged": "067a16c3e6061120fe8b58c1e3585d2982964be7",
+      "current": "067a16c3e6061120fe8b58c1e3585d2982964be7",
+      "changed_since_staged": false
+    },
+    {
+      "path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "old_staged": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "current": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "changed_since_staged": false
+    }
+  ],
+  "native_router": {
+    "path": "/workspace/scratch/5987865ae883/qa/connect-four-native-86445-803e/native/scripts/app/scene_router.gd",
+    "bytes": 4457,
+    "sha256": "b7b7b5d1c882b10b8e07141b32b0369941bea98b2d8665e7d20d6cb958188e06",
+    "git_blob": "0e28e5c797af076d2a2410143e42605982e8d1d5",
+    "native_revision": "785413d395292a243eaa0a0748671eb15d3f80ff",
+    "retrieval_url": "https://raw.githubusercontent.com/Ullmann27/lumo-godot/785413d395292a243eaa0a0748671eb15d3f80ff/scripts/app/scene_router.gd",
+    "full_readback_equal": true,
+    "scenes": [
+      {
+        "id": "boot",
+        "scene": "res://scenes/app/boot.tscn"
+      },
+      {
+        "id": "intro",
+        "scene": "res://scenes/app/intro_3d.tscn"
+      },
+      {
+        "id": "home",
+        "scene": "res://scenes/app/home_3d.tscn"
+      },
+      {
+        "id": "loading",
+        "scene": "res://scenes/app/loading_screen.tscn"
+      },
+      {
+        "id": "learn",
+        "scene": "res://scenes/games/reading_hub.tscn"
+      },
+      {
+        "id": "reading_hub",
+        "scene": "res://scenes/games/reading_hub.tscn"
+      },
+      {
+        "id": "alphabet",
+        "scene": "res://scenes/games/alphabet_carousel.tscn"
+      },
+      {
+        "id": "word_picture_match",
+        "scene": "res://scenes/games/word_picture_match.tscn"
+      },
+      {
+        "id": "sound_letter_match",
+        "scene": "res://scenes/games/sound_letter_match.tscn"
+      },
+      {
+        "id": "word_build",
+        "scene": "res://scenes/games/word_build.tscn"
+      },
+      {
+        "id": "learn_old",
+        "scene": "res://scenes/games/learn_card.tscn"
+      },
+      {
+        "id": "games",
+        "scene": "res://scenes/games/game_hub.tscn"
+      },
+      {
+        "id": "puzzle",
+        "scene": "res://scenes/creative/puzzle_world.tscn"
+      },
+      {
+        "id": "build",
+        "scene": "res://scenes/creative/build_world.tscn"
+      },
+      {
+        "id": "settlement",
+        "scene": "res://scenes/creative/build_settlement_world.tscn"
+      },
+      {
+        "id": "rhythm",
+        "scene": "res://scenes/creative/rhythm_world.tscn"
+      },
+      {
+        "id": "treasure",
+        "scene": "res://scenes/creative/treasure_world.tscn"
+      },
+      {
+        "id": "kart",
+        "scene": "res://scenes/games/kart_island.tscn"
+      },
+      {
+        "id": "jump",
+        "scene": "res://scenes/games/jump_islands.tscn"
+      },
+      {
+        "id": "learning",
+        "scene": "res://scenes/learning/learning_world.tscn"
+      },
+      {
+        "id": "cards",
+        "scene": "res://scenes/games/cards_table.tscn"
+      },
+      {
+        "id": "connect_four",
+        "scene": "res://scenes/games/connect_four_table.tscn"
+      },
+      {
+        "id": "stars",
+        "scene": "res://scenes/games/star_collect.tscn"
+      },
+      {
+        "id": "parent",
+        "scene": "res://scenes/games/parent_settings.tscn"
+      }
+    ]
+  },
+  "reread_changed_entry_sources": [
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-ci-corrections-20261114/root/host/lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "bytes": 44247,
+      "sha256": "6cf0e3e402090ebfa61539b98403ba82c5381f68ded4b722d683d440cb737569",
+      "git_blob_sha": "4a68c5b8d4634a6830c7f6122c574734c42a0270",
+      "repo_path": "lib/features/games/connect_four/lumo_connect_four_game.dart",
+      "matches_current_published_blob": true
+    },
+    {
+      "path": "/workspace/scratch/5987865ae883/qa/studio-2020-integration/assembled/host/lib/features/lumo3d/lumo3d_launcher.dart",
+      "bytes": 10316,
+      "sha256": "a385e88006fba6a4f6126e0eceb57dc2185ebf0c34149746d369ae0c790ea732",
+      "git_blob_sha": "b9eff2d23c35d01e6df674cad909c5c495a87bde",
+      "repo_path": "lib/features/lumo3d/lumo3d_launcher.dart",
+      "matches_current_published_blob": true
+    }
+  ]
+}
