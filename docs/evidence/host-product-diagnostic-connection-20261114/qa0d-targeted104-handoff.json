@@ -1,0 +1,29 @@
+{
+  "head": "0d7ea79cd02b921ed685abc79b27df8a5f6b4ccb",
+  "tree": "863c4b45bcd6a564070ca128565688bde7e1ed11",
+  "status": "FAIL",
+  "methods_run": 104,
+  "passed_methods": 99,
+  "errors": 5,
+  "assertion_failures": 0,
+  "skips": 0,
+  "wait9": "PASS",
+  "workflow9": "PASS",
+  "actionlint1": "PASS",
+  "unchanged_materialized_tracked_sources": 734,
+  "unchanged_head_tree_status_and_index": true,
+  "environment_errors": {
+    "AF_UNIX_socket_creation_EPERM": [
+      "test_original_channel_eof_is_terminal_without_a_reconnect (scripts.tests.test_android_console_transport.ConsoleTransportTests.test_original_channel_eof_is_terminal_without_a_reconnect)",
+      "test_real_unix_channel_preserves_every_byte_and_closes_only_after_request (scripts.tests.test_android_console_transport.ConsoleTransportTests.test_real_unix_channel_preserves_every_byte_and_closes_only_after_request)",
+      "test_transcript_bound_fails_and_does_not_return_a_trimmed_pass (scripts.tests.test_android_console_transport.ConsoleTransportTests.test_transcript_bound_fails_and_does_not_return_a_trimmed_pass)"
+    ],
+    "missing_sparse_wrapper": [
+      "test_actual_diagnostic_runner_requires_the_new_positive_protocol (scripts.tests.test_android_runtime_device_logger.DeviceLogContracts.test_actual_diagnostic_runner_requires_the_new_positive_protocol)",
+      "test_existing_clear_calls_are_conditional_and_runner_enables_only_api37 (scripts.tests.test_runtime_logcat_sections.RuntimeLogcatSectionTests.test_existing_clear_calls_are_conditional_and_runner_enables_only_api37)"
+    ]
+  },
+  "no_rerun": true,
+  "no_source_git_or_ci_mutation": true,
+  "scope": "The exact new wait notification passes all nine focused contracts. Three real socket checks are blocked by EPERM; two unchanged neighboring checks cannot read the absent sparse wrapper. This is not a complete local PASS and does not substitute an Android run."
+}

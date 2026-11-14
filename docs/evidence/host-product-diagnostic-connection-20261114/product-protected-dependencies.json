@@ -1,0 +1,174 @@
+{
+  "source": "729585db3f49ecff7f0632439f90edb882f09454",
+  "tree": "93301ed1c1e0b18f15163ae6198be0bc6b962762",
+  "files": [
+    {
+      "path": "config/godot-source.json",
+      "bytes": 145,
+      "sha256": "d12f94f96ebbe18005a1db79b294c4c4de9841bf4b2ab860868c7a3c05bdfa82",
+      "git_blob": "72dc631c9e27885cb3ab38ce446a66416f818ebb",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_engine.dart",
+      "bytes": 9755,
+      "sha256": "d08eb72cdc131ab764510b346d509a0c5d24592f3e3bbeafb7db47fdfe49f334",
+      "git_blob": "0ad49aeaab65ea34ceb387e73788cdb886a210db",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_round.dart",
+      "bytes": 12082,
+      "sha256": "dcc411d6687df70934d83253990248c4a0654b13a36ec54338ec43a257329754",
+      "git_blob": "853d9e4a59475725a44db8f6c252e691f0bcdad8",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/games/connect_four/connect_four_table_session.dart",
+      "bytes": 9737,
+      "sha256": "3a4c99538f50f057c2951ef16bbc55f6275865d90cafce36517c16f0545e615e",
+      "git_blob": "fd8efe8e114de656b6802e097b96910535d83c39",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/games/connect_four/lumo_connect_four_stage.dart",
+      "bytes": 10519,
+      "sha256": "d8d0909567cb0726a55b6108a6bc78ed2ac2b384026becdaa1b3f01a3ec3a190",
+      "git_blob": "84c5ff9949a216331d228128f02415a47833396b",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/journal/journal_repository.dart",
+      "bytes": 3696,
+      "sha256": "9b6e404d8312ed9ffb874eac2fea06e0fdf45024b308392e1ef58b5a85e13753",
+      "git_blob": "36b1b80b676431509ca2bb4b17f9c6bd882baa54",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/journal/lumo_journal_screen.dart",
+      "bytes": 33174,
+      "sha256": "389270e2a26df93cbc76ec0e028efaa804210236c5d57647afb60023db054aa4",
+      "git_blob": "69b5c528c8301f1782224f2a3af9f1c5b49a4567",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/learning/cross_grade_writing_screen.dart",
+      "bytes": 7001,
+      "sha256": "a66696803c600e74d58ca343a7e8f77d76e29157abb3fc45e9e9613104c36797",
+      "git_blob": "47a7ba1ffd9dbe6e68dc7d6dbe08396815f2f10e",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/learning/renderers/adaptive_task_renderer.dart",
+      "bytes": 62244,
+      "sha256": "c9f0c4a7dad865884216a03558bc5da9329c8ea4fc20a811c7230876cc5e1c22",
+      "git_blob": "b319c40f9647975668beb4c04b9bcdaf05333c52",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/learning/renderers/shape_trace_task_renderer.dart",
+      "bytes": 2989,
+      "sha256": "b27ec7332e31b0038448b7b0a9632338259d7dec2d24a7e6b5d1330f7ab0f75a",
+      "git_blob": "7f7eb9c91579417ae86ba0cbac2f2c3cc17e820f",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/learning/renderers/writing_task_renderer.dart",
+      "bytes": 18198,
+      "sha256": "2ab4338e9b862292f35f50b95cfc4aa2cb719009a5f4e5f5f73b7e654cde4395",
+      "git_blob": "adfb91debd8af1b7077c2289fd913419afe23b7c",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_coach_screen.dart",
+      "bytes": 28091,
+      "sha256": "3365cae7a1137ce57a573971fa40e20b55f7f9434ee721d79f2fd0978b16ed10",
+      "git_blob": "f4525a4a73eccf0bb8213ef1bb47ed464ee14857",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/writing/lumo_writing_word_coach_screen.dart",
+      "bytes": 38878,
+      "sha256": "e08c2b8acd274eb201f1cd6dd164e9f22b569a1478cdff9295f0ea4fbe6c82bd",
+      "git_blob": "a7ee2c9fbc3d57de917bfb478bb60431722c00ea",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_ink_surface.dart",
+      "bytes": 2434,
+      "sha256": "659f2e062d7df7ee354d84ec94e0f598de6bddc1137d0042e7a67ea12509ddbd",
+      "git_blob": "123c13786584c3f9c487ae1b71317841d2995420",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/writing/widgets/lumo_letter_practice_board.dart",
+      "bytes": 39576,
+      "sha256": "d2c5308eb820799245975695a720173179d63144b89cc3feb0d9aabce5865dea",
+      "git_blob": "2b7f283d826ca09d85e7bec8cb7f51b0f562c466",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/writing/writing_engine.dart",
+      "bytes": 57931,
+      "sha256": "d1df3e186a6189f4b05594b407ebee01578ca474669292440617d7ff1aad3274",
+      "git_blob": "a6df9ce87657681d776d5f46ff10a63acf74b6ba",
+      "modified_by_pack": false
+    },
+    {
+      "path": "lib/features/writing/writing_feature_flags.dart",
+      "bytes": 1534,
+      "sha256": "7a42a9dfb693da76a53d6b25eede144acab75bce27a22f7fc446f6f9b7f1ac76",
+      "git_blob": "41000a96041c2fd4e43ed228666f66650e629719",
+      "modified_by_pack": false
+    },
+    {
+      "path": "pubspec.lock",
+      "bytes": 24467,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97",
+      "git_blob": "7843602e3d858660dc52d95587983858803976a5",
+      "modified_by_pack": false
+    },
+    {
+      "path": "pubspec.yaml",
+      "bytes": 2675,
+      "sha256": "497af10942af7e2ccc0573dc824c056472bb6e3745b575ec02fe5445ae3f7ec5",
+      "git_blob": "7f504396071cf3af57164187a29ea74b74c62413",
+      "modified_by_pack": false
+    },
+    {
+      "path": "scripts/tests/test_candidate_2011_pin.py",
+      "bytes": 17393,
+      "sha256": "e9ad36e9da7f5e18380b63ac7c9260eb546c0d2385faa163fa5909565cc03b1b",
+      "git_blob": "6367ea2cb9b562f56056623ff289c3e71de28157",
+      "modified_by_pack": false
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "bytes": 10697,
+      "sha256": "337ee4e3fb83af060edfc741db86404cf59b07c0e686e632b49dfe1077991bde",
+      "git_blob": "28f3aee40eb0028c5a4aa80196749f5867cbffc4",
+      "modified_by_pack": false
+    },
+    {
+      "path": "test/lumo_ink_surface_regression_test.dart",
+      "bytes": 2704,
+      "sha256": "c030f7e2ee6e6a1a07da6201691c7c88518e0c87005fccd44aa2a3a671f42a39",
+      "git_blob": "0583484e930700c73460ca8d21d0e109401dd145",
+      "modified_by_pack": false
+    },
+    {
+      "path": "test/shape_trace_retry_test.dart",
+      "bytes": 4108,
+      "sha256": "8d099c89099592ec6c06fd22f73c5ca6e6108fe682efd99cba03e8b13376b0c7",
+      "git_blob": "5c3e8dc05d6388434bb0fe6e3da44ca422d2dec6",
+      "modified_by_pack": false
+    },
+    {
+      "path": "tools/audit_learning_tasks_all_grades.dart",
+      "bytes": 4169,
+      "sha256": "9431ab50e3329998953853fb3c77bdb025456044e048a1ff435ee7a787e417bb",
+      "git_blob": "1fcc73a050480cd6bea3d74cffbb184031ca7810",
+      "modified_by_pack": false
+    }
+  ]
+}

@@ -93,6 +93,14 @@ class WorkflowTests(unittest.TestCase):
 
     def test_real_runtime_compile_and_existing_build_gates_remain_mandatory(self):
         runtime=job(self.workflow,'connect-four-runtime')
+        recovery='Retry the acknowledged native exit after a transient Android refusal'
+        recovery_step=step(runtime,recovery)
+        self.assertIn('res://scripts/tests/connect_four_return_regression.gd',recovery_step)
+        self.assertIn("grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21'",recovery_step)
+        self.assertIn("if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:'",recovery_step)
+        self.assertNotIn('if:',recovery_step)
+        self.assertLess(runtime.index(recovery),
+                        runtime.index('Require the actual production Dart and rendered Godot two-process gate'))
         self.assertIn('scripts/run_connect_four_runtime.py --host "$GITHUB_WORKSPACE"',runtime)
         self.assertIn('--native "$GITHUB_WORKSPACE/native-source"',runtime)
         self.assertIn('command -v xvfb-run',runtime)
@@ -126,6 +134,25 @@ class WorkflowTests(unittest.TestCase):
             with self.subTest(step=name): self.assertEqual(step(build,name),expected)
         self.assertNotIn('continue-on-error',self.workflow)
 
+    def test_wisp_feedback_has_its_own_mandatory_original_runtime_gate(self):
+        runtime=job(self.workflow,'connect-four-runtime')
+        label='Require bounded native Wisp feedback on the exact source'
+        probe=step(runtime,label)
+        self.assertIn('set -euo pipefail',probe)
+        self.assertIn('timeout 180s godot --headless --audio-driver Dummy --path native-source',probe)
+        self.assertIn('--script res://scripts/tests/treasure_wisp_regression.gd',probe)
+        self.assertIn('tee c4-runtime/treasure-wisps.log',probe)
+        self.assertIn("grep -Fx '[TreasureWisp] PASS checks=14'",probe)
+        self.assertIn('ObjectDB instances leaked|resources still in use at exit',probe)
+        self.assertNotIn('if:',probe)
+        self.assertLess(runtime.index('Import the exact configured native source in its own directory'),
+                        runtime.index(label))
+        self.assertLess(runtime.index(label),
+                        runtime.index('Require the actual production Dart and rendered Godot two-process gate'))
+        saved=step(runtime,'Preserve every original C4 runtime result and rendered frame')
+        self.assertIn('path: c4-runtime/',saved)
+        self.assertIn('if: always()',saved)
+
     def test_both_abis_and_real_android_c4_update_are_bound_to_exact_upload(self):
         build=job(self.workflow,'verify-and-build')
         self.assertIn("LUMO_SPLIT_PER_ABI: '1'",build)
@@ -148,6 +175,41 @@ class WorkflowTests(unittest.TestCase):
         self.assertIn('needs: [verify-and-build, android-host-compile, connect-four-runtime, android-c4, update-2020-from-2017]',verify)
         self.assertIn('scripts/verify_connect_four_candidate.py',verify)
         self.assertNotIn('    if: always()',verify.split('    steps:',1)[0])
+
+    def test_exact_learning_audit_runs_in_build_and_its_originals_reach_delivery(self):
+        build=job(self.workflow,'verify-and-build')
+        label='Audit every exact current-grade learning family on this candidate'
+        audit=step(build,label)
+        self.assertIn('set -euo pipefail',audit)
+        self.assertIn('SOURCE_SHA: ${{ github.event.pull_request.head.sha }}',audit)
+        self.assertIn('dart run tools/audit_learning_tasks_all_grades.dart "$audit_dir"',audit)
+        self.assertIn('2> "$audit_dir/audit.stderr.log" | tee "$audit_dir/audit.stdout.log"',audit)
+        self.assertIn('verify_connect_four_delivery.py bind-learning-audit',audit)
+        for flag in ('--source "$SOURCE_SHA"','--build-run "$GITHUB_RUN_ID"',
+                     '--run-attempt "$GITHUB_RUN_ATTEMPT"','--directory "$audit_dir"'):
+            self.assertIn(flag,audit)
+        self.assertNotIn('if:',audit)
+        self.assertLess(build.index('Resolve immutable Flutter dependencies'),build.index(label))
+        self.assertLess(build.index(label),build.index('Build unified real Android APK'))
+        saved=step(build,'Preserve the original current-source learning family audit')
+        for value in ('if: always()','name: lumo-connect-four-2020-learning-curriculum-audit',
+                      'path: .ci-results/learning-curriculum-audit/','if-no-files-found: error'):
+            self.assertIn(value,saved)
+        delivery=job(self.workflow,'prepare-c4-delivery')
+        self.assertIn('name: lumo-connect-four-2020-learning-curriculum-audit',delivery)
+        self.assertIn('path: proofs/learning/',delivery)
+        self.assertIn('--learning-audit proofs/learning',delivery)
+
+    def test_actual_original_jump_decode_dependencies_precede_unskipped_script_discovery(self):
+        build=job(self.workflow,'verify-and-build')
+        prerequisites=step(build,'Install actual app-script verification dependencies')
+        for command in ('install -y ripgrep ffmpeg','command -v ffmpeg','command -v ffprobe'):
+            self.assertIn(command,prerequisites)
+        self.assertLess(build.index('Install actual app-script verification dependencies'),
+                        build.index('Verify all build and preservation contracts'))
+        contracts=step(build,'Verify all build and preservation contracts')
+        self.assertIn('unittest discover -s scripts/tests -v',contracts)
+        self.assertIn('Build acceptance rejects skipped contract tests.',contracts)
 
     def test_dedicated_2020_delivery_keeps_every_gate_and_no_2019_receipt_path(self):
         names=re.findall(r'^  ([a-z][\w-]*):\s*$',self.workflow.split('jobs:\n',1)[1],re.M)

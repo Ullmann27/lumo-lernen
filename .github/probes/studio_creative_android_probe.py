@@ -1194,7 +1194,9 @@ class Tour:
             self.raw_adb('pull', remote, str(self.out / 'jump-actual-android.mp4'), timeout=90)
             write(self.out / 'jump-recording.json', record)
         movie = self.out / 'jump-actual-android.mp4'
-        decode = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(movie), '-f', 'null', '-'],
+        # Keep demuxer timestamps for variable-rate Android screenrecord; full decode stays strict.
+        decode = subprocess.run(['ffmpeg', '-v', 'error', '-i', str(movie),
+                                 '-enc_time_base', 'demux', '-f', 'null', '-'],
                                 capture_output=True, timeout=120)
         (self.out / 'jump-full-decode.log').write_bytes(decode.stdout + decode.stderr)
         require(decode.returncode == 0 and not decode.stderr.strip(), 'Actual Jump MP4 failed full decode')

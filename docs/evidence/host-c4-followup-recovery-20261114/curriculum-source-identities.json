@@ -1,0 +1,38 @@
+{
+  "source_commit": "f536ecf86bfece11786a9a76ac0d3fdb16123093",
+  "recovery": "Original API strings retained through executor restart; byte identities freshly verified before materialization.",
+  "files": [
+    {
+      "path": ".github/workflows/lumo-learning-curriculum-audit.yml",
+      "sha": "0bf54fe2224a74d383d3929afd56d8cd04169e7a",
+      "bytes": 1262,
+      "mode": "100644",
+      "type": "blob",
+      "sha256": "1000ec720946e0d454a22db77ffdb07ac46f72b1381ac7a27d5c5a69aefd28af"
+    },
+    {
+      "path": "lib/core/school_exercise_generator.dart",
+      "sha": "fd577a04dd677bdfa41d3e61763cfc3f2cb39430",
+      "bytes": 83708,
+      "mode": "100644",
+      "type": "blob",
+      "sha256": "8e9bc1c05ca8d5293abb3fd694dcfb2048f3700be21c46fd829b98985ce1d400"
+    },
+    {
+      "path": "test/learning/learning_exact_selection_test.dart",
+      "sha": "44eed001b94046a1b674fe3505bf29df9b8c8e7b",
+      "bytes": 2309,
+      "mode": "100644",
+      "type": "blob",
+      "sha256": "59f335779fcaca6c834cc4e1662140bf3453c3e92a72901fb7643b3a50e70441"
+    },
+    {
+      "path": "tools/audit_learning_tasks_all_grades.dart",
+      "sha": "1fcc73a050480cd6bea3d74cffbb184031ca7810",
+      "bytes": 4169,
+      "mode": "100644",
+      "type": "blob",
+      "sha256": "9431ab50e3329998953853fb3c77bdb025456044e048a1ff435ee7a787e417bb"
+    }
+  ]
+}

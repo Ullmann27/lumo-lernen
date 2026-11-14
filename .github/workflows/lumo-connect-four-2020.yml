@@ -60,6 +60,8 @@ jobs:
           .c4-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           flutter pub get --enforce-lockfile
           command -v xvfb-run
+      - name: Verify historical APK source isolation before native integration
+        run: .c4-python/bin/python -m unittest discover -s scripts/tests -p 'test_verify_unchanged_apk_diagnostic.py' -v
       - name: Install the actual pinned Godot engine
         run: bash scripts/install_godot_for_build.sh
       - name: Import the exact configured native source in its own directory
@@ -87,6 +89,15 @@ jobs:
             exit 1
           fi
           grep -Fx 'CONNECT_FOUR_RETURN_PASS checks=21' c4-runtime/return-recovery.log
+      - name: Require bounded native Wisp feedback on the exact source
+        run: |
+          set -euo pipefail
+          timeout 180s godot --headless --audio-driver Dummy --path native-source --script res://scripts/tests/treasure_wisp_regression.gd 2>&1 | tee c4-runtime/treasure-wisps.log
+          if grep -En 'ERROR:|SCRIPT ERROR:|Parse Error:|ObjectDB instances leaked|resources still in use at exit' c4-runtime/treasure-wisps.log; then
+            echo 'The actual native Wisp regression reported an engine or resource failure' >&2
+            exit 1
+          fi
+          grep -Fx '[TreasureWisp] PASS checks=14' c4-runtime/treasure-wisps.log
       - name: Require the actual production Dart and rendered Godot two-process gate
         run: |
           set -euo pipefail
@@ -230,6 +241,23 @@ jobs:
           test -s /usr/share/fonts/truetype/noto/NotoColorEmoji.ttf
       - name: Resolve immutable Flutter dependencies
         run: flutter pub get --enforce-lockfile
+      - name: Audit every exact current-grade learning family on this candidate
+        env:
+          SOURCE_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          set -euo pipefail
+          audit_dir="$GITHUB_WORKSPACE/.ci-results/learning-curriculum-audit"
+          mkdir -p "$audit_dir"
+          dart run tools/audit_learning_tasks_all_grades.dart "$audit_dir" 2> "$audit_dir/audit.stderr.log" | tee "$audit_dir/audit.stdout.log"
+          python3 scripts/verify_connect_four_delivery.py bind-learning-audit --directory "$audit_dir" --source "$SOURCE_SHA" --build-run "$GITHUB_RUN_ID" --run-attempt "$GITHUB_RUN_ATTEMPT"
+      - name: Preserve the original current-source learning family audit
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-connect-four-2020-learning-curriculum-audit
+          path: .ci-results/learning-curriculum-audit/
+          if-no-files-found: error
+          retention-days: 30
       - name: Flutter static analysis
         run: flutter analyze --no-fatal-infos --no-fatal-warnings
       - name: Real widget tests for premium quiz and 3D learning islands
@@ -291,10 +319,12 @@ jobs:
         run: |
           set -euo pipefail
           sudo apt-get -o Acquire::Retries=2 update -qq
-          sudo apt-get -o Acquire::Retries=2 install -y ripgrep
+          sudo apt-get -o Acquire::Retries=2 install -y ripgrep ffmpeg
           python3 -m venv .ci-python
           .ci-python/bin/python -m pip install --disable-pip-version-check Pillow==12.3.0
           command -v rg
+          command -v ffmpeg
+          command -v ffprobe
           .ci-python/bin/python -c 'from PIL import Image; print("App-script image verification ready")'
       - name: Install verified Gradle for the real build-contract probe
         run: |
@@ -801,6 +831,10 @@ jobs:
         with:
           name: lumo-candidate-pinned-native-gameplay
           path: proofs/native/
+      - uses: actions/download-artifact@v4
+        with:
+          name: lumo-connect-four-2020-learning-curriculum-audit
+          path: proofs/learning/
       - name: Read exact current original acceptance and release catalog
         env:
           GH_TOKEN: ${{ github.token }}
@@ -824,7 +858,7 @@ jobs:
             --candidate candidate/dist --runtime proofs/runtime/runtime --host-compile proofs/host \
             --android proofs/android --update proofs/update --metadata proofs/publication-metadata \
             --facts proofs/final/C4-CANDIDATE-FACTS.json --build-contracts proofs/contracts \
-            --native-evidence proofs/native --native-source native-source --out delivery
+            --native-evidence proofs/native --native-source native-source --learning-audit proofs/learning --out delivery
       - name: Preserve the complete verified 2020 ARM64 delivery bundle without publication
         id: upload-delivery
         if: success()
@@ -847,6 +881,7 @@ jobs:
             delivery/assets/C4-DELIVERY-FACTS.json
             delivery/assets/PUBLISH-VERIFICATION.json
             proofs/publication-metadata/
+            proofs/learning/
           include-hidden-files: true
           if-no-files-found: error
           retention-days: 90

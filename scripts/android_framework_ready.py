@@ -20,6 +20,7 @@ import os
 from pathlib import Path
 import re
 import secrets
+import selectors
 import shlex
 import signal
 import subprocess
@@ -224,8 +225,7 @@ def device_logger_launch(remote: str) -> str:
             "test -x /system/bin/toybox && test -x /system/bin/logcat\n"
             "mkdir " + remote + "\nexec > " + remote + "/launch.stdout 2> " + remote + "/launch.stderr\n"
             "printf '%s\\n' \"$1\" > " + remote + "/console.pid\n"
-            "cat > " + remote + "/run.sh <<'LUMO_LOGGER_SOURCE'\n" + script +
-            "LUMO_LOGGER_SOURCE\n"
+            "printf '%s' " + shlex.quote(script) + " > " + remote + "/run.sh\n"
             "/system/bin/toybox nohup /system/bin/toybox setsid /system/bin/sh " + remote +
             "/run.sh > " + remote + "/session.stdout 2> " + remote + "/session.stderr < /dev/null &\n"
             "attempt=0\nwhile [ ! -s " + remote + "/ready ] && [ \"$attempt\" -lt 100 ]; do\n"
@@ -411,6 +411,155 @@ class DeviceLogSession:
                 for file in sorted((self.out / "commands").glob("*")) if file.is_file()}
 
 
+LAUNCH_FAILURE_SECONDS = 8.0
+LAUNCH_FAILURE_COMMAND_SECONDS = 2.0
+LAUNCH_FAILURE_COMMAND_BYTES = 64 * 1024
+LAUNCH_FAILURE_TOTAL_BYTES = 256 * 1024
+
+
+def _launch_failure_read(out: Path, name: str, command: list[str],
+                         deadline: float, maximum: int) -> dict:
+    """Keep bounded original process output; never turn it into a launch result."""
+    if not re.fullmatch(r"[a-z][a-z0-9-]*", name) or not 0 < maximum <= LAUNCH_FAILURE_COMMAND_BYTES:
+        raise ValueError("Invalid bounded launch diagnostic request")
+    if any((out / (name + suffix)).exists() or (out / (name + suffix)).is_symlink()
+           for suffix in (".stdout", ".stderr", ".json")):
+        raise ValueError("Refusing to replace a launch diagnostic original")
+    record = {"command": command, "started_at": utc(), "returncode": None,
+              "timed_out": False, "byte_limit_exceeded": False, "errors": [],
+              "stdout_file": name + ".stdout", "stderr_file": name + ".stderr"}
+    buffers = {"stdout": bytearray(), "stderr": bytearray()}
+    process = None
+    stop_at = min(deadline - .2, time.monotonic() + LAUNCH_FAILURE_COMMAND_SECONDS)
+    cleanup_at = min(deadline, stop_at + .2)
+    with selectors.DefaultSelector() as selector:
+        try:
+            if maximum <= 0 or time.monotonic() >= stop_at:
+                raise TimeoutError("Launch diagnostic budget exhausted before command")
+            process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=subprocess.PIPE,
+                                       stderr=subprocess.PIPE, start_new_session=True, bufsize=0)
+            for stream in ("stdout", "stderr"):
+                pipe = getattr(process, stream)
+                os.set_blocking(pipe.fileno(), False)
+                selector.register(pipe, selectors.EVENT_READ, stream)
+            while selector.get_map() or process.poll() is None:
+                if time.monotonic() >= stop_at:
+                    record["timed_out"] = True
+                    break
+                for key, _event in selector.select(min(.05, max(0, stop_at - time.monotonic()))):
+                    remaining = maximum - sum(len(data) for data in buffers.values())
+                    try:
+                        data = os.read(key.fd, min(65536, remaining + 1))
+                    except BlockingIOError:
+                        continue
+                    if not data:
+                        selector.unregister(key.fileobj)
+                    else:
+                        buffers[key.data].extend(data[:remaining])
+                        if len(data) > remaining:
+                            record["byte_limit_exceeded"] = True
+                            break
+                if record["byte_limit_exceeded"]:
+                    break
+        except Exception as error:
+            record["errors"].append(type(error).__name__ + ": " + str(error)[:1024])
+            record["timed_out"] |= isinstance(error, TimeoutError)
+        finally:
+            if process is not None:
+                try:
+                    if process.poll() is None:
+                        try:
+                            os.killpg(process.pid, signal.SIGKILL)
+                        except ProcessLookupError:
+                            pass
+                    # Drain already available bytes after termination, within
+                    # the same deadline/cap. A limited read is only a prefix.
+                    while selector.get_map() and not record["byte_limit_exceeded"] and time.monotonic() < cleanup_at:
+                        for key, _event in selector.select(min(.01, max(0, cleanup_at - time.monotonic()))):
+                            remaining = maximum - sum(len(data) for data in buffers.values())
+                            try:
+                                data = os.read(key.fd, min(65536, remaining + 1))
+                            except BlockingIOError:
+                                continue
+                            if not data:
+                                selector.unregister(key.fileobj)
+                            else:
+                                buffers[key.data].extend(data[:remaining])
+                                if len(data) > remaining:
+                                    record["byte_limit_exceeded"] = True
+                                    break
+                    process.wait(timeout=max(0, cleanup_at - time.monotonic()))
+                except Exception as error:
+                    record["errors"].append(type(error).__name__ + ": " + str(error)[:1024])
+                finally:
+                    record["returncode"] = process.poll()
+                    record["output_complete"] = not (selector.get_map() or record["timed_out"] or
+                                                       record["byte_limit_exceeded"] or record["errors"])
+                    for stream in ("stdout", "stderr"):
+                        getattr(process, stream).close()
+            else:
+                record["output_complete"] = False
+    record["files"] = {}
+    for stream, data in buffers.items():
+        with (out / record[stream + "_file"]).open("xb") as handle:
+            handle.write(data)
+        record["files"][stream] = {"bytes": len(data), "sha256": hashlib.sha256(data).hexdigest()}
+    record["finished_at"] = utc()
+    with (out / (name + ".json")).open("x") as handle:
+        json.dump(record, handle, indent=2)
+        handle.write("\n")
+    return record
+
+
+def collect_launch_failure(session: DeviceLogSession) -> dict:
+    """Read only this failed session's originals; success remains impossible."""
+    remote = session.remote
+    if not DEVICE_LOG_PATH.fullmatch(remote) or not re.fullmatch(r"emulator-[0-9]+", session.recorder.serial):
+        raise ValueError("Invalid failed launch diagnostic identity")
+    out = session.out / "launch-failure"
+    out.mkdir(exist_ok=False)
+    started = time.monotonic()
+    deadline = started + LAUNCH_FAILURE_SECONDS
+    report = {"schema": 1, "status": "DIAGNOSTIC_ONLY", "started_at": utc(),
+              "remote": remote, "serial": session.recorder.serial, "commands": [], "errors": [],
+              "budget_seconds": LAUNCH_FAILURE_SECONDS, "raw_byte_budget": LAUNCH_FAILURE_TOTAL_BYTES,
+              "scope": "Failure-only read of original launch evidence. No launch, readiness or continuity acceptance."}
+    commands = []
+    for name in ("launch.stdout", "launch.stderr", "session.stdout", "session.stderr", "logcat.stderr"):
+        path = remote + "/" + name
+        script = "test ! -L " + remote + " && test -d " + remote + " && test ! -L " + path + " && test -f " + path + " && exec cat " + path
+        commands.append((name.replace(".", "-"), script))
+    state = ("printf '__reader_uid__\\n'; id; printf '__init_console__\\n'; getprop init.svc.console\n"
+             "printf '__toybox_executable__\\n'; test -x /system/bin/toybox; printf '%s\\n' \"$?\"\n"
+             "printf '__logcat_executable__\\n'; test -x /system/bin/logcat; printf '%s\\n' \"$?\"\n"
+             "test ! -L " + remote + " && test -d " + remote + " || exit 95\n")
+    for name in ("console.pid", "session.pid", "logger.pid", "ready", "logger.exit"):
+        path = remote + "/" + name
+        state += ("printf '__" + name + "__\\n'; test ! -L " + path + " && test -f " + path +
+                  " && /system/bin/toybox head -c 128 " + path + "; printf '\\n'\n")
+    commands.append(("state", state))
+    used = 0
+    try:
+        for name, script in commands:
+            if time.monotonic() >= deadline - .2 or used >= LAUNCH_FAILURE_TOTAL_BYTES:
+                report["errors"].append("Diagnostic time or byte budget exhausted; remaining commands not attempted")
+                break
+            command = [session.recorder.adb, "-s", session.recorder.serial, "shell", "sh", "-c", shlex.quote(script)]
+            record = _launch_failure_read(out, name, command, deadline,
+                                          min(LAUNCH_FAILURE_COMMAND_BYTES, LAUNCH_FAILURE_TOTAL_BYTES - used))
+            report["commands"].append(record)
+            used += sum(file["bytes"] for file in record["files"].values())
+    except Exception as error:
+        report["errors"].append(type(error).__name__ + ": " + str(error)[:1024])
+    report.update(finished_at=utc(), elapsed_seconds=time.monotonic() - started, raw_bytes=used,
+                  all_commands_attempted=len(report["commands"]) == len(commands),
+                  path=str(out.relative_to(session.out.parent)))
+    with (out / "report.json").open("x") as handle:
+        json.dump(report, handle, indent=2)
+        handle.write("\n")
+    return report
+
+
 def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
     if out.exists():
         raise ValueError("Refusing to replace device logger evidence")
@@ -460,6 +609,12 @@ def start_device_log(out: Path, framework_out: Path, serial: str) -> dict:
         value["status"] = "PASS"
     except (OSError, ValueError, RuntimeError, TimeoutError) as error:
         value["errors"].append(type(error).__name__ + ": " + str(error))
+        if "console_launch" not in value:
+            try:
+                value["launch_failure_diagnostics"] = collect_launch_failure(session)
+            except Exception as diagnostic_error:
+                value["launch_failure_diagnostics"] = {"status": "INCOMPLETE", "error":
+                    type(diagnostic_error).__name__ + ": " + str(diagnostic_error)[:1024]}
         raise
     finally:
         value.update(finished_at=utc(), records=session.records, files=session.originals())

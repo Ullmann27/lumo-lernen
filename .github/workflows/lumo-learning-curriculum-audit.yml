@@ -42,3 +42,42 @@ jobs:
           path: audit/learning-all-grades/
           if-no-files-found: warn
           retention-days: 30
+
+  connect-four-flutter:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '3.44.9'
+          channel: stable
+          cache: true
+      - name: Resolve existing locked Flutter dependencies
+        run: flutter pub get --enforce-lockfile
+      - name: Test complete C4 gameplay and five actual layout sizes
+        env:
+          LUMO_CONNECT_CAPTURES: audit/connect-four/captures
+        run: |
+          set -euo pipefail
+          mkdir -p audit/connect-four
+          touch_status=0
+          flutter test --no-pub --reporter=expanded --timeout=60s \
+            test/games/games_screen_flow_test.dart --plain-name 'Four in a row' \
+            2>&1 | tee audit/connect-four/touch-game.log || touch_status=$?
+          layout_status=0
+          flutter test --no-pub --reporter=expanded --timeout=60s \
+            test/design/connect_four_visual_test.dart test/games/connect_four_fold_controls_test.dart \
+            2>&1 | tee audit/connect-four/layouts.log || layout_status=$?
+          if [ "$touch_status" -ne 0 ] || [ "$layout_status" -ne 0 ]; then
+            printf 'C4 focused checks failed: gameplay=%s layouts=%s\n' "$touch_status" "$layout_status" >&2
+            exit 1
+          fi
+      - name: Preserve original C4 logs and genuine renders
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lumo-agent-c4-flutter
+          path: audit/connect-four/
+          if-no-files-found: error
+          retention-days: 30

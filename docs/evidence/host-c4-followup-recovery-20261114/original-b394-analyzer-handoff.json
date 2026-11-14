@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "head": "b394cd4f73cc4ab3d2e818aa94c0a10b26a55b9e",
+  "tree": "0fd0d967b76d152ebb8d72a1b534703b22ce7d7f",
+  "status": "PASS",
+  "active_dart_sources_verified": 831,
+  "returncode": 0,
+  "active_analysis_errors": 0,
+  "original_failed_CI_errors": 127,
+  "all_original_failed_errors_were_archived_snapshots": true,
+  "command": [
+    "/workspace/scratch/e0abce7d2838/toolchain/flutter/bin/flutter",
+    "analyze",
+    "--no-pub",
+    "--no-fatal-infos",
+    "--no-fatal-warnings"
+  ],
+  "source_and_git_config_unchanged": true,
+  "log": {
+    "bytes": 38182,
+    "sha256": "7ab1045aab80ce25d1916cfb86dc82c068525be10fbdb986a57d412a3a47e1b7"
+  },
+  "scope": "One actual local Flutter3.44.9 analysis with existing package config and original nonfatal warning/info policy. No unit, build, renderer or device acceptance."
+}
