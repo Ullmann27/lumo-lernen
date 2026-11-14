@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "scope": "Ten existing selected Python contract modules. Actual successful cases are aggregated across three invocations with all original failures retained. This is not a single full test run or a current APK/AAB/Flutter/Android/FPS acceptance.",
+  "runs": [
+    {
+      "directory": "validation",
+      "cases": 203,
+      "seconds": 49.13,
+      "errors": 3,
+      "exit_code": 1,
+      "source_unchanged": true
+    },
+    {
+      "directory": "validation-import-correction",
+      "cases": 48,
+      "seconds": 5.494,
+      "errors": 1,
+      "exit_code": 1,
+      "source_unchanged": true
+    },
+    {
+      "directory": "validation-catalog-restoration",
+      "cases": 1,
+      "seconds": 0.027,
+      "errors": 0,
+      "exit_code": 0,
+      "source_unchanged": true
+    }
+  ],
+  "actual_passed_cases_by_invocation": [
+    200,
+    47,
+    1
+  ],
+  "total_distinct_actual_passed_cases": 248,
+  "remaining_test_failures": 0,
+  "source_changes_during_each_run": false,
+  "product_or_test_edits_between_runs": false,
+  "materialization_corrections": [
+    "Add existing scripts/tests fixture directory to explicit module invocation.",
+    "Restore the unchanged actual catalog.json omitted from the selected local source snapshot."
+  ],
+  "all_previous1641_source_files_unchanged": true,
+  "final_materialized_source_files": 1642,
+  "source_parents": [
+    "77936fae6ce7b7bcbddb93dda19fb0104f696e12",
+    "0b7bacadd3cdc45d22a8e038c5df50ba8b739d62"
+  ],
+  "native_source": "a69f53518b2510873d88f00ff2783d616ab53702",
+  "original_failures_preserved": true
+}

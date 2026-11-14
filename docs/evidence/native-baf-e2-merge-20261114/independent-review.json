@@ -1,0 +1,1128 @@
+{
+  "schema": "lumo.native-three-way-source-review.v1",
+  "status": "no_static_integration_blocker_in_reviewed_candidate_tree",
+  "repository": "Ullmann27/lumo-godot",
+  "scope": "Read-only independent merge-preservation review. No engine, renderer, tests, build, file mutation, commit, reference change, or upload.",
+  "base": {
+    "commit": "bd0712259bb64908a5649ee1999638826c9eb597",
+    "tree": "2eb628d3e3a327ee8985385130c96168db7aa852"
+  },
+  "ours": {
+    "commit": "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "tree": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e"
+  },
+  "theirs": {
+    "commit": "baf148b03a7a32c6ad9f737d731f900eb9113ea1",
+    "tree": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00"
+  },
+  "candidate": {
+    "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "commit": null,
+    "required_future_parents": [
+      "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    ]
+  },
+  "tree_review": {
+    "counts": {
+      "base": 3617,
+      "ours": 3649,
+      "theirs": 3689
+    },
+    "changes": {
+      "ours": 34,
+      "theirs": 83,
+      "overlap": [
+        {
+          "path": "scripts/games/kart_island.gd",
+          "ours": {
+            "mode": "100644",
+            "type": "blob",
+            "sha": "83b3b6b548cffa2790c582e061a74e37bbfcf356"
+          },
+          "theirs": {
+            "mode": "100644",
+            "type": "blob",
+            "sha": "83b3b6b548cffa2790c582e061a74e37bbfcf356"
+          },
+          "identical": true
+        },
+        {
+          "path": "scripts/tests/mobile_safe_area_regression.gd",
+          "ours": {
+            "mode": "100644",
+            "type": "blob",
+            "sha": "6c58c08b8c47a7bf7c957c448b88474a984b9509"
+          },
+          "theirs": {
+            "mode": "100644",
+            "type": "blob",
+            "sha": "6c58c08b8c47a7bf7c957c448b88474a984b9509"
+          },
+          "identical": true
+        }
+      ],
+      "evidence": 32
+    },
+    "evidenceOnlyAddedDocs": true,
+    "deleted": {
+      "ours": [],
+      "theirs": []
+    },
+    "modeOrTypeChanges": {
+      "ours": [],
+      "theirs": []
+    },
+    "gate_paths": [
+      {
+        "path": "scripts/tests/build_nextgen_play_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8b01650f45dd0ca03fce0e02ad3e530a78c15de2"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8b01650f45dd0ca03fce0e02ad3e530a78c15de2"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/build_village_art_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "58e30670eee6cde7de94810d395c4af56f4bdd70"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "58e30670eee6cde7de94810d395c4af56f4bdd70"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/build_village_economy_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9dd8ff269e266dd73ad5207febd87aab367a4986"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9ff2960ebaa946f9611e0509964dd0f53668e281"
+        },
+        "preservedFromE2": false
+      },
+      {
+        "path": "scripts/tests/build_village_scaling_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c6abdb5f9576c0b48db7bd59716da52ea5fac036"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "scripts/tests/build_village_scene_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "739032f05e558c197a633e4a1b01ab8f61248a0f"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "739032f05e558c197a633e4a1b01ab8f61248a0f"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/connect_four_return_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/creative_nextgen_environment_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd2e7e0d8401ddaa7d2122a5225eef31e04d6529"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "cd2e7e0d8401ddaa7d2122a5225eef31e04d6529"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/dream_garden_capture.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8b514d3f6bf9095e6908765cd3d59bc5ebdb67a4"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "8b514d3f6bf9095e6908765cd3d59bc5ebdb67a4"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/dream_garden_props_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "361eed7ed25b46bff8173087eb7df1eaaac96b56"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "361eed7ed25b46bff8173087eb7df1eaaac96b56"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/jump_nextgen_capture.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3e1f86499c2fc1a64389f3207d8a7d66174b7ffe"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "3e1f86499c2fc1a64389f3207d8a7d66174b7ffe"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/jump_nextgen_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4d3e19f19050fbb0df5338b51ee02dd886c90c58"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "4d3e19f19050fbb0df5338b51ee02dd886c90c58"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/kart_nextgen_garage_baseline_capture.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bdbc55a467777d5ea552976e2400c121fb950272"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "bdbc55a467777d5ea552976e2400c121fb950272"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/kart_nextgen_garage_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0368843eacc8f41cce53f81f5dbf8becc220b422"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0368843eacc8f41cce53f81f5dbf8becc220b422"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/kart_nextgen_ui_capture.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5c7ae32df240c837aa046a057d5f67eeb739ba6c"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "5c7ae32df240c837aa046a057d5f67eeb739ba6c"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/kart_nextgen_ui_smoke.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "45ab4570433fdb5ede71f5dfdf7e181944de2e94"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "45ab4570433fdb5ede71f5dfdf7e181944de2e94"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/lumo_dream_ambience_capture.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "75085479ed587335533651adece30b579b8fe11f"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "75085479ed587335533651adece30b579b8fe11f"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/lumo_dream_ambience_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d96ad6f332b93e3e28d563d72b3c10d208c7be13"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d96ad6f332b93e3e28d563d72b3c10d208c7be13"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/mobile_safe_area_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6c58c08b8c47a7bf7c957c448b88474a984b9509"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6c58c08b8c47a7bf7c957c448b88474a984b9509"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "scripts/tests/village_host_launch_regression.gd",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "082cecfc4a6542c8372bc592b4729051b105a079"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/art/build_village_friends.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c6167e1c995d954e1f8b951485cbca51db2382a5"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c6167e1c995d954e1f8b951485cbca51db2382a5"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/art/render_village_friends.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "61c65ecdf3c5b1a0e30374f982508a16d25ab8ab"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "61c65ecdf3c5b1a0e30374f982508a16d25ab8ab"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/collect_discovery_connections.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1ebdec66300dfb87bf9287d194525d3c374c8aee"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/tests/test_discovery_connections.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "ffe8fdd88cae1abc942e7a3d14f57493bc381478"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/tests/test_discovery_rasters.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "d8af97bcd61c5ced583b0be133d504feb978e6a9"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/tests/test_dream_rasters.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0af63932d9f71fd3f1c1657f6aaaba46a019a2c0"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0af63932d9f71fd3f1c1657f6aaaba46a019a2c0"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/tests/test_nextgen_runner.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6abee84f4df65fd2e379d013b7068552a962ce15"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "6abee84f4df65fd2e379d013b7068552a962ce15"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/validate_discovery_connections.sh",
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "07975f12c1f9b07d586cbeb85270329955198f04"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/validate_dream_connections.sh",
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "834ea912003f5e27a271139646a857601baea905"
+        },
+        "e2": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "834ea912003f5e27a271139646a857601baea905"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/validate_nextgen.sh",
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+        },
+        "e2": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/verify_discovery_connections.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/verify_discovery_rasters.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "219e691fc8aa119cc80221b3db6c77e63caf8bfe"
+        },
+        "e2": null,
+        "preservedFromE2": false
+      },
+      {
+        "path": "tools/verify_dream_rasters.py",
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+        },
+        "e2": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+        },
+        "preservedFromE2": true
+      },
+      {
+        "path": "tools/verify_village_rasters.py",
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+        },
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+        },
+        "preservedFromE2": true
+      }
+    ]
+  },
+  "exact_candidate_review": {
+    "candidateTree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "candidateLeafCount": 3721,
+    "expectedLeafCount": 3721,
+    "unexpectedEntries": [],
+    "changesFromBaf": 32,
+    "allBafEntriesExact": true,
+    "e2EvidenceExact": true
+  },
+  "ordered_gate_rosters": {
+    "nextgenModeCount": 52,
+    "dreamModeCount": 5,
+    "discoveryModeCount": 10,
+    "nextgenModes": [
+      {
+        "line": 94,
+        "text": "check_probe learning_world_regression '[LearningWorld] PASS' headless"
+      },
+      {
+        "line": 95,
+        "text": "check_probe learning_sharing_regression '[LearningSharing] PASS' headless"
+      },
+      {
+        "line": 96,
+        "text": "check_probe learning_studio_regression '[LearningStudio] PASS' headless"
+      },
+      {
+        "line": 97,
+        "text": "check_probe learning_host_payload_regression '[LearningHostPayload] PASS' headless"
+      },
+      {
+        "line": 98,
+        "text": "check_probe puzzle_rotation_regression '[PuzzleRotation] PASS' headless"
+      },
+      {
+        "line": 99,
+        "text": "check_probe puzzle_menu_lifecycle_regression '[PuzzleMenuLifecycle] PASS' headless"
+      },
+      {
+        "line": 100,
+        "text": "check_probe treasure_exploration_regression '[TreasureExploration] PASS' headless"
+      },
+      {
+        "line": 101,
+        "text": "check_probe jump_nextgen_regression '[JumpNextgen] PASS' headless"
+      },
+      {
+        "line": 102,
+        "text": "check_probe jump_expeditions_regression '[JumpExpeditions] PASS' headless"
+      },
+      {
+        "line": 103,
+        "text": "check_probe lumo_teacher_pose_regression '[LumoTeacherPose] PASS' headless"
+      },
+      {
+        "line": 104,
+        "text": "check_probe lumo_studio_motion_regression '[LumoStudioMotion] PASS' headless"
+      },
+      {
+        "line": 105,
+        "text": "check_probe lumo_65bone_walk_gait_regression '[LumoGait] PASS' headless"
+      },
+      {
+        "line": 106,
+        "text": "check_probe lumo_original_jump_visual_regression '[JumpOriginalLumo] PASS' headless"
+      },
+      {
+        "line": 107,
+        "text": "check_probe bauwelt_identity_2013_regression '[BauweltIdentity2013] PASS' headless"
+      },
+      {
+        "line": 108,
+        "text": "check_probe build_frontier_regression '[BuildFrontier] PASS' headless"
+      },
+      {
+        "line": 109,
+        "text": "check_probe build_transform_regression '[BuildTransform] PASS' headless"
+      },
+      {
+        "line": 110,
+        "text": "check_probe build_nextgen_play_regression '[BuildNextgen] PASS' headless"
+      },
+      {
+        "line": 111,
+        "text": "check_probe build_settlement_regression '[Settlement] PASS' headless"
+      },
+      {
+        "line": 112,
+        "text": "check_probe build_settlement_play_regression '[SettlementPlay] PASS' headless"
+      },
+      {
+        "line": 113,
+        "text": "check_probe build_village_economy_regression '[VillageEconomy] PASS' headless"
+      },
+      {
+        "line": 114,
+        "text": "check_probe build_village_art_regression ' checks / 0 failures' headless"
+      },
+      {
+        "line": 115,
+        "text": "check_probe build_village_scene_regression '[VillageScene] PASS' headless"
+      },
+      {
+        "line": 116,
+        "text": "check_probe creative_nextgen_environment_regression '[CreativeNextgenEnvironment] PASS' headless"
+      },
+      {
+        "line": 117,
+        "text": "check_probe kart_nextgen_garage_regression '[NextGenGarage] PASS' headless"
+      },
+      {
+        "line": 118,
+        "text": "check_probe kart_track_pass_regression '[KartTrackPass] PASS' headless"
+      },
+      {
+        "line": 119,
+        "text": "check_probe cards_table_regression 'CARDS_TABLE_RUNTIME_PASS' headless"
+      },
+      {
+        "line": 120,
+        "text": "check_probe cards_safe_area_android_contract 'CARDS_ANDROID_INSETS_PASS' headless"
+      },
+      {
+        "line": 121,
+        "text": "check_probe cards_safe_area_regression 'CARDS_SAFE_AREA_PASS' headless"
+      },
+      {
+        "line": 122,
+        "text": "check_probe mobile_safe_area_regression 'MOBILE_SAFE_AREA_PASS' headless"
+      },
+      {
+        "line": 123,
+        "text": "check_probe rhythm_tour_regression '[RhythmTour] PASS' headless"
+      },
+      {
+        "line": 124,
+        "text": "check_probe rhythm_tour_play_regression '[RhythmTourPlay] PASS' headless"
+      },
+      {
+        "line": 125,
+        "text": "check_probe learning_world_capture '[LearningCapture] PASS' rendered -- \"--output=$LOG_DIR/captures/learning_world_capture\""
+      },
+      {
+        "line": 126,
+        "text": "check_probe learning_sharing_capture '[LearningSharingCapture] PASS' rendered -- \"--output=$LOG_DIR/captures/learning_sharing_capture\""
+      },
+      {
+        "line": 127,
+        "text": "check_probe lumo_studio_motion_capture '[LumoStudioCapture] PASS' rendered"
+      },
+      {
+        "line": 128,
+        "text": "check_probe puzzle_rotation_regression '[PuzzleRotation] PASS' rendered"
+      },
+      {
+        "line": 129,
+        "text": "check_probe puzzle_menu_lifecycle_regression '[PuzzleMenuLifecycle] PASS' rendered -- --capture"
+      },
+      {
+        "line": 130,
+        "text": "check_probe treasure_exploration_regression '[TreasureExploration] PASS' rendered"
+      },
+      {
+        "line": 131,
+        "text": "check_probe jump_nextgen_capture '[JumpNextgenCapture] PASS' rendered"
+      },
+      {
+        "line": 132,
+        "text": "check_probe build_nextgen_play_regression '[BuildNextgen] PASS' rendered -- --capture"
+      },
+      {
+        "line": 133,
+        "text": "check_probe build_settlement_play_regression '[SettlementPlay] PASS' rendered -- --capture"
+      },
+      {
+        "line": 134,
+        "text": "check_probe build_village_scene_regression '[VillageScene] PASS' rendered -- --capture"
+      },
+      {
+        "line": 135,
+        "text": "check_probe creative_nextgen_environment_regression '[CreativeNextgenEnvironment] PASS' rendered"
+      },
+      {
+        "line": 138,
+        "text": "check_probe kart_nextgen_garage_regression '[NextGenGarage] PASS' rendered --fixed-fps 60 -- --capture"
+      },
+      {
+        "line": 139,
+        "text": "check_probe cards_table_capture 'CARDS_TABLE_RENDER_PASS' rendered -- \"--output=$LOG_DIR/captures/cards_table_capture\""
+      },
+      {
+        "line": 140,
+        "text": "check_probe cards_safe_area_regression 'CARDS_SAFE_AREA_PASS' rendered -- --capture"
+      },
+      {
+        "line": 141,
+        "text": "check_probe mobile_safe_area_regression 'MOBILE_SAFE_AREA_PASS' rendered -- --capture"
+      },
+      {
+        "line": 142,
+        "text": "check_probe rhythm_tour_play_regression '[RhythmTourPlay] PASS' rendered -- --capture"
+      },
+      {
+        "line": 143,
+        "text": "check_probe kart_player_full_route_regression '[PlayerFullRoute] PASS' rendered -- \"--out=$LOG_DIR/captures/kart_player_full_route_regression\""
+      },
+      {
+        "line": 146,
+        "text": "check_probe lumo_facial_regression 'LUMO_FACIAL_PASS checks=102 actual_meshes=true original_bones=65 original_clips=9 phoneme_lipsync=false' headless"
+      },
+      {
+        "line": 147,
+        "text": "check_probe lumo_facial_capture 'LUMO_FACIAL_CAPTURE_PASS frames=144 original_word=true recording_fps=24 not_device_fps=true' rendered \\"
+      },
+      {
+        "line": 150,
+        "text": "check_probe connect_four_visual_capture 'CONNECT_FOUR_VISUAL_PASS' rendered -- --capture"
+      },
+      {
+        "line": 151,
+        "text": "check_probe treasure_title_contrast_regression '[TreasureTitleContrast] PASS' rendered -- --capture"
+      }
+    ],
+    "dreamModes": [
+      {
+        "line": 94,
+        "text": "check_probe lumo_dream_ambience_regression headless '[DreamAmbience] 170 checks, 0 failures'"
+      },
+      {
+        "line": 95,
+        "text": "check_probe dream_garden_props_regression headless '[DreamGarden] checks=544 failures=0'"
+      },
+      {
+        "line": 96,
+        "text": "check_probe lumo_dream_ambience_capture rendered-treasure \\"
+      },
+      {
+        "line": 99,
+        "text": "check_probe lumo_dream_ambience_capture rendered-learning \\"
+      },
+      {
+        "line": 102,
+        "text": "check_probe dream_garden_capture rendered '[DreamGardenCapture] failures=0' \\"
+      }
+    ],
+    "discoveryModes": [
+      {
+        "line": 45,
+        "text": "probe learning_world_regression headless 150 '[LearningWorld] PASS checks=5347'"
+      },
+      {
+        "line": 46,
+        "text": "probe learning_sharing_regression headless 150 '[LearningSharing] PASS checks=1811'"
+      },
+      {
+        "line": 47,
+        "text": "probe learning_studio_regression headless 150 '[LearningStudio] PASS checks=183; runtime asset, materials, reduced motion and preserved learning'"
+      },
+      {
+        "line": 48,
+        "text": "probe game_hub_magic_regression headless 150 '[LumoHub] PASS 8 visible native game entrances, active village route, preserved child settings and 3D reduced-motion portal'"
+      },
+      {
+        "line": 49,
+        "text": "probe village_host_launch_regression headless 150 '[VillageHost] PASS Flutter village request, native boot scene and child context'"
+      },
+      {
+        "line": 50,
+        "text": "probe learning_wonder_details_regression headless 150 '[LearningWonder] checks=100 failures=0 renderer=headless invalid_scene_checked=false'"
+      },
+      {
+        "line": 51,
+        "text": "probe learning_wonder_details_regression rendered 420 '[LearningWonder] checks=108 failures=0 renderer=X11 invalid_scene_checked=true'"
+      },
+      {
+        "line": 53,
+        "text": "probe game_hub_magic_capture rendered 180 '[LumoHubCapture] PASS 2 original current-source rendered PNGs'"
+      },
+      {
+        "line": 54,
+        "text": "probe learning_world_capture rendered 900 '[LearningCapture] PASS captures=25' \\"
+      },
+      {
+        "line": 56,
+        "text": "probe learning_wonder_details_capture rendered 420 '[WonderCapture] checks=136 failures=0 captures=11' \\"
+      }
+    ],
+    "old52ReferencedScriptChanges": [
+      {
+        "path": "scripts/tests/build_village_economy_regression.gd",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9ff2960ebaa946f9611e0509964dd0f53668e281"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "9dd8ff269e266dd73ad5207febd87aab367a4986"
+        }
+      }
+    ],
+    "protections": [
+      {
+        "path": "tools/validate_nextgen.sh",
+        "e2": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+        },
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+        },
+        "candidate": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/run_godot_probe.py",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "c23859ece2d62101d000d7a89556fda5d3fe4105"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/verify_studio_rasters.py",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0278d71030e87e4e46dd04b855e77711b2759252"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0278d71030e87e4e46dd04b855e77711b2759252"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "0278d71030e87e4e46dd04b855e77711b2759252"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/verify_village_rasters.py",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "7c9522903db13f9bd0917ef2768ddbc08e624b1d"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/verify_puzzle_menu_rasters.py",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "391630e0bcd394dd0e274725cf15a7474eb41e77"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "391630e0bcd394dd0e274725cf15a7474eb41e77"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "391630e0bcd394dd0e274725cf15a7474eb41e77"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/verify_safe_area_rasters.py",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "34fb3c4f31e476a5f29f98abc9a2ecc0337e6863"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "34fb3c4f31e476a5f29f98abc9a2ecc0337e6863"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "34fb3c4f31e476a5f29f98abc9a2ecc0337e6863"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/verify_studio_2020_rasters.py",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "b60c3360730f0db73f91324cbaed3a8806fd141e"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/validate_dream_connections.sh",
+        "e2": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "834ea912003f5e27a271139646a857601baea905"
+        },
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "834ea912003f5e27a271139646a857601baea905"
+        },
+        "candidate": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "834ea912003f5e27a271139646a857601baea905"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "tools/verify_dream_rasters.py",
+        "e2": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+        },
+        "baf": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+        },
+        "candidate": {
+          "mode": "100755",
+          "type": "blob",
+          "sha": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      },
+      {
+        "path": "scripts/tests/connect_four_return_regression.gd",
+        "e2": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb"
+        },
+        "baf": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb"
+        },
+        "candidate": {
+          "mode": "100644",
+          "type": "blob",
+          "sha": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb"
+        },
+        "e2_preserved": true,
+        "baf_preserved": true
+      }
+    ]
+  },
+  "existing_economy_assertion_preservation": {
+    "oldLines": 489,
+    "newLines": 497,
+    "oldExactSubsequence": true,
+    "addedLines": [
+      {
+        "line": 262,
+        "text": "\tfor town_name in [\"player\", \"rival\"]:"
+      },
+      {
+        "line": 263,
+        "text": "\t\tvar misleading: Dictionary = old.duplicate(true)"
+      },
+      {
+        "line": 264,
+        "text": "\t\tmisleading[town_name][\"economy_version\"] = 2"
+      },
+      {
+        "line": 265,
+        "text": "\t\tvar safely_loaded = MODEL.restore(JSON.parse_string(JSON.stringify(misleading)))"
+      },
+      {
+        "line": 266,
+        "text": "\t\tcheck("
+      },
+      {
+        "line": 267,
+        "text": "\t\t\tsafely_loaded != null and safely_loaded.snapshot() == old,"
+      },
+      {
+        "line": 268,
+        "text": "\t\t\t\"legacy envelope ignores unvalidated economy markers: \" + town_name"
+      },
+      {
+        "line": 269,
+        "text": "\t\t)"
+      }
+    ]
+  },
+  "new_workflow": {
+    "path": ".github/workflows/lumo-discovery-connections.yml",
+    "blob": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+    "ranges": [
+      {
+        "lines": [
+          147,
+          175
+        ],
+        "purpose": "Four pre-existing exact headless gates, including Return21, retained from baf."
+      },
+      {
+        "lines": [
+          177,
+          185
+        ],
+        "purpose": "Five Dream modes/seven PNG marker retained from baf."
+      },
+      {
+        "lines": [
+          187,
+          198
+        ],
+        "purpose": "Actual caller is collect_discovery_connections.py plus verify_discovery_connections.py; requires ten probes/38 PNGs/two reports."
+      },
+      {
+        "lines": [
+          254,
+          264
+        ],
+        "purpose": "Existing economy plus new scaling headless/rendered calls retained."
+      },
+      {
+        "lines": [
+          317,
+          352
+        ],
+        "purpose": "Exact Minimap production/test hashes and rendered original probe retained."
+      },
+      {
+        "lines": [
+          380,
+          400
+        ],
+        "purpose": "Original Mobile report,15 targets/48dp and profile roster retained."
+      }
+    ]
+  },
+  "conclusions": [
+    "All 3689 baf leaf entries preserved exactly, including path, mode, type and Git blob.",
+    "Candidate adds exactly 32 e2-only documentation/evidence entries; these are exact copies.",
+    "The two overlapping source/test paths have identical end blobs in both parents.",
+    "No parent-side deletion or file mode/type change in either base-to-parent delta.",
+    "The 52-mode runner and its raster verifiers, Dream runner/verifier, and Return probe are byte-identical to e2.",
+    "Of scripts referenced by old52, only Village economy differs from e2; all489 old split lines remain exact and ordered, with only8 additive lines introducing two checks.",
+    "Existing and added baf Discovery/Village/Minimap gates are preserved byte-for-byte in the candidate."
+  ],
+  "limitations": [
+    "Only source/tree preservation approved; no passing execution for the merged candidate is asserted.",
+    "Candidate is a tree, not yet a commit; actual eventual two-parent ancestry must be checked after commit creation.",
+    "No broad six-commit feature audit performed.",
+    "Host workflow integration and activation are outside this leaf review."
+  ],
+  "post_review_merge_binding": {
+    "source": "Reported by /root/lumo_release_lead/learning_ux_lead after that agent read back GitData.",
+    "independently_read_by_this_reviewer": false,
+    "commit": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "parents_in_order": [
+      "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    ],
+    "parent_reported_compare": "baf to merge contains only the 32 original added evidence files.",
+    "limitation": "This addendum records the parent agent's report; this leaf performed no additional commit/API review or execution."
+  }
+}

@@ -1,0 +1,482 @@
+{
+  "schema": 1,
+  "scope": "Actual immutable Git three-way integration/source preservation only; no native execution or new runtime acceptance.",
+  "repository": "Ullmann27/lumo-godot",
+  "common_ancestor": "bd0712259bb64908a5649ee1999638826c9eb597",
+  "parents_ordered": [
+    "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+    "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+  ],
+  "trees": {
+    "base": {
+      "sha": "2eb628d3e3a327ee8985385130c96168db7aa852",
+      "complete": true,
+      "entries": 4516,
+      "leaf_entries": 3617
+    },
+    "ours": {
+      "sha": "ea0f73ae6aad8792a963cadaa483c290a2f2a62e",
+      "complete": true,
+      "entries": 4555,
+      "leaf_entries": 3649
+    },
+    "theirs": {
+      "sha": "0c18a0ca5200ade267cfedb4c12d5c4b0a761a00",
+      "complete": true,
+      "entries": 4595,
+      "leaf_entries": 3689
+    },
+    "candidate": {
+      "sha": "607643d9e109079925e21dfcf9c991a8250d4a46",
+      "complete": true,
+      "entries": 4634,
+      "leaf_entries": 3721
+    }
+  },
+  "overlap": [
+    {
+      "path": "scripts/games/kart_island.gd",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "f7473190f51fb5dbda7d0f7ad7292f8ec64c0da2"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "83b3b6b548cffa2790c582e061a74e37bbfcf356"
+      }
+    },
+    {
+      "path": "scripts/tests/mobile_safe_area_regression.gd",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "61ded805fdbc70c3499814b4e8f74214079fc96c"
+      },
+      "after": {
+        "mode": "100644",
+        "type": "blob",
+        "sha": "6c58c08b8c47a7bf7c957c448b88474a984b9509"
+      }
+    }
+  ],
+  "resolution": "Both overlap end blobs are identical. Keep all3689 baf leaf entries byte-for-byte including modes/types; add32 originals-only evidence blobs frome2. No product, gate, workflow, preset, asset or notice bytes changed versusbaf.",
+  "actual_candidate_readback": {
+    "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "truncated": false,
+    "all_entries": 4634,
+    "leaf_entries": 3721,
+    "expected_leaf_entries": 3721,
+    "bad": [],
+    "missing": [],
+    "preserved_baf_leaf_entries": 3689,
+    "only_added_ours_original_evidence": 32,
+    "no_ref_changed": true
+  },
+  "ours_only_preserved_evidence": [
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "085d6f9d84449d670085220ff2c541937cdfbe75"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/display/attempt.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "befbbd037e0891ed7b7b37baa6bc2df688f6fb9a"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/display/capability.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "78fe143d3533b689caae5fda4ed0c091f386b77e"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/display/xorg-start.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d551e61d9251c43bccc49c9001e9760557117407"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/display/xorg.conf",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "62582a38acc749ec9543ee8115cde480a6119ee3"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/display/xorg.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ead5853ab22f12c6ed0960d2453faa0749cc4595"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/green/mobile-safe-area.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ee2b818b2cb2fe1f44f436efd9b02b42d601960c"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/green/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0d60163a04f79387e3352a3a73591a7dd146711c"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/green/run.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8c8d0acedfaa337f87250ba3dfe9add54f273538"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/import-run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8facd02d5a10c357f44690bf8e673a2c7bd24295"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/import.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "01f574ec4276b0733538a74b3629ccb1f8f41cf5"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/independent-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "fb45674454d43a5365d67f45c9eb83cbaad66fa9"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6c660fff77fadbb8b8bfccb34e1fff96f4c497ef"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/preflight.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "6cbdb223b6b97abf6405001744eca4e2a76acf60"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/red/mobile-safe-area.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "5b01f0fdf019f09e819bb10020e8168fea3fa6af"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/red/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "0c8ee322fdd06057b07b8a8a2be01913ea74aebc"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/red/run.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "de2f6da1b5fd5a8b6abe61ace120d611d2520d92"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/result-summary.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "59e09a4b41cc07c84c2b1fb57193e357759393ae"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/run_probe.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "e2a0ed84f5f29fa002be3f4303ccd3750b74a2bb"
+    },
+    {
+      "path": "docs/evidence/kart-minimap-safe-area-20261114/source-prepare.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "dae78e6f187731383a9c53e1a94355d4b810f310"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/README.md",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d88bbbecddee7f3269bbaf69080b62ba127219a5"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/dependency-review.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "eb8e1e4d85b805cf04207ee406e41c21c29675ed"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/import/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f470f88e1576cab009f649e4b5190cad113c1652"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/import/run.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "f9ef5c42157f7518622330df9e97bc588f3af9b8"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/integration/mobile-safe-area.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "880c0da5fa06fa53cffdb18601c5d0c2ed6830ca"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/integration/run.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "50d1ab378e1399c1b01ab8c86c19b97d27d93ec6"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/integration/run.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "87eef50f2b112ae226f3e99c45741402e9f47f96"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/manifest.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "d7789985a6ec76881c693ed6541bab0fa432fc9b"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/preflight.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "b8e84be38e28d4bfb6ab1eb5ffda72fc15f34e56"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/run_integration.py",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "8017b4dc13ab21bb71878ce333162cde056c80da"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/source-prepare.log",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "35966e7d173c586aac6256fcc84ec4cd7ae0ed74"
+    },
+    {
+      "path": "docs/evidence/native-dream-minimap-merge-20261114/source-preservation.json",
+      "mode": "100644",
+      "type": "blob",
+      "sha": "ab379090c441d7834620bf58dfa264f68e141b10"
+    }
+  ],
+  "named_gate_bindings": [
+    {
+      "path": ".github/workflows/lumo-discovery-connections.yml",
+      "base": null,
+      "ours": null,
+      "theirs": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "candidate": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "preserved_from_baf": true,
+      "unchanged_e2": false
+    },
+    {
+      "path": "scripts/tests/build_village_scaling_regression.gd",
+      "base": null,
+      "ours": null,
+      "theirs": "c6abdb5f9576c0b48db7bd59716da52ea5fac036",
+      "candidate": "c6abdb5f9576c0b48db7bd59716da52ea5fac036",
+      "preserved_from_baf": true,
+      "unchanged_e2": false
+    },
+    {
+      "path": "scripts/tests/connect_four_return_regression.gd",
+      "base": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb",
+      "ours": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb",
+      "theirs": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb",
+      "candidate": "1d7a4cbd0f3b0d5a21ddeaf218bf27eadfe1f0bb",
+      "preserved_from_baf": true,
+      "unchanged_e2": true
+    },
+    {
+      "path": "scripts/tests/mobile_safe_area_regression.gd",
+      "base": "61ded805fdbc70c3499814b4e8f74214079fc96c",
+      "ours": "6c58c08b8c47a7bf7c957c448b88474a984b9509",
+      "theirs": "6c58c08b8c47a7bf7c957c448b88474a984b9509",
+      "candidate": "6c58c08b8c47a7bf7c957c448b88474a984b9509",
+      "preserved_from_baf": true,
+      "unchanged_e2": true
+    },
+    {
+      "path": "tools/validate_discovery_connections.sh",
+      "base": null,
+      "ours": null,
+      "theirs": "07975f12c1f9b07d586cbeb85270329955198f04",
+      "candidate": "07975f12c1f9b07d586cbeb85270329955198f04",
+      "preserved_from_baf": true,
+      "unchanged_e2": false
+    },
+    {
+      "path": "tools/validate_dream_connections.sh",
+      "base": "834ea912003f5e27a271139646a857601baea905",
+      "ours": "834ea912003f5e27a271139646a857601baea905",
+      "theirs": "834ea912003f5e27a271139646a857601baea905",
+      "candidate": "834ea912003f5e27a271139646a857601baea905",
+      "preserved_from_baf": true,
+      "unchanged_e2": true
+    },
+    {
+      "path": "tools/validate_nextgen.sh",
+      "base": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "ours": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "theirs": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "candidate": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+      "preserved_from_baf": true,
+      "unchanged_e2": true
+    },
+    {
+      "path": "tools/verify_discovery_connections.py",
+      "base": null,
+      "ours": null,
+      "theirs": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc",
+      "candidate": "c00ca9873106c974d66282cddfdcfaf5eb3bbebc",
+      "preserved_from_baf": true,
+      "unchanged_e2": false
+    },
+    {
+      "path": "tools/verify_discovery_rasters.py",
+      "base": null,
+      "ours": null,
+      "theirs": "219e691fc8aa119cc80221b3db6c77e63caf8bfe",
+      "candidate": "219e691fc8aa119cc80221b3db6c77e63caf8bfe",
+      "preserved_from_baf": true,
+      "unchanged_e2": false
+    },
+    {
+      "path": "tools/verify_dream_rasters.py",
+      "base": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+      "ours": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+      "theirs": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+      "candidate": "da8eed7d6383fcbc82a03596518a5fcc3b9a00c5",
+      "preserved_from_baf": true,
+      "unchanged_e2": true
+    },
+    {
+      "path": "tools/verify_studio_2020_rasters.py",
+      "base": "b60c3360730f0db73f91324cbaed3a8806fd141e",
+      "ours": "b60c3360730f0db73f91324cbaed3a8806fd141e",
+      "theirs": "b60c3360730f0db73f91324cbaed3a8806fd141e",
+      "candidate": "b60c3360730f0db73f91324cbaed3a8806fd141e",
+      "preserved_from_baf": true,
+      "unchanged_e2": true
+    }
+  ],
+  "notice_bindings": [
+    {
+      "path": "assets/fonts/Nunito-LICENSE.txt",
+      "base": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "ours": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "theirs": "c8210f08ca3cece05b4f7baa428afe8e1abe3293",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo_animated/ATTRIBUTION.md",
+      "base": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+      "ours": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+      "theirs": "3b3f2070c9ef502498b53bb94429cbfae0dceaa7",
+      "unchanged": true
+    },
+    {
+      "path": "assets/characters/lumo_facial/ATTRIBUTION.md",
+      "base": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "ours": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "theirs": "50f43591977dc46683fe8c547bbba2fa6e73f216",
+      "unchanged": true
+    },
+    {
+      "path": "THIRD_PARTY_NOTICES.md",
+      "base": "ceedc772859dd274b30d4d741a14fca55623e21c",
+      "ours": "ceedc772859dd274b30d4d741a14fca55623e21c",
+      "theirs": "ceedc772859dd274b30d4d741a14fca55623e21c",
+      "unchanged": true
+    }
+  ],
+  "new_gate_source_review": {
+    "workflow": {
+      "path": ".github/workflows/lumo-discovery-connections.yml",
+      "blob": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+      "source_ranges": [
+        [
+          160,
+          200
+        ],
+        [
+          202,
+          315
+        ],
+        [
+          317,
+          464
+        ],
+        [
+          466,
+          507
+        ]
+      ]
+    },
+    "findings": [
+      "Four original headless probes including Return21 remain, and the Dream5/7 marker is still required.",
+      "Discovery collector/replay require10 exact probes,38PNG and2reports tied to current source SHA/tree.",
+      "Village step requires339economy,42headless-scaling,46rendered-scaling checks,3 source-bound probes and2decoded1280x720PNG.",
+      "Minimap step pins exactshared production/testblob,420s existingmodebound, original4SafeAreaPNG plus9minimapPNG, exactbefore/after source and unchanged report geometry checks.",
+      "All workflow source/index/original-log checks and always artifact preservation are byte-identical tobaf. These are assertions inspected in source, not executions performed on this candidate."
+    ]
+  },
+  "execution": {
+    "new_test_commands": [],
+    "new_engine_runs": 0,
+    "new_rendering_runs": 0,
+    "new_ci_runs": 0,
+    "host_pin_updates": 0,
+    "ref_updates": 0,
+    "new_release_approval": false,
+    "historical_e2_evidence_reclassified": false
+  },
+  "status": "complete_static_integration_review",
+  "inert_commit": {
+    "sha": "a69f53518b2510873d88f00ff2783d616ab53702",
+    "tree": "607643d9e109079925e21dfcf9c991a8250d4a46",
+    "parents": [
+      "e2d15dbc5f3709306decb139eeb70a1cf30c0b73",
+      "baf148b03a7a32c6ad9f737d731f900eb9113ea1"
+    ],
+    "readback_verified": true,
+    "compare_against_baf": {
+      "files": 32,
+      "status": "ahead",
+      "only_exact_original_evidence_additions": true
+    },
+    "ref_updated": false
+  },
+  "independent_child_review": {
+    "agent": "/root/lumo_release_lead/learning_ux_lead/touch_worker",
+    "verdict": "No static integration blocker in exact candidate tree607643d9.",
+    "methods": "Four complete immutable GitData tree comparisons; direct ancestry compare; actual named runner/source inspection. No tests or engine/render execution.",
+    "all_baf_entries_preserved": 3689,
+    "candidate_leaf_entries": 3721,
+    "unexpected_entries": 0,
+    "overlaps": 2,
+    "additional_evidence_files": 32,
+    "old52_runner_blob": "3255c2e6bd6cfd4b7bb6e50e6dc9b4aaf67e5946",
+    "old52_called_probe_difference": "Only build_village_economy_regression.gd differs vs e2 among the52 invoked probe sources:8 added lines exercise misleading older player/rival economy markers; all old lines/assertions retained in order. This is a source comparison, not a newly passed probe.",
+    "new_workflow_blob": "a806855cf51ab7f63b14163596488fc1d3746dc1",
+    "child_commit_stage_limit": "Child reviewed candidate tree before creation of the inert merge commit. Parent then independently read actual commit parents/tree and32-file compare."
+  },
+  "policy_note": "All4 exact native notice blobs remain identical across common base, both parents and candidate. Host notice policy needs no text/hash change for this native merge; dynamic native config receipt must use the actual new pin.",
+  "raw_source_urls": {
+    "base_tree": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/2eb628d3e3a327ee8985385130c96168db7aa852?recursive=1",
+    "ours_tree": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/ea0f73ae6aad8792a963cadaa483c290a2f2a62e?recursive=1",
+    "theirs_tree": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/0c18a0ca5200ade267cfedb4c12d5c4b0a761a00?recursive=1",
+    "candidate_tree": "https://api.github.com/repos/Ullmann27/lumo-godot/git/trees/607643d9e109079925e21dfcf9c991a8250d4a46?recursive=1",
+    "commit": "https://api.github.com/repos/Ullmann27/lumo-godot/git/commits/a69f53518b2510873d88f00ff2783d616ab53702",
+    "compare": "https://api.github.com/repos/Ullmann27/lumo-godot/compare/baf148b03a7a32c6ad9f737d731f900eb9113ea1...a69f53518b2510873d88f00ff2783d616ab53702"
+  }
+}

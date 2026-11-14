@@ -1,0 +1,20 @@
+[
+  {
+    "path": "CONTINUE.md",
+    "shared_base_conflict_bytes": 0,
+    "ours_preserved_bytes": 17674,
+    "theirs_preserved_bytes": 12219,
+    "union_bytes": 54818,
+    "union_sha256": "9843a6bf6edb9d781c136b3e9963c42080f6e1c361b6d31d4b67edb043b96a65",
+    "status": "Both original added sections byte-preserved; current release header will be added after binding actual Native merge commit"
+  },
+  {
+    "path": "STATUS.md",
+    "shared_base_conflict_bytes": 0,
+    "ours_preserved_bytes": 17674,
+    "theirs_preserved_bytes": 12375,
+    "union_bytes": 45743,
+    "union_sha256": "046f6aa59ed118e6cb2683324c1b96c1bc609233d2b68f2b289f45f172aec843",
+    "status": "Both original added sections byte-preserved; current release header will be added after binding actual Native merge commit"
+  }
+]
