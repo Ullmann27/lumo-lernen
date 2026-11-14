@@ -1,0 +1,245 @@
+name: Archive original failed Studio Creative evidence
+
+on:
+  push:
+    branches: [chatgpt/lumo-studio-evidence-archive-20261114]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: lumo-failed-creative-original-14092241868
+  cancel-in-progress: false
+
+jobs:
+  archive-failed-evidence:
+    if: github.repository == 'Ullmann27/lumo-lernen' && github.ref == 'refs/heads/chatgpt/lumo-studio-evidence-archive-20261114'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      actions: read
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      REPOSITORY: Ullmann27/lumo-lernen
+      PRODUCT_SHA: 4ab96666f954baf258422d6ed277fc297b7ddeef
+      NATIVE_SHA: 803e7a626ea6ef0aeeda9c37010e844033d3a8e3
+      SOURCE_RUN_ID: '43530667812'
+      SOURCE_ARTIFACT_ID: '14092241868'
+      ARCHIVE_SHA256: bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40
+      ARCHIVE_TAG: studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868
+      ARCHIVER_SOURCE: ${{ github.sha }}
+      ARCHIVER_RUN: ${{ github.run_id }}
+    steps:
+      - name: Bind the exact failed attempt and original artifact
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p evidence
+          gh api "repos/$REPOSITORY" > evidence/repository.json
+          gh api "repos/$REPOSITORY/actions/runs/$SOURCE_RUN_ID/attempts/1" > evidence/source-run.json
+          gh api --paginate --slurp "repos/$REPOSITORY/actions/runs/$SOURCE_RUN_ID/attempts/1/jobs?per_page=100" > evidence/source-jobs-pages.json
+          gh api "repos/$REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID" > evidence/source-artifact.json
+          python3 - <<'PY'
+          import json, os, re
+          from pathlib import Path
+
+          def require(condition, message):
+              if not condition:
+                  raise RuntimeError(message)
+
+          def validate_metadata(repository, run, pages, artifact):
+              host = '4ab96666f954baf258422d6ed277fc297b7ddeef'
+              require(repository['id'] == 1222433959 and repository['full_name'] == 'Ullmann27/lumo-lernen'
+                      and repository['private'] is False, 'Wrong or non-public archive repository')
+              require(run['id'] == 43530667812 and run['run_attempt'] == 1 and run['head_sha'] == host,
+                      'Wrong original run, attempt or product source')
+              require(run['repository']['id'] == 1222433959 and run['head_repository']['id'] == 1222433959,
+                      'Foreign original repository')
+              require(run['path'].split('@')[0] == '.github/workflows/lumo-studio-2019.yml'
+                      and run['status'] == 'completed' and run['conclusion'] == 'failure',
+                      'The original failed Studio run must remain explicitly failed')
+              jobs = [job for page in pages for job in page['jobs'] if job['id'] == 132269951369]
+              require(len(jobs) == 1, 'Missing or ambiguous original Creative job')
+              job = jobs[0]
+              require(job['run_id'] == 43530667812 and job['run_attempt'] == 1 and job['head_sha'] == host,
+                      'Foreign Creative job source or attempt')
+              require(job['name'] == 'Android API 35 additional creative gameplay'
+                      and job['status'] == 'completed' and job['conclusion'] == 'failure',
+                      'Expected the actual failed Creative job')
+              require(artifact['id'] == 14092241868 and artifact['name'] == 'lumo-studio-2019-creative-android'
+                      and artifact['expired'] is False and artifact['size_in_bytes'] == 526570745,
+                      'Wrong, expired or resized original artifact')
+              require(artifact['digest'] == 'sha256:bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40',
+                      'Original GitHub artifact digest changed')
+              provenance = artifact['workflow_run']
+              require(provenance['id'] == 43530667812 and provenance['head_sha'] == host
+                      and provenance['repository_id'] == 1222433959 and provenance['head_repository_id'] == 1222433959,
+                      'Foreign artifact run, repository or source')
+              return job
+
+          directory = Path('evidence')
+          load = lambda name: json.loads((directory / name).read_text())
+          job = validate_metadata(load('repository.json'), load('source-run.json'),
+                                  load('source-jobs-pages.json'), load('source-artifact.json'))
+          require(re.fullmatch('[a-f0-9]{40}', os.environ['ARCHIVER_SOURCE']) is not None,
+                  'Missing actual archival workflow source')
+          binding = {
+              'schema': 1, 'purpose': 'FAILED TEST EVIDENCE; NOT AN APK; NOT A RELEASE APPROVAL',
+              'original_conclusion': 'failure', 'repository': 'Ullmann27/lumo-lernen',
+              'host_source': '4ab96666f954baf258422d6ed277fc297b7ddeef',
+              'native_source': '803e7a626ea6ef0aeeda9c37010e844033d3a8e3',
+              'original_run': 43530667812, 'original_attempt': 1, 'original_job': job['id'],
+              'original_artifact': 14092241868, 'bytes': 526570745,
+              'sha256': 'bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40',
+              'archive_workflow_source': os.environ['ARCHIVER_SOURCE'],
+              'archive_workflow_run': int(os.environ['ARCHIVER_RUN']),
+              'build_or_android_rerun_performed': False, 'acceptance_granted': False,
+          }
+          (directory / 'archive-binding.json').write_text(json.dumps(binding, indent=2) + '\n')
+          (directory / 'creative-failed-evidence.zip.sha256').write_text(
+              binding['sha256'] + '  creative-failed-evidence.zip\n')
+          PY
+      - name: Download and validate original ZIP without repacking
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$REPOSITORY/actions/artifacts/$SOURCE_ARTIFACT_ID/zip" > creative-failed-evidence.zip
+          sha256sum -c evidence/creative-failed-evidence.zip.sha256
+          python3 - <<'PY'
+          import json, zipfile
+          from pathlib import Path, PurePosixPath
+          path = Path('creative-failed-evidence.zip')
+          assert path.stat().st_size == 526570745, 'Original ZIP byte count changed'
+          with zipfile.ZipFile(path) as archive:
+              names = archive.namelist()
+              assert len(names) == len(set(names)), 'Duplicate original member paths'
+              assert all(not PurePosixPath(name).is_absolute() and '..' not in PurePosixPath(name).parts for name in names)
+              assert not any(name.lower().endswith(('.apk', '.aab', '.apks')) for name in names), 'Application package found'
+              assert archive.testzip() is None, 'Original member CRC failure'
+              host = '4ab96666f954baf258422d6ed277fc297b7ddeef'
+              native = '803e7a626ea6ef0aeeda9c37010e844033d3a8e3'
+              for name, expected in [('apk-source-sha.txt', host), ('probe-source-sha.txt', host), ('native-source-sha.txt', native)]:
+                  assert archive.read(name).decode().strip() == expected, 'Original source stamp mismatch'
+              result = json.loads(archive.read('tour/creative-result.json'))
+              assert result['host_source'] == result['probe_source'] == host and result['native_source'] == native
+              assert result['status'] == 'FAIL', 'Original failed result may not be relabelled'
+          Path('evidence/zip-verification.json').write_text(json.dumps({
+              'original_zip_bytes': path.stat().st_size, 'members': len(names),
+              'all_member_crc': 'PASS', 'source_stamps_match': True,
+              'application_package_members': 0, 'creative_result': 'FAIL', 'archive_repacked': False,
+          }, indent=2) + '\n')
+          PY
+      - name: Preserve any existing archive and create at most one separate prerelease
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$REPOSITORY/git/matching-refs/tags/$ARCHIVE_TAG" > evidence/refs-before.json
+          gh api --paginate --slurp "repos/$REPOSITORY/releases?per_page=100" > evidence/releases-before.json
+          python3 - <<'PY'
+          import json, os
+          from pathlib import Path
+
+          def archive_mode(refs, pages):
+              tag = 'studio-failed-creative-evidence-4ab96666f954baf258422d6ed277fc297b7ddeef-14092241868'
+              matching_refs = [ref for ref in refs if ref['ref'] == 'refs/tags/' + tag]
+              releases = [release for page in pages for release in page if release['tag_name'] == tag]
+              if not matching_refs and not releases:
+                  return 'create'
+              assert len(matching_refs) == len(releases) == 1, 'Partial or ambiguous archive exists; preserve it'
+              assert matching_refs[0]['object']['type'] == 'commit' and matching_refs[0]['object']['sha'] == \
+                  '4ab96666f954baf258422d6ed277fc297b7ddeef', 'Existing tag belongs to another source; do not replace it'
+              release = releases[0]
+              assert release['draft'] is False and release['prerelease'] is True, 'Existing release is not the evidence prerelease'
+              expected = {'creative-failed-evidence.zip', 'creative-failed-evidence.zip.sha256',
+                          'source-artifact.json', 'archive-binding.json'}
+              assert len(release['assets']) == len(expected) and {item['name'] for item in release['assets']} == expected
+              assert all(item['state'] == 'uploaded' for item in release['assets']), 'Incomplete assets; never fill or overwrite them'
+              archive = next(item for item in release['assets'] if item['name'] == 'creative-failed-evidence.zip')
+              assert archive['size'] == 526570745
+              if archive.get('digest') is not None:
+                  assert archive['digest'] == 'sha256:bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40'
+              return 'verify-existing'
+
+          directory = Path('evidence')
+          mode = archive_mode(json.loads((directory / 'refs-before.json').read_text()),
+                              json.loads((directory / 'releases-before.json').read_text()))
+          (directory / 'archive-mode.txt').write_text(mode + '\n')
+          (directory / 'archive-notes.md').write_text(
+              'FAILED TEST EVIDENCE — NOT AN APK — NOT A RELEASE APPROVAL\n\n'
+              'This is the unmodified original ZIP of failed Creative job 132269951369, '
+              'run 43530667812, attempt 1. Its original failures remain failures.\n\n'
+              'Host source: `4ab96666f954baf258422d6ed277fc297b7ddeef`\n\n'
+              'Native source: `803e7a626ea6ef0aeeda9c37010e844033d3a8e3`\n\n'
+              'Original artifact: 14092241868; 526,570,745 bytes; SHA256 '
+              '`bd1660a6032c9adba051f209ab3979ea1888d03ffeb902bd0403d3f813a61d40`.\n\n'
+              'Original run: https://github.com/Ullmann27/lumo-lernen/actions/runs/43530667812\n\n'
+              'This archive does not build or install an app, rerun gameplay, grant acceptance, '
+              'or modify Main. This workflow never replaces an existing tag, release, or asset. '
+              'GitHub platform immutability is recorded separately from this no-overwrite policy.\n')
+          PY
+          if [ "$(cat evidence/archive-mode.txt)" = create ]; then
+            gh release create "$ARCHIVE_TAG" creative-failed-evidence.zip \
+              evidence/creative-failed-evidence.zip.sha256 evidence/source-artifact.json evidence/archive-binding.json \
+              --repo "$REPOSITORY" --target "$PRODUCT_SHA" \
+              --title "Failed Studio Creative original evidence — artifact 14092241868" \
+              --notes-file evidence/archive-notes.md --prerelease --latest=false
+          fi
+      - name: Verify the public original bytes without a download token
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api "repos/$REPOSITORY/releases/tags/$ARCHIVE_TAG" > evidence/release-after.json
+          gh api "repos/$REPOSITORY/git/matching-refs/tags/$ARCHIVE_TAG" > evidence/refs-after.json
+          public="https://github.com/$REPOSITORY/releases/download/$ARCHIVE_TAG"
+          curl --disable --fail --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 300 \
+            "$public/creative-failed-evidence.zip" --output public-creative-failed-evidence.zip
+          cmp -- creative-failed-evidence.zip public-creative-failed-evidence.zip
+          for name in creative-failed-evidence.zip.sha256 source-artifact.json archive-binding.json; do
+            curl --disable --fail --location --proto '=https' --proto-redir '=https' --retry 3 --max-time 60 \
+              "$public/$name" --output "evidence/public-$name"
+          done
+          python3 - <<'PY'
+          import hashlib, json, os
+          from pathlib import Path
+          directory = Path('evidence')
+          load = lambda name: json.loads((directory / name).read_text())
+          release = load('release-after.json')
+          assert release['tag_name'] == os.environ['ARCHIVE_TAG'] and release['draft'] is False and release['prerelease'] is True
+          refs = [ref for ref in load('refs-after.json') if ref['ref'] == 'refs/tags/' + os.environ['ARCHIVE_TAG']]
+          assert len(refs) == 1 and refs[0]['object']['type'] == 'commit' and refs[0]['object']['sha'] == os.environ['PRODUCT_SHA']
+          artifact = load('public-source-artifact.json')
+          assert artifact['id'] == 14092241868 and artifact['size_in_bytes'] == 526570745
+          assert artifact['digest'] == 'sha256:' + os.environ['ARCHIVE_SHA256']
+          assert artifact['workflow_run']['id'] == 43530667812 and artifact['workflow_run']['head_sha'] == os.environ['PRODUCT_SHA']
+          binding = load('public-archive-binding.json')
+          assert binding['host_source'] == os.environ['PRODUCT_SHA'] and binding['native_source'] == os.environ['NATIVE_SHA']
+          assert binding['original_artifact'] == 14092241868 and binding['original_run'] == 43530667812
+          assert binding['original_job'] == 132269951369 and binding['original_attempt'] == 1
+          assert binding['original_conclusion'] == 'failure' and binding['acceptance_granted'] is False
+          assert binding['build_or_android_rerun_performed'] is False
+          assert binding['bytes'] == 526570745 and binding['sha256'] == os.environ['ARCHIVE_SHA256']
+          assert (directory / 'public-creative-failed-evidence.zip.sha256').read_bytes() == (directory / 'creative-failed-evidence.zip.sha256').read_bytes()
+          path = Path('public-creative-failed-evidence.zip')
+          with path.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          assert path.stat().st_size == 526570745 and digest == os.environ['ARCHIVE_SHA256']
+          (directory / 'public-roundtrip.json').write_text(json.dumps({
+              'status': 'ORIGINAL_FAILED_EVIDENCE_ARCHIVED_AND_BYTE_EQUAL',
+              'release_url': release['html_url'], 'release_id': release['id'],
+              'release_immutable_reported_by_github': release.get('immutable'),
+              'public_download_authenticated': False, 'cmp_exit_code': 0,
+              'bytes': path.stat().st_size, 'sha256': digest,
+              'original_conclusion': 'failure', 'acceptance_granted': False,
+              'existing_release_modified': False, 'main_modified': False,
+          }, indent=2) + '\n')
+          PY
+      - name: Preserve the small archival verification reports
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: studio-failed-creative-archive-verification-${{ github.run_id }}
+          path: evidence/
+          if-no-files-found: error
+          retention-days: 30

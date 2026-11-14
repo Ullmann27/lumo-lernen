@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "status": "FROZEN_ONE_NEW_WORKFLOW_PLUS_EXPLICIT_EVIDENCE",
+  "new_source_paths": [
+    ".github/workflows/lumo-studio-failed-creative-archive.yml"
+  ],
+  "files": [
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/.github/workflows/lumo-studio-failed-creative-archive.yml",
+      "repo_path": ".github/workflows/lumo-studio-failed-creative-archive.yml",
+      "role": "new_workflow",
+      "bytes": 16016,
+      "sha256": "b6966c352799e2716998eb7eb972f90710d817fdd865a51e417527f7651db929",
+      "git_blob_sha1": "062afa388a63c9af93945b837e305e478002a3de",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/README.md",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/README.md",
+      "role": "evidence",
+      "bytes": 4868,
+      "sha256": "ba6ee2a7004892d097d114d1b40aa8917a21e79771cd9a66d0333d0580b06529",
+      "git_blob_sha1": "2c5fd822cc27ea40dd1f2ec40482b9f7a331960f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/archive-workflow-independent-review.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/archive-workflow-independent-review.json",
+      "role": "evidence",
+      "bytes": 1898,
+      "sha256": "bbcfdcb1b8216b60cb25eaad85a008f7ea1c6b62a2df8e3d5804cd8181c54310",
+      "git_blob_sha1": "20e79af54ba6022238a8d84ae2675e5fe9c8af47",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/freeze-review.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/freeze-review.json",
+      "role": "evidence",
+      "bytes": 2409,
+      "sha256": "b5421f71c96eacbc358a65611607b489afb9d7be888e480283c7b33c645e949e",
+      "git_blob_sha1": "77e641f9b99262ce349839ed3a0d804863ddb05f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/actionlint-execution.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/actionlint-execution.json",
+      "role": "evidence",
+      "bytes": 440,
+      "sha256": "6231610e001a110454b5e4addfd7356f13a2917cdbf79922add542aa63d923cb",
+      "git_blob_sha1": "defab8ff0cfa0ec345d9133b93b7dad3a4d56536",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/actionlint.log",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/actionlint.log",
+      "role": "evidence",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "git_blob_sha1": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/contract-checks.log",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/contract-checks.log",
+      "role": "evidence",
+      "bytes": 1394,
+      "sha256": "13ffd524156b182cdf7e7161724bb6ca9892d18520f0cdff94a9be6a996993ab",
+      "git_blob_sha1": "cfee4cc5921c87fc97b9b3505bf890b42d78920c",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/contract_checks.py",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/contract_checks.py",
+      "role": "evidence",
+      "bytes": 6895,
+      "sha256": "e3aa93a57190a7b3ab2dd156e8b7fda92a6bf1280e1410fdc431f802a67b84c2",
+      "git_blob_sha1": "5221f821f5e6babf59963f07c0254498bd41e33f",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/original-metadata/artifact.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/original-metadata/artifact.json",
+      "role": "evidence",
+      "bytes": 764,
+      "sha256": "8c81cf4d6135bf071c4ba6c0ba3edf861746cb4de0c0dc06a3e8c4387e87b612",
+      "git_blob_sha1": "ea66ab00da1787d141928e3d4e57cd94175d36e9",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/original-metadata/jobs.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/original-metadata/jobs.json",
+      "role": "evidence",
+      "bytes": 27165,
+      "sha256": "13122fe6b02734b5bcb1696dcb7a35726e62cc8e77042aa2e3581176c01adb33",
+      "git_blob_sha1": "9350b4cb3e830aca788ad644751a192d9236b519",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/original-metadata/repository.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/original-metadata/repository.json",
+      "role": "evidence",
+      "bytes": 5621,
+      "sha256": "190420d846ed0ebe0fa402438b5aefc38608791b62ea86e4b450a33e9204c239",
+      "git_blob_sha1": "a949dd7f4b391a880e9e4d362cdc9676e19ed97d",
+      "mode": "100644"
+    },
+    {
+      "local_path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/validation/original-metadata/run.json",
+      "repo_path": "docs/evidence/studio-failed-creative-archive-20261114/validation/original-metadata/run.json",
+      "role": "evidence",
+      "bytes": 12992,
+      "sha256": "c4e8a3b1c687293e8df7bf7ff426fc2e2c441e7cfdb6e8077dab47f881f8aec7",
+      "git_blob_sha1": "740293a4b95a703bf08f190c773e4b67b9888abd",
+      "mode": "100644"
+    }
+  ],
+  "file_count": 12,
+  "total_bytes": 80462,
+  "manifest_repo_path": "docs/evidence/studio-failed-creative-archive-20261114/upload-manifest.json",
+  "manifest_additional": true,
+  "contains_original_zip": false,
+  "github_mutations_performed": false
+}

@@ -1,0 +1,22 @@
+{
+  "status": "READ_ONLY_NO_ADDITIONAL_CONCRETE_BLOCKER",
+  "reviewer": "character_animation",
+  "source": {
+    "path": "/workspace/scratch/5987865ae883/qa/host-evidence-archive-4ab/.github/workflows/lumo-studio-failed-creative-archive.yml",
+    "bytes": 16016,
+    "sha256": "b6966c352799e2716998eb7eb972f90710d817fdd865a51e417527f7651db929"
+  },
+  "findings": [
+    "Quellrepository, öffentlicher Status, exakter fehlgeschlagener Run/Versuch/Job und ursprünglicher Artefaktname, Größe, SHA256 und Quellcommit werden vor dem Download erzwungen.",
+    "Originalzip wird nicht umgepackt; volle CRC-Prüfung, Quellstempel, FAIL-Resultat und Ausschluss von APK/AAB/APKS-Mitgliedern bleiben Pflicht.",
+    "Existierende Tags oder Releases werden niemals ersetzt. Unvollständige oder widersprüchliche vorhandene Archive brechen ab. Die Erstellung verwendet kein overwrite/clobber und ausdrücklich --prerelease --latest=false.",
+    "Öffentlicher curl-Download hat keine Auth-Header und ignoriert curl-Konfiguration. cmp vergleicht die vollständigen Originalzipbytes; SHA256 und Größe werden zusätzlich geprüft.",
+    "Das öffentliche Archiv behält FAILURE und acceptance_granted=false. Das reine Sichern führt keinen APK-/Android-Neulauf aus und verändert Main nicht.",
+    "Direkter tatsächlicher REST-Abruf des attempts/1/jobs-Endpunkts bestätigt run_attempt=1 und head_sha=4ab96666f954baf258422d6ed277fc297b7ddeef für Job132269951369; frühere reduzierte Connectoransichten waren kein Gegenbeweis."
+  ],
+  "limits": [
+    "Kein eigener Testlauf, keine Workflow-/GitHub-Mutation und keine Veröffentlichung durch diesen Reviewer.",
+    "Öffentliche Bytegleichheit und tatsächlich veröffentlichte Prerelease-Eigenschaften sind erst beim kommenden Workflow belegbar.",
+    "No-overwrite ist die Implementierungsregel, keine vorweg behauptete GitHub-Plattformimmutability."
+  ]
+}
