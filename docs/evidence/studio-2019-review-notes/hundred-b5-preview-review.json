@@ -1,0 +1,73 @@
+{
+  "status": "VISUAL_SCOPE_PASS",
+  "scope": "Six actual current Godot hundred-transition images individually viewed. This verifies the observed caption correction; no full application, Android or device-performance approval.",
+  "native_revision": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "native_workflow_run_id": 43434198014,
+  "artifact_id": 14044026458,
+  "artifact_sha256": "0d83c728669782efea12aa089042c93e3d6903d789a877d5759b2ca00ebd5a9d",
+  "reviewed_at": "2026-11-13T13:41:57.572459+00:00",
+  "reviewed_by": "Root; each original PNG opened with view_image",
+  "superseded_visual_failure": "64f75eb7725ebef898d0f259049bddef7021532f: lower caption projected outside its backing",
+  "images": [
+    {
+      "artifact_entry": "images/bridge_hundred-complete-2400x1080.png",
+      "sha256": "2839604104d7bfc817ff7c6f12481d1791ef1e77d1f1a2fbf22e8e53bf30c34a",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "review_result": "PASS",
+      "findings": "All glyphs in the place-value caption are now visibly complete and backed by the navy 3D plate; no lower clipping/cream-rim collision. 230 equals two hundreds and three tens; ten tens in the upper tray plus three below and the original hundred represent the same total. Source tray is empty. Required blocks, values and interaction buttons remain visible outside header/footer."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-complete-412x915.png",
+      "sha256": "f9fb8ec21cff3c5968dd24c63fc9b2294c70635e14849f77e96d5646effb9cab",
+      "dimensions": [
+        412,
+        915
+      ],
+      "review_result": "PASS",
+      "findings": "All glyphs in the place-value caption are now visibly complete and backed by the navy 3D plate; no lower clipping/cream-rim collision. 230 equals two hundreds and three tens; ten tens in the upper tray plus three below and the original hundred represent the same total. Source tray is empty. Required blocks, values and interaction buttons remain visible outside header/footer."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-complete.png",
+      "sha256": "7ffb621afc72660fb44ecb9de7d75a93e49163767f34f46dd6973efc43412f59",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "review_result": "PASS",
+      "findings": "All glyphs in the place-value caption are now visibly complete and backed by the navy 3D plate; no lower clipping/cream-rim collision. 230 equals two hundreds and three tens; ten tens in the upper tray plus three below and the original hundred represent the same total. Source tray is empty. Required blocks, values and interaction buttons remain visible outside header/footer."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-start-2400x1080.png",
+      "sha256": "ec4e44c1b2341c500f48a449341377ffb9e7191c7136bbd93bdc622d057b7c2b",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "review_result": "PASS",
+      "findings": "All glyphs in the place-value caption are now visibly complete and backed by the navy 3D plate; no lower clipping/cream-rim collision. 180 equals one hundred and eight tens; five additional ten blocks remain in the source tray. Required blocks, values and interaction buttons remain visible outside header/footer."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-start-412x915.png",
+      "sha256": "25e4b985bda1ee1b37587621d22398d874ca4ba3699d39f95a92d8995a695108",
+      "dimensions": [
+        412,
+        915
+      ],
+      "review_result": "PASS",
+      "findings": "All glyphs in the place-value caption are now visibly complete and backed by the navy 3D plate; no lower clipping/cream-rim collision. 180 equals one hundred and eight tens; five additional ten blocks remain in the source tray. Required blocks, values and interaction buttons remain visible outside header/footer."
+    },
+    {
+      "artifact_entry": "images/bridge_hundred-start.png",
+      "sha256": "81764976fce6917dd609a953081879fec0b5fd01ffbaeb0455610d3919825063",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "review_result": "PASS",
+      "findings": "All glyphs in the place-value caption are now visibly complete and backed by the navy 3D plate; no lower clipping/cream-rim collision. 180 equals one hundred and eight tens; five additional ten blocks remain in the source tray. Required blocks, values and interaction buttons remain visible outside header/footer."
+    }
+  ]
+}

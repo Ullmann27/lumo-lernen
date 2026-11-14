@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "status": "COMPLETE_NEXTGEN_CHECKPOINT_OVERALL_NATIVE_ACCEPTANCE_WITHHELD",
+  "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+  "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+  "run_id": 43483977169,
+  "run_attempt": 1,
+  "event": "pull_request",
+  "github_conclusion": "success",
+  "jobs": [
+    {
+      "name": "new-worlds",
+      "id": 132087435505,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T19:04:12Z"
+    },
+    {
+      "name": "touch-workshop",
+      "id": 132087435862,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T19:05:15Z"
+    },
+    {
+      "name": "learning-preview",
+      "id": 132087435888,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T18:46:48Z"
+    },
+    {
+      "name": "touch-build",
+      "id": 132087435889,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T18:54:31Z"
+    },
+    {
+      "name": "gameplay",
+      "id": 132087435904,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T18:48:44Z"
+    },
+    {
+      "name": "touch-treasure",
+      "id": 132087435917,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T18:51:01Z"
+    },
+    {
+      "name": "bundle-evidence",
+      "id": 132104270208,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T19:05:34Z"
+    },
+    {
+      "name": "archive-evidence",
+      "id": 132104454005,
+      "conclusion": "success",
+      "completed_at": "2026-11-13T19:05:55Z"
+    }
+  ],
+  "original_artifacts": [
+    {
+      "kind": "preview",
+      "artifact_id": 14066363548,
+      "artifact_name": "lumo-nextgen-2018-learning-preview",
+      "zip_sha256": "d20988ae20965f9a7106c586df14337053b54d43df2ac1b380636c4d0b6b06a8",
+      "zip_bytes": 13138717,
+      "verification_report": "preview-artifact-verification.json",
+      "report_sha256": "0036b93a8bec80a1934c6ba1630285224c50abe1be2b41bfb71976558ff5fdea",
+      "images": 25,
+      "artifact_logs": 3,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "learning-preview-job-132087435888.log",
+        "bytes": 266670,
+        "sha256": "00487162ab1385eb455492e6f5d3039da7330df4c55080a492372156567c6ea7"
+      }
+    },
+    {
+      "kind": "legacy",
+      "artifact_id": 14065839557,
+      "artifact_name": "lumo-nextgen-2018-legacy-evidence",
+      "zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "zip_bytes": 39929636,
+      "verification_report": "legacy-artifact-verification.json",
+      "report_sha256": "a5b2887320da694e66bd21fbe3a3338a24227c45bc3865fba09ba43020d36a2a",
+      "images": 22,
+      "artifact_logs": 49,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "gameplay-job-132087435904.log",
+        "bytes": 534326,
+        "sha256": "e91c4ccaf3c01926a2683290c37cc2fefda86156767caaea4778b83840e5ec08"
+      }
+    },
+    {
+      "kind": "touch-treasure",
+      "artifact_id": 14067468053,
+      "artifact_name": "lumo-nextgen-2019-touch-treasure",
+      "zip_sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "zip_bytes": 33075386,
+      "verification_report": "touch-treasure-artifact-verification.json",
+      "report_sha256": "5a840982e74e1283a087a4c828f870c74300e8d65f9b02a2daa8729252733e31",
+      "images": 14,
+      "artifact_logs": 5,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "touch-treasure-job-132087435917.log",
+        "bytes": 258357,
+        "sha256": "ee755ecabf0c901a373785f13ce245b4a06d58387250e1b6febaa2cd67c2bcb7"
+      }
+    },
+    {
+      "kind": "touch-build",
+      "artifact_id": 14067098947,
+      "artifact_name": "lumo-nextgen-2019-touch-build",
+      "zip_sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "zip_bytes": 23334596,
+      "verification_report": "touch-build-artifact-verification.json",
+      "report_sha256": "5047f63381bd10f6f14a14fde399db78aebaae4bab196bb424e16c996fcd23d0",
+      "images": 12,
+      "artifact_logs": 5,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "touch-build-job-132087435889.log",
+        "bytes": 260030,
+        "sha256": "141bfcf16d1a40528c045ee5b258b15fe8344fcb8f995bf1acbec5ca0ec893ae"
+      }
+    },
+    {
+      "kind": "worlds",
+      "artifact_id": 14068726721,
+      "artifact_name": "lumo-nextgen-2018-worlds-evidence",
+      "zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "zip_bytes": 108174758,
+      "verification_report": "worlds-artifact-verification.json",
+      "report_sha256": "30b2ea73b025fbadc5e4d94335af64597735794a5cdaf4a0e0e489796f9f91ed",
+      "images": 114,
+      "artifact_logs": 93,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "new-worlds-job-132087435505.log",
+        "bytes": 619485,
+        "sha256": "706ea1129902bb8b1e0440949e8650bf70d3913e181c9e64ae3c57e3198c77e0"
+      }
+    },
+    {
+      "kind": "touch-workshop",
+      "artifact_id": 14068866713,
+      "artifact_name": "lumo-nextgen-2019-touch-workshop",
+      "zip_sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "zip_bytes": 11946535,
+      "verification_report": "touch-workshop-artifact-verification.json",
+      "report_sha256": "dac65ad4d77587749cf2823b6407468b52b7db8a01da936f0236dd98b0816943",
+      "images": 6,
+      "artifact_logs": 5,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "touch-workshop-job-132087435862.log",
+        "bytes": 266662,
+        "sha256": "11052ed9d7d40345f56c28941fb664c5cac27f3c5ee8349986199874552929b2"
+      }
+    },
+    {
+      "kind": "native",
+      "artifact_id": 14069131343,
+      "artifact_name": "lumo-nextgen-2018-native-evidence",
+      "zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "zip_bytes": 176564239,
+      "verification_report": "native-artifact-verification.json",
+      "report_sha256": "44d5981413717efe8a13f1f974ba7a081b87519bc1ad407b4ed0976e648372a8",
+      "images": 146,
+      "artifact_logs": 108,
+      "head_sha": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+      "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+      "original_job_log": {
+        "path": "bundle-evidence-job-132104270208.log",
+        "bytes": 11387,
+        "sha256": "f38c5c2667ddb9805ece8aec881c1a7cb96d3a914116316dcf917749adb22c56"
+      }
+    }
+  ],
+  "contract": {
+    "core": 43,
+    "studio_png": 24,
+    "village_png": 4,
+    "puzzle_menu_png": 6,
+    "touch_pairs": 6,
+    "touch_png": 32
+  },
+  "current_source_trees": {
+    "core": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+    "touch-evidence/workshop": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+    "touch-evidence/treasure": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+    "touch-evidence/build": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5"
+  },
+  "final_bundle_pngs": 146,
+  "current_pngs": 136,
+  "baseline_pngs": 10,
+  "strictly_clean_bundle_artifact_logs": 108,
+  "full_original_job_logs": 8,
+  "host_parser_revision": "2fa3b3d346c9d53930782bf6b9f0ad035ada7ac0",
+  "host_parser_blob": "37993d6bbf0bf017f615ab0a9100cda51c18da7c",
+  "host_parser_sha256": "f5bfd40078087ec59442be19a400210ba18e4fd713b6f00bfe0853bf2de61ae4",
+  "root_actual_review_count": 6,
+  "root_actual_review_scope": "New Puzzle menu/play frames at 640x360 and 960x540 only; scroll/clipping limitations explicitly recorded.",
+  "archive_verification": "archive-verification.json",
+  "overall_acceptance": "WITHHELD: separate auxiliary Kart geometry gate falsely accepts parse/compile failures on this exact source.",
+  "next_source": "No approval, images, test success or original source identity may be transferred to 993c or any later source.",
+  "refs_receipts_pins_mutated": false
+}

@@ -347,7 +347,8 @@ class FractionPizzaVisual extends StatelessWidget {
   Widget build(BuildContext context) {
     final fractions = _allFractionsFromPrompt(task.prompt);
     if (fractions.length >= 2) {
-      return _buildDual(fractions[0], fractions[1]);
+      return _buildDual(fractions[0], fractions[1],
+          operator: task.prompt.contains('+') ? '+' : '=');
     }
     final data = task.visualPayload.data;
     final rawNum = _readInt(data['numerator']) ?? 1;
@@ -370,7 +371,7 @@ class FractionPizzaVisual extends StatelessWidget {
     );
   }
 
-  Widget _buildDual(List<int> a, List<int> b) {
+  Widget _buildDual(List<int> a, List<int> b, {required String operator}) {
     final denA = a[1].clamp(1, 12);
     final numA = a[0].clamp(0, denA);
     final denB = b[1].clamp(1, 12);
@@ -389,9 +390,9 @@ class FractionPizzaVisual extends StatelessWidget {
               painter: _PizzaPainter(numerator: numA, denominator: denA),
             ),
           ),
-          const Text(
-            '=',
-            style: TextStyle(
+          Text(
+            operator,
+            style: const TextStyle(
               fontFamily: 'Nunito',
               fontSize: 36,
               fontWeight: FontWeight.w900,
@@ -1300,19 +1301,32 @@ class WrittenArithmeticVisual extends StatelessWidget {
 }
 
 
-/// Division als Gruppen: X Objekte (Emoji) in N Schalen aufgeteilt.
-/// Beispiel: '24 : 4 = ?' zeigt 4 Schalen mit je 6 Emoji-Items.
+/// Every displayed group represents its complete quantity. Larger quantities
+/// use explicitly valued bundles instead of silently clipping visible objects.
 class DivisionGroupsVisual extends StatelessWidget {
   const DivisionGroupsVisual({super.key, required this.task});
   final TaskInstance task;
 
   @override
   Widget build(BuildContext context) {
-    final nums = _digitsFromPrompt(task.prompt);
-    final dividend = nums.isNotEmpty ? nums[0] : 24;
-    final divisor = nums.length > 1 ? nums[1] : 4;
-    final perGroup = divisor > 0 ? (dividend ~/ divisor) : 0;
-    final showGroups = divisor.clamp(2, 6);
+    final data = task.visualPayload.data;
+    final expression = RegExp(r'^\s*(\d+)\s*[:÷]\s*(\d+)\s*=\s*\?\s*$')
+        .firstMatch(task.prompt);
+    final dividend = data['operation'] == 'division' && data['left'] is int
+        ? data['left'] as int
+        : int.tryParse(expression?[1] ?? '');
+    final divisor = data['operation'] == 'division' && data['right'] is int
+        ? data['right'] as int
+        : int.tryParse(expression?[2] ?? '');
+    if (dividend == null || divisor == null || divisor < 1 || divisor > 12 ||
+        dividend < 1 || dividend % divisor != 0 || dividend ~/ divisor > 999 ||
+        task.correctAnswer != dividend ~/ divisor) {
+      return Text(task.prompt, textAlign: TextAlign.center);
+    }
+    final perGroup = dividend ~/ divisor;
+    final hundreds = perGroup ~/ 100;
+    final tens = perGroup % 100 ~/ 10;
+    final ones = perGroup % 10;
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 16, 16, 16),
       decoration: _stageDecoration(const Color(0xFFA855F7)),
@@ -1320,7 +1334,7 @@ class DivisionGroupsVisual extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(
-            '$dividend Aepfel in $divisor gleiche Schalen',
+            '$dividend Objekte in $divisor gleich große Gruppen',
             style: const TextStyle(
               fontFamily: 'Nunito',
               fontSize: 13,
@@ -1334,8 +1348,9 @@ class DivisionGroupsVisual extends StatelessWidget {
             runSpacing: 8,
             alignment: WrapAlignment.center,
             children: [
-              for (var i = 0; i < showGroups; i++)
+              for (var i = 0; i < divisor; i++)
                 Container(
+                  key: ValueKey('division-group-$i'),
                   padding: const EdgeInsets.fromLTRB(8, 6, 8, 6),
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -1344,13 +1359,19 @@ class DivisionGroupsVisual extends StatelessWidget {
                         color: const Color(0xFFA855F7).withOpacity(0.45),
                         width: 1.2),
                   ),
-                  child: Wrap(
-                    spacing: 1,
-                    children: [
-                      for (var k = 0; k < perGroup.clamp(0, 9); k++)
-                        const Text('🍎', style: TextStyle(fontSize: 16)),
-                    ],
-                  ),
+                  child: Column(mainAxisSize: MainAxisSize.min, children: [
+                    Text('Gruppe ${i + 1} · $perGroup',
+                        style: const TextStyle(fontWeight: FontWeight.w800)),
+                    const SizedBox(height: 4),
+                    Wrap(spacing: 4, runSpacing: 4, children: [
+                      for (var k = 0; k < hundreds; k++)
+                        _bundle(100, 'division-hundred-$i-$k'),
+                      for (var k = 0; k < tens; k++)
+                        _bundle(10, 'division-ten-$i-$k'),
+                      for (var k = 0; k < ones; k++)
+                        _bundle(1, 'division-one-$i-$k'),
+                    ]),
+                  ]),
                 ),
             ],
           ),
@@ -1358,6 +1379,19 @@ class DivisionGroupsVisual extends StatelessWidget {
       ),
     );
   }
+
+  Widget _bundle(int value, String key) => Semantics(
+    label: '$value ${value == 1 ? 'Objekt' : 'Objekte'}',
+    child: Container(
+      key: ValueKey(key),
+      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 3),
+      decoration: BoxDecoration(
+        color: value == 1 ? const Color(0xFFFFD081) : const Color(0xFFE2D1F7),
+        borderRadius: BorderRadius.circular(5),
+      ),
+      child: Text('$value', style: const TextStyle(fontWeight: FontWeight.w800)),
+    ),
+  );
 }
 
 

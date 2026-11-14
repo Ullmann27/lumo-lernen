@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "host_integration_base": "732056af52826920e4228fc9e68e188cc8f27a82",
+  "scope": "Completed integration repair and synthetic acceptance tests; no new visual/Android approval or APK publication",
+  "files": [
+    {
+      "path": "scripts/verify_studio_delivery.py",
+      "bytes": 35337,
+      "sha256": "74ed17dcb5cb77faf863294fa0cc7391587e4101813dbc10661f210bf9f6d8ea",
+      "git_blob": "72f689723c7094e95e27308d8f2eed603a434ff7"
+    },
+    {
+      "path": "scripts/record_studio_visual_review.py",
+      "bytes": 6686,
+      "sha256": "31dfdc9e21506b5336eee62aa61555397d320e351ff7f788a1e86b6b1609304b",
+      "git_blob": "a4fbac6d2c25084ac6dc8fb0af5ae8b32b866895"
+    },
+    {
+      "path": "scripts/verify_kart_graphics_delivery.py",
+      "bytes": 13393,
+      "sha256": "af648591f65b214499c9a60416b996920b32b76eba2606b2a72c6d020c355ad8",
+      "git_blob": "a3e1cdd8fd80985f0ab3a5434107da8625103177"
+    },
+    {
+      "path": "scripts/tests/test_nextgen_2019_review.py",
+      "bytes": 14819,
+      "sha256": "842e50471df17d42cf7cfa40b9241b932c02e465d0190a2109fe96535423972a",
+      "git_blob": "6a1666d3c43d2fec3b2868f41303635cc3c5011d"
+    },
+    {
+      "path": "scripts/tests/test_kart_graphics_delivery.py",
+      "bytes": 20067,
+      "sha256": "2e37aa95f2acc5df0d14c5ba5e901338a4b8bd084b38ac89c03eb47693d5f3b9",
+      "git_blob": "9ae21e8bb33cc1239804dea5ddc3b3e0ba356652"
+    },
+    {
+      "path": "docs/integration/2026-11-13/nextgen_2019_native_review_handoff.md",
+      "bytes": 5122,
+      "sha256": "c8a660a562223ec23bfac9a66d00e328ea92c310b1525caaefdfd4c44eacfe86",
+      "git_blob": "b3f97ec2bc1d0fff55f32070e91b51e64b88dac2"
+    }
+  ],
+  "tests": {
+    "suites": [
+      "test_studio_delivery",
+      "test_nextgen_2019_review",
+      "test_kart_graphics_delivery"
+    ],
+    "tests": 57,
+    "skipped": 0,
+    "elapsed_seconds": 23.243,
+    "status": "PASS",
+    "raw_log": "/workspace/scratch/b3485b7bb989/nextgen-2019-adapter-evidence/recorder-delivery-contracts.log",
+    "sha256": "e2d9c4d62b846c70cc2060a1fb8f9e600537ca85c9c93a3b03c0ffde441d46c2"
+  },
+  "unchanged_since_host_merge": [
+    {
+      "path": "pubspec.yaml",
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+    },
+    {
+      "path": "config/godot-source.json",
+      "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+    },
+    {
+      "path": "scripts/verify_legacy_release_pin.py",
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+    },
+    {
+      "path": "config/nextgen-2018-visual-review.json",
+      "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+    },
+    {
+      "path": "scripts/verify_nextgen_delivery.py",
+      "sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196"
+    },
+    {
+      "path": "scripts/record_nextgen_visual_review.py",
+      "sha256": "30734c7f1e3e550d16b1412e8153a7bb980bd235ca6e065a3d6e581822b29211"
+    }
+  ],
+  "production_nextgen_2019_review_created": false
+}

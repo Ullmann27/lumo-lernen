@@ -1,0 +1,39 @@
+{
+  "status": "FAIL",
+  "mode": "cup",
+  "touch_requested": false,
+  "frames": [
+    {
+      "source": "21_stage_garage-landing-restored-0.png",
+      "source_sha256": "7d675ecb2b345c0ebba4b7ff684436337603b262c976b10107ac513cac199d63",
+      "source_bytes": 761766,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS"
+    }
+  ],
+  "scope": "Current landing cup caption; actual new race mode remains mandatory",
+  "error": "Actual landing Fahrer/Garage navigation required before the cup choice",
+  "elapsed_seconds": 9.297258
+}

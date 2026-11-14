@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "started_at": "2026-11-14T01:02:35.566075+00:00",
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848",
+  "previous_runner": "/workspace/scratch/b3485b7bb989/host-studio-combined-local-gates/run_combined.py",
+  "previous_runner_sha256": "a4d5fb31b06bbde91594181b0c868cb7f4f443ca058754c3a37836b0ad029513",
+  "python": {
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]"
+  },
+  "head_before": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "tree_before": "400830eb09aa1f5110b54c70311a8de1db37d3fe",
+  "native_pin": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "source_count": 1383,
+  "source_roots": [
+    ".github",
+    "android",
+    "assets",
+    "config",
+    "integration_test",
+    "lib",
+    "scripts",
+    "test",
+    "tools"
+  ],
+  "root_files": [
+    "AGENTS.md",
+    "analysis_options.yaml",
+    "pubspec.lock",
+    "pubspec.yaml"
+  ],
+  "additional_source_inputs": "All 34 images referenced by the two current 2019 receipts.",
+  "source_scope": "All present tracked/nonignored source and fixture files in the original roots, plus the complete current receipt image references. Historical documentation evidence is not included.",
+  "environment_overrides": {
+    "REQUIRE_ALL_TESTS": "true",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "PYTHONUNBUFFERED": "1",
+    "LUMO_KOTLIN_LIB_DIR": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/lib",
+    "LUMO_TEST_JSON_JAR": "/workspace/scratch/b3485b7bb989/cards-lifecycle-318-integration-evidence/dependencies/json-20240303.jar",
+    "PATH": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback"
+  },
+  "json_jar_sha256": "3cf6cd6892e32e2b4c1c39e0f52f5248a2f5b37646fdfbb79a66b46b618414ed",
+  "dependency_versions": [
+    {
+      "command": [
+        "java",
+        "-version"
+      ],
+      "exit_code": 0,
+      "output": "openjdk version \"21.0.13\" 2026-10-20\nOpenJDK Runtime Environment (build 21.0.13+9-1-deb13u2-Debian)\nOpenJDK 64-Bit Server VM (build 21.0.13+9-1-deb13u2-Debian, mixed mode, sharing)\n"
+    },
+    {
+      "command": [
+        "java",
+        "--list-modules"
+      ],
+      "exit_code": 0,
+      "output": "java.base@21.0.13\njava.compiler@21.0.13\njava.datatransfer@21.0.13\njava.desktop@21.0.13\njava.instrument@21.0.13\njava.logging@21.0.13\njava.management@21.0.13\njava.management.rmi@21.0.13\njava.naming@21.0.13\njava.net.http@21.0.13\njava.prefs@21.0.13\njava.rmi@21.0.13\njava.scripting@21.0.13\njava.se@21.0.13\njava.security.jgss@21.0.13\njava.security.sasl@21.0.13\njava.smartcardio@21.0.13\njava.sql@21.0.13\njava.sql.rowset@21.0.13\njava.transaction.xa@21.0.13\njava.xml@21.0.13\njava.xml.crypto@21.0.13\njdk.accessibility@21.0.13\njdk.attach@21.0.13\njdk.charsets@21.0.13\njdk.compiler@21.0.13\njdk.crypto.cryptoki@21.0.13\njdk.crypto.ec@21.0.13\njdk.dynalink@21.0.13\njdk.editpad@21.0.13\njdk.hotspot.agent@21.0.13\njdk.httpserver@21.0.13\njdk.incubator.vector@21.0.13\njdk.internal.ed@21.0.13\njdk.internal.jvmstat@21.0.13\njdk.internal.le@21.0.13\njdk.internal.opt@21.0.13\njdk.internal.vm.ci@21.0.13\njdk.internal.vm.compiler@21.0.13\njdk.internal.vm.compiler.management@21.0.13\njdk.jartool@21.0.13\njdk.javadoc@21.0.13\njdk.jcmd@21.0.13\njdk.jconsole@21.0.13\njdk.jdeps@21.0.13\njdk.jdi@21.0.13\njdk.jdwp.agent@21.0.13\njdk.jfr@21.0.13\njdk.jlink@21.0.13\njdk.jpackage@21.0.13\njdk.jshell@21.0.13\njdk.jsobject@21.0.13\njdk.jstatd@21.0.13\njdk.localedata@21.0.13\njdk.management@21.0.13\njdk.management.agent@21.0.13\njdk.management.jfr@21.0.13\njdk.naming.dns@21.0.13\njdk.naming.rmi@21.0.13\njdk.net@21.0.13\njdk.nio.mapmode@21.0.13\njdk.random@21.0.13\njdk.sctp@21.0.13\njdk.security.auth@21.0.13\njdk.security.jgss@21.0.13\njdk.unsupported@21.0.13\njdk.unsupported.desktop@21.0.13\njdk.xml.dom@21.0.13\njdk.zipfs@21.0.13\n"
+    },
+    {
+      "command": [
+        "node",
+        "--version"
+      ],
+      "exit_code": 0,
+      "output": "v24.22.1\n"
+    },
+    {
+      "command": [
+        "tesseract",
+        "--list-langs"
+      ],
+      "exit_code": 0,
+      "output": "List of available languages in \"/usr/share/tesseract-ocr/5/tessdata/\" (2):\neng\nosd\n"
+    }
+  ],
+  "pillow_version": "13.0.0",
+  "local_environment_limits": [
+    "Primary runtime Pillow differs from the CI-pinned version12.3.0; actual installed version is recorded above.",
+    "The actual installed Tesseract language list is recorded; no new dependency installation or skip suppression."
+  ],
+  "executed_scope": "Exactly one scripts/tests unittest discovery. The already passed870 Android-QA tests are not rerun. No Flutter/Godot/Android/emulator execution or actionlint repeat."
+}

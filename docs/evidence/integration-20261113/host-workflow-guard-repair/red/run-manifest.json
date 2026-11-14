@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "scope": "Existing Host build and preservation contract gate; no APK build, device tour, native/visual approval or identity change",
+  "host_commit": "f80fe6b3d6a3c58c89f8507853dcbfc15a84525e",
+  "host_tree": "bc925bfebb77fa58ae4b82b93204906ae9265172",
+  "started_at_utc": "2026-11-13T15:28:18.205441+00:00",
+  "finished_at_utc": "2026-11-13T15:29:55.897100+00:00",
+  "elapsed_seconds": 97.692,
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "scripts/tests",
+    "-v"
+  ],
+  "cwd": "/workspace/scratch/b3485b7bb989/lumo-lernen",
+  "gate_source": ".github/workflows/lumo-kart-graphics-2019.yml:199-209",
+  "environment_overrides": {
+    "PATH": "/workspace/scratch/e0abce7d2838/toolchain/gradle-9.1.0/bin:/workspace/scratch/e0abce7d2838/toolchain/flutter/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/override:/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin:/opt/codex/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/home/agent/.local/bin:/opt/codex/runtimes/codex-primary-runtime/dependencies/bin/fallback",
+    "REQUIRE_ALL_TESTS": "true",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "GIT_OPTIONAL_LOCKS": "0"
+  },
+  "exit_code": 1,
+  "tests": 409,
+  "unittest_seconds": 97.34,
+  "skipped": 0,
+  "error": null,
+  "source_stable": true,
+  "flutter_source_reuse_confirmed": true,
+  "status": "FAIL",
+  "artifacts": {
+    "flutter-source-reuse.json": {
+      "bytes": 7725,
+      "sha256": "4e8d5feb6b21358082959164c2a5c1e4a62d164615f12990eb96fe156afda804"
+    },
+    "source-before.json": {
+      "bytes": 270627,
+      "sha256": "7f30dd46210e1323357aec7626499de331658d6ed1023be831827583754ea4d8"
+    },
+    "toolchain.json": {
+      "bytes": 2201,
+      "sha256": "ad0ceecb1835c14bf9c8ccdb5a1f67491422838eb9408b3b8bf9ef01f7f77000"
+    },
+    "build-contracts.log": {
+      "bytes": 90153,
+      "sha256": "9bc3f3010f7f2f1d7363353208ce946b175d58a7fd735e43eea509a7e507258b"
+    },
+    "source-after.json": {
+      "bytes": 270627,
+      "sha256": "43a1a2b6af3fdeaf7e3e923e35e829949725336d46482566bb0f3c6e0ae49dac"
+    }
+  }
+}

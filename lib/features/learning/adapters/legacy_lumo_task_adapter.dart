@@ -683,6 +683,48 @@ class LegacyLumoTaskAdapter {
       return <String, Object?>{'tens': value ~/ 10, 'ones': value % 10, 'value': value};
     }
 
+    // Fraction tasks must be parsed before integer operations: 1/4 + 2/4
+    // must never produce the unrelated integer payload 4 + 2.
+    if (task.visual == 'fraction_add') {
+      final sum = RegExp(r'^\s*(\d+)\s*/\s*(\d+)\s*\+\s*(\d+)\s*/\s*(\d+)\s*=\s*\?\s*$')
+          .firstMatch(task.prompt);
+      if (sum == null) return const <String, Object?>{};
+      final numerator = int.tryParse(sum[1]!);
+      final denominator = int.tryParse(sum[2]!);
+      final extra = int.tryParse(sum[3]!);
+      final otherDenominator = int.tryParse(sum[4]!);
+      if (numerator == null || denominator == null || extra == null ||
+          denominator < 1 || denominator != otherDenominator) {
+        return const <String, Object?>{};
+      }
+      return <String, Object?>{
+        'operation': 'fraction_addition',
+        'numerator': numerator,
+        'denominator': denominator,
+        'extra': extra,
+      };
+    }
+
+    if (task.visual == 'times_table' || task.visual == 'written_mul' ||
+        task.visual == 'division') {
+      final operation = RegExp(r'^\s*(?:Schriftlich:\s*)?(\d+)\s*([×·*:÷])\s*(\d+)\s*=\s*\?\s*$')
+          .firstMatch(task.prompt);
+      if (operation != null) {
+        final left = int.tryParse(operation[1]!);
+        final right = int.tryParse(operation[3]!);
+        final division = operation[2] == ':' || operation[2] == '÷';
+        if (left != null && right != null &&
+            division == (task.visual == 'division')) {
+          return <String, Object?>{
+            'operation': division ? 'division' : 'multiplication',
+            'left': left,
+            'right': right,
+          };
+        }
+      }
+      return const <String, Object?>{};
+    }
+
     final plus = RegExp(r'(\d+)\s*\+\s*(\d+)').firstMatch(task.prompt);
     if (plus != null) {
       return <String, Object?>{
@@ -912,6 +954,10 @@ class LegacyLumoTaskAdapter {
   }
 
   Object _payload(String value) {
+    // Preserve the rational answer. Removing '/' turned 3/4 into 34 and made
+    // different fractions such as 1/23 and 12/3 share the same answer payload.
+    final trimmed = value.trim();
+    if (RegExp(r'^[+-]?\d+\s*/\s*\d+$').hasMatch(trimmed)) return trimmed;
     final number = int.tryParse(value.replaceAll(RegExp(r'[^0-9-]'), ''));
     return number ?? value;
   }

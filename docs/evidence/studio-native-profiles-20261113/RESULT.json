@@ -1,0 +1,35 @@
+{
+  "collected_at_utc": "2026-11-13T13:11:56.262215+00:00",
+  "baseline": "3c712129fef8f144d8946fad567b9ed11c628a60",
+  "branch": "chatgpt/lumo-studio-20261113",
+  "results": {
+    "combined_targeted_tests": 53,
+    "new_repository_tests": 12,
+    "new_ui_tests": 7,
+    "final_ui_tests": 7,
+    "analyze": "No issues found",
+    "diff_check": "pass"
+  },
+  "source_sha256": {
+    "lib/core/native_profile_key_repository.dart": "27790a3fecd569a57a0c6fb6905636773bc95938fe22f9c8bbe84b677603471c",
+    "lib/features/lumo3d/lumo3d_launcher.dart": "8f99b8b313e1bb30d8caaf9ecba63b0c2587aa19f773cdcc16b9f3f3fc2f8587",
+    "lib/features/lumo3d/native_game_saves_screen.dart": "05e45625de473f6dddbe81567e3412a441e29d2a335a121be115ddb855065d9b",
+    "lib/features/settings/native_game_saves_card.dart": "1678bb967c1177a17a0e36e5995c416c15e2095356191637cea667e37c4025d7",
+    "lib/features/settings/settings_content.dart": "0f692e8dcd4d3562feaf443631aee7b5eb013e62495f537f1f996835f8b13cb1",
+    "test/native_profile_key_repository_test.dart": "e21108a09054ce35cf8d55b9bcd33d970330ab315102b399f80e456d8fb95944",
+    "test/native_profile_keys_ui_test.dart": "957388e7161a05ba3faeda333ed26b954354f613dfdf7fdab063b5a4f890004c"
+  },
+  "log_sha256": {
+    "final-targeted.log": "873d0e8133877a4efa6ca13e905de3b8f256957fc96f9e7650e2aea01c8ffbd5",
+    "profile-ui.log": "b015366cf0f2ea3002955bce87589f4f56cc6249ccc3cd59460aa7bc80dc111b",
+    "analyze.log": "313c7df6b3a571362d04f026bf6b15eafeef0d7da39350bd2ac64bef6fc6383e"
+  },
+  "captures_sha256": {
+    "native_profiles_adult_confirmation.png": "b0ce2a541659ba0e7e163918dabbdbf0bc41427c67f1bc452f802f60de041319",
+    "native_profiles_fold.png": "39501c1f6a594c8c2da4c18c2f308faea947fe80f8fedc5ac08992fe2c420d89",
+    "native_profiles_parent_entry.png": "72b3a5f01f4ffaa8fae7bc884f9142483c49411d0ec4079f81bfc6449f43be8b",
+    "native_profiles_phone.png": "cbf1ed4054071c9ed40c71e0a0287aee81e9c80e2e32ebc21bd8a77e9e2708e2"
+  },
+  "evidence_scope": "Actual Flutter widgets, repository and production launcher; Android MethodChannel boundary mocked. New Flutter-rendered captures, not Android/Fold7 screenshots. No native game file operations or data migration. Final full Flutter/Android validation belongs to root integration.",
+  "review": "Independent read-only source review by character_animation; return lease epoch guard corrected and tested. Phone, Fold and adult dialog captures visually inspected by games_worlds."
+}

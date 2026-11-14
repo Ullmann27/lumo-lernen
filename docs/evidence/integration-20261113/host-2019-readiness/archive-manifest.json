@@ -1,0 +1,308 @@
+{
+  "schema": 1,
+  "scope": "Published Android2019 readiness repairs and exact local counterchecks; no APK or emulator acceptance",
+  "base_local_commit": "851554036f1e78ca5123fcede92bab88ab9458fc",
+  "base_public_checkpoint": "2fa3b3d346c9d53930782bf6b9f0ad035ada7ac0",
+  "base_tree": "99f25c730a9a062d9529fea1979f3196e5831692",
+  "published_producer_source": "3022777fba84618a1915f98fdcf6a6ccda9f4db1",
+  "archive": {
+    "path": "original-evidence.tar.gz",
+    "bytes": 1506420,
+    "sha256": "80dd97580ef02749e49b7a28e7251d14595159f38e917df5ee9015677948e2e8",
+    "all_members_round_trip_byte_compared": true
+  },
+  "frozen_source_files": [
+    {
+      "path": ".github/probes/creative_android_probe.py",
+      "bytes": 52523,
+      "sha256": "2b4da491c7a348e85d0ace0d6ab96154be059692310a263b8f3998fe8ebc9c4e",
+      "git_blob": "b2cf4b82c20ca9bac3db7014a0b57b6795b76da1"
+    },
+    {
+      "path": ".github/workflows/lumo-kart-graphics-2019.yml",
+      "bytes": 42562,
+      "sha256": "34173a3f0d65ccaf0cb04b1626de8e7d9ca64bb415b05eae3e5daa8a43b41c23",
+      "git_blob": "f5c728dcd095bacf0f1a56239c7bb9fe65f92b44"
+    },
+    {
+      "path": ".github/workflows/lumo-studio-2019.yml",
+      "bytes": 36455,
+      "sha256": "1995fd13a01b50a147a48609024c5a46c030b750cce8d00c2a38a5145a5eb10a",
+      "git_blob": "528d74a7e7774d8081e2eaa0da7f314b6bf2d98b"
+    },
+    {
+      "path": "scripts/tests/test_kart_graphics_delivery.py",
+      "bytes": 27340,
+      "sha256": "a254ef1cb5bcf736ba79e5f74337d765ce40c91ea3e1d2b983ec3de19f3d6582",
+      "git_blob": "c76f432ca2f0865f51ec5cc03e01e42bc0dc654f"
+    },
+    {
+      "path": "tools/android_qa/tests/test_flutter_tap_scroll_budget.py",
+      "bytes": 5556,
+      "sha256": "886247df7bcf68e811b401db6f804b502d4e8e9b06aabba072606b1035600781",
+      "git_blob": "827b26e03949c60fa421f3f8c0972e50f9ff1579"
+    }
+  ],
+  "members": [
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/README.md",
+      "bytes": 6890,
+      "sha256": "a9376d458af653ce35443b720da3f6c60a83f111acdb8b1db903366d7d0957b9"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/action.yml",
+      "bytes": 3980,
+      "sha256": "a7c4de9a466ae7d70a599ffdc5a27b2bccadd7b2d602e24b44f8b490cb7bbdfe"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/source-review.json",
+      "bytes": 2993,
+      "sha256": "fda7550373beb3abc2f896d1469ab11028c16d965aed2bb79f18cc28c0afe62d"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/src/emulator-manager.ts",
+      "bytes": 5396,
+      "sha256": "1e9ca00c20d35d925440afc1ce82303c42cddc4c1ac196da65e39209ef87696f"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/src/input-validator.ts",
+      "bytes": 3669,
+      "sha256": "e40d0be1cf9e4c370ee08ebc3e3ec859d8af65e53e5554ed1177d3aa3db90ab5"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/src/main.ts",
+      "bytes": 9407,
+      "sha256": "a52d9ff8ea3b544677bbfaeb995b1db4d0cf8f9b520f34e25b0532250123358d"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/src/sdk-installer.ts",
+      "bytes": 3985,
+      "sha256": "b96a07a6a63a950dfc91b4c314ae1f89f19cb2d0954e259681ec0543487af62f"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/tag-object.json",
+      "bytes": 679,
+      "sha256": "77ec2d8763482fc8fe2f9be24082d85171dc42416daefa9aaf97bfe72e0c0292"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/action-source/tag-ref.json",
+      "bytes": 367,
+      "sha256": "53cf79dc1899206729518bfc9a41f9bcc343e63faaf385d4249f731792913db7"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/after/.github/probes/creative_android_probe.py.gz",
+      "bytes": 15217,
+      "sha256": "f36b805f037ace956c1e1e04b17ae1f27e6c2f654aa4318e31ca2b335a5b44ca"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/after/.github/workflows/lumo-kart-graphics-2019.yml.gz",
+      "bytes": 9487,
+      "sha256": "9e91e72a7539c129f0bb7e9320a577a8458e987551f491b46748bf09fc74e00b"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/after/.github/workflows/lumo-studio-2019.yml.gz",
+      "bytes": 8639,
+      "sha256": "e64dbc56d15b721bee350fcf70e67957cf7e5ddc63ce3963cf548b43289627a9"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/after/scripts/tests/test_kart_graphics_delivery.py",
+      "bytes": 27340,
+      "sha256": "a254ef1cb5bcf736ba79e5f74337d765ce40c91ea3e1d2b983ec3de19f3d6582"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/after/tools/android_qa/tests/test_flutter_tap_scroll_budget.py",
+      "bytes": 5556,
+      "sha256": "886247df7bcf68e811b401db6f804b502d4e8e9b06aabba072606b1035600781"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/after-manifest.json.gz",
+      "bytes": 150558,
+      "sha256": "7dc0ae73b105367035d4f637359d7d33f5a001a8d4e750a2cd5e7c94f61aa467"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/before/.github/probes/creative_android_probe.py.gz",
+      "bytes": 15146,
+      "sha256": "0fe6df37665a9de632842bb331f6784e3e32710a8a13c55bce74cc56f00d1c66"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/before/.github/workflows/lumo-kart-graphics-2019.yml.gz",
+      "bytes": 9415,
+      "sha256": "6feaad20aa97e0837568eaf77a74b8cac1effa61bbbc9f7d5e40923d4e7ca859"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/before/.github/workflows/lumo-studio-2019.yml.gz",
+      "bytes": 8565,
+      "sha256": "4a681043c8a169791c35ead3cd82d827f31db00ec0df2ba0cec8a1d1dc8034a1"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/before/scripts/tests/test_kart_graphics_delivery.py",
+      "bytes": 24123,
+      "sha256": "74822d7b25059f22943db202ad2907048044a685db81442e45f557b8019ab1b7"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/before-manifest.json.gz",
+      "bytes": 149902,
+      "sha256": "af4a0d4a6ce94605ee24884a847d9f7abf24ca80d32796d86788acf206ad8dff"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/complete-source.patch.gz",
+      "bytes": 4557,
+      "sha256": "3a48202f7a7b3e1b37f7cbabee9df271c4b4f5806974a285f2fde7301f2ecdc5"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/actionlint.json",
+      "bytes": 324,
+      "sha256": "7f9ca19a64c3d5e0f3b44df831bf51c8bbd4b335ae14f7b1fbd32d59a5a5b48e"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/actionlint.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/android-neighbor-contracts.json",
+      "bytes": 15805,
+      "sha256": "387e63e3ebf25c1fec8aa0f617e0375079bd3f03c9e0e63b9579f17ab4be844b"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/android-neighbor-contracts.log.gz",
+      "bytes": 4100,
+      "sha256": "d18c6c1c7b929ad3c47a7c8f9aa87e82ae3a40ae1aa6839b7ce7b4a611a8caf1"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/diff-check.log.gz",
+      "bytes": 20,
+      "sha256": "f61f27bd17de546264aa58f40f3aafaac7021e0ef69c17f6b1b4cd7664a037ec"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/scroll-green.json",
+      "bytes": 504,
+      "sha256": "e4ffd82db214134c0cdf1add0cb85742806adc5ba6c5a15c96f3d69e0de174b3"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/scroll-green.log.gz",
+      "bytes": 319,
+      "sha256": "b9de6cd3fbf0a99b411153bf6dd3a0d1a01df5138b6ef595be6c9d40d104a29d"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/scroll-red.json",
+      "bytes": 502,
+      "sha256": "ac07f3d6b779317067c495907ecce824faff9e432d82c9b76d4a521816bf6738"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/scroll-red.log.gz",
+      "bytes": 722,
+      "sha256": "ec74e150b62973bc4b7591944d1284692de073af44e4ea3308ca3d3028ecb140"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/workflow-and-platform-green.json",
+      "bytes": 1143,
+      "sha256": "792eca0a6675068ef6262fdb155c32d3f51ce7781a34b343261e7429a183a290"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/workflow-and-platform-green.log.gz",
+      "bytes": 1124,
+      "sha256": "c12f36749903c559bfc3b4d00048da00673d86c77824c0edfb4d68c005243ace"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/workflow-red.json",
+      "bytes": 773,
+      "sha256": "b3da5116bb1639cffd3f762c593303a71ebb565d167ae91944403e21d7f38e06"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/local-tests/workflow-red.log.gz",
+      "bytes": 624,
+      "sha256": "8a88acf07eb27cde4cc6d6bd714ea21eade628b3a212d11bbb616d8e028ae9d2"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/manifest.json",
+      "bytes": 18866,
+      "sha256": "2f4ddeb0a553175a64a4a60b9ed0c4e921ac34c2682c87fc29fc31d6e14e3591"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/android35-failure-review.json",
+      "bytes": 11601,
+      "sha256": "41eeaf003dc473331bfb32cd8d3f259db99b5709c5bd78d6935bcec59a151b1c"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/android35-original-job.log.gz",
+      "bytes": 885609,
+      "sha256": "30c542f502db1ad60f1adaa932456f335b3c34fa676dc56f7c518efcebc4417a"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/android37-original-job.log.gz",
+      "bytes": 14817,
+      "sha256": "855af2f75d191a9defd41e3e6e5728e7d6b9e134a733a91780fa77b30cfdbadd"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/host-run-43461547945-jobs.json",
+      "bytes": 19791,
+      "sha256": "d228ff06e76cc22d9bcfc34ca60d9491c6df4b005fb0a61cf6ff0dd073a1102b"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/original-blob-verification.json",
+      "bytes": 1876,
+      "sha256": "8d57cca3b7eaa8ad7b957ea2ac5d8f2c8bebeaa5a22432e91b5238ba69922849"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/scroll-candidate.patch.gz",
+      "bytes": 2274,
+      "sha256": "ffe68560d5fcc10ebf157f685aeacc45d70ff30cfc2c64868c6bd76418f25b4f"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/scroll-producer-after.log.gz",
+      "bytes": 318,
+      "sha256": "74479200eff7cc42a3ffe2e0728a79b76acb192ef0d633f4824f4d61f70d5ba8"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/scroll-producer-before.log.gz",
+      "bytes": 729,
+      "sha256": "0d305e2c3fe2f5cee40f24253416b76ee5e8d1cc912acdf7b8ee40107b9c3282"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/scroll-producer-review.json",
+      "bytes": 4844,
+      "sha256": "e50d0a50e1c8d3ed6070e4b7c633dda4b8bb3059fc546553e768cd242bd0a9b0"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/sdk-diagnostic-review.json",
+      "bytes": 3038,
+      "sha256": "4d9782e0ec16594dc432b33fc4aeb9e987eaefb11c80193345e17c262b6629d7"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/sdk-existing-channel-0.txt.gz",
+      "bytes": 6401,
+      "sha256": "5b1bae37fc0e049fd1235881bad63384e922e077342e11c1da97209e2fba3860"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/producer-originals/sdk-fresh-channel-0.txt.gz",
+      "bytes": 5959,
+      "sha256": "6edd05201bdac224d77f881c7f507cf11ac7cb4c14b9cea00792caab56a05cec"
+    },
+    {
+      "path": "host-2019-readiness-repair-evidence/pack/test-sources-before.json.gz",
+      "bytes": 149876,
+      "sha256": "10a9da987907bf9afa35e14b382e06bfcd2a9be4960216b8afececc8b0060cc2"
+    },
+    {
+      "path": "host-2019-readiness-source-review/README.md",
+      "bytes": 6448,
+      "sha256": "e9660f896b7d8232a2b0dff150e7d59e6be7c037fd4a66f85a5989485d3c8429"
+    },
+    {
+      "path": "host-2019-readiness-source-review/SHA256SUMS",
+      "bytes": 234,
+      "sha256": "3b4f78250194c614460e40c710b705730e36627bd841fc98bcc0611546216e46"
+    },
+    {
+      "path": "host-2019-readiness-source-review/manifest.json",
+      "bytes": 361,
+      "sha256": "7e44d0d5b91b1364b63cbf43097ad95ccafd4b7f5be0aa706881e263389ad188"
+    },
+    {
+      "path": "host-2019-readiness-source-review/review.json",
+      "bytes": 13140,
+      "sha256": "31a1642b9d6cc40ff39677de4d3093b3a373181688752485b171d87fdf7b18aa"
+    }
+  ]
+}

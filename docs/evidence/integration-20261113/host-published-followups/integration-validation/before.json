@@ -1,0 +1,101 @@
+{
+  "head": "fd0d777e6a8bdb489d58efd93d42d08cee0f65f2",
+  "tree": "86e6ed0f439b9ec8fda6d83d6f1e7d0c5e24b3b1",
+  "root": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups",
+  "owned": {
+    ".github/workflows/lumo-1999-update-gate.yml": {
+      "exists": true,
+      "bytes": 6432,
+      "sha256": "aced4dfc612a358c190936a3aa9ee4ccdbb478a7e905f32997fb2c2e9488275e",
+      "git_blob": "275e20a8c4cb748a15535fc3dda57644e5e73f57",
+      "archive": ".github__workflows__lumo-1999-update-gate.yml.original.gz"
+    },
+    "scripts/verify_unified_apk.py": {
+      "exists": true,
+      "bytes": 9572,
+      "sha256": "20ac42965bc2de166d59218d5feb6d062c35d0c2197662fa530677cad43ed8ed",
+      "git_blob": "c2e5bd64a19bd9f09324dd865784b2721926c9db",
+      "archive": "scripts__verify_unified_apk.py.original.gz"
+    },
+    "scripts/tests/test_historical_apk_expectations.py": {
+      "exists": false
+    },
+    ".github/probes/lumo_2003_update_android_probe.py": {
+      "exists": true,
+      "bytes": 10456,
+      "sha256": "7c24cf8a1f77eeb7c8720cc68199c4c85fc3922d87afe97aed1a43c2d460d713",
+      "git_blob": "cd9ea8fcbc464dde44095b99f67b0e6ee72cff0d",
+      "archive": ".github__probes__lumo_2003_update_android_probe.py.original.gz"
+    },
+    ".github/probes/lumo_2020_update_android_probe.py": {
+      "exists": false
+    },
+    "tools/android_qa/update_preservation.py": {
+      "exists": true,
+      "bytes": 10021,
+      "sha256": "1f2f5cea3d020730e77443518e93754614328fc298c992e47289a1672921761e",
+      "git_blob": "9f6ba798fb19523a7f56cd45800d351700eb0949",
+      "archive": "tools__android_qa__update_preservation.py.original.gz"
+    },
+    "tools/android_qa/tests/test_update_preservation.py": {
+      "exists": true,
+      "bytes": 16766,
+      "sha256": "8ce010b7da78e0147202da79a7c278955f284b9004d8adb01fe8c877a1083de1",
+      "git_blob": "f7d6a38d174538ee3a86f97c35e44d63adc1a66a",
+      "archive": "tools__android_qa__tests__test_update_preservation.py.original.gz"
+    },
+    "tools/android_qa/tests/test_update_2020_preservation.py": {
+      "exists": false
+    }
+  },
+  "protected": {
+    "pubspec.yaml": {
+      "exists": true,
+      "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+    },
+    "pubspec.lock": {
+      "exists": true,
+      "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97"
+    },
+    "config/godot-source.json": {
+      "exists": true,
+      "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "exists": true,
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "exists": true,
+      "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac"
+    },
+    "config/nextgen-2018-visual-review.json": {
+      "exists": true,
+      "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+    },
+    "config/nextgen-2019-visual-review.json": {
+      "exists": false,
+      "sha256": null
+    },
+    "config/studio-2019-visual-review.json": {
+      "exists": false,
+      "sha256": null
+    },
+    "config/kart-graphics-2019-visual-review.json": {
+      "exists": true,
+      "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a"
+    },
+    "tools/android_qa/tests/test_update_2019_preservation.py": {
+      "exists": true,
+      "sha256": "36b01206da32e40d9ab769ed61bf8ae66d5a9ce7655a0a780c163c97fbe56778"
+    },
+    ".github/probes/lumo_2018_update_android_probe.py": {
+      "exists": true,
+      "sha256": "658d12283075788e64fcb87fb64cd34323e8bb5ab88215f7b69d846a470b98e1"
+    },
+    ".github/probes/lumo_2019_update_android_probe.py": {
+      "exists": true,
+      "sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+    }
+  }
+}

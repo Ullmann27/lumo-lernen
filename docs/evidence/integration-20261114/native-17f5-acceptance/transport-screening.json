@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "original_non_image_non_zip_files_examined": 482,
+  "url_literals_examined": 10252,
+  "invalid_static_url_literals": 6,
+  "detected_sensitive_original_files": [],
+  "published_sensitive_payloads": 0,
+  "raw_originals_changed": false,
+  "checks": [
+    "Temporary signing/access query parameters, including Azure SAS and AWS/Google signatures.",
+    "URL username/password components, long GitHub tokens, private-key material and bearer values.",
+    "Whole-file withholding rather than content redaction if a match is found.",
+    "Malformed code URL literals remain opaque original source; none contained a credential query pattern."
+  ],
+  "scope": "Packaging content check only, not a product or runtime test. No matched credential values are written to this report."
+}

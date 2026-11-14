@@ -1,0 +1,15 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_historical_apk_expectations.HistoricalApkExpectationsTest.test_actual_cli_passes_commit_bound_inputs_to_the_current_verifier",
+    "tools.android_qa.tests.test_update_2020_preservation.Reviewed2020MigrationTests.test_2020_is_explicit_and_existing_version_pairs_are_preserved",
+    "-v"
+  ],
+  "PYTHONPATH": "/workspace/scratch/b3485b7bb989/lumo-host-published-followups/scripts/tests:/workspace/scratch/b3485b7bb989/lumo-host-published-followups/tools/android_qa:/workspace/scratch/b3485b7bb989/lumo-host-published-followups/tools/android_qa/tests",
+  "exit_code": 1,
+  "seconds": 0.194,
+  "log_sha256": "3ac3c27f5c54f110f5964b8c863493ee52b99cf2f924fae367476af1fef70ead",
+  "initial_invocation_note": "The first dotted-module invocation lacked the sibling fixture test path; it is archived separately and is not claimed as a historical verifier defect."
+}

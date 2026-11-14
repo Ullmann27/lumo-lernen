@@ -1,0 +1,14 @@
+{
+  "scope": "Complete current scripts/tests suite, local execution; synthetic fixtures are test inputs and not device evidence.",
+  "status": "PASS",
+  "tests": 350,
+  "failed": 0,
+  "skipped": 0,
+  "seconds": 61.382,
+  "native_pin": "b5bc6e7cdb03b190cb46f886301cf7bf3cb02928",
+  "flutter_version": "3.44.9",
+  "gradle_version": "9.1.0",
+  "log": "all-build-contracts-local.log",
+  "log_sha256": "56cd29d225250f1258651d52145b857e90b1789f892836584daf345589be956a",
+  "recorded_at": "2026-11-13T13:33:29.434784+00:00"
+}

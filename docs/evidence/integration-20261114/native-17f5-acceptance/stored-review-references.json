@@ -1,0 +1,484 @@
+{
+  "schema": 1,
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "host_worktree": "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848",
+  "images": [
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8-learning-bridge_hundred-complete-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723952,
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/b1283882c5e3b981299bab1692024fc23305c5c0a8f1caba365952150050a144-jump-jump_2400x1080_airborne.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "bytes": 2132075,
+      "sha256": "b1283882c5e3b981299bab1692024fc23305c5c0a8f1caba365952150050a144",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/21f3195da0bc146575ceb9384509d2f3d4e74a07bab7812e30f9f841c8ae397a-build-03_build_walking.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "bytes": 1349732,
+      "sha256": "21f3195da0bc146575ceb9384509d2f3d4e74a07bab7812e30f9f841c8ae397a",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/c53b4f7253ee9f07afb41db89a520a15e5f35d95ac544f16ae01d9f674805dc9-settlement-04_settlement_lumo.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "bytes": 1098831,
+      "sha256": "c53b4f7253ee9f07afb41db89a520a15e5f35d95ac544f16ae01d9f674805dc9",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/a1b4ba93b2bbd663aaa0ef81b41f4cdd1e2c7d9c0cf8709c5e4e9ff6522ad080-garage-garage-2400x1080.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "bytes": 875317,
+      "sha256": "a1b4ba93b2bbd663aaa0ef81b41f4cdd1e2c7d9c0cf8709c5e4e9ff6522ad080",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31-cards-cards-table-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "bytes": 289390,
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/9255eca7b3c5c8aac68e61958c0e6185594321e93b75f1a9ccab10fc01e08f77-rhythm-02_rhythm_slide.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655546,
+      "sha256": "9255eca7b3c5c8aac68e61958c0e6185594321e93b75f1a9ccab10fc01e08f77",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9-puzzle-puzzle_rotation_placed.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/c4d647cc5185565c6c6246c20fa2d27630edb71c3ce4517a40ff205b91f9d29b-treasure-treasure_garden_first.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "bytes": 1325147,
+      "sha256": "c4d647cc5185565c6c6246c20fa2d27630edb71c3ce4517a40ff205b91f9d29b",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/013f72f6d938297df05b26a3da165cbb0beea366be170b2860b8b8c158db1cf5-settlement-village-overview-1280x720.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-overview-1280x720.png",
+      "bytes": 1006331,
+      "sha256": "013f72f6d938297df05b26a3da165cbb0beea366be170b2860b8b8c158db1cf5",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/879ed771f1583d64021dbbd636a2282bb2fecac16c681c02de695e1bef5276b1-settlement-village-chapters-412x915.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-chapters-412x915.png",
+      "bytes": 232213,
+      "sha256": "879ed771f1583d64021dbbd636a2282bb2fecac16c681c02de695e1bef5276b1",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/c599e0ae3daca7a21f462647c343235615079a5a520b56016968072c1630e581-settlement-village-trader-2176x1812.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-trader-2176x1812.png",
+      "bytes": 2348978,
+      "sha256": "c599e0ae3daca7a21f462647c343235615079a5a520b56016968072c1630e581",
+      "dimensions": [
+        2176,
+        1812
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/99dad605b7d9fefa016584c0457959771856fad44ad5f363712329aec0dbaa5b-settlement-village-treasury-640x360.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-treasury-640x360.png",
+      "bytes": 97188,
+      "sha256": "99dad605b7d9fefa016584c0457959771856fad44ad5f363712329aec0dbaa5b",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb-puzzle-960x540-rotation-menu.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f-puzzle-960x540-rotation-play.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/0b4ed84ed24286523d5bfb3b903bddae96694be0dc00eb01434def98ccac998d-puzzle-960x540-classic-play.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302187,
+      "sha256": "0b4ed84ed24286523d5bfb3b903bddae96694be0dc00eb01434def98ccac998d",
+      "dimensions": [
+        960,
+        540
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec-puzzle-640x360-rotation-menu.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d-puzzle-640x360-rotation-play.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109589,
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/725e240ff0b62f5eff0c63107e0f98cae59167f8f8ec70db15299f9f44d8e0a4-puzzle-640x360-classic-play.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109547,
+      "sha256": "725e240ff0b62f5eff0c63107e0f98cae59167f8f8ec70db15299f9f44d8e0a4",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491-cards-android35_portrait-paused.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "bytes": 1141738,
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2-cards-android35_portrait-playing.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "bytes": 1272873,
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86-cards-landscape_cutout_fixture-playing.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "bytes": 1002640,
+      "sha256": "53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/1615dd3709568a2af7bd91d777baaa9739e32b6b5826244398cad643e7d75fe5-build-build-landscape-cutout.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "bytes": 2486548,
+      "sha256": "1615dd3709568a2af7bd91d777baaa9739e32b6b5826244398cad643e7d75fe5",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/30e6964cd62a2d9f676d6a11253166fe4fa1ff749f8c38236f152f1974ec9466-jump-jump-landscape-cutout.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1854180,
+      "sha256": "30e6964cd62a2d9f676d6a11253166fe4fa1ff749f8c38236f152f1974ec9466",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/2b19eec98a3806cb9762097c012ad43c573f94af8f101acb6284952ae2115bcf-puzzle-puzzle-landscape-cutout.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "bytes": 479273,
+      "sha256": "2b19eec98a3806cb9762097c012ad43c573f94af8f101acb6284952ae2115bcf",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/3616bb0b03ea02712484f5df3470eef1839584d31a00a8c5a4b2c5673e9b52e8-treasure-treasure-landscape-cutout.png",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "bytes": 2816483,
+      "sha256": "3616bb0b03ea02712484f5df3470eef1839584d31a00a8c5a4b2c5673e9b52e8",
+      "dimensions": [
+        2400,
+        1080
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e-garage-workshop-1080x2400-performance.png",
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "bytes": 976617,
+      "sha256": "cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/f40a8312c9f61c426e57bfabc2d2fc15e8e1af590398c21af5a6a071e5fbae91-treasure-treasure-1080x2400-question.png",
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "bytes": 1831861,
+      "sha256": "f40a8312c9f61c426e57bfabc2d2fc15e8e1af590398c21af5a6a071e5fbae91",
+      "dimensions": [
+        1080,
+        2400
+      ]
+    },
+    {
+      "review_family": "nextgen",
+      "receipt_path_in_host": "config/nextgen-2019-visual-review.json",
+      "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/nextgen-2019-reviewed/871dddb6d6259e7745386252efe5bcb322ce9feeae7fc42d61ec4738cd969944-build-build-dialog-640x360-current-goal.png",
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "bytes": 130362,
+      "sha256": "871dddb6d6259e7745386252efe5bcb322ce9feeae7fc42d61ec4738cd969944",
+      "dimensions": [
+        640,
+        360
+      ]
+    },
+    {
+      "review_family": "graphics",
+      "receipt_path_in_host": "config/kart-graphics-2019-visual-review.json",
+      "receipt_sha256": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/kart-graphics-2019-reviewed/home/84bc4e149cac520df7aa704497b63067c7c359d5cff55a2c8b78cc8611aceae6-home-1280x720.png",
+      "artifact_entry": "images/home-1280x720.png",
+      "bytes": 588189,
+      "sha256": "84bc4e149cac520df7aa704497b63067c7c359d5cff55a2c8b78cc8611aceae6",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "graphics",
+      "receipt_path_in_host": "config/kart-graphics-2019-visual-review.json",
+      "receipt_sha256": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/kart-graphics-2019-reviewed/home/cd3b8e20ca4bd26bf3c553202cceeaacf85cba2bd43e879d45d5a34e3e289e51-home-412x915.png",
+      "artifact_entry": "images/home-412x915.png",
+      "bytes": 314210,
+      "sha256": "cd3b8e20ca4bd26bf3c553202cceeaacf85cba2bd43e879d45d5a34e3e289e51",
+      "dimensions": [
+        412,
+        915
+      ]
+    },
+    {
+      "review_family": "graphics",
+      "receipt_path_in_host": "config/kart-graphics-2019-visual-review.json",
+      "receipt_sha256": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/kart-graphics-2019-reviewed/winter_sprint/099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2-02_world_landmark.png",
+      "artifact_entry": "images/winter_sprint/02_world_landmark.png",
+      "bytes": 595985,
+      "sha256": "099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "graphics",
+      "receipt_path_in_host": "config/kart-graphics-2019-visual-review.json",
+      "receipt_sha256": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/kart-graphics-2019-reviewed/crystal_canyon/e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe-02_world_landmark.png",
+      "artifact_entry": "images/crystal_canyon/02_world_landmark.png",
+      "bytes": 688351,
+      "sha256": "e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe",
+      "dimensions": [
+        1280,
+        720
+      ]
+    },
+    {
+      "review_family": "graphics",
+      "receipt_path_in_host": "config/kart-graphics-2019-visual-review.json",
+      "receipt_sha256": "355b6878f5d833aed4010fa49c5efb49759bbe9f8e4f185a75ca894ad9c6bf99",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "stored_review_image_path_in_host": "docs/evidence/kart-graphics-2019-reviewed/feedback/0e8656041461a3812e43f4cbfaa4db7f3f544b4b7f1d128177579360af424e23-03_drift_release.png",
+      "artifact_entry": "images/03_drift_release.png",
+      "bytes": 954367,
+      "sha256": "0e8656041461a3812e43f4cbfaa4db7f3f544b4b7f1d128177579360af424e23",
+      "dimensions": [
+        1280,
+        720
+      ]
+    }
+  ],
+  "scope": "Existing Root-recorded current receipts and stored review-image bytes were read and hash-checked only. No receipt, image, pin or source was changed; these images are not duplicated here."
+}

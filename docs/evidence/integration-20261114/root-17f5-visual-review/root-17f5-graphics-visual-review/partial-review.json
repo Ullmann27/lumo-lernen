@@ -1,0 +1,68 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-11-14T00:17:04.827998+00:00",
+  "status": "PARTIAL_DIRECT_VISUAL_REVIEW_HOME_PENDING",
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "native_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+  "run_id": 43532048253,
+  "images": [
+    {
+      "area": "winter_sprint",
+      "artifact_entry": "images/winter_sprint/02_world_landmark.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "run_id": 43532048253,
+      "artifact_id": 14088495335,
+      "artifact_sha256": "fb49e7e807878c40888dacf88dc26d939dfcb449894a325731a049fe16dd22cc",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-graphics-evidence/review-candidates/14088495335/images/winter_sprint/02_world_landmark.png",
+      "bytes": 595985,
+      "sha256": "099bbefbfb5532080da8ae5a52a047dfd49f5f4b540eff9006f812154f55a3e2",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visual_review_claim_by_collector": false,
+      "directly_viewed_by_root": true,
+      "findings": "Root directly opened the new 1280x720 original. The snowy mountain course, bend, blue course hoops, cable-car towers and cabins are visible. Menu, pause, lap/place/speed HUD, minimap and separate movement, drift, speed, brake, gas and tactic controls remain inside the image. This is an elevated course landmark view; it does not establish driving behavior, touch response or device frame rate."
+    },
+    {
+      "area": "crystal_canyon",
+      "artifact_entry": "images/crystal_canyon/02_world_landmark.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "run_id": 43532048253,
+      "artifact_id": 14088495335,
+      "artifact_sha256": "fb49e7e807878c40888dacf88dc26d939dfcb449894a325731a049fe16dd22cc",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-graphics-evidence/review-candidates/14088495335/images/crystal_canyon/02_world_landmark.png",
+      "bytes": 688351,
+      "sha256": "e5d2db23751308307d007f1a00dac32461d1cfd72b5063c8fdc102cc89948fbe",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visual_review_claim_by_collector": false,
+      "directly_viewed_by_root": true,
+      "findings": "Root directly opened the new 1280x720 original. The road passes beneath the large dark stone arch, with cyan and violet crystals, railings, signs and the next bend visible. The HUD, minimap and all displayed control groups remain readable inside the frame. Static composition and materials are observed; no Android interaction or performance result is inferred."
+    },
+    {
+      "area": "feedback",
+      "artifact_entry": "images/03_drift_release.png",
+      "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "run_id": 43532048253,
+      "artifact_id": 14087423598,
+      "artifact_sha256": "52ae8ebfc2f61a6d3532a8d0a40b73f4fdf341f5e2bbfa4ce6a6122cdd01d50d",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-graphics-evidence/review-candidates/14087423598/images/03_drift_release.png",
+      "bytes": 954367,
+      "sha256": "0e8656041461a3812e43f4cbfaa4db7f3f544b4b7f1d128177579360af424e23",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "visual_review_claim_by_collector": false,
+      "directly_viewed_by_root": true,
+      "findings": "Root directly opened the new 1280x720 original. Lumo and the kart are centered on the course, with bright rear exhaust trails and colored speed streaks. The HUD shows FREIES TRAINING, 86 km/h and the Oranger Drift-Turbo message; pause, minimap and the distinct touch controls are visible. The still image confirms the displayed feedback state only, not measured speed, animation timing, input latency or device frame rate."
+    }
+  ],
+  "scope": "Three current originals directly viewed. No completed Graphics receipt yet; two Home originals and final run/artifact validation remain pending. Native 48-pair and Android gates remain independent."
+}

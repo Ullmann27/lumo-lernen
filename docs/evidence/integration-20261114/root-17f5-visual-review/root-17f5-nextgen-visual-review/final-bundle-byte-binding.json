@@ -1,0 +1,216 @@
+{
+  "schema": 1,
+  "timestamp_utc": "2026-11-14T00:59:03.810803+00:00",
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "run_id": 43532048311,
+  "artifact_id": 14089423812,
+  "artifact_sha256": "9cca7adfe2c5bf8af5e0db6bafc249f68caa9f1983f440164307bb68b29a91e8",
+  "reviewer": "root",
+  "images": [
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "bytes": 723952,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "sha256": "b1283882c5e3b981299bab1692024fc23305c5c0a8f1caba365952150050a144",
+      "bytes": 2132075,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "sha256": "21f3195da0bc146575ceb9384509d2f3d4e74a07bab7812e30f9f841c8ae397a",
+      "bytes": 1349732,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "sha256": "c53b4f7253ee9f07afb41db89a520a15e5f35d95ac544f16ae01d9f674805dc9",
+      "bytes": 1098831,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "sha256": "a1b4ba93b2bbd663aaa0ef81b41f4cdd1e2c7d9c0cf8709c5e4e9ff6522ad080",
+      "bytes": 875317,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "bytes": 289390,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "9255eca7b3c5c8aac68e61958c0e6185594321e93b75f1a9ccab10fc01e08f77",
+      "bytes": 655546,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "bytes": 509560,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "sha256": "c4d647cc5185565c6c6246c20fa2d27630edb71c3ce4517a40ff205b91f9d29b",
+      "bytes": 1325147,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-overview-1280x720.png",
+      "sha256": "013f72f6d938297df05b26a3da165cbb0beea366be170b2860b8b8c158db1cf5",
+      "bytes": 1006331,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-chapters-412x915.png",
+      "sha256": "879ed771f1583d64021dbbd636a2282bb2fecac16c681c02de695e1bef5276b1",
+      "bytes": 232213,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-trader-2176x1812.png",
+      "sha256": "c599e0ae3daca7a21f462647c343235615079a5a520b56016968072c1630e581",
+      "bytes": 2348978,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-treasury-640x360.png",
+      "sha256": "99dad605b7d9fefa016584c0457959771856fad44ad5f363712329aec0dbaa5b",
+      "bytes": 97188,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "bytes": 151982,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "bytes": 300994,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "sha256": "0b4ed84ed24286523d5bfb3b903bddae96694be0dc00eb01434def98ccac998d",
+      "bytes": 302187,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "bytes": 72841,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "bytes": 109589,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "sha256": "725e240ff0b62f5eff0c63107e0f98cae59167f8f8ec70db15299f9f44d8e0a4",
+      "bytes": 109547,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "bytes": 1141738,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "bytes": 1272873,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "sha256": "53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86",
+      "bytes": 1002640,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "sha256": "1615dd3709568a2af7bd91d777baaa9739e32b6b5826244398cad643e7d75fe5",
+      "bytes": 2486548,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "sha256": "30e6964cd62a2d9f676d6a11253166fe4fa1ff749f8c38236f152f1974ec9466",
+      "bytes": 1854180,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "sha256": "2b19eec98a3806cb9762097c012ad43c573f94af8f101acb6284952ae2115bcf",
+      "bytes": 479273,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "sha256": "3616bb0b03ea02712484f5df3470eef1839584d31a00a8c5a4b2c5673e9b52e8",
+      "bytes": 2816483,
+      "original_artifact_id": 14090115236,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+      "sha256": "cef48afdf710990c9d46784b4b3bd8d92ddd6d6e3344844b70e0b14c2c989c9e",
+      "bytes": 976617,
+      "original_artifact_id": 14088417302,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+      "sha256": "f40a8312c9f61c426e57bfabc2d2fc15e8e1af590398c21af5a6a071e5fbae91",
+      "bytes": 1831861,
+      "original_artifact_id": 14088113248,
+      "directly_viewed_by_root": true
+    },
+    {
+      "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+      "sha256": "871dddb6d6259e7745386252efe5bcb322ce9feeae7fc42d61ec4738cd969944",
+      "bytes": 130362,
+      "original_artifact_id": 14088391493,
+      "directly_viewed_by_root": true
+    }
+  ],
+  "safe_area_sidecars_and_reports_bound": 5,
+  "scope": "29 directly inspected current originals match the final successful native bundle exactly. No Android input, FPS, or release approval is inferred."
+}

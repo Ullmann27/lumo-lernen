@@ -1,0 +1,37 @@
+{
+  "schema": 1,
+  "status": "FROZEN_STRICT_LOCAL_SCRIPTS_PASS",
+  "scope": "Exactly one full scripts/tests discovery on the fingerprinted combined17f5 working source. Android-QA suite and actionlint not repeated.",
+  "test_count": 574,
+  "failures": 0,
+  "errors": 0,
+  "skips": 0,
+  "exit_code": 0,
+  "source_count": 1383,
+  "source_unchanged": true,
+  "head_unchanged": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "base_tree_unchanged": "400830eb09aa1f5110b54c70311a8de1db37d3fe",
+  "native_revision": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "raw_log_sha256": "2f3fc3aea2852af3778aa563357a8bd4a2c2610c91f2800d573b38325222437c",
+  "result_sha256": "9f2e335171b36c9797c5cfdadc22d36f53f91636a1bbb866a6cafc20d4641ee4",
+  "source_before_sha256": "165c2cb5e6f2735950062884421d3eec70b4d3cf0e0f89018c34ec6ba320d28c",
+  "source_after_sha256": "165c2cb5e6f2735950062884421d3eec70b4d3cf0e0f89018c34ec6ba320d28c",
+  "archive": {
+    "path": "originals.tar.gz",
+    "bytes": 184466,
+    "sha256": "9495d5103d806ca9af3a5656695abc580145f2c4755d0e3bb8edc78baf190090"
+  },
+  "full_byte_roundtrips": 10,
+  "target_documentation_directory": "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848/docs/evidence/integration-20261114/final-scripts-gate",
+  "no_source_stage_commit_ref_action": true,
+  "local_environment_limits": [
+    "Primary runtime Pillow differs from the CI-pinned version12.3.0; actual installed version is recorded above.",
+    "The actual installed Tesseract language list is recorded; no new dependency installation or skip suppression."
+  ],
+  "not_claimed": [
+    "Android runtime acceptance",
+    "CI execution",
+    "Repeated870 Android-QA suite",
+    "Native renderer acceptance"
+  ]
+}

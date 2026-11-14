@@ -21,6 +21,7 @@ import '../learning/learning_dna_card.dart';
 import '../rewards/test_photo_entry_card.dart';
 import '../teacher/teacher_dashboard_screen.dart';
 import 'legacy_learning_data_card.dart';
+import 'native_game_saves_card.dart';
 import 'parent_report_card.dart';
 import 'writing_report_card.dart';
 import 'lumo_voice_diagnostics_card.dart';
@@ -507,6 +508,10 @@ class _SettingsContentState extends State<_SettingsContentBody> {
           },
         ),
         LegacyLearningDataCard(
+          appState: widget.appState,
+          refreshRevision: _legacyDataRevision,
+        ),
+        NativeGameSavesCard(
           appState: widget.appState,
           refreshRevision: _legacyDataRevision,
         ),

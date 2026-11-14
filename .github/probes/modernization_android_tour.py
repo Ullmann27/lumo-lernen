@@ -38,6 +38,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import creative_android_probe as probe  # noqa: E402  (pinned live helpers)
 import kart_complete_android_probe as complete  # noqa: E402  (proven race-save reader)
 import kart_tour_evidence as evidence  # noqa: E402  (tools/android_qa, added by probe)
+import kart_garage_evidence as garage_evidence  # noqa: E402
 from kart_android_race import (  # noqa: E402
     focused_race_hud_text, focused_race_hud_visible, marker as race_marker,
     race_state, race_view_visible, read_frame,
@@ -335,41 +336,337 @@ def _read_garage_footer(png: bytes, expected: str) -> tuple[int, int] | None:
     return None
 
 
+def _stage_kart_scroll_recovery():
+    """Reuse the observed two-frame list scroll from supplemental Garage QA."""
+    previous, swipes = None, 0
+
+    def recovery(frame, lines, source, *, deadline, previous_missing_frame):
+        nonlocal previous, swipes
+        current = garage_evidence.stage_garage_scroll_observation(frame, lines)
+        stable = (previous is not None and previous_missing_frame is not None and
+                  previous_missing_frame.get('pixels') == frame['pixels'] and
+                  max(abs(a - b) for a, b in zip(current['gesture'], previous['gesture'])) <= 12)
+        previous = current
+        if not stable:
+            return {'status': 'WAITING_FOR_SECOND_LIST_FRAME', **current}
+        garage_evidence.demand(swipes < 5, 'Vehicle card remained offscreen after five observed list gestures')
+        garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                               'Observed vehicle-list screenshot changed before gesture')
+        remaining = deadline - time.monotonic()
+        garage_evidence.demand(remaining > 0, 'Vehicle list scrolling exceeded its bounded deadline')
+        base.adb('shell', 'input', 'swipe', *map(str, current['gesture']), '650',
+                 timeout=min(15, remaining))
+        swipes += 1
+        previous = None
+        return {'status': 'SWIPE_SENT', 'swipe_number': swipes, **current}
+
+    return recovery
+
+
+def _select_stage_kart(out: Path, kart: str) -> dict:
+    label = garage_evidence.KARTS[kart]
+    tag = '21_stage_select_' + kart
+    probe.native_tap(out, label, tag, exact=True, timeout=150,
+                     missing_caption=_stage_kart_scroll_recovery())
+    journal = out / (tag + '-surface-readiness.json')
+    touch = json.loads(journal.read_text())
+    garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',
+                           'No observed native kart-selection touch was sent')
+    return {'kart': kart, 'caption': label, 'touch': touch['touch'],
+            'readiness': journal.name, 'scope': 'Touch only; actual new race selection is checked separately'}
+
+
+def _select_stage_driver(out: Path, timeout: float = 150) -> dict:
+    """Select the observed driver card without confusing it with the Lumo logo."""
+    tag = '21_stage_driver-select-original-lumo'
+    journal = out / (tag + '-surface-readiness.json')
+    started = time.monotonic()
+    deadline = started + timeout
+    touch = {'status': 'WAITING', 'label': 'Lumo', 'driver': 'fox',
+             'timeout_seconds': timeout, 'frames': [],
+             'scope': 'Observed driver-card touch; actual new race selection is checked separately'}
+    previous = None
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-{len(touch["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            touch['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous = None
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                # Read every full-frame variant. Stopping at the first exact
+                # Lumo could find only the logo and miss the actual card.
+                lines = probe.image_lines(out, name, source_path=source, timeout=remaining)
+                scoped = garage_evidence.stage_driver_target_observation(frame, lines)
+                frame['driver_region'] = scoped
+                observed = probe.target_observation(frame, scoped['target']['bounds'], previous)
+                frame['target'] = observed
+                previous = observed
+                if observed['stable_observed_target']:
+                    garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                           'Observed driver screenshot changed before touch')
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    x0, y0, x1, y1 = observed['bounds']
+                    x, y = round((x0 + x1) / 2), round((y0 + y1) / 2)
+                    base.adb('shell', 'input', 'swipe', str(x), str(y), str(x), str(y), '120',
+                             timeout=min(15, remaining))
+                    touch.update(status='TOUCH_SENT', touch=[x, y],
+                                 final_observed_bounds=observed['bounds'])
+                    time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                    return {'driver': 'fox', 'caption': 'Lumo', 'touch': [x, y],
+                            'readiness': journal.name, 'scope': touch['scope']}
+            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Actual Lumo driver card was not observed twice before touch')
+    except Exception as error:
+        touch.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        touch['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(touch, indent=2, ensure_ascii=False) + '\n')
+
+
+def _stage_cup_text(out: Path, tag: str, *, tap: bool = False, timeout: float = 150) -> dict:
+    """Observe the current cup caption and, when requested, touch it exactly once."""
+    journal = out / (tag + '-surface-readiness.json')
+    started = time.monotonic()
+    deadline = started + timeout
+    report = {'status': 'WAITING', 'mode': 'cup', 'touch_requested': tap, 'frames': [],
+              'scope': 'Current landing cup caption; actual new race mode remains mandatory'}
+    previous = None
+    previous_caption = None
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-{len(report["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            report['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous = None
+                previous_caption = None
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                lines = probe.image_lines(out, name, source_path=source, timeout=remaining)
+                choice = garage_evidence.stage_cup_target_observation(frame, lines)
+                frame['cup_choice'] = choice
+                if choice['caption'] != previous_caption:
+                    previous = None
+                observed = probe.target_observation(frame, choice['target']['bounds'], previous)
+                frame['target'] = observed
+                previous, previous_caption = observed, choice['caption']
+                if observed['target_geometry_valid'] and (not tap or observed['stable_observed_target']):
+                    garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                           'Observed cup screenshot changed before acceptance')
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    report.update(caption=choice['caption'], final_observed_bounds=observed['bounds'])
+                    if tap:
+                        x0, y0, x1, y1 = observed['bounds']
+                        x, y = round((x0 + x1) / 2), round((y0 + y1) / 2)
+                        base.adb('shell', 'input', 'swipe', str(x), str(y), str(x), str(y), '120',
+                                 timeout=min(15, remaining))
+                        report.update(status='TOUCH_SENT', touch=[x, y])
+                        time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+                    else:
+                        report['status'] = 'OBSERVED'
+                    return {'caption': choice['caption'], 'readiness': journal.name}
+            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Actual cup caption did not settle on the current landing')
+    except Exception as error:
+        report.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
+def _return_stage_kart_menu(out: Path, tag: str, *, timeout: float = 120) -> dict:
+    """Observe the section/footer and the real landing; a press is never a return."""
+    if type(timeout) not in (int, float) or not 0 < timeout <= 150:
+        raise ValueError('Kart return requires a bounded positive observation deadline')
+    started = time.monotonic()
+    deadline = started + timeout
+    journal = out / (tag + '-return-readiness.json')
+    report = {'status': 'WAITING', 'timeout_seconds': timeout, 'touch_budget': 3,
+              'frames': [], 'touches': [],
+              'scope': 'Observed section/footer touches and confirmed landing; no race or gameplay PASS'}
+    previous_footer = previous_landing = None
+    footer_caption = landing_caption = None
+    try:
+        while time.monotonic() < deadline:
+            name = f'{tag}-return-observation-{len(report["frames"])}'
+            snapshot = probe.capture(out, name, timeout=deadline - time.monotonic())
+            source = out / snapshot['file']
+            frame = probe.inspect_surface(source, orientation='landscape')
+            frame['state'] = 'unready'
+            report['frames'].append(frame)
+            if not frame['acceptable_for_target_sampling']:
+                previous_footer = previous_landing = None
+            else:
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    break
+                rows = probe.image_lines(out, name, source_path=source, timeout=remaining)
+                garage_evidence.demand(probe.digest(source) == frame['source_sha256'],
+                                       'Current Kart return screenshot changed during observation')
+                words = {garage_evidence.normalize(word) for row in rows
+                         for word in row['text'].split()}
+                # The existing direct sections expose Karts; the illustrated
+                # landing exposes Fahrer/Garage instead. The full original cup
+                # validator still owns landing geometry and ambiguity checks.
+                if 'karts' not in words and {'fahrer', 'garage'} <= words:
+                    choice = garage_evidence.stage_cup_target_observation(frame, rows)
+                    if choice['caption'] != landing_caption:
+                        previous_landing = None
+                    observed = probe.target_observation(frame, choice['target']['bounds'],
+                                                        previous_landing)
+                    frame.update(state='landing', cup_choice=choice, target=observed)
+                    previous_landing, landing_caption = observed, choice['caption']
+                    previous_footer = None
+                    if observed['stable_observed_target']:
+                        report.update(status='PASS', landing_caption=choice['caption'],
+                                      landing_frame_index=len(report['frames']) - 1)
+                        last = report['touches'][-1] if report['touches'] else None
+                        return {'caption': choice['caption'], 'readiness': journal.name,
+                                'return_caption': last['caption'] if last else None,
+                                'return_touch': last['point'] if last else None}
+                elif {'fahrer', 'karts'} <= words:
+                    frame['state'] = 'section'
+                    previous_landing = None
+                    exact = [row for row in rows
+                             if probe.normalized(row['text']) == 'kartmenu']
+                    # Preserve the historical Menu alias only when the full
+                    # Kart-Menü caption is absent; never aim at part of a label.
+                    matches = exact or [row for row in rows
+                                        if probe.normalized(row['text']) == 'menu']
+                    footer = []
+                    for row in matches:
+                        geometry = probe.target_observation(frame, row.get('bounds'))
+                        garage_evidence.demand(geometry['target_geometry_valid'],
+                                               'Invalid observed Kart return bounds')
+                        if (row['bounds'][1] + row['bounds'][3]) / 2 >= frame['pixels'][1] * .6:
+                            footer.append(row)
+                    if not footer:
+                        previous_footer = None
+                        frame['reasons'].append('actual section return footer not observed')
+                    else:
+                        selected = footer[0]
+                        x0, y0, x1, y1 = selected['bounds']
+                        for row in footer[1:]:
+                            a0, b0, a1, b1 = row['bounds']
+                            overlap = max(0, min(x1, a1) - max(x0, a0)) * max(
+                                0, min(y1, b1) - max(y0, b0))
+                            union = (x1 - x0) * (y1 - y0) + (a1 - a0) * (b1 - b0) - overlap
+                            garage_evidence.demand(overlap / union >= .6,
+                                                   'Ambiguous current Kart return targets')
+                        caption = 'Kart-Menü' if exact else 'Menü'
+                        if caption != footer_caption:
+                            previous_footer = None
+                        observed = probe.target_observation(frame, selected['bounds'], previous_footer)
+                        frame.update(return_caption=caption, observed_caption=selected['text'],
+                                     target=observed)
+                        previous_footer, footer_caption = observed, caption
+                        if observed['stable_observed_target']:
+                            garage_evidence.demand(len(report['touches']) < report['touch_budget'],
+                                'Spatial Kart section did not return after three observed footer gestures')
+                            remaining = deadline - time.monotonic()
+                            if remaining <= 0:
+                                break
+                            point = [round((x0 + x1) / 2), round((y0 + y1) / 2)]
+                            touch = {'status': 'REQUESTED', 'caption': caption,
+                                     'point': point, 'bounds': observed['bounds'],
+                                     'source_sha256': frame['source_sha256'],
+                                     'frame_index': len(report['frames']) - 1, 'duration_ms': 120}
+                            report['touches'].append(touch)
+                            # Same observed120ms stationary gesture as the
+                            # successful current Garage/Comet/Gecko touches.
+                            base.adb('shell', 'input', 'swipe', str(point[0]), str(point[1]),
+                                     str(point[0]), str(point[1]), '120', timeout=min(15, remaining))
+                            touch['status'] = 'TOUCH_SENT'
+                            # A possible retry needs two NEW section frames.
+                            # Observe after the final allowed gesture as well.
+                            previous_footer = None
+                else:
+                    frame['state'] = 'unknown'
+                    frame['reasons'].append('neither current section nor actual landing observed')
+                    previous_footer = previous_landing = None
+            time.sleep(min(1.5, max(0, deadline - time.monotonic())))
+        raise TimeoutError('Actual Kart landing was not observed after the section return')
+    except Exception as error:
+        report.update(status='FAIL', error=str(error))
+        raise
+    finally:
+        report['elapsed_seconds'] = round(time.monotonic() - started, 6)
+        journal.write_text(json.dumps(report, indent=2, ensure_ascii=False) + '\n')
+
+
 def _inspect_spatial_kart_menu(out: Path) -> dict:
     """Use the 2017 mode and direct sections through their actual rendered labels."""
-    probe.native_text(out, 'Grand Prix', '21_stage_mode_cup', tap=True, exact=True)
+    mode = _stage_cup_text(out, '21_stage_mode_cup', tap=True)
     sections = []
+    selection_touches = []
     for key, label in (('garage', 'Garage'), ('driver', 'Fahrer')):
         tag = '21_stage_' + key
         probe.native_text(out, label, tag + '-open', tap=True, exact=True)
         # Karts is a direct-section tab; it is absent from the landing. This
         # also works on compact layouts where the large section title hides.
         probe.native_text(out, 'Karts', tag + '-section-visible', exact=True)
-        for attempt in range(8):
-            screen = _screencap()
-            (out / f'{tag}-return-{attempt}.png').write_bytes(screen)
-            point = None
-            caption = ''
-            for candidate in ('Kart-Menü', 'Menü'):
-                point = _read_garage_footer(screen, candidate)
-                if point is not None:
-                    caption = candidate
-                    break
-            if point is not None:
-                base.adb('shell', 'input', 'tap', str(point[0]), str(point[1]))
-                time.sleep(2)
-                break
-            time.sleep(1)
+        if key == 'garage':
+            for kart in ('comet', 'gecko_velo'):
+                selection_touches.append(_select_stage_kart(out, kart))
         else:
-            raise RuntimeError('Spatial Kart section has no visible return footer: ' + label)
-        probe.native_text(out, 'Grand Prix', tag + '-landing-restored', exact=True)
+            # A retained setup may contain another driver. Select the original
+            # free Lumo card explicitly before requiring fox in the real save.
+            selection_touches.append(_select_stage_driver(out))
+        landing = _return_stage_kart_menu(out, tag)
         sections.append({'section': key, 'visible_label': label,
-                         'return_caption': caption, 'return_touch': point,
+                         'return_caption': landing['return_caption'],
+                         'return_touch': landing['return_touch'],
+                         'return_evidence': landing['readiness'],
+                         'landing_caption': landing['caption'],
                          'touch_evidence': tag + '-open-surface-readiness.json'})
     report = {'status': 'PASS', 'selected_mode': 'cup', 'sections': sections,
-              'mode_touch_evidence': '21_stage_mode_cup-surface-readiness.json',
+              'selection_touches': selection_touches, 'expected_kart': 'gecko_velo',
+              'mode_caption': mode['caption'], 'mode_touch_evidence': mode['readiness'],
               'scope': 'Live Android OCR touches; no injected Godot selection or coordinates'}
     (out / '21_stage_navigation.json').write_text(json.dumps(report, indent=2) + '\n')
+    return report
+
+
+def _previous_kart_race_id(out: Path) -> str | None:
+    paths = [line.strip() for line in base.adb(
+        'shell', 'find', f'/data/user/0/{PACKAGE}', '-maxdepth', '12', '-type', 'f',
+        '-name', SESSION_NAME).splitlines() if line.strip().endswith(SESSION_NAME)]
+    if not paths:
+        return None
+    if len(paths) != 1:
+        raise RuntimeError('Expected at most one previous saved Kart race')
+    raw = base.adb('exec-out', 'cat', paths[0], timeout=60)
+    (out / '21_before_garage-session.cfg').write_text(raw)
+    identity = complete.parse_session(raw).get('result_id')
+    garage_evidence.demand(isinstance(identity, str) and bool(identity),
+                           'Previous saved Kart race has no valid identity')
+    return identity
+
+
+def _confirm_stage_selection(out: Path, mode: str, track: str, kart: str,
+                              previous_id: str | None) -> dict:
+    session = RaceSession(out, expected_mode=mode, expected_track=track)
+    state = wait_race_running(session, selected_kart=kart, previous_id=previous_id)
+    report = {key: state[key] for key in ('result_id', 'selected_kart', 'selected_driver',
+                                          'mode', 'track_id', 'countdown', 'elapsed', 'distance')}
+    report['previous_result_id'] = previous_id
+    (out / '21_stage_confirmed_selection.json').write_text(json.dumps(report, indent=2) + '\n')
     return report
 
 
@@ -379,7 +676,9 @@ def _start_actual_embedded_race(out: Path) -> dict:
     evidence_taps = []
     garage_fifth = None
     spatial_navigation = None
+    previous_id = None
     if os.environ.get('LUMO_NATIVE_STAGE_MENU') == '1':
+        previous_id = _previous_kart_race_id(out)
         spatial_navigation = _inspect_spatial_kart_menu(out)
     # NextGen Android opens the real illustrated landing before the preserved
     # five-step garage. The real golden START starts the race directly.
@@ -451,12 +750,17 @@ def _start_actual_embedded_race(out: Path) -> dict:
                           'expected_mode': expected_mode, 'expected_track': expected_track,
                           'garage_replaced': evidence.garage_replaced(garage_fifth, screen),
                           'rendered_frame': evidence.rendered_race_frame(screen)}
-                if spatial_navigation is not None:
-                    report['spatial_menu_navigation'] = spatial_navigation
-                (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
-                return report
             except RuntimeError as error:
                 last_error = str(error)
+            else:
+                # A wrong newly persisted vehicle/identity is a hard failure,
+                # not a loading frame to discard and retry from scratch.
+                if spatial_navigation is not None:
+                    report['spatial_menu_navigation'] = spatial_navigation
+                    report['confirmed_selection'] = _confirm_stage_selection(
+                        out, expected_mode, expected_track, spatial_navigation['expected_kart'], previous_id)
+                (out / '21_kart_race_frame_check.json').write_text(json.dumps(report, indent=2))
+                return report
         time.sleep(2)
     raise RuntimeError(f'Native Android kart race did not visibly replace the garage: {last_error}')
 
@@ -465,13 +769,23 @@ class RaceSession:
     """READ ONLY access to the race session the game itself persists."""
 
     def __init__(self, out: Path, *, expected_mode: str = 'race',
-                 expected_track: str = 'sonnenhafen'):
+                 expected_track: str = 'sonnenhafen', expected_kart: str | None = None,
+                 expected_result_id: str | None = None):
         self.out = out
         self.expected_mode = expected_mode
         self.expected_track = expected_track
+        self.expected_kart = expected_kart
+        self.expected_result_id = expected_result_id
         self.path: str | None = None
 
-    def read(self, tag: str) -> dict:
+    def in_folder(self, out: Path) -> 'RaceSession':
+        out.mkdir(parents=True, exist_ok=True)
+        scoped = RaceSession(out, expected_mode=self.expected_mode, expected_track=self.expected_track,
+                             expected_kart=self.expected_kart, expected_result_id=self.expected_result_id)
+        scoped.path = self.path
+        return scoped
+
+    def read(self, tag: str, *, validate: bool = True) -> dict:
         if self.path is None:
             found = [line.strip() for line in base.adb(
                 'shell', 'find', f'/data/user/0/{PACKAGE}', '-maxdepth', '12', '-type', 'f',
@@ -482,27 +796,88 @@ class RaceSession:
         raw = base.adb('exec-out', 'cat', self.path, timeout=60)
         (self.out / f'{tag}-session.cfg').write_text(raw)
         state = complete.parse_session(raw)
+        if not validate:
+            # The selection-start observer must distinguish the previous
+            # saved race from a wrong NEW race before enforcing its identity.
+            return state
         evidence.require_race_session(state, mode=self.expected_mode, track=self.expected_track)
+        if self.expected_kart is not None:
+            garage_evidence.require_selected_race(state, self.expected_kart,
+                                                  mode=self.expected_mode, track=self.expected_track)
+        if self.expected_result_id is not None and state['result_id'] != self.expected_result_id:
+            raise RuntimeError('Native snapshot changed the confirmed Garage race identity')
         return state
 
 
-def wait_race_running(session: RaceSession, timeout: float = 150) -> dict:
+def wait_race_running(session: RaceSession, timeout: float = 150, *,
+                      selected_kart: str | None = None, previous_id: str | None = None) -> dict:
     """The countdown is over and the saved race clock has run for a second."""
     deadline = time.monotonic() + timeout
     attempt, last = 0, 'no session read yet'
+    observed_new_id = None
     while time.monotonic() < deadline:
         if not godot_alive():
             raise RuntimeError('Godot quit before the race clock started')
         try:
-            state = session.read(f'21_race_running_{attempt}')
-            if evidence.race_running(state, mode=session.expected_mode, track=session.expected_track):
+            state = (session.read(f'21_race_running_{attempt}', validate=False)
+                     if selected_kart is not None else session.read(f'21_race_running_{attempt}'))
+        except RuntimeError as error:
+            if getattr(session, 'expected_result_id', None) is not None:
+                # Once the selected race has been confirmed, a different or
+                # unreadable snapshot is no longer an initial loading state.
+                raise
+            last = str(error)
+        else:
+            if selected_kart is not None:
+                observed_new_id, ready = garage_evidence.selected_race_readiness(
+                    state, selected_kart, previous_id, observed_new_id,
+                    mode=session.expected_mode, track=session.expected_track)
+            else:
+                ready = evidence.race_running(state, mode=session.expected_mode, track=session.expected_track)
+            if ready:
                 return state
             last = {key: state[key] for key in ('countdown', 'elapsed', 'distance')}
-        except RuntimeError as error:
-            last = str(error)
         attempt += 1
         time.sleep(2)
     raise RuntimeError(f'Saved race never showed a running race clock: {last}')
+
+
+def _pause_actual_race(out: Path, session: RaceSession, identity: str) -> dict:
+    scoped = session.in_folder(out)
+    base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', check=False)
+    probe.native_text(out, 'Eine kleine Pause', '21_pause_title')
+    probe.native_text(out, 'Weiterfahren', '21_pause_resume', exact=True)
+    probe.capture(out, '21_lumo_kart_pause')
+    paused = scoped.read('21_pause_first')
+    if paused['result_id'] != identity:
+        raise RuntimeError('The pause belongs to a different race')
+    time.sleep(3)
+    frozen = evidence.paused_unchanged(paused, scoped.read('21_pause_second'),
+                                      mode=session.expected_mode, track=session.expected_track)
+    return {'frozen_while_paused': frozen, 'state': paused}
+
+
+def _continue_actual_race(out: Path, session: RaceSession, paused: dict) -> dict:
+    scoped = session.in_folder(out)
+    kart = scoped.expected_kart
+    garage_evidence.require_selected_race(paused, kart,
+                                          mode=scoped.expected_mode, track=scoped.expected_track)
+    probe.native_text(out, 'Weiterfahren', '21_continue_touch', tap=True, exact=True)
+    journal = out / '21_continue_touch-surface-readiness.json'
+    touch = json.loads(journal.read_text())
+    garage_evidence.demand(touch.get('status') == 'TOUCH_SENT',
+                           'Continue was not pressed through an observed native control')
+    # Resume does not write an immediate snapshot. Require the real racing
+    # HUD, physical GAS input, changing pixels and a later native save.
+    hud = wait_race_hud(out)
+    drive = drive_with_gas(out, find_gas(out, hud['capture']), scoped, paused)
+    resumed = scoped.read('21_after_continue')
+    progress = garage_evidence.require_resumed_progress(
+        paused, resumed, kart, mode=scoped.expected_mode, track=scoped.expected_track)
+    report = {'touch': touch['touch'], 'touch_evidence': journal.name,
+              'hud': hud, 'drive': drive, 'progress': progress}
+    (out / '21_continue-result.json').write_text(json.dumps(report, indent=2) + '\n')
+    return report
 
 
 def wait_race_hud(out: Path, timeout: float = 90) -> dict:
@@ -780,9 +1155,12 @@ def main() -> int:
         else:
             step('open-kart', False, label=None)
 
+        confirmed = race_launch.get('confirmed_selection') if race_launch else None
         session = RaceSession(out,
             expected_mode=race_launch['expected_mode'] if race_launch else 'race',
-            expected_track=race_launch['expected_track'] if race_launch else 'sonnenhafen')
+            expected_track=race_launch['expected_track'] if race_launch else 'sonnenhafen',
+            expected_kart=confirmed['selected_kart'] if confirmed else None,
+            expected_result_id=confirmed['result_id'] if confirmed else None)
         running: dict = {}
 
         def race_clock() -> dict:
@@ -798,19 +1176,14 @@ def main() -> int:
                     out, find_gas(out, hud['capture']), session, start_state))
 
             def pause() -> dict:
-                # Back while driving opens the game's own pause menu.
-                base.adb('shell', 'input', 'keyevent', 'KEYCODE_BACK', check=False)
-                probe.native_text(out, 'Eine kleine Pause', '21_pause_title')
-                probe.native_text(out, 'Weiterfahren', '21_pause_resume', exact=True)
-                probe.capture(out, '21_lumo_kart_pause')
-                paused = session.read('21_pause_first')
-                evidence.require_race_session(paused, mode=session.expected_mode, track=session.expected_track)
-                if paused['result_id'] != start_state['result_id']:
-                    raise RuntimeError('The pause belongs to a different race')
-                time.sleep(3)
-                frozen = evidence.paused_unchanged(paused, session.read('21_pause_second'),
-                                                   mode=session.expected_mode, track=session.expected_track)
-                return {'frozen_while_paused': frozen}
+                paused = _pause_actual_race(out, session, start_state['result_id'])
+                if session.expected_kart is not None:
+                    paused['continued'] = _continue_actual_race(out / '21_continue', session, paused['state'])
+                    # Keep the established Android Back → Flutter path after
+                    # proving Continue, by opening the actual pause a second time.
+                    paused['paused_after_continue'] = _pause_actual_race(
+                        out / '21_pause_after_continue', session, start_state['result_id'])
+                return paused
 
             attempt('pause-menu', pause)
 

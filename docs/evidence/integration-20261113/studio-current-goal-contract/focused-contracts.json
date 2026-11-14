@@ -1,0 +1,21 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "test_studio_delivery",
+    "test_nextgen_2019_review",
+    "test_kart_graphics_delivery",
+    "-v"
+  ],
+  "base": "042f4c716c4f19d7ed366d58ea78834e33d0b6aa",
+  "exit_code": 0,
+  "elapsed_seconds": 36.161,
+  "tests": 66,
+  "unittest_seconds": 36.045,
+  "skipped": 0,
+  "source_stable_during_run": true,
+  "protected_source_unchanged": true,
+  "raw_log_sha256": "aac34bf5cdc89b5f1b3d6c5a3a453345b5d5d596173b855aaf6f239d21e994e1",
+  "status": "PASS"
+}

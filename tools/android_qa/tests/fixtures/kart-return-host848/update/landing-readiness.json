@@ -1,0 +1,146 @@
+{
+  "status": "TOUCH_SENT",
+  "mode": "cup",
+  "touch_requested": true,
+  "frames": [
+    {
+      "source": "21_stage_mode_cup-0.png",
+      "source_sha256": "72d71bc2dd0c66699eb94b8df2d4e9662f98c9718d30e408a38dc164db732e30",
+      "source_bytes": 1091557,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "cup_choice": {
+        "target": {
+          "text": "Grand Prix",
+          "bounds": [
+            170.0,
+            397.0,
+            385.0,
+            426.0
+          ],
+          "variant": "raw"
+        },
+        "caption": "Grand Prix",
+        "navigation_top": 687.0,
+        "matching_observations": 2,
+        "scope": "Observed cup button; the new native race must still confirm mode cup"
+      },
+      "target": {
+        "surface_sha256": "72d71bc2dd0c66699eb94b8df2d4e9662f98c9718d30e408a38dc164db732e30",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          170.0,
+          397.0,
+          385.0,
+          426.0
+        ],
+        "anchor": "",
+        "reasons": [
+          "waiting for second stable observed target bounds"
+        ],
+        "target_geometry_valid": true,
+        "stable_observed_target": false
+      }
+    },
+    {
+      "source": "21_stage_mode_cup-1.png",
+      "source_sha256": "0c51bac07ca83d6929399d9a9c5ea5008ed5c9876b381aac57a6abc0bfc4938f",
+      "source_bytes": 1089360,
+      "pixels": [
+        2400,
+        1080
+      ],
+      "orientation_policy": "landscape",
+      "sample_rows": [
+        130,
+        238,
+        346,
+        454,
+        562,
+        670,
+        778,
+        886
+      ],
+      "blank_edge_columns": {
+        "left": 0,
+        "right": 0
+      },
+      "blank_threshold_rgb_max": 8,
+      "blank_required_rows": 7,
+      "acceptable_for_target_sampling": true,
+      "reasons": [],
+      "scope": "Reject observed partial surface; no scene/gameplay PASS",
+      "cup_choice": {
+        "target": {
+          "text": "Grand Prix",
+          "bounds": [
+            170.0,
+            397.0,
+            385.0,
+            426.0
+          ],
+          "variant": "raw"
+        },
+        "caption": "Grand Prix",
+        "navigation_top": 687.0,
+        "matching_observations": 2,
+        "scope": "Observed cup button; the new native race must still confirm mode cup"
+      },
+      "target": {
+        "surface_sha256": "0c51bac07ca83d6929399d9a9c5ea5008ed5c9876b381aac57a6abc0bfc4938f",
+        "pixels": [
+          2400,
+          1080
+        ],
+        "bounds": [
+          170.0,
+          397.0,
+          385.0,
+          426.0
+        ],
+        "anchor": "",
+        "reasons": [],
+        "target_geometry_valid": true,
+        "stable_observed_target": true
+      }
+    }
+  ],
+  "scope": "Current landing cup caption; actual new race mode remains mandatory",
+  "caption": "Grand Prix",
+  "final_observed_bounds": [
+    170.0,
+    397.0,
+    385.0,
+    426.0
+  ],
+  "touch": [
+    278,
+    412
+  ],
+  "elapsed_seconds": 35.212735
+}

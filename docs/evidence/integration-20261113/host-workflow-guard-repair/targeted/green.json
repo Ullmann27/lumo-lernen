@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "-m",
+    "unittest",
+    "scripts.tests.test_nextgen_workflow_contract.NextgenWorkflowContractTests.test_new_branch_uses_one_candidate_pipeline_without_disabling_old_branches",
+    "-v"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 0.076,
+  "source_blob": "8c26f54565af203f1a041e0bda7175a54f7f6a76",
+  "source_sha256": "1da6ab1457c372e7c3fad21ada69bf48337a7322b72c152fd4282a0b553373af",
+  "raw_log_sha256": "4b7882991245cb3284f5882c6d9c1cb357a913b382da0f8e332fca4352983c44",
+  "patch_sha256": "692144ffd5de2b5ba9bdfaabc0e522b0966bdf8ac11d297aa9980e732fc46c40",
+  "cases": 11,
+  "original_cases_retained": 7,
+  "added_actual_2019_routes": 4
+}

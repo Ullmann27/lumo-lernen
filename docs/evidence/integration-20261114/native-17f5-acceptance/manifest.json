@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "status": "FROZEN_COMPACT_NATIVE_17F5_ACCEPTANCE_PACK",
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+  "source_packs": [
+    {
+      "alias": "nextgen",
+      "original_root": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence",
+      "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "run_id": 43532048311,
+      "original_manifest_sha256": "838b694a65237aa31394536389933ea26655c59080495f2da96b240d9205d811",
+      "original_checksums_sha256": "97d67a5ad3f5b639969584a16d2de3cde54773e827bf3aceaf6038782895bc6e",
+      "regular_file_count": 377,
+      "original_zip_symlinks": 7
+    },
+    {
+      "alias": "graphics",
+      "original_root": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-graphics-evidence",
+      "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+      "source_tree": "b8ea9b1777e8d0b6302156330d4d1b298a316aea",
+      "run_id": 43532048253,
+      "original_manifest_sha256": "24d86ddec5368074e7588053216d3eb21c81ff99eb545defb046daaa31555deb",
+      "original_checksums_sha256": "e15f9daa84d9f28510ccf1e54c30a798abc841d69ab4c0477c7e889ec1ab0a27",
+      "regular_file_count": 140,
+      "original_zip_symlinks": 3
+    }
+  ],
+  "target_host_relative_directory": "docs/evidence/integration-20261114/native-17f5-acceptance",
+  "archive_included_originals": 482,
+  "excluded_materialized_images": 35,
+  "excluded_original_zip_payloads": 10,
+  "excluded_transport_files": 0,
+  "existing_current_review_images_referenced": 34,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 4991,
+      "sha256": "206a3c3e04fd6afdae79628941c0ef0fb2bc3c90013ad2b88e51bad8fd7d7b5d"
+    },
+    {
+      "path": "excluded-payloads.json",
+      "bytes": 689830,
+      "sha256": "6317f6fb1f69217272b31282d53c2881bf88ba4d7ebc0ab6e929b65b718fb93f"
+    },
+    {
+      "path": "original-inventory.json",
+      "bytes": 260361,
+      "sha256": "7a8735328d42e720a7f1c3c94e403d8517b2d768fccae2d83046162a1223aa08"
+    },
+    {
+      "path": "originals.tar.gz",
+      "bytes": 1892708,
+      "sha256": "51fed950d4c0e213cc35f602a28386d51e0950cc2ee416829f380d9c0fcb128f"
+    },
+    {
+      "path": "roundtrip-verification.json",
+      "bytes": 1120,
+      "sha256": "6c8857c1b8f8d8853cb3ad254359b9c788e9bf9d3b6161c75c47e8f30d6ce10e"
+    },
+    {
+      "path": "stored-review-references.json",
+      "bytes": 25408,
+      "sha256": "3158e891a9753980d7d12b62f71a40527e8187a4ec733e2097304e5643ad3c6b"
+    },
+    {
+      "path": "transport-screening.json",
+      "bytes": 792,
+      "sha256": "db70f99f20fceb30a30af547f13e668c4ea3ef6209de119fae13873d33c9fe00"
+    }
+  ],
+  "builder_sha256": "33deb3896d4db1a620330590fb6674e491d5226098a8003ddc7bf20e63e751e9",
+  "scope": "Lossless packaging of existing evidence only. No original source/receipt/pin/ref/index changes or new product tests."
+}

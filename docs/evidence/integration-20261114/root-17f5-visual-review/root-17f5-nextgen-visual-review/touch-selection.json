@@ -1,0 +1,17 @@
+[
+  {
+    "module": "garage",
+    "artifact_entry": "touch-evidence/workshop/captures/kart_workshop_density_regression/workshop-1080x2400-performance.png",
+    "findings": "Root directly opened this new 1080x2400 Workshop original. Lumo and the selected kart are visible above five labeled tuning bars. Zurück, the free-star count, Prüflauf starten and the Motor, Bremsen and Reifen upgrade controls are readable and distinct. The workshop title is ellipsized. The lower panel is a scrolled viewport, starting part-way through the performance information; its scrollbar remains visible. No natural scrolling, simulation accuracy or device frame rate is established by this still image."
+  },
+  {
+    "module": "treasure",
+    "artifact_entry": "touch-evidence/treasure/captures/treasure_density_regression/treasure-1080x2400-question.png",
+    "findings": "Root directly opened this new 1080x2400 Treasure original. Der alte Sternenbaum, the growth question, all three answers and Weiter erkunden fit within the central panel. Spiele, Rucksack, pause, the thumbstick, Springen and Ansehen remain separated and visible. The world title is ellipsized and the discovery count wraps before its final 3; the panel obscures part of the scene. This is a static question layout, not a successful actual Android clue/answer or exploration test."
+  },
+  {
+    "module": "build",
+    "artifact_entry": "touch-evidence/build/captures/build_dialog_density_regression/build-dialog-640x360-current-goal.png",
+    "findings": "Root directly opened this new 640x360 Build-dialog original. Aktuelles Bauziel, Verbinde die Inseln and the river-path instruction are readable, with the instruction wrapping within the dialog. Mein Bauwerk testen and Abbrechen fit fully inside the modal. Background toolbar controls are partially obscured or clipped in their separate viewport; they are not represented as exposed modal actions. No natural touch or successful construction is inferred from this image."
+  }
+]

@@ -468,6 +468,8 @@ class _GameTileState extends State<_GameTile> {
         widget.reduceMotion ? Duration.zero : const Duration(milliseconds: 140);
     return Semantics(
       button: true,
+      enabled: open,
+      onTap: open ? widget.onTap : null,
       label:
           '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',
       excludeSemantics: true,

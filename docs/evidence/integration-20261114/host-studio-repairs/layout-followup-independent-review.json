@@ -1,0 +1,75 @@
+{
+  "decision": "NO_CONCRETE_BLOCKER_IN_EXACT_THREE_FILE_SOURCE_DIFF",
+  "findings": [
+    {
+      "finding": "The only executable verifier delta adds require_layout=True to the existing original PNG verifier. That verifier requires each original before/after sidecar, exact digest and file name, stable identical layout, positive stage layout sequence and hash, recalculated pixels with layout_binding and exact measurement equality.",
+      "name": "Mandatory actual layout"
+    },
+    {
+      "finding": "The full production file is byte-identical after substituting only that one keyword argument. APK/ARM64/PCK/source/signature, all other pixel and Android gates are therefore unchanged in this delta.",
+      "name": "Original gates preserved"
+    },
+    {
+      "finding": "The new cases reject valid old pixels without layout, missing frame record, missing original file, changed raw bytes and stage sequence mismatch. They call the real verify_proofs; no error filter or success substitute was added.",
+      "name": "Negative regressions retained"
+    },
+    {
+      "finding": "Only current expected native_probe_count changes43 to48; both nine-module and Village/Puzzle checks remain.",
+      "name": "Fixed native count"
+    },
+    {
+      "finding": "Two mock expectations add only orientation=landscape. Their existing exact return captions, tap, exact where previously required and one-call assertions remain unchanged.",
+      "name": "Exact captions"
+    }
+  ],
+  "limits": [
+    "Source review does not provide new Android/renderer results.",
+    "Original combined557-test run remains FAIL.",
+    "No assertion that the whole current Prep source is final or that Native17f5 is accepted."
+  ],
+  "original_followup_pack": "host-studio-graphics-layout-repair",
+  "original_manifest_sha256": "35e62852f10628b53ced4caff0c039123e37cc087ac8ba4d1be999881d8fc3a0",
+  "reported_tests": {
+    "executed_by_this_reviewer": false,
+    "green": {
+      "errors": 0,
+      "failures": 0,
+      "skips": 0,
+      "tests": 28
+    },
+    "red": {
+      "errors": 1,
+      "failures": 4,
+      "tests": 5
+    },
+    "source": "host-studio-graphics-layout-repair/handoff.json"
+  },
+  "reviewed_at_utc": "2026-11-14T00:17:30.577344+00:00",
+  "schema": 1,
+  "scope": "Independent read-only source review; no tests, source changes, index, refs or runtime acceptance.",
+  "source_files": {
+    "scripts/tests/test_android_voice_scroll.py": {
+      "before_sha256": "2b70a1c753bc8fdb591bcbcfe5b0dbd69baca0eb42b7c9548b71bc24dcaab18e",
+      "bytes": 8540,
+      "matches_frozen_after_and_live_readonly": true,
+      "sha256": "5bebb8203f5e1bc67a2b6cf57680f4e8e4b4981fa1501b9a17438da35aba1335"
+    },
+    "scripts/tests/test_kart_graphics_delivery.py": {
+      "before_sha256": "887c7b14f31ec081bc015d902f9c80383d48f86c045ca2ea069163b2f7407be3",
+      "bytes": 28781,
+      "matches_frozen_after_and_live_readonly": true,
+      "sha256": "2a74e0fcf513173330344cc110cc247c37741d16ad8dec50986d56e909474b5c"
+    },
+    "scripts/verify_kart_graphics_delivery.py": {
+      "before_sha256": "af648591f65b214499c9a60416b996920b32b76eba2606b2a72c6d020c355ad8",
+      "bytes": 13414,
+      "matches_frozen_after_and_live_readonly": true,
+      "sha256": "e122755ffb75d48507033d989a306a7230d98d4af1e3263288cc81d592c7f845"
+    }
+  },
+  "unchanged_neighbour": {
+    "archived_exact_source": "host-pr476-nextgen-safe-area-contract/executed-source/scripts/verify_nextgen_delivery.py.gz",
+    "path": "scripts/verify_nextgen_delivery.py",
+    "sha256": "f2f6c7254cc9b89f703015ef00f0f855dcc77d9a19d06ab921f860dee391370e"
+  }
+}

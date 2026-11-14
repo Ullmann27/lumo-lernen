@@ -1,13 +1,10 @@
-import 'dart:convert';
-import 'dart:math';
-
-import 'package:crypto/crypto.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../app/app_state.dart';
+import '../../core/legacy_learning_data.dart';
+import '../../core/native_profile_key_repository.dart';
 import '../../core/reward_wallet_repository.dart';
 import '../../core/lumo_voice.dart';
 import '../../domain/tutoring/native_learning_activity.dart';
@@ -27,10 +24,17 @@ Future<bool> launchLumo3D(
   LumoAppState? appState,
   NativeLearningActivity? learning,
   String? cardsToken,
+  String? legacyGameKey,
 }) async {
   if (!context.mounted || appState?.resetting == true) return false;
   // Only reviewed, bounded lesson descriptors open the educational route.
   if ((scene == 'learning') != (learning != null)) return false;
+  if (legacyGameKey != null &&
+      (appState == null ||
+          !const ['kart', 'jump', 'puzzle', 'build', 'rhythm', 'treasure']
+              .contains(scene))) {
+    return false;
+  }
   if (scene == 'cards' &&
       (cardsToken == null || !RegExp(r'^[a-f0-9]{32}$').hasMatch(cardsToken))) {
     return false;
@@ -46,6 +50,19 @@ Future<bool> launchLumo3D(
 
   final originRoute = ModalRoute.of(context);
   final generation = appState?.profileGeneration;
+  final previousName = appState?.state.childName ?? '';
+  final previousGrade = appState?.state.grade ?? 1;
+  LearningProfileLease? owner;
+  bool currentOwner() =>
+      context.mounted &&
+      appState?.resetting != true &&
+      appState?.profileGeneration == generation &&
+      (originRoute == null || originRoute.isCurrent) &&
+      (appState == null ||
+          (owner != null &&
+              appState.canUseLearningLease(owner) &&
+              appState.school.cachedActiveStudentId ==
+                  (owner.logStudentId == 'self' ? null : owner.studentId)));
   _launchInProgress = true;
   final entry = LumoGameEntryHandle.show(
     context,
@@ -55,6 +72,10 @@ Future<bool> launchLumo3D(
         (MediaQuery.maybeOf(context)?.disableAnimations ?? false),
   );
   try {
+    // Capture the stable selection before settings, wallet or storage awaits.
+    // Display names and school years are descriptions, never owner identities.
+    if (appState != null) owner = await appState.captureLearningProfile();
+    if (!currentOwner()) return false;
     await appState?.ensureSettingsLoaded();
     if (learning == null &&
         appState?.state.settings.requireDailyMissionForGames == true) {
@@ -80,13 +101,16 @@ Future<bool> launchLumo3D(
       return false;
     }
     entry?.setPhase(LumoGameEntryPhase.preparing);
-    final childKey = await _childSaveKey(appState);
+    final childKey = await _childSaveKey(
+      owner: owner,
+      previousName: previousName,
+      previousGrade: previousGrade,
+      legacyGameKey: legacyGameKey,
+      isCurrent: currentOwner,
+    );
     // Do not open an Activity after leaving the page or resetting the profile
     // while storage was busy. Reward saving itself is never cancelled here.
-    if (!context.mounted ||
-        appState?.resetting == true ||
-        appState?.profileGeneration != generation ||
-        (originRoute != null && !originRoute.isCurrent)) {
+    if (!currentOwner()) {
       return false;
     }
     const bridge = MethodChannel('lumo_lernen/bridge');
@@ -102,10 +126,7 @@ Future<bool> launchLumo3D(
     // Loading lifetime earnings may wait on storage too. Recheck the same
     // request immediately before launching: its page/profile may have changed
     // since the child save identity was resolved.
-    if (!context.mounted ||
-        appState?.resetting == true ||
-        appState?.profileGeneration != generation ||
-        (originRoute != null && !originRoute.isCurrent)) {
+    if (!currentOwner()) {
       return false;
     }
     if (learning == null && appState != null && !appState.canPlayToday) {
@@ -123,7 +144,7 @@ Future<bool> launchLumo3D(
           (appState?.state.settings.reduceAnimations ?? false) ||
               (appState?.state.settings.calmMode ?? false),
       if (learning != null) 'learning': learning.toLaunchOptions(),
-      if (learning != null) ...{
+      if (learning != null || scene == 'build') ...{
         // Preserve the selected voice. Only the existing, licensed local
         // identity is available in the isolated engine; no silent fallback.
         'learningVoiceEnabled': appState?.state.settings.voiceEnabled == true &&
@@ -155,10 +176,24 @@ Future<bool> launchLumo3D(
     // A return belongs to the same captured child, even if Android kept the
     // engine open while the Flutter profile was changed by another action.
     if (appState?.resetting == true ||
-        appState?.profileGeneration != generation) {
+        appState?.profileGeneration != generation ||
+        (appState != null &&
+            owner != null &&
+            (!appState.canUseLearningLease(owner) ||
+                appState.school.cachedActiveStudentId !=
+                    (owner.logStudentId == 'self' ? null : owner.studentId)))) {
       return false;
     }
     return true;
+  } on NativeProfileKeyException catch (error) {
+    if (context.mounted && error.code != 'profile-changed') {
+      _showLaunchMessage(
+          context,
+          'Dein Spielstand konnte nicht sicher zugeordnet werden. '
+          'Die vorhandenen Daten bleiben erhalten. Bitte versuche es erneut '
+          'oder öffne „Spielstände verwalten“ im Elternbereich.');
+    }
+    return false;
   } on PlatformException catch (error) {
     if (context.mounted) {
       _showLaunchMessage(
@@ -195,21 +230,27 @@ Future<bool> launchLumo3D(
   }
 }
 
-Future<String> _childSaveKey(LumoAppState? appState) async {
-  final preferences = await SharedPreferences.getInstance();
-  const key = 'lumo_3d_save_salt_v1';
-  var salt = preferences.getString(key);
-  if (salt == null) {
-    final random = Random.secure();
-    salt = List.generate(
-            24, (_) => random.nextInt(256).toRadixString(16).padLeft(2, '0'))
-        .join();
-    if (!await preferences.setString(key, salt)) {
-      throw StateError('Save identity could not be persisted');
-    }
+Future<String> _childSaveKey({
+  required LearningProfileLease? owner,
+  required String previousName,
+  required int previousGrade,
+  required String? legacyGameKey,
+  required bool Function() isCurrent,
+}) async {
+  const repository = NativeProfileKeyRepository();
+  final ownerId =
+      owner?.studentId ?? await LegacyLearningDataRepository().localStudentId();
+  if (legacyGameKey != null) {
+    return repository.authorizedLegacy(
+        ownerId: ownerId, key: legacyGameKey, isCurrent: isCurrent);
   }
-  final state = appState?.state;
-  return 'p_${sha256.convert(utf8.encode('$salt|${state?.childName ?? ''}|${state?.grade ?? 1}')).toString().substring(0, 32)}';
+  return repository.resolve(
+    ownerId: ownerId,
+    isLocalProfile: owner?.logStudentId == 'self',
+    legacyName: previousName,
+    legacyGrade: previousGrade,
+    isCurrent: isCurrent,
+  );
 }
 
 void _showLaunchMessage(BuildContext context, String message) {

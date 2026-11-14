@@ -1,0 +1,11 @@
+# Actual51e Cup-caption failure and narrow QA repair
+
+Original run43502594333 ended FAILURE. API35, API37 and the actual2017→2019 update each failed with `Ambiguous cup-caption regions on the current landing`. Original images show one Grand Prix title; a contrast-OCR composite `= Grand Prix` includes decoration and an oversized rectangle. The general symbol-stripping normalizer turned it into a second cup alias. The unchanged IoU ambiguity guard then correctly rejected the inconsistent rectangles.
+
+The sole existing source change is the complete-caption comparison in `tools/android_qa/kart_garage_evidence.py`: NFKC, casefold and whitespace normalization preserve symbols instead of accepting decorated composites. The original general normalizer, navigation/landscape/bounds guards,0.6 IoU threshold, stable-frame/hash rules and actual saved race/start/drive requirements remain. A second genuine exact-title region still fails closed; decoration without a complete title remains rejected.
+
+Seven new methods replay all three original OCR/readiness pairs plus explicitly derived counterexamples, both original aliases, case/whitespace and reversed OCR order. They exercise the actual selector. Original code reproduced the three real ambiguities; eight negative subcases also failed. Corrected code plus the five existing CupObservedLabelTests passed12/12 with no skips. This is recorded-input and mocked-call regression, not a new Android pass.
+
+The six original JSON fixtures remain byte-exact and retain their original FAIL readiness state. Their manifest binds each run/job/artifact/PNG. Root directly inspected the unchanged API35 landing PNG; the exact bytes and that limited review are preserved in the archive. Root inspected the complete narrow code/test delta. The full previous Android failure remains separate in `host-51e-android`; no missing race, Cards or update phase is reclassified as passed.
+
+`archive-index.json` verifies every preserved member against the original bytes. The source manifest, full original/modified helper, existing tour/test snapshots, original red/green logs and exact diff are included. Product sources, Native993c pins, both visual receipts, version0.13.7+2019 and APK publishing guards remain unchanged.

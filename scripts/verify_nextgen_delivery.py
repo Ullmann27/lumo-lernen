@@ -22,7 +22,7 @@ from verify_legacy_release_pin import verify as verify_pin
 
 BASELINE_SOURCE = '47889f74a651b073965def70743417cf320b1eb9'
 BASELINE_NATIVE = '1d5c5cb45a323228f627ec529e6ff1ddd86f1c57'
-REVIEW_MODULES = {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 'rhythm'}
+REVIEW_MODULES = {'learning', 'jump', 'build', 'settlement', 'garage', 'cards', 'rhythm', 'puzzle'}
 COMPILED_CLASSES = {'MainActivity', 'LumoGameActivity', 'LumoHostPlugin', 'CardsTableBridge',
                     'CardsAuthorityService', 'CardsAuthorityRegistry', 'LumoLearningSpeech', 'LumoOfflineSpeechBridge',
                     'LumoOfflineSpeechEngine'}
@@ -112,11 +112,13 @@ def verify_visual_review(root: Path, receipt: dict, native: str,
             'images': len(images), 'modules': sorted(modules)}
 
 
-def verify_cards_front_faces(cards: dict, evidence: Path) -> dict:
+def verify_cards_front_faces(cards: dict, evidence: Path, *, require_layout: bool = False) -> dict:
     """Recompute current front artwork from the original downloaded PNG bytes.
 
     Reports alone cannot satisfy this gate. Each stage must bind two captured
     frames to its actual persisted draw revision and unchanged public state.
+    Studio additionally requires the actual layout files on both sides of each
+    capture. The default path retains the historical 2018 evidence contract.
     """
     sys.path.insert(0, str(Path(__file__).resolve().parents[1] / 'tools/android_qa'))
     from nextgen_evidence import require_cards_face_pixels
@@ -147,6 +149,23 @@ def verify_cards_front_faces(cards: dict, evidence: Path) -> dict:
                 'Original Cards PNG bytes differ from the observed frame: ' + name)
         return path
 
+    def original_layout(frame: dict, edge: str) -> dict:
+        observed = frame.get('layout_' + edge)
+        require(isinstance(observed, dict), 'Missing current native Cards layout ' + edge)
+        expected = PurePosixPath(frame['source']).stem + '-' + edge + '-layout.json'
+        name = observed.get('source')
+        require(name == expected, 'Cards layout does not name its exact capture-side file')
+        path = evidence / name
+        require(path.is_file() and not path.is_symlink() and path.stat().st_size <= 128 * 1024,
+                'Missing, linked or oversized original Cards layout: ' + name)
+        digest = observed.get('source_sha256')
+        require(bool(re.fullmatch(r'[a-f0-9]{64}', str(digest))) and sha256_file(path) == digest,
+                'Original Cards layout bytes differ from the captured observation: ' + name)
+        layout = read_json(path)
+        require(isinstance(layout, dict) and layout == observed.get('layout'),
+                'Embedded Cards layout differs from its original file: ' + name)
+        return layout
+
     for stage, revision, report in zip(CARDS_FACE_STAGES, revisions, reports):
         require(isinstance(report, dict) and report.get('status') == 'PASS' and
                 report.get('stage') == stage and report.get('consecutive_same_revision_frames') == 2,
@@ -154,6 +173,10 @@ def verify_cards_front_faces(cards: dict, evidence: Path) -> dict:
         require(report.get('roundId') == round_id and type(report.get('revision')) is int and
                 report['revision'] == revision and type(report.get('viewer')) is int and report['viewer'] == 0,
                 'Cards front-face report belongs to another round, draw revision or viewer')
+        if require_layout:
+            require(type(report.get('layout_sequence')) is int and report['layout_sequence'] > 0 and
+                    bool(re.fullmatch(r'[a-f0-9]{64}', str(report.get('layout_sha256', '')))),
+                    'Cards stage lacks its exact native layout sequence/hash')
         current_token = report.get('token')
         require(bool(re.fullmatch(r'[a-f0-9]{32}', str(current_token))) and
                 (token is None or token == current_token), 'Cards pixel evidence changed native sessions')
@@ -166,6 +189,7 @@ def verify_cards_front_faces(cards: dict, evidence: Path) -> dict:
         frames = report.get('frames')
         require(isinstance(frames, list) and len(frames) >= 2, 'Cards needs two consecutive actual frames')
         state = None
+        previous_layout = None
         confirmed = []
         for index in range(len(frames) - 2, len(frames)):
             frame = frames[index]
@@ -185,13 +209,28 @@ def verify_cards_front_faces(cards: dict, evidence: Path) -> dict:
             pixels, observations = frame.get('pixels'), frame.get('observations')
             require(isinstance(pixels, dict) and isinstance(observations, dict),
                     'Missing actual Cards front-face measurements or current OCR observations')
+            layout_arguments = {}
+            if require_layout:
+                layout_before = original_layout(frame, 'before')
+                layout_after = original_layout(frame, 'after')
+                require(layout_before == layout_after and
+                        frame['layout_before']['source_sha256'] == frame['layout_after']['source_sha256'],
+                        'Cards layout changed while its actual screenshot was inspected')
+                layout_arguments['layout'] = layout_after
             try:
                 measured = require_cards_face_pixels(image, public, density=pixels.get('density'),
-                                                     observations=observations)
+                                                     observations=observations, **layout_arguments)
             except (RuntimeError, OSError, ValueError, TypeError) as error:
                 raise ValueError('Actual Cards front-face PNG failed repeated verification: ' + str(error)) from error
             require(measured == pixels and measured.get('page') == report.get('page'),
                     'Cards pixel measurements were changed or belong to another hand page')
+            if require_layout:
+                layout_binding = measured.get('layout_binding', {})
+                current_layout = (layout_binding.get('layout_sha256'), layout_binding.get('layout_sequence'))
+                require(current_layout == (report.get('layout_sha256'), report.get('layout_sequence')) and
+                        (previous_layout is None or previous_layout == current_layout),
+                        'Cards layout differs between its two final frames or stage report')
+                previous_layout = current_layout
             confirmed.append({'source': frame['source'], 'sha256': frame['source_sha256'],
                               'faces': len(measured['faces'])})
         require(sha256_file(main_image) == frames[-1]['source_sha256'],

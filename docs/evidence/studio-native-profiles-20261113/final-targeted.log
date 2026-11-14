@@ -1,0 +1,57 @@
+00:00 +0: loading /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart
+00:00 +0: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: sole local 2017 profile keeps exact file key through rename, grade and reload
+00:00 +1: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: same-name school pupils get different stable main keys
+00:00 +2: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: local fallback never auto-claims legacy when school directory is ambiguous
+00:00 +3: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: active school selection blocks automatic solo fallback even without directory
+00:00 +4: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: adult legacy assignment is separate, exclusive and reopens exact historical key
+00:00 +5: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: a retained solo key cannot also be assigned to a school child
+00:00 +6: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: concurrent claims cannot bind an old key to two owners
+00:00 +7: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: rejected persistence reloads optimistic cache and permits a durable retry
+00:00 +8: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: stale lease before write leaves registry untouched
+00:00 +9: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: switch during persistence never returns a key for the next child
+00:00 +10: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: corrupt registry and missing salt fail closed without discarding data
+00:00 +11: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_key_repository_test.dart: fresh installation has no invented historical identity
+00:00 +12: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: (setUpAll)
+00:00 +12: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +13: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +14: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +15: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +16: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +17: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +18: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +19: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:02 +20: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:03 +21: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: real same-name students keep distinct launcher keys through grade, name and app restart
+00:03 +22: /workspace/scratch/5987865ae883/lumo-lernen/test/lumo3d_launcher_lifecycle_test.dart: reward save failure blocks launch and explains safe retry
+00:03 +23: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +24: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +25: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +26: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +27: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +28: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +29: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +30: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +31: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual solo upgrade launcher retains 2017 key and original native filenames
+00:03 +32: /workspace/scratch/5987865ae883/lumo-lernen/test/tutoring/native_learning_launch_test.dart: native voice preserves license, mute and selected identity
+00:03 +33: /workspace/scratch/5987865ae883/lumo-lernen/test/tutoring/native_learning_launch_test.dart: native voice preserves license, mute and selected identity
+00:03 +34: /workspace/scratch/5987865ae883/lumo-lernen/test/tutoring/native_learning_launch_test.dart: native voice preserves license, mute and selected identity
+00:03 +35: /workspace/scratch/5987865ae883/lumo-lernen/test/tutoring/native_learning_launch_test.dart: native voice preserves license, mute and selected identity
+00:03 +36: /workspace/scratch/5987865ae883/lumo-lernen/test/tutoring/native_learning_launch_test.dart: native voice preserves license, mute and selected identity
+00:03 +37: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:03 +38: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:03 +39: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:04 +40: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:04 +41: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:04 +42: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:05 +43: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:06 +44: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:06 +45: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:06 +46: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: actual parent entry cancel, adult assignment, separate old launch and Phone/Fold layout
+00:07 +47: /workspace/scratch/5987865ae883/lumo-lernen/test/tutoring/native_learning_launch_test.dart: actual adaptive LumoSessionKind.quickPractice preserves task and assessment boundary
+00:07 +48: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: profile switch during adult dialog cancels assignment
+00:08 +49: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: profile switch during adult dialog cancels assignment
+00:08 +50: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: rejected adult assignment leaves old key unclaimed and shows retry
+00:12 +51: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: captured lease changed before launch never opens another child save
+00:14 +52: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: native return rejects an invalidated lease before generation changes
+00:15 +53: /workspace/scratch/5987865ae883/lumo-lernen/test/native_profile_keys_ui_test.dart: (tearDownAll)
+00:15 +53: All tests passed!

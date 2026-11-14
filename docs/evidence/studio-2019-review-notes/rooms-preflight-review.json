@@ -1,0 +1,228 @@
+{
+  "schema": 1,
+  "review_kind": "Independent original PNG preflight, not final visual approval",
+  "native_revision": "9eb25fcb158342639badb0e953a8fe7945fda6ce",
+  "source_dirty": "",
+  "reviewed_at": "2026-11-13T13:19:53.261264+00:00",
+  "reviewed_by": "Agent A / learning_worlds",
+  "method": "All19originalPNGfiles opened individually with view_image, not inferred from manifests or regenerated pictures.",
+  "status": "PREFLIGHT_NO_NEW_BLOCKER_OBSERVED",
+  "release_approval": false,
+  "decision": "No additional confirmed visual blocker in these Cards/Rhythm/Garage images. Native9eb25fcb remains rejected because of the separately documented Puzzle compact-layout issue; this report does not approve that candidate or the newer pending native source.",
+  "scope_limits": [
+    "Individual rendered frames do not prove touch dispatch, timing, save integrity, audible quality or lip synchronization.",
+    "No physical Android, Fold7/Android17, GPU, thermal or60FPS claim.",
+    "Final current-source acceptance still requires its own successful workflow, immutable artifact and source-bound original-image review."
+  ],
+  "images": [
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-1280x720.png",
+      "sha256": "157a99edd926d34371453144851b1a0522fd2dd60f959429d8ea0a0990351890",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Alle sieben Handkarten zeigen farbige Vorderseiten mit lesbaren Zahlen/Aktionssymbolen; goldene Rahmen markieren passende Karten. Tisch, Zieh-/Ablagestapel und Originalfuchs sind sichtbar. Seitenanzeige1/1, Ziehen, Zurück und Pause getrennt; Kartelegen ist ohne Auswahl erkennbar deaktiviert."
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-2400x1080.png",
+      "sha256": "f83e7e0dd30064841cd10689e73c8cf2b4a8c7258e6377a5fbc9528e54cb464a",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Hohe Dichte: sieben vollständige Kartenfronten, deutlich lesbare Zuganzeige und Seitenanzeige1/1. Der große Bedienbereich bleibt unterhalb der Karten. Originalfuchs, Kartenrücken und räumlicher Tisch sichtbar; keine leeren Kartenfronten oder abgeschnittenen Pflichtaktionen."
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "dimensions": [
+        412,
+        915
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Portrait: drei vollständige Handkarten mit Zahlen1/2 und Wild-Artwork;1/3 und beide Seitenpfeile sichtbar. Ziehen, deaktiviertes Kartelegen sowie Zurück/Pause liegen innerhalb des Fensters. Originalfuchs und beide Tischstapel bleiben sichtbar."
+    },
+    {
+      "module": "cards",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-690x829.png",
+      "sha256": "62bd3ce901232399b1f3fb2181d010923a84b904c4f42beec4cfec48feb76042",
+      "dimensions": [
+        690,
+        829
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Faltformat: fünf vollständige Vorderseiten mit Zahlen1/2/4/5 und Wild-Artwork. Seitenanzeige1/2 samt Pfeilen sowie beide Spielaktionen vollständig sichtbar. Kein Konflikt zwischen Kartenreihe und unteren Aktionen; Originalfuchs im Blick."
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/01_rhythm_tour_map.png",
+      "sha256": "bb3b997cbd86b012393749dabc37171076ffdd0280204d95d36cc1cb4b2acb99",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Tourdialog: vier Bühnen, Startziel16von40Tönen, Fehlertoleranz, Schwierigkeitswahl und Start/Rückkehr sind lesbar. Der Dialog liegt im Fenster. Die dahinterliegenden vier großen Spurtasten sind sichtbar; ihre teilweise Überdeckung durch den offenen Dialog ist erwartbar."
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "sha256": "1bc4bf037abe8c1ec644692da385c708e7472ba3c8561cebea95151a7d33dcb9",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Aktive Szene: alle vier Spuren und ihre unteren Touchflächen sind getrennt. Das weiße Verbindungselement zeigt den Spurwechsel; die Anweisung Zur nächsten Spur ist lesbar. Originalfuchs auf der beleuchteten Bühne erkennbar. Keine gesicherte Timing- oder Audiobewertung aus diesem Einzelbild."
+    },
+    {
+      "module": "rhythm",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/03_rhythm_tour_result.png",
+      "sha256": "bb701190dd512fdcc6fa42ad77dd7d82328d2ab858e46c34a310685f94167e67",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Ergebnisdialog nennt Freischaltung, zwei Sterne,2445Punkte,54ProzentTreffer, Combo und Bonus lesbar. Erneutspielen, Tourkarte und Rückkehr sind vollständig sichtbar. Hintergrundtexte liegen hinter dem Modal; die Ergebnisbedienung wird dadurch nicht verdeckt."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-1280x720.png",
+      "sha256": "e5c7126f114931c0f7776743120887d206e92874e5ff7206ff170aabdb2e169a",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Comet-Auswahl mit Name und Balken vollständig sichtbar; scrollbare übrige Karts, Lack/Teile/Effekte, Tabs und Rennenstart klar getrennt. Originalkart und Originalfuchs stehen sichtbar im Werkstattraum; keine fehlenden Materialien erkannt."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "sha256": "633f8330997b0b748e897a43385aaad1bec4961561e01b5c81b3e5befec97a48",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Hohe Dichte: ausgewählte Comet-Karte vollständig im Listenfenster; nächste Karte erwartbar am Scrollrand angeschnitten. Lack/Teile/Effekte und Rennenstart vollständig sichtbar. Originalfuchs und Kart bleiben oberhalb des unteren Bedienbereichs erkennbar."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-412x915.png",
+      "sha256": "ffd22294458bf106ef1051cae601a4ad5fb658dc302a75868b705ffaf182331b",
+      "dimensions": [
+        412,
+        915
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Portrait: Werkstatt mit Comet und Originalfuchs oberhalb des Auswahlpanels. Aktuelle Comet-Karte vollständig, Werkzeugaktion und START getrennt und vollständig. Tabs, Spielewelt und Rundumansicht sichtbar."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-1280x720.png",
+      "sha256": "01f56f1f34f922d4b3d11dd9949efa7912f874ed0d3cb22b2a43b22cf39ec06f",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Ausgewählte Gecko-Velo-Karte ist vollständig hervorgehoben; das dargestellte grüne Kart stimmt mit der Auswahl überein. Originalfuchs mit sichtbarer Handpose, Werkstattteile und untere Aktionen ohne kritische Überlagerung."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-2400x1080.png",
+      "sha256": "cbeb1578dc2166d2b518c99bff80383f2ebabd45e997d9fa6716bbeeb251be3d",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Die ausgewählte Gecko-Velo-Karte liegt vollständig oberhalb von Lack/Teile/Effekte. Nur die vorherige Comet-Karte ist am oberen Scrollrand angeschnitten. Grünes Kart, Originalfuchs, Rundumansicht und Rennenstart sichtbar."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/selection-412x915.png",
+      "sha256": "7332be0f869a8ce07d42c871853f76aaf2d705f3bb36bfb8716eae43d184eb65",
+      "dimensions": [
+        412,
+        915
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Portrait nach Auswahl: Gecko-Velo-Karte vollständig innerhalb des Auswahlbereichs; grünes Kart auf dem Podest und Originalfuchs sichtbar. Die untere Werkzeugaktion sowie Menü/START verdecken die Auswahl nicht."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-1280x720.png",
+      "sha256": "6442cefc5feb3b38f69a5a9025772f178b9ae96a4267e12595992afc54e83ae8",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Streckenziele und Auswahl Sonnenhafen mit0/3 und Zwei-Runden-Ziel lesbar. Mehrere weitere Strecken sichtbar; Liste scrollbar. Räumliche Streckenübersicht im Hintergrund und Rennenstart ohne verdecktes Auswahlziel."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-2400x1080.png",
+      "sha256": "cf887c1a0be8a3798bf8861aa84b361c65629baf6731a6e73b4391c86953555b",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Hohe Dichte: Sonnenhafen-Ziel vollständig und hervorgehoben, zweite Strecke lesbar, weitere Einträge im Scrollbereich. Die Streckenübersicht ist erkennbar; Rückkehr und Start vollständig sichtbar. Dekorative Vorschau darf hinter der festen Bedienleiste weiterlaufen."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/track-goals-412x915.png",
+      "sha256": "66a226db181d1b694a63ab49834c5bca968309024dca3c1daac099ddab567be4",
+      "dimensions": [
+        412,
+        915
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Portrait: Streckenübersicht über dem Auswahlpanel; Sonnenhafen, Zauberwald und Himmelsinseln samt Rundenzielen lesbar. Menü/START und die obere Navigation sind vollständig im Fenster."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-1280x720.png",
+      "sha256": "0903fbc28591dccfe53703e6663f45ccdd9ca60dfa58a42209c819dafd862033",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Vergrößerte Gecko-Velo-Ansicht: Kartfront, Räder, Sitz und Originalfuchs bleiben im freien Bereich. Ausgewählte Karte und Werkzeugaktion sichtbar; Zoom verdeckt keine Pflichtbedienung."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-2400x1080.png",
+      "sha256": "7cd2fd08d7aa0127b39897529a5ff186f7068fddcefb0928ddb8eeef577e0647",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Hohe Dichte mit Zoom: ausgewählte Gecko-Karte vollständig, Kart und Originalfuchs weiterhin sichtbar. Podestkante läuft hinter den Footer; sie ist kein verdecktes Interaktionsziel. Rennenstart und Rundumansicht vollständig lesbar."
+    },
+    {
+      "module": "garage",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/zoom-412x915.png",
+      "sha256": "f890ee169501a69ea3f9c3cf7dac6e49d746aa08dd12b96e73037ddb7593c58e",
+      "dimensions": [
+        412,
+        915
+      ],
+      "verdict": "NO_NEW_BLOCKER_OBSERVED",
+      "findings": "Portrait mit Zoom: Kart und Originalfuchs passen zwischen Navigation und Auswahlpanel. Gecko-Auswahl, Lack/Teile/Effekte und START unverdeckt. Der Anschnitt eines Werkstattreifens am rechten Bildrand betrifft nur Hintergrunddekoration."
+    }
+  ]
+}

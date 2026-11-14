@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "compared_to": "12ccd3c23a71d077c0f25bb744baff565a9a3a60",
+  "changed_application_paths": [
+    "lib/features/games/spielwelt/spielwelt_hub.dart"
+  ],
+  "only_application_delta": "diff --git a/lib/features/games/spielwelt/spielwelt_hub.dart b/lib/features/games/spielwelt/spielwelt_hub.dart\nindex ef1b96e..8097e46 100644\n--- a/lib/features/games/spielwelt/spielwelt_hub.dart\n+++ b/lib/features/games/spielwelt/spielwelt_hub.dart\n@@ -468,6 +468,8 @@ class _GameTileState extends State<_GameTile> {\n         widget.reduceMotion ? Duration.zero : const Duration(milliseconds: 140);\n     return Semantics(\n       button: true,\n+      enabled: open,\n+      onTap: open ? widget.onTap : null,\n       label:\n           '${portal.semanticTitle ?? portal.title}. ${portal.tagline} $status',\n       excludeSemantics: true,\n",
+  "scope": "Read-only diff confirms no new edits to writing trainer, journal, assets, Android application sources or package versions in this integration increment."
+}

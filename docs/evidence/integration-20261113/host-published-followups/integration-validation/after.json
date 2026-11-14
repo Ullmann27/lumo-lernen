@@ -1,0 +1,256 @@
+{
+  "finished_utc": "2026-11-13T18:00:05.998726+00:00",
+  "owned": {
+    ".github/workflows/lumo-1999-update-gate.yml": {
+      "bytes": 7430,
+      "sha256": "b93d551e00116f5e936be15afd5487a8cd206185a5c2e0e4b028891680a050ce",
+      "git_blob": "d8893a0cdba30a157ffca374e9a0f57b5544e0da",
+      "archive": ".github__workflows__lumo-1999-update-gate.yml.final.gz"
+    },
+    "scripts/verify_unified_apk.py": {
+      "bytes": 12075,
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+      "git_blob": "455a69423b887843efc4477568d5f2cd094d6088",
+      "archive": "scripts__verify_unified_apk.py.final.gz"
+    },
+    "scripts/tests/test_historical_apk_expectations.py": {
+      "bytes": 13552,
+      "sha256": "6d9f146935c5f80ff305f7171843c34ce17f514161894014348b79810260af0f",
+      "git_blob": "5658f3326cf3b2fa5cab678a23cf62e8f262b83d",
+      "archive": "scripts__tests__test_historical_apk_expectations.py.final.gz"
+    },
+    ".github/probes/lumo_2003_update_android_probe.py": {
+      "bytes": 10588,
+      "sha256": "3b36098d2a3f2b897c0b0bc582e83e08ff913a0509efcd1bd33ec3ffed5f61f7",
+      "git_blob": "f8afca6f798fd4c309ee97737a2fcb983081d65a",
+      "archive": ".github__probes__lumo_2003_update_android_probe.py.final.gz"
+    },
+    ".github/probes/lumo_2020_update_android_probe.py": {
+      "bytes": 1894,
+      "sha256": "a95e27a02f3a021848d887f238fdd498f4d22c387beb5dbb0c0de60dfc44669c",
+      "git_blob": "5f770cd9efc0704c8659e34af46b2725a67ab5c8",
+      "archive": ".github__probes__lumo_2020_update_android_probe.py.final.gz"
+    },
+    "tools/android_qa/update_preservation.py": {
+      "bytes": 10258,
+      "sha256": "73ea7f8155c65e4bd648ab99dd2baaa6261db2c380bcb435c0cb0761730f990a",
+      "git_blob": "3ddcc5e17b21e48408e6cd854f7e40eeadbddce2",
+      "archive": "tools__android_qa__update_preservation.py.final.gz"
+    },
+    "tools/android_qa/tests/test_update_preservation.py": {
+      "bytes": 16766,
+      "sha256": "09d02454fd1eefb4ded1b47c81e2130147278211eb6f6c0e80ec4a0bedd93809",
+      "git_blob": "b2463c175c2beafcb44c11e40f061e2018c2c406",
+      "archive": "tools__android_qa__tests__test_update_preservation.py.final.gz"
+    },
+    "tools/android_qa/tests/test_update_2020_preservation.py": {
+      "bytes": 11917,
+      "sha256": "1bed363f797b6692d3ca8c8df7f6f18130273d25fee1d1c934c5d5bfd6fc36dc",
+      "git_blob": "8fe3a33d88658fc8ab87b3b2a9de67108cf9b3cf",
+      "archive": "tools__android_qa__tests__test_update_2020_preservation.py.final.gz"
+    }
+  },
+  "protected": {
+    "pubspec.yaml": {
+      "before": {
+        "exists": true,
+        "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "e906f80632d275e92a1abefc94172c7503992fc6c30e30f7bd63ad97da284613"
+      },
+      "unchanged": true
+    },
+    "pubspec.lock": {
+      "before": {
+        "exists": true,
+        "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "2ba6a2c2c0b40c09cada4275982d1558203a737290c46761144e2597789f7c97"
+      },
+      "unchanged": true
+    },
+    "config/godot-source.json": {
+      "before": {
+        "exists": true,
+        "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "9eea3f7d7f1fdd9a555e98d2227f79cf1a3dd7a2b89ee345a7fd82c4d0e853f2"
+      },
+      "unchanged": true
+    },
+    "scripts/verify_legacy_release_pin.py": {
+      "before": {
+        "exists": true,
+        "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6"
+      },
+      "unchanged": true
+    },
+    "scripts/tests/test_candidate_2011_pin.py": {
+      "before": {
+        "exists": true,
+        "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "e174edb0331ae53e9a57cb2e3ea9d2a8cba2662af1b132c97bbd6bf9242598ac"
+      },
+      "unchanged": true
+    },
+    "config/nextgen-2018-visual-review.json": {
+      "before": {
+        "exists": true,
+        "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "70a93dc1e8ac9a33652946fd5314ac5d14d8220fb088bba574e14f74e50163c3"
+      },
+      "unchanged": true
+    },
+    "config/nextgen-2019-visual-review.json": {
+      "before": {
+        "exists": false,
+        "sha256": null
+      },
+      "after": {
+        "exists": false,
+        "sha256": null
+      },
+      "unchanged": true
+    },
+    "config/studio-2019-visual-review.json": {
+      "before": {
+        "exists": false,
+        "sha256": null
+      },
+      "after": {
+        "exists": false,
+        "sha256": null
+      },
+      "unchanged": true
+    },
+    "config/kart-graphics-2019-visual-review.json": {
+      "before": {
+        "exists": true,
+        "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "effb7249f0844550e41c51b555f9fcf0f803ee990aea75cff03dfd2a5c9b703a"
+      },
+      "unchanged": true
+    },
+    "tools/android_qa/tests/test_update_2019_preservation.py": {
+      "before": {
+        "exists": true,
+        "sha256": "36b01206da32e40d9ab769ed61bf8ae66d5a9ce7655a0a780c163c97fbe56778"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "36b01206da32e40d9ab769ed61bf8ae66d5a9ce7655a0a780c163c97fbe56778"
+      },
+      "unchanged": true
+    },
+    ".github/probes/lumo_2018_update_android_probe.py": {
+      "before": {
+        "exists": true,
+        "sha256": "658d12283075788e64fcb87fb64cd34323e8bb5ab88215f7b69d846a470b98e1"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "658d12283075788e64fcb87fb64cd34323e8bb5ab88215f7b69d846a470b98e1"
+      },
+      "unchanged": true
+    },
+    ".github/probes/lumo_2019_update_android_probe.py": {
+      "before": {
+        "exists": true,
+        "sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+      },
+      "after": {
+        "exists": true,
+        "sha256": "11ce5f349887a5d57544ea71abccb03d8ca1aa7a52293e574d622d2e3bd7e7f0"
+      },
+      "unchanged": true
+    }
+  },
+  "producer_byte_identity": {
+    "scripts/verify_unified_apk.py": {
+      "commit": "a5e03117158c157ba3154083db25947724e67727",
+      "git_blob": "455a69423b887843efc4477568d5f2cd094d6088",
+      "sha256": "8e283c01f8844f279687ea53cd62f3d52c0e18557d19521c741f4446fe796382",
+      "byte_identical": true
+    },
+    "scripts/tests/test_historical_apk_expectations.py": {
+      "commit": "a5e03117158c157ba3154083db25947724e67727",
+      "git_blob": "5658f3326cf3b2fa5cab678a23cf62e8f262b83d",
+      "sha256": "6d9f146935c5f80ff305f7171843c34ce17f514161894014348b79810260af0f",
+      "byte_identical": true
+    },
+    ".github/probes/lumo_2020_update_android_probe.py": {
+      "commit": "1f47a96116e22a4c0c1fab655d0db165c461736e",
+      "git_blob": "5f770cd9efc0704c8659e34af46b2725a67ab5c8",
+      "sha256": "a95e27a02f3a021848d887f238fdd498f4d22c387beb5dbb0c0de60dfc44669c",
+      "byte_identical": true
+    }
+  },
+  "historical_repository_fork_branch_guard_preserved": true,
+  "incomplete_2020_workflow_not_copied": true,
+  "source_count_bound_to_affected_suite": 24,
+  "tests": {
+    "targeted-red": {
+      "tests": 2,
+      "unittest_seconds": 0.018,
+      "log_sha256": "3ac3c27f5c54f110f5964b8c863493ee52b99cf2f924fae367476af1fef70ead"
+    },
+    "targeted-green": {
+      "tests": 2,
+      "unittest_seconds": 0.039,
+      "log_sha256": "c05e55ea296198fd135ab26eef0c01686fecb82adb589cf15ea0f4d2ddf2cfc7"
+    },
+    "affected-contracts": {
+      "tests": 86,
+      "unittest_seconds": 1.044,
+      "log_sha256": "9a15eedde1b9e866edc94a3880b6a5d723f7d0ceaa32f5bdccfb47b9ca34b83a"
+    }
+  },
+  "affected_test_exit": 0,
+  "actionlint": {
+    "command": [
+      "/workspace/scratch/e0abce7d2838/toolchain/actionlint/actionlint",
+      ".github/workflows/lumo-1999-update-gate.yml"
+    ],
+    "started_utc": "2026-11-13T17:57:30.446353+00:00",
+    "seconds": 0.054,
+    "exit_code": 0,
+    "source_sha256": "b93d551e00116f5e936be15afd5487a8cd206185a5c2e0e4b028891680a050ce",
+    "source_unchanged": true,
+    "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "complete_patch": {
+    "archive": "host-followup-integration.patch.gz",
+    "original_bytes": 42557,
+    "original_sha256": "38fec6d59f4c2e41dfe80cbb9f0ce0694a21d0a73037ee26111561b23fb79735"
+  },
+  "warnings": {
+    "resource_warning_occurrences": 8,
+    "preexisting_unchanged_source_line": "'sha256': hashlib.file_digest(path.open('rb'), 'sha256').hexdigest(),",
+    "suppressed": false
+  },
+  "ownership_excludes": [
+    "scripts/verify_studio_delivery.py",
+    "scripts/record_studio_visual_review.py",
+    "scripts/tests/test_nextgen_2019_review.py",
+    "scripts/tests/test_kart_graphics_delivery.py"
+  ]
+}

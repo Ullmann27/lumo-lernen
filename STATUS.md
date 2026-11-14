@@ -1,3 +1,103 @@
+# Integration follow-up: repair the real Android Cup selector
+
+Updated: 2026-11-13. This follows published Host51e92fb5/treea13ab981.
+Its immutable run43502594333 completed with successful Android Host compile,
+APK build,2512 Flutter tests,472 build contracts and812 Android-probe contracts
+without skips. API35, API37 and2017→2019 Update then failed on the same
+ambiguous Cup-caption target. Final Verify and Publisher correctly skipped.
+
+The current patch changes only the Cup matcher in the shared QA helper, plus
+seven focused tests and six exact original OCR/readiness fixtures with manifest.
+The matcher keeps decorative symbols instead of promoting '= Grand Prix' into
+a second real target. Existing geometry/IoU, two-frame stability, image hashes,
+actual race mode, progress and pause requirements remain. Twelve focused
+methods pass; original red cases remain archived. Root directly inspected the
+original API35 landing image; independent Native/source/fixture review passed.
+
+API37 SDK/CLI22/AVD/framework preparation genuinely passed. Initial actual
+2017→2019 install-r/offline learning preservation passed, but later Kart/restart/
+Fold checks were not reached; two older baseline language-navigation failures
+also remain explicit. New Cards lifecycle runtime acceptance was not reached.
+None of these partial results make the original Android run green.
+
+Native993c, all three2019 pins, both current visual receipts, original2018
+receipt, version0.13.7+2019, product code and workflow gates are unchanged.
+This repaired integration source needs its own fresh required PR CI.
+
+The completed51e auxiliary and bounded recent-work review were copied byte-exact
+from the separate published evidence checkpoint. All current failure and repair
+proofs are under docs/evidence/integration-20261113/host-51e-*.
+
+Separate DraftPR474 (QA6dcc5f5d/tree5b48c96a) runs additional creative controls
+against the unchanged51e APK. Its actual push run43513179062 started; the last
+observed21:48 status was in progress. Its APK source must never be confused
+with its QA source or any new integration source. Await the actual result and
+direct Jump-video review before making gameplay claims.
+
+Earlier integration context below is retained as historical evidence.
+
+---
+
+# Combined LUMO integration / candidate 2019
+
+Updated: 2026-11-13, 20:22 UTC. Active drafts: Native PR160 and Host PR465.
+The accepted Native source is 993c1453 / tree f13dd5fc. This Host candidate
+connects that exact source through all three 2019 pins and both current visual
+receipts. Version remains 0.13.7+2019; prior version policies are preserved.
+
+All fifteen current Native workflows completed successfully. Their original
+logs are checked separately: thirteen auxiliary workflows, the three Graphics
+jobs and all eight Nextgen jobs. The repaired geometry gate is genuinely clean,
+including five counterchecks and actual engine execution. The frozen Nextgen
+contract passes 43 Core / 24 Studio / 4 Village / 6 Puzzle / 6 Touch probes plus
+32 Touch images. All four capture-source trees match f13dd5fc.
+
+Root directly inspected 22 current Native originals and five current Graphics
+originals. Each selected Native image matches the final original bundle byte
+for byte. Both existing recorders passed, and the actual combined Host visual
+acceptance passed with the new pins. The pin CLI and 63 current/historical pin
+regressions pass without errors or skips. These are source, renderer and local
+contract results; actual Android acceptance remains pending on this Host source.
+
+Original evidence is retained under docs/evidence/integration-20261113/ in
+native-993c-nextgen, native-993c-graphics, native-993c-auxiliary and
+host-993c-connection. Earlier 90d proof remains separate in native-90d-checkpoint;
+its invalid historical geometry result is not relabelled as a clean result.
+
+Published Host 38a49f7d / tree 625b7940 completed its real native Host compile,
+including all nine required JVM classes. Its full Android-build Flutter suite
+passed 2,512 tests without skips. The build then stopped at the existing scroll
+test's obsolete 24-observation assertion: 24 gestures now require 26 observations.
+That original failure remains recorded; no APK was built or emulator started in
+run 43497829121. Separately, eight current auxiliary workflows passed; their two
+full Flutter runs each passed 2,316 tests with 196 explicit skips. Their analyzer
+reported 103 infos, five warnings and no errors. Script-Recovery failed on the
+same obsolete assertion; eight historical workflows skipped and two replaced
+Change-Review runs were cancelled.
+
+This follow-up connects published Producer 31883868 selectively. Cards leases
+now renew from the Android main looper while the visible Activity has actual
+authority, independently of render frames. Existing window/edge-to-edge and
+Learning/Build speech behavior remains. Both 2019 tours now prepare the exact
+Android-17 SDK/CLI bytes and check source-bound AVD/framework readiness before
+the unchanged APK tour. The scroll test explicitly verifies all 24 gestures
+and both final views. Local evidence: 32 Cards, 42 API37/delivery and 13 scroll
+contracts pass without skips; both workflows pass actionlint. Original red
+cases remain separate. Native pins, visual receipts and version are unchanged.
+
+The new exact Host tree requires its own real ARM64/x86 builds, API35/API37 tours,
+APK/PCK/signature checks and 2017-to-2019 preservation test. Prior-source build
+and Flutter successes do not approve this follow-up. Source and original CI
+records are under host-318-connection, host-38a-auxiliary and host-38a-android.
+The integration branch performs internal verification and does not publish an
+APK. Main, live PR461 and producer worktrees remain protected. See CONTINUE.md
+for exact sources, evidence identities and the remaining Android gates.
+
+## Earlier candidate-2017 history
+
+The following preserved notes describe their original 2017 candidates and
+historical decisions. They are not the active integration source or approval.
+
 # Lumo Spielewelt and Kart action candidate 2017
 
 Updated: 2026-11-12. Branch: `chatgpt/lumo-spielewelt-stage-20261112`.

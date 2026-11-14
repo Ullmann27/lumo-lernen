@@ -1,0 +1,224 @@
+{
+  "schema_version": 1,
+  "title": "Village / Nextgen contract integration evidence",
+  "owner": "/root/flutter_integration",
+  "identical_repository_path": "docs/evidence/integration-20261113/village-nextgen-contract/",
+  "file_count_excluding_manifest": 27,
+  "files": [
+    {
+      "path": "README.md",
+      "bytes": 6469,
+      "sha256": "a0bc44a140e74e612594ceb038f2d6be04384582d40cec96b028e170e15580df"
+    },
+    {
+      "path": "after.json",
+      "bytes": 7841,
+      "sha256": "b46912a8e44eb97dde13e1b8fa785fa68c63ae26bd7df86d78500f1117cff446"
+    },
+    {
+      "path": "before.json",
+      "bytes": 3265,
+      "sha256": "1c54f13dcd82646fe40cbc20b0692079dfdb88381f7bfdf6896043b3898b68a0"
+    },
+    {
+      "path": "contract.json",
+      "bytes": 4407,
+      "sha256": "2345ac7f878def95374e0818a07ddf04df12ce43ac8a1ffdbccd499be09903df"
+    },
+    {
+      "path": "host-contracts-full.log.gz",
+      "bytes": 2551,
+      "sha256": "cda7dd1c9818cffea38877b5d1ccb70ad23ae6bb11d2b822e6ec611216928c0f",
+      "decoded_original": {
+        "bytes": 14900,
+        "sha256": "d07a641853645f841767a8bdb3d6cb159d6d274bcf73c8c486e1286127d0494d"
+      }
+    },
+    {
+      "path": "host-contracts-result.json",
+      "bytes": 1276,
+      "sha256": "b98756f613aa2ffcf8074a8e74b34770744cd1887e5f8f4c071b17c5c2d63f95"
+    },
+    {
+      "path": "host-scripts__tests__test_kart_graphics_delivery.py.final.gz",
+      "bytes": 5811,
+      "sha256": "5567d6a3490260c3f2a4469194674a1258abadd7d5c9a3d7e5f627c948132951",
+      "decoded_original": {
+        "bytes": 23763,
+        "sha256": "4d20ba926da3219030300f7c5ae440410512bb7e1267b59e4d993682371d12b1"
+      }
+    },
+    {
+      "path": "host-scripts__tests__test_kart_graphics_delivery.py.original.gz",
+      "bytes": 5729,
+      "sha256": "18340bc1de3a87dae840074b1082d7b65d13a830260d94c7e28ff51593173e26",
+      "decoded_original": {
+        "bytes": 23411,
+        "sha256": "3e01707551258a3a0afa67daad2918b6ba8b6859a8296c685b606a6a939dc09d"
+      }
+    },
+    {
+      "path": "host-scripts__tests__test_nextgen_2019_review.py.final.gz",
+      "bytes": 6944,
+      "sha256": "a42a1aade876d5933875e0da690012a54bad66570ee97fc0d45c266156dfd1ca",
+      "decoded_original": {
+        "bytes": 32179,
+        "sha256": "e7948f67cf9e4bfc2ec2aca9ec99d86578db110b9063a0c31544be7968bc9f29"
+      }
+    },
+    {
+      "path": "host-scripts__tests__test_nextgen_2019_review.py.original.gz",
+      "bytes": 5809,
+      "sha256": "1a18f4144cf705311f5f4518e45649b796cacbf731b3380f3b18d65188f2ee1d",
+      "decoded_original": {
+        "bytes": 25202,
+        "sha256": "c7c8881a32142bf50f0e63841e52ffe446fadaf8d64e49f6cce195756cee376f"
+      }
+    },
+    {
+      "path": "host-scripts__verify_studio_delivery.py.final.gz",
+      "bytes": 11400,
+      "sha256": "274d011c1ec4caa59e0e21e59919bc6837e668abea2f7d294abe17dbbcc698eb",
+      "decoded_original": {
+        "bytes": 45594,
+        "sha256": "56859949a678bfdbe0dd2d749bbae661a10a83be9a8af5c64fe34e190ea101c2"
+      }
+    },
+    {
+      "path": "host-scripts__verify_studio_delivery.py.original.gz",
+      "bytes": 10764,
+      "sha256": "24262a63ad2f921c7332ff404af46503b4b5127496aec68be1d1d863cced3686",
+      "decoded_original": {
+        "bytes": 41593,
+        "sha256": "e41de3892c8a3756b90eb208272b686a03ac3e9253664975580d1de9d7c6d2b4"
+      }
+    },
+    {
+      "path": "host-targeted-green.log.gz",
+      "bytes": 200,
+      "sha256": "9f503636d7896b22c9161a5b442844eaf1dab7af40e2035a8ab628d1809e7b4f",
+      "decoded_original": {
+        "bytes": 534,
+        "sha256": "b0d3e2a5a01bd9715260e86dcdc722aec639811ff525c2560669bc9c9f2e83f2"
+      }
+    },
+    {
+      "path": "host-targeted-red.log.gz",
+      "bytes": 434,
+      "sha256": "6506914aad08cd23ea5f0439685a48ea5792a5fa189eed8fc8f57a27e61945a1",
+      "decoded_original": {
+        "bytes": 2064,
+        "sha256": "ac0d7ebee23766e489a8a356f0a87ec0f50426539661743c6ef04fb3b090347b"
+      }
+    },
+    {
+      "path": "host-village-contract.patch.gz",
+      "bytes": 5858,
+      "sha256": "83eb87f65d098ebf343a29161deacb20f2d12b151bc84f949f5c1fef2f572876",
+      "decoded_original": {
+        "bytes": 21494,
+        "sha256": "f3f17c1c503dc1810123f4de2b1fec86253536948a711fdd7afaeccbd9b90373"
+      }
+    },
+    {
+      "path": "native-contracts-full.log.gz",
+      "bytes": 627,
+      "sha256": "ec489dd31726036c3237b8575e15d06d14c5ca1d147ba097ac4beaf2d589e91e",
+      "decoded_original": {
+        "bytes": 2566,
+        "sha256": "41cc1ae100962c6a2ea29518717ba2590e334f7c93aec8925173e63c5adb98dd"
+      }
+    },
+    {
+      "path": "native-contracts-result.json",
+      "bytes": 1168,
+      "sha256": "cf1bc7660a9d0b43bf68bbf4ba3420275b14bf6ab3215c35b35d967ec434dd3c"
+    },
+    {
+      "path": "native-targeted-green.log.gz",
+      "bytes": 188,
+      "sha256": "dcea410ef5842bba99b7d10c94747ad46bc6bfb44ec3077b14858de2da302044",
+      "decoded_original": {
+        "bytes": 455,
+        "sha256": "6d58d0a4ec07fccc40d1c4ee05306499bdf27a7524b2448f326dd5b92720b756"
+      }
+    },
+    {
+      "path": "native-targeted-red.log.gz",
+      "bytes": 413,
+      "sha256": "23f18ef9137be5b60fa6b6802e6cf7ff2784d5f643127b8c34144967286d432b",
+      "decoded_original": {
+        "bytes": 1687,
+        "sha256": "e6d59d42225a7637ef34a6714c664585dea422176be1b8e3935abbbaf0311ccd"
+      }
+    },
+    {
+      "path": "native-tools__tests__test_nextgen_runner.py.final.gz",
+      "bytes": 5416,
+      "sha256": "1c311f8456f586132389993b8501ac7221e21988faac07e29ab060bdd8329841",
+      "decoded_original": {
+        "bytes": 20718,
+        "sha256": "a3954641c9d7278bad03cef142df077bfc6c06d4ed6a68c1e6c9d0f4c3399d89"
+      }
+    },
+    {
+      "path": "native-tools__tests__test_nextgen_runner.py.original.gz",
+      "bytes": 3807,
+      "sha256": "00f44605cb22efcd0a1dd4762ecc3875d0fa1f0dc086414db75094a5f0686bee",
+      "decoded_original": {
+        "bytes": 13064,
+        "sha256": "3a0921e2d0a05e9c49354b1583e63e19dc777e78421dabb376a84a986bcbbadb"
+      }
+    },
+    {
+      "path": "native-tools__validate_nextgen.sh.final.gz",
+      "bytes": 2232,
+      "sha256": "90e95501c183c762e1b87563b71b0d3edf3f6dcda2987b221d86e380d8239ad9",
+      "decoded_original": {
+        "bytes": 6944,
+        "sha256": "770e7f01a5f96f79c171673f9ccabcf05d4869bedcbe9002c23c5c4f2b402b47"
+      }
+    },
+    {
+      "path": "native-tools__validate_nextgen.sh.original.gz",
+      "bytes": 2132,
+      "sha256": "281926f7fe28ea3fe970a7498f88a3b39cca93034acc753c387a32c91c40e116",
+      "decoded_original": {
+        "bytes": 6450,
+        "sha256": "6c509c4ec559abcf9cb11bbd68142a306cabafa08012bdb75f14fea4c767ba23"
+      }
+    },
+    {
+      "path": "native-tools__verify_village_rasters.py.final.gz",
+      "bytes": 1467,
+      "sha256": "bc77602a693b87592fa36a4e0cdc3cdd1b76923f6c9a9a7920dd07b209921b5d",
+      "decoded_original": {
+        "bytes": 3461,
+        "sha256": "b7dade393091171ffd50b33d3918c48b9e1e47643ce5d44e62c12c20ec6814b3"
+      }
+    },
+    {
+      "path": "native-village-contract.patch.gz",
+      "bytes": 5359,
+      "sha256": "e9bf1e34124bd298637e28c8e77007fab83b0073344fb40d7c39531ee01b4d50",
+      "decoded_original": {
+        "bytes": 18132,
+        "sha256": "590745a01ec069fa0f8481fc9413251c84d65c1277ac664262515f4b00a4b43d"
+      }
+    },
+    {
+      "path": "ownership-and-results.json",
+      "bytes": 3078,
+      "sha256": "904b065c082b1bd69f892ba07e53fa83eb180b1713c32587242dd8990982ffde"
+    },
+    {
+      "path": "root-recorder-docstring.patch.gz",
+      "bytes": 566,
+      "sha256": "df2dce1916d2dc53d4750795a7e1885328f0bb33d7e315a3d68cbfa31cb3bb1c",
+      "decoded_original": {
+        "bytes": 1211,
+        "sha256": "1fd3c3aa2ae69d21e7103f0a54502815189e10a9ea69565edb85080b67dd522f"
+      }
+    }
+  ]
+}

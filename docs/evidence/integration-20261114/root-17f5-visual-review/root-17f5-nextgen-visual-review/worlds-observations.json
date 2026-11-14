@@ -1,0 +1,478 @@
+{
+  "schema": 1,
+  "native_commit": "17f5b9d4a14c70050d4a125a8bd6bd8c68ee7845",
+  "run_id": 43532048311,
+  "artifact_id": 14090115236,
+  "reviewer": "root",
+  "scope": "Direct inspection of current original rendered images; no Android, touch execution, motion, timing or FPS proof is inferred from a still image.",
+  "images": [
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/learning_world_capture/bridge_hundred-complete-2400x1080.png",
+      "bytes": 723952,
+      "sha256": "9f596453d96c3a7a35d16a75c3b81a784821656f791067399c46b08daa12c1e8",
+      "module": "learning",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": false,
+      "index": 0,
+      "findings": "Root directly opened the current Worlds original, which matches the previously inspected current Preview bytes. Zehner bündeln, 180 + 50 and the explanation 180 plus 50 ist 230 are legible. The upper tray shows ten tens, the lower tray three tens; the 100 tile, 230 = 2 Hunderter + 3 Zehner, Lumo, Noch einmal and Zur Aufgabe are visible. Ein Objekt zeigen is disabled in this completed state. This is a rendered completed-learning state, not proof of the preceding inputs or learning outcomes.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/jump_nextgen_capture/jump_2400x1080_airborne.png",
+      "bytes": 2132075,
+      "sha256": "b1283882c5e3b981299bab1692024fc23305c5c0a8f1caba365952150050a144",
+      "module": "jump",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": false,
+      "index": 1,
+      "directly_viewed": true,
+      "findings": "Lumo is visible by the front edge of the first floating island. The forward platform path, stars and landing areas are distinguishable. The header shows Insel 1/12, zero crystals/stars/learning stops, Wolkenpfad and the hold-to-jump instruction. Spiele and Pause at the top, the left thumbstick, and the right SPRINGEN control and caption are inside the image. The static image does not establish jump physics, responsiveness or FPS."
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/build_nextgen_play_regression/03_build_walking.png",
+      "bytes": 1349732,
+      "sha256": "21f3195da0bc146575ceb9384509d2f3d4e74a07bab7812e30f9f841c8ae397a",
+      "module": "build",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "safe_area_fixture": false,
+      "index": 2,
+      "directly_viewed": true,
+      "findings": "Lumo is visible beside a tall constructed wall and is partly occluded by that wall. Grass islands, the river, bridge and distant castle forms are distinguishable. The header shows Welt 1, 11 Teile, Ebene 0 and 90 degrees. Movement instructions, Spiele, Pause, Weiterbauen, the thumbstick, Ansehen and SPRINGEN remain readable and separate. This still image does not establish movement or construction input."
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/build_settlement_play_regression/04_settlement_lumo.png",
+      "bytes": 1098831,
+      "sha256": "c53b4f7253ee9f07afb41db89a520a15e5f35d95ac544f16ae01d9f674805dc9",
+      "module": "settlement",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "safe_area_fixture": false,
+      "index": 3,
+      "findings": "Lumo stands in the foreground of the settlement, with distinct plots, buildings, trees and ground shadows. The LUMO WETTBAU header exposes resources, population, plot count, day and the Wiesenwinkel stage goals. Bauwelt, Planen, pause, the thumbstick and SPRINGEN are inside the image. The broad header partially obscures background building labels; essential controls and stage text remain legible. No movement or economy behavior is inferred.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/kart_nextgen_garage_regression/garage-2400x1080.png",
+      "bytes": 875317,
+      "sha256": "a1b4ba93b2bbd663aaa0ef81b41f4cdd1e2c7d9c0cf8709c5e4e9ff6522ad080",
+      "module": "garage",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": false,
+      "index": 4,
+      "findings": "The Comet kart and Lumo are clearly visible in the garage. The selected Karts tab, Rennen/Fahrer/Strecken/Tempo tabs, Spielewelt, star total, Rundum ansehen, Lack, Teile & Effekte, Kart-Menü and Rennen starten are legible and inside the frame. The left scroll panel shows all of Comet and part of the next Gecko Velo card. The footer buttons remain separate from the scroll content. This image does not prove the back-navigation repair or input success.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/cards_table_capture/cards-table-412x915.png",
+      "bytes": 289390,
+      "sha256": "b80e9c8d6999dac7b325f3e5ace591feecc2246625a984a6fdc827095c007d31",
+      "module": "cards",
+      "dimensions": [
+        412,
+        915
+      ],
+      "safe_area_fixture": false,
+      "index": 5,
+      "findings": "At 412x915 the Kartenstube header, Zurück and Pause, both seven-card counts and turn instruction fit at the top. Lumo, the table, card backs and discard pile are visible. The lower hand shows a red 1, a blue 2 and the WILD face, with page 1/3 and both navigation arrows. Karte legen is visibly disabled; Ziehen is visible. The card fronts and bottom controls remain within the frame; no tap or actual Android inset behavior is inferred.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/rhythm_tour_play_regression/02_rhythm_slide.png",
+      "bytes": 655546,
+      "sha256": "9255eca7b3c5c8aac68e61958c0e6185594321e93b75f1a9ccab10fc01e08f77",
+      "module": "rhythm",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "safe_area_fixture": false,
+      "index": 6,
+      "findings": "The rhythm stage has four separate illuminated lanes, visible note markers and a star-linked slide indicator. Lumo and stage labels appear in the background. Spiele, pause, the points/combo status, Zur nächsten Spur instruction, Wiesenbühne 0/16 Töne status and all four bottom lane controls are readable inside the frame. The image does not establish rhythm timing, sound or input response.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_rotation_regression/puzzle_rotation_placed.png",
+      "bytes": 509560,
+      "sha256": "7a8a740af7040e19619b271fb766072dfe7be454368a1beff626f0a1f4727ab9",
+      "module": "puzzle",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "safe_area_fixture": false,
+      "index": 7,
+      "findings": "The puzzle table shows one piece on the central board and distinct remaining pieces on both side trays. The header reads Mini, Drehpuzzle, 1/6 Teile, 0 Tipps and Das passt! Dein Bild wächst. Spiele and pause are visible; the bottom controls for pieces, Randteile, Bild ansehen, Ein Tipp, Speichern and Neues Puzzle fit. Drehen is disabled in the captured state. The capture shows a placed-piece state, without independently proving the preceding gesture.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/treasure_exploration_regression/treasure_garden_first.png",
+      "bytes": 1325147,
+      "sha256": "c4d647cc5185565c6c6246c20fa2d27630edb71c3ce4517a40ff205b91f9d29b",
+      "module": "treasure",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "safe_area_fixture": false,
+      "index": 8,
+      "findings": "Lumo, the moonflower patch, castle, trees and foreground stones are distinguishable. The status says Hinweise gelöst 4/7 and Entdeckungen 0/3, with the final 3 wrapped onto the next line; the clue about four crystals remains readable. Gefunden: Mondblüte! Dein Rucksack wächst is visible across the scene. Spiele, Rucksack, pause, thumbstick, Springen and ANSEHEN remain inside the frame. The image does not establish collection inputs or inventory persistence.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-overview-1280x720.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-overview-1280x720.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/build_village_scene_regression/village-overview-1280x720.png",
+      "bytes": 1006331,
+      "sha256": "013f72f6d938297df05b26a3da165cbb0beea366be170b2860b8b8c158db1cf5",
+      "module": "settlement",
+      "dimensions": [
+        1280,
+        720
+      ],
+      "safe_area_fixture": false,
+      "index": 9,
+      "findings": "The village overview shows the plot grid, market building, trader cart and two residents. The header exposes resources, population, plot count, day, treasury, satisfaction, water and chapter/building goals. The lower build catalogue and toolbar remain visible with horizontal scrollbars; one catalogue item is partly outside the left edge of its scroll area. Bauwelt, Lumo, pause, Handeln, Überblick, Kapitel, Tilda-Lieferung, Stadtkasse and Nächster Tag are readable. Tiny labels above the central cart overlap at this zoom; no economic action is inferred from the image.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-chapters-412x915.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-chapters-412x915.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/build_village_scene_regression/village-chapters-412x915.png",
+      "bytes": 232213,
+      "sha256": "879ed771f1583d64021dbbd636a2282bb2fecac16c681c02de695e1bef5276b1",
+      "module": "settlement",
+      "dimensions": [
+        412,
+        915
+      ],
+      "safe_area_fixture": false,
+      "index": 10,
+      "findings": "At 412x915 the Deine Dorfgeschichte panel fits between the header and bottom catalogue. Its Schließen button, chapter 1 of 12 title, Nelli narrative, Wohnhaus/Bauernhof goals and Lumo tip remain fully readable with wrapped text. The main title is ellipsized to LUMO DORF...; Bauwelt, Lumo, pause, Kapitel and Nächster Tag remain visible. The small scene is covered by the open modal; this is not a movement or modal-closing test.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-trader-2176x1812.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-trader-2176x1812.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/build_village_scene_regression/village-trader-2176x1812.png",
+      "bytes": 2348978,
+      "sha256": "c599e0ae3daca7a21f462647c343235615079a5a520b56016968072c1630e581",
+      "module": "settlement",
+      "dimensions": [
+        2176,
+        1812
+      ],
+      "safe_area_fixture": false,
+      "index": 11,
+      "findings": "The Tildas Lieferwagen panel is fully inside the 2176x1812 capture. Schließen, the three-deliveries status and the Karottenkiste, Baustoffwagen and Kornwagen prices and quantities are legible on separate buttons. The dialog covers part of the background goals and catalogue, while the main header and bottom navigation remain visible around it. This image does not establish purchasing or balance changes.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-treasury-640x360.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/build_village_scene_regression/village-treasury-640x360.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/build_village_scene_regression/village-treasury-640x360.png",
+      "bytes": 97188,
+      "sha256": "99dad605b7d9fefa016584c0457959771856fad44ad5f363712329aec0dbaa5b",
+      "module": "settlement",
+      "dimensions": [
+        640,
+        360
+      ],
+      "safe_area_fixture": false,
+      "index": 12,
+      "findings": "At 640x360 the Unsere Stadtkasse modal stays inside the frame with a vertical scrollbar. Its title, Schließen, zero-coin balance, contribution explanation, disabled Gemeinsamer Spielplatz: 8 Münzen button and benefit text are readable. The modal covers most of the underlying header and build controls, which are only partly visible at the sides. This static view does not establish scrolling or spending behavior.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-menu.png",
+      "bytes": 151982,
+      "sha256": "d75d39cc24109f5692d386e0a484677086a5c5b01f30694b0ac1a8c87585a9eb",
+      "module": "puzzle",
+      "dimensions": [
+        960,
+        540
+      ],
+      "safe_area_fixture": false,
+      "index": 13,
+      "findings": "At 960x540 the centered puzzle menu shows Stück für Stück entsteht deine Welt, Bild: Leuchtturm-Bucht, Mini: 6 Teile, Modus: Drehpuzzle, Neues Puzzle beginnen and Zur Spielewelt. All menu buttons are fully visible and separate from the bottom puzzle toolbar. Spiele and pause remain visible. The modal overlays part of the background instruction; no menu action is inferred.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-rotation-play.png",
+      "bytes": 300994,
+      "sha256": "91be337390698ba57edff371853d570d5e54cd0b29b3f2aabab89d056705c36f",
+      "module": "puzzle",
+      "dimensions": [
+        960,
+        540
+      ],
+      "safe_area_fixture": false,
+      "index": 14,
+      "findings": "At 960x540 the rotation-play state has an empty central board and separate pieces on both side trays. The header shows Drehpuzzle, 0/6 Teile, 0 Tipps and a quarter-turn instruction. Drehen is enabled, and the remaining piece/navigation/save/new-puzzle controls fit on the bottom row. Spiele and pause are visible. A still does not independently prove rotation behavior.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/960x540-classic-play.png",
+      "bytes": 302187,
+      "sha256": "0b4ed84ed24286523d5bfb3b903bddae96694be0dc00eb01434def98ccac998d",
+      "module": "puzzle",
+      "dimensions": [
+        960,
+        540
+      ],
+      "safe_area_fixture": false,
+      "index": 15,
+      "findings": "At 960x540 the classic-play state shows one piece on the central board, remaining pieces on the side trays, a partial progress bar and Mini: 1/6 Teile: 0 Tipps. Das passt! Dein Bild wächst is visible. The bottom row has piece/navigation/help/save/new-puzzle controls without a rotation button. Spiele and pause remain inside the frame. No gesture or persistence claim is inferred.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-menu.png",
+      "bytes": 72841,
+      "sha256": "7e927fa5fa6fd0e3375a4e5e3d70cd888c90920b13fdeb26c9368b43bcb66fec",
+      "module": "puzzle",
+      "dimensions": [
+        640,
+        360
+      ],
+      "safe_area_fixture": false,
+      "index": 16,
+      "findings": "At 640x360 the puzzle menu is a bounded vertically scrollable panel. The title, image selector, six-piece setting, rotation mode and Neues Puzzle beginnen are fully readable. Zur Spielewelt is partly below the panel's current scroll viewport, with a visible vertical scrollbar; underlying toolbar controls are occluded by the modal. Spiele and pause are visible outside it. The capture does not prove scrolling or access to the partly clipped final button; that behavior requires the separate lifecycle probe.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-rotation-play.png",
+      "bytes": 109589,
+      "sha256": "d1eb675bc182b34fa7b1b385119ba0e35faa267d6dc0fd87922f12c4d092b07d",
+      "module": "puzzle",
+      "dimensions": [
+        640,
+        360
+      ],
+      "safe_area_fixture": false,
+      "index": 17,
+      "findings": "At 640x360 the rotation-play header and quarter-turn instruction are readable. Both trays and empty central board remain visible at smaller scale. The bottom horizontal toolbar shows Drehen through Ein Tipp with a scrollbar; later actions are outside the current horizontal viewport. Spiele and pause remain fully visible. The image alone does not prove access to the horizontally off-screen actions.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/puzzle_menu_lifecycle_regression/640x360-classic-play.png",
+      "bytes": 109547,
+      "sha256": "725e240ff0b62f5eff0c63107e0f98cae59167f8f8ec70db15299f9f44d8e0a4",
+      "module": "puzzle",
+      "dimensions": [
+        640,
+        360
+      ],
+      "safe_area_fixture": false,
+      "index": 18,
+      "findings": "At 640x360 the classic-play state shows one central piece, side-tray pieces, a partial progress bar and the 1/6 Teile success text. The bottom horizontal toolbar exposes piece controls through Speichern, with the next action partly clipped at the right viewport edge and a scrollbar beneath. There is no rotation button. Spiele and pause remain visible. No scrolling, drag or save success is inferred from this image.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-paused.png",
+      "bytes": 1141738,
+      "sha256": "cdc1a62ed087f35d3eb751dcb8fa29dec2862b3d82ebe75c5bd21deb71d49491",
+      "module": "cards",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "safe_area_fixture": true,
+      "index": 19,
+      "findings": "In the current 1080x2400 portrait safe-area fixture, the top header is inset below the upper dark band and shows Zurück, Kartenstube, Weiter, both seven-card counts and turn text. The pause panel reads Dein Zug wartet auf dich with a complete Weiterspielen button. Lumo, three distinct card fronts, page 1/3, both page arrows, disabled Karte legen and Ziehen all fit within the capture with bottom space remaining. This is a rendered fixture, not a captured Android device; actual insets and density are established separately by the strict layout sidecar and future Android run.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/cards_safe_area_regression/android35_portrait-playing.png",
+      "bytes": 1272873,
+      "sha256": "9754ab497a1b17a04f1170e7cec881f4e4d3c3ef692c45119b145c96510e7fe2",
+      "module": "cards",
+      "dimensions": [
+        1080,
+        2400
+      ],
+      "safe_area_fixture": true,
+      "index": 20,
+      "findings": "In the current 1080x2400 portrait playing fixture, the inset header shows Zurück, Pause, the title, both seven-card counts and turn instruction without overlap. Lumo, face-down deck, red discard 5 and table branding are distinct. Three hand-card fronts and page 1/3 sit above separate arrows, disabled Karte legen and Ziehen, with visible bottom clearance. The pause overlay is absent. This rendered fixture is not an Android device capture or proof of actual touch/density behavior.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/cards_safe_area_regression/landscape_cutout_fixture-playing.png",
+      "bytes": 1002640,
+      "sha256": "53cc8d0e9a5fed74902802d1194fbaa2970c7b7f298dca26d886115f336acb86",
+      "module": "cards",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": true,
+      "index": 21,
+      "findings": "In the 2400x1080 landscape cutout fixture, the header and left Zurück control are visibly inset from the left edge; Pause, title and compact turn/count line are readable. All seven distinct hand faces fit on one row, including the WILD card and final book-symbol card. Page 1/1, arrows, disabled Karte legen and Ziehen are fully inside the lower frame. Lumo and the table remain visible behind the hand. Exact cutout/density boundaries come from the bound layout data, not visual estimation; this is not an Android device test.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/mobile_safe_area_regression/build-landscape-cutout.png",
+      "bytes": 2486548,
+      "sha256": "1615dd3709568a2af7bd91d777baaa9739e32b6b5826244398cad643e7d75fe5",
+      "module": "build",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": true,
+      "index": 22,
+      "findings": "The build landscape-cutout fixture shows the main island, river, bridge and structures behind the controls. Spiele, title, pause and Mit Lumo laufen are inset and fully visible; Welt 1, 197 Teile, Ebene 0 and zero-degree rotation are readable. The action and material rows are horizontal scroll areas, with later items partly clipped at the right viewport edge and visible scrollbars. Category buttons and the build/camera instruction fit. This is a rendered fixture and does not prove Android cutout handling, gestures or reachability of the off-screen items.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/mobile_safe_area_regression/jump-landscape-cutout.png",
+      "bytes": 1854180,
+      "sha256": "30e6964cd62a2d9f676d6a11253166fe4fa1ff749f8c38236f152f1974ec9466",
+      "module": "jump",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": true,
+      "index": 23,
+      "findings": "The jump landscape-cutout fixture shows Lumo on the first island and a distinct forward path of platforms and stars. Spiele and Pause are fully visible with inset margins. Insel 1/12, counters, Wolkenpfad, hold-to-jump instruction, stage and bonus text are readable. The left thumbstick and BEWEGEN caption and the right SPRINGEN button with HALTEN = HÖHER caption stay entirely inside the frame and do not overlap one another. This is a rendered safe-area fixture, without actual Android or jump-performance claims.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/mobile_safe_area_regression/puzzle-landscape-cutout.png",
+      "bytes": 479273,
+      "sha256": "2b19eec98a3806cb9762097c012ad43c573f94af8f101acb6284952ae2115bcf",
+      "module": "puzzle",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": true,
+      "index": 24,
+      "findings": "The puzzle landscape-cutout fixture shows an inset Spiele button and pause control around a centered scrollable menu. Bild: Leuchtturm-Bucht, Leicht: 12 Teile, Modus: Bilderpuzzle and Neues Puzzle beginnen are legible and fully visible. Zur Spielewelt is partly below the menu's current scroll viewport, with the scrollbar clearly visible; the dialog overlays the background title and toolbar. Static pixels do not prove scrolling, actual Android insets or reachability of the partly clipped action.",
+      "directly_viewed": true
+    },
+    {
+      "artifact_id": 14090115236,
+      "artifact_sha256": "5ab858a768914e07af471907b42841019a3abb9495ad7e8ec62fb89b83eac8d6",
+      "artifact_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "expected_bundle_entry": "nextgen-evidence/nextgen/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "local_path": "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/review-candidates/14090115236/nextgen-evidence/nextgen/captures/mobile_safe_area_regression/treasure-landscape-cutout.png",
+      "bytes": 2816483,
+      "sha256": "3616bb0b03ea02712484f5df3470eef1839584d31a00a8c5a4b2c5673e9b52e8",
+      "module": "treasure",
+      "dimensions": [
+        2400,
+        1080
+      ],
+      "safe_area_fixture": true,
+      "index": 25,
+      "findings": "The treasure landscape-cutout fixture shows inset Spiele, Rucksack and pause controls, plus a separate thumbstick, Springen and ANSEHEN inside the frame. The clue panel text is readable; Entdeckungen 0/3 wraps the final 3 to its own line. The large panel covers much of Lumo and the left central scene; the castle/path and the white exploration instruction remain visible, though the instruction crosses a light background. This rendered fixture does not establish Android insets, movement, clue solving or performance.",
+      "directly_viewed": true
+    }
+  ]
+}

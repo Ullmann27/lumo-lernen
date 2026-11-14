@@ -1,0 +1,47 @@
+{
+  "scope": "Local OCR on unchanged failed-d2c original pixels; no Android execution or current APK PASS",
+  "source_png_sha256": "2eddc9a9d19fcb7cb14dadfdb52a91d26ce2c44fdf711d3e20f6831a00da367a",
+  "reader_sha256": "112ddf4dad2ac5039b7203d8dcc2fa82ee91c517c6e393b5b5409211dcc50870",
+  "results": {
+    "Pause": {
+      "exact_matches": [],
+      "status": "MISSING"
+    },
+    "SPRINGEN": {
+      "exact_matches": [
+        {
+          "text": "springen",
+          "bounds": [
+            673.0,
+            126.0,
+            784.0,
+            154.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "SPRINGEN",
+          "bounds": [
+            895.0,
+            1777.5,
+            1010.0,
+            1793.0
+          ],
+          "variant": "raw"
+        },
+        {
+          "text": "SPRINGEN",
+          "bounds": [
+            895.0,
+            1777.5,
+            1010.0,
+            1793.0
+          ],
+          "variant": "raw"
+        }
+      ],
+      "status": "OBSERVED"
+    }
+  },
+  "source_unchanged": true
+}

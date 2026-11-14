@@ -1,0 +1,29 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+    "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848/scripts/record_studio_visual_review.py",
+    "--root",
+    "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848",
+    "--archive",
+    "/tmp/lumo-17f5b9d4-original-zips/14089423812-original.zip",
+    "--artifact-metadata",
+    "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/proofs/artifact-14089423812.json",
+    "--workflow-metadata",
+    "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/proofs/run.json",
+    "--jobs-metadata",
+    "/workspace/scratch/b3485b7bb989/godot-pr166-17f5b9d4-nextgen-evidence/proofs/jobs.json",
+    "--selection",
+    "/workspace/scratch/b3485b7bb989/root-17f5-nextgen-visual-review/selection.json",
+    "--reviewer",
+    "Root direct review of current CI originals",
+    "--notes",
+    "Root directly inspected 29 current original rendered images, including all seven safe-area fixtures, all four Village rasters and all six Puzzle menu lifecycle rasters, plus one current original from each repaired touch surface. Every selected byte was checked against the final successful archive. The unchanged strict nextgen-2019 recorder verifies the current native run, four clean source manifests, 48 core passes, 24 Studio rasters, all required supplementary reports/layouts and six touch probes with 32 touch rasters. Image-specific observations retain partial scroll viewports, ellipsized titles, wrapped counters and background occlusion. Rendered fixtures and static views do not establish actual Android input, device insets, frame rate, full 2017-to-2019 upgrade or APK publication. Those remain separate Host gates.",
+    "--native-profile",
+    "nextgen-2019"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 5.545850548995077,
+  "log_sha256": "130297a2512c136e7825e71271e8a24e0eacfa03b13e8f5046112896b3b5e535",
+  "receipt_sha256": "b41471c3cb90df69b99228f6da7057851af224528004872215f36332efb1804d",
+  "receipt": "/workspace/scratch/b3485b7bb989/lumo-host-studio-runtime-preparation-848/config/nextgen-2019-visual-review.json"
+}

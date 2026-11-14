@@ -193,7 +193,9 @@ def flutter_tap(out: Path, label: str, tag: str, *,
         raise ValueError('Live control requires a bounded minimum visible height')
     settle_waits = 0
     for direction in direction_order:
-        for attempt in range(scroll_attempts):
+        # N allowed scroll gestures need N+1 observations: inspect the view
+        # reached by the final gesture before declaring the target missing.
+        for attempt in range(scroll_attempts + 1):
             nodes = live.live_nodes(out, f'{tag}-{direction}-{attempt}')
             if recover_launcher_dialog(out, nodes, tag):
                 continue
@@ -229,6 +231,8 @@ def flutter_tap(out: Path, label: str, tag: str, *,
                 base.adb('shell', 'input', 'swipe', x, y, x, y, '120')
                 time.sleep(2)
                 return
+            if attempt == scroll_attempts:
+                break
             # The assistant panel occupies the bottom of the window. Scroll
             # inside the actual live content viewport, rather than starting
             # a window-relative swipe on that fixed overlay or the side rail.
@@ -511,14 +515,15 @@ def enter(out: Path, title: str, header: str, tag: str, launch_label: str = '') 
     native_text(out, header, tag+'-header')
 
 
-def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '') -> None:
+def leave(out: Path, tag: str, already_menu: bool = False, return_label: str = '', *,
+          orientation: str = 'landscape') -> None:
     if not already_menu:
         base.adb('shell','input','keyevent','KEYCODE_BACK')
         time.sleep(1)
     if return_label:
-        native_text(out,return_label,tag+'-pause',tap=True,exact=True)
+        native_text(out,return_label,tag+'-pause',tap=True,exact=True,orientation=orientation)
     else:
-        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True)
+        native_text(out,'Zur Spielewelt',tag+'-pause',tap=True,orientation=orientation)
     for _ in range(15):
         if not base.adb('shell','pidof',PACKAGE+':lumo_game',check=False):
             break

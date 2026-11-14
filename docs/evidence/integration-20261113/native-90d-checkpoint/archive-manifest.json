@@ -1,0 +1,2878 @@
+{
+  "schema": 1,
+  "source": "90d34181409c15d1b1ad3a6a9643539453155c1d",
+  "tree": "9b407d61633a6421dc47b6858e6a6fb3fa60bea5",
+  "run_id": 43483977169,
+  "status": "Complete original predecessor Nextgen proof; overall Native acceptance withheld because of separate geometry gate defect",
+  "packed_at_utc": "2026-11-13T19:23:02.547024+00:00",
+  "original_manifest_sha256": "18f58b398c7e5d6e647211c34a1f29f9f4719a4cbf8430b640e20145b69c46d5",
+  "original_handoff_sha256": "af90aa8a5f4672fe398c7034239647750bd1db431c34f4f75f88a264bef02cfe",
+  "archive": {
+    "path": "original-evidence.tar.gz",
+    "bytes": 1201690,
+    "sha256": "767fbd0e7b2e7549ac2b9371b5facc2d80dba5813e9f225d9bd121f6ace0f23b"
+  },
+  "all_archive_members_round_trip_byte_equal": true,
+  "retained_originals": [
+    {
+      "path": "checkpoint/README.md",
+      "bytes": 3957,
+      "sha256": "e48e70c90618f0c3b32ad89013c674634a66ef54e5f5295bc2da2b5b773c4f49",
+      "source_path": "README.md"
+    },
+    {
+      "path": "checkpoint/archive-evidence-job-132104454005.log",
+      "bytes": 9228,
+      "sha256": "eacbed463203b5f1aba4667ee20747a3def2687935225b97127d35830149aacb",
+      "source_path": "archive-evidence-job-132104454005.log"
+    },
+    {
+      "path": "checkpoint/archive-release.json",
+      "bytes": 7932,
+      "sha256": "ae126c617c8a4540338ec42deca06f5e71c68de9bcc175587da305cb33b9a7de",
+      "source_path": "archive-release.json"
+    },
+    {
+      "path": "checkpoint/archive-tag-ref.json",
+      "bytes": 567,
+      "sha256": "f8f8c49d4daf3c819e10b39a4236996423f91285a41c216af76674cfd3e5c4a7",
+      "source_path": "archive-tag-ref.json"
+    },
+    {
+      "path": "checkpoint/archive-verification.json",
+      "bytes": 1996,
+      "sha256": "c82f70bdcc9c5206f98a14c3fc0ba6ec68ab9e072d58f42dc640b243cd0fa6b3",
+      "source_path": "archive-verification.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14065839557.json",
+      "bytes": 736,
+      "sha256": "f2f7a053a549a5b3fd767316a1a23cb704e11758d0544396e63753e53fd379cf",
+      "source_path": "artifact-metadata/artifact-14065839557.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14066363548.json",
+      "bytes": 737,
+      "sha256": "51fe21c2cf24de6cefb10a849a2ef21aae651fbb8e30ba7a5f4c3cf046555769",
+      "source_path": "artifact-metadata/artifact-14066363548.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14067098947.json",
+      "bytes": 732,
+      "sha256": "2007c0e06fcb11ac881217dd5807f1268f039b447626ca888b98e6422e4bc02f",
+      "source_path": "artifact-metadata/artifact-14067098947.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14067468053.json",
+      "bytes": 735,
+      "sha256": "2078a6c8b8a9f9f233816063b2312c9dc2b673bce070480fbff35610eac58ded",
+      "source_path": "artifact-metadata/artifact-14067468053.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14068726721.json",
+      "bytes": 737,
+      "sha256": "1e30f2d6094eaf4b46d6c5cddd0ecdf865e36c7eea0551fac1c5d69ce6443373",
+      "source_path": "artifact-metadata/artifact-14068726721.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14068866713.json",
+      "bytes": 735,
+      "sha256": "6f6add144e67e39ec0ec4e8245224f24fe1f009be616f95af982cf429309245b",
+      "source_path": "artifact-metadata/artifact-14068866713.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata/artifact-14069131343.json",
+      "bytes": 737,
+      "sha256": "5e2c1b06217c6d2603c911d8724dbf79b3940365e081e14e96234d74ebb6d947",
+      "source_path": "artifact-metadata/artifact-14069131343.json"
+    },
+    {
+      "path": "checkpoint/artifact-metadata-provenance.json",
+      "bytes": 2241,
+      "sha256": "c4d88c8951910628c0bd6585afc37c3d36295eddd0c8f4e41504fabee8bac24d",
+      "source_path": "artifact-metadata-provenance.json"
+    },
+    {
+      "path": "checkpoint/available-components.json",
+      "bytes": 6267,
+      "sha256": "8a6a5f6fa584f49ff771b55d9c6231daeb5fe79be6ac7d07118e76803ca7521c",
+      "source_path": "available-components.json"
+    },
+    {
+      "path": "checkpoint/bundle-evidence-job-132104270208.log",
+      "bytes": 11387,
+      "sha256": "f38c5c2667ddb9805ece8aec881c1a7cb96d3a914116316dcf917749adb22c56",
+      "source_path": "bundle-evidence-job-132104270208.log"
+    },
+    {
+      "path": "checkpoint/collection-events.json",
+      "bytes": 531,
+      "sha256": "641eb3209b966207a524683a69b5678d84f0b038cbbb3013575a47b345f850b8",
+      "source_path": "collection-events.json"
+    },
+    {
+      "path": "checkpoint/component-original-indices.json",
+      "bytes": 2216694,
+      "sha256": "0cbfeee3914f9c840355d7e40b4d4159f864f05429723aac915fdf61ca685772",
+      "source_path": "component-original-indices.json"
+    },
+    {
+      "path": "checkpoint/expected-contract.json",
+      "bytes": 30737,
+      "sha256": "ebeade3068953c667dbba739dcb90f6579b52f29718eeff28cb35919ce2821a6",
+      "source_path": "expected-contract.json"
+    },
+    {
+      "path": "checkpoint/freeze-verification.json",
+      "bytes": 687,
+      "sha256": "cd9415d37945b8a765c5cbb06f2f90c5e76d2d8b0de32cce87f186c8587bb8e1",
+      "source_path": "freeze-verification.json"
+    },
+    {
+      "path": "checkpoint/gameplay-job-132087435904.log",
+      "bytes": 534326,
+      "sha256": "e91c4ccaf3c01926a2683290c37cc2fefda86156767caaea4778b83840e5ec08",
+      "source_path": "gameplay-job-132087435904.log"
+    },
+    {
+      "path": "checkpoint/godot-preview-observations.json",
+      "bytes": 1435,
+      "sha256": "d8417da1a7f915b93ca0dc2b10dc4fc652950223b7e96cec9ea905bc443431d9",
+      "source_path": "godot-preview-observations.json"
+    },
+    {
+      "path": "checkpoint/godot-puzzle-observations.json",
+      "bytes": 2058,
+      "sha256": "737d1c174a59b79fa3de457c94160bb825cacebc1b3cb7cb15802f8dfdad5c91",
+      "source_path": "godot-puzzle-observations.json"
+    },
+    {
+      "path": "checkpoint/handoff.json",
+      "bytes": 8337,
+      "sha256": "af90aa8a5f4672fe398c7034239647750bd1db431c34f4f75f88a264bef02cfe",
+      "source_path": "handoff.json"
+    },
+    {
+      "path": "checkpoint/host-reference-commit.json",
+      "bytes": 1694,
+      "sha256": "7ebe8c72b3c6ecd4c552f8d94a5dbca67f632ecc8f93d8480f5d3018b48ef3e9",
+      "source_path": "host-reference-commit.json"
+    },
+    {
+      "path": "checkpoint/job-log-integrity-and-lifetime-observations.json",
+      "bytes": 8796,
+      "sha256": "cac513b1b55b860a93dc771b6c699730e8050ef56615a24063d6e9b812a96b98",
+      "source_path": "job-log-integrity-and-lifetime-observations.json"
+    },
+    {
+      "path": "checkpoint/learning-preview-job-132087435888.log",
+      "bytes": 266670,
+      "sha256": "00487162ab1385eb455492e6f5d3039da7330df4c55080a492372156567c6ea7",
+      "source_path": "learning-preview-job-132087435888.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/kart_lasso_production_regression.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/kart_lasso_production_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/kart_lasso_regression.log",
+      "bytes": 560,
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/kart_lasso_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/kart_menu_flow_regression.log",
+      "bytes": 3675,
+      "sha256": "b2c789a4f2d251a056ece8698005830de32934d0cd4ac9869ed693154dc1c58b",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/kart_menu_flow_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/kart_roadside_action_regression.log",
+      "bytes": 1798,
+      "sha256": "e582b58303683f6228689e133b1306e2d56bd35138051cce6c81e9ff91a9d57f",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/kart_roadside_action_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/kart_spatial_menu_regression.log",
+      "bytes": 5530,
+      "sha256": "00b66fbb35001c1f90a94a3ff67e3c6ec8f74c588f02504577fe028ad0347c9a",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/kart_spatial_menu_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3669,
+      "sha256": "4b6464e36a96d41269d3fbc6cf491b51fa31d8bb4aee63d6509baf5f630b70da",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.35.33.log",
+      "bytes": 560,
+      "sha256": "95d9505e9aa9db3f20d26bc7b9535589aabc2a7309a048ef1bfb12255103560a",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.35.33.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.35.42.log",
+      "bytes": 1031,
+      "sha256": "83aea1051cb10e8fbb46cc3834df42134196e8842a9500919a33c375ef02ef49",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.35.42.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.09.log",
+      "bytes": 5524,
+      "sha256": "bb4b5f816e2cf08f9eb8e98175c99d6d2b636d340d9dcc3a461781f59f3b86d9",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.09.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.20.log",
+      "bytes": 1792,
+      "sha256": "fb49c369492a9b947bf272f11d80d5f15183a1ea46b47515c5dbd1ea7e6782f6",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/action-stage/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.20.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/build_sandbox_tools_regression.log",
+      "bytes": 539,
+      "sha256": "62b94cf9adcc2b65a0b81c0e5780af8152e2f33d92a9beee28b1658f4caa055e",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/build_sandbox_tools_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/build_sandbox_ui_regression.log",
+      "bytes": 1269,
+      "sha256": "df12e6cd24264f30e4b81b215caff309e233d3e0c2cf4c42e70bfe9f65070c82",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/build_sandbox_ui_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/existing-gameplay.log",
+      "bytes": 63227,
+      "sha256": "635989a52ba4214de7aac9813f477ee6f3c16a646ad4d4126572c0b6f5f7bc4e",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/existing-gameplay.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/creative_touch_layout_regression.log",
+      "bytes": 1574,
+      "sha256": "943713b7b7afc8cf32c07c362a1046f0c2ee7e8776cbf1ccaf6af2b8352ce172",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/creative_touch_layout_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/import.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/jump_extras_regression.log",
+      "bytes": 724,
+      "sha256": "c24e8b88950e144ef708de303cdef87c1097715c8a7e9e38f2838780840055e4",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/jump_extras_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_full_field_regression.log",
+      "bytes": 83859,
+      "sha256": "a3ce863a36758f1e136f918648a1889cea85c50b20e6ce9c7c1d30ba5028563d",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_full_field_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_garage_3d_touch_regression.log",
+      "bytes": 1450,
+      "sha256": "27e08a4dc2c20558619abc4129d7795c17200774383f83ec04896b691b1e0c1e",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_garage_3d_touch_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_harbor_attraction_regression.log",
+      "bytes": 1656,
+      "sha256": "00a5c14f0534e154c87619cb3ad1c4427dad6ceb531e290f2ef00e70d5dd9bd3",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_harbor_attraction_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_harbor_race_hook_regression.log",
+      "bytes": 1376,
+      "sha256": "052873b711245197100033fab1cb8d9c6f80a63c9692a6be90cb8b57d7aea40e",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_harbor_race_hook_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_loop_contact_regression.log",
+      "bytes": 672,
+      "sha256": "408a8cf775584f33c18813904806183e6565b54d5d931b2f72ff2cd4f46677fd",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_loop_contact_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_menu_depth_2013_regression.log",
+      "bytes": 1327,
+      "sha256": "50ed173af60658ebd04f9d7b03423977464fc6afb1a5439e7a74b80939266301",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_menu_depth_2013_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_racecraft_regression.log",
+      "bytes": 799,
+      "sha256": "09778a2c35af98777b7307dd784c29c87426960c5738b0670727ff5d31cd204a",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_racecraft_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_player_full_route_regression.log",
+      "bytes": 21732,
+      "sha256": "2009bda72da2c4acedcbfc05be4689eb211e5c26dce2da74db0c92037fa52d5d",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_player_full_route_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_rival_drift_items_regression.log",
+      "bytes": 798,
+      "sha256": "e53e6379116978be4cc78920e3d397ebebf1b5906928247694623bfef669bb26",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_rival_drift_items_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_rival_flight_regression.log",
+      "bytes": 1875,
+      "sha256": "c90e3bd986202cb1053d9937141f21f014c237e7892d489bcf497267f50bcd69",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_rival_flight_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_sonnenhafen_generation_regression.log",
+      "bytes": 550,
+      "sha256": "9c807752c572e15d411562104cea5ae42470c5381fa122672d7af7015a384aad",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_sonnenhafen_generation_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_zauberwald_library_regression.log",
+      "bytes": 1320,
+      "sha256": "83bb911a70a054f7cd068868a401a911b2a16308b0cf6915c23e8e2c2e4ad50d",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_zauberwald_library_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/kart_stunt_continuity_regression.log",
+      "bytes": 1736,
+      "sha256": "cb7b293b266ff9fcf5585ced1f1c6cb6b6787922664f9e3fb968b5cd46a11344",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/kart_stunt_continuity_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/project-validation.log",
+      "bytes": 6124,
+      "sha256": "9ce4cc5c5d80ff2abf463f3328ea7ffa1aa612ad10f867910e7fc370f571da5e",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/project-validation.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/puzzle_expansion_regression.log",
+      "bytes": 1191,
+      "sha256": "15e66dba4f57135ff127300eff8f6457f9a837ebe383a2528b3d3a32ce5075f4",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/puzzle_expansion_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/kart_air_trick_regression.log",
+      "bytes": 494,
+      "sha256": "65af3dd144ebf0e2404429f8c8ab85c17894b293d8eb34abc596c636fc76ebc4",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/kart_air_trick_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/kart_garage_presentation_regression.log",
+      "bytes": 1502,
+      "sha256": "ba5e0cdba9674ea37191b8f44d513df91fc5c53f7cf85fd5af6716e68ae36f7a",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/kart_garage_presentation_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/kart_harbor_race_hook_regression.log",
+      "bytes": 1383,
+      "sha256": "67dc0b1eb329385bf9ec27bf1220b1410f5556b386f695a043461ffc17feedb1",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/kart_harbor_race_hook_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/kart_sonnenhafen_streetfronts_regression.log",
+      "bytes": 1661,
+      "sha256": "d36e9e933970ad56bb374bfd132e0d0571a0e23e1f302e4c483fbc2abadae749",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/kart_sonnenhafen_streetfronts_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/kart_sonnenhafen_streetfronts_world_regression.log",
+      "bytes": 1147,
+      "sha256": "50cbfbb16c1e6b786eaf620b0a7121caacf4e66b71fb4c2f2216877008392cc4",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/kart_sonnenhafen_streetfronts_world_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/lumo_attention_landing_regression.log",
+      "bytes": 837,
+      "sha256": "237ed83a00e02270f0176c02a4e0d7df638fc691754a50c0bdceadb84fdf4bc9",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/lumo_attention_landing_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/lumo_gesture_contact_regression.log",
+      "bytes": 1220,
+      "sha256": "da70108cbaaa24c0c536aa0281f03420654491060562514f1eda2f586c9b81cf",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/lumo_gesture_contact_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/lumo_kart_tick_cadence_regression.log",
+      "bytes": 2097,
+      "sha256": "a6e31559d2e5dbb33f509ec7751f1979272660e4425994c5aaad6dbd9b541e77",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/lumo_kart_tick_cadence_regression.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 494,
+      "sha256": "65af3dd144ebf0e2404429f8c8ab85c17894b293d8eb34abc596c636fc76ebc4",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.21.log",
+      "bytes": 1377,
+      "sha256": "25cbbebf1b65d5c37f4c2c7b6e73060679a1911b65c101d8b5663d26aca38b21",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.21.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.22.log",
+      "bytes": 837,
+      "sha256": "237ed83a00e02270f0176c02a4e0d7df638fc691754a50c0bdceadb84fdf4bc9",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.22.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.23.log",
+      "bytes": 1220,
+      "sha256": "da70108cbaaa24c0c536aa0281f03420654491060562514f1eda2f586c9b81cf",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.23.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.37.log",
+      "bytes": 1496,
+      "sha256": "db1f8ef357639724ecad4048edf8e0a1f75f2df16967704d33791655514d462b",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/technical-art/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.37.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1321,
+      "sha256": "b22f563d5bb74176d919e4cc2ce466b06aabce4fa9611468592b38117bccee2f",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.47.17.log",
+      "bytes": 1263,
+      "sha256": "e983bac9828f0676c14da31fca90736e35810b181178ad5f194cfdc3bd7fb3f3",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.47.17.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.47.32.log",
+      "bytes": 1568,
+      "sha256": "e67c6eb9ead2f2beb58ad3e9990a2f50c8a9414e768ac28959bcdbc406440ad2",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.47.32.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.47.33.log",
+      "bytes": 1185,
+      "sha256": "47f65c921bbb489cfe694f28d0774cf929d9f10fad196c91471c0f62a981696e",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.47.33.log"
+    },
+    {
+      "path": "artifact-logs/legacy-14065839557/acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.08.log",
+      "bytes": 1444,
+      "sha256": "e12d4ac586f0a76fbf4240d8c9b55cabcb29c771ae6f262cdeee5b18c5116114",
+      "source_zip": "legacy-14065839557.zip",
+      "source_zip_sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "source_entry": "acceptance-evidence/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.48.08.log"
+    },
+    {
+      "path": "checkpoint/legacy-artifact-verification.json",
+      "bytes": 16285,
+      "sha256": "a5b2887320da694e66bd21fbe3a3338a24227c45bc3865fba09ba43020d36a2a",
+      "source_path": "legacy-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/legacy-full-verification.log",
+      "bytes": 300,
+      "sha256": "c5aaa3c2dbd38ec58a4cee568158ed57fa1519a5354f70f1167fa3adf43ae9b9",
+      "source_path": "legacy-full-verification.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/baseline-2017/build-render.log",
+      "bytes": 1574,
+      "sha256": "a533f4267fd9b8a288dab0bec420b21e48a9afc61ba0aa56196c509921919a2e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/baseline-2017/build-render.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/baseline-2017/garage-render.log",
+      "bytes": 1387,
+      "sha256": "7fd56ef4ac21a35e0cbc138272ac7374d3d21ef93eed94bd8359771b664f41bf",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/baseline-2017/garage-render.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/baseline-2017/import.log",
+      "bytes": 145708,
+      "sha256": "1f5b6429cee8cbea1476579e2d6bdfc9bce224091384497d2c30d160ac769972",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/baseline-2017/import.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1568,
+      "sha256": "9fb1e2476188e7c4ca827a80b3fd776a1b7af93eb60be5c8e68da28312812fa9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.09.log",
+      "bytes": 1381,
+      "sha256": "7141fd0674d31ade3a9052e04dacb6f22bab65b5c138524194d783f10559a718",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.09.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/import.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/bauwelt_identity_2013_regression-headless.log",
+      "bytes": 584,
+      "sha256": "3822e77fcba64613368961e0595b58f67b456d228ebd68b0c897e4dd428d4f9a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/bauwelt_identity_2013_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_frontier_regression-headless.log",
+      "bytes": 615,
+      "sha256": "94eee442e2a9af4c9920c31f03fe25295476fb64bbc259c0c8f69b9ee1d9cdba",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_frontier_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 685,
+      "sha256": "6002e63e5c39a4a7b638ca52081be4843141dcb7f25adce45d5360ff5e30d2bd",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_settlement_regression-headless.log",
+      "bytes": 535,
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_settlement_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_transform_regression-headless.log",
+      "bytes": 563,
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_transform_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_village_art_regression-headless.log",
+      "bytes": 505,
+      "sha256": "4faebeab516899c3b01a0f8ee58c76f92cb273c50ef3fb3fced0a816d51cdc16",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_village_art_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_village_economy_regression-headless.log",
+      "bytes": 626,
+      "sha256": "b8c1b4ca69cf99d1009beb0c2bb0cf3c6d64be6dc980036e29cdf8f5bb917d16",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_village_economy_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_village_scene_regression-headless.log",
+      "bytes": 844,
+      "sha256": "b96bb29f378e15ddbae7347a0a96e2c6166937efd8bd34af30221e4a7ffe4fae",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_village_scene_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/build_village_scene_regression-rendered.log",
+      "bytes": 1493,
+      "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/build_village_scene_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/cards_table_capture-rendered.log",
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/cards_table_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/cards_table_regression-headless.log",
+      "bytes": 581,
+      "sha256": "6aaf54424923fd7d7b472e55e52de02d1bd5040845c4982659844db4314121a8",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/cards_table_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/creative_nextgen_environment_regression-headless.log",
+      "bytes": 590,
+      "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/creative_nextgen_environment_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/creative_nextgen_environment_regression-rendered.log",
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/creative_nextgen_environment_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/jump_expeditions_regression-headless.log",
+      "bytes": 2758,
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/jump_expeditions_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "bytes": 1995,
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log",
+      "bytes": 732,
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/learning_host_payload_regression-headless.log",
+      "bytes": 559,
+      "sha256": "2c10581b2fd5d475f5fdd7dfde61c1dff0c9f8284d4339ff1ebd6e9ca2a65c55",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/learning_host_payload_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/kart_track_pass_regression-headless.log",
+      "bytes": 1074,
+      "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/kart_track_pass_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/kart_player_full_route_regression-rendered.log",
+      "bytes": 21732,
+      "sha256": "9c1fb08e859b647292347f5f908f0c80371b62a0de6998dde9a821cbe81f6692",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/kart_player_full_route_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/learning_sharing_capture-rendered.log",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/learning_sharing_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/learning_sharing_regression-headless.log",
+      "bytes": 1480,
+      "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/learning_sharing_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/learning_studio_regression-headless.log",
+      "bytes": 1799,
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/learning_studio_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/learning_world_capture-rendered.log",
+      "bytes": 8466,
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/learning_world_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/learning_world_regression-headless.log",
+      "bytes": 10597,
+      "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/learning_world_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/lumo_studio_motion_regression-headless.log",
+      "bytes": 601,
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/lumo_studio_motion_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/lumo_65bone_walk_gait_regression-headless.log",
+      "bytes": 570,
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/lumo_65bone_walk_gait_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "bytes": 689,
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/lumo_studio_motion_capture-rendered.log",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/lumo_studio_motion_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/lumo_teacher_pose_regression-headless.log",
+      "bytes": 587,
+      "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/lumo_teacher_pose_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3082,
+      "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/puzzle_rotation_regression-headless.log",
+      "bytes": 569,
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_rotation_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_rotation_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log",
+      "bytes": 598,
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/rhythm_tour_regression-headless.log",
+      "bytes": 580,
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/rhythm_tour_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/treasure_exploration_regression-headless.log",
+      "bytes": 587,
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/treasure_exploration_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/treasure_exploration_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/bauwelt_identity_2013_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 584,
+      "sha256": "3822e77fcba64613368961e0595b58f67b456d228ebd68b0c897e4dd428d4f9a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/bauwelt_identity_2013_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_frontier_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 615,
+      "sha256": "94eee442e2a9af4c9920c31f03fe25295476fb64bbc259c0c8f69b9ee1d9cdba",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_frontier_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 685,
+      "sha256": "6002e63e5c39a4a7b638ca52081be4843141dcb7f25adce45d5360ff5e30d2bd",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1328,
+      "sha256": "11e1f0f8ec7edccbfd6d9641b8b733a1de383eb79b1c1dc4daf9140e193ebfcf",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_settlement_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_settlement_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_settlement_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2710,
+      "sha256": "92cd913d52a3fa3cfb89e028415035981f6e99bdaba475e2f26a4a4a0e805590",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_settlement_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_settlement_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 535,
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_settlement_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_transform_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 563,
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_transform_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_village_art_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 505,
+      "sha256": "4faebeab516899c3b01a0f8ee58c76f92cb273c50ef3fb3fced0a816d51cdc16",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_art_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_village_scene_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 844,
+      "sha256": "b96bb29f378e15ddbae7347a0a96e2c6166937efd8bd34af30221e4a7ffe4fae",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_scene_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_village_economy_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 626,
+      "sha256": "b8c1b4ca69cf99d1009beb0c2bb0cf3c6d64be6dc980036e29cdf8f5bb917d16",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_economy_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/build_village_scene_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1487,
+      "sha256": "7846054d801d6560c57f7747b3518c9d23e1a2ba04af297175c873a5a1bae923",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_scene_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/cards_table_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1156,
+      "sha256": "d28154e12b864cf9b7d98da980bd86cb648fc0487abe9f8a07b8d9252f6386c2",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/cards_table_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/cards_table_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 581,
+      "sha256": "6aaf54424923fd7d7b472e55e52de02d1bd5040845c4982659844db4314121a8",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/cards_table_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 590,
+      "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1233,
+      "sha256": "4ffbe8ce4abd7e8b4612ad3b4552838951864426ca7ba7a410c0385360953fb2",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/jump_expeditions_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2758,
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/jump_expeditions_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/jump_nextgen_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1721,
+      "sha256": "82514bc41e424ce87553424d14aba2727375e9e7704b38bc834718cd3f383ad3",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/jump_nextgen_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/jump_nextgen_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1995,
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/jump_nextgen_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 732,
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1377,
+      "sha256": "d484ceb661ccbefe2256d548f25622bd03ba2fbac1ff59d8b9acc85a16097ea9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/kart_player_full_route_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 21726,
+      "sha256": "4d2880fbc5edc7d17ce92df6171715f6df77ba669ed614a1fb01fae0748bd532",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_player_full_route_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/kart_track_pass_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1074,
+      "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_track_pass_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/learning_host_payload_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 559,
+      "sha256": "2c10581b2fd5d475f5fdd7dfde61c1dff0c9f8284d4339ff1ebd6e9ca2a65c55",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_host_payload_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/learning_sharing_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3500,
+      "sha256": "b08934b581136c66c680c39a164d2f2c476d4324b5dbd965a8670189a1f7e3bb",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_sharing_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/learning_sharing_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1480,
+      "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_sharing_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/learning_studio_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1799,
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_studio_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/learning_world_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 8460,
+      "sha256": "1c1c25a2fc37ff8c179169a6ed68b10c0573ff68d083d690a8f125434d42621e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_world_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/learning_world_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 10597,
+      "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_world_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/lumo_65bone_walk_gait_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 570,
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_65bone_walk_gait_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/lumo_original_jump_visual_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 689,
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_original_jump_visual_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/lumo_studio_motion_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1196,
+      "sha256": "2bdcd3d18a853ec1befee4e03690cbb7bb01baceadb4d98983fe0a751450ba98",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_studio_motion_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/lumo_studio_motion_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 601,
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_studio_motion_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/lumo_teacher_pose_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 587,
+      "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_teacher_pose_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3082,
+      "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3727,
+      "sha256": "f9da89146f4ee9c2ce622a9953662894515e7544ee85e7739bddfb3b6fadf5c9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1212,
+      "sha256": "8a1c3eb6d30f13d7f28cc509a44ca72a04f839d4c752c4bb2353ac66b7f51ecc",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 569,
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 598,
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1241,
+      "sha256": "cc3936b5a0d4d79bbdce5cd750c6710d618974a57bc119440a7bfdee9e768155",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/rhythm_tour_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 580,
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/rhythm_tour_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/treasure_exploration_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 587,
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/treasure_exploration_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/nextgen/user-data/treasure_exploration_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1230,
+      "sha256": "1844c3426ee3699731cb3cc4683ba59f528c4a50e08e71fa6dfc944d860d0af0",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/nextgen/user-data/treasure_exploration_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/nextgen-evidence/project-validation.log",
+      "bytes": 6124,
+      "sha256": "9ce4cc5c5d80ff2abf463f3328ea7ffa1aa612ad10f867910e7fc370f571da5e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "nextgen-evidence/project-validation.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/build/build_dialog_density_regression-headless.log",
+      "bytes": 1434,
+      "sha256": "96b8e28d7db29b679da59c856d340ab0d4049f89b11e7ab9175ca02b8809c32e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/build/build_dialog_density_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/build/build_dialog_density_regression-rendered.log",
+      "bytes": 2429,
+      "sha256": "f6958bcd3baadd67b12d4eb907fbc6ce88d048c405af62b00a0fc54e80f0e9a6",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/build/build_dialog_density_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/build/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1434,
+      "sha256": "96b8e28d7db29b679da59c856d340ab0d4049f89b11e7ab9175ca02b8809c32e",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/build/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/build/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2423,
+      "sha256": "c9d9ca807be3dee8a7b3069745b2f36883e9717e19520af62bdad05bb964e2f2",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/build/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/build/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/build/import.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/treasure/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 893,
+      "sha256": "060640c2d2ca42313f65019bd3fb26b39c83e63de72aec445d16b7a22d704f7c",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/treasure/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/treasure/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1537,
+      "sha256": "e6c3c2958ec173c0c556505e8b5c31cbe8aedc7a769cd9a90ccce6d5433c945f",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/treasure/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/treasure/import.log",
+      "bytes": 164254,
+      "sha256": "eaf62806ea89cf53ab51b614af44d964a7030ad13edf743a668e4a078dae695f",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/treasure/import.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/treasure/treasure_density_regression-headless.log",
+      "bytes": 893,
+      "sha256": "060640c2d2ca42313f65019bd3fb26b39c83e63de72aec445d16b7a22d704f7c",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/treasure/treasure_density_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/treasure/treasure_density_regression-rendered.log",
+      "bytes": 1543,
+      "sha256": "f80f934417f5e54e5400426cc4b3f8be71226927a7697a3ff0f4c056156b05d0",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/treasure/treasure_density_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/workshop/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3861,
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/workshop/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/workshop/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 4504,
+      "sha256": "ed735b259860e1f8153d4e0e39cdc39e092bebae2b7eb5b855b65fd23a656ab0",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/workshop/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/workshop/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/workshop/import.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/workshop/kart_workshop_density_regression-headless.log",
+      "bytes": 3861,
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/workshop/kart_workshop_density_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/native-14069131343/touch-evidence/workshop/kart_workshop_density_regression-rendered.log",
+      "bytes": 4510,
+      "sha256": "4ab2179a3f74f8cbc91725bfde5516237f5ccb7dc822377e3a384e60cffe188d",
+      "source_zip": "native-14069131343.zip",
+      "source_zip_sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "source_entry": "touch-evidence/workshop/kart_workshop_density_regression-rendered.log"
+    },
+    {
+      "path": "checkpoint/native-artifact-verification.json",
+      "bytes": 70918,
+      "sha256": "44d5981413717efe8a13f1f974ba7a081b87519bc1ad407b4ed0976e648372a8",
+      "source_path": "native-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/native-contract/.github/workflows/lumo-nextgen-2018.yml",
+      "bytes": 18437,
+      "sha256": "b238b61fab9625da90faebcefcf40cf4b6a4a125d128ccd4ab8e2b55a75e6e90",
+      "source_path": "native-contract/.github/workflows/lumo-nextgen-2018.yml"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/run_godot_probe.py",
+      "bytes": 2934,
+      "sha256": "e1836029a196e4dcd4a4f47fd8c2010c5b460ec5bf4c0578e90e75d3a5d2ea13",
+      "source_path": "native-contract/tools/run_godot_probe.py"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/validate_2014.sh",
+      "bytes": 2676,
+      "sha256": "d414c8c8f30feefc8c2e004d39c0cade37424865375d2d50afd239abd3ffa855",
+      "source_path": "native-contract/tools/validate_2014.sh"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/validate_action_stage.sh",
+      "bytes": 1890,
+      "sha256": "aff17bc1c763cdd8d6a25852d9cf276bc403f5ce1c64e835a772831ed5582be9",
+      "source_path": "native-contract/tools/validate_action_stage.sh"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/validate_nextgen.sh",
+      "bytes": 7285,
+      "sha256": "8b1844825b3c6ea6ecd4a186ca7d28b94ed4fd5a218f4e34a102cd739981c4b6",
+      "source_path": "native-contract/tools/validate_nextgen.sh"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/validate_project.sh",
+      "bytes": 4965,
+      "sha256": "1cbf032a49206be0686e0ceca58160ebcc837cd35ff833848d776753d44c5bba",
+      "source_path": "native-contract/tools/validate_project.sh"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/validate_studio.sh",
+      "bytes": 3447,
+      "sha256": "6679684e0546b66392b6c3c02939894a12bf41261ceb956bea19168c34ac4c59",
+      "source_path": "native-contract/tools/validate_studio.sh"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/validate_studio_touch.sh",
+      "bytes": 3840,
+      "sha256": "4a517be7f757c16bd724c4fa9aa3b34b4e89cc873d32b4acc60f0c1f3408dc53",
+      "source_path": "native-contract/tools/validate_studio_touch.sh"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/verify_puzzle_menu_rasters.py",
+      "bytes": 1191,
+      "sha256": "3afe208e8572b683d12a338d73cf261416958ec2306ae87007f9c2c6b35e4994",
+      "source_path": "native-contract/tools/verify_puzzle_menu_rasters.py"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/verify_studio_rasters.py",
+      "bytes": 1872,
+      "sha256": "eefad8134f66404aa4bd3fedee279661e3f243a1a9aa3042c69e3d181fda62dd",
+      "source_path": "native-contract/tools/verify_studio_rasters.py"
+    },
+    {
+      "path": "checkpoint/native-contract/tools/verify_village_rasters.py",
+      "bytes": 3859,
+      "sha256": "0605a556d45ba9a7d6db6f85bdab21f0bc338a9c5fb5b8efb0ff40d04fa472e5",
+      "source_path": "native-contract/tools/verify_village_rasters.py"
+    },
+    {
+      "path": "checkpoint/native-full-verification.log",
+      "bytes": 2220,
+      "sha256": "6b3a889965ac80e473aa61d7e2397af29ccef060d09c582174c6f3f30b6a433f",
+      "source_path": "native-full-verification.log"
+    },
+    {
+      "path": "checkpoint/native-raster-index.json",
+      "bytes": 44924,
+      "sha256": "e9825798ab76cb1c3e146d909198a869e7d5bcdece166e1e210fc9e2df10b557",
+      "source_path": "native-raster-index.json"
+    },
+    {
+      "path": "checkpoint/new-worlds-job-132087435505.log",
+      "bytes": 619485,
+      "sha256": "706ea1129902bb8b1e0440949e8650bf70d3913e181c9e64ae3c57e3198c77e0",
+      "source_path": "new-worlds-job-132087435505.log"
+    },
+    {
+      "path": "checkpoint/overall-acceptance-boundary.json",
+      "bytes": 2484,
+      "sha256": "9c6ce26003b06af9cf7f2a92e03727b114932358c0bf62ae8c4d4a65f8c9d244",
+      "source_path": "overall-acceptance-boundary.json"
+    },
+    {
+      "path": "checkpoint/prepare_source_contract.py",
+      "bytes": 7028,
+      "sha256": "fe185e80fb34ec73965be3f95a1207f39ec9afad01d35be1194c356d838cbccf",
+      "source_path": "prepare_source_contract.py"
+    },
+    {
+      "path": "artifact-logs/preview-14066363548/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "preview-14066363548.zip",
+      "source_zip_sha256": "d20988ae20965f9a7106c586df14337053b54d43df2ac1b380636c4d0b6b06a8",
+      "source_entry": "import.log"
+    },
+    {
+      "path": "artifact-logs/preview-14066363548/render.log",
+      "bytes": 8466,
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "source_zip": "preview-14066363548.zip",
+      "source_zip_sha256": "d20988ae20965f9a7106c586df14337053b54d43df2ac1b380636c4d0b6b06a8",
+      "source_entry": "render.log"
+    },
+    {
+      "path": "artifact-logs/preview-14066363548/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 8460,
+      "sha256": "1c1c25a2fc37ff8c179169a6ed68b10c0573ff68d083d690a8f125434d42621e",
+      "source_zip": "preview-14066363548.zip",
+      "source_zip_sha256": "d20988ae20965f9a7106c586df14337053b54d43df2ac1b380636c4d0b6b06a8",
+      "source_entry": "user-data/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "checkpoint/preview-artifact-verification.json",
+      "bytes": 7423,
+      "sha256": "0036b93a8bec80a1934c6ba1630285224c50abe1be2b41bfb71976558ff5fdea",
+      "source_path": "preview-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/preview-full-verification.log",
+      "bytes": 301,
+      "sha256": "24ff755102778abd26a334a46d8ee2e624ad36380fec77545dbc2e052f12fb11",
+      "source_path": "preview-full-verification.log"
+    },
+    {
+      "path": "checkpoint/preview-local-collection-pending-download.log",
+      "bytes": 1008,
+      "sha256": "889494496d897cc5bfbae163f9e1eb4c17b49e6db5a430836b2b810484991f65",
+      "source_path": "preview-local-collection-pending-download.log"
+    },
+    {
+      "path": "checkpoint/puzzle-menu-six-originals-for-root.json",
+      "bytes": 3665,
+      "sha256": "011d989e53d813cd9b701fc3fcdb173cb436a5176657a9b9f5a90491587f0a12",
+      "source_path": "puzzle-menu-six-originals-for-root.json"
+    },
+    {
+      "path": "checkpoint/recorder-inputs-ready.json",
+      "bytes": 1105,
+      "sha256": "1f6f73313b92afae67f6dffec4d3fed5c567d4329f6fe722b586dd14defc1ddf",
+      "source_path": "recorder-inputs-ready.json"
+    },
+    {
+      "path": "checkpoint/related-geometry-originals/job-132087436119.log.gz",
+      "bytes": 5154,
+      "sha256": "c66b0f79fa567928987c104a1bd84bd570c024d24c110bcfaeadd0a74c9f2365",
+      "source_path": "related-geometry-originals/job-132087436119.log.gz"
+    },
+    {
+      "path": "checkpoint/related-geometry-originals/manifest.json",
+      "bytes": 14278,
+      "sha256": "cb9cd641d54d01f99f64e0ce5c11d195a10b9eeab9f1a0a36a0930106801757c",
+      "source_path": "related-geometry-originals/manifest.json"
+    },
+    {
+      "path": "checkpoint/root-puzzle-menu-six-viewed.json",
+      "bytes": 6423,
+      "sha256": "02cd70f7661f8f7dc200e647b6d9fb3eaf2e48c6d4d336603071ca8e025cde03",
+      "source_path": "root-puzzle-menu-six-viewed.json"
+    },
+    {
+      "path": "checkpoint/root-puzzle-view-binding.json",
+      "bytes": 2838,
+      "sha256": "52d34e1e60419521adc1eaea792aa8a54961f7be29f9d4709fd1cab408d9085e",
+      "source_path": "root-puzzle-view-binding.json"
+    },
+    {
+      "path": "checkpoint/source-commit.json",
+      "bytes": 1872,
+      "sha256": "eaa0896e0e7215baacea01a9c868e108b6f6b19c45c8a65b406eaa5ff1b46fda",
+      "source_path": "source-commit.json"
+    },
+    {
+      "path": "checkpoint/source-preparation.log",
+      "bytes": 447,
+      "sha256": "a90028d0b0b8a3e423cd143bb141fd9907f1def5db7f4e7a2939fe877d1b4dcd",
+      "source_path": "source-preparation.log"
+    },
+    {
+      "path": "checkpoint/status-20261113184239/workflow-artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "source_path": "status-20261113184239/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184239/workflow-jobs.json",
+      "bytes": 12632,
+      "sha256": "d93bef1f2f2299eb3cd219ab3fe0ff7eba437039e57acac6c38d58599803aca1",
+      "source_path": "status-20261113184239/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184435/workflow-artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "source_path": "status-20261113184435/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184435/workflow-jobs.json",
+      "bytes": 12632,
+      "sha256": "d93bef1f2f2299eb3cd219ab3fe0ff7eba437039e57acac6c38d58599803aca1",
+      "source_path": "status-20261113184435/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184632/workflow-artifacts.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "source_path": "status-20261113184632/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184632/workflow-jobs.json",
+      "bytes": 12675,
+      "sha256": "7b9f94a6c28f577ffacd50db14d38b2021bf54da217585bfe7bdee505d14fffb",
+      "source_path": "status-20261113184632/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184819/workflow-artifacts.json",
+      "bytes": 769,
+      "sha256": "7cd9fb967c17b3c46d76a6149636dd14fbb03e6c8ff470f5e59205b1ebc092fe",
+      "source_path": "status-20261113184819/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113184819/workflow-jobs.json",
+      "bytes": 13000,
+      "sha256": "d706e5596317c068039fb6dc908c85a69b1870869cc125252087722d515a157f",
+      "source_path": "status-20261113184819/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113185114/workflow-artifacts.json",
+      "bytes": 2242,
+      "sha256": "fa0791266e58663f2724f28184c5f136696f40ca724ea2bff9e23269fc4194ac",
+      "source_path": "status-20261113185114/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113185114/workflow-jobs.json",
+      "bytes": 13564,
+      "sha256": "d96f79223dbe24ac89e64b32d95e30a9a6ebee2e6a3c77c721949bc998fb8e59",
+      "source_path": "status-20261113185114/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113185410/workflow-artifacts.json",
+      "bytes": 2242,
+      "sha256": "fa0791266e58663f2724f28184c5f136696f40ca724ea2bff9e23269fc4194ac",
+      "source_path": "status-20261113185410/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113185410/workflow-jobs.json",
+      "bytes": 13564,
+      "sha256": "d96f79223dbe24ac89e64b32d95e30a9a6ebee2e6a3c77c721949bc998fb8e59",
+      "source_path": "status-20261113185410/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113185633/workflow-artifacts.json",
+      "bytes": 2975,
+      "sha256": "5950725aad4ab176d461a8c232a283bedf3bfb8e2d06cdb601692f7c6ddebf63",
+      "source_path": "status-20261113185633/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113185633/workflow-jobs.json",
+      "bytes": 13846,
+      "sha256": "a5da47857d34b1f605572ba7b2e9aac84ade0f06e74d7e8e660fce11debf62a4",
+      "source_path": "status-20261113185633/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190038Z/workflow-artifacts.json",
+      "bytes": 2975,
+      "sha256": "5950725aad4ab176d461a8c232a283bedf3bfb8e2d06cdb601692f7c6ddebf63",
+      "source_path": "status-20261113T190038Z/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190038Z/workflow-jobs.json",
+      "bytes": 13846,
+      "sha256": "a5da47857d34b1f605572ba7b2e9aac84ade0f06e74d7e8e660fce11debf62a4",
+      "source_path": "status-20261113T190038Z/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190038Z/workflow-run.json",
+      "bytes": 13304,
+      "sha256": "62b283c428f3d83787f145b284677d664ae267a1a3e2ae210f091cc591fd4cca",
+      "source_path": "status-20261113T190038Z/workflow-run.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190223Z/workflow-artifacts.json",
+      "bytes": 2975,
+      "sha256": "5950725aad4ab176d461a8c232a283bedf3bfb8e2d06cdb601692f7c6ddebf63",
+      "source_path": "status-20261113T190223Z/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190223Z/workflow-jobs.json",
+      "bytes": 13846,
+      "sha256": "a5da47857d34b1f605572ba7b2e9aac84ade0f06e74d7e8e660fce11debf62a4",
+      "source_path": "status-20261113T190223Z/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190443Z/workflow-artifacts.json",
+      "bytes": 3713,
+      "sha256": "674714acb6383e775bd032b6edfb8e4a7f8ac3deaff9cc629a9f1927de78c14c",
+      "source_path": "status-20261113T190443Z/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190443Z/workflow-jobs.json",
+      "bytes": 14128,
+      "sha256": "914a8125c1232e1efa20296c3c80a19f11fd2a3743b072308d62b71c8ad34947",
+      "source_path": "status-20261113T190443Z/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190713Z/workflow-artifacts.json",
+      "bytes": 5187,
+      "sha256": "249c31909348a4148bb269f450ad6b8fd25f0f160365d196835b32fb943bc05a",
+      "source_path": "status-20261113T190713Z/workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190713Z/workflow-jobs.json",
+      "bytes": 17670,
+      "sha256": "f610a74033b4dd3f86e9090d105c4b0c9a00ba7af169311361045af700bc6b87",
+      "source_path": "status-20261113T190713Z/workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/status-20261113T190713Z/workflow-run.json",
+      "bytes": 13307,
+      "sha256": "445523e42285cc9f7d13fe96c22f0d5386f4d2bdba5ae30efed6ffa841adfd8b",
+      "source_path": "status-20261113T190713Z/workflow-run.json"
+    },
+    {
+      "path": "artifact-logs/touch-build-14067098947/build/build_dialog_density_regression-headless.log",
+      "bytes": 1434,
+      "sha256": "96b8e28d7db29b679da59c856d340ab0d4049f89b11e7ab9175ca02b8809c32e",
+      "source_zip": "touch-build-14067098947.zip",
+      "source_zip_sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "source_entry": "build/build_dialog_density_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/touch-build-14067098947/build/build_dialog_density_regression-rendered.log",
+      "bytes": 2429,
+      "sha256": "f6958bcd3baadd67b12d4eb907fbc6ce88d048c405af62b00a0fc54e80f0e9a6",
+      "source_zip": "touch-build-14067098947.zip",
+      "source_zip_sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "source_entry": "build/build_dialog_density_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/touch-build-14067098947/build/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1434,
+      "sha256": "96b8e28d7db29b679da59c856d340ab0d4049f89b11e7ab9175ca02b8809c32e",
+      "source_zip": "touch-build-14067098947.zip",
+      "source_zip_sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "source_entry": "build/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/touch-build-14067098947/build/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2423,
+      "sha256": "c9d9ca807be3dee8a7b3069745b2f36883e9717e19520af62bdad05bb964e2f2",
+      "source_zip": "touch-build-14067098947.zip",
+      "source_zip_sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "source_entry": "build/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/touch-build-14067098947/build/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "touch-build-14067098947.zip",
+      "source_zip_sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "source_entry": "build/import.log"
+    },
+    {
+      "path": "checkpoint/touch-build-artifact-verification.json",
+      "bytes": 5802,
+      "sha256": "5047f63381bd10f6f14a14fde399db78aebaae4bab196bb424e16c996fcd23d0",
+      "source_path": "touch-build-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/touch-build-component-verification.log",
+      "bytes": 289,
+      "sha256": "b5572e5f1a93a8f644e1f2573dcee1649701c98311fe830598621f685d37c9af",
+      "source_path": "touch-build-component-verification.log"
+    },
+    {
+      "path": "checkpoint/touch-build-job-132087435889.log",
+      "bytes": 260030,
+      "sha256": "141bfcf16d1a40528c045ee5b258b15fe8344fcb8f995bf1acbec5ca0ec893ae",
+      "source_path": "touch-build-job-132087435889.log"
+    },
+    {
+      "path": "artifact-logs/touch-treasure-14067468053/treasure/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 893,
+      "sha256": "060640c2d2ca42313f65019bd3fb26b39c83e63de72aec445d16b7a22d704f7c",
+      "source_zip": "touch-treasure-14067468053.zip",
+      "source_zip_sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "source_entry": "treasure/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/touch-treasure-14067468053/treasure/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1537,
+      "sha256": "e6c3c2958ec173c0c556505e8b5c31cbe8aedc7a769cd9a90ccce6d5433c945f",
+      "source_zip": "touch-treasure-14067468053.zip",
+      "source_zip_sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "source_entry": "treasure/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/touch-treasure-14067468053/treasure/import.log",
+      "bytes": 164254,
+      "sha256": "eaf62806ea89cf53ab51b614af44d964a7030ad13edf743a668e4a078dae695f",
+      "source_zip": "touch-treasure-14067468053.zip",
+      "source_zip_sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "source_entry": "treasure/import.log"
+    },
+    {
+      "path": "artifact-logs/touch-treasure-14067468053/treasure/treasure_density_regression-headless.log",
+      "bytes": 893,
+      "sha256": "060640c2d2ca42313f65019bd3fb26b39c83e63de72aec445d16b7a22d704f7c",
+      "source_zip": "touch-treasure-14067468053.zip",
+      "source_zip_sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "source_entry": "treasure/treasure_density_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/touch-treasure-14067468053/treasure/treasure_density_regression-rendered.log",
+      "bytes": 1543,
+      "sha256": "f80f934417f5e54e5400426cc4b3f8be71226927a7697a3ff0f4c056156b05d0",
+      "source_zip": "touch-treasure-14067468053.zip",
+      "source_zip_sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "source_entry": "treasure/treasure_density_regression-rendered.log"
+    },
+    {
+      "path": "checkpoint/touch-treasure-artifact-verification.json",
+      "bytes": 6277,
+      "sha256": "5a840982e74e1283a087a4c828f870c74300e8d65f9b02a2daa8729252733e31",
+      "source_path": "touch-treasure-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/touch-treasure-component-verification.log",
+      "bytes": 292,
+      "sha256": "0ac301336df69857a4bc0759d7781d0f3ec1eb4e3ee887267fe845e8a19416f9",
+      "source_path": "touch-treasure-component-verification.log"
+    },
+    {
+      "path": "checkpoint/touch-treasure-job-132087435917.log",
+      "bytes": 258357,
+      "sha256": "ee755ecabf0c901a373785f13ce245b4a06d58387250e1b6febaa2cd67c2bcb7",
+      "source_path": "touch-treasure-job-132087435917.log"
+    },
+    {
+      "path": "artifact-logs/touch-workshop-14068866713/workshop/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3861,
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "source_zip": "touch-workshop-14068866713.zip",
+      "source_zip_sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "source_entry": "workshop/data/headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/touch-workshop-14068866713/workshop/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 4504,
+      "sha256": "ed735b259860e1f8153d4e0e39cdc39e092bebae2b7eb5b855b65fd23a656ab0",
+      "source_zip": "touch-workshop-14068866713.zip",
+      "source_zip_sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "source_entry": "workshop/data/rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/touch-workshop-14068866713/workshop/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "touch-workshop-14068866713.zip",
+      "source_zip_sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "source_entry": "workshop/import.log"
+    },
+    {
+      "path": "artifact-logs/touch-workshop-14068866713/workshop/kart_workshop_density_regression-headless.log",
+      "bytes": 3861,
+      "sha256": "a3bfb9bab60e0265e9e5aa02357d8f15b3e9ff9e5e6293eb0ddba452d88580a9",
+      "source_zip": "touch-workshop-14068866713.zip",
+      "source_zip_sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "source_entry": "workshop/kart_workshop_density_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/touch-workshop-14068866713/workshop/kart_workshop_density_regression-rendered.log",
+      "bytes": 4510,
+      "sha256": "4ab2179a3f74f8cbc91725bfde5516237f5ccb7dc822377e3a384e60cffe188d",
+      "source_zip": "touch-workshop-14068866713.zip",
+      "source_zip_sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "source_entry": "workshop/kart_workshop_density_regression-rendered.log"
+    },
+    {
+      "path": "checkpoint/touch-workshop-artifact-verification.json",
+      "bytes": 3975,
+      "sha256": "dac65ad4d77587749cf2823b6407468b52b7db8a01da936f0236dd98b0816943",
+      "source_path": "touch-workshop-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/touch-workshop-component-verification.log",
+      "bytes": 290,
+      "sha256": "9698b7400a19edef25945c200d103287c85d04a2646b6dc650ce283c2267865b",
+      "source_path": "touch-workshop-component-verification.log"
+    },
+    {
+      "path": "checkpoint/touch-workshop-job-132087435862.log",
+      "bytes": 266662,
+      "sha256": "11052ed9d7d40345f56c28941fb664c5cac27f3c5ee8349986199874552929b2",
+      "source_path": "touch-workshop-job-132087435862.log"
+    },
+    {
+      "path": "checkpoint/validator-2fa3b3d3/release_pipeline_gates.py",
+      "bytes": 9853,
+      "sha256": "400e54f2952f0d8aae07fc964e4688c48f16c9213ea022fa8754731004551946",
+      "source_path": "validator-2fa3b3d3/release_pipeline_gates.py"
+    },
+    {
+      "path": "checkpoint/validator-2fa3b3d3/verify_legacy_release_pin.py",
+      "bytes": 10418,
+      "sha256": "d739fea9f9dc7986c0149bc645dca795fa3841ed26b639754b97bbd7947933c6",
+      "source_path": "validator-2fa3b3d3/verify_legacy_release_pin.py"
+    },
+    {
+      "path": "checkpoint/validator-2fa3b3d3/verify_nextgen_delivery.py",
+      "bytes": 24332,
+      "sha256": "db8810928b482e06b786dc20c4683c7a75ec4da1e5dd16c8d1f128c25a62a196",
+      "source_path": "validator-2fa3b3d3/verify_nextgen_delivery.py"
+    },
+    {
+      "path": "checkpoint/validator-2fa3b3d3/verify_studio_delivery.py",
+      "bytes": 47035,
+      "sha256": "f5bfd40078087ec59442be19a400210ba18e4fd713b6f00bfe0853bf2de61ae4",
+      "source_path": "validator-2fa3b3d3/verify_studio_delivery.py"
+    },
+    {
+      "path": "checkpoint/validator-2fa3b3d3-source-manifest.json",
+      "bytes": 1652,
+      "sha256": "c7c6641fa3737aa6aedf2296faac401f4d08188ffa118d6f4c02bf9658b67723",
+      "source_path": "validator-2fa3b3d3-source-manifest.json"
+    },
+    {
+      "path": "checkpoint/verify_original_artifact.py",
+      "bytes": 9987,
+      "sha256": "3cacf8f86a7ae700b7d89866388c8303a67fe187c4f42b323f2e3ebda350f28c",
+      "source_path": "verify_original_artifact.py"
+    },
+    {
+      "path": "checkpoint/verify_touch_component.py",
+      "bytes": 8625,
+      "sha256": "6433733b2e7e84318b7d304e30b70ae0aaf2d47db98401e582fae6b805c55c46",
+      "source_path": "verify_touch_component.py"
+    },
+    {
+      "path": "checkpoint/workflow-artifacts-final.json",
+      "bytes": 5187,
+      "sha256": "249c31909348a4148bb269f450ad6b8fd25f0f160365d196835b32fb943bc05a",
+      "source_path": "workflow-artifacts-final.json"
+    },
+    {
+      "path": "checkpoint/workflow-artifacts-initial.json",
+      "bytes": 32,
+      "sha256": "244563f989470892c537c9a4622920af0d228ee4528f7d00c64a06d6cd95856c",
+      "source_path": "workflow-artifacts-initial.json"
+    },
+    {
+      "path": "checkpoint/workflow-artifacts.json",
+      "bytes": 5187,
+      "sha256": "249c31909348a4148bb269f450ad6b8fd25f0f160365d196835b32fb943bc05a",
+      "source_path": "workflow-artifacts.json"
+    },
+    {
+      "path": "checkpoint/workflow-jobs-final.json",
+      "bytes": 17670,
+      "sha256": "f610a74033b4dd3f86e9090d105c4b0c9a00ba7af169311361045af700bc6b87",
+      "source_path": "workflow-jobs-final.json"
+    },
+    {
+      "path": "checkpoint/workflow-jobs-initial.json",
+      "bytes": 12589,
+      "sha256": "1a8620056905dbd275595e05c989ea4132a402669e8a8b3ec66289ee5e1b9f87",
+      "source_path": "workflow-jobs-initial.json"
+    },
+    {
+      "path": "checkpoint/workflow-jobs.json",
+      "bytes": 17670,
+      "sha256": "f610a74033b4dd3f86e9090d105c4b0c9a00ba7af169311361045af700bc6b87",
+      "source_path": "workflow-jobs.json"
+    },
+    {
+      "path": "checkpoint/workflow-run-final.json",
+      "bytes": 13307,
+      "sha256": "445523e42285cc9f7d13fe96c22f0d5386f4d2bdba5ae30efed6ffa841adfd8b",
+      "source_path": "workflow-run-final.json"
+    },
+    {
+      "path": "checkpoint/workflow-run-initial.json",
+      "bytes": 13304,
+      "sha256": "62b283c428f3d83787f145b284677d664ae267a1a3e2ae210f091cc591fd4cca",
+      "source_path": "workflow-run-initial.json"
+    },
+    {
+      "path": "checkpoint/workflow-run.json",
+      "bytes": 13307,
+      "sha256": "445523e42285cc9f7d13fe96c22f0d5386f4d2bdba5ae30efed6ffa841adfd8b",
+      "source_path": "workflow-run.json"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/baseline-2017/build-render.log",
+      "bytes": 1574,
+      "sha256": "a533f4267fd9b8a288dab0bec420b21e48a9afc61ba0aa56196c509921919a2e",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/baseline-2017/build-render.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/baseline-2017/garage-render.log",
+      "bytes": 1387,
+      "sha256": "7fd56ef4ac21a35e0cbc138272ac7374d3d21ef93eed94bd8359771b664f41bf",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/baseline-2017/garage-render.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/baseline-2017/import.log",
+      "bytes": 145708,
+      "sha256": "1f5b6429cee8cbea1476579e2d6bdfc9bce224091384497d2c30d160ac769972",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/baseline-2017/import.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1568,
+      "sha256": "9fb1e2476188e7c4ca827a80b3fd776a1b7af93eb60be5c8e68da28312812fa9",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.09.log",
+      "bytes": 1381,
+      "sha256": "7141fd0674d31ade3a9052e04dacb6f22bab65b5c138524194d783f10559a718",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/baseline-2017/user-data/godot/app_userdata/Lumo 3D/logs/godot2026-11-13T18.39.09.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/import.log",
+      "bytes": 164311,
+      "sha256": "93ec94fff7b32cd370e7e119bff292ca14950534f7520f89c5189413464656cd",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/import.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/bauwelt_identity_2013_regression-headless.log",
+      "bytes": 584,
+      "sha256": "3822e77fcba64613368961e0595b58f67b456d228ebd68b0c897e4dd428d4f9a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/bauwelt_identity_2013_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_frontier_regression-headless.log",
+      "bytes": 615,
+      "sha256": "94eee442e2a9af4c9920c31f03fe25295476fb64bbc259c0c8f69b9ee1d9cdba",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_frontier_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log",
+      "bytes": 685,
+      "sha256": "6002e63e5c39a4a7b638ca52081be4843141dcb7f25adce45d5360ff5e30d2bd",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log",
+      "bytes": 1334,
+      "sha256": "3eda2ac6efeeea1a14bc39ab8cb3492c64a1fd5d9375187811182a4c34c1cff6",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_nextgen_play_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_settlement_play_regression-headless.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log",
+      "bytes": 2716,
+      "sha256": "5f9ca1025869eebb8b63d7de734663cdddcac05a5e1541af94dbf566b5264127",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_settlement_play_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_settlement_regression-headless.log",
+      "bytes": 535,
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_settlement_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_transform_regression-headless.log",
+      "bytes": 563,
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_transform_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_village_art_regression-headless.log",
+      "bytes": 505,
+      "sha256": "4faebeab516899c3b01a0f8ee58c76f92cb273c50ef3fb3fced0a816d51cdc16",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_village_art_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_village_economy_regression-headless.log",
+      "bytes": 626,
+      "sha256": "b8c1b4ca69cf99d1009beb0c2bb0cf3c6d64be6dc980036e29cdf8f5bb917d16",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_village_economy_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_village_scene_regression-headless.log",
+      "bytes": 844,
+      "sha256": "b96bb29f378e15ddbae7347a0a96e2c6166937efd8bd34af30221e4a7ffe4fae",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_village_scene_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/build_village_scene_regression-rendered.log",
+      "bytes": 1493,
+      "sha256": "9fccdf7b8d2a8fc296e0f7d904654970082a068c1d253a16ef6cab406b11b648",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/build_village_scene_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/cards_table_capture-rendered.log",
+      "bytes": 1162,
+      "sha256": "eecb702cd200bcbb695665dc4b060aa33463fdb0023ba4bb6a5321c4fe352ef4",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/cards_table_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/cards_table_regression-headless.log",
+      "bytes": 581,
+      "sha256": "6aaf54424923fd7d7b472e55e52de02d1bd5040845c4982659844db4314121a8",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/cards_table_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/creative_nextgen_environment_regression-headless.log",
+      "bytes": 590,
+      "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/creative_nextgen_environment_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/jump_expeditions_regression-headless.log",
+      "bytes": 2758,
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/jump_expeditions_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/creative_nextgen_environment_regression-rendered.log",
+      "bytes": 1239,
+      "sha256": "27a24847d258f729ae3b900606e681e18cf6db1c824df169d455a22d2cd72b4e",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/creative_nextgen_environment_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log",
+      "bytes": 1383,
+      "sha256": "f294d786d1cd2f2885ebcc7d72f46d713fb75df70c72c4e3976e3a8f838135f5",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log",
+      "bytes": 1727,
+      "sha256": "d33f5bdc289d680eb893d7646ff6358ab22285b28a2d0134e58c3763b49c72f3",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/jump_nextgen_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/jump_nextgen_regression-headless.log",
+      "bytes": 1995,
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/jump_nextgen_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log",
+      "bytes": 732,
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/kart_nextgen_garage_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/learning_host_payload_regression-headless.log",
+      "bytes": 559,
+      "sha256": "2c10581b2fd5d475f5fdd7dfde61c1dff0c9f8284d4339ff1ebd6e9ca2a65c55",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/learning_host_payload_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/kart_player_full_route_regression-rendered.log",
+      "bytes": 21732,
+      "sha256": "9c1fb08e859b647292347f5f908f0c80371b62a0de6998dde9a821cbe81f6692",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/kart_player_full_route_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/kart_track_pass_regression-headless.log",
+      "bytes": 1074,
+      "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/kart_track_pass_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/learning_sharing_capture-rendered.log",
+      "bytes": 3506,
+      "sha256": "017c872ceb1c84497da50b042ab3cd5807e99e78e40078be095ca23e5433c38e",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/learning_sharing_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/learning_world_regression-headless.log",
+      "bytes": 10597,
+      "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/learning_world_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/learning_sharing_regression-headless.log",
+      "bytes": 1480,
+      "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/learning_sharing_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/learning_studio_regression-headless.log",
+      "bytes": 1799,
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/learning_studio_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/learning_world_capture-rendered.log",
+      "bytes": 8466,
+      "sha256": "40303789bd5aa748900d0224ff1486a3c4a06b0f54fbe690a532f8ea54681ddd",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/learning_world_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/lumo_studio_motion_regression-headless.log",
+      "bytes": 601,
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/lumo_studio_motion_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/lumo_65bone_walk_gait_regression-headless.log",
+      "bytes": 570,
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/lumo_65bone_walk_gait_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log",
+      "bytes": 689,
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/lumo_original_jump_visual_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/lumo_studio_motion_capture-rendered.log",
+      "bytes": 1202,
+      "sha256": "b86485f1f5cee930cada12044d9f425daf403e73e51f2497c7593ee634270669",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/lumo_studio_motion_capture-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/lumo_teacher_pose_regression-headless.log",
+      "bytes": 587,
+      "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/lumo_teacher_pose_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-headless.log",
+      "bytes": 3082,
+      "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-rendered.log",
+      "bytes": 3733,
+      "sha256": "f2102a2c19940958192cc1bd9460d17786717285dcde44eeacd845cd45b9393c",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_menu_lifecycle_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/puzzle_rotation_regression-headless.log",
+      "bytes": 569,
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_rotation_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/puzzle_rotation_regression-rendered.log",
+      "bytes": 1218,
+      "sha256": "48fce4400a65d1ba6fb1d998ec2d021435bd3242aed3e471b1be74d1dd767871",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/puzzle_rotation_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log",
+      "bytes": 598,
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/rhythm_tour_regression-headless.log",
+      "bytes": 580,
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/rhythm_tour_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log",
+      "bytes": 1247,
+      "sha256": "57329a3591776a16ea496e6e51806bb8044654b3ff5e434c203aa94823ff5ee9",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/rhythm_tour_play_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/treasure_exploration_regression-headless.log",
+      "bytes": 587,
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/treasure_exploration_regression-headless.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/treasure_exploration_regression-rendered.log",
+      "bytes": 1236,
+      "sha256": "ce5b27b806edb05a0389a9ce0b30abdc106b90dffd333941f059e6b971b4dd0a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/treasure_exploration_regression-rendered.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/bauwelt_identity_2013_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 584,
+      "sha256": "3822e77fcba64613368961e0595b58f67b456d228ebd68b0c897e4dd428d4f9a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/bauwelt_identity_2013_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_frontier_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 615,
+      "sha256": "94eee442e2a9af4c9920c31f03fe25295476fb64bbc259c0c8f69b9ee1d9cdba",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_frontier_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 685,
+      "sha256": "6002e63e5c39a4a7b638ca52081be4843141dcb7f25adce45d5360ff5e30d2bd",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1328,
+      "sha256": "11e1f0f8ec7edccbfd6d9641b8b733a1de383eb79b1c1dc4daf9140e193ebfcf",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_nextgen_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_settlement_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2067,
+      "sha256": "430e55f53620b8c2df1d8871f1b9763936f7d14e91ed66e383700f1dce26a8b4",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_settlement_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_settlement_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2710,
+      "sha256": "92cd913d52a3fa3cfb89e028415035981f6e99bdaba475e2f26a4a4a0e805590",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_settlement_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_settlement_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 535,
+      "sha256": "33275feb62e4b45e22b1e5baf628116c26e14ded822012c4d71ba5b72a3cdb5c",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_settlement_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_transform_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 563,
+      "sha256": "908189e909d8d514b48819b7fbf29727b962e2f17d4f0f28dbd43f5d690ccc5a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_transform_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_village_art_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 505,
+      "sha256": "4faebeab516899c3b01a0f8ee58c76f92cb273c50ef3fb3fced0a816d51cdc16",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_art_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_village_scene_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 844,
+      "sha256": "b96bb29f378e15ddbae7347a0a96e2c6166937efd8bd34af30221e4a7ffe4fae",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_scene_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_village_economy_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 626,
+      "sha256": "b8c1b4ca69cf99d1009beb0c2bb0cf3c6d64be6dc980036e29cdf8f5bb917d16",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_economy_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/build_village_scene_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1487,
+      "sha256": "7846054d801d6560c57f7747b3518c9d23e1a2ba04af297175c873a5a1bae923",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/build_village_scene_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/cards_table_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1156,
+      "sha256": "d28154e12b864cf9b7d98da980bd86cb648fc0487abe9f8a07b8d9252f6386c2",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/cards_table_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/cards_table_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 581,
+      "sha256": "6aaf54424923fd7d7b472e55e52de02d1bd5040845c4982659844db4314121a8",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/cards_table_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 590,
+      "sha256": "443e27628d12acd4c02473fc8e5246282c0701eab6aff75a0e39927c275f76de",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1233,
+      "sha256": "4ffbe8ce4abd7e8b4612ad3b4552838951864426ca7ba7a410c0385360953fb2",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/creative_nextgen_environment_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/jump_expeditions_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 2758,
+      "sha256": "92b58ab6f6002b1c9989a185e3b26acc44c117d2cfc921652edf4beffaf96753",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/jump_expeditions_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/jump_nextgen_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1721,
+      "sha256": "82514bc41e424ce87553424d14aba2727375e9e7704b38bc834718cd3f383ad3",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/jump_nextgen_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/jump_nextgen_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1995,
+      "sha256": "52a320159bea3754b29275564ce4915525364e192f7ea53430e7ddfe950bcfc9",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/jump_nextgen_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 732,
+      "sha256": "46a285630f61100232ed1b4a2c8835255a2927cd97e4d5e5fb4209e97fb6f044",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1377,
+      "sha256": "d484ceb661ccbefe2256d548f25622bd03ba2fbac1ff59d8b9acc85a16097ea9",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_nextgen_garage_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/kart_player_full_route_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 21726,
+      "sha256": "4d2880fbc5edc7d17ce92df6171715f6df77ba669ed614a1fb01fae0748bd532",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_player_full_route_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/learning_host_payload_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 559,
+      "sha256": "2c10581b2fd5d475f5fdd7dfde61c1dff0c9f8284d4339ff1ebd6e9ca2a65c55",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_host_payload_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/learning_sharing_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3500,
+      "sha256": "b08934b581136c66c680c39a164d2f2c476d4324b5dbd965a8670189a1f7e3bb",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_sharing_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/kart_track_pass_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1074,
+      "sha256": "e1802172ad25ca6f8f686bd95e732e3e5b5a040e8b441e0792755a2919139690",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/kart_track_pass_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/learning_studio_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1799,
+      "sha256": "4c3f76fbf9eae0869b4055830f947781d98f5809e22bf7c62066dfb3d0f97766",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_studio_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/learning_sharing_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1480,
+      "sha256": "729d8e38b8e21b8152e2835d2e82fd6bd24937a943b2d755c8c57ad5e3565a9f",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_sharing_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/learning_world_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 8460,
+      "sha256": "1c1c25a2fc37ff8c179169a6ed68b10c0573ff68d083d690a8f125434d42621e",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_world_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/lumo_65bone_walk_gait_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 570,
+      "sha256": "d709a54ac013e3e6e24a6c31a790d8d84b0abe00f4fbccb7fee6229947ff6cda",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_65bone_walk_gait_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/learning_world_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 10597,
+      "sha256": "31cfdd02030c31b3d783750ce0f984d4988ee22bd87e5918be5a02ffbbebca9a",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/learning_world_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/lumo_original_jump_visual_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 689,
+      "sha256": "6c2847641ce8702483e9a6d81b36d20fac209567079970bd641e11f0c3489305",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_original_jump_visual_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/lumo_studio_motion_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1196,
+      "sha256": "2bdcd3d18a853ec1befee4e03690cbb7bb01baceadb4d98983fe0a751450ba98",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_studio_motion_capture-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/lumo_studio_motion_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 601,
+      "sha256": "0b95982e77eaab37152a0a1f780a96d5ea6242b173a07687cb7f4ee7599896c5",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_studio_motion_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/lumo_teacher_pose_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 587,
+      "sha256": "9f2874ec9da7d8b8e5621890cbb37e77246965e0a6cd8dc883ade2be129321d7",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/lumo_teacher_pose_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3082,
+      "sha256": "e4abf43a73ce8a31a60e23f78730c873cd8b4a8a98c799f25d136594100d7363",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 3727,
+      "sha256": "f9da89146f4ee9c2ce622a9953662894515e7544ee85e7739bddfb3b6fadf5c9",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_menu_lifecycle_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 569,
+      "sha256": "eb86541e102b1706bd36e900c63d46fd5db5fd8989021c9ebd8782435164252b",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1212,
+      "sha256": "8a1c3eb6d30f13d7f28cc509a44ca72a04f839d4c752c4bb2353ac66b7f51ecc",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/puzzle_rotation_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 598,
+      "sha256": "12c16889bcb427a5b8cc09878a7652e23091e07b6c3f9bb9765f6bd2e00def7b",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1241,
+      "sha256": "cc3936b5a0d4d79bbdce5cd750c6710d618974a57bc119440a7bfdee9e768155",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/rhythm_tour_play_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/rhythm_tour_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 580,
+      "sha256": "2d7b3c234aed5745baeff022044bd6717611de1bfefa8c787f6fc79acc4998e2",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/rhythm_tour_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/treasure_exploration_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 587,
+      "sha256": "5f461cb949ebc96db8146c1e90787a233e280637a2ee36c9aa0b5fbf0b4fb277",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/treasure_exploration_regression-headless/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/nextgen/user-data/treasure_exploration_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log",
+      "bytes": 1230,
+      "sha256": "1844c3426ee3699731cb3cc4683ba59f528c4a50e08e71fa6dfc944d860d0af0",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/nextgen/user-data/treasure_exploration_regression-rendered/godot/app_userdata/Lumo 3D/logs/godot.log"
+    },
+    {
+      "path": "artifact-logs/worlds-14068726721/nextgen-evidence/project-validation.log",
+      "bytes": 6124,
+      "sha256": "9ce4cc5c5d80ff2abf463f3328ea7ffa1aa612ad10f867910e7fc370f571da5e",
+      "source_zip": "worlds-14068726721.zip",
+      "source_zip_sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "source_entry": "nextgen-evidence/project-validation.log"
+    },
+    {
+      "path": "checkpoint/worlds-artifact-verification.json",
+      "bytes": 56560,
+      "sha256": "30b2ea73b025fbadc5e4d94335af64597735794a5cdaf4a0e0e489796f9f91ed",
+      "source_path": "worlds-artifact-verification.json"
+    },
+    {
+      "path": "checkpoint/worlds-core-component-contract.json",
+      "bytes": 883,
+      "sha256": "a76ee8e136933082871c4624100f611456d0f1806c11445e21767de4cf92e0b3",
+      "source_path": "worlds-core-component-contract.json"
+    },
+    {
+      "path": "checkpoint/worlds-full-verification.log",
+      "bytes": 1697,
+      "sha256": "7ab17ec236d762a606b28388822efb96739102d70e3cb48e18133f5906af352c",
+      "source_path": "worlds-full-verification.log"
+    },
+    {
+      "path": "checkpoint/manifest.json",
+      "bytes": 20232,
+      "sha256": "18f58b398c7e5d6e647211c34a1f29f9f4719a4cbf8430b640e20145b69c46d5",
+      "source_path": "manifest.json"
+    },
+    {
+      "path": "checkpoint/SHA256SUMS",
+      "bytes": 11827,
+      "sha256": "0eaf5817874ca82cedbebaef690c9168e2649e29d597ef115c84a37fb8283d7e",
+      "source_path": "SHA256SUMS"
+    }
+  ],
+  "excluded_original_zip_payloads": [
+    {
+      "path": "legacy-14065839557.zip",
+      "bytes": 39929636,
+      "sha256": "d50379791ba716e681e9ac113990811e41a7cb7b31c5fc910c2081c758e29975",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    },
+    {
+      "path": "native-14069131343.zip",
+      "bytes": 176564239,
+      "sha256": "744949fb597d7a7f9442db0cee16740f241adcee3c515f6fd4154ebd2dec6800",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    },
+    {
+      "path": "preview-14066363548.zip",
+      "bytes": 13138717,
+      "sha256": "d20988ae20965f9a7106c586df14337053b54d43df2ac1b380636c4d0b6b06a8",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    },
+    {
+      "path": "touch-build-14067098947.zip",
+      "bytes": 23334596,
+      "sha256": "14a4be6e2e607b837e60967e94a890b404cbc82d8895cbe2b8bbad8ad81d4d3e",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    },
+    {
+      "path": "touch-treasure-14067468053.zip",
+      "bytes": 33075386,
+      "sha256": "2bd7d62e2af52ab45b5cbe02dd6b6abc67e45af8a49ad3e866fac1c476b451ac",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    },
+    {
+      "path": "touch-workshop-14068866713.zip",
+      "bytes": 11946535,
+      "sha256": "ba18e6d6678516878a8469a486f79a7e682193f4435f406e61979bf1b87a7a8e",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    },
+    {
+      "path": "worlds-14068726721.zip",
+      "bytes": 108174758,
+      "sha256": "97ba64c611eec350055a352cee8e21c854c0ac2844ef4e637317b1911d7b7ad6",
+      "reason": "Original ZIP payload is not duplicated; original artifact and public release bindings are retained."
+    }
+  ],
+  "contract": {
+    "core": 43,
+    "studio_png": 24,
+    "village_png": 4,
+    "puzzle_menu_png": 6,
+    "touch_pairs": 6,
+    "touch_png": 32
+  },
+  "root_actual_review_count": 6,
+  "root_actual_review_scope": "New Puzzle menu/play frames at 640x360 and 960x540 only; scroll/clipping limitations explicitly recorded.",
+  "no_new_tests_or_visual_reviews": true,
+  "no_source_or_receipt_relabelled": true
+}
